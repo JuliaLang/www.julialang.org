@@ -1,1 +1,1 @@
-For now, this page can be viewed at <http://julialang.github.com/>. Once we have something we're happy with in place, we can CNAME julialang.org over to this and then it will be accessible as <http://julialang.org/> as the official Julia web site.
+This is the GitHub repository for the Julia programming language project's main website, [julialang.org](http://julialang.org/). The repository for the source code of the language itself can be found at [github.com/JuliaLang/julia](https://github.com/JuliaLang/julia).

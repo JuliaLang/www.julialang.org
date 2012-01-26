@@ -101,8 +101,11 @@ table.benchmarks tbody td.data {
   padding: 0 2em 0 0;
 }
 
-code {
+pre {
   font-size: 85%;
+  border: 1px solid #ddd;
+  margin: 1em 2em;
+  padding: 1em 1.5em;
 }
 
 ul.posts {
