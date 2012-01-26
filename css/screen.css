@@ -9,7 +9,7 @@ html, body {
 
 body {
   background-color: white;
-  font: 13px Georgia, Arial, sans-serif;
+  font: 10.5pt Georgia, Arial, sans-serif;
   *font-size: small;
   text-align: center;
 }
@@ -87,7 +87,7 @@ table.benchmarks thead td {
 }
 
 table.benchmarks tbody {
-  font: 85% Monaco, Courier, mono;
+  font: 80% Monaco, Courier, mono;
 }
 
 table.benchmarks tbody th {
@@ -102,9 +102,9 @@ table.benchmarks tbody td.data {
 }
 
 pre {
-  font-size: 85%;
+  font: 80% Monaco, 'Courier New', Courier, monospace;;
   border: 1px solid #ddd;
-  margin: 1em 2em;
+  margin: 1em 2.5em 1em 2em;
   padding: 1em 1.5em;
 }
 
