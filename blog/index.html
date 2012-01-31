@@ -1,0 +1,12 @@
+---
+layout: default
+title:  The Julia Blog
+---
+<ul class="posts">
+  {% for post in site.categories.blog %}
+    <li>&raquo;
+      <a class="postlink" href="{{ post.url }}">{{ post.title }}</a>
+      <span class="timestamp">{{ post.date | date_to_string }}</span>
+    </li>
+  {% endfor %}
+</ul>

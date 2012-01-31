@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: common
 ---
+<div class="title">The Julia Blog</div>
+{% include links.html %}
+
 <div id="post">
   <h1>{{ page.title }}</h1>
   <p class="meta">
@@ -9,5 +12,7 @@ layout: default
       | {{ tag }}
     {% endfor %}
   </p>
+
   {{ content }}
+
 </div>

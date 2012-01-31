@@ -1,31 +1,7 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title>{{ page.title }}</title>
-  <meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
-  <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
-  <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
-</head>
-<body>
+---
+layout: common
+---
+<div class="title">{{ page.title }}</div>
+{% include links.html %}
 
-<div class="site">
-  <div class="title">{{ page.title }}</div>
-  <div class="contact">
-    <p>
-      <a href="https://github.com/JuliaLang/julia" target="_blank">source code</a> |
-      <a href="https://github.com/JuliaLang/julia/wiki" target="_blank">documentation</a> |
-      <a href="http://groups.google.com/group/julia-dev/" target="_blank">discussion</a>
-    </p>
-  </div>
-
-  {{ content }}
-
-</div>
-
-<a href="https://github.com/JuliaLang/julia" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" /></a>
-
-<br/><br/><!-- hack to give some space at the bottom -->
-
-</body>
-</html>
+{{ content }}

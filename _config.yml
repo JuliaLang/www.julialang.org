@@ -1,4 +1,4 @@
 markdown: rdiscount
 pygments: true
 
-permalink: /:categories/:year/:title
+permalink: /:categories/:year/:month/:title
