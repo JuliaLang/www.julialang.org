@@ -9,14 +9,33 @@ html, body {
 
 body {
   background-color: white;
-  font: 10.5pt Georgia, Arial, sans-serif;
-  *font-size: small;
-  text-align: center;
+  font: 11.5pt Georgia, Arial, sans-serif;
 }
 
+#site {
+  width: 55em;
+  text-align: left;
+  line-height: 1.5em;
+  margin: 3em auto 2em auto;
+}
+  #site .title {
+    font-weight: bold;
+    margin-bottom: 2em;
+  }
+  #site .links {
+    text-align: center;
+  }
+    #site .links a {
+      text-decoration: none;
+      color: #a00;
+    }
+    #site .contact a:hover {
+      color: black;
+    }
+
 .title, h1, h2, h3, h4, h5, h6 {
-  font-size: 100%;
   font-family: Helvetica, Arial, Clean, sans-serif;
+  font-size: 100%;
 }
 
 .title {
@@ -25,7 +44,7 @@ body {
 }
 
 h1 {
-  padding-bottom: 1em;
+  font-size: 107%;
 }
 
 p {
@@ -33,214 +52,92 @@ p {
 }
 
 a {
-  color: #00b;
   text-decoration: none;
+  color: #00b;
+}
+  a:visited { color: #88b; }
+  a:hover   { color: #008; }
+
+ol {
+  margin-left: 2.25em;
 }
 
-a:visited {
-  color: #88b;
-}
-
-a:hover {
-  color: #008;
+ul {
+  margin-left: 1.8em;
+  list-style-type: circle;
 }
 
 .figure {
   text-align: center;
 }
-
-.figure p.note {
-  font-size: 50%;
-}
+  .figure p.note { font-size: 50%; }
 
 table.benchmarks {
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
 }
+  table.benchmarks thead {
+    /* border-top: 1px solid black; */
+    border-bottom: 1px solid black;
+  }
+  table.benchmarks tbody {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+  table.benchmarks colgroup col.reference {
+    width: 14.5ex;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+  }
+  table.benchmarks thead th,
+  table.benchmarks thead td {
+    width: 10ex;
+    text-align: center;
+    padding: 0 1ex;
+  }
+  table.benchmarks thead td {
+    padding-bottom: 0.75ex;
+  }
+  table.benchmarks tbody {
+    font: 80% Monaco, Courier, mono;
+  }
+  table.benchmarks tbody th {
+    font-weight: normal;
+    text-align: left;
+    padding: 0 1em;
+  }
+  table.benchmarks tbody td.data {
+    text-align: right;
+    padding: 0 2em 0 0;
+  }
 
-table.benchmarks thead {
-  /* border-top: 1px solid black; */
-  border-bottom: 1px solid black;
-}
-
-table.benchmarks tbody {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-}
-
-table.benchmarks colgroup col.reference {
-  width: 14.5ex;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-}
-
-table.benchmarks thead th,
-table.benchmarks thead td {
-  width: 10ex;
-  text-align: center;
-  padding: 0 1ex;
-}
-
-table.benchmarks thead td {
-  padding-bottom: 0.75ex;
-}
-
-table.benchmarks tbody {
-  font: 80% Monaco, Courier, mono;
-}
-
-table.benchmarks tbody th {
-  font-weight: normal;
-  text-align: left;
-  padding: 0 1em;
-}
-
-table.benchmarks tbody td.data {
-  text-align: right;
-  padding: 0 2em 0 0;
+code {
+  font: 80% Monaco, 'Courier New', Courier, monospace;
 }
 
 pre {
-  font: 80% Monaco, 'Courier New', Courier, monospace;;
   border: 1px solid #ddd;
-  margin: 1em 2.5em 1em 2em;
-  padding: 1em 1.5em;
+  margin: 1em 2em 1em 1.5em;
+  padding: .75em 1.25em;
+  line-height: 1em;
 }
 
-ul.posts {
-  list-style-type: none;
-  margin-bottom: 1em;
+#blogindex {
+  width: 30em;
+  margin: 2em auto 2em auto;
 }
-
-  ul.posts > li {
-    line-height: 1.75em;
+  #blogindex ul.posts {
+    list-style-type: none;
   }
-
-  #resume ul.posts li {
-    padding-bottom: 1ex;
-  }
-
-  ul.posts .timestamp {
-    float: right;
-    color: #aaa;
-  }
-
-  ul.posts .postlink {
-    margin-left: 0.5ex;
-  }
-
-  ul.posts .content, #resume > p {
-    font-size: 90%;
-    line-height: 1.5em;
-    margin: 0ex 3ex 0ex 3ex;
-  }
-
-  #resume > p {
-    padding-bottom: 1em;
-  }
-
-  ul.posts .content p {
-    margin: 0;
-    padding-top: 0.5ex;
-    padding-bottom: 1ex;
-  }
-
-  ul.posts .content ul {
-    margin: 0ex 1ex 0ex 3ex;
-  }
-
-.site {
-  font-size: 110%;
-  text-align: left;
-  width: 55em;
-  margin: 3em auto 2em auto;
-  line-height: 1.5em;
-}
-
-.title {
-  font-weight: bold;
-  margin-bottom: 2em;
-}
-
-  .site .title .name {
-    font-size: 120%;
-  }
-
-  .site .title a {
-    color: #a00;
-    text-decoration: none;
-  }
-
-  .site .title a:hover {
-    color: black;
-  }
-
-  .site .title a.extra {
-    color: #aaa;
-    text-decoration: none;
-    margin-left: 1em;
-  }
-
-  .site .title a.extra:hover {
-    color: black;
-  }
-
-  .site .meta {
-    color: #aaa;
-  }
-
-  .site .footer {
-    font-size: 80%;
-    color: #666;
-    border-top: 4px solid #eee;
-    margin-top: 2em;
-    overflow: hidden;
-  }
-
-  .site .contact {
-    text-align: center;
-  }
-
-  .site .contact a {
-    color: #a00;
-    text-decoration: none;
-  }
-
-    .site .contact a:hover {
-      color: black;
+    #blogindex ul.posts li {
+      line-height: 1.75em;
+    }
+    #blogindex ul.posts .timestamp {
+      float: right;
+      color: #aaa;
     }
 
-#post {
-
+#blogpost .timestamp {
+  color: #aaa;
 }
-
-  #post pre {
-    border: 1px solid #ddd;
-    background-color: #eef;
-    padding: 0 .4em;
-  }
-
-  #post ul,
-  #post ol {
-    margin-left: 1.35em;
-  }
-  /* terminal */
-
-  #post pre.terminal {
-    border: 1px solid black;
-    background-color: #333;
-    color: white;
-  }
-
-  #post pre.terminal code {
-    background-color: #333;
-  }
-
-#related {
-  margin-top: 2em;
-}
-
-  #related h2 {
-    margin-bottom: 1em;
-  }
