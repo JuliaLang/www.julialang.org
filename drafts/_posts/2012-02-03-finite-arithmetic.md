@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Integer arithmetic: getting it right
+title:      "Integer Arithmetic: Getting it Right"
 author:     <a href="http://karpinski.org/" target="_blank">Stefan Karpinski</a>
 ---
 
