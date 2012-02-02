@@ -1,3 +1,5 @@
+/* general site formatting */
+
 * {
   margin: 0;
   padding: 0;
@@ -72,6 +74,8 @@ ul {
 }
   .figure p.note { font-size: 50%; }
 
+/* benchmarks table */
+
 table.benchmarks {
   margin-left: auto;
   margin-right: auto;
@@ -112,6 +116,8 @@ table.benchmarks {
     padding: 0 2em 0 0;
   }
 
+/* inline code and code blocks */
+
 code {
   font: 80% Monaco, 'Courier New', Courier, monospace;
 }
@@ -123,10 +129,15 @@ pre {
   line-height: 1em;
 }
 
+/* pages listing blog posts */
+
 #blogindex {
-  width: 30em;
+  width: 25em;
   margin: 2em auto 2em auto;
 }
+  #blogindex ul {
+    margin: 0;
+  }
   #blogindex ul.posts {
     list-style-type: none;
   }
@@ -138,9 +149,21 @@ pre {
       color: #aaa;
     }
 
+/* blog post pages */
+
 #blogpost {
   margin-bottom: 3em;
 }
   #blogpost .timestamp {
     color: #aaa;
+  }
+
+/* disqus comment threads */
+
+#disqus_thread {
+  font-family: Helvetica, Arial, Clean, sans-serif;
+  font-size: 85%;
+}
+  #dsq-pagination {
+    font-size: 85%;
   }

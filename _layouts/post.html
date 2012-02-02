@@ -18,6 +18,9 @@ layout: common
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
+  {% if site.server %}
+  var disqus_developer = 1;
+  {% endif %}
   (function() {
     var dsq = document.createElement('script');
     dsq.async = true;
