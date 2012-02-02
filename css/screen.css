@@ -138,6 +138,9 @@ pre {
       color: #aaa;
     }
 
-#blogpost .timestamp {
-  color: #aaa;
+#blogpost {
+  margin-bottom: 3em;
 }
+  #blogpost .timestamp {
+    color: #aaa;
+  }
