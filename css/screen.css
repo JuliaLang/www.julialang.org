@@ -132,17 +132,18 @@ pre {
 /* pages listing blog posts */
 
 #blogindex {
-  width: 25em;
+  width: 30em;
   margin: 2em auto 2em auto;
 }
   #blogindex ul {
-    margin: 0;
+    margin: 0 2.5em 0 1em;
   }
   #blogindex ul.posts {
     list-style-type: none;
   }
     #blogindex ul.posts li {
       line-height: 1.75em;
+      margin: 0;
     }
     #blogindex ul.posts .timestamp {
       float: right;
