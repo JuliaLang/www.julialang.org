@@ -6,6 +6,7 @@ layout: common
 
 <div id="blogpost">
   <h1>{{ page.title }}</h1>
+
   <p class="metadata">
     <span class="timestamp">{{ page.date | date_to_string }}</span>
     &nbsp;|&nbsp;
@@ -16,6 +17,14 @@ layout: common
 
 </div>
 
+{% assign show_comments = true %}
+{% for category in page.categories %}
+  {% if category == 'drafts' %}
+    {% assign show_comments = false %}
+  {% endif %}
+{% endfor %}
+
+{% if show_comments %}
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   {% if site.server %}
@@ -30,3 +39,4 @@ layout: common
      document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
+{% endif %}
