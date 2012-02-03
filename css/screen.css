@@ -37,7 +37,7 @@ body {
 
 .title, h1, h2, h3, h4, h5, h6 {
   font-family: Helvetica, Arial, Clean, sans-serif;
-  font-size: 100%;
+  font-size: 105%;
 }
 
 .title {
@@ -46,7 +46,11 @@ body {
 }
 
 h1 {
-  font-size: 107%;
+  font-size: 110%;
+  padding-top: 1ex;
+}
+
+h2 {
   padding-top: 1ex;
 }
 

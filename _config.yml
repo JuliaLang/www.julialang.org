@@ -4,4 +4,6 @@ pygments: true
 
 markdown: rdiscount
 rdiscount:
-  extensions: [smart]
+  extensions:
+    - smart
+    - generate_toc
