@@ -4,9 +4,9 @@ title:  Shelling Out Sucks
 author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 ---
 
-Calling external programs — a.k.a. "shelling out" — is error prone and inefficient in most programming languages.
-This is true even in programming languages that pride themselves on be good for gluing various programs and systems together:
-Perl, Python, Ruby — even, to some extent, shells themselves.
+Calling external programs from programming languages via an intermediate shell — a.k.a. "shelling out" — is highly convenient but is also a very common source of bugs, security holes, and unnecessary overhead.
+This is true even in programming languages that pride themselves on be great for gluing various programs and systems together:
+Perl, Python, and Ruby are prime offenders.
 Here are the three reasons why shelling out is problematic:
 
 1. *[Metacharacter brittleness.](#Metacharacter+brittleness)*
@@ -24,93 +24,194 @@ This typically leads to code that fails silently when shelled out commands don't
 Worse still, because of the indirection problem, there are many cases where the failure of a process in a spawned pipeline simply cannot be detected by the parent process at all, let alone handled appropriately.
 
 In the rest of this post, we'll go over examples demonstrating each of these problems.
-At the end, I'll present how I think programming languages *should* deal with these issues better — which is [how Julia does it](https://github.com/JuliaLang/julia/wiki/Running-External-Programs).
-I'll use [Bash] and [Ruby] for examples, but I could just as easily pick on [Python], [Perl], other [UNIX shells](http://en.wikipedia.org/wiki/Unix_shell), and any number of other programming languages.
-
-## Metacharacter brittleness
-
-Suppose you want to count the number of lines in all the files in a directory tree containing the word "foo".
-One natural UNIXy way to do this is using the following shell pipeline:
-
-    find $dir -type f | xargs grep foo | wc -l
-
-Here the variable `$dir` is presumed to contain the path to the directory in which files should be looked for.
-This works fine if `$dir` is something simple like `"src"`.
-But what if `$dir` were something like `"source code"` instead, containing a space?
-Although file names with spaces were traditionally uncommon on UNIX systems, with the advent of systems like [OS X], that is no longer the case.
-Let's try it:
-
-    bash-3.2$ mkdir "source code"
-    bash-3.2$ echo foo > "source code"/test.txt
-    bash-3.2$ dir="source code"
-    bash-3.2$ find $dir -type f | xargs grep foo | wc -l
-    find: `source': No such file or directory
-    find: `code': No such file or directory
-    0
-
-Oops. Because space separates arguments in the shell, `bash` looks for directories named `"source"` and `"code"` rather than in a single directory named `"source code"`.
-Bash provides a fix:
-if we write `"$dir"` instead of just `$dir`, the shell knows to interpolate the variable as a single word instead of splitting it on whitespace:
-
-    bash-3.2$ find "$dir" -type f | xargs grep foo | wc -l
-    grep: source: No such file or directory
-    grep: code/test.txt: No such file or directory
-    0
-
-A similar but distinct error: here the trouble is that `xargs` splits its input on whitespace when determining what arguments to pass to `grep`.
-We can work around this using the `-print0` and `-0` options for `find` and `xargs`:
-
-    bash-3.2$ find "$dir" -type f -print0 | xargs -0 grep foo | wc -l
-    1
-
-Finally! It works. But what a hassle.
-
-Now suppose we're writing a Ruby script and we want to do the same thing.
-One option is to write code that reads the contents of a given directory, finds all the files, opens them and iterates through them looking for the string `"foo"`.
-However, that's a lot of work and it's going to be much slower than just letting `find` and `grep` do all the work since they're written in C and are very good at what they do.
-The typical way to do this would be something like this:
-
-    `find #{dir} -type f | xargs grep foo | wc -l`.to_i
-
-Of course, this breaks just like our original Bash solution, when the value of `dir` has a space in it:
-
-    irb(main):003:0> `find #{dir} -type f | xargs grep foo | wc -l`.to_i
-    find: `source': No such file or directory
-    find: `code': No such file or directory
-    => 0
-
-But let's just go ahead and fix all that since we've already done it once:
-
-    irb(main):001:0> dir="source code"
-    => "source code"
-    irb(main):002:0> `find "#{dir}" -type f -print0  | xargs -0 grep foo | wc -l`.to_i
-    => 1
-
-Excellent.
-So what's the problem?
-This solution addresses the problem of file names with spaces in them, but it is still brittle with respect to any other shell metacharacters.
-What if a file name has double quote character in it?
-Let's try it.
-First, create a weirdly name directory:
-
-    bash-3.2$ mkdir 'foo"bar'
-    bash-3.2$ echo foo > 'foo"bar'/test.txt
-    bash-3.2$ ls -ld foo*bar
-    drwxr-xr-x 3 stefan staff 102 Feb  3 16:17 foo"bar/
-
-That is an admittedly strange name, but it's a perfectly legal UNIX file name.
-Now back to Ruby:
-
-    irb(main):002:0> `find "#{dir}" -type f -print0  | xargs -0 grep foo | wc -l`.to_i
-    sh: -c: line 0: unexpected EOF while looking for matching `"'
-    sh: -c: line 1: syntax error: unexpected end of file
-    => 0
-
-Doh.
-
+At the end, I'll present how I think programming languages *should* deal with these issues better.
+In a followup post, I'll talk about how this better approach is implemented in Julia and all the shell-free pipeline goodness that ensues.
+I'll use [Bash] and [Ruby] for examples, but I could just as easily pick on [Python], [Perl], other [UNIX shells](http://en.wikipedia.org/wiki/Unix_shell), or just about any other programming language you can think of.
 
 [Bash]:     http://www.gnu.org/software/bash/
 [Perl]:     http://www.perl.org/
 [Python]:   http://python.org/
 [Ruby]:     http://www.ruby-lang.org/
 [OS X]:     http://en.wikipedia.org/wiki/Mac_OS_X
+
+## Metacharacter brittleness
+
+Let's start with a simple example of shelling out from Ruby.
+Suppose you want to count the number of lines containing the string "foo" in all the files under a directory given as an argument.
+One option is to write Ruby code that reads the contents of the given directory, finds all the files, opens them and iterates through them looking for the string "foo".
+However, that's a lot of work and it's going to be much slower than using a pipeline of standard UNIX commands, which are written in C and heavily optimized.
+The most natural and convenient thing to do is to shell out.
+Here's how you would do it in Ruby:
+
+    `find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`.to_i
+
+This expression interpolates the `dir` variable into a command, spawns a Bash shell to execute the resulting command, captures the output into a string, and then converts that string to an integer.
+The command uses the `-print0` and `-0` options to allow strange characters in file names piped from `find` to `xargs` (these cause file names to be delimited by NUL bytes instead of whitespace).
+Even with these extra-careful options, this is pretty simple and clear.
+Here it is in action:
+
+    irb(main):001:0> dir="src"
+    => "src"
+    irb(main):002:0> `find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`.to_i
+    => 5    
+
+Great.
+However, this only works as expected if the directory name `dir` doesn't contain any characters that the shell considers special.
+For example, the shell decides what constitutes a "word" using whitespace.
+Thus, if the value of `dir` is a directory name containing a space, this will fail:
+
+    irb(main):003:0> dir="source code"
+    => "source code"
+    irb(main):004:0> `find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`.to_i
+    find: `source': No such file or directory
+    find: `code': No such file or directory
+    => 0
+
+The immediate solution to the problem of spaces is to surround the interpolated directory name in quotes, telling the shell to treat spaces inside as normal characters:
+
+    irb(main):003:0> `find '#{dir}' -type f -print0 | xargs -0 grep foo | wc -l`.to_i
+    => 5
+
+Excellent.
+So what's the problem?
+This solution addresses the issue of file names with spaces in them, but it is still brittle with respect to other shell metacharacters.
+What if a file name has single quote character in it?
+Let's try it.
+First, let's create a very weirdly name directory:
+
+    bash-3.2$ mkdir "foo'bar"
+    bash-3.2$ echo foo > "foo'bar"/test.txt
+    bash-3.2$ ls -ld foo*bar
+    drwxr-xr-x 3 stefan staff 102 Feb  3 16:17 foo'bar/
+
+That is an admittedly strange name, but it's a perfectly legal as a UNIX file name.
+Now back to Ruby:
+
+    irb(main):003:0> dir="foo'bar"
+    => "foo'bar"
+    irb(main):004:0> `find '#{dir}' -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+    sh: -c: line 0: unexpected EOF while looking for matching `''
+    sh: -c: line 1: syntax error: unexpected end of file
+    => 0
+
+Doh.
+Although this may seem like an unlikely corner case that one needn't realistically worry about, there are serious security ramifications.
+Suppose the name of the directory came from an untrusted source — like a web submission, or an argument to a setuid program from an untrusted user?
+Suppose an attacker could arrange for any value of `dir` they wanted:
+
+    irb(main):005:0> dir="foo'; echo MALICIOUS ATTACK 1>&2; echo '"
+    => "foo'; echo MALICIOUS ATTACK 1>&2; echo '"
+    irb(main):006:0> `find '#{dir}' -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+    find: `foo': No such file or directory
+    MALICIOUS ATTACK
+    grep:  -type f -print0
+    : No such file or directory
+    => 0
+
+Your box is now owned.
+Of course, you could sanitize the value of the `dir` variable, but there's a fundamental tug-of-war between security (as limited as possible) and flexibility (as unlimited as possible).
+The ideal behavior is to allow any directory name, no matter how bizarre, but "defang" all shell metacharacters.
+
+The only two way to fully protect against these sorts of metacharacter attacks — whether malicious or accidental — while still using an external shell to construct the pipeline, is to do complete shell metacharacter escaping:
+
+    irb(main):005:0> require 'shellwords'
+    => true
+    irb(main):006:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+    find: `foo\'; echo MALICIOUS ATTACK 1>&2; echo \'': No such file or directory
+    => 0
+
+With shell escaping, this safely attempts to search a very oddly named directory instead of executing the malicious attack.
+Although shell escaping works (assuming that there aren't any mistakes in the shell escaping implementation), realistically, no one actually does this — it's too much trouble.
+Instead programs that shell out with interpolated variables are typically riddled with potential bugs in the best case and massive security holes in the worst case.
+
+## Indirection and inefficiency
+
+If we were using the above Ruby code to count the number of lines with the string "foo" in a directory, we would want to know when there was a problem and handle it correctly.
+In Ruby, you can check if a shell command run using backticks or the similar `system` command was successful using the bizarrely named `$?.success?` indicator:
+
+    irb(main):008:0> dir="src"                                                              
+    => "src"
+    irb(main):009:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+    => 5
+    irb(main):010:0> $?.success?                                                                
+    => true
+
+Ok, it correctly indicates success.
+Let's make sure that it can detect failure:
+
+    irb(main):011:0> dir="nonexistent"                                                              
+    => "nonexistent"
+    irb(main):012:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+    find: `nonexistent': No such file or directory
+    => 0
+    irb(main):013:0> $?.success?=> true
+
+Wait. What?!
+That wasn't successful.
+What's going on?
+
+The heart of the problem is that when Ruby (or Python or Perl) shells out, the commands in the pipeline are not immediate children of the main program, but rather its grandchildren:
+the program spawns a shell, which makes a bunch of UNIX pipes, connects their inputs and outputs appropriately using the [`dup2` system call](https://developer.apple.com/library/IOs/#documentation/System/Conceptual/ManPages_iPhoneOS/man2/dup2.2.html), and then forks and execs the appropriate commands.
+As a result, the parent process — your main program — is not directly related to the commands in the pipeline:
+it doesn't know their process IDs, and cannot wait on them or get their exit statuses when they terminate.
+Their direct parent — i.e. the shell process — has to do all of that.
+Your program can only wait for the shell to finish and see if it was successful.
+
+If the shell is only executing a single command, this is fine:
+
+    irb(main):018:0> `true`
+    => ""
+    irb(main):019:0> $?.success?
+    => true
+    irb(main):020:0> `false`
+    => ""
+    irb(main):021:0> $?.success?
+    => false
+
+Unfortunately, the shell is by default quite lenient about what it considers to be a successful pipeline:
+
+    irb(main):026:0> `perl -e "die" | cat`
+    Died at -e line 1.
+    => ""
+    irb(main):027:0> $?.success?
+    => true
+
+As long as the last command in a pipeline succeeds, the entire pipeline is considered a success.
+This behavior can, however, be altered by using Bash's `pipefail` option:
+
+    irb(main):028:0> `set -o pipefail; perl -e "die" | cat`
+    Died at -e line 1.
+    => ""
+    irb(main):029:0> $?.success?
+    => false
+
+Now let's apply this to our example of counting "foo"s, and wrap it up in a function:
+
+    def foo_count(dir)
+      n = `set -o pipefail; find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+      if not $?.success?
+        raise("pipeline failed")
+      end
+      return n
+    end
+
+This function behaves the way we would like it to:
+
+    irb(main):039:0> foo_count("src")
+    => 5
+    irb(main):040:0> foo_count("nonexistent")
+    find: `nonexistent': No such file or directory
+    RuntimeError: pipeline failed
+    	from (irb):35:in `foo_count'
+    	from (irb):40
+    	from :0
+    irb(main):041:0> foo_count("foo'; echo MALICIOUS ATTACK; echo '")
+    find: `foo\'; echo MALICIOUS ATTACK; echo \'': No such file or directory
+    RuntimeError: pipeline failed
+    	from (irb):35:in `foo_count'
+    	from (irb):41
+    	from :0
+
+Unfortunately, since shelling out from Ruby (or Perl or Python) spawns a new shell every time, this option has to be set for every pipeline in order to find out the true exit status when shelling out pipelines of several commands.
+Of course, just like shell escaping every variable interpolated into a command, doing this at the start of every pipeline in backticks is something that no one actually does.
+As a result, even if you are a very careful programmer and check the return codes every time you shell out, unless you are *also* prefix every pipeline with `set -o pipefail`, you are still be a potential victim of silent errors.
