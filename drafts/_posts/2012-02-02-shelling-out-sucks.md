@@ -1,7 +1,7 @@
 ---
-layout:     post
-title:      Shelling Out Sucks
-author:     <a href="http://karpinski.org/" target="_blank">Stefan Karpinski</a>
+layout: post
+title:  Shelling Out Sucks
+author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 ---
 
 Calling external programs — a.k.a. "shelling out" — is error prone and inefficient in most programming languages.

@@ -1,7 +1,7 @@
 ---
-layout:     post
-title:      Mutability Is Not Evil
-author:     <a href="http://karpinski.org/" target="_blank">Stefan Karpinski</a>
+layout: post
+title:  Mutability Is Not Evil
+author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 ---
 
 Some things are most naturally thought of as mutable containers of values.

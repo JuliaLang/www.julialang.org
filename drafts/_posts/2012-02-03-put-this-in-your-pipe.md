@@ -1,7 +1,7 @@
 ---
-layout:     post
-title:      Put This In Your Pipe
-author:     <a href="http://karpinski.org/" target="_blank">Stefan Karpinski</a>
+layout: post
+title:  Put This In Your Pipe
+author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 ---
 
 In which Stefan explains why the shell is the only programming language that really gets piping data from one program to another right.

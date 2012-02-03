@@ -1,7 +1,7 @@
 ---
-layout:     post
-title:      "Integer Arithmetic: Getting it Right"
-author:     <a href="http://karpinski.org/" target="_blank">Stefan Karpinski</a>
+layout: post
+title:  "Integer Arithmetic: Getting it Right"
+author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 ---
 
 In which Stefan explains common pitfalls and tricky corner cases of

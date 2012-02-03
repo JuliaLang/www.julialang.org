@@ -1,7 +1,7 @@
 ---
-layout:     post
-title:      The Great Divide
-author:     Jeff Bezanson
+layout: post
+title:  The Great Divide
+author: Jeff Bezanson
 ---
 
 In which Jeff describes the schism between the fast implementation language and the slow user-facing language.
