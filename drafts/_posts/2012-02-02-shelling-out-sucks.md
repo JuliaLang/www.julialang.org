@@ -159,30 +159,30 @@ Your program can only wait for the shell to finish and see if it was successful.
 
 If the shell is only executing a single command, this is fine:
 
-    irb(main):018:0> `true`
+    irb(main):014:0> `true`
     => ""
-    irb(main):019:0> $?.success?
+    irb(main):015:0> $?.success?
     => true
-    irb(main):020:0> `false`
+    irb(main):016:0> `false`
     => ""
-    irb(main):021:0> $?.success?
+    irb(main):017:0> $?.success?
     => false
 
 Unfortunately, the shell is by default quite lenient about what it considers to be a successful pipeline:
 
-    irb(main):026:0> `perl -e "die" | cat`
+    irb(main):018:0> `perl -e "die" | cat`
     Died at -e line 1.
     => ""
-    irb(main):027:0> $?.success?
+    irb(main):019:0> $?.success?
     => true
 
 As long as the last command in a pipeline succeeds, the entire pipeline is considered a success.
 This behavior can, however, be altered by using Bash's `pipefail` option:
 
-    irb(main):028:0> `set -o pipefail; perl -e "die" | cat`
+    irb(main):020:0> `set -o pipefail; perl -e "die" | cat`
     Died at -e line 1.
     => ""
-    irb(main):029:0> $?.success?
+    irb(main):021:0> $?.success?
     => false
 
 Now let's apply this to our example of counting "foo"s, and wrap it up in a function:
@@ -197,15 +197,15 @@ Now let's apply this to our example of counting "foo"s, and wrap it up in a func
 
 This function behaves the way we would like it to:
 
-    irb(main):039:0> foo_count("src")
+    irb(main):022:0> foo_count("src")
     => 5
-    irb(main):040:0> foo_count("nonexistent")
+    irb(main):023:0> foo_count("nonexistent")
     find: `nonexistent': No such file or directory
     RuntimeError: pipeline failed
     	from (irb):35:in `foo_count'
     	from (irb):40
     	from :0
-    irb(main):041:0> foo_count("foo'; echo MALICIOUS ATTACK; echo '")
+    irb(main):024:0> foo_count("foo'; echo MALICIOUS ATTACK; echo '")
     find: `foo\'; echo MALICIOUS ATTACK; echo \'': No such file or directory
     RuntimeError: pipeline failed
     	from (irb):35:in `foo_count'
@@ -215,3 +215,11 @@ This function behaves the way we would like it to:
 Unfortunately, since shelling out from Ruby (or Perl or Python) spawns a new shell every time, this option has to be set for every pipeline in order to find out the true exit status when shelling out pipelines of several commands.
 Of course, just like shell escaping every variable interpolated into a command, doing this at the start of every pipeline in backticks is something that no one actually does.
 As a result, even if you are a very careful programmer and check the return codes every time you shell out, unless you are *also* prefix every pipeline with `set -o pipefail`, you are still be a potential victim of silent errors.
+
+Given the other problems of indirection, it's seems like a barely relevant afterthought to mention that the indirection of spawning a shell process just to spawn a bunch of other processes is inefficient.
+However, it is a source of unnecessary overhead:
+the main process could just do the work the shell does itself.
+The only reason not to do this is that it's complicated and hard to get right.
+The shell makes it easy.
+So programming languages have traditionally just relied on the shell to setup pipelines for them, regardless of the additional overhead.
+
