@@ -42,7 +42,7 @@ Here's how you would do it in Ruby:
     `find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`.to_i
 
 This expression interpolates the `dir` variable into a command, spawns a Bash shell to execute the resulting command, captures the output into a string, and then converts that string to an integer.
-The command uses the `-print0` and `-0` options to correctly handle strange characters in file names piped from `find` to `xargs` (these cause file names to be delimited by NUL bytes instead of whitespace).
+The command uses the `-print0` and `-0` options to correctly handle strange characters in file names piped from `find` to `xargs` (these cause file names to be delimited by [NUL](http://en.wikipedia.org/wiki/Null_character) bytes instead of whitespace).
 Even with extra-careful options, this shelling out code is simple and clear.
 Here it is in action:
 
