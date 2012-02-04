@@ -185,7 +185,29 @@ This behavior can, however, be altered by using Bash's `pipefail` option:
     irb(main):021:0> $?.success?
     => false
 
-Now let's apply this to our example of counting "foo"s, and wrap it up in a function:
+Unfortunately, since shelling out from Ruby (or Perl or Python) spawns a new shell every time, this option has to be set for every pipeline in order to find out the true exit status when shelling out pipelines of several commands.
+Of course, just like shell escaping every variable interpolated into a command, doing this at the start of every pipeline in backticks is something that no one actually does.
+As a result, even if you are a very careful programmer and check the return codes every time you shell out, unless you are *also* prefix every pipeline with `set -o pipefail`, you are still be a potential victim of silent errors.
+
+Given the other problems of indirection, it's seems like a barely relevant afterthought to mention that the indirection of spawning a shell process just to spawn a bunch of other processes is inefficient.
+However, it is a source of unnecessary overhead:
+the main process could just do the work the shell does itself.
+The only reason not to do this is that it's complicated and hard to get right.
+The shell makes it easy.
+So programming languages have traditionally just relied on the shell to setup pipelines for them, regardless of the additional overhead.
+
+## Lack of error handling
+
+Let's return again to our original example of shelling out to count "foo"s.
+Here's the total expression we need to use in order to shell out without being susceptible to metacharacter breakage and so that we can check if the entire pipeline succeeded:
+
+    `set -o pipefail; find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+
+But of course, Ruby  doesn't automatically raise an error when the pipeline fails (nor Python, nor Perl).
+This may be due to the unreliability of detecting errors in pipelines, but since that leads to false negatives rather than false positives, the connection is unclear.
+As a result, however, to be well-behaved little programmers, we need to check `$?.success?` after every instance of shelling out and raise an exception if it is false.
+Of course, doing this manually is tedious, and as a result, it largely isn't done.
+For example, to make our "foo"-counting example really well-behaved, we have to wrap it in a function like so:
 
     def foo_count(dir)
       n = `set -o pipefail; find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
@@ -202,24 +224,13 @@ This function behaves the way we would like it to:
     irb(main):023:0> foo_count("nonexistent")
     find: `nonexistent': No such file or directory
     RuntimeError: pipeline failed
-    	from (irb):35:in `foo_count'
-    	from (irb):40
-    	from :0
+        from (irb):35:in `foo_count'
+        from (irb):40
+        from :0
     irb(main):024:0> foo_count("foo'; echo MALICIOUS ATTACK; echo '")
     find: `foo\'; echo MALICIOUS ATTACK; echo \'': No such file or directory
     RuntimeError: pipeline failed
-    	from (irb):35:in `foo_count'
-    	from (irb):41
-    	from :0
-
-Unfortunately, since shelling out from Ruby (or Perl or Python) spawns a new shell every time, this option has to be set for every pipeline in order to find out the true exit status when shelling out pipelines of several commands.
-Of course, just like shell escaping every variable interpolated into a command, doing this at the start of every pipeline in backticks is something that no one actually does.
-As a result, even if you are a very careful programmer and check the return codes every time you shell out, unless you are *also* prefix every pipeline with `set -o pipefail`, you are still be a potential victim of silent errors.
-
-Given the other problems of indirection, it's seems like a barely relevant afterthought to mention that the indirection of spawning a shell process just to spawn a bunch of other processes is inefficient.
-However, it is a source of unnecessary overhead:
-the main process could just do the work the shell does itself.
-The only reason not to do this is that it's complicated and hard to get right.
-The shell makes it easy.
-So programming languages have traditionally just relied on the shell to setup pipelines for them, regardless of the additional overhead.
+        from (irb):35:in `foo_count'
+        from (irb):41
+        from :0
 
