@@ -9,5 +9,5 @@ He first presents the obvious, plain-Julia implementation of the `numericTimeSte
 That's it.
 There is no more.
 It just works and it's *as* fast as C, not nearly as fast.
-There is no code embedded strings or inline C code.
+There is no code embedded in strings.
 Performance Julia is just Julia.

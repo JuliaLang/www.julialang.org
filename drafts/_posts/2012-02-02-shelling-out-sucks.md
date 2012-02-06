@@ -4,7 +4,7 @@ title:  Shelling Out Sucks
 author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 ---
 
-Spawning a pipeline of connected programs via an intermediate shell — a.k.a. "shelling out" — is both idiomatic and highly convenient for many tasks in "glue languages" like Perl, Python, and Ruby.
+Spawning a pipeline of connected programs via an intermediate shell — a.k.a. "shelling out" — is both idiomatic and highly convenient for many tasks in "[glue languages](http://en.wikipedia.org/wiki/Glue_language)" like Perl, Python, and Ruby.
 However, shelling out is also a common source of bugs, security holes, unnecessary overhead, and silent failures.
 Here are the three reasons why shelling out is problematic:
 
@@ -14,7 +14,7 @@ if a variable used to construct the command contains any shell metacharacters, i
 3. *[Indirection and inefficiency.](#Indirection+and+Inefficiency)*
 When shelling out, the main program forks and execs a shell process just so that shell can in turn fork and exec a series of commands with their inputs and outputs appropriately connected.
 Not only is starting a shell an unnecessary step, but since the main program is not the parent of the pipeline commands, it cannot be notified when they terminate — it can only wait for the pipeline to finish and hope the shell indicates what happened.
-2. *[Silent failure by default.](#Silent+Failure+by+Default)*
+2. *[Silent failures by default.](#Silent+Failures+by+Default)*
 Errors in shelled out commands don't automatically become exceptions.
 This typically leads to code that fails silently when shelled out commands don't work.
 Worse still, because of the indirection problem, there are many cases where the failure of a process in a spawned pipeline *cannot* be detected by the parent process, even when errors are fastidiously checked for.
@@ -22,7 +22,7 @@ Worse still, because of the indirection problem, there are many cases where the 
 In the rest of this post, we'll go over examples demonstrating each of these problems.
 At [the end](#Summary+and+Remedy), I'll present how I think programming languages should deal with these issues better.
 In a [followup post], I'll talk about how this improved approach is implemented in Julia and all the shell-free pipeline goodness that ensues.
-Examples are given in [Ruby] which shells out to [Bash], but I could just as easily pick on [Python], [Perl], other [UNIX shells](http://en.wikipedia.org/wiki/Unix_shell), or just about any language you can think of.
+Examples below are given in [Ruby] which shells out to [Bash], but I could just as easily pick on [Python], [Perl], other [UNIX shells](http://en.wikipedia.org/wiki/Unix_shell), or just about any language you can think of.
 
 [Bash]:     http://www.gnu.org/software/bash/
 [Perl]:     http://www.perl.org/
@@ -36,7 +36,7 @@ Let's start with a simple example of shelling out from Ruby.
 Suppose you want to count the number of lines containing the string "foo" in all the files under a directory given as an argument.
 One option is to write Ruby code that reads the contents of the given directory, finds all the files, opens them and iterates through them looking for the string "foo".
 However, that's a lot of work and it's going to be much slower than using a pipeline of standard UNIX commands, which are written in C and heavily optimized.
-The most natural and convenient thing to do in Ruby is to shell out using backticks to capture output:
+The most natural and convenient thing to do in Ruby is to shell out, using backticks to capture output:
 
     `find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`.to_i
 
@@ -122,7 +122,7 @@ Instead, code that shells out with programmatically constructed commands is typi
 ## Indirection and Inefficiency
 
 If we were using the above Ruby code to count the number of lines with the string "foo" in a directory, we would want to check to see if everything worked and respond appropriately if something went wrong.
-In Ruby, you can check if a shell command executed using backticks (or the `system` and `popen` commands) was successful using the bizarrely named `$?.success?` indicator:
+In Ruby, you can check if a shelled out command was successful using the bizarrely named `$?.success?` indicator:
 
     irb(main):008:0> dir="src"                                                              
     => "src"
@@ -173,9 +173,10 @@ Unfortunately, by default the shell is quite lenient about what it considers to 
 
 As long as the last command in a pipeline succeeds — in this case `sort` — the entire pipeline is considered a success.
 Thus, even when one or more of the earlier programs in a pipeline fails spectacularly, the last command may not, leading the shell to consider the entire pipeline to be successful.
-This is likely not, however, what you mean by success.
+This is probably not what you mean by success.
 
-Bash's notion of pipeline success can fortunately be made stricter with the `pipefail` option:
+Bash's notion of pipeline success can fortunately be made stricter with the `pipefail` option.
+This option causes the shell to consider a pipeline successful only if all of its commands are successful:
 
     irb(main):020:0> `set -o pipefail; cat /dev/nada | sort`
     cat: /dev/nada: No such file or directory
@@ -185,10 +186,9 @@ Bash's notion of pipeline success can fortunately be made stricter with the `pip
 
 Since shelling out from Ruby (or Perl or Python) spawns a new shell every time, this option has to be set for every multi-command pipeline in order to be able to determine its true success status.
 Of course, just like shell-escaping all interpolated variables, setting `pipefail` at the start of every command is simply something that no one actually does.
-Even if you are a very careful programmer and check the return codes whenever you shell out, unless you *also* prefix every pipeline with "`set -o pipefail;`", you are still vulnerable to silent pipeline failures.
-Moreover, even with the `pipefail` option, your program has no way of determining *which* command in the pipeline failed — just that something went wrong.
+Moreover, even with the `pipefail` option, your program has no way of determining *which* commands in a pipeline were unsuccessful — it just knows that something somewhere went wrong.
 While that's better than silently failing and continuing as if there were no problem, its not very helpful for postmortem debugging:
-many programs are not as well-behaved as `cat` and don't identify themselves when printing fatal error messages.
+many programs are not as well-behaved as `cat` and don't actually identify themselves or the specific problem when printing error messages before giving up.
 
 Given the other problems caused by the indirection of shelling out, it's seems like a barely relevant afterthought to mention that execing a shell process just to spawn a bunch of other processes is inefficient.
 However, it is a real source of unnecessary overhead:
@@ -198,18 +198,18 @@ The only reason to have the shell do this work for you is that it's complicated 
 The shell makes it easy.
 So programming languages have traditionally relied on the shell to setup pipelines for them, regardless of the additional overhead and indirection.
 
-## Silent Failure by Default
+## Silent Failures by Default
 
-Let's return to out example of shelling out to count "foo" lines.
-Here's the total expression we need to use in order to shell out without being susceptible to metacharacter breakage and so that we can check if the entire pipeline succeeded:
+Let's return to our example of shelling out to count "foo" lines.
+Here's the total expression we need to use in order to shell out without being susceptible to metacharacter breakage and so we can actually tell whether the entire pipeline succeeded:
 
     `set -o pipefail; find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
 
 However, Ruby doesn't automatically raise an error when a shelled out command fails (nor do Python and Perl).
 Therefore, to avoid silent errors, we need explicitly check `$?.success?` after every time we shell out and raise an exception if it indicates failure.
 Of course, doing this manually is tedious, and as a result, it largely isn't done.
-The default behavior — and therefore the easiest and most common — is to assume that shelled out commands worked and completely ignore failures.
-To make our "foo" counting example really well-behaved, we would have to wrap it in a function like so:
+The default behavior — and therefore the easiest and most common behavior — is to assume that shelled out commands worked and completely ignore failures.
+To make our "foo" counting example well-behaved, we would have to wrap it in a function like so:
 
     def foo_count(dir)
       n = `set -o pipefail;
@@ -239,7 +239,7 @@ This function behaves the way we would like it to:
     	from (irb):14
     	from :0
 
-However, this 8-line, 200-character function is a far cry from the simplicity and ease of the expression we started with:
+However, this 8-line, 200-character function is a far cry from the simplicity and clarity of the expression we started with:
 
     `find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`.to_i
 
@@ -256,10 +256,10 @@ To sum it up, shelling out is great, but making code that shells out bug-free, s
 The trouble is that after doing all of these things, shelling out is no longer terribly convenient, and the code becomes annoyingly verbose.
 In short, shelling out responsibly kind of sucks.
 
-As is so often the case, the root of all of these problems is relying on a middle man rather than doing things yourself.
-If a language constructed and executed pipelines itself, it would remain in control of all the subprocesses, and could determine their individual exit conditions, and automatically handle errors appropriately, giving accurate and comprehensive diagnostic messages for debugging.
-Moreover, without a shell to interpret commands, there would also be no shell to treat metacharacters specially, and therefore no danger of metacharacter brittleness.
+As is so often the case, the root of all of these problems is relying on a middleman rather than doing things yourself.
+If a program constructs and executes pipelines itself, it remains in control of all the subprocesses, can determine their individual exit conditions, automatically handle errors appropriately, and give accurate, comprehensive diagnostic messages when things go wrong.
+Moreover, without a shell to interpret commands, there is also no shell to treat metacharacters specially, and therefore no danger of metacharacter brittleness.
 The challenge is to make constructing and executing pipelines in a high-level language as easy and expressive as it is in the shell.
-In my [followup post], I describe how Julia implements command and pipeline construction and execution without a shell, thereby avoiding the traditional pitfalls of shelling out, and increasing the power, safety, and flexibility of running external commands.
+In my [followup post], I describe how Julia implements command and pipeline construction without a shell, thereby avoiding the traditional pitfalls of shelling out, and increasing the power, safety, and flexibility of running external commands.
 
 [followup post]: /drafts/2012/02/put-this-in-your-pipe/
