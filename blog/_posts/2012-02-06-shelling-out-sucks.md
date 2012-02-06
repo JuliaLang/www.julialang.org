@@ -139,7 +139,8 @@ Let's make sure that it can detect failure:
     irb(main):012:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
     find: `nonexistent': No such file or directory
     => 0
-    irb(main):013:0> $?.success?=> true
+    irb(main):013:0> $?.success?
+    => true
 
 Wait. What?!
 That wasn't successful.
@@ -173,7 +174,7 @@ Unfortunately, by default the shell is quite lenient about what it considers to 
 
 As long as the last command in a pipeline succeeds — in this case `sort` — the entire pipeline is considered a success.
 Thus, even when one or more of the earlier programs in a pipeline fails spectacularly, the last command may not, leading the shell to consider the entire pipeline to be successful.
-This is probably not what you mean by success.
+This is probably not what you meant by success.
 
 Bash's notion of pipeline success can fortunately be made stricter with the `pipefail` option.
 This option causes the shell to consider a pipeline successful only if all of its commands are successful:
@@ -185,10 +186,10 @@ This option causes the shell to consider a pipeline successful only if all of it
     => false
 
 Since shelling out from Ruby (or Perl or Python) spawns a new shell every time, this option has to be set for every multi-command pipeline in order to be able to determine its true success status.
-Of course, just like shell-escaping all interpolated variables, setting `pipefail` at the start of every command is simply something that no one actually does.
+Of course, just like shell-escaping every interpolated variable, setting `pipefail` at the start of every command is simply something that no one actually does.
 Moreover, even with the `pipefail` option, your program has no way of determining *which* commands in a pipeline were unsuccessful — it just knows that something somewhere went wrong.
 While that's better than silently failing and continuing as if there were no problem, its not very helpful for postmortem debugging:
-many programs are not as well-behaved as `cat` and don't actually identify themselves or the specific problem when printing error messages before giving up.
+many programs are not as well-behaved as `cat` and don't actually identify themselves or the specific problem when printing error messages before going belly up.
 
 Given the other problems caused by the indirection of shelling out, it's seems like a barely relevant afterthought to mention that execing a shell process just to spawn a bunch of other processes is inefficient.
 However, it is a real source of unnecessary overhead:
@@ -196,7 +197,7 @@ the main process could just do the work the shell does itself.
 Asking the kernel to fork a process and exec a new program is a non-trivial amount of work.
 The only reason to have the shell do this work for you is that it's complicated and hard to get right.
 The shell makes it easy.
-So programming languages have traditionally relied on the shell to setup pipelines for them, regardless of the additional overhead and indirection.
+So programming languages have traditionally relied on the shell to setup pipelines for them, regardless of the additional overhead and problems caused by indirection.
 
 ## Silent Failures by Default
 
@@ -239,7 +240,7 @@ This function behaves the way we would like it to:
     	from (irb):14
     	from :0
 
-However, this 8-line, 200-character function is a far cry from the simplicity and clarity of the expression we started with:
+However, this 8-line, 200-character function is a far cry from the simplicity and clarity we started with:
 
     `find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`.to_i
 
