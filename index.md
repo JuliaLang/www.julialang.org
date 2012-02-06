@@ -12,7 +12,7 @@ For a more in-depth discussion of the rationale and advantages of Julia over oth
 
 # High-Performance JIT Compiler
 
-Julia's LLVM-based JIT compiler combined with the language's design allow it to approach and often match the performance of C/C++.
+Julia's LLVM-based just-in-time (JIT) compiler combined with the language's design allow it to approach and often match the performance of C/C++.
 To get a sense of relative performance of Julia compared to other languages that can or could be used for numerical and scientific computing, we've written a small set of micro-benchmarks in a variety of languages.
 The source code for the various implementations can be found here:
 [C++](https://github.com/JuliaLang/julia/blob/master/test/perf/perf.cpp),
@@ -97,7 +97,7 @@ This computation is automatically distributed across all available compute nodes
 Although it is in the early stages, Julia already supports a fully remote cloud computing mode.
 Here is a screenshot of a web-based interactive Julia session, plotting an oscillating function and a Gaussian random walk:</p>
 
-<a href="/images/web_repl.png"><img src="/images/web_repl.png" width="95%" /></a>
+<a href="/images/web_repl.png" target="_blank"><img src="/images/web_repl.png" width="95%" /></a>
 
 There will eventually be full support for cloud-based operation, including data management, code editing and sharing, execution, debugging, collaboration, analysis, data exploration, and visualization.
 The goal is to allow people who work with big data to stop worrying about administering machines and managing data and get straight to the real problem:
