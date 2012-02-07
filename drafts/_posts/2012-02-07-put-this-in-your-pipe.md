@@ -119,4 +119,4 @@ The simple fix is this:
     0
 
 This works correctly in all cases.
-Next well explain *how* all of this works, but for now it's enough to note that the detailed error message provided when our pipeline failed exposed a rather subtle bug that would, if this code were used in production, have caused a very hard-to-track-down bug at some point in the future.
+Next I'll explain *how* all of this works, but for now it's enough to note that the detailed error message provided when our pipeline failed exposed a rather subtle bug that would, if this code were used in production, have caused a very hard-to-track-down bug at some point in the future.
