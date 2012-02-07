@@ -22,9 +22,9 @@ There are only two impediments:
 - The UX problem of designing and implementing an easy, flexible programming interface to command pipelines.
 
 This post describes the system we designed and implemented for Julia, and how it avoids the major flaws of shelling out in other languages.
-First, I'll present the previous example of counting the number of lines in a given directory containing the string "foo", implemented in Julia.
-Julia's ability to give complete, accurate diagnostic messages when pipelines fail reveals a subtle, bug lurking in what appears to be an innocuous UNIX pipeline.
-Later on, I'll go into details about how Julia's external command execution and pipeline construction system work, and why it provides so much greater flexibility and safety than the traditional approach of using an intermediate shell to do all the heavy lifting.
+First, I'll present the Julia version of the previous post's example — counting the number of lines in a given directory containing the string "foo".
+The complete, accurate diagnostic messages provided when pipelines fail turns out to reveal a surprising and subtle bug, lurking in what appears to be an innocuous UNIX pipeline.
+After that, I'll go into details about how Julia's external command execution and pipeline construction system actually works, and why it provides so much greater flexibility and safety than the traditional approach of using an intermediate shell to do all the heavy lifting.
 
 ## Simple Pipeline, Subtle Bug
 
@@ -83,14 +83,14 @@ We can use Julia's `success` predicate to try it out:
     true
 
 Ok, so `xargs` seems perfectly happy with no input.
-Maybe grep doesn't like getting no input?
+Maybe grep doesn't like not getting any input?
 
     julia> success(`cat /dev/null` | `grep foo`)
     false
 
-Aha! `grep` returns a non-zero status with no input.
+Aha! `grep` returns a non-zero status when it doesn't get any input.
 Good to know.
-It turns out that `grep` indicates whether it matched anything or not with its return status.
+It turns out that `grep` indicates whether it matched anything or not by its return status.
 Most programs use their return status to indicate success or failure, but some, like `grep`, use it to indicate some other boolean condition — in this case "found something" versus "didn't find anything":
 
     julia> success(`echo foo` | `grep foo`)
@@ -100,20 +100,18 @@ Most programs use their return status to indicate success or failure, but some, 
     julia> success(`echo bar` | `grep foo`)
     false
 
-Now we know why `grep` is "failing."
-This opens us up to a possible false alarm:
+Now we know why `grep` is "failing".
+This means that our original pipeline (and the "responsible" Ruby version) is susceptible to bogus failures in the case where we search a valid directory that happens not to contain the string "foo" anywhere:
 
     julia> dir="tmp";
 
     julia> int(chomp(readall(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`)))
     failed process: `xargs -0 grep foo`
 
-In this case, we searched an existing directory that happens not to have any instances of the string "foo".
 Since `grep` indicates not matching anything with a non-zero return status, the `readall` function decides that its pipeline failed and raises an error.
-Clearly, for our use case, this is undesirable:
+In this case, this is undesirable:
 we want the expression to just return `0` without raising an error.
-
-We will go into the details of what's going on in the latter half of this post, but the simple fix to this bug in Julia is this:
+The simple fix is this:
 
     julia> dir="tmp";
 
@@ -121,5 +119,4 @@ We will go into the details of what's going on in the latter half of this post, 
     0
 
 This works correctly in all cases.
-In the next section, we'll explore the details of how Julia implements its pipeline construction and execution, including how this example works.
-For now, it's enough to note how the detailed error message provided above regarding precisely which commands failed exposed a subtle bug that would, if this code were used in production, most likely have caused a hard-to-track-down bug at some point in the future.
+Next well explain *how* all of this works, but for now it's enough to note that the detailed error message provided when our pipeline failed exposed a rather subtle bug that would, if this code were used in production, have caused a very hard-to-track-down bug at some point in the future.
