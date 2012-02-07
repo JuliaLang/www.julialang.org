@@ -210,7 +210,7 @@ Since composite types are the most common form of user-defined concrete type, th
 
 Fields with no type annotation default to `Any`, and can accordingly hold any type of value.
 
-New objects of the newly created composite type `Foo` are created by applying the `Foo` type object function-like to its values for its field in order:
+New objects of composite type `Foo` are created by applying the `Foo` type object function-like to values for its fields in order:
 
     julia> foo = Foo("Hello, world.", 23, 1.5)
     Foo("Hello, world.",23,1.5)
@@ -219,18 +219,13 @@ New objects of the newly created composite type `Foo` are created by applying th
     Foo
 
 Since the `bar` field is unconstrained in type, any value will do;
-the value for `baz` can be any kind of `Int` and `qux` must be a `Float64`.
+the value for `baz` must be an `Int` and `qux` must be a `Float64`.
 
-If you apply the `Foo` type constructor to values that do not match the declared types `(Any,Int64,Float)`, Julia will try to convert the given values to the expected types using the `convert` generic function (see [Conversion and Promotion](../conversion-and-promotion)):
+The signature of the default constructor is taken directly from
+the field type declarations `(Any,Int,Float64)`, so arguments must match:
 
     julia> Foo((), 23.5, 1)
-    Foo((),23,1.0)
-
-Here the integer value `1` is converted to the floating-point value `1.0` while the floating-point value `23.5` is truncated to the integer value `23`.
-If no conversion method exists, it will complain:
-
-    julia> Foo((), 0, "fail")
-    no method convert(Type{Float64},ASCIIString)
+    no method Foo((),Float64,Int64)
 
 You can access the field values of a composite object using the traditional `foo.bar` notation:
 
@@ -395,8 +390,7 @@ an `Array{Float64}` can be stored as a contiguous memory block of 64-bit floatin
 How does one construct a `Point` object?
 It is possible to define custom constructors for composite types, which will be discussed in detail in [Constructors](../constructors), but in the absence of any special constructor declarations, there are two default ways of creating new composite objects, one in which the type parameters are explicitly given and the other in which they are implied by the arguments to the object constructor.
 
-Since the type `Point{Float64}` is a concrete type equivalent to if `Point` had been declared with `Float64` in place of `T`, the type `Point{Float64}` can be used much like such a non-parametric concrete type would be.
-In particular, it can be applied as a constructor for new `Point{Float64}` objects:
+Since the type `Point{Float64}` is a concrete type equivalent to `Point` declared with `Float64` in place of `T`, it can be applied as a constructor accordingly:
 
     julia> Point{Float64}(1.0,2.0)
     Point(1.0,2.0)
@@ -412,13 +406,8 @@ For the default constructor, exactly one argument must be supplied for each fiel
     julia> Point{Float64}(1.0,2.0,3.0)
     no method Point(Float64,Float64,Float64)
 
-Since the type of of the desired object is fully specified in this form, the provided arguments need not match the expected field type exactly, and will be converted (see [Conversion and Promotion](../conversion-and-promotion)) automatically to the expected type:
-
-    julia> Point{Float64}(1,2.5)
-    Point(1.0,2.5)
-
-    julia> q = Point{Float64}(1,2)
-    Point(1.0,2.0)
+The provided arguments need to match the field types exactly, in this case
+`(Float64,Float64)`, as with all composite type default constructors.
 
 In many cases, it is redundant to provide the type of `Point` object one wants to construct, since the types of arguments to the constructor call already implicitly provide type information.
 For that reason, you can also apply `Point` itself as a constructor, provided that the implied value of the parameter type `T` is unambiguous:
