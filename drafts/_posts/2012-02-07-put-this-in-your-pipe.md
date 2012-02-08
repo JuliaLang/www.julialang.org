@@ -2,13 +2,16 @@
 layout: post
 title:  Put This In Your Pipe
 author: <a href="http://karpinski.org/">Stefan Karpinski</a>
+manurl: https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages
 ---
+
 [previous post]: /blog/2012/02/shelling-out-sucks/
-[`pipe`]:   https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/pipe.2.html
-[`dup2`]:   https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/dup2.2.html
-[`fork`]:   https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/fork.2.html
-[`close`]:  https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/close.2.html
-[`exec`]:   https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/execve.2.html
+
+[`pipe`]:  {{page.manurl}}/man2/pipe.2.html
+[`dup2`]:  {{page.manurl}}/man2/dup2.2.html
+[`fork`]:  {{page.manurl}}/man2/fork.2.html
+[`close`]: {{page.manurl}}/man2/close.2.html
+[`exec`]:  {{page.manurl}}/man2/execve.2.html
 
 In a [previous post], I talked about why "shelling out" to spawn a pipeline of external programs via an intermediate shell is a common cause of bugs, security holes, unnecessary overhead, and silent failures.
 But it's so convenient!
