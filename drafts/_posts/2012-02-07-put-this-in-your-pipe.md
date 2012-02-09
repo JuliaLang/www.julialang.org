@@ -93,7 +93,7 @@ Maybe grep doesn't like not getting any input?
 
 Aha! `grep` returns a non-zero status when it doesn't get any input.
 Good to know.
-It turns out that `grep` indicates whether it matched anything or not by its return status.
+It turns out that `grep` indicates whether it matched anything or not with its return status.
 Most programs use their return status to indicate success or failure, but some, like `grep`, use it to indicate some other boolean condition — in this case "found something" versus "didn't find anything":
 
     julia> success(`echo foo` | `grep foo`)
@@ -103,7 +103,7 @@ Most programs use their return status to indicate success or failure, but some, 
     julia> success(`echo bar` | `grep foo`)
     false
 
-Now we know why `grep` is "failing" — and `xargs` returns a non-zero status when the program it runs returns non-zero.
+Now we know why `grep` is "failing" — and `xargs` since returns a non-zero status when the program it runs returns non-zero, `xargs` in turn.
 This means that our original pipeline (and the "responsible" Ruby version) is susceptible to bogus failures in the case where we search a valid directory that happens not to contain the string "foo" anywhere:
 
     julia> dir="tmp";
@@ -151,15 +151,17 @@ If your terminal supports color, program output and returned values are colored 
 Normally, nothing is returned by the `run` command (technically, a value called `nothing` is returned).
 If something goes wrong, an exception is raised:
 
+    julia> run(`false`)
+    failed process: `false`
+
     julia> run(`notaprogram`)
     exec: No such file or directory
     failed process: `notaprogram`
 
-    julia> run(`false`)
-    failed process: `false`
-
 As with `xargs`/`grep` above, this may not always be desirable.
 In such cases, you can use `ignorestatus` to prevent an error from being raised in the latter case:
+
+    julia> run(ignorestatus(`false`))
 
     julia> run(ignorestatus(`notaprogram`))
     exec: No such file or directory
@@ -170,6 +172,140 @@ In such cases, you can use `ignorestatus` to prevent an error from being raised 
     in run_repl, /Users/stefan/projects/julia/j/client.j:92
     in _start, /Users/stefan/projects/julia/j/client.j:206
 
-    julia> run(ignorestatus(`false`))
+In the latter case since the error is that the executable doesn't exist, rather than simply that it returned a non-zero status, an error is still raised in the parent process.
 
-In the former case since the error is deeper than the executed command simply returning non-zero, an error is still raised.
+As we saw before, if you simply want to interpret the return-value of a program as true (zero) or false (non-zero), you can use the `success` function:
+
+    julia> success(`true`)
+    true
+
+    julia> success(`false`)
+    false
+
+    julia> success(`perl -e 'exit 0'`)
+    true
+
+    julia> success(`perl -e 'exit 1'`)
+    false
+
+As you can see in the last example, you can use single quotes inside of backticks, just as you would when writing shell commands.
+There is an important distinction, however.
+Although Julia's backtick syntax intentionally mimics the shell as closely as possible, this string will never be passed to a shell for interpretation.
+Instead, it is parsed by Julia itself, using the same rules as the shell to determine what command and arguments are.
+You can see what the program and arguments were determined to be by accessing the `.exec` field of the command object:
+
+    julia> cmd = `perl -e 'exit 1'`
+    `perl -e 'exit 1'`
+
+    julia> cmd.exec
+    ["perl", "-e", "exit 1"]
+
+This field is a normal array of strings.
+You can manipulate it using normal array manipulation functions, if you like:
+
+    julia> cmd.exec[end] = "print \"Hello\\n\""
+    "print \"Hello\\n\""
+
+    julia> cmd
+    `perl -e 'print "Hello\n"'`
+
+    julia> run(cmd)
+    Hello
+
+Once a command object has been run, you cannot run it again:
+
+    julia> run(cmd)
+    already run: `perl -e 'exit 1'`
+
+This is because command objects represent a single process invocation — they store information like process ID, status (not yet run, running, exited with status, etc.).
+
+The entire purpose of the backtick notation in Julia is to provide a familiar, shell-like syntax for constructing parsed command-lines.
+Quotes and spaces work just as they do in the shell.
+Their real convenience begins, however, when you want to construct a command programmatically.
+Much as in the shell (or in Julia strings), you can interpolate the value of a variable into a command using `$`:
+
+    julia> dir="src";
+
+    julia> `find $dir -type f`.exec
+    ["find", "src", "-type", "f"]
+
+However, Julia variables interpolated into commands are always interpolated as a single argument, with no special interpolation:
+
+    julia> dir="two words";
+
+    julia> `find $dir -type f`.exec
+    ["find", "two words", "-type", "f"]
+
+    julia> dir="foo'bar";
+
+    julia> `find $dir -type f`.exec
+    ["find", "foo'bar", "-type", "f"]
+
+This works no matter what the contents of the interpolated value is, allowing simple interpolation of characters that are otherwise quite difficult to pass as parts of command-line arguments:
+
+    julia> tab="\t";
+
+    julia> cmd = `join -t$tab a.tsv b.tsv`;
+
+    julia> cmd.exec
+    ["join", "-t\t", "a.tsv", "b.tsv"]
+
+    julia> run(cmd)
+    foo     bar	    1
+    baz	    qux	    2
+
+Moreover, what comes after the `$` can actually be any valid Julia expression, not just a variable name:
+
+    julia> run(`join -t$"\t" a.tsv b.tsv`)
+    foo     bar	    1
+    baz	    qux	    2
+
+Even in the shell that's a rather difficult value to pass, requiring command interpolation and quotes:
+
+    bash-3.2$ join -t"$(printf '\t')" a.tsv b.tsv
+    foo	    bar	    1
+    baz	    qux	    2
+
+While interpolating values with spaces and other strange characters is great for non-brittle construction of commands, there was a reason why the shell split values on spaces in the first place:
+to allow interpolation of multiple arguments.
+Modern shells have first-class array types, but older shells simply used space-separation to achieve a poor man's array functionality.
+Thus, by default, if you interpolate a value like "foo bar" into a command, it's treated as two separate words.
+In languages with first-class array types, however, there's a much better option:
+consistently interpolate single values as single arguments and interpolate arrays as multiple values.
+This is precisely what Julia's backtick interpolation does:
+
+    julia> dirs = ["foo", "bar", "baz"];
+
+    julia> `find $dirs -type f`.exec
+    ["find", "foo", "bar", "baz", "-type", "f"]
+
+Cool, right?
+And of course, no matter how strange the strings contained in an interpolated array are, they become verbatim arguments, without any interpretation.
+Julia's backticks have one more trick up their sleeve.
+We saw earlier (without really remarking on it) that you could interpolate single values into a larger argument:
+
+    julia> x="bar";
+
+    julia> `echo foo$x`.exec
+    ["echo", "foobar"]
+
+Well, what happens if `x` is an array?
+Only one way to find out.
+
+    julia> x=["bar", "baz"];
+
+    julia> `echo foo$x`.exec
+    ["echo", "foobar", "foobaz"]
+
+That's right.
+Julia does what the shell would do if you wrote `echo foo{bar,baz}`.
+This works correctly for multiple values interpolated into the same shell word:
+
+    julia> dir="/data"; names=["foo","bar"]; exts=["csv","tsv"];
+
+    julia> `cat $dir/$names.$exts`
+    `cat /data/foo.csv /data/foo.tsv /data/bar.csv /data/bar.tsv`
+
+Julia's backtick syntax manages to make programmatic construction of commands both safer *and* more convenient than it is in any other system, including the shell.
+
+## Advanced Plumbing
