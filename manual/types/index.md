@@ -246,6 +246,18 @@ You can also change the values as one would expect:
     julia> foo.bar = 1//2
     1//2
 
+Composite types with no fields are singletons; there can be only one instance
+of such types:
+
+    type NoFields
+    end
+    
+    julia> is(NoFields(), NoFields())
+    true
+
+The `is` function confirms that the "two" constructed instances of `NoFields`
+are actually one and the same.
+
 There is much more to say about how instances of composite types are created, but that discussion depends on both [Parametric Types](#Parametric+Types) and on [Methods](../methods), and is sufficiently important to be addressed in its own section: [Constructors](../constructors).
 
 ## Type Unions
