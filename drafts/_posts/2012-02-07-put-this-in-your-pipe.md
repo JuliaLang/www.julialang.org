@@ -12,14 +12,14 @@ author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 
 In a [previous post], I talked about why "shelling out" to spawn a pipeline of external programs via an intermediate shell is a common cause of bugs, security holes, unnecessary overhead, and silent failures.
 But it's so convenient!
-Why can't I running pipelines of external programs and have it be both convenient and safe?
+Why can't running pipelines of external programs be both convenient *and* safe?
 Well, there's no real reason, actually.
-The shell itself manages to construct and execute pipelines quite well, in fact.
-There's no reason that a high-level language can't do it at least as well as a shell can — they just don't.
+The shell itself manages to construct and execute pipelines quite well.
+In principle, there's nothing stopping high-level languages from doing it at least as well as shells do — they just don't.
 There are only two impediments:
 
 - Some tricky low-level UNIX plumbing using the [`pipe`], [`dup2`], [`fork`], [`close`], and [`exec`] system calls
-- The UX problem of designing and implementing an easy, flexible programming interface to command pipelines.
+- The UX problem of designing an easy, flexible programming interface for commands and pipelines.
 
 This post describes the system we designed and implemented for Julia, and how it avoids the major flaws of shelling out in other languages.
 First, I'll present the Julia version of the previous post's example — counting the number of lines in a given directory containing the string "foo".
