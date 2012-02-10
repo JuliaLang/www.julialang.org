@@ -125,7 +125,7 @@ This works correctly in all cases.
 Next I'll explain *how* all of this works, but for now it's enough to note that the detailed error message provided when our pipeline failed exposed a rather subtle bug that would inevitably cause problems if used in production code.
 Without such detailed error reporting, this bug would have been *very* difficult to track down.
 
-## Better Backticks
+## Do-Nothing Backticks
 
 Julia borrows the backtick syntax for external commands form Perl and Ruby, both of which in turn got it from the shell.
 Unlike these forerunners, however, in Julia backticks don't immediately run commands, nor do they necessarily indicate that you want to capture the output of the command.
@@ -169,24 +169,10 @@ In such cases, you can use `ignorestatus` to indicate that the command returning
     failed process: `notaprogram`
 
 In the latter case since the executable doesn't even exist, rather than just that it returned a non-zero status, an error is still raised in the parent process.
-As we saw before, if you simply want to interpret the return-value of a program as true (zero) or false (non-zero), you can use the `success` function:
 
-    julia> success(`true`)
-    true
-
-    julia> success(`false`)
-    false
-
-    julia> success(`perl -e 'exit 0'`)
-    true
-
-    julia> success(`perl -e 'exit 1'`)
-    false
-
-As you can see in the last example, you can use single quotes inside of backticks, just as you would when writing shell commands.
-There is an important distinction, however.
-Although Julia's backtick syntax intentionally mimics the shell as closely as possible, this string will never be passed to a shell for interpretation.
-Instead, it is parsed in Julia code, using the same rules the shell uses to determine what the command and arguments are.
+Although Julia's backtick syntax intentionally mimics the shell as closely as possible, there is an important distinction:
+the command string is never passed to a shell to be interpreted and executed;
+instead it is parsed in Julia code, using the same rules the shell uses to determine what the command and arguments are.
 Command objects allow you to see what the program and arguments were determined to be by accessing the `.exec` field:
 
     julia> cmd = `perl -e 'print "Hello\n"'`
@@ -195,26 +181,11 @@ Command objects allow you to see what the program and arguments were determined 
     julia> cmd.exec
     ["perl", "-e", "print \"Hello\\n\""]
 
-This field is a plain old array of strings.
-You can alter it and manipulate it as you would any other array:
+This field is a plain old array of strings that can be manipulated like any other.
 
-    julia> cmd.exec[1] = "ruby";
+## Constructing Commands
 
-    julia> cmd
-    `ruby -e 'print "Hello\n"'`
-
-    julia> run(cmd)
-    Hello
-
-Once a command object has been run, you cannot run it again:
-
-    julia> run(cmd)
-    already run: `ruby -e 'print "Hello\n"'`
-
-This is because command objects represent a single process invocation:
-they store information like process ID and status — not yet run, running, stopped, exited with status, etc.
-
-The purpose of the backtick notation in Julia is to provide a familiar, shell-like syntax for constructing objects representing parsed commands with arguments.
+The purpose of the backtick notation in Julia is to provide a familiar, shell-like syntax for making objects representing commands with arguments.
 To that end, quotes and spaces work just as they do in the shell.
 The real power of backtick syntax doesn't emerge, however, until we begin constructing commands programmatically.
 Just as in the shell (and in Julia strings), you can interpolate values into commands using the dollar sign (`$`):
@@ -264,7 +235,7 @@ Even in the shell that's a rather difficult value to pass, requiring command int
 While interpolating values with spaces and other strange characters is great for non-brittle construction of commands, there was a reason why the shell split values on spaces in the first place:
 to allow interpolation of multiple arguments.
 Modern shells have first-class array types, but older shells simply used space-separation to achieve a poor man's array functionality.
-Thus, by default, if you interpolate a value like "foo bar" into a command, it's treated as two separate words.
+Thus, if you interpolate a value like "foo bar" into a command, by default, it's treated as two separate words.
 In languages with first-class array types, however, there's a much better option:
 consistently interpolate single values as single arguments and interpolate arrays as multiple values.
 This is precisely what Julia's backtick interpolation does:
@@ -294,13 +265,13 @@ Only one way to find out.
 
 That's right.
 Julia does what the shell would do if you wrote `echo foo{bar,baz}`.
-This works correctly for multiple values interpolated into the same shell word:
+This even works correctly for multiple values interpolated into the same shell word:
 
     julia> dir="/data"; names=["foo","bar"]; exts=["csv","tsv"];
 
     julia> `cat $dir/$names.$exts`
     `cat /data/foo.csv /data/foo.tsv /data/bar.csv /data/bar.tsv`
 
-Julia's backtick syntax manages to make programmatic construction of commands both safer *and* more convenient than it is in any other system, including the shell.
+Julia's backtick syntax manages to make programmatic construction of commands both safer *and* more convenient than it is in any other system, even the shell.
 
 ## Advanced Plumbing
