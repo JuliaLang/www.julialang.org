@@ -68,15 +68,15 @@ The default, simplest-to-achieve behavior in Julia is:
 - Automatically raises an exception if any subprocess fails
 - Prints error messages including exactly which commands failed.
 
-In the above examples, we can see that even when `dir` contains spaces or quotes the expression still behaves exactly as intended — the value of `dir` is interpolated as a single argument to the `find` command.
-When `dir` is not the name of a directory that exists, `find` fails, as it should, and this failure is detected and automatically converted into an informative exception, including the expanded command-lines that failed.
+In the above examples, we can see that even when `dir` contains spaces or quotes, the expression still behaves exactly as intended — the value of `dir` is interpolated as a single argument to the `find` command.
+When `dir` is not the name of a directory that exists, `find` fails — as it should — and this failure is detected and automatically converted into an informative exception, including the fully expanded command-lines that failed.
 
-In the [previous post], it was observed that using the `pipefail` option for Bash allows us to detect pipeline failures, like this one, that would go unnoticed by default.
-However, it *only* allows us to detect that something in the pipeline failed, not exactly what failed.
-While this seems like a trivial drawback, it can hide lurking problems.
-In fact, there is just such a problem hidden here.
-Note that the exception raised when Julia executes this pipeline for a non-existent directory name indicates not only that `find` fails, but also that `xargs` fails — yet `wc` doesn't.
-It seems like both `xargs` and `wc` should succeed — they receive no input, but that shouldn't be a cause for failure.
+In the [previous post], it was observed that using the `pipefail` option for Bash allows detection of pipeline failures, like this one, that occur before the last process in the pipeline.
+However, it only allows us to detect that at least one thing in the pipeline failed.
+We still have to guess at what parts of the pipeline actually failed.
+In the Julia example, on the other hand, there is no guessing required:
+we can see that when a non-existent directory is given, both `find` and `xargs` fail.
+While it is unsurprising that `find` fails in this case, it is unexpected that `xargs` also fails.
 Why does `xargs` fail?
 
 One possibility to check for is that the `xargs` program fails without input.
@@ -103,8 +103,8 @@ Most programs use their return status to indicate success or failure, but some, 
     julia> success(`echo bar` | `grep foo`)
     false
 
-Now we know why `grep` is "failing" — and `xargs` since returns a non-zero status when the program it runs returns non-zero, `xargs` in turn.
-This means that our original pipeline (and the "responsible" Ruby version) is susceptible to bogus failures in the case where we search a valid directory that happens not to contain the string "foo" anywhere:
+Now we know why `grep` is "failing" — and `xargs` too, since it returns a non-zero status if the program it runs returns non-zero.
+This means that our Julia pipeline and the "responsible" Ruby version are both susceptible to bogus failures when we search an existing directory that happens not to contain the string "foo" anywhere:
 
     julia> dir="tmp";
 
@@ -114,7 +114,7 @@ This means that our original pipeline (and the "responsible" Ruby version) is su
 Since `grep` indicates not finding anything using a non-zero return status, the `readall` function concludes that its pipeline failed and raises an error to that effect.
 In this case, this default behavior is undesirable:
 we want the expression to just return `0` without raising an error.
-The simple fix is this:
+The simple fix in Julia is this:
 
     julia> dir="tmp";
 
@@ -122,13 +122,14 @@ The simple fix is this:
     0
 
 This works correctly in all cases.
-Next I'll explain *how* all of this works, but for now it's enough to note that the detailed error message provided when our pipeline failed exposed a rather subtle bug that would, if this code were used in production, have caused a very hard-to-track-down bug at some point in the future.
+Next I'll explain *how* all of this works, but for now it's enough to note that the detailed error message provided when our pipeline failed exposed a rather subtle bug that would inevitably cause problems if used in production code.
+Without such detailed error reporting, this bug would have been *very* difficult to track down.
 
 ## Better Backticks
 
-Julia borrows the backtick syntax external commands form Perl and Ruby, both of which got it from the shell.
-However, unlike all of those languages, backticks in Julia don't immediately run commands or evaluate to the output of their commands.
-Instead the construct an object representing the command to be run:
+Julia borrows the backtick syntax for external commands form Perl and Ruby, both of which in turn got it from the shell.
+Unlike these forerunners, however, in Julia backticks don't immediately run commands, nor do they necessarily indicate that you want to capture the output of the command.
+Instead, backticks just construct an object representing a command:
 
     julia> `echo Hello`
     `echo Hello`
@@ -136,20 +137,20 @@ Instead the construct an object representing the command to be run:
     julia> typeof(ans)
     Cmd
 
-In order to actually run a command, you have to *do* something with a command object (i.e. an object of type `Cmd`).
+In order to actually run a command, you have to *do* something with a command object.
 To run a command and capture its output into a string — what other languages do with backticks automatically — you can apply the `readall` function:
 
     julia> readall(`echo Hello`)
     "Hello\n"
 
-To run a command without capturing its output, letting it just print to the same `stdout` stream as the main process, use the `run` function:
+To run a command without capturing its output, letting it just print to the same `stdout` stream as the main process — what the `system` function does when given a command as a string in other languages — use the `run` function:
 
     julia> run(`echo Hello`)
     Hello
 
-If your terminal supports color, program output and returned values are colored differently so that you can easily distinguish them visually — the `"Hello\n"` after the `readall` command is a returned value, whereas the `Hello` after the `run` command is printed output.
-Normally, nothing is returned by the `run` command (technically, a value called `nothing` is returned).
-If something goes wrong, an exception is raised:
+The `"Hello\n"` after the `readall` command is a returned value, whereas the `Hello` after the `run` command is printed output.
+(If your terminal supports color, these are colored differently so that you can easily distinguish them visually.)
+Nothing is returned by the `run` command, but if something goes wrong, an exception is raised:
 
     julia> run(`false`)
     failed process: `false`
@@ -159,21 +160,15 @@ If something goes wrong, an exception is raised:
     failed process: `notaprogram`
 
 As with `xargs`/`grep` above, this may not always be desirable.
-In such cases, you can use `ignorestatus` to prevent an error from being raised in the latter case:
+In such cases, you can use `ignorestatus` to indicate that the command returning a non-zero value should not be considered an error:
 
     julia> run(ignorestatus(`false`))
 
     julia> run(ignorestatus(`notaprogram`))
     exec: No such file or directory
     failed process: `notaprogram`
-    in error, /Users/stefan/projects/julia/j/error.j:5
-    in run, /Users/stefan/projects/julia/j/process.j:470
-    in _jl_eval_user_input, /Users/stefan/projects/julia/j/client.j:59
-    in run_repl, /Users/stefan/projects/julia/j/client.j:92
-    in _start, /Users/stefan/projects/julia/j/client.j:206
 
-In the latter case since the error is that the executable doesn't exist, rather than simply that it returned a non-zero status, an error is still raised in the parent process.
-
+In the latter case since the executable doesn't even exist, rather than just that it returned a non-zero status, an error is still raised in the parent process.
 As we saw before, if you simply want to interpret the return-value of a program as true (zero) or false (non-zero), you can use the `success` function:
 
     julia> success(`true`)
@@ -191,23 +186,22 @@ As we saw before, if you simply want to interpret the return-value of a program 
 As you can see in the last example, you can use single quotes inside of backticks, just as you would when writing shell commands.
 There is an important distinction, however.
 Although Julia's backtick syntax intentionally mimics the shell as closely as possible, this string will never be passed to a shell for interpretation.
-Instead, it is parsed by Julia itself, using the same rules as the shell to determine what command and arguments are.
-You can see what the program and arguments were determined to be by accessing the `.exec` field of the command object:
+Instead, it is parsed in Julia code, using the same rules the shell uses to determine what the command and arguments are.
+Command objects allow you to see what the program and arguments were determined to be by accessing the `.exec` field:
 
-    julia> cmd = `perl -e 'exit 1'`
-    `perl -e 'exit 1'`
+    julia> cmd = `perl -e 'print "Hello\n"'`
+    `perl -e 'print "Hello\n"'`
 
     julia> cmd.exec
-    ["perl", "-e", "exit 1"]
+    ["perl", "-e", "print \"Hello\\n\""]
 
-This field is a normal array of strings.
-You can manipulate it using normal array manipulation functions, if you like:
+This field is a plain old array of strings.
+You can alter it and manipulate it as you would any other array:
 
-    julia> cmd.exec[end] = "print \"Hello\\n\""
-    "print \"Hello\\n\""
+    julia> cmd.exec[1] = "ruby";
 
     julia> cmd
-    `perl -e 'print "Hello\n"'`
+    `ruby -e 'print "Hello\n"'`
 
     julia> run(cmd)
     Hello
@@ -215,21 +209,22 @@ You can manipulate it using normal array manipulation functions, if you like:
 Once a command object has been run, you cannot run it again:
 
     julia> run(cmd)
-    already run: `perl -e 'exit 1'`
+    already run: `ruby -e 'print "Hello\n"'`
 
-This is because command objects represent a single process invocation — they store information like process ID, status (not yet run, running, exited with status, etc.).
+This is because command objects represent a single process invocation:
+they store information like process ID and status — not yet run, running, stopped, exited with status, etc.
 
-The entire purpose of the backtick notation in Julia is to provide a familiar, shell-like syntax for constructing parsed command-lines.
-Quotes and spaces work just as they do in the shell.
-Their real convenience begins, however, when you want to construct a command programmatically.
-Much as in the shell (or in Julia strings), you can interpolate the value of a variable into a command using `$`:
+The purpose of the backtick notation in Julia is to provide a familiar, shell-like syntax for constructing objects representing parsed commands with arguments.
+To that end, quotes and spaces work just as they do in the shell.
+The real power of backtick syntax doesn't emerge, however, until we begin constructing commands programmatically.
+Just as in the shell (and in Julia strings), you can interpolate values into commands using the dollar sign (`$`):
 
     julia> dir="src";
 
     julia> `find $dir -type f`.exec
     ["find", "src", "-type", "f"]
 
-However, Julia variables interpolated into commands are always interpolated as a single argument, with no special interpolation:
+Unlike in the shell, however, Julia values interpolated into commands are interpolated as a single verbatim argument — no characters inside the value are interpreted as special after the value has been interpolated:
 
     julia> dir="two words";
 
