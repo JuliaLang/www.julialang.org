@@ -10,13 +10,12 @@ authors:
 
 In short, because we are greedy.
 
-All of us are Matlab experts;
+All of us are power Matlab users;
 some are Lisp hackers.
-Some are Pythonistas, others Rubyists.
-Some are masters of Perl one-liners.
-Some have used Mathematica since before we could grow facial hair.
-Some of us still can't grow facial hair.
-We've generated more R plots than any sane person should.
+Some are Pythonistas, others Rubyists, some are Perl hackers.
+There are those of us who used Mathematica before we could grow facial hair.
+There are those who still can't grow facial hair.
+We've generated more R plots than any sane people should.
 C is our desert island language.
 
 We love all of these languages;
@@ -30,28 +29,28 @@ We want the speed of C and the dynamism of Ruby.
 We want a language that's homoiconic, with true, powerful macros like Lisp, but with obvious, familiar mathematical notation like Matlab.
 We want something as good for general programming as Python,
 as easy for statistics as R,
-as natural at string processing as Perl,
-as ideal for linear algebra as Matlab,
-and that glues programs together as effortlessly as the shell.
-Something that's dirt simple to learn, yet satisfies the most serious of hackers.
+as powerful for string processing as Perl,
+as natural for linear algebra as Matlab,
+as easy for gluing programs together as the shell.
+Something that's dirt simple to learn, yet keeps the most serious hackers satisfied.
 
-Did we mention that should be as fast as C?
-
-While we're being demanding, we want something that gives the tremendous distributed power of Hadoop — without the kilobytes of boilerplate Java and XML;
+While we're being demanding, we want something that gives the distributed power of Hadoop — without the kilobytes of boilerplate Java and XML;
 without being forced to sift through gigabytes of log files on hundreds of machines to find our bugs.
-We want the power without incomprehensible layers upon layers of accumulated complexity.
+We want the same power without the layers upon layers of impenetrable complexity.
 We want to write simple scalar loops that compile down to tight machine code that keeps all its values in registers on a single CPU;
-we want to simply write `A*B` and launch a thousand computations on a thousand machines, working together to compute an enormous matrix product.
+we want to write `A*B` and launch a thousand computations on a thousand machines, generating a vast matrix product together.
 
 We want to never mention types when we don't feel like it.
-But when we do feel like it, we want to define highly polymorphic functions using generic programming and multiple dispatch, efficiently picking the most specific method definition for all of a function's arguments, across an infinite lattice of parametric types.
-Despite this power, we want the language to be simple and clean.
+When we do feel like it, we want to define polymorphic functions using generic programming and multiple dispatch, efficiently picking the right method definition for all of a function's arguments, across an infinite lattice of parametric types.
+Despite all this power, we want the language to be simple and clean.
+
+<!-- Did we mention that should be as fast as C? -->
 
 That doesn't seem like too much to ask for, does it?
 
-Even though we recognize that we are inexcusably greedy, we want to have it all — in one language.
-So we set out, about two and a half years ago, to create the language of our greed.
-It's been a long, strange, wonderful trip — and it's most certainly not done.
-The result is called Julia.
-It's not complete, but it's ready for a 1.0 release, and it delivers on 90% of our ungracious demands.
+Even though we recognize that we are inexcusably greedy, we still want to have it all.
+So we set out, about two and a half years ago, to create the language of our greed. <!-- It's been a long, strange, wonderful trip — and it's most certainly not done. -->
+The language we've created is called Julia.
+It's not complete, but it's time for a 1.0 release.
+What we have so far delivers on 90% of our ungracious demands, and now it needs the ungracious demands of others.
 If you are also a greedy, unreasonable bastard, maybe you should give it a try.
