@@ -21,6 +21,7 @@ C is our desert island programming language.
 We love all of these languages;
 they are wonderful and powerful.
 For the work we do — scientific computing, machine learning, data mining, large-scale linear algebra, distributed and parallel computing — each one is perfect for some aspects of the work and terrible for others.
+Each one is a trade-off.
 
 We are greedy: we want more.
 
@@ -33,6 +34,9 @@ as natural for string processing as Perl,
 as powerful for linear algebra as Matlab,
 as good at gluing programs together as the shell.
 Something that is dirt simple to learn, yet keeps the most serious hackers happy.
+We want it interactive and we want it compiled.
+
+(Did we mention it should be as fast as C?)
 
 While we're being demanding, we want something that provides the distributed power of Hadoop — without the kilobytes of boilerplate Java and XML;
 without being forced to sift through gigabytes of log files on hundreds of machines to find our bugs.
@@ -41,14 +45,11 @@ We want to write simple scalar loops that compile down to tight machine code usi
 We want to write `A*B` and launch a thousand computations on a thousand machines, calculating a vast matrix product together.
 
 We never want to mention types when we don't feel like it.
-But when we need to define highly polymorphic functions, we want to use generic programming to write an algorithm just once and apply it to an infinite lattices of types;
-we want to use multiple dispatch to efficiently pick the best method for all of a function's arguments, from dozens of available method definitions.
+But when we need polymorphic functions, we want to use generic programming to write an algorithm just once and apply it to an infinite lattices of types;
+we want to use multiple dispatch to efficiently pick the best method for all of a function's arguments, from dozens of available method definitions, providing common functionality across drastically different types.
 Despite all this power, we want the language to be simple and clean.
 
-<!-- We want it interactive and we want it compiled.
-Did we mention that it should be as fast as C? -->
-
-All that doesn't seem like too much to ask for, does it?
+All this doesn't seem like too much to ask for, does it?
 
 Even though we recognize that we are inexcusably greedy, we still want to have it all.
 About two and a half years ago, we set out to create the language of our greed.
