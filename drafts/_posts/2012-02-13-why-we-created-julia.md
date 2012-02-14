@@ -32,7 +32,7 @@ as easy for statistics as R,
 as natural for string processing as Perl,
 as powerful for linear algebra as Matlab,
 as good at gluing programs together as the shell.
-Something that's dirt simple to learn, that keeps the most serious hackers happy.
+Something that is dirt simple to learn, yet keeps the most serious hackers happy.
 
 While we're being demanding, we want something that provides the distributed power of Hadoop — without the kilobytes of boilerplate Java and XML;
 without being forced to sift through gigabytes of log files on hundreds of machines to find our bugs.
@@ -41,8 +41,8 @@ We want to write simple scalar loops that compile down to tight machine code usi
 We want to write `A*B` and launch a thousand computations on a thousand machines, calculating a vast matrix product together.
 
 We never want to mention types when we don't feel like it.
-But when we need to define highly polymorphic functions, we want to use generic programming to write the an algorithm just once and apply it to an infinite lattices of types;
-we want to use multiple dispatch to efficiently pick the best method for all of a function's arguments, from dozens of possible method definitions.
+But when we need to define highly polymorphic functions, we want to use generic programming to write an algorithm just once and apply it to an infinite lattices of types;
+we want to use multiple dispatch to efficiently pick the best method for all of a function's arguments, from dozens of available method definitions.
 Despite all this power, we want the language to be simple and clean.
 
 <!-- We want it interactive and we want it compiled.
@@ -52,7 +52,6 @@ All that doesn't seem like too much to ask for, does it?
 
 Even though we recognize that we are inexcusably greedy, we still want to have it all.
 About two and a half years ago, we set out to create the language of our greed.
-It's not complete, but it's time for a 1.0 release:
-the language we've created is called [Julia](/).
+It's not complete, but it's time for a 1.0 release — the language we've created is called [Julia](/).
 It already delivers on 90% of our ungracious demands, and now it needs the ungracious demands of others to shape it further.
 So, if you are also a greedy, unreasonable, demanding programmer, maybe you should give it a try.
