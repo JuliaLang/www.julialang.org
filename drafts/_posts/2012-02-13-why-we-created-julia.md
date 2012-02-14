@@ -10,40 +10,43 @@ authors:
 
 In short, because we are greedy.
 
-All of us are power Matlab users.
+We are power Matlab users.
 Some of us are Lisp hackers.
-Some are Pythonistas, others Rubyists, some Perl hackers.
+Some are Pythonistas, others Rubyists, still others Perl hackers.
 There are those of us who used Mathematica before we could grow facial hair.
 There are those who still can't grow facial hair.
-We've generated more R plots than any sane people should.
-C is our desert island language.
+We've generated more R plots than any sane person should.
+C is our desert island programming language.
 
 We love all of these languages;
 they are wonderful and powerful.
-But for the work we do — scientific computing, machine learning, data mining, large-scale linear algebra, distributed and parallel computing — each one is wonderful for some aspects of the work and terrible for others.
+For the work we do — scientific computing, machine learning, data mining, large-scale linear algebra, distributed and parallel computing — each one is perfect for some aspects of the work and terrible for others.
 
 We are greedy: we want more.
 
-We want a language that's open source.
+We want a language that's open source, with a liberal license.
 We want the speed of C with the dynamism of Ruby.
-We want a language that's homoiconic, with true, powerful macros like Lisp, but with obvious, familiar mathematical notation like Matlab.
+We want a language that's homoiconic, with true macros like Lisp, but with obvious, familiar mathematical notation like Matlab.
 We want something as usable for general programming as Python,
 as easy for statistics as R,
-as natural at string processing as Perl,
+as natural for string processing as Perl,
 as powerful for linear algebra as Matlab,
 as good at gluing programs together as the shell.
-Something that's dirt simple to learn, yet keeps the most serious hackers satisfied.
+Something that's dirt simple to learn, that keeps the most serious hackers happy.
 
 While we're being demanding, we want something that provides the distributed power of Hadoop — without the kilobytes of boilerplate Java and XML;
 without being forced to sift through gigabytes of log files on hundreds of machines to find our bugs.
-We want the same power without the layers upon layers of impenetrable complexity.
+We want the power without the layers upon layers of impenetrable complexity.
 We want to write simple scalar loops that compile down to tight machine code using just the registers on a single CPU.
 We want to write `A*B` and launch a thousand computations on a thousand machines, calculating a vast matrix product together.
 
 We never want to mention types when we don't feel like it.
-But when we need to define highly polymorphic functions, we want to use generic programming to define the same algorithm once for an infinite lattices of type signatures, and use multiple dispatch to efficiently pick the best method definition for all of a function's arguments, from dozens of possible methods.
+But when we need to define highly polymorphic functions, we want to use generic programming to write the an algorithm just once and apply it to an infinite lattices of types;
+we want to use multiple dispatch to efficiently pick the best method for all of a function's arguments, from dozens of possible method definitions.
 Despite all this power, we want the language to be simple and clean.
-Did we mention that should be as fast as C?
+
+<!-- We want it interactive and we want it compiled.
+Did we mention that it should be as fast as C? -->
 
 All that doesn't seem like too much to ask for, does it?
 
