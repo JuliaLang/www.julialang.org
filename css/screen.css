@@ -173,3 +173,14 @@ pre {
   #dsq-pagination {
     font-size: 85%;
   }
+
+.chaplink {
+  font-family: Helvetica, Arial, Clean, sans-serif;
+  font-size: 90%;
+}
+.prevlink {
+  float: left;
+}
+.nextlink {
+  float: right;
+}

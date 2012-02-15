@@ -3,8 +3,6 @@ layout: manual
 title:  Getting Started
 ---
 
-## Installation and Running
-
 The latest version of Julia can be downloaded and installed by following the instructions on the [main GitHub page](https://github.com/JuliaLang/julia#readme).
 The easiest way to learn and experiment with Julia is by starting an interactive session (also known as a read-eval-print loop or "repl"):
 
