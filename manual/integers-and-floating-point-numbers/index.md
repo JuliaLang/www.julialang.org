@@ -63,7 +63,34 @@ If an integer literal has a value larger than can be represented as an `Int64` b
 
     # 32-bit or 64-bit system:
     julia> 12345678901234567890
-    12345678901234567890
+    0xab54a98ceb1f0ad2
+
+    julia> typeof(ans)
+    Uint64
+
+Unsigned integers are input and output using the `0x` prefix.
+The size of the unsigned value is determined by the number of hex digits used:
+
+    julia> 0x12
+    0x12
+
+    julia> typeof(ans)
+    Uint8
+
+    julia> 0x1234
+    0x1234
+
+    julia> typeof(ans)
+    Uint16
+
+    julia> 0x12345678
+    0x12345678
+
+    julia> typeof(ans)
+    Uint32
+
+    julia> 0x1234567890abcdef
+    0x1234567890abcdef
 
     julia> typeof(ans)
     Uint64
@@ -86,30 +113,6 @@ The minimum and maximum representable values of primitive numeric types such as 
     Uint64: [0,18446744073709551615]
 
 This last expression uses several features we have yet to introduce, including [for loops](../control-flow#Repeated+Evaluation:+Loops), [strings](../strings), and [string interpolation](../strings#Interpolation), but should be easy enough to understand for people coming from most mainstream programming languages.
-
-Integers can also be input in hexadecimal form using `0x` as a prefix, a notation also found in C, Java, Perl, Python and Ruby:
-
-    julia> 0xff
-    255
-
-    julia> 0xffffffff
-    4294967295
-
-There is no literal input format for integer types besides `Int32`, `Int64` and `Uint64`.
-On 64-bit systems, there is no literal syntax for `Int32` values even.
-You can, however convert values to other integer types easily:
-
-    julia> int8(-15)
-    -15
-
-    julia> typeof(ans)
-    Int8
-
-    julia> uint8(231)
-    231
-
-    julia> typeof(ans)
-    Uint8
 
 ## Floating-Point Numbers
 
