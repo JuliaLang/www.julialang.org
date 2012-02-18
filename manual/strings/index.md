@@ -25,7 +25,7 @@ This is just a special kind of 32-bit integer whose numeric value represents a U
 the value of a `String` object cannot be changed.
 To construct a different string value, you construct a new string from parts of other strings.
 - Conceptually, a string is a *partial function* from indices to characters — for some index values, no character value is returned, and instead an exception is thrown.
-This for allows efficient indexing into strings by the byte index of an encoded representation rather than by a character index, which cannot be implemented both efficiently and simply for variable-width encodings of Unicode strings.
+This allows for efficient indexing into strings by the byte index of an encoded representation rather than by a character index, which cannot be implemented both efficiently and simply for variable-width encodings of Unicode strings.
 - Julia supports the full range of [Unicode][] characters:
 literal strings are always [ASCII][] or [UTF-8][] but other encodings for strings from external sources can be supported easily and efficiently.
 
