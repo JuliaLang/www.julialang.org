@@ -68,7 +68,7 @@ If an integer literal has a value larger than can be represented as an `Int64` b
     julia> typeof(ans)
     Uint64
 
-Unsigned integers are input and output using the `0x` prefix.
+Unsigned integers are input and output using the `0x` prefix and hexadecimal (base 16) digits `0-9a-f` (you can also use `A-F` for input).
 The size of the unsigned value is determined by the number of hex digits used:
 
     julia> 0x12
