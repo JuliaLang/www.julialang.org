@@ -563,7 +563,7 @@ Random numbers are generated in Julia by calling functions from the [Mersenne Tw
 
 `randbool` — Generate a random boolean value
 
-`randn` — Generate a uniformly distributed random number with mean 0 and standard deviation 1
+`randn` — Generate a normally-distributed random number with mean 0 and standard deviation 1
 
 `randg(a)` — Generate a sample from the gamma distribution with shape parameter `a`
 
@@ -625,7 +625,7 @@ Random numbers are generated in Julia by calling functions from the [Mersenne Tw
 
 `randf(dims)` — Create a random array with Float32 random values in (0,1)
 
-`randn(dims)` — Create a random array with Float64 uniformly distributed random values with a mean of 0 and standard deviation of 1
+`randn(dims)` — Create a random array with Float64 normally-distributed random values with a mean of 0 and standard deviation of 1
 
 `eye(n)` — n-by-n identity matrix
 
