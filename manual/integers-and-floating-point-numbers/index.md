@@ -19,8 +19,8 @@ The following are Julia's primitive numeric types:
     - `Uint32` — unsigned 32-bit integers ranging from 0 to 2<sup>32</sup> – 1.
     - `Int64` — signed 64-bit integers ranging from –2<sup>63</sup> to 2<sup>63</sup> – 1.
     - `Uint64` — unsigned 64-bit integers ranging from 0 to 2<sup>64</sup> – 1.
-    - `Int` — the default integer type, and the type of integer literals. Identical to `Int32` on 32-bit systems and `Int64` on 64-bit systems.
-    - `Bool` — either `true` or `false`, which correspond numerically to 1 and 0. Arithmetic on `Bool` immediately promotes to the default integer type `Int`.
+    - `Bool` — either `true` or `false`, which correspond numerically to 1 and 0.
+    - `Char` — a 32-bit numeric type representing a [Unicode character](http://en.wikipedia.org/wiki/Unicode) (see [Strings](../strings) for more details).
 
 - **Floating-point types:**
     - `Float32` — [IEEE 754 32-bit floating-point numbers][Float32].
@@ -53,7 +53,27 @@ The default type for an integer literal depends on whether the target system has
     julia> typeof(1)
     Int64
 
-Larger integer literals which cannot be represented using only 32 bits but can be represented in 64 bits always create 64-bit integers, regardless of the system type:
+The type `Int` is an alias for the system-native integer type:
+
+    # 32-bit system:
+    julia> Int
+    Int32
+
+    # 64-bit system:
+    julia> Int
+    Int64
+
+Similarly, `Uint` is an alias for the system-native unsigned integer type:
+
+    # 32-bit system:
+    julia> Uint
+    Uint32
+
+    # 64-bit system:
+    julia> Uint
+    Uint64
+
+Larger integer literals that cannot be represented using only 32 bits but can be represented in 64 bits always create 64-bit integers, regardless of the system type:
 
     # 32-bit or 64-bit system:
     julia> typeof(3000000000)
@@ -68,7 +88,7 @@ If an integer literal has a value larger than can be represented as an `Int64` b
     julia> typeof(ans)
     Uint64
 
-Unsigned integers are input and output using the `0x` prefix and hexadecimal (base 16) digits `0-9a-f` (you can also use `A-F` for input).
+Unsigned integers are otherwise input and output using the `0x` prefix and hexadecimal (base 16) digits `0-9a-f` (you can also use `A-F` for input).
 The size of the unsigned value is determined by the number of hex digits used:
 
     julia> 0x1
@@ -95,6 +115,8 @@ The size of the unsigned value is determined by the number of hex digits used:
     julia> typeof(ans)
     Uint64
 
+This behavior is based on the observation that when one uses unsigned hex literals for integer values, one typically is using them to represent a fixed numeric byte sequence, rather than an integer value.
+
 The minimum and maximum representable values of primitive numeric types such as integers are given by the `typemin` and `typemax` functions:
 
     julia> (typemin(Int32), typemax(Int32))
@@ -104,15 +126,16 @@ The minimum and maximum representable values of primitive numeric types such as 
              println("$(lpad(T,6)): [$(typemin(T)),$(typemax(T))]")
            end
       Int8: [-128,127]
-     Uint8: [0,255]
+     Uint8: [0x00,0xff]
      Int16: [-32768,32767]
-    Uint16: [0,65535]
+    Uint16: [0x0000,0xffff]
      Int32: [-2147483648,2147483647]
-    Uint32: [0,4294967295]
+    Uint32: [0x00000000,0xffffffff]
      Int64: [-9223372036854775808,9223372036854775807]
-    Uint64: [0,18446744073709551615]
+    Uint64: [0x0000000000000000,0xffffffffffffffff]
 
-This last expression uses several features we have yet to introduce, including [for loops](../control-flow#Repeated+Evaluation:+Loops), [strings](../strings), and [string interpolation](../strings#Interpolation), but should be easy enough to understand for people coming from most mainstream programming languages.
+As you can see, the values returned by `typemin` and `typemax` are always of the given argument type.
+The above expression uses several features we have yet to introduce, including [for loops](../control-flow#Repeated+Evaluation:+Loops), [strings](../strings), and [string interpolation](../strings#Interpolation), but should be easy enough to understand for people coming from most mainstream programming languages.
 
 ## Floating-Point Numbers
 
