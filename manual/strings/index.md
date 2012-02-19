@@ -579,7 +579,7 @@ It is convenient to have captures returned as a tuple so that one can use tuple 
     julia> first
     "a"
 
-A collection of variant regular expresion string literals indicate various combinations of the `i`, `m`, and `s` flags used to indicate case-insensitivity, multiline matching, and single-line matching, described in the [perlre manpage]() as follows:
+A collection of variant regular expresion string literals indicate various combinations of the `i`, `m`, and `s` flags used to indicate case-insensitivity, multiline matching, and single-line matching, described in the [perlre manpage](http://perldoc.perl.org/perlre.html#Modifiers) as follows:
 
     i   Do case-insensitive pattern matching.
 
@@ -604,8 +604,8 @@ A collection of variant regular expresion string literals indicate various combi
 
 For example, the following regex has all three flags turned on:
 
-    julia> rims"a+.*b+.*?d$"
-    rims"a+.*b+.*?d$"
+    julia> r"a+.*b+.*?d$"ims
+    r"a+.*b+.*?d$"ims
 
-    julia> match(rims"a+.*b+.*?d$","Goodbye,\nOh, angry,\nBad world\n")
+    julia> match(r"a+.*b+.*?d$"ims,"Goodbye,\nOh, angry,\nBad world\n")
     RegexMatch("angry,\nBad world")
