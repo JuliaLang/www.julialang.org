@@ -6,6 +6,10 @@ authors:
     - Jeff Bezanson
     - <a href="http://karpinski.org/">Stefan Karpinski</a>
     - <a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>
+mentions:
+    - Reddit: "http://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/"
+    - Hacker News: "http://news.ycombinator.com/item?id=3606380"
+    - Lambda-the-Ultimate: "http://lambda-the-ultimate.org/node/4452"
 ---
 
 In short, because we are greedy.
