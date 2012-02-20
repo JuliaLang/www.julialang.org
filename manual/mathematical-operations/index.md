@@ -42,42 +42,13 @@ Here are some simple examples using arithmetic operators:
 
 (By convention, we tend to space less tightly binding operators less tightly, but there are no syntactic constraints.)
 
-Julia has a type promotion system that allows arithmetic operations on mixtures of argument types to "just work" naturally and automatically (see [Conversion and Promotion](../conversion-and-promotion) for details of the promotion system):
-
-    julia> 1 + 2.5
-    3.5
-
-    julia> 0.5*12
-    6.0
-
-    julia> 3*2/12 + 1
-    1.5
-
-The above expressions all promote to `Float64`.
-However, more nuanced promotions also work:
-
-    julia> uint8(12) - int8(15)
-    -3
-
-    julia> typeof(ans)
-    Int16
-
-    julia> uint8(12) - float32(1.5)
-    10.5
-
-    julia> typeof(ans)
-    Float32
+Julia's promotion system makes arithmetic operations on mixtures of argument types "just work" naturally and automatically.
+See [Conversion and Promotion](../conversion-and-promotion) for details of the promotion system.
 
 Here are some examples with bitwise operators:
 
     julia> ~123
     -124
-
-    julia> ~uint32(123)
-    4294967172
-
-    julia> ~uint8(123)
-    132
 
     julia> 123 & 234
     106
@@ -85,19 +56,14 @@ Here are some examples with bitwise operators:
     julia> 123 | 234
     251
 
-    julia> typeof(ans)
-    Int64
-
-    julia> uint8(123) | uint16(234)
-    251
-
-    julia> typeof(ans)
-    Uint16
-
     julia> 123 $ 234
     145
 
-As a general rule of thumb, arguments are promoted to the smallest type that can accurately represent all of the arguments.
+    julia> ~uint32(123)
+    0xffffff84
+
+    julia> ~uint8(123)
+    0x84
 
 Every binary arithmetic and bitwise operator also has an updating version that assigns the result of the operation back into its left operand.
 For example, the updating form of `+` is the `+=` operator.
@@ -162,11 +128,7 @@ Here are some simple examples:
     julia> 3 < -0.5
     false
 
-As is evident here, promotion also applies to comparisons:
-the comparisons are performed in whatever type the arguments are promoted to, which is generally the smallest type in which the values can be faithfully represented.
-
-After promotion to a common type, integers are compared in the standard manner:
-by comparison of bits.
+Integers are compared in the standard manner — by comparison of bits.
 Floating-point numbers are compared according to the [IEEE 754 standard](http://en.wikipedia.org/wiki/IEEE_754-2008):
 
 - finite numbers are ordered in the usual manner
@@ -192,6 +154,9 @@ For situations where one wants to compare floating-point values so that `NaN` eq
 
     julia> isequal(NaN,NaN)
     true
+
+Mixed-type comparisons between signed integers, unsigned integers, and floats can be very tricky.
+A great deal of care has been taken to ensure that Julia does them correctly.
 
 Unlike most languages, with the [notable exception of Python](http://en.wikipedia.org/wiki/Python_syntax_and_semantics#Comparison_operators), comparisons can be arbitrarily chained:
 
@@ -222,15 +187,16 @@ These mathematical operations are defined over as broad a class of numerical val
 - `abs(x)` — a positive value with the magnitude of `x`.
 - `abs2(x)` — the squared magnitude of `x`.
 - `sign(x)` — indicates the sign of `x`, returning -1, 0, or +1.
-- `signbit(x)` — indicates the sign bit of `x`, returning -1 or +1.
+- `signbit(x)` — indicates whether the sign bit is on (1) or off (0).
 - `copysign(x,y)` — a value with the magnitude of `x` and the sign of `y`.
+- `flipsign(x,y)` — a value with the magnitude of `x` and the sign of `x*y`.
 - `sqrt(x)` — the square root of `x`.
 - `cbrt(x)` — the cube root of `x`.
 - `hypot(x,y)` — accurate `sqrt(x^2 + y^2)` for all values of `x` and `y`.
 - `pow(x,y)` — `x` raised to the exponent `y`.
 - `exp(x)` — the natural exponential function at `x`.
 - `expm1(x)` — accurate `exp(x)-1` for `x` near zero.
-- `ldexp(x,n)` — `x*2^n` computed efficiently for integral `n`.
+- `ldexp(x,n)` — `x*2^n` computed efficiently for integer values of `n`.
 - `log(x)` — the natural logarithm of `x`.
 - `log(b,x)` — the base `b` logarithm of `x`.
 - `log2(x)` — the base 2 logarithm of `x`.
@@ -259,6 +225,7 @@ For notational convenience, there are equivalent operator forms for the `mod` an
 - `x % y` is equivalent to `mod(x,y)`.
 - `x ^ y` is equivalent to `pow(x,y)`.
 
+In the former case, the spelled-out `mod` operator is the "canonical" form, and the `%` operator form is retained for compatibility with other systems, whereas in the latter case, the `^` operator form is canonical and the spelled-out `pow` form is retained for compatibility.
 Like arithmetic and bitwise operators, `%` and `^` also have updating forms.
 As with other operators, `x %= y` means `x = x % y` and `x ^= y` means `x = x^y`:
 
