@@ -1,4 +1,4 @@
----
+q---
 layout: post
 title:  Why We Created Julia
 authors:
@@ -10,6 +10,7 @@ mentions:
     - Reddit: "http://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/"
     - Hacker News: "http://news.ycombinator.com/item?id=3606380"
     - Lambda-the-Ultimate: "http://lambda-the-ultimate.org/node/4452"
+    - Twitter: "http://topsy.com/julialang.org/"
 ---
 
 In short, because we are greedy.
