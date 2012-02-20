@@ -579,7 +579,7 @@ It is convenient to have captures returned as a tuple so that one can use tuple 
     "a"
 
 You can modify the behavior regular expressions by some combination of the flags `i`, `m`, `s`, and `x` after the closing double quote mark.
-These flags have the same meaning as they do in Perl, as explained in this excerpt from the [perlre manpage]:
+These flags have the same meaning as they do in Perl, as explained in this excerpt from the [perlre manpage](http://perldoc.perl.org/perlre.html#Modifiers):
 
     i   Do case-insensitive pattern matching.
 
@@ -601,6 +601,13 @@ These flags have the same meaning as they do in Perl, as explained in this excer
         whatsoever, while still allowing "^" and "$" to match,
         respectively, just after and just before newlines within the
         string.
+
+    x   Tells the regular expression parser to ignore most whitespace
+        that is neither backslashed nor within a character class. You
+        can use this to break up your regular expression into
+        (slightly) more readable parts. The '#' character is also
+        treated as a metacharacter introducing a comment, just as in
+        ordinary code.
 
 For example, the following regex has all three flags turned on:
 
