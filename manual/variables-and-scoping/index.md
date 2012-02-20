@@ -43,11 +43,11 @@ and inner scopes refer to the global variable of that name.
 In the following example, there is only one `x` assigned both inside and outside a loop:
 
     function foo(n)
-        x = 0
-        for i = 1:n
-            x = x + 1
-        end
-        x
+      x = 0
+      for i = 1:n
+        x = x + 1
+      end
+      x
     end
 
     julia> foo(10)
@@ -56,12 +56,12 @@ In the following example, there is only one `x` assigned both inside and outside
 In the next example, the loop has a separate `x` and the function always returns zero:
 
     function foo(n)
-        x = 0
-        for i = 1:n
-            local x
-            x = i
-        end
-        x
+      x = 0
+      for i = 1:n
+        local x
+        x = i
+      end
+      x
     end
 
     julia> foo(10)
@@ -70,10 +70,10 @@ In the next example, the loop has a separate `x` and the function always returns
 In this example, an `x` exists only inside the loop, and the function encounters an undefined variable error on its last line (unless there is a global variable `x`):
 
     function foo(n)
-        for i = 1:n
-            x = i
-        end
-        x
+      for i = 1:n
+        x = i
+      end
+      x
     end
 
     julia> foo(10)
@@ -86,9 +86,9 @@ This rule works out well in practice, since the vast majority of variables assig
 One last example shows that an outer assignment introducing `x` need not come before an inner usage:
 
     function foo(n)
-        f = y -> n + x + y
-        x = 1
-        f(2)
+      f = y -> n + x + y
+      x = 1
+      f(2)
     end
 
     julia> foo(10)
@@ -129,46 +129,57 @@ This is especially apparent in the case of assignments:
     10
 
 In the former case, `y` only exists inside of the `for` loop.
-In the latter case, an outer `y` has been introduced and so is inherited within the loop. Due to the special identification of the prompt's scope block with the global scope, it is not necessary to declare `global y` inside the loop.
+In the latter case, an outer `y` has been introduced and so is inherited within the loop.
+Due to the special identification of the prompt's scope block with the global scope, it is not necessary to declare `global y` inside the loop.
 However, in code not entered into the interactive prompt this declaration would be necessary in order to modify a global variable.
 
-The `let` statement provides a different way to introduce variables. Unlike assignments to local variables, `let` statements allocate new variable bindings each time they run. An assignment modifies an existing value location, and `let` creates new locations. This difference is usually not important, and is only detectable in the case of variables that outlive their scope via closures. `let` has the following syntax:
+The `let` statement provides a different way to introduce variables.
+Unlike assignments to local variables, `let` statements allocate new variable bindings each time they run.
+An assignment modifies an existing value location, and `let` creates new locations.
+This difference is usually not important, and is only detectable in the case of variables that outlive their scope via closures.
+The `let` syntax accepts a comma-separated series of assignments and variable names:
 
-    let var1 = value1,
-        var2,
-        var3 = value3
+    let var1 = value1, var2, var3 = value3
         code
     end
 
-`let` accepts a comma-separated series of assignments and variable names. Unlike local variable assignments, the assignments do not occur in order. Rather, all assignment right-hand sides are evaluated in the scope outside the `let`, then the `let` variables are assigned "simultaneously". In this way, `let` operates like a function call. Indeed, the following code:
+Unlike local variable assignments, the assignments do not occur in order.
+Rather, all assignment right-hand sides are evaluated in the scope outside the `let`, then the `let` variables are assigned "simultaneously".
+In this way, `let` operates like a function call. Indeed, the following code:
 
     let a = b, c = d
-        body
+      body
     end
 
-is equivalent to `((a,c)->body)(b, d)`. Therefore it makes sense to write something like `let x=x ...`.
+is equivalent to `((a,c)->body)(b, d)`.
+Therefore it makes sense to write something like `let x = x` since the two `x` variables are distinct and have separate storage.
+Here is an example where the behavior of `let` is needed:
 
-Here is a case where the behavior of `let` is needed:
-
-    Fs = cell(2)
-    for i=1:2
-        Fs[i] = ()->i
+    Fs = cell(2);
+    for i = 1:2
+      Fs[i] = ()->i
     end
 
-    Fs[1]()  =>  2
-    Fs[2]()  =>  2
+    julia> Fs[1]()
+    2
+
+    julia> Fs[2]()
+    2
 
 Here we create and store two closures that return variable `i`. However, it is always the same variable `i`, so the two closures behave identically. We can use `let` to create a new binding for `i`:
 
-    Fs = cell(2)
-    for i=1:2
-        let i=i
-            Fs[i] = ()->i
-        end
+    Fs = cell(2);
+    for i = 1:2
+      let i = i
+        Fs[i] = ()->i
+      end
     end
 
-    Fs[1]()  =>  1
-    Fs[2]()  =>  2
+    julia> Fs[1]()
+    1
+
+    julia> Fs[2]()
+    2
 
 Since the `begin` construct does not introduce a new block, it can be useful to use the zero-argument let to just introduce a new scope block without creating any new bindings:
 
