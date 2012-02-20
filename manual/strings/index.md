@@ -373,10 +373,9 @@ this is *not* the same as `length(str)`.
 - `i = start(str)` gives the first valid index at which a character can be found in `str` (typically 1).
 - `c, j = next(str,i)` returns next character at or after the index `i` and the next valid character index following that.
 With the `start` and `length`, can be used to iterate through the characters in `str`.
-- `c, j = prev(str,i)` returns the character at or before index `i` and the index at which it occurs.
 With `length` and `start` can be used to iterate through the characters in `str` in reverse.
 - `ind2chr(str,i)` gives the number of characters in `str` up to and including any at index `i`.
-- `chr2int(str,j)` gives the index at which the `j`th character in `str` occurs.
+- `chr2ind(str,j)` gives the index at which the `j`th character in `str` occurs.
 
 ## Non-Standard String Literals
 
@@ -579,7 +578,8 @@ It is convenient to have captures returned as a tuple so that one can use tuple 
     julia> first
     "a"
 
-A collection of variant regular expresion string literals indicate various combinations of the `i`, `m`, and `s` flags used to indicate case-insensitivity, multiline matching, and single-line matching, described in the [perlre manpage]() as follows:
+You can modify the behavior regular expressions by some combination of the flags `i`, `m`, `s`, and `x` after the closing double quote mark.
+These flags have the same meaning as they do in Perl, as explained in this excerpt from the [perlre manpage]:
 
     i   Do case-insensitive pattern matching.
 
@@ -604,8 +604,8 @@ A collection of variant regular expresion string literals indicate various combi
 
 For example, the following regex has all three flags turned on:
 
-    julia> rims"a+.*b+.*?d$"
-    rims"a+.*b+.*?d$"
+    julia> r"a+.*b+.*?d$"ism
+    r"a+.*b+.*?d$"ims
 
-    julia> match(rims"a+.*b+.*?d$","Goodbye,\nOh, angry,\nBad world\n")
+    julia> match(r"a+.*b+.*?d$"ism, "Goodbye,\nOh, angry,\nBad world\n")
     RegexMatch("angry,\nBad world")
