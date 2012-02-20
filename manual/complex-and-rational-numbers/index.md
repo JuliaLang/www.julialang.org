@@ -32,10 +32,10 @@ You can perform all the standard arithmetic operations with complex numbers:
     -3 - 4im
 
     julia> (-1 + 2im)^2.5
-    2.7296244647840089 - 6.9606644595719001im
+    2.729624464784009 - 6.9606644595719im
 
     julia> (-1 + 2im)^(1 + 1im)
-    -0.2791038107582666 + 0.0870805341410243im
+    -0.27910381075826657 + 0.08708053414102428im
 
     julia> 3(2 - 5im)
     6 - 15im
@@ -44,7 +44,7 @@ You can perform all the standard arithmetic operations with complex numbers:
     -63 - 60im
 
     julia> 3(2 - 5im)^-1
-    0.2068965517241379 + 0.5172413793103448im
+    0.20689655172413793 + 0.5172413793103449im
 
 The promotion mechanism ensures that combinations of operands of different types just work:
 
@@ -86,7 +86,7 @@ Standard functions to manipulate complex values are provided:
     1 - 2im
 
     julia> abs(1 + 2im)
-    2.23606797749978981
+    2.23606797749979
 
     julia> abs2(1 + 2im)
     5
@@ -105,10 +105,10 @@ The full gamut of other mathematical functions are also defined for complex numb
     2.0327230070196656 - 3.0518977991517997im
 
     julia> exp(1 + 2im)
-    -1.1312043837568135 + 2.4717266720048188im
+    -1.1312043837568138 + 2.471726672004819im
 
     julia> sinh(1 + 2im)
-    -0.4890562590412937 + 1.4031192506220405im
+    -0.48905625904129374 + 1.4031192506220407im
 
 Note that mathematical functions always return real values when applied to real numbers and complex values when applied to complex numbers.
 Thus, `sqrt`, for example, behaves differently when applied to `-1` versus `-1 + 0im` even though `-1 == -1 + 0im`:
@@ -211,12 +211,12 @@ Rationals can be easily converted to floating-point numbers:
     julia> float(3//4)
     0.75
 
-Conversion from rational to floating-point respects the following identity for any integral values of `a` and `b`:
+Conversion from rational to floating-point respects the following identity for any integral values of `a` and `b`, with the exception of the case `a == 0` and `b == 0`:
 
     julia> isequal(float(a//b), a/b)
     true
 
-This includes cases where `a == 0` or `b == 0`, in which situations the conversion from rational value to floating-point produces the appropriate `±Inf` or `NaN` value:
+Constructing infinite rational values is acceptable:
 
     julia> 5//0
     1//0
@@ -224,20 +224,16 @@ This includes cases where `a == 0` or `b == 0`, in which situations the conversi
     julia> float(ans)
     Inf
 
-    julia> 0//0
-    0//0
-
-    julia> float(ans)
-    NaN
-
     julia> -3//0
     -1//0
 
     julia> float(ans)
     -Inf
 
-In a sense, Julia's rational values are a convenient way of deferring the computation of integer ratios, thereby allowing exact canceling of common factors and avoiding accumulation of floating-point errors.
-Adherence to floating-point semantics implies that other than increased precision, most algorithms designed for floating-point arithmetic will work similarly for rationals.
+Trying to construct a NaN rational value, however, is not:
+
+    julia> 0//0
+    invalid rational: 0//0
 
 As usual, the promotion system makes interactions with other numeric types natural and effortless:
 
@@ -251,7 +247,7 @@ As usual, the promotion system makes interactions with other numeric types natur
     2//7 + 4//7im
 
     julia> 2//7 * (1.5 + 2im)
-    0.4285714285714285 + 0.5714285714285714im
+    0.42857142857142855 + 0.5714285714285714im
 
     julia> 3//2 / (1 + 2im)
     3//10 - 3//5im
@@ -272,4 +268,4 @@ As usual, the promotion system makes interactions with other numeric types natur
     true
 
     julia> 1//3 - 0.33
-    0.0033333333333333
+    0.0033333333333332993
