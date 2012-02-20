@@ -13,34 +13,38 @@ To facilitate using many different implementations of the same concept smoothly,
 A definition of one possible behavior for a function is called a *method*.
 Thus far, we have presented only examples of functions defined with a single method, applicable to all types of arguments.
 However, the signatures of method definitions can be annotated to indicate the types of arguments in addition to their number, and more than a single method definition may be provided.
-When a function is applied to a particular tuple of arguments, the most specific method applicable to those arguments is executed.
-Thus, the overall behavior of a function is a patchwork of the behaviors of its various methods.
+When a function is applied to a particular tuple of arguments, the most specific method applicable to those arguments is applied.
+Thus, the overall behavior of a function is a patchwork of the behaviors of its various method defintions.
 If the patchwork is well designed, even though the implementations of the methods may be quite different, the outward behavior of the function will appear seamless and consistent.
 
 The choice of which method to execute when a function is applied is called *dispatch*.
 Julia allows the dispatch process to choose which of a function's methods to call based on the number of arguments given, and on the types of all of the function's arguments.
-This is different than traditional object-oriented languages, where dispatch occurs based only on the first argument, which often has a special argument syntax, and is sometimes implied rather than explicitly written as an argument.<sup>**[1](#1)**</sup>
-Using all of a function's arguments to choose which method should be invoked, rather than just the first, is known as [multiple dispatch](http://en.wikipedia.org/wiki/Multiple_dispatch).
+This is different than traditional object-oriented languages, where dispatch occurs based only on the first argument, which often has a special argument syntax, and is sometimes implied rather than explicitly written as an argument.<sup>[1](#footnote-1)</sup>
+Using all of a function's arguments to choose which method should be invoked, rather than just the first, is known as [*multiple dispatch*](http://en.wikipedia.org/wiki/Multiple_dispatch).
 Multiple dispatch is particularly useful for mathematical code, where it makes little sense to artificially deem the operations to "belong" to one argument more than any of the others:
 does the addition operation in `x + y` belong to `x` any more than it does to `y`?
 The implementation of a mathematical operator generally depends on the types of all of its arguments.
+Even beyond mathematical operations, however, multiple dispatch ends up being a very powerful and convenient paradigm for structuring and organizing programs.
 
-**Footnote 1:**
-In C++ or Java, for example, in a method call like `obj.meth(arg1,arg2)`, the object `obj` "receives" the method call and is implicitly passed to the method via the `this` keyword, rather then as an explicit method argument.
-When the current `this` object is the receiver of a method call, it can be omitted altogether, writing just `meth(arg1,arg2)`, with `this` implied as the receiving object.
+<a name="footnote-1"></a>
+<div class="sidebar">
+<b>Footnote 1:</b>
+In C++ or Java, for example, in a method call like <code>obj.meth(arg1,arg2)</code>, the object <code>obj</code> "receives" the method call and is implicitly passed to the method via the <code>this</code> keyword, rather then as an explicit method argument.
+When the current <code>this</code> object is the receiver of a method call, it can be omitted altogether, writing just <code>meth(arg1,arg2)</code>, with <code>this</code> implied as the receiving object.
+</div>
 
 ## Defining Methods
 
 Until now, we have, in our examples, defined only functions with a single method having unconstrained argument types.
 Such functions behave just like they would in traditional dynamically typed languages.
 Nevertheless, we have used multiple dispatch and methods almost continually without being aware of it:
-all of Julia's standard functions and operators, like the aforementioned `+`, have many methods defining their behavior over various possible combinations of argument type and count.
+all of Julia's standard functions and operators, like the aforementioned `+` function, have many methods defining their behavior over various possible combinations of argument type and count.
 
 When defining a function, one can optionally constrain the types of parameters it is applicable to, using the `::` type-assertion operator, introduced in the section on [composite types](../types#Composite+Types):
 
     f(x::Float64, y::Float64) = 2x + y
 
-This function definition only applies only to calls where `x` and `y` are both values of type `Float64`:
+This function definition applies only to calls where `x` and `y` are both values of type `Float64`:
 
     julia> f(2.0, 3.0)
     7.0
@@ -73,9 +77,9 @@ This method definition applies to any pair of arguments that are instances of `N
 They need not be of the same type, so long as they are each numeric values.
 The problem of handling disparate numeric types is delegated to the arithmetic operations in the expression `2x - y`.
 
-To define a function with multiple methods, one simply defines the function multiple times, with different numbers and declared types of arguments.
+To define a function with multiple methods, one simply defines the function multiple times, with different numbers and types of arguments.
 The first method definition for a function creates the function object, and subsequent method definitions add new methods to the existing function object.
-The most specific method definition matching the number and types of the arguments will be executed when a function is applied.
+The most specific method definition matching the number and types of the arguments will be executed when the function is applied.
 Thus, the two method definitions above, taken together, define the behavior for `f` over all pairs of instances of the abstract type `Number` — but with a different behavior specific to pairs of `Float64` values.
 If one of the arguments is a 64-bit float but the other one is not, then the `f(Float64,Float64)` method cannot be called and the more general `f(Number,Number)` method must be used:
 
@@ -122,7 +126,7 @@ Thus, we can define a catch-all method for `f` like so:
     julia> f("foo", 1)
     Whoa there, Nelly.
 
-This catch-all is less specific than any other possible method definition for a pair of parameter values, so it will only be called on pairs of arguments to which no other method definition applies.
+This catch-all is less specific than any other possible method definition for a pair of parameter values, so it is only be called on pairs of arguments to which no other method definition applies.
 
 Although it seems a simple concept, multiple dispatch on the types of values is perhaps the single most powerful and central feature of the Julia language.
 Core operations typically have dozens of methods:
@@ -166,7 +170,7 @@ Core operations typically have dozens of methods:
     +(Any,Any,Any,Any,Any)
     +(Any,Any,Any,Any...)
 
-Multiple dispatch together with the flexible parametric type system, give Julia its ability to abstractly express high-level algorithms decoupled from implementation details, yet generate efficient, specialized code to handle each case at run time.
+Multiple dispatch together with the flexible parametric type system give Julia its ability to abstractly express high-level algorithms decoupled from implementation details, yet generate efficient, specialized code to handle each case at run time.
 
 ## Method Ambiguities
 
@@ -238,7 +242,7 @@ Thus, overall, this defines a boolean function that checks whether its two argum
     false
 
 This kind of definition of function behavior by dispatch is quite common — idiomatic, even — in Julia.
-Method type parameters need not only be used as the types of parameters:
+Method type parameters are not restricted to being used as the types of parameters:
 they can be used anywhere a value would be in the signature of the function or body of the function.
 Here's an example where the method type parameter `T` is used as the type parameter to the parametric type `Vector{T}` in the method signature:
 
