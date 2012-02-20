@@ -137,8 +137,9 @@ pre {
 .sidebar {
   border: 1px solid #ddd;
   padding: .75em 1.25em;
-  line-height: 1.25em;
+  line-height: 1.45em;
   margin: 1em 0.5em 1em 0em;
+  font-size: 90%;
 }
 
 /* pages listing blog posts */

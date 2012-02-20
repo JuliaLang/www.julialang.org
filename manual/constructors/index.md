@@ -53,11 +53,11 @@ Here the zero-argument constructor method calls the single-argument constructor 
 For reasons that will become clear very shortly, additional constructor methods declared as normal methods like this are called *outer* constructor methods.
 Outer constructor methods can only ever create a new instance by calling another constructor method, such as the automatically provided default one.
 
----
-**A Note On Nomenclature.**
-
-While the term "constructor" generally refers to the entire function which constructs objects of a type, it is common to abuse terminology slightly and refer to specific constructor methods as "constructors".
-In such situations, it is generally clear from context that the term is used to mean "constructor method" rather than "constructor function", especially as it is often used in the sense of singling out a particular method of the constructor from all of the others.
+<div class="sidebar">
+<b>A Note On Nomenclature.</b>
+While the term &ldquo;constructor&rdquo; generally refers to the entire function which constructs objects of a type, it is common to abuse terminology slightly and refer to specific constructor <i>methods</i> as &ldquo;constructors&rdquo;.
+In such situations, it is generally clear from context that the term is used to mean &ldquo;constructor method&rdquo; rather than &ldquo;constructor function&rdquo;, especially as it is often used in the sense of singling out a particular method of the constructor from all of the others.
+</div>
 
 ## Inner Constructor Methods
 
