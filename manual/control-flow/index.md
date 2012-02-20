@@ -303,7 +303,6 @@ You'll either need a new interactive session instance or a different variable na
     3
     4
     5
-    ()
 
     julia> j
     j not defined
@@ -326,7 +325,7 @@ In general, the `for` loop construct can iterate over all sorts of containers:
     bar
     baz
 
-Various types of iterable containers will be introduced and discussed in later section.
+Various types of iterable containers will be introduced and discussed in later sections of the manual (see, e.g., [Arrays](../arrays)).
 
 It is sometimes convenient to terminate the repetition of a `while` before the test condition is falsified or stop iterating in a `for` loop before the end of the iterable object is reached.
 This can be accomplished with the `break` keyword:
