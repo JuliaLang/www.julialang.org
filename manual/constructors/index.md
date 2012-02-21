@@ -86,6 +86,7 @@ Now `OrderedPair` objects can only be constructed such that `x <= y`:
 
     julia> OrderedPair(2,1)
     out of order
+     in OrderedPair at prompt:5
 
 You can still reach in and directly change the field values to violate this invariant (support for immutable composites is planned but not yet implemented), but messing around with an object's internals uninvited is considered poor form.
 You (or someone else) can also provide additional outer constructor methods at any later point, but once a type is declared, there is no way to add more inner constructor methods.
@@ -94,7 +95,7 @@ This guarantees that all objects of the declared type must come into existence b
 
 If any inner constructor method is defined, no default constructor method is provided:
 it is presumed that you have supplied yourself with all the inner constructors you need.
-The default constructor is equivalent to writing your own inner constructor method which takes all of the object's fields as parameters, passes them directly to `new`, and returns the resulting object like so:
+The default constructor is equivalent to writing your own inner constructor method that takes all of the object's fields as parameters (constrained to be of the correct type, if the corresponding field has a type), and passes them to `new`, returning the resulting object:
 
     type Foo
       bar
@@ -104,7 +105,7 @@ The default constructor is equivalent to writing your own inner constructor meth
     end
 
 This declaration has the same effect as the earlier definition of the `Foo` type without an explicit inner constructor method.
-Even if a type's fields have constrained types, this equivalence holds because the `new` function attempts to convert arguments that are not already of the required type:
+The following two types are equivalent — one with a default constructor, the other with an explicit constructor:
 
     type T1
       x::Int64
@@ -112,7 +113,7 @@ Even if a type's fields have constrained types, this equivalence holds because t
 
     type T2
       x::Int64
-      T2(x) = new(x)
+      T2(x::Int64) = new(x)
     end
 
     julia> T1(1)
@@ -121,21 +122,17 @@ Even if a type's fields have constrained types, this equivalence holds because t
     julia> T2(1)
     T2(1)
 
-    julia> T1(1.9)
-    T1(1)
+    julia> T1(1.0)
+    no method T1(Float64,)
+     in method_missing at /Users/stefan/projects/julia/j/base.j:58
 
-    julia> T2(1.9)
-    T2(1)
-
-    julia> T1("hello")
-    no method convert(Type{Int64},ASCIIString)
-
-    julia> T2("hello")
-    no method convert(Type{Int64},ASCIIString)
+    julia> T2(1.0)
+    no method T2(Float64,)
+     in method_missing at /Users/stefan/projects/julia/j/base.j:58
 
 It is considered good form to provide as few inner constructor methods as possible:
 only those taking all arguments explicitly and enforcing essential error checking and transformation.
-Additional convenience constructor methods, supplying default values or auxiliary additional transformations, should be provided as outer constructors, calling the inner constructors to do the heavy lifting.
+Additional convenience constructor methods, supplying default values or auxiliary transformations, should be provided as outer constructors that call the inner constructors to do the heavy lifting.
 This separation is typically quite natural.
 
 ## Incomplete Initialization
@@ -194,8 +191,9 @@ While you are allowed to create objects with uninitialized fields, any access to
     julia> z.xx
     access to undefined reference
 
-This prevents uninitialized fields from propagating throughout a program or forcing programmers to continually check for uninitialized fields, the way they are required to check for `null` values everywhere in Java.
-You can also pass incomplete objects to other functions from inner constructors to complete them:
+This prevents uninitialized fields from propagating throughout a program or forcing programmers to continually check for uninitialized fields, the way they have to check for `null` values everywhere in Java:
+if a field is uninitialized and it is used in any way, an error is thrown immediately so no error checking is required.
+You can also pass incomplete objects to other functions from inner constructors to delegate their completion:
 
     type Lazy
       xx
@@ -203,13 +201,13 @@ You can also pass incomplete objects to other functions from inner constructors 
       Lazy(v) = complete_me(new(), v)
     end
 
-As with incomplete objects returned from constructors, if `complete_me` or any of its callees try to access the `xx` field of the `Lazy` object before it has been initialized, an error will immediately be thrown.
+As with incomplete objects returned from constructors, if `complete_me` or any of its callees try to access the `xx` field of the `Lazy` object before it has been initialized, an error will be thrown immediately.
 
 ## Parametric Constructors
 
 Parametric types add a few wrinkles to the constructor story.
 Recall from [Parametric Types](../types#Parametric+Types) that, by default, instances of parametric composite types can be constructed either with explicitly given type parameters or with type parameters implied by the types of the arguments given to the constructor.
-For example:
+Here are some examples:
 
     type Point{T<:Real}
       x::T
@@ -226,22 +224,31 @@ For example:
 
     julia> Point(1,2.5)
     no method Point(Int64,Float64)
+     in method_missing at /Users/stefan/projects/julia/j/base.j:58
 
     ## explicit T ##
 
-    julia> Point{Int64}(1,2.5)
+    julia> Point{Int64}(1,2)
     Point(1,2)
 
-    julia> Point{Float64}(1,2.5)
+    julia> Point{Int64}(1.0,2.5)
+    no method Point(Float64,Float64)
+     in method_missing at /Users/stefan/projects/julia/j/base.j:58
+
+    julia> Point{Float64}(1.0,2.5)
     Point(1.0,2.5)
 
-For constructor calls with explicit type parameters, such as `Point{Int64}(1,2.5)`, the arguments can be of any type since the value of `T` is explicitly given.
-If the arguments are not already of type `T`, then conversion is attempted.
-When the type is implied by the arguments to the constructor call, as in `Point(1,2)`, then the types of the arguments must match — otherwise it's ambiguous which of the arguments should determine the value of `T`.
+    julia> Point{Float64}(1,2)
+    no method Point(Int64,Int64)
+     in method_missing at /Users/stefan/projects/julia/j/base.j:58
+
+As you can see, for constructor calls with explicit type parameters, the arguments must match that specific type:
+`Point{Int64}(1,2)` works, but `Point{Int64}(1.0,2.5)` does not.
+When the type is implied by the arguments to the constructor call, as in `Point(1,2)`, then the types of the arguments must agree — otherwise the `T` cannot be determined — but any pair of real arguments with matching type may be given to the generic `Point` constructor.
 
 What's really going on here is that `Point`, `Point{Float64}` and `Point{Int64}` are all different constructor functions.
 In fact, `Point{T}` is a distinct constructor function for each type `T`.
-Without any explicitly provided inner constructors, the declaration of the composite type `Point{T<:Real}` automatically provides an inner constructor, `Point{T}`, for each possible type `T<:Real`, which behaves just like non-parametric default inner constructors do.
+Without any explicitly provided inner constructors, the declaration of the composite type `Point{T<:Real}` automatically provides an inner constructor, `Point{T}`, for each possible type `T<:Real`, that behaves just like non-parametric default inner constructors do.
 It also provides a single general outer `Point` constructor that takes pairs of real arguments, which must be of the same type.
 This automatic provision of constructors is equivalent to the following explicit declaration:
 
@@ -249,7 +256,7 @@ This automatic provision of constructors is equivalent to the following explicit
       x::T
       y::T
 
-      Point(x,y) = new(x,y)
+      Point(x::T, y::T) = new(x,y)
     end
 
     Point{T<:Real}(x::T, y::T) = Point{T}(x,y)
@@ -257,20 +264,19 @@ This automatic provision of constructors is equivalent to the following explicit
 Some features of parametric constructor definitions at work here deserve comment.
 First, inner constructor declarations always define methods of `Point{T}` rather than methods of the general `Point` constructor function.
 Since `Point` is not a concrete type, it makes no sense for it to even have inner constructor methods at all.
-Thus, the inner method declaration `Point(x,y) = new(x,y)` provides an inner constructor method for each value of `T`.
-It is, accordingly, this method declaration that makes the constructor calls with explicit type parameters, like `Point{Float64}(1,2)` and `Point{Int64}(1,2)`, work.
-The outer constructor declaration defines a method for the general `Point` constructor, and only applies to pairs of values of the same real type.
-This declaration makes constructor calls like `Point(1,2)` and `Point(1.0,2.5)`, without explicit type parameters, work.
+Thus, the inner method declaration `Point(x::T, y::T) = new(x,y)` provides an inner constructor method for each value of `T`.
+It is thus this method declaration that defines the behavior of constructor calls with explicit type parameters like `Point{Int64}(1,2)` and `Point{Float64}(1.0,2.0)`.
+The outer constructor declaration, on the other hand, defines a method for the general `Point` constructor which only applies to pairs of values of the same real type.
+This declaration makes constructor calls without explicit type parameters, like `Point(1,2)` and `Point(1.0,2.5)`, work.
 Since the method declaration restricts the arguments to being of the same type, calls like `Point(1,2.5)`, with arguments of different types, result in "no method" errors.
 
-Suppose we wanted to make the constructor call `Point(1,2.5)` work.
+Suppose we wanted to make the constructor call `Point(1,2.5)` work by "promoting" the integer value `1` to the floating-point value `1.0`.
 The simplest way to achieve this is to define the following additional outer constructor method:
 
-    Point(x::Int64, y::Float64) = Point{Float64}(x,y)
+    Point(x::Int64, y::Float64) = Point(convert(Float64,x),y)
 
-This method definition calls the explicit type constructor for `Point{Float64}`, thereby giving the `Float64` type precedence over `Int64`:
-both `x` and `y` will be converted to `Float64`.
-With this method definition the previous "no method" error now creates a point:
+This method uses the `convert` function to explicitly convert `x` to `Float64` and then delegates construction to the general constructor for the case where both arguments are `Float64`.
+With this method definition what was previously a "no method" error now successfully creates a point of type `Point{Float64}`:
 
     julia> Point(1,2.5)
     Point(1.0,2.5)
@@ -288,6 +294,7 @@ At the risk of spoiling the suspense, we can reveal here that the all it takes i
 
     Point(x::Real, y::Real) = Point(promote(x,y)...)
 
+The `promote` function converts all its arguments to a common type — in this case `Float64`.
 With this method definition, the `Point` constructor promotes its arguments the same way that numeric operators like `+` do, and works for all kinds of real numbers:
 
     julia> Point(1.5,2)
@@ -299,34 +306,35 @@ With this method definition, the `Point` constructor promotes its arguments the 
     julia> Point(1.0,1//2)
     Point(1.0,0.5)
 
-While the implicit type parameter constructors provided by default in Julia are fairly strict, it is possible to make them behave in a more relaxed but sensible manner quite easily if one wants to.
-Moreover, since constructors can leverage all of the power of the type system, methods, and multiple dispatch, providing sophisticated behavior is typically quite simple.
+Thus, while the implicit type parameter constructors provided by default in Julia are fairly strict, it is possible to make them behave in a more relaxed but sensible manner quite easily.
+Moreover, since constructors can leverage all of the power of the type system, methods, and multiple dispatch, defining sophisticated behavior is typically quite simple.
 
 ## Case Study: Rational
 
 Perhaps the best way to tie all these pieces together is to present a real world example of a parametric composite type and its constructor methods.
 To that end, here is beginning of [`rational.j`](https://github.com/JuliaLang/julia/blob/master/j/rational.j), which implements Julia's [rational numbers](../complex-and-rational-numbers#Rational+Numbers):
 
-    type Rational{T<:Int} <: Real
+    type Rational{T<:Integer} <: Real
         num::T
         den::T
 
         function Rational(num::T, den::T)
-            if num != 0 || den != 0
-                g = gcd(den, num)
-                num = div(num, g)
-                den = div(den, g)
+            if num == 0 && den == 0
+                error("invalid rational: 0//0")
             end
+            g = gcd(den, num)
+            num = div(num, g)
+            den = div(den, g)
             new(num, den)
         end
     end
-    Rational{T<:Int}(n::T, d::T) = Rational{T}(n,d)
-    Rational(n::Int, d::Int) = Rational(promote(n,d)...)
-    Rational(n::Int) = Rational(n,one(n))
+    Rational{T<:Integer}(n::T, d::T) = Rational{T}(n,d)
+    Rational(n::Integer, d::Integer) = Rational(promote(n,d)...)
+    Rational(n::Integer) = Rational(n,one(n))
 
-    //(n::Int, d::Int) = Rational(n,d)
-    //(x::Rational, y::Int) = x.num // (x.den*y)
-    //(x::Int, y::Rational) = (x*y.den) // y.num
+    //(n::Integer, d::Integer) = Rational(n,d)
+    //(x::Rational, y::Integer) = x.num // (x.den*y)
+    //(x::Integer, y::Rational) = (x*y.den) // y.num
     //(x::Complex, y::Real) = complex(real(x)//y, imag(x)//y)
     //(x::Real, y::Complex) = x*y'//real(y*y')
 
@@ -336,25 +344,25 @@ To that end, here is beginning of [`rational.j`](https://github.com/JuliaLang/ju
         complex(real(xy)//yy, imag(xy)//yy)
     end
 
-The line `type Rational{T<:Int} <: Real` declares that `Rational` takes one type parameter of an integer type, and is itself a real type.
+The first line — `type Rational{T<:Int} <: Real` — declares that `Rational` takes one type parameter of an integer type, and is itself a real type.
 The field declarations `num::T` and `den::T` indicate that the data held in a `Rational{T}` object are a pair of integers of type `T`, one representing the rational value's numerator and the other representing its denominator.
 
 Now things get interesting.
-`Rational` has a single inner constructor method which ensures that every rational is constructed with numerator and denominator sharing no common factors with a non-negative denominator.
+`Rational` has a single inner constructor method which checks that both of `num` and `den` aren't zero and ensures that every rational is constructed in "lowest terms" with a non-negative denominator.
 This is accomplished by dividing the given numerator and denominator values by their greatest common divisor, computed using the `gcd` function.
-Since `gcd` returns the greatest common divisor of its arguments with sign matching the first argument — in this case, `den` — after this division, the new value of `den` is guaranteed to be non-negative.
+Since `gcd` returns the greatest common divisor of its arguments with sign matching the first argument (`den` here), after this division the new value of `den` is guaranteed to be non-negative.
 Because this is the only inner constructor for `Rational`, we can be certain that `Rational` objects are always constructed in this normalized form.
 
 `Rational` also provides several outer constructor methods for convenience.
-The first is the "standard" general constructor that infers the type parameter `T` from the type of the numerator and denominator, in the case that they have the same type.
+The first is the "standard" general constructor that infers the type parameter `T` from the type of the numerator and denominator when they have the same type.
 The second applies when the given numerator and denominator values have different types:
-it promotes them to a common type and then delegates construction to the first outer constructor.
+it promotes them to a common type and then delegates construction to the outer constructor for arguments of matching type.
 The third outer constructor turns integer values into rationals by supplying a value of `1` as the denominator.
 
 Following the outer constructor definitions, we have a number of methods for the `//` operator, which provides a syntax for writing rationals.
 Before these definitions, `//` is a completely undefined operator with only syntax and no meaning.
 Afterwards, it behaves just as described in [Rational Numbers](../complex-and-rational-numbers#Rational+Numbers) — its entire behavior is defined in these few lines.
-The first and most basic definition just makes `a//b` where `a` and `b` are integers construct a `Rational` by applying the `Rational` constructor to them.
+The first and most basic definition just makes `a//b` construct a `Rational` by applying the `Rational` constructor to `a` and `b` when they are integers.
 When one of the operands of `//` is already a rational number, we construct a new rational for the resulting ratio slightly differently;
 this behavior is actually identical to division of a rational with an integer.
 Finally, applying `//` to complex integral values creates an instance of `Complex{Rational}` — a complex number whose real and imaginary parts are rationals:
