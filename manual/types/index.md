@@ -509,7 +509,7 @@ In such situations, one can constrain the range of `T` like so:
 
     abstract Pointy{T<:Real}
 
-With such a declaration, it is acceptable to use any type that is a subtype of `Real` in place of `T`, but not types that are not subtypes of `T`:
+With such a declaration, it is acceptable to use any type that is a subtype of `Real` in place of `T`, but not types that are not subtypes of `Real`:
 
     julia> Pointy{Float64}
     Pointy{Float64}

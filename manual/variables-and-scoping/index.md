@@ -181,7 +181,7 @@ Here we create and store two closures that return variable `i`. However, it is a
     julia> Fs[2]()
     2
 
-Since the `begin` construct does not introduce a new block, it can be useful to use the zero-argument let to just introduce a new scope block without creating any new bindings:
+Since the `begin` construct does not introduce a new block, it can be useful to use the zero-argument `let` to just introduce a new scope block without creating any new bindings:
 
     julia> begin
              local x = 1

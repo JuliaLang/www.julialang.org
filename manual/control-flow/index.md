@@ -481,7 +481,7 @@ Unlike `error`, which should only be used to indicate an unexpected condition, `
 This example is very contrived, of course — the power of the `try`-`catch` construct lies in the ability to unwind a deeply nested computation immediately to a much higher level in the stack of calling functions.
 There are situations where no error has occurred, but the ability to unwind the stack and pass a value to a higher level is desirable.
 These are the circumstances in which `throw` should be used rather than `error`.
-On the other hand, when something unexpected has occurred in a program's execution, `error` is the more appropriate way let a caller handle the problem or terminate the program with an error message.
+On the other hand, when something unexpected has occurred in a program's execution, `error` is the more appropriate way to let a caller handle the problem or terminate the program with an error message.
 
 ## Tasks (aka Coroutines)
 
