@@ -19,7 +19,7 @@ existing systems. This thesis will
 present the design of the system and evaluate its performance.
 
 The designs of the technical computing languages listed above are all
-basically the same— they use the "array language" idea made famous
+basically the same — they use the "array language" idea made famous
 by APL \cite{APL}. In each case there is a large core of library routines
 implemented in C or FORTRAN,
 and an interpreter for executing user programs, which are expected to spend
@@ -70,7 +70,7 @@ compiler-based techniques, which try to remove unnecessary
 operations from programs. An example of the first category would be
 moving bits of the language's run time system into hardware
 \cite{lispmachine}. This thesis is in the second
-category, which promises the greatest gains— the fastest way to do
+category, which promises the greatest gains — the fastest way to do
 something is to avoid doing it altogether.
 
 The operations we seek to remove are the run-time type manipulations
@@ -101,9 +101,6 @@ examples in the
 Lisp world (\cite{TICL}, \cite{pticl}, \cite{nimble}, \cite{taggingopt}),
 and in the world of object-oriented languages such as Self \cite{selflang}
 and JavaScript \cite{typeinfjavascript}.
-
-% TODO: say something here about how julia does type inference and hint at
-% what's a bit different about it.
 
 Dynamic type inference schemes obey a correctness property that
 inferred types must subsume all possible run-time
@@ -166,7 +163,7 @@ In some sense, this is unfortunate, as the
 extra expressiveness provided by these types is not available to the programmer
 for use in declarations, typecase statements, and the like.
 In light of the speedups possible with the techniques cited here, many common
-features of these languages can be seen as premature optimizations— for
+features of these languages can be seen as premature optimizations — for
 example employing only single dispatch and simple type systems (or, to be
 precise, "tag systems"). When we go to great lengths to make dynamic
 languages perform well, we should ask what else we can get for the same
@@ -197,7 +194,7 @@ than user-supplied type declarations. We also explore the potential of
 automatic mechanisms for avoiding a combinatorial explosion of method
 specializations.
 Unlike Dylan, Julia does not make the distinction between generic functions
-and methods visible to the user— functions with the same name are simply
+and methods visible to the user — functions with the same name are simply
 combined into one generic function without restrictions.
 Julia method argument specializers also have a few more features
 useful for defining the highly polymorphic operators needed in technical
@@ -216,7 +213,7 @@ underscores the need for faster execution of these programs. The authors
 target library development as an especially important use case. The
 TL approach is fairly effective, but requires user
 annotations for peak performance. Julia's multimethods provide a way to
-collect type "annotations" in a less tedious manner— argument types
+collect type "annotations" in a less tedious manner — argument types
 specify dispatch behavior, so they are part of the functionality of a program
 instead of being extraneous information. The off-line library analysis step in
 TL is subsumed by the Julia compiler's routine
