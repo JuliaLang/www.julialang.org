@@ -3,7 +3,7 @@ layout: post
 title:  Why We Created Julia
 authors:
     - <a href="http://www.allthingshpc.org/">Viral Shah</a>
-    - Jeff Bezanson
+    - <a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
     - <a href="http://karpinski.org/">Stefan Karpinski</a>
     - <a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>
 mentions:
