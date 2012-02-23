@@ -8,7 +8,7 @@ It provides a sophisticated compiler, distributed parallel execution, numerical 
 The library, mostly written in Julia itself, also integrates mature, best-of-breed C and Fortran libraries for linear algebra, random number generation, FFTs, and string processing.
 More libraries continue to be added over time.
 Julia programs are organized around defining functions, and overloading them for different combinations of argument types (which can also be user-defined).
-For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](https://github.com/JuliaLang/julia/wiki/Introduction) in the [online manual](https://github.com/JuliaLang/julia/wiki/).
+For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](/manual/introduction) in the [online manual](/manual).
 
 # High-Performance JIT Compiler
 
@@ -85,7 +85,7 @@ This continuous spectrum of programming levels is a hallmark of the Julia approa
 # Designed for Parallelism & Cloud Computing
 
 Julia does not impose any particular style of parallelism on the user.
-Instead, it provides a number of [key building blocks for distributed computation](https://github.com/JuliaLang/julia/wiki/Parallel-Computing), making it flexible enough to support a number of styles of parallelism, and allowing users to add more.
+Instead, it provides a number of [key building blocks for distributed computation](/manual/parallel-computing), making it flexible enough to support a number of styles of parallelism, and allowing users to add more.
 The following simple example demonstrates how to count the number of heads in a large number of coin tosses in parallel.
 
     nheads = @parallel (+) for i=1:100000000
@@ -109,6 +109,6 @@ The core of the Julia implementation is licensed under the [MIT license](http://
 Various libraries used by the Julia environment include their own licenses such as the [GPL](http://en.wikipedia.org/wiki/GNU_General_Public_License), [LGPL](http://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License), and [BSD](http://en.wikipedia.org/wiki/BSD_licenses)
 (therefore the environment, which consists of the language, user interfaces, and libraries, is under the GPL).
 Core functionality is included in a shared library, so users can easily and legally combine Julia with their own C/Fortran code or proprietary third-party libraries.
-Furthermore, Julia makes it [simple to call external functions](https://github.com/JuliaLang/julia/wiki/Calling-C-and-Fortran-Code) in C and Fortran shared libraries, without writing any wrapper code or even recompiling existing code.
+Furthermore, Julia makes it [simple to call external functions](/manual/calling-c-and-fortran-code) in C and Fortran shared libraries, without writing any wrapper code or even recompiling existing code.
 You can try calling external library functions directly from Julia's interactive prompt, playing with the interface and getting immediate feedback until you get it right.
 See [LICENSE](https://github.com/JuliaLang/julia/blob/master/LICENSE.md) for the full terms of Julia's licensing.
