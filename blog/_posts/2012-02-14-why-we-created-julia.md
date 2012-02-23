@@ -2,9 +2,9 @@
 layout: post
 title:  Why We Created Julia
 authors:
-    - <a href="http://www.allthingshpc.org/">Viral Shah</a>
-    - <a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
     - <a href="http://karpinski.org/">Stefan Karpinski</a>
+    - <a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
+    - <a href="http://www.allthingshpc.org/">Viral Shah</a>
     - <a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>
 mentions:
     - Reddit: "http://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/"
