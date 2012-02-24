@@ -10,6 +10,7 @@ mentions:
     - Reddit: "http://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/"
     - Hacker News: "http://news.ycombinator.com/item?id=3606380"
     - Lambda-the-Ultimate: "http://lambda-the-ultimate.org/node/4452"
+    - The blog of John D. Cook: "http://www.johndcook.com/blog/"
     - Twitter trackbacks: "http://topsy.com/julialang.org/"
 ---
 
