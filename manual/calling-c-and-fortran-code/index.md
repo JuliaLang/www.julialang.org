@@ -127,8 +127,8 @@ Memory allocation and deallocation of such objects must be handled by calls to t
 
 On all systems we support, basic C/C++ value types may be translated to Julia types as follows:
 
-- `bool` = `Bool` / `Int8` / `Uint8`
-- `char` = `Int8` / `Uint8`
+- `bool` = `Bool`
+- `char` = `Uint8`
 - `signed char` = `Int8`
 - `unsigned char` = `Uint8`
 - `short` = `Int16`
@@ -139,6 +139,6 @@ On all systems we support, basic C/C++ value types may be translated to Julia ty
 - `usigned long long` = `Uint64`
 - `long` = `Int`
 - `unsigned long` = `Uint`
-- `wchar_t` = `Char` / `Int32` / `Uint32`
+- `wchar_t` = `Char`
 - `float` = `Float32`
 - `double` = `Float64`
