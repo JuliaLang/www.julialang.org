@@ -122,3 +122,23 @@ Note that no C header files are used anywhere in the process.
 Currently, it is not possible to pass structs and other non-primitive types from Julia to C libraries.
 However, C functions that generate and use opaque structs types by passing around pointers to them can return such values to Julia as `Ptr{Void}`, which can then be passed to other C functions as `Ptr{Void}`.
 Memory allocation and deallocation of such objects must be handled by calls to the appropriate cleanup routines in the libraries being used, just like in any C program.
+
+## Equivalent Julia and C Types
+
+On all systems we support, basic C/C++ value types may be translated to Julia types as follows:
+
+- `bool` = `Bool` / `Int8` / `Uint8`
+- `char` = `Int8` / `Uint8`
+- `signed char` = `Int8`
+- `unsigned char` = `Uint8`
+- `short` = `Int16`
+- `unsigned short` = `Uint16`
+- `int` = `Int32`
+- `usigned int` = `Uint32`
+- `long long` = `Int64`
+- `usigned long long` = `Uint64`
+- `long` = `Int`
+- `unsigned long` = `Uint`
+- `wchar_t` = `Char` / `Int32` / `Uint32`
+- `float` = `Float32`
+- `double` = `Float64`
