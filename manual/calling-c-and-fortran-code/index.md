@@ -123,7 +123,7 @@ Currently, it is not possible to pass structs and other non-primitive types from
 However, C functions that generate and use opaque structs types by passing around pointers to them can return such values to Julia as `Ptr{Void}`, which can then be passed to other C functions as `Ptr{Void}`.
 Memory allocation and deallocation of such objects must be handled by calls to the appropriate cleanup routines in the libraries being used, just like in any C program.
 
-## Equivalent Julia and C Types
+## Mapping C Types to Julia
 
 On all systems we support, basic C/C++ value types may be translated to Julia types as follows:
 
