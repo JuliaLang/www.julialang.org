@@ -783,7 +783,7 @@ FFT functions in Julia are largely implemented by calling functions from [FFTW](
 
 `ifftshift(x[, dim])` — Undoes the effect of `fftshift`.
 
-`filter(b,a,x)` — Apply filter described by vectors `a` and `b` to vector `x`.
+`filt(b,a,x)` — Apply filter described by vectors `a` and `b` to vector `x`.
 
 `deconv(b,a)` — Construct vector `c` such that `b = conv(a,c) + r`. Equivalent to polynomial division.
 
