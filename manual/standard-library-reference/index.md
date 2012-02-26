@@ -657,9 +657,9 @@ All mathematical operations and functions are supported for arrays
 
 `flipdim(A, d)` — Reverse `A` in dimension `d`.
 
-`flipud(A)` — Equivalent to `flip(1,A)`.
+`flipud(A)` — Equivalent to `flipdim(A,1)`.
 
-`fliplr(A)` — Equivalent to `flip(2,A)`.
+`fliplr(A)` — Equivalent to `flipdim(A,2)`.
 
 `circshift(A,shifts)` — Circularly shift the data in an array. The second argument is a vector giving the amount to shift in each dimension.
 
