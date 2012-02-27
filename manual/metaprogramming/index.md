@@ -240,9 +240,9 @@ A naïve attempt to write this macro might look like this:
 
     macro time(ex)
       quote
-        local t0 = clock()
+        local t0 = time()
         local val = $ex
-        local t1 = clock()
+        local t1 = time()
         println("elapsed time: ", t1-t0, " seconds")
         val
       end
@@ -275,7 +275,7 @@ What happened?
 The trouble is that after macro expansion, the above expression becomes equivalent to:
 
     begin
-      local t0 = clock()
+      local t0 = time()
       local val = begin
         local t0 = 0
         for i = 1:100000000
@@ -283,7 +283,7 @@ The trouble is that after macro expansion, the above expression becomes equivale
         end
         t0
       end
-      local t1 = clock()
+      local t1 = time()
       println("elapsed time: ", t1-t0, " seconds")
       val
     end
@@ -314,9 +314,9 @@ The `gensym` function can be used define the `@time` macro correctly, avoiding p
     macro time(ex)
       t0, val, t1 = gensym(3)
       quote
-        local $t0 = clock()
+        local $t0 = time()
         local $val = $ex
-        local $t1 = clock()
+        local $t1 = time()
         println("elapsed time: ", $t1-$t0, " seconds")
         $val
       end

@@ -867,7 +867,7 @@ FFT functions in Julia are largely implemented by calling functions from [FFTW](
 
 `getpid()` — Get julia's process ID.
 
-`clock()` — Get the time in seconds since the epoch, with fairly high resolution.
+`time()` — Get the time in seconds since the epoch, with fairly high resolution.
 
 `tic()` — Set a timer to be read by the next call to `toc` or `toq`. The macro call `@time expr` can also be used to time evaluation.
 
