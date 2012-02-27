@@ -657,9 +657,9 @@ All mathematical operations and functions are supported for arrays
 
 `flipdim(A, d)` — Reverse `A` in dimension `d`.
 
-`flipud(A)` — Equivalent to `flip(1,A)`.
+`flipud(A)` — Equivalent to `flipdim(A,1)`.
 
-`fliplr(A)` — Equivalent to `flip(2,A)`.
+`fliplr(A)` — Equivalent to `flipdim(A,2)`.
 
 `circshift(A,shifts)` — Circularly shift the data in an array. The second argument is a vector giving the amount to shift in each dimension.
 
@@ -783,7 +783,7 @@ FFT functions in Julia are largely implemented by calling functions from [FFTW](
 
 `ifftshift(x[, dim])` — Undoes the effect of `fftshift`.
 
-`filter(b,a,x)` — Apply filter described by vectors `a` and `b` to vector `x`.
+`filt(b,a,x)` — Apply filter described by vectors `a` and `b` to vector `x`.
 
 `deconv(b,a)` — Construct vector `c` such that `b = conv(a,c) + r`. Equivalent to polynomial division.
 
