@@ -186,13 +186,17 @@ Fully implemented by: `IntSet`, `Set`, `FDSet`.
 
 `pop(collection)` — Remove the last item in a collection and return it.
 
-`enq(collection, item)` — Insert an item at the beginning of a collection.
+`enqueue(collection, item)` — Insert an item at the beginning of a collection. Also called `unshift`.
+
+`shift(collection)` - Remove the first item in a collection and return it.
 
 `insert(collection, index, item)` — Insert an item at the given index.
 
 `del(collection, index)` — Remove the item at the given index.
 
 `grow(collection, n)` — Add uninitialized space for `n` elements at the end of a collection.
+
+`append(collection, items)` — Construct an array composed of the elements of `items` added to the end of a collection. Does not modify collection.
 
 `append!(collection, items)` — Add the elements of `items` to the end of a collection.
 
