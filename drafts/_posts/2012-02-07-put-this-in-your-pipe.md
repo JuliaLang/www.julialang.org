@@ -33,29 +33,29 @@ After fixing this bug, we go into details of how Julia's external command execut
 
 Here's how you write the example of counting the number of lines in a directory containing the string "foo" in Julia:
 
-    julia> dir="src";
+    julia> dir = "src";
 
     julia> int(chomp(readall(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`)))
     5
 
-This looks suspiciously like the naïve shelling out example we started with in Ruby:
+This looks suspiciously like the naïve Ruby version we started with in the previous post:
 
     `find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`.to_i
 
 However, it is susceptible to none of the same problems:
 
-    julia> dir="source code";
+    julia> dir = "source code";
 
     julia> int(chomp(readall(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`)))
     5
 
-    julia> dir="nonexistent";
+    julia> dir = "nonexistent";
 
     julia> int(chomp(readall(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`)))
     find: `nonexistent': No such file or directory
     failed processes: `find nonexistent -type f -print0`, `xargs -0 grep foo`
 
-    julia> dir="foo'; echo MALICIOUS ATTACK; echo '";
+    julia> dir = "foo'; echo MALICIOUS ATTACK; echo '";
 
     julia> int(chomp(readall(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`)))
     find: `foo\'; echo MALICIOUS ATTACK; echo \'': No such file or directory
@@ -71,15 +71,15 @@ The default, simplest-to-achieve behavior in Julia is:
 In the above examples, we can see that even when `dir` contains spaces or quotes, the expression still behaves exactly as intended — the value of `dir` is interpolated as a single argument to the `find` command.
 When `dir` is not the name of a directory that exists, `find` fails — as it should — and this failure is detected and automatically converted into an informative exception, including the fully expanded command-lines that failed.
 
-In the [previous post], it was observed that using the `pipefail` option for Bash allows detection of pipeline failures, like this one, that occur before the last process in the pipeline.
+It was observed in the previous post, that using the `pipefail` option for Bash allows detection of pipeline failures, like this one, occurring before the last process in the pipeline.
 However, it only allows us to detect that at least one thing in the pipeline failed.
 We still have to guess at what parts of the pipeline actually failed.
 In the Julia example, on the other hand, there is no guessing required:
-we can see that when a non-existent directory is given, both `find` and `xargs` fail.
+when a non-existent directory is given, we can see that both `find` and `xargs` fail.
 While it is unsurprising that `find` fails in this case, it is unexpected that `xargs` also fails.
-Why does `xargs` fail?
+Why *does* `xargs` fail?
 
-One possibility to check for is that the `xargs` program fails without input.
+One possibility to check for is that the `xargs` program fails with no input.
 We can use Julia's `success` predicate to try it out:
 
     julia> success(`cat /dev/null` | `xargs true`)
@@ -106,7 +106,7 @@ Most programs use their return status to indicate success or failure, but some, 
 Now we know why `grep` is "failing" — and `xargs` too, since it returns a non-zero status if the program it runs returns non-zero.
 This means that our Julia pipeline and the "responsible" Ruby version are both susceptible to bogus failures when we search an existing directory that happens not to contain the string "foo" anywhere:
 
-    julia> dir="tmp";
+    julia> dir = "tmp";
 
     julia> int(chomp(readall(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`)))
     failed process: `xargs -0 grep foo`
@@ -116,14 +116,14 @@ In this case, this default behavior is undesirable:
 we want the expression to just return `0` without raising an error.
 The simple fix in Julia is this:
 
-    julia> dir="tmp";
+    julia> dir = "tmp";
 
     julia> int(chomp(readall(`find $dir -type f -print0` | ignorestatus(`xargs -0 grep foo`) | `wc -l`)))
     0
 
 This works correctly in all cases.
 Next I'll explain *how* all of this works, but for now it's enough to note that the detailed error message provided when our pipeline failed exposed a rather subtle bug that would inevitably cause problems if used in production code.
-Without such detailed error reporting, this bug would have been *very* difficult to track down.
+Without such detailed error reporting, this bug would be *very* difficult to track down.
 
 ## Do-Nothing Backticks
 
@@ -168,7 +168,7 @@ In such cases, you can use `ignorestatus` to indicate that the command returning
     exec: No such file or directory
     failed process: `notaprogram`
 
-In the latter case since the executable doesn't even exist, rather than just that it returned a non-zero status, an error is still raised in the parent process.
+In the latter case, an error is still raised in the parent process since the problem is that the executable doesn't even exist, rather than merely that it ran and returned a non-zero status.
 
 Although Julia's backtick syntax intentionally mimics the shell as closely as possible, there is an important distinction:
 the command string is never passed to a shell to be interpreted and executed;
@@ -190,26 +190,26 @@ To that end, quotes and spaces work just as they do in the shell.
 The real power of backtick syntax doesn't emerge, however, until we begin constructing commands programmatically.
 Just as in the shell (and in Julia strings), you can interpolate values into commands using the dollar sign (`$`):
 
-    julia> dir="src";
+    julia> dir = "src";
 
     julia> `find $dir -type f`.exec
     ["find", "src", "-type", "f"]
 
 Unlike in the shell, however, Julia values interpolated into commands are interpolated as a single verbatim argument — no characters inside the value are interpreted as special after the value has been interpolated:
 
-    julia> dir="two words";
+    julia> dir = "two words";
 
     julia> `find $dir -type f`.exec
     ["find", "two words", "-type", "f"]
 
-    julia> dir="foo'bar";
+    julia> dir = "foo'bar";
 
     julia> `find $dir -type f`.exec
     ["find", "foo'bar", "-type", "f"]
 
-This works no matter what the contents of the interpolated value is, allowing simple interpolation of characters that are otherwise quite difficult to pass as parts of command-line arguments:
+This works no matter what the contents of the interpolated value is, allowing simple interpolation of characters that are quite difficult to pass as parts of command-line arguments, even in the shell:
 
-    julia> tab="\t";
+    julia> tab = "\t";
 
     julia> cmd = `join -t$tab a.tsv b.tsv`;
 
@@ -226,7 +226,7 @@ Moreover, what comes after the `$` can actually be any valid Julia expression, 
     foo     bar	    1
     baz	    qux	    2
 
-Even in the shell that's a rather difficult value to pass, requiring command interpolation and quotes:
+A tab character is a rather difficult value to pass in the shell, requiring command interpolation and quotes:
 
     bash-3.2$ join -t"$(printf '\t')" a.tsv b.tsv
     foo	    bar	    1
@@ -250,7 +250,7 @@ And of course, no matter how strange the strings contained in an interpolated ar
 Julia's backticks have one more trick up their sleeve.
 We saw earlier (without really remarking on it) that you could interpolate single values into a larger argument:
 
-    julia> x="bar";
+    julia> x = "bar";
 
     julia> `echo foo$x`.exec
     ["echo", "foobar"]
@@ -258,20 +258,20 @@ We saw earlier (without really remarking on it) that you could interpolate singl
 Well, what happens if `x` is an array?
 Only one way to find out.
 
-    julia> x=["bar", "baz"];
+    julia> x = ["bar", "baz"];
 
-    julia> `echo foo$x`.exec
-    ["echo", "foobar", "foobaz"]
+    julia> `echo foo$x`
+    `echo foobar foobaz`
 
 That's right.
 Julia does what the shell would do if you wrote `echo foo{bar,baz}`.
 This even works correctly for multiple values interpolated into the same shell word:
 
-    julia> dir="/data"; names=["foo","bar"]; exts=["csv","tsv"];
+    julia> dir = "/data"; names = ["foo","bar"]; exts=["csv","tsv"];
 
     julia> `cat $dir/$names.$exts`
     `cat /data/foo.csv /data/foo.tsv /data/bar.csv /data/bar.tsv`
 
-Julia's backtick syntax manages to make programmatic construction of commands both safer *and* more convenient than it is in any other system, even the shell.
+This is the same Cartesian product expansion that the shell does if multiple `{...}` expressions are used in the same word.
 
 ## Advanced Plumbing
