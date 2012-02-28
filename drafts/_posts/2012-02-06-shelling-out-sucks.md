@@ -15,13 +15,13 @@ if a variable used to construct the command contains any shell metacharacters, i
 When shelling out, the main program forks and execs a shell process just so that shell can in turn fork and exec a series of commands with their inputs and outputs appropriately connected.
 Not only is starting a shell an unnecessary step, but since the main program is not the parent of the pipeline commands, it cannot be notified when they terminate — it can only wait for the pipeline to finish and hope the shell indicates what happened.
 2. *[Silent failures by default.](#Silent+Failures+by+Default)*
-Errors in shelled out commands don't automatically become exceptions.
+Errors in shelled out commands don't automatically become exceptions in Perl, Python or Ruby.
 This typically leads to code that fails silently when shelled out commands don't work.
-Worse still, because of the indirection problem, there are many cases where the failure of a process in a spawned pipeline *cannot* be detected by the parent process, even when errors are fastidiously checked for.
+Worse still, because of the indirection problem, there are many cases where the failure of a process in a spawned pipeline *cannot* be detected by the parent process, even if errors are fastidiously checked for.
 
 In the rest of this post, we'll go over examples demonstrating each of these problems.
 At [the end](#Summary+and+Remedy), I'll present how I think programming languages should deal with these issues better.
-In a [followup post], I'll talk about how this improved approach is implemented in Julia and all the shell-free pipeline goodness that ensues.
+In a followup post, I'll talk about how this improved approach is implemented in Julia and all the shell-free pipeline goodness that ensues.
 Examples below are given in [Ruby] which shells out to [Bash], but I could just as easily pick on [Python], [Perl], other [UNIX shells](http://en.wikipedia.org/wiki/Unix_shell), or just about any language you can think of.
 
 [Bash]:     http://www.gnu.org/software/bash/
@@ -261,6 +261,6 @@ As is so often the case, the root of all of these problems is relying on a middl
 If a program constructs and executes pipelines itself, it remains in control of all the subprocesses, can determine their individual exit conditions, automatically handle errors appropriately, and give accurate, comprehensive diagnostic messages when things go wrong.
 Moreover, without a shell to interpret commands, there is also no shell to treat metacharacters specially, and therefore no danger of metacharacter brittleness.
 The challenge is to make constructing and executing pipelines in a high-level language as easy and expressive as it is in the shell.
-In my [followup post], I describe how Julia implements command and pipeline construction without a shell, thereby avoiding the traditional pitfalls of shelling out, and increasing the power, safety, and flexibility of running external commands.
+In my followup post, I will describe how Julia implements command and pipeline construction without a shell, thereby avoiding the traditional pitfalls of shelling out, and increasing the power, safety, and flexibility of running external commands.
 
 [followup post]: /drafts/2012/02/put-this-in-your-pipe/
