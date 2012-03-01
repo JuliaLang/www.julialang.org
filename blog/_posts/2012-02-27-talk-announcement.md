@@ -20,3 +20,5 @@ The title of the talk is *Julia: A Fast Dynamic Language For Technical Computing
 > Jeff Bezanson has been developing the Julia language for two and a half years with a small distributed team of collaborators. Previously, he worked as a software engineer at Interactive Supercomputing, which developed the Star-P parallel extension to MATLAB. At the company, Jeff was a principal developer of "M#", an implementation of the MATLAB language running on .NET. He is now a second-year graduate student at MIT. Jeff received an A.B. in Computer Science from Harvard University in 2004, and has experience with applications of technical computing in medical imaging.
 
 The talk will be webcast live.
+
+**Edit:** the video of the talk can be [found here](http://ee380.stanford.edu/cgi-bin/videologger.php?target=120229-ee380-300.asx).
