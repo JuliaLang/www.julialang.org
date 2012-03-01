@@ -253,10 +253,10 @@ We saw earlier (without really remarking on it) that you could interpolate singl
     julia> x = "bar";
 
     julia> `echo foo$x`.exec
-    ["echo", "foobar"]
+    `echo foobar`
 
 Well, what happens if `x` is an array?
-Only one way to find out.
+Only one way to find out:
 
     julia> x = ["bar", "baz"];
 
