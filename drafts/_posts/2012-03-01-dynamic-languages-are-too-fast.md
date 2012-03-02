@@ -12,14 +12,14 @@ This strange assertion seems more like a koan than a legitimate idea about how t
 However, it's a serious proposition, and it's central to the design of the Julia language.
 
 Like many koans (and jokes), the key to enlightenment is changing frames of reference — and understanding which reference frame applies to which part of the koan.
-In this case, the two distinct meanings of "speed" in the koan are:
+In this case, the two distinct meanings of "speed" in this koan are:
 
 1. Dynamic language speed when interpreted naïvely
 2. Dynamic language speed when executed by a clever, type-inferencing JIT.
 
 Decoded into these reference frames, our claim becomes:
 in order to be much faster when executed by a clever, type-inferencing JIT, dynamic languages ought to be much slower when interpreted naïvely.
-While this version of the claim is far less mysterious, it is still a rather non-obvious claim that we have to provide evidence for.
+While this version of the claim is far less mysterious, it is still a rather non-obvious proposition that we have to provide an argument and some evidence for.
 
 Pick any mainstream dynamic language out there today: Lisp, Perl, Python, Ruby, JavaScript, Matlab, Lua.
 When every single one of these languages was first implemented, that implementation used a relatively naïve interpreter to execute programs.
@@ -30,6 +30,57 @@ Less fast interpreters often run thousands of times slower than native code with
 For many purposes, that's fast enough, and the tradeoff of speed for ease-of-use provided by dynamic languages is worth it.
 So the popularity of dynamic languages grew.
 
-Java Virtual Machine (JVM) implementations popularized just-in-time compilation of bytecode to native machine code, which could then execute at full speed.
-This technique can allow dynamic languages run their at speeds approaching that of compiled languages:
-you compile the code right before running it, effectively bringing compile- and run-time together.
+As the popularity of dynamic languages has grown, various approaches have been used to speed up their execution.
+These days, there are a number of very impressive projects that have managed to achieve vast speedups in the execution of various dynamic languages:
+
+- JavaScript:   [V8](http://code.google.com/p/v8/)
+- Lua:          [LuaJIT](http://luajit.org/luajit.html)
+- Python:       [PyPy](http://pypy.org/)
+- Ruby:         [Mirah](http://www.mirah.org/), [DRuby](http://www.cs.umd.edu/projects/PL/druby/) (neither is quite Ruby, but they're close)
+- Matlab:       [Matlab JIT](http://www.mathworks.com/products/matlab/description2.html)
+- Lisp:         too many to list
+
+These projects achieve better-than-naïve interpretation speed through a variety of techniques, including just-in-time (JIT) compilation and type tracing.
+JIT compilation generates native machine code at run-time, just before execution, avoiding the overhead of interpretation when the code executes.
+Type tracing entails running a generic, instrumented version of code for some number of iterations, keeping track of what types of values are actually bound to variables, and then JIT compiling fast, specialized versions of the code assuming those types and only falling back on the generic version if some values encountered fail to match the assumed types.
+
+With these techniques, dynamic languages can be made much, much faster.
+For certain kinds of code, they can even match or beat the performance of a language like C.
+Consider these benchmark results (a snapshot of <a href="/#High-Performance+JIT+Compiler" target="_blank">the ones on our main page</a>):
+
+<div class="figure">
+<table class="benchmarks">
+<colgroup>
+<col class="name"></col>
+<col class="reference"></col>
+<col class="relative" span="6"></col>
+</colgroup>
+<thead>
+<tr><td></td><th class="system">C++ (GCC)</th><th class="system">Julia</th><th class="system">NumPy</th><th class="system">Matlab</th><th class="system">Octave</th><th class="system">R</th><th class="system">JavaScript</th></tr>
+<tr><td></td><td class="version">4.2.1*</td><td class="version">7183d97a</td><td class="version">1.5.1</td><td class="version">R2011a</td><td class="version">3.4</td><td class="version">2.9.0</td><td class="version">V8 3.6.6.11</td></tr>
+</thead>
+<tbody>
+<tr><th>fib</th><td class="data" class="reference">0.200</td><td class="data">1.97</td><td class="data">30.74</td><td class="data">1360.47</td><td class="data">2463.97</td><td class="data">334.94</td><td class="data">1.48</td></tr>
+<tr><th>parse_int</th><td class="data" class="reference">0.242</td><td class="data">1.22</td><td class="data">16.49</td><td class="data">827.13</td><td class="data">6871.04</td><td class="data">1082.67</td><td class="data">2.14</td></tr>
+<tr><th>quicksort</th><td class="data" class="reference">0.416</td><td class="data">1.25</td><td class="data">61.73</td><td class="data">135.51</td><td class="data">3357.78</td><td class="data">971.06</td><td class="data">6.66</td></tr>
+<tr><th>mandel</th><td class="data" class="reference">0.249</td><td class="data">7.15</td><td class="data">31.98</td><td class="data">66.27</td><td class="data">870.55</td><td class="data">253.10</td><td class="data">6.03</td></tr>
+<tr><th>pi_sum</th><td class="data" class="reference">53.524</td><td class="data">0.74</td><td class="data">18.77</td><td class="data">1.09</td><td class="data">356.08</td><td class="data">269.19</td><td class="data">0.74</td></tr>
+<tr><th>rand_mat_stat</th><td class="data" class="reference">7.347</td><td class="data">3.94</td><td class="data">40.98</td><td class="data">12.20</td><td class="data">57.39</td><td class="data">32.39</td><td class="data">8.30</td></tr>
+</tbody>
+</table>
+<p class="caption"><b>Figure:</b> C++ numbers are absolute benchmark times in milliseconds;</br>
+other timings are relative to C++ (smaller is better).</p>
+</div>
+
+**Note:** We've omitted the matrix multiplication benchmark since it doesn't measure dynamic language speed;
+rather, it measures how fast each language can get out of the way and call a faster language like Fortran or C.
+Moreover, it's unfair to JavaScript, which can't call a BLAS and is forced to use a very naïve matrix multiply, which just muddles the discussion.
+
+The V8 engine always manages to be better than 10x slower than C++.
+In two cases it's around 2x slower than C++, and in once case, it's actually 25% faster.
+Matlab's JIT also manages to generate code that's about as fast as C for the pi summation benchmark, which is a tight scalar loop of computations with 64-bit floats.
+By JITing good native code and using clever tricks like type tracing (which V8 heavily relies on), it is possible to get pretty good performance most of the time and very good performance some of the time.
+However, there remain situations where even these clever implementations still only get down to 6-8 times slower than C++.
+This raises the question of how to close the rest of this performance gap between static and dynamic languages — and more to the point, whether it is even possible to do so.
+Will a patchwork of more clever tricks get us the rest of the way?
+Or is there a more consistent approach that can close the gap across the board?
