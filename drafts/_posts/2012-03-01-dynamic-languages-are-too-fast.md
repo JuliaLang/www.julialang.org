@@ -40,7 +40,7 @@ These days, there are a number of very impressive projects that have managed to 
 - Matlab:       [Matlab JIT](http://www.mathworks.com/products/matlab/description2.html)
 - Lisp:         too many to list
 
-These projects achieve better-than-naïve interpretation speed through a variety of techniques, including just-in-time (JIT) compilation and type tracing.
+These projects achieve better than naïve interpretation speed through a variety of techniques, including just-in-time (JIT) compilation and type tracing.
 JIT compilation generates native machine code at run-time, just before execution, avoiding the overhead of interpretation when the code executes.
 Type tracing entails running a generic, instrumented version of code for some number of iterations, keeping track of what types of values are actually bound to variables, and then JIT compiling fast, specialized versions of the code assuming those types and only falling back on the generic version if some values encountered fail to match the assumed types.
 
@@ -52,24 +52,24 @@ Consider these benchmark results (a snapshot of <a href="/#High-Performance+JIT+
 <table class="benchmarks">
 <colgroup>
 <col class="name"></col>
-<col class="reference"></col>
 <col class="relative" span="6"></col>
 </colgroup>
 <thead>
-<tr><td></td><th class="system">C++ (GCC)</th><th class="system">Julia</th><th class="system">NumPy</th><th class="system">Matlab</th><th class="system">Octave</th><th class="system">R</th><th class="system">JavaScript</th></tr>
-<tr><td></td><td class="version">4.2.1*</td><td class="version">7183d97a</td><td class="version">1.5.1</td><td class="version">R2011a</td><td class="version">3.4</td><td class="version">2.9.0</td><td class="version">V8 3.6.6.11</td></tr>
+<tr><td></td><th class="system">Julia</th><th class="system">NumPy</th><th class="system">Matlab</th><th class="system">Octave</th><th class="system">R</th><th class="system">JavaScript</th></tr>
+<tr><td></td><td class="version">2c3c67cd</td><td class="version">1.5.1</td><td class="version">R2011a</td><td class="version">3.4</td><td class="version">2.9.0</td><td class="version">V8 3.6.6.11</td></tr>
 </thead>
 <tbody>
-<tr><th>fib</th><td class="data" class="reference">0.200</td><td class="data">1.97</td><td class="data">30.74</td><td class="data">1360.47</td><td class="data">2463.97</td><td class="data">334.94</td><td class="data">1.48</td></tr>
-<tr><th>parse_int</th><td class="data" class="reference">0.242</td><td class="data">1.22</td><td class="data">16.49</td><td class="data">827.13</td><td class="data">6871.04</td><td class="data">1082.67</td><td class="data">2.14</td></tr>
-<tr><th>quicksort</th><td class="data" class="reference">0.416</td><td class="data">1.25</td><td class="data">61.73</td><td class="data">135.51</td><td class="data">3357.78</td><td class="data">971.06</td><td class="data">6.66</td></tr>
-<tr><th>mandel</th><td class="data" class="reference">0.249</td><td class="data">7.15</td><td class="data">31.98</td><td class="data">66.27</td><td class="data">870.55</td><td class="data">253.10</td><td class="data">6.03</td></tr>
-<tr><th>pi_sum</th><td class="data" class="reference">53.524</td><td class="data">0.74</td><td class="data">18.77</td><td class="data">1.09</td><td class="data">356.08</td><td class="data">269.19</td><td class="data">0.74</td></tr>
-<tr><th>rand_mat_stat</th><td class="data" class="reference">7.347</td><td class="data">3.94</td><td class="data">40.98</td><td class="data">12.20</td><td class="data">57.39</td><td class="data">32.39</td><td class="data">8.30</td></tr>
+<tr><th>fib</th><td class="data">1.97</td><td class="data">30.74</td><td class="data">1360.47</td><td class="data">2463.97</td><td class="data">334.94</td><td class="data">1.48</td></tr>
+<tr><th>parse_int</th><td class="data">1.27</td><td class="data">16.49</td><td class="data">827.13</td><td class="data">6871.04</td><td class="data">1082.67</td><td class="data">2.12</td></tr>
+<tr><th>quicksort</th><td class="data">1.31</td><td class="data">61.73</td><td class="data">135.51</td><td class="data">3357.78</td><td class="data">971.06</td><td class="data">6.61</td></tr>
+<tr><th>mandel</th><td class="data">6.88</td><td class="data">31.98</td><td class="data">66.27</td><td class="data">870.55</td><td class="data">253.10</td><td class="data">5.73</td></tr>
+<tr><th>pi_sum</th><td class="data">0.74</td><td class="data">18.77</td><td class="data">1.09</td><td class="data">356.08</td><td class="data">269.19</td><td class="data">0.75</td></tr>
+<tr><th>rand_mat_stat</th><td class="data">4.12</td><td class="data">40.98</td><td class="data">12.20</td><td class="data">57.39</td><td class="data">32.39</td><td class="data">8.32</td></tr>
 </tbody>
 </table>
-<p class="caption"><b>Figure:</b> C++ numbers are absolute benchmark times in milliseconds;</br>
-other timings are relative to C++ (smaller is better).</p>
+<p class="caption"><b>Figure:</b>
+benchmark times relative to C++ (smaller is better).
+</p>
 </div>
 
 **Note:** We've omitted the matrix multiplication benchmark since it doesn't measure dynamic language speed;
@@ -84,3 +84,16 @@ However, there remain situations where even these clever implementations still o
 This raises the question of how to close the rest of this performance gap between static and dynamic languages — and more to the point, whether it is even possible to do so.
 Will a patchwork of more clever tricks get us the rest of the way?
 Or is there a more consistent approach that can close the gap across the board?
+
+Fast implementations of traditional dynamic languages will continue to improve.
+However, we suspect that a lot of the low hanging fruit has already been picked.
+Various slow cases may be sped up by new techniques, but as more techniques are added, implementation complexity will start to grow — interactions between features in language implementations tend to be tightly coupled and cause a combinatorially explosion in code complexity as more features are added.
+
+This leads us to look for a new approach:
+a more consistent, simpler way to make dynamic languages faster.
+We've found one possible promising approach which is implemented in Julia.
+Part of this approach is to limit some of the dynamism of languages like Ruby — for example, taking away the ability to alter types after they've been created.
+However, another aspect is to give the language features that previously have only been found in statically typed languages.
+In the absence of any optimizations, these additional features make the language much, much slower.
+However, they also allow certain optimizations, in the presence of which, the language suddenly becomes fast — more often than not, within 2x of compiled languages.
+With further work, we believe we can close that gap all the way by adding a few more high-level optimizations and smoothing away some of the rougher edges of our implementation.

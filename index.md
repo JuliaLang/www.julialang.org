@@ -27,10 +27,11 @@ The following micro-benchmark results are from a MacBook Pro with a 2.53GHz Inte
 <div class="figure">
 {% include benchmarks.html %}
 <p class="caption"><b>Figure:</b>
-benchmark time relative to C++ (smaller is better).
+benchmark times relative to C++ (smaller is better).
 </p>
 <p class="note">
-C++ compiled by GCC 4.2.1, taking best timing from all optimization levels (-O0 through -O3).</p>
+C++ compiled by GCC 4.2.1, taking best timing from all optimization levels (-O0 through -O3).
+</p>
 </div>
 
 Julia beats other high-level systems on most micro-benchmarks, with a few exceptions for Matlab and JavaScript.
