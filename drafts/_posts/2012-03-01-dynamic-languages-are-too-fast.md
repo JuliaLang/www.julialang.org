@@ -80,20 +80,26 @@ The V8 engine always manages to be better than 10x slower than C++.
 In two cases it's around 2x slower than C++, and in once case, it's actually 25% faster.
 Matlab's JIT also manages to generate code that's about as fast as C for the pi summation benchmark, which is a tight scalar loop of computations with 64-bit floats.
 By JITing good native code and using clever tricks like type tracing (which V8 heavily relies on), it is possible to get pretty good performance most of the time and very good performance some of the time.
-However, there remain situations where even these clever implementations still only get down to 6-8 times slower than C++.
+However, there remain situations where even these clever implementations still only get down to 6-8x slower than C++.
 This raises the question of how to close the rest of this performance gap between static and dynamic languages — and more to the point, whether it is even possible to do so.
-Will a patchwork of more clever tricks get us the rest of the way?
+Will a patchwork of new clever tricks get us the rest of the way?
 Or is there a more consistent approach that can close the gap across the board?
 
 Fast implementations of traditional dynamic languages will continue to improve.
 However, we suspect that a lot of the low hanging fruit has already been picked.
-Various slow cases may be sped up by new techniques, but as more techniques are added, implementation complexity will start to grow — interactions between features in language implementations tend to be tightly coupled and cause a combinatorially explosion in code complexity as more features are added.
-
+Various slow cases may be sped up by new techniques, but as more techniques are added, implementation complexity inevitably grows — and interactions between features in language implementations tend to be tightly coupled, causing a combinatorially explosion in code complexity as more features are added.
 This leads us to look for a new approach:
 a more consistent, simpler way to make dynamic languages faster.
-We've found one possible promising approach which is implemented in Julia.
-Part of this approach is to limit some of the dynamism of languages like Ruby — for example, taking away the ability to alter types after they've been created.
-However, another aspect is to give the language features that previously have only been found in statically typed languages.
-In the absence of any optimizations, these additional features make the language much, much slower.
-However, they also allow certain optimizations, in the presence of which, the language suddenly becomes fast — more often than not, within 2x of compiled languages.
-With further work, we believe we can close that gap all the way by adding a few more high-level optimizations and smoothing away some of the rougher edges of our implementation.
+
+We have found what we believe to be a promising approach to closing the performance gap between dynamic and static languages.
+However, it requires going back to the drawing board and designing a dynamic language from scratch to take maximum advantage of JIT technology.
+To some extent, this entails doing without some of the more extreme dynamism of languages like Ruby — for example, not allowing adding fields to composite types after they've been created.
+Another aspect, however, is adding a sophisticated type system and multiple dispatch as central features of the language.
+While a few dynamic languages such as Common Lisp and Clojure support type declarations and multiple dispatch as add-on, optional features, having these as core language features, used everywhere has previously been the domain of statically compiled languages.
+Our experiment then, is to take these traditionally static features and make them central to a dynamic language.
+
+Julia is our implementation of this new approach to dynamic language design.
+In the absence of any optimizations, the relative complexity of Julia's type and dispatch systems compared to other dynamic languages makes the it much, much slower.
+However, these features also allow certain optimizations, in the presence of which the language suddenly becomes fast:
+more often than not, Julia is within 2x of C.
+With further work, we believe we can close that gap all the way by adding a few more high-level optimizations and smoothing away the rougher edges of our implementation.
