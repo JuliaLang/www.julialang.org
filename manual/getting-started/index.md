@@ -22,7 +22,7 @@ The easiest way to learn and experiment with Julia is by starting an interactive
     julia> ans
     3
 
-    julia> load("file.j")
+    julia> load("file.jl")
 
 To exit the interactive session, type `^D` — the control key together with the `d` key.
 When run in interactive mode, `julia` displays a banner and prompts the user for input.
@@ -33,9 +33,9 @@ The `load` function reads and evaluates the contents of the given file.
 
 To run code in a file non-interactively, you can give it as the first argument to the julia command:
 
-    $ julia script.j arg1 arg2...
+    $ julia script.jl arg1 arg2...
 
-As the example implies, the following command-line arguments to julia are taken as command-line arguments to the program `script.j`.
+As the example implies, the following command-line arguments to julia are taken as command-line arguments to the program `script.jl`.
 There are various ways to run Julia code and provide options, reminiscent of those taken by the `perl` and `ruby` programs:
 
     julia [options] [program] [args...]

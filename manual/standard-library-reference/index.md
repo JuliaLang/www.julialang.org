@@ -9,7 +9,7 @@ title:  Standard Library Reference
 
 `whos()` — Print information about global user-defined variables.
 
-`edit("file"[, line])` — Edit a file optionally providing a line number to edit at. Returns to the julia prompt when you quit the editor. If the file name ends in ".j" it is reloaded when the editor closes the file.
+`edit("file"[, line])` — Edit a file optionally providing a line number to edit at. Returns to the julia prompt when you quit the editor. If the file name ends in ".jl" it is reloaded when the editor closes the file.
 
 `edit(function[, types])` — Edit the definition of a function, optionally specifying a tuple of types to indicate which method to edit. When the editor exits, the source file containing the definition is reloaded.
 
