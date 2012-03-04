@@ -5,7 +5,7 @@ title:  Example Programs
 
 ## Generate All Permutations with Coroutines
 
-    ##!/usr/bin/env julia
+    #!/usr/bin/env julia
 
     macro task(ex); :(Task(()->$ex)); end
 
