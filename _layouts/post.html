@@ -26,12 +26,12 @@ layout: common
 
 </div>
 
-{% if page.mentions %}
-<div id="mentions">
-  <b>Further Discussion:</b><ul>
-  {% for mention_hash in page.mentions %}
-    {% for mention in mention_hash %}
-      <li><a href="{{mention[1]}}">{{mention[0]}}</a></li>
+{% if page.trackbacks %}
+<div id="trackbacks">
+  <b>Trackbacks:</b><ul>
+  {% for trackback_hash in page.trackbacks %}
+    {% for trackback in trackback_hash %}
+      <li><a href="{{trackback[1]}}">{{trackback[0]}}</a></li>
     {% endfor %}
   {% endfor %}
   </ul>

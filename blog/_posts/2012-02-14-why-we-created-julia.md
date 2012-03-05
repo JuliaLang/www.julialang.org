@@ -6,16 +6,16 @@ authors:
     - <a href="http://karpinski.org/">Stefan Karpinski</a>
     - <a href="http://www.allthingshpc.org/">Viral Shah</a>
     - <a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>
-mentions:
+trackbacks:
     - Reddit: "http://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/"
     - Hacker News: "http://news.ycombinator.com/item?id=3606380"
     - Lambda-the-Ultimate: "http://lambda-the-ultimate.org/node/4452"
     - The Endeavor (John D. Cook): "http://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/"
     - Walking Randomly: "http://www.walkingrandomly.com/?p=87"
-    - Linux.org.ru: "http://www.linux.org.ru/news/opensource/7440863"
-    - Habrahabr.ru: "http://habrahabr.ru/blogs/programming/138577/"
-    - CSDN: "http://sd.csdn.net/a/20120223/312315.html"
-    - Linuxfr.org: "http://linuxfr.org/news/version-1-0-de-julia"
+    - Russian translation: "http://habrahabr.ru/blogs/programming/138577/"
+    - Russian blog post: "http://www.linux.org.ru/news/opensource/7440863"
+    - Chinese translation: "http://sd.csdn.net/a/20120223/312315.html"
+    - French blog post: "http://linuxfr.org/news/version-1-0-de-julia"
     - Twitter trackbacks: "http://topsy.com/julialang.org/"
 ---
 
