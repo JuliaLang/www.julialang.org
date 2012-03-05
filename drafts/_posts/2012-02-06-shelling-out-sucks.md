@@ -105,7 +105,7 @@ Suppose an attacker could arrange for any value of `dir` they wanted:
 
 Your box is now owned.
 Of course, you could sanitize the value of the `dir` variable, but there's a fundamental tug-of-war between security (as limited as possible) and flexibility (as unlimited as possible).
-The ideal behavior is to allow any directory name, no matter how bizarre, but "defang" all shell metacharacters.
+The ideal behavior is to allow any directory name, no matter how bizarre, as long as it actually exists, but "defang" all shell metacharacters.
 
 The only two way to fully protect against these sorts of metacharacter attacks — whether malicious or accidental — while still using an external shell to construct the pipeline, is to do full shell metacharacter escaping:
 
