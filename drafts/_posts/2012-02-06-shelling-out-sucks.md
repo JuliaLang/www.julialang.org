@@ -12,7 +12,7 @@ Here are the three reasons why shelling out is problematic:
 When commands are constructed programmatically, the resulting code is almost always brittle:
 if a variable used to construct the command contains any shell metacharacters, including spaces, the command will likely break and do something very different than what was intended — potentially something quite dangerous.
 3. *[Indirection and inefficiency.](#Indirection+and+Inefficiency)*
-When shelling out, the main program forks and execs a shell process just so that shell can in turn fork and exec a series of commands with their inputs and outputs appropriately connected.
+When shelling out, the main program forks and execs a shell process just so that the shell can in turn fork and exec a series of commands with their inputs and outputs appropriately connected.
 Not only is starting a shell an unnecessary step, but since the main program is not the parent of the pipeline commands, it cannot be notified when they terminate — it can only wait for the pipeline to finish and hope the shell indicates what happened.
 2. *[Silent failures by default.](#Silent+Failures+by+Default)*
 Errors in shelled out commands don't automatically become exceptions in Perl, Python or Ruby.
