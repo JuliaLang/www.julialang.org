@@ -12,6 +12,10 @@ mentions:
     - Lambda-the-Ultimate: "http://lambda-the-ultimate.org/node/4452"
     - The Endeavor (John D. Cook): "http://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/"
     - Walking Randomly: "http://www.walkingrandomly.com/?p=87"
+    - Linux.org.ru: "http://www.linux.org.ru/news/opensource/7440863"
+    - Habrahabr.ru: "http://habrahabr.ru/blogs/programming/138577/"
+    - CSDN: "http://sd.csdn.net/a/20120223/312315.html"
+    - Linuxfr.org: "http://linuxfr.org/news/version-1-0-de-julia"
     - Twitter trackbacks: "http://topsy.com/julialang.org/"
 ---
 
