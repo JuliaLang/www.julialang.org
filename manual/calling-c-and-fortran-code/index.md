@@ -125,20 +125,32 @@ Memory allocation and deallocation of such objects must be handled by calls to t
 
 ## Mapping C Types to Julia
 
-On all systems we support, basic C/C++ value types may be translated to Julia types as follows:
+On all systems we currently support, basic C/C++ value types may be translated to Julia types as follows.
 
-- `bool` = `Bool`
-- `char` = `Uint8`
-- `signed char` = `Int8`
-- `unsigned char` = `Uint8`
-- `short` = `Int16`
-- `unsigned short` = `Uint16`
-- `int` = `Int32`
-- `usigned int` = `Uint32`
-- `long long` = `Int64`
-- `usigned long long` = `Uint64`
-- `long` = `Int`
-- `unsigned long` = `Uint`
-- `wchar_t` = `Char`
-- `float` = `Float32`
-- `double` = `Float64`
+**System-independent:**
+
+- `bool` ⟺ `Bool`
+- `char` ⟺ `Uint8`
+- `signed char` ⟺ `Int8`
+- `unsigned char` ⟺ `Uint8`
+- `short` ⟺ `Int16`
+- `unsigned short` ⟺ `Uint16`
+- `int` ⟺ `Int32`
+- `usigned int` ⟺ `Uint32`
+- `long long` ⟺ `Int64`
+- `usigned long long` ⟺ `Uint64`
+- `float` ⟺ `Float32`
+- `double` ⟺ `Float64`
+
+*Note:* the `bool` type is only defined by C++, where it is only 8 bits wide.
+In C, `int` is often used for boolean values.
+Since `int` is 32-bits wide (on supported systems), there is some potential for confusion here.
+
+**System-dependent:**
+
+- `long` ⟺ `Int`
+- `unsigned long` ⟺ `Uint`
+- `size_t` ⟺ `Uint`
+- `wchar_t` ⟺ `Char`
+
+*Note:* Although `wchar_t` is technically system-dependent, on all the systems we currently support (UNIX), it is a 32 bits.
