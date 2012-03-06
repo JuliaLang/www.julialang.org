@@ -142,9 +142,9 @@ On all systems we currently support, basic C/C++ value types may be translated t
 - `float` ⟺ `Float32`
 - `double` ⟺ `Float64`
 
-*Note:* the `bool` type is only defined by C++, where it is only 8 bits wide.
-In C, `int` is often used for boolean values.
-Since `int` is 32-bits wide (on supported systems), there is some potential for confusion here.
+*Note:* the `bool` type is only defined by C++, where it is 8 bits wide.
+In C, however, `int` is often used for boolean values.
+Since `int` is 32-bits wide (on all supported systems), there is some potential for confusion here.
 
 **System-dependent:**
 
