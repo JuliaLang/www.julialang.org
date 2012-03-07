@@ -208,7 +208,7 @@ Before the program runs, this statement will be replaced with the result of call
         ...
     end
 
-Here, for example, is very nearly the definition of Julia's `@assert` macro (see [`error.jl`](https://github.com/JuliaLang/julia/blob/master/j/error.jl) for the actual definition, which allows `@assert` to work on booleans arrays as well):
+Here, for example, is very nearly the definition of Julia's `@assert` macro (see [`error.jl`](https://github.com/JuliaLang/julia/blob/master/jl/error.jl) for the actual definition, which allows `@assert` to work on booleans arrays as well):
 
     macro assert(ex)
         :($ex ? nothing : error("Assertion failed: ", $string(ex)))

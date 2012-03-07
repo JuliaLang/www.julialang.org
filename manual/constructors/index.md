@@ -124,11 +124,11 @@ The following two types are equivalent — one with a default constructor, the 
 
     julia> T1(1.0)
     no method T1(Float64,)
-     in method_missing at /Users/stefan/projects/julia/j/base.jl:58
+     in method_missing at /Users/stefan/projects/julia/jl/base.jl:58
 
     julia> T2(1.0)
     no method T2(Float64,)
-     in method_missing at /Users/stefan/projects/julia/j/base.jl:58
+     in method_missing at /Users/stefan/projects/julia/jl/base.jl:58
 
 It is considered good form to provide as few inner constructor methods as possible:
 only those taking all arguments explicitly and enforcing essential error checking and transformation.
@@ -224,7 +224,7 @@ Here are some examples:
 
     julia> Point(1,2.5)
     no method Point(Int64,Float64)
-     in method_missing at /Users/stefan/projects/julia/j/base.jl:58
+     in method_missing at /Users/stefan/projects/julia/jl/base.jl:58
 
     ## explicit T ##
 
@@ -233,14 +233,14 @@ Here are some examples:
 
     julia> Point{Int64}(1.0,2.5)
     no method Point(Float64,Float64)
-     in method_missing at /Users/stefan/projects/julia/j/base.jl:58
+     in method_missing at /Users/stefan/projects/julia/jl/base.jl:58
 
     julia> Point{Float64}(1.0,2.5)
     Point(1.0,2.5)
 
     julia> Point{Float64}(1,2)
     no method Point(Int64,Int64)
-     in method_missing at /Users/stefan/projects/julia/j/base.jl:58
+     in method_missing at /Users/stefan/projects/julia/jl/base.jl:58
 
 As you can see, for constructor calls with explicit type parameters, the arguments must match that specific type:
 `Point{Int64}(1,2)` works, but `Point{Int64}(1.0,2.5)` does not.
@@ -312,7 +312,7 @@ Moreover, since constructors can leverage all of the power of the type system, m
 ## Case Study: Rational
 
 Perhaps the best way to tie all these pieces together is to present a real world example of a parametric composite type and its constructor methods.
-To that end, here is beginning of [`rational.jl`](https://github.com/JuliaLang/julia/blob/master/j/rational.jl), which implements Julia's [rational numbers](../complex-and-rational-numbers#Rational+Numbers):
+To that end, here is beginning of [`rational.jl`](https://github.com/JuliaLang/julia/blob/master/jl/rational.jl), which implements Julia's [rational numbers](../complex-and-rational-numbers#Rational+Numbers):
 
     type Rational{T<:Integer} <: Real
         num::T
@@ -377,5 +377,5 @@ Finally, applying `//` to complex integral values creates an instance of `Comple
     true
 
 Thus, although the `//` operator usually returns an instance of `Rational`, if either of its arguments are complex integers, it will return an instance of `Complex{Rational}` instead.
-The interested reader should consider perusing the rest of [`rational.jl`](https://github.com/JuliaLang/julia/blob/master/j/rational.jl):
+The interested reader should consider perusing the rest of [`rational.jl`](https://github.com/JuliaLang/julia/blob/master/jl/rational.jl):
 it is short, self-contained, and implements an entire basic Julia type in just a little over a hundred lines of code.

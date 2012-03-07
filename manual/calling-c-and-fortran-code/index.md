@@ -68,7 +68,7 @@ This is because `(Ptr{Uint8})` is just `Ptr{Uint8}`, rather than a 1-tuple conta
 
 In practice, especially when providing reusable functionality, one generally wraps `ccall` usages in Julia functions that set up arguments and then check for errors in whatever manner the C or Fortran function indicates them, propagating to the Julia caller as exceptions.
 This is especially important since C and Fortran APIs are notoriously inconsistent about how they indicate error conditions.
-For example, the `getenv` C library function is wrapped in the following Julia function in [`env.jl`](https://github.com/JuliaLang/julia/blob/master/j/env.jl):
+For example, the `getenv` C library function is wrapped in the following Julia function in [`env.jl`](https://github.com/JuliaLang/julia/blob/master/jl/env.jl):
 
     function getenv(var::String)
       val = ccall(dlsym(libc, :getenv),
