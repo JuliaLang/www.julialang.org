@@ -112,6 +112,6 @@ Julia's compiler specializes code for argument types at function boundaries, so 
 
 The second form is also often better style and can lead to more code reuse.
 
-This pattern is used in several places in the standard library. For example, see `_jl_hvcat_fill` in `abstractarray.jl`, or the `fill!` function, which we could have used instead of writing our own `fill_twos!`.
+This pattern is used in several places in the standard library. For example, see `_jl_hvcat_fill` in [`abstractarray.jl`](https://github.com/JuliaLang/julia/blob/master/jl/abstractarray.jl), or the `fill!` function, which we could have used instead of writing our own `fill_twos!`.
 
 Functions like `strange_twos` occur when dealing with data of uncertain type, for example data loaded from an input file that might contain either integers, floats, strings, or something else.
