@@ -91,7 +91,7 @@ The method signatures for conversion methods are often quite a bit more involved
 
 ### Case Study: Rational Conversions
 
-To continue our case study of Julia's `Rational` type, here are the conversions declared in [`rational.jl`](https://github.com/JuliaLang/julia/blob/master/j/rational.jl), right after the declaration of the type and its constructors:
+To continue our case study of Julia's `Rational` type, here are the conversions declared in [`rational.jl`](https://github.com/JuliaLang/julia/blob/master/jl/rational.jl), right after the declaration of the type and its constructors:
 
     convert{T<:Int}(::Type{Rational{T}}, x::Rational) = Rational(convert(T,x.num),convert(T,x.den))
     convert{T<:Int}(::Type{Rational{T}}, x::Int) = Rational(convert(T,x), convert(T,1))
@@ -165,7 +165,7 @@ Complex values mixed with real values are promoted to the appropriate kind of co
 
 That is really all there is to using promotions.
 The rest is just a matter of clever application, the most typical "clever" application being the definition of catch-all methods for numeric operations like the arithmetic operators `+`, `-`, `*` and `/`.
-Here are some of the the catch-all method definitions given in [`promotion.jl`](https://github.com/JuliaLang/julia/blob/master/j/promotion.jl):
+Here are some of the the catch-all method definitions given in [`promotion.jl`](https://github.com/JuliaLang/julia/blob/master/jl/promotion.jl):
 
     +(x::Number, y::Number) = +(promote(x,y)...)
     -(x::Number, y::Number) = -(promote(x,y)...)
@@ -175,9 +175,9 @@ Here are some of the the catch-all method definitions given in [`promotion.jl`](
 These method definitions say that in the absence of more specific rules for adding, subtracting, multiplying and dividing pairs of numeric values, promote the values to a common type and then try again.
 That's all there is to it:
 nowhere else does one ever need to worry about promotion to a common numeric type for arithmetic operations — it just happens automatically.
-There are definitions of catch-all promotion methods for a number of other arithmetic and mathematical functions in [`promotion.jl`](https://github.com/JuliaLang/julia/blob/master/j/promotion.jl), but beyond that, there are hardly any calls to `promote` required in the Julia standard library.
+There are definitions of catch-all promotion methods for a number of other arithmetic and mathematical functions in [`promotion.jl`](https://github.com/JuliaLang/julia/blob/master/jl/promotion.jl), but beyond that, there are hardly any calls to `promote` required in the Julia standard library.
 The most common usages of `promote` occur in outer constructors methods, provided for convenience, to allow constructor calls with mixed types to delegate to an inner type with fields promoted to an appropriate common type.
-For example, recall that [`rational.jl`](https://github.com/JuliaLang/julia/blob/master/j/rational.jl) provides the following outer constructor method:
+For example, recall that [`rational.jl`](https://github.com/JuliaLang/julia/blob/master/jl/rational.jl) provides the following outer constructor method:
 
     Rational(n::Int, d::Int) = Rational(promote(n,d)...)
 
@@ -219,7 +219,7 @@ Thus, if one wants to know, in absence of actual values, what type a collection 
 
 Internally, `promote_type` is used inside of `promote` to determine what type argument values should be converted to for promotion.
 It can, however, be useful in its own right.
-The curious reader can read the code in [`promotion.jl`](https://github.com/JuliaLang/julia/blob/master/j/promotion.jl), which defines the complete promotion mechanism in about 35 lines.
+The curious reader can read the code in [`promotion.jl`](https://github.com/JuliaLang/julia/blob/master/jl/promotion.jl), which defines the complete promotion mechanism in about 35 lines.
 
 ### Case Study: Rational Promotions
 
