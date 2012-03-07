@@ -385,7 +385,7 @@ A non-standard string literal looks like a regular double-quoted string literal,
 
 Two types of interpretation are performed on normal Julia string literals:
 interpolation and unescaping (escaping is the act of expressing a non-standard character with a sequence like `\n`, whereas unescaping is the process of interpreting such escape sequences as actual characters).
-There are cases where its convenient to diable either or both of these behaviors.
+There are cases where its convenient to disable either or both of these behaviors.
 For such situations, Julia provides three types of non-standard string literals:
 
 - `E"..."` interpret escape sequences but do not interpolate, thereby rendering `$` a harmless, normal character.
