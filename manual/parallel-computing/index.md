@@ -93,7 +93,7 @@ At this point it is worth mentioning how to make sure your code is available on 
 
     julia> load("myfile.jl")
 
-Alternatively, all Julia processes will automatically load a file called `startup.jl` (if it exists) in the same directory as the Julia executable on startup. If you regularly work with certain source files, it makes sense to load them from this file. Julia also loads the file `.juliarc` in the user's home directory.
+Alternatively, all Julia processes will automatically load a file called `startup.jl` (if it exists) in the same directory as the Julia executable on startup. If you regularly work with certain source files, it makes sense to load them from this file. Julia also loads the file `.juliarc.jl` in the user's home directory.
 
 This example, as simple as it is, demonstrates a powerful and often-used parallel programming pattern. Many iterations run independently over several processors, and then their results are combined using some function. The combination process is called a _reduction_, since it is generally tensor-rank-reducing: a vector of numbers is reduced to a single number, or a matrix is reduced to a single row or column, etc. In code, this typically looks like the pattern `x = f(x,v[i])`, where `x` is the accumulator, `f` is the reduction function, and the `v[i]` are the elements being reduced. It is desirable for `f` to be associative, so that it does not matter what order the operations are performed in.
 
