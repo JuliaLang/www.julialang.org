@@ -57,7 +57,7 @@ For example, to call the `getenv` function to get a pointer to the value of an e
     julia> cstring(path)
     "/bin/zsh"
 
-Note that the argument type tuple must be written as `(Ptr{Uint8},)`, rather than just `(Ptr{Uint8})`.
+Note that the argument type tuple must be written as `(Ptr{Uint8},)`, rather than `(Ptr{Uint8})`.
 This is because `(Ptr{Uint8})` is just `Ptr{Uint8}`, rather than a 1-tuple containing `Ptr{Uint8}`:
 
     julia> (Ptr{Uint8})
@@ -66,7 +66,7 @@ This is because `(Ptr{Uint8})` is just `Ptr{Uint8}`, rather than a 1-tuple conta
     julia> (Ptr{Uint8},)
     (Ptr{Uint8},)
 
-In practice, especially when providing reusable functionality, one generally wraps `ccall` usages in Julia functions that set up arguments and then check for errors in whatever manner the C or Fortran function indicates them, propagating to the Julia caller as exceptions.
+In practice, especially when providing reusable functionality, one generally wraps `ccall` uses in Julia functions that set up arguments and then check for errors in whatever manner the C or Fortran function indicates them, propagating to the Julia caller as exceptions.
 This is especially important since C and Fortran APIs are notoriously inconsistent about how they indicate error conditions.
 For example, the `getenv` C library function is wrapped in the following Julia function in [`env.jl`](https://github.com/JuliaLang/julia/blob/master/jl/env.jl):
 
@@ -94,7 +94,7 @@ Here is a slightly more complex example that discovers the local machine's hostn
       hostname = Array(Uint8, 128)
       ccall(dlsym(libc, :gethostname), Int32,
             (Ptr{Uint8}, Ulong),
-            hostname.data, ulong(length(hostname)))
+            hostname, length(hostname))
       return cstring(convert(Ptr{Uint8}, hostname))
     end
 
@@ -102,7 +102,8 @@ This example first allocates an array of bytes, then calls the C library functio
 It is common for C libraries to use this pattern of requiring the caller to allocate memory to be passed to the callee and filled in.
 Allocation of memory from Julia like this is generally accomplished by creating an uninitialized array and passing a pointer to its data to the C function.
 
-In case of a Fortran function, all inputs must be passed by reference.
+When calling a Fortran function, all inputs must be passed by reference.
+A prefix `&` is used to indicate that a pointer to a scalar argument should be passed instead of the scalar value itself.
 The following example computes a dot product using a BLAS function.
 
     libBLAS = dlopen("libLAPACK")
@@ -114,9 +115,11 @@ The following example computes a dot product using a BLAS function.
       product = ccall(dlsym(libBLAS, :ddot_),
                       Float64,
                       (Ptr{Int32}, Ptr{Float64}, Ptr{Int32}, Ptr{Float64}, Ptr{Int32}),
-                      int32(n), DX, int32(incx), DY, int32(incy))
+                      &n, DX, &incx, DY, &incy)
       return product
     end
+
+The meaning of prefix `&` is not quite the same as in C. In particular, any changes to the referenced variables will not be visible in Julia. However, it will not cause any harm for called functions to attempt such modifications (that is, writing through the passed pointers). Since this `&` is not a real address operator, it may be used with any syntax, such as `&0` or `&f(x)`.
 
 Note that no C header files are used anywhere in the process.
 Currently, it is not possible to pass structs and other non-primitive types from Julia to C libraries.
@@ -124,6 +127,18 @@ However, C functions that generate and use opaque structs types by passing aroun
 Memory allocation and deallocation of such objects must be handled by calls to the appropriate cleanup routines in the libraries being used, just like in any C program.
 
 ## Mapping C Types to Julia
+
+Julia automatically inserts calls to the `convert` function to convert each argument to the specified type. For example, the following call:
+
+    ccall(dlsym(libfoo, :foo), Void, (Int32, Float64),
+          x, y)
+
+will behave as if the following were written:
+
+    ccall(dlsym(libfoo, :foo), Void, (Int32, Float64),
+          convert(Int32, x), convert(Float64, y))
+
+When a value is passed with `&` as an argument of type `Ptr{T}`, the value will first be converted to type `T`.
 
 On all systems we currently support, basic C/C++ value types may be translated to Julia types as follows.
 
@@ -145,6 +160,8 @@ On all systems we currently support, basic C/C++ value types may be translated t
 *Note:* the `bool` type is only defined by C++, where it is 8 bits wide.
 In C, however, `int` is often used for boolean values.
 Since `int` is 32-bits wide (on all supported systems), there is some potential for confusion here.
+
+A C function declared to return `Void` will give `nothing` in Julia.
 
 **System-dependent:**
 
