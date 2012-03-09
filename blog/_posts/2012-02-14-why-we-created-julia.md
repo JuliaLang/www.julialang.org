@@ -56,7 +56,7 @@ We want to write simple scalar loops that compile down to tight machine code usi
 We want to write `A*B` and launch a thousand computations on a thousand machines, calculating a vast matrix product together.
 
 We never want to mention types when we don't feel like it.
-But when we need polymorphic functions, we want to use generic programming to write an algorithm just once and apply it to an infinite lattices of types;
+But when we need polymorphic functions, we want to use generic programming to write an algorithm just once and apply it to an infinite lattice of types;
 we want to use multiple dispatch to efficiently pick the best method for all of a function's arguments, from dozens of method definitions, providing common functionality across drastically different types.
 Despite all this power, we want the language to be simple and clean.
 
