@@ -13,7 +13,6 @@ trackbacks:
     - The Endeavor (John D. Cook): "http://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/"
     - Walking Randomly: "http://www.walkingrandomly.com/?p=87"
     - Twitter trackbacks: "http://topsy.com/julialang.org/"
-translations:
     - Russian(1): "http://habrahabr.ru/blogs/programming/138577/"
     - Russian(2): "http://www.linux.org.ru/news/opensource/7440863"
     - Simplified Chinese: "http://sd.csdn.net/a/20120223/312315.html"
