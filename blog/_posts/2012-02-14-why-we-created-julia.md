@@ -12,11 +12,12 @@ trackbacks:
     - Lambda-the-Ultimate: "http://lambda-the-ultimate.org/node/4452"
     - The Endeavor (John D. Cook): "http://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/"
     - Walking Randomly: "http://www.walkingrandomly.com/?p=87"
-    - Russian translation: "http://habrahabr.ru/blogs/programming/138577/"
-    - Russian blog post: "http://www.linux.org.ru/news/opensource/7440863"
-    - Chinese translation: "http://sd.csdn.net/a/20120223/312315.html"
-    - French blog post: "http://linuxfr.org/news/version-1-0-de-julia"
     - Twitter trackbacks: "http://topsy.com/julialang.org/"
+    - Russian translation: "http://habrahabr.ru/blogs/programming/138577/"
+    - Linux.org.ru blog post (Russian): "http://www.linux.org.ru/news/opensource/7440863"
+    - Simplified Chinese translation: "http://sd.csdn.net/a/20120223/312315.html"
+    - Traditional Chinese translation: "http://www.hellogcc.org/archives/666"
+    - Linuxfr.org blog post (French): "http://linuxfr.org/news/version-1-0-de-julia"
 ---
 
 In short, because we are greedy.
