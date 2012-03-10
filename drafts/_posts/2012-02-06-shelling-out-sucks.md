@@ -22,7 +22,19 @@ Worse still, because of the indirection problem, there are many cases where the 
 In the rest of this post, we'll go over examples demonstrating each of these problems.
 At [the end](#Summary+and+Remedy), I'll present how I think programming languages should deal with these issues better.
 In a followup post, I'll talk about how this improved approach is implemented in Julia and all the shell-free pipeline goodness that ensues.
-Examples below are given in [Ruby] which shells out to [Bash], but I could just as easily pick on [Python], [Perl], other [UNIX shells](http://en.wikipedia.org/wiki/Unix_shell), or just about any language you can think of.
+Examples below are given in [Ruby] which shells out to [Bash], but I could just as easily pick on [Perl] and any other [UNIX shell](http://en.wikipedia.org/wiki/Unix_shell).
+
+**Note:**
+[Python] is a somewhat different story.
+The [`subprocess` module](http://docs.python.org/library/subprocess.html) has been standard since 2005, and addresses the shortcomings of shelling out — by not using a shell.
+However, its use is still far from ubiquitous.
+Searching on GitHub for Python files containing "`import subprocess`" yields 85,772 results, while searching for "`os.system`" yields 60,754 results, and "`os.popen`" yields 26,274.
+Visual inspection indicates that many of these uses of `os.system` and `os.popen` exhibit the problems discussed here.
+Why are `os.system` and `os.popen` still so prevalent when `subprocess` has been standard for such a long time and is far superior, technically?
+Some of the persistence of shelling out in Python is undoubtedly due to inertia.
+I suspect, however, that most of the staying power of `os.system` and `os.popen` stems from the fact that they are still so much more convenient to use than `subprocess`, no matter how technically inferior they may be.
+In any case, when we talk about shelling out in what follows, it applies to Python too:
+although Python does provide a safer — if less convenient — alternative to calling programs via the shell, people still shell out in Python quite a lot.
 
 [Bash]:     http://www.gnu.org/software/bash/
 [Perl]:     http://www.perl.org/
