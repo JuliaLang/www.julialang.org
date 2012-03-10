@@ -191,7 +191,7 @@ Moreover, even with the `pipefail` option, your program has no way of determinin
 While that's better than silently failing and continuing as if there were no problem, its not very helpful for postmortem debugging:
 many programs are not as well-behaved as `cat` and don't actually identify themselves or the specific problem when printing error messages before going belly up.
 
-Given the other problems caused by the indirection of shelling out, it's seems like a barely relevant afterthought to mention that execing a shell process just to spawn a bunch of other processes is inefficient.
+Given the other problems caused by the indirection of shelling out, it seems like a barely relevant afterthought to mention that execing a shell process just to spawn a bunch of other processes is inefficient.
 However, it is a real source of unnecessary overhead:
 the main process could just do the work the shell does itself.
 Asking the kernel to fork a process and exec a new program is a non-trivial amount of work.
@@ -207,7 +207,7 @@ Here's the total expression we need to use in order to shell out without being s
     `set -o pipefail; find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
 
 However, an error isn't raised by default when a shelled out command fails.
-To avoid silent errors, we need explicitly check `$?.success?` after every time we shell out and raise an exception if it indicates failure.
+To avoid silent errors, we need to explicitly check `$?.success?` after every time we shell out and raise an exception if it indicates failure.
 Of course, doing this manually is tedious, and as a result, it largely isn't done.
 The default behavior — and therefore the easiest and most common behavior — is to assume that shelled out commands worked and completely ignore failures.
 To make our "foo" counting example well-behaved, we would have to wrap it in a function like so:
@@ -215,9 +215,7 @@ To make our "foo" counting example well-behaved, we would have to wrap it in a f
     def foo_count(dir)
       n = `set -o pipefail;
            find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
-      if not $?.success?
-        raise("pipeline failed")
-      end
+      raise("pipeline failed") unless $?.success?
       return n
     end
 
@@ -240,7 +238,7 @@ This function behaves the way we would like it to:
     	from (irb):14
     	from :0
 
-However, this 8-line, 200-character function is a far cry from the simplicity and clarity we started with:
+However, this 6-line, 200-character function is a far cry from the simplicity and clarity we started with:
 
     `find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`.to_i
 
