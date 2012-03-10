@@ -20,9 +20,7 @@ Some project ideas for those participating in GSoC 2012:
 
 2. Make LLVM's GPU and auto-vectorization capabilities available in Julia.
 
-3. Build a social web-based REPL for Julia
-(http://julialang.org/images/web_repl.png). We imagine social
-computing:
+3. Build a [social web-based REPL](http://julialang.org/images/web_repl.png) for Julia. We imagine social and collaborative computing:
 
     * Login using a Google/Facebook ID 
     * Share sessions in real-time with friends and collaborators
