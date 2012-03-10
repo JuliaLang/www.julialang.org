@@ -376,6 +376,16 @@ The `continue` keyword accomplishes this:
 This is a somewhat contrived example since we could produce the same behavior more clearly by negating the condition and placing the `println` call inside the `if` block.
 In realistic usage there is more code to be evaluated after the `continue`, and often there are multiple points from which one calls `continue`.
 
+Multiple nested `for` loops can be combined into a single outer loop, forming the Cartesian product of its iterables:
+
+    julia> for i = 1:2, j = 3:4
+             println((i, j))
+           end
+    (1,3)
+    (1,4)
+    (2,3)
+    (2,4)
+
 ## Exception Handling
 
 When an unexpected condition occurs, a function may be unable to return a reasonable value to its caller.
