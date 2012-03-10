@@ -4,7 +4,13 @@ title:  Shelling Out Sucks
 author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 ---
 
-Spawning a pipeline of connected programs via an intermediate shell — a.k.a. "shelling out" — is both idiomatic and highly convenient for many tasks in "[glue languages](http://en.wikipedia.org/wiki/Glue_language)" like Perl, Python, and Ruby.
+[Perl]:     http://www.perl.org/
+[Python]:   http://python.org/
+[Ruby]:     http://www.ruby-lang.org/
+[Bash]:     http://www.gnu.org/software/bash/
+
+Spawning a pipeline of connected programs via an intermediate shell — a.k.a. "shelling out" — is a really convenient and effective way to get things done.
+Some "[glue languages](http://en.wikipedia.org/wiki/Glue_language)," like [Perl] and [Ruby], even have special syntax for it.
 However, shelling out is also a common source of bugs, security holes, unnecessary overhead, and silent failures.
 Here are the three reasons why shelling out is problematic:
 
@@ -15,32 +21,14 @@ if a variable used to construct the command contains any shell metacharacters, i
 When shelling out, the main program forks and execs a shell process just so that the shell can in turn fork and exec a series of commands with their inputs and outputs appropriately connected.
 Not only is starting a shell an unnecessary step, but since the main program is not the parent of the pipeline commands, it cannot be notified when they terminate — it can only wait for the pipeline to finish and hope the shell indicates what happened.
 2. *[Silent failures by default.](#Silent+Failures+by+Default)*
-Errors in shelled out commands don't automatically become exceptions in Perl, Python or Ruby.
-This typically leads to code that fails silently when shelled out commands don't work.
+Errors in shelled out commands don't automatically become exceptions in most languages.
+This default leniency leads to code that fails silently when shelled out commands don't work.
 Worse still, because of the indirection problem, there are many cases where the failure of a process in a spawned pipeline *cannot* be detected by the parent process, even if errors are fastidiously checked for.
 
-In the rest of this post, we'll go over examples demonstrating each of these problems.
-At [the end](#Summary+and+Remedy), I'll present how I think programming languages should deal with these issues better.
-In a followup post, I'll talk about how this improved approach is implemented in Julia and all the shell-free pipeline goodness that ensues.
-Examples below are given in [Ruby] which shells out to [Bash], but I could just as easily pick on [Perl] and any other [UNIX shell](http://en.wikipedia.org/wiki/Unix_shell).
-
-**Note:**
-[Python] is a somewhat different story.
-The [`subprocess` module](http://docs.python.org/library/subprocess.html) has been standard since 2005, and addresses the shortcomings of shelling out — by not using a shell.
-However, its use is still far from ubiquitous.
-Searching on GitHub for Python files containing "`import subprocess`" yields 85,772 results, while searching for "`os.system`" yields 60,754 results, and "`os.popen`" yields 26,274.
-Visual inspection indicates that many of these uses of `os.system` and `os.popen` exhibit the problems discussed here.
-Why are `os.system` and `os.popen` still so prevalent when `subprocess` has been standard for such a long time and is far superior, technically?
-Some of the persistence of shelling out in Python is undoubtedly due to inertia.
-I suspect, however, that most of the staying power of `os.system` and `os.popen` stems from the fact that they are still so much more convenient to use than `subprocess`, no matter how technically inferior they may be.
-In any case, when we talk about shelling out in what follows, it applies to Python too:
-although Python does provide a safer — if less convenient — alternative to calling programs via the shell, people still shell out in Python quite a lot.
-
-[Bash]:     http://www.gnu.org/software/bash/
-[Perl]:     http://www.perl.org/
-[Python]:   http://python.org/
-[Ruby]:     http://www.ruby-lang.org/
-[OS X]:     http://en.wikipedia.org/wiki/Mac_OS_X
+In the rest of this post, I'll go over examples demonstrating each of these problems.
+At [the end](#Summary+and+Remedy), I'll talk about better alternatives to shelling out, and in a followup post, I'll demonstrate how Julia makes these better alternatives dead simple to use.
+Examples below are given in Ruby which shells out to [Bash], but the same problems exist no matter what language one shells out from:
+it's the very technique of using an intermediate shell process to spawn external commands that's at issue.
 
 ## Metacharacter Brittleness
 
@@ -133,7 +121,7 @@ Instead, code that shells out with programmatically constructed commands is typi
 
 ## Indirection and Inefficiency
 
-If we were using the above Ruby code to count the number of lines with the string "foo" in a directory, we would want to check to see if everything worked and respond appropriately if something went wrong.
+If we were using the above code to count the number of lines with the string "foo" in a directory, we would want to check to see if everything worked and respond appropriately if something went wrong.
 In Ruby, you can check if a shelled out command was successful using the bizarrely named `$?.success?` indicator:
 
     irb(main):008:0> dir="src"                                                              
@@ -158,7 +146,7 @@ Wait. What?!
 That wasn't successful.
 What's going on?
 
-The heart of the problem is that when Ruby (or Python or Perl) shells out, the commands in the pipeline are not immediate children of the main program, but rather its grandchildren:
+The heart of the problem is that when you shell out, the commands in the pipeline are not immediate children of the main program, but rather its grandchildren:
 the program spawns a shell, which makes a bunch of UNIX pipes, forks child processes, connects inputs and outputs to pipes using the [`dup2` system call](https://developer.apple.com/library/IOs/#documentation/System/Conceptual/ManPages_iPhoneOS/man2/dup2.2.html), and then execs the appropriate commands.
 As a result, your main program is not the parent of the commands in the pipeline, but rather, their grandparent.
 Therefore, it doesn't know their process IDs, nor can it wait on them or get their exit statuses when they terminate.
@@ -197,7 +185,7 @@ This option causes the shell to consider a pipeline successful only if all of it
     irb(main):021:0> $?.success?
     => false
 
-Since shelling out from Ruby (or Perl or Python) spawns a new shell every time, this option has to be set for every multi-command pipeline in order to be able to determine its true success status.
+Since shelling out spawns a new shell every time, this option has to be set for every multi-command pipeline in order to be able to determine its true success status.
 Of course, just like shell-escaping every interpolated variable, setting `pipefail` at the start of every command is simply something that no one actually does.
 Moreover, even with the `pipefail` option, your program has no way of determining *which* commands in a pipeline were unsuccessful — it just knows that something somewhere went wrong.
 While that's better than silently failing and continuing as if there were no problem, its not very helpful for postmortem debugging:
@@ -218,8 +206,8 @@ Here's the total expression we need to use in order to shell out without being s
 
     `set -o pipefail; find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
 
-However, Ruby doesn't automatically raise an error when a shelled out command fails (nor do Python and Perl).
-Therefore, to avoid silent errors, we need explicitly check `$?.success?` after every time we shell out and raise an exception if it indicates failure.
+However, an error isn't raised by default when a shelled out command fails.
+To avoid silent errors, we need explicitly check `$?.success?` after every time we shell out and raise an exception if it indicates failure.
 Of course, doing this manually is tedious, and as a result, it largely isn't done.
 The default behavior — and therefore the easiest and most common behavior — is to assume that shelled out commands worked and completely ignore failures.
 To make our "foo" counting example well-behaved, we would have to wrap it in a function like so:
@@ -272,7 +260,9 @@ In short, shelling out responsibly kind of sucks.
 As is so often the case, the root of all of these problems is relying on a middleman rather than doing things yourself.
 If a program constructs and executes pipelines itself, it remains in control of all the subprocesses, can determine their individual exit conditions, automatically handle errors appropriately, and give accurate, comprehensive diagnostic messages when things go wrong.
 Moreover, without a shell to interpret commands, there is also no shell to treat metacharacters specially, and therefore no danger of metacharacter brittleness.
-The challenge is to make constructing and executing pipelines in a high-level language as easy and expressive as it is in the shell.
-In my followup post, I will describe how Julia implements command and pipeline construction without a shell, thereby avoiding the traditional pitfalls of shelling out, and increasing the power, safety, and flexibility of running external commands.
+[Python] gets this right:
+using `os.system` and `os.popen` to shell out has been officially deprecated since Python 2.6, and the recommended way to call external programs is to use the `subprocess` module, which spawns external programs without using a shell.
+Constructing pipelines using `subprocess` [can be a little verbose](http://docs.python.org/library/subprocess.html#replacing-shell-pipeline), but it is safe and avoids all the problems that shelling out is prone to.
+In my followup post, I will describe how Julia makes constructing and executing pipelines of external command's as safe as Python's `subprocess` and as convenient as shelling out.
 
 [followup post]: /drafts/2012/02/put-this-in-your-pipe/
