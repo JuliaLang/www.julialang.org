@@ -16,27 +16,27 @@ ecosystem in which such openness and sharing can take place.
 
 Some project ideas for those participating in GSoC 2012:
 
-1. Integrate the polyhedral optimizations provided by polly
-(http://polly.llvm.org) into the julia compiler.
+1. Integrate the polyhedral optimizations provided by [Polly](http://polly.llvm.org) into the Julia compiler.
 
-2. Make LLVM's GPU and auto-vectorization capabilities available in julia.
+2. Make LLVM's GPU and auto-vectorization capabilities available in Julia.
 
-3. Build a social web-based REPL for julia
+3. Build a social web-based REPL for Julia
 (http://julialang.org/images/web_repl.png). We imagine social
 computing:
 
-   a. Login using a Google/Facebook ID 
-   b. Share sessions in real-time with friends and collaborators
-   c. Interactive exploration of datasets
-   d. Chat with collaborators as you compute
+    * Login using a Google/Facebook ID 
+    * Share sessions in real-time with friends and collaborators
+    * Interactive exploration of datasets
+    * Chat with collaborators as you compute
 
-4. Develop the preliminary parallel processing capabilities of julia,
-and integrate with services such as EC2, App Engine for on demand
-deployment of large compute jobs. 
-(http://julialang.org/manual/parallel-computing/)
+4. Expand on the parallel processing capabilities of Julia,
+integrating with services such as EC2 or App Engine for on demand
+deployment of large compute jobs.
+(See [Parallel Computing](http://julialang.org/manual/parallel-computing/) for details on current capabilities.)
 
-5. Develop a 2d/3d graphics engine for julia (either web-based or local).
+5. Develop a 2d/3d graphics engine for interactive exploration of big data sets in Julia (either web-based or local).
 
-6. Extend julia to include core capabilities for statistical programming along the lines of R (https://github.com/JuliaLang/julia/wiki/Statistical-Programming)
+6. Extend Julia to include core capabilities for statistical programming along the lines of R.
+(See [this wiki page](https://github.com/JuliaLang/julia/wiki/Statistical-Programming) for some initial thoughts).
 
-7. Develop a library for the domain of your interest for julia (eg. machine learning, linear and non-linear optimization, signal processing, etc.). In fact, julia needs a large library of mathematical functions that are catalogued here (https://docs.google.com/spreadsheet/ccc?key=0AkrXlkvSbIfhdGJFbTNMRzlqVzRMZXV2Y2ozLUQ4N2c).
+7. Develop a library for the domain of your interest for Julia (e.g. machine learning, linear and non-linear optimization, signal processing, etc.). In fact, Julia still requires many functions in a large library of mathematical functions that are catalogued [here](https://docs.google.com/spreadsheet/ccc?key=0AkrXlkvSbIfhdGJFbTNMRzlqVzRMZXV2Y2ozLUQ4N2c).
