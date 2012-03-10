@@ -10,7 +10,7 @@ author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 [Bash]:     http://www.gnu.org/software/bash/
 
 Spawning a pipeline of connected programs via an intermediate shell — a.k.a. "shelling out" — is a really convenient and effective way to get things done.
-Some "[glue languages](http://en.wikipedia.org/wiki/Glue_language)," like [Perl] and [Ruby], even have special syntax for it.
+It's so handy that some "[glue languages](http://en.wikipedia.org/wiki/Glue_language)," like [Perl] and [Ruby], even have special syntax for it (backticks).
 However, shelling out is also a common source of bugs, security holes, unnecessary overhead, and silent failures.
 Here are the three reasons why shelling out is problematic:
 
@@ -28,7 +28,7 @@ Worse still, because of the indirection problem, there are many cases where the 
 In the rest of this post, I'll go over examples demonstrating each of these problems.
 At [the end](#Summary+and+Remedy), I'll talk about better alternatives to shelling out, and in a followup post, I'll demonstrate how Julia makes these better alternatives dead simple to use.
 Examples below are given in Ruby which shells out to [Bash], but the same problems exist no matter what language one shells out from:
-it's the very technique of using an intermediate shell process to spawn external commands that's at issue.
+it's the technique of using an intermediate shell process to spawn external commands that's at fault, not the language.
 
 ## Metacharacter Brittleness
 
