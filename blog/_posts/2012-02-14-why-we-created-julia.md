@@ -12,6 +12,7 @@ trackbacks:
     - Lambda-the-Ultimate: "http://lambda-the-ultimate.org/node/4452"
     - The Endeavor (John D. Cook): "http://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/"
     - Walking Randomly: "http://www.walkingrandomly.com/?p=87"
+    - Phoronix: "http://www.phoronix.com/scan.php?page=news_item&px=MTA2ODg"
     - Twitter trackbacks: "http://topsy.com/julialang.org/"
     - Russian translation: "http://habrahabr.ru/blogs/programming/138577/"
     - Linux.org.ru blog post (Russian): "http://www.linux.org.ru/news/opensource/7440863"
