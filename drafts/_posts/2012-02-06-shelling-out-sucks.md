@@ -261,7 +261,7 @@ As is so often the case, the root of all of these problems is relying on a middl
 If a program constructs and executes pipelines itself, it remains in control of all the subprocesses, can determine their individual exit conditions, automatically handle errors appropriately, and give accurate, comprehensive diagnostic messages when things go wrong.
 Moreover, without a shell to interpret commands, there is also no shell to treat metacharacters specially, and therefore no danger of metacharacter brittleness.
 [Python] gets this right:
-using `os.system` and `os.popen` to shell out has been officially deprecated since Python 2.6, and the recommended way to call external programs is to use the `subprocess` module, which spawns external programs without using a shell.
+using [`os.popen`](http://docs.python.org/library/os.html#os.popen) to shell out is officially deprecated, and the recommended way to call external programs is to use the [`subprocess`](http://docs.python.org/library/subprocess.html) module, which spawns external programs without using a shell.
 Constructing pipelines using `subprocess` [can be a little verbose](http://docs.python.org/library/subprocess.html#replacing-shell-pipeline), but it is safe and avoids all the problems that shelling out is prone to.
 In my followup post, I will describe how Julia makes constructing and executing pipelines of external command's as safe as Python's `subprocess` and as convenient as shelling out.
 
