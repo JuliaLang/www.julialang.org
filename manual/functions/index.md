@@ -147,6 +147,7 @@ In these situations, the anonymous function construct allows easy creation of a 
     julia> map(x -> x^2 + 2x - 1, [1,3,-1])
     [2,14,-2]
 
+An anonymous function accepting multiple arguments can be written using the syntax `(x,y,z)->2x+y-z`. A zero-argument anonymous function is written as `()->3`. The idea of a function with no arguments may seem strange, but is useful for "delaying" a computation. In this usage, a block of code is wrapped in a zero-argument function, which is later invoked by calling it as `f()`.
 
 ## Multiple Return Values
 
