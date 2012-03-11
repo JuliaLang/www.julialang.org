@@ -87,7 +87,7 @@ Or is there a more consistent approach that can close the gap across the board?
 
 Fast implementations of traditional dynamic languages will continue to improve.
 However, we suspect that a lot of the low hanging fruit has already been picked.
-Various slow cases may be sped up by new techniques, but as more techniques are added, implementation complexity inevitably grows — and interactions between features in language implementations tend to be tightly coupled, causing a combinatorially explosion in code complexity as more features are added.
+Various slow cases may be sped up by new techniques, but as more techniques are added, implementation complexity inevitably grows — and interactions between features in language implementations tend to be tightly coupled, causing a combinatorial explosion in code complexity as more features are added.
 This leads us to look for a new approach:
 a more consistent, simpler way to make dynamic languages faster.
 
@@ -99,7 +99,7 @@ While a few dynamic languages such as Common Lisp and Clojure support type decla
 Our experiment then, is to take these traditionally static features and make them central to a dynamic language.
 
 Julia is our implementation of this new approach to dynamic language design.
-In the absence of any optimizations, the relative complexity of Julia's type and dispatch systems compared to other dynamic languages makes the it much, much slower.
+In the absence of any optimizations, the relative complexity of Julia's type and dispatch systems compared to other dynamic languages makes it much, much slower.
 However, these features also allow certain optimizations, in the presence of which the language suddenly becomes fast:
 more often than not, Julia is within 2x of C.
 With further work, we believe we can close that gap all the way by adding a few more high-level optimizations and smoothing away the rougher edges of our implementation.
