@@ -64,7 +64,7 @@ Thus, if the value of `dir` is a directory name containing a space, this will fa
 
 The simple solution to the problem of spaces is to surround the interpolated directory name in quotes, telling the shell to treat spaces inside as normal characters:
 
-    irb(main):003:0> `find '#{dir}' -type f -print0 | xargs -0 grep foo | wc -l`.to_i
+    irb(main):005:0> `find '#{dir}' -type f -print0 | xargs -0 grep foo | wc -l`.to_i
     => 5
 
 Excellent.
@@ -82,9 +82,9 @@ First, let's create a very weirdly named directory:
 That's an admittedly strange directory name, but it's perfectly legal in UNIXes of all flavors.
 Now back to Ruby:
 
-    irb(main):003:0> dir="foo'bar"
+    irb(main):006:0> dir="foo'bar"
     => "foo'bar"
-    irb(main):004:0> `find '#{dir}' -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+    irb(main):007:0> `find '#{dir}' -type f -print0  | xargs -0 grep foo | wc -l`.to_i
     sh: -c: line 0: unexpected EOF while looking for matching `''
     sh: -c: line 1: syntax error: unexpected end of file
     => 0
@@ -94,9 +94,9 @@ Although this may seem like an unlikely corner case that one needn't realistical
 Suppose the name of the directory came from an untrusted source — like a web submission, or an argument to a setuid program from an untrusted user.
 Suppose an attacker could arrange for any value of `dir` they wanted:
 
-    irb(main):005:0> dir="foo'; echo MALICIOUS ATTACK 1>&2; echo '"
+    irb(main):008:0> dir="foo'; echo MALICIOUS ATTACK 1>&2; echo '"
     => "foo'; echo MALICIOUS ATTACK 1>&2; echo '"
-    irb(main):006:0> `find '#{dir}' -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+    irb(main):009:0> `find '#{dir}' -type f -print0  | xargs -0 grep foo | wc -l`.to_i
     find: `foo': No such file or directory
     MALICIOUS ATTACK
     grep:  -type f -print0
@@ -109,9 +109,9 @@ The ideal behavior is to allow any directory name, no matter how bizarre, as lon
 
 The only two way to fully protect against these sorts of metacharacter attacks — whether malicious or accidental — while still using an external shell to construct the pipeline, is to do full shell metacharacter escaping:
 
-    irb(main):005:0> require 'shellwords'
+    irb(main):010:0> require 'shellwords'
     => true
-    irb(main):006:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+    irb(main):011:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
     find: `foo\'; echo MALICIOUS ATTACK 1>&2; echo \'': No such file or directory
     => 0
 
@@ -124,22 +124,22 @@ Instead, code that shells out with programmatically constructed commands is typi
 If we were using the above code to count the number of lines with the string "foo" in a directory, we would want to check to see if everything worked and respond appropriately if something went wrong.
 In Ruby, you can check if a shelled out command was successful using the bizarrely named `$?.success?` indicator:
 
-    irb(main):008:0> dir="src"                                                              
+    irb(main):012:0> dir="src"                                                              
     => "src"
-    irb(main):009:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+    irb(main):013:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
     => 5
-    irb(main):010:0> $?.success?                                                                
+    irb(main):014:0> $?.success?                                                                
     => true
 
 Ok, that correctly indicates success.
 Let's make sure that it can detect failure:
 
-    irb(main):011:0> dir="nonexistent"                                                              
+    irb(main):015:0> dir="nonexistent"                                                              
     => "nonexistent"
-    irb(main):012:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+    irb(main):016:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
     find: `nonexistent': No such file or directory
     => 0
-    irb(main):013:0> $?.success?
+    irb(main):017:0> $?.success?
     => true
 
 Wait. What?!
@@ -154,22 +154,22 @@ The shell process, which is their parent, has to do all of that.
 Your program can only wait for the shell to finish and see if *that* was successful.
 If the shell is only executing a single command, this is fine:
 
-    irb(main):014:0> `cat /dev/null`
+    irb(main):018:0> `cat /dev/null`
     => ""
-    irb(main):015:0> $?.success?
+    irb(main):019:0> $?.success?
     => true
-    irb(main):016:0> `cat /dev/nada`
+    irb(main):020:0> `cat /dev/nada`
     cat: /dev/nada: No such file or directory
     => ""
-    irb(main):017:0> $?.success?
+    irb(main):021:0> $?.success?
     => false
 
 Unfortunately, by default the shell is quite lenient about what it considers to be a successful pipeline:
 
-    irb(main):018:0> `cat /dev/nada | sort`
+    irb(main):022:0> `cat /dev/nada | sort`
     cat: /dev/nada: No such file or directory
     => ""
-    irb(main):019:0> $?.success?
+    irb(main):023:0> $?.success?
     => true
 
 As long as the last command in a pipeline succeeds — in this case `sort` — the entire pipeline is considered a success.
@@ -179,10 +179,10 @@ This is probably not what you meant by success.
 Bash's notion of pipeline success can fortunately be made stricter with the `pipefail` option.
 This option causes the shell to consider a pipeline successful only if all of its commands are successful:
 
-    irb(main):020:0> `set -o pipefail; cat /dev/nada | sort`
+    irb(main):024:0> `set -o pipefail; cat /dev/nada | sort`
     cat: /dev/nada: No such file or directory
     => ""
-    irb(main):021:0> $?.success?
+    irb(main):025:0> $?.success?
     => false
 
 Since shelling out spawns a new shell every time, this option has to be set for every multi-command pipeline in order to be able to determine its true success status.
@@ -221,24 +221,24 @@ To make our "foo" counting example well-behaved, we would have to wrap it in a f
 
 This function behaves the way we would like it to:
 
-    irb(main):022:0> foo_count("src")
+    irb(main):026:0> foo_count("src")
     => 5
-    irb(main):023:0> foo_count("source code")
+    irb(main):027:0> foo_count("source code")
     => 5
-    irb(main):024:0> foo_count("nonexistent")
+    irb(main):028:0> foo_count("nonexistent")
     find: `nonexistent': No such file or directory
     RuntimeError: pipeline failed
     	from (irb):5:in `foo_count'
     	from (irb):13
     	from :0
-    irb(main):025:0> foo_count("foo'; echo MALICIOUS ATTACK; echo '")
+    irb(main):029:0> foo_count("foo'; echo MALICIOUS ATTACK; echo '")
     find: `foo\'; echo MALICIOUS ATTACK; echo \'': No such file or directory
     RuntimeError: pipeline failed
     	from (irb):5:in `foo_count'
     	from (irb):14
     	from :0
 
-However, this 6-line, 200-character function is a far cry from the simplicity and clarity we started with:
+However, this 6-line, 200-character function is a far cry from the clarity and brevity we started with:
 
     `find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`.to_i
 
