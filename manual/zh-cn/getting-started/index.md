@@ -34,6 +34,7 @@ The easiest way to learn and experiment with Julia is by starting an interactive
     julia> load("file.jl")
 
 <cn>
+
     $ julia
                    _
        _       _ _(_)_     |
@@ -51,6 +52,7 @@ The easiest way to learn and experiment with Julia is by starting an interactive
     3
 
     julia> load("file.jl")
+
 </cn>
 To exit the interactive session, type `^D` — the control key together with the `d` key.
 When run in interactive mode, `julia` displays a banner and prompts the user for input.
@@ -131,15 +133,6 @@ However, Julia is in no way a MATLAB® clone:
 there are major syntactic and functional differences.
 The following are the most significant differences that may trip up Julia users accustomed to MATLAB®:
 
-<cn>
-## 和MATLAB®主要的不同:
-
-Julia的语法有意的迎合了MATLAB®用户的习惯。
-然而Julia并不是MATLAB®的一个克隆版:
-他们在语法和函数上有大量不同。
-以下可能是熟悉MATLAB®使用的用户使用Julia会遇到的问题:
-
-</cn>
 - Arrays are indexed with square brackets, `A[i,j]`.
 - Multiple values are returned and assigned with parentheses, `return (a, b)` and `(a, b) = f(x)`.
 - Values are passed and assigned by reference. If a function modifies an array, the changes will be visible in the caller.
@@ -156,7 +149,15 @@ To construct a full vector, use `linspace`, or "concatenate" the range by enclos
 - Functions such as `sort` that operate column-wise by default (`sort(A)` is equivalent to `sort(A,1)`) do not have special behavior for 1xN arrays; the argument is returned unmodified since it still performs `sort(A,1)`. To sort a 1xN matrix like a vector, use `sort(A,2)`.
 - Parentheses must be used to call a function with zero arguments, as in `tic()` and `toc()`.
 - Do not use commas to end statements. The results of statements are not automatically printed (except at the interactive prompt), and lines of code do not need to end with semicolons. The function `println` can be used to print a value followed by a newline.
+
 <cn>
+## 和MATLAB®主要的不同:
+
+Julia的语法有意的迎合了MATLAB®用户的习惯。
+然而Julia并不是MATLAB®的一个克隆版:
+他们在语法和函数上有大量不同。
+以下可能是熟悉MATLAB®使用的用户使用Julia会遇到的问题:
+
 - 数组的索引是通过方括号索引的, `A[i,j]`。
 - 多个返回值通过圆括号指定, `return (a, b)` 还有 `(a, b) = f(x)`.
 - 值的传递采用引用的方式，如果一个函数修改了一个数组，那么调用该函数的复对象里面的数组将会被改变。
