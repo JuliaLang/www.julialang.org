@@ -612,6 +612,8 @@ Random numbers are generated in Julia by calling functions from the [Mersenne Tw
 
 `Array(type, dims)` — Construct an uninitialized dense array. `dims` may be a tuple or a series of integer arguments.
 
+`ref(type)` — Construct an empty 1-d array of the specified type. This is usually called with the syntax `Type[]`. Element values can be specified using `Type[a,b,c,...]`.
+
 `cell(dims)` Construct an uninitialized cell array (heterogeneous array). `dims` can be either a tuple or a series of integer arguments.
 
 `zeros(type, dims)` — Create an array of all zeros of specified type
@@ -632,7 +634,7 @@ Random numbers are generated in Julia by calling functions from the [Mersenne Tw
 
 `similar(array, element_type, dims)` Create an uninitialized array of the same type as the given array, but with the specified element type and dimensions. The second and third arguments are both optional. The `dims` argument may be a tuple or a series of integer arguments.
 
-`empty(type)` — Construct an empty array of the given element type
+`empty(A)` — Construct an empty 1-d array similar to the given array
 
 `reinterpret(type, A)` — Construct an array with the same binary data as the given array, but with the specified element type
 
