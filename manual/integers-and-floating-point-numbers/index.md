@@ -135,7 +135,7 @@ The minimum and maximum representable values of primitive numeric types such as 
     Uint64: [0x0000000000000000,0xffffffffffffffff]
 
 As you can see, the values returned by `typemin` and `typemax` are always of the given argument type.
-The above expression uses several features we have yet to introduce, including [for loops](../control-flow#Repeated+Evaluation:+Loops), [strings](../strings), and [string interpolation](../strings#Interpolation), but should be easy enough to understand for people coming from most mainstream programming languages.
+The above expression uses several features we have yet to introduce, including [for loops](../control-flow#Repeated+Evaluation:+Loops), [strings](../strings), and [string interpolation](../strings#Interpolation), but should be easy enough to understand for people with some programming experience.
 
 ## Floating-Point Numbers
 
@@ -224,9 +224,9 @@ Floating-point types also support the `eps` function, which gives the distance b
     julia> eps(Float64)
     2.22044604925031308e-16
 
-These values are `2^-23` and `2^-52` as `Float32` and `Float64` value, respectively.
+These values are `2^-23` and `2^-52` as `Float32` and `Float64` values, respectively.
 The `eps` function can also take a floating-point value as an argument, and gives the absolute difference between that value and the next representable floating point value.
-That is, `eps(x)` yields a value of the same type as `x` such that `x + eps(x)` is the next representable floating-point values that are larger than `x`:
+That is, `eps(x)` yields a value of the same type as `x` such that `x + eps(x)` is the next representable floating-point value larger than `x`:
 
     julia> eps(1.0)
     2.22044604925031308e-16
@@ -285,7 +285,7 @@ Neither juxtaposition of two parenthesized expressions, nor placing a variable b
 
 Both of these expressions are interpreted as function application:
 any expression that is not a numeric literal, when immediately followed by a parenthetical, is interpreted as a function applied to the values in parentheses (see [Functions](../functions) for more about functions).
-Thus, in both of these cases, an error is caused since the left-hand value is not a function.
+Thus, in both of these cases, an error occurs since the left-hand value is not a function.
 
 The above syntactic enhancements significantly reduce the visual noise incurred when writing common mathematical formulae.
 Note that no whitespace may come between a numeric literal coefficient and the identifier or parenthesized expression which it multiplies.
