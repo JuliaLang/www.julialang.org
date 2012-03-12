@@ -283,7 +283,7 @@ You'll either need a new interactive session instance or a different variable na
 
 See [Variables and Scoping](../variables-and-scoping) for a detailed explanation of variable scope and how it works in Julia.
 
-In general, the `for` loop construct can iterate over any container. The keyword `in` may be used as an alternative syntax to `=`, and in some cases reads more clearly:
+In general, the `for` loop construct can iterate over any container. In these cases, the alternative (but fully equivalent) keyword `in` is typically used instead of `=`, since it makes the code read more clearly:
 
     julia> for i in [1,4,0]
              println(i)
