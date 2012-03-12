@@ -534,3 +534,17 @@ A Task can be used as an iterable object in a `for` loop, in which case the loop
     8
     10
     stop
+
+Note that the `Task()` constructor expects a 0-argument function. A common pattern is for the producer to be 
+parameterized, in which case a partial function application is needed to create a 0-argument 
+[anonymous function](../functions#Anonymous+Functions).
+This can be done either directly or by use of a convenience macro:
+
+    function mytask(myarg)
+        ...
+    end
+    
+    taskHdl = Task(() -> mytask(7))
+    # or, equivalently
+    taskHdl = @task mytask(7)
+
