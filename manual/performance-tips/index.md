@@ -5,9 +5,22 @@ title:  Performance Tips
 
 In the following sections, we briefly go through a few techniques that can help make your Julia code run as fast as possible.
 
-## Type Declarations
+## Avoid global variables
 
-In many languages with optional type declarations, adding declarations is the principal way to make code run faster. Julia is not like this. The compiler generally knows the types of all function arguments and local variables. However, there are a few specific instances where declarations are helpful.
+A global variable might have its value, and therefore its type, change at any point. This makes it difficult for the compiler to optimize code using global variables. Variables should be local, or passed as arguments to functions, whenever possible.
+
+We find that global names are frequently constants, and declaring them as such greatly improves performance:
+
+    const DEFAULT_VAL = 0
+
+Uses of non-constant globals can be optimized by annotating their types at the point of use:
+
+    global x
+    y = f(x::Int + 1)
+
+## Type declarations
+
+In many languages with optional type declarations, adding declarations is the principal way to make code run faster. In Julia, the compiler generally knows the types of all function arguments and local variables. However, there are a few specific instances where declarations are helpful.
 
 ### Declare specific types for fields of composite types
 
@@ -115,3 +128,10 @@ The second form is also often better style and can lead to more code reuse.
 This pattern is used in several places in the standard library. For example, see `_jl_hvcat_fill` in [`abstractarray.jl`](https://github.com/JuliaLang/julia/blob/master/jl/abstractarray.jl), or the `fill!` function, which we could have used instead of writing our own `fill_twos!`.
 
 Functions like `strange_twos` occur when dealing with data of uncertain type, for example data loaded from an input file that might contain either integers, floats, strings, or something else.
+
+## Tweaks
+
+These are some minor points that might help in tight inner loops.
+
+- Use `size(A,n)` when possible instead of `size(A)`.
+- Avoid unnecessary arrays. For example, instead of `sum([x,y,z])` use `x+y+z`.

@@ -136,7 +136,7 @@ Julia's `pmap` is designed for the case where each function call does a large am
 
 Large computations are often organized around large arrays of data. In these cases, a particularly natural way to obtain parallelism is to distribute arrays among several processors. This combines the memory resources of multiple machines, allowing use of arrays too large to fit on one machine. Each processor operates on the part of the array it owns, providing a ready answer to the question of how a program should be divided among machines.
 
-A distributed array (or, more generally, a _global object_) is logically a single array, but pieces of it are stored on different processors. This means whole-array operations such as matrix multiply, scalar*array multiplication, etc. use the same syntax as with local arrays, and the parallelism is invisible. In some cases it is possible to obtain useful parallelism just by changing a local array to a distributed array.
+A distributed array (or, more generally, a _global object_) is logically a single array, but pieces of it are stored on different processors. This means whole-array operations such as matrix multiply, scalar\*array multiplication, etc. use the same syntax as with local arrays, and the parallelism is invisible. In some cases it is possible to obtain useful parallelism just by changing a local array to a distributed array.
 
 Julia distributed arrays are implemented by the `DArray` type. A `DArray` has an element type and dimensions just like an `Array`, but it also needs an additional property: the dimension along which data is distributed. There are many possible ways to distribute data among processors, but at this time Julia keeps things simple and only allows distributing along a single dimension. For example, if a 2-d `DArray` is distributed in dimension 1, it means each processor holds a certain range of rows. If it is distrbuted in dimension 2, each processor holds a certain range of columns.
 
@@ -208,46 +208,40 @@ It is particularly easy to construct a `DArray` where each block is a function o
 
 Whole-array operations (e.g. elementwise operators) are a convenient way to use distributed arrays, but they are not always sufficient. To handle more complex problems, tasks can be spawned to operate on parts of a `DArray` and write the results to another `DArray`. For example, here is how you could apply a function `f` to each 2-d slice of a 3-d `DArray`:
 
-```
-function compute_something(A::DArray)
-    B = darray(eltype(A), size(A), 3)
-    for i = 1:size(A,3)
-        @spawnat owner(B,i) B[:,:,i] = f(A[:,:,i])
+    function compute_something(A::DArray)
+        B = darray(eltype(A), size(A), 3)
+        for i = 1:size(A,3)
+            @spawnat owner(B,i) B[:,:,i] = f(A[:,:,i])
+        end
+        B
     end
-    B
-end
-```
 
 We used `@spawnat` to place each operation near the memory it writes to.
 
 This code works in some sense, but trouble stems from the fact that it performs writes asynchronously. In other words, we don't know when the result data will be written to the array and become ready for further processing. This is known as a "race condition", one of the famous pitfalls of parallel programming. Some form of synchronization is necessary to wait for the result. As we saw above, `@spawn` returns a remote reference that can be used to wait for its computation. We could use that feature to wait for specific blocks of work to complete:
 
-```
-function compute_something(A::DArray)
-    B = darray(eltype(A), size(A), 3)
-    deps = cell(size(A,3))
-    for i = 1:size(A,3)
-        deps[i] = @spawnat owner(B,i) B[:,:,i] = f(A[:,:,i])
+    function compute_something(A::DArray)
+        B = darray(eltype(A), size(A), 3)
+        deps = cell(size(A,3))
+        for i = 1:size(A,3)
+            deps[i] = @spawnat owner(B,i) B[:,:,i] = f(A[:,:,i])
+        end
+        (B, deps)
     end
-    (B, deps)
-end
-```
 
 Now a function that needs to access slice `i` can perform `wait(deps[i])` first to make sure the data is available.
 
 Another option is to use a `@sync` block, as follows:
 
-```
-function compute_something(A::DArray)
-    B = darray(eltype(A), size(A), 3)
-    @sync begin
-        for i = 1:size(A,3)
-            @spawnat owner(B,i) B[:,:,i] = f(A[:,:,i])
+    function compute_something(A::DArray)
+        B = darray(eltype(A), size(A), 3)
+        @sync begin
+            for i = 1:size(A,3)
+                @spawnat owner(B,i) B[:,:,i] = f(A[:,:,i])
+            end
         end
+        B
     end
-    B
-end
-```
 
 `@sync` waits for all spawns performed within it to complete. This makes our `compute_something` function easy to use, at the price of giving up some parallelism (since calls to it cannot overlap with subsequent operations).
 
@@ -268,31 +262,29 @@ As an example, consider computing the singular values of matrices of different s
 
 If one processor handles both 800x800 matrices and another handles both 600x600 matrices, we will not get as much scalability as we could. The solution is to make a local task to "feed" work to each processor when it completes its current task. This can be seen in the implementation of `pmap`:
 
-```
-function pmap(f, lst)
-    np = nprocs()
-    n = length(lst)
-    results = cell(n)
-    i = 1
-    # function to produce the next work item from the queue.
-    # in this case it's just an index.
-    next_idx() = (idx=i; i+=1; idx)
-    @sync begin
-        for p=1:np
-            @spawnlocal begin
-                while true
-                    idx = next_idx()
-                    if idx > n
-                        break
+    function pmap(f, lst)
+        np = nprocs()
+        n = length(lst)
+        results = cell(n)
+        i = 1
+        # function to produce the next work item from the queue.
+        # in this case it's just an index.
+        next_idx() = (idx=i; i+=1; idx)
+        @sync begin
+            for p=1:np
+                @spawnlocal begin
+                    while true
+                        idx = next_idx()
+                        if idx > n
+                            break
+                        end
+                        results[idx] = remote_call_fetch(p, f, L[idx])
                     end
-                    results[idx] = remote_call_fetch(p, f, L[idx])
                 end
             end
         end
+        results
     end
-    results
-end
-```
 
 `@spawnlocal` is similar to `@spawn`, but only runs tasks on the local processor. We use it to create a "feeder" task for each processor. Each task picks the next index that needs to be computed, then waits for its processor to finish, then repeats until we run out of indexes. A `@sync` block is used to wait for all the local tasks to complete, at which point the whole operation is done. Notice that all the feeder tasks are able to share state via `next_idx()` since they all run on the same processor. However, no locking is required, since the threads are scheduled cooperatively and not preemptively. This means context switches only occur at well-defined points (during the `fetch` operation).
 

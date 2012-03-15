@@ -8,7 +8,7 @@ Julia ships with predefined types representing both complex and rational numbers
 ## Complex Numbers
 
 The global constant `im` is bound to the complex number *i*, representing one of the square roots of -1.
-It was deemed harmful to co-opt the name `i` for a global constant, as that would preclude its use as a variable anywhere, and generally cause confusion.
+It was deemed harmful to co-opt the name `i` for a global constant, since it is such a popular index variable name.
 Since Julia allows numeric literals to be [juxtaposed with identifiers as coefficients](../integers-and-floating-point-numbers#Numeric+Literal+Coefficients), this binding suffices to provide convenient syntax for complex numbers, similar to the traditional mathematical notation:
 
     julia> 1 + 2im
@@ -92,7 +92,7 @@ Standard functions to manipulate complex values are provided:
     5
 
 As is common, the absolute value of a complex number is its distance from zero.
-The `abs2` function is of particular use for complex numbers, where it avoids taking a square root and can thus return a value of the same type as the real and imaginary parts of its argument.
+The `abs2` function gives the square of the absolute value, and is of particular use for complex numbers, where it avoids taking a square root.
 The full gamut of other mathematical functions are also defined for complex numbers:
 
     julia> sqrt(im)
@@ -130,7 +130,7 @@ Use the `complex` function to construct a complex value directly from its real a
     julia> complex(a,b)
     1 + 2im
 
-This construction is preferred for variable arguments because it is more efficient than the multiplication and addition construct, but also because for certain values of `b` unexpected results can occur:
+This construction is preferred for variable arguments because it is more efficient than the multiplication and addition construct, but also because certain values of `b` can yield unexpected results:
 
     julia> 1 + Inf*im
     NaN + Inf*im
@@ -235,7 +235,7 @@ Trying to construct a NaN rational value, however, is not:
     julia> 0//0
     invalid rational: 0//0
 
-As usual, the promotion system makes interactions with other numeric types natural and effortless:
+As usual, the promotion system makes interactions with other numeric types effortless:
 
     julia> 3//5 + 1
     8//5

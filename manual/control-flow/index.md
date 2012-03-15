@@ -53,7 +53,7 @@ Although it is typical, there is no requirement that `begin` blocks be multiline
 
 ## Conditional Evaluation
 
-Conditional evaluation allows portions of code to be evaluated or not evaluated depending on the value of another expression.
+Conditional evaluation allows portions of code to be evaluated or not evaluated depending on the value of a boolean expression.
 Here is the anatomy of the `if`-`elseif`-`else` conditional syntax:
 
     if x < y
@@ -229,32 +229,6 @@ Using a non-boolean value is an error:
     julia> 1 && 2
     type error: lambda: in if, expected Bool, got Int64
 
-Chained numeric comparisons also exhibit short-circuit evaluation behavior.
-Recall from [Numeric Comparisons](../mathematical-operations#Numeric+Comparisons) that numeric comparisons in Julia can be arbitrarily chained:
-
-    julia> a = 1; b = 2; c = 3;
-
-    julia> a < b <= c
-    true
-
-This last expression is equivalent to the less concise:
-
-    julia> a < b && b <= c
-    true
-
-In particular, this implies that chained comparisons exhibit short-circuit behavior.
-Let's see this in action:
-
-    v(x) = (println(x); x)
-
-    julia> v(1) > v(2) <= v(3)
-    2
-    1
-    false
-
-The first two expressions in a comparison chain are always evaluated, since their values are required to check the first comparison, which must be checked.
-Subsequent expressions, however, need not be evaluated if a comparison earlier in the chain is `false`.
-Note that the middle expression is only evaluated once, rather than twice as it would be if the expression were written as `v(1) < v(2) && v(2) <= v(3)`. However, the order of evaluations in a chained comparison is undefined. It is strongly recommended not to use expressions with side effects (such as printing) in chained comparisons. If side effects are required, the short-circuit `&&` operator should be used explicitly.
 
 ## Repeated Evaluation: Loops
 
@@ -309,16 +283,16 @@ You'll either need a new interactive session instance or a different variable na
 
 See [Variables and Scoping](../variables-and-scoping) for a detailed explanation of variable scope and how it works in Julia.
 
-In general, the `for` loop construct can iterate over all sorts of containers:
+In general, the `for` loop construct can iterate over any container. In these cases, the alternative (but fully equivalent) keyword `in` is typically used instead of `=`, since it makes the code read more clearly:
 
-    julia> for i = [1,4,0]
+    julia> for i in [1,4,0]
              println(i)
            end
     1
     4
     0
 
-    julia> for s = ["foo","bar","baz"]
+    julia> for s in ["foo","bar","baz"]
              println(s)
            end
     foo
@@ -376,7 +350,7 @@ The `continue` keyword accomplishes this:
 This is a somewhat contrived example since we could produce the same behavior more clearly by negating the condition and placing the `println` call inside the `if` block.
 In realistic usage there is more code to be evaluated after the `continue`, and often there are multiple points from which one calls `continue`.
 
-Multiple nested `for` loops can be combined into a single outer loop, forming the Cartesian product of its iterables:
+Multiple nested `for` loops can be combined into a single outer loop, forming the cartesian product of its iterables:
 
     julia> for i = 1:2, j = 3:4
              println((i, j))
@@ -459,11 +433,11 @@ Above, we use a form of the `try`-`catch` expression in which no value is captur
     try
       # execute some code
     catch x
-      # so something with x
+      # do something with x
     end
 
-In this form, if the built-in `throw` function is called by the "execute some code" expression, or any callee thereof, the catch block is executed with the argument of the `throw` function is bound to the variable `x`.
-The `error` function is simply a convenience which always throws an instance of the abstract type `Exception`.
+In this form, if the built-in `throw` function is called by the "execute some code" expression, or any callee thereof, the catch block is executed with the argument of the `throw` function bound to the variable `x`.
+The `error` function is simply a convenience which always throws an instance of the type `ErrorException`.
 Here we can see that the object thrown when a divide-by-zero error occurs is of type `DivideByZeroError`:
 
     julia> div(1,0)
@@ -476,7 +450,7 @@ Here we can see that the object thrown when a divide-by-zero error occurs is of 
            end
     DivideByZeroError
 
-`DivideByZeroError` is a concrete subtype of `Exception`, thrown to indicate that some illegal division by zero has occurred in an function whose return type is integeral, thereby making it impossible to return a reasonable value.
+`DivideByZeroError` is a concrete subtype of `Exception`, thrown to indicate that an integer division by zero has occurred.
 Floating-point functions, on the other hand, can simply return `NaN` rather than throwing an exception.
 
 Unlike `error`, which should only be used to indicate an unexpected condition, `throw` is merely a control construct, and can be used to pass any value back to an enclosing `try`-`catch`:
@@ -488,10 +462,9 @@ Unlike `error`, which should only be used to indicate an unexpected condition, `
            end
     Hello, world.
 
-This example is very contrived, of course — the power of the `try`-`catch` construct lies in the ability to unwind a deeply nested computation immediately to a much higher level in the stack of calling functions.
+This example is contrived, of course — the power of the `try`-`catch` construct lies in the ability to unwind a deeply nested computation immediately to a much higher level in the stack of calling functions.
 There are situations where no error has occurred, but the ability to unwind the stack and pass a value to a higher level is desirable.
 These are the circumstances in which `throw` should be used rather than `error`.
-On the other hand, when something unexpected has occurred in a program's execution, `error` is the more appropriate way to let a caller handle the problem or terminate the program with an error message.
 
 ## Tasks (aka Coroutines)
 
@@ -551,7 +524,7 @@ One way to think of this behavior is that `producer` was able to return multiple
 
 A Task can be used as an iterable object in a `for` loop, in which case the loop variable takes on all the produced values:
 
-    julia> for x = Task(producer)
+    julia> for x in Task(producer)
              println(x)
            end
     start
@@ -561,3 +534,17 @@ A Task can be used as an iterable object in a `for` loop, in which case the loop
     8
     10
     stop
+
+Note that the `Task()` constructor expects a 0-argument function. A common pattern is for the producer to be 
+parameterized, in which case a partial function application is needed to create a 0-argument 
+[anonymous function](../functions#Anonymous+Functions).
+This can be done either directly or by use of a convenience macro:
+
+    function mytask(myarg)
+        ...
+    end
+    
+    taskHdl = Task(() -> mytask(7))
+    # or, equivalently
+    taskHdl = @task mytask(7)
+
