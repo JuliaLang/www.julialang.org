@@ -125,7 +125,7 @@ The minimum and maximum representable values of primitive numeric types such as 
      Int64: [-9223372036854775808,9223372036854775807]
     Uint64: [0x0000000000000000,0xffffffffffffffff]
 
-As you can see, the values returned by `typemin` and `typemax` are always of the given argument type.
+The values returned by `typemin` and `typemax` are always of the given argument type.
 The above expression uses several features we have yet to introduce, including [for loops](../control-flow#Repeated+Evaluation:+Loops), [strings](../strings), and [string interpolation](../strings#Interpolation), but should be easy enough to understand for people with some programming experience.
 
 ## Floating-Point Numbers
