@@ -113,16 +113,16 @@ The minimum and maximum representable values of primitive numeric types such as 
     julia> (typemin(Int32), typemax(Int32))
     (-2147483648,2147483647)
 
-    julia> for T = {Int8,Uint8,Int16,Uint16,Int32,Uint32,Int64,Uint64}
+    julia> for T = {Int8,Int16,Int32,Int64,Uint8,Uint16,Uint32,Uint64}
              println("$(lpad(T,6)): [$(typemin(T)),$(typemax(T))]")
            end
       Int8: [-128,127]
-     Uint8: [0x00,0xff]
      Int16: [-32768,32767]
-    Uint16: [0x0000,0xffff]
      Int32: [-2147483648,2147483647]
-    Uint32: [0x00000000,0xffffffff]
      Int64: [-9223372036854775808,9223372036854775807]
+     Uint8: [0x00,0xff]
+    Uint16: [0x0000,0xffff]
+    Uint32: [0x00000000,0xffffffff]
     Uint64: [0x0000000000000000,0xffffffffffffffff]
 
 The values returned by `typemin` and `typemax` are always of the given argument type.
