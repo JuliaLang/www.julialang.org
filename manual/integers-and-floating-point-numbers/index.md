@@ -79,16 +79,7 @@ Larger integer literals that cannot be represented using only 32 bits but can be
     julia> typeof(3000000000)
     Int64
 
-If an integer literal has a value larger than can be represented as an `Int64` but smaller than the maximum value that can be represented by a `Uint64`, then it will create a `Uint64` value:
-
-    # 32-bit or 64-bit system:
-    julia> 12345678901234567890
-    0xab54a98ceb1f0ad2
-
-    julia> typeof(ans)
-    Uint64
-
-Unsigned integers are otherwise input and output using the `0x` prefix and hexadecimal (base 16) digits `0-9a-f` (you can also use `A-F` for input).
+Unsigned integers are input and output using the `0x` prefix and hexadecimal (base 16) digits `0-9a-f` (you can also use `A-F` for input).
 The size of the unsigned value is determined by the number of hex digits used:
 
     julia> 0x1
@@ -115,7 +106,7 @@ The size of the unsigned value is determined by the number of hex digits used:
     julia> typeof(ans)
     Uint64
 
-This behavior is based on the observation that when one uses unsigned hex literals for integer values, one typically is using them to represent a fixed numeric byte sequence, rather than an integer value.
+This behavior is based on the observation that when one uses unsigned hex literals for integer values, one typically is using them to represent a fixed numeric byte sequence, rather than just an integer value.
 
 The minimum and maximum representable values of primitive numeric types such as integers are given by the `typemin` and `typemax` functions:
 
