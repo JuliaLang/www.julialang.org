@@ -5,26 +5,26 @@ title:  Arrays
 
 Julia, like most technical computing languages, provides a first-class array implementation. Most technical computing languages pay a lot of attention to their array implementation at the expense of other containers. Julia does not treat arrays in any special way. The array library is implemented almost completely in julia itself, and derives its performance from the compiler, just like any other code written in julia.
 
-An array is a collection of objects stored in a multi-dimensional grid. In the most general case, an array may contain objects of type `Any`. For most computational purposes, arrays should contain objects of a more specific type, such as `Float64`, `Int32`, etc.
+An array is a collection of objects stored in a multi-dimensional grid. In the most general case, an array may contain objects of type `Any`. For most computational purposes, arrays should contain objects of a more specific type, such as `Float64` or `Int32`.
 
-In general, unlike many other technical computing languages, Julia does not expect programs to be written in a vectorized style for performance. Julia's JIT compiler uses type inference and generates optimized code for scalar array indexing, allowing programs to be written in a style that is convenient and readable, without sacrificing performance, and using significantly lesser memory at times.
+In general, unlike many other technical computing languages, Julia does not expect programs to be written in a vectorized style for performance. Julia's compiler uses type inference and generates optimized code for scalar array indexing, allowing programs to be written in a style that is convenient and readable, without sacrificing performance, and using less memory at times.
 
 In Julia, all arguments to functions are passed by reference. Some technical computing languages pass arrays by value, and this is convenient in many cases. In Julia, modifications made to input arrays within a function will be visible in the parent function. The entire Julia array library ensures that inputs are not modified by library functions. User code, if it needs to exhibit similar behaviour, should take care to create a copy of inputs that it may modify.
 
 ## Basic Functions
 
 1. `ndims(A)` — the number of dimensions of A
+1. `size(A,n)` — the size of A in a particular dimension
 1. `size(A)` — a tuple containing the dimensions of A
 1. `eltype(A)` — the type of the elements contained in A
-1. `numel(A)` — the number of elements in A
-1. `length(A)` — the size of the largest dimension of A
+1. `length(A)` — the number of elements in A
 1. `nnz(A)` — the number of nonzero values in A
 1. `stride(A,k)` — the size of the stride along dimension k
 1. `strides(A)` — a tuple of the linear index distances between adjacent elements in each dimension
 
 ## Construction and Initialization
 
-A broad variety of functions for constructing and initializing arrays are provided.
+Many functions for constructing and initializing arrays are provided.
 In the following list of such functions, calls with a `dims...` argument can either take a single tuple of dimension sizes or a series of dimension sizes passed as a variable number of arguments.
 
 1. `Array(type, dims...)` — an uninitialized dense array
@@ -34,20 +34,22 @@ In the following list of such functions, calls with a `dims...` argument can eit
 1. `trues(dims...)` — a `Bool` array with all values `true`
 1. `falses(dims...)` — a `Bool` array with all values `false`
 1. `reshape(A, dims...)` — an array with the same data as the given array, but with different dimensions.
-1. `fill(A, x)` — fill the array `A` with value `x`
 1. `copy(A)` — copy `A`
-1. `similar(A, element_type, dims...)` — an uninitialized array of the same generic type as the given array (dense, sparse, etc.), but with the specified element type and dimensions. The second and third arguments are both optional, defaulting to the element type and dimensions of `A` if omitted.
-1. `reinterpret(type, A)` — Construct an array with the same binary data as the given array, but with the specified element type.
+1. `similar(A, element_type, dims...)` — an uninitialized array of the same type as the given array (dense, sparse, etc.), but with the specified element type and dimensions. The second and third arguments are both optional, defaulting to the element type and dimensions of `A` if omitted.
+1. `reinterpret(type, A)` — an array with the same binary data as the given array, but with the specified element type.
 1. `rand(dims)` — random array with `Float64` uniformly distributed values in [0,1)
 1. `randf(dims)` — random array with `Float32` uniformly distributed values in [0,1)
 1. `randn(dims)` — random array with `Float64` normally distributed random values with a mean of 0 and standard deviation of 1
 1. `eye(n)` — n-by-n identity matrix
 1. `eye(m, n)` — m-by-n identity matrix
-1. `linspace(start, stop, n)` — Construct a vector of `n` linearly-spaced elements from `start` to `stop`.
+1. `linspace(start, stop, n)` — a vector of `n` linearly-spaced elements from `start` to `stop`.
+1. `fill!(A, x)` — fill the array `A` with value `x`
+
+The last function, `fill!`, is different in that it modifies an existing array instead of constructing a new one. As a convention, functions with this property have names ending with an exclamation point. These functions are sometimes called "mutating" functions, or "in-place" functions.
 
 ## Comprehensions
 
-Comprehensions provide a general and powerful way to construct arrays. The comprehension syntax is similar to the set construction notation in mathematics:
+Comprehensions provide a general and powerful way to construct arrays. Comprehension syntax is similar to set construction notation in mathematics:
 
     A = [ F(x,y,...) | x=rx, y=ry, ... ]
 
@@ -61,9 +63,7 @@ The following example computes a weighted average of the current element and its
     julia> [ 0.5*x[i-1] + x[i] + 0.5*x[i+1] | i=2:length(x)-1 ]
     [1.27090581134045655,1.21219591535884108,0.8745908565789231,0.87467569761484998,0.94884398167981576,0.84229326348181832,0.80717719333430171,0.95225060850865173]
 
-In most high-level technical computing languages, this computation would be performed by computing three vectors (left-shifted, centre, and right-shifted) and then using vector arithmetic, which ends up using at least three times as much memory and perhaps more for temporary vectors that are created along the way. The Julia approach here computes the result vector directly. The code is closer to the math, and thus much more intuitive to understand.
-
-NOTE: In the above example, `x` is declared as constant because type inference in Julia does not work on non-constant global variables.
+NOTE: In the above example, `x` is declared as constant because type inference in Julia does not work as well on non-constant global variables.
 
 ## Indexing
 
@@ -165,7 +165,7 @@ The base array type in Julia is the abstract type `AbstractArray{T,n}`. It is pa
 
 The `Array{T,n}` type is a specific instance of `AbstractArray` where elements are stored in column-major order. `Vector` and `Matrix` are aliases for the 1-d and 2-d cases. Specific operations such as scalar indexing, assignment, and a few other basic storage-specific operations are all that have to be implemented for `Array`, so that the rest of the array library can be implemented in a generic manner for `AbstractArray`.
 
-`SubArray` is a specialization of `AbstractArray` that perform indexing by reference rather than by copying. A `SubArray` is created with the `sub` function, which is called the same way as `ref` (with an array and a series of index arguments). The result of `sub` looks the same as the result of `ref`, except the data is left in place. `sub` stores the input index vectors in a `SubArray` object, which can later be used to index the original array indirectly.
+`SubArray` is a specialization of `AbstractArray` that performs indexing by reference rather than by copying. A `SubArray` is created with the `sub` function, which is called the same way as `ref` (with an array and a series of index arguments). The result of `sub` looks the same as the result of `ref`, except the data is left in place. `sub` stores the input index vectors in a `SubArray` object, which can later be used to index the original array indirectly.
 
 `StridedVector` and `StridedMatrix` are convenient aliases defined to make it possible for Julia to call a wider range of BLAS and LAPACK functions by passing them either `Array` or `SubArray` objects, and thus saving inefficiencies from indexing and memory allocation.
 

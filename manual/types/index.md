@@ -4,7 +4,7 @@ title:  Types
 ---
 
 Type systems have traditionally fallen into two quite different camps:
-static type systems, where every value must have a type computable before the execution of a program, and dynamic type systems, where nothing is known about types of values flowing through a piece of code until run time, when the values themselves are available.
+static type systems, where every program expression must have a type computable before the execution of the program, and dynamic type systems, where nothing is known about types until run time, when the actual values manipulated by the program are available.
 Object orientation allows some flexibility in statically typed languages by letting code be written without the precise types of values being known at compile time.
 The ability to write code that can operate on different types is called polymorphism.
 All code in classic dynamically typed languages is polymorphic:
@@ -85,12 +85,20 @@ When attached to a variable, the `::` operator means something a bit different: 
 
 This feature is useful for avoiding performance "gotchas" that could occur if one of the assignments to a variable changed its type unexpectedly.
 
+The "declaration" behavior only occurs in specific contexts:
+
+    x::Int8        # a variable by itself
+    local x::Int8  # in a local declaration
+    x::Int8 = 10   # as the left-hand side of an assignment
+
+In value contexts, such as `f(x::Int8)`, the `::` is a type assertion again and not a declaration.
+
 ## Abstract Types
 
 Abstract types cannot be instantiated, and serve only as nodes in the type graph, thereby describing sets of related concrete types:
 those concrete types which are their descendants.
 We begin with abstract types even though they have no instantiation because they are the backbone of the type system:
-they form the conceptual hierarchy which makes Julia's type system more than just a collection of object implementations (which is precisely what C's type system provides, and thus is not presumed to be useless or absurd at all).
+they form the conceptual hierarchy which makes Julia's type system more than just a collection of object implementations.
 
 Recall that in [Integers and Floating-Point Numbers](../integers-and-floating-point-numbers), we introduced a variety of concrete types of numeric values:
 `Int8`, `Uint8`, `Int16`, `Uint16`, `Int32`, `Uint32`, `Int64`, `Uint64`, `Float32`, and `Float64`.
@@ -113,7 +121,6 @@ This name can be optionally followed by `<:` and an already-existing type, indic
 
 When no supertype is given, the default supertype is `Any` — a predefined abstract type that all objects are instances of and all types are subtypes of.
 In type theory, `Any` is commonly called "top" because it is at the apex of the type graph.
-Whenever a supertype is not specified for any kind of newly created type, the default supertype is `Any`.
 Julia also has a predefined abstract "bottom" type, at the nadir of the type graph, which is called `None`.
 It is the exact opposite of `Any`:
 no object is an instance of `None` and all types are supertypes of `None`.
@@ -175,10 +182,8 @@ The general syntaxes for declaration of a bitstypes are:
 The number of bits indicates how much storage the type requires and the name gives the new type a name.
 A bits type can optionally be declared to be a subtype of some supertype.
 If a supertype is omitted, then the type defaults to having `Any` as its immediate supertype.
-The declaration of `Bool` above therefore means that a boolean value takes eight bits to store, and has `Any` as its immediate supertype.
-(Note that `Bool` values are *not* considered to be numeric, unlike many languages;
-performing arithmetic operations on boolean values will produce errors.)
-Currently, only sizes of 8, 16, 32, and 64 bits are supported.
+The declaration of `Bool` above therefore means that a boolean value takes eight bits to store, and has `Integer` as its immediate supertype.
+Currently, only sizes that are multiples of 8 bits are supported.
 Therefore, boolean values, although they really need just a single bit, cannot be declared to be any smaller then eight bits.
 
 The types `Bool`, `Int8` and `Uint8` all have identical representations:
@@ -323,7 +328,7 @@ There are many languages that support some version of [generic programming](http
 For example, some form of generic programming exists in ML, Haskell, Ada, Eiffel, C++, Java, C#, F#, and Scala, just to name a few.
 Some of these languages support true parametric polymorphism (e.g. ML, Haskell, Scala), while others support ad-hoc, template-based styles of generic programming (e.g. C++, Java).
 With so many different varieties of generic programming and parametric types in various languages, we won't even attempt to compare Julia's parametric types to other languages, but will instead focus on explaining Julia's system in its own right.
-We will note, however, that because Julia is a dynamically typed language and doesn't need to make all type decisions at compile time, many traditionally intractable difficulties encountered in static parametric type systems can be relatively easily handled.
+We will note, however, that because Julia is a dynamically typed language and doesn't need to make all type decisions at compile time, many traditional difficulties encountered in static parametric type systems can be relatively easily handled.
 
 The only kinds of types that are declared are abstract types, bits types, and composite types.
 All such types can be parameterized, with the same syntax in each case.

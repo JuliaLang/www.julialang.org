@@ -79,16 +79,7 @@ Larger integer literals that cannot be represented using only 32 bits but can be
     julia> typeof(3000000000)
     Int64
 
-If an integer literal has a value larger than can be represented as an `Int64` but smaller than the maximum value that can be represented by a `Uint64`, then it will create a `Uint64` value:
-
-    # 32-bit or 64-bit system:
-    julia> 12345678901234567890
-    0xab54a98ceb1f0ad2
-
-    julia> typeof(ans)
-    Uint64
-
-Unsigned integers are otherwise input and output using the `0x` prefix and hexadecimal (base 16) digits `0-9a-f` (you can also use `A-F` for input).
+Unsigned integers are input and output using the `0x` prefix and hexadecimal (base 16) digits `0-9a-f` (you can also use `A-F` for input).
 The size of the unsigned value is determined by the number of hex digits used:
 
     julia> 0x1
@@ -115,27 +106,27 @@ The size of the unsigned value is determined by the number of hex digits used:
     julia> typeof(ans)
     Uint64
 
-This behavior is based on the observation that when one uses unsigned hex literals for integer values, one typically is using them to represent a fixed numeric byte sequence, rather than an integer value.
+This behavior is based on the observation that when one uses unsigned hex literals for integer values, one typically is using them to represent a fixed numeric byte sequence, rather than just an integer value.
 
 The minimum and maximum representable values of primitive numeric types such as integers are given by the `typemin` and `typemax` functions:
 
     julia> (typemin(Int32), typemax(Int32))
     (-2147483648,2147483647)
 
-    julia> for T = {Int8,Uint8,Int16,Uint16,Int32,Uint32,Int64,Uint64}
+    julia> for T = {Int8,Int16,Int32,Int64,Uint8,Uint16,Uint32,Uint64}
              println("$(lpad(T,6)): [$(typemin(T)),$(typemax(T))]")
            end
       Int8: [-128,127]
-     Uint8: [0x00,0xff]
      Int16: [-32768,32767]
-    Uint16: [0x0000,0xffff]
      Int32: [-2147483648,2147483647]
-    Uint32: [0x00000000,0xffffffff]
      Int64: [-9223372036854775808,9223372036854775807]
+     Uint8: [0x00,0xff]
+    Uint16: [0x0000,0xffff]
+    Uint32: [0x00000000,0xffffffff]
     Uint64: [0x0000000000000000,0xffffffffffffffff]
 
-As you can see, the values returned by `typemin` and `typemax` are always of the given argument type.
-The above expression uses several features we have yet to introduce, including [for loops](../control-flow#Repeated+Evaluation:+Loops), [strings](../strings), and [string interpolation](../strings#Interpolation), but should be easy enough to understand for people coming from most mainstream programming languages.
+The values returned by `typemin` and `typemax` are always of the given argument type.
+The above expression uses several features we have yet to introduce, including [for loops](../control-flow#Repeated+Evaluation:+Loops), [strings](../strings), and [string interpolation](../strings#Interpolation), but should be easy enough to understand for people with some programming experience.
 
 ## Floating-Point Numbers
 
@@ -224,9 +215,9 @@ Floating-point types also support the `eps` function, which gives the distance b
     julia> eps(Float64)
     2.22044604925031308e-16
 
-These values are `2^-23` and `2^-52` as `Float32` and `Float64` value, respectively.
+These values are `2^-23` and `2^-52` as `Float32` and `Float64` values, respectively.
 The `eps` function can also take a floating-point value as an argument, and gives the absolute difference between that value and the next representable floating point value.
-That is, `eps(x)` yields a value of the same type as `x` such that `x + eps(x)` is the next representable floating-point values that are larger than `x`:
+That is, `eps(x)` yields a value of the same type as `x` such that `x + eps(x)` is the next representable floating-point value larger than `x`:
 
     julia> eps(1.0)
     2.22044604925031308e-16
@@ -285,7 +276,7 @@ Neither juxtaposition of two parenthesized expressions, nor placing a variable b
 
 Both of these expressions are interpreted as function application:
 any expression that is not a numeric literal, when immediately followed by a parenthetical, is interpreted as a function applied to the values in parentheses (see [Functions](../functions) for more about functions).
-Thus, in both of these cases, an error is caused since the left-hand value is not a function.
+Thus, in both of these cases, an error occurs since the left-hand value is not a function.
 
 The above syntactic enhancements significantly reduce the visual noise incurred when writing common mathematical formulae.
 Note that no whitespace may come between a numeric literal coefficient and the identifier or parenthesized expression which it multiplies.

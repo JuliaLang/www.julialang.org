@@ -47,7 +47,6 @@ There are various ways to run Julia code and provide options, reminiscent of tho
      -E --print=<expr>        Evaluate and print <expr>
      -P --post-boot=<expr>    Evaluate <expr> right after boot
      -L --load=file           Load <file> right after boot
-     -b --bare                Bare: don't load default startup files
      -J --sysimage=file       Start up with the given system image file
 
      -p n                     Run n local processes

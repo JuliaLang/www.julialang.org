@@ -164,8 +164,20 @@ Unlike most languages, with the [notable exception of Python](http://en.wikipedi
     true
 
 Chaining comparisons is often quite convenient in numerical code.
-Only as many initial comparisons and their operand expressions as are necessary to determine the final truth value of the entire chain are evaluated.
-See [Short-Circuit Evaluation](../control-flow#Short-Circuit+Evaluation) for further discussion of this behavior.
+Chained numeric comparisons use the `&` operator, which allows them to work on arrays. For example, `0 < A < 1` gives a boolean array whose entries are true where the corresponding elements of `A` are between 0 and 1.
+
+Note the evaluation behavior of chained comparisons:
+
+    v(x) = (println(x); x)
+
+    julia> v(1) > v(2) <= v(3)
+    2
+    1
+    3
+    false
+
+The middle expression is only evaluated once, rather than twice as it would be if the expression were written as `v(1) > v(2) & v(2) <= v(3)`. However, the order of evaluations in a chained comparison is undefined. It is strongly recommended not to use expressions with side effects (such as printing) in chained comparisons. If side effects are required, the short-circuit `&&` operator should be used explicitly (see [Control Flow](../control-flow#Short-Circuit+Evaluation)).
+
 
 ## Mathematical Functions
 
