@@ -203,3 +203,29 @@ Since the `begin` construct does not introduce a new block, it can be useful to 
 
 The first example is illegal because you cannot declare the same variable as local in the same scope twice.
 The second example is legal since the `let` introduces a new scope block, so the inner local `x` is a different variable than the outer local `x`.
+
+## Constants
+
+A common use of variables is giving names to specific, unchanging values.
+Such variables are only assigned once. This intent can be conveyed to the
+compiler using the `const` keyword:
+
+    const e  = 2.71828182845904523536
+    const pi = 3.14159265358979323846
+
+The `const` declaration is allowed on both global and local variables, but
+is especially useful for globals. It is difficult for the compiler to
+optimize code involving global variables, since their values (or even their
+types) might change at almost any time. If a global variable will not
+change, adding a `const` declaration solves this performance problem.
+
+Local constants are quite different. The compiler is able to determine
+automatically when a local variable is constant, so local constant declarations
+are not necessary for performance purposes.
+
+Special top-level assignments, such as those performed by the `function`
+and `type` keywords, are constant by default.
+
+Note that `const` only affects the variable binding; the variable may be
+bound to a mutable object (such as an array), and that object may still be
+modified.
