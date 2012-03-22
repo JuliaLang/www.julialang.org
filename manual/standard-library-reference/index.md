@@ -740,7 +740,7 @@ Linear algebra functions in Julia are largely implemented by calling functions f
 
 `linreg(x, y, w)` — Weighted least-squares linear regression
 
-## Sorting
+## Combinatorics
 
 `sort(v)` — Sort a vector in ascending order, according to `isless`.
 
@@ -773,6 +773,22 @@ Linear algebra functions in Julia are largely implemented by calling functions f
 `reverse(v)` — Reverse vector `v`
 
 `reverse!(v)` — Reverse vector `v` in-place
+
+`select(v, k)` — Find the element in position `k` in the sorted vector `v` without sorting
+
+`select!(v, k)` — In-place version of `select`
+
+## Statistics
+
+`mean(v[, dim])` — Compute the mean of whole array `v`, or optionally along dimension `dim`
+
+`std(v)` — Compute the standard deviation of a vector `v`
+
+`median(v)` — Compute the median of a vector `v`
+
+`hist(v[, n])` — Compute the histogram of `v`, optionally using `n` bins
+
+`histc(v[, e])` — Compute the histogram of `v`, optionally using a vector `e` as the edges for the bins
 
 ## Signal Processing
 
