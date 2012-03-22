@@ -235,6 +235,12 @@ As you can see, the distance to the next largest representable floating-point va
 In other words, the representable floating-point numbers are densest in the real number line near zero, and grow sparser exponentially as one moves farther away from zero.
 By definition, `eps(1.0)` is the same as `eps(Float64)` since `1.0` is a 64-bit floating-point value.
 
+### Exercises
+
+- Define an integer variable with value equal to 1. Convert it into a Float64. [Answer](./answer_int2float.md)
+
+- Round off 3.8 to the nearest integer. [Answer](./answer_roundoff.md)
+
 ### Background and References
 
 For a brief but lucid presentation of how floating-point numbers are represented, see John D. Cook's [article](http://www.johndcook.com/blog/2009/04/06/anatomy-of-a-floating-point-number/) on the subject as well as his [introduction](http://www.johndcook.com/blog/2009/04/06/numbers-are-a-leaky-abstraction/) to some of the issues arising from how this representation differs in behavior from the idealized abstraction of real numbers.

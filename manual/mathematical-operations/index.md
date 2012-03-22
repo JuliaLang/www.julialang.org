@@ -246,3 +246,8 @@ As with other operators, `x %= y` means `x = x % y` and `x ^= y` means `x = x^y`
 
     julia> x = 7; x %= 4; x
     3
+
+### Exercises
+
+- Find at least three ways to compute 2 to the power of 4. [Answer](./answer_power2.md)
+- In addition to `isequal`, Julia contains `isless`. By experimentation, summarize the rules that `isless` follows. [Answer](./answer_isless.md)
