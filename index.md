@@ -30,21 +30,21 @@ The following micro-benchmark results are from a MacBook Pro with a 2.53GHz Inte
 benchmark times relative to C++ (smaller is better).
 </p>
 <p class="note">
-C++ compiled by GCC 4.2.1, taking best timing from all optimization levels (-O0 through -O3).
+C++ compiled by GCC 4.2.1, taking best timing from all optimization levels (-O0 through -O3).<br>
+The Python implementations of <tt>rand_mat_stat</tt> and <tt>rand_mat_mul</tt> use NumPy functions; the rest are pure Python implementations.
 </p>
 </div>
 
 Julia beats other high-level systems on most micro-benchmarks, with a few exceptions for Matlab and JavaScript.
-Julia's LLVM JIT code even manages to beat C++ by 25% on the pi summation benchmark.
 Relative performance between languages on [other systems](https://github.com/JuliaLang/julia#Supported-Platforms) is similar.
-Matlab's ability to beat both C and Julia by such a large margin on random matrix multiplication comes from its use of the proprietary [Intel Math Kernel Library](http://en.wikipedia.org/wiki/Math_Kernel_Library), which has extremely optimized code for matrix multiplication on Intel platforms.
+Matlab's ability to beat both C and Julia on random matrix multiplication comes from its use of the proprietary [Intel Math Kernel Library](http://en.wikipedia.org/wiki/Math_Kernel_Library), which has extremely optimized code for matrix multiplication on Intel platforms.
 Users who have a licensed copy of MKL can use it with Julia, but the default BLAS is a high quality open source implementation (see [the GitHub page](https://github.com/JuliaLang/julia#Required-Build-Tools-External-Libraries) for more details).
 
 These benchmarks, while not comprehensive, do test compiler performance on a range of common code patterns, such as function calls, string parsing, sorting, numerical loops, random number generation, and array operations.
 Julia is strong in an area that high-level languages have traditionally been weak:
 scalar arithmetic loops, such as that found in the pi summation benchmark.
-Matlab's JIT for floating-point arithmetic does very well here too, as does the V8 JavaScript engine.
-V8 is very impressive in that it can provide such a dynamic language with C-like performance in so many circumstances.
+Matlab's JIT for floating-point arithmetic does well here too, as does the V8 JavaScript engine.
+V8 is impressive in that it can provide such a dynamic language with C-like performance in so many circumstances.
 JavaScript, however, is unable to utilize technical computing libraries such as LAPACK, resulting in poor performance on benchmarks like matrix multiplication.
 In contrast with both Matlab and JavaScript, Julia has a more comprehensive approach to eliminating overhead that allows it to consistently optimize all kinds of code for arbitrary user-defined data types, not just certain special cases.
 
