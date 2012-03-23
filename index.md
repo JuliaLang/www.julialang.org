@@ -31,7 +31,7 @@ benchmark times relative to C++ (smaller is better).
 </p>
 <p class="note">
 C++ compiled by GCC 4.2.1, taking best timing from all optimization levels (-O0 through -O3).<br>
-The Python implementations of <tt>rand_mat_stat</tt> and <tt>rand_mat_mul</tt> use NumPy functions; the rest are pure Python implementations.
+The Python implementations of <tt>rand_mat_stat</tt> and <tt>rand_mat_mul</tt> use NumPy (v1.5.1) functions; the rest are pure Python implementations.
 </p>
 </div>
 
