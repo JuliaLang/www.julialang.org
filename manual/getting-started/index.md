@@ -35,8 +35,22 @@ To run code in a file non-interactively, you can give it as the first argument t
 
     $ julia script.jl arg1 arg2...
 
-As the example implies, the following command-line arguments to julia are taken as command-line arguments to the program `script.jl`.
-There are various ways to run Julia code and provide options, reminiscent of those taken by the `perl` and `ruby` programs:
+As the example implies, the following command-line arguments to julia are taken as command-line arguments to the program `script.jl`, passed in the global constant `ARGS`.
+`ARGS` is also set when script code is given using the `-e` option on the command line (see the `julia` help output below).
+For example, to just print the arguments given to a script, you could do this:
+
+    $ julia -e 'for x in ARGS; println(x); end' foo bar
+    foo
+    bar
+
+Or you could put that code into a script and run it:
+
+    $ echo 'for x in ARGS; println(x); end' > script.jl
+    $ julia script.jl foo bar
+    foo
+    bar
+
+There are various ways to run Julia code and provide options, similar to those available for the `perl` and `ruby` programs:
 
     julia [options] [program] [args...]
      -q --quiet               Quiet startup without banner
