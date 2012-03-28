@@ -103,15 +103,14 @@ Here is a screenshot of a web-based interactive Julia session, plotting an oscil
 <a href="/images/web_repl.png" target="_blank"><img src="/images/web_repl.png" width="95%" /></a>
 
 There will eventually be full support for cloud-based operation, including data management, code editing and sharing, execution, debugging, collaboration, analysis, data exploration, and visualization.
-The goal is to allow people who work with big data to stop worrying about administering machines and managing data and get straight to the real problem:
-exploring their information and creating algorithms that can solve the problems presented by such big data.
+The goal is to allow people who work with big data to stop worrying about administering machines and managing data and get straight to the real problem.
 
 # Free, Open Source & Library-Friendly
 
 The core of the Julia implementation is licensed under the [MIT license](http://en.wikipedia.org/wiki/MIT_License).
 Various libraries used by the Julia environment include their own licenses such as the [GPL](http://en.wikipedia.org/wiki/GNU_General_Public_License), [LGPL](http://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License), and [BSD](http://en.wikipedia.org/wiki/BSD_licenses)
 (therefore the environment, which consists of the language, user interfaces, and libraries, is under the GPL).
-Core functionality is included in a shared library, so users can easily and legally combine Julia with their own C/Fortran code or proprietary third-party libraries.
+The language can be built as a shared library, so users can combine Julia with their own C/Fortran code or proprietary third-party libraries.
 Furthermore, Julia makes it [simple to call external functions](/manual/calling-c-and-fortran-code) in C and Fortran shared libraries, without writing any wrapper code or even recompiling existing code.
-You can try calling external library functions directly from Julia's interactive prompt, playing with the interface and getting immediate feedback until you get it right.
+You can try calling external library functions directly from Julia's interactive prompt, getting immediate feedback.
 See [LICENSE](https://github.com/JuliaLang/julia/blob/master/LICENSE.md) for the full terms of Julia's licensing.
