@@ -515,9 +515,6 @@ To consume values, first the producer is wrapped in a `Task`, then `consume` is 
     8
 
     julia> consume(p)
-    10
-
-    julia> consume(p)
     "stop"
 
 One way to think of this behavior is that `producer` was able to return multiple times. Between calls to `produce`, the producer's execution is suspended and the consumer has control.
@@ -532,7 +529,6 @@ A Task can be used as an iterable object in a `for` loop, in which case the loop
     4
     6
     8
-    10
     stop
 
 Note that the `Task()` constructor expects a 0-argument function. A common pattern is for the producer to be 
@@ -548,3 +544,4 @@ This can be done either directly or by use of a convenience macro:
     # or, equivalently
     taskHdl = @task mytask(7)
 
+`produce` and `consume` are intended for multitasking, and do not launch threads that can run on separate CPUs. True kernel threads are discussed under the topic of [parallel computing](../parallel-computing).
