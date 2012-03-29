@@ -237,9 +237,9 @@ By definition, `eps(1.0)` is the same as `eps(Float64)` since `1.0` is a 64-bit 
 
 ### Exercises
 
-- Define an integer variable with value equal to 1. Convert it into a Float64. [Answer](./answer_int2float.md)
+- Define an integer variable with value equal to 1. Convert it into a Float64. [Answer](answer_int2float)
 
-- Round off 3.8 to the nearest integer. [Answer](./answer_roundoff.md)
+- Round off 3.8 to the nearest integer. [Answer](answer_roundoff)
 
 ### Background and References
 
