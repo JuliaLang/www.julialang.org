@@ -944,10 +944,6 @@ FFT functions in Julia are largely implemented by calling functions from [FFTW](
 
 `yield()` — For scheduled tasks, switch back to the scheduler to allow another scheduled task to run.
 
-`task_exit([value])` — For scheduled tasks, tell the scheduler to stop running the current task, exiting with the given value.
-
-`wait(task)` — Repeatedly yield to a task until it exits.
-
 `tls(symbol)` — Look up the value of a symbol in the current task's task-local storage.
 
 `tls(symbol, value)` — Assign a value to a symbol in the current task's task-local storage.
