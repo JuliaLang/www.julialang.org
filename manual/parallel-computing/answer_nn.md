@@ -13,7 +13,22 @@ First, the "inner" function that gets spawned.  Note we provide the outputs as a
             end
         end
     end
-    
+
+We also define a little utility that helps us avoid launching any long computations on the current processor until we've gotten all the others started:
+
+    function permute_to_last{T}(v::Vector{T},val::T)
+        iother = Int[]
+        iindx = Int[]
+        for i = 1:length(v)
+            if v[i] == val
+                push(iindx,i)
+            else
+                push(iother,i)
+            end
+        end
+        [iother,iindx]
+    end
+
 Now, the "outer" function, the one called by the user:
 
     function nearestneighbor{T}(X::Matrix{T})
@@ -21,8 +36,9 @@ Now, the "outer" function, the one called by the user:
         inn = dzeros(Int,(N))  # allocate the storage for the results
         d2nn = dzeros(T,(N))
         println(inn.pmap)
+        order = permute_to_last(inn.pmap,myid())
         @sync begin
-            for i = length(inn.pmap):-1:1  # reverse so don't block til end
+            for i = order
                 r = inn.dist[i]:inn.dist[i+1]-1
                 @spawnat inn.pmap[i] nearestneighbor_darray(X,inn,d2nn)
             end
