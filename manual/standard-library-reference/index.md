@@ -704,7 +704,7 @@ Linear algebra functions in Julia are largely implemented by calling functions f
 
 `norm` — Compute the norm of a `Vector` or a `Matrix`
 
-`(R, p) = chol(A)` — Compute Cholesky factorization
+`R = chol(A)` — Compute Cholesky factorization
 
 `(L, U, p) = lu(A)` — Compute LU factorization
 
