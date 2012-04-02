@@ -3,7 +3,7 @@ layout: manual
 title:  Parallel Computing
 ---
 
-Julia provides a multiprocessing environment based on message passing to allow programs to run on multiple processors in separate memory domains at once.
+Most modern computers possess more than one CPU, and several computers can be combined together in a cluster. Harnessing the power of these multiple CPUs allows many computations to be completed more quickly. There are two major factors that influence performance: the speed of the CPUs themselves, and the speed of their access to memory. In a cluster, it's fairly obvious that a given CPU will have fastest access to the RAM within the same computer (node). Perhaps more surprisingly, similar issues are very relevant on a typical multicore laptop, due to differences in the speed of main memory and the [cache](http://www.akkadia.org/drepper/cpumemory.pdf). Consequently, a good multiprocessing environment should allow control over the "ownership" of a chunk of memory by a particular CPU. Julia provides a multiprocessing environment based on message passing to allow programs to run on multiple processors in separate memory domains at once.
 
 Julia's implementation of message passing is different from other environments such as MPI. Communication in Julia is generally "one-sided", meaning that the programmer needs to explicitly manage only one processor in a two-processor operation. Furthermore, these operations typically do not look like "message send" and "message receive" but rather resemble higher-level operations like calls to user functions.
 
@@ -27,12 +27,14 @@ Let's try this out. Starting with `julia -p n` provides `n` processors on the lo
     1.10824216411304866 1.13798233877923116
     1.12376292706355074 1.18750497916607167
 
-The first argument to `remote_call` is the index of the processor that will do the work. Most parallel programming in Julia does not reference specific processors or the number of processors available, but `remote_call` is considered a low-level interface providing finer control. The second argument to `remote_call` is the function to call, and the remaining arguments will be passed to this function. As you can see, in this example we asked processor 2 to construct a 2-by-2 random matrix, then add 1 to it.
+The first argument to `remote_call` is the index of the processor that will do the work. Most parallel programming in Julia does not reference specific processors or the number of processors available, but `remote_call` is considered a low-level interface providing finer control. The second argument to `remote_call` is the function to call, and the remaining arguments will be passed to this function. As you can see, in the first line we asked processor 2 to construct a 2-by-2 random matrix, and in the second line we asked it to add 1 to it. The result of both calculations is available in the two remote references, `r` and `s`.
 
 Occasionally you might want a remotely-computed value immediately. This typically happens when you read from a remote object to obtain data needed by the next local operation. The function `remote_call_fetch` exists for this purpose. It is equivalent to `fetch(remote_call(...))` but is more efficient.
 
     julia> remote_call_fetch(2, ref, r, 1, 1)
     0.10824216411304866
+
+Remember that `ref(r,1,1)` is [equivalent](../arrays#Indexing) to `r[1,1]`, so this call fetches the first element of the remote reference `r`.
 
 The syntax of `remote_call` is not especially convenient. The macro `@spawn` makes things easier. It operates on an expression rather than a function, and picks where to do the operation for you:
 
@@ -49,6 +51,32 @@ The syntax of `remote_call` is not especially convenient. The macro `@spawn` mak
 Note that we used `1+fetch(r)` instead of `1+r`. This is because we do not know where the code will run, so in general a `fetch` might be required to move `r` to the processor doing the addition. In this case, `@spawn` is smart enough to perform the computation on the processor that owns `r`, so the `fetch` will be a no-op.
 
 (It is worth noting that `@spawn` is not built-in but defined in Julia as a [macro](../metaprogramming#Macros). It is possible to define your own such constructs.)
+
+One important point is that your code must be available on any processor that runs it. For example, type the following into the julia prompt:
+
+    julia> function rand2(dims...)
+             return 2*rand(dims...)
+           end
+
+    julia> rand2(2,2)
+    2x2 Float64 Array:
+     0.153756  0.368514
+     1.15119   0.918912
+
+    julia> @spawn rand2(2,2)
+    RemoteRef(1,1,1)
+
+    julia> @spawn rand2(2,2)
+    RemoteRef(2,1,2)
+
+    julia> exception on 2: in anonymous: rand2 not defined 
+
+Processor 1 knew about the function `rand2`, but processor 2 did not. To make your code available to all processors, there are two primary methods. First, the `load` function will automatically load a source file on all currently available processors. In a cluster, the contents of the file (and any files loaded recursively) will be sent over the network.
+
+    julia> load("myfile.jl")
+
+Alternatively, all Julia processes will automatically load a file called `startup.jl` (if it exists) in the same directory as the Julia executable on startup. If you regularly work with certain source files, it makes sense to load them from this file. Julia also loads the file `.juliarc.jl` in the user's home directory.
+
 
 ## Data Movement
 
@@ -76,7 +104,7 @@ In this toy example, the two methods are easy to distinguish and choose from. Ho
 Fortunately, many useful parallel computations do not require data movement. A common example is a monte carlo simulation, where multiple processors can handle independent simulation trials simultaneously. We can use `@spawn` to flip coins on two processors:
 
     function count_heads(n)
-        c = 0
+        c::Int = 0
         for i=1:n
             c += randbit()
         end
@@ -87,13 +115,7 @@ Fortunately, many useful parallel computations do not require data movement. A c
     b = @spawn count_heads(100000000)
     fetch(a)+fetch(b)
 
-The function `count_heads` simply adds together `n` random bits. Then we perform some trials on two machines, and add together the results.
-
-At this point it is worth mentioning how to make sure your code is available on all processors (in this case, all processors need the `count_heads` function). There are two primary methods. First, the `load` function will automatically load a source file on all currently available processors. The contents of the file (and any files loaded recursively) will be sent over the network.
-
-    julia> load("myfile.jl")
-
-Alternatively, all Julia processes will automatically load a file called `startup.jl` (if it exists) in the same directory as the Julia executable on startup. If you regularly work with certain source files, it makes sense to load them from this file. Julia also loads the file `.juliarc.jl` in the user's home directory.
+The function `count_heads` simply adds together `n` random bits. Then we perform some trials on two machines, and add together the results. (Remeber that count_heads should be defined in a file and loaded to make sure it is available to both processors.)
 
 This example, as simple as it is, demonstrates a powerful and often-used parallel programming pattern. Many iterations run independently over several processors, and then their results are combined using some function. The combination process is called a _reduction_, since it is generally tensor-rank-reducing: a vector of numbers is reduced to a single number, or a matrix is reduced to a single row or column, etc. In code, this typically looks like the pattern `x = f(x,v[i])`, where `x` is the accumulator, `f` is the reduction function, and the `v[i]` are the elements being reduced. It is desirable for `f` to be associative, so that it does not matter what order the operations are performed in.
 
@@ -155,7 +177,7 @@ In the last case, each element will be initialized to the specified value `x`. T
     dzeros(Int64, (100,100), 2)
     dzeros((100,100), 2, [7, 8])
 
-In the first `dzeros` call, we specified an element type. In the second `dzeros` call, we also specified which processors should be used to store the data. When dividing data among a large number of processors, one often sees diminishing returns in performance. Placing `DArray`s on a subset of processors allows multiple `DArray` computations to happen at once, with a higher ratio of work to communication on each processor.
+In the `drand` call, we specified that the array should be distributed across dimension 3. In the first `dzeros` call, we specified an element type as well as the distributed dimension. In the second `dzeros` call, we also specified which processors should be used to store the data. When dividing data among a large number of processors, one often sees diminishing returns in performance. Placing `DArray`s on a subset of processors allows multiple `DArray` computations to happen at once, with a higher ratio of work to communication on each processor.
 
 `distribute(a::Array, dim)` can be used to convert a local array to a distributed array, optionally specifying the distributed dimension. `localize(a::DArray)` can be used to obtain the locally-stored portion of a `DArray`. `owner(a::DArray, index)` gives the id of the processor storing the given index in the distributed dimension. `myindexes(a::DArray)` gives a tuple of the indexes owned by the local processor. `convert(Array, a::DArray)` brings all the data to one node.
 
@@ -263,7 +285,7 @@ As an example, consider computing the singular values of matrices of different s
 If one processor handles both 800x800 matrices and another handles both 600x600 matrices, we will not get as much scalability as we could. The solution is to make a local task to "feed" work to each processor when it completes its current task. This can be seen in the implementation of `pmap`:
 
     function pmap(f, lst)
-        np = nprocs()
+        np = nprocs()  # determine the number of processors available
         n = length(lst)
         results = cell(n)
         i = 1
@@ -289,3 +311,32 @@ If one processor handles both 800x800 matrices and another handles both 600x600 
 `@spawnlocal` is similar to `@spawn`, but only runs tasks on the local processor. We use it to create a "feeder" task for each processor. Each task picks the next index that needs to be computed, then waits for its processor to finish, then repeats until we run out of indexes. A `@sync` block is used to wait for all the local tasks to complete, at which point the whole operation is done. Notice that all the feeder tasks are able to share state via `next_idx()` since they all run on the same processor. However, no locking is required, since the threads are scheduled cooperatively and not preemptively. This means context switches only occur at well-defined points (during the `fetch` operation).
 
 ## Adding Processors
+
+## Exercises
+
+- Sum the numbers from 1 to one million in two threads using `@spawn`. [Answer](answer_sumspawn.md)
+
+- Sum the numbers from 1 to one million using a `parallel for` loop. [Answer](answer_sumparfor.md)
+
+- Suppose you have a `d`-by-`N` matrix `X`, containing the coordinates of `N` points in `d` dimensions. You are given the function `nnx` below to compute the nearest neighbor of point indexed by `ithis`, excluding `ithis` itself. Write a function called `nearestneighbor` with the following syntax: `inn, d2nn = nearestneighbor(X)`, where `inn[i]` is the nearest-neighbor of point `i` (excluding `i` itself) and `d2nn[i]` is the square-distance between points `i` and `inn[i]`. Use a `DArray` to divide the output variables among multiple processors (do not worry about this for the input `X`). Make sure the two returned variables are ordinary vectors. [Answer](answer_nn.md)
+
+
+        function nnx{T}(X::Matrix{T},ithis::Int)
+            x = X[:,ithis]
+            d2min::T = typemax(T)  # start with Inf (a sentinel value)
+            imin::Int = 0
+            for i = 1:size(X,2)
+                if i == ithis
+                    continue  # exclude itself
+                end
+                d2::T = 0    # compute the square distance
+                for idim = 1:size(X,1)
+                    d2 += (X[idim,i] - x[idim])^2
+                end
+                if d2 < d2min   # test whether this is the best yet
+                    d2min = d2
+                    imin = i
+                end
+            end
+            imin, d2min
+        end
