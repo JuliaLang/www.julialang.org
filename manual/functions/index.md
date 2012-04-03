@@ -187,7 +187,7 @@ This has the exact same effect as the previous definition of `foo`.
 
 It is often convenient to be able to write functions taking an arbitrary number of arguments.
 Such functions are traditionally known as "varargs" functions, which is short for "variable number of arguments".
-You can define a varargs function by following the last argument with an ellisis:
+You can define a varargs function by following the last argument with an ellipsis:
 
     bar(a,b,x...) = (a,b,x)
 
