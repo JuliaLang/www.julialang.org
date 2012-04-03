@@ -618,6 +618,6 @@ For example, the following regex has all three flags turned on:
     RegexMatch("angry,\nBad world")
 
 
-### Exercises
+<!-- ### Exercises
 - Given an ASCIIString `s`, print it in reverse order. [Answer](answer_reverse.md)
-- Write a function to generate a random string consisting of the letters A-Z, a-z, and the numbers 0-9. [Answer](answer_randstring.md)
+- Write a function to generate a random string consisting of the letters A-Z, a-z, and the numbers 0-9. [Answer](answer_randstring.md) -->

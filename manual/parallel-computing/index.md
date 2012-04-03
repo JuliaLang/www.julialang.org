@@ -312,7 +312,7 @@ If one processor handles both 800x800 matrices and another handles both 600x600 
 
 ## Adding Processors
 
-## Exercises
+<!-- ## Exercises
 
 - Sum the numbers from 1 to one million in two threads using `@spawn`. [Answer](answer_sumspawn.md)
 
@@ -339,4 +339,4 @@ If one processor handles both 800x800 matrices and another handles both 600x600 
                 end
             end
             imin, d2min
-        end
+        end -->
