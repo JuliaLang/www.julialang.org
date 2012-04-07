@@ -20,3 +20,5 @@ Most high-performance dynamic language implementations have taken an existing in
 - Aggressive specialization of generated code for types encountered at run-time.
 
 Julia feels light and natural for data exploration and algorithm prototyping, but has performance that lets you deploy your prototypes.
+
+**Update:** You can see the slides for our talk [here](/images/lang.next.pdf). Video of the presentation is available [here](http://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia).
