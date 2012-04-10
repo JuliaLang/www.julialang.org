@@ -157,7 +157,7 @@ Partially implemented by: `Range`, `Range1`, `Tuple`.
 
 `IdTable` is a special hash table where the keys are always object identities. `WeakKeyHashTable` is a hash table implementation where the keys are weak references to objects, and thus maybe garbage collected even when referenced in a hash table. 
 
-HashTables can be created using a literal syntax: `{"A"->1, "B"->2}`
+HashTables can be created using a literal syntax: `{"A"=>1, "B"=>2}`
 
 `HashTable{K,V}(n)` - Construct a hashtable with keys of type K and values of type V and intial size of n
 
