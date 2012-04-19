@@ -138,7 +138,20 @@ will behave as if the following were written:
     ccall(dlsym(libfoo, :foo), Void, (Int32, Float64),
           convert(Int32, x), convert(Float64, y))
 
-When a value is passed with `&` as an argument of type `Ptr{T}`, the value will first be converted to type `T`.
+When a scalar value is passed with `&` as an argument of type `Ptr{T}`, the value will first be converted to type `T`.
+
+### Array conversions
+
+When an `Array` is passed to C as a `Ptr` argument, it is "converted" simply
+by taking the address of the first element. This is done in order to avoid
+copying arrays unnecessarily, and to tolerate the slight mismatches in pointer
+types that are often encountered in C APIs (for example, passing a `Float64`
+array to a function that operates on uninterpreted bytes).
+
+Therefore, if an `Array` contains data in the wrong format, it will have to
+be explicitly converted using a call such as `int32(a)`.
+
+### Type correspondences
 
 On all systems we currently support, basic C/C++ value types may be translated to Julia types as follows.
 
