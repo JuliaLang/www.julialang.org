@@ -102,16 +102,8 @@ This example first allocates an array of bytes, then calls the C library functio
 It is common for C libraries to use this pattern of requiring the caller to allocate memory to be passed to the callee and filled in.
 Allocation of memory from Julia like this is generally accomplished by creating an uninitialized array and passing a pointer to its data to the C function.
 
-Calling C functions that take arguments of the type `char**` can be done by using a `Ptr{Ptr{Uint8}}` within Julia. For example, C functions of the form: 
-
-    int main(int argc, char **argv);
-
-can be called via the following Julia code:
-
-    argv = [ "a.out", "arg1", "arg2" ]
-    ccall(:main, Int32, (Int32, Ptr{Ptr{Uint8}}), length(argv), argv)
-
 When calling a Fortran function, all inputs must be passed by reference.
+
 A prefix `&` is used to indicate that a pointer to a scalar argument should be passed instead of the scalar value itself.
 The following example computes a dot product using a BLAS function.
 
@@ -180,3 +172,13 @@ A C function declared to return `Void` will give `nothing` in Julia.
 - `wchar_t` ⟺ `Char`
 
 *Note:* Although `wchar_t` is technically system-dependent, on all the systems we currently support (UNIX), it is a 32 bits.
+
+C functions that take an arguments of the type `char**` can be called by using a `Ptr{Ptr{Uint8}}` type within Julia. For example, C functions of the form: 
+
+    int main(int argc, char **argv);
+
+can be called via the following Julia code:
+
+    argv = [ "a.out", "arg1", "arg2" ]
+    ccall(:main, Int32, (Int32, Ptr{Ptr{Uint8}}), length(argv), argv)
+
