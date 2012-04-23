@@ -26,7 +26,7 @@ mathematical operators are just functions with special syntax, and the arguments
 However, one may observe that applying mathematical operations to a wide variety of mixed argument types is just an extreme case of polymorphic multiple dispatch — something which Julia's dispatch and type systems are particularly well-suited to handle.
 "Automatic" promotion of mathematical operands simply emerges as a special application:
 Julia comes with pre-defined catch-all dispatch rules for mathematical operators, invoked when no specific implementation exists for some combination of operand types.
-These catch-all rules first promote all operands to a common type using user-definable promotion rules, and then invoke a specialized implementation of the operand in question for the resulting values, now of the same type.
+These catch-all rules first promote all operands to a common type using user-definable promotion rules, and then invoke a specialized implementation of the operator in question for the resulting values, now of the same type.
 User-defined types can easily participate in this promotion system by defining methods for conversion to and from other types, and providing a handful of promotion rules defining what types they should promote to when mixed with other types.
 
 ## Conversion
