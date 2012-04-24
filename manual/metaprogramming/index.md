@@ -309,7 +309,7 @@ Since it is common to need more than one unique symbol when generating a block o
     julia> s2
     #1010
 
-The `gensym` function can be used define the `@time` macro correctly, avoiding potential variable name clashes:
+The `gensym` function can be used to define the `@time` macro correctly, avoiding potential variable name clashes:
 
     macro time(ex)
       t0, val, t1 = gensym(3)
