@@ -36,7 +36,7 @@ Loosely speaking, this means `x` and `y` would look the same when printed.
 
 `hash(x)` — Compute an integer hash code such that `isequal(x,y)` implies `hash(x)==hash(y)`.
 
-`finalizer(x, function)` — Register a function to be called on `x` when there are no program-accessible references to `x`. The behavior of this function is unpredictable if `x` is of a bits type.
+`finalizer(x, function)` — Register a function to be called on `x` some time after there are no program-accessible references to `x`. The behavior of this function is unpredictable if `x` is of a bits type.
 
 `copy(x)` — Create a deep copy of `x`:
 i.e. `copy` is called recursively on all constituent parts of `x`.

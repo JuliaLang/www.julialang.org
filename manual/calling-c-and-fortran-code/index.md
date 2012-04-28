@@ -103,6 +103,7 @@ It is common for C libraries to use this pattern of requiring the caller to allo
 Allocation of memory from Julia like this is generally accomplished by creating an uninitialized array and passing a pointer to its data to the C function.
 
 When calling a Fortran function, all inputs must be passed by reference.
+
 A prefix `&` is used to indicate that a pointer to a scalar argument should be passed instead of the scalar value itself.
 The following example computes a dot product using a BLAS function.
 
@@ -138,7 +139,20 @@ will behave as if the following were written:
     ccall(dlsym(libfoo, :foo), Void, (Int32, Float64),
           convert(Int32, x), convert(Float64, y))
 
-When a value is passed with `&` as an argument of type `Ptr{T}`, the value will first be converted to type `T`.
+When a scalar value is passed with `&` as an argument of type `Ptr{T}`, the value will first be converted to type `T`.
+
+### Array conversions
+
+When an `Array` is passed to C as a `Ptr` argument, it is "converted" simply
+by taking the address of the first element. This is done in order to avoid
+copying arrays unnecessarily, and to tolerate the slight mismatches in pointer
+types that are often encountered in C APIs (for example, passing a `Float64`
+array to a function that operates on uninterpreted bytes).
+
+Therefore, if an `Array` contains data in the wrong format, it will have to
+be explicitly converted using a call such as `int32(a)`.
+
+### Type correspondences
 
 On all systems we currently support, basic C/C++ value types may be translated to Julia types as follows.
 
@@ -171,3 +185,13 @@ A C function declared to return `Void` will give `nothing` in Julia.
 - `wchar_t` ⟺ `Char`
 
 *Note:* Although `wchar_t` is technically system-dependent, on all the systems we currently support (UNIX), it is a 32 bits.
+
+C functions that take an arguments of the type `char**` can be called by using a `Ptr{Ptr{Uint8}}` type within Julia. For example, C functions of the form: 
+
+    int main(int argc, char **argv);
+
+can be called via the following Julia code:
+
+    argv = [ "a.out", "arg1", "arg2" ]
+    ccall(:main, Int32, (Int32, Ptr{Ptr{Uint8}}), length(argv), argv)
+
