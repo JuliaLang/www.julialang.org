@@ -18,3 +18,5 @@ Julia is especially good at running Matlab and R-style programs. Given its level
 We will also hear from a mix of people who have already started developing in Julia and see some examples of what they have developed.
 
 The meetup will follow our typical schedule: pizza will begin at 6:15pm, Stefan will begin promptly at 7pm, and we will head to The Central Bar around 8:30pm.
+
+**Update:** You can see the slides for the talk [here](/images/nyhackr.pdf). There was no video of the talk, but hopefully the slides are informative — there are, among other things, a lot of code examples that should just work if pasted into the Julia repl.
