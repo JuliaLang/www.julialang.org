@@ -810,7 +810,7 @@ FFT functions in Julia are largely implemented by calling functions from [FFTW](
 
 `fftn` — N-d FFT
 
-`ifft(A, dim)` — Inverse FFT. Same arguments as `fft`. Julia does not normalize the results of `ifft`.
+`ifft(A, dim)` — Inverse FFT. Same arguments as `fft`.
 
 `ifft2` — Inverse 2d FFT
 
