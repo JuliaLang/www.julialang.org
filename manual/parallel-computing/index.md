@@ -149,7 +149,7 @@ Here each iteration applies `f` to a randomly-chosen sample from a vector `a` sh
 
 In some cases no reduction operator is needed, and we merely wish to apply a function to all integers in some range (or, more generally, to all elements in some collection). This is another useful operation called _parallel map_, implemented in Julia as the `pmap` function. For example, we could compute the singular values of several large random matrices in parallel as follows:
 
-    M = {rand(1000,1000) | i=1:10}
+    M = {rand(1000,1000) for i=1:10}
     pmap(svd, M)
 
 Julia's `pmap` is designed for the case where each function call does a large amount of work. In contrast, `@parallel for` can handle situations where each iteration is tiny, perhaps merely summing two numbers.

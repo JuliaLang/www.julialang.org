@@ -51,7 +51,7 @@ The last function, `fill!`, is different in that it modifies an existing array i
 
 Comprehensions provide a general and powerful way to construct arrays. Comprehension syntax is similar to set construction notation in mathematics:
 
-    A = [ F(x,y,...) | x=rx, y=ry, ... ]
+    A = [ F(x,y,...) for x=rx, y=ry, ... ]
 
 The meaning of this form is that `F(x,y,...)` is evaluated with the variables `x`, `y`, etc. taking on each value in their given list of values. Values can be specified as any iterable object, but will commonly be ranges like `1:n` or `2:(n-1)`, or explicit arrays of values like `[1.2, 3.4, 5.7]`. The result is an N-d dense array with dimensions that are the concatenation of the dimensions of the variable ranges `rx`, `ry`, etc. and each `F(x,y,...)` evaluation returns a scalar.
 
@@ -60,7 +60,7 @@ The following example computes a weighted average of the current element and its
     julia> const x = rand(10)
     [0.6017125321472665,0.55317268439850298,0.83375372173664064,0.20371170284589835,0.50800458572940888,0.52963052092498386,0.33042233578025493,0.49411133447814293,0.29570938193206264,0.81897111867503525]
 
-    julia> [ 0.5*x[i-1] + x[i] + 0.5*x[i+1] | i=2:length(x)-1 ]
+    julia> [ 0.5*x[i-1] + x[i] + 0.5*x[i+1] for i=2:length(x)-1 ]
     [1.27090581134045655,1.21219591535884108,0.8745908565789231,0.87467569761484998,0.94884398167981576,0.84229326348181832,0.80717719333430171,0.95225060850865173]
 
 NOTE: In the above example, `x` is declared as constant because type inference in Julia does not work as well on non-constant global variables.
