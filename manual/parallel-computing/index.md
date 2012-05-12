@@ -300,7 +300,7 @@ If one processor handles both 800x800 matrices and another handles both 600x600 
                         if idx > n
                             break
                         end
-                        results[idx] = remote_call_fetch(p, f, L[idx])
+                        results[idx] = remote_call_fetch(p, f, lst[idx])
                     end
                 end
             end
