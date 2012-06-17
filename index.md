@@ -8,7 +8,7 @@ It provides a sophisticated compiler, distributed parallel execution, numerical 
 The library, mostly written in Julia itself, also integrates mature, best-of-breed C and Fortran libraries for linear algebra, random number generation, FFTs, and string processing.
 More libraries continue to be added over time.
 Julia programs are organized around defining functions, and overloading them for different combinations of argument types (which can also be user-defined).
-For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](/manual/introduction) in the [online manual](/manual).
+For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](http://docs.julialang.org/en/latest/manual/introduction/) in the [online manual](http://docs.julialang.org/en/latest/manual/).
 
 # High-Performance JIT Compiler
 
@@ -112,6 +112,6 @@ The core of the Julia implementation is licensed under the [MIT license](http://
 Various libraries used by the Julia environment include their own licenses such as the [GPL](http://en.wikipedia.org/wiki/GNU_General_Public_License), [LGPL](http://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License), and [BSD](http://en.wikipedia.org/wiki/BSD_licenses)
 (therefore the environment, which consists of the language, user interfaces, and libraries, is under the GPL).
 The language can be built as a shared library, so users can combine Julia with their own C/Fortran code or proprietary third-party libraries.
-Furthermore, Julia makes it [simple to call external functions](/manual/calling-c-and-fortran-code) in C and Fortran shared libraries, without writing any wrapper code or even recompiling existing code.
+Furthermore, Julia makes it [simple to call external functions](http://docs.julialang.org/en/latest/manual/calling-c-and-fortran-code/) in C and Fortran shared libraries, without writing any wrapper code or even recompiling existing code.
 You can try calling external library functions directly from Julia's interactive prompt, getting immediate feedback.
 See [LICENSE](https://github.com/JuliaLang/julia/blob/master/LICENSE.md) for the full terms of Julia's licensing.
