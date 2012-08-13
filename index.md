@@ -40,7 +40,7 @@ These benchmarks, while not comprehensive, do test compiler performance on a ran
 It is important to note that these benchmark implementations are not written for absolute maximal performance (the fastest code to compute `fib(20)` is the constant literal `6765`).
 Rather, all of the benchmarks are written to test the performance of specific algorithms, expressed in a reasonable idiom in each language.
 In particular, all languages use the same algorithm: the Fibonacci benchmarks are all recursive while the Pi summation benchmarks are all iterative; the "algorithm" for random matrix multiplication is simply to call LAPACK (except for JavaScript which cannot call LAPACK).
-The point of these benchmarks is to compare the performance of specific *algorithms* across language implementations, not to compare the fastest means of computing a result — which is a constant expression in any language, and therefore pointless to compare.
+The point of these benchmarks is to compare the performance of specific *algorithms* across language implementations, not to compare the fastest means of computing a result, which in most high-level languages relies on calling C code.
 
 Julia beats all other high-level systems (i.e. everything besides C++ and Fortran) on all micro-benchmarks.
 Relative performance between languages on [other systems](https://github.com/JuliaLang/julia#Supported-Platforms) is similar.

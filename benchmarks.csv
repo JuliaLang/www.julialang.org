@@ -5,7 +5,7 @@ c,pi_sum,39.605856
 c,printfd,24.585009
 c,quicksort,0.411987
 c,rand_mat_mul,225.378990
-c,rand_mat_stat,6.983042
+c,rand_mat_stat,12.719154
 fortran,fib,.046215
 fortran,mandel,.169745
 fortran,parse_int,2.137911
