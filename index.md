@@ -39,7 +39,7 @@ The Python implementations of <tt>rand_mat_stat</tt> and <tt>rand_mat_mul</tt> u
 These benchmarks, while not comprehensive, do test compiler performance on a range of common code patterns, such as function calls, string parsing, sorting, numerical loops, random number generation, and array operations.
 It is important to note that these benchmark implementations are not written for absolute maximal performance (the fastest code to compute `fib(20)` is the constant literal `6765`).
 Rather, all of the benchmarks are written to test the performance of specific algorithms, expressed in a reasonable idiom in each language.
-In particular, all languages use the same algorithm: the Fibonacci benchmarks are all recursive while the Pi summation benchmarks are all iterative; the "algorithm" for random matrix multiplication is simply to call LAPACK (except for JavaScript which cannot call LAPACK).
+In particular, all languages use the same algorithm: the Fibonacci benchmarks are all recursive while the pi summation benchmarks are all iterative; the "algorithm" for random matrix multiplication is calling LAPACK, except where that's not possible, such as JavaScript.
 The point of these benchmarks is to compare the performance of specific *algorithms* across language implementations, not to compare the fastest means of computing a result, which in most high-level languages relies on calling C code.
 
 Julia beats all other high-level systems (i.e. everything besides C++ and Fortran) on all micro-benchmarks.
