@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Design and implementation of Julia"
+title: "A paper on the design and implementation of Julia"
 authors:
     - <a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
     - <a href="http://karpinski.org/">Stefan Karpinski</a>
