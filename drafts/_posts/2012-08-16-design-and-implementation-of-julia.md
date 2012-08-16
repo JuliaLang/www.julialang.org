@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A paper on the design and implementation of Julia"
+title: "Design and implementation of Julia"
 authors:
     - <a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
     - <a href="http://karpinski.org/">Stefan Karpinski</a>
@@ -8,4 +8,4 @@ authors:
     - <a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>
 ---
 
-Our first technical report on the design and implementation of Julia - [Julia: A Fast Dynamic Language for Technical Computing](/images/julia-dls2012-tr.pdf).
+We describe the design and implementation of Julia in our first paper - [Julia: A Fast Dynamic Language for Technical Computing](/images/julia-dynamic-2012-tr.pdf). This is work in progress and comments are appreciated.
