@@ -6,7 +6,8 @@ title:  The Julia Language
 Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments.
 It provides a sophisticated compiler, distributed parallel execution, numerical accuracy, and an extensive mathematical function library.
 The library, largely written in Julia itself, also integrates mature, best-of-breed C and Fortran libraries for linear algebra, random number generation, signal processing, and string processing.
-In addition, the Julia developer community is contributing a number of [external packages](https://github.com/juliaLang/METADATA.jl/) through Julia's built-in package manager at a rapid pace.
+In addition, the Julia developer community is contributing a number of
+[external packages](http://docs.julialang.org/en/latest/packages/packagelist/) through Julia's built-in package manager at a rapid pace.
 Julia programs are organized around multiple dispatch; by defining functions and overloading them for different combinations of argument types, which can also be user-defined.
 For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](http://docs.julialang.org/en/latest/manual/introduction/) in the [online manual](http://docs.julialang.org/en/latest/manual/).
 
