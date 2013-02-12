@@ -3,8 +3,8 @@ layout: default
 title:  Julia Publications
 ---
 
-# Julia: A Fast Dynamic Language for Technical Computing [arxiv](http://arxiv.org/abs/1209.5145)
-
+1. Julia: A Fast Dynamic Language for Technical Computing [[arxiv]](http://arxiv.org/abs/1209.5145)
+<pre>
 @article{DBLP:journals/corr/abs-1209-5145,
   author    = {Jeff Bezanson and
                Stefan Karpinski and
@@ -17,3 +17,4 @@ title:  Julia Publications
   ee        = {http://arxiv.org/abs/1209.5145},
   bibsource = {DBLP, http://dblp.uni-trier.de}
 }
+</pre>
