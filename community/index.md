@@ -13,7 +13,7 @@ The [julia-stats](https://groups.google.com/forum/?fromgroups=#!forum/julia-stat
 
 # GitHub
 
-We use [GitHub](https://github.com/) not only to track our source code, but also for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) and [commits](https://github.com/JuliaLang/julia/commits). There is also a list of [packages](http://docs.julialang.org/en/latest/packages/packagelist/) for Julia, many of which are also hosted on and developed using GitHub.
+We use GitHub to track our source code and for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) and [commits](https://github.com/JuliaLang/julia/commits). There is also a list of [packages](http://docs.julialang.org/en/latest/packages/packagelist/) for Julia, many of which are also hosted on and developed using GitHub.
 
 # IRC
 
