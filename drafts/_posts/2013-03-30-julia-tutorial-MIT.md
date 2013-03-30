@@ -2,7 +2,7 @@
 layout: post
 title:  Videos from the Julia tutorial at MIT
 authors:
-    - <a href="http://github.com/JeffBezanson/">Viral B. Shah</a>
+    - <a href="http://github.com/ViralBShah/">Viral B. Shah</a>
 ---
 
 We held a two day Julia tutorial at MIT in January 2013. MIT Open Courseware and MIT-X graciously provided support for recording of these lectures, so that the wider community can benefit from these as well.
