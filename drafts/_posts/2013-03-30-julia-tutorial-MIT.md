@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Video recordings of the Julia tutorial at MIT (Jan 2013)
+title:  Videos from the Julia tutorial at MIT
 authors:
     - <a href="http://github.com/JeffBezanson/">Viral B. Shah</a>
 ---
