@@ -25,11 +25,11 @@ The rationale and vision behind julia, and its design principles are discussed i
 
 <iframe width="560" height="315" src="http://www.youtube.com/embed/XRClA5YLiIc" frameborder="0" allowfullscreen></iframe>
 
-## Statistics ([slides](https://github.com/JuliaLang/julia-tutorial/raw/master/Stats/slides.pdf))
+## Statistical Models in Julia ([slides](https://github.com/JuliaLang/julia-tutorial/raw/master/Stats/slides.pdf))
 
 This session demonstrates Julia's statistics capabilities, which are provided by these packages: [Distributions](https://github.com/JuliaStats/Distributions.jl), [GLM](https://github.com/JuliaStats/GLM.jl), and [LM](https://github.com/JuliaStats/LM.jl).
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/XRClA5YLiIc" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/v9Io-p_iymI" frameborder="0" allowfullscreen></iframe>
 
 ## Fast Fourier Transforms
 
@@ -39,7 +39,7 @@ Julia provides a built-in interface to the [FFTW](http://www.fftw.org/) library.
 
 ## Optimization ([slides](https://github.com/JuliaLang/julia-tutorial/raw/master/NumericalOptimization/presentation.pdf))
 
-A number of optimization libraries are already available for Julia. This session focusses largely on linear programming. These packages are relevant for optimization and linear programming: [Optim](https://github.com/johnmyleswhite/Optim.jl), [MathProg](https://github.com/IainNZ/MathProg.jl), [CLP](https://github.com/mlubin/Clp.jl), [GLPK](https://github.com/carlobaldassi/GLPK.jl), and [Gurobi](https://github.com/lindahua/Gurobi.jl)
+A number of optimization libraries are already available for Julia. This session focusses largely on linear programming. These packages are relevant for optimization and linear programming: [Optim](https://github.com/johnmyleswhite/Optim.jl), [NLopt](https://github.com/stevengj/NLopt.jl), [MathProg](https://github.com/IainNZ/MathProg.jl), [CLP](https://github.com/mlubin/Clp.jl), [GLPK](https://github.com/carlobaldassi/GLPK.jl), and [Gurobi](https://github.com/lindahua/Gurobi.jl).
 
 <iframe width="560" height="315" src="http://www.youtube.com/embed/O1icUP6sajU" frameborder="0" allowfullscreen></iframe>
 
