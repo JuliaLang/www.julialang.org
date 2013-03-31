@@ -144,7 +144,7 @@ where ``state`` is an instance of a type defined as
         ...
     end
 
-There is little difference in the structure of the code inside the ``@sync`` blocks, and the asynchronous logic is encapsulated in the local ``updatemodel`` function which conditionally generates new subproblems. A strength of Julia is that functions like ``pmap`` are implemented in Julia itself, so that it is particularly easy to make modifications like this.
+There is little difference in the structure of the code inside the ``@sync`` blocks, and the asynchronous logic is encapsulated in the local ``updatemodel`` function which conditionally generates new subproblems. A strength of Julia is that functions like ``pmap`` are implemented in Julia itself, so that it is particularly straightforward to make modifications like this.
 
 ### Running it
 
@@ -263,7 +263,7 @@ Results from various runs are presented in the table below.
 Results on Amazon EC2. Workers correspond to individual m1.medium instances. The master process is run on an m3.xlarge instance. 
 </p>
 
-On both architechtures the asynchronous version solves subproblems at a higher rate and has significantly better parallel efficiency. Scaling is better on EC2 than on the shared-memory server likely because the subproblem calculation is memory bound, and so performance is better on the distributed-memory architechture. Anyway, Julia makes it easy to run on both.
+On both architechtures the asynchronous version solves subproblems at a higher rate and has significantly better parallel efficiency. Scaling is better on EC2 than on the shared-memory server likely because the subproblem calculation is memory bound, and so performance is better on the distributed-memory architechture. Anyway, with Julia we can easily experiment on both.
 
 ### Further reading
 
