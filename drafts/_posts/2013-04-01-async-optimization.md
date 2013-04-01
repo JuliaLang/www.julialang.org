@@ -367,14 +367,14 @@ Results on Amazon EC2. Workers correspond to individual m1.medium instances. The
 master process is run on an m3.xlarge instance. 
 </p>
 
-On both architechtures the asynchronous version solves subproblems at a higher
+On both architectures the asynchronous version solves subproblems at a higher
 rate and has significantly better parallel efficiency. Scaling is better on EC2
 than on the shared-memory server likely because the subproblem calculation is
 memory bound, and so performance is better on the distributed-memory
-architechture. Anyway, with Julia we can easily experiment on both.
+architecture. Anyway, with Julia we can easily experiment on both.
 
 ### Further reading
 
 A more detailed <a
 href="https://github.com/JuliaLang/julia-tutorial/blob/master/NumericalOptimization/tutorial.pdf?raw=true">tutorial</a>
-was prepared for the Julia IAP session at MIT in January. 
+was prepared for the Julia <a href="https://github.com/JuliaLang/julia-tutorial">IAP session</a> at MIT in January. 
