@@ -5,7 +5,7 @@ authors:
     - <a href="http://github.com/ViralBShah/">Viral B. Shah</a>
 ---
 
-We held a two day Julia tutorial at MIT in January 2013. MIT Open Courseware and MIT-X graciously provided support for recording of these lectures, so that the wider community can benefit from these sessions.
+We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. [MIT Open Courseware](http://ocw.mit.edu/) and [MIT-X](http://www.mitx.org/) graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.
 
 ## Julia Lightning Round ([slides](https://raw.github.com/JuliaLang/julia-tutorial/master/LightningRound/IAP_2013_Lightning.pdf))
 
