@@ -233,7 +233,7 @@ We'll first run on ``julia.mit.edu``, a large multicore server. The
 ``runals.jl`` (asynchronous L-shaped) file contains the algorithm we'll use. Its
 usage is
     
-	julia runatr.jl [data source] [num subproblems] [async param] [block size]
+	julia runals.jl [data source] [num subproblems] [async param] [block size]
 
 where the ``[num subproblems]`` is the \\(n\\) above and ``[async param]`` is
 the proportion \\(\alpha\\). By setting \\(\alpha = 1\\) we obtain the
@@ -246,7 +246,7 @@ To run multiple Julia processes on a shared-memory machine, we pass the ``-p N``
 option to the ``julia`` executable, which will start up ``N`` system processes.
 To execute the asynchronous version with 10 workers, we run 
 
-    julia -p 12 runatr.jl Data/storm 4000 0.6 30
+    julia -p 12 runals.jl Data/storm 4000 0.6 30
 
 Note that we start 12 processes. These are the 10 workers, the master (which
 distributes tasks), and another process to perform the master's computations (an
@@ -297,7 +297,7 @@ are presented in the table below.
 </table>
 
 <p class="caption" style="text-align:center"><b>Table:</b>
-Results on a shared-memory 8x Xeon E5-2650 server. Workers correspond to
+Results on a shared-memory 8x Xeon E7-8850 server. Workers correspond to
 individual cores. Speed is the rate of subproblems solved per second. Efficiency
 is calculated as the percent of ideal parallel speedup obtained. The superlinear
 scaling observed with 20 workers is likely a system artifact. 
