@@ -235,7 +235,7 @@ usage is
     
 	julia runals.jl [data source] [num subproblems] [async param] [block size]
 
-where the ``[num subproblems]`` is the \\(n\\) above and ``[async param]`` is
+where ``[num subproblems]`` is the \\(n\\) as above and ``[async param]`` is
 the proportion \\(\alpha\\). By setting \\(\alpha = 1\\) we obtain the
 synchronous algorithm. For the asynchronous version we will take \\(\alpha =
 0.6\\). The ``[block size]`` parameter controls how many subproblems are sent to
