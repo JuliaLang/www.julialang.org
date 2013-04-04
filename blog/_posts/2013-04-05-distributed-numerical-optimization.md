@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Distributed numerical optimization
+title:  Distributed Numerical Optimization
 authors:
     - <a href="http://www.mit.edu/~mlubin/">Miles Lubin</a>
 ---
