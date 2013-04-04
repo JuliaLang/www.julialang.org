@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Asynchronous Parallel Optimization
+title:  Distributed numerical optimization
 authors:
     - <a href="http://www.mit.edu/~mlubin/">Miles Lubin</a>
 ---
@@ -8,14 +8,14 @@ authors:
   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
-I've been invited to write this guest post in what will become a series of posts
-from users in the growing Julia community. We will be walking through using the
-parallel computing functionality of Julia to implement an asynchronous parallel
-version of the classical *cutting-plane* algorithm for convex (nonsmooth)
-optimization, demonstrating the complete workflow including running on both
-Amazon EC2 and a large multicore server. I will quickly review the cutting-plane
-algorithm and will be focusing primarily on parallel computation patterns, so
-don't worry if you're not familiar with the optimization side of things.
+This post walks through the parallel computing functionality of Julia
+to implement an asynchronous parallel version of the classical
+*cutting-plane* algorithm for convex (nonsmooth) optimization,
+demonstrating the complete workflow including running on both Amazon
+EC2 and a large multicore server. I will quickly review the
+cutting-plane algorithm and will be focusing primarily on parallel
+computation patterns, so don't worry if you're not familiar with the
+optimization side of things.
 
 ### Cutting-plane algorithm
 
@@ -377,4 +377,4 @@ architecture. Anyway, with Julia we can easily experiment on both.
 
 A more detailed <a
 href="https://github.com/JuliaLang/julia-tutorial/blob/master/NumericalOptimization/tutorial.pdf?raw=true">tutorial</a>
-was prepared for the Julia <a href="https://github.com/JuliaLang/julia-tutorial">IAP session</a> at MIT in January. 
+was prepared for the Julia <a href="https://github.com/JuliaLang/julia-tutorial">IAP session</a> at MIT in January 2013.
