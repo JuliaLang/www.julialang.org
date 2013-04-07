@@ -1,20 +1,30 @@
 ---
 layout: default
-title:  Julia Community
+title:  Using Julia in the classroom
 ---
 
-# Mailing Lists
+Although still a young language, and a bit rough around the edges, we belive that Julia is ready for the classroom. We encourage instructors to particpate on the [mailing lists](http://julialang.org/community/) for questions regarding the readiness of Julia or specific packages.
 
-The [julia-users](https://groups.google.com/forum/?fromgroups=#!forum/julia-users) mailing list is for discussion around the usage of julia. New users of julia can ask their questions here. As a courtesy to others, do check the archives and documentation to see if a particular question is already answered.
+# Installing Julia
 
-The [julia-dev](https://groups.google.com/forum/?fromgroups=#!forum/julia-dev) mailing list is for discussion related to the development of julia itself.
+[Julia binaries](http://julialang.org/downloads/) are available for Mac and Windows. It is also easy to [build from source](http://github.com/juliaLang/julia/) on Linux, Mac, and Windows.
 
-The [julia-stats](https://groups.google.com/forum/?fromgroups=#!forum/julia-stats) mailing list is a special purpose mailing list for discussions related to statistical programming with julia. Topics of interest include DataFrame support, GLM modeling, and automatic generation of MCMC code for Bayesian models.
+# The Julia manual
 
-# GitHub
+The [Julia manual](http://docs.julialang.org/en/latest/) contains a complete introduction to the Julia language, and is available in English and Chinese.
 
-We use GitHub to track our source code and for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) and [commits](https://github.com/JuliaLang/julia/commits). There is also a list of [packages](http://docs.julialang.org/en/latest/packages/packagelist/) for Julia, many of which are also hosted on and developed using GitHub.
+# Julia packages for teaching
 
-# IRC
+Julia [packages](http://docs.julialang.org/en/latest/packages/packagelist.html) span a number of disciplines. Some packages are well developed, whereas others are fledgling efforts.
 
-Many Julia users and developers hang out in the [#julia IRC channel](http://webchat.freenode.net/?channels=julia) on Freenode.
+# Videos
+
+We recorded a number of [videos](http://julialang.org/blog/2013/03/julia-tutorial-MIT/) as part of the Julia tutorial at MIT in January 2013. These videos are published in the [Julia channel on Youtube](http://www.youtube.com/user/JuliaLanguage). [Slides](http://beowulf.csail.mit.edu/18.337/index.html) and other material from the tutorial are available on GitHub.
+
+# Classes using Julia
+
+* Homer Reid has put up an excellent [tutorial on basic numerical programming](https://github.com/JuliaLang/julia/blob/master/README.md) in Julia, as part of MIT 18.330.
+
+* MIT 18.06 Linear Algebra, taught by Alan Edelman.
+
+* [MIT 18.337](http://beowulf.csail.mit.edu/18.337/index.html), Parallel Computing, taught by Alan Edelman.
