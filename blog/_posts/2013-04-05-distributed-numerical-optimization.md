@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Distributed numerical optimization
+title:  Distributed Numerical Optimization
 authors:
     - <a href="http://www.mit.edu/~mlubin/">Miles Lubin</a>
 ---
@@ -229,7 +229,7 @@ relatively small linear optimization problem. Test instances are taken from the
 previously mentioned <a
 href="http://dx.doi.org/10.1023/A:1021858008222">paper</a>. 
 
-We'll first run on ``julia.mit.edu``, a large multicore server. The
+We'll first run on a large multicore server. The
 ``runals.jl`` (asynchronous L-shaped) file contains the algorithm we'll use. Its
 usage is
     
