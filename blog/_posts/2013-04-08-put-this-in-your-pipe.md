@@ -18,8 +18,8 @@ But it's so convenient!
 Why can't running pipelines of external programs be convenient *and* safe?
 Well, there's no real reason, actually.
 The shell itself manages to construct and execute pipelines quite well.
-In principle, there's nothing stopping high-level languages from doing it at least as well as shells do the common ones just don't by default, instead requiring users to make the extra effort to use external programs safely and correctly.
-There two major impediments:
+In principle, there's nothing stopping high-level languages from doing it at least as well as shells do – the common ones just don't by default, instead requiring users to make the extra effort to use external programs safely and correctly.
+There are two major impediments:
 
 - Some moderately tricky low-level UNIX plumbing using the [`pipe`], [`dup2`], [`fork`], [`close`], and [`exec`] system calls;
 - The UX problem of designing an easy, flexible programming interface for commands and pipelines.
