@@ -4,6 +4,8 @@ title:  Shelling Out Sucks
 author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 ---
 
+[followup post]: /blog/2013/04/put-this-in-your-pipe/
+
 [Perl]:     http://www.perl.org/
 [Python]:   http://python.org/
 [Ruby]:     http://www.ruby-lang.org/
@@ -26,7 +28,7 @@ This default leniency leads to code that fails silently when shelled out command
 Worse still, because of the indirection problem, there are many cases where the failure of a process in a spawned pipeline *cannot* be detected by the parent process, even if errors are fastidiously checked for.
 
 In the rest of this post, I'll go over examples demonstrating each of these problems.
-At [the end](#Summary+and+Remedy), I'll talk about better alternatives to shelling out, and in a followup post, I'll demonstrate how Julia makes these better alternatives dead simple to use.
+At [the end](#Summary+and+Remedy), I'll talk about better alternatives to shelling out, and in a [followup post], I'll demonstrate how Julia makes these better alternatives dead simple to use.
 Examples below are given in Ruby which shells out to [Bash], but the same problems exist no matter what language one shells out from:
 it's the technique of using an intermediate shell process to spawn external commands that's at fault, not the language.
 
@@ -261,6 +263,4 @@ Moreover, without a shell to interpret commands, there is also no shell to treat
 [Python] gets this right:
 using [`os.popen`](http://docs.python.org/library/os.html#os.popen) to shell out is officially deprecated, and the recommended way to call external programs is to use the [`subprocess`](http://docs.python.org/library/subprocess.html) module, which spawns external programs without using a shell.
 Constructing pipelines using `subprocess` [can be a little verbose](http://docs.python.org/library/subprocess.html#replacing-shell-pipeline), but it is safe and avoids all the problems that shelling out is prone to.
-In my followup post, I will describe how Julia makes constructing and executing pipelines of external commands as safe as Python's `subprocess` and as convenient as shelling out.
-
-[followup post]: /drafts/2012/02/put-this-in-your-pipe/
+In my [followup post], I will describe how Julia makes constructing and executing pipelines of external commands as safe as Python's `subprocess` and as convenient as shelling out.

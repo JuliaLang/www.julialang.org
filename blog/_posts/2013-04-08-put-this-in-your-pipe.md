@@ -5,7 +5,7 @@ author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 manurl: https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages
 ---
 
-[previous post]: /blog/2012/02/shelling-out-sucks/
+[previous post]: /blog/2012/03/shelling-out-sucks/
 
 [`pipe`]:  {{page.manurl}}/man2/pipe.2.html
 [`dup2`]:  {{page.manurl}}/man2/dup2.2.html
