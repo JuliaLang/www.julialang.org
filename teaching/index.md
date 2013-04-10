@@ -23,7 +23,7 @@ We recorded a number of [videos](http://julialang.org/blog/2013/03/julia-tutoria
 
 # Classes using Julia
 
-* Homer Reid has put up an excellent [tutorial on basic numerical programming](https://github.com/JuliaLang/julia/blob/master/README.md) in Julia, as part of MIT 18.330.
+* Homer Reid has put up an excellent [tutorial on basic numerical programming](http://homerreid.ath.cx/teaching/18.330/JuliaProgramming.shtml) in Julia, as part of [MIT 18.330](http://homerreid.ath.cx/teaching/18.330/).
 
 * MIT 18.06 Linear Algebra, taught by Alan Edelman.
 
