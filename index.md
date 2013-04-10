@@ -96,7 +96,7 @@ Instead, it provides a number of [key building blocks for distributed computatio
 The following simple example demonstrates how to count the number of heads in a large number of coin tosses in parallel.
 
     nheads = @parallel (+) for i=1:100000000
-      randbit()
+      int(randbool())
     end
 
 This computation is automatically distributed across all available compute nodes, and the result, reduced by summation (`+`), is returned at the calling node.
