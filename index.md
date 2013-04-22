@@ -106,7 +106,6 @@ Here is a screenshot of a web-based interactive Julia session, plotting an oscil
 
 <a href="/images/web_repl.png" target="_blank"><img src="/images/web_repl.png" width="95%" /></a>
 
-You can try Julia in the web repl yourself at [julia.forio.com](http://julia.forio.com/) (EC2 instance and maintenance graciously provided by [Forio](http://forio.com/)).
 There will eventually be full support for cloud-based operation, including data management, code editing and sharing, execution, debugging, collaboration, analysis, data exploration, and visualization.
 The goal is to allow people who work with big data to stop worrying about administering machines and managing data and get straight to the real problem.
 
