@@ -64,7 +64,7 @@ given \\( i \\) and \\( x \\) (the elements of ``subproblems`` could be tuples
 ``(i,x)``). The function ``process`` corresponds to minimizing the model in step
 3, and it produces a new state and a new set of subproblems to solve. 
 
-Note that the the algorithm looks much like a map-reduce that would be easy to
+Note that the algorithm looks much like a map-reduce that would be easy to
 parallelize using many existing frameworks. Indeed, in Julia we can simply
 replace ``map`` with ``pmap`` (parallel map). Let's consider a twist that makes
 the parallelism not so straightforward. 
@@ -99,7 +99,7 @@ this is easy to do in Julia.
 
 
 Julia implements distributed-memory parallelism based on one-sided message
-passing, where process push work onto others (via ``remote_call``) and the
+passing, where process push work onto others (via ``remotecall``) and the
 results are retrieved (via ``fetch``) by the process which requires them. Macros
 such as ``@spawn`` and ``@parallel`` provide pretty syntax around this low-level
 functionality.  This model of parallelism is very different from the typical
@@ -131,7 +131,7 @@ The implementation of ``pmap`` in Julia is
                             if idx > n
                                 break
                             end
-                            results[idx] = remote_call_fetch(p, f, lst[idx])
+                            results[idx] = remotecall_fetch(p, f, lst[idx])
                         end
                     end
                 end
@@ -144,10 +144,10 @@ On first sight, this code is not particularly intuitive. The ``@spawnlocal``
 macro creates a *<a
 href="http://docs.julialang.org/en/latest/manual/control-flow/#man-tasks">task</a>*
 on the *master process* (e.g. process 1). Each task feeds work to a
-corresponding worker; the call ``remote_call_fetch(p, f, lst[idx])`` function
+corresponding worker; the call ``remotecall_fetch(p, f, lst[idx])`` function
 calls ``f`` on process ``p`` and returns the result when finished. Tasks are
 uninterruptable and only surrender control at specific points such as
-``remote_call_fetch``. Tasks cannot directly modify variables from the enclosing
+``remotecall_fetch``. Tasks cannot directly modify variables from the enclosing
 scope, but the same effect can be achieved by using the ``next_idx`` function to
 access and mutate ``i``. *The task idiom functions in place of using a loop to
 poll for results from each worker process.*
@@ -192,7 +192,7 @@ the above code:
                             continue
                         end
                         mysubproblem = shift!(subproblems) # pop subproblem from queue
-                        result = remote_call_fetch(p, solvesubproblem, mysubproblem)
+                        result = remotecall_fetch(p, solvesubproblem, mysubproblem)
                         updatemodel(mysubproblem, result)
                     end
                 end
