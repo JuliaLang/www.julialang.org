@@ -31,6 +31,15 @@ Instructions will be added here as more linux distributions start including juli
 
 Graphics in Julia are available through external packages. These packages are under heavy development and take different approaches towards graphics and plotting.
 
+## Gaston
+
+[Gaston](https://github.com/mbaz/Gaston.jl) provides an interface to [gnuplot](http://www.gnuplot.info). Gaston also includes detailed documentation and examples in its [manual](https://bitbucket.org/mbaz/gaston/downloads/gastondoc-0.5.5.pdf). Add the Gaston package to your Julia installation with the following commond on the Julia prompt:
+
+1. `Pkg.add("Gaston")`
+2. `using Gaston`
+
+In order to use Gaston, [install gnuplot](http://www.gnuplot.info/download.html). Gnuplot is widely used, and binaries are available for all platforms.
+
 ## Winston
 
 Winston provides 2D plotting capabilities for Julia. Add the Winston package to your Julia installation with the following command on the Julia prompt:
@@ -48,10 +57,3 @@ Gadfly is an implementation of a [Wickham-Wilkinson](http://www.cs.uic.edu/%7Ewi
 2. `using Gadfly`
 
 Gadfly's interface will be familiar to users of R's [ggplot2](http://ggplot2.org) package. See [examples](http://dcjones.github.com/Gadfly.jl/doc/) and documentation on the [Gadfly](https://github.com/dcjones/Gadfly.jl) homepage.
-
-## Gaston
-
-[Gaston](https://github.com/mbaz/Gaston.jl) provides an interface to [gnuplot](http://www.gnuplot.info). Gaston also includes detailed documentation and examples in its [manual](https://bitbucket.org/mbaz/gaston/downloads/gastondoc-0.5.5.pdf). Add the Gaston package to your Julia installation with the following commond on the Julia prompt:
-
-1. `Pkg.add("Gaston")`
-2. `using Gaston`
