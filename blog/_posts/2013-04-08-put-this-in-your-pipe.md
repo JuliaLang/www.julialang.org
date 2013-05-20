@@ -64,6 +64,7 @@ However, it isn't susceptible to the same problems:
     julia> dir = "foo'; echo MALICIOUS ATTACK; echo '";
 
     julia> int(readchomp(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`))
+    find: `foo\'; echo MALICIOUS ATTACK; echo \'': No such file or directory
     ERROR: failed processes:
       Process(`find "foo'; echo MALICIOUS ATTACK; echo '" -type f -print0`, ProcessExited(1)) [1]
       Process(`xargs -0 grep foo`, ProcessExited(123)) [123]
