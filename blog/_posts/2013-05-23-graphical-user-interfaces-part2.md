@@ -23,6 +23,7 @@ We'll control the source and the path to achieve the effects we want.
 
 Let's play with this.
 First, inside a new window we create a Cairo-enabled Canvas for drawing:
+
 ```julia
 using Base.Graphics
 using Cairo
@@ -32,6 +33,7 @@ win = Toplevel("Test", 400, 200)
 c = Canvas(win)
 pack(c, expand=true, fill="both")
 ```
+
 We've created a window 400 pixels wide and 200 pixels high.
 `c` is our Canvas, a type defined in the `Tk` package.
 Later we'll dig into the internals a bit, but for now suffice it to say that a Canvas is a multi-component object that you can often treat as a black box.
@@ -41,42 +43,49 @@ The call to `pack` specifies that this canvas fills the entire window, and simul
 Note that the window is currently blank, because we haven't drawn anything to it yet, so you can see whatever was lying underneath.
 In my case it captured a small region of my desktop:
 
-![cairo snapshot](GUI_figures/cairo_example2.jpg)
+![cairo snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/cairo_example2.jpg?raw=true)
 
 
 Now let's do some drawing.
 Cairo doesn't know anything about Tk Canvases, so we have to pull out the part of it that works directly with  Cairo:
+
 ```julia
 ctx = getgc(c)
 ```
+
 `getgc` means "get graphics context," returning an object (here `ctx`) that holds all relevant information about the current state of drawing to this canvas.
 
 One nice feature of Cairo is that the coordinates are abstracted; ultimately we care about screen pixels, but we can set up _user coordinates_ that have whatever scaling is natural to the problem.
 We just have to tell Cairo how to convert user coordinates to _device_ (screen) coordinates.
 We set up a coordinate system using `set_coords`, defined in `base/graphics.jl`:
+
 ```julia
 function set_coords(ctx::GraphicsContext, x, y, w, h, l, r, t, b)
 ```
+
 `x` (horizontal) and `y` (vertical) specify the upper-left corner of the drawing region in _device_ coordinates, and `w` and `h` its width and height, respectively.
 (Note Cairo uses (0,0) for the top-left corner of the window.) `l`, `r`, `t`, and `b` are the _user_ coordinates corresponding to the left, right, top, and bottom, respectively, of this region.
 Note that `set_coords` will also `clip` any drawing that occurs outside the region defined by `x`, `y`, `w`, and `h`; however, the coordinate system you've specified extends to infinity, and you can draw all the way to the edge of the canvas by calling `reset_clip()`.
 
 Let's fill the drawing region with a color, so we can see it:
+
 ```julia
 # Set coordinates to go from 0 to 10 within a 300x100 centered region
 set_coords(ctx, 50, 50, 300, 100, 0, 10, 0, 10)
 set_source_rgb(ctx, 0, 0, 1)   # set color to blue
 paint(ctx)                     # paint the entire clip region
 ```
+
 Perhaps surprisingly, nothing happened.
 The reason is that the Tk Canvas implements a technique called [double buffering](http://en.wikipedia.org/wiki/Multiple_buffering#Double_buffering_in_computer_graphics), which means that you do all your drawing to a back (hidden) surface, and then blit the completed result to the front (visible) surface.
 We can see this in action simply by bringing another window over the top of the window we're using to draw, and then bringing our window back to the top; suddenly you'll see a nice blue rectangle within the window, surrounded by whatever is in the background window(s):
 
-![cairo snapshot](GUI_figures/cairo_example3.jpg)
+![cairo snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/cairo_example3.jpg?raw=true)
 
 Fortunately, to display your graphics you don't have to rely on users changing the stacking order of windows: call `reveal(c)` to update the front surface with the contents of the back surface, followed by `update()` (or perhaps better, `Tk.update()` since `update` is a fairly generic name) to give Tk a chance to expose the front surface to the OS's window manager.
 
 Now let's draw a red line:
+
 ```julia
 move_to(ctx, -1, 5)
 line_to(ctx, 7, 6)
@@ -86,12 +95,14 @@ stroke(ctx)
 reveal(c)
 Tk.update()
 ```
+
 We started at a position outside the coordinate region (we'll get to see the clipping in action this way).
 The next command, `line_to`, creates a segment of a _path_, the way that regions are defined in Cairo.
 The `stroke` command draws a line along the trajectory of the path, after which the path is cleared.
 (You can use `stroke_preserve` if you want to re-use this path for another purpose later.)
 
 Let's illustrate this by adding a solid green rectangle with a magenta border, letting it spill over the edges of the previously-defined coordinate region:
+
 ```julia
 reset_clip(ctx)
 rectangle(ctx, 7, 5, 4, 4)
@@ -102,11 +113,12 @@ stroke(ctx)
 reveal(c)
 Tk.update()
 ```
+
 `fill` differs from `paint` in that `fill` works inside the currently-defined path, whereas `paint` fills the entire clip region.
 
 Here is our masterpiece, where the "background" may differ for you (mine was positioned over the bottom of a wikipedia page):
 
-![cairo snapshot](GUI_figures/cairo_example.jpg)
+![cairo snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/cairo_example.jpg?raw=true)
 
 ### Rendering an image
 
@@ -120,6 +132,7 @@ The scheme is that the least significant byte is the blue value (ranging from `0
 
 Both `Winston` and `Images` can generate a buffer of `Uint32` for you.
 Let's try the one in `Images`:
+
 ```julia
 using Images
 img = imread("some_photo.jpg")
@@ -128,12 +141,13 @@ image(ctx, CairoRGBSurface(buf), 0, 0, 10, 10)
 reveal(c)
 Tk.update()
 ```
+
 Rather than manually calling `rectangle` and `fill`, we use the convenience method `image(ctx, surf, x, y, w, h)` (defined in `Cairo.jl`).
 Here `x`, `y`, `w`, `h` are user-coordinates of your canvas, not pixels on the screen or pixels in your image; being able to express location in user coordinates is the main advantage of using `image()`.
 
 The image should now be displayed within your window (squashed, because we haven't worried about aspect ratio):
 
-![cairo snapshot](GUI_figures/cairo_image1.jpg)
+![cairo snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/cairo_image1.jpg?raw=true)
 
 It fills only part of the window because of the coordinate system we've established, where the range `0:10` corresponds to an inset region in the center of the window.
 
@@ -153,10 +167,13 @@ The key is to have a callback that gets activated whenever the canvas changes si
 Canvases make this easy by having a field, `redraw`, that you assign the callback to.
 This function will receive a single argument, the canvas itself, but as always you can provide more information.
 Taking our image example, we could set
+
 ```julia
 c.redraw = c->redraw(c, buf)
 ```
+
 and then define
+
 ```julia
 function redraw(c::Canvas, buf)
     ctx = getgc(c)
@@ -168,6 +185,7 @@ function redraw(c::Canvas, buf)
     Tk.update()
 end
 ```
+
 Here you can see that we're aiming to be a bit more polished, and want to avoid seeing bits of the desktop around the borders of our drawing region.
 So we fill the window with a solid color (but choose a garish red, to make sure we notice it) before displaying the image. 
 We also have to re-create our coordinate system, because that too was destroyed, and in this case we dynamically adjust the coordinates to the size of the canvas.
@@ -177,7 +195,7 @@ Obviously, you can use this `redraw` function even for the initial rendering of 
 
 If you grab the window handle and resize it, now you should see something like this:
 
-![cairo snapshot](GUI_figures/cairo_image2.jpg)
+![cairo snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/cairo_image2.jpg?raw=true)
 
 Voila! We're really getting somewhere now.
 
@@ -192,10 +210,12 @@ For this reason, you shouldn't ever store a ctx object on its own; always begin 
 
 A Canvas already comes with a set of fields prepared for mouse events.
 For example, in the complete GUI we have the equivalent of the following:
+
 ```julia
 selectiondonefunc = (c, bb) -> zoombb(imgc, img2, bb)
 c.mouse.button1press = (c, x, y) -> rubberband_start(c, x, y, selectiondonefunc)
 ```
+
 `rubberband_start`, a function defined in `rubberband.jl`, will now be called whenever the user presses the left mouse button.
 `selectiondonefunc` is a callback that we supply; it will be executed when the user releases the mouse button, and it needs to implement whatever it is we want to achieve with the selected region (in this case, a zoom operation).
 Part of what `rubberband_start` does is to bind `selectiondonefunc` to the release of the mouse button, via `c.mouse.button1release`.
@@ -205,12 +225,14 @@ Part of what `rubberband_start` does is to bind `selectiondonefunc` to the relea
 The `mouse` inside a `Canvas` is an object of type `MouseHandler`, which has fields for `press` and `release` of all 3 mouse buttons and additional ones for motion.
 However, a few cases (which happen to be relevant to this GUI) are not available in `MouseHandler`.
 Here are some examples of how to configure these actions:
+
 ```julia
 # Bind double-clicks
 bind(c.c, "<Double-Button-1>", (path,x,y)->zoom_reset(imgc, img2))
 # Bind Shift-scroll (using the wheel mouse)
 bindwheel(c.c, "Shift", (path,delta)->panhorz(imgc,img2,int(delta)))
 ```
+
 The `delta` argument for the wheel mouse will encode the direction of scrolling.
 
 ### The rubber band (region selection)
@@ -222,6 +244,7 @@ By now, this should all be fairly straightforward.
 
 However, these functions use one additional trick worth mentioning.
 Let's finally look at the Tk `Canvas` object:
+
 ```julia
 type Canvas
     c::TkWidget
@@ -234,6 +257,7 @@ type Canvas
     
     function ...
 ```
+
 Here we can explicitly see the two buffers, used in double-buffering, and their associated contexts.
 `getgc(c)`, where `c` is a `Canvas`, simply returns `backcc`.
 This is why all drawing occurs on the back surface.
@@ -259,9 +283,11 @@ win = Toplevel("Testing", 400, 200)
 fwin = Frame(win)
 pack(fwin, expand=true, fill="both")
 ```
+
 We chose to fill the entire window with a frame `fwin`, so that everything inside this GUI will have a consistent background. All other objects will be placed inside `fwin`.
 
 Next, let's set up the elements, a Canvas on the left and a single button on the right:
+
 ```
 c = Canvas(fwin, 300, 200)
 grid(c, 1, 1, sticky="nsew")
@@ -273,7 +299,9 @@ grid_rowconfigure(fwin, 1, weight=1)
 ok = Button(fctrls, "OK")
 grid(ok, 1, 1)
 ```
+
 Finally, let's plot something inside the Canvas:
+
 ```
 x = linspace(0.0,10.0,1001)
 y = sin(x)
@@ -285,7 +313,7 @@ reveal(c)
 Tk.update()
 ```
 
-![Winston snapshot](GUI_figures/winston.jpg)
+![Winston snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/winston.jpg?raw=true)
 
 You'll note that you can resize this window, and the plot grows or shrinks accordingly.
 

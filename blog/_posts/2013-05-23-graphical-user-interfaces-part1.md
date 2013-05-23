@@ -19,31 +19,36 @@ You'll need the `ImageView` package:
 ```
 Pkg.add("ImageView")
 ```
+
 It's worth pointing out that this package is expected to evolve over time; however, if things have changed from what's described in this blog, try checking out the "blog" branch directly from the [repository](https://github.com/timholy/ImageView.jl).
 I should also point out that this package was developed on the author's Linux system, and it's possible that things may not work as well on other platforms.
 
 First let's try it with a photograph. Load one this way:
+
 ```
 using Images
 using ImageView
 img = imread("my_photo.jpg")
 ```
+
 Any typical image format should be fine, it doesn't have to be a jpg.
 Now display the image this way:
+
 ```
 display(img, pixelspacing = [1,1])
 ```
+
 The basic command to view the image is `display`.
 The optional `pixelspacing` input tells `display` that this image has a fixed aspect ratio, and that this needs to be honored when displaying the image. (Alternatively, you could set `img["pixelspacing"] = [1,1]` and then you wouldn't have to tell this to the `display` function.)
 
 You should get a window with your image:
 
-![photo](GUI_figures/photo1.jpg)
+![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo1.jpg?raw=true)
 
 OK, nice.
 But we can start to have some fun if we resize the window, which causes the image to get bigger or smaller:
 
-![photo](GUI_figures/photo2.jpg)
+![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo2.jpg?raw=true)
 
 Note the black perimeter; that's because we've specified the aspect ratio through the `pixelspacing` input, and when the window doesn't have the same aspect ratio as the image you'll have a perimeter either horizontally or vertically.
 Try it without specifying `pixelspacing`, and you'll see that the image stretches to fill the window, but it looks distorted:
@@ -52,15 +57,15 @@ Try it without specifying `pixelspacing`, and you'll see that the image stretche
 display(img)
 ```
 
-![photo](GUI_figures/photo3.jpg)
+![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo3.jpg?raw=true)
 
 (This won't work if you've already defined `"pixelspacing"` for `img`; if necessary, use `delete!(img, "pixelspacing")` to remove that setting.)
 
 Next, click and drag somewhere inside the image.
 You'll see the typical rubberband selection, and once you let go the image display will zoom in on the selected region. 
 
-![photo](GUI_figures/photo4.jpg)
-![photo](GUI_figures/photo5.jpg)
+![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo4.jpg?raw=true)
+![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo5.jpg?raw=true)
 
 Again, the aspect ratio of the display is preserved.
 Double-clicking on the image restores the display to full size.
@@ -79,15 +84,19 @@ These already give a taste of some of the features we can achieve quite easily i
 
 However, there's more to this GUI than meets the eye.
 You can display the image upside-down with
+
 ```
 display(img, pixelspacing = [1,1], flipy=true)
 ```
+
 or switch the `x` and `y` axes with
+
 ```
 display(img, pixelspacing = [1,1], xy=["y","x"])
 ```
-![photo](GUI_figures/photo6.jpg)
-![photo](GUI_figures/photo7.jpg)
+
+![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo6.jpg?raw=true)
+![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo7.jpg?raw=true)
 
 To experience the full functionality, you'll need a "4D  image," a movie (time sequence) of 3D images.
 If you don't happen to have one lying around, you can create one via `include("test/test4d.jl")`, where `test` means the test directory in `ImageView`.
@@ -96,7 +105,7 @@ This creates a solid cone that changes color over time, again in the variable `i
 Load this file, then type `display(img)`.
 You should see something like this:
 
-![GUI snapshot](GUI_figures/display_GUI.jpg)
+![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/display_GUI.jpg?raw=true)
 
 The green circle is a "slice" from the cone.
 At the bottom of the window you'll see a number of buttons and our current location, `z=1` and `t=1`, which correspond to the base of the cone and the beginning of the movie, respectively.
@@ -109,20 +118,22 @@ If you have a wheel mouse, Alt-scroll changes the time, and Ctrl-Alt-scroll chan
 
 You can change the playback speed by right-clicking in an empty space within the navigation bar, which brings up a popup (context) menu:
 
-![GUI snapshot](GUI_figures/popup.jpg)
+![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/popup.jpg?raw=true)
 
 <br />
 <br />
 
 By default, `display` will show you slices in the `xy`-plane.
 You might want to see a different set of slices from the 4d image:
+
 ```
 display(img, xy=["x","z"])
 ```
+
 Initially you'll see nothing, but that's because this edge of the image is black.
 Type 151 into the `y:` entry box (note its name has changed) and hit enter, or move the "y" slider into the middle of its range; now you'll see the cone from the side.
 
-![GUI snapshot](GUI_figures/display_GUI2.jpg)
+![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/display_GUI2.jpg?raw=true)
 
 This GUI is also useful for "plain movies" (2d images with time), in which case the `z` controls will be omitted and it will behave largely as a typical movie-player.
 Likewise, the `t` controls will be omitted for 3d images lacking a temporal component, making this a nice viewer for MRI scans.
@@ -148,6 +159,7 @@ John wrote up a nice set of [examples](https://github.com/JuliaLang/Tk.jl/tree/m
 
 Let's create a couple of types to hold the data we'll need.
 We need a type that stores "GUI state," which here consists of the currently-viewed location in the image and information needed to implement the "play" functionality:
+
 ```julia
 type NavigationState
     # Dimensions:
@@ -160,7 +172,9 @@ type NavigationState
     fps::Float64       # playback speed in frames per second
 end
 ```
+
 Next, let's create a type to hold "handles" to all the widgets:
+
 ```
 type NavigationControls
     stepup                            # z buttons...
@@ -180,6 +194,7 @@ type NavigationControls
     scalet
 end
 ```
+
 It might not be strictly necessary to hold handles to all the widgets (you could do everything with callbacks), but having them available is convenient.
 For example, if you don't like the icons I created, you can easily initialize the GUI and replace, using the handles, the icons with something better.
 
@@ -188,6 +203,7 @@ We'll talk about initialization later; for now, assume that we have a variable `
 Each button needs a callback function to be executed when it is clicked.
 Let's go through the functions for controlling `t`.
 First there is a general utility not tied to any button, but it affects many of the controls:
+
 ```julia
 function updatet(ctrls, state)
     set_value(ctrls.editt, string(state.t))
@@ -200,11 +216,13 @@ function updatet(ctrls, state)
     set_enabled(ctrls.playfwd, enablefwd)
 end
 ```
+
 The first two lines synchronize the entry box and slider to the current value of `state.t`;
 the currently-selected time can change by many different mechanisms (one of the buttons, typing into the entry box, or moving the slider), so we make `state.t` be the "authoritative" value and synchronize everything to it.
 The remaining lines of this function control which of the `t` navigation buttons are enabled (if `t==1`, we can't go any earlier in the movie, so we gray out the backwards buttons).
 
 A second utility function modifies `state.t`:
+
 ```
 function incrementt(inc, ctrls, state, showframe)
     state.t += inc
@@ -212,12 +230,14 @@ function incrementt(inc, ctrls, state, showframe)
     showframe(state)
 end
 ```
+
 Note the call to `updatet` described above.
 The new part of this is the `showframe` function, whose job it is to display the image frame (or any other visual information) to the user.
 Typically, the actual `showframe` function will need additional information such as where to render the image, but you can provide this information using anonymous functions.
 We'll see how that works in the next installment; below we'll just create a simple "stub" function.
 
 Now we get to callbacks which we'll "bind" to the step and play buttons:
+
 ```julia
 function stept(inc, ctrls, state, showframe)
     if 1 <= state.t+inc <= state.tmax
@@ -237,9 +257,11 @@ function playt(inc, ctrls, state, showframe)
     start_timer(state.timer, iround(1000*dt), iround(1000*dt))
 end
 ```
+
 `stept()` increments the `t` frame by the specified amount (typically 1 or -1), while `playt()` starts a timer that will call `stept` at regular intervals.
 The timer is stopped if play reaches the beginning or end of the movie.
 The `stop_playing!` function checks to see whether we have an active timer, and if so stops it:
+
 ```julia
 function stop_playing!(state::NavigationState)
     if !is(state.timer, nothing)
@@ -248,7 +270,9 @@ function stop_playing!(state::NavigationState)
     end
 end
 ```
+
 An alternative way to handle playback without a timer would be in a loop, like this:
+
 ```julia
 function stept(inc, ctrls, state, showframe)
     if 1 <= state.t+inc <= state.tmax
@@ -265,11 +289,13 @@ function playt(inc, ctrls, state, showframe)
     state.isplaying = false
 end
 ```
+
 With this version we would use a single Boolean value to signal whether there is active playback.
 A key point here is the call to `tcl_doevent()`, which allows Tk to interrupt the execution of the loop to handle user interaction (in this case, clicking the stop button).
 But with the timer that's not necessary, and moreover the timer gives us control over the speed of playback.
 
 Finally, there are callbacks for the entry and slider widgets:
+
 ```julia
 function sett(ctrls,state, showframe)
     tstr = get_value(ctrls.editt)
@@ -289,6 +315,7 @@ function scalet(ctrls, state, showframe)
     showframe(state)
 end
 ```
+
 `sett` runs when the user types an entry into the edit box; if the user types in nonsense like "foo", it will gracefully reset it to the current position.
 
 There's a complementary set of these functions for the `z` controls.
@@ -305,10 +332,12 @@ One also needs the `data` array (of type `Bool`) for the pixels that should be c
 There's also the `mask` array, which can prevent the `data` array from taking effect in any pixels marked as false in the `mask`.
 
 Given suitable `data` and `mask` arrays (here we just set the mask to `trues`), and color strings, we create the icon and assign it to a button like this:
+
 ```julia
 icon = Tk.image(data, mask, "gray70", "black")  # background=gray70, foreground=black
 ctrls.stop = Button(f, icon)
 ```
+
 Here `f` is the "parent frame" that the navigation controller will be rendered in.
 A frame is a container that organizes a collection of related GUI elements.
 Later we'll find out how to create one.
@@ -316,10 +345,12 @@ Later we'll find out how to create one.
 #### Assigning callbacks to widgets
 
 The "stop" and "play backwards" buttons look like this:
+
 ```julia
 bind(ctrls.stop, "command", path -> stop_playing!(state))
 bind(ctrls.playback, "command", path -> playt(-1, ctrls, state, showframe)
 ```
+
 The `path` input is generated by Tk/Tcl, but we don't have to use it.
 Instead, we use anonymous functions to pass the arguments relavant to this particular GUI instantiation.
 Note that these two buttons share `state`; that means that any changes made by one callback will have impact on the other.
@@ -330,27 +361,33 @@ Here our layout needs are quite simple, but I recommend that you read the [excel
 `grid` provides a great deal of functionality missing in Matlab, and in particular allows flexible and polished GUI behavior when resizing the window.
 
 We position the stop button this way:
+
 ```julia
 grid(ctrls.stop, 1, stopindex, padx=3*pad, pady=pad)
 ```
+
 After the handle for the button itself, the next two inputs determine the row, column position of the widget.
 Here the column position is set using a variable (an integer) whose value will depend on whether the z controls are present.
  The `pad` settings just apply a bit of horizontal and vertical padding around the button.
 
 To position the slider widgets, we could do something like this:
+
 ```julia
 ctrls.scalez = Slider(f, 1:state.zmax)
 grid(ctrls.scalez, 2, start:stop, sticky="we", padx=pad)
 ```
+
 This positions them in row 2 of the frame's grid, and has them occupy the range of columns (indicated by `start:stop`) used by the button controls for the same `z` or `t` axis.
 The `sticky` setting means that it will stretch to fill from West to East (left to right).
 
 In the main GUI we'll use one more feature of `grid`, so let's cover it now.
 This feature controls how regions of the window expand or shrink when the window is resized:
+
 ```julia
 grid_rowconfigure(win, 1, weight=1)
 grid_columnconfigure(win, 1, weight=1)
 ```
+
 This says that row 1, column 1 will expand at a rate of `1` when the figure is made larger.
 You can set different weights for different GUI components.
 The default value is 0, indicating that it shouldn't expand at all.
@@ -361,40 +398,48 @@ Larger weight values indicate that the given component should expand (or shrink)
 
 We'll place the navigation controls inside a Tk frame.
 Let's create one from the command line:
+
 ```julia
 using Tk
 win = Toplevel()
 f = Frame(win)
 pack(f, expand=true, fill="both")
 ```
+
 The first three lines create the window and the frame. `pack` is an alternative layout engine to `grid`, and slightly more convenient when all you want is to place a single item so that it fills its container.
 (You can mix `pack` and `grid` as long as they are operating on separate containers.
 Here we'll have a frame `pack`ed in the window, and the widgets will be `grid`ded inside the frame.)
 After that fourth line, the window is rather tiny; the call to `pack` causes the frame to fill to expand the whole window, but at the moment the frame has no contents, so the window is as small as it can be.
 
-![GUI snapshot](GUI_figures/navigation1.jpg)
+![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/navigation1.jpg?raw=true)
 
 We need a `showframe` callback; for now let's create a very simple one that will help in testing:
+
 ```julia
 showframe = x -> println("showframe z=", x.z, ", t=", x.t)
 ```
+
 Next, load the GUI code (`using ImageView.Navigation`) and create the `NavigationState` and `NavigationControls` objects:
+
 ```julia
 ctrls = NavigationControls()
 state = NavigationState(40, 1000, 2, 5)
 ```
+
 Here we've set up a fake movie with 40 image slices in `z`, and 1000 image stacks in `t`.
 
 Finally, we initialize the widgets:
+
 ```julia
 init_navigation!(f, ctrls, state, showframe)
 ```
-![GUI snapshot](GUI_figures/navigation2.jpg)
+
+![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/navigation2.jpg?raw=true)
 
 Now when you click on buttons, or change the text in the entry boxes, you'll see the GUI in action.
 You can tell from the command line output, generated by `showframe`, what's happening internally:
 
-![GUI snapshot](GUI_figures/navigation_repl.jpg)
+![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/navigation_repl.jpg?raw=true)
 
 Hopefully this demonstrates another nice feature of developing GUIs in Julia: it's straightforward to build re-usable components.
 This navigation frame can be added as an element to any window, and the grid layout manager takes care of the rest.
