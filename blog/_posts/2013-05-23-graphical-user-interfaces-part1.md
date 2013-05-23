@@ -187,14 +187,14 @@ Let's go through the functions for controlling `t`.
 First there is a general utility not tied to any button, but it affects many of the controls:
 
     function updatet(ctrls, state)
-	set_value(ctrls.editt, string(state.t))
-	set_value(ctrls.scalet, state.t)
-	enableback = state.t > 1
-	set_enabled(ctrls.stepback, enableback)
-	set_enabled(ctrls.playback, enableback)
-	enablefwd = state.t < state.tmax
-	set_enabled(ctrls.stepfwd, enablefwd)
-	set_enabled(ctrls.playfwd, enablefwd)
+        set_value(ctrls.editt, string(state.t))
+        set_value(ctrls.scalet, state.t)
+        enableback = state.t > 1
+        set_enabled(ctrls.stepback, enableback)
+        set_enabled(ctrls.playback, enableback)
+        enablefwd = state.t < state.tmax
+        set_enabled(ctrls.stepfwd, enablefwd)
+        set_enabled(ctrls.playfwd, enablefwd)
     end
 
 The first two lines synchronize the entry box and slider to the current value of `state.t`;
@@ -204,9 +204,9 @@ The remaining lines of this function control which of the `t` navigation buttons
 A second utility function modifies `state.t`:
 
     function incrementt(inc, ctrls, state, showframe)
-	state.t += inc
-	updatet(ctrls, state)
-	showframe(state)
+        state.t += inc
+        updatet(ctrls, state)
+        showframe(state)
     end
 
 Note the call to `updatet` described above.
@@ -217,21 +217,21 @@ We'll see how that works in the next installment; below we'll just create a simp
 Now we get to callbacks which we'll "bind" to the step and play buttons:
 
     function stept(inc, ctrls, state, showframe)
-	if 1 <= state.t+inc <= state.tmax
-	    incrementt(inc, ctrls, state, showframe)
-	else
-	    stop_playing!(state)
-	end
+        if 1 <= state.t+inc <= state.tmax
+            incrementt(inc, ctrls, state, showframe)
+        else
+            stop_playing!(state)
+        end
     end
 
     function playt(inc, ctrls, state, showframe)
-	if !(state.fps > 0)
-	    error("Frame rate is not positive")
-	end
-	stop_playing!(state)
-	dt = 1/state.fps
-	state.timer = TimeoutAsyncWork(i -> stept(inc, ctrls, state, showframe))
-	start_timer(state.timer, iround(1000*dt), iround(1000*dt))
+        if !(state.fps > 0)
+            error("Frame rate is not positive")
+        end
+        stop_playing!(state)
+        dt = 1/state.fps
+        state.timer = TimeoutAsyncWork(i -> stept(inc, ctrls, state, showframe))
+        start_timer(state.timer, iround(1000*dt), iround(1000*dt))
     end
 
 `stept()` increments the `t` frame by the specified amount (typically 1 or -1), while `playt()` starts a timer that will call `stept` at regular intervals.
@@ -239,27 +239,27 @@ The timer is stopped if play reaches the beginning or end of the movie.
 The `stop_playing!` function checks to see whether we have an active timer, and if so stops it:
 
     function stop_playing!(state::NavigationState)
-	if !is(state.timer, nothing)
-	    stop_timer(state.timer)
-	    state.timer = nothing
-	end
+        if !is(state.timer, nothing)
+            stop_timer(state.timer)
+            state.timer = nothing
+        end
     end
 
 An alternative way to handle playback without a timer would be in a loop, like this:
 
     function stept(inc, ctrls, state, showframe)
-	if 1 <= state.t+inc <= state.tmax
-	    incrementt(inc, ctrls, state, showframe)
-	end
+        if 1 <= state.t+inc <= state.tmax
+            incrementt(inc, ctrls, state, showframe)
+        end
     end
 
     function playt(inc, ctrls, state, showframe)
-	state.isplaying = true
-	while 1 <= state.t+inc <= state.tmax && state.isplaying
-	    tcl_doevent()    # allow the stop button to take effect
-	    incrementt(inc, ctrls, state, showframe)
-	end
-	state.isplaying = false
+        state.isplaying = true
+        while 1 <= state.t+inc <= state.tmax && state.isplaying
+            tcl_doevent()    # allow the stop button to take effect
+            incrementt(inc, ctrls, state, showframe)
+        end
+        state.isplaying = false
     end
 
 With this version we would use a single Boolean value to signal whether there is active playback.
@@ -269,21 +269,21 @@ But with the timer that's not necessary, and moreover the timer gives us control
 Finally, there are callbacks for the entry and slider widgets:
 
     function sett(ctrls,state, showframe)
-	tstr = get_value(ctrls.editt)
-	try
-	    val = int(tstr)
-	    state.t = val
-	    updatet(ctrls, state)
-	    showframe(state)
-	catch
-	    updatet(ctrls, state)
-	end
+        tstr = get_value(ctrls.editt)
+        try
+            val = int(tstr)
+            state.t = val
+            updatet(ctrls, state)
+            showframe(state)
+        catch
+            updatet(ctrls, state)
+        end
     end
 
     function scalet(ctrls, state, showframe)
-	state.t = get_value(ctrls.scalet)
-	updatet(ctrls, state)
-	showframe(state)
+        state.t = get_value(ctrls.scalet)
+        updatet(ctrls, state)
+        showframe(state)
     end
 
 `sett` runs when the user types an entry into the edit box; if the user types in nonsense like "foo", it will gracefully reset it to the current position.
