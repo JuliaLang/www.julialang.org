@@ -11,11 +11,13 @@ If the provided download files do not work for you, please [file an issue](https
 
 ## Windows
 
-Currently, Julia is available only for 32-bit Windows.
+Julia is available for both 32-bit and 64-bit Windows.
 
 1. Download the Windows zip file (Make sure you get the version with Git included).
 2. Unzip the downloaded file.
 3. Double-click julia.bat in the unzipped folder to start julia.
+
+The Windows [README](https://github.com/JuliaLang/julia/blob/master/README.windows.md) contains information on dependencies.
 
 ## OS X
 
