@@ -36,7 +36,7 @@ Here's how you write the example of counting the number of lines in a directory 
 
     julia> dir = "src";
 
-    julia> int(readchomp(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`))
+    julia> int(readchomp(`find $dir -type f -print0` |> `xargs -0 grep foo` |> `wc -l`))
     5
 
 This Julia command looks suspiciously similar to the naïve Ruby version we started with in the previous post:
@@ -47,12 +47,12 @@ However, it isn't susceptible to the same problems:
 
     julia> dir = "source code";
 
-    julia> int(readchomp(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`))
+    julia> int(readchomp(`find $dir -type f -print0` |> `xargs -0 grep foo` |> `wc -l`))
     5
 
     julia> dir = "nonexistent";
 
-    julia> int(readchomp(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`))
+    julia> int(readchomp(`find $dir -type f -print0` |> `xargs -0 grep foo` |> `wc -l`))
     find: `nonexistent': No such file or directory
     ERROR: failed processes:
       Process(`find nonexistent -type f -print0`, ProcessExited(1)) [1]
@@ -63,7 +63,7 @@ However, it isn't susceptible to the same problems:
 
     julia> dir = "foo'; echo MALICIOUS ATTACK; echo '";
 
-    julia> int(readchomp(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`))
+    julia> int(readchomp(`find $dir -type f -print0` |> `xargs -0 grep foo` |> `wc -l`))
     find: `foo\'; echo MALICIOUS ATTACK; echo \'': No such file or directory
     ERROR: failed processes:
       Process(`find "foo'; echo MALICIOUS ATTACK; echo '" -type f -print0`, ProcessExited(1)) [1]
@@ -93,13 +93,13 @@ Why *does* `xargs` fail?
 One possibility to check for is that the `xargs` program fails with no input.
 We can use Julia's `success` predicate to try it out:
 
-    julia> success(`cat /dev/null` | `xargs true`)
+    julia> success(`cat /dev/null` |> `xargs true`)
     true
 
 Ok, so `xargs` seems perfectly happy with no input.
 Maybe grep doesn't like not getting any input?
 
-    julia> success(`cat /dev/null` | `grep foo`)
+    julia> success(`cat /dev/null` |> `grep foo`)
     false
 
 Aha! `grep` returns a non-zero status when it doesn't get any input.
@@ -107,10 +107,10 @@ Good to know.
 It turns out that `grep` indicates whether it matched anything or not with its return status.
 Most programs use their return status to indicate success or failure, but some, like `grep`, use it to indicate some other boolean condition – in this case "found something" versus "didn't find anything":
 
-    julia> success(`echo foo` | `grep foo`)
+    julia> success(`echo foo` |> `grep foo`)
     true
 
-    julia> success(`echo bar` | `grep foo`)
+    julia> success(`echo bar` |> `grep foo`)
     false
 
 Now we know why `grep` is "failing" – and `xargs` too, since it returns a non-zero status if the program it runs returns non-zero.
@@ -118,7 +118,7 @@ This means that our Julia pipeline and the "responsible" Ruby version are both s
 
     julia> dir = "tmp";
 
-    julia> int(readchomp(`find $dir -type f -print0` | `xargs -0 grep foo` | `wc -l`))
+    julia> int(readchomp(`find $dir -type f -print0` |> `xargs -0 grep foo` |> `wc -l`))
     ERROR: failed process: Process(`xargs -0 grep foo`, ProcessExited(123)) [123]
      in error at error.jl:22
      in pipeline_error at process.jl:394
@@ -133,7 +133,7 @@ The simple fix in Julia is this:
 
     julia> dir = "tmp";
 
-    julia> int(readchomp(`find $dir -type f -print0` | ignorestatus(`xargs -0 grep foo`) | `wc -l`))
+    julia> int(readchomp(`find $dir -type f -print0` |> ignorestatus(`xargs -0 grep foo`) |> `wc -l`))
     0
 
 This works correctly in all cases.
@@ -191,7 +191,7 @@ In such cases, you can use `ignorestatus` to indicate that the command returning
 
     julia> run(ignorestatus(`false`))
 
-<!--     julia> run(ignorestatus(`notaprogram`))
+    julia> run(ignorestatus(`notaprogram`))
     execvp(): No such file or directory
     ERROR: failed process: Process(`notaprogram`, ProcessExited(-1)) [-1]
      in error at error.jl:22
@@ -199,7 +199,7 @@ In such cases, you can use `ignorestatus` to indicate that the command returning
      in run at process.jl:384
 
 In the latter case, an error is still raised in the parent process since the problem is that the executable doesn't even exist, rather than merely that it ran and returned a non-zero status.
- -->
+
 
 Although Julia's backtick syntax intentionally mimics the shell as closely as possible, there is an important distinction:
 the command string is never passed to a shell to be interpreted and executed;
