@@ -5,25 +5,44 @@ title:  Julia Community
 
 # Download and install Julia on various Operating Systems
 
-Current version: [stable **v0.1.2**](http://code.google.com/p/julialang/downloads/list) | [beta **v0.2-pre**](#beta)
+Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloads/list) | [beta **v0.2-pre**](#beta)
+
+<a name="stable"/>
+#Release v0.1.2
+<table class="downloads"><tbody>
+<tr>
+    <th> Windows Archive (.zip) </th>
+    <td> <a href="http://julialang.googlecode.com/files/julia0.1.2-WINNT-i686%2BGit.zip">32-bit</a> </td>
+    <td> 64-bit </td>
+</tr>
+<tr>
+    <th> Mac OS X Package (.dmg) </th>
+<!--<td>32-bit</td>-->
+    <td colspan=2> <a href="http://julialang.googlecode.com/files/Julia-0.1.2.dmg">64-bit</a> </td>
+</tr>
+<tr>
+    <th> Source (Git) </th>
+    <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/release-0.1">git@github.com:JuliaLang/julia -b release0.1</a> </td>
+</tr>
+</tbody></table>
 
 <a name="beta"/>
-#Beta v0.2-pre
-<table id="downloads"><tbody>
+#Beta v0.2-prerelease
+<table class="downloads"><tbody>
 <tr>
-    <th>Windows Self-Extracting Archive (.exe)</th>
-    <td><a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.2/julia0.2pre-58f8444d80-WIN32.exe">32-bit</a></td>
-<!--<td><a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.2/julia0.2pre-58f8444d80-WIN64.exe">64-bit</a></td>-->
-    <td>64-bit</td>
+    <th> Windows Self-Extracting Archive (.exe) </th>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.2/julia0.2pre-58f8444d80-WIN32.exe">32-bit</a> </td>
+<!--<td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.2/julia0.2pre-58f8444d80-WIN64.exe">64-bit</a> </td>-->
+    <td> 64-bit </td>
 </tr>
 <tr>
-    <th>Mac OS X Package (.dmg)</th>
-<!--<td>32-bit</td>-->
-    <td colspan=2><a href="http://s3.amazonaws.com/julialang/Julia-0.2-pre.dmg">64-bit</a></td>
+    <th> Mac OS X Package (.dmg) </th>
+<!--<td> 32-bit </td>-->
+    <td colspan=2> <a href="http://s3.amazonaws.com/julialang/Julia-0.2-pre.dmg">64-bit</a> </td>
 </tr>
 <tr>
-    <th>Source (Git)</th>
-    <td colspan=2><a href="https://github.com/JuliaLang/julia">git@github.com:JuliaLang/julia</a></td>
+    <th> Source (Git) </th>
+    <td colspan=2> <a href="https://github.com/JuliaLang/julia">git@github.com:JuliaLang/julia</a> </td>
 </tr>
 </tbody></table>
 
@@ -69,8 +88,10 @@ Graphics in Julia are available through external packages. These packages are un
 
 1. `Pkg.add("Gaston")`
 2. `using Gaston`
+3. `Gaston.set_terminal("aqua")` #(this may be necessary, if the following reports that your terminal type is unknown)
+4. `x=-pi:.001:pi; y=x.*sin(10./x); plot(x,y)` #(plot `x*sin(10/x)`)
 
-In order to use Gaston, [install gnuplot](http://www.gnuplot.info/download.html). Gnuplot is widely used, and binaries are available for all platforms.
+In order to use Gaston, you will need to [install gnuplot](http://www.gnuplot.info/download.html) and ensure it is accessible from ENV["PATH"] within Julia. Gnuplot is widely used, and binaries are available for all platforms.
 
 ## Winston
 
@@ -78,6 +99,7 @@ Winston provides 2D plotting capabilities for Julia. Add the Winston package to 
 
 1. `Pkg.add("Winston")`
 2. `using Winston`
+3. `plot( cumsum(randn(1000)) )` #(plot a random walk)
 
 Winston's interface will be familiar to MATLAB users. See [examples](https://github.com/nolta/Winston.jl/blob/master/doc/examples.md) and documentation on the [Winston](https://github.com/nolta/Winston.jl) homepage.
 
@@ -87,5 +109,6 @@ Gadfly is an implementation of a [Wickham-Wilkinson](http://www.cs.uic.edu/%7Ewi
 
 1. `Pkg.add("Gadfly")`
 2. `using Gadfly`
+3. `draw(SVG("output.svg", 6inch, 3inch), plot([sin, cos], 0, 25))` #(plot a pair of simple functions over a range)
 
 Gadfly's interface will be familiar to users of R's [ggplot2](http://ggplot2.org) package. See [examples](http://dcjones.github.com/Gadfly.jl/doc/) and documentation on the [Gadfly](https://github.com/dcjones/Gadfly.jl) homepage.

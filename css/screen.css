@@ -204,27 +204,32 @@ blockquote {
 
 /* downloads page */
 
-#downloads {
+.downloads {
   border-collapse: separate;
   border-spacing: 2px;
   border-color: silver;
+  margin-left: 5%;
+  width: 90%;
 }
-#downloads td {
+.downloads tbody {
+  width: 100%;
+}
+.downloads td {
   text-align: center;
   width: 25%;
 }
-#downloads th {
+.downloads th {
   padding: 0 5px;
 }
-#downloads td, #downloads th {
+.downloads td, .downloads th {
   border: solid 1px;
   padding: 1px;
   vertical-align: middle;
 }
-#downloads a {
+.downloads a {
   display: block;
   width: 100%;
 }
-#downloads a:hover {
+.downloads a:hover {
   background: lightgreen;
 }
