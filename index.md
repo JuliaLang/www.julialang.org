@@ -15,13 +15,13 @@ For a more in-depth discussion of the rationale and advantages of Julia over oth
 Julia's LLVM-based just-in-time (JIT) compiler combined with the language's design allow it to approach and often match the performance of C.
 To get a sense of relative performance of Julia compared to other languages that can or could be used for numerical and scientific computing, we've written a small set of micro-benchmarks in a variety of languages.
 The source code for the various implementations can be found here:
-[C](https://github.com/JuliaLang/julia/blob/master/test/perf/perf.c),
-[Fortran](https://github.com/JuliaLang/julia/blob/master/test/perf/perf.f90),
-[Julia](https://github.com/JuliaLang/julia/blob/master/test/perf/perf.jl),
-[Python](https://github.com/JuliaLang/julia/blob/master/test/perf/perf.py),
-[Matlab/Octave](https://github.com/JuliaLang/julia/blob/master/test/perf/perf.m),
-[R](https://github.com/JuliaLang/julia/blob/master/test/perf/perf.R), and
-[JavaScript](https://github.com/JuliaLang/julia/blob/master/test/perf/perf.js).
+[C](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.c),
+[Fortran](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.f90),
+[Julia](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.jl),
+[Python](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.py),
+[Matlab/Octave](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.m),
+[R](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.R), and
+[JavaScript](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.js).
 We encourage you to skim the code to get a sense for how easy or difficult numerical programming in each language is.
 The following micro-benchmark results are from a MacBook Pro with a 2.53GHz Intel Core 2 Duo CPU and 8GB of 1066MHz DDR3 RAM:
 
