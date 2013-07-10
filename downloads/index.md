@@ -38,7 +38,11 @@ Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloa
 <tr>
     <th> Mac OS X Package (.dmg) </th>
 <!--<td> 32-bit </td>-->
-    <td colspan=2> <a href="http://s3.amazonaws.com/julialang/Julia-0.2-pre.dmg">64-bit</a> </td>
+    <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-unstable.dmg">64-bit</a> </td>
+</tr>
+<tr>
+    <th> Linux packages </th>
+    <td> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">Ubuntu</a> </td>
 </tr>
 <tr>
     <th> Source (Git) </th>
@@ -76,6 +80,11 @@ Instructions will be added here as more linux distributions start including juli
 1. [Ubuntu 13.04](http://packages.ubuntu.com/raring/julia): apt-get install julia
 
 Uninstallation is platform dependent. If you did a source build, it can be performed by deleting your julia source folder. If you would also like to remove your preferences files, they are `~/.julia` and `~/.juliarc.jl`.
+
+### Beta installation instructions
+A [PPA](https://launchpad.net/~staticfloat/+archive/julianightlies) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest beta version of Julia.  To use this PPA, on Ubuntu 12.04 or later, simply type:
+
+    $ sudo add-apt-repository ppa:staticfloat/julianightlies
 
 ---
 # Add graphics capabilities to Julia
