@@ -38,7 +38,7 @@ Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloa
 <tr>
     <th> Mac OS X Package (.dmg) </th>
 <!--<td> 32-bit </td>-->
-    <td colspan=2> <a href="http://s3.amazonaws.com/julialang/Julia-0.2-pre.dmg">64-bit</a> </td>
+    <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-unstable.dmg">64-bit</a> </td>
 </tr>
 <tr>
     <th> Source (Git) </th>
