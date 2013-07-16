@@ -49,7 +49,7 @@ In particular, Julia is strong in an area that high-level languages have traditi
 scalar arithmetic loops, such as that found in the pi summation benchmark.
 Matlab's JIT for floating-point arithmetic does well here too, as does the V8 JavaScript engine.
 (In general, V8 is very impressive in providing such C-like performance in a very dynamic language.
-JavaScript, however, is unable to utilize technical computing libraries such as LAPACK, resulting in poor performance on benchmarks like matrix multiplication.)
+In JavaScript, however, it is highly challenging to utilize technical computing libraries such as LAPACK, resulting in poor performance on benchmarks like matrix multiplication.)
 In contrast with both Matlab and JavaScript, Julia has a more comprehensive approach to eliminating overhead that allows it to consistently optimize all kinds of code for arbitrary user-defined data types, not just certain special cases.
 
 To give a quick taste of what Julia looks like, here is the code used in the Mandelbrot and random matrix statistics benchmarks:

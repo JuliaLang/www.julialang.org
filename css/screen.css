@@ -78,6 +78,10 @@ ul {
 }
   .figure p.note { font-size: 75%; }
 
+hr {
+  margin: 40px 0 10px 0;
+}
+
 /* benchmarks table */
 
 table.benchmarks {
@@ -196,4 +200,36 @@ blockquote {
 }
 .nextlink {
   float: right;
+}
+
+/* downloads page */
+
+.downloads {
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: silver;
+  margin-left: 5%;
+  width: 90%;
+}
+.downloads tbody {
+  width: 100%;
+}
+.downloads td {
+  text-align: center;
+  width: 25%;
+}
+.downloads th {
+  padding: 0 5px;
+}
+.downloads td, .downloads th {
+  border: solid 1px;
+  padding: 1px;
+  vertical-align: middle;
+}
+.downloads a {
+  display: block;
+  width: 100%;
+}
+.downloads a:hover {
+  background: lightgreen;
 }
