@@ -7,7 +7,7 @@ title:  Julia Community
 
 Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloads/list) | [beta **v0.2-pre**](#beta)
 
-<a name="stable"/>
+<span id="stable"/>
 #Release v0.1.2
 <table class="downloads"><tbody>
 <tr>
@@ -26,7 +26,7 @@ Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloa
 </tr>
 </tbody></table>
 
-<a name="beta"/>
+<span id="beta"/>
 #Beta v0.2-prerelease
 <table class="downloads"><tbody>
 <tr>
@@ -42,7 +42,7 @@ Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloa
 </tr>
 <tr>
     <th> Linux packages </th>
-    <td> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">Ubuntu</a> </td>
+    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">Ubuntu</a> </td>
 </tr>
 <tr>
     <th> Source (Git) </th>
