@@ -69,9 +69,9 @@ Uninstallation is performed by deleting the extracted directory. If you would al
 
 ## OS X
 
-On Mac, a Julia-version.dmg file is provided, which contains Julia.app. Installation is the same as any other Mac software -- copy the Julia.app to your hard-drive (anywhere) or run from the disk image. You need OS X Lion (10.7) or later to use the precompiled binaries. Julia works with OS X Snow Leopard (10.6), but needs to be built from source.
+On Mac, a Julia-version.dmg file is provided, which contains Julia.app. Installation is the same as any other Mac software -- copy the Julia.app to your hard-drive (anywhere) or run from the disk image. OS X Lion (10.7) or later are required to be able to use the precompiled binaries. OS X Snow Leopard (10.6) has also been reported to work, but it may not work in all cases. In such cases, you may need to build from source.
 
-Uninstallation is performed by deleting Julia.app. If you would also like to remove your preferences files, they are `~/.julia` and `~/.juliarc.jl`.
+Uninstall Julia by deleting Julia.app and the packages directory in ~/.julia. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove `~/.juliarc.jl`.
 
 ## Linux
 
