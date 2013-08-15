@@ -95,20 +95,9 @@ New builds are built every night. If you have already installed julia and you wa
     $ sudo apt-get upgrade
 
 ---
-# Add graphics capabilities to Julia
+# Graphics in Julia
 
-Graphics in Julia are available through external packages. These packages are under heavy development and take different approaches towards graphics and plotting.
-
-## Gaston
-
-[Gaston](https://github.com/mbaz/Gaston.jl) provides an interface to [gnuplot](http://www.gnuplot.info). Gaston also includes detailed documentation and examples in its [manual](https://bitbucket.org/mbaz/gaston/downloads/gastondoc-0.5.5.pdf). Add the Gaston package to your Julia installation with the following commond on the Julia prompt:
-
-1. `Pkg.add("Gaston")`
-2. `using Gaston`
-3. `Gaston.set_terminal("aqua")` #(this may be necessary, if the following reports that your terminal type is unknown)
-4. `x=-pi:.001:pi; y=x.*sin(10./x); plot(x,y)` #(plot `x*sin(10/x)`)
-
-In order to use Gaston, you will need to [install gnuplot](http://www.gnuplot.info/download.html) and ensure it is accessible from ENV["PATH"] within Julia. Gnuplot is widely used, and binaries are available for all platforms.
+Graphics in Julia are available through external packages. These packages are under heavy development and take different approaches towards graphics and plotting, which suit different use cases.
 
 ## Winston
 
@@ -116,7 +105,7 @@ Winston provides 2D plotting capabilities for Julia. Add the Winston package to 
 
 1. `Pkg.add("Winston")`
 2. `using Winston`
-3. `plot( cumsum(randn(1000)) )` #(plot a random walk)
+3. `plot( cumsum(randn(1000)) )` # (plot a random walk)
 
 Winston's interface will be familiar to MATLAB users. See [examples](https://github.com/nolta/Winston.jl/blob/master/doc/examples.md) and documentation on the [Winston](https://github.com/nolta/Winston.jl) homepage.
 
@@ -129,3 +118,23 @@ Gadfly is an implementation of a [Wickham-Wilkinson](http://www.cs.uic.edu/%7Ewi
 3. `draw(SVG("output.svg", 6inch, 3inch), plot([sin, cos], 0, 25))` #(plot a pair of simple functions over a range)
 
 Gadfly's interface will be familiar to users of R's [ggplot2](http://ggplot2.org) package. See [examples](http://dcjones.github.com/Gadfly.jl/doc/) and documentation on the [Gadfly](https://github.com/dcjones/Gadfly.jl) homepage.
+
+## Gaston
+
+[Gaston](https://github.com/mbaz/Gaston.jl) provides an interface to [gnuplot](http://www.gnuplot.info). Gaston also includes detailed documentation and examples in its [manual](https://bitbucket.org/mbaz/gaston/downloads/gastondoc-0.5.5.pdf). Add the Gaston package to your Julia installation with the following commond on the Julia prompt:
+
+1. `Pkg.add("Gaston")`
+2. `using Gaston`
+3. `Gaston.set_terminal("aqua")` #(this may be necessary, if the following reports that your terminal type is unknown)
+4. `x=-pi:.001:pi; y=x.*sin(10./x); plot(x,y)` #(plot `x*sin(10/x)`)
+
+In order to use Gaston, you will need to [install gnuplot](http://www.gnuplot.info/download.html) and ensure it is accessible
+
+## PyPlot
+
+[PyPlot](https://github.com/stevengj/PyPlot.jl) uses the Julia PyCall package to call Python's matplotlib directly from Julia with little or no overhead (arrays are passed without making a copy). Installation and example usage:
+
+1. `Pkg.add("PyPlot")`
+2. `using PyPlot`
+3. `x = linspace(0,2*pi,1000); y = sin(3*x + 4*cos(2*x))`
+4. `plot(x, y, color="red", linewidth=2.0, linestyle="--")`
