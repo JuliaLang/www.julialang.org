@@ -89,6 +89,11 @@ A [PPA](https://launchpad.net/~staticfloat/+archive/julianightlies) (Personal Pa
     $ sudo apt-get update
     $ sudo apt-get install julia
 
+New builds are built every night. If you have already installed julia and you want to upgrade to the latest version, do:
+
+    $ sudo apt-get update
+    $ sudo apt-get upgrade
+
 ---
 # Add graphics capabilities to Julia
 
