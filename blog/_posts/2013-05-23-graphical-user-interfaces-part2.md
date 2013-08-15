@@ -150,11 +150,11 @@ However, for Canvases we need to to do a little bit of extra work; to see what I
 
 
 The key is to have a callback that gets activated whenever the canvas changes size, and to have this callback capable of redrawing the window at arbitrary size.
-Canvases make this easy by having a field, `redraw`, that you assign the callback to.
+Canvases make this easy by having a field, `resize`, that you assign the callback to.
 This function will receive a single argument, the canvas itself, but as always you can provide more information.
 Taking our image example, we could set
 
-    c.redraw = c->redraw(c, buf)
+    c.resize = c->redraw(c, buf)
 
 and then define
 
