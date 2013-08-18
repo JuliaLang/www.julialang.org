@@ -3,7 +3,7 @@ layout: default
 title:  Using Julia in the classroom
 ---
 
-Although still a young language, and a bit rough around the edges, we belive that Julia is ready for the classroom. We encourage instructors to particpate on the [mailing lists](http://julialang.org/community/) for questions regarding the readiness of Julia or specific packages.
+Although still a young language, and a bit rough around the edges, we believe that Julia is ready for the classroom. We encourage instructors to particpate on the [mailing lists](http://julialang.org/community/) for questions regarding the readiness of Julia or specific packages.
 
 # Installing Julia
 
