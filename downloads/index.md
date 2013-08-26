@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  Julia Community
+title:  Julia Downloads
 ---
 
 # Download and install Julia on various Operating Systems
