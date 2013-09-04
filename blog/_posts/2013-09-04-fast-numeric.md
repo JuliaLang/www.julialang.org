@@ -114,7 +114,7 @@ Most systems do not provide ways to directly control the cache system. However, 
 
 This is sometimes referred to as the *principle of locality*. For example, if `x` is a contiguous array, then after reading `x[i]`, it is much more likely that `x[i+1]` is already in the cache than it is that `x[i+1000000]` is, in which case it will be *much* faster to access `x[i+1]` than `x[i+1000000]`.
 
-Julia arrays are stored in column-major order, which means that the rows of a column are contiguous, but the columns of a row are generally not. It is therfore generally more efficient to access data column-by-column than row-by-row. 
+Julia arrays are stored in column-major order, which means that the rows of a column are contiguous, but the columns of a row are generally not. It is therefore generally more efficient to access data column-by-column than row-by-row. 
 Consider the problem of computing the sum of each row in a matrix. It is natural to implement this as follows:
 
     m, n = size(a)
@@ -171,7 +171,7 @@ In this implementation of K-means, the arrays `means`, `dists`, and `labels` are
         ...
     end
 
-In this version, the functions invoked in the loop updates pre-allocated arrays in place. 
+In this version, the functions invoked in the loop updates pre-allocated arrays in-place. 
 
 If you are writing a package, it is recommended that you provide two versions for each function that outputs arrays: one that performs the update in-place, and another that returns a new array. The former can usually be implemented as a light-weight wrapper of the latter that copies the input array before modifying it.
 A good example is the [*Distributions.jl*](https://github.com/JuliaStats/Distributions.jl) package, which provides both `logpdf` and `logpdf!`, so that one can write `lp = logpdf(d,x)` when a new array is needed, or `logpdf!(lp,d,x)` when `lp` has been pre-allocated.
