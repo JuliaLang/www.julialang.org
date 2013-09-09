@@ -15,7 +15,7 @@ The [Julia manual](http://docs.julialang.org/en/latest/) contains a complete int
 
 # Julia packages for teaching
 
-Julia [packages](http://docs.julialang.org/en/latest/packages/packagelist.html) span a number of disciplines. Some packages are well developed, whereas others are fledgling efforts.
+Julia [packages](http://docs.julialang.org/en/latest/packages/packagelist/) span a number of disciplines. Some packages are well developed, whereas others are fledgling efforts.
 
 # Videos
 
