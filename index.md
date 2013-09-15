@@ -6,7 +6,8 @@ title:  The Julia Language
 Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments.
 It provides a sophisticated compiler, distributed parallel execution, numerical accuracy, and an extensive mathematical function library.
 The library, largely written in Julia itself, also integrates mature, best-of-breed C and Fortran libraries for linear algebra, random number generation, signal processing, and string processing.
-In addition, the Julia developer community is contributing a number of [external packages](http://docs.julialang.org/en/latest/packages/packagelist/) through Julia's built-in package manager at a rapid pace.
+In addition, the Julia developer community is contributing a number of [external packages](http://docs.julialang.org/en/latest/packages/packagelist/) through Julia's built-in package manager at a rapid pace. [IJulia](https://github.com/JuliaLang/IJulia.jl), a collaboration between the [IPython](http://ipython.org) and Julia communities, provides a powerful browser-based graphical notebook interface to use Julia.
+
 Julia programs are organized around multiple dispatch; by defining functions and overloading them for different combinations of argument types, which can also be user-defined.
 For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](http://docs.julialang.org/en/latest/manual/introduction/) in the [online manual](http://docs.julialang.org/en/latest/manual/).
 
@@ -101,13 +102,12 @@ The following simple example demonstrates how to count the number of heads in a 
 
 This computation is automatically distributed across all available compute nodes, and the result, reduced by summation (`+`), is returned at the calling node.
 
-Although it is in the early stages, Julia already supports a fully remote cloud computing mode.
-Here is a screenshot of a web-based interactive Julia session, plotting an oscillating function and a Gaussian random walk:</p>
+Here is a screenshot of a web-based interactive [IJulia](https://github.com/JuliaLang/IJulia.jl) session, plotting an oscillating function.
 
-<a href="/images/web_repl.png" target="_blank"><img src="/images/web_repl.png" width="95%" /></a>
+<a href="/images/ijulia.png" target="_blank"><img src="/images/ijulia.png" width="95%" /></a>
 
-There will eventually be full support for cloud-based operation, including data management, code editing and sharing, execution, debugging, collaboration, analysis, data exploration, and visualization.
-The goal is to allow people who work with big data to stop worrying about administering machines and managing data and get straight to the real problem.
+This paves the way for fully cloud-based operation, including data management, code editing and sharing, execution, debugging, collaboration, analysis, data exploration, and visualization.
+The eventual goal is to let people stop worrying about administering machines and managing data and get straight to the real problem.
 
 # Free, Open Source & Library-Friendly
 
