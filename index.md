@@ -104,7 +104,7 @@ This computation is automatically distributed across all available compute nodes
 
 Here is a screenshot of a web-based interactive [IJulia](https://github.com/JuliaLang/IJulia.jl) session, plotting an oscillating function.
 
-<a href="/images/ijulia.png" target="_blank"><img src="/images/ijulia.png" width="95%" /></a>
+<a href="/images/ijulia.png" target="_blank"><img src="/images/ijulia.png" /></a>
 
 This paves the way for fully cloud-based operation, including data management, code editing and sharing, execution, debugging, collaboration, analysis, data exploration, and visualization.
 The eventual goal is to let people stop worrying about administering machines and managing data and get straight to the real problem.
