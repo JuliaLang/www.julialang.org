@@ -31,8 +31,8 @@ Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloa
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.2/julia-0.2pre-d32bc80882-win32.exe">32-bit</a> </td>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.2/julia-0.2pre-d32bc80882-win64.exe">64-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.2/julia-0.2pre-ce3a772728-win32.exe">32-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.2/julia-0.2pre-ce3a772728-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
