@@ -102,9 +102,9 @@ The following simple example demonstrates how to count the number of heads in a 
 
 This computation is automatically distributed across all available compute nodes, and the result, reduced by summation (`+`), is returned at the calling node.
 
-Here is a screenshot of a web-based interactive [IJulia](https://github.com/JuliaLang/IJulia.jl) session, plotting an oscillating function.
+Here is a screenshot of a web-based interactive [IJulia](https://github.com/JuliaLang/IJulia.jl) session, using [Gadfly](https://github.com/dcjones/Gadfly.jl) to produce various plots using [D3](http://d3js.org) as a rendering backend in the browser (SVG, PDF, PNG and various other backends are also supported):
 
-<a href="/images/ijulia.png" target="_blank"><img src="/images/ijulia.png" /></a>
+<a href="/images/ijulia.png" target="_blank"><img src="/images/ijulia.png" width="95%" /></a>
 
 This paves the way for fully cloud-based operation, including data management, code editing and sharing, execution, debugging, collaboration, analysis, data exploration, and visualization.
 The eventual goal is to let people stop worrying about administering machines and managing data and get straight to the real problem.
