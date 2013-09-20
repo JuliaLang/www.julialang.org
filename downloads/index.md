@@ -22,7 +22,7 @@ Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloa
 </tr>
 <tr>
     <th> Source (Git) </th>
-    <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/release-0.1">git@github.com:JuliaLang/julia -b release0.1</a> </td>
+    <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/v0.1.2">git@github.com:JuliaLang/julia -b 'v0.1.2'</a> </td>
 </tr>
 </tbody></table>
 
