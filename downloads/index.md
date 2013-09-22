@@ -5,10 +5,10 @@ title:  Julia Downloads
 
 # Download and install Julia on various Operating Systems
 
-Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloads/list) | [pre-release **v0.2-pre**](#prerelease)
+Current version: [**v0.1.2**](http://code.google.com/p/julialang/downloads/list) | [**v0.2-pre**](#prerelease)
 
 <span id="stable"/>
-#Release v0.1.2
+#Version 0.1.2 (Latest stable release)
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Archive (.zip) </th>
@@ -27,7 +27,7 @@ Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloa
 </tbody></table>
 
 <span id="prerelease"/>
-#v0.2-prerelease
+#Version v0.2-pre (Pre-release)
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
@@ -35,13 +35,13 @@ Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloa
     <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.2/julia-0.2pre-d6f7c7c781-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
-    <th> Mac OS X Nightlies (.dmg) </th>
+    <th> Mac OS X nightlies (.dmg) </th>
 <!--<td> 32-bit </td>-->
     <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-unstable.dmg">64-bit</a> </td>
 </tr>
 <tr>
-    <th> Linux packages </th>
-    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">Ubuntu nightlies</a> </td>
+    <th> Linux nightly packages </th>
+    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">Ubuntu</a> </td>
 </tr>
 <tr>
     <th> Source (Git) </th>
