@@ -5,7 +5,7 @@ title:  Julia Downloads
 
 # Download and install Julia on various Operating Systems
 
-Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloads/list) | [beta **v0.2-pre**](#beta)
+Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloads/list) | [pre-release **v0.2-pre**](#prerelease)
 
 <span id="stable"/>
 #Release v0.1.2
@@ -26,8 +26,8 @@ Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloa
 </tr>
 </tbody></table>
 
-<span id="beta"/>
-#Beta v0.2-prerelease
+<span id="prerelease"/>
+#v0.2-prerelease
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
@@ -35,13 +35,13 @@ Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloa
     <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.2/julia-0.2pre-d32bc80882-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
-    <th> Mac OS X Package (.dmg) </th>
+    <th> Mac OS X Nightlies (.dmg) </th>
 <!--<td> 32-bit </td>-->
     <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-unstable.dmg">64-bit</a> </td>
 </tr>
 <tr>
     <th> Linux packages </th>
-    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">Ubuntu</a> </td>
+    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">Ubuntu nightlies</a> </td>
 </tr>
 <tr>
     <th> Source (Git) </th>
@@ -49,7 +49,7 @@ Current version: [release **v0.1.2**](http://code.google.com/p/julialang/downloa
 </tr>
 </tbody></table>
 
-If the provided download files do not work for you, please [file an issue](https://github.com/JuliaLang/julia/issues).
+If the provided download files do not work for you, please [file an issue](https://github.com/JuliaLang/julia/issues). It is strongly recommended that you download the 0.2 pre-release binaries to try out julia, unless you are working with code that was developed specifically for the 0.1 release.
 
 ---
 # Platform Specific Instructions
@@ -80,7 +80,7 @@ Instructions will be added here as more linux distributions start including juli
 
 Uninstallation is platform dependent. If you did a source build, it can be performed by deleting your julia source folder. If you would also like to remove your preferences files, they are `~/.julia` and `~/.juliarc.jl`.
 
-### Beta installation instructions
+### Nightlies installation instructions
 A [PPA](https://launchpad.net/~staticfloat/+archive/julianightlies) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest beta version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, simply type:
 
     $ sudo add-apt-repository ppa:staticfloat/julianightlies
