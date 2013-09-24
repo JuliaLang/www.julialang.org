@@ -39,7 +39,7 @@ Julia provides a built-in interface to the [FFTW](http://www.fftw.org/) library.
 
 ## Optimization ([slides](https://github.com/JuliaLang/julia-tutorial/raw/master/NumericalOptimization/presentation.pdf))
 
-This session focuses largely on using Julia for solving linear programming problems. The algebraic modeling language discussed was later released as [MathProg](https://github.com/IainNZ/MathProg.jl). Benchmarks are shown evaluating the performance of Julia for implementing low-level optimization code. Linear programming solvers are available through the [CLP](https://github.com/mlubin/Clp.jl), [GLPK](https://github.com/carlobaldassi/GLPK.jl), and [Gurobi](https://github.com/lindahua/Gurobi.jl) packages. The [Optim](https://github.com/johnmyleswhite/Optim.jl) and [NLopt](https://github.com/stevengj/NLopt.jl) packages provide more general optimization algorithms.
+This session focuses largely on using Julia for solving linear programming problems. The algebraic modeling language discussed was later released as [JuMP](https://github.com/IainNZ/JuMP.jl). Benchmarks are shown evaluating the performance of Julia for implementing low-level optimization code. Linear programming solvers are available through the [CLP](https://github.com/mlubin/Clp.jl), [GLPK](https://github.com/carlobaldassi/GLPK.jl), and [Gurobi](https://github.com/lindahua/Gurobi.jl) packages. The [Optim](https://github.com/johnmyleswhite/Optim.jl) and [NLopt](https://github.com/stevengj/NLopt.jl) packages provide more general optimization algorithms.
 
 <iframe width="560" height="315" src="http://www.youtube.com/embed/O1icUP6sajU" frameborder="0" allowfullscreen></iframe>
 
