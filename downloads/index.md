@@ -3,12 +3,36 @@ layout: default
 title:  Julia Downloads
 ---
 
-# Download and install Julia on various Operating Systems
+### Download and install Julia on various Operating Systems
 
-Current version: [**v0.1.2**](http://code.google.com/p/julialang/downloads/list) | [**v0.2-pre**](#prerelease)
+Current version: [**v0.2-rc1**](#v0.2)
 
-<span id="stable"/>
-#Version 0.1.2 (Latest stable release)
+<span id="v0.2"/>
+# v0.2-rc1
+<table class="downloads"><tbody>
+<tr>
+    <th> Windows Self-Extracting Archive (.exe) </th>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.2/julia-0.2rc1-a963262672-win32.exe">32-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.2/julia-0.2rc1-a963262672-win64.exe">64-bit</a> </td>
+</tr>
+<tr>
+    <th> Mac OS X Package (.dmg) </th>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-rc1-10.6.dmg">10.6 64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-rc1.dmg">10.7+ 64-bit</a> </td>
+</tr>
+<tr>
+    <th> Ubuntu packages </th>
+    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
+</tr>
+<tr>
+    <th> Source </th>
+    <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/v0.2.0-rc1">GitHub</a> </td>
+</tr>
+</tbody></table>
+
+## Older Releases
+<span id="v0.1"/>
+#Release v0.1.2
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Archive (.zip) </th>
@@ -17,35 +41,13 @@ Current version: [**v0.1.2**](http://code.google.com/p/julialang/downloads/list)
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-<!--<td>32-bit</td>-->
-    <td colspan=2> <a href="http://julialang.googlecode.com/files/Julia-0.1.2.dmg">64-bit</a> </td>
+    <td>32-bit (Unavailable)</td>
+    <td> <a href="http://julialang.googlecode.com/files/Julia-0.1.2.dmg">64-bit</a> </td>
 </tr>
 <tr>
-    <th> Source (Git) </th>
-    <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/v0.1.2">git@github.com:JuliaLang/julia -b 'v0.1.2'</a> </td>
-</tr>
-</tbody></table>
-
-<span id="prerelease"/>
-#Version v0.2-pre (Pre-release)
-<table class="downloads"><tbody>
-<tr>
-    <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="http://ia601003.us.archive.org/29/items/julialang/builds/windows/julia-0.2rc1-a963262672-win32.exe">32-bit</a> </td>
-    <td> <a href="http://ia601003.us.archive.org/29/items/julialang/builds/windows/julia-0.2rc1-a963262672-win64.exe">64-bit</a> </td>
-</tr>
-<tr>
-    <th> Mac OS X nightlies (.dmg) </th>
-<!--<td> 32-bit </td>-->
-    <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-unstable.dmg">64-bit</a> </td>
-</tr>
-<tr>
-    <th> Linux nightly packages </th>
-    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">Ubuntu</a> </td>
-</tr>
-<tr>
-    <th> Source (Git) </th>
-    <td colspan=2> <a href="https://github.com/JuliaLang/julia">git@github.com:JuliaLang/julia</a> </td>
+    <th> Source </th>
+    <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.1">GitHub</a> </td>
+    <td> <a href="https://github.com/JuliaLang/julia/archive/release-0.1.tar.gz">Tarball</a> </td>
 </tr>
 </tbody></table>
 
