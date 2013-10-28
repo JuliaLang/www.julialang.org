@@ -118,7 +118,7 @@ Gadfly is an implementation of a [Wickham-Wilkinson](http://www.cs.uic.edu/%7Ewi
 2. `using Gadfly`
 3. `draw(SVG("output.svg", 6inch, 3inch), plot([sin, cos], 0, 25))` #(plot a pair of simple functions over a range)
 
-Gadfly's interface will be familiar to users of R's [ggplot2](http://ggplot2.org) package. See examples and documentation on the [Gadfly](https://github.com/dcjones/Gadfly.jl) homepage.
+Gadfly's interface will be familiar to users of R's [ggplot2](http://ggplot2.org) package. See [examples](https://github.com/dcjones/Gadfly.jl/tree/master/doc) and documentation on the [Gadfly](https://github.com/dcjones/Gadfly.jl) homepage.
 
 ## Gaston
 
