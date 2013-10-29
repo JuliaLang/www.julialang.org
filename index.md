@@ -25,7 +25,7 @@ To get a sense of relative performance of Julia compared to other languages that
 [Go](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.go), and
 [Mathematica](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.nb).
 We encourage you to skim the code to get a sense for how easy or difficult numerical programming in each language is.
-The following micro-benchmark results were obtained on a single core (serial execution) on a Linux machine with an 80-core Intel(R) Xeon(R) CPU E7-8850 2.00GHz CPU and 1TB of 1067MHz DDR3 RAM:
+The following micro-benchmark results were obtained on a single core (serial execution) on an Intel(R) Xeon(R) CPU E7-8850 2.00GHz CPU with 1TB of 1067MHz DDR3 RAM, running Linux:
 
 <div class="figure">
 {% include benchmarks.html %}
