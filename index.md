@@ -33,8 +33,8 @@ The following micro-benchmark results were obtained on a single core (serial exe
 benchmark times relative to C (smaller is better, C performance = 1.0).
 </p>
 <p class="note">
-C compiled by gcc 4.8.1, taking best timing from all optimization levels (-O0 through -O3).<br>
-C, Fortran and Julia use [OpenBLAS](https://github.com/xianyi/OpenBLAS) v0.2.8.<br>
+C compiled by gcc 4.8.1, taking best timing from all optimization levels (-O0 through -O3).
+C, Fortran and Julia use <a href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a> v0.2.8.
 The Python implementations of <tt>rand_mat_stat</tt> and <tt>rand_mat_mul</tt> use NumPy (v1.6.1) functions; the rest are pure Python implementations.
 </p>
 </div>
@@ -44,16 +44,8 @@ It is important to note that these benchmark implementations are not written for
 Rather, all of the benchmarks are written to test the performance of specific algorithms, expressed in a reasonable idiom in each language.
 In particular, all languages use the same algorithm: the Fibonacci benchmarks are all recursive while the pi summation benchmarks are all iterative; the "algorithm" for random matrix multiplication is calling LAPACK, except where that's not possible, such as JavaScript.
 The point of these benchmarks is to compare the performance of specific *algorithms* across language implementations, not to compare the fastest means of computing a result, which in most high-level languages relies on calling C code.
-
-Julia beats all other high-level systems (i.e. everything besides C and Fortran) on all micro-benchmarks.
-Relative performance between languages on [other systems](https://github.com/JuliaLang/julia#Supported-Platforms) is similar.
 Raw benchmark numbers in CSV format are available [here](/benchmarks.csv).
-In particular, Julia is strong in an area that high-level languages have traditionally been weak:
-scalar arithmetic loops, such as that found in the pi summation benchmark.
-Matlab's JIT for floating-point arithmetic does well here too, as does the V8 JavaScript engine.
-(In general, V8 is very impressive in providing such C-like performance in a very dynamic language.
-In JavaScript, however, it is highly challenging to utilize technical computing libraries such as LAPACK, resulting in poor performance on benchmarks like matrix multiplication.)
-In contrast with both Matlab and JavaScript, Julia has a more comprehensive approach to eliminating overhead that allows it to consistently optimize all kinds of code for arbitrary user-defined data types, not just certain special cases.
+Various other Julia benchmarks, tracked over time can be found at [speed.julialang.org](http://speed.julialang.org/).
 
 To give a quick taste of what Julia looks like, here is the code used in the Mandelbrot and random matrix statistics benchmarks:
 
