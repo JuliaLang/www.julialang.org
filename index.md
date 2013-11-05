@@ -27,20 +27,18 @@ To get a sense of relative performance of Julia compared to other languages that
 We encourage you to skim the code to get a sense for how easy or difficult numerical programming in each language is.
 The following micro-benchmark results were obtained on a single core (serial execution) on an Intel(R) Xeon(R) CPU E7-8850 2.00GHz CPU with 1TB of 1067MHz DDR3 RAM, running Linux:
 
-<center>
-<div class="figure" style="align: center; width: 77%">
-{% include benchmarks.svg %}
+<div class="figure">
+{% include benchmarks.html %}
 <p class="caption"><b>Figure:</b>
 benchmark times relative to C (smaller is better, C performance = 1.0).
 </p>
 <p class="note">
 C compiled by gcc 4.8.1, taking best timing from all optimization levels (-O0 through -O3).
 C, Fortran and Julia use <a href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a> v0.2.8.
-The Python implementations of <tt>rand_mat_stat</tt> and <tt>rand_mat_mul</tt> use NumPy (v1.6.1) functions; the rest are pure Python implementations.
-Benchmark plot created with <a href="https://github.com/dcjones/Gadfly.jl">Gadfly</a>.
+The Python implementations of <tt>rand_mat_stat</tt> and <tt>rand_mat_mul</tt> use NumPy (v1.6.1) functions; the rest are pure Python implementations.<br/>
+Benchmarks can also be seen <a href="/benchmarks/">here as a plot</a> created with <a href="https://github.com/dcjones/Gadfly.jl">Gadfly</a>.
 </p>
 </div>
-</center>
 
 These benchmarks, while not comprehensive, do test compiler performance on a range of common code patterns, such as function calls, string parsing, sorting, numerical loops, random number generation, and array operations.
 It is important to note that these benchmark implementations are not written for absolute maximal performance (the fastest code to compute `fib(20)` is the constant literal `6765`).
