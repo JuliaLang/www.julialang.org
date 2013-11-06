@@ -84,10 +84,9 @@ To give a quick taste of what Julia looks like, here is the code used in the Man
         std(v)/mean(v), std(w)/mean(w)
     end
 
-As you can see, the code is quite clear, and should feel familiar to anyone who has programmed in other mathematical languages.
-Although C beats Julia in the random matrix statistics benchmark by a significant factor, consider how much simpler this code is than the [C implementation](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.c#L126).
-There are more compiler optimizations planned that we hope will close this performance gap in the future.
-By design, Julia allows you to range from low-level loop and vector code, up to a high-level programming style, sacrificing some performance, but gaining the ability to express complex algorithms easily.
+The code above is quite clear, and should feel familiar to anyone who has programmed in other mathematical languages.
+The Julia implementation of `randmatstat` is considerably simpler than the equivalent [C implementation](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.c#L126), without giving up much performance. Planned compiler optimizations will close this performance gap in the future.
+By design, Julia allows you to range from tight low-level loops, up to a high-level programming style, while sacrificing some performance, but gaining the ability to express complex algorithms easily.
 This continuous spectrum of programming levels is a hallmark of the Julia approach to programming and is very much an intentional feature of the language.
 
 # Designed for Parallelism & Cloud Computing
