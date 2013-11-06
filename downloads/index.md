@@ -5,7 +5,7 @@ title:  Julia Downloads
 
 ### Download and install Julia on various Operating Systems
 
-Current version: [**v0.2-rc2**](#v0.2)
+Current version: [**v0.2-rc3**](#v0.2)
 
 <span id="v0.2"/>
 # v0.2-rc2
@@ -17,8 +17,8 @@ Current version: [**v0.2-rc2**](#v0.2)
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-rc2-10.6.dmg">10.6 64-bit</a> </td>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-rc2.dmg">10.7+ 64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-rc3-10.6.dmg">10.6 64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-rc3.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages </th>
@@ -26,7 +26,7 @@ Current version: [**v0.2-rc2**](#v0.2)
 </tr>
 <tr>
     <th> Source </th>
-    <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/v0.2.0-rc2">GitHub</a> </td>
+    <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/v0.2.0-rc3">GitHub</a> </td>
 </tr>
 </tbody></table>
 
