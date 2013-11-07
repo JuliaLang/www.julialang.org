@@ -8,7 +8,7 @@ title:  Julia Downloads
 Current version: [**v0.2-rc3**](#v0.2)
 
 <span id="v0.2"/>
-# v0.2-rc2
+# v0.2-rc3
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
