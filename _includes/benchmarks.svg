@@ -2,29 +2,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="203.2mm" height="101.6mm" viewBox="0 0 203.2 101.6" style="stroke:black;fill:black" stroke-width="0.5">
 <g class="plotroot yscalable">
   <g clip-path="url(#clippath1)">
-    <g fill="#4C404B" font-size="3.18" font-family="Georgia" stroke="none" class="guide ylabels">
-      <text x="17.84" y="56.17" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">1</tspan></text>
-      <text x="17.84" y="39.93" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">2</tspan></text>
-      <text x="17.84" y="137.4" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">-4</tspan></text>
-      <text x="17.84" y="104.91" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">-2</tspan></text>
-      <text x="17.84" y="-41.3" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">7</tspan></text>
-      <text x="17.84" y="121.15" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">-3</tspan></text>
-      <text x="17.84" y="-57.54" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">8</tspan></text>
-      <text x="17.84" y="72.42" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">0</tspan></text>
-      <text x="17.84" y="88.66" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">-1</tspan></text>
-      <text x="17.84" y="-73.79" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">9</tspan></text>
-      <text x="17.84" y="-25.05" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">6</tspan></text>
-      <text x="17.84" y="7.44" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">4</tspan></text>
-      <text x="17.84" y="169.89" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">-6</tspan></text>
-      <text x="17.84" y="23.68" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">3</tspan></text>
-      <text x="17.84" y="-90.03" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">10</tspan></text>
-      <text x="17.84" y="-8.81" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">5</tspan></text>
-      <text x="17.84" y="186.13" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">-7</tspan></text>
-      <text x="17.84" y="153.64" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" baseline-shift="super">-5</tspan></text>
+    <g stroke="none" fill="#4C404B" class="guide ylabels" font-family="Georgia" font-size="3.18">
+      <text x="17.84" y="56.17" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">1</tspan></text>
+      <text x="17.84" y="39.93" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">2</tspan></text>
+      <text x="17.84" y="137.4" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-4</tspan></text>
+      <text x="17.84" y="104.91" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-2</tspan></text>
+      <text x="17.84" y="-41.3" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">7</tspan></text>
+      <text x="17.84" y="121.15" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-3</tspan></text>
+      <text x="17.84" y="-57.54" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">8</tspan></text>
+      <text x="17.84" y="72.42" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">0</tspan></text>
+      <text x="17.84" y="88.66" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-1</tspan></text>
+      <text x="17.84" y="-73.79" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">9</tspan></text>
+      <text x="17.84" y="-25.05" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">6</tspan></text>
+      <text x="17.84" y="7.44" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">4</tspan></text>
+      <text x="17.84" y="169.89" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-6</tspan></text>
+      <text x="17.84" y="23.68" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">3</tspan></text>
+      <text x="17.84" y="-90.03" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">10</tspan></text>
+      <text x="17.84" y="-8.81" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">5</tspan></text>
+      <text x="17.84" y="186.13" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-7</tspan></text>
+      <text x="17.84" y="153.64" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-5</tspan></text>
     </g>
   </g>
   <g clip-path="url(#clippath2)">
-    <g fill="#4C404B" font-size="3.18" font-family="Georgia" stroke="none" class="guide xlabels">
+    <g stroke="none" fill="#4C404B" class="guide xlabels" font-family="Georgia" font-size="3.18">
       <text x="130.81" y="95.6" text-anchor="middle">Matlab</text>
       <text x="56.17" y="95.6" text-anchor="middle">Go</text>
       <text x="115.88" y="95.6" text-anchor="middle">R</text>
@@ -36,15 +36,15 @@
       <text x="26.31" y="95.6" text-anchor="middle">Julia</text>
     </g>
   </g>
-  <g font-size="3.88" fill="#362A35" font-family="Georgia" stroke="none">
+  <g stroke="none" fill="#362A35" font-family="Georgia" font-size="3.88">
     <text x="159.71" y="33.18">benchmark</text>
   </g>
-  <g font-size="3.18" font-family="Georgia">
+  <g font-family="Georgia" font-size="3.18">
     <g class="guide color_fib">
       <g fill="#FF928B" stroke="#FF6765" stroke-width="0.3">
         <circle cx="157.46" cy="63.94" r="0.88" />
       </g>
-      <g fill="#4C404B" stroke="none">
+      <g stroke="none" fill="#4C404B">
         <text x="159.71" y="63.94" style="dominant-baseline:central">fib</text>
       </g>
     </g>
@@ -52,7 +52,7 @@
       <g fill="#F6A6FF" stroke="#CA7EF6" stroke-width="0.3">
         <circle cx="157.46" cy="54.94" r="0.88" />
       </g>
-      <g fill="#4C404B" stroke="none">
+      <g stroke="none" fill="#4C404B">
         <text x="159.71" y="54.94" style="dominant-baseline:central">mandel</text>
       </g>
     </g>
@@ -60,7 +60,7 @@
       <g fill="#FF5EA0" stroke="#DC2C7A" stroke-width="0.3">
         <circle cx="157.46" cy="45.94" r="0.88" />
       </g>
-      <g fill="#4C404B" stroke="none">
+      <g stroke="none" fill="#4C404B">
         <text x="159.71" y="45.94" style="dominant-baseline:central">pi_sum</text>
       </g>
     </g>
@@ -68,7 +68,7 @@
       <g fill="#00BFFF" stroke="#0096DD" stroke-width="0.3">
         <circle cx="157.46" cy="36.94" r="0.88" />
       </g>
-      <g fill="#4C404B" stroke="none">
+      <g stroke="none" fill="#4C404B">
         <text x="159.71" y="36.94" style="dominant-baseline:central">rand_mat_mul</text>
       </g>
     </g>
@@ -76,7 +76,7 @@
       <g fill="#D4CA3A" stroke="#A8A200" stroke-width="0.3">
         <circle cx="157.46" cy="41.44" r="0.88" />
       </g>
-      <g fill="#4C404B" stroke="none">
+      <g stroke="none" fill="#4C404B">
         <text x="159.71" y="41.44" style="dominant-baseline:central">rand_mat_stat</text>
       </g>
     </g>
@@ -84,7 +84,7 @@
       <g fill="#00E5B2" stroke="#00BA8B" stroke-width="0.3">
         <circle cx="157.46" cy="50.44" r="0.88" />
       </g>
-      <g fill="#4C404B" stroke="none">
+      <g stroke="none" fill="#4C404B">
         <text x="159.71" y="50.44" style="dominant-baseline:central">printfd</text>
       </g>
     </g>
@@ -92,7 +92,7 @@
       <g fill="#9E9E9E" stroke="#777777" stroke-width="0.3">
         <circle cx="157.46" cy="59.44" r="0.88" />
       </g>
-      <g fill="#4C404B" stroke="none">
+      <g stroke="none" fill="#4C404B">
         <text x="159.71" y="59.44" style="dominant-baseline:central">quicksort</text>
       </g>
     </g>
@@ -100,17 +100,17 @@
       <g fill="#32B44E" stroke="#008B28" stroke-width="0.3">
         <circle cx="157.46" cy="68.44" r="0.88" />
       </g>
-      <g fill="#4C404B" stroke="none">
+      <g stroke="none" fill="#4C404B">
         <text x="159.71" y="68.44" style="dominant-baseline:central">parse_int</text>
       </g>
     </g>
   </g>
   <g>
     <g clip-path="url(#clippath3)">
-      <g fill="#FAFAFA" class="guide background" stroke="#F1F1F5">
+      <g stroke="#F1F1F5" fill="#FAFAFA" class="guide background">
         <path d="M18.84,5 L 153.21 5 153.21 91.1 18.84 91.1 z" />
       </g>
-      <g stroke="#F0F0F3" stroke-width="0.2" class="guide ygridlines xfixed">
+      <g stroke="#F0F0F3" class="guide ygridlines xfixed" stroke-width="0.2">
         <path d="M18.84,56.17 L 153.21 56.17" />
         <path d="M18.84,39.93 L 153.21 39.93" />
         <path d="M18.84,137.4 L 153.21 137.4" />
@@ -130,7 +130,7 @@
         <path d="M18.84,186.13 L 153.21 186.13" />
         <path d="M18.84,153.64 L 153.21 153.64" />
       </g>
-      <g stroke="#F0F0F3" stroke-width="0.2" class="guide xgridlines yfixed">
+      <g stroke="#F0F0F3" class="guide xgridlines yfixed" stroke-width="0.2">
         <path d="M63.63,5 L 63.63 91.1" />
         <path d="M123.35,5 L 123.35 91.1" />
         <path d="M108.42,5 L 108.42 91.1" />
@@ -144,202 +144,202 @@
     <g clip-path="url(#clippath4)">
       <g class="plotpanel">
         <g stroke-width="0.3">
-          <g fill="#FF928B" class="geometry color_fib" stroke="#FF6765" stroke-width="0.3">
+          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
             <circle cx="41.24" cy="81.97" r="1" />
           </g>
-          <g fill="#FF928B" class="geometry color_fib" stroke="#FF6765" stroke-width="0.3">
+          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
             <circle cx="56.17" cy="72.19" r="1" />
           </g>
-          <g fill="#FF928B" class="geometry color_fib" stroke="#FF6765" stroke-width="0.3">
+          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
             <circle cx="71.1" cy="66.93" r="1" />
           </g>
-          <g fill="#FF928B" class="geometry color_fib" stroke="#FF6765" stroke-width="0.3">
+          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
             <circle cx="26.31" cy="73.11" r="1" />
           </g>
-          <g fill="#FF928B" class="geometry color_fib" stroke="#FF6765" stroke-width="0.3">
+          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
             <circle cx="100.95" cy="43.02" r="1" />
           </g>
-          <g fill="#FF928B" class="geometry color_fib" stroke="#FF6765" stroke-width="0.3">
+          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
             <circle cx="130.81" cy="18.82" r="1" />
           </g>
-          <g fill="#FF928B" class="geometry color_fib" stroke="#FF6765" stroke-width="0.3">
+          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
             <circle cx="145.74" cy="15.45" r="1" />
           </g>
-          <g fill="#FF928B" class="geometry color_fib" stroke="#FF6765" stroke-width="0.3">
+          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
             <circle cx="86.03" cy="48.33" r="1" />
           </g>
-          <g fill="#FF928B" class="geometry color_fib" stroke="#FF6765" stroke-width="0.3">
+          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
             <circle cx="115.88" cy="29.95" r="1" />
           </g>
-          <g fill="#F6A6FF" class="geometry color_mandel" stroke="#CA7EF6" stroke-width="0.3">
+          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
             <circle cx="41.24" cy="73.52" r="1" />
           </g>
-          <g fill="#F6A6FF" class="geometry color_mandel" stroke="#CA7EF6" stroke-width="0.3">
+          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
             <circle cx="56.17" cy="66.36" r="1" />
           </g>
-          <g fill="#F6A6FF" class="geometry color_mandel" stroke="#CA7EF6" stroke-width="0.3">
+          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
             <circle cx="71.1" cy="63.61" r="1" />
           </g>
-          <g fill="#F6A6FF" class="geometry color_mandel" stroke="#CA7EF6" stroke-width="0.3">
+          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
             <circle cx="26.31" cy="73.6" r="1" />
           </g>
-          <g fill="#F6A6FF" class="geometry color_mandel" stroke="#CA7EF6" stroke-width="0.3">
+          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
             <circle cx="100.95" cy="59.69" r="1" />
           </g>
-          <g fill="#F6A6FF" class="geometry color_mandel" stroke="#CA7EF6" stroke-width="0.3">
+          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
             <circle cx="130.81" cy="43.01" r="1" />
           </g>
-          <g fill="#F6A6FF" class="geometry color_mandel" stroke="#CA7EF6" stroke-width="0.3">
+          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
             <circle cx="145.74" cy="31.79" r="1" />
           </g>
-          <g fill="#F6A6FF" class="geometry color_mandel" stroke="#CA7EF6" stroke-width="0.3">
+          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
             <circle cx="86.03" cy="53.7" r="1" />
           </g>
-          <g fill="#F6A6FF" class="geometry color_mandel" stroke="#CA7EF6" stroke-width="0.3">
+          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
             <circle cx="115.88" cy="39.45" r="1" />
           </g>
-          <g fill="#32B44E" class="geometry color_parse_int" stroke="#008B28" stroke-width="0.3">
+          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
             <circle cx="41.24" cy="61.03" r="1" />
           </g>
-          <g fill="#32B44E" class="geometry color_parse_int" stroke="#008B28" stroke-width="0.3">
+          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
             <circle cx="56.17" cy="61.36" r="1" />
           </g>
-          <g fill="#32B44E" class="geometry color_parse_int" stroke="#008B28" stroke-width="0.3">
+          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
             <circle cx="71.1" cy="66.16" r="1" />
           </g>
-          <g fill="#32B44E" class="geometry color_parse_int" stroke="#008B28" stroke-width="0.3">
+          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
             <circle cx="26.31" cy="69.1" r="1" />
           </g>
-          <g fill="#32B44E" class="geometry color_parse_int" stroke="#008B28" stroke-width="0.3">
+          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
             <circle cx="100.95" cy="48.53" r="1" />
           </g>
-          <g fill="#32B44E" class="geometry color_parse_int" stroke="#008B28" stroke-width="0.3">
+          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
             <circle cx="130.81" cy="21" r="1" />
           </g>
-          <g fill="#32B44E" class="geometry color_parse_int" stroke="#008B28" stroke-width="0.3">
+          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
             <circle cx="145.74" cy="9.84" r="1" />
           </g>
-          <g fill="#32B44E" class="geometry color_parse_int" stroke="#008B28" stroke-width="0.3">
+          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
             <circle cx="86.03" cy="53.82" r="1" />
           </g>
-          <g fill="#32B44E" class="geometry color_parse_int" stroke="#008B28" stroke-width="0.3">
+          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
             <circle cx="115.88" cy="43.6" r="1" />
           </g>
-          <g fill="#FF5EA0" class="geometry color_pi_sum" stroke="#DC2C7A" stroke-width="0.3">
+          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
             <circle cx="41.24" cy="73.99" r="1" />
           </g>
-          <g fill="#FF5EA0" class="geometry color_pi_sum" stroke="#DC2C7A" stroke-width="0.3">
+          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
             <circle cx="56.17" cy="70" r="1" />
           </g>
-          <g fill="#FF5EA0" class="geometry color_pi_sum" stroke="#DC2C7A" stroke-width="0.3">
+          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
             <circle cx="71.1" cy="73.66" r="1" />
           </g>
-          <g fill="#FF5EA0" class="geometry color_pi_sum" stroke="#DC2C7A" stroke-width="0.3">
+          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
             <circle cx="26.31" cy="72.42" r="1" />
           </g>
-          <g fill="#FF5EA0" class="geometry color_pi_sum" stroke="#DC2C7A" stroke-width="0.3">
+          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
             <circle cx="100.95" cy="70.46" r="1" />
           </g>
-          <g fill="#FF5EA0" class="geometry color_pi_sum" stroke="#DC2C7A" stroke-width="0.3">
+          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
             <circle cx="130.81" cy="70.64" r="1" />
           </g>
-          <g fill="#FF5EA0" class="geometry color_pi_sum" stroke="#DC2C7A" stroke-width="0.3">
+          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
             <circle cx="145.74" cy="33.83" r="1" />
           </g>
-          <g fill="#FF5EA0" class="geometry color_pi_sum" stroke="#DC2C7A" stroke-width="0.3">
+          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
             <circle cx="86.03" cy="52.71" r="1" />
           </g>
-          <g fill="#FF5EA0" class="geometry color_pi_sum" stroke="#DC2C7A" stroke-width="0.3">
+          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
             <circle cx="115.88" cy="53.12" r="1" />
           </g>
-          <g fill="#00E5B2" class="geometry color_printfd" stroke="#00BA8B" stroke-width="0.3">
+          <g stroke="#00BA8B" fill="#00E5B2" class="geometry color_printfd" stroke-width="0.3">
             <circle cx="26.31" cy="67.77" r="1" />
           </g>
-          <g fill="#00E5B2" class="geometry color_printfd" stroke="#00BA8B" stroke-width="0.3">
+          <g stroke="#00BA8B" fill="#00E5B2" class="geometry color_printfd" stroke-width="0.3">
             <circle cx="130.81" cy="41.84" r="1" />
           </g>
-          <g fill="#00E5B2" class="geometry color_printfd" stroke="#00BA8B" stroke-width="0.3">
+          <g stroke="#00BA8B" fill="#00E5B2" class="geometry color_printfd" stroke-width="0.3">
             <circle cx="145.74" cy="42.54" r="1" />
           </g>
-          <g fill="#9E9E9E" class="geometry color_quicksort" stroke="#777777" stroke-width="0.3">
+          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
             <circle cx="41.24" cy="71.67" r="1" />
           </g>
-          <g fill="#9E9E9E" class="geometry color_quicksort" stroke="#777777" stroke-width="0.3">
+          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
             <circle cx="56.17" cy="70.85" r="1" />
           </g>
-          <g fill="#9E9E9E" class="geometry color_quicksort" stroke="#777777" stroke-width="0.3">
+          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
             <circle cx="71.1" cy="63.55" r="1" />
           </g>
-          <g fill="#9E9E9E" class="geometry color_quicksort" stroke="#777777" stroke-width="0.3">
+          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
             <circle cx="26.31" cy="71.47" r="1" />
           </g>
-          <g fill="#9E9E9E" class="geometry color_quicksort" stroke="#777777" stroke-width="0.3">
+          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
             <circle cx="100.95" cy="47.19" r="1" />
           </g>
-          <g fill="#9E9E9E" class="geometry color_quicksort" stroke="#777777" stroke-width="0.3">
+          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
             <circle cx="130.81" cy="39.8" r="1" />
           </g>
-          <g fill="#9E9E9E" class="geometry color_quicksort" stroke="#777777" stroke-width="0.3">
+          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
             <circle cx="145.74" cy="22.81" r="1" />
           </g>
-          <g fill="#9E9E9E" class="geometry color_quicksort" stroke="#777777" stroke-width="0.3">
+          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
             <circle cx="86.03" cy="47.97" r="1" />
           </g>
-          <g fill="#9E9E9E" class="geometry color_quicksort" stroke="#777777" stroke-width="0.3">
+          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
             <circle cx="115.88" cy="28.24" r="1" />
           </g>
-          <g fill="#00BFFF" class="geometry color_rand_mat_mul" stroke="#0096DD" stroke-width="0.3">
+          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
             <circle cx="41.24" cy="72.72" r="1" />
           </g>
-          <g fill="#00BFFF" class="geometry color_rand_mat_mul" stroke="#0096DD" stroke-width="0.3">
+          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
             <circle cx="56.17" cy="57.31" r="1" />
           </g>
-          <g fill="#00BFFF" class="geometry color_rand_mat_mul" stroke="#0096DD" stroke-width="0.3">
+          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
             <circle cx="71.1" cy="53.5" r="1" />
           </g>
-          <g fill="#00BFFF" class="geometry color_rand_mat_mul" stroke="#0096DD" stroke-width="0.3">
+          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
             <circle cx="26.31" cy="72.35" r="1" />
           </g>
-          <g fill="#00BFFF" class="geometry color_rand_mat_mul" stroke="#0096DD" stroke-width="0.3">
+          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
             <circle cx="100.95" cy="71.35" r="1" />
           </g>
-          <g fill="#00BFFF" class="geometry color_rand_mat_mul" stroke="#0096DD" stroke-width="0.3">
+          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
             <circle cx="130.81" cy="71.76" r="1" />
           </g>
-          <g fill="#00BFFF" class="geometry color_rand_mat_mul" stroke="#0096DD" stroke-width="0.3">
+          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
             <circle cx="145.74" cy="63.77" r="1" />
           </g>
-          <g fill="#00BFFF" class="geometry color_rand_mat_mul" stroke="#0096DD" stroke-width="0.3">
+          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
             <circle cx="86.03" cy="63.77" r="1" />
           </g>
-          <g fill="#00BFFF" class="geometry color_rand_mat_mul" stroke="#0096DD" stroke-width="0.3">
+          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
             <circle cx="115.88" cy="62.67" r="1" />
           </g>
-          <g fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke="#A8A200" stroke-width="0.3">
+          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
             <circle cx="41.24" cy="75.52" r="1" />
           </g>
-          <g fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke="#A8A200" stroke-width="0.3">
+          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
             <circle cx="56.17" cy="57.64" r="1" />
           </g>
-          <g fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke="#A8A200" stroke-width="0.3">
+          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
             <circle cx="71.1" cy="64.04" r="1" />
           </g>
-          <g fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke="#A8A200" stroke-width="0.3">
+          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
             <circle cx="26.31" cy="68.86" r="1" />
           </g>
-          <g fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke="#A8A200" stroke-width="0.3">
+          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
             <circle cx="100.95" cy="61.77" r="1" />
           </g>
-          <g fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke="#A8A200" stroke-width="0.3">
+          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
             <circle cx="130.81" cy="59.09" r="1" />
           </g>
-          <g fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke="#A8A200" stroke-width="0.3">
+          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
             <circle cx="145.74" cy="53.32" r="1" />
           </g>
-          <g fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke="#A8A200" stroke-width="0.3">
+          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
             <circle cx="86.03" cy="54.04" r="1" />
           </g>
-          <g fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke="#A8A200" stroke-width="0.3">
+          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
             <circle cx="115.88" cy="55.6" r="1" />
           </g>
         </g>
