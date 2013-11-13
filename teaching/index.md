@@ -26,7 +26,7 @@ Windows.
 # Julia packages
 
 The Julia community has put together a number of
-[packages](http://docs.julialang.org/en/latest/packages/packagelist.html)
+[packages](http://docs.julialang.org/en/latest/packages/packagelist/)
 spanning multiple disciplines.
 
 # The Julia manual
