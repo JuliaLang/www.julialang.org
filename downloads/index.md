@@ -5,28 +5,28 @@ title:  Julia Downloads
 
 ### Download and install Julia on various Operating Systems
 
-Current version: [**v0.2-rc4**](#v0.2)
+Current version: [**v0.2.0**](#v0.2)
 
-<span id="v0.2"/>
-# v0.2-rc4
+<span id="v0.2.0"/>
+# v0.2.0
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.2/julia-0.2-rc4-win32.exe">32-bit</a> </td>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.2/julia-0.2-rc4-win64.exe">64-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.2/julia-0.2.0-win32.exe">32-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.2/julia-0.2.0-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-rc4-10.6.dmg">10.6 64-bit</a> </td>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-rc4.dmg">10.7+ 64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-10.6.dmg">10.6 64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages </th>
-    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
+    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/juliareleases">32/64-bit</a> </td>
 </tr>
 <tr>
     <th> Source </th>
-    <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/v0.2.0-rc4">GitHub</a> </td>
+    <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/v0.2.0">GitHub</a> </td>
 </tr>
 </tbody></table>
 
