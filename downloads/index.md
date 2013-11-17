@@ -5,10 +5,9 @@ title:  Julia Downloads
 
 ### Download and install Julia on various Operating Systems
 
-Current version: [**v0.2.0**](#v0.2)
+# Current Release
 
-<span id="v0.2.0"/>
-# v0.2.0
+## v0.2.0
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
@@ -30,9 +29,9 @@ Current version: [**v0.2.0**](#v0.2)
 </tr>
 </tbody></table>
 
-## Older Releases
-<span id="v0.1"/>
-#Release v0.1.2
+# Older Releases
+
+## v0.1.2
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Archive (.zip) </th>
@@ -51,7 +50,7 @@ Current version: [**v0.2.0**](#v0.2)
 </tr>
 </tbody></table>
 
-If the provided download files do not work for you, please [file an issue](https://github.com/JuliaLang/julia/issues). It is strongly recommended that you download the 0.2 pre-release binaries to try out julia, unless you are working with code that was developed specifically for the 0.1 release.
+If the provided download files do not work for you, please [file an issue](https://github.com/JuliaLang/julia/issues). It is strongly recommended that you download the v0.2 binaries to try out Julia, unless you are working with code that was developed specifically for the v0.1 release.
 
 ---
 # Platform Specific Instructions
