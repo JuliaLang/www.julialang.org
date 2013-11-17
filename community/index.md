@@ -18,3 +18,13 @@ We use GitHub to track our source code and for tracking and discussing [issues](
 # IRC
 
 Many Julia users and developers hang out in the [#julia IRC channel](http://webchat.freenode.net/?channels=julia) on Freenode.
+
+# IRL
+
+Julia has several local user groups, including:
+
+* [Bay Area Julia Users](http://www.meetup.com/Bay-Area-Julia-Users/)
+* [Cambridge Area Julia Users Network](http://www.meetup.com/julia-cajun/)
+* [NYC Julia User Group](http://www.meetup.com/NYC-Julia-User-Group/)
+* [sthlm.jl (Stockholm)](http://www.meetup.com/sthlm-jl/)
+* [Atlanta Julia Users Group](http://www.meetup.com/Atlanta-Julia-Users-Group/)
