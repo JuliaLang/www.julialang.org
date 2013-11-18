@@ -65,7 +65,7 @@ Julia is available for both 32-bit and 64-bit Windows since XP SP3.
 
 The [Windows README](https://github.com/JuliaLang/julia/blob/master/README.windows.md) contains information on dependencies.
 
-Uninstallation is performed by deleting the extracted directory. If you would also like to remove your preferences files, they can be found in your user directory at `%APPDATA%/julia`; this is typically expanded to `%USERHOME%/Application Data/Roaming/julia`.
+Uninstallation is performed by deleting the extracted directory and the packages directory in `%HOME%/.julia`. If you would also like to remove your preferences files, remove `%HOME%/.juliarc.jl` and `%HOME%/.julia_history`.
 
 ## OS X
 
