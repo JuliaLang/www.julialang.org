@@ -15,6 +15,12 @@ The [julia-stats](https://groups.google.com/forum/?fromgroups=#!forum/julia-stat
 
 We use GitHub to track our source code and for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) and [commits](https://github.com/JuliaLang/julia/commits). There is also a list of [packages](http://docs.julialang.org/en/latest/packages/packagelist/) for Julia, many of which are also hosted on and developed using GitHub.
 
+Various Julia projects are hosted under the following umbrella organizations on GitHub:
+
+* [The Julia Language](https://github.com/JuliaLang)
+* [Julia Statistics](https://github.com/JuliaStats)
+* [Mathematical Optimization in Julia](https://github.com/JuliaOpt)
+
 # IRC
 
 Many Julia users and developers hang out in the [#julia IRC channel](http://webchat.freenode.net/?channels=julia) on Freenode.
