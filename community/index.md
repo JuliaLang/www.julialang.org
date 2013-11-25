@@ -24,7 +24,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 
 # Twitter
 
-[#julialang hashtag on twitter](https://twitter.com/search?q=julialang&src=typd&f=realtime)
+Tweet using the [#JuliaLang](https://twitter.com/search?q=julialang&src=typd&f=realtime) hashtag on Twitter.
 
 # IRC
 
@@ -42,8 +42,8 @@ Julia has several local user groups, including:
 
 # Reddit
 
-[The Julia Language SubReddit](http://www.reddit.com/r/Julia/)
+[The Julia Language SubReddit](http://www.reddit.com/r/Julia/) is a collection of various blog posts and articles related to Julia.
 
 # StackOverflow
 
-[julia-lang tag on StackOverflow](http://stackoverflow.com/questions/tagged/julia-lang)
+Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag on StackOverflow, if you post a Julia related question on StackOverflow.
