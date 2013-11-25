@@ -34,3 +34,11 @@ Julia has several local user groups, including:
 * [NYC Julia User Group](http://www.meetup.com/NYC-Julia-User-Group/)
 * [sthlm.jl (Stockholm)](http://www.meetup.com/sthlm-jl/)
 * [Atlanta Julia Users Group](http://www.meetup.com/Atlanta-Julia-Users-Group/)
+
+# Reddit
+
+* [The Julia Language SubReddit](http://www.reddit.com/r/Julia/)
+
+# StackOverflow
+
+* [julia-lang tag on StackOverflow](http://stackoverflow.com/questions/tagged/julia-lang)
