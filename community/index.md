@@ -22,11 +22,15 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaOpt](https://github.com/JuliaOpt) – optimization
 * [JuliaQuant](https://github.com/JuliaQuant) – finance
 
+# Twitter
+
+[#julialang hashtag on twitter](https://twitter.com/search?q=julialang&src=typd&f=realtime)
+
 # IRC
 
 Many Julia users and developers hang out in the [#julia IRC channel](http://webchat.freenode.net/?channels=julia) on Freenode.
 
-# IRL
+# Meetups
 
 Julia has several local user groups, including:
 
@@ -38,8 +42,8 @@ Julia has several local user groups, including:
 
 # Reddit
 
-* [The Julia Language SubReddit](http://www.reddit.com/r/Julia/)
+[The Julia Language SubReddit](http://www.reddit.com/r/Julia/)
 
 # StackOverflow
 
-* [julia-lang tag on StackOverflow](http://stackoverflow.com/questions/tagged/julia-lang)
+[julia-lang tag on StackOverflow](http://stackoverflow.com/questions/tagged/julia-lang)
