@@ -17,9 +17,10 @@ We use GitHub to track our source code and for tracking and discussing [issues](
 
 Various Julia projects are hosted under the following umbrella organizations on GitHub:
 
-* [The Julia Language](https://github.com/JuliaLang)
-* [Julia Statistics](https://github.com/JuliaStats)
-* [Mathematical Optimization in Julia](https://github.com/JuliaOpt)
+* [JuliaLang](https://github.com/JuliaLang) – the language
+* [JuliaStats](https://github.com/JuliaStats) – statistics
+* [JuliaOpt](https://github.com/JuliaOpt) – optimization
+* [JuliaQuant](https://github.com/JuliaQuant) – finance
 
 # IRC
 
