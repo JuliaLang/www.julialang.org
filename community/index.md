@@ -40,17 +40,6 @@ Julia has several local user groups, including:
 * [sthlm.jl (Stockholm)](http://www.meetup.com/sthlm-jl/)
 * [Atlanta Julia Users Group](http://www.meetup.com/Atlanta-Julia-Users-Group/)
 
-# Courses
-
-Julia is now being used in several university courses.
-
-* MIT, Spring 2013: [18.330](http://homerreid.dyndns.org/teaching/18.330) (Dr. Homer Reid)
-* MIT, Fall 2013: [18.06](http://stellar.mit.edu/S/course/18/fa13/18.06) (Prof. Alan Edelman)
-* MIT, Fall 2013: [18.303](http://math.mit.edu/~stevenj/18.303) (Prof. Steven G. Johnson)
-* MIT, Fall 2013: [6.337J/18.335J](http://math.mit.edu/~stevenj/18.335) (Prof. Steven G. Johnson)
-* MIT, Fall 2013: [6.338/18.337](http://beowulf.csail.mit.edu/18.337) (Prof. Alan Edelman)
-* University of Waterloo, Fall 2013: [CS 2101A](http://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html) (Prof. Marc Moreno Maza)
-
 # Reddit
 
 [The Julia Language SubReddit](http://www.reddit.com/r/Julia/) is a collection of various blog posts and articles related to Julia.
