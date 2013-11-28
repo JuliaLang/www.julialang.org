@@ -36,9 +36,12 @@ Julia has several local user groups, including:
 
 * [Bay Area Julia Users](http://www.meetup.com/Bay-Area-Julia-Users/)
 * [Cambridge Area Julia Users Network](http://www.meetup.com/julia-cajun/)
+* [Chicago Julia Meetup](http://www.meetup.com/JuliaChicago/)
 * [NYC Julia User Group](http://www.meetup.com/NYC-Julia-User-Group/)
 * [sthlm.jl (Stockholm)](http://www.meetup.com/sthlm-jl/)
 * [Atlanta Julia Users Group](http://www.meetup.com/Atlanta-Julia-Users-Group/)
+
+Don't have one in your area? Why not start one!
 
 # Reddit
 
