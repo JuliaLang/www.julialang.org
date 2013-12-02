@@ -20,7 +20,7 @@ Julia is now being used in several university courses in North America. If you k
   * [18.335J/6.337J](http://math.mit.edu/~stevenj/18.335), Introduction to Numerical Methods. (Prof. Steven G. Johnson)
   * [18.337/6.338](http://beowulf.csail.mit.edu/18.337), Parallel Computing. (Prof. Alan Edelman)
 
-- University of Waterloo, Fall 2013
+- Western University Canada, Fall 2013
   * [CS 2101A](http://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza)
 
 # Julia resources
