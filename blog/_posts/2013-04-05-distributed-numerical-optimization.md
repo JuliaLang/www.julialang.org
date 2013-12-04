@@ -45,10 +45,8 @@ candidate \\( x \\) be the minimizer of \\( \sum_{i=1}&#94;n m_i(x) \\).
 If it is costly to evaluate \\( f_i(x) \\), then the algorithm is naturally
 parallelizable at step 2. The minimization in step 3 can be computed by solving
 a linear optimization problem, which is usually very fast. (Let me point out
-here that Julia has interfaces to the linear programming solvers <a
-href="https://github.com/mlubin/Clp.jl">Clp</a>, <a
-href="https://github.com/lindahua/Gurobi.jl">Gurobi</a>, and <a
-href="https://github.com/carlobaldassi/GLPK.jl">GLPK</a>.)
+here that Julia has interfaces to linear programming and other
+optimization solvers under <a href="http://juliaopt.org/">JuliaOpt</a>.)
 
 Abstracting the math, we can write the algorithm using the following Julia code. 
 
