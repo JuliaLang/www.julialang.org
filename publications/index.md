@@ -18,20 +18,10 @@ title:  Julia Publications
   bibsource = {DBLP, http://dblp.uni-trier.de}
 }
 </pre>
-2. Stochastic Collapsed Variational Bayesian Inference for Latent Dirichlet Allocation [[arxiv]](http://arxiv.org/abs/1305.2452)
+2. [Computing in Operations Research using Julia](http://www.mit.edu/~mlubin/juliacomputing.pdf)
 <pre>
-@article{DBLP:journals/corr/abs-1305-2452,
-  author    = {James R. Foulds and
-               Levi Boyles and
-               Christopher DuBois and
-               Padhraic Smyth and
-               Max Welling},
-  title     = {Stochastic Collapsed Variational Bayesian Inference for
-               Latent Dirichlet Allocation},
-  journal   = {CoRR},
-  volume    = {abs/1305.2452},
+@techreport{author = {Miles Lubin and Iain Dunning},
+  title     = {Computing in Operations Research using Julia},
   year      = {2013},
-  ee        = {http://arxiv.org/abs/1305.2452},
-  bibsource = {DBLP, http://dblp.uni-trier.de}
 }
 </pre>
