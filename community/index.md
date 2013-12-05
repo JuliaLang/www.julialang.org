@@ -40,6 +40,7 @@ Julia has several local user groups, including:
 * [NYC Julia User Group](http://www.meetup.com/NYC-Julia-User-Group/)
 * [sthlm.jl (Stockholm)](http://www.meetup.com/sthlm-jl/)
 * [Atlanta Julia Users Group](http://www.meetup.com/Atlanta-Julia-Users-Group/)
+* [London Julia Users Group](http://www.meetup.com/London-Julia-Users-Group/)
 
 Don't have one in your area? Why not start one!
 
