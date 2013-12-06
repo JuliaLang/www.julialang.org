@@ -4,11 +4,11 @@ title:  The Julia Language
 ---
 
 Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments.
-It provides a sophisticated compiler, distributed parallel execution, numerical accuracy, and an extensive mathematical function library.
-The library, largely written in Julia itself, also integrates mature, best-of-breed C and Fortran libraries for linear algebra, random number generation, signal processing, and string processing.
+It provides a sophisticated compiler, [distributed parallel execution](http://docs.julialang.org/en/release-0.2/manual/parallel-computing/), numerical accuracy, and an [extensive mathematical function library](http://docs.julialang.org/en/release-0.2/stdlib/).
+The library, largely written in Julia itself, also integrates mature, best-of-breed C and Fortran libraries for [linear algebra](http://docs.julialang.org/en/release-0.2/stdlib/linalg/), [random number generation](http://docs.julialang.org/en/release-0.2/stdlib/base/#random-numbers), [signal processing](http://docs.julialang.org/en/release-0.2/stdlib/base/#signal-processing), and [string processing](http://docs.julialang.org/en/release-0.2/stdlib/base/#strings).
 In addition, the Julia developer community is contributing a number of [external packages](http://docs.julialang.org/en/latest/packages/packagelist/) through Julia's built-in package manager at a rapid pace. [IJulia](https://github.com/JuliaLang/IJulia.jl), a collaboration between the [IPython](http://ipython.org) and Julia communities, provides a powerful browser-based graphical notebook interface to Julia.
 
-Julia programs are organized around multiple dispatch; by defining functions and overloading them for different combinations of argument types, which can also be user-defined.
+Julia programs are organized around [multiple dispatch](http://docs.julialang.org/en/release-0.2/manual/methods/#man-methods); by defining functions and overloading them for different combinations of argument types, which can also be user-defined.
 For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](http://docs.julialang.org/en/latest/manual/introduction/) in the [online manual](http://docs.julialang.org/en/latest/manual/).
 
 # High-Performance JIT Compiler
@@ -84,7 +84,7 @@ The Julia implementation of `randmatstat` is considerably simpler than the equiv
 By design, Julia allows you to range from tight low-level loops, up to a high-level programming style, while sacrificing some performance, but gaining the ability to express complex algorithms easily.
 This continuous spectrum of programming levels is a hallmark of the Julia approach to programming and is very much an intentional feature of the language.
 
-# Designed for Parallelism & Cloud Computing
+# Designed for Parallelism and Cloud Computing
 
 Julia does not impose any particular style of parallelism on the user.
 Instead, it provides a number of [key building blocks for distributed computation](/manual/parallel-computing), making it flexible enough to support a number of styles of parallelism, and allowing users to add more.
@@ -103,7 +103,7 @@ Here is a screenshot of a web-based interactive [IJulia](https://github.com/Juli
 This paves the way for fully cloud-based operation, including data management, code editing and sharing, execution, debugging, collaboration, analysis, data exploration, and visualization.
 The eventual goal is to let people stop worrying about administering machines and managing data and get straight to the real problem.
 
-# Free, Open Source & Library-Friendly
+# Free, Open Source and Library-Friendly
 
 The core of the Julia implementation is licensed under the [MIT license](http://en.wikipedia.org/wiki/MIT_License).
 Various libraries used by the Julia environment include their own licenses such as the [GPL](http://en.wikipedia.org/wiki/GNU_General_Public_License), [LGPL](http://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License), and [BSD](http://en.wikipedia.org/wiki/BSD_licenses)
