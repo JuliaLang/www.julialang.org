@@ -18,10 +18,4 @@ title:  Julia Publications
   bibsource = {DBLP, http://dblp.uni-trier.de}
 }
 </pre>
-2. [Computing in Operations Research using Julia](http://www.mit.edu/~mlubin/juliacomputing.pdf)
-<pre>
-@techreport{author = {Miles Lubin and Iain Dunning},
-  title     = {Computing in Operations Research using Julia},
-  year      = {2013},
-}
-</pre>
+2. Computing in Operations Research using Julia [[arxiv]](http://arxiv.org/abs/1312.1431)
