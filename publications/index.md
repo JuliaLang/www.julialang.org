@@ -17,7 +17,7 @@ programs. This makes it possible for much of the Julia library to be
 written in Julia itself, while also incorporating best-of-breed C and
 Fortran libraries.
 
-* [Computing in Operations Research using Julia](http://www.mit.edu/~mlubin/juliacomputing.pdf)
+* [Computing in Operations Research using Julia](http://arxiv.org/abs/1312.1431)
 
 The state of numerical computing is currently characterized by a
 divide between highly efficient yet typically cumbersome low-level
