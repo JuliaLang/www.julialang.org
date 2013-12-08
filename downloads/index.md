@@ -77,9 +77,15 @@ Uninstall Julia by deleting Julia.app and the packages directory in ~/.julia. Mu
 
 Instructions will be added here as more linux distributions start including julia. If your Linux distribution is not listed here, you should still be able to run julia by building from source. See the [Julia README](https://github.com/JuliaLang/julia/blob/master/README.md) for more detailed information.
 
-1. [Ubuntu 13.04](http://packages.ubuntu.com/raring/julia): apt-get install julia
+### Ubuntu
+A [PPA](https://launchpad.net/~staticfloat/+archive/juliareleases) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest stable version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, simply type:
 
-Uninstallation is platform dependent. If you did a source build, it can be performed by deleting your julia source folder. If you would also like to remove your preferences files, they are `~/.julia` and `~/.juliarc.jl`.
+
+    $ sudo add-apt-repository ppa:staticfloat/juliareleases
+    $ sudo apt-get update
+    $ sudo apt-get install julia
+
+Uninstallation is platform dependent. If you installed from a package manager such as `apt-get`, use the package manager to remove julia, for example `apt-get remove julia`. If you did a source build, you can remove it by deleting your julia source folder. If you would also like to remove your preferences files, they are `~/.julia` and `~/.juliarc.jl`.
 
 ### Nightlies installation instructions
 A [PPA](https://launchpad.net/~staticfloat/+archive/julianightlies) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest beta version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, simply type:
