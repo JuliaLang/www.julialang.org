@@ -80,10 +80,11 @@ Instructions will be added here as more linux distributions start including juli
 ### Ubuntu
 A [PPA](https://launchpad.net/~staticfloat/+archive/juliareleases) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest stable version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, simply type:
 
-
     $ sudo add-apt-repository ppa:staticfloat/juliareleases
     $ sudo apt-get update
     $ sudo apt-get install julia
+
+Note that Ubuntu has deadlines for accepting new versions of software into their default repositories, and as such the default repositories often have Julia versions that lag behind significantly.  When reporting issues, please ensure you are using the latest available release by using one of the PPA repositories displayed on this page.
 
 Uninstallation is platform dependent. If you installed from a package manager such as `apt-get`, use the package manager to remove julia, for example `apt-get remove julia`. If you did a source build, you can remove it by deleting your julia source folder. If you would also like to remove your preferences files, they are `~/.julia` and `~/.juliarc.jl`.
 
