@@ -11,6 +11,24 @@ In addition, the Julia developer community is contributing a number of [external
 Julia programs are organized around [multiple dispatch](http://docs.julialang.org/en/release-0.2/manual/methods/#man-methods); by defining functions and overloading them for different combinations of argument types, which can also be user-defined.
 For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](http://docs.julialang.org/en/latest/manual/introduction/) in the [online manual](http://docs.julialang.org/en/latest/manual/).
 
+# A Summary of Features
+
+* [Multiple dispatch](http://en.wikipedia.org/wiki/Multiple_dispatch): providing ability to define function behavior across many combinations of argument types
+* Dynamic type system: types for documentation, optimization, and dispatch
+* Good performance, approaching that of statically-compiled languages like C
+* Built-in package manager
+* [Lisp-like macros](http://docs.julialang.org/en/latest/manual/metaprogramming/#macros) and other [metaprogramming facilities](http://docs.julialang.org/en/latest/manual/metaprogramming/)
+* Call Python functions: use the [PyCall]() package
+* [Call C functions](http://docs.julialang.org/en/latest/manual/calling-c-and-fortran-code/) directly: no wrappers or special APIs
+* Powerful shell-like capabilities for [managing other processes](http://docs.julialang.org/en/latest/manual/running-external-programs/)
+* Designed for [parallelism and distributed computation](http://docs.julialang.org/en/latest/manual/parallel-computing/)
+* [Coroutines](http://en.wikipedia.org/wiki/Coroutine): lightweight "green" threading
+* User-defined types are as fast and compact as built-ins
+* Automatic generation of efficient, specialized code for different argument types
+* Elegant and extensible conversions and promotions for numeric and other types
+* Efficient support for [Unicode](http://en.wikipedia.org/wiki/Unicode), including but not limited to [UTF-8](http://en.wikipedia.org/wiki/UTF-8)
+* [MIT licensed](https://github.com/JuliaLang/julia/blob/master/LICENSE.md): free and open source
+
 # High-Performance JIT Compiler
 
 Julia's LLVM-based just-in-time (JIT) compiler combined with the language's design allow it to approach and often match the performance of C.
