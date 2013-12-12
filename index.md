@@ -9,7 +9,7 @@ The library, largely written in Julia itself, also integrates mature, best-of-br
 In addition, the Julia developer community is contributing a number of [external packages](http://docs.julialang.org/en/latest/packages/packagelist/) through Julia's built-in package manager at a rapid pace. [IJulia](https://github.com/JuliaLang/IJulia.jl), a collaboration between the [IPython](http://ipython.org) and Julia communities, provides a powerful browser-based graphical notebook interface to Julia.
 
 Julia programs are organized around [multiple dispatch](http://docs.julialang.org/en/release-0.2/manual/methods/#man-methods); by defining functions and overloading them for different combinations of argument types, which can also be user-defined.
-For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](http://docs.julialang.org/en/latest/manual/introduction/) in the [online manual](http://docs.julialang.org/en/latest/manual/).
+For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](http://docs.julialang.org/en/latest/manual/introduction/) in the [online manual](http://docs.julialang.org).
 
 # A Summary of Features
 
