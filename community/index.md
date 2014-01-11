@@ -32,7 +32,7 @@ Many Julia users and developers hang out in the [#julia IRC channel](http://webc
 
 # Meetups
 
-Julia has several local user groups, including:
+Julia has several [local user groups](http://julia.meetup.com):
 
 * [Bay Area Julia Users](http://www.meetup.com/Bay-Area-Julia-Users/)
 * [Cambridge Area Julia Users Network](http://www.meetup.com/julia-cajun/)
