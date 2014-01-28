@@ -41,6 +41,7 @@ Julia has several [local user groups](http://julia.meetup.com):
 * [sthlm.jl (Stockholm)](http://www.meetup.com/sthlm-jl/)
 * [Atlanta Julia Users Group](http://www.meetup.com/Atlanta-Julia-Users-Group/)
 * [London Julia Users Group](http://www.meetup.com/London-Julia-Users-Group/)
+* [Triangle Users Group (North Carolina](http://www.meetup.com/Triangle-Julia-Users/)
 
 Don't have one in your area? Why not start one!
 
