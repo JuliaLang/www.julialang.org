@@ -81,6 +81,7 @@ Instructions will be added here as more linux distributions start including juli
 A [PPA](https://launchpad.net/~staticfloat/+archive/juliareleases) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest stable version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, simply type:
 
     $ sudo add-apt-repository ppa:staticfloat/juliareleases
+    $ sudo add-apt-repository ppa:staticfloat/julia-deps
     $ sudo apt-get update
     $ sudo apt-get install julia
 
