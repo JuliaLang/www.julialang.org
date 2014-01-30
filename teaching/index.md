@@ -29,7 +29,7 @@ Julia is now being used in several university courses in North America. If you k
  * [15.083](https://stellar.mit.edu/S/course/15/sp14/15.083/), Integer Programming and Combinatorial Optimization (Prof. Juan Pablo Vielma)
 
 - Cornell University, Spring 2014
- * [CS 5220]http://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel)
+ * [CS 5220](http://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel)
 
 # Julia resources
 
