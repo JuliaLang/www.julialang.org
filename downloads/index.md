@@ -57,7 +57,7 @@ If the provided download files do not work for you, please [file an issue](https
 
 ## Windows
 
-Julia is available for both 32-bit and 64-bit Windows since XP SP3.
+Julia is available for both 32-bit and 64-bit Windows since XP SP2.
 
 1. Download the Windows julia.exe installer for your platform. 32-bit julia works on both x86 and x86_64. 64-bit julia will only run on 64-bit Windows (x86_64).
 2. Run the downloaded program to extract julia
