@@ -23,6 +23,12 @@ Julia is now being used in several university courses in North America. If you k
 - Western University Canada, Fall 2013
   * [CS 2101A](http://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza)
 
+- MIT, Spring 2014
+ * [18.330](http://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid)
+
+- Cornell University, Spring 2014
+ * [CS 5220]http://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel)
+
 # Julia resources
 
 For a quick introduction to Julia, see these [introductory slides](https://github.com/ViralBShah/julia-presentations/raw/master/Fifth-Elephant-2013/Fifth-Elephant-2013.pdf).
