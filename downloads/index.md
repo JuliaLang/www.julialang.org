@@ -107,7 +107,7 @@ Winston provides 2D plotting capabilities for Julia. Add the Winston package to 
 2. `using Winston`
 3. `plot( cumsum(randn(1000)) )` # (plot a random walk)
 
-Winston's interface will be familiar to MATLAB users. See [examples](https://github.com/nolta/Winston.jl/blob/master/doc/examples.md) and documentation on the [Winston](https://github.com/nolta/Winston.jl) homepage.
+Winston's interface will be familiar to MATLAB users. See [examples](https://github.com/nolta/Winston.jl/tree/master/examples) and documentation on the [Winston](https://github.com/nolta/Winston.jl) homepage.
 
 ## Gadfly
 
