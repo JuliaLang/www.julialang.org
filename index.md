@@ -18,7 +18,7 @@ For a more in-depth discussion of the rationale and advantages of Julia over oth
 * Good performance, approaching that of statically-compiled languages like C
 * Built-in package manager
 * [Lisp-like macros](http://docs.julialang.org/en/latest/manual/metaprogramming/#macros) and other [metaprogramming facilities](http://docs.julialang.org/en/latest/manual/metaprogramming/)
-* Call Python functions: use the [PyCall]() package
+* Call Python functions: use the [PyCall](https://github.com/stevengj/PyCall.jl) package
 * [Call C functions](http://docs.julialang.org/en/latest/manual/calling-c-and-fortran-code/) directly: no wrappers or special APIs
 * Powerful shell-like capabilities for [managing other processes](http://docs.julialang.org/en/latest/manual/running-external-programs/)
 * Designed for [parallelism and distributed computation](http://docs.julialang.org/en/latest/manual/parallel-computing/)
