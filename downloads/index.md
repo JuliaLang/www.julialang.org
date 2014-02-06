@@ -7,7 +7,7 @@ title:  Julia Downloads
 
 # Prerelease
 
-## v0.3.0
+## v0.3.0-prerelease
 
 <table class="downloads"><tbody>
 <tr>
