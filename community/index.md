@@ -11,6 +11,8 @@ The [julia-dev](https://groups.google.com/forum/?fromgroups=#!forum/julia-dev) m
 
 The [julia-stats](https://groups.google.com/forum/?fromgroups=#!forum/julia-stats) mailing list is a special purpose mailing list for discussions related to statistical programming with julia. Topics of interest include DataFrame support, GLM modeling, and automatic generation of MCMC code for Bayesian models.
 
+The [julia-opt](https://groups.google.com/forum/?fromgroups=#!forum/julia-opt) mailing list is for discussions related to numerical optimization in julia. This includes Mathematical Programming (linear, mixed-integer, conic, semi-definite, etc.), constrained and unconstrained gradient-based and gradient-free optimization, and related topics.
+
 # GitHub
 
 We use GitHub to track our source code and for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) and [commits](https://github.com/JuliaLang/julia/commits). There is also a list of [packages](http://docs.julialang.org/en/latest/packages/packagelist/) for Julia, many of which are also hosted on and developed using GitHub.
