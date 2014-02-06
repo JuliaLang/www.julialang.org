@@ -5,6 +5,31 @@ title:  Julia Downloads
 
 ### Download and install Julia on various Operating Systems
 
+# Prerelease
+
+## v0.3.0
+
+<table class="downloads"><tbody>
+<tr>
+    <th> Windows Self-Extracting Archive (.exe) </th>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.0-prerelease-win32.exe">32-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.0-prerelease-win64.exe">64-bit</a> </td>
+</tr>
+<tr>
+    <th> Mac OS X Package (.dmg) </th>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.0-prerelease-10.6.dmg">10.6 64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.0-prerelease.dmg">10.7+ 64-bit</a> </td>
+</tr>
+<tr>
+    <th> Ubuntu packages </th>
+    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
+</tr>
+<tr>
+    <th> Source </th>
+    <td colspan=2> <a href="https://github.com/JuliaLang/julia">GitHub</a> </td>
+</tr>
+</tbody></table>
+
 # Current Release
 
 ## v0.2.0
