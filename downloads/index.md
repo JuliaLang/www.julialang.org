@@ -18,7 +18,7 @@ title:  Julia Downloads
 <tr>
     <th> Mac OS X Package (.dmg) </th>
     <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.0-prerelease-10.6.dmg">10.6 64-bit</a> </td>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.0-prerelease.dmg">10.7+ 64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.0-prerelease-10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages </th>
