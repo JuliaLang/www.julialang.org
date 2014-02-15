@@ -23,15 +23,11 @@ Julia should have a full set of ODE solvers, as they are vital for numeric progr
 
 **Expected Results**: A set of production-quality ODE solvers.
 
-**Estimated Difficulty:** Hard
-
 ## PETSc Solvers
 
 [PETSc](http://www.mcs.anl.gov/petsc/index.html) provides data structures and routines for working with PDEs and sparse matrix - it could be extremely useful integrated with Julia.
 
 **Expected Results:** Wrapper library for PETSc.
-
-**Estimated Difficulty:** Medium
 
 ## GPU Programming
 
@@ -40,8 +36,6 @@ It would be useful to leverage GPUs in a natural way, directly from Julia and wi
 **Expected Results:** Package for high-level GPU programming.
 
 **Knowledge Prerequisites:** GPU programming
-
-**Estimated Difficulty:** Hard
 
 # Base
 
@@ -53,8 +47,6 @@ Julia's functions for getting and setting the clipboard are currently limited to
 
 **Knowledge Prerequisites:** Interfacing with C from Julia, clipboard APIs for different platforms.
 
-**Estimated Difficulty:** Medium
-
 ## LibGit2 Support
 
 Julia's package manager is currently very slow due to it's need to shell out to git. This could be greatly improved by incorporating LibGit2 into Base, building on the work in LibGit2.jl.
@@ -62,8 +54,6 @@ Julia's package manager is currently very slow due to it's need to shell out to 
 **Expected Results:** A completion of the LibGit2 wrapper, along with necessary functionality being incorporated into Base and used by the package manager.
 
 **Knowledge Prerequisites:** Interfacing with C from Julia, git.
-
-**Estimated Difficulty:** Medium
 
 ## ARM/Android Support
 
@@ -73,15 +63,11 @@ Julia should ideally support platforms such as the Raspberry Pi and Android, but
 
 **Knowledge Prerequisites:** Understanding of the LLVM infrastructure and internals.
 
-**Estimated Difficulty:** Hard
-
 ## Better error reporting
 
 Julia's errors are helpful for the most part but could be improved - see [#4744](https://github.com/JuliaLang/julia/issues/4744).
 
 **Expected Results:** Consistent printing of errors with qualified type and human-readable string.
-
-**Estimated Difficulty:** Easy
 
 # Tooling
 
@@ -98,5 +84,3 @@ Light Table has the potential to be a great IDE for Julia - one that supports bo
 **Expected Results:** Full integration with Light Table's standard features (inline results and graphics, autocompletion etc.), along with the foundation of more advanced features (typeset equations, inline data entry, interactive visualisations etc.)
 
 **Knowledge Prerequisites:** Understanding of Light Table's internals; experience using ClojureScript and Javascript.
-
-**Estimated Difficulty:** Hard
