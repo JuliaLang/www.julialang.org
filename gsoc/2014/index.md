@@ -33,11 +33,18 @@ Julia should have a full set of ODE solvers, as they are vital for numeric progr
 
 ## GPU Programming
 
-It would be useful to leverage GPUs in a natural way, directly from Julia and without writing kernels in C. The foundation for this has been laid in [CUDA.jl](https://github.com/lindahua/CUDA.jl) and [OpenCL.jl](https://github.com/jakebolewski/OpenCL.jl), but much more work is needed. Specific projects might include, for exampe, a Julia wrapper for clMagma or a common GPU array interface.
+It would be useful to leverage GPUs in a natural way, directly from Julia and without writing kernels in C. The foundation for this has been laid in [CUDA.jl](https://github.com/lindahua/CUDA.jl) and [OpenCL.jl](https://github.com/jakebolewski/OpenCL.jl), but much more work is needed. Specific projects might include Julia wrappers for GPU scientific libraries (cuFFT, cuBlas, Magma, clBlas, clMagma, etc.), or a common GPU array interface with Cuda and OpenCL backends (similar to python's [compyte](https://github.com/inducer/compyte) library).
 
 **Expected Results:** Package for high-level GPU programming.
 
 **Knowledge Prerequisites:** GPU programming, calling C from Julia, perhaps LLVM
+
+## OpenCV Wrapper
+[OpenCV](http://opencv.org/) is the defacto standard library for computer vision applications.  Currently wrappers auto generated from OpenCV's C++ api exist for Python, Java, and Matlab.  This project would be to adapt these Python based code generation tools to create a Julia interface to OpenCV.
+
+**Expected Results:** OpenCV Package
+
+**Knowledge Prerequisites:** OpenCV, Python, C++, templating, calling C from Julia.
 
 # Base
 
