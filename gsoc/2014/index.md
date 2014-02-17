@@ -9,7 +9,7 @@ Julia has applied to be a Google Summer of Code mentoring organization. The foll
 
 You may be able to find further suitable project ideas through Julia's [`up for grabs` issues](https://github.com/JuliaLang/julia/issues?labels=up+for+grabs&state=open).
 
-Don't be put off by the "knowledge prerequisites"; you don't need to be an expert, and there is some scope for research and learning within the GSoC period. However, familiarity with and interest in the involved technologies will be helpful.
+Don't be put off by the knowledge prerequisites; you don't need to be an expert, and there is some scope for research and learning within the GSoC period. However, familiarity with and interest in the involved technologies will be helpful.
 
 # Packages
 
@@ -85,6 +85,12 @@ Julia's errors are helpful for the most part but could be improved - see [#4744]
 Julia does not yet have a standard way of documenting packages and making that documentation available in the REPL. Though a number of proposals have been made (see [1](https://github.com/JuliaLang/julia/issues/4579), [2](https://github.com/JuliaLang/julia/issues/5200), [3](https://github.com/JuliaLang/julia/issues/3988), [4](https://github.com/dcarrera/Doc.jl), [5](https://github.com/dcjones/Judo.jl), [6](https://github.com/johnmyleswhite/Roxygen.jl), [7](https://github.com/JuliaLang/JuliaDoc)), no complete solution has emerged. As a result, packages use different means of documentation, which can be hard to access in a systematic way.
 
 A complete documentation system for Julia should be able to associate doc entries with Julia objects, make those entries accessible and searchable from the REPL, and generate static documentation from those entries. This project consists of synthesizing the work that has been done to implement a core documentation system for Julia.
+
+## Autoformat Tool
+
+This project involves creating an autoformat tool, similar to Go's `gofmt`, which automatically rewrites Julia source files into a standard format. This is a fairly experimental project - there are plenty of challanges involved with formatting such a dynamic and flexible language well. However, a well executed tool is likely to gain widespread adoption by the Julia community.
+
+**Expected Results:** Autoformatting tool for Julia
 
 ## Light Table Integration
 
