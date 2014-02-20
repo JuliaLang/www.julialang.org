@@ -85,6 +85,14 @@ This project proposal is to implement a native Julia framework for distributed e
 
 
 
+## Project: Parallel random number generation
+
+Large scale simulations can require large quantities of random numbers to study the effects of stochastic noise on the stability and robustness of simulated systems. However, massively parallel stochastic computations often require going beyond running many copies of serial algorithms for generating pseudorandom numbers, due to well-known synchronization effects which compromise the quality and uniformity of of random sampling. Instead, new algorithms are required for the scalable generation of pseudorandom numbers in parallel.
+
+Students interested in this project will be expected to implement wrappers for parallel (pseudo)random number generators such as [SPRNG](http://www.sprng.org) or the [Random123](https://www.deshawresearch.com/resources_random123.html) entropy streams, as well as implement statistical quality tests such as the BigCrush tests from the [TestU01](http://www.iro.umontreal.ca/~simardr/testu01/tu01.html) suite.
+
+
+
 ## Project: Julia wrappers for high performance GPU programming
 
 Graphical processing units (GPUs) are a promising alternate architecture for massively parallel technical computing. However, making use of them today requires using computation kernels written in C. In contrast, it is desirable to deploy code and transfer data to GPUs directly within a high level language like Julia.
