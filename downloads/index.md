@@ -32,17 +32,17 @@ title:  Julia Downloads
 
 # Current Release
 
-## v0.2.0
+## v0.2.1
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.2/julia-0.2.0-win32.exe">32-bit</a> </td>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.2/julia-0.2.0-win64.exe">64-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.2/julia-0.2.1-win32.exe">32-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.2/julia-0.2.1-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2-10.6.dmg">10.6 64-bit</a> </td>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2.dmg">10.7+ 64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2.1-osx10.6.dmg">10.6 64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2.1-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages </th>
