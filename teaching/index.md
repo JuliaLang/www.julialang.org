@@ -32,7 +32,7 @@ Julia is now being used in several university courses in North America. If you k
  * [CS 5220](http://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel)
 
 - Pennsylvania State University, Spring 2014
- * [ASTRO 585] (http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford)
+ * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford)
  
 # Julia resources
 
