@@ -27,6 +27,18 @@ This project proposal is to develop a new Julia package that will implement a st
 
 
 
+## Project: Provide access to CUTEst, the standard optimization test suite
+
+Improvements in optimization (e.g., `Optim.jl`) require a diverse set of test problems.
+The de-facto test suite for optimization is [CUTEst](http://ccpforge.cse.rl.ac.uk/gf/project/cutest/wiki/),
+a recent update of [CUTEr](http://www.cuter.rl.ac.uk/). This test suite is used in many papers on optimization.
+
+This project proposal is to either (1) develop tools to parse the Standard Interface Format (SIF) and generate
+Julia functions, or (2) wrap `SIFDecode` with a `ccall` interface. A convenient interface should be provided to
+allow usage of any objective function in the test suite.
+
+
+
 ## Project: PETSc integration for scalable technical computing
 
 [PETSc](http://www.mcs.anl.gov/petsc) is a widely used framework of data structures and computational routines suitable for massively scaling scientific computations. Many of these algorithms are also ideally suited for big data applications such as computing principal components of very large sparse matrices and solving complicated forecasting models with distributed methods for solving partial differential equations.
