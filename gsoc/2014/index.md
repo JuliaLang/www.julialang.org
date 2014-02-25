@@ -194,7 +194,6 @@ Julia's functions for getting and setting the clipboard are currently limited to
 **Knowledge Prerequisites:** Understanding of Light Table's internals; experience using ClojureScript and Javascript.
 
 
-
 ## Project: IJulia interactive widgets
 
 The IPython protocol recently added support for custom messages, allowing for output which interacts with the server. This is a fairly open-ended project with plenty of room for experimentation, but the end goal would be something along the lines of adding interactivity to (for example) [Gadfly](https://github.com/dcjones/Gadfly.jl) output in IJulia - for example, perhaps the ability to resize a plot and have it redrawn on-the-fly, or to plot an equation with sliders to vary parameters.
@@ -202,3 +201,24 @@ The IPython protocol recently added support for custom messages, allowing for ou
 **Expected Results:** Interactive plotting capabilities within IJulia.
 
 **Knowledge Prerequisites:** Javascript and IPython/IJulia internals.
+
+## Project: Julietta IDE
+[Julietta](https://github.com/tknopp/Julietta.jl) is an integrated developement environement for Julia that is written entirely in Julia using the Gtk.jl package. While finishing an IDE is clearly out of scope for a GSOC project there are some neat isolated tasks to do. Julietta already uses the Julia parser and indicates errors while typing in its editor. Three very interesting next steps are:
+
+  1. Implement code completion. This is especially interesting to get right in such a dynamic language like Julia. Again while this has a very large scope it would already be very useful if typing `using` would give a list of installed packages.
+  2. Switching between function usages and implementation (code tracing)
+  3. Documentation integration. When right clicking on a function it should be possible to open the help text in an integrated help browser.
+
+
+# Theme: Julia Graphics and User Interfaces
+
+## Project: 2D Graphics Improvements
+The [Winston](https://github.com/nolta/Winston.jl) package can be used for plotting 2D graphs and images. The package is already very useful but compared to the full featured Matplotlib python package there are still several things missing. This project can either go into the direction of improving the plotting itself (more graph types, more customization) or could go into the direction of increasing the interactivity of plotting windows (zooming, data picking ...) In the later case a close integration with Gtk.jl would be one way to go.
+
+## Project: 3D Graphics
+Matlab and Matplotlib offer possibilities to render 3D data. In particular it is of interest to do volume rendering, showing sectional views in volume data, and plot isosurfaces. This project would be implemented using OpenGL and presumably requires hacking on the existing OpenGL efforts in the Julia community.
+
+## Gtk.jl Improvements
+The [Gtk.jl](https://github.com/JuliaLang/Gtk.jl) package is shaping up pretty well. Still there are various corners currently unimplemented and besides documentation it is very important to get installation of Gtk completely simple on all three major platforms. Furthermore, there is currently quite some manual tweaking necessary to get Gtk looking good on OSX. These installation issues are very crutial for serious integration of Gtk.jl into the Julia universe.
+
+
