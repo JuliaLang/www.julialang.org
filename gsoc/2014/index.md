@@ -6,11 +6,9 @@ title:  Google Summer of Code
 # Google Summer of Code 2014
 
 Julia has been accepted as a Google Summer of Code mentoring organization. The following are ideas for student summer projects. To add or edit projects, please edit this page [here](https://github.com/JuliaLang/julialang.github.com/blob/master/gsoc/2014/index.md) through GitHub by making pull requests.
+When considering the following projects, don't be put off by the knowledge prerequisites – you don't need to be an expert, and there is some scope for research and learning within the GSoC period. However, familiarity with and interest in the subject area and involved technologies will be helpful.
 
-You may be able to find further suitable project ideas through Julia's [`up for grabs` issues](https://github.com/JuliaLang/julia/issues?labels=up+for+grabs&state=open).
-
-Don't be put off by the knowledge prerequisites; you don't need to be an expert, and there is some scope for research and learning within the GSoC period. However, familiarity with and interest in the involved technologies will be helpful.
-
+If you're interested in participating in GSoC as a student, the best approach is to become an active and engaged contributor to the project first. You should take a look at the ["up for grabs" issues](https://github.com/JuliaLang/julia/issues?state=open) on GitHub and see if there's any you think you might be able to take a crack at. Try submitting a pull request for something and start getting the hang of the process and interacting with the Julia code base and development community.
 
 
 # Theme: Scalability of technical computing for big data applications
