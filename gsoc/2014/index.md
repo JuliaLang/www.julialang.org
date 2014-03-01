@@ -175,6 +175,12 @@ This project involves creating an autoformat tool, similar to Go's `gofmt`, whic
 
 **Expected Results:** Autoformatting tool for Julia
 
+## Project: Syntax Checker
+
+Users new to programming often struggle with syntax - for example, knowing which brackets to use for function calls and arrays, or remembering to put quotes around strings - but aren't able to make sense of "unexpected X" style error messages, making for a frustrating experience. This project would involve providing the ability to identify mistakes in Julia code and provide suggestions for fixing the error. This could greatly improve the Julia experience for non-programmer users.
+
+**Expected Results:** Package providing the ability to analyse incorrect Julia code and provide possible fixes. Specifying the "signature" of a mistake (e.g. via a regex or predicate function) and its solution should be easy and flexible so that the package is easily extended.
+
 
 
 # Theme: Improvements to Julia interactivity and interoperability with other applications
@@ -212,6 +218,15 @@ The IPython protocol recently added support for custom messages, allowing for ou
   1. Implement code completion. This is especially interesting to get right in such a dynamic language like Julia. Again while this has a very large scope it would already be very useful if typing `using` would give a list of installed packages.
   2. Switching between function usages and implementation (code tracing)
   3. Documentation integration. When right clicking on a function it should be possible to open the help text in an integrated help browser.
+
+## Project: Calling Julia from Python
+
+Julia could be a great replacement for C in Python projects, where it can be used to speed up bottlenecks without sacrificing ease of use. However, while the basic functionality for calling Julia exists in [IJulia](https://github.com/JuliaLang/IJulia.jl), it needs to be seperated out and mantained as a real Python package.
+
+**Expected Results:** An easy-to-use Python package which allows Julia functions to be imported and called, with transparent conversion of data.
+
+**Knowledge Prerequisites:** Python (especially C interop).
+
 
 
 # Theme: Julia Graphics and User Interfaces
