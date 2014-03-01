@@ -177,6 +177,14 @@ This project involves creating an autoformat tool, similar to Go's `gofmt`, whic
 
 
 
+## Project: Base Julia Restructuring
+
+Julia's Base code currently contains several dependencies which have various license restrictions and technically non-core code. Currently, there is no easy way to build or distribute Julia without these dependencies. Functionality has been recently added that allows non-Base packages to be included in the build step of Base Julia. This opens up the potential to move current non-core Base dependencies out to separate packages, but still be included by default in the Julia build process; hence, from a user's perspective, no change in available functionality is apparent, yet the result is a more "core" Julia Base and greater flexibility in creating custom Julia distributions (e.g. for embedded systems, running Julia in the browser, etc.). This project would involve ironing out details in the process of including packages in the build process (i.e translating complicated build steps from Base to BinDeps, figuring out if default packages should be located differently than regular packages, etc.), and starting to move dependencies out to separate packages one by one. See [this open issue](https://github.com/JuliaLang/julia/issues/1906#issuecomment-30619103) for more discussion and details.
+
+**Expected Results:** The separation of at least a few non-core Base dependencies into their own packages while still being seemlessly integrated into the default Julia build process.
+
+
+
 # Theme: Improvements to Julia interactivity and interoperability with other applications
 
 ## Project: Enhanced clipboard
