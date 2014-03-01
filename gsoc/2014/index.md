@@ -179,7 +179,7 @@ This project involves creating an autoformat tool, similar to Go's `gofmt`, whic
 
 Users new to programming often struggle with syntax - for example, knowing which brackets to use for function calls and arrays, or remembering to put quotes around strings - but aren't able to make sense of "unexpected X" style error messages, making for a frustrating experience. This project would involve providing the ability to identify mistakes in Julia code and provide suggestions for fixing the error. This could greatly improve the Julia experience for non-programmer users.
 
-**Expected Results:** Package providing the ability to analyse incorrect Julia code and provide possible fixes. Specifying the "signature" of a mistake (e.g. via a regex or predicate function) and its solution should be easy and flexible so that the package is easily extended.
+**Expected Results:** Functionality for parsing and analysing Julia code, and providing possible fixes for mistakes. Specifying the "signature" of a mistake (e.g. via a regex or predicate function) and its solution should be easy and flexible so that the package is easily extended.
 
 
 
