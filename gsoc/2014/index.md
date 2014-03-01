@@ -221,7 +221,7 @@ The IPython protocol recently added support for custom messages, allowing for ou
 
 ## Project: Calling Julia from Python
 
-Julia could be a great replacement for C in Python projects, where it can be used to speed up bottlenecks without sacrificing ease of use. However, while the basic functionality for calling Julia exists in [IJulia](https://github.com/JuliaLang/IJulia.jl), it needs to be seperated out and mantained as a real Python package.
+Julia could be a great replacement for C in Python projects, where it can be used to speed up bottlenecks without sacrificing ease of use. However, while the basic functionality for calling Julia exists in [IJulia](https://github.com/JuliaLang/IJulia.jl) and [pyjulia](https://github.com/jakebolewski/pyjulia), it needs to be separated out and mantained as a real Python package.
 
 **Expected Results:** An easy-to-use Python package which allows Julia functions to be imported and called, with transparent conversion of data.
 
