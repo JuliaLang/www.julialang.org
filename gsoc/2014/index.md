@@ -41,6 +41,7 @@ This project proposal is to either (1) develop tools to parse the Standard Inter
 Julia functions, or (2) wrap `SIFDecode` with a `ccall` interface. A convenient interface should be provided to
 allow usage of any objective function in the test suite.
 
+Update: a wrapper for CUTEst has [appeared](https://github.com/lpoo/CUTEst.jl); anyone wishing to extend this should contact the repository owner.
 
 
 ## Project: PETSc integration for scalable technical computing
@@ -67,6 +68,11 @@ Iterative methods for solving numerical linear algebraic problems are crucial fo
 
 This project proposes to implement a comprehensive suite of iterative solver algorithms in Julia's native [IterativeSolvers.jl](https://github.com/JuliaLang/IterativeSolvers.jl) package, as described in the [implementation roadmap](https://github.com/JuliaLang/IterativeSolvers.jl/issues/1). Students will be encouraged to refactor the codebase to better expose the mathematical structure of the underlying Arnoldi and Lanczos iterations, thus promoting code composability without sacrificing performance.
 
+## Project: Fixed-size arrays with SIMD support
+
+Julia uses OpenBLAS for matrix algebra, but OpenBLAS is better-suited for large matrices. For operations with small matrices and vectors, one can often obtain substantial speedups by implementing everything in Julia. At least two candidate implementations [already](https://github.com/twadleigh/ImmutableArrays.jl) [exist](https://github.com/JuliaLang/julia/issues/5857), with the first more thoroughly developed but the second (currently just a sketch) having some features that are attractive for inclusion in `Base`.
+
+The project would be to flesh out operations with fixed-size arrays, and get them interoperating seamlessly with other types. It would be desirable implement operations for certain sizes using Julia's up-and-coming SIMD support (https://github.com/JuliaLang/julia/pull/5355).
 
 
 ## Project: Matrix functions
