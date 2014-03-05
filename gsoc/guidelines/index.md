@@ -8,4 +8,4 @@ Things you might include:
 * Qualifications / experience
 * Your reasons for working on Julia
 
-Above all, sell yourself and the project you want to work on! We're also happy to receive multiple applications from students, but remember that quality is better than quantity.
+Above all, sell yourself and the project you want to work on! We're also happy to receive multiple applications from students, but remember that quality is more important than quantity.
