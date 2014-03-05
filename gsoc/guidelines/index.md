@@ -1,3 +1,8 @@
+---
+layout: default
+title:  Application Guidelines
+---
+
 # Application Guidelines
 
 Proposals are free form - you can write about your project however you want, but make sure it's clear what it's about, why you're the best person to do it, and how we can contact you.
