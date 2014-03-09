@@ -136,6 +136,17 @@ Students will be asked to build upon to the foundational work in the [CUDA.jl](h
 
 **Knowledge Prerequisites:** OpenCV, Python, C++, templating, calling C from Julia.
 
+## Project: Julia frontend for Halide
+
+[Halide](http://halide-lang.org/) is an embedded DSL for image processing, intended to allow the seperation of algorithms and optimisations when writing image pipelines. Currently the main frontend is in C++, along with an experimental Python implementation - this project involves embedding Halide in Julia.
+
+**Expected Results:** Package for writing and compiling Halide code.
+
+## Project: Translation of Axiom to Julia
+
+[Axiom](http://en.wikipedia.org/wiki/Axiom_%28computer_algebra_system%29), a computer algebra system, is written in a language called SPAD. SPAD's similarity to Julia may make it feasible to port Axiom into Julia, providing Julia with a CAS and encouraging further work to improve Axiom.
+
+**Expected Results:** A port of Axiom to Julia
 
 
 # Theme: Improvements to base Julia functionality
