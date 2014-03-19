@@ -23,6 +23,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaStats](https://github.com/JuliaStats) – statistics
 * [JuliaOpt](https://github.com/JuliaOpt) – optimization
 * [JuliaQuant](https://github.com/JuliaQuant) – finance
+* [JuliaAstro](https://github.com/JuliaAstro) – astronomy
 
 # Twitter
 
