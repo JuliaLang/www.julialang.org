@@ -39,6 +39,6 @@ Some points that you may want to address in your proposal:
   - What other time commitments, such as summer courses, other jobs, planned vacations, etc., will you have between May 19 and August 18?
   - Would you be interested in relocating to the Cambridge, Massachusetts area for part or all of the GSoC season?
 
-Applications must be submitted to the [GSoC 2014 page](http://www.google-melange.com/gsoc/homepage/google/gsoc2014) by *15:00 PDT on Friday, March 21, 2014.*
+Applications must be submitted to the [GSoC 2014 page](http://www.google-melange.com/gsoc/homepage/google/gsoc2014) by *19:00 UTC on Friday, March 21, 2014.*
 
 We're also happy to receive multiple applications from students, but remember that quality is more important than quantity.
