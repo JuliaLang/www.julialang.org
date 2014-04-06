@@ -11,8 +11,23 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses in North America. If you know of other classes using Julia for teaching, please drop us a note.
 
-- MIT, Spring 2013
-  * [18.330](http://homerreid.dyndns.org/teaching/18.330), Introduction to Numerical Analysis. (Dr. Homer Reid)
+- Stanford University, Spring 2014
+
+  * [AA222](http://www.stanford.edu/class/aa222/), Introduction to Multidisciplinary Design Optimization (Prof. Mykel J. Kochenderfer)
+
+- Pennsylvania State University, Spring 2014
+  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford)
+
+- Cornell University, Spring 2014
+  * [CS 5220](http://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel)
+
+- MIT, Spring 2014
+  * [18.330](http://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid)
+  * [15.S60](https://github.com/IainNZ/ORSoftwareTools2014), Software Tools for Operations Research (Iain Dunning)
+  * [15.083](https://stellar.mit.edu/S/course/15/sp14/15.083/), Integer Programming and Combinatorial Optimization (Prof. Juan Pablo Vielma)
+
+- Western University Canada, Fall 2013
+  * [CS 2101A](http://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza)
 
 - MIT, Fall 2013
   * [18.06](http://stellar.mit.edu/S/course/18/fa13/18.06), Linear Algebra. (Prof. Alan Edelman)
@@ -20,20 +35,10 @@ Julia is now being used in several university courses in North America. If you k
   * [18.335J/6.337J](http://math.mit.edu/~stevenj/18.335), Introduction to Numerical Methods. (Prof. Steven G. Johnson)
   * [18.337/6.338](http://beowulf.csail.mit.edu/18.337), Parallel Computing. (Prof. Alan Edelman)
 
-- Western University Canada, Fall 2013
-  * [CS 2101A](http://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza)
+- MIT, Spring 2013
+  * [18.330](http://homerreid.dyndns.org/teaching/18.330), Introduction to Numerical Analysis. (Dr. Homer Reid)
 
-- MIT, Spring 2014
- * [18.330](http://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid)
- * [15.S60](https://github.com/IainNZ/ORSoftwareTools2014), Software Tools for Operations Research (Iain Dunning)
- * [15.083](https://stellar.mit.edu/S/course/15/sp14/15.083/), Integer Programming and Combinatorial Optimization (Prof. Juan Pablo Vielma)
 
-- Cornell University, Spring 2014
- * [CS 5220](http://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel)
-
-- Pennsylvania State University, Spring 2014
- * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford)
- 
 # Julia resources
 
 For a quick introduction to Julia, see these [introductory slides](https://github.com/ViralBShah/julia-presentations/raw/master/Fifth-Elephant-2013/Fifth-Elephant-2013.pdf).
