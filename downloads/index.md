@@ -110,29 +110,29 @@ Uninstall Julia by deleting Julia.app and the packages directory in ~/.julia. Mu
 Instructions will be added here as more linux distributions start including julia. If your Linux distribution is not listed here, you should still be able to run julia by building from source. See the [Julia README](https://github.com/JuliaLang/julia/blob/master/README.md) for more detailed information.
 
 ### Ubuntu
-A [PPA](https://launchpad.net/~staticfloat/+archive/juliareleases) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest stable version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, simply type:
+A [PPA](https://launchpad.net/~staticfloat/+archive/juliareleases) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest stable version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, run the following commands:
 
-    $ sudo add-apt-repository ppa:staticfloat/juliareleases
-    $ sudo add-apt-repository ppa:staticfloat/julia-deps
-    $ sudo apt-get update
-    $ sudo apt-get install julia
+    sudo add-apt-repository ppa:staticfloat/juliareleases
+    sudo add-apt-repository ppa:staticfloat/julia-deps
+    sudo apt-get update
+    sudo apt-get install julia
 
 Note that Ubuntu has deadlines for accepting new versions of software into their default repositories, and as such the default repositories often have Julia versions that lag behind significantly.  When reporting issues, please ensure you are using the latest available release by using one of the PPA repositories displayed on this page.
 
 Uninstallation is platform dependent. If you installed from a package manager such as `apt-get`, use the package manager to remove julia, for example `apt-get remove julia`. If you did a source build, you can remove it by deleting your julia source folder. If you would also like to remove your preferences files, they are `~/.julia` and `~/.juliarc.jl`.
 
 ### Nightlies installation instructions
-A [PPA](https://launchpad.net/~staticfloat/+archive/julianightlies) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest beta version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, simply type:
+A [PPA](https://launchpad.net/~staticfloat/+archive/julianightlies) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest beta version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, run the following commands:
 
-    $ sudo add-apt-repository ppa:staticfloat/julianightlies
-    $ sudo add-apt-repository ppa:staticfloat/julia-deps
-    $ sudo apt-get update
-    $ sudo apt-get install julia
+    sudo add-apt-repository ppa:staticfloat/julianightlies
+    sudo add-apt-repository ppa:staticfloat/julia-deps
+    sudo apt-get update
+    sudo apt-get install julia
 
 New builds are built every night. If you have already installed julia and you want to upgrade to the latest version, do:
 
-    $ sudo apt-get update
-    $ sudo apt-get upgrade
+    sudo apt-get update
+    sudo apt-get upgrade
 
 ---
 # Graphics in Julia
