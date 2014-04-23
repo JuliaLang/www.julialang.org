@@ -39,6 +39,7 @@ Many Julia users and developers hang out in the [#julia IRC channel](http://webc
 Julia has several [local user groups](http://julia.meetup.com):
 
 North America
+
 * [Bay Area Julia Users](http://www.meetup.com/Bay-Area-Julia-Users/)
 * [Cambridge Area Julia Users Network](http://www.meetup.com/julia-cajun/)
 * [Chicago Julia Meetup](http://www.meetup.com/JuliaChicago/)
@@ -47,10 +48,12 @@ North America
 * [Triangle Users Group (North Carolina)](http://www.meetup.com/Triangle-Julia-Users/)
 
 Europe
+
 * [London Julia Users Group](http://www.meetup.com/London-Julia-Users-Group/)
 * [sthlm.jl (Stockholm)](http://www.meetup.com/sthlm-jl/)
 
 Asia
+
 * [Bangalore Julia User Group](http://www.meetup.com/Bangalore-Julia-User-Group/)
 
 Don't have one in your area? Why not start one!
