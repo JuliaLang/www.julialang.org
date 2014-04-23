@@ -50,7 +50,6 @@ North America
 Europe
 
 * [London Julia Users Group](http://www.meetup.com/London-Julia-Users-Group/)
-* [sthlm.jl (Stockholm)](http://www.meetup.com/sthlm-jl/)
 
 Asia
 
