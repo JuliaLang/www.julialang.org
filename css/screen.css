@@ -11,7 +11,7 @@ html, body {
 
 body {
   background-color: white;
-  font: 11.5pt Georgia, 'DejaVu Serif', serif;
+  font-family: Georgia, 'DejaVu Serif', serif;
 }
 
 #site {
