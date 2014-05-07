@@ -43,13 +43,13 @@ release version of Julia, above.
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.0-prerelease-win32.exe">32-bit</a> </td>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.0-prerelease-win64.exe">64-bit</a> </td>
+    <td> <a href="http://status.julialang.org/download/win32">32-bit</a> </td>
+    <td> <a href="http://status.julialang.org/download/win64">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.0-prerelease-osx10.6.dmg">10.6 64-bit</a> </td>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.0-prerelease-osx10.7+.dmg">10.7+ 64-bit</a> </td>
+    <td> <a href="http://status.julialang.org/download/osx10.6">10.6 64-bit</a> </td>
+    <td> <a href="http://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages </th>
