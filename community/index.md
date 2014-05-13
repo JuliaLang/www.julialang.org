@@ -50,6 +50,7 @@ North America
 Europe
 
 * [London Julia Users Group](http://www.meetup.com/London-Julia-Users-Group/)
+* [Zurich Julia Users Group](http://www.meetup.com/Zurich-Julia-User-Group/)
 
 Asia
 
