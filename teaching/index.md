@@ -70,7 +70,7 @@ Windows.
 ## Julia packages
 
 The Julia community has put together a number of
-[packages](http://docs.julialang.org/en/latest/packages/packagelist/)
+[packages](http://pkg.julialang.org/)
 spanning multiple disciplines.
 
 ## The Julia manual

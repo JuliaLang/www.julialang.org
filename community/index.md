@@ -15,7 +15,7 @@ The [julia-opt](https://groups.google.com/forum/?fromgroups=#!forum/julia-opt) m
 
 # GitHub
 
-We use GitHub to track our source code and for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) and [commits](https://github.com/JuliaLang/julia/commits). There is also a list of [packages](http://docs.julialang.org/en/latest/packages/packagelist/) for Julia, many of which are also hosted on and developed using GitHub.
+We use GitHub to track our source code and for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) and [commits](https://github.com/JuliaLang/julia/commits). There is also a list of [packages](http://pkg.julialang.org/) for Julia, many of which are also hosted on and developed using GitHub.
 
 Various Julia projects are hosted under the following umbrella organizations on GitHub:
 
