@@ -25,6 +25,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaQuant](https://github.com/JuliaQuant) – finance
 * [JuliaAstro](https://github.com/JuliaAstro) – astronomy
 * [JuliaGPU](https://github.com/JuliaGPU) - gpu computing
+* [JuliaDiff](http://www.juliadiff.org/) - differentiation tools
 
 # Twitter
 
