@@ -56,6 +56,7 @@ Europe
 Asia
 
 * [Bangalore Julia User Group](http://www.meetup.com/Bangalore-Julia-User-Group/)
+* [Julia Tokyo](http://juliatokyo.connpass.com/)
 
 Don't have one in your area? Why not start one!
 
