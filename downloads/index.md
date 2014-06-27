@@ -25,7 +25,7 @@ title:  Julia Downloads
 </tr>
 <tr>
     <th> Source </th>
-    <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/v0.2.0">GitHub</a> </td>
+    <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/v0.2.1">GitHub</a> </td>
 </tr>
 </tbody></table>
 
