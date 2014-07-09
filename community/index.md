@@ -20,12 +20,12 @@ We use GitHub to track our source code and for tracking and discussing [issues](
 Various Julia projects are hosted under the following umbrella organizations on GitHub:
 
 * [JuliaLang](https://github.com/JuliaLang) – the language
-* [JuliaStats](https://github.com/JuliaStats) – statistics
-* [JuliaOpt](https://github.com/JuliaOpt) – optimization
-* [JuliaQuant](https://github.com/JuliaQuant) – finance
 * [JuliaAstro](https://github.com/JuliaAstro) – astronomy
-* [JuliaGPU](https://github.com/JuliaGPU) - gpu computing
-* [JuliaDiff](http://www.juliadiff.org/) - differentiation tools
+* [JuliaDiff](http://www.juliadiff.org/) – differentiation tools
+* [JuliaGPU](https://github.com/JuliaGPU) – gpu computing
+* [JuliaOpt](http://www.juliaopt.org/) – optimization
+* [JuliaQuant](https://github.com/JuliaQuant) – finance
+* [JuliaStats](https://github.com/JuliaStats) – statistics
 
 # Twitter
 
