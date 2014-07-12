@@ -53,19 +53,18 @@ Julia is now being used in several university courses in North America. If you k
 # Julia resources
 
 For a quick introduction to Julia, see these [introductory slides](https://github.com/ViralBShah/julia-presentations/raw/master/Fifth-Elephant-2013/Fifth-Elephant-2013.pdf).
-
 Steve Johnson maintains an excellent resource for using [Julia in the classroom at MIT](https://github.com/stevengj/julia-mit/).
 
 ## Installing Julia
 
+[Julia binaries](http://julialang.org/downloads/) are available for
+Mac, Windows, and Ubuntu Linux. It is also easy to [build from
+source](http://github.com/juliaLang/julia/) on Linux, Mac, and
+Windows.
+
 The Julia and [IPython](http://ipython.org) teams have collaborated to
 develop [IJulia](https://github.com/JuliaLang/IJulia.jl), which
 provides a powerful graphical notebook interface to Julia.
-
-[Julia binaries](http://julialang.org/downloads/) are available for
-Mac and Windows. It is also easy to [build from
-source](http://github.com/juliaLang/julia/) on Linux, Mac, and
-Windows.
 
 ## Tutorials
 
@@ -76,7 +75,7 @@ Windows.
 ## Topical material
 
 - [Scientific computing’s future: Can any coding language top a 1950s behemoth?](http://arstechnica.com/science/2014/05/scientific-computings-future-can-any-coding-language-top-a-1950s-behemoth/) by Lee Phillips on ArsTechnica
-- [HPC Programming with Ease](http://ilp.mit.edu/newsstory.jsp?id=19970)
+- [HPC Programming with Ease](http://ilp.mit.edu/newsstory.jsp?id=19970) by Eric Brown for the MIT Industrial Liaison Program
 - [Julia: A New Language For Technical Computing](http://www.admin-magazine.com/HPC/Articles/Julia-A-New-Language-For-Technical-Computing) by Douglas Eadline in Admin magazine
 - [Parallel Julia: Part 2](http://www.admin-magazine.com/HPC/Articles/Parallel-Julia-Jumping-Right-In) by Douglas Eadline in Admin magazine
 
@@ -94,5 +93,3 @@ complete introduction to the Julia language. It is available in
 [Spanish](http://julia-es-la.readthedocs.org/) and
 [Portuguese](http://julia-pt-br.readthedocs.org/) translations are in
 the works.
-
-
