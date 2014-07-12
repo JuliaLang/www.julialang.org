@@ -3,7 +3,14 @@ layout: default
 title:  Google Summer of Code
 ---
 
-# Google Summer of Code 2014
+# Google Summer of Code 2014 accepted projects
+
+[Libgit2 support and linear algebra for generic types](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/andrioni/5863987568705536)
+[Julia + Light Table](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/one_more_minute/5724160613416960)
+[IJulia Interactive Widgets](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/g0/5113880120393728)
+[3D Visualization Package for Julia](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/simon_danisch/5757334940811264)
+
+# Google Summer of Code 2014 application process for students
 
 Julia has been accepted as a Google Summer of Code mentoring organization. The following are ideas for student summer projects. To add or edit projects, please edit this page [here](https://github.com/JuliaLang/julialang.github.com/blob/master/gsoc/2014/index.md) through GitHub by making pull requests.
 When considering the following projects, don't be put off by the knowledge prerequisites – you don't need to be an expert, and there is some scope for research and learning within the GSoC period. However, familiarity with and interest in the subject area and involved technologies will be helpful.
@@ -15,8 +22,6 @@ Please also check out the [application guidelines](http://julialang.org/gsoc/gui
 # Theme: Scalability of technical computing for big data applications
 
 Julia is emerging as a serious tool for technical computing and is ideally suited for the ever-growing needs of big data analytics. This set of proposed projects addresses specific areas for improvement in analytics algorithms and distributed data management.
-
-
 
 ## Project: Standardized dataset packaging
 
