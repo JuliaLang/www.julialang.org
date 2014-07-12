@@ -5,10 +5,10 @@ title:  Google Summer of Code
 
 # Google Summer of Code 2014 accepted projects
 
-[Libgit2 support and linear algebra for generic types](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/andrioni/5863987568705536)
-[Julia + Light Table](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/one_more_minute/5724160613416960)
-[IJulia Interactive Widgets](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/g0/5113880120393728)
-[3D Visualization Package for Julia](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/simon_danisch/5757334940811264)
+- [Libgit2 support and linear algebra for generic types](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/andrioni/5863987568705536)
+- [Julia + Light Table](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/one_more_minute/5724160613416960)
+- [IJulia Interactive Widgets](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/g0/5113880120393728)
+- [3D Visualization Package for Julia](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/simon_danisch/5757334940811264)
 
 # Google Summer of Code 2014 application process for students
 
