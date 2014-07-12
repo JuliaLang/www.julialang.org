@@ -3,6 +3,17 @@ layout: default
 title:  Using Julia in the classroom
 ---
 
+# Video tutorials
+
+David Sanders gave a detailed Julia tutorial at Scipy 2014. Watch these [videos](https://www.youtube.com/watch?v=vWkgEddb4-A) and download the relevant [IJulia notebooks](https://github.com/dpsanders/scipy_2014_julia).
+
+We recorded a number of
+[videos](http://julialang.org/blog/2013/03/julia-tutorial-MIT/) as
+part of the Julia tutorial at MIT in January 2013. These videos are
+published in the [Julia channel on
+Youtube](http://www.youtube.com/user/JuliaLanguage). [Slides](http://beowulf.csail.mit.edu/18.337/index.html)
+and other material from the tutorial are available on GitHub.
+
 # Julia in the classroom
 
 Julia is ready for the classroom. We encourage instructors to participate in the [Julia community resources](http://julialang.org/community) for questions about Julia or specific packages.
@@ -56,7 +67,7 @@ Mac and Windows. It is also easy to [build from
 source](http://github.com/juliaLang/julia/) on Linux, Mac, and
 Windows.
 
-## Julia tutorials
+## Tutorials
 
 - [Tutorials from Forio Online Simulations](http://forio.com/julia/tutorials-list)
 - [Tutorial from the Cambridge Area Julia Users Network](https://github.com/JuliaX/JuliaTutorial)
@@ -64,10 +75,12 @@ Windows.
 
 ## Topical material
 
-- [Parallel Julia: Part 2](http://www.admin-magazine.com/HPC/Articles/Parallel-Julia-Jumping-Right-In) by Douglas Eadline
-- [Leah Hanson's blog](http://blog.leahhanson.us/category/julia.html)
+- [Scientific computing’s future: Can any coding language top a 1950s behemoth?](http://arstechnica.com/science/2014/05/scientific-computings-future-can-any-coding-language-top-a-1950s-behemoth/) by Lee Phillips on ArsTechnica
+- [HPC Programming with Ease](http://ilp.mit.edu/newsstory.jsp?id=19970)
+- [Julia: A New Language For Technical Computing](http://www.admin-magazine.com/HPC/Articles/Julia-A-New-Language-For-Technical-Computing) by Douglas Eadline in Admin magazine
+- [Parallel Julia: Part 2](http://www.admin-magazine.com/HPC/Articles/Parallel-Julia-Jumping-Right-In) by Douglas Eadline in Admin magazine
 
-## Julia packages
+## Packages
 
 The Julia community has put together a number of
 [packages](http://pkg.julialang.org/)
@@ -82,12 +95,4 @@ complete introduction to the Julia language. It is available in
 [Portuguese](http://julia-pt-br.readthedocs.org/) translations are in
 the works.
 
-## Videos
-
-We recorded a number of
-[videos](http://julialang.org/blog/2013/03/julia-tutorial-MIT/) as
-part of the Julia tutorial at MIT in January 2013. These videos are
-published in the [Julia channel on
-Youtube](http://www.youtube.com/user/JuliaLanguage). [Slides](http://beowulf.csail.mit.edu/18.337/index.html)
-and other material from the tutorial are available on GitHub.
 

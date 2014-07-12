@@ -20,16 +20,26 @@ We use GitHub to track our source code and for tracking and discussing [issues](
 Various Julia projects are hosted under the following umbrella organizations on GitHub:
 
 * [JuliaLang](https://github.com/JuliaLang) – the language
+* [JuliaStats](https://github.com/JuliaStats) – statistics
+* [JuliaOpt](http://www.juliaopt.org/) – optimization
 * [JuliaAstro](https://github.com/JuliaAstro) – astronomy
 * [JuliaDiff](http://www.juliadiff.org/) – differentiation tools
 * [JuliaGPU](https://github.com/JuliaGPU) – gpu computing
-* [JuliaOpt](http://www.juliaopt.org/) – optimization
 * [JuliaQuant](https://github.com/JuliaQuant) – finance
-* [JuliaStats](https://github.com/JuliaStats) – statistics
+* [JuliaSparse](https://github.com/JuliaSparse) – sparse matrix solvers
+* [JuliaQ](https://github.com/JuliaQ) – quantum (physics/chemistry/information/computation) libraries
+
+# Blogs
+
+A blog aggregator for [Julia blogs](http://www.juliabloggers.com)
 
 # Twitter
 
 Tweet using the [#JuliaLang](https://twitter.com/search?q=julialang&src=typd&f=realtime) hashtag on Twitter.
+
+# StackOverflow
+
+Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag on StackOverflow, if you post a Julia related question on StackOverflow.
 
 # IRC
 
@@ -63,7 +73,3 @@ Don't have one in your area? Why not start one!
 # Reddit
 
 [The Julia Language SubReddit](http://www.reddit.com/r/Julia/) is a collection of various blog posts and articles related to Julia.
-
-# StackOverflow
-
-Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag on StackOverflow, if you post a Julia related question on StackOverflow.
