@@ -5,14 +5,13 @@ title:  Using Julia in the classroom
 
 # Video tutorials
 
-David Sanders gave a detailed Julia tutorial at Scipy 2014. Watch these [videos](https://www.youtube.com/watch?v=vWkgEddb4-A) and download the relevant [IJulia notebooks](https://github.com/dpsanders/scipy_2014_julia).
+David Sanders gave a detailed Julia tutorial at SciPy 2014. Watch these [videos](https://www.youtube.com/watch?v=vWkgEddb4-A) and download the relevant [IJulia notebooks](https://github.com/dpsanders/scipy_2014_julia).
 
 We recorded a number of
-[videos](http://julialang.org/blog/2013/03/julia-tutorial-MIT/) as
-part of the Julia tutorial at MIT in January 2013. These videos are
-published in the [Julia channel on
-Youtube](http://www.youtube.com/user/JuliaLanguage). [Slides](http://beowulf.csail.mit.edu/18.337/index.html)
-and other material from the tutorial are available on GitHub.
+[videos](http://www.youtube.com/user/JuliaLanguage) as part of the
+Julia tutorial at MIT in January 2013. [Slides and other
+material](https://github.com/JuliaLang/julia-tutorial) from the
+tutorial are available on GitHub.
 
 # Julia in the classroom
 
