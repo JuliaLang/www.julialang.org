@@ -19,7 +19,7 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 ## Classes using Julia for teaching
 
-Julia is now being used in several university courses in North America. If you know of other classes using Julia for teaching, please drop us a note.
+Julia is now being used in several university courses in North America. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list..
 
 - City University of New York, Spring 2014
   * [MTH 229](http://wiener.math.csi.cuny.edu/verzani/classes/MTH229/), Calculus Computer Laboratory (Prof. John Verzani). Also see the [MTH 229 Projects](http://mth229.github.io) page.
