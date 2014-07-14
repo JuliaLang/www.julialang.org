@@ -29,16 +29,16 @@ title:  Julia Downloads
 </tr>
 </tbody></table>
 
-# Prerelease snapshot
+# Release candidate 0.3.0-rc1
 
-This is a nightly snapshot of the latest version of Julia under
+This is the first release candidate of the latest version of Julia under
 development, which you can use to get a preview of the latest work on
 Julia.  However, because Julia is under heavy development, you may be
-unlucky and get a snapshot with a serious bug, or one which breaks
+unlucky and get a release candidate with a serious bug, or one which breaks
 existing packages.  Most users are advised to use the latest official
 release version of Julia, above.
 
-## v0.3.0-prerelease
+## v0.3.0-rc1
 
 <table class="downloads"><tbody>
 <tr>
