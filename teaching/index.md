@@ -21,6 +21,9 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses in North America. If you know of other classes using Julia for teaching, please drop us a note.
 
+- City University of New York, Spring 2014
+  * [MTH 229](http://wiener.math.csi.cuny.edu/verzani/classes/MTH229/), Calculus Computer Laboratory (Prof. John Verzani). Also see the [MTH 229 Projects](http://mth229.github.io) page.
+
 - Cornell University, Spring 2014
   * [CS 5220](http://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel)
 
