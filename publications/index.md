@@ -36,7 +36,7 @@ performance.
 
 * Array operators using multiple dispatch: a design methodology for array implementations in dynamic languages
 
-[doi:10.1145/2627373.2627383](http://dx.doi.org/10.1145/2627373.2627383) [(arXiv:1407.XXXX)](http://arxiv.org/abs/1407.XXXX)
+[doi:10.1145/2627373.2627383](http://dx.doi.org/10.1145/2627373.2627383) [(arXiv:1407.3845)](http://arxiv.org/abs/1407.3845)
 
 Arrays are such a rich and fundamental data type that they tend to be built into a language, either in the compiler or in a large low-level library. Defining this functionality at the user level instead provides greater flexibility for application domains not envisioned by the language designer. Only a few languages, such as C++ and Haskell, provide the necessary power to define $n$-dimensional arrays, but these systems rely on compile-time abstraction, sacrificing some flexibility. In contrast, dynamic languages make it straightforward for the user to define any behavior they might want, but at the possible expense of performance.
 
