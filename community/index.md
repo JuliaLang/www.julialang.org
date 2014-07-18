@@ -27,7 +27,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaGPU](https://github.com/JuliaGPU) – gpu computing
 * [JuliaQuant](https://github.com/JuliaQuant) – finance
 * [JuliaSparse](https://github.com/JuliaSparse) – sparse matrix solvers
-* [JuliaQ](https://github.com/JuliaQ) – quantum (physics/chemistry/information/computation) libraries
+* [JuliaQuantum](https://github.com/JuliaQuantum) – quantum (physics/chemistry/information/computation...) libraries
 
 # Blogs
 
