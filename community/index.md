@@ -55,7 +55,6 @@ North America
 * [Cambridge Area Julia Users Network](http://www.meetup.com/julia-cajun/)
 * [Chicago Julia Meetup](http://www.meetup.com/JuliaChicago/)
 * [NYC Julia User Group](http://www.meetup.com/NYC-Julia-User-Group/)
-* [Atlanta Julia Users Group](http://www.meetup.com/Atlanta-Julia-Users-Group/)
 * [Triangle Users Group (North Carolina)](http://www.meetup.com/Triangle-Julia-Users/)
 * [Ottawa Users Group](http://www.meetup.com/Ottawa-Julia-Meetup/)
 
