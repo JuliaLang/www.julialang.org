@@ -57,6 +57,7 @@ North America
 * [NYC Julia User Group](http://www.meetup.com/NYC-Julia-User-Group/)
 * [Atlanta Julia Users Group](http://www.meetup.com/Atlanta-Julia-Users-Group/)
 * [Triangle Users Group (North Carolina)](http://www.meetup.com/Triangle-Julia-Users/)
+* [Ottawa Users Group](http://www.meetup.com/Ottawa-Julia-Meetup/)
 
 Europe
 
