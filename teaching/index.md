@@ -72,6 +72,7 @@ provides a powerful graphical notebook interface to Julia.
 
 ## Tutorials
 
+- The Julia Express by [Bogomił Kamiński](http://bogumilkaminski.pl) [(pdf)](http://bogumilkaminski.pl/files/julia_express.pdf)
 - [Tutorials from Forio Online Simulations](http://forio.com/julia/tutorials-list)
 - [Tutorial from the Cambridge Area Julia Users Network](https://github.com/JuliaX/JuliaTutorial)
 - [Tutorial from MIT IAP 2013 workshop](https://github.com/JuliaLang/julia-tutorial)
