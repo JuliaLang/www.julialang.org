@@ -29,16 +29,16 @@ title:  Julia Downloads
 </tr>
 </tbody></table>
 
-# Release candidate 0.3.0-rc1
+# Release candidate 0.3.0-rc2
 
-This is the first release candidate of the latest version of Julia under
+This is a release candidate of the latest version of Julia under
 development, which you can use to get a preview of the latest work on
 Julia.  However, because Julia is under heavy development, you may be
 unlucky and get a release candidate with a serious bug, or one which breaks
 existing packages.  Most users are advised to use the latest official
 release version of Julia, above.
 
-## v0.3.0-rc1
+## v0.3.0-rc2
 
 <table class="downloads"><tbody>
 <tr>
@@ -48,8 +48,7 @@ release version of Julia, above.
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td> <a href="http://status.julialang.org/download/osx10.6">10.6 64-bit</a> </td>
-    <td> <a href="http://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
+    <td colspan=2> <a href="http://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages </th>
@@ -57,7 +56,7 @@ release version of Julia, above.
 </tr>
 <tr>
     <th> Source </th>
-    <td colspan=2> <a href="https://github.com/JuliaLang/julia">GitHub</a> </td>
+    <td colspan=2> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.0-rc2/julia-0.3.0-rc2_56e443d08c.tar.gz">GitHub</a> </td>
 </tr>
 </tbody></table>
 
