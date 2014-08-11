@@ -19,7 +19,7 @@ GitHub Profile: https://github.com/timholy
 
 ### Pontus Stenetorp — Natural Language Processing with Julia
 
-Pontus Stenetorp is a Japan Society for the Promotion of Science Postdoctoral Research Fellow at the University of Tokyo working in the areas of machine learning and natural language processing (NLP). In this talk, Pontus describes his recent experience in learning Julia and how Julia and its community have helped in his implementing a transition-based dependency parser in Julia..
+Pontus Stenetorp is a Japan Society for the Promotion of Science Postdoctoral Research Fellow at the University of Tokyo working in the areas of machine learning and natural language processing (NLP). In this talk, Pontus describes his recent experience in learning Julia and how Julia and its community have helped in his implementing a transition-based dependency parser in Julia.
 
 YouTube Link: http://youtu.be/OrFxjE44COc
 
