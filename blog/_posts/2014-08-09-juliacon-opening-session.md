@@ -27,7 +27,7 @@ Pontus Stenetorp is a Japan Society for the Promotion of Science Postdoctoral Re
 <br/>
 ### Speed vs. Correctness (led by Arch Robison)
 
-Arch Robison is a Senior Principal Research Engineer at Intel and is an expert in parallel programming, being the original designer of the widely used Intel Threading Building Blocks library. In this session, Arch discusses the tradeoffs between instruction-level correctness and its implications for compiler optimizations.
+Arch Robison is a Senior Principal Engineer at Intel and is an expert in parallel programming, being the original designer of the widely used Intel Threading Building Blocks library. In this session, Arch discusses the tradeoffs between instruction-level correctness and its implications for compiler optimizations.
 
 - **Video:** <http://youtu.be/GFTCQNYddhs>
 - **GitHub:** <https://github.com/ArchRobison>
