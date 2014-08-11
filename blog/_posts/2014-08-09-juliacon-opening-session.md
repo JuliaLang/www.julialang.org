@@ -15,6 +15,7 @@ Tim Holy is a Professor in the Department of Anatomy and Neurobiology at Washing
 - **Slides:** <https://github.com/JuliaCon/presentations/tree/master/Images>
 - **GitHub:** <https://github.com/timholy>
 
+<br/>
 <iframe width="560" height="315" src="//www.youtube.com/embed/FA-1B_amwt8?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe>
 
 <br/>
@@ -26,6 +27,7 @@ Pontus Stenetorp is a Japan Society for the Promotion of Science Postdoctoral Re
 - **Slides:** <https://github.com/JuliaCon/presentations/blob/master/JuliaNLP/JuliaNLP.pdf>
 - **GitHub:** <https://github.com/ninjin>
 
+<br/>
 <iframe width="560" height="315" src="//www.youtube.com/embed/OrFxjE44COc?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe>
 
 <br/>
@@ -36,4 +38,5 @@ Arch Robison is a Senior Principal Engineer at Intel and is an expert in paralle
 - **Video:** <http://youtu.be/GFTCQNYddhs>
 - **GitHub:** <https://github.com/ArchRobison>
 
+<br/>
 <iframe width="560" height="315" src="//www.youtube.com/embed/GFTCQNYddhs?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe>
