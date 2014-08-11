@@ -37,27 +37,3 @@ layout: common
   </ul>
 </div>
 {% endif %}
-
-{% assign show_comments = true %}
-{% for category in page.categories %}
-  {% if category == 'drafts' %}
-    {% assign show_comments = false %}
-  {% endif %}
-{% endfor %}
-
-{% if show_comments %}
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  {% if site.server %}
-  var disqus_developer = 1;
-  {% endif %}
-  (function() {
-    var dsq = document.createElement('script');
-    dsq.async = true;
-    dsq.type = 'text/javascript';
-    dsq.src = 'http://julialang.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] ||
-     document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-{% endif %}
