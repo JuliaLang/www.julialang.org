@@ -4,7 +4,7 @@ title:  JuliaCon 2014 Opening Session Presentations
 author: <a href="https://github.com/quinnj">Jacob Quinn</a>
 ---
 
-## Opening Session
+## Scientific Applications Session
 <br/>
 
 ### Tim Holy — Image Representation and Analysis
