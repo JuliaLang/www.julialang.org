@@ -7,9 +7,9 @@ author: <a href="https://github.com/quinnj">Jacob Quinn</a>
 ## Optimization Session
 <br/>
 
-### Iain Dunning / Joey Huchette — JuliaOpt - Optimization Packages for Julia
+### [Iain Dunning](http://iaindunning.com/) / [Joey Huchette](http://www.mit.edu/~huchette/) — [JuliaOpt](http://www.juliaopt.org/) - Optimization Packages for Julia
 
-Iain Dunning and Joey Huchette are both doctoral students in the Massachusetts Institute of Technology Operations Research Center, where they study constrained continuous and combinatorial numerical optimization methods and theory. In this session they present the [JuliaOpt](http://www.juliaopt.org/) suite of optimization packages and how they interoperate. They also discuss how various Julia features enable exciting functionality in these packages.
+Iain Dunning and Joey Huchette are both doctoral students in the Massachusetts Institute of Technology Operations Research Center, where they study constrained continuous and combinatorial numerical optimization methods and theory. In this session they present the JuliaOpt suite of optimization packages and how they interoperate. They also discuss how various Julia features enable exciting functionality in these packages.
 
 - **Video:** <http://youtu.be/VwZvUvXX-vY>
 - **Slides:** <http://goo.gl/RwUdOI>
