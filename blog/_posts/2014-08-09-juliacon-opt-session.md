@@ -13,7 +13,7 @@ Iain Dunning and Joey Huchette are both doctoral students in the Massachusetts I
 
 - **Video:** <http://youtu.be/VwZvUvXX-vY>
 - **Slides:** <http://goo.gl/RwUdOI>
-- **GitHUb:** <https://github.com/IainNZ> <https://github.com/joehuchette> <https://github.com/mlubin>
+- **GitHub:** <https://github.com/IainNZ> <https://github.com/joehuchette> <https://github.com/mlubin>
 
 <br/>
 <iframe width="560" height="315" src="//www.youtube.com/embed/VwZvUvXX-vY?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe>
