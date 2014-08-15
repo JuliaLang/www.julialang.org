@@ -29,7 +29,7 @@ title:  Julia Downloads
 </tr>
 </tbody></table>
 
-# Release candidate 0.3.0-rc3
+# Release candidate 0.3.0-rc4
 
 This is a release candidate of the latest version of Julia under
 development, which you can use to get a preview of the latest work on
