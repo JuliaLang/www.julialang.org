@@ -38,7 +38,7 @@ unlucky and get a release candidate with a serious bug, or one which breaks
 existing packages.  Most users are advised to use the latest official
 release version of Julia, above.
 
-## v0.3.0-rc3
+## v0.3.0-rc4
 
 <table class="downloads"><tbody>
 <tr>
@@ -56,7 +56,7 @@ release version of Julia, above.
 </tr>
 <tr>
     <th> Source </th>
-    <td colspan=2> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.0-rc3/julia-0.3.0-rc3_2e88f4c05b.tar.gz">GitHub</a> </td>
+    <td colspan=2> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.0-rc4/julia-0.3.0-rc4_e844f0c0b1.tar.gz">GitHub</a> </td>
 </tr>
 </tbody></table>
 
