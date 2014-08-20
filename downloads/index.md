@@ -7,6 +7,58 @@ title:  Julia Downloads
 
 # Current Release
 
+## v0.3.0
+<table class="downloads"><tbody>
+<tr>
+    <th> Windows Self-Extracting Archive (.exe) </th>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.0-win32.exe">32-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.0-win64.exe">64-bit</a> </td>
+</tr>
+<tr>
+    <th> Mac OS X Package (.dmg) </th>
+    <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.0-osx10.7+.dmg">10.7+ 64-bit</a> </td>
+</tr>
+<tr>
+    <th> Ubuntu packages </th>
+    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/juliareleases">32/64-bit</a> </td>
+</tr>
+<tr>
+    <th> Source </th>
+    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.0/julia-0.3.0_768187890c.tar.gz">Tarball</a> </td>
+    <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">Github</a> </td>
+</tr>
+</tbody></table>
+
+# Nightly builds
+
+These are bleeding-edge binaries of the latest version of Julia under
+development, which you can use to get a preview of the latest work.  However,
+because Julia is under heavy development, you may be unlucky and get a
+build with a serious bug, or one which breaks existing packages.  Most users
+are advised to use the latest official release version of Julia, above.
+
+<table class="downloads"><tbody>
+<tr>
+    <th> Windows Self-Extracting Archive (.exe) </th>
+    <td> <a href="http://status.julialang.org/download/win32">32-bit</a> </td>
+    <td> <a href="http://status.julialang.org/download/win64">64-bit</a> </td>
+</tr>
+<tr>
+    <th> Mac OS X Package (.dmg) </th>
+    <td colspan=2> <a href="http://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
+</tr>
+<tr>
+    <th> Ubuntu packages </th>
+    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
+</tr>
+<tr>
+    <th> Source </th>
+    <td colspan=2> <a href="https://github.com/JuliaLang/julia">GitHub</a> </td>
+</tr>
+</tbody></table>
+
+# Older Releases
+
 ## v0.2.1
 <table class="downloads"><tbody>
 <tr>
@@ -28,39 +80,6 @@ title:  Julia Downloads
     <td colspan=2> <a href="https://github.com/JuliaLang/julia/tree/v0.2.1">GitHub</a> </td>
 </tr>
 </tbody></table>
-
-# Release candidate 0.3.0-rc4
-
-This is a release candidate of the latest version of Julia under
-development, which you can use to get a preview of the latest work on
-Julia.  However, because Julia is under heavy development, you may be
-unlucky and get a release candidate with a serious bug, or one which breaks
-existing packages.  Most users are advised to use the latest official
-release version of Julia, above.
-
-## v0.3.0-rc4
-
-<table class="downloads"><tbody>
-<tr>
-    <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="http://status.julialang.org/download/win32">32-bit</a> </td>
-    <td> <a href="http://status.julialang.org/download/win64">64-bit</a> </td>
-</tr>
-<tr>
-    <th> Mac OS X Package (.dmg) </th>
-    <td colspan=2> <a href="http://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
-</tr>
-<tr>
-    <th> Ubuntu packages </th>
-    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
-</tr>
-<tr>
-    <th> Source </th>
-    <td colspan=2> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.0-rc4/julia-0.3.0-rc4_e844f0c0b1.tar.gz">GitHub</a> </td>
-</tr>
-</tbody></table>
-
-# Older Releases
 
 ## v0.1.2
 <table class="downloads"><tbody>
