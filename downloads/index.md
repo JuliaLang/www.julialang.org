@@ -10,7 +10,7 @@ title:  Julia Downloads
 ## v0.3.0
 <table class="downloads"><tbody>
 <tr>
-    <th> Windows Self-Extracting Archive (.exe) <br /> (Disabled pending <a href="https://github.com/JuliaLang/julia/issues/8079">installer issues</a>) </th>
+    <th> Windows Self-Extracting Archive (.exe) <br /> (Disabled pending <a style="display: inline" href="https://github.com/JuliaLang/julia/issues/8079">installer issues</a>) </th>
     <td> 32-bit </td>
     <td> 64-bit </td>
 </tr>
