@@ -10,9 +10,9 @@ title:  Julia Downloads
 ## v0.3.0
 <table class="downloads"><tbody>
 <tr>
-    <th> Windows Self-Extracting Archive (.exe) <br /> (Disabled temporarily pending resolution of <a href="https://github.com/JuliaLang/julia/issues/8079">installer issues</a>) </th>
-    <td> <u>32-bit</u> </td>
-    <td> <u>64-bit</u> </td>
+    <th> Windows Self-Extracting Archive (.exe) <br /> (Disabled pending <a href="https://github.com/JuliaLang/julia/issues/8079">installer issues</a>) </th>
+    <td> 32-bit </td>
+    <td> 64-bit </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
