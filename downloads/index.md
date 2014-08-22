@@ -24,7 +24,7 @@ title:  Julia Downloads
 </tr>
 <tr>
     <th> Source </th>
-    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.0/julia-0.3.0_768187890c.tar.gz">Tarball</a> </td>
+    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.0/julia-v0.3.0_768187890c.tar.gz">Tarball</a> </td>
     <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">Github</a> </td>
 </tr>
 </tbody></table>
@@ -100,7 +100,7 @@ are advised to use the latest official release version of Julia, above.
 </tr>
 </tbody></table>
 
-If the provided download files do not work for you, please [file an issue](https://github.com/JuliaLang/julia/issues). It is strongly recommended that you download the v0.2 binaries to try out Julia, unless you are working with code that was developed specifically for the v0.1 release.
+If the provided download files do not work for you, please [file an issue](https://github.com/JuliaLang/julia/issues). It is strongly recommended that you download the v0.3 binaries to try out Julia, unless you are working with code that was developed specifically for a previous release.
 
 ---
 # Platform Specific Instructions
