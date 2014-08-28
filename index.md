@@ -68,7 +68,7 @@ Various other Julia benchmarks, tracked over time can be found at [speed.juliala
 
 To give a quick taste of what Julia looks like, here is the code used in the Mandelbrot and random matrix statistics benchmarks:
 
-```julia
+{% highlight julia %}
 function mandel(z)
     c = z
     maxiter = 80
@@ -97,7 +97,7 @@ function randmatstat(t)
     end
     std(v)/mean(v), std(w)/mean(w)
 end
-```
+{% endhighlight %}
 
 The code above is quite clear, and should feel familiar to anyone who has programmed in other mathematical languages.
 The Julia implementation of `randmatstat` is considerably simpler than the equivalent [C implementation](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.c#L126), without giving up much performance. Planned compiler optimizations will close this performance gap in the future.
@@ -110,11 +110,11 @@ Julia does not impose any particular style of parallelism on the user.
 Instead, it provides a number of [key building blocks for distributed computation](/manual/parallel-computing), making it flexible enough to support a number of styles of parallelism, and allowing users to add more.
 The following simple example demonstrates how to count the number of heads in a large number of coin tosses in parallel.
 
-```julia
+{% highlight julia %}
 nheads = @parallel (+) for i=1:100000000
   int(randbool())
 end
-```
+{% endhighlight %}
 
 This computation is automatically distributed across all available compute nodes, and the result, reduced by summation (`+`), is returned at the calling node.
 

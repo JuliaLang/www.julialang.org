@@ -1,6 +1,6 @@
 permalink: /:categories/:year/:month/:title
 
-pygments: true
+highlighter: pygments
 
 markdown: rdiscount
 rdiscount:
