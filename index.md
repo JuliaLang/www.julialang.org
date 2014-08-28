@@ -68,34 +68,36 @@ Various other Julia benchmarks, tracked over time can be found at [speed.juliala
 
 To give a quick taste of what Julia looks like, here is the code used in the Mandelbrot and random matrix statistics benchmarks:
 
-    function mandel(z)
-        c = z
-        maxiter = 80
-        for n = 1:maxiter
-            if abs(z) > 2
-                return n-1
-            end
-            z = z^2 + c
+```julia
+function mandel(z)
+    c = z
+    maxiter = 80
+    for n = 1:maxiter
+        if abs(z) > 2
+            return n-1
         end
-        return maxiter
+        z = z^2 + c
     end
+    return maxiter
+endi
 
-    function randmatstat(t)
-        n = 5
-        v = zeros(t)
-        w = zeros(t)
-        for i = 1:t
-            a = randn(n,n)
-            b = randn(n,n)
-            c = randn(n,n)
-            d = randn(n,n)
-            P = [a b c d]
-            Q = [a b; c d]
-            v[i] = trace((P.'*P)^4)
-            w[i] = trace((Q.'*Q)^4)
-        end
-        std(v)/mean(v), std(w)/mean(w)
+function randmatstat(t)
+    n = 5
+    v = zeros(t)
+    w = zeros(t)
+    for i = 1:t
+        a = randn(n,n)
+        b = randn(n,n)
+        c = randn(n,n)
+        d = randn(n,n)
+        P = [a b c d]
+        Q = [a b; c d]
+        v[i] = trace((P.'*P)^4)
+        w[i] = trace((Q.'*Q)^4)
     end
+    std(v)/mean(v), std(w)/mean(w)
+end
+```
 
 The code above is quite clear, and should feel familiar to anyone who has programmed in other mathematical languages.
 The Julia implementation of `randmatstat` is considerably simpler than the equivalent [C implementation](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.c#L126), without giving up much performance. Planned compiler optimizations will close this performance gap in the future.
@@ -108,9 +110,11 @@ Julia does not impose any particular style of parallelism on the user.
 Instead, it provides a number of [key building blocks for distributed computation](/manual/parallel-computing), making it flexible enough to support a number of styles of parallelism, and allowing users to add more.
 The following simple example demonstrates how to count the number of heads in a large number of coin tosses in parallel.
 
-    nheads = @parallel (+) for i=1:100000000
-      int(randbool())
-    end
+```julia
+nheads = @parallel (+) for i=1:100000000
+  int(randbool())
+end
+```
 
 This computation is automatically distributed across all available compute nodes, and the result, reduced by summation (`+`), is returned at the calling node.
 
