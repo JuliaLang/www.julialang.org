@@ -79,7 +79,7 @@ function mandel(z)
         z = z^2 + c
     end
     return maxiter
-endi
+end
 
 function randmatstat(t)
     n = 5
