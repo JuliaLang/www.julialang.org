@@ -17,7 +17,7 @@ David Sanders gave a detailed [Julia tutorial at SciPy 2014](https://www.youtube
 A set of [video tutorials](https://www.youtube.com/playlist?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ) were recorded at MIT in January 2013. [Slides and other materials](https://github.com/JuliaLang/julia-tutorial) from the tutorial are on GitHub.
 
 <br/>
-<iframe width="560" height="315" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ" frameborder="0" allowfullscreen></iframe>
 
 # Tutorials
 
