@@ -19,17 +19,18 @@ We use GitHub to track our source code and for tracking and discussing [issues](
 
 Various Julia projects are hosted under the following umbrella organizations on GitHub:
 
-* [JuliaLang](https://github.com/JuliaLang) – the language
-* [JuliaStats](https://github.com/JuliaStats) – statistics
-* [JuliaOpt](http://www.juliaopt.org/) – optimization
-* [JuliaAstro](https://github.com/JuliaAstro) – astronomy
-* [JuliaDiff](http://www.juliadiff.org/) – differentiation tools
-* [JuliaGPU](https://github.com/JuliaGPU) – gpu computing
-* [JuliaQuant](https://github.com/JuliaQuant) – finance
-* [JuliaSparse](https://github.com/JuliaSparse) – sparse matrix solvers
-* [JuliaQuantum](https://github.com/JuliaQuantum) – quantum (physics/chemistry/information/computation...) libraries
+* [JuliaLang](https://github.com/JuliaLang) – The language
+* [JuliaStats](https://github.com/JuliaStats) – Statistics
+* [JuliaOpt](http://www.juliaopt.org/) – Optimization
+* [JuliaAstro](https://github.com/JuliaAstro) – Astronomy
+* [JuliaDiff](http://www.juliadiff.org/) – Differentiation tools
+* [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
+* [JuliaQuant](https://github.com/JuliaQuant) – Finance
+* [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
+* [JuliaQuantum](https://github.com/JuliaQuantum) – Quantum (physics/chemistry/information/computation) libraries
+* [JuliaWeb](https://github.com/JuliaWeb) – Web stack
 
-# Google Summer of Code
+# Google Summer of Code 2014
 
 Julia participated in the [Google Summer of Code 2014](http://julialang.org/gsoc/2014/).
 
