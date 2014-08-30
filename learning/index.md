@@ -7,7 +7,7 @@ title:  Learning Julia
 
 David Sanders gave a detailed [Julia tutorial at SciPy 2014](https://www.youtube.com/watch?v=vWkgEddb4-A) and download the relevant [IJulia notebooks](https://github.com/dpsanders/scipy_2014_julia).
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/vWkgEddb4-A" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6T0dEHtj0GZymvT6ODIJWj0" frameborder="0" allowfullscreen></iframe>
 
 [JuliaCon 2014](http://www.juliacon.org) featured [a number of talks](https://www.youtube.com/playlist?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd) on various aspects of Julia and its development. [Slides and IJulia notebooks](https://github.com/JuliaCon/presentations) are on Github.
 
