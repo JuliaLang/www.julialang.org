@@ -38,6 +38,10 @@ Julia participated in the [Google Summer of Code 2014](http://julialang.org/gsoc
 
 A blog aggregator for [Julia blogs](http://www.juliabloggers.com)
 
+# YouTube
+
+Various Julia videos and playlists are posted on [YouTube](https://www.youtube.com/user/JuliaLanguage/)
+
 # Twitter
 
 Tweet using the [#JuliaLang](https://twitter.com/search?q=julialang&src=typd&f=realtime) hashtag on Twitter.
