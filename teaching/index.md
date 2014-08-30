@@ -3,23 +3,13 @@ layout: default
 title:  Using Julia in the classroom
 ---
 
-# Video tutorials
-
-David Sanders gave a detailed Julia tutorial at SciPy 2014. Watch these [videos](https://www.youtube.com/watch?v=vWkgEddb4-A) and download the relevant [IJulia notebooks](https://github.com/dpsanders/scipy_2014_julia).
-
-We recorded a number of
-[videos](http://www.youtube.com/user/JuliaLanguage) as part of the
-Julia tutorial at MIT in January 2013. [Slides and other
-material](https://github.com/JuliaLang/julia-tutorial) from the
-tutorial are available on GitHub.
-
 # Julia in the classroom
 
-Julia is ready for the classroom. We encourage instructors to participate in the [Julia community resources](http://julialang.org/community) for questions about Julia or specific packages.
+Julia is ready for the classroom. We encourage instructors to participate in the [Julia community resources](http://julialang.org/community) for questions about Julia or specific packages. This page puts together various resources that instructors may find useful. Tutorials and other learning materials are in the [learning section](http://julialang.org/teaching) of the website.
 
 ## Classes using Julia for teaching
 
-Julia is now being used in several university courses in North America. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list..
+Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
 - City University of New York, Spring 2014
   * [MTH 229](http://wiener.math.csi.cuny.edu/verzani/classes/MTH229/), Calculus Computer Laboratory (Prof. John Verzani). Also see the [MTH 229 Projects](http://mth229.github.io) page.
@@ -54,11 +44,6 @@ Julia is now being used in several university courses in North America. If you k
   * [18.330](http://homerreid.dyndns.org/teaching/18.330), Introduction to Numerical Analysis. (Dr. Homer Reid)
 
 
-# Julia resources
-
-For a quick introduction to Julia, see these [introductory slides](https://github.com/ViralBShah/julia-presentations/raw/master/Fifth-Elephant-2013/Fifth-Elephant-2013.pdf).
-Steve Johnson maintains an excellent resource for using [Julia in the classroom at MIT](https://github.com/stevengj/julia-mit/).
-
 ## Installing Julia
 
 [Julia binaries](http://julialang.org/downloads/) are available for
@@ -70,20 +55,6 @@ The Julia and [IPython](http://ipython.org) teams have collaborated to
 develop [IJulia](https://github.com/JuliaLang/IJulia.jl), which
 provides a powerful graphical notebook interface to Julia.
 
-## Tutorials
-
-- The Julia Express by [Bogomił Kamiński](http://bogumilkaminski.pl) [(pdf)](http://bogumilkaminski.pl/files/julia_express.pdf)
-- [Tutorials from Forio Online Simulations](http://forio.com/julia/tutorials-list)
-- [Tutorial from the Cambridge Area Julia Users Network](https://github.com/JuliaX/JuliaTutorial)
-- [Tutorial from MIT IAP 2013 workshop](https://github.com/JuliaLang/julia-tutorial)
-
-## Topical material
-
-- [Scientific computing’s future: Can any coding language top a 1950s behemoth?](http://arstechnica.com/science/2014/05/scientific-computings-future-can-any-coding-language-top-a-1950s-behemoth/) by Lee Phillips on ArsTechnica
-- [HPC Programming with Ease](http://ilp.mit.edu/newsstory.jsp?id=19970) by Eric Brown for the MIT Industrial Liaison Program
-- [Julia: A New Language For Technical Computing](http://www.admin-magazine.com/HPC/Articles/Julia-A-New-Language-For-Technical-Computing) by Douglas Eadline in Admin magazine
-- [Parallel Julia: Part 2](http://www.admin-magazine.com/HPC/Articles/Parallel-Julia-Jumping-Right-In) by Douglas Eadline in Admin magazine
-
 ## Packages
 
 The Julia community has put together a number of
@@ -92,7 +63,7 @@ spanning multiple disciplines.
 
 ## The Julia manual
 
-The [Julia manual](http://docs.julialang.org/en/latest/) contains a
+The [Julia manual](http://docs.julialang.org/) contains a
 complete introduction to the Julia language. It is available in
 [Chinese](http://julia-zh-cn.readthedocs.org/en/latest/), while
 [Spanish](http://julia-es-la.readthedocs.org/) and

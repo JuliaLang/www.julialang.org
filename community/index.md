@@ -29,6 +29,10 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaSparse](https://github.com/JuliaSparse) – sparse matrix solvers
 * [JuliaQuantum](https://github.com/JuliaQuantum) – quantum (physics/chemistry/information/computation...) libraries
 
+# Google Summer of Code
+
+Julia participated in the [Google Summer of Code 2014](http://julialang.org/gsoc/2014/).
+
 # Blogs
 
 A blog aggregator for [Julia blogs](http://www.juliabloggers.com)
