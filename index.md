@@ -127,7 +127,7 @@ The eventual goal is to let people stop worrying about administering machines an
 
 Gadfly can produce various plots with [D3](http://d3js.org) as a rendering backend in the browser (SVG, PDF, PNG and various other backends are also supported). Graphs and plots can be made interactive by using the [Interact.jl](https://github.com/JuliaLang/Interact.jl) package. Here is a small sampling of the capabilities of Gadfly.
 
-<a href="/images/ijulia.png" target="_blank"><img src="/images/gadfly-demo.png" /></a>
+<a href="/images/ijulia.png" target="_blank"><img src="/images/gadfly-demo.png" width="95%" /></a>
 
 # Free, Open Source and Library-Friendly
 
