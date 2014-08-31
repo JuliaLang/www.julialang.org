@@ -157,16 +157,6 @@ New builds are built every night. If you have already installed julia and you wa
 
 Graphics in Julia are available through external packages. These packages are under heavy development and take different approaches towards graphics and plotting, which suit different use cases.
 
-## Winston
-
-Winston provides 2D plotting capabilities for Julia. Add the Winston package to your Julia installation with the following command on the Julia prompt:
-
-1. `Pkg.add("Winston")`
-2. `using Winston`
-3. `plot( cumsum(randn(1000)) )` # (plot a random walk)
-
-Winston's interface will be familiar to MATLAB users. See [examples](https://github.com/nolta/Winston.jl/tree/master/examples) and documentation on the [Winston](https://github.com/nolta/Winston.jl) homepage.
-
 ## Gadfly
 
 Gadfly is an implementation of a [Wickham-Wilkinson](http://www.cs.uic.edu/%7Ewilkinson/TheGrammarOfGraphics/GOG.html) style grammar of graphics in Julia. Add the Gadfly package to your Julia installation with the following command on the Julia prompt:
@@ -176,17 +166,6 @@ Gadfly is an implementation of a [Wickham-Wilkinson](http://www.cs.uic.edu/%7Ewi
 3. `draw(SVG("output.svg", 6inch, 3inch), plot([sin, cos], 0, 25))` #(plot a pair of simple functions over a range)
 
 Gadfly's interface will be familiar to users of R's [ggplot2](http://ggplot2.org) package. See [examples](https://github.com/dcjones/Gadfly.jl/tree/master/doc) and documentation on the [Gadfly](https://github.com/dcjones/Gadfly.jl) homepage.
-
-## Gaston
-
-[Gaston](https://github.com/mbaz/Gaston.jl) provides an interface to [gnuplot](http://www.gnuplot.info). Gaston also includes detailed documentation and examples in its [manual](https://bitbucket.org/mbaz/gaston/downloads/gastondoc-0.5.5.pdf). Add the Gaston package to your Julia installation with the following commond on the Julia prompt:
-
-1. `Pkg.add("Gaston")`
-2. `using Gaston`
-3. `Gaston.set_terminal("aqua")` #(this may be necessary, if the following reports that your terminal type is unknown)
-4. `x=-pi:.001:pi; y=x.*sin(10./x); plot(x,y)` #(plot `x*sin(10/x)`)
-
-In order to use Gaston, you will need to [install gnuplot](http://www.gnuplot.info/download.html) and ensure it is accessible
 
 ## PyPlot
 
