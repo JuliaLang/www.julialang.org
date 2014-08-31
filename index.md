@@ -118,12 +118,16 @@ end
 
 This computation is automatically distributed across all available compute nodes, and the result, reduced by summation (`+`), is returned at the calling node.
 
-Here is a screenshot of a web-based interactive [IJulia](https://github.com/JuliaLang/IJulia.jl) session, using [Gadfly](https://github.com/dcjones/Gadfly.jl) to produce various plots with [D3](http://d3js.org) as a rendering backend in the browser (SVG, PDF, PNG and various other backends are also supported):
+Here is a screenshot of a web-based interactive [IJulia Notebook](https://github.com/JuliaLang/IJulia.jl) session, using [Gadfly](https://github.com/dcjones/Gadfly.jl).
 
 <a href="/images/ijulia.png" target="_blank"><img src="/images/ijulia.png" width="95%" /></a>
 
 This paves the way for fully cloud-based operation, including data management, code editing and sharing, execution, debugging, collaboration, analysis, data exploration, and visualization.
 The eventual goal is to let people stop worrying about administering machines and managing data and get straight to the real problem.
+
+Gadfly can produce various plots with [D3](http://d3js.org) as a rendering backend in the browser (SVG, PDF, PNG and various other backends are also supported). Graphs and plots can be made interactive by using the [Interact.jl](https://github.com/JuliaLang/Interact.jl) package. Here is a small sampling of the capabilities of Gadfly.
+
+<a href="/images/ijulia.png" target="_blank"><img src="/images/gadfly-demo.png" width="50%" /></a>
 
 # Free, Open Source and Library-Friendly
 
