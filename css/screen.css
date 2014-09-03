@@ -234,3 +234,10 @@ blockquote {
 .downloads a:hover {
   background: lightgreen;
 }
+
+/* Utility classes */
+.u-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
