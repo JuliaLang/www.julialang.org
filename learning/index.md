@@ -3,9 +3,10 @@ layout: default
 title:  Learning Julia
 ---
 
-# Cheat sheet
+# Cheat sheets and tutorials
 
-[A Julia cheat sheet](http://math.mit.edu/~stevenj/Julia-cheatsheet.pdf) by Steve Johnson.
+[A Julia cheat sheet](http://math.mit.edu/~stevenj/Julia-cheatsheet.pdf) by [Steve Johnson](http://math.mit.edu/~stevenj/)
+- [The Julia Express](http://bogumilkaminski.pl/files/julia_express.pdf) by [Bogomił Kamiński](http://bogumilkaminski.pl)
 
 # Video tutorials
 
@@ -20,14 +21,6 @@ David Sanders gave a detailed [Julia tutorial at SciPy 2014](https://www.youtube
 A set of [video tutorials](https://www.youtube.com/playlist?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ) were recorded at MIT in January 2013. [Slides and other materials](https://github.com/JuliaLang/julia-tutorial) from the tutorial are on GitHub.
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ" frameborder="0" allowfullscreen></iframe>
-
-# Tutorials
-
-- For a quick introduction to Julia, see these [introductory slides](https://github.com/ViralBShah/julia-presentations/raw/master/Fifth-Elephant-2013/Fifth-Elephant-2013.pdf)
-- [The Julia Express](http://bogumilkaminski.pl/files/julia_express.pdf) by [Bogomił Kamiński](http://bogumilkaminski.pl)
-- [Tutorials from Forio Online Simulations](http://forio.com/julia/tutorials-list)
-- [Tutorial from the Cambridge Area Julia Users Network](https://github.com/JuliaX/JuliaTutorial)
-- [Tutorial from MIT IAP 2013 workshop](https://github.com/JuliaLang/julia-tutorial)
 
 # Topical material
 
