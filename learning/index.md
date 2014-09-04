@@ -5,7 +5,7 @@ title:  Learning Julia
 
 # Cheat sheets and tutorials
 
-[A Julia cheat sheet](http://math.mit.edu/~stevenj/Julia-cheatsheet.pdf) by [Steve Johnson](http://math.mit.edu/~stevenj/)
+- [A Julia cheat sheet](http://math.mit.edu/~stevenj/Julia-cheatsheet.pdf) by [Steve Johnson](http://math.mit.edu/~stevenj/)
 - [The Julia Express](http://bogumilkaminski.pl/files/julia_express.pdf) by [Bogomił Kamiński](http://bogumilkaminski.pl)
 
 # Video tutorials
