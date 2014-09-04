@@ -3,6 +3,10 @@ layout: default
 title:  Learning Julia
 ---
 
+# Cheat sheet
+
+[A Julia cheat sheet](http://math.mit.edu/~stevenj/Julia-cheatsheet.pdf) by Steve Johnson.
+
 # Video tutorials
 
 David Sanders gave a detailed [Julia tutorial at SciPy 2014](https://www.youtube.com/watch?v=vWkgEddb4-A), which is a great starting point for a new Julia user. Also download the relevant [IJulia notebooks](https://github.com/dpsanders/scipy_2014_julia) that are used in the tutorial.
