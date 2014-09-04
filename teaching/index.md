@@ -5,7 +5,7 @@ title:  Using Julia in the classroom
 
 # Julia in the classroom
 
-Julia is ready for the classroom. We encourage instructors to participate in the [Julia community resources](http://julialang.org/community) for questions about Julia or specific packages. This page puts together various resources that instructors may find useful. Tutorials and other learning materials are in the [learning section](http://julialang.org/teaching) of the website.
+Julia is ready for the classroom. We encourage instructors to participate in the [Julia community resources](http://julialang.org/community) for questions about Julia or specific packages. This page puts together various resources that instructors may find useful. Tutorials and other learning materials are in the [learning section](http://julialang.org/learning) of the website.
 
 ## Classes using Julia for teaching
 
