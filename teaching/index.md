@@ -12,7 +12,7 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
 - Iowa State University, Fall 2014
-  * [STAT590F], - (Prof. Heike Hofmann), Topics in statistical computing: Julia seminar ([Github page](https://github.com/heike/stat590f))
+  * [STAT 590F](https://github.com/heike/stat590f), Topics in statistical computing: Julia seminar (Prof. Heike Hofmann)
 
 - MIT, Fall 2014
   * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. Steven G. Johnson)
