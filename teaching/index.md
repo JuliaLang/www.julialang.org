@@ -22,6 +22,9 @@ Julia is now being used in several university courses. If you know of other clas
   * [AA228/CS232](http://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer)
   * [EE103](http://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd)
 
+- Brown University, Fall 2014
+  * [CSCI 1810](http://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael)
+
 - City University of New York, Spring 2014
   * [MTH 229](http://wiener.math.csi.cuny.edu/verzani/classes/MTH229/), Calculus Computer Laboratory (Prof. John Verzani). Also see the [MTH 229 Projects](http://mth229.github.io) page.
 
