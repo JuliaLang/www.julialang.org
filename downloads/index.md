@@ -7,16 +7,16 @@ title:  Julia Downloads
 
 # Current Release
 
-## v0.3.0
+## v0.3.1
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.0-win32.exe">32-bit</a> </td>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.0-win64.exe">64-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.1-win32.exe">32-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.1-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.0-osx10.7+.dmg">10.7+ 64-bit</a> </td>
+    <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.1-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages </th>
@@ -24,7 +24,7 @@ title:  Julia Downloads
 </tr>
 <tr>
     <th> Source </th>
-    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.0/julia-v0.3.0_768187890c.tar.gz">Tarball</a> </td>
+    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.1/julia-0.3.1_c03f413bbd.tar.gz">Tarball</a> </td>
     <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">Github</a> </td>
 </tr>
 </tbody></table>
