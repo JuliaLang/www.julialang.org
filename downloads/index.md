@@ -23,6 +23,10 @@ title:  Julia Downloads
     <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/juliareleases">32/64-bit</a> </td>
 </tr>
 <tr>
+    <th> Fedora/EPEL packages </th>
+    <td colspan=2> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia/">32/64-bit</a> </td>
+</tr>
+<tr>
     <th> Source </th>
     <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.0/julia-v0.3.0_768187890c.tar.gz">Tarball</a> </td>
     <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">Github</a> </td>
@@ -50,6 +54,10 @@ are advised to use the latest official release version of Julia, above.
 <tr>
     <th> Ubuntu packages </th>
     <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
+</tr>
+<tr>
+    <th> Fedora/EPEL packages </th>
+    <td colspan=2> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies/">32/64-bit</a> </td>
 </tr>
 <tr>
     <th> Source </th>
@@ -137,9 +145,21 @@ A [PPA](https://launchpad.net/~staticfloat/+archive/juliareleases) (Personal Pac
 
 Note that Ubuntu has deadlines for accepting new versions of software into their default repositories, and as such the default repositories often have Julia versions that lag behind significantly.  When reporting issues, please ensure you are using the latest available release by using one of the PPA repositories displayed on this page.
 
-Uninstallation is platform dependent. If you installed from a package manager such as `apt-get`, use the package manager to remove julia, for example `apt-get remove julia`. If you did a source build, you can remove it by deleting your julia source folder. If you would also like to remove your preferences files, they are `~/.julia` and `~/.juliarc.jl`.
+Uninstallation depends on the method you used to install Julia. If you installed from a package manager such as `apt-get`, use the package manager to remove julia, for example `apt-get remove julia`. If you did a source build, you can remove it by deleting your julia source folder. If you would also like to remove your preferences files, they are `~/.julia` and `~/.juliarc.jl`.
 
-### Nightlies installation instructions
+### Fedora/EPEL
+A [Copr repository](https://copr.fedoraproject.org/coprs/nalimilan/julia/) is provided for Fedora, RHEL, Centos, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest stable version of Julia.  To use this repository and install julia on Fedora 19 and later, and distributions working with EPEL7, run the following commands:
+
+    sudo dnf copr enable nalimilan/julia
+    sudo yum install julia
+
+If `dnf` is not available for your distribution, download the relevant `.repo` file from the Copr webpage, copy it to `/etc/yum.repos`, and run the second command.
+
+Note that Fedora guidelines advise against uploading new breaking releases to official repositories: therefore your distribution will not provide the new major versions of Julia which were published after it.  When reporting issues, please ensure you are using the latest available release by using one of the Copr repositories displayed on this page.
+
+Uninstallation depends on the method you used to install Julia. If you installed from a package manager such as `dnf` or `yum`, use the package manager to remove julia, for example `yum remove julia`. If you did a source build, you can remove it by deleting your julia source folder. If you would also like to remove your preferences files, they are `~/.julia` and `~/.juliarc.jl`.
+
+### Ubuntu nightlies installation instructions
 A [PPA](https://launchpad.net/~staticfloat/+archive/julianightlies) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest beta version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, run the following commands:
 
     sudo add-apt-repository ppa:staticfloat/julianightlies
@@ -151,6 +171,18 @@ New builds are built every night. If you have already installed julia and you wa
 
     sudo apt-get update
     sudo apt-get upgrade
+
+### Fedora/EPEL nightlies installation instructions
+A [Copr repository](https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies) is provided for Fedora, RHEL, Centos, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest beta version of Julia.  To use this repository and install julia on Fedora 19 and later, and distributions working with EPEL7, run the following commands:
+
+    sudo dnf copr enable nalimilan/julia
+    sudo yum install julia
+
+If `dnf` is not available for your distribution, download the relevant `.repo` file from the Copr webpage, copy it to `/etc/yum.repos`, and run the second command.
+
+New builds are built every night. If you have already installed julia and you want to upgrade to the latest version, do:
+
+    sudo yum upgrade julia
 
 ---
 # Graphics in Julia
