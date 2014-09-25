@@ -15,7 +15,7 @@ Julia is now being used in several university courses. If you know of other clas
   * [CE 3820](http://armanshokrollahi.com/teaching/f14/model/), Modeling and Evaluation (Dr. Arman Shokrollahi)
 
 - Iowa State University, Fall 2014
-  * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia seminar (Prof. Heike Hofmann)
+  * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann)
 
 - MIT, Fall 2014
   * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. Steven G. Johnson)
