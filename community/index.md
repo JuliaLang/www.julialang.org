@@ -13,6 +13,9 @@ The [julia-stats](https://groups.google.com/forum/?fromgroups=#!forum/julia-stat
 
 The [julia-opt](https://groups.google.com/forum/?fromgroups=#!forum/julia-opt) mailing list is for discussions related to numerical optimization in julia. This includes Mathematical Programming (linear, mixed-integer, conic, semi-definite, etc.), constrained and unconstrained gradient-based and gradient-free optimization, and related topics.
 
+The [JuliaBox](https://groups.google.com/forum/?fromgroups=#!forum/julia-box) mailing list is for discussions related to running Julia in the so called cloud.
+
+
 # GitHub
 
 We use GitHub to track our source code and for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) and [commits](https://github.com/JuliaLang/julia/commits). There is also a list of [packages](http://pkg.julialang.org/) for Julia, many of which are also hosted on and developed using GitHub.
