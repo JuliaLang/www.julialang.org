@@ -1,7 +1,7 @@
 #!/bin/sh
 # install julia release: ./install-julia.sh juliareleases
 # install julia nightly: ./install-julia.sh julianightlies
- 
+
 # stop on error
 set -e
 # default to juliareleases
@@ -10,7 +10,16 @@ if [ $# -ge 1 ]; then
 elif [ -z "$JULIAVERSION" ]; then
   JULIAVERSION=juliareleases
 fi
- 
+
+if [ "$JULIAVERSION" = "julianightlies" ]; then
+  STATUSURL="http://status.julialang.org/download"
+elif [ "$JULIAVERSION" = "juliareleases" ]; then
+  STATUSURL="http://status.julialang.org/stable"
+else
+  echo "Unrecognized JULIAVERSION=$JULIAVERSION, exiting"
+  exit 1
+fi
+
 case $(uname) in
   Linux)
     # use PPA if add-apt-repository exists
@@ -23,14 +32,24 @@ case $(uname) in
       if [ -e /usr/local/bin/julia ]; then
         echo "/usr/local/bin/julia already exists, exiting"
         exit 1
-      elif ! [ $(uname -m) = "x86_64" ]; then
-        echo "Only have generic Julia binaries for x86_64 at this time, exiting"
-        exit 1
       elif ! [ "$JULIAVERSION" = "julianightlies" ]; then
         echo "Only have generic Julia binaries for nightlies at this time, exiting"
         exit 1
       fi
-      curl -L "http://status.julialang.org/download/Linux Tarball" | tar -xz
+      case $(uname -m) in
+        x86_64)
+          curl -L "$STATUSURL/linux-x86_64" | tar -xz
+          ;;
+        i386 | i486 | i586 | i686)
+          echo "Only have generic Julia binaries for x86_64 at this time, exiting"
+          exit 1
+          #curl -L "$STATUSURL/linux-i686" | tar -xz
+          ;;
+        *)
+          echo "Do not have generic Julia binaries for this architecture, exiting"
+          exit 1
+          ;;
+      esac
       sudo ln -s $PWD/julia-*/bin/julia /usr/local/bin/julia
     fi
     ;;
@@ -45,14 +64,7 @@ case $(uname) in
       echo "~/julia already exists, exiting"
       exit 1
     fi
-    if [ "$JULIAVERSION" = "julianightlies" ]; then
-      curl -Lo julia.dmg "http://status.julialang.org/download/osx10.7+"
-    elif [ "$JULIAVERSION" = "juliareleases" ]; then
-      curl -Lo julia.dmg "http://status.julialang.org/stable/osx10.7+"
-    else
-      echo "Unrecognized JULIAVERSION=$JULIAVERSION, exiting"
-      exit 1
-    fi
+    curl -Lo julia.dmg "$STATUSURL/osx10.7+"
     hdiutil mount julia.dmg
     cp -Ra /Volumes/Julia/*.app/Contents/Resources/julia ~
     ln -s ~/julia/bin/julia /usr/local/bin/julia
