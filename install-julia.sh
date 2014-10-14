@@ -11,14 +11,21 @@ elif [ -z "$JULIAVERSION" ]; then
   JULIAVERSION=juliareleases
 fi
 
-if [ "$JULIAVERSION" = "julianightlies" ]; then
-  STATUSURL="http://status.julialang.org/download"
-elif [ "$JULIAVERSION" = "juliareleases" ]; then
-  STATUSURL="http://status.julialang.org/stable"
-else
-  echo "Unrecognized JULIAVERSION=$JULIAVERSION, exiting"
-  exit 1
-fi
+case "$JULIAVERSION" in
+  julianightlies)
+    STATUSURL="http://status.julialang.org/download"
+    ;;
+  juliareleases)
+    STATUSURL="http://status.julialang.org/stable"
+    ;;
+  download/win32 | download/win64 | stable/win32 | stable/win64)
+    STATUSURL="http://status.julialang.org/$JULIAVERSION"
+    ;;
+  *)
+    echo "Unrecognized JULIAVERSION=$JULIAVERSION, exiting"
+    exit 1
+    ;;
+esac
 
 case $(uname) in
   Linux)
@@ -41,12 +48,10 @@ case $(uname) in
           curl -L "$STATUSURL/linux-x86_64" | tar -xz
           ;;
         i386 | i486 | i586 | i686)
-          echo "Only have generic Julia binaries for x86_64 at this time, exiting"
-          exit 1
-          #curl -L "$STATUSURL/linux-i686" | tar -xz
+          curl -L "$STATUSURL/linux-i386" | tar -xz
           ;;
         *)
-          echo "Do not have generic Julia binaries for this architecture, exiting"
+          echo "Do not have Julia binaries for this architecture, exiting"
           exit 1
           ;;
       esac
@@ -79,7 +84,7 @@ case $(uname) in
     exit 1
     ;;
   *)
-    echo "Sorry, don't know how to install Julia binaries on this platform"
+    echo "Do not have Julia binaries for this platform, exiting"
     exit 1
     ;;
 esac
