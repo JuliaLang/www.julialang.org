@@ -39,9 +39,6 @@ case $(uname) in
       if [ -e /usr/local/bin/julia ]; then
         echo "/usr/local/bin/julia already exists, exiting"
         exit 1
-      elif ! [ "$JULIAVERSION" = "julianightlies" ]; then
-        echo "Only have generic Julia binaries for nightlies at this time, exiting"
-        exit 1
       fi
       case $(uname -m) in
         x86_64)
