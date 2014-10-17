@@ -20,6 +20,7 @@ Julia is now being used in several university courses. If you know of other clas
 - MIT, Fall 2014
   * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. Steven G. Johnson)
   * [18.06](http://web.mit.edu/18.06/www/), Linear Algebra (Prof. Alexander Postnikov)
+  * [15.093/6.255](http://optimization.mit.edu/class.php?id=6.255J), Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos)
 
 - Stanford University, Fall 2014
   * [AA228/CS232](http://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer)
