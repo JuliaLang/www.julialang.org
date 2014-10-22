@@ -23,7 +23,7 @@ title:  Julia Downloads
     <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/juliareleases">32/64-bit</a> </td>
 </tr>
 <tr>
-    <th> Fedora/RHEL/CentOS/SL/OEL packages (.rpm) </th>
+    <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
     <td colspan=2> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia/">32/64-bit</a> </td>
 </tr>
 <tr>
@@ -61,7 +61,7 @@ are advised to use the latest official release version of Julia, above.
     <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
 </tr>
 <tr>
-    <th> Fedora/RHEL/CentOS/SL/OEL packages (.rpm) </th>
+    <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
     <td colspan=2> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies/">32/64-bit</a> </td>
 </tr>
 <tr>
