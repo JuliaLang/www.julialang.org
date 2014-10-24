@@ -3,8 +3,8 @@ layout: default
 title:  Learning Julia
 ---
 # Books
-- [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks) by [Bruce Tate,        Fred Daoud, Jack Moffit and Ian Dees] - published by The Pragmatic Programmers (350 pages, Published: 2014-11-15,               ISBN: 978-1-94122-215-7)  
-    This book contains a Julia tutorial Chapter (written by Jack Moffitt and Bruce Tate) for programmers new to Julia, which        is very good, with nice examples and exercises.
+- [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks) by [Bruce Tate, Fred Daoud, Jack Moffit and Ian Dees] - published by The Pragmatic Programmers (350 pages, Published: 2014-11-15, ISBN: 978-1-94122-215-7)
+    This book contains a Julia tutorial Chapter (written by Jack Moffitt and Bruce Tate) for programmers new to Julia, which is very good, with nice examples and exercises.
 
 # Cheat sheets and tutorials
 
