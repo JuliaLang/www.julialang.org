@@ -172,8 +172,8 @@ Note that Fedora guidelines advise against uploading new breaking releases to of
 ### Ubuntu nightlies installation instructions
 A [PPA](https://launchpad.net/~staticfloat/+archive/julianightlies) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest development version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, run the following commands:
 
-    sudo add-apt-repository ppa:staticfloat/julianightlies
-    sudo add-apt-repository ppa:staticfloat/julia-deps
+    sudo apt-add-repository ppa:staticfloat/julianightlies
+    sudo apt-add-repository ppa:staticfloat/julia-deps
     sudo apt-get update
     sudo apt-get install julia
 
