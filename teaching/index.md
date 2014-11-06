@@ -23,7 +23,7 @@ Julia is now being used in several university courses. If you know of other clas
   * [15.093/6.255](http://optimization.mit.edu/class.php?id=6.255J), Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos)
 
 - Stanford University, Fall 2014
-  * [AA228/CS232](http://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer)
+  * [AA228/CS238](http://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer)
   * [EE103](http://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd)
 
 - Brown University, Fall 2014
