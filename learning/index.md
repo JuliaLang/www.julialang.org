@@ -29,7 +29,7 @@ A set of [video tutorials](https://www.youtube.com/playlist?list=PLP8iPy9hna6Si2
 
 - [Vectorization in Julia](https://software.intel.com/en-us/articles/vectorization-in-julia) by [Arch Robison](https://github.com/ArchRobison)
 - [Graydon Hoare](http://graydon2.dreamwidth.org/) on Julia: [part 1](http://graydon2.dreamwidth.org/3186.html), [part 2](http://graydon2.dreamwidth.org/189377.html)
-- [Steven Johnson's](http://math.mit.edu/~stevenj/) keynote at EuroSciPy 2014: [Crossing Language Barriers with Julia, SciPy, and IPython](https://github.com/stevengj/Julia-EuroSciPy14)
+- [Steven Johnson's](http://math.mit.edu/~stevenj/) keynote at EuroSciPy 2014: Crossing Language Barriers with Julia, SciPy, and IPython [video](https://www.youtube.com/watch?v=jhlVHoeB05A&list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi) and [supporting material](https://github.com/stevengj/Julia-EuroSciPy14)
 - [Scientific computing’s future: Can any coding language top a 1950s behemoth?](http://arstechnica.com/science/2014/05/scientific-computings-future-can-any-coding-language-top-a-1950s-behemoth/) by Lee Phillips on ArsTechnica
 - [HPC Programming with Ease](http://ilp.mit.edu/newsstory.jsp?id=19970) by Eric Brown for the MIT Industrial Liaison Program
 - [Julia: A New Language For Technical Computing](http://www.admin-magazine.com/HPC/Articles/Julia-A-New-Language-For-Technical-Computing) by Douglas Eadline in Admin magazine
