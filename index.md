@@ -32,7 +32,7 @@ For a more in-depth discussion of the rationale and advantages of Julia over oth
 # High-Performance JIT Compiler
 
 Julia's LLVM-based just-in-time (JIT) compiler combined with the language's design allow it to approach and often match the performance of C.
-To get a sense of relative performance of Julia compared to other languages that can or could be used for numerical and scientific computing, we've written a small set of micro-benchmarks in a variety of languages: 
+To get a sense of relative performance of Julia compared to other languages that can or could be used for numerical and scientific computing, we've written a small set of micro-benchmarks in a variety of languages:
 [C](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.c),
 [Fortran](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.f90),
 [Julia](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.jl),
@@ -51,9 +51,9 @@ The following micro-benchmark results were obtained on a single core (serial exe
 benchmark times relative to C (smaller is better, C performance = 1.0).
 </p>
 <p class="note">
-C compiled by gcc 4.8.1, taking best timing from all optimization levels (-O0 through -O3).
-C, Fortran and Julia use <a href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a> v0.2.8.
-The Python implementations of <tt>rand_mat_stat</tt> and <tt>rand_mat_mul</tt> use NumPy (v1.6.1) functions; the rest are pure Python implementations.<br/>
+C compiled by gcc 4.8.2, taking best timing from all optimization levels (-O0 through -O3).
+C, Fortran and Julia use <a href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a> v0.2.12.
+The Python implementations of <tt>rand_mat_stat</tt> and <tt>rand_mat_mul</tt> use NumPy (v1.8.2) functions; the rest are pure Python implementations.<br/>
 Benchmarks can also be seen <a href="/benchmarks/">here as a plot</a> created with <a href="https://github.com/dcjones/Gadfly.jl">Gadfly</a>.
 </p>
 </div>
@@ -64,7 +64,7 @@ Rather, all of the benchmarks are written to test the performance of specific al
 In particular, all languages use the same algorithm: the Fibonacci benchmarks are all recursive while the pi summation benchmarks are all iterative; the "algorithm" for random matrix multiplication is to call LAPACK, except where that's not possible, such as in JavaScript.
 The point of these benchmarks is to compare the performance of specific *algorithms* across language implementations, not to compare the fastest means of computing a result, which in most high-level languages relies on calling C code.
 Raw benchmark numbers in CSV format are available [here](/benchmarks.csv).
-Various other Julia benchmarks, tracked over time can be found at [speed.julialang.org](http://speed.julialang.org/).
+
 
 To give a quick taste of what Julia looks like, here is the code used in the Mandelbrot and random matrix statistics benchmarks:
 
