@@ -7,7 +7,7 @@ title:  Julia Downloads
 
 # Current Release
 
-## v0.3.2
+## v0.3.3
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
