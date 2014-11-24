@@ -11,6 +11,9 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
+- Arizona State University, Fall 2014
+  * MAT 423, Numerical Analysis (Prof. Clemens Heitzinger)
+
 - Azad University, Science and Research Branch, Fall 2014
   * CE 3820, Modeling and Evaluation (Dr. Arman Shokrollahi)
 
