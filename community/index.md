@@ -22,15 +22,16 @@ We use GitHub to track our source code and for tracking and discussing [issues](
 
 Various Julia projects are hosted under the following umbrella organizations on GitHub:
 
-* [JuliaLang](https://github.com/JuliaLang) – The language
-* [JuliaStats](https://github.com/JuliaStats) – Statistics
-* [JuliaOpt](http://www.juliaopt.org/) – Optimization
+* [JuliaLang](https://github.com/JuliaLang) – [The language](http://www.julialang.org/)
+* [JuliaStats](https://github.com/JuliaStats) – [Statistics](http://www.juliastats.org/)
+* [JuliaOpt](https://github.com/JuliaOpt) – [Optimization](http://www.juliaopt.org/)
+* [BioJulia](https://github.com/BioJulia) - Biology
 * [JuliaAstro](https://github.com/JuliaAstro) – Astronomy
-* [JuliaDiff](http://www.juliadiff.org/) – Differentiation tools
-* [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
+* [JuliaQuantum](https://github.com/JuliaQuantum) – Quantum physics/chemistry/information/computation libraries
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
-* [JuliaQuantum](https://github.com/JuliaQuantum) – Quantum (physics/chemistry/information/computation) libraries
+* [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](http://www.juliadiff.org/)
+* [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
 * [JuliaWeb](https://github.com/JuliaWeb) – Web stack
 
 # Google Summer of Code 2014
@@ -68,8 +69,9 @@ North America
 * [Chicago Julia Meetup](http://www.meetup.com/JuliaChicago/)
 * [NYC Julia User Group](http://www.meetup.com/NYC-Julia-User-Group/)
 * [Southern California Julia Users](http://www.meetup.com/Southern-California-Julia-Users/)
-* [Triangle Users Group (North Carolina)](http://www.meetup.com/Triangle-Julia-Users/)
-* [Ottawa Users Group](http://www.meetup.com/Ottawa-Julia-Meetup/)
+* [Triangle Julia Users (North Carolina)](http://www.meetup.com/Triangle-Julia-Users/)
+* [Ottawa Julia Meetup](http://www.meetup.com/Ottawa-Julia-Meetup/)
+* [Vancouver Julia Users](http://www.meetup.com/Vancouver-Julia-Users/)
 
 Europe
 
@@ -80,6 +82,14 @@ Asia
 
 * [Bangalore Julia User Group](http://www.meetup.com/Bangalore-Julia-User-Group/)
 * [Julia Tokyo](http://juliatokyo.connpass.com/)
+
+Australia
+
+* [Sydney Julia User Group](http://www.meetup.com/Sydney-Julia-User-Group/)
+
+South America
+
+* [Rio de Janeiro Julia Meetup](http://www.meetup.com/Rio-de-Janeiro-Julia-Meetup/)
 
 Don't have one in your area? Why not start one!
 
