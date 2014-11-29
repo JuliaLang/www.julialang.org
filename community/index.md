@@ -33,6 +33,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](http://www.juliadiff.org/)
 * [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
 * [JuliaWeb](https://github.com/JuliaWeb) – Web stack
+* [JuliaCI](https://github.com/JuliaCI) - Continuous Integration Support for Julia packages
 
 # Google Summer of Code 2014
 
