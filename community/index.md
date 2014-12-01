@@ -5,7 +5,7 @@ title:  Julia Community
 
 # Mailing Lists
 
-The [julia-users](https://groups.google.com/forum/?fromgroups=#!forum/julia-users) mailing list is for discussion around the usage of julia. New users of julia can ask their questions here. As a courtesy to others, do check the archives and documentation to see if a particular question is already answered.
+The [julia-users][julia-users] mailing list is for discussion around the usage of julia. New users of julia can ask their questions here. As a courtesy to others, do check the archives and documentation to see if a particular question is already answered.
 
 The [julia-dev](https://groups.google.com/forum/?fromgroups=#!forum/julia-dev) mailing list is for discussion related to the development of julia itself.
 
@@ -18,7 +18,9 @@ The [JuliaBox](https://groups.google.com/forum/?fromgroups=#!forum/julia-box) ma
 
 # GitHub
 
-We use GitHub to track our source code and for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) and [commits](https://github.com/JuliaLang/julia/commits). There is also a list of [packages](http://pkg.julialang.org/) for Julia, many of which are also hosted on and developed using GitHub.
+We use GitHub to track our source code and for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) (bugs and their fixes, new features, and proposed changes) and [commits](https://github.com/JuliaLang/julia/commits). GitHub's pages are for Julia's development; for user support, please see [julia-users][julia-users].
+
+There is also a list of [packages](http://pkg.julialang.org/) for Julia, many of which are also hosted on and developed using GitHub.
 
 Various Julia projects are hosted under the following umbrella organizations on GitHub:
 
@@ -97,3 +99,6 @@ Don't have one in your area? Why not start one!
 # Reddit
 
 [The Julia Language SubReddit](http://www.reddit.com/r/Julia/) is a collection of various blog posts and articles related to Julia.
+
+
+[julia-users]: https://groups.google.com/forum/?fromgroups=#!forum/julia-users
