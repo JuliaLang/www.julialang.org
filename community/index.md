@@ -51,7 +51,7 @@ Various Julia videos and playlists are posted on [YouTube](https://www.youtube.c
 
 # Twitter
 
-Tweet using the [#JuliaLang](https://twitter.com/search?q=julialang&src=typd&f=realtime) hashtag on Twitter.
+Tweet using the [#JuliaLang](https://twitter.com/hashtag/julialang?src=hash) hashtag on Twitter.
 
 # StackOverflow
 
