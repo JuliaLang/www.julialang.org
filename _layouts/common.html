@@ -22,17 +22,5 @@
 <div id="site" class="site">
 {{ content }}
 </div>
-
-<br/><br/><!-- hack to give some space at the bottom -->
-
-<script type="text/javascript">
-  (function() {
-    var links = document.getElementsByTagName('a');
-    var regex = new RegExp('^http://([a-z]+\.)*'+window.location.hostname);
-    for (var i=0; i < links.length; i++)
-       if (!links[i].href.match(regex))
-           links[i].setAttribute('target','_blank');
-  })()
-</script>
 </body>
 </html>
