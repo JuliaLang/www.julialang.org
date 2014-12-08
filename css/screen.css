@@ -5,20 +5,20 @@
   padding: 0;
 }
 
-html, body {
-  height: 100%;
-}
-
 body {
   background-color: white;
-  font-family: Georgia, 'DejaVu Serif', serif;
+  font: 13pt 'Liberation Serif', Georgia, serif;
+}
+
+img {
+  max-width: 100%;
 }
 
 #site {
-  max-width: 55em;
+  max-width: 45em;
   text-align: left;
   line-height: 1.5em;
-  margin: 3em auto 2em auto;
+  margin: 2.5em auto 2em;
   padding: 0 1.5em;
 }
   #site .title {
@@ -26,9 +26,11 @@ body {
   }
   #site .links {
     text-align: center;
+    padding-bottom: 8px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #ddd;
   }
-    #site .links a {
-      text-decoration: none;
+    #site a {
       color: #a00;
     }
     #site .contact a:hover {
@@ -36,7 +38,6 @@ body {
     }
 
 .title, h1, h2, h3, h4, h5, h6 {
-  font-family: Helvetica, Arial, Clean, sans-serif;
   font-size: 105%;
 }
 
@@ -60,18 +61,20 @@ p {
 
 a {
   text-decoration: none;
-  color: #00b;
+  color: #a00;
 }
-  a:visited { color: #88b; }
-  a:hover   { color: #008; }
+  a:visited { color: #b11; }
+  a:hover   {
+    text-decoration: underline;
+  }
 
 ol {
   margin-left: 2.25em;
 }
 
 ul {
+  margin-top: 0.8em;
   margin-left: 1.8em;
-  list-style-type: circle;
 }
 
 .figure {
@@ -81,6 +84,24 @@ ul {
 
 hr {
   margin: 40px 0 10px 0;
+}
+
+.grid-left, .grid-right {
+  float: left;
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+  width: 100%;
+}
+
+@media (min-width: 700px) {
+  .grid-left, .grid-right {
+    width: 50%;
+  }
+  .grid-left {
+    padding-right: 0.5em;
+  }
+  .grid-right {
+    padding-left: 0.5em;
+  }
 }
 
 /* benchmarks table */
@@ -110,9 +131,6 @@ table.benchmarks {
   table.benchmarks thead td {
     padding-bottom: 0.75ex;
   }
-  table.benchmarks tbody {
-    font: 80% Monaco, Courier, mono;
-  }
   table.benchmarks tbody th {
     font-weight: normal;
     text-align: left;
@@ -125,15 +143,16 @@ table.benchmarks {
 
 /* inline code and code blocks */
 
-code {
-  font: 80% Monaco, 'Courier New', Courier, monospace;
+code, table.benchmarks tbody {
+  font: 9pt Monaco, 'Consolas', monospace;
 }
 
 pre {
   border: 1px solid #ddd;
-  margin: 1em 2em 1em 1.5em;
+  margin: 1em 0;
   padding: .75em 1.25em;
   line-height: 1em;
+  overflow: auto;
 }
 
 .sidebar {
@@ -151,7 +170,7 @@ blockquote {
 /* pages listing blog posts */
 
 #blogindex {
-  width: 30em;
+  max-width: 30em;
   margin: 2em auto 2em auto;
 }
   #blogindex ul {
@@ -206,10 +225,7 @@ blockquote {
 /* downloads page */
 
 .downloads {
-  border-collapse: separate;
-  border-spacing: 2px;
-  border-color: silver;
-  margin-left: 5%;
+  margin: 1% 0 0 3%;
   width: 90%;
 }
 .downloads tbody {
@@ -223,7 +239,7 @@ blockquote {
   padding: 0 5px;
 }
 .downloads td, .downloads th {
-  border: solid 1px;
+  border: solid 1px silver;
   padding: 1px;
   vertical-align: middle;
 }
@@ -232,7 +248,7 @@ blockquote {
   width: 100%;
 }
 .downloads a:hover {
-  background: lightgreen;
+  background: #eee;
 }
 
 /* Utility classes */
