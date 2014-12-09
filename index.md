@@ -37,7 +37,7 @@ v /= norm(v)
 println("Normalized vector: $v")
 {% endhighlight %}
 
-<p><a href="http://forio.com/julia/repl/">Try Julia in your browser!</a></p>
+<p><a href="http://www.juliabox.org/">Try Julia in your browser on JuliaBox!</a></p>
 </div>
 </div>
 <p style="clear: both; padding-top: 2.5em; text-align: center">
