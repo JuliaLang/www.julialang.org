@@ -28,9 +28,9 @@ Julia is a high-level dynamic programming language designed to address the requi
 {% highlight julia %}
 v = [1.0 1.0 0.0]
 for i=1:4
-    v *= [[cospi(1/4) -sinpi(1/4) 0],
-          [sinpi(1/4)  cospi(1/4) 0],
-          [0          0           1]]
+    v *= [[cos(pi/4) -sin(pi/4) 0],
+          [sin(pi/4)  sin(pi/4) 0],
+          [0          0         1]]
     println("Rotated vector: $v")
 end
 v /= norm(v)
