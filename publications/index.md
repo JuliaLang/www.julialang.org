@@ -5,32 +5,33 @@ title:  Julia Publications
 
 1. [Julia: A Fresh Approach to Numerical Computing](http://arxiv.org/abs/1411.1607)
 
-The Julia programming language is gaining enormous popularity. Julia
-was designed to be easy and fast. Most importantly, Julia shatters
-deeply established notions widely held in the applied community:
+    **Abstract**. The Julia programming language is gaining enormous
+    popularity. Julia was designed to be easy and fast. Most importantly,
+    Julia shatters deeply established notions widely held in the applied
+    community:
 
-* High-level, dynamic code has to be slow by some sort of law of nature.
-* It is sensible to prototype in one language and then recode in another language.
-* There are parts of a system for the programmer, and other parts best left untouched as they are built by the experts.
+    * High-level, dynamic code has to be slow by some sort of law of nature.
+    * It is sensible to prototype in one language and then recode in another language.
+    * There are parts of a system for the programmer, and other parts best left untouched as they are built by the experts.
 
-Julia began with a deep understanding of the needs of the scientific
-programmer and the needs of the computer in mind. Bridging cultures
-that have often been distant, Julia combines expertise from computer
-science and computational science creating a new approach to
-scientific computing. This note introduces the programmer to the
-language and the underlying design theory. It invites the reader to
-rethink the fundamental foundations of numerical computing systems.
+    Julia began with a deep understanding of the needs of the scientific
+    programmer and the needs of the computer in mind. Bridging cultures
+    that have often been distant, Julia combines expertise from computer
+    science and computational science creating a new approach to
+    scientific computing. This note introduces the programmer to the
+    language and the underlying design theory. It invites the reader to
+    rethink the fundamental foundations of numerical computing systems.
 
-In particular, there is the fascinating dance between specialization
-and abstraction. Specialization allows for custom treatment. We can
-pick just the right algorithm for the right circumstance and this can
-happen at runtime based on argument types (code selection via multiple
-dispatch). Abstraction recognizes what remains the same after
-differences are stripped away and ignored as irrelevant. The
-recognition of abstraction allows for code reuse (generic
-programming). A simple idea that yields incredible power. The Julia
-design facilitates this interplay in many explicit and subtle ways for
-machine performance and, most importantly, human convenience.
+    In particular, there is the fascinating dance between specialization
+    and abstraction. Specialization allows for custom treatment. We can
+    pick just the right algorithm for the right circumstance and this can
+    happen at runtime based on argument types (code selection via multiple
+    dispatch). Abstraction recognizes what remains the same after
+    differences are stripped away and ignored as irrelevant. The
+    recognition of abstraction allows for code reuse (generic
+    programming). A simple idea that yields incredible power. The Julia
+    design facilitates this interplay in many explicit and subtle ways for
+    machine performance and, most importantly, human convenience.
 
 2. [Julia: A Fast Dynamic Language for Technical Computing](http://arxiv.org/abs/1209.5145)
 
