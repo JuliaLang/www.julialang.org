@@ -35,5 +35,15 @@ title:  Julia Publications
 
 [@OT14]
 
+## Numerical quadrature
+
+## [DEQuadrature.jl](https://github.com/MikaelSlevinsky/DEQuadrature.jl)
+
+[@SO14]
+
+## [FastGaussQuadrature.jl](https://github.com/ajt60gaibb/FastGaussQuadrature.jl)
+
+[@TTO14]
+
 Download all the references as a [BibTeX file](julia.bib).
 
