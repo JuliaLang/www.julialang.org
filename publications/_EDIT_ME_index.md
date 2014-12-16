@@ -35,6 +35,10 @@ title:  Julia Publications
 
 [@OT14]
 
+### [RandomMatrices.jl](https://github.com/jiahao/RandomMatrices.jl)
+
+[@ONT14]
+
 ## Numerical quadrature
 
 ## [DEQuadrature.jl](https://github.com/MikaelSlevinsky/DEQuadrature.jl)
