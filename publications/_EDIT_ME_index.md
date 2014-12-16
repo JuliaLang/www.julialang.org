@@ -35,3 +35,5 @@ title:  Julia Publications
 
 [@OT14]
 
+Download all the references as a [BibTeX file](julia.bib).
+
