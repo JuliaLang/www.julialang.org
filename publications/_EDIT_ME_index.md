@@ -3,6 +3,15 @@ layout: default
 title:  Julia Publications
 ---
 
+The following is a list of publications about the Julia language, its standard
+library, Julia packages, and technical computing applications using code
+written in Julia.
+
+The references are available for download as a [BibTeX file](julia.bib).
+
+We welcome additions to this list in the form of [pull
+requests](https://github.com/JuliaLang/julialang.github.com/).
+
 # Julia language and standard library
 
 [@BEKS14]
@@ -72,6 +81,4 @@ title:  Julia Publications
 [@L13]
 
 [@SEKBK13]
-
-Download all the references as a [BibTeX file](julia.bib).
 
