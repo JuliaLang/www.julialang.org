@@ -6,9 +6,13 @@ title:  Julia Publications
 # Julia language and standard library
 
 [@BEKS14]
+
 [@K14]
+
 [@CE14]
+
 [@BCKSE14]
+
 [@BKSE12]
 
 # Technical computing applications
