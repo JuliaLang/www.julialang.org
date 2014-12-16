@@ -15,9 +15,7 @@ title:  Julia Publications
 
 [@BKSE12]
 
-# Technical computing applications
-
-[@HT14]
+# Publications relating to Julia packages
 
 ## Numerical Optimization and Operations Research
 
@@ -54,6 +52,12 @@ title:  Julia Publications
 ## [FastGaussQuadrature.jl](https://github.com/ajt60gaibb/FastGaussQuadrature.jl)
 
 [@TTO14]
+
+# Technical computing applications
+
+[@HT14]
+
+[@GSS14]
 
 Download all the references as a [BibTeX file](julia.bib).
 
