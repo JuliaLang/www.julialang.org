@@ -70,7 +70,7 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 [@GSS14]
 
-[@MS14]
+[@MS14] Code available in [ChemicalLangevin.jl](https://github.com/mschauer/ChemicalLangevin.jl).
 
 [@TSPK14]
 
