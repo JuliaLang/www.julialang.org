@@ -16,10 +16,6 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 [@BEKS14]
 
-[@K14]
-
-[@CE14]
-
 [@BCKSE14]
 
 [@BKSE12]
@@ -64,7 +60,11 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 # Technical computing applications
 
+[@K14]
+
 [@HT14]
+
+[@CE14]
 
 [@UHZB14]
 
