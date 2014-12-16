@@ -2,7 +2,7 @@ all:
 	@#Requires pandoc and pandoc-citeproc installed, e.g. with cabal
 	PATH=$(PATH):~/.cabal/bin pandoc --reference-links -s -S --biblio julia.bib --csl jlwebpage.csl -o index_new.html _EDIT_ME_index.md
 	@#Horrible hacks to insert vertical whitespace for abstracts
-	@sed -i "" -e "s/Abstract:/<p><blockquote>Abstract:/g" index_new.html
+	@sed -i "" -e "s/<em>Abstract:/<p><blockquote><em>Abstract:/g" index_new.html
 	@sed -i "" -e "s/<\/span>/<\/blockquote><\/p><\/span>/g" index_new.html
 	@#Pipe Jekyll header into new file
 	@head -5 _EDIT_ME_index.md > index_new.md
