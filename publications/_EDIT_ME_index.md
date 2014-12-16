@@ -57,7 +57,21 @@ title:  Julia Publications
 
 [@HT14]
 
+[@UHZB14]
+
 [@GSS14]
+
+[@MS14]
+
+[@TSPK14]
+
+[@CPW14]
+
+[@FBDSW13]
+
+[@L13]
+
+[@SEKBK13]
 
 Download all the references as a [BibTeX file](julia.bib).
 

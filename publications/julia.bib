@@ -139,7 +139,7 @@ In particular, there is the fascinating dance between specialization and abstrac
 	Title = {{J}ulia: A Fresh Approach to Numerical Computing},
 	Year = {2014}}
 
-@article{SO2014,
+@article{SO14,
 	Abstract = {We investigate the use of conformal maps for the acceleration of convergence of the trapezoidal rule and Sinc numerical methods. The conformal map is a polynomial adjustment to the sinh map, and allows the treatment of a finite number of singularities in the complex plane. In the case where locations are unknown, the so-called Sinc-Pad\'e approximants are used to provide approximate results. This adaptive method is shown to have almost the same convergence properties. We use the conformal maps to generate high accuracy solutions to several challenging integrals, nonlinear waves, and multidimensional integrals.},
 	Eprint = {1406.3320},
 	Eprintclass = {math.NA},
@@ -182,7 +182,7 @@ In particular, there is the fascinating dance between specialization and abstrac
 @article{GSS14,
 	Abstract = {A quantum anharmonic oscillator is defined by the Hamiltonian ${\cal H}= -\frac{ {\rm d^{2}}}{{\rm d}x^{2}} + V(x)$, where the potential is given by $V(x) = \sum_{i=1}^{m} c_{i} x^{2i}$ with $c_{m}>0$. Using the Sinc collocation method combined with the double exponential transformation, we develop a method to efficiently compute highly accurate approximations of energy eigenvalues for anharmonic oscillators. Convergence properties of the proposed method are presented.  Using the principle of minimal sensitivity, we introduce an alternate expression for the mesh size for the Sinc collocation method which improves considerably the accuracy in computing eigenvalues for potentials with multiple wells.
 
-We apply our method to a number of potentials including potentials with multiple wells. The numerical results section clearly illustrates the high efficiency and accuracy of the proposed method. All our codes are written using the programming language Julia and are available upon request.}
+We apply our method to a number of potentials including potentials with multiple wells. The numerical results section clearly illustrates the high efficiency and accuracy of the proposed method. All our codes are written using the programming language Julia and are available upon request.},
 	Eprint = {1411.2089},
 	Eprintclass = {math.NA},
 	Eprinttype = {arXiv},
@@ -191,3 +191,92 @@ We apply our method to a number of potentials including potentials with multiple
 	Year = {2014}
 }
 
+
+@inproceedings{FBDSW13,
+ author = {Foulds, James and Boyles, Levi and DuBois, Christopher and Smyth, Padhraic and Welling, Max},
+ title = {Stochastic Collapsed Variational Bayesian Inference for Latent Dirichlet Allocation},
+ booktitle = {Proceedings of the 19th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
+ series = {KDD '13},
+ year = {2013},
+ isbn = {978-1-4503-2174-7},
+ location = {Chicago, Illinois, USA},
+ pages = {446--454},
+ numpages = {9},
+ doi = {10.1145/2487575.2487697},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {stochastic learning, topic models, variational inference},
+ abstract = {There has been an explosion in the amount of digital text information available in recent years, leading to challenges of scale for traditional inference algorithms for topic models. Recent advances in stochastic variational inference algorithms for latent Dirichlet allocation (LDA) have made it feasible to learn topic models on very large-scale corpora, but these methods do not currently take full advantage of the collapsed representation of the model. We propose a stochastic algorithm for collapsed variational Bayesian inference for LDA, which is simpler and more efficient than the state of the art method. In experiments on large-scale text corpora, the algorithm was found to converge faster and often to a better solution than previous methods. Human-subject experiments also demonstrated that the method can learn coherent topics in seconds on small corpora, facilitating the use of topic models in interactive document analysis software.}
+}
+
+
+@article{UHZB14,
+	Abstract = {Principal components analysis (PCA) is a well-known technique for approximating a data set represented by a matrix by a low rank matrix. Here, we extend the idea of PCA to handle arbitrary data sets consisting of numerical, Boolean, categorical, ordinal, and other data types. This framework encompasses many well known techniques in data analysis, such as nonnegative matrix factorization, matrix completion, sparse and robust PCA, k-means, k-SVD, and maximum margin matrix factorization. The method handles heterogeneous data sets, and leads to coherent schemes for compressing, denoising, and imputing missing entries across all data types simultaneously. It also admits a number of interesting interpretations of the low rank factors, which allow clustering of examples or of features. We propose several parallel algorithms for fitting generalized low rank models, and describe implementations and numerical results.},
+	Eprint = {1410.0342},
+	Eprinttype = {arXiv},
+	Eprintclass = {stat.ML},
+	Author = {Madeleine Udell and Corinne Horn and Reza Zadeh and Stephen Boyd},
+	Year = {2014}
+}
+
+@inproceedings{L13,
+title = {Online Learning of Nonparametric Mixture Models via Sequential Variational Approximation},
+author = {Lin, Dahua},
+booktitle = {Advances in Neural Information Processing Systems 26},
+editor = {C.J.C. Burges and L. Bottou and M. Welling and Z. Ghahramani and K.Q. Weinberger},
+pages = {395--403},
+year = {2013},
+publisher = {Curran Associates, Inc.},
+url = {http://papers.nips.cc/paper/4968-online-learning-of-nonparametric-mixture-models-via-sequential-variational-approximation.pdf},
+Abstract = {Reliance on computationally expensive algorithms for inference has been limiting the use of Bayesian nonparametric models in large scale applications. To tackle this problem, we propose a Bayesian learning algorithm for DP mixture models. Instead of following the conventional paradigm -- random initialization plus iterative update, we take an progressive approach. Starting with a given prior, our method recursively transforms it into an approximate posterior through sequential variational approximation. In this process, new components will be incorporated on the fly when needed. The algorithm can reliably estimate a DP mixture model in one pass, making it particularly suited for applications with massive data. Experiments on both synthetic data and real datasets demonstrate remarkable improvement on efficiency -- orders of magnitude speed-up compared to the state-of-the-art.}
+}
+
+
+@article{MS14,
+	Abstract = {Bayesian estimation of parameters of a diffusion based on discrete time observations poses a difficult problem due to the lack of a closed form expression for the likelihood. Data-augmentation has been proposed for obtaining draws from the posterior distribution of the parameters. Within this approach, the discrete time observations are augmented with diffusion bridges connecting these observations. This poses two challenges: (i) efficiently generating diffusion bridges; (ii) if unknown parameters appear in the diffusion coefficient, then direct implementation of data-augmentation results in an induced Markov chain which is reducible. In this paper we show how both challenges can be addressed in continuous time (before discretisation) by using guided proposals. These are Markov processes with dynamics described by the stochastic differential equation of the diffusion process with an additional term added to the drift coefficient to guide the process to hit the right end point of the bridge. The form of these proposals naturally provides a mapping that decouples the dependence between the diffusion coefficient and diffusion bridge using the driving Brownian motion of the proposals. As the guiding term has a singularity at the right end point, care is needed when discretisation is applied for implementation purposes. We show that this problem can be dealt with by appropriately time changing and scaling of the guided proposal process. In two examples we illustrate the performance of the algorithms we propose. The second of these concerns a diffusion approximation of a chemical reaction network with a four-dimensional diffusion driven by an eight-dimensional Brownian motion.},
+	Eprint = {1406.4706},
+	Eprinttype = {arXiv},
+	Eprintclass = {stat.CO},
+	Title = {Bayesian estimation of discretely observed multi-dimensional diffusion processes using guided proposals},
+	Author = {van der Meulen, Frank and Moritz Schauer},
+	Url = {https://github.com/mschauer/ChemicalLangevin.jl},
+	Year = 2014
+}
+
+@inproceedings{SEKBK13,
+	author={Shah, Viral B. and Edelman, Alan and Karpinski, Stefan and Bezanson, Jeff and Kepner, Jeremy}, 
+	booktitle={High Performance Extreme Computing Conference (HPEC), 2013 IEEE}, 
+	title={Novel algebras for advanced analytics in Julia}, 
+	year={2013}, 
+	month={Sept}, 
+	pages={1-4}, 
+	abstract={A linear algebraic approach to graph algorithms that exploits the sparse adjacency matrix representation of graphs can provide a variety of benefits. These benefits include syntactic simplicity, easier implementation, and higher performance. One way to employ linear algebra techniques for graph algorithms is to use a broader definition of matrix and vector multiplication. We demonstrate through the use of the Julia language system how easy it is to explore semirings using linear algebraic methodologies.}, 
+	keywords={high level languages;linear algebra;mathematics computing;Julia;Julia language system;advanced analytics;graph algorithms;high level languages;linear algebra techniques;linear algebraic approach;linear algebraic methodologies;matrix multiplication;novel algebras;sparse adjacency matrix representation;vector multiplication;Electronic mail;Matrices;Sparse matrices;Standards;Syntactics}, 
+doi={10.1109/HPEC.2013.6670347}
+}
+
+@article{TSPK14,
+	Abstract = {This paper is concerned with Bayesian inference when the likelihood is analytically intractable but can be unbiasedly estimated. We propose an annealed importance sampling procedure for estimating expectations with respect to the posterior. The proposed algorithm is useful in cases where finding a good proposal density is challenging, and when estimates of the marginal likelihood are required. The effect of likelihood estimation is investigated, and the results provide guidelines on how to set up the precision of the likelihood estimation in order to optimally implement the procedure. The methodological results are empirically demonstrated in several simulated and real data examples.},
+	Eprint = {1402.6035},
+	Eprinttype = {arXiv},
+	Eprintclass = {stat.ME},
+	Author = {M.-N. Tran and C. Strickland and M. K. Pitt and R. Kohn},
+	Title = {Annealed Important Sampling for Models with Latent Variables},
+	Year = {2014},
+}
+
+@incollection{CPW14,
+	abstract={Security managers face the challenge of formulating and implementing policies that deliver their desired system security postures — for example, their preferred balance of confidentiality, integrity, and availability — within budget (monetary and otherwise). In this paper, we describe a security modelling methodology, grounded in rigorous mathematical systems modelling and economics, that captures the managers’ policies and the behavioural choices of agents operating within the system. Models are executable, so allowing systematic experimental exploration of the system-policy co-design space, and compositional, so managing the complexity of large-scale systems.},
+	year={2014},
+	isbn={978-3-319-07619-5},
+	booktitle={Human Aspects of Information Security, Privacy, and Trust},
+	volume={8533},
+	series={Lecture Notes in Computer Science},
+	editor={Tryfonas, Theo and Askoxylakis, Ioannis},
+	doi={10.1007/978-3-319-07620-1_21},
+	title={Compositional Security Modelling},
+	publisher={Springer International Publishing},
+	author={Caulfield, Tristan and Pym, David and Williams, Julian},
+	pages={233-245},
+	language={English}
+}
