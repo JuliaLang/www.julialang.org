@@ -7,6 +7,7 @@ If you would like to suggest a publication to be listed here,
    
    Example:
    
+   ```
     @incollection{H48,
       author = {Robert Herrick},
       title = {His Request to {Julia}},
@@ -16,7 +17,8 @@ If you would like to suggest a publication to be listed here,
       number = {59},
       pages = {23},
     }
-
+   ```
+   
 2. Edit `_EDIT_ME_index.md` and add the citekey (`[@H48]` in this example) to the relevant section.
 
 3. Run `make` in the `publications` directory. You will need
