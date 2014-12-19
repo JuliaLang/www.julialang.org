@@ -5,6 +5,8 @@ title:  Julia Downloads
 
 ### Download and install Julia on various Operating Systems
 
+We provide stable Julia packages and nightly releases on various operating systems. If you want to get a feel for Julia and perhaps install it later, you can also try out Julia in your browser (with IJulia notebooks) at [JuliaBox](http://www.juliabox.org).
+
 # Current Release
 
 ## v0.3.3
