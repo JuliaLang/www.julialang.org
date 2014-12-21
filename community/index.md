@@ -27,6 +27,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaLang](https://github.com/JuliaLang) – [The language](http://www.julialang.org/)
 * [JuliaStats](https://github.com/JuliaStats) – [Statistics](http://www.juliastats.org/)
 * [JuliaOpt](https://github.com/JuliaOpt) – [Optimization](http://www.juliaopt.org/)
+* [JuliaParallel](https://github.com/JuliaParallel) – [Parallel programming in Julia](http://juliaparallel.github.io/)
 * [BioJulia](https://github.com/BioJulia) - Biology
 * [JuliaAstro](https://github.com/JuliaAstro) – Astronomy
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
