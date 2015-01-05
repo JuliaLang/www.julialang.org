@@ -47,7 +47,8 @@ but if you're looking for more IDE-like features (such as integrated code editin
 and evaluation) we recommend [Juno](http://junolab.org). On Windows and OS X we
 provide bundles which make using Juno and Julia together very easy.
 
-See also the [Juno Documentation](http://junolab.org/docs/) for more information.
+See also the [Juno Documentation](http://junolab.org/docs/) for more information,
+or the [discussion forum](http://discuss.junolab.org/) for questions and help.
 
 <table class="downloads"><tbody>
 <tr>
