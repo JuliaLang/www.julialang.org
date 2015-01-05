@@ -11,8 +11,9 @@ Plotting in Julia is available through external packages.
 
 [PyPlot](https://github.com/stevengj/PyPlot.jl) uses the Julia PyCall
 package to call Python's matplotlib directly from Julia with little or
-no overhead (arrays are passed without making a copy). Installation
-and example usage:
+no overhead (arrays are passed without making a copy). Make sure that
+Python and MatPlotlib are correctly installed. Installation of
+PyPlot.jl and example usage are as follows:
 
 ````
 Pkg.add("PyPlot")

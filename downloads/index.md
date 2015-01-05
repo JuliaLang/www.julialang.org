@@ -8,16 +8,16 @@ title:  Julia Downloads
 We provide three ways for you to run Julia:
 
 * In the terminal using the built-in Julia command line.
-* The [Juno](http://www.junolab.org) IDE.
+* The [Juno](http://www.junolab.org) integrated development environment (IDE).
 * In the browser on [JuliaBox.org](http://www.juliabox.org) with IJulia notebooks. No installation is required -- just point your browser there, login and start computing.
 
 Plotting capabilities are provided by external packages such as
 [PyPlot.jl](https://github.com/stevengj/PyPlot.jl) and
 [Gadfly.jl](http://gadflyjl.org). You can also do much more with
 [Compose.jl](http://composejl.org), a vector graphics library for
-Julia. Look at [plotting instructions](plotting.html) to install a plotting
-package. If you are using JuliaBox, both these plotting packages are
-pre-installed.
+Julia. Look at the [plotting instructions](plotting.html) to install a
+plotting package. If you are using JuliaBox, all these plotting
+packages are pre-installed.
 
 ## Julia (command line version)
 <table class="downloads"><tbody>
