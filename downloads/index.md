@@ -40,6 +40,35 @@ We provide stable Julia packages and nightly releases on various operating syste
 </tr>
 </tbody></table>
 
+## Julia + Juno IDE bundles
+
+Julia works very well when used through the Terminal or Command Prompt interface,
+but if you're looking for more IDE-like features (such as integrated code editing
+and evaluation) we recommend [Juno](http://junolab.org). On Windows and OS X we
+provide bundles which make using Juno and Julia together very easy.
+
+See also the [Juno Documentation](http://junolab.org/docs/) for more information.
+
+<table class="downloads"><tbody>
+<tr>
+  <th> Windows </th>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-windows-x32.zip">32-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-windows-x64.zip">64-bit</a> </td>
+</tr>
+<tr>
+  <th> Mac OS X </th>
+  <td colspan=2> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-mac-x64.dmg">10.7+ 64-bit</a> </td>
+</tr>
+<tr>
+  <th> Linux </th>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-linux-x32.zip">32-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-linux-x64.zip">64-bit</a> </td>
+</tr>
+</tbody></table>
+
+Usage is as simple as downloading the bundle, extracting it and double-clicking
+the Juno executable or app. On Linux, you'll still need to install Julia itself.
+
 # Nightly builds
 
 These are bleeding-edge binaries of the latest version of Julia under
