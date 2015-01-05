@@ -82,3 +82,9 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 [@SEKBK13]
 
+# Book chapters
+
+[@HN14]
+
+[@TDDM14]
+
