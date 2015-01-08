@@ -11,6 +11,7 @@ title:  Learning Julia
 - [A Julia cheat sheet](http://math.mit.edu/~stevenj/Julia-cheatsheet.pdf) by [Steve Johnson](http://math.mit.edu/~stevenj/)
 - [The Julia Express](http://bogumilkaminski.pl/files/julia_express.pdf) by [Bogomił Kamiński](http://bogumilkaminski.pl)
 - [Julia.jl - Curated list of Julia resources and packages](https://github.com/svaksha/Julia.jl#index) by [Svaksha](http://svaksha.com/pages/Bio)
+- [awesome-julia -A list of awesome julia libraries, softwares and tutorials](https://github.com/melvin0008/awesome-julia) by [Melvin](http://melvinphilips.com)
 
 # Video tutorials
 
