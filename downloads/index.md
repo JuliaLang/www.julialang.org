@@ -3,7 +3,7 @@ layout: default
 title:  Julia Downloads
 ---
 
-# Current Release (v0.3.4)
+# Current Release (v0.3.5)
 
 We provide three ways for you to run Julia:
 
@@ -23,12 +23,12 @@ packages are pre-installed.
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.4-win32.exe">32-bit</a> </td>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.4-win64.exe">64-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.5-win32.exe">32-bit</a> </td>
+    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.5-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.4-osx10.7+.dmg">10.7+ 64-bit</a> </td>
+    <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.5-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages (.deb) </th>
@@ -40,12 +40,12 @@ packages are pre-installed.
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
-    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.4-linux-i386.tar.gz">32-bit</a> </td>
-    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.3/julia-0.3.4-linux-x86_64.tar.gz">64-bit</a> </td>
+    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.5-linux-i386.tar.gz">32-bit</a> </td>
+    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.3/julia-0.3.5-linux-x86_64.tar.gz">64-bit</a> </td>
 </tr>
 <tr>
     <th> Source </th>
-    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.4/julia-0.3.4_3392026690.tar.gz">Tarball</a> </td>
+    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.5/julia-0.3.5_a05f87b79a.tar.gz">Tarball</a> </td>
     <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">Github</a> </td>
 </tr>
 </tbody></table>
