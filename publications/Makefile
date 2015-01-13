@@ -10,7 +10,6 @@ all:
 	@sed -i "" -e "1,13d" index_new.html
 	@#Delete last 5 lines
 	@sed -i "" -e :a -e "1,5!{P;N;D;};N;ba" index_new.html
-	@cat index_new.html >> index_new.md
+	@cat index_new.html >> index.md
 	@rm index_new.html
-	@echo Verify the newly generated index_new.md
-	@echo Complete the build by running: mv index_new.md index.md
+
