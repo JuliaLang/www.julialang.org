@@ -84,6 +84,10 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 [@BZFPZWP14] Code available in [GaussDCA.jl](https://github.com/carlobaldassi/GaussDCA.jl).
 
+# Theses
+
+[@V14]
+
 # Book chapters
 
 [@HN14]
