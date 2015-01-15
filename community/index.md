@@ -15,6 +15,8 @@ The [julia-opt](https://groups.google.com/forum/?fromgroups=#!forum/julia-opt) m
 
 The [JuliaBox](https://groups.google.com/forum/?fromgroups=#!forum/julia-box) mailing list is for discussions related to running Julia in the so called cloud.
 
+The [julia-users-es](https://groups.google.com/forum/?fromgroups=#!forum/julia-users-es) mailing list is for discussions around the usage of Julia in the spanish language.
+
 
 # GitHub
 
