@@ -48,12 +48,14 @@ packages are pre-installed.
     <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.5/julia-0.3.5_a05f87b79a.tar.gz">Tarball</a> </td>
     <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">Github</a> </td>
 </tr>
+<tr>
+    <th> Old releases (not maintained) </th>
+    <td colspan=2 ><a href="http://julialang.org/downloads/oldreleases.html">link</a> </td>
+</tr>
 </tbody></table>
 
 Please see [platform](platform.html) specific instructions if you have
-trouble installing Julia. [Old releases](oldreleases.html) are also
-available should you need to use them to run Julia code written for
-those releases.
+trouble installing Julia.
 
 If the provided download files do not work for you, please [file an
 issue in the Julia project](https://github.com/JuliaLang/julia/issues). It is strongly
