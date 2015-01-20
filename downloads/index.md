@@ -9,7 +9,7 @@ We provide three ways for you to run Julia:
 
 * In the terminal using the built-in Julia command line.
 * The [Juno](http://www.junolab.org) integrated development environment (IDE).
-* In the browser on [JuliaBox.org](http://www.juliabox.org) with IJulia notebooks. No installation is required -- just point your browser there, login and start computing.
+* In the browser on [JuliaBox.org](https://www.juliabox.org) with IJulia notebooks. No installation is required -- just point your browser there, login and start computing.
 
 Plotting capabilities are provided by external packages such as
 [PyPlot.jl](https://github.com/stevengj/PyPlot.jl) and
@@ -23,8 +23,8 @@ packages are pre-installed.
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.5-win32.exe">32-bit</a> </td>
-    <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.5-win64.exe">64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.5-win32.exe">32-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.5-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
@@ -108,12 +108,12 @@ are advised to use the latest official release version of Julia, above.
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="http://status.julialang.org/download/win32">32-bit</a> </td>
-    <td> <a href="http://status.julialang.org/download/win64">64-bit</a> </td>
+    <td> <a href="https://status.julialang.org/download/win32">32-bit</a> </td>
+    <td> <a href="https://status.julialang.org/download/win64">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td colspan=2> <a href="http://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
+    <td colspan=2> <a href="https://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages (.deb) </th>
@@ -125,8 +125,8 @@ are advised to use the latest official release version of Julia, above.
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
-    <td> <a href="http://status.julialang.org/download/linux-i386">32-bit</a> </td>
-    <td> <a href="http://status.julialang.org/download/linux-x86_64">64-bit</a> </td>
+    <td> <a href="https://status.julialang.org/download/linux-i386">32-bit</a> </td>
+    <td> <a href="https://status.julialang.org/download/linux-x86_64">64-bit</a> </td>
 </tr>
 <tr>
     <th> Source </th>
