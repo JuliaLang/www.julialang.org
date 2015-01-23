@@ -17,4 +17,4 @@ If you believe one of these standards has been violated, please either file an i
 Constructive criticism and suggestions are welcome, but high-traffic forums do not generally have the bandwidth for extensive discourse. Consider writing a blog post if you feel that you have enough to say on a particular subject.
 
 **Get involved.**
-The Julia community is built on a foundation of reciprocity and collaboration. Be aware that most community members contribute on a voluntary basis, so ideas and bug reports are ok, but demands are not. Pull requests are always welcomed; see <http://github.com/julialang/julia/CONTRIBUTING.md> for guidelines to contributing.
+The Julia community is built on a foundation of reciprocity and collaboration. Be aware that most community members contribute on a voluntary basis, so ideas and bug reports are ok, but demands are not. Pull requests are always welcomed – see the [guidelines for contributing](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md) to read about how to get started.
