@@ -3,13 +3,13 @@ layout: default
 title:  Julia Community Standards
 ---
 
-The Julia community is committed to maintaining an inclusive, constructive and civil environment. We expect the following standards to be observed and upheld by all participants in any community forum (mailing lists, GitHub, IRC, etc.).
+The Julia community is committed to maintaining a welcoming, civil and constructive environment. We expect the following standards to be observed and upheld by all participants in any community forum (mailing lists, GitHub, IRC, etc.).
 
 **Be respectful and inclusive.**
 Please do not use overtly sexual language or imagery, and do not attack anyone based on any aspect of personal identity, including gender, sexuality, religion, ethnicity, race, age or ability. Ask yourself if a comment or statement might make someone feel unwelcomed or like an outsider.
 
 **Give credit.**
-All participants in the Julia community are expected to respect copyright laws and ethical attribution standards. This applies to both code and written materials, such as documentation or blog posts. Materials that violate the law or are plagiaristic or in some way ethically dubious will be removed from officially-maintained lists of resources.
+All participants in the Julia community are expected to respect copyright laws and ethical attribution standards. This applies to both code and written materials, such as documentation or blog posts. Materials that violate the law, are plagiaristic, or ethically dubious in some way will be removed from officially-maintained lists of resources.
 
 If you believe one of these standards has been violated, please either file an issue on an appropriate repository, or contact a Julia core developer (at your discretion). Keep in mind that most mistakes are due to ignorance rather than malice.
 
@@ -17,4 +17,4 @@ If you believe one of these standards has been violated, please either file an i
 Constructive criticism and suggestions are welcome, but high-traffic forums do not generally have the bandwidth for extensive discourse. Consider writing a blog post if you feel that you have enough to say on a particular subject.
 
 **Get involved.**
-The Julia community is built on a foundation of reciprocity and collaboration. Be aware that most community members contribute on a voluntary basis, so ideas and bug reports are ok, but demands are not. Pull requests are always welcomed; see <http://github.com/julialang/julia/CONTRIBUTING.md> for guidlines to contributing.
+The Julia community is built on a foundation of reciprocity and collaboration. Be aware that most community members contribute on a voluntary basis, so ideas and bug reports are ok, but demands are not. Pull requests are always welcomed; see <http://github.com/julialang/julia/CONTRIBUTING.md> for guidelines to contributing.
