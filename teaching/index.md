@@ -11,17 +11,11 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
-- Iran University of Science and Technology, Spring 2015
-  * [CS5128](http://armanshokrollahi.com/teaching/s15/ml/index.html), Machine Learning (Dr. Arman Shokrollahi)
-
 - Arizona State University, Fall 2014
   * MAT 423, Numerical Analysis (Prof. Clemens Heitzinger)
 
 - Azad University, Science and Research Branch, Fall 2014
   * CE 3820, Modeling and Evaluation (Dr. Arman Shokrollahi)
-
-- Iran University of Science and Technology, Fall 2014
-  * [CS582](http://armanshokrollahi.com/teaching/f14/ml/index.html), Machine Learning (Dr. Arman Shokrollahi)
 
 - Iowa State University, Fall 2014
   * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann)
