@@ -33,7 +33,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [BioJulia](https://github.com/BioJulia) - Biology
 * [JuliaAstro](https://github.com/JuliaAstro) – Astronomy
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
-* [JuliaQuantum](https://github.com/JuliaQuantum) – [Julia libraries for Quantum Science and Technology](http://juliaquantum.github.io/)
+* [JuliaQuantum](https://github.com/JuliaQuantum) – [Julia libraries for quantum science and technology](http://juliaquantum.github.io/)
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
 * [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](http://www.juliadiff.org/)
 * [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
