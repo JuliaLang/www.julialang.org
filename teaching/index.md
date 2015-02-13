@@ -11,6 +11,16 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
+- MIT, Spring 2015
+  * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. Steven G. Johnson)
+  * [18.330](http://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid)
+  * [18.335](http://math.mit.edu/~stevenj/18.335/), Introduction to Numerical Methods (Prof. Steven G. Johnson)
+  * [18.338](http://web.mit.edu/18.338/www/), Eigenvalues Of Random Matrices (Prof. Alan Edelman)
+
+- Universidad Nacional Autónoma de México, Spring 2015
+  * [Métodos Numéricos Avanzados](https://github.com/dpsanders/MetodosNumericosAvanzados) (Prof. David P. Sanders and Prof. Luis Benet)
+  * [Métodos Monte Carlo](https://github.com/dpsanders/metodos-monte-carlo) (Prof. David P. Sanders)
+
 - Arizona State University, Fall 2014
   * MAT 423, Numerical Analysis (Prof. Clemens Heitzinger)
 
@@ -28,6 +38,9 @@ Julia is now being used in several university courses. If you know of other clas
 - Stanford University, Fall 2014
   * [AA228/CS238](http://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer)
   * [EE103](http://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd)
+
+- Universidad Nacional Autónoma de México, Spring 2015
+  * [Física Computacional](https://github.com/computo-fc/fisica_computacional) (Prof. David P. Sanders)
 
 - Brown University, Fall 2014
   * [CSCI 1810](http://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael)
