@@ -40,7 +40,7 @@ packages are pre-installed.
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
-    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.5-linux-i386.tar.gz">32-bit</a> </td>
+    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.5-linux-i686.tar.gz">32-bit</a> </td>
     <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.3/julia-0.3.5-linux-x86_64.tar.gz">64-bit</a> </td>
 </tr>
 <tr>
@@ -125,7 +125,7 @@ are advised to use the latest official release version of Julia, above.
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
-    <td> <a href="https://status.julialang.org/download/linux-i386">32-bit</a> </td>
+    <td> <a href="https://status.julialang.org/download/linux-i686">32-bit</a> </td>
     <td> <a href="https://status.julialang.org/download/linux-x86_64">64-bit</a> </td>
 </tr>
 <tr>
