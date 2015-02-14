@@ -153,7 +153,7 @@ Julia's package manager is currently very slow due to its need to shell out to g
 
 ## Project: ARM/Android support
 
-Julia should ideally support platforms such as the Raspberry Pi and Android, but currently has some issues building for ARM via LLVM. This project consists of working towards building Julia on these platforms.
+Julia should ideally support platforms such as the Raspberry Pi and Android, but currently has some [issues building for ARM](https://github.com/JuliaLang/julia/issues?q=is%3Aopen+is%3Aissue+label%3Aarm) via LLVM. This project consists of working towards building Julia on these platforms.
 
 **Expected Results:** A successful build of Julia on ARM.
 
@@ -209,7 +209,7 @@ Julia's functions for getting and setting the clipboard are currently limited to
 **Knowledge Prerequisites:** Interfacing with C from Julia, clipboard APIs for different platforms.
 
 ## Project: Julietta IDE
-[Julietta](https://github.com/tknopp/Julietta.jl) is an integrated developement environement for Julia that is written entirely in Julia using the Gtk.jl package. While finishing an IDE is clearly out of scope for a GSOC project there are some neat isolated tasks to do. Julietta already uses the Julia parser and indicates errors while typing in its editor. Three very interesting next steps are:
+[Julietta](https://github.com/tknopp/Julietta.jl) is an integrated developement environement for Julia that is written entirely in Julia using the Gtk.jl package. While finishing an IDE is clearly out of scope for a GSoC project, there are some neat isolated tasks to do. Julietta already uses the Julia parser and indicates errors while typing in its editor. Three very interesting next steps are:
 
   1. Implement code completion. This is especially interesting to get right in such a dynamic language like Julia. Again while this has a very large scope it would already be very useful if typing `using` would give a list of installed packages.
   2. Switching between function usages and implementation (code tracing)
