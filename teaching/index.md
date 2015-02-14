@@ -18,8 +18,8 @@ Julia is now being used in several university courses. If you know of other clas
   * [18.338](http://web.mit.edu/18.338/www/), Eigenvalues Of Random Matrices (Prof. Alan Edelman)
 
 - Universidad Nacional Autónoma de México, Spring 2015
-  * [Métodos Numéricos Avanzados](https://github.com/dpsanders/MetodosNumericosAvanzados) (Prof. David P. Sanders and Prof. Luis Benet)
-  * [Métodos Monte Carlo](https://github.com/dpsanders/metodos-monte-carlo) (Prof. David P. Sanders)
+  * [Métodos numéricos avanzados](https://github.com/dpsanders/MetodosNumericosAvanzados) (Prof. David P. Sanders and Prof. Luis Benet)
+  * [Métodos computacionales para la física estadística](https://github.com/dpsanders/metodos-monte-carlo) (Prof. David P. Sanders)
 
 - Arizona State University, Fall 2014
   * MAT 423, Numerical Analysis (Prof. Clemens Heitzinger)
@@ -39,8 +39,9 @@ Julia is now being used in several university courses. If you know of other clas
   * [AA228/CS238](http://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer)
   * [EE103](http://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd)
 
-- Universidad Nacional Autónoma de México, Spring 2015
-  * [Física Computacional](https://github.com/computo-fc/fisica_computacional) (Prof. David P. Sanders)
+- Universidad Nacional Autónoma de México, Fall 2014
+  * [Física computacional](https://github.com/computo-fc/fisica_computacional) (Prof. David P. Sanders)
+  * Métodos numéricos para sistemas dinámicos (Prof. Luis Benet)
 
 - Brown University, Fall 2014
   * [CSCI 1810](http://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael)
