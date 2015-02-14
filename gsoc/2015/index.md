@@ -118,7 +118,7 @@ Students interested in this project will be expected to implement wrappers for p
 
 Graphical processing units (GPUs) are a promising alternate architecture for massively parallel technical computing. However, making use of them today requires using computation kernels written in C. In contrast, it is desirable to deploy code and transfer data to GPUs directly within a high level language like Julia.
 
-Students will be asked to build upon to the foundational work in the [CUDA.jl](https://github.com/lindahua/CUDA.jl) and [OpenCL.jl](https://github.com/jakebolewski/OpenCL.jl) packages to provide a consistent interface for multiple scientific libraries containing GPU-deployable kernels, such as cuFFT, cuBlas, Magma, clBlas, clMagma, etc., or a common GPU array interface with Cuda and OpenCL backends (similar to python's [compyte](https://github.com/inducer/compyte) library).
+Students will be asked to build upon to the foundational work in the [OpenCL.jl](https://github.com/jakebolewski/OpenCL.jl), [CUDArt.jl](https://github.com/JuliaGPU/CUDArt.jl), and [CUDA.jl](https://github.com/maleadt/CUDA.jl) packages to provide a consistent interface for multiple scientific libraries containing GPU-deployable kernels, such as Magma, clBlas, clMagma, etc., or a common GPU array interface with Cuda and OpenCL backends (similar to python's [compyte](https://github.com/inducer/compyte) library).
 
 **Expected Results:** Package for high-level GPU programming.
 
@@ -126,19 +126,11 @@ Students will be asked to build upon to the foundational work in the [CUDA.jl](h
 
 
 
-## Project: Computer vision using OpenCV
+## Project: Writing high-performance, multithreaded kernels
 
-[OpenCV](http://opencv.org/) is the de facto standard library for computer vision applications.  Currently wrappers auto generated from OpenCV's C++ API exist for Python, Java, and Matlab.  This project would be to adapt these Python based code generation tools to create a Julia interface to OpenCV.
+[KernelTools.jl](https://github.com/timholy/KernelTools.jl) is an early-stage package designed for writing cache-efficient, multithreaded algorithms. Its design is inspired by [Halide](http://halide-lang.org/). Many of the features of Halide are already in place, but multithreading is still lacking. The `threading` branch of julia might be of use in this project.
 
-**Expected Results:** OpenCV Package
-
-**Knowledge Prerequisites:** OpenCV, Python, C++, templating, calling C from Julia.
-
-## Project: Julia frontend for Halide
-
-[Halide](http://halide-lang.org/) is an embedded DSL for image processing, intended to allow the seperation of algorithms and optimisations when writing image pipelines. This project would involve embedding Halide in Julia, preferably by taking inspiration from the C++ implementation and providing the same functionality in pure Julia.
-
-**Expected Results:** Package for writing and compiling Halide-style code.
+**Expected Results:** The ability to run `@tile`ed algorithms in multiple threads.
 
 ## Project: Translation of Axiom to Julia
 
@@ -187,7 +179,16 @@ Users new to programming often struggle with syntax - for example, knowing which
 
 **Expected Results:** Functionality for parsing and analysing Julia code, and providing possible fixes for mistakes. Specifying the "signature" of a mistake (e.g. via a regex or predicate function) and its solution should be easy and flexible so that the package is easily extended.
 
+## C Linter
 
+One of the hardest classes of bugs to fix are memory errors in Julia's underlying C code. Specifically,
+missing garbage-collector "roots" (GC roots) can lead to segfaults and other problems. One potential way
+to make it easier to find these would be to write a package that checks Julia's `src/` directory for
+missing GC roots. One potential strategy would leverage the [Clang.jl](https://github.com/ihnorton/Clang.jl)
+package to parse the C code, and determine which call chains might trigger garbage collection.
+
+**Expected Results:** A package that, when run against Julia's `src/` directory, highlights lines that
+need to have additional GC roots added.
 
 ## Project: Base Julia Restructuring
 
