@@ -153,7 +153,7 @@ Julia's package manager is currently very slow due to its need to shell out to g
 
 ## Project: ARM/Android support
 
-Julia should ideally support platforms such as the Raspberry Pi and Android, but currently has some issues building for ARM via LLVM. This project consists of working towards building Julia on these platforms.
+Julia should ideally support platforms such as the Raspberry Pi and Android, but currently has some [issues building for ARM](https://github.com/JuliaLang/julia/issues?q=is%3Aopen+is%3Aissue+label%3Aarm) via LLVM. This project consists of working towards building Julia on these platforms.
 
 **Expected Results:** A successful build of Julia on ARM.
 
