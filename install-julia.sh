@@ -45,7 +45,7 @@ case $(uname) in
           curl -L "$STATUSURL/linux-x86_64" | tar -xz
           ;;
         i386 | i486 | i586 | i686)
-          curl -L "$STATUSURL/linux-i386" | tar -xz
+          curl -L "$STATUSURL/linux-i686" | tar -xz
           ;;
         *)
           echo "Do not have Julia binaries for this architecture, exiting"
