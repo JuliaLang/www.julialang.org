@@ -27,6 +27,9 @@ Julia is now being used in several university courses. If you know of other clas
 - Azad University, Science and Research Branch, Fall 2014
   * CE 3820, Modeling and Evaluation (Dr. Arman Shokrollahi)
 
+- Brown University, Fall 2014
+  * [CSCI 1810](http://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael)
+
 - Iowa State University, Fall 2014
   * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann)
 
@@ -43,8 +46,8 @@ Julia is now being used in several university courses. If you know of other clas
   * [Física computacional](https://github.com/computo-fc/fisica_computacional) (Prof. David P. Sanders)
   * Métodos numéricos para sistemas dinámicos (Prof. Luis Benet)
 
-- Brown University, Fall 2014
-  * [CSCI 1810](http://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael)
+- University at Buffalo, Fall 2014
+  * [IE 572](http://www.chkwon.net/teaching/ie-572/) Linear Programming (Prof. Changhyun Kwon)
 
 - City University of New York, Spring 2014
   * [MTH 229](http://wiener.math.csi.cuny.edu/verzani/classes/MTH229/), Calculus Computer Laboratory (Prof. John Verzani). Also see the [MTH 229 Projects](http://mth229.github.io) page.
