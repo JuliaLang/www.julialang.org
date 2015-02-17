@@ -197,6 +197,15 @@ Julia's Base code currently contains several dependencies which have various lic
 
 **Expected Results:** The separation of at least a few non-core Base dependencies into their own packages while still being seemlessly integrated into the default Julia build process.
 
+## Project: Web stack / networking improvements
+
+Julia's web and higher-level networking framework is largely consolidated within the JuliaWeb github organization. The packages there are in need of updates, bug fixes, and general improvements in robustness by individuals who are well-versed in networking fundamentals and behavior of higher-level protocols. In some cases, the bugs can be traced back to issues with the underlying C frameworks that provide the primary functionality. Where possible and where security / auditability concerns are not an issue, native Julia code should be preferred over external libraries.
+
+In addition, there are packages offering identical functionality. A rationalization and standardization of these packages as well as the underlying C frameworks is required to provide a consistent interface to applications wishing to communicate using standard network protocols.
+
+**Expected Results:** An overhaul of Julia's networking framework, with the creation of robust, RFC-compliant, efficient, and standard interfaces for common protocols (e.g., HTTP, HTTPS, FTP, SMTP, SSH).
+
+**Knowledge Prerequisites:** Network fundamentals including understanding of higher-level protocols, interfacing with C from Julia, git.
 
 
 # Theme: Improvements to Julia interactivity and interoperability with other applications
