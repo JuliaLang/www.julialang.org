@@ -186,7 +186,7 @@ Memory errors in Julia's underlying C code are sometimes difficult to trace, and
 to make it easier to find such errors would be to write a package that checks Julia's `src/` directory for
 missing GC roots. A Julia-based solution might leverage the [Clang.jl](https://github.com/ihnorton/Clang.jl)
 package to parse the C code, determine which call chains can trigger garbage collection, and then
-look for objects that lack GC root protection. Alternatively, the same strategy might be implemented in C++ by writing a plugin for [Clang's static analyzer](http://clang-analyzer.llvm.org/).
+look for objects that lack GC root protection. Alternatively, the same strategy might be implemented in C++ by writing a plugin for [Clang's static analyzer](http://clang-analyzer.llvm.org/). Another attractive approach is to leverage [coccinelle](http://coccinelle.lip6.fr/).
 
 **Expected Results:** A tool that, when run against Julia's `src/` directory, highlights lines that
 need to have additional GC roots added.
