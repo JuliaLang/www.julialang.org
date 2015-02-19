@@ -80,7 +80,17 @@ Matrix functions maps matrices onto other matrices, and can often be interpreted
 
 This project proposes to implement state of the art algorithms that extend the currently available matrix functions in Julia, as outlined in issue [#5840](https://github.com/JuliaLang/julia/issues/5840). In addition to matrix generalizations of standard functions such as real matrix powers, surds and logarithms, students will be challenged to design generic interfaces for lifting general scalar-valued functions to their matrix analogues for the efficient computation of arbitrary (well-behaved) matrix functions and their derivatives.
 
+## Project: Fast bignums in Julia
 
+Julia currently supports big integers, rationals and floats, making use of the GMP library. But the current implementation
+is essentially only a prototype. There exists a very wide gap between the performance of GMP bignums from a C program and from Julia.
+
+This performance gap is due to multiple things: bignums in C can be reused, saving on initialisation and cleaning up, Julia
+bignum objects are garbage collected, handwritten C programs can allocate a minimal number of temporaries and C programs can also make use of the mutable properties of GMP bignum objects, saving making copies. Further advantages exist for C implementations that store small integers as immediate words, rather than use a full multiple precision structure.
+
+There are many ways of potentially improving bignum performance in Julia. We could keep a cache of bignum objects around instead of allocating new ones all the time. We could inline operations involving single word operations and introduce a combined immediate word/mpz struct type for BigInts. Constant propagation could be done by introducing a type for numerical constant literals. Julia could wrap the low level mpn layer of GMP directly instead of the higher level mpz, mpq, mpf layers. A set of unsafe mutating operators for bignums could be introduced, for cases where the user knows they have control over the bignum and can safely mutate it. (Theoretically, term rewriting or lazy evaluation could also eliminate the need for creating a new bignum object for every subexpression, or even reduce the number of temporaries required for any given expression, in much the same way as the old C++ wrapper for GMP used template metaprogramming to speed things up. However, this is probably beyond the scope of a GSOC project.) The Julia Cxx package could even be used to inline calls to the GMP C++ wrapper whose semantics may be closer to the Julia semantics.
+
+Not all of these options are either practical or agreeable. And it isn't clear which options are going to lead to the best performance or to the nicest Julia code. A balance would need to be struck to use what's actually available in Julia in a way that is performant but also flexible enough to support future developer needs. The absolutely fastest option may not be the best long term option and consultation on the Julia list will be important for this project. The project should implement prototypes of a number of options, and present a performance comparison to the Julia developers before settling on a final design.
 
 ## Project: Native Julia implementations of massively parallel dense linear algebra routines
 
