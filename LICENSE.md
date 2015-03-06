@@ -1,9 +1,10 @@
-The Julia language website is licensed under the MIT License. 
+Except where otherwise specified (e.g. in the footer of specific pages),
+the content of the [julialang.org] website is licensed under the MIT License.
 
-> Copyright (c) 2009-2014: Jeff Bezanson, Stefan Karpinski, Viral B. Shah,
+> Copyright (c) 2011-2015: Jeff Bezanson, Stefan Karpinski, Viral B. Shah,
 > and other contributors:
 >
-> https://github.com/JuliaLang/julia/contributors
+> https://github.com/JuliaLang/julialang.github.com/contributors
 >
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
@@ -24,3 +25,4 @@ The Julia language website is licensed under the MIT License.
 > OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 > WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+[julialang.org]: http://julialang.org
