@@ -60,9 +60,10 @@ Tweet using the [#JuliaLang](https://twitter.com/hashtag/julialang?src=hash) has
 
 Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag on StackOverflow, if you post a Julia related question on StackOverflow.
 
-# IRC
+# Chat Rooms
 
-Many Julia users and developers hang out in the [#julia IRC channel](http://webchat.freenode.net/?channels=julia) on Freenode.
+* Many Julia users and developers hang out in the [#julia IRC channel](http://webchat.freenode.net/?channels=julia) on Freenode.
+* [julialang-es](https://gitter.im/Ismael-VC/julialang-es) Gitter chat room is for discussions around the usage of Julia in the spanish language.
 
 # Meetups
 
