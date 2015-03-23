@@ -89,12 +89,16 @@ Our code for the numerical stochastic homogenization of elliptic problems is imp
 
 @article{LD13,
 	Abstract = {The state of numerical computing is currently characterized by a divide between highly efficient yet typically cumbersome low-level languages such as C, C++, and Fortran and highly expressive yet typically slow high-level languages such as Python and MATLAB. This paper explores how Julia, a modern programming language for numerical computing which claims to bridge this divide by incorporating recent advances in language and compiler design (such as just-in-time compilation), can be used for implementing software and algorithms fundamental to the field of operations research, with a focus on mathematical optimization. In particular, we demonstrate algebraic modeling for linear and nonlinear optimization and a partial implementation of a practical simplex code. Extensive cross-language benchmarks suggest that Julia is capable of obtaining state-of-the-art performance.},
-	Eprinttype = {arXiv},
 	Author = {Miles Lubin and Iain Dunning},
-	Eprint = {1312.1431},
-	Eprintclass = {math.OC},
-	Title = {Computing in Operations Research using {J}ulia},
-	Year = {2013}}
+	Title = {Computing in Operations Research Using {J}ulia},
+	Journal = {INFORMS Journal on Computing},
+	Volume = {27},
+	Number = {2},
+	Pages = {238-248},
+	Year = {2015},
+	Doi = {10.1287/ijoc.2014.0623},
+	URL = {http://dx.doi.org/10.1287/ijoc.2014.0623}
+}
 
 @inproceedings{OT14,
 	Abstract = {We describe a framework for solving a broad class of infinite-dimensional linear equations, consisting of almost banded operators, which can be used to represent linear ordinary differential equations with general boundary conditions. The framework contains a data structure on which row operations can be performed, allowing for the solution of linear equations by the adaptive QR approach. The algorithm achieves O(nopt) complexity, where nopt is the number of degrees of freedom required to achieve a desired accuracy, which is determined adaptively. In addition, special tensor product equations, such as partial differential equations on rectangles, can be solved by truncating the operator in the y-direction with n_y degrees of freedom and using a generalized Schur decomposition to upper triangularize, before applying the adaptive QR approach to the x-direction, requiring O(n^2_y n^{opt}_x) operations. The framework is implemented in the ApproxFun package written in the Julia programming language, which achieves highly competitive computational costs by exploiting unique features of Julia.},
