@@ -3,6 +3,11 @@ layout: default
 title:  Julia Community
 ---
 
+All participants in the Julia community are requested to read the
+[Julia Community
+Standards](http://julialang.org/community/standards/), and abide by
+them in all Julia related forums.
+
 # Mailing Lists
 
 The [julia-users][julia-users] mailing list is for discussion around the usage of julia. New users of julia can ask their questions here. As a courtesy to others, do check the archives and documentation to see if a particular question is already answered.
