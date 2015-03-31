@@ -13,20 +13,21 @@ title:  Learning Julia
 - [A Julia cheat sheet](http://math.mit.edu/~stevenj/Julia-cheatsheet.pdf) by [Steve Johnson](http://math.mit.edu/~stevenj/)
 - [The Julia Express](http://bogumilkaminski.pl/files/julia_express.pdf) by [Bogomił Kamiński](http://bogumilkaminski.pl)
 - [Julia.jl - Curated list of Julia resources and packages](https://github.com/svaksha/Julia.jl#index) by [Svaksha](http://svaksha.com/pages/Bio)
+- [Introducing Julia wikibook](https://en.wikibooks.org/wiki/Introducing_Julia)
 
 # Video tutorials
 
-David Sanders gave a detailed [Julia tutorial at SciPy 2014](https://www.youtube.com/watch?v=vWkgEddb4-A), which is a great starting point for a new Julia user. Also download the relevant [IJulia notebooks](https://github.com/dpsanders/scipy_2014_julia) that are used in the tutorial.
+- David Sanders gave a detailed [Julia tutorial at SciPy 2014](https://www.youtube.com/watch?v=vWkgEddb4-A), which is a great starting point for a new Julia user. Also download the relevant [IJulia notebooks](https://github.com/dpsanders/scipy_2014_julia) that are used in the tutorial.
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6T0dEHtj0GZymvT6ODIJWj0" frameborder="0" allowfullscreen></iframe>
+<iframe width="400" height="225" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6T0dEHtj0GZymvT6ODIJWj0" frameborder="0" allowfullscreen></iframe>
 
-[JuliaCon 2014](http://www.juliacon.org) featured [a number of talks](https://www.youtube.com/playlist?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd) on various aspects of Julia and its development. [Slides and IJulia notebooks](https://github.com/JuliaCon/presentations) are on Github.
+- [JuliaCon 2014](http://www.juliacon.org) featured [a number of talks](https://www.youtube.com/playlist?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd) on various aspects of Julia and its development. [Slides and IJulia notebooks](https://github.com/JuliaCon/presentations) are on Github.
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe>
+<iframe width="400" height="225" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe>
 
-A set of [video tutorials](https://www.youtube.com/playlist?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ) were recorded at MIT in January 2013. [Slides and other materials](https://github.com/JuliaLang/julia-tutorial) from the tutorial are on GitHub.
+- A set of [video tutorials](https://www.youtube.com/playlist?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ) were recorded at MIT in January 2013. [Slides and other materials](https://github.com/JuliaLang/julia-tutorial) from the tutorial are on GitHub.
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ" frameborder="0" allowfullscreen></iframe>
+<iframe width="400" height="225" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ" frameborder="0" allowfullscreen></iframe>
 
 # Topical material
 
