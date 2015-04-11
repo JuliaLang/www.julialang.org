@@ -30,15 +30,21 @@ title:  Learning Julia
 
 - A set of [video tutorials](https://www.youtube.com/playlist?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ) were recorded at MIT in January 2013. [Slides and other materials](https://github.com/JuliaLang/julia-tutorial) from the tutorial are on GitHub.
 
-<iframe width="400" height="225" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ" frameborder="0" allowfullscreen></iframe>
+<iframe width="400" height="225" src="https://www.youtube.com/embed/VS0fnUOAKpI" frameborder="0" allowfullscreen></iframe>
+
+- [Fast and Flexible Linear Algebra in Julia](https://www.youtube.com/watch?v=VS0fnUOAKpI) by Andreas Noack Jensen at Stanford.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VS0fnUOAKpI" frameborder="0" allowfullscreen></iframe>
+
+- [Steven Johnson's](http://math.mit.edu/~stevenj/) keynote at EuroSciPy 2014: Crossing Language Barriers with Julia, SciPy, and IPython [video](https://www.youtube.com/watch?v=jhlVHoeB05A&list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi) and [supporting material](https://github.com/stevengj/Julia-EuroSciPy14)
+
+- [How Julia Goes Faster](https://yow.eventer.com/yow-2014-1222/how-julia-goes-faster-by-leah-hanson-1694) by Leah Hanson
 
 # Topical material
 
 - [Vectorization in Julia](https://software.intel.com/en-us/articles/vectorization-in-julia) by [Arch Robison](https://github.com/ArchRobison)
+- [Quantitative Economics with Julia](http://quant-econ.net/jl/index.html) by Thomas J. Sargent and John Stachurski. Along with being a complete textbook with Julia code for macroeconomics, this also has a very good introduction to Julia.
 - [Graydon Hoare](http://graydon2.dreamwidth.org/) on Julia: [part 1](http://graydon2.dreamwidth.org/3186.html), [part 2](http://graydon2.dreamwidth.org/189377.html)
-- [Steven Johnson's](http://math.mit.edu/~stevenj/) keynote at EuroSciPy 2014: Crossing Language Barriers with Julia, SciPy, and IPython [video](https://www.youtube.com/watch?v=jhlVHoeB05A&list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi) and [supporting material](https://github.com/stevengj/Julia-EuroSciPy14)
 - [Scientific computing’s future: Can any coding language top a 1950s behemoth?](http://arstechnica.com/science/2014/05/scientific-computings-future-can-any-coding-language-top-a-1950s-behemoth/) by Lee Phillips on ArsTechnica
 - [HPC Programming with Ease](http://ilp.mit.edu/newsstory.jsp?id=19970) by Eric Brown for the MIT Industrial Liaison Program
 - [Julia: A New Language For Technical Computing](http://www.admin-magazine.com/HPC/Articles/Julia-A-New-Language-For-Technical-Computing) by Douglas Eadline in Admin magazine
-- [Quantitative Economics with Julia](http://quant-econ.net/jl/index.html) by Thomas J. Sargent and John Stachurski
-- [How Julia Goes Faster](https://yow.eventer.com/yow-2014-1222/how-julia-goes-faster-by-leah-hanson-1694) by Leah Hanson
