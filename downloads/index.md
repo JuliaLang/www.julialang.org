@@ -83,7 +83,7 @@ project](https://github.com/one-more-minute/Julia-LT/issues).
 </tr>
 <tr>
   <th> Mac OS X </th>
-  <td colspan=2> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-mac-x64.dmg">10.7+ 64-bit</a> </td>
+  <td colspan=2> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-mac-x64.dmg">10.8+ 64-bit</a> </td>
 </tr>
 <tr>
   <th> Linux </th>
