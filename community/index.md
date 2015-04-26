@@ -44,6 +44,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
 * [JuliaWeb](https://github.com/JuliaWeb) – Web stack
 * [JuliaCI](https://github.com/JuliaCI) - Continuous Integration Support for Julia packages
+* [JuliaDSP](https://github.com/JuliaDSP) - Digital signal processing
 
 # Google Summer of Code 2014
 
