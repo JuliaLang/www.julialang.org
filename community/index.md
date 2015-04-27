@@ -95,7 +95,7 @@ Europe
 Asia
 
 * [Bangalore Julia User Group](http://www.meetup.com/Bangalore-Julia-User-Group/)
-* [Julia Tokyo](http://juliatokyo.connpass.com/)
+* [Julia Tokyo](http://julia.tokyo/)
 
 Australia
 
