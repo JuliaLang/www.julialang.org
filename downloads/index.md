@@ -28,15 +28,15 @@ packages are pre-installed.
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.7-osx10.7+.dmg">10.7+ 64-bit</a> </td>
+    <td colspan="2"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.7-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages (.deb) </th>
-    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/juliareleases">32/64-bit</a> </td>
+    <td colspan="2"> <a href="https://launchpad.net/~staticfloat/+archive/juliareleases">32/64-bit</a> </td>
 </tr>
 <tr>
     <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
-    <td colspan=2> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia/">32/64-bit</a> </td>
+    <td colspan="2"> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia/">32/64-bit</a> </td>
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
@@ -50,7 +50,7 @@ packages are pre-installed.
 </tr>
 <tr>
     <th> Old releases (not maintained) </th>
-    <td colspan=2 ><a href="http://julialang.org/downloads/oldreleases.html">link</a> </td>
+    <td colspan="2" ><a href="http://julialang.org/downloads/oldreleases.html">link</a> </td>
 </tr>
 </tbody></table>
 
@@ -83,7 +83,7 @@ project](https://github.com/one-more-minute/Julia-LT/issues).
 </tr>
 <tr>
   <th> Mac OS X </th>
-  <td colspan=2> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-mac-x64.dmg">10.8+ 64-bit</a> </td>
+  <td colspan="2"> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-mac-x64.dmg">10.8+ 64-bit</a> </td>
 </tr>
 <tr>
   <th> Linux </th>
@@ -113,15 +113,15 @@ are advised to use the latest official release version of Julia, above.
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td colspan=2> <a href="https://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
+    <td colspan="2"> <a href="https://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages (.deb) </th>
-    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
+    <td colspan="2"> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
 </tr>
 <tr>
     <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
-    <td colspan=2> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies/">32/64-bit</a> </td>
+    <td colspan="2"> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies/">32/64-bit</a> </td>
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
@@ -130,6 +130,6 @@ are advised to use the latest official release version of Julia, above.
 </tr>
 <tr>
     <th> Source </th>
-    <td colspan=2> <a href="https://github.com/JuliaLang/julia">GitHub</a> </td>
+    <td colspan="2"> <a href="https://github.com/JuliaLang/julia">GitHub</a> </td>
 </tr>
 </tbody></table>
