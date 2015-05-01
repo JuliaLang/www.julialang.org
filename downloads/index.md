@@ -97,6 +97,7 @@ the Juno executable or app on Windows and OS X. On Linux, you'll still need to i
 Julia itself.
 
 ---
+
 # Nightly builds
 
 These are bleeding-edge binaries of the latest version of Julia under
