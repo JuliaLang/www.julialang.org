@@ -8,6 +8,8 @@ The Julia community is committed to maintaining a welcoming, civil and construct
 **Be respectful and inclusive.**
 Please do not use overtly sexual language or imagery, and do not attack anyone based on any aspect of personal identity, including gender, sexuality, religion, ethnicity, race, age or ability. Ask yourself if a comment or statement might make someone feel unwelcomed or like an outsider.
 
+In particular, do not sexualize the term "Julia" or any other aspects of the project. While "Julia" is a female name in many parts of the world, the programming language is not a person and does not have a gender. Keep in mind that what you write in public forums is read by many people who don't know you personally, so please refrain from making off-color jokes or comments – even ones that you might consider acceptable in private.
+
 **Give credit.**
 All participants in the Julia community are expected to respect copyright laws and ethical attribution standards. This applies to both code and written materials, such as documentation or blog posts. Materials that violate the law, are plagiaristic, or ethically dubious in some way will be removed from officially-maintained lists of resources.
 
