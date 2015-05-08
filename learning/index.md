@@ -28,13 +28,17 @@ title:  Learning Julia
 
 <iframe width="400" height="225" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6T0dEHtj0GZymvT6ODIJWj0" frameborder="0" allowfullscreen></iframe>
 
-- [Steven Johnson's](http://math.mit.edu/~stevenj/) keynote at EuroSciPy 2014: Crossing Language Barriers with Julia, SciPy, and IPython [video](https://www.youtube.com/watch?v=jhlVHoeB05A&list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi) and [supporting material](https://github.com/stevengj/Julia-EuroSciPy14)
+- [Steven Johnson's](http://math.mit.edu/~stevenj/) keynote at EuroSciPy 2014: Crossing Language Barriers with Julia, SciPy, and IPython [video](https://www.youtube.com/watch?v=jhlVHoeB05A&list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi) and [supporting material](https://github.com/stevengj/Julia-EuroSciPy14).
 
 <iframe width="400" height="225" src="https://www.youtube.com/embed/jhlVHoeB05A?list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi" frameborder="0" allowfullscreen></iframe>
 
 # Videos: Various special topics
 
-- [Fast and Flexible Linear Algebra in Julia](https://www.youtube.com/watch?v=VS0fnUOAKpI) by Andreas Noack Jensen at Stanford in April 2015.
+- [Free probability, random matrices and disorder in organic semiconductors](https://www.youtube.com/watch?v=68yy33jOkOs) by Jiahao Chen with the related [slides](http://www.slideshare.net/acidflask/free-probability-random-matrices-and-disorder-in-organic-semiconductors) and [IJulia notebook](http://nbviewer.ipython.org/github/jiahao/ijulia-notebooks-assorted/blob/master/RMT%20history.ipynb).
+
+<iframe width="400" height="225" src="https://www.youtube.com/watch?v=68yy33jOkOs" frameborder="0" allowfullscreen></iframe>
+
+- [Fast and Flexible Linear Algebra in Julia](https://www.youtube.com/watch?v=VS0fnUOAKpI) by Andreas Noack Jensen at Stanford in April 2015. The [IJulia notebook](http://andreasnoack.github.io/talks/2015AprilStanford_AndreasNoack.ipynb) is also available.
 
 <iframe width="400" height="225" src="https://www.youtube.com/embed/VS0fnUOAKpI" frameborder="0" allowfullscreen></iframe>
 
