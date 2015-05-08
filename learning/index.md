@@ -36,7 +36,7 @@ title:  Learning Julia
 
 - [Free probability, random matrices and disorder in organic semiconductors](https://www.youtube.com/watch?v=68yy33jOkOs) by Jiahao Chen with the related [slides](http://www.slideshare.net/acidflask/free-probability-random-matrices-and-disorder-in-organic-semiconductors) and [IJulia notebook](http://nbviewer.ipython.org/github/jiahao/ijulia-notebooks-assorted/blob/master/RMT%20history.ipynb).
 
-<iframe width="400" height="225" src="https://www.youtube.com/watch?v=68yy33jOkOs" frameborder="0" allowfullscreen></iframe>
+<iframe width="400" height="225" src="https://www.youtube.com/embed/68yy33jOkOs" frameborder="0" allowfullscreen></iframe>
 
 - [Fast and Flexible Linear Algebra in Julia](https://www.youtube.com/watch?v=VS0fnUOAKpI) by Andreas Noack Jensen at Stanford in April 2015. The [IJulia notebook](http://andreasnoack.github.io/talks/2015AprilStanford_AndreasNoack.ipynb) is also available.
 
