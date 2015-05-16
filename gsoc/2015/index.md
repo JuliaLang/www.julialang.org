@@ -217,6 +217,15 @@ In addition, there are packages offering identical functionality. A rationalizat
 
 **Knowledge Prerequisites:** Network fundamentals including understanding of higher-level protocols, interfacing with C from Julia, git.
 
+## Project: Specialized call-site method caching
+
+Julia's method cache is shared by all call sites of a generic function. Although whenever single dispatch is provable we generate a direct call, there are some cases where dynamic dispatch is inevitable. When the compiler can prove (using type inference) that the possible matches for a call site is small enough, it would be a huge performance win to generate a small cache specific to this call site. Those small caches would have to be updated when new method definitions are added (even replaced by the global cache when the number of matches becomes too large). 
+
+This project has a large number of possible extensions when the basic feature is done, including : using minimal caching keys (e.g. when only one of the arguments determine the dispatch entierly), generating specific dispatch code in a separate function, sharing the small caches between call sites, ...
+
+It has also the future benefit of putting together the infrastructure we will need to enable inline method caching when automatic recompilation is done.
+
+**Knowledge Prerequisites:** Good understanding of C/C++. A priori knowledge of julia internals is a plus but this project could also be a very good way to familiarize oneself with those.
 
 # Theme: Improvements to Julia interactivity and interoperability with other applications
 
