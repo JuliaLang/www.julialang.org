@@ -55,7 +55,7 @@ packages are pre-installed.
 </tbody></table>
 
 Please see [platform](platform.html) specific instructions if you have
-trouble installing Julia.
+trouble installing Julia.  Checksums for this release are available in both [MD5](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.3.8.md5) and [SHA256](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.3.8.sha256) format.
 
 If the provided download files do not work for you, please [file an
 issue in the Julia project](https://github.com/JuliaLang/julia/issues). It is strongly
