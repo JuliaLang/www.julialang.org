@@ -77,7 +77,7 @@ project](https://github.com/one-more-minute/Julia-LT/issues).
 
 <table class="downloads"><tbody>
 <tr>
-  <th> Windows (Vista+) </th>
+  <th> Windows (7+) </th>
   <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-windows-x32.zip">32-bit</a> </td>
   <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-windows-x64.zip">64-bit</a> </td>
 </tr>
