@@ -10,17 +10,13 @@ them in all Julia related forums.
 
 # Mailing Lists
 
-The [julia-users][julia-users] mailing list is for discussion around the usage of julia. New users of julia can ask their questions here. As a courtesy to others, do check the archives and documentation to see if a particular question is already answered.
-
-The [julia-dev](https://groups.google.com/forum/?fromgroups=#!forum/julia-dev) mailing list is for discussion related to the development of julia itself.
-
-The [julia-stats](https://groups.google.com/forum/?fromgroups=#!forum/julia-stats) mailing list is a special purpose mailing list for discussions related to statistical programming with julia. Topics of interest include DataFrame support, GLM modeling, and automatic generation of MCMC code for Bayesian models.
-
-The [julia-opt](https://groups.google.com/forum/?fromgroups=#!forum/julia-opt) mailing list is for discussions related to numerical optimization in julia. This includes Mathematical Programming (linear, mixed-integer, conic, semi-definite, etc.), constrained and unconstrained gradient-based and gradient-free optimization, and related topics.
-
-The [JuliaBox](https://groups.google.com/forum/?fromgroups=#!forum/julia-box) mailing list is for discussions related to running Julia in the so called cloud.
-
-The [julia-users-es](https://groups.google.com/forum/?fromgroups=#!forum/julia-users-es) mailing list is for discussions around the usage of Julia in the spanish language.
+* [julia-news](https://groups.google.com/group/julia-news) – low traffic mailing list for important announcements, such as new releases.
+* [julia-users][julia-users] – discussion around the usage of Julia. New users of Julia can ask their questions here. As a courtesy to others, do check the archives and documentation to see if a particular question is already answered.
+* [julia-dev](https://groups.google.com/group/julia-dev) – discussions related to the development of Julia itself.
+* [julia-stats](https://groups.google.com/group/julia-stats) – special purpose mailing list for discussions related to statistical programming with Julia. Topics of interest include DataFrame support, GLM modeling, and automatic generation of MCMC code for Bayesian models.
+* [julia-opt](https://groups.google.com/group/julia-opt) – discussions related to numerical optimization in julia. This includes Mathematical Programming (linear, mixed-integer, conic, semi-definite, etc.), constrained and unconstrained gradient-based and gradient-free optimization, and related topics.
+* [JuliaBox](https://groups.google.com/group/julia-box) – discussions related to running Julia in the so-called cloud.
+* [julia-users-es](https://groups.google.com/group/julia-users-es) – discussions around the usage of Julia in the spanish language.
 
 
 # GitHub
@@ -112,4 +108,4 @@ Don't have one in your area? Why not start one!
 [The Julia Language SubReddit](http://www.reddit.com/r/Julia/) is a collection of various blog posts and articles related to Julia.
 
 
-[julia-users]: https://groups.google.com/forum/?fromgroups=#!forum/julia-users
+[julia-users]: https://groups.google.com/group/julia-users
