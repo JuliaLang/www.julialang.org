@@ -77,13 +77,13 @@ project](https://github.com/one-more-minute/Julia-LT/issues).
 
 <table class="downloads"><tbody>
 <tr>
-  <th> Windows </th>
+  <th> Windows (Vista+) </th>
   <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-windows-x32.zip">32-bit</a> </td>
   <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-windows-x64.zip">64-bit</a> </td>
 </tr>
 <tr>
-  <th> Mac OS X </th>
-  <td colspan="2"> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-mac-x64.dmg">10.8+ 64-bit</a> </td>
+  <th> Mac OS X (10.8+)</th>
+  <td colspan="2"> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-mac-x64.dmg">64-bit</a> </td>
 </tr>
 <tr>
   <th> Linux </th>
