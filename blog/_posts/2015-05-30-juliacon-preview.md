@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  JuliaCon 2015 Preview: Deep Learning, 3D Printing, Parallel Computing, and so much more
+title:  JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more
 author: The JuliaCon Committee
 ---
 
