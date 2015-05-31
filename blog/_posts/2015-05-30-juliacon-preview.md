@@ -9,6 +9,7 @@ author: The JuliaCon Committee
 ---
 
 The [first ever JuliaCon](http://juliacon.org/2014/) was held in Chicago last year and was a great success. JuliaCon is back for 2015, this time in Cambridge, Massachusetts at [MIT](http://web.mit.edu/)'s architecturally-delightful Stata Center, the [home of computer science at MIT](https://www.csail.mit.edu/). Last year we had a single-track format, but this year we've expanded into a four-day extravaganza:
+
 * On Wednesday 24th there will an introduction to Julia workshop run by [David P. Sanders (@dpsanders)](https://github.com/dpsanders) as well as a Julia **hackathon** - a great chance to get some help for your new Julia projects, or to begin contributing to Julia or its many packages.
 * On Thursday 25th and Friday 26th we will be having speakers talking about a range of topics - we were fortunate to have so many fantastic submissions that we had to open up a second track of talks. The near-final [schedule is on the main page](http://juliacon.org). We'll be alternating between ~40 minute long "regular" talks, and ~10 minute long "lightning" talks across all the sessions.
 * On Saturday 27th we will finish with a series of **workshops** on a range of topics: data wrangling and visualization, [optimization](http://juliaopt.org), high-performance computing and more. These workshops run from 1.5 to 3 hours and will be a great way to rapidly boost your Julia skills.
