@@ -4,7 +4,9 @@ title:  JuliaCon 2015 Preview: Deep Learning, 3D Printing, Parallel Computing, a
 author: The JuliaCon Committee
 ---
 
-> [JuliaCon 2015](http://juliacon.org) is being held at the Massachusetts Institute of Technology from June 24th to the 28th. [Get your tickets](http://www.eventbrite.com/e/juliacon-2015-tickets-16517619645) and [book your hotel](http://juliacon.org/#accom) before June 4th to take advantage of early bird pricing. 
+*[JuliaCon 2015](http://juliacon.org) is being held at the Massachusetts Institute of Technology from June 24th to the 28th. [Get your tickets](http://www.eventbrite.com/e/juliacon-2015-tickets-16517619645) and [book your hotel](http://juliacon.org/#accom) before June 4th to take advantage of early bird pricing.*
+
+---
 
 The [first ever JuliaCon](http://juliacon.org/2014/) was held in Chicago last year and was a great success. JuliaCon is back for 2015, this time in Cambridge, Massachusetts at [MIT](http://web.mit.edu/)'s architecturally-delightful Stata Center, the [home of computer science at MIT](https://www.csail.mit.edu/). Last year we had a single-track format, but this year we've expanded into a four-day extravaganza:
 * On Wednesday 24th there will an introduction to Julia workshop run by [David P. Sanders (@dpsanders)](https://github.com/dpsanders) as well as a Julia **hackathon** - a great chance to get some help for your new Julia projects, or to begin contributing to Julia or its many packages.
