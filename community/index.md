@@ -16,7 +16,7 @@ them in all Julia related forums.
 * [julia-stats](https://groups.google.com/group/julia-stats) – special purpose mailing list for discussions related to statistical programming with Julia. Topics of interest include DataFrame support, GLM modeling, and automatic generation of MCMC code for Bayesian models.
 * [julia-opt](https://groups.google.com/group/julia-opt) – discussions related to numerical optimization in julia. This includes Mathematical Programming (linear, mixed-integer, conic, semi-definite, etc.), constrained and unconstrained gradient-based and gradient-free optimization, and related topics.
 * [JuliaBox](https://groups.google.com/group/julia-box) – discussions related to running Julia in the so-called cloud.
-* [julia-users-es](https://groups.google.com/group/julia-users-es) – discussions around the usage of Julia in the spanish language.
+* [julia-users-es](https://groups.google.com/group/julia-users-es) – discussions around the usage of Julia in the Spanish language.
 
 
 # GitHub
@@ -42,6 +42,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaCI](https://github.com/JuliaCI) – Continuous Integration Support for Julia packages
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
+* [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language
 
 # Google Summer of Code 2014
 
@@ -66,7 +67,7 @@ Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag o
 # Chat Rooms
 
 * Many Julia users and developers hang out in the [#julia IRC channel](http://webchat.freenode.net/?channels=julia) on Freenode.
-* [julialang-es](https://gitter.im/Ismael-VC/julialang-es) Gitter chat room is for discussions around the usage of Julia in the spanish language.
+* [julialang-es](https://gitter.im/JuliaLangEs/julialang-es) Gitter chat room is for discussions around the usage of Julia in the Spanish language.
 
 # Meetups
 
