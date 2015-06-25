@@ -16,7 +16,7 @@ them in all Julia related forums.
 * [julia-stats](https://groups.google.com/group/julia-stats) – special purpose mailing list for discussions related to statistical programming with Julia. Topics of interest include DataFrame support, GLM modeling, and automatic generation of MCMC code for Bayesian models.
 * [julia-opt](https://groups.google.com/group/julia-opt) – discussions related to numerical optimization in julia. This includes Mathematical Programming (linear, mixed-integer, conic, semi-definite, etc.), constrained and unconstrained gradient-based and gradient-free optimization, and related topics.
 * [JuliaBox](https://groups.google.com/group/julia-box) – discussions related to running Julia in the so-called cloud.
-* [julia-users-es](https://groups.google.com/group/julia-users-es) – discussions around the usage of Julia in the Spanish language.
+* [julia-users-es](https://groups.google.com/forum/#!forum/julialanges) – discussions around the usage of Julia in the Spanish language.
 
 
 # GitHub
@@ -58,7 +58,8 @@ Various Julia videos and playlists are posted on [YouTube](https://www.youtube.c
 
 # Twitter
 
-Tweet using the [#JuliaLang](https://twitter.com/hashtag/julialang?src=hash) hashtag on Twitter.
+* Tweet using the [#JuliaLang](https://twitter.com/hashtag/julialang?src=hash) hashtag on Twitter.
+* Tweets mainly in Spanish using the [#JuliaLangsEs](https://twitter.com/JuliaLangsEs) hashtag on Twitter.
 
 # StackOverflow
 
@@ -69,6 +70,10 @@ Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag o
 * Many Julia users and developers hang out in the [#julia IRC channel](http://webchat.freenode.net/?channels=julia) on Freenode.
 * [julialang-es](https://gitter.im/JuliaLangEs/julialang-es) Gitter chat room is for discussions around the usage of Julia in the Spanish language.
 
+# Facebook
+
+* [JuliaLangEs](https://www.facebook.com/groups/julialang.es/) group for discussions around the usage of Julia in the Spanish language.
+
 # Meetups
 
 Julia has several [local user groups](http://julia.meetup.com):
@@ -78,7 +83,7 @@ North America
 * [Bay Area Julia Users](http://www.meetup.com/Bay-Area-Julia-Users/)
 * [Cambridge Area Julia Users Network](http://www.meetup.com/julia-cajun/)
 * [Chicago Julia Meetup](http://www.meetup.com/JuliaChicago/)
-* [Lenguaje de Programación Julia - México, D.F.](http://www.meetup.com/Lenguaje-de-Programacion-Julia-Mexico-D-F/)
+* [JuliaLangEs - México, D.F.](http://www.meetup.com/es/julialanges-mx/)
 * [NYC Julia User Group](http://www.meetup.com/NYC-Julia-User-Group/)
 * [Southern California Julia Users](http://www.meetup.com/Southern-California-Julia-Users/)
 * [Triangle Julia Users (North Carolina)](http://www.meetup.com/Triangle-Julia-Users/)
