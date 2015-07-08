@@ -68,8 +68,10 @@ Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag o
 # Chat Rooms
 
 * Many Julia users and developers hang out in the [#julia IRC channel](http://webchat.freenode.net/?channels=julia) on Freenode.
+* [julia](https://gitter.im/JuliaLang/julia) Gitter chat room is for discussions around the usage of Julia.
 * [julialang-es](https://gitter.im/JuliaLangEs/julialang-es) Gitter chat room is for discussions around the usage of Julia in the Spanish language.
-
+* [julia-coverage](https://gitter.im/kshyatt/julia-coverage) Gitter chat room is for discussions around Julia tests coverage.
+ 
 # Facebook
 
 * [JuliaLangEs](https://www.facebook.com/groups/julialang.es/) group for discussions around the usage of Julia in the Spanish language.
