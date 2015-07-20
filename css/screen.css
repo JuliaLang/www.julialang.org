@@ -30,6 +30,14 @@ img {
     margin-bottom: 32px;
     border-bottom: 1px solid #ddd;
   }
+  #site .footer {
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-top: 1px solid #ddd;
+  }
     #site a {
       color: #2749b0;
     }
