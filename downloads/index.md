@@ -71,30 +71,27 @@ and evaluation) we recommend [Juno](http://junolab.org).
 
 See also the [Juno Documentation](http://junolab.org/docs/) for more
 information, or the [discussion forum](http://discuss.junolab.org/)
-for questions and help. Juno is in active development, and for any IDE
-related issues, please [file an issue in the Julia-LT
-project](https://github.com/one-more-minute/Julia-LT/issues).
+for questions and help.
 
 <table class="downloads"><tbody>
 <tr>
   <th> Windows (7+) </th>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-windows-x32.zip">32-bit</a> </td>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-windows-x64.zip">64-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-windows-x32.zip">32-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-windows-x64.zip">64-bit</a> </td>
 </tr>
 <tr>
   <th> Mac OS X (10.8+)</th>
-  <td colspan="2"> <a href="https://junolab.s3.amazonaws.com/release/1.0.1/juno-mac-x64.dmg">64-bit</a> </td>
+  <td colspan="2"> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-mac-x64.dmg">64-bit</a> </td>
 </tr>
 <tr>
   <th> Linux </th>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-linux-x32.zip">32-bit</a> </td>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-linux-x64.zip">64-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-linux-x32.zip">32-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-linux-x64.zip">64-bit</a> </td>
 </tr>
 </tbody></table>
 
 Usage is as simple as downloading the bundle, extracting it and double-clicking
-the Juno executable or app on Windows and OS X. On Linux, you'll still need to install
-Julia itself.
+the Juno executable or app.
 
 ---
 
