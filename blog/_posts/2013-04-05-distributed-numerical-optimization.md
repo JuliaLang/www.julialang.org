@@ -4,8 +4,7 @@ title:  Distributed Numerical Optimization
 authors:
     - <a href="http://www.mit.edu/~mlubin/">Miles Lubin</a>
 ---
-<script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'>
 </script>
 
 This post walks through the parallel computing functionality of Julia
@@ -21,8 +20,7 @@ optimization side of things.
 
 The cutting-plane algorithm is a method for solving the optimization problem
 
-<span>$$\text{minimize} _ \{x \in \mathbb{R}&#94;d} \sum_{i=1}&#94;n f_i(x)
-$$</span>
+$$\min_{x \in \mathbb R^d} \sum_{i=1}^n f_i(x)$$
 
 where the functions \\( f_i \\) are convex but not necessarily differentiable.
 The absolute value function \\( |x| \\) and the 1-norm \\( ||x|| _ 1 \\) are
@@ -35,11 +33,11 @@ iteratively minimize over the models to generate candidate solution points.
 
 We can state the algorithm as
 
-1. Choose starting point \\( x \\).  
+1. Choose starting point \\( x \\).
 2. For \\(i = 1,\ldots,n\\), evaluate \\(
-f_i(x) \\) and update corresponding model \\( m_i \\). 
+f_i(x) \\) and update corresponding model \\( m_i \\).
 3. Let the next
-candidate \\( x \\) be the minimizer of \\( \sum_{i=1}&#94;n m_i(x) \\).  
+candidate \\( x \\) be the minimizer of \\( \sum_{i=1}&#94;n m_i(x) \\).
 4. If not converged, goto step 2.
 
 If it is costly to evaluate \\( f_i(x) \\), then the algorithm is naturally
@@ -48,7 +46,7 @@ a linear optimization problem, which is usually very fast. (Let me point out
 here that Julia has interfaces to linear programming and other
 optimization solvers under <a href="http://juliaopt.org/">JuliaOpt</a>.)
 
-Abstracting the math, we can write the algorithm using the following Julia code. 
+Abstracting the math, we can write the algorithm using the following Julia code.
 
     # functions initialize, isconverged, solvesubproblem, and process implemented elsewhere
     state, subproblems = initialize()
@@ -60,12 +58,12 @@ Abstracting the math, we can write the algorithm using the following Julia code.
 The function ``solvesubproblem`` corresponds to evaluating \\( f_i(x) \\) for a
 given \\( i \\) and \\( x \\) (the elements of ``subproblems`` could be tuples
 ``(i,x)``). The function ``process`` corresponds to minimizing the model in step
-3, and it produces a new state and a new set of subproblems to solve. 
+3, and it produces a new state and a new set of subproblems to solve.
 
 Note that the algorithm looks much like a map-reduce that would be easy to
 parallelize using many existing frameworks. Indeed, in Julia we can simply
 replace ``map`` with ``pmap`` (parallel map). Let's consider a twist that makes
-the parallelism not so straightforward. 
+the parallelism not so straightforward.
 
 ### Asynchronous variant
 
@@ -73,7 +71,7 @@ Variability in the time taken by the ``solvesubproblem`` function can lead to
 load imbalance and limit parallel efficiency as workers sit idle waiting for new
 tasks. Such variability arises naturally if ``solvesubproblem`` itself requires
 solving a optimization problem, or if the workers and network are shared, as is
-often the case with cloud computing. 
+often the case with cloud computing.
 
 We can consider a new variant of the cutting-plane algorithm to address this
 issue. The key point is
@@ -91,7 +89,7 @@ Stephen Wright.
 
 By introducing asynchronicity we can no longer use a nice black-box ``pmap``
 function and have to dig deeper into the parallel implementation. Fortunately,
-this is easy to do in Julia. 
+this is easy to do in Julia.
 
 ### Parallel implementation in Julia
 
@@ -108,9 +106,9 @@ href="https://github.com/lcw/julia-mpi">here</a>).
 Reading the <a
 href="http://docs.julialang.org/en/release-0.1/manual/parallel-computing/">manual</a>
 on parallel computing is highly recommended, and I won't try to reproduce it in
-this post. Instead, we'll dig into and extend one of the examples it presents. 
+this post. Instead, we'll dig into and extend one of the examples it presents.
 
-The implementation of ``pmap`` in Julia is 
+The implementation of ``pmap`` in Julia is
 
     function pmap(f, lst)
         np = nprocs()  # determine the number of processors available
@@ -152,10 +150,10 @@ poll for results from each worker process.*
 
 Implementing our asynchronous algorithm is not much more than a modification of
 the above code:
-    
+
     # given constants n and 0 < alpha <= 1
     # functions initialize and solvesubproblem defined elsewhere
-    np = nprocs() 
+    np = nprocs()
     state, subproblems = initialize()
     converged = false
     isconverged() = converged
@@ -225,12 +223,12 @@ method</a> or Benders decomposition and is used to decompose the solution of
 large linear optimization problems. Here, ``solvesubproblem`` entails solving a
 relatively small linear optimization problem. Test instances are taken from the
 previously mentioned <a
-href="http://dx.doi.org/10.1023/A:1021858008222">paper</a>. 
+href="http://dx.doi.org/10.1023/A:1021858008222">paper</a>.
 
 We'll first run on a large multicore server. The
 ``runals.jl`` (asynchronous L-shaped) file contains the algorithm we'll use. Its
 usage is
-    
+
 	julia runals.jl [data source] [num subproblems] [async param] [block size]
 
 where ``[num subproblems]`` is the \\(n\\) as above and ``[async param]`` is
@@ -242,7 +240,7 @@ a worker at once (in the previous code, this value was always 1). We will use
 
 To run multiple Julia processes on a shared-memory machine, we pass the ``-p N``
 option to the ``julia`` executable, which will start up ``N`` system processes.
-To execute the asynchronous version with 10 workers, we run 
+To execute the asynchronous version with 10 workers, we run
 
     julia -p 12 runals.jl Data/storm 4000 0.6 30
 
@@ -298,7 +296,7 @@ are presented in the table below.
 Results on a shared-memory 8x Xeon E7-8850 server. Workers correspond to
 individual cores. Speed is the rate of subproblems solved per second. Efficiency
 is calculated as the percent of ideal parallel speedup obtained. The superlinear
-scaling observed with 20 workers is likely a system artifact. 
+scaling observed with 20 workers is likely a system artifact.
 </p>
 
 There are a few more hoops to jump through in order to run on EC2. First we must
@@ -306,11 +304,11 @@ build a system image (AMI) with Julia installed. Julia connects to workers over
 ssh, so I found it useful to put my EC2 ssh key on the AMI and also set
 ``StrictHostKeyChecking no`` in ``/etc/ssh/ssh_config`` to disable the
 authenticity prompt when connecting to new workers. Someone will likely correct
-me on if this is the right approach. 
+me on if this is the right approach.
 
 Assuming we have an AMI in place, we can fire up the instances. I used an
 m3.xlarge instance for the master and m1.medium instances for the workers.
-(Note: you can save a lot of money by using the spot market.) 
+(Note: you can save a lot of money by using the spot market.)
 
 To add remote workers on startup, Julia accepts a file with a list of host names
 through the ``--machinefile`` option. We can generate this easily enough by
@@ -362,7 +360,7 @@ Results from various runs are presented in the table below.
 
 <p class="caption" style="text-align:center"><b>Table:</b>
 Results on Amazon EC2. Workers correspond to individual m1.medium instances. The
-master process is run on an m3.xlarge instance. 
+master process is run on an m3.xlarge instance.
 </p>
 
 On both architectures the asynchronous version solves subproblems at a higher
