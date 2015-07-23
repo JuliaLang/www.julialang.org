@@ -6,12 +6,10 @@ cdata = benchmarks[benchmarks[:language].== "c", :]
 benchmarks = join(benchmarks, cdata, on=:benchmark)
 benchmarks[:time]./= benchmarks[:time_1]
 benchmarks[:language] = PooledDataArray(benchmarks[:language])
-#benchmarks[:language] = reorder(benchmarks[:language], benchmarks[:time])
 benchmarks[:benchmark] = PooledDataArray(benchmarks[:benchmark])
-#benchmarks[:benchmark] = reorder(benchmarks[:benchmark], benchmarks[:time])
 benchmarks = benchmarks[benchmarks[:language].!= "c", :]
-benchmarks[:language] = setlevels!(benchmarks[:language], Dict{UTF8String,Any}(benchmarks[:language],
-  [ lang == "javascript" ? "JavaScript" : ucfirst(lang) for lang in benchmarks[:language]]))
+benchmarks[:language] = setlevels!(benchmarks[:language], Dict{UTF8String,Any}(
+  [lang => (lang == "javascript" ? "JavaScript" : ucfirst(lang)) for lang in benchmarks[:language]]))
 
 p = plot(benchmarks,
     x = :language,
