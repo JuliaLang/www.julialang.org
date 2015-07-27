@@ -3,7 +3,7 @@ layout: default
 title:  Julia Downloads
 ---
 
-# Current Release (v0.3.10)
+# Current Release (v0.3.11)
 
 We provide three ways for you to run Julia:
 
@@ -23,12 +23,12 @@ packages are pre-installed.
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.10-win32.exe">32-bit</a> </td>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.10-win64.exe">64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.11-win32.exe">32-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.11-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td colspan="2"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.10-osx10.7+.dmg">10.7+ 64-bit</a> </td>
+    <td colspan="2"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.11-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages (.deb) </th>
@@ -40,12 +40,12 @@ packages are pre-installed.
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
-    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.10-linux-i686.tar.gz">32-bit</a> </td>
-    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.3/julia-0.3.10-linux-x86_64.tar.gz">64-bit</a> </td>
+    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.11-linux-i686.tar.gz">32-bit</a> </td>
+    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.3/julia-0.3.11-linux-x86_64.tar.gz">64-bit</a> </td>
 </tr>
 <tr>
     <th> Source </th>
-    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.10/julia-0.3.10_c8ceeefcc1.tar.gz">Tarball</a> </td>
+    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.11/julia-0.3.11_483dbf5279.tar.gz">Tarball</a> </td>
     <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">Github</a> </td>
 </tr>
 <tr>
@@ -55,7 +55,7 @@ packages are pre-installed.
 </tbody></table>
 
 Please see [platform](platform.html) specific instructions if you have
-trouble installing Julia.  Checksums for this release are available in both [MD5](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.3.10.md5) and [SHA256](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.3.10.sha256) format.
+trouble installing Julia.  Checksums for this release are available in both [MD5](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.3.11.md5) and [SHA256](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.3.11.sha256) format.
 
 If the provided download files do not work for you, please [file an
 issue in the Julia project](https://github.com/JuliaLang/julia/issues). It is strongly
