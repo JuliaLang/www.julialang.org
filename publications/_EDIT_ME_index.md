@@ -22,6 +22,10 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 # Publications relating to Julia packages
 
+## [CauseMap.jl](https://github.com/cyrusmaher/CauseMap.jl)
+
+[@MH15]
+
 ## Numerical Optimization and Operations Research
 
 ### [Convex.jl](https://github.com/cvxgrp/Convex.jl)

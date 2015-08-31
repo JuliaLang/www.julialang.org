@@ -3,7 +3,7 @@ layout: default
 title:  Julia Downloads
 ---
 
-# Current Release (v0.3.5)
+# Current Release (v0.3.11)
 
 We provide three ways for you to run Julia:
 
@@ -23,39 +23,39 @@ packages are pre-installed.
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.5-win32.exe">32-bit</a> </td>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.5-win64.exe">64-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x86/0.3/julia-0.3.11-win32.exe">32-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.11-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td colspan=2> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.5-osx10.7+.dmg">10.7+ 64-bit</a> </td>
+    <td colspan="2"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.11-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages (.deb) </th>
-    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/juliareleases">32/64-bit</a> </td>
+    <td colspan="2"> <a href="https://launchpad.net/~staticfloat/+archive/juliareleases">32/64-bit</a> </td>
 </tr>
 <tr>
     <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
-    <td colspan=2> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia/">32/64-bit</a> </td>
+    <td colspan="2"> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia/">32/64-bit</a> </td>
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
-    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.5-linux-i686.tar.gz">32-bit</a> </td>
-    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.3/julia-0.3.5-linux-x86_64.tar.gz">64-bit</a> </td>
+    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.11-linux-i686.tar.gz">32-bit</a> </td>
+    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.3/julia-0.3.11-linux-x86_64.tar.gz">64-bit</a> </td>
 </tr>
 <tr>
     <th> Source </th>
-    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.5/julia-0.3.5_a05f87b79a.tar.gz">Tarball</a> </td>
+    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.11/julia-0.3.11_483dbf5279.tar.gz">Tarball</a> </td>
     <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">Github</a> </td>
 </tr>
 <tr>
     <th> Old releases (not maintained) </th>
-    <td colspan=2 ><a href="http://julialang.org/downloads/oldreleases.html">link</a> </td>
+    <td colspan="2" ><a href="http://julialang.org/downloads/oldreleases.html">link</a> </td>
 </tr>
 </tbody></table>
 
 Please see [platform](platform.html) specific instructions if you have
-trouble installing Julia.
+trouble installing Julia.  Checksums for this release are available in both [MD5](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.3.11.md5) and [SHA256](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.3.11.sha256) format.
 
 If the provided download files do not work for you, please [file an
 issue in the Julia project](https://github.com/JuliaLang/julia/issues). It is strongly
@@ -71,32 +71,30 @@ and evaluation) we recommend [Juno](http://junolab.org).
 
 See also the [Juno Documentation](http://junolab.org/docs/) for more
 information, or the [discussion forum](http://discuss.junolab.org/)
-for questions and help. Juno is in active development, and for any IDE
-related issues, please [file an issue in the Julia-LT
-project](https://github.com/one-more-minute/Julia-LT/issues).
+for questions and help.
 
 <table class="downloads"><tbody>
 <tr>
-  <th> Windows </th>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-windows-x32.zip">32-bit</a> </td>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-windows-x64.zip">64-bit</a> </td>
+  <th> Windows (7+) </th>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-windows-x32.zip">32-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-windows-x64.zip">64-bit</a> </td>
 </tr>
 <tr>
-  <th> Mac OS X </th>
-  <td colspan=2> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-mac-x64.dmg">10.7+ 64-bit</a> </td>
+  <th> Mac OS X (10.8+)</th>
+  <td colspan="2"> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-mac-x64.dmg">64-bit</a> </td>
 </tr>
 <tr>
   <th> Linux </th>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-linux-x32.zip">32-bit</a> </td>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.0/juno-linux-x64.zip">64-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-linux-x32.zip">32-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-linux-x64.zip">64-bit</a> </td>
 </tr>
 </tbody></table>
 
 Usage is as simple as downloading the bundle, extracting it and double-clicking
-the Juno executable or app on Windows and OS X. On Linux, you'll still need to install
-Julia itself.
+the Juno executable or app.
 
 ---
+
 # Nightly builds
 
 These are bleeding-edge binaries of the latest version of Julia under
@@ -113,15 +111,15 @@ are advised to use the latest official release version of Julia, above.
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td colspan=2> <a href="https://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
+    <td colspan="2"> <a href="https://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages (.deb) </th>
-    <td colspan=2> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
+    <td colspan="2"> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
 </tr>
 <tr>
     <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
-    <td colspan=2> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies/">32/64-bit</a> </td>
+    <td colspan="2"> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies/">32/64-bit</a> </td>
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
@@ -130,6 +128,6 @@ are advised to use the latest official release version of Julia, above.
 </tr>
 <tr>
     <th> Source </th>
-    <td colspan=2> <a href="https://github.com/JuliaLang/julia">GitHub</a> </td>
+    <td colspan="2"> <a href="https://github.com/JuliaLang/julia">GitHub</a> </td>
 </tr>
 </tbody></table>

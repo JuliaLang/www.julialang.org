@@ -3,19 +3,20 @@ layout: default
 title:  Julia Community
 ---
 
+All participants in the Julia community are requested to read the
+[Julia Community
+Standards](http://julialang.org/community/standards/), and abide by
+them in all Julia related forums.
+
 # Mailing Lists
 
-The [julia-users][julia-users] mailing list is for discussion around the usage of julia. New users of julia can ask their questions here. As a courtesy to others, do check the archives and documentation to see if a particular question is already answered.
-
-The [julia-dev](https://groups.google.com/forum/?fromgroups=#!forum/julia-dev) mailing list is for discussion related to the development of julia itself.
-
-The [julia-stats](https://groups.google.com/forum/?fromgroups=#!forum/julia-stats) mailing list is a special purpose mailing list for discussions related to statistical programming with julia. Topics of interest include DataFrame support, GLM modeling, and automatic generation of MCMC code for Bayesian models.
-
-The [julia-opt](https://groups.google.com/forum/?fromgroups=#!forum/julia-opt) mailing list is for discussions related to numerical optimization in julia. This includes Mathematical Programming (linear, mixed-integer, conic, semi-definite, etc.), constrained and unconstrained gradient-based and gradient-free optimization, and related topics.
-
-The [JuliaBox](https://groups.google.com/forum/?fromgroups=#!forum/julia-box) mailing list is for discussions related to running Julia in the so called cloud.
-
-The [julia-users-es](https://groups.google.com/forum/?fromgroups=#!forum/julia-users-es) mailing list is for discussions around the usage of Julia in the spanish language.
+* [julia-news](https://groups.google.com/group/julia-news) – low traffic mailing list for important announcements, such as new releases.
+* [julia-users][julia-users] – discussion around the usage of Julia. New users of Julia can ask their questions here. As a courtesy to others, do check the archives and documentation to see if a particular question is already answered.
+* [julia-dev](https://groups.google.com/group/julia-dev) – discussions related to the development of Julia itself.
+* [julia-stats](https://groups.google.com/group/julia-stats) – special purpose mailing list for discussions related to statistical programming with Julia. Topics of interest include DataFrame support, GLM modeling, and automatic generation of MCMC code for Bayesian models.
+* [julia-opt](https://groups.google.com/group/julia-opt) – discussions related to numerical optimization in julia. This includes Mathematical Programming (linear, mixed-integer, conic, semi-definite, etc.), constrained and unconstrained gradient-based and gradient-free optimization, and related topics.
+* [JuliaBox](https://groups.google.com/group/julia-box) – discussions related to running Julia in the so-called cloud.
+* [julia-users-es](https://groups.google.com/forum/#!forum/julialanges) – discussions around the usage of Julia in the Spanish language.
 
 
 # GitHub
@@ -38,7 +39,10 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](http://www.juliadiff.org/)
 * [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
 * [JuliaWeb](https://github.com/JuliaWeb) – Web stack
-* [JuliaCI](https://github.com/JuliaCI) - Continuous Integration Support for Julia packages
+* [JuliaCI](https://github.com/JuliaCI) – Continuous Integration Support for Julia packages
+* [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
+* [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
+* [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language
 
 # Google Summer of Code 2014
 
@@ -54,15 +58,23 @@ Various Julia videos and playlists are posted on [YouTube](https://www.youtube.c
 
 # Twitter
 
-Tweet using the [#JuliaLang](https://twitter.com/hashtag/julialang?src=hash) hashtag on Twitter.
+* Tweet using the [#JuliaLang](https://twitter.com/hashtag/julialang?src=hash) hashtag on Twitter.
+* Tweets mainly in Spanish using the [#JuliaLangsEs](https://twitter.com/JuliaLangsEs) hashtag on Twitter.
 
 # StackOverflow
 
 Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag on StackOverflow, if you post a Julia related question on StackOverflow.
 
-# IRC
+# Chat Rooms
 
-Many Julia users and developers hang out in the [#julia IRC channel](http://webchat.freenode.net/?channels=julia) on Freenode.
+* Many Julia users and developers hang out in the [#julia IRC channel](http://webchat.freenode.net/?channels=julia) on Freenode.
+* [julia](https://gitter.im/JuliaLang/julia) Gitter chat room is for discussions around the usage of Julia.
+* [julialang-es](https://gitter.im/JuliaLangEs/julialang-es) Gitter chat room is for discussions around the usage of Julia in the Spanish language.
+* [julia-coverage](https://gitter.im/kshyatt/julia-coverage) Gitter chat room is for discussions around Julia tests coverage.
+ 
+# Facebook
+
+* [JuliaLangEs](https://www.facebook.com/groups/julialang.es/) group for discussions around the usage of Julia in the Spanish language.
 
 # Meetups
 
@@ -73,7 +85,7 @@ North America
 * [Bay Area Julia Users](http://www.meetup.com/Bay-Area-Julia-Users/)
 * [Cambridge Area Julia Users Network](http://www.meetup.com/julia-cajun/)
 * [Chicago Julia Meetup](http://www.meetup.com/JuliaChicago/)
-* [Lenguaje de Programación Julia - México, D.F.](http://www.meetup.com/Lenguaje-de-Programacion-Julia-Mexico-D-F/)
+* [JuliaLangEs - México, D.F.](http://www.meetup.com/es/julialanges-mx/)
 * [NYC Julia User Group](http://www.meetup.com/NYC-Julia-User-Group/)
 * [Southern California Julia Users](http://www.meetup.com/Southern-California-Julia-Users/)
 * [Triangle Julia Users (North Carolina)](http://www.meetup.com/Triangle-Julia-Users/)
@@ -84,11 +96,12 @@ Europe
 
 * [London Julia Users Group](http://www.meetup.com/London-Julia-Users-Group/)
 * [Zurich Julia Users Group](http://www.meetup.com/Zurich-Julia-User-Group/)
+* [Vienna Julia Meetup](http://www.meetup.com/Vienna-Julia-Meetup/)
 
 Asia
 
 * [Bangalore Julia User Group](http://www.meetup.com/Bangalore-Julia-User-Group/)
-* [Julia Tokyo](http://juliatokyo.connpass.com/)
+* [Julia Tokyo](http://julia.tokyo/)
 
 Australia
 
@@ -105,4 +118,4 @@ Don't have one in your area? Why not start one!
 [The Julia Language SubReddit](http://www.reddit.com/r/Julia/) is a collection of various blog posts and articles related to Julia.
 
 
-[julia-users]: https://groups.google.com/forum/?fromgroups=#!forum/julia-users
+[julia-users]: https://groups.google.com/group/julia-users

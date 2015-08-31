@@ -11,6 +11,12 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
+- "Sapienza" Univeristy of Rome, Italy, Spring 2015
+  * [Operations Research](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi)
+
+- AGH University of Science and Technology, Poland, Spring 2015
+  * [Signal processing in medical diagnostic systems](http://home.agh.edu.pl/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej) (Tomasz Pieciak)
+
 - MIT, Spring 2015
   * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. Steven G. Johnson)
   * [18.330](http://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid)
@@ -26,6 +32,13 @@ Julia is now being used in several university courses. If you know of other clas
 
 - Azad University, Science and Research Branch, Fall 2014
   * CE 3820, Modeling and Evaluation (Dr. Arman Shokrollahi)
+
+- Brown University, Fall 2014
+  * [CSCI 1810](http://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael)
+  
+- Emory University, Spring 2015
+  * [MATH 346](http://www.mathcs.emory.edu/~lruthot/courses/sp15-math346.html), Introduction to Optimization Theory (Prof. Lars Ruthotto)
+  * [MATH 516](http://www.mathcs.emory.edu/~lruthot/courses/math516.html), Numerical Analysis II (Prof. Lars Ruthotto)
 
 - Iowa State University, Fall 2014
   * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann)
@@ -43,8 +56,8 @@ Julia is now being used in several university courses. If you know of other clas
   * [Física computacional](https://github.com/computo-fc/fisica_computacional) (Prof. David P. Sanders)
   * Métodos numéricos para sistemas dinámicos (Prof. Luis Benet)
 
-- Brown University, Fall 2014
-  * [CSCI 1810](http://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael)
+- University at Buffalo, Fall 2014
+  * [IE 572](http://www.chkwon.net/teaching/ie-572/) Linear Programming (Prof. Changhyun Kwon)
 
 - City University of New York, Spring 2014
   * [MTH 229](http://wiener.math.csi.cuny.edu/verzani/classes/MTH229/), Calculus Computer Laboratory (Prof. John Verzani). Also see the [MTH 229 Projects](http://mth229.github.io) page.
