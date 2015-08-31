@@ -11,16 +11,14 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
-<<<<<<< Updated upstream
+- University of South Florida, Fall 2015
+  * [ESI 6491](http://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon)
+
 - "Sapienza" Univeristy of Rome, Italy, Spring 2015
   * [Operations Research](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi)
 
 - AGH University of Science and Technology, Poland, Spring 2015
   * [Signal processing in medical diagnostic systems](http://home.agh.edu.pl/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej) (Tomasz Pieciak)
-=======
-- University of South Florida, Fall 2016
-  * [ESI 6491](http://www.chkwon.net/teaching/esi-6491-lp-and-network-optimization/), Linear Programming and Network Optimization (Prof. Changhyun Kwon)
->>>>>>> Stashed changes
 
 - MIT, Spring 2015
   * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. Steven G. Johnson)
@@ -40,7 +38,7 @@ Julia is now being used in several university courses. If you know of other clas
 
 - Brown University, Fall 2014
   * [CSCI 1810](http://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael)
-  
+
 - Emory University, Spring 2015
   * [MATH 346](http://www.mathcs.emory.edu/~lruthot/courses/sp15-math346.html), Introduction to Optimization Theory (Prof. Lars Ruthotto)
   * [MATH 516](http://www.mathcs.emory.edu/~lruthot/courses/math516.html), Numerical Analysis II (Prof. Lars Ruthotto)
