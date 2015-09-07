@@ -11,6 +11,8 @@ In addition, the Julia developer community is contributing a number of [external
 Julia programs are organized around [multiple dispatch](http://docs.julialang.org/en/release-0.3/manual/methods/#man-methods); by defining functions and overloading them for different combinations of argument types, which can also be user-defined.
 For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](http://docs.julialang.org/en/release-0.3/manual/introduction/) in the [online manual](http://docs.julialang.org).
 
+{% include juliacon-player.md %}
+
 # A Summary of Features
 
 * [Multiple dispatch](http://en.wikipedia.org/wiki/Multiple_dispatch): providing ability to define function behavior across many combinations of argument types
