@@ -97,7 +97,7 @@ the Juno executable or app.
 
 # Release Candidates (v0.4.0-rc1)
 
-We are currently testing release candidates for the next major version of Julia.  Please see
+We are currently testing release candidates for the next version of Julia.  Please see
 [platform](platform.html) specific instructions if you have trouble installing Julia.
 Checksums for this release are available in both
 [MD5](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.4.0-rc1.md5)
