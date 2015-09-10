@@ -95,6 +95,41 @@ the Juno executable or app.
 
 ---
 
+# Release Candidates (v0.4.0-rc1)
+
+We are currently testing release candidates for the next version of Julia.  Please see
+[platform](platform.html) specific instructions if you have trouble installing Julia.
+Checksums for this release are available in both
+[MD5](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.4.0-rc1.md5)
+and [SHA256](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.4.0-rc1.sha256) format.
+Download the release candidate here, and please report any issues to the
+[issue tracker](https://github.com/JuliaLang/julia/issues) on Github.
+
+## Julia (command line version)
+<table class="downloads"><tbody>
+<tr>
+    <th> Windows Self-Extracting Archive (.exe) </th>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x86/0.4/julia-0.4.0-rc1-win32.exe">32-bit</a> </td>
+    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.4/julia-0.4.0-rc1-win64.exe">64-bit</a> </td>
+</tr>
+<tr>
+    <th> Mac OS X Package (.dmg) </th>
+    <td colspan="2"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.4/julia-0.4.0-rc1-osx10.7+.dmg">10.7+ 64-bit</a> </td>
+</tr>
+<tr>
+    <th> Generic Linux binaries </th>
+    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.0-rc1-linux-i686.tar.gz">32-bit</a> </td>
+    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.0-rc1-linux-x86_64.tar.gz">64-bit</a> </td>
+</tr>
+<tr>
+    <th> Source </th>
+    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0-rc1/julia-0.4.0-rc1_e5c6964a49-full.tar.gz">Tarball</a> </td>
+    <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.4">Github</a> </td>
+</tr>
+</tbody></table>
+
+---
+
 # Nightly builds
 
 These are bleeding-edge binaries of the latest version of Julia under
