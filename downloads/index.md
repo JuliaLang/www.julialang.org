@@ -46,7 +46,7 @@ packages are pre-installed.
 <tr>
     <th> Source </th>
     <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.11/julia-0.3.11_483dbf5279.tar.gz">Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.3.11/julia-0.3.11_483dbf5279.tar.gz.asc">GPG</a>) </td>
-    <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">Github</a> </td>
+    <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">GitHub</a> </td>
 </tr>
 <tr>
     <th> Old releases (not maintained) </th>
@@ -103,7 +103,7 @@ Checksums for this release are available in both
 [MD5](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.4.0-rc1.md5)
 and [SHA256](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.4.0-rc1.sha256) format.
 Download the release candidate here, and please report any issues to the
-[issue tracker](https://github.com/JuliaLang/julia/issues) on Github.
+[issue tracker](https://github.com/JuliaLang/julia/issues) on GitHub.
 Full tarballs contain all dependencies bundled within the tarball alongside Julia,
 allowing for easy install in environments without network access.  The standard
 tarball is much smaller in size, but will download dependency tarballs on demand.
@@ -128,7 +128,7 @@ tarball is much smaller in size, but will download dependency tarballs on demand
     <th> Source </th>
     <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0-rc1/julia-0.4.0-rc1_e5c6964a49.tar.gz">Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0-rc1/julia-0.4.0-rc1_e5c6964a49.tar.gz.asc">GPG</a>) </td>
     <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0-rc1/julia-0.4.0-rc1_e5c6964a49-full.tar.gz">Full Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0-rc1/julia-0.4.0-rc1_e5c6964a49-full.tar.gz.asc">GPG</a>) </td>
-    <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/release-0.4">Github</a> </td>
+    <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/release-0.4">GitHub</a> </td>
 </tr>
 </tbody></table>
 
