@@ -40,13 +40,13 @@ packages are pre-installed.
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
-    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.11-linux-i686.tar.gz">32-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.11-linux-i686.tar.gz.asc">GPG signature</a>)</td>
-    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.3/julia-0.3.11-linux-x86_64.tar.gz">64-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.3/julia-0.3.11-linux-x86_64.tar.gz.asc">GPG signature</a>)</td>
+    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.11-linux-i686.tar.gz">32-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.3/julia-0.3.11-linux-i686.tar.gz.asc">GPG</a>)</td>
+    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.3/julia-0.3.11-linux-x86_64.tar.gz">64-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.3/julia-0.3.11-linux-x86_64.tar.gz.asc">GPG</a>)</td>
 </tr>
 <tr>
     <th> Source </th>
-    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.11/julia-0.3.11_483dbf5279.tar.gz">Tarball (<a href="https://github.com/JuliaLang/julia/releases/download/v0.3.11/julia-0.3.11_483dbf5279.tar.gz.asc">GPG signature</a>)</a> </td>
-    <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">Github</a> </td>
+    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.11/julia-0.3.11_483dbf5279.tar.gz">Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.3.11/julia-0.3.11_483dbf5279.tar.gz.asc">GPG</a>) </td>
+    <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">GitHub</a> </td>
 </tr>
 <tr>
     <th> Old releases (not maintained) </th>
@@ -103,28 +103,32 @@ Checksums for this release are available in both
 [MD5](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.4.0-rc1.md5)
 and [SHA256](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.4.0-rc1.sha256) format.
 Download the release candidate here, and please report any issues to the
-[issue tracker](https://github.com/JuliaLang/julia/issues) on Github.
+[issue tracker](https://github.com/JuliaLang/julia/issues) on GitHub.
+Full tarballs contain all dependencies bundled within the tarball alongside Julia,
+allowing for easy install in environments without network access.  The standard
+tarball is much smaller in size, but will download dependency tarballs on demand.
 
 ## Julia (command line version)
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x86/0.4/julia-0.4.0-rc1-win32.exe">32-bit</a> </td>
-    <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.4/julia-0.4.0-rc1-win64.exe">64-bit</a> </td>
+    <td colspan="3"> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x86/0.4/julia-0.4.0-rc1-win32.exe">32-bit</a> </td>
+    <td colspan="3"> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.4/julia-0.4.0-rc1-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td colspan="2"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.4/julia-0.4.0-rc1-osx10.7+.dmg">10.7+ 64-bit</a> </td>
+    <td colspan="6"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.4/julia-0.4.0-rc1-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
-    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.0-rc1-linux-i686.tar.gz">32-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.0-rc1-linux-i686.tar.gz.asc">GPG signature</a>)</td>
-    <td> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.0-rc1-linux-x86_64.tar.gz">64-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.0-rc1-linux-x86_64.tar.gz.asc">GPG signature</a>)</td>
+    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.0-rc1-linux-i686.tar.gz">32-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.0-rc1-linux-i686.tar.gz.asc">GPG</a>)</td>
+    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.0-rc1-linux-x86_64.tar.gz">64-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.0-rc1-linux-x86_64.tar.gz.asc">GPG</a>)</td>
 </tr>
 <tr>
     <th> Source </th>
-    <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0-rc1/julia-0.4.0-rc1_e5c6964a49-full.tar.gz">Tarball (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0-rc1/julia-0.4.0-rc1_e5c6964a49-full.tar.gz.asc">GPG signature</a>)</a> </td>
-    <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.4">Github</a> </td>
+    <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0-rc1/julia-0.4.0-rc1_e5c6964a49.tar.gz">Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0-rc1/julia-0.4.0-rc1_e5c6964a49.tar.gz.asc">GPG</a>) </td>
+    <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0-rc1/julia-0.4.0-rc1_e5c6964a49-full.tar.gz">Full Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0-rc1/julia-0.4.0-rc1_e5c6964a49-full.tar.gz.asc">GPG</a>) </td>
+    <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/release-0.4">GitHub</a> </td>
 </tr>
 </tbody></table>
 
