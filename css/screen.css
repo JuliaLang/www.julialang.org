@@ -252,7 +252,6 @@ blockquote {
   vertical-align: middle;
 }
 .downloads a {
-  display: block;
   width: 100%;
 }
 .downloads a:hover {

@@ -11,6 +11,18 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
+- University of Edinburgh, Spring 2016
+  * [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/index.html))
+
+- Universit\'{e} Paul Sabatier, Toulouse, Fall 2015
+  * [Optimization in Machine Learning](http://www.irit.fr/cimi-machine-learning/node/15), (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/))
+
+- MIT, Fall 2015
+  * [6.251/15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas) 
+  * [18.06](http://web.mit.edu/18.06/www/), Linear Algebra (Dr. [Alex Townsend](https://github.com/ajt60gaibb))
+  * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj))
+  * [18.337/6.338](http://courses.csail.mit.edu/18.337/2015), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). ([IJulia notebooks](https://github.com/alanedelman/18.337_2015))
+  * [18.085/0851](http://math.mit.edu/classes/18.085/2015FA/index.html), Computational Science And Engineering I (Prof. Pedro J. Sáenz)
 - University of South Florida, Fall 2015
   * [ESI 6491](http://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon)
 
