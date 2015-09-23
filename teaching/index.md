@@ -14,8 +14,11 @@ Julia is now being used in several university courses. If you know of other clas
 - University of Edinburgh, Spring 2016
   * [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/index.html))
 
-- Universit\'{e} Paul Sabatier, Toulouse, Fall 2015
+- Université Paul Sabatier, Toulouse, Fall 2015
   * [Optimization in Machine Learning](http://www.irit.fr/cimi-machine-learning/node/15), (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/))
+
+- Stanford, Fall 2015
+  * [CME 257](https://github.com/icme/cme257-advanced-julia/), Advanced Topics in Scientific Computing with Julia (Mr. [Brad Nelson](https://github.com/bnels))
 
 - MIT, Fall 2015
   * [6.251/15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas) 
