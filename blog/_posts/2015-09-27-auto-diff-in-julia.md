@@ -47,7 +47,7 @@ julia> j(x)
  0.994057  3.25245  1.65416   0.251396  0.964566
  1.03257   3.37871  1.71818   0.964566  0.140689
 
-julia> ForwardDiff.hessian(f, x) # H(f)(x) == J(∇f)(x), as expected 
+julia> ForwardDiff.hessian(f, x) # H(f)(x) == J(∇f)(x), as expected
 5x5 Array{Float64,2}:
  0.585111  3.48083  1.7706    0.994057  1.03257
  3.48083   1.06079  5.79299   3.25245   3.37871
@@ -70,9 +70,9 @@ There are two main flavors of AD: **forward mode**, and **reverse mode**. As you
 
 ForwardDiff.jl implements several new number types, all of which are subtypes of `ForwardDiffNumber{N,T,C} <: Number`.
 
-Elementary numerical functions on these types are then overloaded to evaluate both **the original function and its derivative(s)**, returning the results in the form of a new `ForwardDiffNumber`. Thus, we can pass these number types into a general function $f$ (which is assumed to be composed of the overloaded elementary functions), and **the derivative information is naturally propogated** at each step of the calculation by way of the chain rule.
+Elementary numerical functions on these types are then overloaded to evaluate both **the original function and its derivative(s)**, returning the results in the form of a new `ForwardDiffNumber`. Thus, we can pass these number types into a general function $f$ (which is assumed to be composed of the overloaded elementary functions), and **the derivative information is naturally propagated** at each step of the calculation by way of the chain rule.
 
-This propogation occurs all the way through to the result of the function, which is itself a `ForwardDiffNumber` (or an `Array{F<:ForwardDiffNumber}`). This final result contains the value $f(x)$ and the derivative $f'(x)$, where $x$ was the original point of evalutation.
+This propagation occurs all the way through to the result of the function, which is itself a `ForwardDiffNumber` (or an `Array{F<:ForwardDiffNumber}`). This final result contains the value $f(x)$ and the derivative $f'(x)$, where $x$ was the original point of evaluation.
 
 ### Simple Forward Mode AD in Julia: Dual Numbers
 
@@ -116,7 +116,7 @@ function Base.(:*)(a::DualNumber, b::DualNumber)
     new_value = val_a * val_b
     new_deriv = val_b * deriv(a) + val_a * deriv(b)
     return DualNumber(new_value, new_deriv)
-end 
+end
 ```
 
 We can now evaluate the derivative of **any scalar function composed of the above elementary functions**. To do so, we simply pass an instance of our `DualNumber` type into the function, and extract the derivative from the result. For example:
@@ -192,7 +192,7 @@ The benchmarks were performed with input vectors of length 16, 1600, and 16000, 
 
 #### Function evaluation time
 
-The below table compares the evaluation times of `ackley(x)` in both Python and Julia: 
+The below table compares the evaluation times of `ackley(x)` in both Python and Julia:
 
 | length(x) | Python time (s) | Julia time (s) | Speed-Up vs. Python  |
 |-----------|-----------------|----------------|----------------------|
@@ -202,7 +202,7 @@ The below table compares the evaluation times of `ackley(x)` in both Python and 
 
 #### Gradient evaluation time
 
-The below table compares the evaluation times of `∇ackley(x)` using various libraries (the `chunk_size` column denotes a configuration option passed to the `ForwardDiff.gradient` method, see the [chunk-mode docs](http://www.juliadiff.org/ForwardDiff.jl/chunk_vec_modes.html) for details.): 
+The below table compares the evaluation times of `∇ackley(x)` using various libraries (the `chunk_size` column denotes a configuration option passed to the `ForwardDiff.gradient` method, see the [chunk-mode docs](http://www.juliadiff.org/ForwardDiff.jl/chunk_vec_modes.html) for details.):
 
 | length(x) | AlgoPy time (s) | Calculus.jl time (s) | ForwardDiff time (s) | `chunk_size` |
 |-----------|-----------------|----------------------|----------------------|--------------|
