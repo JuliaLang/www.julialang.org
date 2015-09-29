@@ -12,7 +12,7 @@ By the end of this post, you'll hopefully know a little bit about how ForwardDif
 
 Before we get down to the nitty-gritty details, it might be helpful to see a simple example that illustrates various methods from ForwardDiff.jl's API.
 
-The below is a somewhat contrived example, but works well enough as an introduction to the package. First, we define a target function we'd like to differentiate, then use ForwardDiff.jl to calculate some derivatives of the function at a given input:
+The snippet below is a somewhat contrived example, but works well enough as an introduction to the package. First, we define a target function we'd like to differentiate, then use ForwardDiff.jl to calculate some derivatives of the function at a given input:
 
 ```julia
 julia> using ForwardDiff
