@@ -40,9 +40,8 @@ and tweaked to add functionality I needed. It's quite safe to say that I've spen
 Julia during JSoC!
 
 Switching over to using web components suddenly opened up 2 major avenues. Compose3D could now work with Escher and
-also provided interactivity. Shashi demoed this during his talk at The Fifth Elephant with a Sierpinski pyramid
-whose number of levels of recursion could be changed using a slider. ThreeJS outputs [Patchwork](https://github.com/shashi/Patchwork.jl)
-elements, which let's it use Patchwork's clever diffing capabilities, thereby updating only the required DOM elements and
+also provided interactivity. ThreeJS outputs [Patchwork](https://github.com/shashi/Patchwork.jl)
+elements, which lets it use Patchwork's clever diffing capabilities, thereby updating only the required DOM elements and
 helping performance.
 
 On the other hand, web components introduced issues with IJulia notebooks regarding serving the files required by
@@ -175,7 +174,27 @@ and animations!
 
 For example, the same Sierpinski example can be have some interactive elements, say a slider defining the
 number of levels of recursion and maybe some controlling the colors of the pyramid. This can be done easily
-in Escher just like it was done with ThreeJS!
+in Escher just like it was done with ThreeJS. After defining the `sierpinski` function given below, just creating a slider
+and hooking it up to the `sierpinski` function will set this up!
+
+    function main(window)
+        push!(window.assets, ("ThreeJS", "threejs")) #Push the threejs static assets
+        push!(window.assets, "widgets")
+        n = Input(0.0)
+
+        vbox(
+            slider(0.0:3.0) >>> n, #Set up the slider
+            lift(n) do i
+                #Draw the composed figure!
+                draw(
+                    Patchable3D(100,100),
+                    compose(
+                        Context(-5mm,-5mm,-5mm,10mm,10mm,10mm), sierpinski(i)
+                    )
+                )
+            end
+        )
+    end
 
 ![Interactive Sierpinski](https://gist.github.com/rohitvarkey/1d65925850198bc284f5/raw/78fefb17032a0bd9861e8497133cb6ce3876a4d4/interactive_sierpinski.gif)
 
