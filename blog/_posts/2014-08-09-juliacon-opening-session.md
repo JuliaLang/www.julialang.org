@@ -16,9 +16,11 @@ Tim Holy is a Professor in the Department of Anatomy and Neurobiology at Washing
 - **GitHub:** <https://github.com/timholy>
 
 <br/>
-<iframe width="560" height="315" src="//www.youtube.com/embed/FA-1B_amwt8?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe>
+
+<div style="text-align: center"><iframe width="560" height="315" src="//www.youtube.com/embed/FA-1B_amwt8?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
 
 <br/>
+
 ### Pontus Stenetorp — Natural Language Processing with Julia
 
 Pontus Stenetorp is a Japan Society for the Promotion of Science Postdoctoral Research Fellow at the University of Tokyo working in the areas of machine learning and natural language processing (NLP). In this talk, Pontus describes his recent experience in learning Julia and how Julia and its community have helped in his implementing a transition-based dependency parser in Julia.
@@ -28,9 +30,11 @@ Pontus Stenetorp is a Japan Society for the Promotion of Science Postdoctoral Re
 - **GitHub:** <https://github.com/ninjin>
 
 <br/>
-<iframe width="560" height="315" src="//www.youtube.com/embed/OrFxjE44COc?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe>
+
+<div style="text-align: center"><iframe width="560" height="315" src="//www.youtube.com/embed/OrFxjE44COc?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
 
 <br/>
+
 ### Speed vs. Correctness (led by Arch Robison)
 
 Arch Robison is a Senior Principal Engineer at Intel and is an expert in parallel programming, being the original designer of the widely used Intel Threading Building Blocks library. In this session, Arch discusses the tradeoffs between instruction-level correctness and its implications for compiler optimizations.
@@ -39,4 +43,5 @@ Arch Robison is a Senior Principal Engineer at Intel and is an expert in paralle
 - **GitHub:** <https://github.com/ArchRobison>
 
 <br/>
-<iframe width="560" height="315" src="//www.youtube.com/embed/GFTCQNYddhs?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe>
+
+<div style="text-align: center"><iframe width="560" height="315" src="//www.youtube.com/embed/GFTCQNYddhs?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
