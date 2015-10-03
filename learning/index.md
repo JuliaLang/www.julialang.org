@@ -10,9 +10,9 @@ title:  Learning Julia
     This book contains a Julia tutorial chapter (written by Jack Moffitt and Bruce Tate) for programmers new to Julia, which is very good, with nice examples and exercises.
 
 
-# Upcoming
+## Upcoming
 
-- [Learn Julia](http://www.manning.com/voncsefalvay/) by [Chris von Csefalvay](http://www.chrisvoncsefalvay.com) - published by Manning (approx. 375 pages, in [Early Access](http://www.manning.com/about/meap.html), ISBN: 9781617292835). The companion Github repo to the book is available [here](https://github.com/chrisvoncsefalvay/juliabook). 
+- [Learn Julia](http://www.manning.com/voncsefalvay/) by [Chris von Csefalvay](http://www.chrisvoncsefalvay.com) - published by Manning (approx. 375 pages, in [Early Access](http://www.manning.com/about/meap.html), ISBN: 9781617292835). The companion Github repo to the book is available [here](https://github.com/chrisvoncsefalvay/juliabook).
 
 
 # Tutorials
@@ -25,7 +25,7 @@ title:  Learning Julia
 - [Learn Julia the Hard Way](https://github.com/chrisvoncsefalvay/learn-julia-the-hard-way) by [Chris von Csefalvay](http://chrisvoncsefalvay.com/)
 - [Hands-on Julia](https://github.com/dpsanders/hands_on_julia) by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/)
 
-# Cheat sheets
+# Resources
 
 - [A Julia cheat sheet](http://math.mit.edu/~stevenj/Julia-cheatsheet.pdf) by [Steve Johnson](http://math.mit.edu/~stevenj/)
 - [Julia.jl - Curated list of Julia resources and packages](https://github.com/svaksha/Julia.jl#index) by [Svaksha](http://svaksha.com/pages/Bio)
@@ -42,7 +42,7 @@ title:  Learning Julia
 
 - [Invitation to Julia](https://www.youtube.com/watch?v=gQ1y5NUD_RI) by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/) at JuliaCon 2015. Supporting material [here](https://github.com/dpsanders/invitation_to_julia).
 
-# Videos: Various special topics
+# Videos: Special topics
 
 - [JuliaCon 2015 videos](https://www.youtube.com/playlist?list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM). 61 videos on a wide range of subjects, from the future of the core language to using parallel programming and air traffic control.
 
@@ -64,7 +64,7 @@ title:  Learning Julia
 
 <iframe width="400" height="225" src="https://www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ" frameborder="0" allowfullscreen></iframe>
 
-# Topical material
+# Articles and blog posts
 
 - [Vectorization in Julia](https://software.intel.com/en-us/articles/vectorization-in-julia) by [Arch Robison](https://github.com/ArchRobison)
 - [Graydon Hoare](http://graydon2.dreamwidth.org/) on Julia: [part 1](http://graydon2.dreamwidth.org/3186.html), [part 2](http://graydon2.dreamwidth.org/189377.html)
