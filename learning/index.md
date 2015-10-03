@@ -4,13 +4,15 @@ title:  Learning Julia
 ---
 # Books
 
-- [Getting Started with Julia Programming](https://www.packtpub.com/application-development/getting-started-julia-programming/) by [Ivo Balbaert] - published by Packt Publishing (214 pages, Published: 2015-02-28, ISBN: 9781783284795)
-- [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks) by [Bruce Tate, Fred Daoud, Jack Moffit and Ian Dees] - published by The Pragmatic Programmers (350 pages, Published: 2014-11-15, ISBN: 978-1-94122-215-7)
-    This book contains a Julia tutorial Chapter (written by Jack Moffitt and Bruce Tate) for programmers new to Julia, which is very good, with nice examples and exercises.
+- [Mastering Julia](https://www.packtpub.com/application-development/mastering-julia) by Malcolm Sherrington - published by Packt Publishing (410 pages; published: 2015-07; ISBN: 9781783553310)
+- [Getting Started with Julia Programming](https://www.packtpub.com/application-development/getting-started-julia-programming/) by Ivo Balbaert - published by Packt Publishing (214 pages; published: 2015-02-28; ISBN: 9781783284795)
+- [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks) by Bruce Tate, Fred Daoud, Jack Moffit and Ian Dees - published by The Pragmatic Programmers (350 pages; published: 2014-11-15; ISBN: 978-1-94122-215-7)
+    This book contains a Julia tutorial chapter (written by Jack Moffitt and Bruce Tate) for programmers new to Julia, which is very good, with nice examples and exercises.
 
-# Upcoming
 
-- [Learn Julia](http://www.manning.com/voncsefalvay/) by [Chris von Csefalvay](http://www.chrisvoncsefalvay.com) - published by Manning (approx. 375 pages, in [Early Access](http://www.manning.com/about/meap.html), ISBN: 9781617292835). The companion Github repo to the book is available [here](https://github.com/chrisvoncsefalvay/juliabook). 
+## Upcoming
+
+- [Learn Julia](http://www.manning.com/voncsefalvay/) by [Chris von Csefalvay](http://www.chrisvoncsefalvay.com) - published by Manning (approx. 375 pages, in [Early Access](http://www.manning.com/about/meap.html), ISBN: 9781617292835). The companion Github repo to the book is available [here](https://github.com/chrisvoncsefalvay/juliabook).
 
 
 # Tutorials
@@ -21,8 +23,9 @@ title:  Learning Julia
 - [Julia by Example](http://www.scolvin.com/juliabyexample/) by [Samuel Colvin](http://www.scolvin.com/)
 - [Learn Julia in Y minutes](http://learnxinyminutes.com/docs/julia/) by [Leah Hanson](http://blog.leahhanson.us/)
 - [Learn Julia the Hard Way](https://github.com/chrisvoncsefalvay/learn-julia-the-hard-way) by [Chris von Csefalvay](http://chrisvoncsefalvay.com/)
+- [Hands-on Julia](https://github.com/dpsanders/hands_on_julia) by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/)
 
-# Cheat sheets
+# Resources
 
 - [A Julia cheat sheet](http://math.mit.edu/~stevenj/Julia-cheatsheet.pdf) by [Steve Johnson](http://math.mit.edu/~stevenj/)
 - [Julia.jl - Curated list of Julia resources and packages](https://github.com/svaksha/Julia.jl#index) by [Svaksha](http://svaksha.com/pages/Bio)
@@ -37,7 +40,11 @@ title:  Learning Julia
 
 <iframe width="400" height="225" src="https://www.youtube.com/embed/jhlVHoeB05A?list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi" frameborder="0" allowfullscreen></iframe>
 
-# Videos: Various special topics
+- [Invitation to Julia](https://www.youtube.com/watch?v=gQ1y5NUD_RI) by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/) at JuliaCon 2015. Supporting material [here](https://github.com/dpsanders/invitation_to_julia).
+
+# Videos: Special topics
+
+- [JuliaCon 2015 videos](https://www.youtube.com/playlist?list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM). 61 videos on a wide range of subjects, from the future of the core language to using parallel programming and air traffic control.
 
 - [Free probability, random matrices and disorder in organic semiconductors](https://www.youtube.com/watch?v=68yy33jOkOs) by Jiahao Chen with the related [slides](http://www.slideshare.net/acidflask/free-probability-random-matrices-and-disorder-in-organic-semiconductors) and [IJulia notebook](http://nbviewer.ipython.org/github/jiahao/ijulia-notebooks-assorted/blob/master/RMT%20history.ipynb).
 
@@ -57,7 +64,7 @@ title:  Learning Julia
 
 <iframe width="400" height="225" src="https://www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ" frameborder="0" allowfullscreen></iframe>
 
-# Topical material
+# Articles and blog posts
 
 - [Vectorization in Julia](https://software.intel.com/en-us/articles/vectorization-in-julia) by [Arch Robison](https://github.com/ArchRobison)
 - [Graydon Hoare](http://graydon2.dreamwidth.org/) on Julia: [part 1](http://graydon2.dreamwidth.org/3186.html), [part 2](http://graydon2.dreamwidth.org/189377.html)
