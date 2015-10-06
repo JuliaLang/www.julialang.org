@@ -28,7 +28,7 @@ is implemented in many bioinformatics tools, most notably
 [BWA](http://bio-bwa.sourceforge.net/), whose papers are cited thousands of
 times.
 
-![Mapping](https://dl.dropboxusercontent.com/u/25281592/mapping.png)
+![Mapping](/images/blog/2015-10-03-sequence-analysis/mapping.png)
 
 The main focus of my project was creating a full-text search index in Julia
 that is easy to use and efficient in practical applications.  In the course
@@ -199,7 +199,7 @@ four bit chunks corresponding to small blocks:
         chunks::NTuple{4,UInt64}
     end
 
-![Block](https://dl.dropboxusercontent.com/u/25281592/sucvector.png)
+![Block](/images/blog/2015-10-03-sequence-analysis/sucvector.png)
 
 
 Since the bit count of the first small block is always zero, we can exploit
