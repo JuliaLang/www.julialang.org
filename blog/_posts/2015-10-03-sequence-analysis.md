@@ -1,4 +1,8 @@
-# JSoC 2015: Efficient data structures and algorithms for sequence analysis in BioJulia
+---
+layout: post
+title:  Efficient data structures and algorithms for sequence analysis in BioJulia
+author: Kenta Sato
+---
 
 * Participant: Kenta Sato ([@bicycle1885](https://github.com/bicycle1885))
 * Mentor: Daniel C. Jones ([@dcjones](https://github.com/dcjones))
@@ -47,70 +51,64 @@ This type is a subtype of the `AbstractArray{T,n}` and will behave like a famili
 
 Here is an example:
 
-```julia
-julia> IntArray{2,UInt8}(2, 3)
-2x3 IntArrays.IntArray{2,UInt8,2}:
- 0x00  0x00  0x01
- 0x00  0x00  0x03
+    julia> IntArray{2,UInt8}(2, 3)
+    2x3 IntArrays.IntArray{2,UInt8,2}:
+     0x00  0x00  0x01
+     0x00  0x00  0x03
 
-julia> array = IntVector{2,UInt8}(6)
-6-element IntArrays.IntArray{2,UInt8,1}:
- 0x00
- 0x00
- 0x03
- 0x03
- 0x02
- 0x00
+    julia> array = IntVector{2,UInt8}(6)
+    6-element IntArrays.IntArray{2,UInt8,1}:
+     0x00
+     0x00
+     0x03
+     0x03
+     0x02
+     0x00
 
-julia> array[1] = 0x02
-0x02
+    julia> array[1] = 0x02
+    0x02
 
-julia> array
-6-element IntArrays.IntArray{2,UInt8,1}:
- 0x02
- 0x00
- 0x03
- 0x03
- 0x02
- 0x00
+    julia> array
+    6-element IntArrays.IntArray{2,UInt8,1}:
+     0x02
+     0x00
+     0x03
+     0x03
+     0x02
+     0x00
 
-julia> sort!(array)
-6-element IntArrays.IntArray{2,UInt8,1}:
- 0x00
- 0x00
- 0x02
- 0x02
- 0x03
- 0x03
+    julia> sort!(array)
+    6-element IntArrays.IntArray{2,UInt8,1}:
+     0x00
+     0x00
+     0x02
+     0x02
+     0x03
+     0x03
 
-```
 
 And the size is smaller:
 
-```julia
-julia> sizeof(IntVector{2,UInt8}(1_000_000))
-250000
+    julia> sizeof(IntVector{2,UInt8}(1_000_000))
+    250000
 
-julia> sizeof(Vector{UInt8}(1_000_000))
-1000000
+    julia> sizeof(Vector{UInt8}(1_000_000))
+    1000000
 
-```
 
 Since packing and unpacking integers in a buffer require additional operations, there are overheads in operations and `IntArray` is slower than `Array`.
 I try to keep this discrepancy as small as possible, but the `IntArray` is about 4-5 times slower when sorting it:
 
-```julia
-julia> array = rand(0x00:0x03, 2^24);
+    julia> array = rand(0x00:0x03, 2^24);
 
-julia> sort(array); @time sort(array);
-  0.488779 seconds (8 allocations: 16.000 MB)
+    julia> sort(array); @time sort(array);
+      0.488779 seconds (8 allocations: 16.000 MB)
 
-julia> iarray = IntVector{2}(array);
+    julia> iarray = IntVector{2}(array);
 
-julia> sort(iarray); @time sort(iarray);
-  2.290878 seconds (18 allocations: 4.001 MB)
+    julia> sort(iarray); @time sort(iarray);
+      2.290878 seconds (18 allocations: 4.001 MB)
 
-```
 
 If you have a great idea to improve the performance, please let me know!
 
@@ -129,34 +127,32 @@ In `SucVector`, the extra space is about 1/4 bits per bit, so it will be ~25% la
 
 The most important query operation over these data structures would be the `rank1(bv, i)` query, which counts the number of 1 bits within `bv[1:i]`. Owing to the cached bit counts, we can finish the rank operation in constant time:
 
-```julia
-julia> using IndexableBitVectors
+    julia> using IndexableBitVectors
 
-julia> bv = bitrand(2^30);
+    julia> bv = bitrand(2^30);
 
-julia> function myrank1(bv, i)
-           r = 0
-           for j in 1:i
-               r += bv[j]
+    julia> function myrank1(bv, i)
+               r = 0
+               for j in 1:i
+                   r += bv[j]
+               end
+               return r
            end
-           return r
-       end
-myrank1 (generic function with 1 method)
+    myrank1 (generic function with 1 method)
 
-julia> myrank1(bv, 2^29); @time myrank1(bv, 2^29);
-  0.714866 seconds (6 allocations: 192 bytes)
+    julia> myrank1(bv, 2^29); @time myrank1(bv, 2^29);
+      0.714866 seconds (6 allocations: 192 bytes)
 
-julia> sbv = SucVector(bv);
+    julia> sbv = SucVector(bv);
 
-julia> rank1(sbv, 2^29); @time rank1(sbv, 2^29);
-  0.000003 seconds (6 allocations: 192 bytes)
+    julia> rank1(sbv, 2^29); @time rank1(sbv, 2^29);
+      0.000003 seconds (6 allocations: 192 bytes)
 
-julia> rrr = RRR(bv);
+    julia> rrr = RRR(bv);
 
-julia> rank1(rrr, 2^29); @time rank1(rrr, 2^29);
-  0.000004 seconds (6 allocations: 192 bytes)
+    julia> rank1(rrr, 2^29); @time rank1(rrr, 2^29);
+      0.000004 seconds (6 allocations: 192 bytes)
 
-```
 
 The `select1(bv, j)` query is also useful in many cases, which locates the `j`-th 1 bit in the bit vector `bv`.
 For example, if a set of positive integers is represented in this bit vector, you can efficiently query the `j`-th smallest member in the set.
@@ -164,12 +160,11 @@ For example, if a set of positive integers is represented in this bit vector, yo
 Let's see the internal representation of `SucVector` to understand the magic.
 A bit vector is separated into large blocks:
 
-```julia
-type SucVector <: AbstractIndexableBitVector
-    blocks::Vector{Block}
-    len::Int
-end
-```
+    type SucVector <: AbstractIndexableBitVector
+        blocks::Vector{Block}
+        len::Int
+    end
+
 
 Each large block contains 256 bits and consists of four small blocks which contain 64 bits respectively, a large block stores *global* 1s' count up to the starting position of it
 and a small block stores *local* 1s' count staring from the beginning position of the parent large block.
@@ -177,18 +172,18 @@ Bits itself are stored in four bit chunks corresponding to small blocks:
 
 ![Block](https://dl.dropboxusercontent.com/u/25281592/sucvector.png)
 
-```julia
-immutable Block
-    # large block
-    large::UInt32
-    # small blocks
-    #   the first small block is used for 8-bit extension of the large block
-    #   hence, 40 (= 32 + 8) bits are available in total
-    smalls::NTuple{4,UInt8}
-    # bit chunks (64bits × 4 = 256bits)
-    chunks::NTuple{4,UInt64}
-end
-```
+
+    immutable Block
+        # large block
+        large::UInt32
+        # small blocks
+        #   the first small block is used for 8-bit extension of the large block
+        #   hence, 40 (= 32 + 8) bits are available in total
+        smalls::NTuple{4,UInt8}
+        # bit chunks (64bits × 4 = 256bits)
+        chunks::NTuple{4,UInt64}
+    end
+
 
 Since the bit count of the first small block is always zero, we can exploit this space to extend the cache of the large block.
 When running the `rank1(bv, i)` query, it first picks a large and small block pair that the `i`-th bit belongs to and then adds their cached bit counts, finally counts remaining 1 bits in a chunk on the fly.
@@ -207,36 +202,34 @@ According to the authors of the paper, the wavelet matrix is "simpler to build, 
 The `WaveletMatrix` type takes three type parameters: `w`, `T`, and `B`.
 `w` and `T` are analogous to those of `IntArray{w,T,n}`, and `B` is a type of indexable bit vector.
 
-```julia
-julia> using WaveletMatrices
+    julia> using WaveletMatrices
 
-julia> wm = WaveletMatrix{2}([0x00, 0x01, 0x02, 0x03])
-4-element WaveletMatrices.WaveletMatrix{2,UInt8,IndexableBitVectors.SucVector}:
- 0x00
- 0x01
- 0x02
- 0x03
+    julia> wm = WaveletMatrix{2}([0x00, 0x01, 0x02, 0x03])
+    4-element WaveletMatrices.WaveletMatrix{2,UInt8,IndexableBitVectors.SucVector}:
+     0x00
+     0x01
+     0x02
+     0x03
 
-julia> wm[3]
-0x02
+    julia> wm[3]
+    0x02
 
-julia> rank(0x02, wm, 2)
-0
+    julia> rank(0x02, wm, 2)
+    0
 
-julia> rank(0x02, wm, 3)
-1
+    julia> rank(0x02, wm, 3)
+    1
 
-julia> xs = rand(0x00:0x03, 2^16);
+    julia> xs = rand(0x00:0x03, 2^16);
 
-julia> wm = WaveletMatrix{2}(xs);  # 2-bit encoding
+    julia> wm = WaveletMatrix{2}(xs);  # 2-bit encoding
 
-julia> sum(xs[1:2^15] .== 0x03)
-8171
+    julia> sum(xs[1:2^15] .== 0x03)
+    8171
 
-julia> rank(0x03, wm, 2^15)
-8171
+    julia> rank(0x03, wm, 2^15)
+    8171
 
-```
 
 The details of the data structure and algorithms are relatively simple but somewhat difficult to explain in this post.
 For people who are interested in this data structure, the paper I mentioned above and my implementation would be helpful.
@@ -251,21 +244,20 @@ The [FM-Index](https://en.wikipedia.org/wiki/FM-index) is often regarded as the 
 Thanks to the packages I've introduced so far, the code of it looks really simple.
 For example, counting the number of occurrences of a given pattern in a text can be written as follows (simplified for explanatory purpose):
 
-```julia
-function count(query, index::FMIndex)
-    sp, ep = 1, length(index)
-    # backward search
-    i = length(query)
-    while sp ≤ ep && i ≥ 1
-        char = convert(UInt8, query[i])
-        c = index.count[char+1]
-        sp = c + rank(char, index.bwt, sp - 1) + 1
-        ep = c + rank(char, index.bwt, ep)
-        i -= 1
+    function count(query, index::FMIndex)
+        sp, ep = 1, length(index)
+        # backward search
+        i = length(query)
+        while sp ≤ ep && i ≥ 1
+            char = convert(UInt8, query[i])
+            c = index.count[char+1]
+            sp = c + rank(char, index.bwt, sp - 1) + 1
+            ep = c + rank(char, index.bwt, ep)
+            i -= 1
+        end
+        return length(sp:ep)
     end
-    return length(sp:ep)
-end
-```
+
 
 A unique property of FM-Index is that an index itself is just a permutation of characters of the original text and character counts.
 This permutation is called [Burrows-Wheeler transform](https://en.wikipedia.org/wiki/Burrows%E2%80%93Wheeler_transform) (also known as BWT), and the permuted text is stored in a wavelet matrix (or a wavelet tree) to efficiently count the number of characters within a specific region.
@@ -274,122 +266,112 @@ Moreover, this transform is [bijective](https://en.wikipedia.org/wiki/Bijection)
 
 Building an index for full-text search is ridiculously simple: just passing a sequence to a constructor:
 
-```julia
-julia> using FMIndices
+    julia> using FMIndexes
 
-julia> fmindex = FMIndex("abracadabra");
+    julia> fmindex = FMIndex("abracadabra");
 
-```
 
 The `FMIndex` type supports two main queries: `count` and `locate`.
 The `count(query, index)` query literally counts the number of occurrences of the `query` string and the `locate(query, index)` locates starting positions of the `query`.
 In order to restore the original text, you can use the `restore` function.
 Here is a simple usage:
 
-```julia
-julia> count("a", fmindex)
-5
+    julia> count("a", fmindex)
+    5
 
-julia> count("abra", fmindex)
-2
+    julia> count("abra", fmindex)
+    2
 
-julia> locate("a", fmindex) |> collect
-5-element Array{Any,1}:
- 11
-  8
-  1
-  4
-  6
+    julia> locate("a", fmindex) |> collect
+    5-element Array{Any,1}:
+     11
+      8
+      1
+      4
+      6
 
-julia> locate("abra", fmindex) |> collect
-2-element Array{Any,1}:
- 8
- 1
+    julia> locate("abra", fmindex) |> collect
+    2-element Array{Any,1}:
+     8
+     1
 
-julia> bytestring(restore(fmindex))
-"abracadabra"
+    julia> bytestring(restore(fmindex))
+    "abracadabra"
 
-```
 
 As an example, for bioinformaticians, let's try several queries on a chromosome.
 The next script reads a chromosome from a FASTA file, build an FM-Index, and then serialize it into a file for later use (I love serializers of Julia, they are available for free!):
 
 **index.jl**
-```julia
-using Bio.Seq
-using IntArrays
-using FMIndexes
 
-# encode a DNA sequence with 3-bit unsigned integers
-function encode(seq)
-    encoded = IntVector{3,UInt8}(length(seq))
-    for i in 1:endof(seq)
-        encoded[i] = convert(UInt8, seq[i])
+    using Bio.Seq
+    using IntArrays
+    using FMIndexes
+
+    # encode a DNA sequence with 3-bit unsigned integers
+    function encode(seq)
+        encoded = IntVector{3,UInt8}(length(seq))
+        for i in 1:endof(seq)
+            encoded[i] = convert(UInt8, seq[i])
+        end
+        return encoded
     end
-    return encoded
-end
 
-# read a chromosome from a FASTA file
-filepath = ARGS[1]
-record = first(open(filepath, FASTA))
-println(record.name, ": ", length(record.seq), "bp")
-# build an FM-Index
-fmindex = FMIndex(encode(record.seq))
-# save it in a file
-open(string(filepath, ".index"), "w+") do io
-    serialize(io, fmindex)
-end
-```
+    # read a chromosome from a FASTA file
+    filepath = ARGS[1]
+    record = first(open(filepath, FASTA))
+    println(record.name, ": ", length(record.seq), "bp")
+    # build an FM-Index
+    fmindex = FMIndex(encode(record.seq))
+    # save it in a file
+    open(string(filepath, ".index"), "w+") do io
+        serialize(io, fmindex)
+    end
+
 
 OK, then create an index for chromosome 22 of human (you can download it from [here](http://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/)):
 
-```
-$ julia4 index.jl chr22.fa
-chr22: 50818468bp
-$ ls -lh chr22.fa.index
--rw-r--r--+ 1 kenta  staff    74M  9 26 06:30 chr22.fa.index
-```
+    $ julia4 index.jl chr22.fa
+    chr22: 50818468bp
+    $ ls -lh chr22.fa.index
+    -rw-r--r--+ 1 kenta  staff    74M  9 26 06:30 chr22.fa.index
+
 
 After construction finished (this will take several minutes), read the index in REPL:
 
-```julia
-julia> using FMIndexes
+    julia> using FMIndexes
 
-julia> fmindex = open(deserialize, "chr22.fa.index");
+    julia> fmindex = open(deserialize, "chr22.fa.index");
 
-```
 
 Now that you can execute queries to search a DNA fragment:
 
-```julia
-julia> using Bio.Seq
+    julia> using Bio.Seq
 
-julia> count(dna"GACTTTCAC", fmindex)  # this DNA fragment hits at 111 locations
-111
+    julia> count(dna"GACTTTCAC", fmindex)  # this DNA fragment hits at 111 locations
+    111
 
-julia> count(dna"GACTTTCACTTT", fmindex)  # this hits at 3 locations
-3
+    julia> count(dna"GACTTTCACTTT", fmindex)  # this hits at 3 locations
+    3
 
-julia> locate(dna"GACTTTCACTTT", fmindex) |> collect  # the loci of these hits
-3-element Array{Any,1}:
- 36253071
- 47308573
- 34159872
+    julia> locate(dna"GACTTTCACTTT", fmindex) |> collect  # the loci of these hits
+    3-element Array{Any,1}:
+     36253071
+     47308573
+     34159872
 
-julia> count(dna"GACTTTCACTTTCCC", fmindex)  # found a unique hit!
-1
+    julia> count(dna"GACTTTCACTTTCCC", fmindex)  # found a unique hit!
+    1
 
-julia> locate(dna"GACTTTCACTTTCCC", fmindex) |> collect
-1-element Array{Any,1}:
- 36253071
+    julia> locate(dna"GACTTTCACTTTCCC", fmindex) |> collect
+    1-element Array{Any,1}:
+     36253071
 
-julia> @time locate(dna"GACTTTCACTTTCCC", fmindex);  # this can be located in 32 μs!
-  0.000032 seconds (5 allocations: 192 bytes)
+    julia> @time locate(dna"GACTTTCACTTTCCC", fmindex);  # this can be located in 32 μs!
+      0.000032 seconds (5 allocations: 192 bytes)
 
-```
 
 This locus, [chr22:36253071](https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr22%3A36253071-36253120&hgsid=446220019_CeC0woSUOd5ov3GLph7a6fs5Uryo), is the starting position of the *APOL1* gene.
-
 
 ## Applications
 
