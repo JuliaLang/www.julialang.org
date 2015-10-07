@@ -1,369 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="203.2mm" height="101.6mm" viewBox="0 0 203.2 101.6" style="stroke:black;fill:black" stroke-width="0.5">
-<g class="plotroot yscalable">
-  <g clip-path="url(#clippath1)">
-    <g stroke="none" fill="#4C404B" class="guide ylabels" font-family="Georgia" font-size="3.18">
-      <text x="17.84" y="56.17" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">1</tspan></text>
-      <text x="17.84" y="39.93" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">2</tspan></text>
-      <text x="17.84" y="137.4" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-4</tspan></text>
-      <text x="17.84" y="104.91" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-2</tspan></text>
-      <text x="17.84" y="-41.3" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">7</tspan></text>
-      <text x="17.84" y="121.15" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-3</tspan></text>
-      <text x="17.84" y="-57.54" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">8</tspan></text>
-      <text x="17.84" y="72.42" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">0</tspan></text>
-      <text x="17.84" y="88.66" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-1</tspan></text>
-      <text x="17.84" y="-73.79" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">9</tspan></text>
-      <text x="17.84" y="-25.05" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">6</tspan></text>
-      <text x="17.84" y="7.44" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">4</tspan></text>
-      <text x="17.84" y="169.89" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-6</tspan></text>
-      <text x="17.84" y="23.68" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">3</tspan></text>
-      <text x="17.84" y="-90.03" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">10</tspan></text>
-      <text x="17.84" y="-8.81" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">5</tspan></text>
-      <text x="17.84" y="186.13" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-7</tspan></text>
-      <text x="17.84" y="153.64" text-anchor="end" style="dominant-baseline:central">10<tspan style="dominant-baseline:inherit" dy="-1ex">-5</tspan></text>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:gadfly="http://www.gadflyjl.org/ns"
+     version="1.2"
+     width="203.2mm" height="125.58mm" viewBox="0 0 203.2 125.58"
+     stroke="none"
+     fill="#000000"
+     stroke-width="0.3"
+     font-size="3.88"
+>
+<g class="plotroot yscalable" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-1">
+  <g class="guide xlabels" font-size="2.82" font-family="Georgia" fill="#6C606B" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-2">
+    <text x="20.13" y="116.95" text-anchor="middle" dy="0.6em">Fortran</text>
+    <text x="35.1" y="116.95" text-anchor="middle" dy="0.6em">Go</text>
+    <text x="50.08" y="116.95" text-anchor="middle" dy="0.6em">Java</text>
+    <text x="65.05" y="116.95" text-anchor="middle" dy="0.6em">JavaScript</text>
+    <text x="80.03" y="116.95" text-anchor="middle" dy="0.6em">Julia</text>
+    <text x="95" y="116.95" text-anchor="middle" dy="0.6em">Lua</text>
+    <text x="109.98" y="116.95" text-anchor="middle" dy="0.6em">Mathematica</text>
+    <text x="124.95" y="116.95" text-anchor="middle" dy="0.6em">Matlab</text>
+    <text x="139.93" y="116.95" text-anchor="middle" dy="0.6em">Octave</text>
+    <text x="154.9" y="116.95" text-anchor="middle" dy="0.6em">Python</text>
+    <text x="169.88" y="116.95" text-anchor="middle" dy="0.6em">R</text>
+  </g>
+  <g class="guide colorkey" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-3">
+    <g fill="#4C404B" font-size="2.82" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-4">
+      <text x="181.18" y="51.41" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-5" class="color_mandel">mandel</text>
+      <text x="181.18" y="55.04" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-6" class="color_parse_int">parse_int</text>
+      <text x="181.18" y="58.66" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-7" class="color_pi_sum">pi_sum</text>
+      <text x="181.18" y="62.29" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-8" class="color_printfd">printfd</text>
+      <text x="181.18" y="65.92" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-9" class="color_quicksort">quicksort</text>
+      <text x="181.18" y="69.54" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-10" class="color_rand_mat_mul">rand_mat_mul</text>
+      <text x="181.18" y="73.17" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-11" class="color_rand_mat_stat">rand_mat_stat</text>
+    </g>
+    <g stroke="#000000" stroke-opacity="0.000" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-12">
+      <circle cx="179.18" cy="51.41" r="0.91" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-13" class="color_mandel" fill="#00BFFF"/>
+      <circle cx="179.18" cy="55.04" r="0.91" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-14" class="color_parse_int" fill="#D4CA3A"/>
+      <circle cx="179.18" cy="58.66" r="0.91" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-15" class="color_pi_sum" fill="#FF5EA0"/>
+      <circle cx="179.18" cy="62.29" r="0.91" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-16" class="color_printfd" fill="#00E5B2"/>
+      <circle cx="179.18" cy="65.92" r="0.91" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-17" class="color_quicksort" fill="#F6A6FF"/>
+      <circle cx="179.18" cy="69.54" r="0.91" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-18" class="color_rand_mat_mul" fill="#9E9E9E"/>
+      <circle cx="179.18" cy="73.17" r="0.91" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-19" class="color_rand_mat_stat" fill="#FF928B"/>
+    </g>
+    <g fill="#362A35" font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" stroke="#000000" stroke-opacity="0.000" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-20">
+      <text x="178.37" y="47.59" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-21">benchmark</text>
     </g>
   </g>
-  <g clip-path="url(#clippath2)">
-    <g stroke="none" fill="#4C404B" class="guide xlabels" font-family="Georgia" font-size="3.18">
-      <text x="130.81" y="95.6" text-anchor="middle">Matlab</text>
-      <text x="56.17" y="95.6" text-anchor="middle">Go</text>
-      <text x="115.88" y="95.6" text-anchor="middle">R</text>
-      <text x="100.95" y="95.6" text-anchor="middle">Mathematica</text>
-      <text x="86.03" y="95.6" text-anchor="middle">Python</text>
-      <text x="41.24" y="95.6" text-anchor="middle">Fortran</text>
-      <text x="145.74" y="95.6" text-anchor="middle">Octave</text>
-      <text x="71.1" y="95.6" text-anchor="middle">JavaScript</text>
-      <text x="26.31" y="95.6" text-anchor="middle">Julia</text>
+  <g clip-path="url(#fig-9a47c8bdab9c487c9338854dba9f42fc-element-23)" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-22">
+    <g pointer-events="visible" opacity="1" fill="#000000" fill-opacity="0.000" stroke="#000000" stroke-opacity="0.000" class="guide background" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-24">
+      <rect x="12.64" y="5" width="164.73" height="110.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-25"/>
     </g>
-  </g>
-  <g stroke="none" fill="#362A35" font-family="Georgia" font-size="3.88">
-    <text x="159.71" y="33.18">benchmark</text>
-  </g>
-  <g font-family="Georgia" font-size="3.18">
-    <g class="guide color_fib">
-      <g fill="#FF928B" stroke="#FF6765" stroke-width="0.3">
-        <circle cx="157.46" cy="63.94" r="0.88" />
-      </g>
-      <g stroke="none" fill="#4C404B">
-        <text x="159.71" y="63.94" style="dominant-baseline:central">fib</text>
-      </g>
+    <g class="guide ygridlines xfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-26">
+      <path fill="none" d="M12.64,113.95 L 177.37 113.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-27"/>
+      <path fill="none" d="M12.64,92.56 L 177.37 92.56" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-28"/>
+      <path fill="none" d="M12.64,71.17 L 177.37 71.17" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-29"/>
+      <path fill="none" d="M12.64,49.78 L 177.37 49.78" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-30"/>
+      <path fill="none" d="M12.64,28.39 L 177.37 28.39" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-31"/>
+      <path fill="none" d="M12.64,7 L 177.37 7" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-32"/>
     </g>
-    <g class="guide color_mandel">
-      <g fill="#F6A6FF" stroke="#CA7EF6" stroke-width="0.3">
-        <circle cx="157.46" cy="54.94" r="0.88" />
-      </g>
-      <g stroke="none" fill="#4C404B">
-        <text x="159.71" y="54.94" style="dominant-baseline:central">mandel</text>
-      </g>
+    <g class="guide xgridlines yfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-33">
+      <path fill="none" d="M27.62,5 L 27.62 115.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-34"/>
+      <path fill="none" d="M42.59,5 L 42.59 115.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-35"/>
+      <path fill="none" d="M57.57,5 L 57.57 115.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-36"/>
+      <path fill="none" d="M72.54,5 L 72.54 115.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-37"/>
+      <path fill="none" d="M87.52,5 L 87.52 115.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-38"/>
+      <path fill="none" d="M102.49,5 L 102.49 115.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-39"/>
+      <path fill="none" d="M117.47,5 L 117.47 115.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-40"/>
+      <path fill="none" d="M132.44,5 L 132.44 115.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-41"/>
+      <path fill="none" d="M147.42,5 L 147.42 115.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-42"/>
+      <path fill="none" d="M162.39,5 L 162.39 115.95" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-43"/>
     </g>
-    <g class="guide color_pi_sum">
-      <g fill="#FF5EA0" stroke="#DC2C7A" stroke-width="0.3">
-        <circle cx="157.46" cy="45.94" r="0.88" />
-      </g>
-      <g stroke="none" fill="#4C404B">
-        <text x="159.71" y="45.94" style="dominant-baseline:central">pi_sum</text>
-      </g>
-    </g>
-    <g class="guide color_rand_mat_mul">
-      <g fill="#00BFFF" stroke="#0096DD" stroke-width="0.3">
-        <circle cx="157.46" cy="36.94" r="0.88" />
-      </g>
-      <g stroke="none" fill="#4C404B">
-        <text x="159.71" y="36.94" style="dominant-baseline:central">rand_mat_mul</text>
-      </g>
-    </g>
-    <g class="guide color_rand_mat_stat">
-      <g fill="#D4CA3A" stroke="#A8A200" stroke-width="0.3">
-        <circle cx="157.46" cy="41.44" r="0.88" />
-      </g>
-      <g stroke="none" fill="#4C404B">
-        <text x="159.71" y="41.44" style="dominant-baseline:central">rand_mat_stat</text>
-      </g>
-    </g>
-    <g class="guide color_printfd">
-      <g fill="#00E5B2" stroke="#00BA8B" stroke-width="0.3">
-        <circle cx="157.46" cy="50.44" r="0.88" />
-      </g>
-      <g stroke="none" fill="#4C404B">
-        <text x="159.71" y="50.44" style="dominant-baseline:central">printfd</text>
-      </g>
-    </g>
-    <g class="guide color_quicksort">
-      <g fill="#9E9E9E" stroke="#777777" stroke-width="0.3">
-        <circle cx="157.46" cy="59.44" r="0.88" />
-      </g>
-      <g stroke="none" fill="#4C404B">
-        <text x="159.71" y="59.44" style="dominant-baseline:central">quicksort</text>
-      </g>
-    </g>
-    <g class="guide color_parse_int">
-      <g fill="#32B44E" stroke="#008B28" stroke-width="0.3">
-        <circle cx="157.46" cy="68.44" r="0.88" />
-      </g>
-      <g stroke="none" fill="#4C404B">
-        <text x="159.71" y="68.44" style="dominant-baseline:central">parse_int</text>
-      </g>
-    </g>
-  </g>
-  <g>
-    <g clip-path="url(#clippath3)">
-      <g stroke="#F1F1F5" fill="#FAFAFA" class="guide background">
-        <path d="M18.84,5 L 153.21 5 153.21 91.1 18.84 91.1 z" />
-      </g>
-      <g stroke="#F0F0F3" class="guide ygridlines xfixed" stroke-width="0.2">
-        <path d="M18.84,56.17 L 153.21 56.17" />
-        <path d="M18.84,39.93 L 153.21 39.93" />
-        <path d="M18.84,137.4 L 153.21 137.4" />
-        <path d="M18.84,104.91 L 153.21 104.91" />
-        <path d="M18.84,-41.3 L 153.21 -41.3" />
-        <path d="M18.84,121.15 L 153.21 121.15" />
-        <path d="M18.84,-57.54 L 153.21 -57.54" />
-        <path d="M18.84,72.42 L 153.21 72.42" />
-        <path d="M18.84,88.66 L 153.21 88.66" />
-        <path d="M18.84,-73.79 L 153.21 -73.79" />
-        <path d="M18.84,-25.05 L 153.21 -25.05" />
-        <path d="M18.84,7.44 L 153.21 7.44" />
-        <path d="M18.84,169.89 L 153.21 169.89" />
-        <path d="M18.84,23.68 L 153.21 23.68" />
-        <path d="M18.84,-90.03 L 153.21 -90.03" />
-        <path d="M18.84,-8.81 L 153.21 -8.81" />
-        <path d="M18.84,186.13 L 153.21 186.13" />
-        <path d="M18.84,153.64 L 153.21 153.64" />
-      </g>
-      <g stroke="#F0F0F3" class="guide xgridlines yfixed" stroke-width="0.2">
-        <path d="M63.63,5 L 63.63 91.1" />
-        <path d="M123.35,5 L 123.35 91.1" />
-        <path d="M108.42,5 L 108.42 91.1" />
-        <path d="M48.7,5 L 48.7 91.1" />
-        <path d="M93.49,5 L 93.49 91.1" />
-        <path d="M138.28,5 L 138.28 91.1" />
-        <path d="M33.77,5 L 33.77 91.1" />
-        <path d="M78.56,5 L 78.56 91.1" />
-      </g>
-    </g>
-    <g clip-path="url(#clippath4)">
-      <g class="plotpanel">
-        <g stroke-width="0.3">
-          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
-            <circle cx="41.24" cy="81.97" r="1" />
-          </g>
-          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
-            <circle cx="56.17" cy="72.19" r="1" />
-          </g>
-          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
-            <circle cx="71.1" cy="66.93" r="1" />
-          </g>
-          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
-            <circle cx="26.31" cy="73.11" r="1" />
-          </g>
-          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
-            <circle cx="100.95" cy="43.02" r="1" />
-          </g>
-          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
-            <circle cx="130.81" cy="18.82" r="1" />
-          </g>
-          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
-            <circle cx="145.74" cy="15.45" r="1" />
-          </g>
-          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
-            <circle cx="86.03" cy="48.33" r="1" />
-          </g>
-          <g stroke="#FF6765" fill="#FF928B" class="geometry color_fib" stroke-width="0.3">
-            <circle cx="115.88" cy="29.95" r="1" />
-          </g>
-          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
-            <circle cx="41.24" cy="73.52" r="1" />
-          </g>
-          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
-            <circle cx="56.17" cy="66.36" r="1" />
-          </g>
-          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
-            <circle cx="71.1" cy="63.61" r="1" />
-          </g>
-          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
-            <circle cx="26.31" cy="73.6" r="1" />
-          </g>
-          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
-            <circle cx="100.95" cy="59.69" r="1" />
-          </g>
-          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
-            <circle cx="130.81" cy="43.01" r="1" />
-          </g>
-          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
-            <circle cx="145.74" cy="31.79" r="1" />
-          </g>
-          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
-            <circle cx="86.03" cy="53.7" r="1" />
-          </g>
-          <g stroke="#CA7EF6" fill="#F6A6FF" class="geometry color_mandel" stroke-width="0.3">
-            <circle cx="115.88" cy="39.45" r="1" />
-          </g>
-          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
-            <circle cx="41.24" cy="61.03" r="1" />
-          </g>
-          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
-            <circle cx="56.17" cy="61.36" r="1" />
-          </g>
-          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
-            <circle cx="71.1" cy="66.16" r="1" />
-          </g>
-          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
-            <circle cx="26.31" cy="69.1" r="1" />
-          </g>
-          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
-            <circle cx="100.95" cy="48.53" r="1" />
-          </g>
-          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
-            <circle cx="130.81" cy="21" r="1" />
-          </g>
-          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
-            <circle cx="145.74" cy="9.84" r="1" />
-          </g>
-          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
-            <circle cx="86.03" cy="53.82" r="1" />
-          </g>
-          <g stroke="#008B28" fill="#32B44E" class="geometry color_parse_int" stroke-width="0.3">
-            <circle cx="115.88" cy="43.6" r="1" />
-          </g>
-          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
-            <circle cx="41.24" cy="73.99" r="1" />
-          </g>
-          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
-            <circle cx="56.17" cy="70" r="1" />
-          </g>
-          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
-            <circle cx="71.1" cy="73.66" r="1" />
-          </g>
-          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
-            <circle cx="26.31" cy="72.42" r="1" />
-          </g>
-          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
-            <circle cx="100.95" cy="70.46" r="1" />
-          </g>
-          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
-            <circle cx="130.81" cy="70.64" r="1" />
-          </g>
-          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
-            <circle cx="145.74" cy="33.83" r="1" />
-          </g>
-          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
-            <circle cx="86.03" cy="52.71" r="1" />
-          </g>
-          <g stroke="#DC2C7A" fill="#FF5EA0" class="geometry color_pi_sum" stroke-width="0.3">
-            <circle cx="115.88" cy="53.12" r="1" />
-          </g>
-          <g stroke="#00BA8B" fill="#00E5B2" class="geometry color_printfd" stroke-width="0.3">
-            <circle cx="26.31" cy="67.77" r="1" />
-          </g>
-          <g stroke="#00BA8B" fill="#00E5B2" class="geometry color_printfd" stroke-width="0.3">
-            <circle cx="130.81" cy="41.84" r="1" />
-          </g>
-          <g stroke="#00BA8B" fill="#00E5B2" class="geometry color_printfd" stroke-width="0.3">
-            <circle cx="145.74" cy="42.54" r="1" />
-          </g>
-          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
-            <circle cx="41.24" cy="71.67" r="1" />
-          </g>
-          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
-            <circle cx="56.17" cy="70.85" r="1" />
-          </g>
-          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
-            <circle cx="71.1" cy="63.55" r="1" />
-          </g>
-          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
-            <circle cx="26.31" cy="71.47" r="1" />
-          </g>
-          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
-            <circle cx="100.95" cy="47.19" r="1" />
-          </g>
-          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
-            <circle cx="130.81" cy="39.8" r="1" />
-          </g>
-          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
-            <circle cx="145.74" cy="22.81" r="1" />
-          </g>
-          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
-            <circle cx="86.03" cy="47.97" r="1" />
-          </g>
-          <g stroke="#777777" fill="#9E9E9E" class="geometry color_quicksort" stroke-width="0.3">
-            <circle cx="115.88" cy="28.24" r="1" />
-          </g>
-          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
-            <circle cx="41.24" cy="72.72" r="1" />
-          </g>
-          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
-            <circle cx="56.17" cy="57.31" r="1" />
-          </g>
-          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
-            <circle cx="71.1" cy="53.5" r="1" />
-          </g>
-          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
-            <circle cx="26.31" cy="72.35" r="1" />
-          </g>
-          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
-            <circle cx="100.95" cy="71.35" r="1" />
-          </g>
-          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
-            <circle cx="130.81" cy="71.76" r="1" />
-          </g>
-          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
-            <circle cx="145.74" cy="63.77" r="1" />
-          </g>
-          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
-            <circle cx="86.03" cy="63.77" r="1" />
-          </g>
-          <g stroke="#0096DD" fill="#00BFFF" class="geometry color_rand_mat_mul" stroke-width="0.3">
-            <circle cx="115.88" cy="62.67" r="1" />
-          </g>
-          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
-            <circle cx="41.24" cy="75.52" r="1" />
-          </g>
-          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
-            <circle cx="56.17" cy="57.64" r="1" />
-          </g>
-          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
-            <circle cx="71.1" cy="64.04" r="1" />
-          </g>
-          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
-            <circle cx="26.31" cy="68.86" r="1" />
-          </g>
-          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
-            <circle cx="100.95" cy="61.77" r="1" />
-          </g>
-          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
-            <circle cx="130.81" cy="59.09" r="1" />
-          </g>
-          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
-            <circle cx="145.74" cy="53.32" r="1" />
-          </g>
-          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
-            <circle cx="86.03" cy="54.04" r="1" />
-          </g>
-          <g stroke="#A8A200" fill="#D4CA3A" class="geometry color_rand_mat_stat" stroke-width="0.3">
-            <circle cx="115.88" cy="55.6" r="1" />
-          </g>
+    <g class="plotpanel" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-44">
+      <g class="geometry" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-45">
+        <g stroke-width="0.3" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-46">
+          <circle cx="20.13" cy="93.82" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-47" class="color_mandel" fill="#00BFFF" stroke="#FFFFFF"/>
+          <circle cx="35.1" cy="91.09" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-48" class="color_mandel" fill="#00BFFF" stroke="#FFFFFF"/>
+          <circle cx="50.08" cy="96.11" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-49" class="color_mandel" fill="#00BFFF" stroke="#FFFFFF"/>
+          <circle cx="65.05" cy="86.82" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-50" class="color_mandel" fill="#00BFFF" stroke="#FFFFFF"/>
+          <circle cx="80.03" cy="93.86" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-51" class="color_mandel" fill="#00BFFF" stroke="#FFFFFF"/>
+          <circle cx="95" cy="95.81" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-52" class="color_mandel" fill="#00BFFF" stroke="#FFFFFF"/>
+          <circle cx="109.98" cy="75.74" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-53" class="color_mandel" fill="#00BFFF" stroke="#FFFFFF"/>
+          <circle cx="124.95" cy="54.51" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-54" class="color_mandel" fill="#00BFFF" stroke="#FFFFFF"/>
+          <circle cx="139.93" cy="37.04" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-55" class="color_mandel" fill="#00BFFF" stroke="#FFFFFF"/>
+          <circle cx="154.9" cy="65.29" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-56" class="color_mandel" fill="#00BFFF" stroke="#FFFFFF"/>
+          <circle cx="169.88" cy="54.69" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-57" class="color_mandel" fill="#00BFFF" stroke="#FFFFFF"/>
+          <circle cx="20.13" cy="78.24" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-58" class="color_parse_int" fill="#D4CA3A" stroke="#FFFFFF"/>
+          <circle cx="35.1" cy="80.22" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-59" class="color_parse_int" fill="#D4CA3A" stroke="#FFFFFF"/>
+          <circle cx="50.08" cy="76.85" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-60" class="color_parse_int" fill="#D4CA3A" stroke="#FFFFFF"/>
+          <circle cx="65.05" cy="84.87" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-61" class="color_parse_int" fill="#D4CA3A" stroke="#FFFFFF"/>
+          <circle cx="80.03" cy="88.38" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-62" class="color_parse_int" fill="#D4CA3A" stroke="#FFFFFF"/>
+          <circle cx="95" cy="75.78" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-63" class="color_parse_int" fill="#D4CA3A" stroke="#FFFFFF"/>
+          <circle cx="109.98" cy="65.87" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-64" class="color_parse_int" fill="#D4CA3A" stroke="#FFFFFF"/>
+          <circle cx="124.95" cy="24.46" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-65" class="color_parse_int" fill="#D4CA3A" stroke="#FFFFFF"/>
+          <circle cx="139.93" cy="9.59" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-66" class="color_parse_int" fill="#D4CA3A" stroke="#FFFFFF"/>
+          <circle cx="154.9" cy="64.51" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-67" class="color_parse_int" fill="#D4CA3A" stroke="#FFFFFF"/>
+          <circle cx="169.88" cy="55.45" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-68" class="color_parse_int" fill="#D4CA3A" stroke="#FFFFFF"/>
+          <circle cx="20.13" cy="94.26" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-69" class="color_pi_sum" fill="#FF5EA0" stroke="#FFFFFF"/>
+          <circle cx="35.1" cy="90.65" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-70" class="color_pi_sum" fill="#FF5EA0" stroke="#FFFFFF"/>
+          <circle cx="50.08" cy="92.55" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-71" class="color_pi_sum" fill="#FF5EA0" stroke="#FFFFFF"/>
+          <circle cx="65.05" cy="85.44" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-72" class="color_pi_sum" fill="#FF5EA0" stroke="#FFFFFF"/>
+          <circle cx="80.03" cy="92.56" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-73" class="color_pi_sum" fill="#FF5EA0" stroke="#FFFFFF"/>
+          <circle cx="95" cy="92.56" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-74" class="color_pi_sum" fill="#FF5EA0" stroke="#FFFFFF"/>
+          <circle cx="109.98" cy="90.31" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-75" class="color_pi_sum" fill="#FF5EA0" stroke="#FFFFFF"/>
+          <circle cx="124.95" cy="90.3" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-76" class="color_pi_sum" fill="#FF5EA0" stroke="#FFFFFF"/>
+          <circle cx="139.93" cy="40.89" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-77" class="color_pi_sum" fill="#FF5EA0" stroke="#FFFFFF"/>
+          <circle cx="154.9" cy="64.25" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-78" class="color_pi_sum" fill="#FF5EA0" stroke="#FFFFFF"/>
+          <circle cx="169.88" cy="67.75" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-79" class="color_pi_sum" fill="#FF5EA0" stroke="#FFFFFF"/>
+          <circle cx="50.08" cy="76.55" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-80" class="color_printfd" fill="#00E5B2" stroke="#FFFFFF"/>
+          <circle cx="80.03" cy="87.18" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-81" class="color_printfd" fill="#00E5B2" stroke="#FFFFFF"/>
+          <circle cx="124.95" cy="50.76" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-82" class="color_printfd" fill="#00E5B2" stroke="#FFFFFF"/>
+          <circle cx="139.93" cy="51.82" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-83" class="color_printfd" fill="#00E5B2" stroke="#FFFFFF"/>
+          <circle cx="20.13" cy="91.66" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-84" class="color_quicksort" fill="#F6A6FF" stroke="#FFFFFF"/>
+          <circle cx="35.1" cy="91.74" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-85" class="color_quicksort" fill="#F6A6FF" stroke="#FFFFFF"/>
+          <circle cx="50.08" cy="87.91" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-86" class="color_quicksort" fill="#F6A6FF" stroke="#FFFFFF"/>
+          <circle cx="65.05" cy="82.63" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-87" class="color_quicksort" fill="#F6A6FF" stroke="#FFFFFF"/>
+          <circle cx="80.03" cy="90.76" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-88" class="color_quicksort" fill="#F6A6FF" stroke="#FFFFFF"/>
+          <circle cx="95" cy="86.12" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-89" class="color_quicksort" fill="#F6A6FF" stroke="#FFFFFF"/>
+          <circle cx="109.98" cy="56.51" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-90" class="color_quicksort" fill="#F6A6FF" stroke="#FFFFFF"/>
+          <circle cx="124.95" cy="55.19" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-91" class="color_quicksort" fill="#F6A6FF" stroke="#FFFFFF"/>
+          <circle cx="139.93" cy="24.42" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-92" class="color_quicksort" fill="#F6A6FF" stroke="#FFFFFF"/>
+          <circle cx="154.9" cy="56.85" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-93" class="color_quicksort" fill="#F6A6FF" stroke="#FFFFFF"/>
+          <circle cx="169.88" cy="41.33" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-94" class="color_quicksort" fill="#F6A6FF" stroke="#FFFFFF"/>
+          <circle cx="20.13" cy="79.56" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-95" class="color_rand_mat_mul" fill="#9E9E9E" stroke="#FFFFFF"/>
+          <circle cx="35.1" cy="72.73" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-96" class="color_rand_mat_mul" fill="#9E9E9E" stroke="#FFFFFF"/>
+          <circle cx="50.08" cy="84.62" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-97" class="color_rand_mat_mul" fill="#9E9E9E" stroke="#FFFFFF"/>
+          <circle cx="65.05" cy="67.67" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-98" class="color_rand_mat_mul" fill="#9E9E9E" stroke="#FFFFFF"/>
+          <circle cx="80.03" cy="91.79" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-99" class="color_rand_mat_mul" fill="#9E9E9E" stroke="#FFFFFF"/>
+          <circle cx="95" cy="90.62" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-100" class="color_rand_mat_mul" fill="#9E9E9E" stroke="#FFFFFF"/>
+          <circle cx="109.98" cy="91.42" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-101" class="color_rand_mat_mul" fill="#9E9E9E" stroke="#FFFFFF"/>
+          <circle cx="124.95" cy="91.55" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-102" class="color_rand_mat_mul" fill="#9E9E9E" stroke="#FFFFFF"/>
+          <circle cx="139.93" cy="91.98" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-103" class="color_rand_mat_mul" fill="#9E9E9E" stroke="#FFFFFF"/>
+          <circle cx="154.9" cy="91.88" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-104" class="color_rand_mat_mul" fill="#9E9E9E" stroke="#FFFFFF"/>
+          <circle cx="169.88" cy="88" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-105" class="color_rand_mat_mul" fill="#9E9E9E" stroke="#FFFFFF"/>
+          <circle cx="20.13" cy="92.66" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-106" class="color_rand_mat_stat" fill="#FF928B" stroke="#FFFFFF"/>
+          <circle cx="35.1" cy="72.98" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-107" class="color_rand_mat_stat" fill="#FF928B" stroke="#FFFFFF"/>
+          <circle cx="50.08" cy="79.65" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-108" class="color_rand_mat_stat" fill="#FF928B" stroke="#FFFFFF"/>
+          <circle cx="65.05" cy="82.97" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-109" class="color_rand_mat_stat" fill="#FF928B" stroke="#FFFFFF"/>
+          <circle cx="80.03" cy="87.43" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-110" class="color_rand_mat_stat" fill="#FF928B" stroke="#FFFFFF"/>
+          <circle cx="95" cy="80.37" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-111" class="color_rand_mat_stat" fill="#FF928B" stroke="#FFFFFF"/>
+          <circle cx="109.98" cy="75.62" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-112" class="color_rand_mat_stat" fill="#FF928B" stroke="#FFFFFF"/>
+          <circle cx="124.95" cy="71.34" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-113" class="color_rand_mat_stat" fill="#FF928B" stroke="#FFFFFF"/>
+          <circle cx="139.93" cy="60.83" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-114" class="color_rand_mat_stat" fill="#FF928B" stroke="#FFFFFF"/>
+          <circle cx="154.9" cy="63.73" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-115" class="color_rand_mat_stat" fill="#FF928B" stroke="#FFFFFF"/>
+          <circle cx="169.88" cy="66.31" r="1" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-116" class="color_rand_mat_stat" fill="#FF928B" stroke="#FFFFFF"/>
         </g>
       </g>
     </g>
-    <g clip-path="url(#clippath5)">
-    </g>
+  </g>
+  <g class="guide ylabels" font-size="2.82" font-family="Georgia" fill="#6C606B" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-117">
+    <text x="11.64" y="113.95" text-anchor="end" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-118">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">-1</tspan><tspan dy="0.498000em"></tspan></text>
+    <text x="11.64" y="92.56" text-anchor="end" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-119">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">0</tspan><tspan dy="0.498000em"></tspan></text>
+    <text x="11.64" y="71.17" text-anchor="end" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-120">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">1</tspan><tspan dy="0.498000em"></tspan></text>
+    <text x="11.64" y="49.78" text-anchor="end" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-121">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">2</tspan><tspan dy="0.498000em"></tspan></text>
+    <text x="11.64" y="28.39" text-anchor="end" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-122">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">3</tspan><tspan dy="0.498000em"></tspan></text>
+    <text x="11.64" y="7" text-anchor="end" dy="0.35em" id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-123">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">4</tspan><tspan dy="0.498000em"></tspan></text>
   </g>
 </g>
 <defs>
-<clipPath id="clippath1">
-  <path d="M5,1 L 18.84 1 18.84 92.1 5 92.1" />
-</clipPath
-><clipPath id="clippath2">
-  <path d="M5.41,91.1 L 166.64 91.1 166.64 96.6 5.41 96.6" />
-</clipPath
-><clipPath id="clippath3">
-  <path d="M18.84,5 L 153.21 5 153.21 91.1 18.84 91.1" />
-</clipPath
-><clipPath id="clippath4">
-  <path d="M18.84,5 L 153.21 5 153.21 91.1 18.84 91.1" />
-</clipPath
-><clipPath id="clippath5">
-  <path d="M18.84,5 L 153.21 5 153.21 91.1 18.84 91.1" />
+<clipPath id="fig-9a47c8bdab9c487c9338854dba9f42fc-element-23">
+  <path d="M12.64,5 L 177.37 5 177.37 115.95 12.64 115.95" />
 </clipPath
 ></defs>
 </svg>

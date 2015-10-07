@@ -1,0 +1,366 @@
+@article{MH15,
+	Abstract = {Background: Establishing health-related causal relationships is a central pursuit in biomedical research. Yet, the interdependent non-linearity of biological systems renders causal dynamics laborious and at times impractical to disentangle. This pursuit is further impeded by the dearth of time series that are sufficiently long to observe and understand recurrent patterns of flux. However, as data generation costs plummet and technologies like wearable devices democratize data collection, we anticipate a coming surge in the availability of biomedically-relevant time series data. Given the life-saving potential of these burgeoning resources, it is critical to invest in the development of open source software tools that are capable of drawing meaningful insight from vast amounts of time series data.
+
+		Results: Here we present CauseMap, the first open source implementation of convergent cross mapping (CCM), a method for establishing causality from long time series data (> ~25 observations). Compared to existing time series methods, CCM has the advantage of being model-free and robust to unmeasured confounding that could otherwise induce spurious associations. CCM builds on Takens’ Theorem, a well-established result from dynamical systems theory that requires only mild assumptions. This theorem allows us to reconstruct high dimensional system dynamics using a time series of only a single variable. These reconstructions can be thought of as shadows of the true causal system. If the reconstructed shadows can predict points from the opposing time series, we can infer that the corresponding variables are providing views of the same causal system, and so are causally related. Unlike traditional metrics, this test can establish the directionality of causation, even in the presence of feedback loops. Furthermore, since CCM can extract causal relationships from times series of, e.g. a single individual, it may be a valuable tool to personalized medicine. We implement CCM in Julia, a high-performance programming language designed for facile technical computing. Our software package, CauseMap, is platform-independent and freely available as an official Julia package.
+
+			Conclusions: CauseMap is an efficient implementation of a state-of-the-art algorithm for detecting causality from time series data. We believe this tool will be a valuable resource for biomedical research and personalized medicine.},
+	Author = {M. Cyrus Maher and Ryan D. Hernandez},
+	Title = {CauseMap: Fast inference of causality from complex time series},
+	Year = {2015},
+	Eprint = {3:e1053},
+	Eprinttype = {PeerJ PrePrints},
+	Doi = {10.7287/peerj.preprints.583v2},
+}
+
+@inproceedings{K14,
+	Abstract = {Julia is a young programming language that is designed for technical computing. Although Julia is dynamically typed it is very fast and usually yields C speed by utilizing a just-in-time compiler. Still, Julia has a simple syntax that is similar to Matlab, which is widely known as an easy-to-use programming environment. While Julia is very versatile and provides asynchronous programming facilities in the form of tasks (coroutines) as well as distributed multi-process parallelism, one missing feature is shared memory multi-threading. In this paper we present our experiment on introducing multi-threading support in the Julia programming environment. While our implementation has some restrictions that have to be taken into account when using threads, the results are promising yielding almost full speedup for perfectly parallelizable tasks.},
+	Address = {New York},
+	Author = {Tobias Knopp},
+	Booktitle = {HPTCDL'14 Proceedings of the 1st Workshop on High Performance Technical Computing in Dynamic Languages},
+	Doi = {10.1109/HPTCDL.2014.11},
+	Pages = {1-5},
+	Publisher = {{ACM}},
+	Title = {Experimental Multi-threading Support for the {J}ulia Programming Language},
+	Year = {2014},
+}
+
+@inproceedings{UMZHDB14,
+	Abstract = {This paper describes Convex, a convex optimization modeling framework in Julia. Convex translates problems from a user-friendly functional language into an abstract syntax tree describing the problem. This concise representation of the global structure of the problem allows Convex to infer whether the problem complies with the rules of disciplined convex programming (DCP), and to pass the problem to a suitable solver. These operations are carried out in Julia using multiple dispatch, which dramatically reduces the time required to verify DCP compliance and to parse a problem into conic form. Convex then automatically chooses an appropriate backend solver to solve the conic form problem.},
+	Address = {New York},
+	Eprinttype = {arXiv},
+	Author = {Madeleine Udell and Karanveer Mohan and David Zeng and Jenny Hong and Steven Diamond and Stephen Boyd},
+	Booktitle = {HPTCDL'14 Proceedings of the 1st Workshop on High Performance Technical Computing in Dynamic Languages},
+	Doi = {10.1109/HPTCDL.2014.5},
+	Eprint = {1410.4821},
+	Pages = {18-28},
+	Eprintclass = {math.OC},
+	Publisher = {{ACM}},
+	Title = {Convex Optimization in Julia},
+	Year = {2014},
+}
+
+@inproceedings{HLP14,
+	Abstract = {We present scalable algebraic modeling software, StochJuMP, for stochastic optimization as applied to power grid economic dispatch. It enables the user to express the problem in a high-level algebraic format with minimal boilerplate. StochJuMP allows efficient parallel model instantiation across nodes and efficient data localization. Computational results are presented showing that the model construction is efficient, requiring less than one percent of solve time. StochJuMP is configured with the parallel interior-point solver PIPS-IPM but is sufficiently generic to allow straight forward adaptation to other solvers.  },
+	Address = {New York},
+	Eprinttype = {ANL},
+	Author = {Joey Huchette and Miles Lubin and Cosmin Petra},
+	Booktitle = {HPTCDL'14 Proceedings of the 1st Workshop on High Performance Technical Computing in Dynamic Languages},
+	Doi = {10.1109/HPTCDL.2014.6},
+	Eprint = {MCS-P5181-0814},
+	Pages = {29-35},
+	Publisher = {{ACM}},
+	Title = {Parallel algebraic modeling for stochastic optimization},
+	Year = {2014},
+}
+
+@inproceedings{HT14,
+	Abstract = {We discuss the advantages of using Julia for solving multiscale problems involving partial differential equations (PDEs). Multiscale problems are problems where the coefficients of a PDE oscillate rapidly on a microscopic length scale, but solutions are sought on a much larger, macroscopic domain. Solving multiscale problems requires both a theoretic result, i.e., a homogenization result yielding effective coefficients, as well as numerical solutions of the PDE at the microscopic and the macroscopic length scales.
+
+Numerical homogenization of PDEs with stochastic coefficients is especially computationally expensive. Under certain assumptions, effective coefficients can be found, but their calculation involves subtle numerical problems. The computational cost is huge due to the generally large number of stochastic dimensions.
+
+Multiscale problems arise in many applications, e.g., in uncertainty quantification, in the rational design of nanoscale sensors, and in the rational design of materials.
+
+Our code for the numerical stochastic homogenization of elliptic problems is implemented in Julia. Since multiscale problems pose new numerical problems, it is in any case necessary to develop new numerical codes. Julia is a dynamic language inspired by the Lisp family of languages, it is open-source, and it provides native-code compilation, access to highly optimized linear-algebra routines, support for parallel computing, and a powerful macro system. We describe our experience in using Julia and discuss the advantages of Julia's features in this problem domain.},
+	Address = {New York},
+	Author = {Clemens Heitzinger and Gerhard Tulzer},
+	Booktitle = {HPTCDL'14 Proceedings of the 1st Workshop on High Performance Technical Computing in Dynamic Languages},
+	Doi = {10.1109/HPTCDL.2014.8},
+	Pages = {36-40},
+	Publisher = {{ACM}},
+	Title = {Julia and the numerical homogenization of {PDE}s},
+	Year = {2014},
+}
+
+@inproceedings{CE14,
+	Abstract = {Polymorphism in programming languages enables code reuse. Here, we show that polymorphism has broad applicability far beyond computations for technical computing: parallelism in distributed computing, presentation of visualizations of runtime data flow, and proofs for formal verification of correctness. The ability to reuse a single codebase for all these purposes provides new ways to understand and verify parallel programs.},
+	Address = {New York},
+	Eprinttype = {arXiv},
+	Author = {Jiahao Chen and Alan Edelman},
+	Booktitle = {HPTCDL'14 Proceedings of the 1st Workshop on High Performance Technical Computing in Dynamic Languages},
+	Doi = {10.1109/HPTCDL.2014.9},
+	Eprint = {1410.6449},
+	Pages = {47-56},
+	Eprintclass = {cs.PL},
+	Publisher = {{ACM}},
+	Title = {Parallel Prefix Polymorphism Permits Parallelization, Presentation \& Proof},
+	Url = {http://jiahao.github.io/parallel-prefix},
+	Year = {2014},
+}
+
+@article{LD13,
+	Abstract = {The state of numerical computing is currently characterized by a divide between highly efficient yet typically cumbersome low-level languages such as C, C++, and Fortran and highly expressive yet typically slow high-level languages such as Python and MATLAB. This paper explores how Julia, a modern programming language for numerical computing which claims to bridge this divide by incorporating recent advances in language and compiler design (such as just-in-time compilation), can be used for implementing software and algorithms fundamental to the field of operations research, with a focus on mathematical optimization. In particular, we demonstrate algebraic modeling for linear and nonlinear optimization and a partial implementation of a practical simplex code. Extensive cross-language benchmarks suggest that Julia is capable of obtaining state-of-the-art performance.},
+	Author = {Miles Lubin and Iain Dunning},
+	Title = {Computing in Operations Research Using {J}ulia},
+	Journal = {INFORMS Journal on Computing},
+	Volume = {27},
+	Number = {2},
+	Pages = {238-248},
+	Year = {2015},
+	Doi = {10.1287/ijoc.2014.0623},
+	URL = {http://dx.doi.org/10.1287/ijoc.2014.0623}
+}
+
+@inproceedings{OT14,
+	Abstract = {We describe a framework for solving a broad class of infinite-dimensional linear equations, consisting of almost banded operators, which can be used to represent linear ordinary differential equations with general boundary conditions. The framework contains a data structure on which row operations can be performed, allowing for the solution of linear equations by the adaptive QR approach. The algorithm achieves O(nopt) complexity, where nopt is the number of degrees of freedom required to achieve a desired accuracy, which is determined adaptively. In addition, special tensor product equations, such as partial differential equations on rectangles, can be solved by truncating the operator in the y-direction with n_y degrees of freedom and using a generalized Schur decomposition to upper triangularize, before applying the adaptive QR approach to the x-direction, requiring O(n^2_y n^{opt}_x) operations. The framework is implemented in the ApproxFun package written in the Julia programming language, which achieves highly competitive computational costs by exploiting unique features of Julia.},
+	Address = {New York},
+	Eprinttype = {arXiv},
+	Author = {Sheehan Olver and Alex Townsend},
+	Booktitle = {HPTCDL'14 Proceedings of the 1st Workshop on High Performance Technical Computing in Dynamic Languages},
+	Doi = {10.1109/HPTCDL.2014.10},
+	Eprint = {1409.5529},
+	Pages = {57-62},
+	Eprintclass = {math.NA},
+	Publisher = {{ACM}},
+	Title = {A practical framework for infinite-dimensional linear algebra},
+	Year = {2014}}
+
+@inproceedings{BCKSE14,
+	Abstract = {Arrays are such a rich and fundamental data type that they tend to be built into a language, either in the compiler or in a large low-level library. Defining this functionality at the user level instead provides greater flexibility for application domains not envisioned by the language designer. Only a few languages, such as C++ and Haskell, provide the necessary power to define n-dimensional arrays, but these systems rely on compile-time abstraction, sacrificing some flexibility. In contrast, dynamic languages make it straightforward for the user to define any behavior they might want, but at the possible expense of performance.
+As part of the Julia language project, we have developed an approach that yields a novel trade-off between flexibility and compile-time analysis. The core abstraction we use is multiple dispatch. We have come to believe that while multiple dispatch has not been especially popular in most kinds of programming, technical computing is its killer application. By expressing key functions such as array indexing using multi-method signatures, a surprising range of behaviors can be obtained, in a way that is both relatively easy to write and amenable to compiler analysis. The compact factoring of concerns provided by these methods makes it easier for user-defined types to behave consistently with types in the standard library.},
+	Address = {New York, {NY}, {USA}},
+	Eprinttype = {arXiv},
+	Author = {Jeff Bezanson and Jiahao Chen and Stefan Karpinski and Viral Shah and Alan Edelman},
+	Booktitle = {ARRAY'14 Proceedings of ACM SIGPLAN International Workshop on Libraries, Languages, and Compilers for Array Programming},
+	Doi = {10.1145/2627373.2627383},
+	Eprint = {1407.3845},
+	Pages = {56-61},
+	Eprintclass = {cs.PL},
+	Publisher = {{ACM}},
+	Title = {Array operators using multiple dispatch: a design methodology for array implementations in dynamic languages},
+	Year = {2014}}
+
+@article{BKSE12,
+	Abstract = {Dynamic languages have become popular for scientific computing. They are generally considered highly productive, but lacking in performance. This paper presents Julia, a new dynamic language for technical computing, designed for performance from the beginning by adapting and extending modern programming language techniques. A design based on generic functions and a rich type system simultaneously enables an expressive programming model and successful type inference, leading to good performance for a wide range of programs. This makes it possible for much of the Julia library to be written in Julia itself, while also incorporating best-of-breed C and Fortran libraries.},
+	Eprinttype = {arXiv},
+	Author = {Jeff Bezanson and Stefan Karpinski and Viral B. Shah and Alan Edelman},
+	Eprint = {1209.5145},
+	Month = {September},
+	Eprintclass = {cs.PL},
+	Title = {{J}ulia: A Fast Dynamic Language for Technical Computing},
+	Year = {2012}}
+
+@article{BEKS14,
+	Abstract = {The Julia programming language is gaining enormous popularity. Julia was designed to be easy and fast. Most importantly, Julia shatters deeply established notions widely held in the applied community:
+
+1. High-level, dynamic code has to be slow by some sort of law of nature.
+2. It is sensible to prototype in one language and then recode in another language.
+3. There are parts of a system for the programmer, and other parts best left untouched as they are built by the experts.
+
+Julia began with a deep understanding of the needs of the scientific programmer and the needs of the computer in mind. Bridging cultures that have often been distant, Julia combines expertise from computer science and computational science creating a new approach to scientific computing. This note introduces the programmer to the language and the underlying design theory. It invites the reader to rethink the fundamental foundations of numerical computing systems.
+
+In particular, there is the fascinating dance between specialization and abstraction. Specialization allows for custom treatment. We can pick just the right algorithm for the right circumstance and this can happen at runtime based on argument types (code selection via multiple dispatch). Abstraction recognizes what remains the same after differences are stripped away and ignored as irrelevant. The recognition of abstraction allows for code reuse (generic programming). A simple idea that yields incredible power. The Julia design facilitates this interplay in many explicit and subtle ways for machine performance and, most importantly, human convenience.},
+	Eprinttype = {arXiv},
+	Author = {Jeff Bezanson and Alan Edelman and Stefan Karpinski and Viral B. Shah},
+	Eprint = {1411.1607},
+	Month = {November},
+	Eprintclass = {cs.MS},
+	Title = {{J}ulia: A Fresh Approach to Numerical Computing},
+	Year = {2014}}
+
+@article{SO14,
+	Abstract = {We investigate the use of conformal maps for the acceleration of convergence of the trapezoidal rule and Sinc numerical methods. The conformal map is a polynomial adjustment to the sinh map, and allows the treatment of a finite number of singularities in the complex plane. In the case where locations are unknown, the so-called Sinc-Pad\'e approximants are used to provide approximate results. This adaptive method is shown to have almost the same convergence properties. We use the conformal maps to generate high accuracy solutions to several challenging integrals, nonlinear waves, and multidimensional integrals.},
+	Eprint = {1406.3320},
+	Eprintclass = {math.NA},
+	Eprinttype = {arXiv},
+	Author = {Richard Mika\"el Slevinsky and Sheehan Olver},
+	Title = {On the use of conformal maps for the acceleration of convergence of the trapezoidal rule and Sinc numerical methods},
+	Year = {2014}
+}
+
+@article{TTO14,
+	Abstract = {A fast and accurate algorithm for the computation of Gauss-Hermite and generalized Gauss-Hermite quadrature nodes and weights is presented. The algorithm is based on Newton's method with carefully selected initial guesses for the nodes and a fast evaluation scheme for the associated orthogonal polynomial. In the Gauss-Hermite case the initial guesses and evaluation scheme rely on explicit asymptotic formulas. For generalized Gauss-Hermite, the initial guesses are furnished by sampling a certain equilibrium measure and the associated polynomial evaluated via a Riemann-Hilbert reformulation. In both cases the n-point quadrature rule is computed in O(n) operations to an accuracy that is close to machine precision. For sufficiently large n, some of the quadrature weights have a value less than the smallest positive normalized floating-point number in double precision and we exploit this fact to achieve a complexity as low as O(sqrt(n))).},
+       Eprint = {1410.5286},
+	Eprintclass = {math.NA},
+ 	Eprinttype = {arXiv},
+	Author = {Alex Townsend and Thomas Trogdon and Sheehan Olver},
+	Title = {Fast computation of {Gauss} quadrature nodes and weights on the whole real line},
+	Year = {2014}
+}
+
+@article{ONT14,
+	Abstract = {We develop an algorithm for sampling from the unitary invariant random matrix ensembles. The algorithm is based on the representation of their eigenvalues as a determinantal point process whose kernel is given in terms of orthogonal polynomials. Using this algorithm, statistics beyond those known through analysis are calculable through Monte Carlo simulation. Unexpected phenomena are observed in the simulations.},
+	Eprint = {1404.0071},
+	Eprintclass = {math-ph},
+	Eprinttype = {arXiv},
+	Author = {Sheehan Olver and Raj Rao Nadakuditi and Thomas Trogdon},
+	Title = {Sampling unitary invariant ensembles},
+	Year = {2014}
+}
+
+@article{TO14,
+	Abstract = {A spectral method for solving linear partial differential equations (PDEs) with variable coefficients and general boundary conditions defined on rectangular domains is described, based on separable representations of partial differential operators and the one-dimensional ultraspherical spectral method.  If a partial differential operator is of splitting rank 2, such as the operator associated with Poisson or Helmholtz, the corresponding PDE is solved via a generalized Sylvester matrix equation, and a bivariate polynomial approximation of the solution of degree (n_x,n_y) is computed in O(n_x n_y)^{3/2} operations. Partial differential operators of splitting rank >=3 are solved via a linear system involving a block-banded matrix in O(min(n_x^{3} n_y,n_x n_y^{3})) operations.  Numerical examples demonstrate the applicability of our 2D spectral method to a broad class of PDEs, which includes elliptic and dispersive time-evolution equations.  The resulting PDE solver is written in {\sc Matlab} and is publicly available as part of {\sc Chebfun}. It can resolve solutions requiring over a million degrees of freedom in under 60 seconds. An experimental implementation in the Julia language can currently perform the same solve in 10 seconds.},
+	Eprint = {1409.2789},
+	Eprintclass = {math.NA},
+	Eprinttype = {arXiv},
+	Author = {Alex Townsend and Sheehan Olver},
+	Title = {The automatic solution of partial differential equations using a global spectral method},
+	Year = {2014}
+}
+
+@article{GSS14,
+	Abstract = {A quantum anharmonic oscillator is defined by the Hamiltonian H, where the potential is given by V. Using the Sinc collocation method combined with the double exponential transformation, we develop a method to efficiently compute highly accurate approximations of energy eigenvalues for anharmonic oscillators. Convergence properties of the proposed method are presented.  Using the principle of minimal sensitivity, we introduce an alternate expression for the mesh size for the Sinc collocation method which improves considerably the accuracy in computing eigenvalues for potentials with multiple wells.
+
+We apply our method to a number of potentials including potentials with multiple wells. The numerical results section clearly illustrates the high efficiency and accuracy of the proposed method. All our codes are written using the programming language Julia and are available upon request.},
+	Eprint = {1411.2089},
+	Eprintclass = {math.NA},
+	Eprinttype = {arXiv},
+	Author = {Philippe Gaudreau and Richard Slevinsky and Hassan Safouhi},
+	Title = {Computing Energy Eigenvalues of Anharmonic Oscillators using the Double Exponential Sinc collocation Method},
+	Year = {2014}
+}
+
+
+@inproceedings{FBDSW13,
+ author = {Foulds, James and Boyles, Levi and DuBois, Christopher and Smyth, Padhraic and Welling, Max},
+ title = {Stochastic Collapsed Variational {Bayesian} Inference for Latent {Dirichlet} Allocation},
+ booktitle = {Proceedings of the 19th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
+ series = {KDD '13},
+ year = {2013},
+ isbn = {978-1-4503-2174-7},
+ location = {Chicago, Illinois, USA},
+ pages = {446--454},
+ numpages = {9},
+ doi = {10.1145/2487575.2487697},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {stochastic learning, topic models, variational inference},
+ abstract = {There has been an explosion in the amount of digital text information available in recent years, leading to challenges of scale for traditional inference algorithms for topic models. Recent advances in stochastic variational inference algorithms for latent Dirichlet allocation (LDA) have made it feasible to learn topic models on very large-scale corpora, but these methods do not currently take full advantage of the collapsed representation of the model. We propose a stochastic algorithm for collapsed variational Bayesian inference for LDA, which is simpler and more efficient than the state of the art method. In experiments on large-scale text corpora, the algorithm was found to converge faster and often to a better solution than previous methods. Human-subject experiments also demonstrated that the method can learn coherent topics in seconds on small corpora, facilitating the use of topic models in interactive document analysis software.}
+}
+
+
+@article{UHZB14,
+	Abstract = {Principal components analysis (PCA) is a well-known technique for approximating a data set represented by a matrix by a low rank matrix. Here, we extend the idea of PCA to handle arbitrary data sets consisting of numerical, Boolean, categorical, ordinal, and other data types. This framework encompasses many well known techniques in data analysis, such as nonnegative matrix factorization, matrix completion, sparse and robust PCA, k-means, k-SVD, and maximum margin matrix factorization. The method handles heterogeneous data sets, and leads to coherent schemes for compressing, denoising, and imputing missing entries across all data types simultaneously. It also admits a number of interesting interpretations of the low rank factors, which allow clustering of examples or of features. We propose several parallel algorithms for fitting generalized low rank models, and describe implementations and numerical results.},
+	Eprint = {1410.0342},
+	Eprinttype = {arXiv},
+	Eprintclass = {stat.ML},
+	Author = {Madeleine Udell and Corinne Horn and Reza Zadeh and Stephen Boyd},
+	Title = {Generalized Low Rank Models},
+	Year = {2014}
+}
+
+@inproceedings{L13,
+title = {Online Learning of Nonparametric Mixture Models via Sequential Variational Approximation},
+author = {Lin, Dahua},
+booktitle = {Advances in Neural Information Processing Systems 26},
+editor = {C.J.C. Burges and L. Bottou and M. Welling and Z. Ghahramani and K.Q. Weinberger},
+pages = {395--403},
+year = {2013},
+publisher = {Curran Associates, Inc.},
+url = {http://papers.nips.cc/paper/4968-online-learning-of-nonparametric-mixture-models-via-sequential-variational-approximation.pdf},
+Abstract = {Reliance on computationally expensive algorithms for inference has been limiting the use of Bayesian nonparametric models in large scale applications. To tackle this problem, we propose a Bayesian learning algorithm for DP mixture models. Instead of following the conventional paradigm -- random initialization plus iterative update, we take an progressive approach. Starting with a given prior, our method recursively transforms it into an approximate posterior through sequential variational approximation. In this process, new components will be incorporated on the fly when needed. The algorithm can reliably estimate a DP mixture model in one pass, making it particularly suited for applications with massive data. Experiments on both synthetic data and real datasets demonstrate remarkable improvement on efficiency -- orders of magnitude speed-up compared to the state-of-the-art.}
+}
+
+
+@article{MS14,
+	Abstract = {Bayesian estimation of parameters of a diffusion based on discrete time observations poses a difficult problem due to the lack of a closed form expression for the likelihood. Data-augmentation has been proposed for obtaining draws from the posterior distribution of the parameters. Within this approach, the discrete time observations are augmented with diffusion bridges connecting these observations. This poses two challenges: (i) efficiently generating diffusion bridges; (ii) if unknown parameters appear in the diffusion coefficient, then direct implementation of data-augmentation results in an induced Markov chain which is reducible. In this paper we show how both challenges can be addressed in continuous time (before discretisation) by using guided proposals. These are Markov processes with dynamics described by the stochastic differential equation of the diffusion process with an additional term added to the drift coefficient to guide the process to hit the right end point of the bridge. The form of these proposals naturally provides a mapping that decouples the dependence between the diffusion coefficient and diffusion bridge using the driving Brownian motion of the proposals. As the guiding term has a singularity at the right end point, care is needed when discretisation is applied for implementation purposes. We show that this problem can be dealt with by appropriately time changing and scaling of the guided proposal process. In two examples we illustrate the performance of the algorithms we propose. The second of these concerns a diffusion approximation of a chemical reaction network with a four-dimensional diffusion driven by an eight-dimensional Brownian motion.},
+	Eprint = {1406.4706},
+	Eprinttype = {arXiv},
+	Eprintclass = {stat.CO},
+	Title = {Bayesian estimation of discretely observed multi-dimensional diffusion processes using guided proposals},
+	Author = {van der Meulen, Frank and Moritz Schauer},
+	Year = 2014
+}
+
+@article{BZFPZWP14,
+	title = {Fast and Accurate Multivariate Gaussian Modeling of Protein Families: Predicting Residue Contacts and Protein-Interaction Partners},
+	journal = {PLoS ONE},
+	volume = {9},
+	year = {2014},
+	month = {3/2014},
+	pages = {e92721},
+	abstract = {In the course of evolution, proteins show a remarkable conservation of their three-dimensional structure and their biological function, leading to strong evolutionary constraints on the sequence variability between homologous proteins. Our method aims at extracting such constraints from rapidly accumulating sequence data, and thereby at inferring protein structure and function from sequence information alone. Recently, global statistical inference methods (e.g. direct-coupling analysis, sparse inverse covariance estimation) have achieved a breakthrough towards this aim, and their predictions have been successfully implemented into tertiary and quaternary protein structure prediction methods. However, due to the discrete nature of the underlying variable (amino-acids), exact inference requires exponential time in the protein length, and efficient approximations are needed for practical applicability. Here we propose a very efficient multivariate Gaussian modeling approach as a variant of direct-coupling analysis: the discrete amino-acid variables are replaced by continuous Gaussian random variables. The resulting statistical inference problem is efficiently and exactly solvable. We show that the quality of inference is comparable or superior to the one achieved by mean-field approximations to inference with discrete variables, as done by direct-coupling analysis. This is true for (i) the prediction of residue-residue contacts in proteins, and (ii) the identification of protein-protein interaction partner in bacterial signal transduction. An implementation of our multivariate Gaussian approach is available at the website <a href="http://areeweb.polito.it/ricerca/cmp/node/521">http://areeweb.polito.it/ricerca/cmp/code</a>.},
+	keywords = {biocomp},
+	doi = {10.1371/journal.pone.0092721.s001},
+	url = {http://www.plosone.org/article/info\%3Adoi\%2F10.1371\%2Fjournal.pone.0092721},
+	author = {Baldassi, Carlo and Zamparo, Marco and Feinauer, Christoph and Procaccini, Andrea and Zecchina, Riccardo and Weigt, Martin and Pagnani, Andrea}
+}
+
+@inproceedings{SEKBK13,
+	author={Shah, Viral B. and Edelman, Alan and Karpinski, Stefan and Bezanson, Jeff and Kepner, Jeremy},
+	booktitle={High Performance Extreme Computing Conference (HPEC), 2013 IEEE},
+	title={Novel algebras for advanced analytics in {J}ulia},
+	year={2013},
+	month={Sept},
+	pages={1-4},
+	abstract={A linear algebraic approach to graph algorithms that exploits the sparse adjacency matrix representation of graphs can provide a variety of benefits. These benefits include syntactic simplicity, easier implementation, and higher performance. One way to employ linear algebra techniques for graph algorithms is to use a broader definition of matrix and vector multiplication. We demonstrate through the use of the Julia language system how easy it is to explore semirings using linear algebraic methodologies.},
+	keywords={high level languages;linear algebra;mathematics computing;Julia;Julia language system;advanced analytics;graph algorithms;high level languages;linear algebra techniques;linear algebraic approach;linear algebraic methodologies;matrix multiplication;novel algebras;sparse adjacency matrix representation;vector multiplication;Electronic mail;Matrices;Sparse matrices;Standards;Syntactics},
+doi={10.1109/HPEC.2013.6670347}
+}
+
+@article{TSPK14,
+	Abstract = {This paper is concerned with Bayesian inference when the likelihood is analytically intractable but can be unbiasedly estimated. We propose an annealed importance sampling procedure for estimating expectations with respect to the posterior. The proposed algorithm is useful in cases where finding a good proposal density is challenging, and when estimates of the marginal likelihood are required. The effect of likelihood estimation is investigated, and the results provide guidelines on how to set up the precision of the likelihood estimation in order to optimally implement the procedure. The methodological results are empirically demonstrated in several simulated and real data examples.},
+	Eprint = {1402.6035},
+	Eprinttype = {arXiv},
+	Eprintclass = {stat.ME},
+	Author = {M.-N. Tran and C. Strickland and M. K. Pitt and R. Kohn},
+	Title = {Annealed Important Sampling for Models with Latent Variables},
+	Year = {2014},
+}
+
+@incollection{CPW14,
+	abstract={Security managers face the challenge of formulating and implementing policies that deliver their desired system security postures — for example, their preferred balance of confidentiality, integrity, and availability — within budget (monetary and otherwise). In this paper, we describe a security modelling methodology, grounded in rigorous mathematical systems modelling and economics, that captures the managers’ policies and the behavioural choices of agents operating within the system. Models are executable, so allowing systematic experimental exploration of the system-policy co-design space, and compositional, so managing the complexity of large-scale systems.},
+	year={2014},
+	isbn={978-3-319-07619-5},
+	booktitle={Human Aspects of Information Security, Privacy, and Trust},
+	volume={8533},
+	series={Lecture Notes in Computer Science},
+	editor={Tryfonas, Theo and Askoxylakis, Ioannis},
+	doi={10.1007/978-3-319-07620-1_21},
+	title={Compositional Security Modelling},
+	publisher={Springer International Publishing},
+	author={Caulfield, Tristan and Pym, David and Williams, Julian},
+	pages={233-245},
+	language={English}
+}
+
+@inbook{TDDM14,
+	Author = {Bruce A Tate and Ian Dees and Frederic Daoud and Jack Moffitt},
+	Chapter = {6},
+	Edition = {1},
+	Publisher = {Pragmatic Bookshelf},
+	Title = {Seven More Languages in Seven Weeks: Languages That Are Shaping the Future},
+	Url = {https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks},
+	Year = {2014}}
+
+@incollection{HN14,
+	Address = {Tokyo},
+	Author = {{久本 空海 (Hisamoto, Sorami)} and {西薗 良太 (Nishizono, Ry\={o}ta)}},
+	Booktitle = {データサイエンティスト養成読本　R活用編 (Data scientist training reader: practical {R} edition)},
+	Chapter = {7},
+	Month = {December},
+	Publisher = {技術評論社 (Gijutsu-Hyohron)},
+	Series = {Software Design plus},
+	Title = {技術計算のための新言語Julia (Julia: a new language for technical computing)},
+	Url = {http://gihyo.jp/book/2015/978-4-7741-7057-2},
+	Year = {2014}}
+
+@mastersthesis{V14,
+	author={Verstraete, Pieter},
+	title={Parallelle abstracties voor het programmeren van {GPU's} in {Julia}
+	      (Parallel abstractions for programming {GPUs} in {Julia})},
+	booktitle={Afstudeerwerk FEA, Universiteit UGent},
+	year={2014},
+	editor={De Sutter, Bjorn and Besard, Tim},
+	url={http://lib.ugent.be/fulltxt/RUG01/002/153/631/RUG01-002153631_2014_0001_AC.pdf},
+	abstract={
+	This master's thesis explores the possibility to provide
+	access to the computing power of a GPU from the high-level programming
+	language Julia. An important requirement here is to keep the
+	programmer's productivity at the same high level as if he would use
+	Julia without a GPU. Indeed, very specialized and detailed technical
+	knowledge is needed in order to program a GPU, making it complex
+	and time-consuming. In many modern scientific domains quite a lot of
+	brute computing power is required, but often these domains lack the
+	technical expertise to use GPUs in an efficient manner.
+
+	The purpose of this thesis is to provide access to a GPU from Julia
+	in a way that shields the GPU details from the programmer. In a first
+	step we define and implement in Julia abstractions that can be executed
+	in parallel on the GPU. Next we adapt the Julia compiler such
+	that it can translate these abstractions to GPU code. The resulting
+	compiler infrastructure manages the GPU in a way that is transparent
+	to the programmer. Finally we evaluate the abstractions and compiler
+	infrastructure in the context of a concrete application, namely
+	the trace transform.}
+}
+

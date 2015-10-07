@@ -3,16 +3,9 @@ layout: default
 title:  Google Summer of Code
 ---
 
-# Google Summer of Code 2014 accepted projects
+# Google Summer of Code 2015 application process for students
 
-- [Libgit2 support and linear algebra for generic types](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/andrioni/5863987568705536)
-- [Julia + Light Table](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/one_more_minute/5724160613416960)
-- [IJulia Interactive Widgets](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/g0/5113880120393728)
-- [3D Visualization Package for Julia](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/simon_danisch/5757334940811264)
-
-# Google Summer of Code 2014 application process for students
-
-Julia has been accepted as a Google Summer of Code mentoring organization. The following are ideas for student summer projects. To add or edit projects, please edit this page [here](https://github.com/JuliaLang/julialang.github.com/blob/master/gsoc/2014/index.md) through GitHub by making pull requests.
+Julia has applied as a Google Summer of Code mentoring organization. The following are ideas for student summer projects. To add or edit projects, please edit this page [here](https://github.com/JuliaLang/julialang.github.com/blob/master/gsoc/2015/index.md) through GitHub by making pull requests.
 When considering the following projects, don't be put off by the knowledge prerequisites – you don't need to be an expert, and there is some scope for research and learning within the GSoC period. However, familiarity with and interest in the subject area and involved technologies will be helpful.
 
 If you're interested in participating in GSoC as a student, the best approach is to become an active and engaged contributor to the project first. You should take a look at the ["up for grabs" issues](https://github.com/JuliaLang/julia/issues?state=open) on GitHub and see if there are any you think you might be able to take a crack at. Try submitting a pull request for something and start getting the hang of the process and interacting with the Julia code base and development community. Making changes to the main Julia repo can, of course, be a bit daunting. Fortunately, it's not a requirement for engagement – some of the most active contributors to the community build great packages but don't actually make a ton of changes to the language itself. We need both – people working on the language and people building great things with the language. So if you're looking to get involved but none of the up-for-grabs issues strike your fancy, try contributing to a popular package or [creating a new package](http://docs.julialang.org/en/latest/manual/packages/#package-development) that does something useful and/or interesting. If you create a new package, send an email to the [julia-users list](https://groups.google.com/forum/#!forum/julia-users) with a link to the repo so people can check it out and give you feedback.
@@ -87,7 +80,17 @@ Matrix functions maps matrices onto other matrices, and can often be interpreted
 
 This project proposes to implement state of the art algorithms that extend the currently available matrix functions in Julia, as outlined in issue [#5840](https://github.com/JuliaLang/julia/issues/5840). In addition to matrix generalizations of standard functions such as real matrix powers, surds and logarithms, students will be challenged to design generic interfaces for lifting general scalar-valued functions to their matrix analogues for the efficient computation of arbitrary (well-behaved) matrix functions and their derivatives.
 
+## Project: Fast bignums in Julia
 
+Julia currently supports big integers, rationals and floats, making use of the GMP library. But the current implementation
+is essentially only a prototype. There exists a very wide gap between the performance of GMP bignums from a C program and from Julia.
+
+This performance gap is due to multiple things: bignums in C can be reused, saving on initialisation and cleaning up, Julia
+bignum objects are garbage collected, handwritten C programs can allocate a minimal number of temporaries and C programs can also make use of the mutable properties of GMP bignum objects, saving making copies. Further advantages exist for C implementations that store small integers as immediate words, rather than use a full multiple precision structure.
+
+There are many ways of potentially improving bignum performance in Julia. We could keep a cache of bignum objects around instead of allocating new ones all the time. We could inline operations involving single word operations and introduce a combined immediate word/mpz struct type for BigInts. Constant propagation could be done by introducing a type for numerical constant literals. Julia could wrap the low level mpn layer of GMP directly instead of the higher level mpz, mpq, mpf layers. A set of unsafe mutating operators for bignums could be introduced, for cases where the user knows they have control over the bignum and can safely mutate it. (Theoretically, term rewriting or lazy evaluation could also eliminate the need for creating a new bignum object for every subexpression, or even reduce the number of temporaries required for any given expression, in much the same way as the old C++ wrapper for GMP used template metaprogramming to speed things up. However, this is probably beyond the scope of a GSOC project.) The Julia Cxx package could even be used to inline calls to the GMP C++ wrapper whose semantics may be closer to the Julia semantics.
+
+Not all of these options are either practical or agreeable. And it isn't clear which options are going to lead to the best performance or to the nicest Julia code. A balance would need to be struck to use what's actually available in Julia in a way that is performant but also flexible enough to support future developer needs. The absolutely fastest option may not be the best long term option and consultation on the Julia list will be important for this project. The project should implement prototypes of a number of options, and present a performance comparison to the Julia developers before settling on a final design.
 
 ## Project: Native Julia implementations of massively parallel dense linear algebra routines
 
@@ -125,7 +128,7 @@ Students interested in this project will be expected to implement wrappers for p
 
 Graphical processing units (GPUs) are a promising alternate architecture for massively parallel technical computing. However, making use of them today requires using computation kernels written in C. In contrast, it is desirable to deploy code and transfer data to GPUs directly within a high level language like Julia.
 
-Students will be asked to build upon to the foundational work in the [CUDA.jl](https://github.com/lindahua/CUDA.jl) and [OpenCL.jl](https://github.com/jakebolewski/OpenCL.jl) packages to provide a consistent interface for multiple scientific libraries containing GPU-deployable kernels, such as cuFFT, cuBlas, Magma, clBlas, clMagma, etc., or a common GPU array interface with Cuda and OpenCL backends (similar to python's [compyte](https://github.com/inducer/compyte) library).
+Students will be asked to build upon to the foundational work in the [OpenCL.jl](https://github.com/jakebolewski/OpenCL.jl), [CUDArt.jl](https://github.com/JuliaGPU/CUDArt.jl), and [CUDA.jl](https://github.com/maleadt/CUDA.jl) packages to provide a consistent interface for multiple scientific libraries containing GPU-deployable kernels, such as Magma, clBlas, clMagma, etc., or a common GPU array interface with Cuda and OpenCL backends (similar to python's [compyte](https://github.com/inducer/compyte) library).
 
 **Expected Results:** Package for high-level GPU programming.
 
@@ -133,19 +136,11 @@ Students will be asked to build upon to the foundational work in the [CUDA.jl](h
 
 
 
-## Project: Computer vision using OpenCV
+## Project: Writing high-performance, multithreaded kernels
 
-[OpenCV](http://opencv.org/) is the de facto standard library for computer vision applications.  Currently wrappers auto generated from OpenCV's C++ API exist for Python, Java, and Matlab.  This project would be to adapt these Python based code generation tools to create a Julia interface to OpenCV.
+[KernelTools.jl](https://github.com/timholy/KernelTools.jl) is an early-stage package designed for writing cache-efficient, multithreaded algorithms. Its design is inspired by [Halide](http://halide-lang.org/). Many of the features of Halide are already in place, but multithreading is still lacking. The `threading` branch of julia might be of use in this project.
 
-**Expected Results:** OpenCV Package
-
-**Knowledge Prerequisites:** OpenCV, Python, C++, templating, calling C from Julia.
-
-## Project: Julia frontend for Halide
-
-[Halide](http://halide-lang.org/) is an embedded DSL for image processing, intended to allow the seperation of algorithms and optimisations when writing image pipelines. This project would involve embedding Halide in Julia, preferably by taking inspiration from the C++ implementation and providing the same functionality in pure Julia.
-
-**Expected Results:** Package for writing and compiling Halide-style code.
+**Expected Results:** The ability to run `@tile`ed algorithms in multiple threads.
 
 ## Project: Translation of Axiom to Julia
 
@@ -168,7 +163,7 @@ Julia's package manager is currently very slow due to its need to shell out to g
 
 ## Project: ARM/Android support
 
-Julia should ideally support platforms such as the Raspberry Pi and Android, but currently has some issues building for ARM via LLVM. This project consists of working towards building Julia on these platforms.
+Julia should ideally support platforms such as the Raspberry Pi and Android, but currently has some [issues building for ARM](https://github.com/JuliaLang/julia/issues?q=is%3Aopen+is%3Aissue+label%3Aarm) via LLVM. This project consists of working towards building Julia on these platforms.
 
 **Expected Results:** A successful build of Julia on ARM.
 
@@ -182,16 +177,6 @@ Julia's errors are helpful for the most part but could be improved - see [#4744]
 
 **Expected Results:** Consistent printing of errors with qualified type and human-readable string.
 
-
-
-## Project: Documentation system
-
-Julia does not yet have a standard way of documenting packages and making that documentation available in the REPL. Though a number of proposals have been made (see [1](https://github.com/JuliaLang/julia/issues/4579), [2](https://github.com/JuliaLang/julia/issues/5200), [3](https://github.com/JuliaLang/julia/issues/3988), [4](https://github.com/dcarrera/Doc.jl), [5](https://github.com/dcjones/Judo.jl), [6](https://github.com/johnmyleswhite/Roxygen.jl), [7](https://github.com/JuliaLang/JuliaDoc)), no complete solution has emerged. As a result, packages use different means of documentation, which can be hard to access in a systematic way.
-
-A complete documentation system for Julia should be able to associate doc entries with Julia objects, make those entries accessible and searchable from the REPL, and generate static documentation from those entries. This project consists of synthesizing the work that has been done to implement a core documentation system for Julia.
-
-
-
 ## Project: Autoformat tool
 
 This project involves creating an autoformat tool, similar to Go's `gofmt`, which automatically rewrites Julia source files into a standard format. This is a fairly experimental project - there are plenty of challanges involved with formatting such a dynamic and flexible language well. However, a well executed tool is likely to gain widespread adoption by the Julia community.
@@ -204,7 +189,17 @@ Users new to programming often struggle with syntax - for example, knowing which
 
 **Expected Results:** Functionality for parsing and analysing Julia code, and providing possible fixes for mistakes. Specifying the "signature" of a mistake (e.g. via a regex or predicate function) and its solution should be easy and flexible so that the package is easily extended.
 
+## C Linter
 
+Memory errors in Julia's underlying C code are sometimes difficult to trace, and missing garbage-collector
+"roots" (GC roots) can lead to segfaults and other problems. One potential way
+to make it easier to find such errors would be to write a package that checks Julia's `src/` directory for
+missing GC roots. A Julia-based solution might leverage the [Clang.jl](https://github.com/ihnorton/Clang.jl)
+package to parse the C code, determine which call chains can trigger garbage collection, and then
+look for objects that lack GC root protection. Alternatively, the same strategy might be implemented in C++ by writing a plugin for [Clang's static analyzer](http://clang-analyzer.llvm.org/). Another attractive approach is to leverage [coccinelle](http://coccinelle.lip6.fr/).
+
+**Expected Results:** A tool that, when run against Julia's `src/` directory, highlights lines that
+need to have additional GC roots added.
 
 ## Project: Base Julia Restructuring
 
@@ -212,7 +207,25 @@ Julia's Base code currently contains several dependencies which have various lic
 
 **Expected Results:** The separation of at least a few non-core Base dependencies into their own packages while still being seemlessly integrated into the default Julia build process.
 
+## Project: Web stack / networking improvements
 
+Julia's web and higher-level networking framework is largely consolidated within the JuliaWeb github organization. The packages there are in need of updates, bug fixes, and general improvements in robustness by individuals who are well-versed in networking fundamentals and behavior of higher-level protocols. In some cases, the bugs can be traced back to issues with the underlying C frameworks that provide the primary functionality. Where possible and where security / auditability concerns are not an issue, native Julia code should be preferred over external libraries.
+
+In addition, there are packages offering identical functionality. A rationalization and standardization of these packages as well as the underlying C frameworks is required to provide a consistent interface to applications wishing to communicate using standard network protocols.
+
+**Expected Results:** An overhaul of Julia's networking framework, with the creation of robust, RFC-compliant, efficient, and standard interfaces for common protocols (e.g., HTTP, HTTPS, FTP, SMTP, SSH).
+
+**Knowledge Prerequisites:** Network fundamentals including understanding of higher-level protocols, interfacing with C from Julia, git.
+
+## Project: Specialized call-site method caching
+
+Julia's method cache is shared by all call sites of a generic function. Although whenever single dispatch is provable we generate a direct call, there are some cases where dynamic dispatch is inevitable. When the compiler can prove (using type inference) that the possible matches for a call site is small enough, it would be a huge performance win to generate a small cache specific to this call site. Those small caches would have to be updated when new method definitions are added (even replaced by the global cache when the number of matches becomes too large). 
+
+This project has a large number of possible extensions when the basic feature is done, including : using minimal caching keys (e.g. when only one of the arguments determine the dispatch entierly), generating specific dispatch code in a separate function, sharing the small caches between call sites, ...
+
+It has also the future benefit of putting together the infrastructure we will need to enable inline method caching when automatic recompilation is done.
+
+**Knowledge Prerequisites:** Good understanding of C/C++. A priori knowledge of julia internals is a plus but this project could also be a very good way to familiarize oneself with those.
 
 # Theme: Improvements to Julia interactivity and interoperability with other applications
 
@@ -224,27 +237,8 @@ Julia's functions for getting and setting the clipboard are currently limited to
 
 **Knowledge Prerequisites:** Interfacing with C from Julia, clipboard APIs for different platforms.
 
-
-
-## Project: Light Table integration
-
-[Light Table](http://lighttable.com) has the potential to be a great IDE for Julia - one that supports both Julia's highly interactive approach and enables development of large projects and packages.
-
-**Expected Results:** Full integration with Light Table's standard features (inline results and graphics, autocompletion, documentation etc.), along with the foundation for more advanced features (typeset equations, inline data entry, interactive visualisations etc.)
-
-**Knowledge Prerequisites:** Understanding of Light Table's internals; experience using ClojureScript and Javascript.
-
-
-## Project: IJulia interactive widgets
-
-The IPython protocol recently added support for custom messages, allowing for output which interacts with the server. This is a fairly open-ended project with plenty of room for experimentation, but the end goal would be something along the lines of adding interactivity to (for example) [Gadfly](https://github.com/dcjones/Gadfly.jl) output in IJulia - for example, perhaps the ability to resize a plot and have it redrawn on-the-fly, or to plot an equation with sliders to vary parameters.
-
-**Expected Results:** Interactive plotting capabilities within IJulia.
-
-**Knowledge Prerequisites:** Javascript and IPython/IJulia internals.
-
 ## Project: Julietta IDE
-[Julietta](https://github.com/tknopp/Julietta.jl) is an integrated developement environement for Julia that is written entirely in Julia using the Gtk.jl package. While finishing an IDE is clearly out of scope for a GSOC project there are some neat isolated tasks to do. Julietta already uses the Julia parser and indicates errors while typing in its editor. Three very interesting next steps are:
+[Julietta](https://github.com/tknopp/Julietta.jl) is an integrated developement environement for Julia that is written entirely in Julia using the Gtk.jl package. While finishing an IDE is clearly out of scope for a GSoC project, there are some neat isolated tasks to do. Julietta already uses the Julia parser and indicates errors while typing in its editor. Three very interesting next steps are:
 
   1. Implement code completion. This is especially interesting to get right in such a dynamic language like Julia. Again while this has a very large scope it would already be very useful if typing `using` would give a list of installed packages.
   2. Switching between function usages and implementation (code tracing)
@@ -258,15 +252,10 @@ Julia could be a great replacement for C in Python projects, where it can be use
 
 **Knowledge Prerequisites:** Python (especially C interop).
 
-
-
 # Theme: Julia Graphics and User Interfaces
 
 ## Project: 2D Graphics Improvements
 The [Winston](https://github.com/nolta/Winston.jl) package can be used for plotting 2D graphs and images. The package is already very useful but compared to the full featured Matplotlib python package there are still several things missing. This project can either go into the direction of improving the plotting itself (more graph types, more customization) or could go into the direction of increasing the interactivity of plotting windows (zooming, data picking ...) In the later case a close integration with Gtk.jl would be one way to go.
-
-## Project: 3D Graphics
-Matlab and Matplotlib offer possibilities to render 3D data. In particular it is of interest to do volume rendering, showing sectional views in volume data, and plot isosurfaces. This project would be implemented using OpenGL and presumably requires hacking on the existing OpenGL efforts in the Julia community.
 
 ## Gtk.jl Improvements
 The [Gtk.jl](https://github.com/JuliaLang/Gtk.jl) package is shaping up pretty well. Still there are various corners currently unimplemented and besides documentation it is very important to get installation of Gtk completely simple on all three major platforms. Furthermore, there is currently quite some manual tweaking necessary to get Gtk looking good on OSX. These installation issues are very crutial for serious integration of Gtk.jl into the Julia universe.
