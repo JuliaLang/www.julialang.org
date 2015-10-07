@@ -21,6 +21,9 @@ Julia is now being used in several university courses. If you know of other clas
   * [CME 257](https://github.com/icme/cme257-advanced-julia/), Advanced Topics in Scientific Computing with Julia (Mr. [Brad Nelson](https://github.com/bnels))
   * [EE103](http://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd)
 
+- Pennsylvania State University, Fall 2015
+  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford) - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
+
 - MIT, Fall 2015
   * [6.251/15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas) 
   * [18.06](http://web.mit.edu/18.06/www/), Linear Algebra (Dr. [Alex Townsend](https://github.com/ajt60gaibb))
@@ -90,7 +93,7 @@ Julia is now being used in several university courses. If you know of other clas
   * [15.083](https://stellar.mit.edu/S/course/15/sp14/15.083/), Integer Programming and Combinatorial Optimization (Prof. Juan Pablo Vielma)
 
 - Pennsylvania State University, Spring 2014
-  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford)
+  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford) - [github repo](https://github.com/eford/Astro585_2014_Spring)
 
 - Stanford University, Spring 2014
 
