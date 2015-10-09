@@ -1,3 +1,49 @@
+@article{JSB15,
+	Abstract = {We present a new algorithm for solving the eigenvalue problem
+for an n × n real symmetric arrowhead matrix. The algorithm
+computes all eigenvalues and all components of the corresponding
+eigenvectors with high relative accuracy in O(n^2) operations under
+certain circumstances. The algorithm is based on a shift-and-invert
+approach. Only a single element of the inverse of the shifted
+matrix eventually needs to be computed with double the working
+precision. Each eigenvalue and the corresponding eigenvector can
+be computed separately, which makes the algorithm adaptable for
+parallel computing. Our results extend to Hermitian arrowhead
+matrices, real symmetric diagonal-plus-rank-one matrices and
+singular value decomposition of real triangular arrowhead matrices.},
+	Author = {N. Jakovcevic Stor, I. Slapnicar and J. L. Barlow},
+	Title = {Accurate eigenvalue decomposition of real
+symmetric arrowhead matrices and applications},
+	Journal = {Linear Algebra and Its Applications},
+	Volume = {464},
+	Pages = {62-89},
+	Year = {2015},
+	Doi = {10.1016/j.laa.2013.10.007},
+	URL = {http://www.sciencedirect.com/science/article/pii/S0024379513006265}
+}
+
+@article{JSB15a,
+	Abstract = {We present a new algorithm for solving an eigenvalue problem for a real symmetric matrix which is a rank-one modification of a diagonal matrix. The algorithm computes each eigenvalue and all components of the corresponding eigenvector with high relative accuracy in O(n) operations. The algorithm is based on a shift-and-invert approach. Only a single element of the inverse of the shifted matrix eventually needs to be computed with double the working precision. Each eigenvalue and the corresponding eigenvector can be computed separately, which makes the algorithm adaptable for parallel computing. Our results extend to the complex Hermitian case. The algorithm is similar to the algorithm for solving the eigenvalue problem for real symmetric arrowhead matrices from N. Jakovčević Stor et al. (2015) [16].},
+	Author = {N. Jakovcevic Stor, I. Slapnicar and J. L. Barlow},
+	Title = {Forward stable eigenvalue decomposition of rank-one modifications of diagonal matrices},
+	Journal = {Linear Algebra and Its Applications},
+	Volume = {487},
+	Pages = {301-315},
+	Year = {2015},
+	Doi = {10.1016/j.laa.2015.09.025},
+	URL = {http://www.sciencedirect.com/science/article/pii/S0024379515005406}
+}
+
+@article{JS15,
+	Abstract = {As showed in (Fiedler, 1990), any polynomial can be expressed as a characteristic polynomial of a complex symmetric arrowhead matrix. This expression is not unique. If the polynomial is real with only real distinct roots, the matrix can be chosen real. By using accurate forward stable algorithm for computing eigenvalues of real symmetric arrowhead matrices from (Jakovcevic Stor, Slapnicar, Barlow, 2015), we derive a forward stable algorithm for computation of roots of such polynomials in O(n2) operations. The algorithm computes each root to almost full accuracy. In some cases, the algorithm invokes extended precision routines, but only in the non-iterative part. Our examples include numerically difficult problems, like the well-known Wilkinson's polynomials. Our algorithm compares favourably to other method for polynomial root-finding, like MPSolve or Newton's method.},
+	Author = {N. Jakovcevic Stor and I. Slapnicar},
+	Title = {Forward stable computation of roots of real polynomials with only real distinct roots},
+	Eprinttype = {arXiv},
+	Eprint = {1509.06224},
+	Pages = {1-15},
+	Year = {2015}
+	}
+
 @article{MH15,
 	Abstract = {Background: Establishing health-related causal relationships is a central pursuit in biomedical research. Yet, the interdependent non-linearity of biological systems renders causal dynamics laborious and at times impractical to disentangle. This pursuit is further impeded by the dearth of time series that are sufficiently long to observe and understand recurrent patterns of flux. However, as data generation costs plummet and technologies like wearable devices democratize data collection, we anticipate a coming surge in the availability of biomedically-relevant time series data. Given the life-saving potential of these burgeoning resources, it is critical to invest in the development of open source software tools that are capable of drawing meaningful insight from vast amounts of time series data.
 
