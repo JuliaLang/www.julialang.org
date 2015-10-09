@@ -46,7 +46,7 @@ packages are pre-installed.
 <tr>
     <th> Source </th>
     <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0/julia-0.4.0.tar.gz">Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0/julia-0.4.0.tar.gz.asc">GPG</a>) </td>
-    <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0/julia-0.4.0-full.tar.gz">Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0/julia-0.4.0-full.tar.gz.asc">GPG</a>) </td>
+    <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0/julia-0.4.0-full.tar.gz">Full Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.0/julia-0.4.0-full.tar.gz.asc">GPG</a>) </td>
     <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/release-0.4">GitHub</a> </td>
 </tr>
 <tr>
