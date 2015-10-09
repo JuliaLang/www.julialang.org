@@ -6,10 +6,10 @@ title:  Julia Downloads (Old releases)
 # Older Releases
 
 Old releases are available should you need to use them to run Julia
-code written for those releases.  Note that these are not maintained
+code written for those releases.  Note that these are not actively developed
 anymore.
 
-## v0.3.11
+## v0.3.11 (critical bugfixes only)
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
@@ -38,12 +38,9 @@ anymore.
     <td> <a href="https://github.com/JuliaLang/julia/releases/download/v0.3.11/julia-0.3.11_483dbf5279.tar.gz">Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.3.11/julia-0.3.11_483dbf5279.tar.gz.asc">GPG</a>) </td>
     <td> <a href="https://github.com/JuliaLang/julia/tree/release-0.3">GitHub</a> </td>
 </tr>
-<tr>
-    <th> Old releases (not maintained) </th>
-    <td colspan="2" ><a href="http://julialang.org/downloads/oldreleases.html">link</a> </td>
-</tr>
+</tbody></table>
 
-## v0.2.1
+## v0.2.1 (unmaintained)
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
@@ -65,7 +62,7 @@ anymore.
 </tr>
 </tbody></table>
 
-## v0.1.2
+## v0.1.2 (unmaintained)
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Archive (.zip) </th>
