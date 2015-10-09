@@ -44,6 +44,8 @@ To get a sense of relative performance of Julia compared to other languages that
 [Matlab/Octave](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.m),
 [R](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.R),
 [JavaScript](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.js),
+[Java](https://github.com/JuliaLang/julia/tree/master/test/perf/micro/java/src/main/java),
+[Lua](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.lua),
 [Go](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.go), and
 [Mathematica](https://github.com/JuliaLang/julia/blob/master/test/perf/micro/perf.nb).
 We encourage you to skim the code to get a sense for how easy or difficult numerical programming in each language is.
@@ -55,10 +57,13 @@ The following micro-benchmark results were obtained on a single core (serial exe
 benchmark times relative to C (smaller is better, C performance = 1.0).
 </p>
 <p class="note">
-C compiled by gcc 4.8.2, taking best timing from all optimization levels (-O0 through -O3).
-C, Fortran and Julia use <a href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a> v0.2.12.
-The Python implementations of <tt>rand_mat_stat</tt> and <tt>rand_mat_mul</tt> use NumPy (v1.8.2) functions; the rest are pure Python implementations.<br/>
-Benchmarks can also be seen <a href="/benchmarks/">here as a plot</a> created with <a href="https://github.com/dcjones/Gadfly.jl">Gadfly</a>.
+C and Fortran compiled by gcc 5.1.1, taking best timing from all optimization levels (-O0 through -O3).
+C, Fortran, Go, and Julia use <a href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a> v0.2.14.
+Python 3 was installed from the <a href="https://www.continuum.io/downloads">Anaconda distribution</a>.
+The Python implementations of <tt>rand_mat_stat</tt> and <tt>rand_mat_mul</tt>
+use NumPy (v1.9.2) functions; the rest are pure Python implementations.<br/>
+Benchmarks can also be seen <a href="/benchmarks/">here as a plot</a> created
+with <a href="https://github.com/dcjones/Gadfly.jl">Gadfly</a>.
 </p>
 </div>
 
