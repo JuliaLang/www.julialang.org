@@ -11,39 +11,35 @@ My project under the 2015 [Julia Summer of Code](http://julialang.org/jsoc) prog
 
 `NullableArray`s are array structures that efficiently represent missing values without incurring the performance difficulties that face `DataArray` objects, which have heretofore been used to store data that include missing values. The core issue responsible for `DataArray`s performance woes concerns the way in which the former represent missing values, i.e. through a token `NA` object of token type `NAType`. In particular, indexing into, say, a `DataArray{Int}` can return an object either of type `Int` or of type `NAType`. This design does not provide sufficient information to Julia's type inference system at JIT-compilation time to support the sort of static analysis that Julia's compiler can otherwise leverage to emit efficient machine code. We can illustrate as much through following example, in which we calculate the sum of five million random `Float64`s stored in a `DataArray`:
 
-```
-julia> using DataArrays
-# warnings suppressed…
+    julia> using DataArrays
+    # warnings suppressed…
 
-julia> A = rand(5_000_000);
+    julia> A = rand(5_000_000);
 
-julia> D = DataArray(A);
+    julia> D = DataArray(A);
 
-julia> function f(D::AbstractArray)
-           x = 0.0
-           for i in eachindex(D)
-               x += D[i]
+    julia> function f(D::AbstractArray)
+               x = 0.0
+               for i in eachindex(D)
+                   x += D[i]
+               end
+               x
            end
-           x
-       end
-f (generic function with 1 method)
+    f (generic function with 1 method)
 
-julia> f(D);
+    julia> f(D);
 
-julia> @time f(D)
-  0.163567 seconds (10.00 M allocations: 152.598 MB, 9.21% gc time)
-2.500102419334644e6
-```
+    julia> @time f(D)
+      0.163567 seconds (10.00 M allocations: 152.598 MB, 9.21% gc time)
+    2.500102419334644e6
 
 Looping through and summing the elements of `D` is over twenty times slower and allocates far more memory than running the same loop over `A`:
 
-```
-julia> f(A);
+    julia> f(A);
 
-julia> @time f(A)
-  0.007465 seconds (5 allocations: 176 bytes)
-2.500102419334644e6
-```
+    julia> @time f(A)
+      0.007465 seconds (5 allocations: 176 bytes)
+    2.500102419334644e6
 
 This is because the code generated for `f(D)` must assume that `getindex(D, i)` for an arbitrary index `i` may return an object either of type `Float64` or of type `NAType` and hence must “box” every object returned from indexing into `D`. The performance penalty incurred by this requirement is reflected in the comparison above. (The interested reader can find more about these issues [here](http://www.johnmyleswhite.com/notebook/2014/11/29/whats-wrong-with-statistics-in-julia/).)
 
@@ -51,26 +47,24 @@ On the other hand, `NullableArray`s are designed to support the sort of static a
 
 Here is the result of running the same loop over a comparable `NullableArray`:
 
-```
-julia> using NullableArrays
+    julia> using NullableArrays
 
-julia> X = NullableArray(A);
+    julia> X = NullableArray(A);
 
-julia> function f(X::NullableArray)
-           x = Nullable(0.0)
-           for i in eachindex(X)
-               x += X[i]
+    julia> function f(X::NullableArray)
+               x = Nullable(0.0)
+               for i in eachindex(X)
+                   x += X[i]
+               end
+               x
            end
-           x
-       end
-f (generic function with 1 method)
+    f (generic function with 1 method)
 
-julia> f(X);
+    julia> f(X);
 
-julia> @time f(X)
-  0.009812 seconds (5 allocations: 192 bytes)
-Nullable(2.500102419334644e6)
-```
+    julia> @time f(X)
+      0.009812 seconds (5 allocations: 192 bytes)
+    Nullable(2.500102419334644e6)
 
 As can be seen, naively looping over a `NullableArray` is on the same order of magnitude as naively looping over a regular `Array` in terms of both time elapsed and memory allocated. Below is a set of plots (drawn with [Gadfly.jl](https://github.com/dcjones/Gadfly.jl)) that visualize the results of running 20 benchmark samples of `f` over both `NullableArray` and `DataArray` arguments each consisting of 5,000,000 random `Float64` values and containing either zero null entries or approximately half randomly chosen null entries.
 
@@ -86,44 +80,42 @@ Given a method `f` defined on an argument signature of types `(U1, U2, …, UN)`
 
 NullableArrays offers keyword arguments for certain methods such as `broadcast` and `map` that direct the latter methods to lift passed function arguments over `NullableArray` arguments:
 
-```
-julia> X = NullableArray(collect(1:10), rand(Bool, 10))
-10-element NullableArray{Int64,1}:
- #NULL
- #NULL
- #NULL
-     4
-     5
-     6
-     7
-     8
- #NULL
-    10
+    julia> X = NullableArray(collect(1:10), rand(Bool, 10))
+    10-element NullableArray{Int64,1}:
+     #NULL
+     #NULL
+     #NULL
+         4
+         5
+         6
+         7
+         8
+     #NULL
+        10
 
-julia> f(x::Int) = 2x
-f (generic function with 2 methods)
+    julia> f(x::Int) = 2x
+    f (generic function with 2 methods)
 
-julia> map(f, X)
-ERROR: MethodError: `f` has no method matching f(::Nullable{Int64})
-Closest candidates are:
-  f(::Any, ::Any)
- [inlined code] from /Users/David/.julia/v0.4/NullableArrays/src/map.jl:93
- in _F_ at /Users/David/.julia/v0.4/NullableArrays/src/map.jl:124
- in map at /Users/David/.julia/v0.4/NullableArrays/src/map.jl:172
+    julia> map(f, X)
+    ERROR: MethodError: `f` has no method matching f(::Nullable{Int64})
+    Closest candidates are:
+      f(::Any, ::Any)
+     [inlined code] from /Users/David/.julia/v0.4/NullableArrays/src/map.jl:93
+     in _F_ at /Users/David/.julia/v0.4/NullableArrays/src/map.jl:124
+     in map at /Users/David/.julia/v0.4/NullableArrays/src/map.jl:172
 
-julia> map(f, X; lift=true)
-10-element NullableArray{Int64,1}:
- #NULL
- #NULL
- #NULL
-     8
-    10
-    12
-    14
-    16
- #NULL
-    20
-```
+    julia> map(f, X; lift=true)
+    10-element NullableArray{Int64,1}:
+     #NULL
+     #NULL
+     #NULL
+         8
+        10
+        12
+        14
+        16
+     #NULL
+        20
 
 I also plan to release shortly a small package that will offer a more flexible “lift” macro, which will be able to lift function calls over `Nullable` arguments within a variety of expression types.
 
