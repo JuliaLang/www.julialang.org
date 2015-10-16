@@ -31,13 +31,14 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaStats](https://github.com/JuliaStats) – [Statistics](http://www.juliastats.org/)
 * [JuliaOpt](https://github.com/JuliaOpt) – [Optimization](http://www.juliaopt.org/)
 * [JuliaParallel](https://github.com/JuliaParallel) – [Parallel programming in Julia](http://juliaparallel.github.io/)
+* [JuliaDB](https://github.com/JuliaDB) – Various database drivers for Julia
+* [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
 * [BioJulia](https://github.com/BioJulia) - Biology
+* [JuliaQuantum](https://github.com/JuliaQuantum) – [Julia libraries for quantum science and technology](http://juliaquantum.github.io/)
 * [JuliaAstro](https://github.com/JuliaAstro) – Astronomy
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
-* [JuliaQuantum](https://github.com/JuliaQuantum) – [Julia libraries for quantum science and technology](http://juliaquantum.github.io/)
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
 * [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](http://www.juliadiff.org/)
-* [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
 * [JuliaWeb](https://github.com/JuliaWeb) – Web stack
 * [JuliaCI](https://github.com/JuliaCI) – Continuous Integration Support for Julia packages
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
@@ -71,7 +72,7 @@ Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag o
 * [julia](https://gitter.im/JuliaLang/julia) Gitter chat room is for discussions around the usage of Julia.
 * [julialang-es](https://gitter.im/JuliaLangEs/julialang-es) Gitter chat room is for discussions around the usage of Julia in the Spanish language.
 * [julia-coverage](https://gitter.im/kshyatt/julia-coverage) Gitter chat room is for discussions around Julia tests coverage.
- 
+
 # Facebook
 
 * [JuliaLangEs](https://www.facebook.com/groups/julialang.es/) group for discussions around the usage of Julia in the Spanish language.
