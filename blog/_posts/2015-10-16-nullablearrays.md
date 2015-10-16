@@ -1,6 +1,8 @@
-NullableArrays.jl
-====================================================
-by David Gold
+---
+layout: post
+title:  JSOC 2015 project - NullableArrays.jl
+author: David Gold
+---
 
 My project under the 2015 [Julia Summer of Code](http://julialang.org/jsoc) program has been to develop the [NullableArrays](https://github.com/JuliaStats/NullableArrays.jl) package, which provides the `NullableArray` data type and its respective interface. I first encountered Julia earlier this year as a suggestion for which language I ought to learn as a matriculating PhD student in statistics. This summer has been an incredible opportunity for me both to develop as a young programmer and to contribute to an open-source community as full of possibility as Julia's. I'd be remiss not to thank [Alan Edelman](http://www-math.mit.edu/~edelman/)'s group at MIT, [NumFocus](http://numfocus.org/), and the [Gordon & Betty Moore Foundation](https://www.moore.org/) for their financial support, [John Myles White](https://github.com/johnmyleswhite/) for his mentorship and guidance, and many others of the Julia community who have helped to contribute both to the package and to my edification as a programmer over the summer. Much of my work on this project was conducted at the [Recurse Center](www.recurse.com), where I received the support of an amazing community of self-directed learners.
 
@@ -9,7 +11,7 @@ My project under the 2015 [Julia Summer of Code](http://julialang.org/jsoc) prog
 
 `NullableArray`s are array structures that efficiently represent missing values without incurring the performance difficulties that face `DataArray` objects, which have heretofore been used to store data that include missing values. The core issue responsible for `DataArray`s performance woes concerns the way in which the former represent missing values, i.e. through a token `NA` object of token type `NAType`. In particular, indexing into, say, a `DataArray{Int}` can return an object either of type `Int` or of type `NAType`. This design does not provide sufficient information to Julia's type inference system at JIT-compilation time to support the sort of static analysis that Julia's compiler can otherwise leverage to emit efficient machine code. We can illustrate as much through following example, in which we calculate the sum of five million random `Float64`s stored in a `DataArray`:
 
-```julia
+```
 julia> using DataArrays
 # warnings suppressed…
 
@@ -35,7 +37,7 @@ julia> @time f(D)
 
 Looping through and summing the elements of `D` is over twenty times slower and allocates far more memory than running the same loop over `A`:
 
-```julia
+```
 julia> f(A);
 
 julia> @time f(A)
@@ -49,7 +51,7 @@ On the other hand, `NullableArray`s are designed to support the sort of static a
 
 Here is the result of running the same loop over a comparable `NullableArray`:
 
-```julia
+```
 julia> using NullableArrays
 
 julia> X = NullableArray(A);
@@ -72,11 +74,11 @@ Nullable(2.500102419334644e6)
 
 As can be seen, naively looping over a `NullableArray` is on the same order of magnitude as naively looping over a regular `Array` in terms of both time elapsed and memory allocated. Below is a set of plots (drawn with [Gadfly.jl](https://github.com/dcjones/Gadfly.jl)) that visualize the results of running 20 benchmark samples of `f` over both `NullableArray` and `DataArray` arguments each consisting of 5,000,000 random `Float64` values and containing either zero null entries or approximately half randomly chosen null entries.
 
-![](2015-10-03-nullablearrays-images/f_plot.png)
+![](/images/2015-10-03-nullablearrays-images/f_plot.png)
 
 Of course, it is possible to bring the performance of such a loop over a `DataArray` up to par with that of a loop over an `Array`. But such optimizations generally introduce additional complexity that oughtn’t to be required to achieve acceptable performance in such a simple task. Considerably more complex code can be required to achieve performance in more involved implementations, such as that of `broadcast!`. We intend for `NullableArray`s to to perform well under involved tasks involving missing data while requiring as little interaction with `NullableArray` internals as possible. This includes allowing users to leverage extant implementations without sacrificing performance. Consider for instance the results of relying on Base’s implementation of `broadcast!` for `DataArray` and `NullableArray` arguments (i.e., having omitted the respective `src/broadcast.jl` from each package’s source code). Below are plots that visualize the results of running 20 benchmark samples of `broadcast!(dest, src1, src2)`, where `dest` and `src2` are `5_000_000 x 2` `Array`s, `NullableArray`s or `DataArray`s, and `src1` is a `5_000_000 x 1` `Array`, `NullableArray` or `DataArray`. As above, the `NullableArray` and `DataArray` arguments are tested in cases with either zero or approximately half null entries:
 
-![](2015-10-03-nullablearrays-images/bcast_plot.png)
+![](/images/2015-10-03-nullablearrays-images/bcast_plot.png)
 
 We have designed the `NullableArray` type to feel as much like a regular `Array` as possible. However, that `NullableArray`s return `Nullable` objects is a significant departure from both `Array` and `DataArray` behavior. Arguably the most important issue is to support user-defined functions that lack methods for `Nullable` arguments as they interact with `Nullable` and `NullableArray` objects. Throughout my project I have also worked to develop interfaces that make dealing with `Nullable` objects user-friendly and safe.
 
@@ -84,7 +86,7 @@ Given a method `f` defined on an argument signature of types `(U1, U2, …, UN)`
 
 NullableArrays offers keyword arguments for certain methods such as `broadcast` and `map` that direct the latter methods to lift passed function arguments over `NullableArray` arguments:
 
-```julia
+```
 julia> X = NullableArray(collect(1:10), rand(Bool, 10))
 10-element NullableArray{Int64,1}:
  #NULL
