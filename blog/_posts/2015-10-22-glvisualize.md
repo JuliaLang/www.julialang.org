@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  GLVisualize.jl: Interactive Visualizations in Julia
+title:  GLVisualize.jl - Interactive Visualizations in Julia
 author: <a href="https://github.com/SimonDanisch">Simon Danisch</a>
 ---
 
