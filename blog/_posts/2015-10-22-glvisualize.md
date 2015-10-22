@@ -1,6 +1,8 @@
-# GLVisualize.jl: Interactive Visualizations in Julia
-
-**Simon Danisch**
+---
+layout: post
+title:  GLVisualize.jl: Interactive Visualizations in Julia
+author: <a href="https://github.com/SimonDanisch">Simon Danisch</a>
+---
 
 GLVisualize is an interactive visualization library that supports 2D and 3D rendering as well as building of basic GUIs. It's written entirely in Julia and OpenGL.
 I'm really glad that I could continue working on this project with the support of Julia Summer of Code.
