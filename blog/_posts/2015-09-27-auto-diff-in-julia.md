@@ -1,6 +1,8 @@
-# ForwardDiff.jl: Automatic Differentiation in Julia
-
-**Jarrett Revels**
+---
+layout: post
+title: ForwardDiff.jl: Automatic Differentiation in Julia
+author: Jarrett Revels
+---
 
 This summer, I've had the good fortune to be able to participate in the first ever **Julia Summer of Code (JSoC)**, generously sponsored by the Gordon and Betty Moore Foundation. My JSoC project was to explore the use of Julia for **automatic differentiation (AD)**, a topic with a wide array of applications in the field of optimization.
 
