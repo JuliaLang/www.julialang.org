@@ -1,6 +1,6 @@
 ---
 layout: post
-title: JSOC 2015 project - ForwardDiff.jl: Automatic Differentiation in Julia
+title: JSOC 2015 project - Automatic Differentiation in Julia with ForwardDiff.jl
 author: Jarrett Revels
 ---
 
