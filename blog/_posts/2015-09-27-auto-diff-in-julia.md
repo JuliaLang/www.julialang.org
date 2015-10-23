@@ -149,6 +149,23 @@ In reality, the number types that ForwardDiff.jl implements are quite a bit more
 
 To illustrate the performance gains that can be achieved using ForwardDiff.jl, let's do a (very) naive benchmark comparison between ForwardDiff.jl and other libraries. For this comparison, we'll be comparing the time to calculate the gradient of a function using ForwardDiff.jl, Calculus.jl, and a Python-based AD tool, AlgoPy.
 
+To put these benchmarks in context, here are my machine specs, along the version info of the relevant libraries:
+
+**Machine Specs**
+
+- Model: Late 2013 MacBook Pro
+- OS: OSX 10.9.5
+- Processor: 2.6 GHz Intel Core i5
+- Memory: 8 GB 1600 MHz DDR3
+
+**Version Info**
+
+- Julia v0.4.1-pre+15
+    - ForwardDiff.jl v0.1.2
+    - Calculus.jl v0.1.13
+- Python v2.7.9
+    - AlgoPy v0.5.1
+
 ### Defining the Ackley Function
 
 The function we'll be using in our test is the [Ackley function](http://www.sfu.ca/~ssurjano/ackley.html), which is mathematically defined as
@@ -196,9 +213,9 @@ The below table compares the evaluation times of `ackley(x)` in both Python and 
 
 | length(x) | Python time (s) | Julia time (s) | Speed-Up vs. Python  |
 |-----------|-----------------|----------------|----------------------|
-| 16        | 0.00011         | 2.294e-6       | 47.95x               |
-| 1600      | 0.00477         | 3.9647e-5      | 120.31x              |
-| 16000     | 0.04747         | 0.00041        | 115.78x              |
+| 16        | 0.00011         | 2.3e-6         | 47.83x               |
+| 1600      | 0.00477         | 4.0269e-5      | 118.45x              |
+| 16000     | 0.04747         | 0.00037        | 128.30x              |
 
 #### Gradient evaluation time
 
@@ -206,19 +223,19 @@ The below table compares the evaluation times of `∇ackley(x)` using various li
 
 | length(x) | AlgoPy time (s) | Calculus.jl time (s) | ForwardDiff time (s) | `chunk_size` |
 |-----------|-----------------|----------------------|----------------------|--------------|
-| 16        | 0.00212         | 2.2e-5               |  3.9165e-5           | 16           |
-| 1600      | 0.53439         | 0.10141              |  0.01342             | 10           |
-| 16000     | 101.55801       | 11.03374             |  1.36144             | 10           |
+| 16        | 0.00212         | 2.2e-5               |  3.5891e-5           | 16           |
+| 1600      | 0.53439         | 0.10259              |  0.01304             | 10           |
+| 16000     | 101.55801       | 11.18762             |  1.35411             | 10           |
 
 Here, we show the speed-up ratio of ForwardDiff.jl over the other libraries:
 
 | length(x) | Speed-Up vs. AlgoPy | Speed-Up vs. Calculus.jl |
 |-----------|---------------------|--------------------------|
-| 16        | 54.13x              | 0.56x                    |
-| 1600      | 39.80x              | 7.55x                    |
-| 16000     | 74.60x              | 8.10x                    |
+| 16        | 59.07x              | 0.61x                    |
+| 1600      | 40.98x              | 7.86x                    |
+| 16000     | 74.99x              | 8.26x                    |
 
-As you can see, Python + AlgoPy falls pretty short of the speeds achieved by Julia + ForwardDiff.jl, or even Julia + Calculus.jl. While Calculus.jl is actually almost twice as fast as ForwardDiff.jl for the lowest input dimension vector, it is ~7-8 times slower than ForwardDiff.jl for the higher input dimension vectors.
+As you can see, Python + AlgoPy falls pretty short of the speeds achieved by Julia + ForwardDiff.jl, or even Julia + Calculus.jl. While Calculus.jl is actually almost twice as fast as ForwardDiff.jl for the lowest input dimension vector, it is ~8 times slower than ForwardDiff.jl for the higher input dimension vectors.
 
 Another metric that might be useful to look at is the "slowdown ratio" between the gradient evaluation time and the function evaluation time, defined as:
 
@@ -228,9 +245,9 @@ Here are the results (lower is better):
 
 | length(x) | AlgoPy ratio | Calculus.jl ratio | ForwardDiff.jl ratio |
 |-----------|--------------|-------------------|----------------------|
-| 16        | 19.27        | 9.59              | 17.07                |
-| 1600      | 112.03       | 2557.82           | 338.49               |
-| 16000     | 2139.41      | 26911.56          | 3320.59              |
+| 16        | 19.27        | 9.56              | 15.60                |
+| 1600      | 112.03       | 2547.61           | 323.82               |
+| 16000     | 2139.41      | 30236.81          | 3659.77              |
 
 Both AlgoPy and ForwardDiff.jl beat out Calculus.jl for evaluation at higher input dimensions, which isn't too surprising. AlgoPy beating ForwardDiff.jl, though, might catch you off guard - ForwardDiff.jl had the fastest absolute runtimes, after all! One explanation for this outcome is that AlgoPy falls back to vectorized Numpy methods when calculating the gradient, while the `ackley` function itself uses your usual, slow Python scalar arithmetic. Julia's scalar arithmetic performance is *much* faster than Python's, so ForwardDiff.jl doesn't have as much "room for improvement" as AlgoPy does.
 
@@ -250,7 +267,7 @@ The new version of ForwardDiff.jl has just been released, but development of the
 
 - More elementary function definitions on `ForwardDiffNumber`s
 - More optimized versions of existing elementary function definitions on `ForwardDiffNumber`s
-- Methods for evaluating Jacobian-vector products (highly useful in conjunction with reverse mode AD).
+- Methods for evaluating Jacobian-matrix products (highly useful in conjunction with reverse mode AD).
 - Parallel/shared-memory/distributed-memory versions of current API methods for handling problems with huge input/output dimensions
 - A more robust benchmarking suite for catching performance regressions
 
