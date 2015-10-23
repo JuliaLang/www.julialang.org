@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  GLVisualize.jl - Interactive Visualizations in Julia
+title:  JSOC 2015 project  - Interactive Visualizations in Julia with GLVisualize.jl
 author: <a href="https://github.com/SimonDanisch">Simon Danisch</a>
 ---
 
@@ -22,7 +22,7 @@ So to really get the best of both worlds a lot of work is needed.
 ## Current status of GLVisualize, and what I've been doing during **JSoC**
 
 A surprisingly large amount of time went into improving **FileIO** together with [Tim Holy](https://github.com/timholy).
-The selling point of **FileIO** is, that one can just load a file into **FileIO** and it will recognize the format and load the respective IO library. 
+The selling point of **FileIO** is, that one can just load a file into **FileIO** and it will recognize the format and load the respective IO library.
 This makes it a lot easier to start working with files in Julia, since no prior knowledge about formats and loading files in Julia is needed.
 This is perfect for a visualization library, since most visualization start from data, that comes in some format, which might even be unknown initially.
 
@@ -43,7 +43,7 @@ Here are a few examples:
 https://github.com/SimonDanisch/Blog/blob/master/10-22-15-jsoc/marker.jl
 )
 
-In the last example all the markers move together. 
+In the last example all the markers move together.
 This is actually one of the core feature of **GLVisualize**. The markers share the same memory for the positions on the GPU without any overhead. Each marker then just has a different offset to that shared position.
 This is easily achieved in **GLVisualize**, since all visualization methods are defined on the GPU objects.
 This also works for GPU objects which come from some simulation calculated on the GPU.

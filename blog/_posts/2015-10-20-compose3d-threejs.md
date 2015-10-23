@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Compose3D.jl and ThreeJS.jl - Interactive 3D Graphics in the Browser
+title: JSOC 2015 project - Interactive 3D Graphics in the Browser with Compose3D
 authors: <a href="https://github.com/rohitvarkey">Rohit Varkey Thankachan</a>
 ---
 
@@ -64,7 +64,7 @@ or trackpad, allowing you to explore the scene.
             ],
             ThreeJS.pointlight(3.0, 3.0, 3.0),
             ThreeJS.camera(0.0, 0.0, 10.0)
-        ])  
+        ])
 
 ### Making them interactive
 

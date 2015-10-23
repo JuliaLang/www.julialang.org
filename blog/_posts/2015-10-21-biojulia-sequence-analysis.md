@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Efficient data structures and algorithms for sequence analysis in BioJulia
+title: JSOC 2015 project - Efficient data structures and algorithms for sequence analysis in BioJulia
 author: Kenta Sato
 ---
 
