@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  DataStreams.jl Overview
+title:  JSoC project update - DataStreams.jl
 author: <a href="https://github.com/quinnj">Jacob Quinn</a>
 ---
 
@@ -60,3 +60,6 @@ Quick rundown of each package:
 * transforms: an important part of data processing tasks is not just connecting to and moving the data to somewhere else: often you need to clean/transform/aggregate the data in some way in-between. Right now, that's up to users, but I have some ideas around creating DataStreams-friendly ways to easily incorporate transform steps as data is streamed from one place to another.
 * DataStreams for chaining pipelines + transforms: I'm also excited about the idea of creating entire `DataStreams`, which would define entire data processing tasks end-to-end. Setting up a pipeline that could consistently move and process data gets even more powerful as we start looking into automatic-parallelism and extensibility.
 * DataStream scheduling/management: I'm also interested in developing capabilities around scheduling and managing DataStreams.
+
+
+_The work on DataStreams.jl was carried out as part of the Julia Summer of Code program, made possible thanks to the generous support of the [Gordon and Betty Moore Foundation](https://moore.org), and MIT._
