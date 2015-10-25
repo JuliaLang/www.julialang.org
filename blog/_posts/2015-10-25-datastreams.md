@@ -1,3 +1,9 @@
+---
+layout: post
+title:  DataStreams.jl Overview
+author: <a href="https://github.com/quinnj">Jacob Quinn</a>
+---
+
 Data processing got ya down? Good news! The [DataStreams.jl](https://github.com/JuliaDB/DataStreams.jl) package, er, framework, has arrived!
 
 The DataStreams processing framework provides a consistent interface for working with data, from source to sink and eventually every step in-between. It's really about putting forth an interface (specific types and methods) to go about ingesting and transferring data sources that hopefully makes for a consistent experience for users, no matter what kind of data they're working with.
@@ -7,31 +13,35 @@ DataStreams is all about creating "sources" (Julia types that represent true dat
 
 Say I have a table of data in a CSV file on my local machine and need to do a little cleaning and aggregation on the data before building a model with the [GLM.jl](https://github.com/JuliaStats/GLM.jl) package. Let's see some code in action:
 
-```julia
-using CSV, SQLite, DataStreams, DataFrames
-# let's create a Julia type that understands our data file
-csv_source = CSV.Source("datafile.csv")
-# let's also create an SQLite destination for our data
-# according to its structure
-db = SQLite.DB() # create an in-memory SQLite database
-# creates an SQLite table
-sqlite_sink = SQLite.Sink(Data.schema(csv_source), db, "mydata")
-# parse the CSV data directly into our SQLite table
-Data.stream!(csv_source, sqlite_sink)
+    using CSV, SQLite, DataStreams, DataFrames
 
-# now I can do some data cleansing/aggregation
-# ...various SQL statements on the "mydata" SQLite table...
+    # let's create a Julia type that understands our data file
+    csv_source = CSV.Source("datafile.csv")
 
-# now I'm ready to get my data out and ready for model fitting
-sqlite_source = SQLite.Source(sqlite_sink)
-# stream our data into a Julia structure (Data.Table)
-dt = Data.stream!(sqlite_source, Data.Table)
-# convert to DataFrame (non-copying)
-df = DataFrame(dt)
+    # let's also create an SQLite destination for our data
+    # according to its structure
+    db = SQLite.DB() # create an in-memory SQLite database
 
-# do model-fitting
-OLS = glm(Y~X,df,Normal(),IdentityLink())
-```
+    # creates an SQLite table
+    sqlite_sink = SQLite.Sink(Data.schema(csv_source), db, "mydata")
+
+    # parse the CSV data directly into our SQLite table
+    Data.stream!(csv_source, sqlite_sink)
+
+    # now I can do some data cleansing/aggregation
+    # ...various SQL statements on the "mydata" SQLite table...
+
+    # now I'm ready to get my data out and ready for model fitting
+    sqlite_source = SQLite.Source(sqlite_sink)
+
+    # stream our data into a Julia structure (Data.Table)
+    dt = Data.stream!(sqlite_source, Data.Table)
+
+    # convert to DataFrame (non-copying)
+    df = DataFrame(dt)
+
+    # do model-fitting
+    OLS = glm(Y~X,df,Normal(),IdentityLink())
 
 Here we see it's quite simple to create a `Source` type by wrapping a true datasource (our CSV file), a destination for that data (an SQLite table), and to transfer the data. We can then turn our `SQLite.Sink` into an `SQLite.Source` for getting the data back out again.
 
