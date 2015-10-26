@@ -1,6 +1,6 @@
 ---
 layout: post
-title: JSOC 2015 project - Interactive Visualizations in Julia with GLVisualize.jl
+title: "JSoC 2015 project: Interactive Visualizations in Julia with GLVisualize.jl"
 author: <a href="https://github.com/SimonDanisch">Simon Danisch</a>
 ---
 
