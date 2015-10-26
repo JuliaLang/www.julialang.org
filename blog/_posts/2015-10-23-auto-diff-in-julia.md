@@ -4,6 +4,10 @@ title: JSOC 2015 project - Automatic Differentiation in Julia with ForwardDiff.j
 author: Jarrett Revels
 ---
 
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 This summer, I've had the good fortune to be able to participate in the first ever **Julia Summer of Code (JSoC)**, generously sponsored by the Gordon and Betty Moore Foundation. My JSoC project was to explore the use of Julia for automatic differentiation (AD), a topic with a wide array of applications in the field of optimization.
 
 Under the mentorship of Miles Lubin and Theodore Papamarkou, I completed a major overhaul of **[ForwardDiff.jl](https://github.com/JuliaDiff/ForwardDiff.jl)**, a Julia package for calculating derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable Julia type, really).
