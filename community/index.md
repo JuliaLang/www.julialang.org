@@ -73,6 +73,9 @@ Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag o
 * [julialang-es](https://gitter.im/JuliaLangEs/julialang-es) Gitter chat room is for discussions around the usage of Julia in the Spanish language.
 * [julia-coverage](https://gitter.im/kshyatt/julia-coverage) Gitter chat room is for discussions around Julia tests coverage.
 
+#QQ groups
+USTC(university of Science and Technology of China) Julia User Group,QQ group:316628299
+
 # Facebook
 
 * [JuliaLangEs](https://www.facebook.com/groups/julialang.es/) group for discussions around the usage of Julia in the Spanish language.
