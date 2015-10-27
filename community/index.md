@@ -78,7 +78,7 @@ Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag o
 QQ is a more convenient chat service for users in China: [About QQ](http://www.imqq.com/?lang=1033)/[QQchat](http://qqchat.qq.com/). The following are some QQ groups for Julia users and developers:
 
 * Julia learners – discussions around the usage of Julia: ID 254087649
-* JuliaLang China – discussions around the develop of Julia community in China: ID 188374671
+* JuliaLang China – discussions around the development of Julia community in China: ID 188374671
 * USTC (University of Science and Technology of China) Julia User Group: ID 316628299
 
 To join a QQ group, search for a QQ ID in the Tencent QQ service software or app.
