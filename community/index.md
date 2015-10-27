@@ -74,7 +74,13 @@ Use the [julia-lang](http://stackoverflow.com/questions/tagged/julia-lang) tag o
 * [julia-coverage](https://gitter.im/kshyatt/julia-coverage) Gitter chat room is for discussions around Julia tests coverage.
 
 #QQ groups
-USTC(university of Science and Technology of China) Julia User Group,QQ group:316628299
+QQ is a more convenient chat service for inner China users,there are some QQ gorups for Julia users and developers [About QQ](http://www.imqq.com/?lang=1033)/[QQchat](http://qqchat.qq.com/)
+
+to use the QQ group ID number, you only need to search this ID in Tencent QQ service software or app
+
+* USTC(University of Science and Technology of China) Julia User Group,**QQ group ID:316628299**
+* JuliaLang China,discussions around the develop of Julia Community in China,**QQ group ID:188374671**
+* Julia learners,discussions around the usage of Julia,**QQ group ID:254087649**
 
 # Facebook
 
