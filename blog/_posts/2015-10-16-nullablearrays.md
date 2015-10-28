@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  JSOC 2015 project - NullableArrays.jl
+title:  "JSoC 2015 project: NullableArrays.jl"
 author: David Gold
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: JSOC 2015 project - Interactive 3D Graphics in the Browser with Compose3D
+title: "JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D"
 authors: <a href="https://github.com/rohitvarkey">Rohit Varkey Thankachan</a>
 ---
 

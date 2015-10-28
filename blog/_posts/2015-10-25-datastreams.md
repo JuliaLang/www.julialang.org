@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  JSoC 2015 project - DataStreams.jl
+title:  "JSoC 2015 project: DataStreams.jl"
 author: <a href="https://github.com/quinnj">Jacob Quinn</a>
 ---
 
