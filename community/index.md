@@ -80,6 +80,7 @@ QQ is a more convenient chat service for users in China: [About QQ](http://www.i
 * Julia learners – discussions around the usage of Julia: ID 254087649
 * JuliaLang China – discussions around the development of Julia community in China: ID 188374671
 * USTC (University of Science and Technology of China) Julia User Group: ID 316628299
+* Julia Programming - Academic and industry users of Julia in China: ID 513210135
 
 To join a QQ group, search for a QQ ID in the Tencent QQ service software or app.
 
