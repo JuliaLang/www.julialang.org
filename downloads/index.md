@@ -8,7 +8,6 @@ title:  Julia Downloads
 We provide three ways for you to run Julia:
 
 * In the terminal using the built-in Julia command line.
-* The [Juno](http://www.junolab.org) integrated development environment (IDE).
 * In the browser on [JuliaBox.org](https://www.juliabox.org) with IJulia notebooks. No installation is required -- just point your browser there, login and start computing.
 
 Plotting capabilities are provided by external packages such as
@@ -49,10 +48,6 @@ packages are pre-installed.
     <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.1/julia-0.4.1-full.tar.gz">Full Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.1/julia-0.4.1-full.tar.gz.asc">GPG</a>) </td>
     <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/release-0.4">GitHub</a> </td>
 </tr>
-<tr>
-    <th> Old releases (not maintained) </th>
-    <td colspan="6" ><a href="http://julialang.org/downloads/oldreleases.html">link</a> </td>
-</tr>
 </tbody></table>
 
 Please see [platform](platform.html) specific instructions if you have
@@ -63,6 +58,12 @@ issue in the Julia project](https://github.com/JuliaLang/julia/issues). It is st
 recommended that you download the v0.4.x binaries to try out Julia,
 unless you are working with code that was developed specifically for a
 previous release.
+
+# Older Releases
+
+Older releases of Julia for all platforms are available on the [Older releases page](http://julialang.org/downloads/oldreleases.html).
+
+For Julia 0.3, only critical bugfixes are being supported. Releases older than 0.3 are now unmaintained.
 
 # Nightly builds
 
