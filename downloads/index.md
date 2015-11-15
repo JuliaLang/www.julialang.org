@@ -5,7 +5,7 @@ title:  Julia Downloads
 
 # Current Release (v0.4.1)
 
-We provide three ways for you to run Julia:
+We provide a couple of ways for you to run Julia:
 
 * In the terminal using the built-in Julia command line.
 * In the browser on [JuliaBox.org](https://www.juliabox.org) with IJulia notebooks. No installation is required -- just point your browser there, login and start computing.
