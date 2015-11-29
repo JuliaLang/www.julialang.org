@@ -40,22 +40,22 @@ anymore.
 </tr>
 </tbody></table>
 
-# Julia + Juno IDE bundles (v0.3)
+# Julia + Juno IDE bundles (v0.3.12)
 
 <table class="downloads"><tbody>
 <tr>
   <th> Windows (7+) </th>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-windows-x32.zip">32-bit</a> </td>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-windows-x64.zip">64-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-windows-x32.zip">32-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-windows-x64.zip">64-bit</a> </td>
 </tr>
 <tr>
   <th> Mac OS X (10.8+)</th>
-  <td colspan="2"> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-mac-x64.dmg">64-bit</a> </td>
+  <td colspan="2"> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-mac-x64.dmg">64-bit</a> </td>
 </tr>
 <tr>
   <th> Linux </th>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-linux-x32.zip">32-bit</a> </td>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.2/juno-linux-x64.zip">64-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-linux-x32.zip">32-bit</a> </td>
+  <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-linux-x64.zip">64-bit</a> </td>
 </tr>
 </tbody></table>
 
