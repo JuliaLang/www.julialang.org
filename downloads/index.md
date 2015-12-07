@@ -3,7 +3,7 @@ layout: default
 title:  Julia Downloads
 ---
 
-# Current Release (v0.4.1)
+# Current Release (v0.4.2)
 
 We provide a couple of ways for you to run Julia:
 
@@ -22,12 +22,12 @@ packages are pre-installed.
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
-    <td colspan="3"> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x86/0.4/julia-0.4.1-win32.exe">32-bit</a> </td>
-    <td colspan="3"> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.4/julia-0.4.1-win64.exe">64-bit</a> </td>
+    <td colspan="3"> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x86/0.4/julia-0.4.2-win32.exe">32-bit</a> </td>
+    <td colspan="3"> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.4/julia-0.4.2-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
     <th> Mac OS X Package (.dmg) </th>
-    <td colspan="6"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.4/julia-0.4.1-osx10.7+.dmg">10.7+ 64-bit</a> </td>
+    <td colspan="6"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.4/julia-0.4.2-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
     <th> Ubuntu packages (.deb) </th>
@@ -39,19 +39,19 @@ packages are pre-installed.
 </tr>
 <tr>
     <th> Generic Linux binaries </th>
-    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.1-linux-i686.tar.gz">32-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.1-linux-i686.tar.gz.asc">GPG</a>)</td>
-    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.1-linux-x86_64.tar.gz">64-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.1-linux-x86_64.tar.gz.asc">GPG</a>)</td>
+    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.2-linux-i686.tar.gz">32-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.2-linux-i686.tar.gz.asc">GPG</a>)</td>
+    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.2-linux-x86_64.tar.gz">64-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.2-linux-x86_64.tar.gz.asc">GPG</a>)</td>
 </tr>
 <tr>
     <th> Source </th>
-    <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.1/julia-0.4.1.tar.gz">Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.1/julia-0.4.1.tar.gz.asc">GPG</a>) </td>
-    <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.1/julia-0.4.1-full.tar.gz">Full Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.1/julia-0.4.1-full.tar.gz.asc">GPG</a>) </td>
+    <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.2/julia-0.4.2.tar.gz">Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.2/julia-0.4.2.tar.gz.asc">GPG</a>) </td>
+    <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.2/julia-0.4.2-full.tar.gz">Full Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.2/julia-0.4.2-full.tar.gz.asc">GPG</a>) </td>
     <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/release-0.4">GitHub</a> </td>
 </tr>
 </tbody></table>
 
 Please see [platform](platform.html) specific instructions if you have
-trouble installing Julia.  Checksums for this release are available in both [MD5](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.4.1.md5) and [SHA256](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.4.1.sha256) format.
+trouble installing Julia.  Checksums for this release are available in both [MD5](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.4.2.md5) and [SHA256](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.4.2.sha256) format.
 
 If the provided download files do not work for you, please [file an
 issue in the Julia project](https://github.com/JuliaLang/julia/issues). It is strongly
