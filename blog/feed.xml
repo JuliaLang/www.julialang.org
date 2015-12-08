@@ -1,9 +1,9 @@
 ---
-layout: nil
+layout: 
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
- 
+
  <title>The Julia Blog</title>
  <link href="http://julialang.org/blog/feed.xml" rel="self"/>
  <link href="http://julialang.org/blog"/>
@@ -23,5 +23,5 @@ layout: nil
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endfor %}
- 
+
 </feed>
