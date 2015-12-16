@@ -60,7 +60,7 @@ unless you are working with code that was developed specifically for a
 previous release.
 
 
-# Julia + Juno IDE bundles (v0.3.12)
+# Julia + Juno IDE bundles
 
 <table class="downloads"><tbody>
 <tr>
