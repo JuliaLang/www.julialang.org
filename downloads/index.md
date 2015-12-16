@@ -8,6 +8,7 @@ title:  Julia Downloads
 We provide a couple of ways for you to run Julia:
 
 * In the terminal using the built-in Julia command line.
+* The [Juno](http://www.junolab.org) integrated development environment (IDE).
 * In the browser on [JuliaBox.org](https://www.juliabox.org) with IJulia notebooks. No installation is required -- just point your browser there, login and start computing.
 
 Plotting capabilities are provided by external packages such as
