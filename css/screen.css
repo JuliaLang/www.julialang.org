@@ -15,7 +15,7 @@ img {
 }
 
 #site {
-  max-width: 785px;
+  max-width: 830px;
   text-align: left;
   line-height: 1.5em;
   margin: 2.5em auto 2em;
@@ -178,7 +178,7 @@ blockquote {
 /* pages listing blog posts */
 
 #blogindex {
-  max-width: 30em;
+  max-width: 45em;
   margin: 2em auto 2em auto;
 }
   #blogindex ul {
