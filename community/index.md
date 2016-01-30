@@ -99,6 +99,7 @@ North America
 * [Chicago Julia Meetup](http://www.meetup.com/JuliaChicago/)
 * [JuliaLangEs - México, D.F.](http://www.meetup.com/es/julialanges-mx/)
 * [NYC Julia User Group](http://www.meetup.com/NYC-Julia-User-Group/)
+* [Seattle Julia Users](http://www.meetup.com/Seattle-Julia-Users/)
 * [Southern California Julia Users](http://www.meetup.com/Southern-California-Julia-Users/)
 * [Triangle Julia Users (North Carolina)](http://www.meetup.com/Triangle-Julia-Users/)
 * [Ottawa Julia Meetup](http://www.meetup.com/Ottawa-Julia-Meetup/)
