@@ -40,9 +40,9 @@ need an index associated with each element, then you can use
 
 If instead you also need the index, then use
 
-   for i in eachindex(A)
-       # Code that does something with i and/or A[i]
-   end
+    for i in eachindex(A)
+        # Code that does something with i and/or A[i]
+    end
 
 In some cases, the first line of this loop expands to `for i =
 1:length(A)`, and `i` is just an integer.  However, in other cases,
