@@ -28,7 +28,7 @@ Let's introduce these iterators with an extension of an example taken
 from the
 [manual](http://docs.julialang.org/en/stable/manual/arrays/#iteration).
 
-## `eachindex`, `CartesianIndex`, and `CartesianRange`
+# `eachindex`, `CartesianIndex`, and `CartesianRange`
 
 You may already know that, in julia 0.4, there are two recommended
 ways to iterate over the elements in an `AbstractArray`: if you don't
@@ -124,9 +124,9 @@ multidimensional iteration can be a powerful ally when writing
 algorithms.  The rest of this blog post will focus on this
 latter application.
 
-## Writing multidimensional algorithms with `CartesianIndex` iterators
+# Writing multidimensional algorithms with `CartesianIndex` iterators
 
-### A multidimensional boxcar filter
+## A multidimensional boxcar filter
 
 Let's suppose we have a multidimensional array `A`, and we want to
 compute the ["moving
@@ -207,7 +207,7 @@ for edge points it computes the average of whatever nearest-neighbors
 it has available.  It even works if `size(A, d) < 3` for some
 dimension `d`; we don't need any error checking on the size of `A`.
 
-### Computing a reduction
+## Computing a reduction
 
 For a second example, consider the implementation of multidimensional
 *reductions*. A reduction takes an input array, and returns an array
@@ -216,7 +216,7 @@ particular dimensions of an array: given a three-dimensional array,
 you might want to compute the sum along dimension 2, leaving
 dimensions 1 and 3 intact.
 
-#### The core algorithm
+### The core algorithm
 
 An efficient way to write this algorithm requires that the output
 array, `B`, is pre-allocated by the caller (later we'll see how one
@@ -248,7 +248,7 @@ is essentially equivalent to
 ```
 because `min(1,j) = 1`.
 
-#### The wrapper, and handling type-instability using function barriers
+### The wrapper, and handling type-instability using function barriers
 
 As a user, you might prefer an interface more like `sumalongdims(A,
 dims)` where `dims` specifies the dimensions you want to sum along.
@@ -315,7 +315,7 @@ a standalone function: if this calculation is one you're going to
 repeat many times, re-using the same output array can reduce the
 amount of memory allocation in your code.
 
-### Filtering along a specified dimension (exploiting multiple indexes)
+## Filtering along a specified dimension (exploiting multiple indexes)
 
 One final example illustrates an important new point: when you index
 an array, you can freely mix `CartesianIndex`es and
@@ -392,7 +392,7 @@ core support for high-performance packages like
 [Interpolations](https://github.com/tlycken/Interpolations.jl) that
 require multidimensional computation.
 
-## Additional issues
+# Additional issues
 
 It's worth noting one point that has thus far remained unstated: all
 of the examples here are relatively *cache efficient*.  This is a key
@@ -412,7 +412,7 @@ filtering example above we were careful to iterate in the order
 
 so that `x` would be traversed in memory-order.
 
-## Summary
+# Summary
 
 As is hopefully clear by now, much of the pain of writing generic
 multidimensional algorithms is eliminated by Julia's elegant
