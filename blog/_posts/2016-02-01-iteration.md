@@ -6,11 +6,11 @@ author: <a href="http://holylab.wustl.edu">Tim Holy</a>
 
 Starting with release 0.4, Julia makes it easy to write elegant and
 efficient multidimensional algorithms. The new capabilities rest on
-two foundations: a new type of iterator, called `CartesianIndex`, and
+two foundations: a new type of iterator, called `CartesianRange`, and
 sophisticated array indexing mechanisms.  Before I explain, let me
 emphasize that developing these capabilities was a collaborative
 effort, with the bulk of the work done by Matt Bauman (@mbauman),
-Jutho Haegeman (@Jutho), and myself.
+Jutho Haegeman (@Jutho), and myself (@timholy).
 
 These new iterators are deceptively simple, so much so that I've never
 been entirely convinced that this blog post is necessary: once you
@@ -105,16 +105,18 @@ One reason that `eachindex` is recommended over `for i = 1:length(A)`
 is that some `AbstractArray`s cannot be indexed efficiently with a
 linear index; in contrast, a much wider class of objects can be
 efficiently indexed with a multidimensional iterator.  (SubArrays are,
-generally speaking, a prime example.)  `eachindex` is designed to pick
-the most efficient iterator for the given array type.  You can even
-use
+generally speaking, [a prime
+example](http://docs.julialang.org/en/stable/devdocs/subarrays/#indexing-cartesian-vs-linear-indexing).)
+`eachindex` is designed to pick the most efficient iterator for the
+given array type.  You can even use
 
 ```jl
 for i in eachindex(A, B)
 ...
 ```
 
-to ensure that `i` will be efficient for accessing both `A` and `B`.
+to increase the likelihood that `i` will be efficient for accessing
+both `A` and `B`.
 
 As we'll see below, these iterators have another purpose: independent
 of whether the underlying arrays have efficient linear indexing,
@@ -139,13 +141,12 @@ this conceptually-simple algorithm is somewhat painful, but in Julia
 it's a piece of cake:
 
 ```jl
-function boxcar3{T,N}(A::AbstractArray{T,N})
+function boxcar3(A::AbstractArray)
     out = similar(A)
-    I1 = CartesianIndex(ntuple(d->1, N)::NTuple{N,Int})
-    Iend = CartesianIndex(size(A))
-    for I in CartesianRange(size(A))
-        n = 0
-        s = zero(T)
+    R = CartesianRange(size(A))
+    I1, Iend = first(R), last(R)
+    for I in R
+        n, s = 0, zero(eltype(out))
         for J in CartesianRange(max(I1, I-I1), min(Iend, I+I1))
             s += A[J]
             n += 1
@@ -160,58 +161,55 @@ Let's walk through this line by line:
 
 - `out = similar(A)` allocates the output. In a "real" implementation,
   you'd want to be a little more careful about the element type of the
-  output (what if the input array element type `T` is `Int`?), but
+  output (what if the input array element type is `Int`?), but
   we're cutting a few corners here for simplicity.
 
-- `I1 = CartesianIndex(ntuple(d->1, N)::NTuple{N,Int})` creates an
-  `N`-dimensional `CartesianIndex` filled with 1s, e.g.,
-  `CartesianIndex{3}(1,1,1)` in three dimensions.  The type
-  annotation, `::NTuple{N,Int}` is unfortunately necessary (if you
-  want good performance), because julia 0.4 cannot infer the output
-  type of (most) calls to `ntuple`.  We'll explore this topic further
-  below.
+- `R = CartesianRange(size(A))` creates the iterator for the array,
+  ranging from `CartesianIndex((1, 1, 1, ...))` to
+  `CartesianIndex((size(A,1), size(A,2), size(A,3), ...))`.  We don't
+  use `eachindex`, because we can't be sure whether that will return a
+  `CartesianRange` iterator, and here we explicitly need one.
 
-  `I1` is going to be used for two purposes: to offset from the
-  general index `I`, and to ensure that we don't exceed the lower
-  bounds of `A`.
+- `I1 = first(R)` and `Iend = last(R)` return the lower
+  (`CartesianIndex((1, 1, 1, ...))`) and upper
+  (`CartesianIndex((size(A,1), size(A,2), size(A,3), ...))`) bounds
+  of the iteration range, respectively.  We'll use these to ensure
+  that we never access out-of-bounds elements of `A`.
 
-- `Iend = CartesianIndex(size(A))` calculates another `CartesianIndex`
-  that will be used to ensure we don't exceed the upper bounds of `A`.
+  Conveniently, `I1` can also be used to compute the offset range.
 
-- `for I in CartesianRange(size(A))`: here we loop over each entry of
-  `A`. We don't use `eachindex`, because we can't be sure whether that
-  will use a `CartesianIndex` iterator.  Instead, we guarantee it by
-  using `CartesianRange` directly.
+- `for I in R`: here we loop over each entry of `A`.
 
-- The next two lines, `n = 0` and `s = zero(T)`, initialize the
-  accumulators. `n` will hold the number of "neighbors" used; in most
-  cases, after the loop we'll have `n == 3^N`, but for edge points the
-  number of valid neighbors will be smaller.
+- `n = 0` and `s = zero(eltype(out))` initialize the accumulators. `s`
+  will hold the sum of neighboring values. `n` will hold the number of
+  neighbors used; in most cases, after the loop we'll have `n == 3^N`,
+  but for edge points the number of valid neighbors will be smaller.
 
-- `for J in CartesianRange(max(I1, I-I1), min(Iend, I+I1))` is the
-  most "clever" line in the algorithm.  It constructs a range that,
-  for interior points, extends along each coordinate by an offset of 1
-  along each dimension: `I-I1` is a `CartesianIndex` that is lower by
-  1 along each dimension, and `I+I1` is higher by 1.  However, when
-  `I` represents an edge point, either `I-I1` or `I+I1` (or both)
-  might be out-of-bounds.  `max(I-I1, I1)` ensures that each
+- `for J in CartesianRange(max(I1, I-I1), min(Iend, I+I1))` is
+  probably the most "clever" line in the algorithm.  `I-I1` is a
+  `CartesianIndex` that is lower by 1 along each dimension, and `I+I1`
+  is higher by 1.  Therefore, this constructs a range that, for
+  interior points, extends along each coordinate by an offset of 1 in
+  either direction along each dimension.
+
+  However, when `I` represents an edge point, either `I-I1` or `I+I1`
+  (or both) might be out-of-bounds.  `max(I-I1, I1)` ensures that each
   coordinate of `J` is 1 or larger, while `min(I+I1, Iend)` ensures
   that `J[d] <= size(A,d)`.
 
 - The inner loop accumulates the sum in `s` and the number of visited
   neighbors in `n`.
 
-- Finally, we store the average value back in `A[I]`.
+- Finally, we store the average value in `out[I]`.
 
-Not only is it simple, but this implementation is surprisingly robust:
+Not only is this implementation simple, but it is surprisingly robust:
 for edge points it computes the average of whatever nearest-neighbors
-it has available.  It even works just fine if `size(A, d) < 3` for
-some dimension `d`; we don't need any error checking on the size of
-`A`.
+it has available.  It even works if `size(A, d) < 3` for some
+dimension `d`; we don't need any error checking on the size of `A`.
 
 ### Computing a reduction
 
-Another informative example is the implementation of multidimensional
+For a second example, consider the implementation of multidimensional
 *reductions*. A reduction takes an input array, and returns an array
 (or scalar) of smaller size.  A classic example would be summing along
 particular dimensions of an array: given a three-dimensional array,
@@ -220,11 +218,11 @@ dimensions 1 and 3 intact.
 
 #### The core algorithm
 
-An efficient way to write this requires that the output array, `B`, is
-pre-allocated by the caller (later we'll see how one might go about
-allocating `B` programmatically).  For example, if the input `A` is of
-size `(l,m,n)`, then when summing along just dimension 2 the output
-`B` would have size `(l,1,n)`.
+An efficient way to write this algorithm requires that the output
+array, `B`, is pre-allocated by the caller (later we'll see how one
+might go about allocating `B` programmatically).  For example, if the
+input `A` is of size `(l,m,n)`, then when summing along just dimension
+2 the output `B` would have size `(l,1,n)`.
 
 Given this setup, the implementation is shockingly simple:
 
@@ -255,7 +253,7 @@ because `min(1,j) = 1`.
 As a user, you might prefer an interface more like `sumalongdims(A,
 dims)` where `dims` specifies the dimensions you want to sum along.
 `dims` might be a single integer, like `2` in our example above, or
-(if you want to sum along multiple dimensions at once) a tuple or
+(should you want to sum along multiple dimensions at once) a tuple or
 `Vector{Int}`.  This is indeed the interface used in `sum(A, dims)`;
 here we want to write our own (somewhat simpler) implementation.
 
@@ -272,8 +270,11 @@ end
 
 Obviously, this simple implementation skips all relevant error
 checking.  However, here the main point I wish to explore is that the
-allocation of `B` is type-unstable: `sz` is a `Vector{Int}`, and
-therefore the dimensionality of `B` cannot be inferred.
+allocation of `B` is
+[type-unstable](http://docs.julialang.org/en/stable/manual/faq/#what-does-type-stable-mean):
+`sz` is a `Vector{Int}`, the length (number of elements) of a specific
+`Vector{Int}` is not encoded by the type itself, and therefore the
+dimensionality of `B` cannot be inferred.
 
 Now, we could fix that in several ways, for example by annotating the
 result:
@@ -282,7 +283,7 @@ result:
 B = Array(eltype(A), sz...)::typeof(A)
 ```
 
-However, except perhaps when `A` is very small, here there's little
+However, except perhaps when `A` is very small, there's little
 need for such annotation: in the remainder of this function, `B` is
 not used for any performance-critical operations.  `B` simply gets
 passed to `sumalongdims!`, and it's the job of the compiler to ensure
@@ -296,12 +297,12 @@ precursor](http://docs.julialang.org/en/stable/manual/performance-tips/#separate
 is sometimes referred to as introducing a *function barrier*.
 
 As a general rule, when writing multidimensional code you should
-separate out any type-unstable part from the main iteration.  If your
-inner loop is small, julia's ability to inline code can actually get
-you in trouble: if the callee gets inlined, the intended function
-barrier disappears, and you get dreadful performance.  For this
-reason, it's recommended that you annotate function-barrier callees
-with `@noinline`:
+ensure that the main iteration is in a separate function from
+type-unstable precursors.  Even when you take appropriate precautions,
+there's a potential "gotcha": if your inner loop is small, julia's
+ability to inline code might eliminate the intended function barrier,
+and you get dreadful performance.  For this reason, it's recommended
+that you annotate function-barrier callees with `@noinline`:
 
 ```jl
 @noinline function sumalongdims!(B, A)
@@ -314,11 +315,11 @@ a standalone function: if this calculation is one you're going to
 repeat many times, re-using the same output array can reduce the
 amount of memory allocation in your code.
 
-### Filtering along a given dimension: multiple indexes
+### Filtering along a specified dimension (exploiting multiple indexes)
 
 One final example illustrates an important new point: when you index
-an array, you can freely mix-and-match `CartesianIndex`es and
-integers.  To illustrate this, we'll write a simple [exponential
+an array, you can freely mix `CartesianIndex`es and
+integers.  To illustrate this, we'll write an [exponential
 smoothing
 filter](https://en.wikipedia.org/wiki/Exponential_smoothing).  An
 efficient way to implement such filters is to have the smoothed output
@@ -341,7 +342,7 @@ This would result in an approximately-exponential decay with timescale `1/α`.
 
 Here, we want to implement this algorithm so that it can be used to
 exponentially filter an array along any chosen dimension.  Once again,
-the implementation is fairly simple:
+the implementation is surprisingly simple:
 
 ```jl
 function expfiltdim(x, dim::Integer, α)
@@ -379,15 +380,15 @@ index-tuple `Ipre` and `Ipost`.  Hence, we compute the `CartesianRange`s in
 the type-unstable portion of the algorithm, and then pass them as
 arguments to the core routine `_expfilt!`.
 
-What makes all this possible is the fact that we can index `x` as
-`x[Ipre, i, Ipost]`.  Note that the total number of indexes supplied is
-`(dim-1) + 1 + (ndims(x)-dim)`, which is just `ndims(x)`.  In general,
-you can supply any combination of integer and `CartesianIndex` indexes
-to julia's array-indexing.
+What makes this implementation possible is the fact that we can index
+`x` as `x[Ipre, i, Ipost]`.  Note that the total number of indexes
+supplied is `(dim-1) + 1 + (ndims(x)-dim)`, which is just `ndims(x)`.
+In general, you can supply any combination of integer and
+`CartesianIndex` indexes when indexing an `AbstractArray` in Julia.
 
 The [AxisAlgorithms](https://github.com/timholy/AxisAlgorithms.jl)
-package makes heavy use of tricks such as these, and provides core
-support for high-performance packages like
+package makes heavy use of tricks such as these, and in turn provides
+core support for high-performance packages like
 [Interpolations](https://github.com/tlycken/Interpolations.jl) that
 require multidimensional computation.
 
@@ -413,8 +414,8 @@ so that `x` would be traversed in memory-order.
 
 ## Summary
 
-As is hopefully clear by now, julia's elegant iterators remove much of
-the pain from writing multidimensional algorithms.  The examples here
-just scratch the surface, but the underlying principles are very
-simple; it is hoped that these illustrations will make it easier to
-write your own algorithms.
+As is hopefully clear by now, much of the pain of writing generic
+multidimensional algorithms is eliminated by Julia's elegant
+iterators.  The examples here just scratch the surface, but the
+underlying principles are very simple; it is hoped that these
+examples will make it easier to write your own algorithms.
