@@ -34,38 +34,46 @@ You may already know that, in julia 0.4, there are two recommended
 ways to iterate over the elements in an `AbstractArray`: if you don't
 need an index associated with each element, then you can use
 
-     for a in A    # A is an AbstractArray
-         # Code that does something with the element a
-     end
+{% highlight julia %}
+for a in A    # A is an AbstractArray
+    # Code that does something with the element a
+end
+{% endhighlight %}
 
 If instead you also need the index, then use
 
-    for i in eachindex(A)
-        # Code that does something with i and/or A[i]
-    end
+{% highlight julia %}
+for i in eachindex(A)
+    # Code that does something with i and/or A[i]
+end
+{% endhighlight %}
 
 In some cases, the first line of this loop expands to `for i =
 1:length(A)`, and `i` is just an integer.  However, in other cases,
 this will expand to the equivalent of
 
-     for i in CartesianRange(size(A))
-         # i is now a CartesianIndex
-         # Code that does something with i and/or A[i]
-     end
+{% highlight julia %}
+for i in CartesianRange(size(A))
+    # i is now a CartesianIndex
+    # Code that does something with i and/or A[i]
+end
+{% endhighlight %}
 
 Let's see what these objects are:
 
-      A = rand(3,2)
+{% highlight julia %}
+julia> A = rand(3,2)
 
-      julia> for i in CartesianRange(size(A))
-                @show i
-             end
-      i = CartesianIndex{2}((1,1))
-      i = CartesianIndex{2}((2,1))
-      i = CartesianIndex{2}((3,1))
-      i = CartesianIndex{2}((1,2))
-      i = CartesianIndex{2}((2,2))
-      i = CartesianIndex{2}((3,2))
+julia> for i in CartesianRange(size(A))
+          @show i
+       end
+i = CartesianIndex{2}((1,1))
+i = CartesianIndex{2}((2,1))
+i = CartesianIndex{2}((3,1))
+i = CartesianIndex{2}((1,2))
+i = CartesianIndex{2}((2,2))
+i = CartesianIndex{2}((3,2))
+{% endhighlight %}
 
 A `CartesianIndex{N}` represents an `N`-dimensional index.
 `CartesianIndex`es are based on tuples, and indeed you can access the
@@ -78,13 +86,17 @@ N-dimensional `CartesianIndex`es.
 A `CartesianRange` is just a pair of `CartesianIndex`es, encoding the
 start and stop values along each dimension, respectively:
 
-      julia> CartesianRange(size(A))
-      CartesianRange{CartesianIndex{2}}(CartesianIndex{2}((1,1)),CartesianIndex{2}((3,2)))
+{% highlight julia %}
+julia> CartesianRange(size(A))
+CartesianRange{CartesianIndex{2}}(CartesianIndex{2}((1,1)),CartesianIndex{2}((3,2)))
+{% endhighlight %}
 
 You can construct these manually: for example,
 
-    julia> CartesianRange(CartesianIndex((-7,0)), CartesianIndex((7,15)))
-    CartesianRange{CartesianIndex{2}}(CartesianIndex{2}((-7,0)),CartesianIndex{2}((7,15)))
+{% highlight julia %}
+julia> CartesianRange(CartesianIndex((-7,0)), CartesianIndex((7,15)))
+CartesianRange{CartesianIndex{2}}(CartesianIndex{2}((-7,0)),CartesianIndex{2}((7,15)))
+{% endhighlight %}
 
 constructs a range that will loop over `-7:7` along the first
 dimension and `0:15` along the second.
@@ -98,8 +110,10 @@ example](http://docs.julialang.org/en/stable/devdocs/subarrays/#indexing-cartesi
 `eachindex` is designed to pick the most efficient iterator for the
 given array type.  You can even use
 
-      for i in eachindex(A, B)
-          ...
+{% highlight julia %}
+for i in eachindex(A, B)
+    ...
+{% endhighlight %}
 
 to increase the likelihood that `i` will be efficient for accessing
 both `A` and `B`.
@@ -126,20 +140,22 @@ In many languages, writing a general (N-dimensional) implementation of
 this conceptually-simple algorithm is somewhat painful, but in Julia
 it's a piece of cake:
 
-     function boxcar3(A::AbstractArray)
-         out = similar(A)
-         R = CartesianRange(size(A))
-         I1, Iend = first(R), last(R)
-         for I in R
-             n, s = 0, zero(eltype(out))
-             for J in CartesianRange(max(I1, I-I1), min(Iend, I+I1))
-                 s += A[J]
-                 n += 1
-             end
-             out[I] = s/n
-         end
-         out
-     end
+{% highlight julia %}
+function boxcar3(A::AbstractArray)
+    out = similar(A)
+    R = CartesianRange(size(A))
+    I1, Iend = first(R), last(R)
+    for I in R
+        n, s = 0, zero(eltype(out))
+        for J in CartesianRange(max(I1, I-I1), min(Iend, I+I1))
+            s += A[J]
+            n += 1
+        end
+        out[I] = s/n
+    end
+    out
+end
+{% endhighlight %}
 
 Let's walk through this line by line:
 
@@ -210,15 +226,17 @@ input `A` is of size `(l,m,n)`, then when summing along just dimension
 
 Given this setup, the implementation is shockingly simple:
 
-    function sumalongdims!(B, A)
-        # It's assumed that B has size 1 along any dimension that we're summing
-        fill!(B, 0)
-        Bmax = CartesianIndex(size(B))
-        for I in CartesianRange(size(A))
-            B[min(Bmax,I)] += A[I]
-        end
-        B
+{% highlight julia %}
+function sumalongdims!(B, A)
+    # It's assumed that B has size 1 along any dimension that we're summing
+    fill!(B, 0)
+    Bmax = CartesianIndex(size(B))
+    for I in CartesianRange(size(A))
+        B[min(Bmax,I)] += A[I]
     end
+    B
+end
+{% endhighlight %}
 
 The key idea behind this algorithm is encapsulated in the single
 statement `B[min(Bmax,I)]`.  For our three-dimensional example where
@@ -240,12 +258,14 @@ here we want to write our own (somewhat simpler) implementation.
 
 A bare-bones implementation of the wrapper is straightforward:
 
-    function sumalongdims(A, dims)
-        sz = [size(A)...]
-        sz[[dims...]] = 1
-        B = Array(eltype(A), sz...)
-        sumalongdims!(B, A)
-    end
+{% highlight julia %}
+function sumalongdims(A, dims)
+    sz = [size(A)...]
+    sz[[dims...]] = 1
+    B = Array(eltype(A), sz...)
+    sumalongdims!(B, A)
+end
+{% endhighlight %}
 
 Obviously, this simple implementation skips all relevant error
 checking.  However, here the main point I wish to explore is that the
@@ -258,7 +278,9 @@ dimensionality of `B` cannot be inferred.
 Now, we could fix that in several ways, for example by annotating the
 result:
 
-    B = Array(eltype(A), sz...)::typeof(A)
+{% highlight julia %}
+B = Array(eltype(A), sz...)::typeof(A)
+{% endhighlight %}
 
 However, this isn't really necessary: in the remainder of this
 function, `B` is not used for any performance-critical operations.
@@ -280,9 +302,11 @@ ability to inline code might eliminate the intended function barrier,
 and you get dreadful performance.  For this reason, it's recommended
 that you annotate function-barrier callees with `@noinline`:
 
-    @noinline function sumalongdims!(B, A)
-        ...
-    end
+{% highlight julia %}
+@noinline function sumalongdims!(B, A)
+    ...
+end
+{% endhighlight %}
 
 Of course, in this example there's a second motivation for making this
 a standalone function: if this calculation is one you're going to
@@ -301,14 +325,16 @@ value `s[i]` depend on a combination of the current input `x[i]` and
 the previous filtered value `s[i-1]`; in one dimension, you can write
 this as
 
-    function expfilt1!(s, x, α)
-        0 < α <= 1 || error("α must be between 0 and 1")
-        s[1] = x[1]
-        for i = 2:length(a)
-            s[i] = α*x[i] + (1-α)*s[i-1]
-        end
-        s
+{% highlight julia %}
+function expfilt1!(s, x, α)
+    0 < α <= 1 || error("α must be between 0 and 1")
+    s[1] = x[1]
+    for i = 2:length(a)
+        s[i] = α*x[i] + (1-α)*s[i-1]
     end
+    s
+end
+{% endhighlight %}
 
 This would result in an approximately-exponential decay with timescale `1/α`.
 
@@ -316,28 +342,30 @@ Here, we want to implement this algorithm so that it can be used to
 exponentially filter an array along any chosen dimension.  Once again,
 the implementation is surprisingly simple:
 
-    function expfiltdim(x, dim::Integer, α)
-        s = similar(x)
-        Rpre = CartesianRange(size(x)[1:dim-1])
-        Rpost = CartesianRange(size(x)[dim+1:end])
-        _expfilt!(s, x, α, Rpre, size(x, dim), Rpost)
-    end
+{% highlight julia %}
+function expfiltdim(x, dim::Integer, α)
+    s = similar(x)
+    Rpre = CartesianRange(size(x)[1:dim-1])
+    Rpost = CartesianRange(size(x)[dim+1:end])
+    _expfilt!(s, x, α, Rpre, size(x, dim), Rpost)
+end
 
-    @noinline function _expfilt!(s, x, α, Rpre, n, Rpost)
-        for Ipost in Rpost
-            # Initialize the first value along the filtered dimension
+@noinline function _expfilt!(s, x, α, Rpre, n, Rpost)
+    for Ipost in Rpost
+        # Initialize the first value along the filtered dimension
+        for Ipre in Rpre
+            s[Ipre, 1, Ipost] = x[Ipre, 1, Ipost]
+        end
+        # Handle all other entries
+        for i = 2:n
             for Ipre in Rpre
-                s[Ipre, 1, Ipost] = x[Ipre, 1, Ipost]
-            end
-            # Handle all other entries
-            for i = 2:n
-                for Ipre in Rpre
-                    s[Ipre, i, Ipost] = α*x[Ipre, i, Ipost] + (1-α)*s[Ipre, i-1, Ipost]
-                end
+                s[Ipre, i, Ipost] = α*x[Ipre, i, Ipost] + (1-α)*s[Ipre, i-1, Ipost]
             end
         end
-        s
     end
+    s
+end
+{% endhighlight %}
 
 Note once again the use of the function barrier technique.  In the
 core algorithm (`_expfilt!`), our strategy is to use *two*
@@ -373,10 +401,12 @@ particular, julia arrays are stored in first-to-last dimension order
 iterations from last-to-first dimensions.  For example, in the
 filtering example above we were careful to iterate in the order
 
-    for Ipost ...
-        for i ...
-            for Ipre ...
-                x[Ipre, i, Ipost] ...
+{% highlight julia %}
+for Ipost ...
+    for i ...
+        for Ipre ...
+            x[Ipre, i, Ipost] ...
+{% endhighlight %}
 
 so that `x` would be traversed in memory-order.
 
