@@ -14,6 +14,9 @@ Julia is now being used in several university courses. If you know of other clas
 
 - Federal University of Uberlândia, Institute of Physics, Fall 2016
  * [GFM050](http://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira)
+
+- "Sapienza" University of Rome, Italy, Spring 2016
+  * [Optimization for Complex Systems](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi)
  
 - Purdue University, Spring 2016
   * [CS51400](https://www.cs.purdue.edu/homes/dgleich/cs514-2016/), Numerical Analysis (Prof. [David Gleich](https://www.cs.purdue.edu/homes/dgleich/))
@@ -46,7 +49,7 @@ Julia is now being used in several university courses. If you know of other clas
 - University of South Florida, Fall 2015
   * [ESI 6491](http://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon)
 
-- "Sapienza" Univeristy of Rome, Italy, Spring 2015
+- "Sapienza" University of Rome, Italy, Spring 2015
   * [Operations Research](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi)
 
 - AGH University of Science and Technology, Poland, Spring 2015
