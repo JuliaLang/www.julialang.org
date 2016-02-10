@@ -1,14 +1,40 @@
-/* general site formatting */
 
-* {
-  margin: 0;
-  padding: 0;
-}
+/* Crimson Text */
+@import url(https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic);
+
+/* Minor third scale from http://type-scale.com/ */
+
+html {font-size: 1em;}
 
 body {
   background-color: white;
-  font-family: Georgia, 'Liberation Serif', serif;
+  font-family: Georgia, 'PT Serif', serif;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #333;
 }
+
+p {margin-bottom: 1.3em;}
+
+h1, h2, h3, h4 {
+  margin: 1.414em 0 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 2.074em;
+  font-weight: bold;
+}
+
+h2 {font-size: 1.728em;}
+
+h3 {font-size: 1.44em;}
+
+h4 {font-size: 1.2em;}
+
+small, .font_small {font-size: 0.833em;}
 
 img {
   max-width: 100%;
@@ -21,15 +47,43 @@ img {
   margin: 2.5em auto 2em;
   padding: 0 1.5em;
 }
+.home-intro {
+  font-size: 2em;
+  line-height: 1.33em;
+  text-align: center;
+  font-style: italic;
+}
   #site .title {
     font-weight: bold;
   }
   #site .links {
+    font-size: 14.5px;
+    list-style: none;
     text-align: center;
-    padding-bottom: 8px;
-    margin-bottom: 32px;
-    border-bottom: 1px solid #ddd;
+    margin-bottom: 2em;
+    padding-left: 0;
   }
+  #site .links li {
+      display: inline;
+      margin-left: 0;
+  }
+  #site .links li a.active {
+      background-color: #666;
+      color: #f1f1f1;
+  }
+  #site .links li a {
+    transition: 0.2s all ease;
+    padding: 0.5em 0.33em;
+    border-radius: 0.2em;
+    text-decoration: none;
+  }
+
+  #site .links li:hover a {
+    background-color: #aaa;
+    text-decoration: none;
+    color: #fff;
+  }
+
   #site .footer {
     text-align: center;
     margin-top: 32px;
@@ -39,28 +93,15 @@ img {
     border-top: 1px solid #ddd;
   }
     #site a {
-      color: #2749b0;
+      color: #2779b0;
     }
     #site .contact a:hover {
       color: black;
     }
 
-.title, h1, h2, h3, h4, h5, h6 {
-  font-size: 105%;
-}
-
 .title {
   text-align: center;
   font-size: 130%;
-}
-
-h1 {
-  font-size: 110%;
-  padding-top: 1ex;
-}
-
-h2 {
-  padding-top: 1ex;
 }
 
 p {
