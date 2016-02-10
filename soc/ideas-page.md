@@ -1,16 +1,26 @@
 ---
 layout: default
-title:  Google Summer of Code
+title:  Summer of Code Ideas Page
+redirect_from:
+  - /gsoc/2015/index.html
+  - /gsoc/2014/index.html
+  - /soc/index.html
 ---
 
-# Google Summer of Code 2015 application process for students
 
-Julia has applied as a Google Summer of Code mentoring organization. The following are ideas for student summer projects. To add or edit projects, please edit this page [here](https://github.com/JuliaLang/julialang.github.com/blob/master/gsoc/2015/index.md) through GitHub by making pull requests.
-When considering the following projects, don't be put off by the knowledge prerequisites – you don't need to be an expert, and there is some scope for research and learning within the GSoC period. However, familiarity with and interest in the subject area and involved technologies will be helpful.
+# GSoC Project Ideas Page
 
-If you're interested in participating in GSoC as a student, the best approach is to become an active and engaged contributor to the project first. You should take a look at the ["up for grabs" issues](https://github.com/JuliaLang/julia/issues?state=open) on GitHub and see if there are any you think you might be able to take a crack at. Try submitting a pull request for something and start getting the hang of the process and interacting with the Julia code base and development community. Making changes to the main Julia repo can, of course, be a bit daunting. Fortunately, it's not a requirement for engagement – some of the most active contributors to the community build great packages but don't actually make a ton of changes to the language itself. We need both – people working on the language and people building great things with the language. So if you're looking to get involved but none of the up-for-grabs issues strike your fancy, try contributing to a popular package or [creating a new package](http://docs.julialang.org/en/latest/manual/packages/#package-development) that does something useful and/or interesting. If you create a new package, send an email to the [julia-users list](https://groups.google.com/forum/#!forum/julia-users) with a link to the repo so people can check it out and give you feedback.
+*The Julia Language is applying as a mentoring organization in [Google Summer of Code 2016](https://summerofcode.withgoogle.com).*
+
+**About this page:** The following are ideas for student summer projects. To add or edit projects, please edit this page [here](https://github.com/JuliaLang/julialang.github.com/blob/master/soc/ideas-page.md) through GitHub and make a pull-request.
+
+**To those looking to take up these projects:** When considering the following projects, don't be put off by the knowledge prerequisites – you don't need to be an expert, and there is some scope for research and learning within the GSoC period. However, familiarity with and interest in the subject area and involved technologies will be helpful.
+
+If you're interested in participating in GSoC or JSoC as a student, the best approach is to become an active and engaged contributor to the project first. You should take a look at the ["up for grabs" issues](https://github.com/JuliaLang/julia/issues?state=open) on GitHub and see if there are any you think you might be able to take a crack at. Try submitting a pull request for something and start getting the hang of the process and interacting with the Julia code base and development community. Making changes to the main Julia repo can, of course, be a bit daunting. Fortunately, it's not a requirement for engagement – some of the most active contributors to the community build great packages but don't actually make a ton of changes to the language itself. We need both – people working on the language and people building great things with the language. So if you're looking to get involved but none of the up-for-grabs issues strike your fancy, try contributing to a popular package or [creating a new package](http://docs.julialang.org/en/latest/manual/packages/#package-development) that does something useful and/or interesting. If you create a new package, send an email to the [julia-users list](https://groups.google.com/forum/#!forum/julia-users) with a link to the repo so people can check it out and give you feedback.
 
 Please also check out the [application guidelines](http://julialang.org/gsoc/guidelines) for information on writing a proposal.
+
+---
 
 # Theme: Scalability of technical computing for big data applications
 
