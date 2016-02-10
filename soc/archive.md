@@ -1,14 +1,11 @@
-
+---
+layout: default
+title: Julia's Summer of Code projects
+redirect_from:
+---
 # Julia's Summers of Code Archive
 
-# Google Summer of Code 2014 projects
-
-Julia was accepted as part of [GSOC 2014](http://julialang.org/gsoc/2014/). Many of the contributors in
-GSOC 2014 were mentors for JSOC 2015.
-- [3D Visualization Package for Julia](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/simon_danisch/5757334940811264)
-- [Libgit2 support and linear algebra for generic types](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/andrioni/5863987568705536)
-- [Julia + Light Table](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/one_more_minute/5724160613416960)
-- [IJulia Interactive Widgets](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/g0/5113880120393728)
+Take a look at the [Ideas Page](/soc/ideas-page) and contribute your ideas or edits.
 
 ## Julia Summer of Code 2015
 
@@ -23,4 +20,13 @@ Various projects were proposed by the community in [GSOC 2015](http://julialang.
 - **Brian Cohen ([@notthemessiah](https://github.com/notthemessiah))** will be working on implementing a test suite and documentation for Escher.jl (mentor: Shashi Gowda [@shashi](https://github.com/shashi))
 - **Ambuj Agrawal**, Improving debug information generation in Julia (mentor: Keno Fischer [@Keno](https://github.com/Keno))
 
-Take a look at the [Ideas Page](/soc/ideas-page) and contribute your ideas or edits.
+# Google Summer of Code 2014 projects
+
+Julia was accepted as part of [GSOC 2014](http://julialang.org/gsoc/2014/). Many of the contributors in
+GSOC 2014 were mentors for JSOC 2015.
+
+- **Simon Danisch** - [3D Visualization Package for Julia](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/simon_danisch/5757334940811264)
+- **Alessandro Andrioni** - [Libgit2 support and linear algebra for generic types](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/andrioni/5863987568705536)
+- **Mike Innes** - [Julia + Light Table](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/one_more_minute/5724160613416960)
+- **Shashi Gowda** - [IJulia Interactive Widgets](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/g0/5113880120393728)
+

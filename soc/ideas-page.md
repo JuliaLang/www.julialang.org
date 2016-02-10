@@ -2,15 +2,15 @@
 layout: default
 title:  Summer of Code Ideas Page
 redirect_from:
+  - /jsoc.html
   - /gsoc/2015/index.html
   - /gsoc/2014/index.html
   - /soc/index.html
 ---
 
-
 # GSoC Project Ideas Page
 
-*The Julia Language is applying as a mentoring organization in [Google Summer of Code 2016](https://summerofcode.withgoogle.com).*
+*The Julia Language is applying as a mentoring organization in [Google Summer of Code 2016](https://summerofcode.withgoogle.com).* For previous Summer of Code projects see the [Archive page](/soc/archive.html).
 
 **About this page:** The following are ideas for student summer projects. To add or edit projects, please edit this page [here](https://github.com/JuliaLang/julialang.github.com/blob/master/soc/ideas-page.md) through GitHub and make a pull-request.
 
