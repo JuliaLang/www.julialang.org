@@ -5,13 +5,13 @@
 	 xml:space="preserve">
 
 <!-- blue dot -->
-<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"/>
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="60" r="16.5"/>
 <!-- red dot -->
-<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"/>
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60" r="16.5"/>
 <!-- green dot -->
 <circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"/>
 <!-- purple dot -->
-<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"/>
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.209" cy="60" r="16.5"/>
 
 <!-- "j" -->
 <path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
