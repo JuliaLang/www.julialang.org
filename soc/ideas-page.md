@@ -12,7 +12,7 @@ redirect_from:
 
 *The Julia Language is applying as a mentoring organization in [Google Summer of Code 2016](https://summerofcode.withgoogle.com).* For previous Summer of Code projects see the [Archive page](/soc/archive.html).
 
-**About this page:** The following are ideas for student summer projects. To add or edit projects, please edit this page [here](https://github.com/JuliaLang/julialang.github.com/blob/master/soc/ideas-page.md) through GitHub and make a pull-request.
+**About this page:** The following are ideas for student summer projects. To add or edit projects, please [**edit this page**](https://github.com/JuliaLang/julialang.github.com/edit/master/soc/ideas-page.md) through GitHub and make a pull-request.
 
 **To those looking to take up these projects:** When considering the following projects, don't be put off by the knowledge prerequisites – you don't need to be an expert, and there is some scope for research and learning within the GSoC period. However, familiarity with and interest in the subject area and involved technologies will be helpful.
 
