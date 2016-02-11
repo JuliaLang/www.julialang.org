@@ -1,5 +1,7 @@
 permalink: /:categories/:year/:month/:title
 highlighter: pygments
+gems:
+  - jekyll-redirect-from
 navigation:
   - title: home
     url: /
