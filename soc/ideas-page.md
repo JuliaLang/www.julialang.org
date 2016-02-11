@@ -146,11 +146,11 @@ Students will be asked to build upon to the foundational work in the [OpenCL.jl]
 
 
 
-## Project: Writing high-performance, multithreaded kernels
+## Project: Writing high-performance, multithreaded kernels for image processing
 
-[KernelTools.jl](https://github.com/timholy/KernelTools.jl) is an early-stage package designed for writing cache-efficient, multithreaded algorithms. Its design is inspired by [Halide](http://halide-lang.org/). Many of the features of Halide are already in place, but multithreading is still lacking. The `threading` branch of julia might be of use in this project.
+The [Images.jl](https://github.com/timholy/Images.jl) package implements several algorithms that do not use, but would be well-suited for, multi-threading. One recommended approach would be to explore using the [ParallelAccelerator.jl](https://github.com/IntelLabs/ParallelAccelerator.jl) package to implement multi-threaded versions of these algorithms. Alternatively, one could implement threading support for [KernelTools.jl](https://github.com/timholy/KernelTools.jl), an older (?) but never-finished solution to the same problem that does not require a C compiler.
 
-**Expected Results:** The ability to run `@tile`ed algorithms in multiple threads.
+**Expected Results:** The ultimate aim would be to provide an approach similar to [Halide](http://halide-lang.org/) for writing multithreaded kernels. Concretely, one should develop several "elegant" (i.e., readable and maintainable) multithreaded kernels for the Images.jl package.
 
 ## Project: Translation of Axiom to Julia
 
