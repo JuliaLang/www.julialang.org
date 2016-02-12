@@ -8,6 +8,7 @@ redirect_from:
   - /soc/index.html
 ---
 
+
 # GSoC Project Ideas Page
 
 *The Julia Language is applying as a mentoring organization in [Google Summer of Code 2016](https://summerofcode.withgoogle.com).* For previous Summer of Code projects see the [Archive page](/soc/archive.html).
@@ -19,6 +20,10 @@ redirect_from:
 If you're interested in participating in GSoC or JSoC as a student, the best approach is to become an active and engaged contributor to the project first. You should take a look at the ["up for grabs" issues](https://github.com/JuliaLang/julia/issues?state=open) on GitHub and see if there are any you think you might be able to take a crack at. Try submitting a pull request for something and start getting the hang of the process and interacting with the Julia code base and development community. Making changes to the main Julia repo can, of course, be a bit daunting. Fortunately, it's not a requirement for engagement – some of the most active contributors to the community build great packages but don't actually make a ton of changes to the language itself. We need both – people working on the language and people building great things with the language. So if you're looking to get involved but none of the up-for-grabs issues strike your fancy, try contributing to a popular package or [creating a new package](http://docs.julialang.org/en/latest/manual/packages/#package-development) that does something useful and/or interesting. If you create a new package, send an email to the [julia-users list](https://groups.google.com/forum/#!forum/julia-users) with a link to the repo so people can check it out and give you feedback.
 
 Please also check out the [application guidelines](http://julialang.org/gsoc/guidelines) for information on writing a proposal.
+
+**Table of Contents**
+
+{% include toc.html %}
 
 ---
 
