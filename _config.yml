@@ -1,5 +1,5 @@
 permalink: /:categories/:year/:month/:title
-highlighter: pygments
+highlighter: rouge
 gems:
   - jekyll-redirect-from
 navigation:
