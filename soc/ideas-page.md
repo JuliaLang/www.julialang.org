@@ -44,19 +44,11 @@ This project proposal is to develop a new Julia package that will implement a st
 This project proposes to implement a very simple persistent storage mechanism for Julia variables so that data can be saved to and loaded from disk with a consistent interface that is agnostic of the underlying storage layer. Data will be tagged with a minimal amount of metadata by default to support type annotations, time-stamped versioning and other user-specifiable tags, not unlike the `git stash` mechanism for storing blobs. The underlying engine for persistent storage should be generic and interoperable with any reasonable choice of binary blob storage mechanism, e.g. MongoDB, ODBC, or HDFS. Of particular interest will be persistent storage for distributed objects such as `DArray`s, and making use of the underlying storage engine's mechanisms for data movement and redundant storage for such data.
 
 
+## Project: native-Julia constrained optimization
 
-## Project: Provide access to CUTEst, the standard optimization test suite
+The beginnings of a native library for constrained optimization can be found in the [`teh/constrained` branch of Optim.jl](https://github.com/JuliaOpt/Optim.jl/pull/50). While there are other solutions for constrained optimization available (via JuMP), a native-Julia solution would have greater flexibility.  For example, one could abstract all the linear algebra operations, which might allow efficiencies that are not achievable using standard dense or sparse linear algebra. (For example, the Hessian might be a low-rank dense matrix, or a low-rank modification of a sparse matrix.)
 
-Improvements in optimization (e.g., `Optim.jl`) require a diverse set of test problems.
-The de-facto test suite for optimization is [CUTEst](http://ccpforge.cse.rl.ac.uk/gf/project/cutest/wiki/),
-a recent update of [CUTEr](http://www.cuter.rl.ac.uk/). This test suite is used in many papers on optimization.
-
-This project proposal is to either (1) develop tools to parse the Standard Interface Format (SIF) and generate
-Julia functions, or (2) wrap `SIFDecode` with a `ccall` interface. A convenient interface should be provided to
-allow usage of any objective function in the test suite.
-
-Update: a wrapper for CUTEst has [appeared](https://github.com/lpoo/CUTEst.jl); anyone wishing to extend this should contact the repository owner.
-
+Starting either from the `teh/constrained` branch or from scratch, the project would likely involve modification or (re)design of the API, implementation of additional algorithms (e.g., primal-dual interior point), and merging with master. It is also likely that this work will involve enhancements to the test suite; see [CUTEst.jl](https://github.com/JuliaOptimizers/CUTEst.jl) and [OptimizationProblems.jl](https://github.com/JuliaOptimizers/OptimizationProblems.jl) for likely sources of good example problems.
 
 ## Project: PETSc integration for scalable technical computing
 
@@ -234,7 +226,7 @@ In addition, there are packages offering identical functionality. A rationalizat
 
 ## Project: Specialized call-site method caching
 
-Julia's method cache is shared by all call sites of a generic function. Although whenever single dispatch is provable we generate a direct call, there are some cases where dynamic dispatch is inevitable. When the compiler can prove (using type inference) that the possible matches for a call site is small enough, it would be a huge performance win to generate a small cache specific to this call site. Those small caches would have to be updated when new method definitions are added (even replaced by the global cache when the number of matches becomes too large). 
+Julia's method cache is shared by all call sites of a generic function. Although whenever single dispatch is provable we generate a direct call, there are some cases where dynamic dispatch is inevitable. When the compiler can prove (using type inference) that the possible matches for a call site is small enough, it would be a huge performance win to generate a small cache specific to this call site. Those small caches would have to be updated when new method definitions are added (even replaced by the global cache when the number of matches becomes too large).
 
 This project has a large number of possible extensions when the basic feature is done, including : using minimal caching keys (e.g. when only one of the arguments determine the dispatch entierly), generating specific dispatch code in a separate function, sharing the small caches between call sites, ...
 
@@ -274,5 +266,3 @@ The [Winston](https://github.com/nolta/Winston.jl) package can be used for plott
 
 ## Gtk.jl Improvements
 The [Gtk.jl](https://github.com/JuliaLang/Gtk.jl) package is shaping up pretty well. Still there are various corners currently unimplemented and besides documentation it is very important to get installation of Gtk completely simple on all three major platforms. Furthermore, there is currently quite some manual tweaking necessary to get Gtk looking good on OSX. These installation issues are very crutial for serious integration of Gtk.jl into the Julia universe.
-
-
