@@ -299,6 +299,11 @@ blockquote {
   background: #eee;
 }
 
+#toc-container ol {
+    padding-left: 1em;
+    list-style: circle;
+}
+
 /* Utility classes */
 .u-center {
     display: block;

@@ -1,0 +1,18 @@
+<div id="toc-container">
+</div>
+
+<script src="/js/contents.js"></script>
+<script>
+function ready(fn) {
+  if (document.readyState != 'loading'){
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
+
+ready(function () {
+    c = gajus.Contents()
+    document.querySelector("#toc-container").appendChild(c.list())
+})
+</script>
