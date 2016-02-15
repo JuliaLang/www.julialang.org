@@ -114,7 +114,6 @@ Julia is now being used in several university courses. If you know of other clas
   * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford) - [github repo](https://github.com/eford/Astro585_2014_Spring)
 
 - Stanford University, Spring 2014
-
   * [AA222](http://www.stanford.edu/class/aa222/), Introduction to Multidisciplinary Design Optimization (Prof. Mykel J. Kochenderfer)
 
 
@@ -130,7 +129,6 @@ Julia is now being used in several university courses. If you know of other clas
 
 - MIT, Spring 2013
   * [18.330](http://homerreid.dyndns.org/teaching/18.330), Introduction to Numerical Analysis. (Dr. Homer Reid)
-
 
 ## Installing Julia
 
