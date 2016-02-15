@@ -18,6 +18,8 @@ You can [**edit this page**](https://github.com/JuliaLang/julialang.github.com/e
 
 **Table of Contents**
 
+Please also see the [Juno project page](https://github.com/JunoLab/atom-julia-client/blob/master/projects.md) for ideas related to Julia tooling.
+
 {% include toc.html %}
 
 ---
