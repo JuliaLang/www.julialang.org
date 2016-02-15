@@ -12,7 +12,7 @@ redirect_from:
 
 Thanks for your interest in Summer of Code! This page outlines some ideas for student projects. Most project ideas come with a suggested set of skills and experience which will be helpful, but they aren't hard requirements and there's scope for learning and exploring before, during, and after the official Summer of Code period. Please contact us at our [mailing list](https://groups.google.com/forum/#!forum/julia-users) with your questions.
 
-We encourage you to send us a proposal through the [GSoC website](https://summerofcode.withgoogle.com); you're welcome to flesh out one of these projects with your own ideas, or to come up with something completely different. We also have some [application guidelines](http://julialang.org/gsoc/guidelines) for more suggestions on writing a proposal.
+We encourage you to send us a proposal through the [GSoC website](https://summerofcode.withgoogle.com); you're welcome to flesh out one of these projects with your own ideas, or to come up with something completely different. We also have some [application guidelines](/soc/guidelines) for more suggestions on writing a proposal.
 
 You can [**edit this page**](https://github.com/JuliaLang/julialang.github.com/edit/master/soc/ideas-page.md) through GitHub if you want to add ideas of your own. For previous Summer of Code projects, see the [Archive page](/soc/archive.html).
 

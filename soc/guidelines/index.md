@@ -13,7 +13,7 @@ At this stage it's also really useful to get in contact with your potential ment
 
 Some points that you may want to address:
 
-1. *The proposal.* What do you want to do?
+* **The proposal.** What do you want to do?
   - What do you want to have completed by the end of the program?
     - For example, "a package for doing X which any Julia user can install" or "an extra feature for Foo.jl that does Y"
   - Who's interested in the work, and how will it benefit them?
@@ -25,9 +25,9 @@ Some points that you may want to address:
     - For example, getting a working prototype out to beta testers by the halfway point
   - Are there any stretch goals you can make if the main project goes smoothly? Tell us how you're going to wow us with the final result!
 
-2. *Code portfolio.* Show us a sample of code that you're proud of. Bonus points if you've written Julia code before, but we mostly care about seeing what you can do, and the skills that you want to bring to the Julia community. You don't need to be a star programmer as long as you can demonstrate interest in and commitment to your project.
+* **Code portfolio.** Show us a sample of code that you're proud of. Bonus points if you've written Julia code before, but we mostly care about seeing what you can do, and the skills that you want to bring to the Julia community. You don't need to be a star programmer as long as you can demonstrate interest in and commitment to your project.
 
-3. *About you.* Why you? Give us a sense of who you are as a person and as a programmer.
+* **About you.** Why you? Give us a sense of who you are as a person and as a programmer.
   - What academic, professional or hobby programming experience do you have, and how will it help you with your project?
   - Have you contributed to open source projects before? (Link us to some issues and patches, if any)
   - Why are you interested in Julia? Have you used it much before?
@@ -35,8 +35,8 @@ Some points that you may want to address:
   - Do you have a website or blog?
   - Anything else you'd like to mention!
 
-4. *Mentors.* Let us know who you've spoken to about the project, whether they've agreed to be your mentor, and if so why you think they'd be a good fit for your project.
+* **Mentors.** Let us know who you've spoken to about the project, whether they've agreed to be your mentor, and if so why you think they'd be a good fit for your project.
 
-5. *Logistics*
+* **Logistics.**
   - What other time commitments, such as summer courses, other jobs, planned vacations, etc., will you have over the summer?
   - Would you be interested in relocating to the Cambridge, Massachusetts area for part or all of the GSoC season?
