@@ -240,6 +240,18 @@ Julia could be a great replacement for C in Python projects, where it can be use
 
 **Knowledge Prerequisites:** Python (especially C interop).
 
+
+
+## Project: Ensure Julia runs smoothly on current large HPC systems
+
+Julia employs several techniques that are novel in the field of high-performance computing, such as just-in-time compiling, or first-class support of an interactive environment, or dynamically adding/removing worker processes. This clashes with the traditional ahead-of-time compiled programes running in batch mode. However, the advantages of Julia's approach are clear. This project explores how "typical" Julia programs can be run efficiently on current large-scale systems such as e.g. [Blue Waters](https://bluewaters.ncsa.illinois.edu) or [Cori](http://www.nersc.gov/users/computational-systems/cori/).
+
+**Expected Results:** Run a large, parallel Julia application on a high-end HPC system
+
+**Knowledge Prerequisites:** High-performance computing, MPI
+
+
+
 # Theme: Julia Graphics and User Interfaces
 
 ## 2D Graphics Improvements
