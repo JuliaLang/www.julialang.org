@@ -7,7 +7,7 @@ redirect_from:
 
 # Application Guidelines
 
-Proposal are free-form and you can talk about your project however you want; the key things we want to know are what your project is all about, why it's interesting, and why you're the one for the job! We're happy to answer questions on our [mailing list](), so go ahead and ask if anything isn't clear.
+Proposal are free-form and you can talk about your project however you want; the key things we want to know are what your project is all about, why it's interesting, and why you're the one for the job! We're happy to answer questions on our [mailing list](https://groups.google.com/forum/#!forum/julia-users), so go ahead and ask if anything isn't clear.
 
 At this stage it's also really useful to get in contact with your potential mentor and anyone who'd be interested in your project via the mailing list. They can help you refine your idea, project and application. Proposals are also much stronger if they come attached with an enthusiastic mentor!
 
