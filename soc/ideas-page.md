@@ -75,6 +75,20 @@ Julia uses OpenBLAS for matrix algebra, but OpenBLAS is better-suited for large 
 
 The project would be to flesh out operations with fixed-size arrays, and get them interoperating seamlessly with other types. It would be desirable implement operations for certain sizes using Julia's up-and-coming [SIMD support](https://github.com/JuliaLang/julia/pull/5355).
 
+## Special functions
+
+As a technical computing language, Julia provides a huge number of
+[special functions](https://en.wikipedia.org/wiki/Special_functions), both in Base as well
+as packages such as [StatsFuns.jl](https://github.com/JuliaStats/StatsFuns.jl). At the
+moment, many of these are implemented in external libraries such as
+[Rmath](https://github.com/JuliaLang/Rmath-julia) and
+[openspecfun](https://github.com/JuliaLang/openspecfun). This project would involve
+implementing these functions in native Julia (possibly utilising the work in
+[SpecialFunctions.jl]([SpecialFunctions.jl](https://github.com/nolta/SpecialFunctions.jl)),
+seeking out opportunties for possible improvements along the way, such as supporting
+`Float32` and `BigFloat`, exploiting fused multiply-add operations, and improving errors
+and boundary cases.
+
 
 ## Matrix functions
 
