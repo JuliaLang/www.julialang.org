@@ -84,7 +84,7 @@ moment, many of these are implemented in external libraries such as
 [Rmath](https://github.com/JuliaLang/Rmath-julia) and
 [openspecfun](https://github.com/JuliaLang/openspecfun). This project would involve
 implementing these functions in native Julia (possibly utilising the work in
-[SpecialFunctions.jl]([SpecialFunctions.jl](https://github.com/nolta/SpecialFunctions.jl)),
+[SpecialFunctions.jl](https://github.com/nolta/SpecialFunctions.jl)),
 seeking out opportunties for possible improvements along the way, such as supporting
 `Float32` and `BigFloat`, exploiting fused multiply-add operations, and improving errors
 and boundary cases.
