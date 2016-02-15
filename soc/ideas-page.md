@@ -41,7 +41,7 @@ This project proposal is to develop a new Julia package that will implement a st
 This project proposes to implement a very simple persistent storage mechanism for Julia variables so that data can be saved to and loaded from disk with a consistent interface that is agnostic of the underlying storage layer. Data will be tagged with a minimal amount of metadata by default to support type annotations, time-stamped versioning and other user-specifiable tags, not unlike the `git stash` mechanism for storing blobs. The underlying engine for persistent storage should be generic and interoperable with any reasonable choice of binary blob storage mechanism, e.g. MongoDB, ODBC, or HDFS. Of particular interest will be persistent storage for distributed objects such as `DArray`s, and making use of the underlying storage engine's mechanisms for data movement and redundant storage for such data.
 
 
-## Native-Julia constrained optimization
+## Native Julia library for constrained optimization
 
 The beginnings of a native library for constrained optimization can be found in the [`teh/constrained` branch of Optim.jl](https://github.com/JuliaOpt/Optim.jl/pull/50). While there are other solutions for constrained optimization available (via JuMP), a native-Julia solution would have greater flexibility.  For example, one could abstract all the linear algebra operations, which might allow efficiencies that are not achievable using standard dense or sparse linear algebra. (For example, the Hessian might be a low-rank dense matrix, or a low-rank modification of a sparse matrix.)
 
@@ -53,7 +53,7 @@ Starting either from the `teh/constrained` branch or from scratch, the project w
 
 This project proposal is to develop a new Julia package to interface with PETsc, thus allowing users access to state of the art scalable algorithms for optimization, eigenproblem solvers, finite element mesh computations, and hyperbolic partial differential equation solvers. The more mathematically oriented student may choose to study the performance of these various algorithms as compared to other libraries and naïve implementations. Alternatively, students may also be interested in working on the LLVM BlueGene port for deploying Julia with PetSc integration in an actual supercomputing environment.
 
-**Expected Results:** Wrapper package for the PETSc suite of libraries.
+**Expected Results:** New wrappers for PETSc functions in the [PETSc.jl](https://github.com/JuliaParallel/PETSc.jl) package.
 
 
 
@@ -71,9 +71,11 @@ Iterative methods for solving numerical linear algebraic problems are crucial fo
 
 This project proposes to implement a comprehensive suite of iterative solver algorithms in Julia's native [IterativeSolvers.jl](https://github.com/JuliaLang/IterativeSolvers.jl) package, as described in the [implementation roadmap](https://github.com/JuliaLang/IterativeSolvers.jl/issues/1). Students will be encouraged to refactor the codebase to better expose the mathematical structure of the underlying Arnoldi and Lanczos iterations, thus promoting code composability without sacrificing performance.
 
+
+
 ## Fixed-size arrays with SIMD support
 
-Julia uses OpenBLAS for matrix algebra, but OpenBLAS is better-suited for large matrices. For operations with small matrices and vectors, one can often obtain substantial speedups by implementing everything in Julia. At least two candidate implementations [already](https://github.com/twadleigh/ImmutableArrays.jl) [exist](https://github.com/JuliaLang/julia/issues/5857), with the first more thoroughly developed but the second (currently just a sketch) having some features that are attractive for inclusion in `Base`.
+Julia uses OpenBLAS for matrix algebra, but OpenBLAS is better suited for large matrices. For operations with small matrices and vectors, one can often obtain substantial speedups by implementing everything in Julia. At least two candidate implementations [already](https://github.com/twadleigh/ImmutableArrays.jl) [exist](https://github.com/JuliaLang/julia/issues/5857), with the first more thoroughly developed but the second (currently just a sketch) having some features that are attractive for inclusion in `Base`.
 
 The project would be to flesh out operations with fixed-size arrays, and get them interoperating seamlessly with other types. It would be desirable implement operations for certain sizes using Julia's up-and-coming [SIMD support](https://github.com/JuliaLang/julia/pull/5355).
 
@@ -170,7 +172,7 @@ The [Images.jl](https://github.com/timholy/Images.jl) package implements several
 
 Julia's errors are helpful for the most part but could be improved - see [#4744](https://github.com/JuliaLang/julia/issues/4744).
 
-**Expected Results:** Consistent printing of errors with qualified type and human-readable string.
+**Expected Results:** Consistent printing of errors with qualified type and human-readable strings.
 
 ## Autoformat tool
 
@@ -204,7 +206,7 @@ Julia's Base code currently contains several dependencies which have various lic
 
 ## Web stack / networking improvements
 
-Julia's web and higher-level networking framework is largely consolidated within the JuliaWeb github organization. The packages there are in need of updates, bug fixes, and general improvements in robustness by individuals who are well-versed in networking fundamentals and behavior of higher-level protocols. In some cases, the bugs can be traced back to issues with the underlying C frameworks that provide the primary functionality. Where possible and where security / auditability concerns are not an issue, native Julia code should be preferred over external libraries.
+Julia's web and higher level networking framework is largely consolidated within the JuliaWeb github organization. The packages there are in need of updates, bug fixes, and general improvements in robustness by individuals who are well-versed in networking fundamentals and behavior of higher-level protocols. In some cases, the bugs can be traced back to issues with the underlying C frameworks that provide the primary functionality. Where possible and where security / auditability concerns are not an issue, native Julia code should be preferred over external libraries.
 
 In addition, there are packages offering identical functionality. A rationalization and standardization of these packages as well as the underlying C frameworks is required to provide a consistent interface to applications wishing to communicate using standard network protocols.
 
@@ -220,7 +222,7 @@ This project has a large number of possible extensions when the basic feature is
 
 It has also the future benefit of putting together the infrastructure we will need to enable inline method caching when automatic recompilation is done.
 
-**Knowledge Prerequisites:** Good understanding of C/C++. A priori knowledge of julia internals is a plus but this project could also be a very good way to familiarize oneself with those.
+**Knowledge Prerequisites:** Good understanding of C/C++. A priori knowledge of Julia internals is a plus but this project could also be a very good way to familiarize oneself with those.
 
 # Theme: Improvements to Julia interactivity and interoperability with other applications
 
@@ -242,9 +244,9 @@ Julia could be a great replacement for C in Python projects, where it can be use
 
 
 
-## Project: Ensure Julia runs smoothly on current large HPC systems
+## Project: Ensure that Julia runs smoothly on current large HPC systems
 
-Julia employs several techniques that are novel in the field of high-performance computing, such as just-in-time compiling, or first-class support of an interactive environment, or dynamically adding/removing worker processes. This clashes with the traditional ahead-of-time compiled programes running in batch mode. However, the advantages of Julia's approach are clear. This project explores how "typical" Julia programs can be run efficiently on current large-scale systems such as e.g. [Blue Waters](https://bluewaters.ncsa.illinois.edu) or [Cori](http://www.nersc.gov/users/computational-systems/cori/).
+Julia employs several techniques that are novel in the field of high performance computing, such as just-in-time compiling, or first-class support of an interactive environment, or dynamically adding/removing worker processes. This clashes with the traditional ahead-of-time compiled programes running in batch mode. However, the advantages of Julia's approach are clear. This project explores how "typical" Julia programs can be run efficiently on current large scale systems such as, e.g. [Blue Waters](https://bluewaters.ncsa.illinois.edu) or [Cori](http://www.nersc.gov/users/computational-systems/cori/).
 
 **Expected Results:** Run a large, parallel Julia application on a high-end HPC system
 
