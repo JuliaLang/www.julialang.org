@@ -15,7 +15,7 @@ Julia is now being used in several university courses. If you know of other clas
   * [Computational Economics for PhDs](https://github.com/ScPo-CompEcon/Syllabus) ([Florian Oswald](https://floswald.github.io))
 
 - Federal University of Uberlândia, Institute of Physics, Fall 2016
- * [GFM050](http://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira)
+  * [GFM050](http://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira)
 
 - "Sapienza" University of Rome, Italy, Spring 2016
   * [Optimization for Complex Systems](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi)
