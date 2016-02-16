@@ -162,12 +162,6 @@ The [Images.jl](https://github.com/timholy/Images.jl) package implements several
 
 **Expected Results:** The ultimate aim would be to provide an approach similar to [Halide](http://halide-lang.org/) for writing multithreaded kernels. Concretely, one should develop several "elegant" (i.e., readable and maintainable) multithreaded kernels for the Images.jl package.
 
-## Translation of Axiom to Julia
-
-[Axiom](http://en.wikipedia.org/wiki/Axiom_%28computer_algebra_system%29), a computer algebra system, is written in a language called SPAD. SPAD's similarity to Julia may make it feasible to port Axiom into pure Julia, providing Julia with a CAS and encouraging further work to improve Axiom. See also [this thread](https://groups.google.com/forum/#!topic/julia-dev/NTfS9fJuIcE).
-
-**Expected Results:** A port of Axiom to Julia
-
 ## Better error reporting
 
 Julia's errors are helpful for the most part but could be improved - see [#4744](https://github.com/JuliaLang/julia/issues/4744).
@@ -198,22 +192,6 @@ look for objects that lack GC root protection. Alternatively, the same strategy 
 **Expected Results:** A tool that, when run against Julia's `src/` directory, highlights lines that
 need to have additional GC roots added.
 
-## Base Julia Restructuring
-
-Julia's Base code currently contains several dependencies which have various license restrictions and technically non-core code. Currently, there is no easy way to build or distribute Julia without these dependencies. Functionality has been recently added that allows non-Base packages to be included in the build step of Base Julia. This opens up the potential to move current non-core Base dependencies out to separate packages, but still be included by default in the Julia build process; hence, from a user's perspective, no change in available functionality is apparent, yet the result is a more "core" Julia Base and greater flexibility in creating custom Julia distributions (e.g. for embedded systems, running Julia in the browser, etc.). This project would involve ironing out details in the process of including packages in the build process (i.e translating complicated build steps from Base to BinDeps, figuring out if default packages should be located differently than regular packages, etc.), and starting to move dependencies out to separate packages one by one. See [this open issue](https://github.com/JuliaLang/julia/issues/1906#issuecomment-30619103) for more discussion and details.
-
-**Expected Results:** The separation of at least a few non-core Base dependencies into their own packages while still being seemlessly integrated into the default Julia build process.
-
-## Web stack / networking improvements
-
-Julia's web and higher level networking framework is largely consolidated within the JuliaWeb github organization. The packages there are in need of updates, bug fixes, and general improvements in robustness by individuals who are well-versed in networking fundamentals and behavior of higher-level protocols. In some cases, the bugs can be traced back to issues with the underlying C frameworks that provide the primary functionality. Where possible and where security / auditability concerns are not an issue, native Julia code should be preferred over external libraries.
-
-In addition, there are packages offering identical functionality. A rationalization and standardization of these packages as well as the underlying C frameworks is required to provide a consistent interface to applications wishing to communicate using standard network protocols.
-
-**Expected Results:** An overhaul of Julia's networking framework, with the creation of robust, RFC-compliant, efficient, and standard interfaces for common protocols (e.g., HTTP, HTTPS, FTP, SMTP, SSH).
-
-**Knowledge Prerequisites:** Network fundamentals including understanding of higher-level protocols, interfacing with C from Julia, git.
-
 ## Specialized call-site method caching
 
 Julia's method cache is shared by all call sites of a generic function. Although whenever single dispatch is provable we generate a direct call, there are some cases where dynamic dispatch is inevitable. When the compiler can prove (using type inference) that the possible matches for a call site is small enough, it would be a huge performance win to generate a small cache specific to this call site. Those small caches would have to be updated when new method definitions are added (even replaced by the global cache when the number of matches becomes too large).
@@ -223,6 +201,22 @@ This project has a large number of possible extensions when the basic feature is
 It has also the future benefit of putting together the infrastructure we will need to enable inline method caching when automatic recompilation is done.
 
 **Knowledge Prerequisites:** Good understanding of C/C++. A priori knowledge of Julia internals is a plus but this project could also be a very good way to familiarize oneself with those.
+
+# Theme: Web stack / networking improvements
+
+Julia's web and higher level networking framework is largely consolidated within the [JuliaWeb](https://github.com/JuliaLang) github organization.
+
+## HTTP2 Implementation
+
+Add HTTP2 support to [HttpServer.jl](https://github.com/JuliaWeb/HttpServer.jl) and [Requests.jl](https://github.com/JuliaWeb/Requests.jl).
+
+**Knowledge Prerequisites:** basic familiarity with HTTP
+
+## Middlewares for common web application chores in Mux.jl
+
+Implementation of mid-level features - specifically routing, load-balancing, cookie/session handling, and authentication - in [Mux.jl](https://github.com/JuliaWeb/Mux.jl).  The implementation should be extensible enough to allow easy interfacing with different kinds of caching, databases or authentication backends. (See [Clojure/Ring](https://github.com/ring-clojure/ring/wiki/Why-Use-Ring%3F) for inspiration)
+
+**Expected Results:** Some experience with web development.
 
 # Theme: Improvements to Julia interactivity and interoperability with other applications
 
