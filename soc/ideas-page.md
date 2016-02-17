@@ -158,9 +158,9 @@ Students will be asked to build upon to the foundational work in the [OpenCL.jl]
 
 ## Writing high-performance, multithreaded kernels for image processing
 
-The [Images.jl](https://github.com/timholy/Images.jl) package implements several algorithms that do not use, but would be well-suited for, multi-threading. One recommended approach would be to explore using the [ParallelAccelerator.jl](https://github.com/IntelLabs/ParallelAccelerator.jl) package to implement multi-threaded versions of these algorithms. Alternatively, one could implement threading support for [KernelTools.jl](https://github.com/timholy/KernelTools.jl), an older (?) but never-finished solution to the same problem that does not require a C compiler.
+The [Images.jl](https://github.com/timholy/Images.jl) package implements several algorithms that do not use, but would be well-suited for, multi-threading. This project would implement multithreaded versions of `imfilter` and `imfilter_gaussian`. While such kernels might be written by hand, it is also attractive to explore various "frameworks" that reduce the amount of boilerplate code required. One recommended approach would be to explore using the [ParallelAccelerator.jl](https://github.com/IntelLabs/ParallelAccelerator.jl); alternatively, one might leverage the [KernelTools.jl](https://github.com/timholy/KernelTools.jl) package in conjunction with julia 0.5's native threading capabilities.
 
-**Expected Results:** The ultimate aim would be to provide an approach similar to [Halide](http://halide-lang.org/) for writing multithreaded kernels. Concretely, one should develop several "elegant" (i.e., readable and maintainable) multithreaded kernels for the Images.jl package.
+**Expected Results:** multithreaded implementation of `imfilter` and `imfilter_gaussian`.
 
 ## Better error reporting
 
