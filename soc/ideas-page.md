@@ -43,7 +43,7 @@ This project proposes to implement a very simple persistent storage mechanism fo
 
 ## Native Julia library for constrained optimization
 
-The beginnings of a native library for constrained optimization can be found in the [`teh/constrained` branch of Optim.jl](https://github.com/JuliaOpt/Optim.jl/pull/50). While there are other solutions for constrained optimization available (via JuMP), a native-Julia solution would have greater flexibility.  For example, one could abstract all the linear algebra operations, which might allow efficiencies that are not achievable using standard dense or sparse linear algebra. (For example, the Hessian might be a low-rank dense matrix, or a low-rank modification of a sparse matrix.)
+The beginnings of a native library for constrained optimization can be found in the [`teh/constrained` branch of Optim.jl](https://github.com/JuliaOpt/Optim.jl/pull/50). While there are other solutions for constrained optimization available (via JuMP), a native-Julia solution would have greater flexibility.  For example, one could abstract all the linear algebra operations, which might allow efficiencies that are not achievable using standard dense or sparse linear algebra. (For example, the Hessian might be a low-rank dense matrix, or a low-rank dense modification of a sparse matrix.)
 
 Starting either from the `teh/constrained` branch or from scratch, the project would likely involve modification or (re)design of the API, implementation of additional algorithms (e.g., primal-dual interior point), and merging with master. It is also likely that this work will involve enhancements to the test suite; see [CUTEst.jl](https://github.com/JuliaOptimizers/CUTEst.jl) and [OptimizationProblems.jl](https://github.com/JuliaOptimizers/OptimizationProblems.jl) for likely sources of good example problems.
 
@@ -181,18 +181,6 @@ Some possible aims of this project:
 * High-quality Julia implementations of PRNG algorithms such as the [xorshift family](http://xorshift.di.unimi.it/), seeking possible low-level optimisations along the way.
 * Efficient generation of non-uniform variates, across different floating point precisions.
 * Massively parallel random number generators, such as [SPRNG](http://www.sprng.org) or the [Random123](https://www.deshawresearch.com/resources_random123.html) entropy streams, and integration with [ComputeFramework.jl](https://github.com/shashi/ComputeFramework.jl).
-
-
-## Julia wrappers for high performance GPU programming
-
-Graphical processing units (GPUs) are a promising alternate architecture for massively parallel technical computing. However, making use of them today requires using computation kernels written in C. In contrast, it is desirable to deploy code and transfer data to GPUs directly within a high level language like Julia.
-
-Students will be asked to build upon to the foundational work in the [OpenCL.jl](https://github.com/jakebolewski/OpenCL.jl), [CUDArt.jl](https://github.com/JuliaGPU/CUDArt.jl), and [CUDA.jl](https://github.com/maleadt/CUDA.jl) packages to provide a consistent interface for multiple scientific libraries containing GPU-deployable kernels, such as Magma, clBlas, clMagma, etc., or a common GPU array interface with Cuda and OpenCL backends (similar to python's [compyte](https://github.com/inducer/compyte) library).
-
-**Expected Results:** Package for high-level GPU programming.
-
-**Knowledge Prerequisites:** GPU programming, calling C from Julia, perhaps LLVM
-
 
 
 ## Writing high-performance, multithreaded kernels for image processing
