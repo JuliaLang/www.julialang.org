@@ -170,13 +170,17 @@ Distributed computation frameworks like Hadoop/MapReduce have demonstrated the u
 This project proposal is to implement a native Julia framework for distributed execution for general purpose data parallelism, using dynamic, runtime-generated general task graphs which are flexible enough to describe multiple classes of parallel algorithms. Students will be expected to weave together native Julia parallelism constructs such as the `ClusterManager` for massively parallel execution, and automate the handling of data dependencies using native Julia `RemoteRefs` as remote data futures and handles. Students will also be encouraged to experiment with novel scheduling algorithms.
 
 
+## Random number generation
 
-## Parallel random number generation
+[Monte Carlo methods](https://en.wikipedia.org/wiki/Monte_Carlo_method) are becoming increasingly important in large-scale numerical computations, requiring large quantities of random numbers.
+To ensure accuracy of the simulated systems, it is critical that the [pseudorandom number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) is both fast and reliable, avoiding problems with periodicity and dependence, robust to statistical tests such as the [Crush suite](https://github.com/andreasnoack/RNGTest.jl).
+Challenges are even greater in massively parallel computations, which require going beyond running many copies of serial algorithms for generating pseudorandom numbers, due to well-known synchronization effects which can compromise the quality and uniformity of of random sampling.
 
-Large scale simulations can require large quantities of random numbers to study the effects of stochastic noise on the stability and robustness of simulated systems. However, massively parallel stochastic computations often require going beyond running many copies of serial algorithms for generating pseudorandom numbers, due to well-known synchronization effects which compromise the quality and uniformity of of random sampling. Instead, new algorithms are required for the scalable generation of pseudorandom numbers in parallel.
+Some possible aims of this project:
 
-Students interested in this project will be expected to implement wrappers for parallel (pseudo)random number generators such as [SPRNG](http://www.sprng.org) or the [Random123](https://www.deshawresearch.com/resources_random123.html) entropy streams, as well as implement statistical quality tests such as the BigCrush tests from the [TestU01](http://www.iro.umontreal.ca/~simardr/testu01/tu01.html) suite.
-
+* High-quality Julia implementations of PRNG algorithms such as the [xorshift family](http://xorshift.di.unimi.it/), seeking possible low-level optimisations along the way.
+* Efficient generation of non-uniform variates, across different floating point precisions.
+* Massively parallel random number generators, such as [SPRNG](http://www.sprng.org) or the [Random123](https://www.deshawresearch.com/resources_random123.html) entropy streams, and integration with [ComputeFramework.jl](https://github.com/shashi/ComputeFramework.jl).
 
 
 ## Julia wrappers for high performance GPU programming
