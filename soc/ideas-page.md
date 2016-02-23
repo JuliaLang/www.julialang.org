@@ -70,7 +70,7 @@ applications.
 
 This work entails writing functions to transform complex SDPs into equivalent
 real valued SDPs, and to transform the solutions back from real to complex
-variables. 
+variables.
 
 Students with further background and motivation could continue to improve
 the SDP solver itself. In particular, the transformations used by Convex.jl
@@ -78,7 +78,7 @@ to write a problem as an SDP often introduce many extra variables and constraint
 than are necessary, and may result in poor conditioning. A presolve routine,
 eliminating redundant variables and constraints and improving conditioning before
 passing the problem to a solver, would be a welcome addition to the Convex.jl library.
-While many tricks for presolving LPs are well known, there is significant room for 
+While many tricks for presolving LPs are well known, there is significant room for
 imagination in writing a presolve for SDP; the project might well lead to a publication
 were the student so inclined.
 
@@ -113,6 +113,10 @@ This project proposes to implement a comprehensive suite of iterative solver alg
 Julia uses OpenBLAS for matrix algebra, but OpenBLAS is better suited for large matrices. For operations with small matrices and vectors, one can often obtain substantial speedups by implementing everything in Julia. At least two candidate implementations [already](https://github.com/twadleigh/ImmutableArrays.jl) [exist](https://github.com/JuliaLang/julia/issues/5857), with the first more thoroughly developed but the second (currently just a sketch) having some features that are attractive for inclusion in `Base`.
 
 The project would be to flesh out operations with fixed-size arrays, and get them interoperating seamlessly with other types. It would be desirable implement operations for certain sizes using Julia's up-and-coming [SIMD support](https://github.com/JuliaLang/julia/pull/5355).
+
+## Upgrading openlibm
+
+[OpenLibm](http://openlibm.org) is a portable libm implementation used by Julia. It has fallen behind msun, from where it was forked a few years ago. This project seeks to update OpenLibm with all the latest bugfixes to msun. At the same time the [MUSL libm](http://git.musl-libc.org/cgit/musl/tree/src/math) implementation will be considered as an alternative to base openlibm on. A significant testsuite based on various existing [libm testsuites](http://nsz.repo.hu/libm/#tests) will be created.
 
 ## Special functions
 
