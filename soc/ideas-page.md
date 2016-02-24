@@ -94,9 +94,11 @@ This project proposal is to develop a new Julia package to interface with PETsc,
 
 ## Native Julia solvers for ordinary differential equations
 
-Julia should have a full set of ODE solvers, as they are vital for numeric programming. This project should build on the work of [ODE.jl](https://github.com/JuliaLang/ODE.jl). The best way forward will probably be to implement the solvers in Julia. See [#75](https://github.com/JuliaLang/julia/issues/75).
+Julia needs to have a full set of ordinary differential equations (ODE) and algebraic differential equation (DAE) solvers, as they are vital for numeric programming. This project aims at extending the [ODE.jl](https://github.com/JuliaLang/ODE.jl) package in the following areas: specification and implementation of an API, both internal and user-facing; documentation; and adding new solvers.
 
-**Expected Results**: A set of production-quality ODE solvers.
+The user-facing API should have both a high-level, easy-to-use interface and a low-level API giving access to all package features.  The design goal of the internal API is that adding new solvers is straightforward and that other solvers, such as [Sundials.jl](https://github.com/JuliaLang/Sundials.jl) or [DASSL.jl](https://github.com/pwl/DASSL.jl), can be easily hooked up to be used through ODE.jl.  The package needs a manual hosted on [Read the Docs](http://readthedocs.org/) and in-line code documentation.  More solvers need to be implemented, in particular implicit solvers (e.g. [PR #72](https://github.com/JuliaLang/ODE.jl/pull/72)).
+
+**Expected Results**: A production-quality ODE/DAE solver package.
 
 
 
