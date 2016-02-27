@@ -61,7 +61,7 @@ unless you are working with code that was developed specifically for a
 previous release.
 
 
-## Julia + Juno IDE bundles
+## Juno IDE
 
 Please see the [Juno website](http://junolab.org) for setup instructions, and [the discussion forum](http://discuss.junolab.org) for any questions or issues.
 
