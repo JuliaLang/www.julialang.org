@@ -61,24 +61,9 @@ unless you are working with code that was developed specifically for a
 previous release.
 
 
-# Julia + Juno IDE bundles
+## Julia + Juno IDE bundles
 
-<table class="downloads"><tbody>
-<tr>
-  <th> Windows (7+) </th>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.1.0/juno-windows-x32.zip">32-bit</a> </td>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.1.0/juno-windows-x64.zip">64-bit</a> </td>
-</tr>
-<tr>
-  <th> Mac OS X (10.8+)</th>
-  <td colspan="2"> <a href="https://junolab.s3.amazonaws.com/release/1.1.0/juno-mac-x64.dmg">64-bit</a> </td>
-</tr>
-<tr>
-  <th> Linux </th>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.1.0/juno-linux-x32.zip">32-bit</a> </td>
-  <td> <a href="https://junolab.s3.amazonaws.com/release/1.1.0/juno-linux-x64.zip">64-bit</a> </td>
-</tr>
-</tbody></table>
+Please see the [Juno website](http://junolab.org) for setup instructions, and [the discussion forum](http://discuss.junolab.org) for any questions or issues.
 
 # Older Releases
 
