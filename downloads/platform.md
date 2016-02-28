@@ -80,6 +80,6 @@ New versions are built every night. If you have already installed julia and you 
 
     sudo yum upgrade julia
 
-## Unininstalling Julia
+## Uninstalling Julia
 
 Uninstallation depends on the method you used to install Julia. If you installed from a package manager such as `apt-get` or `yum`, use the package manager to remove julia, for example `apt-get remove julia` or `yum remove julia`. If you did a source build, you can remove it by deleting your julia source folder. If you would also like to remove your preferences files, they are `~/.julia` and `~/.juliarc.jl`.
