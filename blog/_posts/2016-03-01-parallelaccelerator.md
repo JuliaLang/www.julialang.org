@@ -39,7 +39,7 @@ you designate the parts of your Julia program that you want to compile
 to optimized native code.  Here's a toy example of using `@acc` to
 annotate a function:
 
-``` .julia
+{% highlight julia %}
 julia> using ParallelAccelerator
 
 julia> @acc f(x) = x .+ x .* x
@@ -52,7 +52,7 @@ julia> f([1,2,3,4,5])
 12
 20
 30
-```
+{% endhighlight %}
 
 Under the hood, ParallelAccelerator is essentially a compiler that
 intercepts the usual Julia JIT compilation process for
@@ -77,7 +77,7 @@ high-performance computing benchmark: an implementation of the
 for option pricing.  The following code is a Julia implementation of
 the Black-Scholes formula.
 
-``` .julia
+{% highlight julia %}
 function cndf2(in::Array{Float64,1})
     out = 0.5 .+ 0.5 .* erf(0.707106781 .* in)
     return out
@@ -114,7 +114,7 @@ function run(iterations)
     println("checksum: ", sum(put))
     return t
 end
-```
+{% endhighlight %}
 
 Here, the `blackscholes` function takes five arguments, each of which
 is an array of `Float64`s.  The `run` function initializes these five
@@ -130,12 +130,12 @@ function` takes about 11 seconds to run when called with an argument
 of 40,000,000 (meaning that we are dealing with 40-million-element
 arrays):
 
-``` .julia
+{% highlight julia %}
 julia> @time run(40_000_000)
 checksum: 8.381928525856283e8
  12.885293 seconds (458.51 k allocations: 9.855 GB, 2.95% gc time)
 11.297714183
-```
+{% endhighlight %}
 
 Here, the `11.297714183` being returned from `run` is the number of
 seconds it takes the `blackscholes` call alone to return.  The
@@ -149,7 +149,7 @@ import the ParallelAccelerator library with `using
 ParallelAccelerator`, then wrap the `cndf2` and `blackscholes`
 functions in an `@acc` block, as follows:
 
-``` .julia
+{% highlight julia %}
 using ParallelAccelerator
 
 @acc begin
@@ -178,24 +178,24 @@ function blackscholes(sptprice::Array{Float64,1},
 end
 
 end
-```
+{% endhighlight %}
 
 The definition of `run` stays the same.  With the addition of the
 `@acc` wrapper, we now have much better performance:
 
-``` .julia
+{% highlight julia %}
 julia> @time run(40_000_000)
 checksum: 8.381928525856283e8
   4.010668 seconds (1.90 M allocations: 1.584 GB, 2.06% gc time)
 3.503281464
 
-```
+{% endhighlight %}
 
 This time, `blackscholes` returns in about 3.5 seconds, and the entire
 `run` call finishes in about 4 seconds.  This is already an
 improvement, but on subsequent calls to `run`, we do even better:
 
-``` .julia
+{% highlight julia %}
 julia> @time run(40_000_000)
 checksum: 8.381928525856283e8
   1.418709 seconds (158 allocations: 1.490 GB, 8.98% gc time)
@@ -205,7 +205,7 @@ julia> @time run(40_000_000)
 checksum: 8.381928525856283e8
   1.410865 seconds (154 allocations: 1.490 GB, 7.93% gc time)
 1.012813958
-```
+{% endhighlight %}
 
 In subsequent calls, `run` finishes in about a second, with the entire
 call taking about 1.4 seconds.  The reason for this additional
@@ -219,7 +219,7 @@ following figure reports the time it takes `blackscholes` to run on
 arrays of 100 million elements, this time on a 36-core machine with
 128 GB of RAM [[2](#footnote2)]:
 
-![Benchmark results for plain Julia and ParallelAccelerator implementations of the Black-Scholes formula](parallelaccelerator_figures/black-scholes-2016-01-31-blogpost.png?raw=true)
+![Benchmark results for plain Julia and ParallelAccelerator implementations of the Black-Scholes formula](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/parallelaccelerator_figures/black-scholes-2016-01-31-blogpost.png?raw=true)
 
 The first three bars of the above figure show performance results for
 ParallelAccelerator using different numbers of threads.  Since
@@ -296,9 +296,9 @@ array comprehension to construct an output array of length *n*-2, in
 which each element is a weighted average of the corresponding element
 in the original array and its two neighbors:
 
-``` .julia
+{% highlight julia %}
 avg(x) = [ 0.25*x[i-1] + 0.5*x[i] + 0.25*x[i+1] for i = 2:length(x) - 1 ]
-```
+{% endhighlight %}
 
 Comprehensions like this one can also be parallelized by ParallelAccelerator: in a nutshell, ParallelAccelerator can transform array comprehensions to code that first allocates an output array and then performs an in-place map that can write to each element of the output array in parallel.
 
@@ -327,7 +327,7 @@ user-facing language construct called `runStencil` for expressing
 stencil computations in Julia.  Next, we'll look at an example that
 illustrates how `runStencil` works.
 
-## Example: Blurring an image with `runStencil`
+## Example: Blurring an image with runStencil
 
 Let's consider a stencil computation that blurs an image using a
 [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur).  The
@@ -349,7 +349,7 @@ assuming that the input image is a grayscale image, so each pixel has
 just one value instead of red, green, and blue values.  However, it
 would be straightforward to use the same approach for RGB pixels.)
 
-``` .julia
+{% highlight julia %}
 function blur(img::Array{Float32,2}, iterations::Int)
     w, h = size(img)
     for i = 1:iterations
@@ -362,7 +362,7 @@ function blur(img::Array{Float32,2}, iterations::Int)
     end
     return img
 end
-```
+{% endhighlight %}
 
 Here, to compute the value of a pixel in the output image, we use the
 the corresponding input pixel as well as all its neighboring pixels,
@@ -388,7 +388,7 @@ of 7095 by 5322 pixels, this code takes about 10 minutes to run for
 
 Using ParallelAccelerator, we can get much better performance.  Let's look at a version of `blur` that uses `runStencil`:
 
-``` .julia
+{% highlight julia %}
 @acc function blur(img::Array{Float32,2}, iterations::Int)
     buf = Array(Float32, size(img)...) 
     runStencil(buf, img, iterations, :oob_skip) do b, a
@@ -402,7 +402,7 @@ Using ParallelAccelerator, we can get much better performance.  Let's look at a 
     end
     return img
 end
-```
+{% endhighlight %}
 
 Here, we again have a function called `blur` -- now annotated with
 `@acc` -- that takes the same arguments as the original code.  This
@@ -412,9 +412,9 @@ followed by a call to `runStencil`.  Let's take a closer look at the
 `runStencil` call.
 
 `runStencil` has the following signature:
-``` .julia
+{% highlight julia %}
 runStencil(kernel :: Function, buffer1, buffer2, ..., iteration :: Int, boundaryHandling :: Symbol)
-```
+{% endhighlight %}
 
 In `blur`, the call to `runStencil` uses Julia's
 [`do`-block syntax for function arguments](http://docs.julialang.org/en/release-0.4/manual/functions/#do-block-syntax-for-function-arguments),
@@ -474,7 +474,7 @@ ParallelAccelerator implementations of `blur`, each running for 100
 iterations on the aforementioned 7095x5322 source image, run using the
 same machine as for the previous Black-Scholes benchmark.
 
-![Benchmark results for plain Julia and ParallelAccelerator implementations of Gaussian blur](parallelaccelerator_figures/gaussian-blur-2016-02-08-blogpost.png?raw=true)
+![Benchmark results for plain Julia and ParallelAccelerator implementations of Gaussian blur](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/parallelaccelerator_figures/gaussian-blur-2016-02-08-blogpost.png?raw=true)
 
 The rightmost column shows the results for plain Julia, using the
 first implementation of `blur` shown above.  The three columns to the
@@ -502,7 +502,7 @@ that can be compiled by an external C++ compiler.  The following
 figure shows an overview of the ParallelAccelerator compilation
 process:
 
-![The ParallelAccelerator compiler pipeline](parallelaccelerator_figures/compiler-pipeline.png?raw=true)
+![The ParallelAccelerator compiler pipeline](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/parallelaccelerator_figures/compiler-pipeline.png?raw=true)
 
 As many readers of this blog will know, Julia has good support for
 [inspecting and manipulating its own ASTs](http://docs.julialang.org/en/release-0.4/devdocs/reflection/).
@@ -571,7 +571,7 @@ string `"SELFTIMED"`, while timing information for the warm-up call is
 preceded by `"SELFPRIMED"`.  Let's run the Black-Scholes example and
 time it using the `time` shell command:
 
-```
+{% highlight bash %}
 $ time julia ParallelAccelerator/examples/black-scholes/black-scholes.jl 
 iterations = 10000000
 SELFPRIMED 1.766323497
@@ -582,7 +582,7 @@ SELFTIMED 0.052068703
 real	0m26.454s
 user	0m31.027s
 sys	0m0.874s
-```
+{% endhighlight %}
 
 Here, we're running Black-Scholes for 10,000,000 iterations on our
 4-core desktop machine.  The total wall-clock time of 26.454 seconds
