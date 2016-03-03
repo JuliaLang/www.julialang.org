@@ -474,7 +474,7 @@ ParallelAccelerator implementations of `blur`, each running for 100
 iterations on the aforementioned 7095x5322 source image, run using the
 same machine as for the previous Black-Scholes benchmark.
 
-![Benchmark results for plain Julia and ParallelAccelerator implementations of Gaussian blur](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/parallelaccelerator_figures/gaussian-blur-2016-02-08-blogpost.png?raw=true)
+![Benchmark results for plain Julia and ParallelAccelerator implementations of Gaussian blur](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/parallelaccelerator_figures/gaussian-blur-2016-03-02-blogpost.png?raw=true)
 
 The rightmost column shows the results for plain Julia, using the
 first implementation of `blur` shown above.  The three columns to the
@@ -483,7 +483,7 @@ left show results for the ParallelAccelerator version that uses
 ParallelAccelerator enables a speedup of about 15x: from about 600
 seconds to about 40 seconds.  Running on 36 threads provides a further
 parallel speedup of more than 26x, resulting in a total speedup of
-more than 400x over plain single-threaded Julia.
+nearly 400x over plain single-threaded Julia.
 
 ## An overview of the ParallelAccelerator compiler architecture
 
