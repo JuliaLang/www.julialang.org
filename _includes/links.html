@@ -9,12 +9,42 @@
       {% endif %}
       <li><a href="{{ item.url }}" class="{{ class }}">{{ item.title }}</a></li>
   {% endfor %}
-  <h1 style="border-top: 1px solid #ddd; margin: 1em 0 0 0; font-size: 1.5em"><div style="margin-top: 1em">JuliaCon 2016</div></h1>
-  <p style="margin: 0.5em 0 1.5em 0">
-    June 21<sup>st</sup> - 25<sup>th</sup><br>
-    Massachusetts Institute of Technology, Cambridge, Massachusetts<br>
-    <a href="https://www.eventbrite.com/e/juliacon-2016-tickets-20943697162">tickets on sale now</a> |
-    <a href="http://juliacon.org">more information</a>
-  </p>
-  <div style="border-top: 1px solid #ddd"></div>
 </ul>
+
+<style>
+.banner-box .header {
+  font-size: 1.5em;
+}
+@media (min-width: 830px) {
+  .banner-box {
+    float:left;
+    width:50%;
+  }
+}
+</style>
+
+<div style="text-align:center">
+
+<div class="banner-box">
+<div class="header">JuliaCon 2016</div>
+<p>
+  June 21<sup>st</sup> - 25<sup>th</sup><br>
+  Massachusetts Institute of Technology, Cambridge, Massachusetts<br>
+  <a href="https://www.eventbrite.com/e/juliacon-2016-tickets-20943697162">tickets on sale now</a> |
+  <a href="http://juliacon.org">more information</a>
+</p>
+</div>
+
+<div class="banner-box">
+<div class="header">Google Summer of Code</div>
+<p>
+  Get paid to work on a project of your choice over the summer!<br />
+  <a href="/soc/ideas-page.html">ideas list</a> |
+  <a href="/soc/guidelines">how to apply</a>
+</p>
+</div>
+
+<div style="clear:both; border-top: 1px solid #ddd; margin-bottom:30px;"></div>
+
+
+</div>
