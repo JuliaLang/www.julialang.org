@@ -60,6 +60,10 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 [@ONT14]
 
+### [MatrixDepot.jl](https://github.com/weijianzhang/MatrixDepot.jl)
+
+[@ZH15]
+
 ## Numerical quadrature
 
 ## [DEQuadrature.jl](https://github.com/MikaelSlevinsky/DEQuadrature.jl)
