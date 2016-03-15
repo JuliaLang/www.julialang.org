@@ -326,3 +326,13 @@ The [Winston](https://github.com/nolta/Winston.jl) package can be used for plott
 
 ## Gtk.jl Improvements
 The [Gtk.jl](https://github.com/JuliaLang/Gtk.jl) package is shaping up pretty well. Still there are various corners currently unimplemented and besides documentation it is very important to get installation of Gtk completely simple on all three major platforms. Furthermore, there is currently quite some manual tweaking necessary to get Gtk looking good on OSX. These installation issues are very crutial for serious integration of Gtk.jl into the Julia universe.
+
+## QML bindings for Julia
+QML is a markup language similar to JavaScript and used by th QT library to create graphical user interfaces.
+QT Creator (open source IDE) provides a graphical editor to create QML forms. QML forms are cross-platform
+and can be used on Linux, Mac, Windows, Android, OSX, IPhone etc. It would be great if they could also be used
+by Julia in an easy way. Implementing these bindings should be not so difficult, because C bindings already
+exist: https://github.com/seanchas116/libqmlbind . The Ruby bindings could be used as starting point, how
+to implement Julia bindings: https://github.com/seanchas116/ruby-qml .
+A possible mentor can be contacted on the julia-users mailing list.
+
