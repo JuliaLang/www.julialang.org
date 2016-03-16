@@ -341,3 +341,20 @@ by Julia in an easy way. Implementing these bindings should be not so difficult,
 exist: https://github.com/seanchas116/libqmlbind . The Ruby bindings could be used as starting point, how
 to implement Julia bindings: https://github.com/seanchas116/ruby-qml .
 A possible mentor can be contacted on the julia-users mailing list.
+
+## Improvements to the Plots.jl ecosystem
+
+[Plots.jl](https://github.com/tbreloff/Plots.jl) has become the preferred graphical interface for many users.  It has the potential to become the standard Julia interface for data visualization, and there are many potential ways that a student could contribute:
+
+- Expanding backend support.  Integration with real-time visualization platforms (GLVisualize).  Easy latex plotting for scientific research publications (PGFPlots).
+- Adding recipes for statistics, machine learning (see [MLPlots.jl](https://github.com/JuliaML/MLPlots.jl)), or any other fields which you have an interest.
+- Documentation and/or tutorials.
+- Better integration with Graphs, DataStreams, etc
+ 
+# Theme: Machine Learning Frameworks
+
+## Expanding and improving LearnBase/JuliaML
+
+[LearnBase](https://github.com/Evizero/LearnBase.jl) is an attempt to create a complete well-abstracted set of primitives and tools for machine learning frameworks.  The goal is to find the overlap between research perspectives and create smart abstractions for common components such as loss functions, transformations, activation functions, etc.  These abstractions can be the building blocks for more flexible learning frameworks, incorporating models (SVM, regression, decision trees, neural networks, etc) into a unified framework more powerful than alternatives (Scikit-learn, TensorFlow, etc).
+
+A student could contribute to the core abstractions, or to dependent learning frameworks, depending on their knowledge and interests.  It is expected that the student has prior knowledge of machine learning techniques which they would like to work with.  In order to meaningfully contribute to the core abstractions, a broad knowledgebase would be expected.  Specific experience with random forests or deep/recurrent neural networks would be a plus.
