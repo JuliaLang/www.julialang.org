@@ -7,7 +7,9 @@ redirect_from:
 
 # Application Guidelines
 
-Proposal are free-form and you can talk about your project however you want; the key things we want to know are what your project is all about, why it's interesting, and why you're the one for the job! We're happy to answer questions at juliasoc@googlegroups.com, so go ahead and ask if anything isn't clear.
+Proposals are free-form and you can talk about your project however you want; the key things we want to know are what your project is all about, why it's interesting, and why you're the one for the job! We're happy to answer questions at juliasoc@googlegroups.com, so go ahead and ask if anything isn't clear.
+
+Once you have a draft you can submit it via the GSoC application website as a Google doc and we may be able to provide feedback. You can also email our [mailing list](https://groups.google.com/forum/#!forum/julia-users) for feedback in public from the wider community (but this is completely optional).
 
 Some points that you may want to address:
 
@@ -33,8 +35,5 @@ Some points that you may want to address:
   - Do you have a website or blog?
   - Anything else you'd like to mention!
 
-* **Mentors.** Let us know who you've spoken to about the project, whether they've agreed to be your mentor, and if so why you think they'd be a good fit for your project.
-
 * **Logistics.**
   - What other time commitments, such as summer courses, other jobs, planned vacations, etc., will you have over the summer?
-  - Would you be interested in relocating to the Cambridge, Massachusetts area for part or all of the GSoC season?

@@ -22,6 +22,8 @@ Once you have an idea or area of interest, the best way to move forward is to ge
 
 If there's no directly relevant package, you could also start your own to begin prototyping your idea. It's not an absolute requirement, but a few lines of real code will really bolster an application.
 
+Talking to others in the community is also a good way to get introduced to potential mentors. If you've spoken to someone who has agreed to mentor, let us know, but it's not a requirement for the application.
+
 **Table of Contents**
 
 Please also see the [Juno project page](https://github.com/JunoLab/atom-julia-client/blob/master/projects.md) for ideas related to Julia tooling.
