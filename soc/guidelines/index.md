@@ -18,6 +18,7 @@ Some points that you may want to address:
     - For example, "a package for doing X which any Julia user can install" or "an extra feature for Foo.jl that does Y"
   - Who's interested in the work, and how will it benefit them?
     - For example, "bioinformaticians will be able to set up sequencing pipelines flexibly in pure Julia"
+    - It's important to justify the project for people who may not be experts in your subject area.
   - What are the potential hurdles you might encounter, and how can you resolve them?
     - Is there anything you need to learn about as part of the work? Does your work depend on anyone else's to make progress?
   - How will you prioritise different aspects of the project like features, API usability, documentation, and robustness?
