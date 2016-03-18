@@ -28,7 +28,7 @@ This default leniency leads to code that fails silently when shelled out command
 Worse still, because of the indirection problem, there are many cases where the failure of a process in a spawned pipeline *cannot* be detected by the parent process, even if errors are fastidiously checked for.
 
 In the rest of this post, I'll go over examples demonstrating each of these problems.
-At [the end](#Summary+and+Remedy), I'll talk about better alternatives to shelling out, and in a [followup post], I'll demonstrate how Julia makes these better alternatives dead simple to use.
+At [the end](#Summary+and+Remedy), I'll talk about better alternatives to shelling out, and in a [followup post](http://julialang.org/blog/2013/04/put-this-in-your-pipe). I'll demonstrate how Julia makes these better alternatives dead simple to use.
 Examples below are given in Ruby which shells out to [Bash], but the same problems exist no matter what language one shells out from:
 it's the technique of using an intermediate shell process to spawn external commands that's at fault, not the language.
 
@@ -50,7 +50,7 @@ Here it is in action:
     irb(main):001:0> dir="src"
     => "src"
     irb(main):002:0> `find #{dir} -type f -print0 | xargs -0 grep foo | wc -l`.to_i
-    => 5    
+    => 5
 
 Great.
 However, this only works as expected if the directory name `dir` doesn't contain any characters that the shell considers special.
@@ -126,17 +126,17 @@ Instead, code that shells out with programmatically constructed commands is typi
 If we were using the above code to count the number of lines with the string "foo" in a directory, we would want to check to see if everything worked and respond appropriately if something went wrong.
 In Ruby, you can check if a shelled out command was successful using the bizarrely named `$?.success?` indicator:
 
-    irb(main):012:0> dir="src"                                                              
+    irb(main):012:0> dir="src"
     => "src"
     irb(main):013:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
     => 5
-    irb(main):014:0> $?.success?                                                                
+    irb(main):014:0> $?.success?
     => true
 
 Ok, that correctly indicates success.
 Let's make sure that it can detect failure:
 
-    irb(main):015:0> dir="nonexistent"                                                              
+    irb(main):015:0> dir="nonexistent"
     => "nonexistent"
     irb(main):016:0> `find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
     find: `nonexistent': No such file or directory
