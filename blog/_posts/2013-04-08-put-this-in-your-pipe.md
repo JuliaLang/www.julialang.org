@@ -13,7 +13,7 @@ manurl: https://developer.apple.com/library/mac/#documentation/Darwin/Reference/
 [`close`]: {{page.manurl}}/man2/close.2.html
 [`exec`]:  {{page.manurl}}/man2/execve.2.html
 
-In a [previous post], I talked about why "shelling out" to spawn a pipeline of external programs via an intermediate shell is a common cause of bugs, security holes, unnecessary overhead, and silent failures.
+In a [previous post](http://julialang.org/blog/2012/03/shelling-out-sucks), I talked about why "shelling out" to spawn a pipeline of external programs via an intermediate shell is a common cause of bugs, security holes, unnecessary overhead, and silent failures.
 But it's so convenient!
 Why can't running pipelines of external programs be convenient *and* safe?
 Well, there's no real reason, actually.
