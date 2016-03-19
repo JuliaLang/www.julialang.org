@@ -340,8 +340,12 @@ QML is a markup language similar to JavaScript and used by th QT library to crea
 QT Creator (open source IDE) provides a graphical editor to create QML forms. QML forms are cross-platform
 and can be used on Linux, Mac, Windows, Android, OSX, IPhone etc. It would be great if they could also be used
 by Julia in an easy way. Implementing these bindings should be not so difficult, because C bindings already
-exist: https://github.com/seanchas116/libqmlbind . The Ruby bindings could be used as starting point, how
-to implement Julia bindings: https://github.com/seanchas116/ruby-qml .
+exist: [libqmlbind](https://github.com/seanchas116/libqmlbind).
+
+The Ruby bindings could be used as starting point for implementing Julia bindings: [ruby-qml](https://github.com/seanchas116/ruby-qml).
+
+Another possible starting point is [QML.jl](https://github.com/barche/QML.jl), where there is a direct interfacing with C++, eliminating the need for libqmlbind.
+
 A possible mentor can be contacted on the julia-users mailing list.
 
 ## Improvements to the Plots.jl ecosystem
