@@ -31,17 +31,13 @@ packages are pre-installed.
     <td colspan="6"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.4/julia-0.4.5-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
-    <th> Ubuntu packages (.deb) </th>
-    <td colspan="6"> <a href="https://launchpad.net/~staticfloat/+archive/juliareleases">32/64-bit</a> </td>
+    <th> Generic Linux binaries </th>
+    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.5-linux-i686.tar.gz">32-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.5-linux-i686.tar.gz.asc">GPG</a>)</td>
+    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.5-linux-x86_64.tar.gz">64-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.5-linux-x86_64.tar.gz.asc">GPG</a>)</td>
 </tr>
 <tr>
     <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
     <td colspan="6"> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia/">32/64-bit</a> </td>
-</tr>
-<tr>
-    <th> Generic Linux binaries </th>
-    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.5-linux-i686.tar.gz">32-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x86/0.4/julia-0.4.5-linux-i686.tar.gz.asc">GPG</a>)</td>
-    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.5-linux-x86_64.tar.gz">64-bit</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/x64/0.4/julia-0.4.5-linux-x86_64.tar.gz.asc">GPG</a>)</td>
 </tr>
 <tr>
     <th> Source </th>
@@ -90,18 +86,14 @@ are advised to use the latest official release version of Julia, above.
     <td colspan="3"> <a href="https://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
-    <th> Ubuntu packages (.deb) </th>
-    <td colspan="3"> <a href="https://launchpad.net/~staticfloat/+archive/julianightlies">32/64-bit</a> </td>
-</tr>
-<tr>
-    <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
-    <td colspan="3"> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies/">32/64-bit</a> </td>
-</tr>
-<tr>
     <th> Generic Linux binaries </th>
     <td> <a href="https://status.julialang.org/download/linux-i686">32-bit (X86)</a> </td>
     <td> <a href="https://status.julialang.org/download/linux-x86_64">64-bit (X86)</a> </td>
     <td> <a href="https://status.julialang.org/download/linux-arm">32-bit (ARM)</a> </td>
+</tr>
+<tr>
+    <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
+    <td colspan="3"> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies/">32/64-bit</a> </td>
 </tr>
 <tr>
     <th> Source </th>
