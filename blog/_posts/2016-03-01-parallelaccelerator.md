@@ -54,11 +54,15 @@ julia> f([1,2,3,4,5])
 30
 {% endhighlight %}
 
-Under the hood, ParallelAccelerator is essentially a compiler that
+Under the hood, ParallelAccelerator is essentially a compiler -- itself implemented in Julia -- that
 intercepts the usual Julia JIT compilation process for
 `@acc`-annotated functions.  It compiles `@acc`-annotated code to C++
 OpenMP code, which can then be compiled to a native library by an
-external C++ compiler such as GCC or ICC. [[1](#footnote1)] On the
+external C++ compiler such as GCC or ICC.
+(This intermediate C++ generation step isn't essential to the design
+of ParallelAccelerator, though -- instead, the compiler could target
+Julia's own forthcoming native threading backend. [[1](#footnote1)])
+On the
 Julia side, ParallelAccelerator generates a *proxy function* that
 calls into that native library, and replaces calls to `@acc`-annotated
 functions, like `f` in the above example, with calls to the
@@ -126,7 +130,7 @@ It's not necessary to understand the details of the Black-Scholes
 formula; the important thing to notice about the code is that we are
 doing lots of pointwise array arithmetic.  Using Julia 0.4.4-pre on
 a 4-core Ubuntu 14.04 desktop machine with 8 GB of memory, the `run`
-function` takes about 11 seconds to run when called with an argument
+function takes about 11 seconds to run when called with an argument
 of 40,000,000 (meaning that we are dealing with 40-million-element
 arrays):
 
@@ -377,7 +381,7 @@ value, so we simply skip those pixels and don't assign to
 them. [[5](#footnote5)]
 
 Notice that the `blur` function explicitly loops over the number of
-iterations that is, times to apply the blur to the the image, but it
+iterations, that is, times to apply the blur to the the image, but it
 does not explicitly loop over pixels in the image.  Instead, the code
 is written in array style: it performs just one assignment to the
 array `img`, using the ranges `3:w-2` and `3:h-2` to avoid assigning
@@ -597,13 +601,17 @@ package load time will be less of a problem for ParallelAccelerator.
 
 ### Compiler limitations
 
-ParallelAccelerator is able to compile only a limited subset of Julia
+ParallelAccelerator is able to handle only a limited subset of Julia
 language features, and it only supports a limited subset of Julia's
 `Base` library functions.  In other words, you cannot yet put an
-`@acc` annotation on arbitrary Julia code and expect it to work out of
+`@acc` annotation on arbitrary Julia code and expect it to go faster out of
 the box.  The examples in this post give an idea of what kinds of
 programs are supported currently; for more, check out the
 [full collection of ParallelAccelerator examples](https://github.com/IntelLabs/ParallelAccelerator.jl/tree/master/examples).
+However, if ParallelAccelerator can't compile some code in an
+`@acc`-annotated function, it will simply fall back to running the
+function under regular Julia.  So your code will run, regardless of
+whether ParallelAccelerator can speed it up.
 
 One reason why an `@acc`-annotated function might fail to compile is
 that ParallelAccelerator tries to transitively compile every Julia
