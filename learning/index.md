@@ -12,6 +12,7 @@ title:  Learning Julia
 
 ## Upcoming
 
+- [Julia Programming for Operations Research](http://www.chkwon.net/julia) by Changhyun Kwon - Online version is available for purchase now. Print version is planned in summer 2016. (approx. 210 pages)
 - [Learn Julia](http://www.manning.com/voncsefalvay/) by [Chris von Csefalvay](http://www.chrisvoncsefalvay.com) - published by Manning (approx. 375 pages, in [Early Access](http://www.manning.com/about/meap.html), ISBN: 9781617292835). The companion Github repo to the book is available [here](https://github.com/chrisvoncsefalvay/juliabook).
 
 
