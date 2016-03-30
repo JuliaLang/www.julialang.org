@@ -5,7 +5,7 @@ title:  Julia Downloads
 
 # Current Release (v0.4.5)
 
-We provide a couple of ways for you to run Julia:
+We provide several ways for you to run Julia:
 
 * In the terminal using the built-in Julia command line.
 * The [Juno](http://www.junolab.org) integrated development environment (IDE).
