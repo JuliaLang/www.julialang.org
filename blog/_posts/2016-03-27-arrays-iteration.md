@@ -154,7 +154,7 @@ set the latter problem on fire.
 
 Some possible new `AbstractArray` types pose novel challenges.
 
-## `ReshapedArrays` ([#15449](https://github.com/JuliaLang/julia/pull/15449))
+## ReshapedArrays ([#15449](https://github.com/JuliaLang/julia/pull/15449))
 
 These are the front-and-center motivation for this post. These are
 motivated by a desire to ensure that `reshape(A, dims)` always returns
