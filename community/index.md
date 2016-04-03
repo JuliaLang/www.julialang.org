@@ -116,6 +116,7 @@ Asia
 * [Bangalore Julia User Group](http://www.meetup.com/Bangalore-Julia-User-Group/)
 * [Julia Tokyo](http://julia.tokyo/)
 * [Julia China](http://julialang.cn/)
+* [Julia Korea](https://www.facebook.com/groups/juliakorea/)
 
 Australia
 
