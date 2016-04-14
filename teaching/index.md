@@ -32,6 +32,9 @@ Julia is now being used in several university courses. If you know of other clas
 - University of Edinburgh, Spring 2016
   * [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/index.html))
 
+- University of South Florida, Spring 2016
+  * [EIN 6945](http://www.chkwon.net/teaching/ein-6935/), Nonlinear Optimization and Game Theory (Prof. [Changhyun Kwon](http://www.chkwon.net/))
+  
 - Universidad Nacional Pedro Ruiz Gallo, Lambayeque, Perú, Spring 2015
     * Julia: el lenguaje del futuro, [Semana de Integración de Ingeniería Electrónica](http://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro), (Oscar William Neciosup Vera)
  
