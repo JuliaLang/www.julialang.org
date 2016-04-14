@@ -11,6 +11,12 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
+- [Luiss University Rome](www.luiss.it), [Department of Economics and Finance](http://economiaefinanza.luiss.it)
+  * [Econometric Theory](http://www.gragusa.org/teaching/et) ([Giuseppe Ragusa](http://www.gragusa.org))
+
+- [Einaudi Institute for Economics and Finance, Rome](www.eief.it)
+  * [Econometrics of DSGE Models](http://www.gragusa.org/teaching/eief_dsge) ([Giuseppe Ragusa](http://www.gragusa.org))
+
 - [Sciences Po Paris](http://www.sciencespo.fr), [Department of Economics](http://econ.sciences-po.fr), Spring 2016. 
   * [Computational Economics for PhDs](https://github.com/ScPo-CompEcon/Syllabus) ([Florian Oswald](https://floswald.github.io))
 
