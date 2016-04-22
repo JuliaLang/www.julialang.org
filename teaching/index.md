@@ -11,6 +11,9 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
+- [Budapest University of Technology and Economics](www.bme.hu)
+  * [Applications of Differential Equations and Vector Analysis for Engineers II.] ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
+
 - [Luiss University Rome](www.luiss.it), [Department of Economics and Finance](http://economiaefinanza.luiss.it)
   * [Econometric Theory](http://www.gragusa.org/teaching/et) ([Giuseppe Ragusa](http://www.gragusa.org))
 
