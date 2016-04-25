@@ -11,6 +11,9 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
+- University of Cologne, Institute for Theoretical Physics, Summer 2016
+  * [Computational Physics](http://www.thp.uni-koeln.de/trebst/Lectures/2016-CompPhys.shtml), (Prof. Simon Trebst)
+
 - [Óbuda University](https://www.uni-obuda.hu), [John von Neumann Faculty of Informatics, Institute of Applied Mathematics](http://nik.uni-obuda.hu)
   * [Intelligent Development Tools (Hungarian)]
   * [Intelligent Development Tools (English)]
