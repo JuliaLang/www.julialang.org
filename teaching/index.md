@@ -11,6 +11,11 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
+- [Óbuda University](https://www.uni-obuda.hu), [John von Neumann Faculty of Informatics, Institute of Applied Mathematics](http://nik.uni-obuda.hu)
+  * [Intelligent Development Tools (Hungarian)]
+  * [Intelligent Development Tools (English)]
+  * [Fundamental Mathematical Methods (English)]
+
 - [Budapest University of Technology and Economics](www.bme.hu)
   * [Applications of Differential Equations and Vector Analysis for Engineers II.] ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
 
