@@ -33,7 +33,8 @@ high-profile speaker, followed by [talks][talks] on a great variety of subjects:
 macro economics, machine learning, astrophysics, visualisation, and more!
 On Saturday 25th, the final day of the conference, we will hold a hackathon
 where attendees are encouraged to team up based on personal interests to either
-create new Julia projects or contribute to existing ones.
+create new Julia projects or contribute to existing ones. All these details are
+now in the [JuliaCon poster](http://juliacon.org/pdf/juliacon2016poster3.pdf).
 
 Without further ado, please allow us to introduce our keynote speakers:
 
@@ -66,7 +67,16 @@ Without further ado, please allow us to introduce our keynote speakers:
 We hope that our invitation entices you to join us -- new, intermediate, and
 experienced Julia users -- for five days of fun at MIT this June and remember to
 [purchase your tickets][tickets] before May 13th to receive a 33% early-bird
-rebate!
+discount!
+
+---
+
+We need your help to spread this message far and wide! Post the
+[JuliaCon poster](http://juliacon.org/pdf/juliacon2016poster3.pdf) and
+this blog post to your local email lists. Print the poster and post it
+on your local message board. In addition, please tweet, retweet, post
+on FaceBook and LinkedIn and other social media. This is the biggest
+JuliaCon ever, and we need your help in making it a huge success.
 
 [juliacon]: http://juliacon.org/
 [talks]: http://juliacon.org/abstracts.html
