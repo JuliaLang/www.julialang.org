@@ -4,7 +4,7 @@ title:  Shelling Out Sucks
 author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 ---
 
-[followup post]: /blog/2013/04/put-this-in-your-pipe/
+[followup post]: /blog/2013/04/put-this-in-your-pipe
 
 [Perl]:     http://www.perl.org/
 [Python]:   http://python.org/
