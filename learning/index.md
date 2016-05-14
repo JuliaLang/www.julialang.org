@@ -8,6 +8,8 @@ title:  Learning Julia
 - [Getting Started with Julia Programming](https://www.packtpub.com/application-development/getting-started-julia-programming/) by Ivo Balbaert - published by Packt Publishing (214 pages; published: 2015-02-28; ISBN: 9781783284795)
 - [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks) by Bruce Tate, Fred Daoud, Jack Moffit and Ian Dees - published by The Pragmatic Programmers (350 pages; published: 2014-11-15; ISBN: 978-1-94122-215-7)
     This book contains a Julia tutorial chapter (written by Jack Moffitt and Bruce Tate) for programmers new to Julia, which is very good, with nice examples and exercises.
+- [Julia High Performance](https://www.packtpub.com/application-development/julia-high-performance) by Avik Sengupta (120 pages; published: 2016-05; ISBN: 9781785880919) 
+    This is a book about performance optimisation of Julia programs, showing how to design and write Julia code that fully realises the potential speed of the language and its libraries. 
 
 
 ## Upcoming
