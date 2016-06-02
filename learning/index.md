@@ -4,6 +4,8 @@ title:  Learning Julia
 ---
 # Books
 
+- [Julia Programming for Operations Research: A Primer on Computing](http://www.chkwon.net/julia) by Changhyun Kwon (246 pages; published: 2016-05; ISBN: 978-1533328793) 
+    This book aims to teach how one can solve various optimization problems arising in operations research and management science. 
 - [Julia High Performance](https://www.packtpub.com/application-development/julia-high-performance) by Avik Sengupta (120 pages; published: 2016-05; ISBN: 9781785880919) 
     This is a book about performance optimisation of Julia programs, showing how to design and write Julia code that fully realises the potential speed of the language and its libraries. 
 - [Mastering Julia](https://www.packtpub.com/application-development/mastering-julia) by Malcolm Sherrington - published by Packt Publishing (410 pages; published: 2015-07; ISBN: 9781783553310)
@@ -14,7 +16,6 @@ title:  Learning Julia
 
 ## Upcoming
 
-- [Julia Programming for Operations Research](http://www.chkwon.net/julia) by Changhyun Kwon - Online version is available for purchase now. Print version is planned in summer 2016. (approx. 210 pages)
 - [Learn Julia](http://www.manning.com/voncsefalvay/) by [Chris von Csefalvay](http://www.chrisvoncsefalvay.com) - published by Manning (approx. 375 pages, in [Early Access](http://www.manning.com/about/meap.html), ISBN: 9781617292835). The companion Github repo to the book is available [here](https://github.com/chrisvoncsefalvay/juliabook).
 
 
