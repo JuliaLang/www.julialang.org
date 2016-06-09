@@ -22,7 +22,7 @@ title:  Learning Julia
 # Tutorials
 
 - [Programming in Julia (Quantitative Economics)](http://quant-econ.net/jl/learning_julia.html) - by Thomas J. Sargent and John Stachurski. Along with being a complete textbook with Julia code for macroeconomics, this also is a very good introduction to Julia.
-- [The Julia Express](http://bogumilkaminski.pl/files/julia_express.pdf) by [Bogomił Kamiński](http://bogumilkaminski.pl)
+- [The Julia Express](https://github.com/bkamins/The-Julia-Express) by [Bogumił Kamiński](http://bogumilkaminski.pl)
 - [Introducing Julia wikibook](https://en.wikibooks.org/wiki/Introducing_Julia)
 - [Julia by Example](http://www.scolvin.com/juliabyexample/) by [Samuel Colvin](http://www.scolvin.com/)
 - [Learn Julia in Y minutes](http://learnxinyminutes.com/docs/julia/) by [Leah Hanson](http://blog.leahhanson.us/)
