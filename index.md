@@ -8,9 +8,11 @@ It provides a sophisticated compiler, [distributed parallel execution](http://do
 Julia's Base library, largely written in Julia itself, also integrates mature, best-of-breed open source C and Fortran libraries for [linear algebra](http://docs.julialang.org/en/stable/stdlib/linalg/), [random number generation](http://docs.julialang.org/en/stable/stdlib/numbers/#random-numbers), [signal processing](http://docs.julialang.org/en/stable/stdlib/math/#signal-processing), and [string processing](http://docs.julialang.org/en/stable/stdlib/strings/#strings).
 In addition, the Julia developer community is contributing a number of [external packages](http://pkg.julialang.org) through Julia's built-in package manager at a rapid pace. [IJulia](https://github.com/JuliaLang/IJulia.jl), a collaboration between the [Jupyter](http://jupyter.org) and Julia communities, provides a powerful browser-based graphical notebook interface to Julia.
 
-[JuliaCon 2015](http://juliacon.org/2015) at MIT was a huge success. The [videos](https://www.youtube.com/playlist?list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM) are now online, and a random video from JuliaCon 2015 is presented here.
+This keynote talk by Stefan Karpinski at [ODSC Boston](https://www.odsc.com/boston) (2016) on [the two language problem](https://www.youtube.com/watch?v=B9moDuSYzGo) explains much of the motivation behind Julia:
 
-{% include juliacon-player-2015.html %}
+<div style="text-align: center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/B9moDuSYzGo" frameborder="0" allowfullscreen></iframe>
+</div>
 
 Julia programs are organized around [multiple dispatch](http://docs.julialang.org/en/stable/manual/methods/#man-methods); by defining functions and overloading them for different combinations of argument types, which can also be user-defined.
 For a more in-depth discussion of the rationale and advantages of Julia over other systems, see the following highlights or read the [introduction](http://docs.julialang.org/en/stable/manual/introduction/) in the [online manual](http://docs.julialang.org).
