@@ -111,6 +111,7 @@ Europe
 * [London Julia Users Group](http://www.meetup.com/London-Julia-Users-Group/)
 * [Zurich Julia Users Group](http://www.meetup.com/Zurich-Julia-User-Group/)
 * [Vienna Julia Meetup](http://www.meetup.com/Vienna-Julia-Meetup/)
+* [Julia Users Berlin](http://julia-users-berlin.github.io/)
 
 Asia
 
