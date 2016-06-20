@@ -45,6 +45,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
 * [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language
+* [JuliaTime](https://github.com/JuliaTime) – Date and time libraries
 
 # Google Summer of Code 2014
 
