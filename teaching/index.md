@@ -11,6 +11,9 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
+- University of Sydney, Fall 2016
+  * [MATH3076/3976](http://www.maths.usyd.edu.au/u/olver/teaching/MATH3976/), Mathematical Computing (Assoc. Prof. [Sheehan Olver](http://www.maths.usyd.edu.au/u/olver/))
+
 - University of Cologne, Institute for Theoretical Physics, Summer 2016
   * [Computational Physics](http://www.thp.uni-koeln.de/trebst/Lectures/2016-CompPhys.shtml), (Prof. Simon Trebst)
 
@@ -28,7 +31,7 @@ Julia is now being used in several university courses. If you know of other clas
 - [Einaudi Institute for Economics and Finance, Rome](www.eief.it)
   * [Econometrics of DSGE Models](http://www.gragusa.org/teaching/eief_dsge) ([Giuseppe Ragusa](http://www.gragusa.org))
 
-- [Sciences Po Paris](http://www.sciencespo.fr), [Department of Economics](http://econ.sciences-po.fr), Spring 2016. 
+- [Sciences Po Paris](http://www.sciencespo.fr), [Department of Economics](http://econ.sciences-po.fr), Spring 2016.
   * [Computational Economics for PhDs](https://github.com/ScPo-CompEcon/Syllabus) ([Florian Oswald](https://floswald.github.io))
 
 - Federal University of Uberlândia, Institute of Physics, Fall 2016
@@ -36,19 +39,19 @@ Julia is now being used in several university courses. If you know of other clas
 
 - "Sapienza" University of Rome, Italy, Spring 2016
   * [Optimization for Complex Systems](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi)
- 
+
 - Purdue University, Spring 2016
   * [CS51400](https://www.cs.purdue.edu/homes/dgleich/cs514-2016/), Numerical Analysis (Prof. [David Gleich](https://www.cs.purdue.edu/homes/dgleich/))
- 
+
 - University of Edinburgh, Spring 2016
   * [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/index.html))
 
 - University of South Florida, Spring 2016
   * [EIN 6945](http://www.chkwon.net/teaching/ein-6935/), Nonlinear Optimization and Game Theory (Prof. [Changhyun Kwon](http://www.chkwon.net/))
-  
+
 - Universidad Nacional Pedro Ruiz Gallo, Lambayeque, Perú, Spring 2015
     * Julia: el lenguaje del futuro, [Semana de Integración de Ingeniería Electrónica](http://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro), (Oscar William Neciosup Vera)
- 
+
 - Université de Liège, Fall 2015
   * [MATH0462](http://www.montefiore.ulg.ac.be/~tcuvelier/?page=teaching.15-do), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/))
 
@@ -63,7 +66,7 @@ Julia is now being used in several university courses. If you know of other clas
   * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford) - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
 
 - MIT, Fall 2015
-  * [6.251/15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas) 
+  * [6.251/15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas)
   * [18.06](http://web.mit.edu/18.06/www/), Linear Algebra (Dr. [Alex Townsend](https://github.com/ajt60gaibb))
   * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj))
   * [18.337/6.338](http://courses.csail.mit.edu/18.337/2015), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). ([IJulia notebooks](https://github.com/alanedelman/18.337_2015))
