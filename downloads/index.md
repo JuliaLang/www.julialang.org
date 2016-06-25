@@ -9,7 +9,7 @@ We provide several ways for you to run Julia:
 
 * In the terminal using the built-in Julia command line.
 * The [Juno](http://www.junolab.org) integrated development environment (IDE).
-* In the browser on [JuliaBox.org](https://www.juliabox.org) with Jupyter notebooks. No installation is required -- just point your browser there, login and start computing.
+* In the browser on [JuliaBox.com](https://www.juliabox.com) with Jupyter notebooks. No installation is required -- just point your browser there, login and start computing.
 
 Plotting capabilities are provided by external packages such as
 [PyPlot.jl](https://github.com/stevengj/PyPlot.jl) and
