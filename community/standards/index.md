@@ -20,3 +20,6 @@ Constructive criticism and suggestions are welcome, but high-traffic forums do n
 
 **Get involved.**
 The Julia community is built on a foundation of reciprocity and collaboration. Be aware that most community members contribute on a voluntary basis, so ideas and bug reports are ok, but demands are not. Pull requests are always welcomed – see the [guidelines for contributing](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md) to read about how to get started.
+
+**Any concerns?**
+If you have a conflict or concern that requires resolution, please see the [Julia community stewards page](julia_stewards.md).
