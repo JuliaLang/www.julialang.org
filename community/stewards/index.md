@@ -1,5 +1,7 @@
-# Julia Community Policy Regarding Community-Standards Violations
-
+---
+layout: default
+title:  Julia Community Policy Regarding Community-Standards Violations
+---
 
 The spirit of community is crucial to free/open-source development.
 In the large majority of cases, interactions are naturally constructive, but in rare cases conflict can arise.
