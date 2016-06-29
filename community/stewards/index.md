@@ -5,7 +5,8 @@ title:  Julia Community Policy Regarding Community-Standards Violations
 
 The spirit of community is crucial to free/open-source development.
 In the large majority of cases, interactions are naturally constructive, but in rare cases conflict can arise.
-This document explains the mechanisms for conflict reporting and resolution within the Julia community.
+This document explains the mechanisms for conflict reporting and resolution within the Julia community, to handle violations of the [Julia Community Standards](../standards).
+
 (Our procedures were informed in part by the [Complaint Resolution Policies and Procedures at the Massachusetts Institute of Technology](http://web.mit.edu/policies/9/9.6.html), but are necessarily more informal given the loose nature of the Julia community.)
 
 ## Stewards of the Community Standards
@@ -17,7 +18,7 @@ The current membership of this group is:
  - Milan Bouchet-Valat
  - Simon Byrne
  - Tim Holy
- - Katherine Hyatt
+ - Katharine Hyatt
  - Steven G. Johnson
  - Stefan Karpinski
  - Viral Shah
@@ -31,7 +32,7 @@ The guidelines governing the Julia Stewards' actions are described below.
 ## Complaint Resolution
 
 **No one shall be retaliated against for good-faith participation in a complaint**.
-In general, violations of the community standards will generate one or more of the following responses:
+In general, violations of the community standards will generate one or more of the following responses from the Stewards:
 
 
 1. Informal feedback, privately and/or (for public violations) in the forum where a violation appeared, with the goal of encouraging good-faith contributions and mutual understanding while making offenders aware of the problem and preventing future incidents. Where possible, good intentions of the participants should be assumed.
@@ -44,7 +45,7 @@ In general, violations of the community standards will generate one or more of t
 
 ## Bans
 
-The public Julia mailing lists (e.g. julia-users) and GitHub pages (e.g. issues and pull requests) are normally open forums for all good-faith contributors.
+The public Julia mailing lists (e.g. [julia-users](https://groups.google.com/forum/#!forum/julia-users)) and GitHub pages (e.g. issues and pull requests) are normally open forums for all good-faith contributors.
 In extreme cases, repeated violations of the Community Standards may lead to the banning of a contributor from one or more of these public forums.
 Such total bans are expected to be rare and are not to be undertaken lightly.
 
