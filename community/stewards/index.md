@@ -40,7 +40,7 @@ In general, violations of the community standards will generate one or more of t
 3. For severe cases, especially persistent, disruptive violations despite repeated warnings and other feedback, a formal investigation may be convened by the stewards.
    * A consensus committee of 3+ disinterested stewards (possibly including non-steward members) shall investigate the complaint, communicating this with both the complainant (if any) and the respondent (alleged violator).
    * The investigation shall be as confidential as possible, and this expectation shall be communicated to all participants. Identities and testimonies of participants shall, where possible, be known only to the committee.
-   * The committee shall provide a private written report detailing its findings and recommendation to the stewards, complainant, and respondent. If a violation has been found, recommendations may include bans and other alterations of online privileges, or in less severe cases may request apologies and other informal resolutions.
+   * The committee shall provide a private written report detailing its findings and recommendations to the stewards, complainant, and respondent. If a violation has been found, recommendations may include bans and other alterations of online privileges, or in less severe cases may request apologies and other informal resolutions.
    * The conclusions of the investigative committee are final and cannot be appealed except in cases of gross misconduct or major factual errors.
 
 ## Bans
