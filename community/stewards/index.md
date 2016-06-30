@@ -51,5 +51,6 @@ Such total bans are expected to be rare and are not to be undertaken lightly.
 
 
 Note that:
+
 * Long-term bans shall only be undertaken in response to the recommendations of a formal investigation by the Julia stewards as described above. (A temporary ban may be imposed by Julia admins in response to an urgent situation, but shall be followed by a formal investigation if the ban is to continue.)
 * After a predetermined period, not to exceed six months, the banned individual may request that the ban be lifted, by acknowledging his/her past violations and providing a written plan to avoid such violations in the future. This request will be typically be considered by the same committee that recommended the initial ban.
