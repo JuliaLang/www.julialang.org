@@ -33,7 +33,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaParallel](https://github.com/JuliaParallel) – [Parallel programming in Julia](http://juliaparallel.github.io/)
 * [JuliaDB](https://github.com/JuliaDB) – Various database drivers for Julia
 * [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
-* [BioJulia](https://github.com/BioJulia) - Biology
+* [BioJulia](https://github.com/BioJulia) – Biology
 * [JuliaQuantum](https://github.com/JuliaQuantum) – [Julia libraries for quantum science and technology](http://juliaquantum.github.io/)
 * [JuliaAstro](https://github.com/JuliaAstro) – Astronomy
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
@@ -44,6 +44,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
+* [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
 * [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language
 * [JuliaTime](https://github.com/JuliaTime) – Date and time libraries
 
