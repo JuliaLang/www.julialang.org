@@ -47,6 +47,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
 * [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language
 * [JuliaTime](https://github.com/JuliaTime) – Date and time libraries
+* [JuliaPlots](https://github.com/JuliaPlots) – [Data visualization](https://juliaplots.github.io/)
 
 # Google Summer of Code 2014
 
