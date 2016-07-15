@@ -76,6 +76,8 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 # Technical computing applications
 
+[@HPOEPP16] Code available in [CellwiseEditingDifferentiation.jl](https://github.com/scidom/CellwiseEditingDifferentiation.jl).
+
 [@OPV16]
 
 [@K14]
@@ -108,7 +110,8 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 # Book chapters
 
+[@PMG15]
+
 [@HN14]
 
 [@TDDM14]
-
