@@ -11,6 +11,9 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 Julia is now being used in several university courses. If you know of other classes using Julia for teaching, please [submit a pull request](https://github.com/JuliaLang/julialang.github.com/pulls) to update this list.
 
+- University of Glasgow, School of Mathematics and Statistics, September 2017
+  * An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](http://www.gla.ac.uk/schools/mathematicsstatistics/staff/theodorepapamarkou/))
+
 - IIT Indore, June 24 - July 5, 2016
   * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://www.fesb.unist.hr/~slap/index1.html))
 

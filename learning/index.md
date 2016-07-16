@@ -25,6 +25,7 @@ title:  Learning Julia
 - [The Julia Express](https://github.com/bkamins/The-Julia-Express) by [Bogumił Kamiński](http://bogumilkaminski.pl)
 - [Introducing Julia wikibook](https://en.wikibooks.org/wiki/Introducing_Julia)
 - [Julia by Example](http://www.scolvin.com/juliabyexample/) by [Samuel Colvin](http://www.scolvin.com/)
+- [Statistical Learning in Julia by Example](https://github.com/scidom/StatsLearningByExample.jl) by [Theodore Papamarkou](http://www.gla.ac.uk/schools/mathematicsstatistics/staff/theodorepapamarkou/)
 - [Learn Julia in Y minutes](http://learnxinyminutes.com/docs/julia/) by [Leah Hanson](http://blog.leahhanson.us/)
 - [Learn Julia the Hard Way](https://github.com/chrisvoncsefalvay/learn-julia-the-hard-way) by [Chris von Csefalvay](http://chrisvoncsefalvay.com/)
 - [Hands-on Julia](https://github.com/dpsanders/hands_on_julia) by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/)
