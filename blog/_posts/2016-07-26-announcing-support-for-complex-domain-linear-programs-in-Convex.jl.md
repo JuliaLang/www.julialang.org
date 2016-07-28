@@ -42,7 +42,7 @@ After above changes were made to the codebase, we wrote two use cases to demonst
     x1==x2 # should return true
     
 
-    # Let's now consider an example where the complex variable is used
+    # Let's now consider an example using a complex variable
     # Complex LP with complex variable
     n = 10 # variable dimension (parameter)
     m = 5 # number of constraints (parameter)
@@ -75,7 +75,7 @@ List of all the affine atoms are as follows:
 9. conv
 10. real and imag
 
-Now, I am working towards implementing the complex-domain second order conic programming. Meanwhile, I invite the Julia community to play around with the complex-domain LPs. The link to the development branch is [here](https://github.com/Ayush-iitkgp/Convex.jl/tree/gsoc2).
+Now, I am working towards implementing complex-domain second order conic programming. Meanwhile, I invite the Julia community to play around with the complex-domain LPs. The link to the development branch is [here](https://github.com/Ayush-iitkgp/Convex.jl/tree/gsoc2).
 
 Looking forward to your suggestions!
 
