@@ -4,7 +4,7 @@ title: Announcing support for complex-domain linear programs in Convex.jl
 author: Ayush Pandey
 ---
 
-I am pleased to announce the support for complex-domain linear Programs (LPs) in Convex.jl. As one of the *Google Summer of Code* students under *The Julia Language*, I had proposed to implement the support for complex semidefinite programming. In the first phase of project, I started by tackling the problem of complex-domain LPs where in first subphase, I had announced the support for complex coefficients during [JuliaCon'16](https://www.youtube.com/watch?v=fHG4uEOlMbY) and now I take this opportunity to announce the support for complex variables in LPs.
+I am pleased to announce the support for complex-domain linear programs (LPs) in Convex.jl. As one of the *Google Summer of Code* students under *The Julia Language*, I had proposed to implement the support for complex semidefinite programming. In the first phase of project, I started by tackling the problem of complex-domain LPs where in first subphase, I had announced the support for complex coefficients during [JuliaCon'16](https://www.youtube.com/watch?v=fHG4uEOlMbY) and now I take this opportunity to announce the support for complex variables in LPs.
 
 Complex-domain LPs consist of a real linear objective function, real linear inequality constraints, and real and complex linear equality constraints.
 
@@ -22,7 +22,7 @@ After above changes were made to the codebase, we wrote two use cases to demonst
     Pkg.clone("https://github.com/Ayush-iitkgp/Convex.jl/tree/gsoc2")
     using Convex
  
-    # Complex LP with real variable"
+    # Complex LP with real variable
     n = 10 # variable dimension (parameter)
     m = 5 # number of constraints (parameter)
     xo = rand(n)
@@ -36,13 +36,13 @@ After above changes were made to the codebase, we wrote two use cases to demonst
     x1 = x.value
     
     # Let's now solve by decomposing complex equality constraint into the corresponding real and imaginary part.
-    p2 = minimize(sum(x), real(A)*x == real(b),      imag(A)*x==imag(b), x>=0)
+    p2 = minimize(sum(x), real(A)*x == real(b), imag(A)*x==imag(b), x>=0)
     solve!(p2)
     x2 = x.value
     x1==x2 # should return true
     
 
-    # Let's now take an example where the complex variable is used
+    # Let's now consider an example where the complex variable is used
     # Complex LP with complex variable
     n = 10 # variable dimension (parameter)
     m = 5 # number of constraints (parameter)
@@ -75,7 +75,7 @@ List of all the affine atoms are as follows:
 9. conv
 10. real and imag
 
-Now, I am working towards implementing the complex-domain Second Order Conic Programming. Meanwhile, I invite the Julia community to play around with the complex-domain LPs. The link to the development branch is [here](https://github.com/Ayush-iitkgp/Convex.jl/tree/gsoc2).
+Now, I am working towards implementing the complex-domain second order conic programming. Meanwhile, I invite the Julia community to play around with the complex-domain LPs. The link to the development branch is [here](https://github.com/Ayush-iitkgp/Convex.jl/tree/gsoc2).
 
 Looking forward to your suggestions!
 
