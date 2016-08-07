@@ -13,10 +13,7 @@ We provide several ways for you to run Julia:
 
 Plotting capabilities are provided by external packages such as
 [PyPlot.jl](https://github.com/stevengj/PyPlot.jl) and
-[Gadfly.jl](http://gadflyjl.org). You can also do much more with
-[Compose.jl](http://composejl.org), a vector graphics library for
-Julia. Look at the [plotting instructions](plotting.html) to install a
-plotting package. If you are using JuliaBox, all these plotting
+[Gadfly.jl](http://gadflyjl.org). A package which integrates most of Julia's plotting backends into one convenient and well-documented API is [Plots.jl](https://github.com/tbreloff/Plots.jl). If you are using JuliaBox, all these plotting
 packages are pre-installed.
 
 ## Julia (command line version)
