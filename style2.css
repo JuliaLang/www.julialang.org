@@ -1,0 +1,104 @@
+
+body {
+    font-size: 15px;
+    font-family: "Helvetica Neue", "myriad-pro", sans-serif;
+}
+
+b {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+a {
+    color: #888;
+    text-decoration: none;
+}
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.header {
+    padding: 1em;
+}
+
+.julia-logo {
+    height: 6em;
+    width: auto;
+}
+
+.julia-tagline {
+    color: #888;
+    margin-left:  2em;
+    font-size: 20px;
+}
+
+.navbar {
+    margin-top: 1em;
+    padding: 1em;
+    background: #666;
+    text-shadow: 0 1px 0 #000;
+    border-radius: 6px;
+}
+.navbar ul {
+    margin-left: 0.25em;
+}
+
+.navbar a:hover {
+    color: #fff;
+    cursor: pointer;
+}
+.navbar a {
+    color: #eee;
+    margin-right: 1em;
+}
+
+.intro-wrapper {
+    background: #f1f1f1;
+    padding: 1em;
+    margin-top: 1em;
+}
+
+.features-wrapper {
+    padding: 1em;
+    margin-top: 1em;
+}
+
+.intro-container {
+    min-height: 20em;
+}
+
+.intro-text {
+    font-size: 1.5em;
+    color: #666;
+    width: 50%;
+    line-height: 1.5em;
+}
+
+.download-button {
+    font-size: 1.25em;
+}
+
+.feature-list {
+    width: 400px;
+}
+.feature-list li {
+    padding: 0.5em 1em;
+}
+
+.feature-list li:hover {
+    background: #bbb;
+    border-radius: 4px 0 0 4px;
+}
+
+.feature-desc {
+    align-self: stretch;
+    width: 100%;
+    background: #f1f1f1;
+}
