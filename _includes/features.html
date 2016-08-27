@@ -1,0 +1,51 @@
+<div class="features-wrapper">
+  <div class="u-container u-center features-container u-flex u-items-center u-hbox">
+    <div class="feature-list">
+    <div class="u-vskip"></div>
+    <h2>Features</h2>
+    <div class="u-vskip"></div>
+      <div class="feature-table" id="feature-table">
+    {% for feature in site.pages %}{% if feature.category == 'feature' %}
+      
+    <a href="#{{ feature.slug }}">{{ feature.menu_title }}</a>
+    {% endif %}{% endfor %}
+      </div>
+      <div class="u-display-none" id="feature-description">
+{% for feature in site.pages %}{% if feature.category == 'feature' %}
+        <div id="{{ feature.slug }}">
+          {{ feature.content }}
+        </div>
+{% endif %}{% endfor %}
+      </div>
+  </div>
+  <div class="feature-display u-flex" id="feature-display">
+  </div>
+</div>
+
+<script>
+
+function forEach(xs, f) {
+   Array.prototype.forEach.call(xs, f);
+}
+
+var feature_links = 
+   document.getElementById("feature-table")
+           .getElementsByTagName("a");
+
+ function do_feature_navigate(link) {
+     var url = link.href;
+     var hash = url.substring(url.indexOf('#')+1)
+     var el = document.getElementById(hash)
+     var desc = el !== null ? el.innerHTML : ""
+     document.getElementById("feature-display").innerHTML = "<div class='feature-inner'>" + desc +"</div>";
+     forEach(feature_links, function (e) { e.classList.remove("active") })
+     link.classList.add("active")
+ }
+ forEach(feature_links, function (x) {
+   x.addEventListener("click", function (ev) {
+     do_feature_navigate(x)
+   })
+ })
+  do_feature_navigate(feature_links[0])
+
+</script>
