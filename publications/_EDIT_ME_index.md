@@ -40,6 +40,10 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 [@LD13]
 
+### [SwitchTimeOpt.jl](https://github.com/bstellato/SwitchTimeOpt.jl)
+
+[@SOG16]
+
 ## Numerical linear algebra
 
 ### [ApproxFun.jl](https://github.com/ApproxFun/ApproxFun.jl)
