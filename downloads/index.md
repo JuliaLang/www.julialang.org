@@ -126,7 +126,11 @@ are advised to use the latest official release version of Julia, above.
     <th> Generic Linux binaries </th>
     <td> <a href="https://status.julialang.org/download/linux-i686">32-bit (X86)</a> </td>
     <td> <a href="https://status.julialang.org/download/linux-x86_64">64-bit (X86)</a> </td>
-    <td> <a href="https://status.julialang.org/download/linux-arm">32-bit (ARM)</a> </td>
+</tr>
+<tr>
+    <th> Linux builds for other architectures </th>
+    <td> <a href="https://status.julialang.org/download/linux-arm">ARM 32-bit hard float</a> </td>
+    <td> <a href="https://status.julialang.org/download/linux-powerpc64le">PowerPC 64 little endian</a> </td>
 </tr>
 <tr>
     <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
