@@ -130,7 +130,7 @@ The following simple example demonstrates how to count the number of heads in a 
 
 {% highlight julia %}
 nheads = @parallel (+) for i=1:100000000
-  int(randbool())
+  rand(Bool)
 end
 {% endhighlight %}
 
