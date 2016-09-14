@@ -14,7 +14,7 @@ Julia is now being used in several university and online courses. If you know of
 - University of Glasgow, School of Mathematics and Statistics, September 2017
   * An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](http://www.gla.ac.uk/schools/mathematicsstatistics/staff/theodorepapamarkou/))
 
-- Coursera, September 2016
+- Coursera, University of Cape Town, September 2016
   * [Julia Scientific Programming](https://www.coursera.org/learn/julia-programming) online course, (Dr. Juan H Klopper, Dr. Henri Laurie)
 
 - edX MITx, September 2016
