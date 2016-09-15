@@ -14,6 +14,7 @@ title:  Learning Julia
     This book contains a Julia tutorial chapter (written by Jack Moffitt and Bruce Tate) for programmers new to Julia, which is very good, with nice examples and exercises.
 - [Julia for Data Science](https://www.packtpub.com/big-data-and-business-intelligence/julia-data-science) by Anshul Joshi (348 pages; published: 2016-09; ISBN: 9781785289699)
     Explore the world of data science from scratch with Julia by your side
+- [Julia for Data Science](https://technicspub.com/analytics/) by Zacharias Voulgaris PhD (415 pages; published: 2016-09-01; ISBN: 9781634621304). Master the essentials of data science through the Julia programming ecosystem (no prior knowledge of the language is required), accompanied by a variety of interesting examples and exercises.
 
 ## Upcoming
 
