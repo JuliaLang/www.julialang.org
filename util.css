@@ -63,3 +63,14 @@
 .u-text-center {
     text-align: center;
 }
+
+.u-display-none {
+    display: none;
+}
+
+.u-bold {
+    font-weight: bold;
+}
+.u-small {
+    font-size: 0.8em;
+}
