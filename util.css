@@ -22,24 +22,27 @@
     flex-direction: row;
 }
 
+.u-half-width {
+    width: 45%;
+    margin-right: 2em;
+}
+
 .u-items-center {
     align-items: center;
 }
 
-.u-hskip {
-    width: 16px;
-    height:0;
-}
-.u-vskip {
-    height: 16px;
-    width:0;
-}
+.u-hskip   { width: 1rem; height:0; }
+.u-hskip-2 { width: 2rem; height:0; }
+.u-hskip-3 { width: 3rem; height:0; }
+.u-vskip   { height: 1rem; width:0; }
+.u-vskip-2 { height: 2rem; width:0; }
+.u-vskip-3 { height: 3rem; width:0; }
 
 .u-button {
     color: #fff;
     padding: 0.5em 1em;
     border-radius: 0.125em;
-    background: #777;
+    background: #272822;
 }
 .u-button:hover {
     background: #555;

@@ -82,23 +82,90 @@ h2 {
 }
 
 .download-button {
+    font-weight: 200;
     font-size: 1.25em;
 }
 
 .feature-list {
-    width: 400px;
+    width: 300px;
 }
-.feature-list li {
-    padding: 0.5em 1em;
+.feature-table a {
+    padding: 1em 1em;
+    transition: all 0.2s ease;
+    display:block;
+    margin: 0.5em 0;
 }
 
-.feature-list li:hover {
-    background: #bbb;
+.feature-list a:hover {
+    background: #e2e3e3;
     border-radius: 4px 0 0 4px;
 }
 
-.feature-desc {
+.feature-list a.active {
+    background: #aaa;
+    color: #fff;
+    border-radius: 4px 0 0 4px;
+}
+
+.feature-display {
+    padding: 2em;
     align-self: stretch;
+    border-radius: 4px;
     width: 100%;
     background: #f1f1f1;
 }
+
+.feature-inner {
+    width: 100%
+}
+
+p {
+    padding-top: 1em;
+    line-height: 1.5em;
+}
+
+.video-item {
+    margin: 0.5em;
+    padding: 0.5em;
+    border-radius: 0.25em;
+    border: 1px solid #ddd;
+    width: 10em;
+}
+.video-item:hover {
+    transition: all 0.1s ease;
+    border: 1px solid #999;
+}
+.video-item:first-child {
+    margin-left:0;
+}
+.video-item:last-child {
+    margin-right:0;
+}
+
+.video-item .thumbnail {
+    width: 100%;
+    height: auto;
+}
+
+.video-item .caption {
+    margin-top: 0.5em;
+}
+
+a.video-item {
+    color: #444;
+}
+
+.recent-posts .timestamp {
+    display:block;
+    float: left;
+    width: 8em;
+    color: #bbb;
+}
+.recent-posts > li {
+    padding: 1em;
+}
+
+.recent-posts {
+    padding-left: 1em;
+}
+
