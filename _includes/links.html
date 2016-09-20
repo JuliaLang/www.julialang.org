@@ -7,7 +7,7 @@
       {% if page.url == '/' and item.url == '/' %}
           {% assign class = 'active' %}
       {% endif %}
-      <a href="{{ item.url }}" class="{{ class }}">{{ item.title }}</a>
+      <a href="{{ site.basurl }}{{ item.url }}" class="{{ class }}">{{ item.title }}</a>
   {% endfor %}
   </div>
 
