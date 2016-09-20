@@ -24,6 +24,10 @@ a:visited {
     color: #9799c0;
     text-decoration: none;
 }
+
+code, pre {
+    font-family: monospace;
+}
 h1, h2, h3 {
     font-family: Georgia,  "garamond-premier-pro-caption";
     color: #222;
@@ -43,9 +47,8 @@ h2 {
     padding-top: 1.25em;
     font-size: 2em;
 }
-
 h3 {
-    font-size: 1em;
+    font-size: 1.5em;
 }
 
 blockquote {
@@ -159,6 +162,9 @@ a.download-button:hover {
 }
 
 .feature-inner h2 {
+    padding-top: 1rem;
+}
+.feature-inner h3 {
     padding-top: 1rem;
 }
 
