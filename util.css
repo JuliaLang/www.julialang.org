@@ -7,7 +7,7 @@
 }
 
 .u-container {
-    max-width: 980px;
+    max-width: 920px;
 }
 
 .u-relative {
@@ -73,4 +73,7 @@
 }
 .u-small {
     font-size: 0.8em;
+}
+.u-italic {
+    font-style: italic;
 }

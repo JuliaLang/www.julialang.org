@@ -1,10 +1,11 @@
 
 body {
     font-size: 15px;
-    font-family: RobotoDraft, "Helvetica Neue", sans-serif;
+    line-height: 1.66em;
+    font-family: "myriad-pro", "Helvetica Neue", sans-serif;
 }
 
-b {
+strong, b {
     font-weight: bold;
 }
 
@@ -13,14 +14,42 @@ em {
 }
 
 a {
-    color: #888;
+    color: #2799c0;
     text-decoration: none;
 }
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #2779b0;
+    text-decoration: none;
+}
+h1, h2, h3 {
+    font-family: Georgia,  "garamond-premier-pro-caption";
+    color: #222;
+    padding-bottom: 0.5em;
+    padding-top: 1.5em;
+}
+.u-serif {
+    font-family: Georgia, "garamond-premier-pro-caption";
+}
+
 h1 {
-    font-size: 2em;
+    font-size: 2.25em;
+    font-weight: bold;
 }
 h2 {
-    font-size: 1.5em;
+    padding-bottom: 0.5em;
+    padding-top: 1.25em;
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+blockquote {
+    margin: 1em 2em;
 }
 
 .header {
@@ -45,6 +74,9 @@ h2 {
     text-shadow: 0 1px 0 #000;
     border-radius: 6px;
 }
+.navbar a.active {
+    color: #fff;
+}
 .navbar ul {
     margin-left: 0.25em;
 }
@@ -54,7 +86,7 @@ h2 {
     cursor: pointer;
 }
 .navbar a {
-    color: #eee;
+    color: #ddd;
     margin-right: 1em;
 }
 
@@ -79,9 +111,16 @@ h2 {
     line-height: 1.5em;
 }
 
-.download-button {
-    font-weight: 200;
-    font-size: 1.25em;
+a.download-button {
+    color: #fff;
+    padding: 1em;
+    border-bottom: 3px solid #999;
+    border-right: 1px solid #999;
+    font-size: 1em;
+    border-radius: 4px;
+}
+a.download-button:hover {
+    text-decoration: none;
 }
 
 .feature-list {
@@ -89,6 +128,8 @@ h2 {
 }
 .feature-table a {
     padding: 1em 1em;
+    text-decoration: none;
+    color: black;
     transition: all 0.2s ease;
     display:block;
     margin: 0.5em 0;
@@ -117,8 +158,12 @@ h2 {
     width: 100%
 }
 
-p {
+.feature-inner h2 {
     padding-top: 1em;
+}
+
+p {
+    margin: 1em 0;
     line-height: 1.5em;
 }
 
@@ -156,10 +201,11 @@ a.video-item {
 .recent-posts .timestamp {
     display:block;
     float: left;
-    width: 8em;
-    color: #bbb;
+    width: 7em;
+    color: #999;
 }
 .recent-posts > li {
+    list-style: none;
     padding: 1em;
 }
 
@@ -167,3 +213,17 @@ a.video-item {
     padding-left: 1em;
 }
 
+.content ul {
+    padding-left: 2em;
+    margin-bottom: 1em;
+}
+
+.blogpost .metadata {
+    font-family: "garamond-premier-pro-caption", Georgia;
+    font-size: 1.5em;
+}
+
+td, th {
+    padding: 1em;
+    border: 1px solid #999;
+}

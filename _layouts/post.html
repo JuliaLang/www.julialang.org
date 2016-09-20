@@ -1,13 +1,10 @@
 ---
-layout: common
+layout: default
 ---
-{% include title.html %}
-{% include links.html %}
-
 <div id="blogpost">
   <h1>{{ page.title }}</h1>
 
-  <p class="metadata">
+  <p class="metadata u-serif">
     <span class="timestamp">{{ page.date | date_to_string }}</span>
     {% if page.author %}
     &nbsp;|&nbsp;

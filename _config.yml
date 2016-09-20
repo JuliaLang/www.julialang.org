@@ -43,3 +43,4 @@ featuredvideos:
   - site: youtube
     id: e6-hcOHO0tc
     title: "Gallium - the Julia Debugger"
+baseurl: "julialang.github.com"

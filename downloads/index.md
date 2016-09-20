@@ -20,7 +20,7 @@ plotting package. If you are using JuliaBox, all these plotting
 packages are pre-installed.
 
 ## Julia (command line version)
-<table class="downloads"><tbody>
+<table class="downloads u-center"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
     <td colspan="3"> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x86/0.4/julia-0.4.6-win32.exe">32-bit</a> </td>
@@ -75,7 +75,7 @@ because Julia is under heavy development, you may be unlucky and get a
 build with a serious bug, or one which breaks existing packages.  Most users
 are advised to use the latest official release version of Julia, above.
 
-<table class="downloads"><tbody>
+<table class="downloads u-center"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
     <td> <a href="https://status.julialang.org/download/win32">32-bit</a> </td>
@@ -101,7 +101,6 @@ are advised to use the latest official release version of Julia, above.
 </tr>
 </tbody></table>
 
----
 
 # Download verification
 All Julia binary releases are cryptographically secured using the traditional methods on each
