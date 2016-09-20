@@ -26,7 +26,7 @@ JuliaBox, all of these plotting packages are pre-installed.
     <td colspan="3"> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.5/julia-0.5.0-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
-    <th> Mac OS X Package (.dmg) </th>
+    <th> macOS Package (.dmg) </th>
     <td colspan="6"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.5/julia-0.5.0-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
@@ -78,7 +78,7 @@ are advised to use the latest official release version of Julia, above.
     <td colspan="2"> <a href="https://status.julialang.org/download/win64">64-bit</a> </td>
 </tr>
 <tr>
-    <th> Mac OS X Package (.dmg) </th>
+    <th> macOS Package (.dmg) </th>
     <td colspan="3"> <a href="https://status.julialang.org/download/osx10.7+">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
@@ -105,7 +105,7 @@ are advised to use the latest official release version of Julia, above.
 
 # Download verification
 All Julia binary releases are cryptographically secured using the traditional methods on each
-operating system platform.  OS X and Windows releases are codesigned by certificates that are
+operating system platform.  macOS and Windows releases are codesigned by certificates that are
 verified by the operating system before installation.  Generic Linux tarballs and source tarballs
 are signed via GPG using [this key](../juliareleases.asc).  Ubuntu and Fedora/RHEL/CentOS/SL
 releases are signed by their own keys that are verified by the package managers when installing.
