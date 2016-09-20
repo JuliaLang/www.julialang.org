@@ -37,6 +37,8 @@ anymore.
 </tr>
 </tbody></table>
 
+---
+
 ## v0.3.12 (critical bugfixes only)
 <table class="downloads"><tbody>
 <tr>
@@ -68,7 +70,7 @@ anymore.
 </tr>
 </tbody></table>
 
-# Julia + Juno IDE bundles (v0.3.12)
+## Julia + Juno IDE bundles (v0.3.12)
 
 <table class="downloads"><tbody>
 <tr>
