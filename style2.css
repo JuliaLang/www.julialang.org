@@ -1,7 +1,7 @@
 
 body {
     font-size: 15px;
-    line-height: 1.66em;
+    line-height: 1.75em;
     font-family: "myriad-pro", "Helvetica Neue", sans-serif;
 }
 
@@ -14,14 +14,14 @@ em {
 }
 
 a {
-    color: #2799c0;
+    color: #2779b0;
     text-decoration: none;
 }
 a:hover {
     text-decoration: underline;
 }
 a:visited {
-    color: #2779b0;
+    color: #9799c0;
     text-decoration: none;
 }
 h1, h2, h3 {
@@ -159,7 +159,7 @@ a.download-button:hover {
 }
 
 .feature-inner h2 {
-    padding-top: 1em;
+    padding-top: 1rem;
 }
 
 p {
