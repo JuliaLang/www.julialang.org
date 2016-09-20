@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:gadfly="http://www.gadflyjl.org/ns"
+     version="1.2"
+     width="88.9mm" height="76.2mm" viewBox="0 0 88.9 76.2"
+     stroke="none"
+     fill="#000000"
+     stroke-width="0.3"
+     font-size="3.88"
+>
+<g class="plotroot yscalable" id="img-87cc87e3-1">
+  <g class="guide xlabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-87cc87e3-2">
+    <text x="23.62" y="52" text-anchor="end" dy="0.35em" transform="rotate(-90, 23.62, 52)">Julia</text>
+    <text x="29.36" y="52" text-anchor="end" dy="0.35em" transform="rotate(-90, 29.36, 52)">Go</text>
+    <text x="35.1" y="52" text-anchor="end" dy="0.35em" transform="rotate(-90, 35.1, 52)">Fortran</text>
+    <text x="40.84" y="52" text-anchor="end" dy="0.35em" transform="rotate(-90, 40.84, 52)">Lua</text>
+    <text x="46.58" y="52" text-anchor="end" dy="0.35em" transform="rotate(-90, 46.58, 52)">JavaScript</text>
+    <text x="52.32" y="52" text-anchor="end" dy="0.35em" transform="rotate(-90, 52.32, 52)">Java</text>
+    <text x="58.06" y="52" text-anchor="end" dy="0.35em" transform="rotate(-90, 58.06, 52)">Mathematica</text>
+    <text x="63.81" y="52" text-anchor="end" dy="0.35em" transform="rotate(-90, 63.81, 52)">Matlab</text>
+    <text x="69.55" y="52" text-anchor="end" dy="0.35em" transform="rotate(-90, 69.55, 52)">Python</text>
+    <text x="75.29" y="52" text-anchor="end" dy="0.35em" transform="rotate(-90, 75.29, 52)">R</text>
+    <text x="81.03" y="52" text-anchor="end" dy="0.35em" transform="rotate(-90, 81.03, 52)">Octave</text>
+  </g>
+<g clip-path="url(#img-87cc87e3-3)">
+  <g id="img-87cc87e3-4">
+    <g pointer-events="visible" opacity="1" fill="#000000" fill-opacity="0.000" stroke="#000000" stroke-opacity="0.000" class="guide background" id="img-87cc87e3-5">
+      <rect x="20.74" y="5" width="63.15" height="46"/>
+    </g>
+    <g class="guide ygridlines xfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-87cc87e3-6">
+      <path fill="none" d="M20.74,49 L 83.9 49"/>
+      <path fill="none" d="M20.74,40.6 L 83.9 40.6"/>
+      <path fill="none" d="M20.74,32.2 L 83.9 32.2"/>
+      <path fill="none" d="M20.74,23.8 L 83.9 23.8"/>
+      <path fill="none" d="M20.74,15.4 L 83.9 15.4"/>
+      <path fill="none" d="M20.74,7 L 83.9 7"/>
+    </g>
+    <g class="guide xgridlines yfixed" stroke-dasharray="0.5,0.5" stroke-width="0.2" stroke="#D0D0E0" id="img-87cc87e3-7">
+      <path fill="none" d="M26.49,5 L 26.49 51"/>
+      <path fill="none" d="M32.23,5 L 32.23 51"/>
+      <path fill="none" d="M37.97,5 L 37.97 51"/>
+      <path fill="none" d="M43.71,5 L 43.71 51"/>
+      <path fill="none" d="M49.45,5 L 49.45 51"/>
+      <path fill="none" d="M55.19,5 L 55.19 51"/>
+      <path fill="none" d="M60.93,5 L 60.93 51"/>
+      <path fill="none" d="M66.68,5 L 66.68 51"/>
+      <path fill="none" d="M72.42,5 L 72.42 51"/>
+      <path fill="none" d="M78.16,5 L 78.16 51"/>
+    </g>
+    <g class="plotpanel" id="img-87cc87e3-8">
+      <g class="geometry color_RGB{Float32}(0.0f0,0.74736935f0,1.0f0)" stroke-width="0.3" stroke="#0096D4" id="img-87cc87e3-9">
+        <path fill="none" d="M22.12,41.45 L 25.12 41.45"/>
+        <path fill="none" d="M27.86,40.6 L 30.86 40.6"/>
+        <path fill="none" d="M33.6,41.37 L 36.6 41.37"/>
+        <path fill="none" d="M39.34,42.06 L 42.34 42.06"/>
+        <path fill="none" d="M45.08,42.12 L 48.08 42.12"/>
+        <path fill="none" d="M50.82,40.59 L 53.82 40.59"/>
+        <path fill="none" d="M56.56,39.63 L 59.56 39.63"/>
+        <path fill="none" d="M62.31,40.6 L 65.31 40.6"/>
+        <path fill="none" d="M68.05,40.13 L 71.05 40.13"/>
+        <path fill="none" d="M73.79,38.96 L 76.79 38.96"/>
+        <path fill="none" d="M79.53,40.17 L 82.53 40.17"/>
+        <path fill="none" d="M23.62,37.91 L 23.62 41.45"/>
+        <path fill="none" d="M29.36,36.64 L 29.36 40.6"/>
+        <path fill="none" d="M35.1,34.69 L 35.1 41.37"/>
+        <path fill="none" d="M40.84,34.21 L 40.84 42.06"/>
+        <path fill="none" d="M46.58,30.7 L 46.58 42.12"/>
+        <path fill="none" d="M52.32,34.3 L 52.32 40.59"/>
+        <path fill="none" d="M58.06,26.86 L 58.06 39.63"/>
+        <path fill="none" d="M63.81,16.2 L 63.81 40.6"/>
+        <path fill="none" d="M69.55,27.86 L 69.55 40.13"/>
+        <path fill="none" d="M75.29,20.25 L 75.29 38.96"/>
+        <path fill="none" d="M81.03,7.16 L 81.03 40.17"/>
+        <path fill="none" d="M22.12,37.91 L 25.12 37.91"/>
+        <path fill="none" d="M27.86,36.64 L 30.86 36.64"/>
+        <path fill="none" d="M33.6,34.69 L 36.6 34.69"/>
+        <path fill="none" d="M39.34,34.21 L 42.34 34.21"/>
+        <path fill="none" d="M45.08,30.7 L 48.08 30.7"/>
+        <path fill="none" d="M50.82,34.3 L 53.82 34.3"/>
+        <path fill="none" d="M56.56,26.86 L 59.56 26.86"/>
+        <path fill="none" d="M62.31,16.2 L 65.31 16.2"/>
+        <path fill="none" d="M68.05,27.86 L 71.05 27.86"/>
+        <path fill="none" d="M73.79,20.25 L 76.79 20.25"/>
+        <path fill="none" d="M79.53,7.16 L 82.53 7.16"/>
+      </g>
+      <g class="geometry" id="img-87cc87e3-10">
+        <g class="color_RGBA{Float32}(0.0f0,0.74736935f0,1.0f0,1.0f0)" stroke="#FFFFFF" stroke-width="0.3" fill="#00BFFF" id="img-87cc87e3-11">
+          <use xlink:href="#img-87cc87e3-12" x="23.62" y="40.1"/>
+          <use xlink:href="#img-87cc87e3-12" x="29.36" y="39.8"/>
+          <use xlink:href="#img-87cc87e3-12" x="35.1" y="39.44"/>
+          <use xlink:href="#img-87cc87e3-12" x="40.84" y="38.89"/>
+          <use xlink:href="#img-87cc87e3-12" x="46.58" y="37.26"/>
+          <use xlink:href="#img-87cc87e3-12" x="52.32" y="37.11"/>
+          <use xlink:href="#img-87cc87e3-12" x="58.06" y="34.35"/>
+          <use xlink:href="#img-87cc87e3-12" x="63.81" y="33.21"/>
+          <use xlink:href="#img-87cc87e3-12" x="69.55" y="30.16"/>
+          <use xlink:href="#img-87cc87e3-12" x="75.29" y="28.17"/>
+          <use xlink:href="#img-87cc87e3-12" x="81.03" y="19.8"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</g>
+  <g class="guide ylabels" font-size="2.82" font-family="'PT Sans Caption','Helvetica Neue','Helvetica',sans-serif" fill="#6C606B" id="img-87cc87e3-13">
+    <text x="19.74" y="49" text-anchor="end" dy="0.35em">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">-1</tspan><tspan dy="0.498000em"></tspan></text>
+    <text x="19.74" y="40.6" text-anchor="end" dy="0.35em">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">0</tspan><tspan dy="0.498000em"></tspan></text>
+    <text x="19.74" y="32.2" text-anchor="end" dy="0.35em">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">1</tspan><tspan dy="0.498000em"></tspan></text>
+    <text x="19.74" y="23.8" text-anchor="end" dy="0.35em">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">2</tspan><tspan dy="0.498000em"></tspan></text>
+    <text x="19.74" y="15.4" text-anchor="end" dy="0.35em">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">3</tspan><tspan dy="0.498000em"></tspan></text>
+    <text x="19.74" y="7" text-anchor="end" dy="0.35em">10<tspan style="dominant-baseline:inherit" dy="-0.6em" font-size="83%">4</tspan><tspan dy="0.498000em"></tspan></text>
+  </g>
+  <g font-size="3.88" font-family="'PT Sans','Helvetica Neue','Helvetica',sans-serif" fill="#564A55" stroke="#000000" stroke-opacity="0.000" id="img-87cc87e3-14">
+    <text x="8.81" y="26" text-anchor="middle" dy="0.35em" transform="rotate(-90, 8.81, 28)">time multiple vs C</text>
+  </g>
+</g>
+<defs>
+  <clipPath id="img-87cc87e3-3">
+  <path d="M20.74,5 L 83.9 5 83.9 51 20.74 51" />
+</clipPath>
+  <g id="img-87cc87e3-12">
+    <circle cx="0" cy="0" r="1"/>
+  </g>
+</defs>
+</svg>
