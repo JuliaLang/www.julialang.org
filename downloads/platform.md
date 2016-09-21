@@ -17,9 +17,9 @@ The [Windows README](https://github.com/JuliaLang/julia/blob/master/README.windo
 
 Uninstallation is performed by deleting the extracted directory and the packages directory in `%HOME%/.julia`. If you would also like to remove your preferences files, remove `%HOME%/.juliarc.jl` and `%HOME%/.julia_history`.
 
-## OS X
+## macOS
 
-On Mac, a Julia-version.dmg file is provided, which contains Julia.app. Installation is the same as any other Mac software -- copy the Julia.app to your hard-drive (anywhere) or run from the disk image. Julia supports all OS X 10.7 and later. If you use Snow Leopard (OSX 10.6), Julia 0.2.1 was the last release of Julia that supported it.
+On Mac, a Julia-version.dmg file is provided, which contains Julia.app. Installation is the same as any other Mac software -- copy the Julia.app to your hard-drive (anywhere) or run from the disk image. Julia supports all OS X 10.7 and later. If you use Snow Leopard (OS X 10.6), Julia 0.2.1 was the last release of Julia that supported it.
 
 Uninstall Julia by deleting Julia.app and the packages directory in ~/.julia. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove `~/.juliarc.jl`.
 

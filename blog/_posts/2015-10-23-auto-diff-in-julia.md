@@ -181,7 +181,7 @@ Here's the definition of the function in Julia:
 
 # Performance Comparison: The Results
 
-The benchmarks were performed with input vectors of length 16, 1600, and 16000, taking the best time out of 5 trials for each test. I ran them on a late 2013 MacBook Pro (OSX 10.9.5, 2.6 GHz Intel Core i5, 8 GB 1600 MHz DDR3) with the following versions of the relevant libraries: Julia v0.4.1-pre+15, Python v2.7.9, ForwardDiff.jl v0.1.2, Calculus.jl v0.1.13, and AlgoPy v0.5.1.
+The benchmarks were performed with input vectors of length 16, 1600, and 16000, taking the best time out of 5 trials for each test. I ran them on a late 2013 MacBook Pro (macOS 10.9.5, 2.6 GHz Intel Core i5, 8 GB 1600 MHz DDR3) with the following versions of the relevant libraries: Julia v0.4.1-pre+15, Python v2.7.9, ForwardDiff.jl v0.1.2, Calculus.jl v0.1.13, and AlgoPy v0.5.1.
 
 Let's start by looking at the evaluation times of `ackley(x)` in both Python and Julia:
 

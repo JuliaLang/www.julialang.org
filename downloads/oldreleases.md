@@ -17,7 +17,7 @@ anymore.
     <td colspan="3"> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.4/julia-0.4.7-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
-    <th> Mac OS X Package (.dmg) </th>
+    <th> macOS Package (.dmg) </th>
     <td colspan="6"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.4/julia-0.4.7-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
@@ -47,7 +47,7 @@ anymore.
     <td> <a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.3/julia-0.3.12-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
-    <th> Mac OS X Package (.dmg) </th>
+    <th> macOS Package (.dmg) </th>
     <td colspan="2"> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-0.3.12-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
 <tr>
@@ -79,7 +79,7 @@ anymore.
   <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-windows-x64.zip">64-bit</a> </td>
 </tr>
 <tr>
-  <th> Mac OS X (10.8+)</th>
+  <th> macOS (10.8+)</th>
   <td colspan="2"> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-mac-x64.dmg">64-bit</a> </td>
 </tr>
 <tr>
@@ -99,7 +99,7 @@ anymore.
     <td> <a href="http://s3.amazonaws.com/julialang/bin/winnt/x64/0.2/julia-0.2.1-win64.exe">64-bit</a> </td>
 </tr>
 <tr>
-    <th> Mac OS X Package (.dmg) </th>
+    <th> macOS Package (.dmg) </th>
     <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2.1-osx10.6.dmg">10.6 64-bit</a> </td>
     <td> <a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.2/julia-0.2.1-osx10.7+.dmg">10.7+ 64-bit</a> </td>
 </tr>
@@ -123,7 +123,7 @@ anymore.
     <td> 64-bit (Unavailable) </td>
 </tr>
 <tr>
-    <th> Mac OS X Package (.dmg) </th>
+    <th> macOS Package (.dmg) </th>
     <td>32-bit (Unavailable)</td>
     <td> <a href="http://julialang.googlecode.com/files/Julia-0.1.2.dmg">64-bit</a> </td>
 </tr>
