@@ -19,11 +19,13 @@ Uninstallation is performed by deleting the extracted directory and the packages
 
 ## macOS
 
-On Mac, a Julia-version.dmg file is provided, which contains Julia.app. Installation is the same as any other Mac software -- copy the Julia.app to your hard-drive (anywhere) or run from the disk image. Julia supports all OS X 10.7 and later. If you use Snow Leopard (OS X 10.6), Julia 0.2.1 was the last release of Julia that supported it.
+On Mac, a Julia-<version>.dmg file is provided, which contains Julia.app. Installation is the same as any other Mac software -- copy the Julia-<version>.app to your hard-drive (anywhere) or run from the disk image. Julia runs on macOS 10.7 and later releases.
 
 Uninstall Julia by deleting Julia.app and the packages directory in ~/.julia. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove `~/.juliarc.jl`.
 
 ## Linux
+
+It is strongly recommended that the official generic linux binaries from the downloads page be used to install Julia. These platform specific binaries are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. In general, bug reports will only be accepted if they are reproducible on the generic linux binaries on the downloads page.
 
 Instructions will be added here as more linux distributions start including julia. If your Linux distribution is not listed here, you should still be able to run julia by building from source. See the [Julia README](https://github.com/JuliaLang/julia/blob/master/README.md) for more detailed information.
 
@@ -34,8 +36,6 @@ A [PPA](https://launchpad.net/~staticfloat/+archive/juliareleases) (Personal Pac
     sudo add-apt-repository ppa:staticfloat/julia-deps
     sudo apt-get update
     sudo apt-get install julia
-
-Note that Ubuntu has deadlines for accepting new versions of software into their default repositories, and as such the default repositories often have Julia versions that lag behind significantly.  When reporting issues, please ensure you are using the latest available release by using one of the PPA repositories displayed on this page.
 
 ### Fedora/RHEL/CentOS/SL/OEL
 A [Copr repository](https://copr.fedoraproject.org/coprs/nalimilan/julia/) is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest stable version of Julia.
