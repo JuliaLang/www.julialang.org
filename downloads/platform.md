@@ -25,7 +25,7 @@ Uninstall Julia by deleting Julia.app and the packages directory in ~/.julia. Mu
 
 ## Linux
 
-It is strongly recommended that the official generic linux binaries from the downloads page be used to install Julia. These platform specific binaries are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. In general, bug reports will only be accepted if they are reproducible on the generic linux binaries on the downloads page.
+It is strongly recommended that the official generic linux binaries from the downloads page be used to install Julia. The following distribution-specific packages are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. In general, bug reports will only be accepted if they are reproducible on the generic linux binaries on the downloads page.
 
 Instructions will be added here as more linux distributions start including julia. If your Linux distribution is not listed here, you should still be able to run julia by building from source. See the [Julia README](https://github.com/JuliaLang/julia/blob/master/README.md) for more detailed information.
 
