@@ -108,6 +108,8 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 [@BZFPZWP14] Code available in [GaussDCA.jl](https://github.com/carlobaldassi/GaussDCA.jl).
 
+[@RZRB16]
+
 # Theses
 
 [@V14]
