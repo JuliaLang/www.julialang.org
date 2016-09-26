@@ -39,7 +39,7 @@ anymore.
 
 ---
 
-## v0.3.12 (critical bugfixes only)
+## v0.3.12 (umaintained)
 <table class="downloads"><tbody>
 <tr>
     <th> Windows Self-Extracting Archive (.exe) </th>
