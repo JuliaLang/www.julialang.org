@@ -45,6 +45,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
 * [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
+* [JuliaInterop](https://github.com/JuliaInterop) – Easy interoperability between Julia and not Julia
 * [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language
 * [JuliaTime](https://github.com/JuliaTime) – Date and time libraries
 * [JuliaPlots](https://github.com/JuliaPlots) – [Data visualization](https://juliaplots.github.io/)
