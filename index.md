@@ -61,7 +61,9 @@ We encourage you to skim the code to get a sense for how easy or difficult numer
 The following micro-benchmark results were obtained on a single core (serial execution) on an Intel(R) Xeon(R) CPU E7-8850 2.00GHz CPU with 1TB of 1067MHz DDR3 RAM, running Linux:
 
 <div class="figure">
+<div class="cs-benchmark-table">
 {% include benchmarks.html %}
+</div>
 <p class="caption"><b>Figure:</b>
 benchmark times relative to C (smaller is better, C performance = 1.0).
 </p>
