@@ -155,6 +155,10 @@ hr {
 
 /* benchmarks table */
 
+div.cs-benchmark-table {
+  overflow-x: scroll;
+}
+
 table.benchmarks {
   margin-left: auto;
   margin-right: auto;
