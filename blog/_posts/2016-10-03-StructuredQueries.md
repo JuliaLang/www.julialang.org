@@ -355,7 +355,7 @@ function lift(f, x)
     if hasvalue(x)
         return Nullable(f(x))
     else
-        U = Core.Inference.return_type(f, (typeof(X),))
+        U = Core.Inference.return_type(f, (typeof(x),))
         return Nullable{U}()
     end
 end
@@ -415,7 +415,7 @@ Finally, extensibility of not only `collect` but also of the graph generation fa
 
 ## Related work
 
-As mentioned above, [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl) is a pioneering approach to enhancing tabular data support in Julia via metaprogramming. Another exciting (and slightly more mature) endeavor in the realm of generic data manipulation facilities support is [Query.jl](https://github.com/davidanthoff/Query.jl) by [David Anthoff](https://github.com/davidanthoff). Query.jl and SQ are very similar in their objectives, though different in important respects. A comparison of these packages is the proper topic of a separate blog post.
+As mentioned above, [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl) is a pioneering approach to enhancing tabular data support in Julia via metaprogramming. Another exciting (and slightly more mature than the presently discussed package) endeavor in the realm of generic data manipulation facilities support is [Query.jl](https://github.com/davidanthoff/Query.jl) by [David Anthoff](https://github.com/davidanthoff). Query.jl and SQ are very similar in their objectives, though different in important respects. A comparison of these packages is the proper topic of a separate blog post.
 
 ## Conclusion
 
