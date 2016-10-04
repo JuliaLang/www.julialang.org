@@ -18,7 +18,7 @@ Recall that the primary shortcoming of [DataArrays.jl](https://travis-ci.org/Jul
 
 The column-indexing problem is [well-documented](http://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/). To see the difficulty, consider the following function
 
-```
+```julia
 function f(df::DataFrame)
     A = df[:A]
     x = zero(eltype(A))
@@ -60,7 +60,7 @@ In this section we'll describe how SQ represents query structures. In the follow
 
 To express a query in SQ, one uses the `@query` macro:
 
-```
+```julia
 @query qry
 ```
 
@@ -72,7 +72,7 @@ This following behavior mimics that which one would expect from querying against
 
 Let's dive into the query interface by considering examples using the iris data set. (Though the package TablesDemo.jl is intended solely as a demonstration, it is registered so that readers can easily install it with `Pkg.add("TablesDemo.jl")` and follow along.)
 
-```
+```julia
 julia> iris = Table(CSV.Source(joinpath(Pkg.dir("Tables"), "csv/iris.csv")))
 Tables.Table
 │ Row │ sepal_length │ sepal_width │ petal_length │ petal_width │ species  │
@@ -93,14 +93,14 @@ with 140 more rows.
 
 We can then use `@query` to express a query against this data set -- say, filtering rows according to a condition on `sepal_length`:
 
-```
+```julia
 julia> q = @query filter(iris, sepal_length > 5.0)
 Query with Tables.Table source
 ```
 
 This produces a `Query{S}` object, where `S` is the type of the data source
 
-```
+```julia
 julia> typeof(q)
 StructuredQueries.Query{Tables.Table}
 ```
@@ -119,7 +119,7 @@ Each part of a query induces its own context in which code is evaluated. The mos
 
 One can pipe arguments to verbs inside an `@query` context. For instance, the `Query` above is equivalent to that produced by
 
-```
+```julia
 @query iris |> filter(sepal_length > 5.0)
 ```
 
@@ -127,7 +127,7 @@ In this case, the first argument (`sepal_length > 5.0`) to the verb `filter` is 
 
 `Query` objects represent the structure of a query composed of the three building blocks above. To see how, lets take a look at the internals of a `Query`:
 
-```
+```julia
 julia> fieldnames(q)
 2-element Array{Symbol,1}:
  :source
@@ -136,7 +136,7 @@ julia> fieldnames(q)
 
 The first field, `:source`, just contains the data source specified in the query -- in this case, the `Table` object that was bound to the name `iris` when the query was specified. The second field, `:graph` contains a(n admittedly not very interesting) graphical representation of the query structure:
 
-```
+```julia
 julia> q.graph
 FilterNode
   arguments:
@@ -162,7 +162,7 @@ SQ currently recognizes the following verbs out of the box -- that is, it proper
 
 One uses `collect(q::Query)` to materialize `q` as a concrete set results set -- hence the term "collection machinery". Note that the set of verbs that receive support from the column-indexable interface -- that is, the verbs that may be `collect`ed against a column-indexable data source -- currently only includes the first four: `select`, `filter`, `groupby`, and `summarize`. This is what such support currently looks like:
 
-```
+```julia
 julia> q = @query iris |>
            filter(sepal_length > 5.0) |>
            groupby(species, log(petal_length) > .5) |>
@@ -208,7 +208,7 @@ Again we emphasize that this collection machinery is provided by the AbstractTab
 
 We provide a convenience macro, `@collect(qry)`, which is equivalent to `collect(@query(qry))`, for when one wishes to query and collect in the same command:
 
-```
+```julia
 julia> @collect iris |>
            filter(erf(petal_length) / petal_length > log(sepal_width) / 1.5) |>
            summarize(sum = sum(ifelse(rand() > .5, sin(petal_width), 0.0)))
@@ -224,7 +224,7 @@ Again, note the patterns of name resolution: names of functions (e.g. `erf`) inv
 
 We saw above how there are three parts to a query structure: verbs, sources and query arguments. A `Query` object represents the verbs and query arguments together in the `QueryNode` graph and wraps the data source separately. This suggests that one ought to be able to generate query graphs using `@query` even if one does not specify a particular data source. One can do precisely this by using *dummy sources*, which are essentially placeholders that can be "filled in" with particular data sources later, when one calls `collect`. To indicate a source as a dummy source, simply prepend it with a `:`. For instance:
 
-```
+```julia
 julia> q = @query select(:src, twice_sepal_length = 2 * sepal_length)
 Query with dummy source src
 
@@ -248,7 +248,7 @@ with 140 more rows.
 
 Whatever the name of the dummy source (minus the `:`) was in the query must be the key in the kwarg passed to `collect`. Otherwise, the method will fail:
 
-```
+```julia
 julia> collect(q, tbl = iris)
 ERROR: ArgumentError: Undefined source: tbl. Check spelling in query.
  in #collect#5(::Array{Any,1}, ::Function, ::StructuredQueries.Query{Symbol}) at /Users/David/.julia/v0.6/StructuredQueries/src/query/collect.jl:23
@@ -263,7 +263,7 @@ Now that we've seen what the SQ query framework itself consists of, we can discu
 
 Recall that the column-indexing problem consists in the inability of type inference to detect the return type of
 
-```
+```julia
 function f(df::DataFrame)
     A = df[:A]
     x = zero(eltype(A))
@@ -276,7 +276,7 @@ end
 
 What *would* make `f` above amenable to type inference is to pass `A = df[:A]` above to an inner function that executes the loop, for instance
 
-```
+```julia
 f_inner(A)
     x = zero(eltype(A))
     for i in 1:length(A)
@@ -290,7 +290,7 @@ As long as `f_inner` does not get inlined, type inference will run "at" the poin
 
 This strategy of introducing a function barrier also works when one requires multiple columns. For instance, suppose I wanted to generate a new column `C` where `C[i] = g(A[i], B[i])`. The following solution is type-inferable since the type parameters of the zipped iterator `zip(A, B)` reflects the `eltype`s of `A` and `B`:
 
-```
+```julia
 function f(g, df)
     A, B = df[:A], df[:B]
     C = similar(A)
@@ -310,7 +310,7 @@ In other words: If one intends to iterate over the rows of some subset of column
 
 The manipulation described above could be expressed for a column-indexable table (e.g. a `Table` object) as
 
-```
+```julia
 @query select(tbl, C = A * B)
 ```
 
@@ -328,7 +328,7 @@ Recall the hard question of nullable semantics involves implementing a given lif
 
 One solution -- perhaps the most obvious, and which I have [previously endorsed](https://github.com/JuliaStats/NullableArrays.jl/commit/e3d68ab2502e3e8c2e9e6b7c299f9078b9154e3e#diff-04c6e90faac2675aa89e2176d2eec7d8R140) -- involves defining the method `f(x::Nullable{T})` as something like
 
-```
+```julia
 function f(x::Nullable{T})
     if isnull(x)
         return Nullable{U}()
@@ -350,7 +350,7 @@ The difficulties associated with method extension lifting are not insurmountable
 
 Another way to implement standard lifting semantics is by means of a higher-order function -- that is, on Julia 0.5 where higher-order functions are performant. Such a function -- call it `lift` -- might look like the following:
 
-```
+```julia
 function lift(f, x)
     if hasvalue(x)
         return Nullable(f(x))
@@ -367,7 +367,7 @@ So, with the higher-order lifting approach we might better avoid method prolifer
 
 Recall that the present query framework extracts the "value expression" of a query argument (for instance, `B * C` in the query argument `C = A * B`) and generates a lambda that mimics the former's structure (in this case, `row -> row[1] * row[2]`). A proposed modification (see [AbstractTables#2](https://github.com/davidagold/_AbstractTables.jl/issues/2)) to this process is to modify the AST of the value expression (`A * B`) by appropriately inserting calls to `lift`, e.g.
 
-```
+```julia
 row -> lift(*, row[1], row[2])
 ```
 
@@ -375,13 +375,13 @@ While there is a [simpler way](https://github.com/davidagold/AbstractTables.jl/b
 
 The higher-order lifting approach is not without its own drawbacks. Most notably, non-standard lifting semantics, such as three-valued logic, are more difficult to implement and are subject to restrictions that do not apply to the method extension lifting approach. The details of this difficulty is the proper subject of another blog post. The summary of the problem is: higher-order lifting (via code transformation, such as within `@query`) can only give non-standard lifting semantics to methods called explicitly within the expression passed to `@query`. That is,
 
-```
+```julia
 @query filter(tbl, A | B)
 ```
 
 can be given, say, three-valued logic semantics via higher-order lifting, but
 
-```
+```julia
 f(x, y) = x | y
 @query filter(tbl, f(A, B))
 ```
@@ -402,7 +402,7 @@ There is a general roadmap available at  [structuredQueries.jl#19](https://githu
 
 Interpolation syntax and implementation are both significant open questions. Suppose I wish to refer to a name in the enclosing scope of an `@query` invocation. A straightforward syntax would be to prepend the interpolated variable with `$`, as in
 
-```
+```julia
 c = .5
 q = @query filter(tbl, A > $c)
 ```
