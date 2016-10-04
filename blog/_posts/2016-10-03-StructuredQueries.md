@@ -1,4 +1,8 @@
-## StructuredQueries.jl
+---
+layout: post
+title: StructuredQueries.jl - A generic data manipulation framework inspired by R's dplyr
+author: <a href="https://github.com/davidagold">David Gold</a>
+---
 
 This post describes my work conducted this summer at the [Julia Lab](http://julia.mit.edu/) to develop [StructuredQueries.jl](https://github.com/davidagold/StructuredQueries.jl/), a generic data manipulation framework for [Julia](http://julialang.org/).
 
@@ -40,7 +44,7 @@ We'll return to the column-indexing problem and the hard question of nullable se
 
 ## The query framework
 
-The StructuredQueries package provides a framework for representing the *structure* of a query without assuming any specific corresponding *semantics*. By the structure of a query, we mean the series of particular manipulation verbs invoked and the respective arguments passed to these verbs. By the semantics of a query, we mean the actual behavior of executing a query with a particular structure against a particular data source. A query semantics thus depends both on the structure of the query and on the type of the data source against which the query is executed. We will refer to the implementation of a particular query semantics as a *collection machinery*.   
+The StructuredQueries package provides a framework for representing the *structure* of a query without assuming any specific corresponding *semantics*. By the structure of a query, we mean the series of particular manipulation verbs invoked and the respective arguments passed to these verbs. By the semantics of a query, we mean the actual behavior of executing a query with a particular structure against a particular data source. A query semantics thus depends both on the structure of the query and on the type of the data source against which the query is executed. We will refer to the implementation of a particular query semantics as a *collection machinery*.
 
 Decoupling the representation of a query's structure from the collection machinery helps to make the present query framework
 
@@ -237,7 +241,7 @@ ERROR: ArgumentError: Undefined source: tbl. Check spelling in query.
 
 ## The two problems
 
-Now that we've seen what the SQ query framework itself consists of, we can discuss how such a framework may help to solve the column-indexing and nullable semantics problems.  
+Now that we've seen what the SQ query framework itself consists of, we can discuss how such a framework may help to solve the column-indexing and nullable semantics problems.
 
 ### Type-inferability
 
@@ -375,7 +379,7 @@ q = @query filter(tbl, A > $c)
 ```
 How should this be implemented? For full generality, we would like to be able to "capture" `c` from the enclosing scope and store it `q`. One way to do so is to include `c` in the closure of a lambda `() -> c` that we store in `q`. However, there is the question of how to deal with [problems of type-inferability](https://github.com/davidagold/StructuredQueries.jl/issues/22#issuecomment-244995697). Solving this problem may either require or strongly suggest some sort of "parametrized queries" API by which one can designate a name inside of a query argument context a *parameter* that can then be bound after the `@query` invocation, e.g. specified as kwargs to `collect` or to a function like `bind!(q::Query[; kwargs...])`.
 
-We are also still deciding what the general syntax within a query context should look like. A big part of this decision concerns how aliasing and related functionality ought to work. See [StructuredQueries.jl#21](https://github.com/davidagold/StructuredQueries.jl/issues/21) for more details. This issue is similar to that of interpolation syntax insofar as both involve name resolution within different query contexts (e.g. in a data source specification context vs. a query argument context).  
+We are also still deciding what the general syntax within a query context should look like. A big part of this decision concerns how aliasing and related functionality ought to work. See [StructuredQueries.jl#21](https://github.com/davidagold/StructuredQueries.jl/issues/21) for more details. This issue is similar to that of interpolation syntax insofar as both involve name resolution within different query contexts (e.g. in a data source specification context vs. a query argument context).
 
 Finally, extensibility of not only `collect` but also of the graph generation facilities is an important issue, of which we hope to say more in a later post.
 
