@@ -1,6 +1,6 @@
 ---
 layout: post
-title: StructuredQueries.jl - A generic data manipulation framework inspired by R's dplyr
+title: StructuredQueries.jl - A generic data manipulation framework
 author: <a href="https://github.com/davidagold">David Gold</a>
 ---
 
