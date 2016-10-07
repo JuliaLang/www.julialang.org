@@ -44,6 +44,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
+* [JuliaDiffEq](https://github.com/JuliaDiffEq) – Differential equation solving and analysis
 * [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
 * [JuliaInterop](https://github.com/JuliaInterop) – Easy interoperability between Julia and not Julia
 * [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language
