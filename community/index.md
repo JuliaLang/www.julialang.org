@@ -132,7 +132,6 @@ Australia
 South America
 
 * [São Paulo Julia Meetup](http://www.meetup.com/Sao-Paulo-Julia-Meetup/)
-
 * [Rio de Janeiro Julia Meetup](https://www.meetup.com/pt-BR/Julia-Rio-de-Janeiro/)
 
 Don't have one in your area? Why not start one!

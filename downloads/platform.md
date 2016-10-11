@@ -19,7 +19,7 @@ Uninstallation is performed by deleting the extracted directory and the packages
 
 ## macOS
 
-On Mac, a Julia-<version>.dmg file is provided, which contains Julia.app. Installation is the same as any other Mac software -- copy the Julia-<version>.app to your hard-drive (anywhere) or run from the disk image. Julia runs on macOS 10.7 and later releases.
+On Mac, a `Julia-<version>.dmg` file is provided, which contains Julia.app. Installation is the same as any other Mac software -- copy the `Julia-<version>.app` to your hard-drive (anywhere) or run from the disk image. Julia runs on macOS 10.7 and later releases.
 
 Uninstall Julia by deleting Julia.app and the packages directory in ~/.julia. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove `~/.juliarc.jl`.
 
