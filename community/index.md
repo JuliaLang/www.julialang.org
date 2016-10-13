@@ -51,6 +51,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaTime](https://github.com/JuliaTime) – Date and time libraries
 * [JuliaPlots](https://github.com/JuliaPlots) – [Data visualization](https://juliaplots.github.io/)
 * [Julia-i18n](https://github.com/Julia-i18n) - Internationalization (i18n) and localization (l10n) for Julians
+* [JuliaEditorSupport](https://github.com/JuliaEditorSupport) - Extensions/Plugins for text editors and IDEs
 
 # Google Summer of Code 2014
 
