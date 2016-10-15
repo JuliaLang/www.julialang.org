@@ -47,7 +47,7 @@ JuliaBox, all of these plotting packages are pre-installed.
 </tr>
 </tbody></table>
 
-Please see [platform](platform.html) specific instructions if you have
+Please see [platform specific instructions](platform.html) if you have
 trouble installing Julia.  Checksums for this release are available in both [MD5](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.5.0.md5) and [SHA256](https://s3.amazonaws.com/julialang/bin/checksums/julia-0.5.0.sha256) format.
 
 If the provided download files do not work for you, please [file an
