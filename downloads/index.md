@@ -36,7 +36,7 @@ JuliaBox, all of these plotting packages are pre-installed.
 </tr>
 <tr>
     <th> Linux builds for other architectures </th>
-    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/arm/0.5/julia-0.5.0-linux-arm.tar.gz">ARM 32-bit hard float</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/arm/0.5/julia-0.5.0-linux-arm.tar.gz.asc">GPG</a>)</td>
+    <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/arm/0.5/julia-0.5.0-linux-arm.tar.gz">ARMv7 32-bit hard float</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/arm/0.5/julia-0.5.0-linux-arm.tar.gz.asc">GPG</a>)</td>
     <td colspan="3"> <a href="https://julialang.s3.amazonaws.com/bin/linux/ppc64le/0.5/julia-0.5.0-linux-ppc64le.tar.gz">PowerPC 64 little endian</a> (<a href="https://julialang.s3.amazonaws.com/bin/linux/ppc64le/0.5/julia-0.5.0-linux-ppc64le.tar.gz.asc">GPG</a>)</td>
 </tr>
 <tr>
@@ -88,7 +88,7 @@ are advised to use the latest official release version of Julia, above.
 </tr>
 <tr>
     <th> Linux builds for other architectures </th>
-    <td> <a href="https://status.julialang.org/download/linux-arm">ARM 32-bit hard float</a> </td>
+    <td> <a href="https://status.julialang.org/download/linux-armv7l">ARMv7 32-bit hard float</a> </td>
     <td> <a href="https://status.julialang.org/download/linux-powerpc64le">PowerPC 64 little endian</a> </td>
 </tr>
 <tr>
