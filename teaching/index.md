@@ -23,6 +23,9 @@ Julia is now being used in several universities and online courses. If you know 
 - IIT Indore, June 24 - July 5, 2016
   * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://www.fesb.unist.hr/~slap/index1.html))
 
+- Northeastern University, Fall 2016
+  * MTH3300: Applied Probability & Statistics
+  
 - University of Sydney, Fall 2016
   * [MATH3076/3976](http://www.maths.usyd.edu.au/u/olver/teaching/MATH3976/), Mathematical Computing (Assoc. Prof. [Sheehan Olver](http://www.maths.usyd.edu.au/u/olver/))
 
