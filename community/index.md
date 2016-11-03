@@ -49,6 +49,8 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaInterop](https://github.com/JuliaInterop) – Easy interoperability between Julia and not Julia
 * [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language
 * [JuliaTime](https://github.com/JuliaTime) – Date and time libraries
+* [JuliaGraphics](https://github.com/JuliaGraphics) – Drawing, Colors, GUIs 
+* [GiovineItalia](https://github.com/GiovineItalia) – Plotting (with [Gadfly](https://github.com/GiovineItalia/Gadfly.jl))
 * [JuliaPlots](https://github.com/JuliaPlots) – [Data visualization](https://juliaplots.github.io/)
 * [Julia-i18n](https://github.com/Julia-i18n) - Internationalization (i18n) and localization (l10n) for Julians
 * [JuliaEditorSupport](https://github.com/JuliaEditorSupport) - Extensions/Plugins for text editors and IDEs
