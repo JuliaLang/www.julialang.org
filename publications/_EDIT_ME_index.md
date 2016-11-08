@@ -118,6 +118,8 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 [@PK16]
 
+[@GBZWP16] Code available in [ParalogMatching.jl](https://github.com/Mirmu/ParalogMatching.jl).
+
 # Theses
 
 [@V14]
