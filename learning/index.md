@@ -42,6 +42,8 @@ title:  Learning Julia
 
 # Videos: Tutorials
 
+- [Invitation to Julia](https://www.youtube.com/watch?v=gQ1y5NUD_RI) by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/) at JuliaCon 2015. Supporting material [here](https://github.com/dpsanders/invitation_to_julia).
+
 - [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/) gave a detailed [Julia tutorial at SciPy 2014](https://www.youtube.com/watch?v=vWkgEddb4-A), which is a great starting point for a new Julia user. Also download the relevant [IJulia notebooks](https://github.com/dpsanders/scipy_2014_julia) that are used in the tutorial.
 
 <iframe width="400" height="225" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6T0dEHtj0GZymvT6ODIJWj0" frameborder="0" allowfullscreen></iframe>
@@ -49,8 +51,6 @@ title:  Learning Julia
 - [Steven Johnson's](http://math.mit.edu/~stevenj/) keynote at EuroSciPy 2014: Crossing Language Barriers with Julia, SciPy, and IPython [video](https://www.youtube.com/watch?v=jhlVHoeB05A&list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi) and [supporting material](https://github.com/stevengj/Julia-EuroSciPy14).
 
 <iframe width="400" height="225" src="https://www.youtube.com/embed/jhlVHoeB05A?list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi" frameborder="0" allowfullscreen></iframe>
-
-- [Invitation to Julia](https://www.youtube.com/watch?v=gQ1y5NUD_RI) by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/) at JuliaCon 2015. Supporting material [here](https://github.com/dpsanders/invitation_to_julia).
 
 # Videos: Special topics
 
