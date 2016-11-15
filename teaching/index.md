@@ -23,6 +23,10 @@ Julia is now being used in several universities and online courses. If you know 
 - IIT Indore, June 24 - July 5, 2016
   * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://www.fesb.unist.hr/~slap/index1.html))
 
+- [Université de Liège](http://www.ulg.ac.be/), Fall 2016
+  * [MATH0462](http://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2016-2017-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/))
+  * [MATH0461](http://progcours.ulg.ac.be/cocoon/cours/MATH0461-2.html), Introduction to Numerical Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/))
+
 - Northeastern University, Fall 2016
   * MTH3300: Applied Probability & Statistics
   
@@ -67,8 +71,8 @@ Julia is now being used in several universities and online courses. If you know 
 - Universidad Nacional Pedro Ruiz Gallo, Lambayeque, Perú, Spring 2015
     * Julia: el lenguaje del futuro, [Semana de Integración de Ingeniería Electrónica](http://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro), (Oscar William Neciosup Vera)
 
-- Université de Liège, Fall 2015
-  * [MATH0462](http://www.montefiore.ulg.ac.be/~tcuvelier/?page=teaching.15-do), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/))
+- [Université de Liège](http://www.ulg.ac.be/), Fall 2015
+  * [MATH0462](http://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2015-2016-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/))
 
 - Université Paul Sabatier, Toulouse, Fall 2015
   * [Optimization in Machine Learning](http://www.irit.fr/cimi-machine-learning/node/15), (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/))
