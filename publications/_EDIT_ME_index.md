@@ -120,6 +120,8 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 [@GBZWP16] Code available in [ParalogMatching.jl](https://github.com/Mirmu/ParalogMatching.jl).
 
+[@BBCILSZ16] Code available in [BinaryCommitteeMachineRSGD.jl](https://github.com/carlobaldassi/BinaryCommitteeMachineRSGD.jl) and [BinaryCommitteeMachineFBP.jl](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl).
+
 # Theses
 
 [@V14]
