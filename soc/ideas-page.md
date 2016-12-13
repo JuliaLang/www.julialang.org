@@ -356,6 +356,7 @@ A possible mentor can be contacted on the julia-users mailing list.
 - Adding recipes for statistics, machine learning (see [MLPlots.jl](https://github.com/JuliaML/MLPlots.jl)), or any other fields which you have an interest.
 - Documentation and/or tutorials.
 - Better integration with Graphs, DataStreams, etc
+- Improved support for the Grammar of Graphics API in Plots.jl via GGPlots.jl
  
 # Theme: Machine Learning Frameworks
 
