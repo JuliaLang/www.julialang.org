@@ -203,6 +203,12 @@ The [Images.jl](https://github.com/timholy/Images.jl) package implements several
 
 **Expected Results:** multithreaded implementation of `imfilter` and `imfilter_gaussian`.
 
+## Parallel graph development
+
+The [LightGraphs.jl](https://github.com/JuliaGraphs/LightGraphs.jl) package provides a fast, robust set of graph analysis tools. This project would implement additions to LightGraphs to support parallel computation for a subset of graph algorithms. Examples of algorithms that would benefit from adaptation to parallelism would include centrality measures and traversals.
+
+**Expected Results:** creation of LightGraphs-based data structures and algorithms that take advantage of large-scale parallel computing environments.
+
 # Juno & Tooling related ideas
 
 ## Documentation search & navigation
