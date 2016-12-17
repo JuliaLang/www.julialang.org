@@ -66,10 +66,10 @@ For Julia 0.4, only bugfixes are being supported. Releases older than 0.4 are no
 # Nightly builds
 
 These are bleeding-edge binaries of the latest version of Julia under
-development, which you can use to get a preview of the latest work.  However,
-because Julia is under heavy development, you may be unlucky and get a
-build with a serious bug, or one which breaks existing packages.  Most users
-are advised to use the latest official release version of Julia, above.
+development, which you can use to get a preview of the latest work.  
+The nightly builds are for developer previews and not intended for 
+normal use. You can expect many packages not to work with this version.
+Most users are advised to use the latest official release version of Julia, above.
 
 <table class="downloads"><tbody>
 <tr>
