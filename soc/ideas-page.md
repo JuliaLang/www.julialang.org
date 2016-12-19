@@ -42,12 +42,9 @@ Scientific and technical computing often makes use of publicly available dataset
 
 This project proposal is to develop a new Julia package that will implement a standard means to write data packages to make large external datasets accessible by downloading to a local machine. When a data package is installed, it will automatically download the dataset it wraps, validate it, e.g. with stored checksums, and make that data available as a `DataFrame` or other Julia structure. In addition to a standard structure, the `Pkg.generate` function should be extended to generate data packages.
 
-
-
 ## Simple persistent distributed storage
 
 This project proposes to implement a very simple persistent storage mechanism for Julia variables so that data can be saved to and loaded from disk with a consistent interface that is agnostic of the underlying storage layer. Data will be tagged with a minimal amount of metadata by default to support type annotations, time-stamped versioning and other user-specifiable tags, not unlike the `git stash` mechanism for storing blobs. The underlying engine for persistent storage should be generic and interoperable with any reasonable choice of binary blob storage mechanism, e.g. MongoDB, ODBC, or HDFS. Of particular interest will be persistent storage for distributed objects such as `DArray`s, and making use of the underlying storage engine's mechanisms for data movement and redundant storage for such data.
-
 
 ## Native Julia library for constrained optimization
 
@@ -114,7 +111,6 @@ seeking out opportunties for possible improvements along the way, such as suppor
 `Float32` and `BigFloat`, exploiting fused multiply-add operations, and improving errors
 and boundary cases.
 
-
 ## Matrix functions
 
 Matrix functions maps matrices onto other matrices, and can often be interpreted as generalizations of ordinary functions like sine and exponential, which map numbers to numbers. Once considered a niche province of numerical algorithms, matrix functions now appear routinely in applications to cryptography, aircraft design, nonlinear dynamics, and finance.
@@ -139,7 +135,6 @@ Distributed computation frameworks like Hadoop/MapReduce have demonstrated the u
 
 This project proposal is to implement a native Julia framework for distributed execution for general purpose data parallelism, using dynamic, runtime-generated general task graphs which are flexible enough to describe multiple classes of parallel algorithms. Students will be expected to weave together native Julia parallelism constructs such as the `ClusterManager` for massively parallel execution, and automate the handling of data dependencies using native Julia `RemoteRefs` as remote data futures and handles. Students will also be encouraged to experiment with novel scheduling algorithms.
 
-
 ## Random number generation
 
 [Monte Carlo methods](https://en.wikipedia.org/wiki/Monte_Carlo_method) are becoming increasingly important in large-scale numerical computations, requiring large quantities of random numbers.
@@ -163,27 +158,81 @@ The [Images.jl](https://github.com/timholy/Images.jl) package implements several
 
 The [LightGraphs.jl](https://github.com/JuliaGraphs/LightGraphs.jl) package provides a fast, robust set of graph analysis tools. This project would implement additions to LightGraphs to support parallel computation for a subset of graph algorithms. Examples of algorithms that would benefit from adaptation to parallelism would include centrality measures and traversals.
 
-
 **Expected Results:** creation of LightGraphs-based data structures and algorithms that take advantage of large-scale parallel computing environments.
 
-# Theme: Numerical Linear Algebra
+# Theme: Numerical Methods for Differential Equations
 
+## Native Julia solvers for ordinary differential equations and algebraic differential equations
+
+Julia needs to have a full set of ordinary differential equations (ODE) and algebraic differential equation (DAE) solvers, as they are vital for numeric programming. There are many advantages to having a native Julia implementation, including the ability to use Julia-defined types (for things like arbitrary precision) and composability with other packages. A library of methods can be built for the common interface, seamlessly integrating with the other available methods. Possible families of methods to implement are:
+
+- Exponential Runge-Kutta Methods
+- Implicit-Explicit (IMEX) Runge-Kutta Methods
+- Higher Order Rosenbrock Methods
+
+**Expected Results**: A production-quality ODE/DAE solver package.
+
+## Expose the ARKODE methods of Sundials
+
+In recent years, the popular Sundials library has added a suite of implicit-explicit Runge-Kutta methods for efficient solving of discretizations which commonly arise from PDEs. However, these new methods are not accessible from Sundials.jl. The goal of this project would be to expose the ARKODE solvers in [Sundials.jl](https://github.com/JuliaDiffEq/Sundials.jl) to the common JuliaDiffEq interface.
+
+**Expected Results**: An interface to the Sundials ARKODE methods in Sundials.jl.
+
+## Tools for Global Sensitivity Analysis
+
+Global Sensitivity Analysis is a popular tool to assess the affect that parameters have on a differential equation model. Global Sensitivity Analysis tools can be much more efficient than Local Sensitivity Analysis tools, and give a better view of how parameters affect the model in a more general sense. Julia currently has an implemention Local Sensitivity Analysis, but there is no method for Global Sensitivity Analysis. The goal of this project would be to implement methods like the Morris method in [DiffEqSensitivity.jl](https://github.com/JuliaDiffEq/DiffEqSensitivity.jl) which can be used with any differential equation solver on the common interface.
+
+**Expected Results**: Efficient functions for performing Global Sensitivity Analysis.
+
+## Machine Learning for Parameter Estimation of Differential Equation Models
+
+Machine learning has become a popular tool for understanding data, but scientists typically want to use this data to better understand their differential equation-based models. The intersection between these two fields is parameter estimation. This is the idea of using techniques from machine learning in order to identify the values for model parameters from data. Currently, [DiffEqParamEstim.jl](https://github.com/JuliaDiffEq/DiffEqParamEstim.jl) shows how to link the differential equation solvers with the optimization packages for parameter estimation, but no link to machine learning tools have been created. The tools are all in place for this pairing between JuliaDiffEq and JuliaML.
+
+**Expected Results**: Modular tools for using JuliaML's libraries for parameter estimation of differential equations.
+
+## Bayesian Estimation using Stan.jl for Parameters of Differential Equations.
+
+Bayesian estimation of parameters for differential equations is a popular technique since this outputs probability distributions for the underlying parameters. Julia's `ParameterizedFunction` makes it easy to solve differential equations with explicit parameters, and holds enough information to be used with [Stan.jl](https://github.com/goedman/Stan.jl). The purpose for this project is to create a function in [DiffEqParamEstim.jl](https://github.com/JuliaDiffEq/DiffEqParamEstim.jl) which translates the saved information of the model definition in a `ParameterizedFunction` to automatically write the input to Stan.jl, and tools for tweaking the inputs.
+
+**Expected Results**: A function which takes in a `ParameterizedFunction` and performs parameter estimation using Stan.jl
+
+## Discretizations of Partial Differential Equations
+
+One of the major uses for differential equations solvers is for partial differential equations (PDEs). PDEs are solved by discretizing to create ODEs which are then solved using ODE solvers. However, in many cases a good understanding of the PDEs are required to perform this discretization and minimize the error. The purpose of this project is to produce a library with common PDE discretizations to make it easier for users to solve common PDEs.
+
+**Expected Results**: A production-quality PDE solver package for some common PDEs.
+
+## Solving PDEs Discretized via Spectral Methods
+
+[ApproxFun.jl](https://github.com/JuliaApproximation/ApproxFun.jl) provides tools which can discretize many partial differential equations using spectral methods which have exponential convergence and thus low error. However, to solve time-dependent problems, these tools have to be paired with ODE solvers. While a fixed-basis discretization is currently able to be solved, it is more efficient to allow the spectral methods to adapt the basis as necessary for error control. However, this means that the differential equation must be solved where the input is not an array, but a nontrivial Julia-defined type. The goal would be to extend [OrdinaryDiffEq.jl](https://github.com/JuliaDiffEq/OrdinaryDiffEq.jl) to be able to directly handle `Fun` types.
+
+**Expected Results**: Native support in OrdinaryDiffEq.jl for ODEs defined on ApproxFun.jl `Fun`s.
+
+## Improved Plotting for Differential Equations
+
+Plotting is a fundamental tool for analyzing the numerical solutions to differential equations. The plotting functionality in JuliaDiffEq is provided by plot recipes to [Plots.jl](https://github.com/tbreloff/Plots.jl) which create plots directly from the differential equation solution types. However, this functionality is currently limited. Some goals for this project would be:
+
+- A more refined default method for ODEs, which allows one to control which system components are plotted and plot phase plots.
+- The ability to pass the triangular mesh into Plots.jl. This is essential for plotting the solutions to finite element PDE discretizations on non-convex domains.
+- Methods for visualizing ODEs which change size.
+- Visualizations for results of parameter sensitivity analysis and parameter estimation.
+
+**Expected Results**: Publication-quality plot recipes.
+
+# Theme: Numerical Linear Algebra
 
 ## Native Julia implementations of iterative solvers for numerical linear algebra
 Iterative methods for solving numerical linear algebraic problems are crucial for big data applications, which often involve matrices that are too large to store in memory or even to compute its matrix elements explicitly. Iterative Krylov methods such as conjugate gradients (CG) and the generalized minimal residual (GMRES) methods have proven to be particular valuable for a wide variety of applications such as eigenvalue finding, convex optimization, and even systems control.
 This project proposes to implement a comprehensive suite of iterative solver algorithms in Julia's native [IterativeSolvers.jl](https://github.com/JuliaLang/IterativeSolvers.jl) package, as described in the [implementation roadmap](https://github.com/JuliaLang/IterativeSolvers.jl/issues/1). Students will be encouraged to refactor the codebase to better expose the mathematical structure of the underlying Arnoldi and Lanczos iterations, thus promoting code composability without sacrificing performance.
 
-
 ## Native Usage of LinearMaps in Iterative Solvers
 
-
 While one normally thinks of solving the linear equation Ax=b with A being a matrix, this concept is more generally applied to A being a linear map. In many domains of science, this idea of directly using a linear map instead of a matrix allows for one to solve the equation in a more efficient manner. Iterative methods for linear solving only require the ability compute `A*x` in order solve the system, and thus these methods can be extended to use more general linear maps. By restructuring IterativeSolvers.jl to use `LinearMap` types from [LinearMaps.jl](https://github.com/Jutho/LinearMaps.jl), these applications can be directly supported in the library.
-## PETSc integration for scalable technical computing
 
+## PETSc integration for scalable technical computing
 
 [PETSc](http://www.mcs.anl.gov/petsc) is a widely used framework of data structures and computational routines suitable for massively scaling scientific computations. Many of these algorithms are also ideally suited for big data applications such as computing principal components of very large sparse matrices and solving complicated forecasting models with distributed methods for solving partial differential equations.
 This project proposal is to develop a new Julia package to interface with PETsc, thus allowing users access to state of the art scalable algorithms for optimization, eigenproblem solvers, finite element mesh computations, and hyperbolic partial differential equation solvers. The more mathematically oriented student may choose to study the performance of these various algorithms as compared to other libraries and naïve implementations. Alternatively, students may also be interested in working on the LLVM BlueGene port for deploying Julia with PetSc integration in an actual supercomputing environment.
-
 
 **Expected Results:** New wrappers for PETSc functions in the [PETSc.jl](https://github.com/JuliaParallel/PETSc.jl) package.
 
@@ -312,8 +361,6 @@ Julia could be a great replacement for C in Python projects, where it can be use
 
 **Knowledge Prerequisites:** Python (especially C interop).
 
-
-
 ## Project: Ensure that Julia runs smoothly on current large HPC systems
 
 Julia employs several techniques that are novel in the field of high performance computing, such as just-in-time compiling, or first-class support of an interactive environment, or dynamically adding/removing worker processes. This clashes with the traditional ahead-of-time compiled programes running in batch mode. However, the advantages of Julia's approach are clear. This project explores how "typical" Julia programs can be run efficiently on current large scale systems such as, e.g. [Blue Waters](https://bluewaters.ncsa.illinois.edu) or [Cori](http://www.nersc.gov/users/computational-systems/cori/).
@@ -321,8 +368,6 @@ Julia employs several techniques that are novel in the field of high performance
 **Expected Results:** Run a large, parallel Julia application on a high-end HPC system
 
 **Knowledge Prerequisites:** High-performance computing, MPI
-
-
 
 # Theme: Julia Graphics and User Interfaces
 
@@ -354,7 +399,7 @@ A possible mentor can be contacted on the julia-users mailing list.
 - Documentation and/or tutorials.
 - Better integration with Graphs, DataStreams, etc.
 - Improved support for the Grammar of Graphics API in Plots.jl via [GGPlots.jl](https://github.com/JuliaPlots/GGPlots.jl).
- 
+
 # Theme: Machine Learning Frameworks
 
 ## Expanding and improving LearnBase/JuliaML
