@@ -29,14 +29,6 @@ It is strongly recommended that the official generic linux binaries from the dow
 
 Instructions will be added here as more linux distributions start including julia. If your Linux distribution is not listed here, you should still be able to run julia by building from source. See the [Julia README](https://github.com/JuliaLang/julia/blob/master/README.md) for more detailed information.
 
-### Ubuntu
-A [PPA](https://launchpad.net/~staticfloat/+archive/juliareleases) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest stable version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, run the following commands:
-
-    sudo add-apt-repository ppa:staticfloat/juliareleases
-    sudo add-apt-repository ppa:staticfloat/julia-deps
-    sudo apt-get update
-    sudo apt-get install julia
-
 ### Fedora/RHEL/CentOS/SL/OEL
 A [Copr repository](https://copr.fedoraproject.org/coprs/nalimilan/julia/) is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest stable version of Julia.
 
@@ -50,19 +42,6 @@ If you are using Fedora (version 19 or higher), directly run:
 If `dnf` is not available for your distribution, download the relevant `.repo` file from the Copr webpage, copy it to `/etc/yum.repos`, and run the second command.
 
 Note that Fedora guidelines advise against uploading new breaking releases to official repositories: therefore your distribution will not provide the new major versions of Julia which were published after it. When reporting issues, please ensure you are using the latest available release by using one of the Copr repositories displayed on this page.
-
-### Ubuntu nightlies installation instructions
-A [PPA](https://launchpad.net/~staticfloat/+archive/julianightlies) (Personal Package Archive) is provided for Ubuntu systems to allow for automatic updating to the latest development version of Julia.  To use this PPA and install julia on Ubuntu 12.04 or later, run the following commands:
-
-    sudo apt-add-repository ppa:staticfloat/julianightlies
-    sudo apt-add-repository ppa:staticfloat/julia-deps
-    sudo apt-get update
-    sudo apt-get install julia
-
-New versions are built every night. If you have already installed julia and you want to upgrade to the latest version, do:
-
-    sudo apt-get update
-    sudo apt-get upgrade
 
 ### Fedora/RHEL/CentOS/SL/OEL nightlies installation instructions
 A [Copr repository](https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies/) is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest development version of Julia.
