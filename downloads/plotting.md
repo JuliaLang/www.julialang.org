@@ -7,6 +7,29 @@ title:  Plotting in Julia
 
 Plotting in Julia is available through external packages.
 
+## Plots
+
+[Plots.jl](https://github.com/tbreloff/Plots.jl) is a plotting metapackage which
+brings many different plotting packages under a single API, making it easy to swap
+between plotting "backends". Installation and example usage is as follows:
+
+{% highlight julia %}
+Pkg.add("Plots")
+using Plots
+plotly() # Choose the Plotly.jl backend for web interactivity
+plot(rand(5,5),linewidth=2,title="My Plot")
+Pkg.add("PyPlot") # Install a different backend
+pyplot() # Switch to using the PyPlot.jl backend
+plot(rand(5,5),linewidth=2,title="My Plot") # The same plotting command works
+{% endhighlight %}
+
+An guide to the available backends can be found [in the manual](https://juliaplots.github.io/backends/).
+Additionally, many Julia packages add plotting functionality through its [recipe system](https://juliaplots.github.io/recipes/).
+These can be used to do tasks like creating a default visualization
+for Julia types and create entirely new types of plots.
+[An examples page](https://juliaplots.github.io/ecosystem/) shows some
+visualizations the extension packages have added to Plots.jl.
+
 ## PyPlot
 
 [PyPlot](https://github.com/stevengj/PyPlot.jl) uses the Julia PyCall
