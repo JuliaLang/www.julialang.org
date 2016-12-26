@@ -38,34 +38,58 @@ There is also a list of [packages](http://pkg.julialang.org/) for Julia, many of
 Various Julia projects are hosted under the following umbrella organizations on GitHub:
 
 * [JuliaLang](https://github.com/JuliaLang) – [The language](http://www.julialang.org/)
-* [JuliaStats](https://github.com/JuliaStats) – [Statistics](http://www.juliastats.org/)
-* [JuliaOpt](https://github.com/JuliaOpt) – [Optimization](http://www.juliaopt.org/)
-* [JuliaParallel](https://github.com/JuliaParallel) – [Parallel programming in Julia](http://juliaparallel.github.io/)
-* [JuliaDB](https://github.com/JuliaDB) – Various database drivers for Julia
-* [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
-* [BioJulia](https://github.com/BioJulia) – Biology
-* [JuliaQuantum](https://github.com/JuliaQuantum) – [Julia libraries for quantum science and technology](http://juliaquantum.github.io/)
-* [JuliaAstro](https://github.com/JuliaAstro) – Astronomy
-* [JuliaQuant](https://github.com/JuliaQuant) – Finance
-* [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
-* [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](http://www.juliadiff.org/)
-* [JuliaWeb](https://github.com/JuliaWeb) – Web stack
+* [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language
+
+## Computing
+
+* [JuliaArray](https://github.com/JuliaArrays)
+* [JuliaBerry](https://github.com/JuliaBerry) – [Julia resources for the Raspberry Pi](https://juliaberry.github.io/)
 * [JuliaCI](https://github.com/JuliaCI) – Continuous Integration Support for Julia packages
-* [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
+* [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
+* [JuliaInterop](https://github.com/JuliaInterop) – Easy interoperability between Julia and not Julia
+* [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
+* [JuliaParallel](https://github.com/JuliaParallel) – [Parallel programming in Julia](http://juliaparallel.github.io/)
+* [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
+* [JuliaWeb](https://github.com/JuliaWeb) – Web stack
+
+## Data Science
+
+* [JuliaDB](https://github.com/JuliaDB) – Various database drivers for Julia
+* [JuliaImages](https://github.com/JuliaImages) - Image Processing
+* [JuliaML](https://github.com/JuliaML) - [Machine Learning](https://juliaml.github.io/)
+* [JuliaStats](https://github.com/JuliaStats) – [Statistics](http://www.juliastats.org/)
+
+## General
+
+* [JuliaEditorSupport](https://github.com/JuliaEditorSupport) – Extensions/Plugins for text editors and IDEs
+* [Julia-i18n](https://github.com/Julia-i18n) – Internationalization (i18n) and localization (l10n) for Julians
+* [JuliaTime](https://github.com/JuliaTime) – Date and time libraries
+* [JuliaPraxis](https://github.com/JuliaPraxis) - Best practices
+
+## Mathematics
+
+* [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](http://www.juliadiff.org/)
+* [JuliaDiffEq](https://github.com/JuliaDiffEq) – [Differential equation solving and analysis](https://juliadiffeq.github.io/)
+* [JuliaGeometry](https://github.com/JuliaGeometry) - Computational Geometry
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
-* [JuliaDiffEq](https://github.com/JuliaDiffEq) – Differential equation solving and analysis
-* [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
-* [JuliaInterop](https://github.com/JuliaInterop) – Easy interoperability between Julia and not Julia
-* [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language
-* [JuliaTime](https://github.com/JuliaTime) – Date and time libraries
-* [JuliaGraphics](https://github.com/JuliaGraphics) – Drawing, Colors, GUIs 
+* [JuliaOpt](https://github.com/JuliaOpt) – [Optimization](http://www.juliaopt.org/)
+* [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
+
+## Scientific Domains
+
+* [BioJulia](https://github.com/BioJulia) – Biology
+* [JuliaAstro](https://github.com/JuliaAstro) – Astronomy
+* [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
+* [JuliaQuant](https://github.com/JuliaQuant) – Finance
+* [JuliaQuantum](https://github.com/JuliaQuantum) – [Julia libraries for quantum science and technology](http://juliaquantum.github.io/)
+
+## Visualization
+
 * [GiovineItalia](https://github.com/GiovineItalia) – Plotting (with [Gadfly](https://github.com/GiovineItalia/Gadfly.jl))
+* [JuliaGraphics](https://github.com/JuliaGraphics) – Drawing, Colors, GUIs
 * [JuliaPlots](https://github.com/JuliaPlots) – [Data visualization](https://juliaplots.github.io/)
-* [Julia-i18n](https://github.com/Julia-i18n) – Internationalization (i18n) and localization (l10n) for Julians
-* [JuliaEditorSupport](https://github.com/JuliaEditorSupport) – Extensions/Plugins for text editors and IDEs
-* [JuliaBerry](https://github.com/JuliaBerry) – [Julia resources for the Raspberry Pi](https://juliaberry.github.io/)
-* [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
+* [JuliaGL](https://github.com/JuliaGL) - OpenGL API and ecosystem
 
 # Google Summer of Code 2014
 
