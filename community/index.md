@@ -49,7 +49,6 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaInterop](https://github.com/JuliaInterop) – Easy interoperability between Julia and not Julia
 * [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
 * [JuliaParallel](https://github.com/JuliaParallel) – [Parallel programming in Julia](http://juliaparallel.github.io/)
-* [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
 * [JuliaWeb](https://github.com/JuliaWeb) – Web stack
 
 ## Data Science
@@ -74,6 +73,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
 * [JuliaOpt](https://github.com/JuliaOpt) – [Optimization](http://www.juliaopt.org/)
+* [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
 
 ## Scientific Domains
