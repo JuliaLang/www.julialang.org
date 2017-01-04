@@ -7,7 +7,7 @@ title:  Platform specific instructions for installing Julia
 
 ## Windows
 
-Julia is available for both 32-bit and 64-bit Windows since XP SP2.
+Julia is available for Windows 7 and later, both 32 bit and 64 bit.
 
 1. Download the Windows julia.exe installer for your platform. 32-bit julia works on both x86 and x86_64. 64-bit julia will only run on 64-bit Windows (x86_64).
 2. Run the downloaded program to extract julia
