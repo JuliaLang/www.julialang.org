@@ -55,6 +55,8 @@ title:  Learning Julia
 
 <iframe width="400" height="225" src="https://www.youtube.com/embed/jhlVHoeB05A?list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi" frameborder="0" allowfullscreen></iframe>
 
+- [Julia Tutorial](https://www.youtube.com/watch?v=AyvyVS6u8AM) by [Chase Coleman](http://www.chasegcoleman.com/) at PyDataDC 2016. Supporting material [here](https://github.com/cc7768/PyDataDC_julia).
+
 # Videos: Special topics
 
 - [JuliaCon 2015 videos](https://www.youtube.com/playlist?list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM). 61 videos on a wide range of subjects, from the future of the core language to using parallel programming and air traffic control.
