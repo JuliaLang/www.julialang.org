@@ -116,47 +116,6 @@ Some possible aims of this project:
 
 # Theme: Numerical Optimization
 
-## Native Julia library for constrained optimization
-
-The beginnings of a native library for constrained optimization can be found in the [`teh/constrained` branch of Optim.jl](https://github.com/JuliaOpt/Optim.jl/pull/50). While there are other solutions for constrained optimization available (via JuMP), a native-Julia solution would have greater flexibility.  For example, one could abstract all the linear algebra operations, which might allow efficiencies that are not achievable using standard dense or sparse linear algebra. (For example, the Hessian might be a low-rank dense matrix, or a low-rank dense modification of a sparse matrix.)
-
-Starting either from the `teh/constrained` branch or from scratch, the project would likely involve modification or (re)design of the API, implementation of additional algorithms (e.g., primal-dual interior point), and merging with master. It is also likely that this work will involve enhancements to the test suite; see [CUTEst.jl](https://github.com/JuliaOptimizers/CUTEst.jl) and [OptimizationProblems.jl](https://github.com/JuliaOptimizers/OptimizationProblems.jl) for likely sources of good example problems.
-
-## Support for complex numbers within Convex.jl
-
-**Convex.jl** is a package for [Disciplined Convex Programming](http://dcp.stanford.edu/). Convex.jl makes it easy to describe optimization problems in a natural, mathematical syntax, and to solve those problems using a variety of different (commercial and open-source) solvers, through the [MathProgBase](http://mathprogbasejl.readthedocs.org/en/latest/) interface.
-This project would add support for solving complex semidefinite programs (SDP) to Convex.jl.
-
-Many problems in applied mathematics, engineering, and physics are most
-naturally posed as convex optimization problems over complex valued
-variables and with complex valued data. These include
-
-a) Phase retrieval from sparse measurements.
-b) Optimization problems in AC power systems
-c) Frequency domain analysis in signal processing and control theory
-
-While optimization over complex numbers can always be encoded as
-optimization over real variables through transformations, this often
-results in significant overhead (both in user effort and computation
-time) in many applications. Support for complex convex
-optimization in Convex.jl would boost the usage of Julia
-as a language of choice for users working on these and other
-applications.
-
-This work entails writing functions to transform complex SDPs into equivalent
-real valued SDPs, and to transform the solutions back from real to complex
-variables.
-
-Students with further background and motivation could continue to improve
-the SDP solver itself. In particular, the transformations used by Convex.jl
-to write a problem as an SDP often introduce many extra variables and constraints
-than are necessary, and may result in poor conditioning. A presolve routine,
-eliminating redundant variables and constraints and improving conditioning before
-passing the problem to a solver, would be a welcome addition to the Convex.jl library.
-While many tricks for presolving LPs are well known, there is significant room for
-imagination in writing a presolve for SDP; the project might well lead to a publication
-were the student so inclined.
-
 # Theme: Data Handling
 
 ## Standardized dataset packaging
