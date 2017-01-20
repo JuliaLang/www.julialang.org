@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Julia's Summer of Code projects
-redirect_from:
 ---
 # Julia's Summers of Code Archive
 
