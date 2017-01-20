@@ -1,3 +1,10 @@
+---
+layout: default
+title:  Numerical Projects – Summer of Code
+---
+
+{% include toc.html %}
+
 # Numerical Linear Algebra
 
 ## Native Julia implementations of iterative solvers for numerical linear algebra

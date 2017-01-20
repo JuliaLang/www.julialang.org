@@ -1,3 +1,10 @@
+---
+layout: default
+title:  Tooling Projects – Summer of Code
+---
+
+{% include toc.html %}
+
 # Tooling
 
 The [Juno](http://junolab.org) is open to general project ideas (from here or not); feel free to get in contact via the [forum](http://discourse.julialang.org/) to discuss!

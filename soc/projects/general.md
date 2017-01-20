@@ -1,3 +1,10 @@
+---
+layout: default
+title:  General Projects – Summer of Code
+---
+
+{% include toc.html %}
+
 ## Expanding and improving LearnBase/JuliaML
 
 [LearnBase](https://github.com/Evizero/LearnBase.jl) is an attempt to create a complete well-abstracted set of primitives and tools for machine learning frameworks.  The goal is to find the overlap between research perspectives and create smart abstractions for common components such as loss functions, transformations, activation functions, etc.  These abstractions can be the building blocks for more flexible learning frameworks, incorporating models (SVM, regression, decision trees, neural networks, etc) into a unified framework more powerful than alternatives (Scikit-learn, TensorFlow, etc).

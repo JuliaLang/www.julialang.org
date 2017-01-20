@@ -1,4 +1,9 @@
-# Theme: Julia Graphics and User Interfaces
+---
+layout: default
+title:  Graphics Projects – Summer of Code
+---
+
+{% include toc.html %}
 
 ## 2D Graphics Improvements
 
