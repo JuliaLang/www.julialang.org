@@ -1,5 +1,7 @@
 # Tooling
 
+The [Juno](http://junolab.org) is open to general project ideas (from here or not); feel free to get in contact via the [forum](http://discourse.julialang.org/) to discuss!
+
 ## Documentation search & navigation
 
 We'd like to make finding and viewing relevant documentation a core part of the Juno/Julia experience. As well as viewing docs for a particular function, it'd be great to take advantage of the extensive Markdown docs provided by packages for other purposes. For example, a basic doc search engine could allow users to find relevant functionality even when they don't know the names of the functions involved. (This could even be extended to searching across all packages!)

@@ -10,18 +10,19 @@ redirect_from:
 
 # GSoC Project Ideas Page
 
-Thanks for your interest in Summer of Code! This page outlines some ideas for student projects. Most project ideas come with a suggested set of skills and experience which will be helpful, but they aren't hard requirements and there's scope for learning and exploring before, during, and after the official Summer of Code period. Please contact us at juliasoc@googlegroups.com with your questions.
+This page lists a bunch of project ideas, meant to serve as starting points as you develop your own plan. You're free to modify them to your tastes, or propose something totally different in an area you're interested in.
 
-We encourage you to send us a proposal through the [GSoC website](https://summerofcode.withgoogle.com); you're welcome to flesh out one of these projects with your own ideas, or to come up with something completely different. We also have some [application guidelines](/soc/guidelines) for more suggestions on writing a proposal.
-
-You can [**edit this page**](https://github.com/JuliaLang/julialang.github.com/edit/master/soc/ideas-page.md) through GitHub if you want to add ideas of your own. For previous Summer of Code projects, see the [Archive page](/soc/archive.html).
-
-## Moving Forward
-
-Once you have an idea or area of interest, the best way to move forward is to get involved in relevant areas of the Julia ecosystem – look out for packages or organisations which are working on similar things, and see what features and issues they have. It's great to start by solving some small issues, and making real patches will show us your coding skills, your ability to learn, and your commitment.
-
-If there's no directly relevant package, you could also start your own to begin prototyping your idea. It's not an absolute requirement, but a few lines of real code will really bolster an application.
-
-Talking to others in the community is also a good way to get introduced to potential mentors. If you've spoken to someone who has agreed to mentor, let us know, but it's not a requirement for the application.
+Check out the [application guidelines](guidelines/) once you have a project in mind.
 
 **Table of Contents**
+
+We have our project ideas organised roughly into the skillsets required:
+
+* [General](projects/general.html) – jack-of-all-trades projects that don't require special skills.
+* [Compiler](projects/compiler.html) – work on the Julia compiler's internals to make things better for everyone.
+* [Graphics](projects/graphics.html) – UI frameworks like GTK, plotting, and other flashy gizmos and widgets. Makes for great demos!
+* [HPC](projects/hpc.html) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
+* [Numerics](projects/numerics.html) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
+* [Tooling](projects/tooling.html) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
+
+You can see previous Summer of Code projects at the [Archive page](/soc/archive.html).

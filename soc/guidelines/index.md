@@ -5,15 +5,21 @@ redirect_from:
   - /gsoc/guidelines/index.html
 ---
 
+# Before the Application
+
+Before you apply, it's a good idea to start making some small contributions and progress on your project early on. GSoC is extremely competitive, so the more ways you have to show your commitment, the better.
+
 # Application Guidelines
 
-Proposals are free-form and you can talk about your project however you want; the key things we want to know are what your project is all about, why it's interesting, and why you're the one for the job! We're happy to answer questions at juliasoc@googlegroups.com, so go ahead and ask if anything isn't clear.
+Applications are free-form, so you can discuss your project in whatever way you feel is best. The key questions we will ask ourselves when considering it are:
 
-Once you have a draft you can submit it via the GSoC application website as a Google doc and we may be able to provide feedback. You can also email our [mailing list](https://groups.google.com/forum/#!forum/julia-users) for feedback in public from the wider community (but this is completely optional).
+* Is the student committed to the project?
+* Is the plan a reasonable amount to do in three months?
+* Are there clear milestones we can use to assess progress (it should be easy to answer the question "Is the project done?").
 
-Some points that you may want to address:
+In more detail, you may find it useful to consider the following questions:
 
-* **The proposal.** What do you want to do?
+* **The Project**
   - What do you want to have completed by the end of the program?
     - For example, "a package for doing X which any Julia user can install" or "an extra feature for Foo.jl that does Y"
   - Who's interested in the work, and how will it benefit them?
@@ -22,11 +28,11 @@ Some points that you may want to address:
   - What are the potential hurdles you might encounter, and how can you resolve them?
     - Is there anything you need to learn about as part of the work? Does your work depend on anyone else's to make progress?
   - How will you prioritise different aspects of the project like features, API usability, documentation, and robustness?
-  - Does your project have any milestones that you can target throughout the period?
+  - What milestones can you target throughout the period?
     - For example, getting a working prototype out to beta testers by the halfway point
   - Are there any stretch goals you can make if the main project goes smoothly? Tell us how you're going to wow us with the final result!
 
-* **Code portfolio.** Show us a sample of code that you're proud of. Bonus points if you've written Julia code before, but we mostly care about seeing what you can do, and the skills that you want to bring to the Julia community. You don't need to be a star programmer as long as you can demonstrate interest in and commitment to your project.
+* **Code portfolio.** Show us a sample or two of code that you're proud of. It doesn't have to be Julia (but that doesn't hurt either). You don't need to be a star programmer as long as you can demonstrate interest in and commitment to your project.
 
 * **About you.** Why you? Give us a sense of who you are as a person and as a programmer.
   - What academic, professional or hobby programming experience do you have, and how will it help you with your project?
