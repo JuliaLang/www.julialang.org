@@ -23,7 +23,7 @@ navigation:
     title: teaching
   - url: "/publications/"
     title: publications
-  - url: "/soc/"
+  - url: "/soc/ideas-page.html"
     title: GSoC
   - url: "http://juliacon.org"
     title: juliacon
