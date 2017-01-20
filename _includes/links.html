@@ -7,7 +7,11 @@
       {% if page.url == '/' and item.url == '/' %}
           {% assign class = 'active' %}
       {% endif %}
-      <li><a href="{{ item.url }}" class="{{ class }}">{{ item.title }}</a></li>
+      {% assign prefix = site.baseurl %}
+      {% if item.url contains 'http://' or item.url contains 'https://' %}
+        {% assign prefix = nil %}
+      {% endif %}
+      <li><a href="{{ prefix }}{{ item.url }}" class="{{ class }}">{{ item.title }}</a></li>
   {% endfor %}
 </ul>
 
