@@ -1,4 +1,4 @@
-# Juno & Tooling related ideas
+# Tooling
 
 ## Documentation search & navigation
 
@@ -11,10 +11,6 @@ Initially this project could be built as a package or as an extension to the Ato
 Juno could provide a simple way to browse available packages and view what's installed on their system. To start with, this project could simply provide a GUI that reads in package data from `~/.julia`, including available packages and installed versions, and buttons which call the relevant `Pkg.*` methods.
 
 This could also be extended by having metadata about the package, such as a readme, github stars, activity and so on. To support this we probably need a [pkg.julialang.org](http://pkg.julialang.org) style API which provides the info in JSON format.
-
-## Swirl-style tutorial
-
-The [swirl](http://swirlstats.com) tutorial teaches R users through an interactive REPL experience. Something similar in Julia could provide a tutorial that takes advantage of Juno's frontend integration, e.g. for getting input and displaying results. In particular, we'd expect this project to involve building a solid *framework* for building swirl-style tutorials, and allowing the Julia community to easily create new tutorials using Julia. Some research into how Swirl itself achieves this would be a good start.
 
 ## Julia Code Analysis
 
@@ -29,10 +25,6 @@ Concepts relevant to Julia code's performance, like 'type-stability', are often 
 A potential solution to this is to hook into function calls (users will most likely call a function with test inputs after writing it) and then use dynamically-available information, such as the output of `code_typed`, to find performance issues such as non-concrete types, use of global variables etc, and present these as lint warnings in the IDE.
 
 While static analysis has long been used as a tool for understanding and finding problems in code, the use of dynamically available information is unexplored (with the exception of tracing JIT compilers, which demonstrate the power of the concept). This project has plenty of interesting extensions and could have the most interesting long-term implications.
-
-## Support for ANSI codes in the console
-
-The Ink console has some nice features, including being able to display graphics and HTML inline. However, it could be useful to integrate some more terminal-esc features like support for ANSI colour codes.
 
 ## Workspace saving and loading
 
