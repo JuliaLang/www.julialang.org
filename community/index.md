@@ -19,7 +19,6 @@ lists if and when they are moved.
 ## Google groups
 
 * [julia-news](https://groups.google.com/group/julia-news) – low traffic mailing list for important announcements, such as new releases.
-* [julia-opt](https://groups.google.com/group/julia-opt) – discussions related to numerical optimization in julia. This includes Mathematical Programming (linear, mixed-integer, conic, semi-definite, etc.), constrained and unconstrained gradient-based and gradient-free optimization, and related topics.
 * [JuliaBox](https://groups.google.com/group/julia-box) – discussions related to running Julia in the so-called cloud.
 * [julia-users-es](https://groups.google.com/forum/#!forum/julialanges) – discussions around the usage of Julia in the Spanish language.
 * [JuliaTokyo](https://groups.google.com/forum/#!forum/julia-tokyo) – discussions around the usage of Julia in the Japanese language.
@@ -30,6 +29,7 @@ The following lists were previously used, and are now in a read-only state for a
 * [julia-users](https://groups.google.com/forum/#!forum/julia-users) – discussion around the usage of Julia. New users of Julia can ask their questions here. As a courtesy to others, do check the archives and documentation to see if a particular question is already answered.
 * [julia-dev](https://groups.google.com/group/julia-dev) – discussions related to the development of Julia itself. Note that this is not the primary forum for the development of Julia: most of the discussions take place on GitHub instead (see below).
 * [julia-stats](https://groups.google.com/group/julia-stats) – special purpose mailing list for discussions related to statistical programming with Julia. Topics of interest include DataFrame support, GLM modeling, and automatic generation of MCMC code for Bayesian models.
+* [julia-opt](https://groups.google.com/group/julia-opt) – discussions related to numerical optimization in julia. This includes Mathematical Programming (linear, mixed-integer, conic, semi-definite, etc.), constrained and unconstrained gradient-based and gradient-free optimization, and related topics.
 
 # GitHub
 
