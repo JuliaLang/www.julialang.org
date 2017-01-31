@@ -20,8 +20,23 @@ Julia is now being used in several universities and online courses. If you know 
 - Coursera, University of Cape Town, September 2016
   * [Julia Scientific Programming](https://www.coursera.org/learn/julia-programming) online course, (Dr. Juan H Klopper, Dr. Henri Laurie)
 
-- edX MITx, September 2016
-  * [15.053x](https://www.edx.org/course/optimization-methods-business-analytics-mitx-15-053x), Optimization Methods in Business Analytics MOOC (massive online open course), (Prof. [James Orlin](https://www.edx.org/bio/james-orlin))
+- Massachusetts Institute of Technology (MIT)
+  * edX MITx, September 2016: [15.053x](https://www.edx.org/course/optimization-methods-business-analytics-mitx-15-053x), Optimization Methods in Business Analytics MOOC (massive online open course), (Prof. [James Orlin](https://www.edx.org/bio/james-orlin))
+  * [6.251/15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas), Fall 2015
+  * [18.06](http://web.mit.edu/18.06/www/), Linear Algebra: Fall 2015, Dr. [Alex Townsend](https://github.com/ajt60gaibb); Fall 2014, Prof. Alexander Postnikov; Fall [2013](http://stellar.mit.edu/S/course/18/fa13/18.06), Prof. Alan Edelman
+  * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj)), Fall 2013–2016.
+  * [18.337/6.338](http://beowulf.csail.mit.edu/18.337), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). [Fall 2015](http://courses.csail.mit.edu/18.337/2015) ([IJulia notebooks](https://github.com/alanedelman/18.337_2015)).  Fall 2013–
+  * [18.085/0851](http://math.mit.edu/classes/18.085/2015FA/index.html), Computational Science And Engineering I (Prof. Pedro J. Sáenz)
+  * [18.330](http://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid), Spring 2013–2015
+  * [18.335](http://math.mit.edu/~stevenj/18.335/), Introduction to Numerical Methods (Prof. Steven G. Johnson), Fall 2013, Spring 2015
+  * [18.338](http://web.mit.edu/18.338/www/), Eigenvalues Of Random Matrices (Prof. Alan Edelman), Spring 2015
+  * [18.S096](https://math.mit.edu/classes/18.S096/iap17/), Performance Computing in a High Level Language (Steven G. Johnson, Alan Edelman, David Sanders, Jeff Bezanson), January 2017.
+  * [15.093/6.255](http://optimization.mit.edu/class.php?id=6.255J), Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos), Fall 2014
+  * [15.S60](https://github.com/IainNZ/ORSoftwareTools2014), Software Tools for Operations Research (Iain Dunning), Spring 2014
+  * [15.083](https://stellar.mit.edu/S/course/15/sp14/15.083/), Integer Programming and Combinatorial Optimization (Prof. Juan Pablo Vielma), Spring 2014
+
+- University of South Florida, Fall 2015
+  * [ESI 6491](http://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon)
 
 - IIT Indore, June 24 - July 5, 2016
   * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://www.fesb.unist.hr/~slap/index1.html))
@@ -87,26 +102,11 @@ Julia is now being used in several universities and online courses. If you know 
 - Pennsylvania State University, Fall 2015
   * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford) - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
 
-- MIT, Fall 2015
-  * [6.251/15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas)
-  * [18.06](http://web.mit.edu/18.06/www/), Linear Algebra (Dr. [Alex Townsend](https://github.com/ajt60gaibb))
-  * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj))
-  * [18.337/6.338](http://courses.csail.mit.edu/18.337/2015), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). ([IJulia notebooks](https://github.com/alanedelman/18.337_2015))
-  * [18.085/0851](http://math.mit.edu/classes/18.085/2015FA/index.html), Computational Science And Engineering I (Prof. Pedro J. Sáenz)
-- University of South Florida, Fall 2015
-  * [ESI 6491](http://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon)
-
 - "Sapienza" University of Rome, Italy, Spring 2015
   * [Operations Research](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi)
 
 - AGH University of Science and Technology, Poland, Spring 2015
   * [Signal processing in medical diagnostic systems](http://home.agh.edu.pl/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej) (Tomasz Pieciak)
-
-- MIT, Spring 2015
-  * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. Steven G. Johnson)
-  * [18.330](http://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid)
-  * [18.335](http://math.mit.edu/~stevenj/18.335/), Introduction to Numerical Methods (Prof. Steven G. Johnson)
-  * [18.338](http://web.mit.edu/18.338/www/), Eigenvalues Of Random Matrices (Prof. Alan Edelman)
 
 - Universidad Nacional Autónoma de México, Spring 2015
   * [Métodos numéricos avanzados](https://github.com/dpsanders/MetodosNumericosAvanzados) (Prof. David P. Sanders and Prof. Luis Benet)
@@ -128,11 +128,6 @@ Julia is now being used in several universities and online courses. If you know 
 - Iowa State University, Fall 2014
   * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann)
 
-- MIT, Fall 2014
-  * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. Steven G. Johnson)
-  * [18.06](http://web.mit.edu/18.06/www/), Linear Algebra (Prof. Alexander Postnikov)
-  * [15.093/6.255](http://optimization.mit.edu/class.php?id=6.255J), Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos)
-
 - Stanford University, Fall 2014
   * [AA228/CS238](http://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer)
   * [EE103](http://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd)
@@ -150,30 +145,14 @@ Julia is now being used in several universities and online courses. If you know 
 - Cornell University, Spring 2014
   * [CS 5220](http://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel)
 
-- MIT, Spring 2014
-  * [18.330](http://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid)
-  * [15.S60](https://github.com/IainNZ/ORSoftwareTools2014), Software Tools for Operations Research (Iain Dunning)
-  * [15.083](https://stellar.mit.edu/S/course/15/sp14/15.083/), Integer Programming and Combinatorial Optimization (Prof. Juan Pablo Vielma)
-
 - Pennsylvania State University, Spring 2014
   * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford) - [github repo](https://github.com/eford/Astro585_2014_Spring)
 
 - Stanford University, Spring 2014
   * [AA222](http://www.stanford.edu/class/aa222/), Introduction to Multidisciplinary Design Optimization (Prof. Mykel J. Kochenderfer)
 
-
-- MIT, Fall 2013
-  * [18.06](http://stellar.mit.edu/S/course/18/fa13/18.06), Linear Algebra. (Prof. Alan Edelman)
-  * [18.303](http://math.mit.edu/~stevenj/18.303), Linear Partial Differential Equations: Analysis and Numerics. (Prof. Steven G. Johnson)
-  * [18.335J/6.337J](http://math.mit.edu/~stevenj/18.335), Introduction to Numerical Methods. (Prof. Steven G. Johnson)
-  * [18.337/6.338](http://beowulf.csail.mit.edu/18.337), Parallel Computing. (Prof. Alan Edelman)
-
 - Western University Canada, Fall 2013
   * [CS 2101A](http://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza)
-
-
-- MIT, Spring 2013
-  * [18.330](http://homerreid.dyndns.org/teaching/18.330), Introduction to Numerical Analysis. (Dr. Homer Reid)
 
 ## Installing Julia
 
