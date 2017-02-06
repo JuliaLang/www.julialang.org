@@ -67,9 +67,6 @@ title:  Julia Publications
 <p><span class="citation">39. <strong>Monte carlo methods and zero variance principle</strong>. Theodore Papamarkou, Antonietta Mira, Mark Girolami (2015), Current Trends in Bayesian Methodology with Applications:457–476<p><blockquote><em>Abstract:</em>.</blockquote></p></span></p>
 <p><span class="citation">40. <strong>技術計算のための新言語Julia (julia: A new language for technical computing)</strong>. 久本 空海 (Hisamoto, Sorami), 西薗 良太 (Nishizono, Ryōta) (2014), <em>データサイエンティスト養成読本　R活用編 (Data Scientist Training Reader: Practical R Edition)</em>, <a href="http://gihyo.jp/book/2015/978-4-7741-7057-2" class="uri">http://gihyo.jp/book/2015/978-4-7741-7057-2</a><p><blockquote><em>Abstract:</em>.</blockquote></p></span></p>
 <p><span class="citation">41. <strong>Seven more languages in seven weeks: Languages that are shaping the future</strong>. Bruce A Tate, Ian Dees, Frederic Daoud, Jack Moffitt (2014), <a href="https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks" class="uri">https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks</a><p><blockquote><em>Abstract:</em>.</blockquote></p></span></p>
-<p><span class="citation">41. <strong>Seven more languages in seven weeks: Languages that are shaping the future</strong>. Bruce A Tate, Ian Dees, Frederic Daoud, Jack Moffitt (2014), <a href="https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks" class="uri">https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks</a><p><blockquote><em>Abstract:</em>.</blockquote></p></span></p>
 <div id="refs" class="references">
 
 </div>
-</body>
-</html>
