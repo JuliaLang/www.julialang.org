@@ -33,7 +33,7 @@ The following lists were previously used, and are now in a read-only state for a
 
 # GitHub
 
-We use GitHub to track our source code and for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) (bugs and their fixes, new features, and proposed changes) and [commits](https://github.com/JuliaLang/julia/commits). GitHub's pages are for Julia's development; for user support, please see [julia-users][julia-users].
+We use GitHub to track our source code and for tracking and discussing [issues](https://github.com/JuliaLang/julia/issues) (bugs and their fixes, new features, and proposed changes) and [commits](https://github.com/JuliaLang/julia/commits). GitHub's pages are for Julia's development; for user support, please see the [Usage](https://discourse.julialang.org/c/user) category on Discourse.
 
 There is also a list of [packages](http://pkg.julialang.org/) for Julia, many of which are also hosted on and developed using GitHub.
 
