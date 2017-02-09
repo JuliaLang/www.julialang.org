@@ -80,8 +80,9 @@ Julia is now being used in several universities and online courses. If you know 
 - Purdue University, Spring 2016
   * [CS51400](https://www.cs.purdue.edu/homes/dgleich/cs514-2016/), Numerical Analysis (Prof. [David Gleich](https://www.cs.purdue.edu/homes/dgleich/))
 
-- University of Edinburgh, Spring 2016
-  * [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/index.html))
+- University of Edinburgh
+  * Spring 2017, [MATH11146](http://www.drps.ed.ac.uk/16-17/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/index.html))
+  * Spring 2016, [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/index.html))
 
 - University of South Florida, Spring 2016
   * [EIN 6945](http://www.chkwon.net/teaching/ein-6935/), Nonlinear Optimization and Game Theory (Prof. [Changhyun Kwon](http://www.chkwon.net/))
