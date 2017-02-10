@@ -3,6 +3,7 @@ layout: post
 title:  GPU development in the Julia programming language
 author: <a href="https://github.com/maleadt">Tim Besard</a>
 cudanative_tree: https://github.com/JuliaGPU/CUDAnative.jl/blob/6e6ec23ef4def367dec6ae0ba3e43f1d9daae7ec
+cudadrv_tree: https://github.com/JuliaGPU/CUDAdrv.jl/blob/78a8d13044b19e41efd0424554a26ab8dd8983cf
 ---
 
 [Julia](http://julialang.org/) is a dynamic programming language for technical computing,
@@ -30,7 +31,7 @@ specialized implementation you can use wrappers for vendor-specific library pack
 organization](https://github.com/JuliaGPU/). Each of those packages is just a single
 `Pkg.add(...)` away!
 
-What's missing from this list is the lowest abstraction level, where you can create kernels
+What's missing from this list is the lowest abstraction level, where you can write kernels
 and manage execution like you would in CUDA. This is where CUDAnative.jl comes in.
 
 
@@ -79,29 +80,27 @@ The real workhorse of this example is the `@cuda` macro, which generates special
 for compiling the kernel function to GPU assembly, uploading it to the driver, and preparing
 the execution environment. Together with Julia's JIT compiler, this results in a very
 efficient kernel launch sequence, avoiding the runtime overhead typically associated with
-dynamic languages.
-
-<!-- This seems a bit short. Maybe elaborate more? -->
+dynamic languages. The generated code is also specific to the types of the arguments;
+Calling the same kernel with differently typed arguments would Just Work.
 
 <!-- Mention libNVVM? -->
 
 Behind the scenes, CUDAnative.jl hooks into the Julia compiler to lower kernel functions to
-LLVM IR, an intermediate form of code used by the LLVM compiler framework. We've created
+LLVM IR, an intermediate representation used by the LLVM compiler framework. We've created
 [LLVM.jl](https://github.com/maleadt/LLVM.jl) to interface with the framework, and use it to
 compile IR to PTX code, the virtual instruction set used to program CUDA GPUs. Finally, we
 use CUDAdrv.jl to interact with the CUDA driver: upload the PTX code, compile it to
-hardware-specific SASS, and launch the kernel. <!-- TODO: See image 1 for an overview. -->
+hardware-specific Shader Assembly (SASS), and launch the kernel.
 
 ![Overview of the different components making up the native programming
 support.](/images/blog/2017-01-24-cudanative/overview.png)
 
-<!-- Overview picture: show GPU, SASS, CUDA? -->
-
 By reusing the Julia compiler to generate IR we avoid multiple language implementations with
 slightly different semantics. That means you can use all features of the Julia language,
 like metaprogramming or dynamically-typed multimethods, to implement GPU functions. There
-are still some limitations, for example we haven't ported Julia's runtime library or
-implemented a GPU garbage-collector yet, but these aren't structural limitations.
+are still [some limitations]({{page.cudanative_tree}}#julia-support) though. For example we
+haven't ported Julia's runtime library or implemented a GPU garbage-collector yet. But these
+aren't structural limitations, and we will work towards covering more of the language.
 
 
 ### Example: parallel reduction
@@ -120,7 +119,7 @@ function reduce_warp(op, val)
     offset = CUDAnative.warpsize() ÷ 2
     while offset > 0
         val = op(val, shfl_down(val, offset))
-        offset ÷= 2
+        offset ÷= 2  % truncating division
     end
     return val
 end
@@ -180,7 +179,7 @@ implementations.](/images/blog/2017-01-24-cudanative/performance.png)
 We also aim to be compatible with existing tools from the CUDA toolkit. For example, we
 generate the necessary line-number information for the NVIDIA Visual Profiler to [work as
 expected](/images/blog/2017-01-24-cudanative/nvpp.png), and [wrap relevant API
-functions]({{page.cudanative_tree}}/src/profile.jl) to have more fine-grained control. The
+functions]({{page.cudadrv_tree}}/src/profile.jl) to have more fine-grained control. The
 line-number information also enables accurate backtraces in combination with tools like
 `cuda-memcheck`:
 
@@ -201,7 +200,7 @@ friends will not work as well.
 
 ### Future developments
 
-The combination of carefully-designed language semantics and a specializing JIT compiler
+Julia's combination of carefully-designed language semantics and a specializing JIT compiler
 makes it possible to create abstractions without paying the price. CUDAnative.jl aims to
 extend this to the GPU and make it possible to create high-performance GPU abstractions in a
 high-level language. We aren't quite there yet — certain language features are not supported
@@ -215,9 +214,10 @@ higher-order functions, like `map` and `broadcast`, compiling user-code for the 
 Another powerful demonstration of Julia's capabilities is the proof-of-concept
 [CUDAnativelib.jl](https://github.com/JuliaGPU/CUDAnativelib.jl), which makes it possible to
 use device libraries from Julia GPU functions. It uses
-[Cxx.jl](https://github.com/Keno/Cxx.jl) to parse or even compile CUDA C header files,
-building on Julia's powerful foreign function interface to generate the required calling
-sequences.
+[Cxx.jl](https://github.com/Keno/Cxx.jl) to parse and compile CUDA C header files, building
+on Julia's powerful foreign function interface to generate the required calling sequences.
+This will allow us to take advantage of native device libraries like
+[cuRAND](http://docs.nvidia.com/cuda/curand/device-api-overview.html#device-api-overview).
 
 
 

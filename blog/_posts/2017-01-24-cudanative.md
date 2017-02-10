@@ -140,7 +140,7 @@ should be used instead of similar functions in the standard library.
 
 ### What is missing?
 
-As I've already hinted to, we don't support all features of the Julia language yet. For
+As I've already hinted, we don't support all features of the Julia language yet. For
 example, it is currently impossible to call any function from the Julia C runtime library
 (aka. `libjulia.so`). This makes dynamic allocations impossible, cripples exceptions, etc.
 As a result, large parts of the standard library are unavailable for use on the GPU. We will
