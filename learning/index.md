@@ -19,6 +19,7 @@ title:  Learning Julia
     Explore the world of data science from scratch with Julia by your side
 - [Julia for Data Science](https://technicspub.com/analytics/) by Zacharias Voulgaris PhD (415 pages; published: 2016-09-01; ISBN: 9781634621304). Master the essentials of data science through the Julia programming ecosystem (no prior knowledge of the language is required), accompanied by a variety of interesting examples and exercises.
 - [Julia Cookbook](https://www.packtpub.com/application-development/julia-cookbook/) by Jalem Raj Rohit - published by Packt Publishing (172 pages; published: 2016-09; ISBN: 9781785882012)
+- [Julia Solutions](https://www.packtpub.com/big-data-and-business-intelligence/julia-solutions-video) by Jalem Raj Rohit - A comprehensive guide to learn data science for a Julia programmer - Produced by Packt Publishing (2 hours and 52 minutes long; published: January 31, 2017; ISBN: 9781787283299)
 
 ## Upcoming
 
