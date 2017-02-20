@@ -13,15 +13,9 @@ The [Winston](https://github.com/nolta/Winston.jl) package can be used for plott
 
 The [Gtk.jl](https://github.com/JuliaLang/Gtk.jl) package is shaping up pretty well. Still there are various corners currently unimplemented and besides documentation it is very important to get installation of Gtk completely simple on all three major platforms. Furthermore, there is currently quite some manual tweaking necessary to get Gtk looking good on OSX. These installation issues are very crucial for serious integration of Gtk.jl into the Julia universe.
 
-## QML bindings for Julia
+## QML.jl Improvements
 
-QML is a markup language similar to JavaScript and used by the QT library to create graphical user interfaces. QT Creator (open source IDE) provides a graphical editor to create QML forms. QML forms are cross-platform and can be used on Linux, Mac, Windows, Android, OSX, IPhone etc. It would be great if they could also be used by Julia in an easy way. Implementing these bindings should be not so difficult, because C bindings already exist: [libqmlbind](https://github.com/seanchas116/libqmlbind).
-
-The Ruby bindings could be used as starting point for implementing Julia bindings: [ruby-qml](https://github.com/seanchas116/ruby-qml).
-
-Another possible starting point is [QML.jl](https://github.com/barche/QML.jl), where there is a direct interfacing with C++, eliminating the need for libqmlbind.
-
-A possible mentor can be contacted on the julia-users mailing list.
+The [QML.jl](https://github.com/barche/QML.jl) package provides Julia bindings for [Qt QML](http://doc.qt.io/qt-5/qtqml-index.html) on Windows, OS X and Linux. In the current state, basic functionality is available, but there is room for improvement regarding integration with [GLVisualize](https://github.com/JuliaGL/GLVisualize.jl) and plotting packages such as [GR](https://github.com/jheinen/GR.jl) (see also [issue 23](https://github.com/barche/QML.jl/issues/23)) or [Plots](https://github.com/JuliaPlots/Plots.jl). Another area of work is supporting more elaborate data models.
 
 ## Improvements to the Plots.jl ecosystem
 
