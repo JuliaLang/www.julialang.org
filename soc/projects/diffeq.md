@@ -1,4 +1,11 @@
-# Theme: Numerical Methods for Differential Equations
+---
+layout: default
+title:  DiffEq Projects – Summer of Code
+---
+
+{% include toc.html %}
+
+For all these projects, [Chris Rackauckas](https://github.com/ChrisRackauckas/) is a potential mentor. Recommended skills are any experience solving differential equations, or with numerical methods more generally.
 
 ## DiffEq-specific differentiation library to ease development of fast native stiff solvers
 
@@ -35,7 +42,7 @@ For more details, see
 
 **Expected Results**: A high-performance backend library for native differential equation solvers.
 
-**Recommended Skills**: Experience with differential equation solvers, familiarity with packages in JuliaDIffEq organization.
+**Recommended Skills**: Experience with differential equation solvers, familiarity with packages in JuliaDiffEq organization.
 
 **Mentors**: Chris Rackauckas
 
