@@ -7,19 +7,29 @@ title:  General Projects – Summer of Code
 
 ## Expanding and improving LearnBase/JuliaML
 
-[LearnBase](https://github.com/Evizero/LearnBase.jl) is an attempt to create a complete well-abstracted set of primitives and tools for machine learning frameworks.  The goal is to find the overlap between research perspectives and create smart abstractions for common components such as loss functions, transformations, activation functions, etc.  These abstractions can be the building blocks for more flexible learning frameworks, incorporating models (SVM, regression, decision trees, neural networks, etc) into a unified framework more powerful than alternatives (Scikit-learn, TensorFlow, etc).
+[LearnBase](https://github.com/Evizero/LearnBase.jl) is an attempt to create common abstractions and tools for machine learning frameworks. Common functionality like data loading, loss functions or training processes can be defined generically, and then easily combined with a specific approach (e.g. an SVM).
 
-**Recommended skills**: Prior knowledge of machine learning techniques which they would like to work with.  In order to meaningfully contribute to the core abstractions, a broad knowledgebase would be expected.  Specific experience with random forests or deep/recurrent neural networks would be a plus.
+Possible projects are:
+  * Contributing to the generic functionality in JuliaML (e.g. creating or improving a package for loading data sets, or implementing training process, etc)
+  * Pure-Julia implementations of specific model types (e.g. decision trees or SVMs) which integrate with the JuliaML ecosystem.
+
+**Required Skills**: Knowledge of the machine learning technique(s) to be implemented.
+
+**Recommended Skills**: General knowledge of the JuliaML project and aims, or wide knowledge of machine learning as a field, is a plus.
 
 **Mentors**: [Christof Stocker](https://github.com/Evizero), [Tom Breloff](https://github.com/tbreloff), [JuliaML Members](https://github.com/orgs/JuliaML/people)
 
 ## Standardized dataset packaging
 
-Scientific and technical computing often makes use of publicly available datasets. Obtaining this data often involves digging through horrifically designed government websites. Julia has a robust package manager, so storing a dataset on Github and making it available through the package manager can be a convenient means of distribution (see [RDatasets.jl](https://github.com/johnmyleswhite/RDatasets.jl)). At the same time, many datasets are too large to store reasonably in a git repository.
+Scientific and technical computing often makes use of publicly available datasets. Often, there's a lot of overhead to finding these data sets and coercing them into a usable format. Packages like [RDatasets.jl](https://github.com/johnmyleswhite/RDatasets.jl/) and [MNIST.jl](https://github.com/johnmyleswhite/MNIST.jl) attempt to make this easier by downloading data automatically and providing it as a Julia data structure.
 
-This project proposal is to develop a new Julia package that will implement a standard means to write data packages to make large external datasets accessible by downloading to a local machine. When a data package is installed, it will automatically download the dataset it wraps, validate it, e.g. with stored checksums, and make that data available as a `DataFrame` or other Julia structure. In addition to a standard structure, the `PkgDev.generate` function should be extended to generate data packages.
+This project involves building a "[BinDeps.jl](https://github.com/JuliaLang/BinDeps.jl) for data" which would make the creation of data-providing packages easier. The package would make it easy to download / unzip large files and check their integrity them in a cross-platform way. Facilities for downloading specific datasets can then be built on top of this.
 
-**Recommended Skills**: Familiarity with Julia's package management tools, HTTP.jl and Git
+**Expected Results**: A BinDeps-like package for downloading and managing data, as well as examples of this package used with specific data sets.
+
+**Recommended Skills**: Only standard programming skills are needed for this project. Familiarity with Julia is a plus.
+
+**Mentors**: [JuliaML Members](https://github.com/orgs/JuliaML/people)
 
 ## Enhanced clipboard
 
@@ -27,24 +37,28 @@ Julia's functions for getting and setting the clipboard are currently limited to
 
 **Expected Results**: Extensible `clipboard()` and `clipboard(x)` functions to get and set the richest possible representation of the system clipboard data, as well as methods for specific types.
 
-**Recommended skills**: Interfacing with C from Julia, clipboard APIs for different platforms. Familiarity with FileIO.jl
+**Recommended skills**: Interfacing with C from Julia, clipboard APIs for different platforms. Familiarity with FileIO.jl.
 
 **Mentors**: [Stefan Karpinski](https://github.com/StefanKarpinski)
 
 ## Calling Julia from Python
 
-Julia could be a great replacement for C in Python projects, where it can be used to speed up bottlenecks without sacrificing ease of use. However, while the basic functionality for calling Julia exists in [IJulia](https://github.com/JuliaLang/IJulia.jl) and [pyjulia](https://github.com/jakebolewski/pyjulia), it needs to be separated out and mantained as a real Python package.
+Julia could be a great replacement for C in Python projects, where it can be used to speed up bottlenecks without sacrificing ease of use. However, while the basic functionality for communicating with Julia exists in [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) and [pyjulia](https://github.com/jakebolewski/pyjulia), it needs to be separated out and mantained as a real Python package.
 
 **Expected Results**: An easy-to-use Python package which allows Julia functions to be imported and called, with transparent conversion of data.
 
-**Recommended skills**: Python (especially C interop).
+**Recommended skills**: Familiarity with both Python and Julia, especially C interop.
 
-**Mentors**: Steven Johnson
+**Mentors**: [Steven Johnson](https://github.com/stevengj)
 
 ## Middlewares for common web application chores in Mux.jl
 
-Implementation of mid-level features - specifically routing, load-balancing, cookie/session handling, and authentication - in [Mux.jl](https://github.com/JuliaWeb/Mux.jl).  The implementation should be extensible enough to allow easy interfacing with different kinds of caching, databases or authentication backends. (See [Clojure/Ring](https://github.com/ring-clojure/ring/wiki/Why-Use-Ring%3F) for inspiration)
+Implementation of mid-level features - specifically routing, load-balancing, cookie/session handling, and authentication - in [Mux.jl](https://github.com/JuliaWeb/Mux.jl).  The implementation should be extensible enough to allow easy interfacing with different kinds of caching, databases or authentication backends. (See [Clojure/Ring](https://github.com/ring-clojure/ring/wiki/Why-Use-Ring%3F) for inspiration).
 
-**Expected Results**: Some experience with web development.
+**Expected Results**: Improvements to the Mux.jl package.
 
-**Mentors**: Mike Innes
+**Required Skills**: Experience with web development.
+
+**Recommended Skills**: Knowledge of various web frameworks, especially the design decisions and tradeoffs behind them.
+
+**Mentors**: [Mike Innes](https://github.com/MikeInnes)
