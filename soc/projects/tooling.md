@@ -15,17 +15,35 @@ We'd like to make finding and viewing relevant documentation a core part of the 
 
 Initially this project could be built as a package or as an extension to the Atom.jl package. Eventually, we'd also like to integrate the functionality with a nice UI inside of Juno, and this could serve as extension work for an enterprising student.
 
+**Expected Results**: Tools in Julia for collating and working with package documentation, as well as a plan for how this can become part of the IDE or other tooling.
+
+**Recommended Skills**: The Julia-side parts of this could be done by anyone with programming experience. For Juno integration, familiarity with javascript or Atom development is a big plus.
+
+**Mentors**: [Mike Innes](https://github.com/mikeinnes), [Michael Hatherly](https://github.com/michaelhatherly)
+
 ## Package installation UI
 
 Juno could provide a simple way to browse available packages and view what's installed on their system. To start with, this project could simply provide a GUI that reads in package data from `~/.julia`, including available packages and installed versions, and buttons which call the relevant `Pkg.*` methods.
 
 This could also be extended by having metadata about the package, such as a readme, github stars, activity and so on. To support this we probably need a [pkg.julialang.org](http://pkg.julialang.org) style API which provides the info in JSON format.
 
+**Expected Results**: A UI in Juno for package operations.
+
+**Recommended Skills**: Familiarity with javascript and/or atom package development.
+
+**Mentors**: [Mike Innes](https://github.com/mikeinnes)
+
 ## Julia Code Analysis
 
-The foundation for tools like refactoring, linting or autoformatting is a powerful framework for reading and writing Julia code while preserving various features of the source code; comments, original formatting, and perhaps even syntax errors. This could build on the work in JuliaParser.jl.
+The foundation for tools like refactoring, linting or autoformatting is a powerful framework for reading and writing Julia code while preserving various features of the source code; comments, original formatting, and perhaps even syntax errors. This could build on the work in [JuliaParser.jl](https://github.com/JuliaLang/JuliaParser.jl).
 
 Related would be various tools for doing static or dynamic analysis of Julia code in order to find errors. A simple example would be linting indentation; combined with information from the parser, this could be a powerful way to reduce beginner frustration over `unexpected )` style error messages.
+
+**Expected Results**: Tools for source-to-source transformations of Julia code, preserving comments and whitespace.
+
+**Recommended Skills**: Experience with parsing, or even familiarity with JuliaParser.jl itself.
+
+**Mentors**: [Keno Fischer](https://github.com/Keno)
 
 ## Performance Linting
 
@@ -35,18 +53,8 @@ A potential solution to this is to hook into function calls (users will most lik
 
 While static analysis has long been used as a tool for understanding and finding problems in code, the use of dynamically available information is unexplored (with the exception of tracing JIT compilers, which demonstrate the power of the concept). This project has plenty of interesting extensions and could have the most interesting long-term implications.
 
-## Workspace saving and loading
+**Expected Results**: IDE integration and tooling which detects performance issues.
 
-RStudio provides the option to save loaded packages and variables on shutdown, and set up the environment as before when restarting. This could be replicated in Juno using some serialisation format for Julia data (e.g. the built-in serialiser or HDF5.jl).
+**Required Skills:** Some familiarity with Julia, but more importantly javascript and/or Atom development.
 
-## Better error reporting
-
-Julia's errors are helpful for the most part but could be improved - see [#4744](https://github.com/JuliaLang/julia/issues/4744).
-
-**Expected Results:** Consistent printing of errors with qualified type and human-readable strings.
-
-## Autoformat tool
-
-This project involves creating an autoformat tool, similar to Go's `gofmt`, which automatically rewrites Julia source files into a standard format. This is a fairly experimental project - there are plenty of challanges involved with formatting such a dynamic and flexible language well. However, a well executed tool is likely to gain widespread adoption by the Julia community.
-
-**Expected Results:** Autoformatting tool for Julia
+**Mentors**: [Mike Innes](https://github.com/MikeInnes)

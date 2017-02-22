@@ -20,7 +20,6 @@ We have our project ideas organised roughly into the skillsets required:
 
 * [General](projects/general.html) – jack-of-all-trades projects that don't require special skills.
 * [Compiler](projects/compiler.html) – work on the Julia compiler's internals to make things better for everyone.
-* [Graphics](projects/graphics.html) – UI frameworks like GTK, plotting, and other flashy gizmos and widgets. Makes for great demos!
 * [HPC](projects/hpc.html) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Numerics](projects/numerics.html) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
 * [Differential Equations](projects/diffeq.html) - Numerical methods for high-performance solving of differential equation models

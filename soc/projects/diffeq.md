@@ -1,4 +1,9 @@
-# Theme: Numerical Methods for Differential Equations
+---
+layout: default
+title:  DiffEq Projects – Summer of Code
+---
+
+{% include toc.html %}
 
 ## DiffEq-specific differentiation library to ease development of fast native stiff solvers
 
