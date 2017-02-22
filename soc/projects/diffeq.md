@@ -35,6 +35,10 @@ For more details, see
 
 **Expected Results**: A high-performance backend library for native differential equation solvers.
 
+**Recommended Skills**: Experience with differential equation solvers, familiarity with packages in JuliaDIffEq organization.
+
+**Mentors**: Chris Rackauckas
+
 ## Natural syntax parsing and symbolic transformations of differential equations
 
 [ParameterizedFunctions.jl](https://github.com/JuliaDiffEq/ParameterizedFunctions.jl)
@@ -58,6 +62,10 @@ be easily solved. Finally, this improved parser can be used to develop new pages
 for DifferentialEquations.jl Online for solving DAEs and DDEs.
 
 **Expected Results**: An improved parser within the macro which supports delay and algebraic differential equations.
+
+**Recommended Skills**: Experience with differential equation solvers, familiarity with packages in JuliaDIffEq organization.
+
+**Mentors**: Chris Rackauckas
 
 ## Native Julia solvers for ordinary differential equations and algebraic differential equations
 
