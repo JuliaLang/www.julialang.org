@@ -33,7 +33,11 @@ library for all differential equation solvers.
 For more details, see
 [the following issue](https://github.com/JuliaDiffEq/DiffEqDiffTools.jl/issues/1).
 
+**Recommended Skills**: Familiarity with multivariable calculus (Jacobians).
+
 **Expected Results**: A high-performance backend library for native differential equation solvers.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
 ## Natural syntax parsing and symbolic transformations of differential equations
 
@@ -57,7 +61,11 @@ into larger systems of ODEs, greatly increasing the amount of equations which ca
 be easily solved. Finally, this improved parser can be used to develop new pages
 for DifferentialEquations.jl Online for solving DAEs and DDEs.
 
+**Recommended Skills**: Some previous knowledge of parsing.
+
 **Expected Results**: An improved parser within the macro which supports delay and algebraic differential equations.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
 ## Native Julia solvers for ordinary differential equations and algebraic differential equations
 
@@ -67,34 +75,60 @@ Julia needs to have a full set of ordinary differential equations (ODE) and alge
 - Implicit-Explicit (IMEX) Runge-Kutta Methods
 - Higher Order Rosenbrock Methods
 
+**Recommended Skills**: Background knowledge in numerical analysis, numerical linear algebra, and the ability to write fast code.
+
 **Expected Results**: A production-quality ODE/DAE solver package.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
 ## Expose the ARKODE methods of Sundials
 
 In recent years, the popular Sundials library has added a suite of implicit-explicit Runge-Kutta methods for efficient solving of discretizations which commonly arise from PDEs. However, these new methods are not accessible from Sundials.jl. The goal of this project would be to expose the ARKODE solvers in [Sundials.jl](https://github.com/JuliaDiffEq/Sundials.jl) to the common JuliaDiffEq interface.
 
+**Recommended Skills**: Background knowledge of C++.
+
 **Expected Results**: An interface to the Sundials ARKODE methods in Sundials.jl.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
 ## Tools for global sensitivity analysis
 
 Global Sensitivity Analysis is a popular tool to assess the affect that parameters have on a differential equation model. Global Sensitivity Analysis tools can be much more efficient than Local Sensitivity Analysis tools, and give a better view of how parameters affect the model in a more general sense. Julia currently has an implemention Local Sensitivity Analysis, but there is no method for Global Sensitivity Analysis. The goal of this project would be to implement methods like the Morris method in [DiffEqSensitivity.jl](https://github.com/JuliaDiffEq/DiffEqSensitivity.jl) which can be used with any differential equation solver on the common interface.
 
+**Recommended Skills**: An understanding of how to use DifferentialEquations.jl to solve equations. 
+
 **Expected Results**: Efficient functions for performing Global Sensitivity Analysis.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
 ## Machine learning for parameter estimation of differential equation models
 
 Machine learning has become a popular tool for understanding data, but scientists typically want to use this data to better understand their differential equation-based models. The intersection between these two fields is parameter estimation. This is the idea of using techniques from machine learning in order to identify the values for model parameters from data. Currently, [DiffEqParamEstim.jl](https://github.com/JuliaDiffEq/DiffEqParamEstim.jl) shows how to link the differential equation solvers with the optimization packages for parameter estimation, but no link to machine learning tools have been created. The tools are all in place for this pairing between JuliaDiffEq and JuliaML.
 
+**Recommended Skills**: Background knowledge of standard machine learning techniques and the usage of DifferentialEquations.jl
+
 **Expected Results**: Modular tools for using JuliaML's libraries for parameter estimation of differential equations.
 
-## Bayesian estimation using Stan.jl for parameters of differential equations
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
-Bayesian estimation of parameters for differential equations is a popular technique since this outputs probability distributions for the underlying parameters. Julia's `ParameterizedFunction` makes it easy to solve differential equations with explicit parameters, and holds enough information to be used with [Stan.jl](https://github.com/goedman/Stan.jl). The purpose for this project is to create a function in [DiffEqParamEstim.jl](https://github.com/JuliaDiffEq/DiffEqParamEstim.jl) which translates the saved information of the model definition in a `ParameterizedFunction` to automatically write the input to Stan.jl, and tools for tweaking the inputs.
+## Bayesian estimation for parameters of differential equations
+
+Bayesian estimation of parameters for differential equations is a popular technique since this outputs probability distributions for the underlying parameters. Julia's `ParameterizedFunction` makes it easy to solve differential equations with explicit parameters, and holds enough information to be used with [Stan.jl](https://github.com/goedman/Stan.jl). The purpose for this project is to create a function in [DiffEqParamEstim.jl](https://github.com/JuliaDiffEq/DiffEqParamEstim.jl) which translates the saved information of the model definition in a `ParameterizedFunction` to automatically write the input to Stan.jl, and tools for tweaking the inputs. Additionally, one can think about writing their own computational engine for Bayesian estimation using Julia-based tools like [Mocha.jl](https://github.com/pluskid/Mocha.jl), which would be able to use more of the JuliaDiffEq ecosystem.
+
+**Recommended Skills**: Background knowledge in Bayesian estimation.
 
 **Expected Results**: A function which takes in a `ParameterizedFunction` and performs parameter estimation using Stan.jl
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
 ## Discretizations of partial differential equations
 
 One of the major uses for differential equations solvers is for partial differential equations (PDEs). PDEs are solved by discretizing to create ODEs which are then solved using ODE solvers. However, in many cases a good understanding of the PDEs are required to perform this discretization and minimize the error. The purpose of this project is to produce a library with common PDE discretizations to make it easier for users to solve common PDEs.
 
+**Recommended Skills**: Background knowledge in numerical methods for solving PDEs.
+
 **Expected Results**: A production-quality PDE solver package for some common PDEs.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+
+
