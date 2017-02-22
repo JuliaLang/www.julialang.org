@@ -9,11 +9,9 @@ title:  General Projects – Summer of Code
 
 [LearnBase](https://github.com/Evizero/LearnBase.jl) is an attempt to create a complete well-abstracted set of primitives and tools for machine learning frameworks.  The goal is to find the overlap between research perspectives and create smart abstractions for common components such as loss functions, transformations, activation functions, etc.  These abstractions can be the building blocks for more flexible learning frameworks, incorporating models (SVM, regression, decision trees, neural networks, etc) into a unified framework more powerful than alternatives (Scikit-learn, TensorFlow, etc).
 
-A student could contribute to the core abstractions, or to dependent learning frameworks, depending on their knowledge and interests. 
+**Recommended skills**: Prior knowledge of machine learning techniques which they would like to work with.  In order to meaningfully contribute to the core abstractions, a broad knowledgebase would be expected.  Specific experience with random forests or deep/recurrent neural networks would be a plus.
 
-**Recommended skills**: It is expected that the student has prior knowledge of machine learning techniques which they would like to work with.  In order to meaningfully contribute to the core abstractions, a broad knowledgebase would be expected.  Specific experience with random forests or deep/recurrent neural networks would be a plus.
-
-**Mentors**: [Christof Stocker](https://github.com/Evizero), [Tom Breloff](https://github.com/tbreloff)
+**Mentors**: [Christof Stocker](https://github.com/Evizero), [Tom Breloff](https://github.com/tbreloff), [JuliaML Members](https://github.com/orgs/JuliaML/people)
 
 ## Standardized dataset packaging
 
@@ -23,25 +21,23 @@ This project proposal is to develop a new Julia package that will implement a st
 
 **Recommended Skills**: Familiarity with Julia's package management tools, HTTP.jl and Git
 
-**Mentors**: John Miles White
-
 ## Enhanced clipboard
 
 Julia's functions for getting and setting the clipboard are currently limited to text; it would be useful to extend them to allow the transfer of other data (for example, spreadsheet data or images).
 
-**Expected Results:** Extensible `clipboard()` and `clipboard(x)` functions to get and set the richest possible representation of the system clipboard data, as well as methods for specific types.
+**Expected Results**: Extensible `clipboard()` and `clipboard(x)` functions to get and set the richest possible representation of the system clipboard data, as well as methods for specific types.
 
-**Recommended skills:** Interfacing with C from Julia, clipboard APIs for different platforms. Familiarity with FileIO.jl
+**Recommended skills**: Interfacing with C from Julia, clipboard APIs for different platforms. Familiarity with FileIO.jl
 
-**Mentors**: Stefan Karpinski
+**Mentors**: [Stefan Karpinski](https://github.com/StefanKarpinski)
 
 ## Calling Julia from Python
 
 Julia could be a great replacement for C in Python projects, where it can be used to speed up bottlenecks without sacrificing ease of use. However, while the basic functionality for calling Julia exists in [IJulia](https://github.com/JuliaLang/IJulia.jl) and [pyjulia](https://github.com/jakebolewski/pyjulia), it needs to be separated out and mantained as a real Python package.
 
-**Expected Results:** An easy-to-use Python package which allows Julia functions to be imported and called, with transparent conversion of data.
+**Expected Results**: An easy-to-use Python package which allows Julia functions to be imported and called, with transparent conversion of data.
 
-**Recommended skills:** Python (especially C interop).
+**Recommended skills**: Python (especially C interop).
 
 **Mentors**: Steven Johnson
 
@@ -49,6 +45,6 @@ Julia could be a great replacement for C in Python projects, where it can be use
 
 Implementation of mid-level features - specifically routing, load-balancing, cookie/session handling, and authentication - in [Mux.jl](https://github.com/JuliaWeb/Mux.jl).  The implementation should be extensible enough to allow easy interfacing with different kinds of caching, databases or authentication backends. (See [Clojure/Ring](https://github.com/ring-clojure/ring/wiki/Why-Use-Ring%3F) for inspiration)
 
-**Expected Results:** Some experience with web development.
+**Expected Results**: Some experience with web development.
 
 **Mentors**: Mike Innes

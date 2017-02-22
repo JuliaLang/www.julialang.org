@@ -43,10 +43,10 @@ RStudio provides the option to save loaded packages and variables on shutdown, a
 
 Julia's errors are helpful for the most part but could be improved - see [#4744](https://github.com/JuliaLang/julia/issues/4744).
 
-**Expected Results:** Consistent printing of errors with qualified type and human-readable strings.
+**Expected Results**: Consistent printing of errors with qualified type and human-readable strings.
 
 ## Autoformat tool
 
 This project involves creating an autoformat tool, similar to Go's `gofmt`, which automatically rewrites Julia source files into a standard format. This is a fairly experimental project - there are plenty of challanges involved with formatting such a dynamic and flexible language well. However, a well executed tool is likely to gain widespread adoption by the Julia community.
 
-**Expected Results:** Autoformatting tool for Julia
+**Expected Results**: Autoformatting tool for Julia

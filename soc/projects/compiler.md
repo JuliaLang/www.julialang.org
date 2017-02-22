@@ -21,9 +21,9 @@ Memory errors in Julia's underlying C code are sometimes difficult to trace, and
 
 Julia's method cache is shared by all call sites of a generic function. Although whenever single dispatch is provable we generate a direct call, there are some cases where dynamic dispatch is inevitable. When the compiler can prove (using type inference) that the possible matches for a call site is small enough, it would be a huge performance win to generate a small cache specific to this call site.
 
-**Expected Results:** A PR for Base Julia implementing this optimisation.
+**Expected Results**: A PR for Base Julia implementing this optimisation.
 
-**Required Skills:** Good understanding of C/C++.
+**Required Skills**: Good understanding of C/C++.
 
 **Recommended Skills**: Knowledge of LLVM and Julia's compiler.
 
