@@ -13,14 +13,24 @@ For all of these projects, potential mentors are [Steven Johnson](https://github
 
 Iterative methods for solving numerical linear algebraic problems are crucial for big data applications, which often involve matrices that are too large to store in memory or even to compute its matrix elements explicitly. Iterative Krylov methods such as conjugate gradients (CG) and the generalized minimal residual (GMRES) methods have proven to be particular valuable for a wide variety of applications such as eigenvalue finding, convex optimization, and even systems control. This project proposes to implement a comprehensive suite of iterative solver algorithms in Julia's native [IterativeSolvers.jl](https://github.com/JuliaLang/IterativeSolvers.jl) package, as described in the [implementation roadmap](https://github.com/JuliaLang/IterativeSolvers.jl/issues/1). Students will be encouraged to refactor the codebase to better expose the mathematical structure of the underlying Arnoldi and Lanczos iterations, thus promoting code composability without sacrificing performance.
 
+**Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra. 
+
+**Expected Results**: New high-performance backend native iterative solvers.
+
 ## Native usage of LinearMaps in iterative solvers
 
 While one normally thinks of solving the linear equation Ax=b with A being a matrix, this concept is more generally applied to A being a linear map. In many domains of science, this idea of directly using a linear map instead of a matrix allows for one to solve the equation in a more efficient manner. Iterative methods for linear solving only require the ability compute `A*x` in order solve the system, and thus these methods can be extended to use more general linear maps. By restructuring IterativeSolvers.jl to use `LinearMap` types from [LinearMaps.jl](https://github.com/Jutho/LinearMaps.jl), these applications can be directly supported in the library.
+
+**Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra. 
+
+**Expected Results**: The ability to use more general LinearMaps in the IterativeSolvers.jl methods.
 
 ## PETSc integration for scalable technical computing
 
 [PETSc](http://www.mcs.anl.gov/petsc) is a widely used framework of data structures and computational routines suitable for massively scaling scientific computations. Many of these algorithms are also ideally suited for big data applications such as computing principal components of very large sparse matrices and solving complicated forecasting models with distributed methods for solving partial differential equations.
 This project proposal is to develop a new Julia package to interface with PETsc, thus allowing users access to state of the art scalable algorithms for optimization, eigenproblem solvers, finite element mesh computations, and hyperbolic partial differential equation solvers. The more mathematically oriented student may choose to study the performance of these various algorithms as compared to other libraries and naïve implementations. Alternatively, students may also be interested in working on the LLVM BlueGene port for deploying Julia with PetSc integration in an actual supercomputing environment.
+
+**Recommended Skills**: Some background knowledge in numerical linear algebra and parallel computing.
 
 **Expected Results**: New wrappers for PETSc functions in the [PETSc.jl](https://github.com/JuliaParallel/PETSc.jl) package.
 
@@ -30,17 +40,29 @@ A large portion of big data analytics is predicated upon efficient linear algebr
 
 This project proposal is for implementing native Julia algorithms involving efficient, cache-conscious matrix operations on tiled matrices. Students will be expected to implement tiled algorithms and tune the performance of typical algorithms such as the singular value decomposition or linear solve.
 
+**Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra, and some background knowledge in parallel computing.
+
+**Expected Results**: A native Julia package for parallel dense linear algebra methods.
+
 ## Parallel sparse linear algebra routines
 
 Modern data-intensive computations, such as Google's PageRank algorithm, can often be cast as operations involving sparse matrices of extremely large nominal dimensions. Unlike dense matrices, which decompose naturally into many homogeneous tiles, efficient algorithms for working with sparse matrices must be fully cognizant of the sparsity pattern of specific matrices at hand, which oftentimes reduce to efficiently computing partitions of extremely large graphs.
 
 This project proposal is for implementing native Julia algorithms for massively parallel sparse linear algebra routines. Unlike the project above for dense linear algebra, efficient parallel algorithms for sparse linear algebra are comparatively less well studied and understood. Students will be expected to implement several algorithms for common tasks such as linear solvers or computing eigenvectors, and benchmark the performance of these algrithms on various real world applications.
 
+**Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra, especially sparse matrices, and some background knowledge in parallel computing.
+
+**Expected Results**: A native Julia package for parallel sparse linear algebra methods.
+
 # Base Mathematics Libraries
 
 ## Upgrading openlibm
 
 [OpenLibm](http://openlibm.org) is a portable libm implementation used by Julia. It has fallen behind msun, from where it was forked a few years ago. This project seeks to update OpenLibm with all the latest bugfixes to msun. At the same time the [MUSL libm](http://git.musl-libc.org/cgit/musl/tree/src/math) implementation will be considered as an alternative to base openlibm on. A significant testsuite based on various existing [libm testsuites](http://nsz.repo.hu/libm/#tests) will be created.
+
+**Recommended Skills**: A strong understanding of calculus.
+
+**Expected Results**: New and faster methods for evaluating elementary mathematical functions. Benchmarks showing the performance differences for various implementations.
 
 ## Special functions
 
@@ -56,11 +78,19 @@ seeking out opportunties for possible improvements along the way, such as suppor
 `Float32` and `BigFloat`, exploiting fused multiply-add operations, and improving errors
 and boundary cases.
 
+**Recommended Skills**: A strong understanding of calculus.
+
+**Expected Results**: New and faster methods for evaluating properties of special functions.
+
 ## Matrix functions
 
 Matrix functions maps matrices onto other matrices, and can often be interpreted as generalizations of ordinary functions like sine and exponential, which map numbers to numbers. Once considered a niche province of numerical algorithms, matrix functions now appear routinely in applications to cryptography, aircraft design, nonlinear dynamics, and finance.
 
 This project proposes to implement state of the art algorithms that extend the currently available matrix functions in Julia, as outlined in issue [#5840](https://github.com/JuliaLang/julia/issues/5840). In addition to matrix generalizations of standard functions such as real matrix powers, surds and logarithms, students will be challenged to design generic interfaces for lifting general scalar-valued functions to their matrix analogues for the efficient computation of arbitrary (well-behaved) matrix functions and their derivatives.
+
+**Recommended Skills**: A strong understanding of calculus and numerical analysis.
+
+**Expected Results**: New and faster methods for evaluating matrix functions.
 
 ## Random number generation
 
@@ -74,3 +104,7 @@ Some possible aims of this project:
 * Efficient generation of non-uniform variates, across different floating point precisions.
 * Massively parallel random number generators, such as [SPRNG](http://www.sprng.org) or the [Random123](https://www.deshawresearch.com/resources_random123.html) entropy streams, and integration with [ComputeFramework.jl](https://github.com/shashi/ComputeFramework.jl).
 * Support for fast parallel random number generators on GPUs
+
+**Recommended Skills**: Background in probability and statistics.
+
+**Expected Results**: New, faster, or more statistically-robust methods for generating random numbers.
