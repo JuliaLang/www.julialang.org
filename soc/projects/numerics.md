@@ -17,6 +17,8 @@ Iterative methods for solving numerical linear algebraic problems are crucial fo
 
 **Expected Results**: New high-performance backend native iterative solvers.
 
+**Mentors:** [Jiahao Chen](https://jiahao.github.io/), [Mauro](https://github.com/mauro3)
+
 ## Native usage of LinearMaps in iterative solvers
 
 While one normally thinks of solving the linear equation Ax=b with A being a matrix, this concept is more generally applied to A being a linear map. In many domains of science, this idea of directly using a linear map instead of a matrix allows for one to solve the equation in a more efficient manner. Iterative methods for linear solving only require the ability compute `A*x` in order solve the system, and thus these methods can be extended to use more general linear maps. By restructuring IterativeSolvers.jl to use `LinearMap` types from [LinearMaps.jl](https://github.com/Jutho/LinearMaps.jl), these applications can be directly supported in the library.
@@ -34,6 +36,8 @@ This project proposal is to develop a new Julia package to interface with PETsc,
 
 **Expected Results**: New wrappers for PETSc functions in the [PETSc.jl](https://github.com/JuliaParallel/PETSc.jl) package.
 
+**Mentors:** [Jared Crean](https://github.com/JaredCrean2)
+
 ## Parallel dense linear algebra routines
 
 A large portion of big data analytics is predicated upon efficient linear algebraic operations on extremely large matrices. However, massively parallel linear algebra has traditionally focussed on supercomputer architectures, and comparatively little work has been done on efficient scaling on more heterogeneous architectures such as commodity clusters and cloud computing servers, where memory hierarchies and network topologies both introduce latency and bandwidth bottlenecks that differ significantly from those on supercomputers.
@@ -43,6 +47,9 @@ This project proposal is for implementing native Julia algorithms involving effi
 **Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra, and some background knowledge in parallel computing.
 
 **Expected Results**: A native Julia package for parallel dense linear algebra methods.
+
+
+**Mentors:** [Andreas Noack](https://github.com/andreasnoack)
 
 ## Parallel sparse linear algebra routines
 
@@ -54,6 +61,8 @@ This project proposal is for implementing native Julia algorithms for massively 
 
 **Expected Results**: A native Julia package for parallel sparse linear algebra methods.
 
+**Mentors:** [Andreas Noack](https://github.com/andreasnoack)
+
 # Base Mathematics Libraries
 
 ## Upgrading openlibm
@@ -63,6 +72,8 @@ This project proposal is for implementing native Julia algorithms for massively 
 **Recommended Skills**: A strong understanding of calculus.
 
 **Expected Results**: New and faster methods for evaluating elementary mathematical functions. Benchmarks showing the performance differences for various implementations.
+
+**Mentors:** [Simon Byrne](https://github.com/simonbyrne)
 
 ## Special functions
 
@@ -82,6 +93,8 @@ and boundary cases.
 
 **Expected Results**: New and faster methods for evaluating properties of special functions.
 
+**Mentors:** [Alex Arslan](https://github.com/ararslan)
+
 ## Matrix functions
 
 Matrix functions maps matrices onto other matrices, and can often be interpreted as generalizations of ordinary functions like sine and exponential, which map numbers to numbers. Once considered a niche province of numerical algorithms, matrix functions now appear routinely in applications to cryptography, aircraft design, nonlinear dynamics, and finance.
@@ -91,3 +104,5 @@ This project proposes to implement state of the art algorithms that extend the c
 **Recommended Skills**: A strong understanding of calculus and numerical analysis.
 
 **Expected Results**: New and faster methods for evaluating matrix functions.
+
+**Mentors:** [Jiahao Chen](https://github.com/jiahao)
