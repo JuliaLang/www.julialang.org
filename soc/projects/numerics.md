@@ -125,7 +125,7 @@ This project proposes to achieve compliance of this package with the [IEEE 1788-
 
 **Expected results**: A library that fulfills the IEEE 1788-2015 standard.
 
-**Mentors:** [David Sanders](https://github.com/dpsanders), [Louis Benet](https://github.com/lbenet)
+**Mentors:** [David P. Sanders](https://github.com/dpsanders), [Luis Benet](https://github.com/lbenet)
 ## Inverse (or "backward") functions and contractors for interval constraint propagation
 
 One important application of interval arithmetic is to the characterization of sets that satisfy certain inequalities ("set inversion"), as used, for example, in optimization, robotics, and the proof of mathematical theorems via rigorous numerical calculation. The state-of-the-art technique for this is interval constraint propagation, in particular the concept of "contractors".
@@ -139,4 +139,4 @@ To do so, it will be necessary to implement inverse functions for the standard f
 
 **Expected results**: A library of interval contractors for interval constraint propagation.
 
-**Mentors:** [David Sanders](https://github.com/dpsanders), [Louis Benet](https://github.com/lbenet)
+**Mentors:** [David P. Sanders](https://github.com/dpsanders), [Luis Benet](https://github.com/lbenet)
