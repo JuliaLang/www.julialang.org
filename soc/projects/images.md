@@ -1,3 +1,14 @@
+---
+layout: default
+title:  JuliaImages Projects – Summer of Code
+---
+
+# {{ page.title }}
+
+{% include toc.html %}
+
+[JuliaImages](https://github.com/JuliaImages) has recently undergone a significant revamp, with many improvements in the core infrastructure, project organization, and documentation. For the future, a major push is on expanding the functionality. Please see the [documentation](http://juliaimages.github.io/latest/) for information about the current state; perhaps the [feature comparison matrix](http://juliaimages.github.io/latest/api_comparison.html) may be particularly useful for generating further ideas about possible ways to contribute.
+
 ## Interactivity and visualization tools
 
 Image processing often involves tight interaction between algorithms and visualization. While there are a number of older tools available, leveraging GLVisualize seems to hold the greatest promise. This project might implement a number of interactive tools for region-of-interest selection, annotation, measurement, and modification.  Software suites like OpenCV, ImageJ/Fiji, scikit-image, and Matlab might serve as inspiration.
