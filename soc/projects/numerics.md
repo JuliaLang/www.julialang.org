@@ -17,6 +17,8 @@ Iterative methods for solving numerical linear algebraic problems are crucial fo
 
 **Expected Results**: New high-performance backend native iterative solvers.
 
+**Mentors:** [Jiahao Chen](https://jiahao.github.io/)
+
 ## Native usage of LinearMaps in iterative solvers
 
 While one normally thinks of solving the linear equation Ax=b with A being a matrix, this concept is more generally applied to A being a linear map. In many domains of science, this idea of directly using a linear map instead of a matrix allows for one to solve the equation in a more efficient manner. Iterative methods for linear solving only require the ability compute `A*x` in order solve the system, and thus these methods can be extended to use more general linear maps. By restructuring IterativeSolvers.jl to use `LinearMap` types from [LinearMaps.jl](https://github.com/Jutho/LinearMaps.jl), these applications can be directly supported in the library.
@@ -24,6 +26,8 @@ While one normally thinks of solving the linear equation Ax=b with A being a mat
 **Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra.
 
 **Expected Results**: The ability to use more general LinearMaps in the IterativeSolvers.jl methods.
+
+**Mentors:** [Jiahao Chen](https://jiahao.github.io/)
 
 ## PETSc integration for scalable technical computing
 
@@ -33,6 +37,8 @@ This project proposal is to develop a new Julia package to interface with PETsc,
 **Recommended Skills**: Some background knowledge in numerical linear algebra and parallel computing.
 
 **Expected Results**: New wrappers for PETSc functions in the [PETSc.jl](https://github.com/JuliaParallel/PETSc.jl) package.
+
+**Mentors:** [Jared Crean](https://github.com/JaredCrean2)
 
 ## Parallel dense linear algebra routines
 
@@ -44,6 +50,9 @@ This project proposal is for implementing native Julia algorithms involving effi
 
 **Expected Results**: A native Julia package for parallel dense linear algebra methods.
 
+
+**Mentors:** [Andreas Noack](https://github.com/andreasnoack)
+
 ## Parallel sparse linear algebra routines
 
 Modern data-intensive computations, such as Google's PageRank algorithm, can often be cast as operations involving sparse matrices of extremely large nominal dimensions. Unlike dense matrices, which decompose naturally into many homogeneous tiles, efficient algorithms for working with sparse matrices must be fully cognizant of the sparsity pattern of specific matrices at hand, which oftentimes reduce to efficiently computing partitions of extremely large graphs.
@@ -54,6 +63,8 @@ This project proposal is for implementing native Julia algorithms for massively 
 
 **Expected Results**: A native Julia package for parallel sparse linear algebra methods.
 
+**Mentors:** [Sacha Verweij](https://github.com/Sacha0)
+
 # Base Mathematics Libraries
  si
 ## Upgrading openlibm
@@ -63,6 +74,8 @@ This project proposal is for implementing native Julia algorithms for massively 
 **Recommended Skills**: A strong understanding of calculus.
 
 **Expected Results**: New and faster methods for evaluating elementary mathematical functions. Benchmarks showing the performance differences for various implementations.
+
+**Mentors:** [Simon Byrne](https://github.com/simonbyrne)
 
 ## Special functions
 
@@ -82,6 +95,8 @@ and boundary cases.
 
 **Expected Results**: New and faster methods for evaluating properties of special functions.
 
+**Mentors:** [Simon Byrne](https://github.com/simonbyrne)
+
 ## Matrix functions
 
 Matrix functions maps matrices onto other matrices, and can often be interpreted as generalizations of ordinary functions like sine and exponential, which map numbers to numbers. Once considered a niche province of numerical algorithms, matrix functions now appear routinely in applications to cryptography, aircraft design, nonlinear dynamics, and finance.
@@ -91,6 +106,9 @@ This project proposes to implement state of the art algorithms that extend the c
 **Recommended Skills**: A strong understanding of calculus and numerical analysis.
 
 **Expected Results**: New and faster methods for evaluating matrix functions.
+
+**Mentors:** [Jiahao Chen](https://github.com/jiahao)
+
 
 # Interval arithmetic
 
@@ -105,6 +123,7 @@ This project proposes to achieve compliance of this package with the [IEEE 1788-
 
 **Expected results**: A library that fulfills the IEEE 1788-2015 standard.
 
+**Mentors:** [David Sanders](https://github.com/dpsanders), [Louis Benet](https://github.com/lbenet)
 ## Inverse (or "backward") functions and contractors for interval constraint propagation
 
 One important application of interval arithmetic is to the characterization of sets that satisfy certain inequalities ("set inversion"), as used, for example, in optimization, robotics, and the proof of mathematical theorems via rigorous numerical calculation. The state-of-the-art technique for this is interval constraint propagation, in particular the concept of "contractors".
@@ -117,3 +136,5 @@ To do so, it will be necessary to implement inverse functions for the standard f
 **Recommended Skills**: Mathematical background including basic set theory.
 
 **Expected results**: A library of interval contractors for interval constraint propagation.
+
+**Mentors:** [David Sanders](https://github.com/dpsanders), [Louis Benet](https://github.com/lbenet)
