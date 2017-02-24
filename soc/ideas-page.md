@@ -24,5 +24,6 @@ We have our project ideas organised roughly into the skillsets required:
 * [Numerics](projects/numerics.html) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
 * [Differential Equations](projects/diffeq.html) - Numerical methods for high-performance solving of differential equation models
 * [Tooling](projects/tooling.html) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
+* [Images](projects/images.html) – extend Julia's suite of tools for visualization and analysis of images.
 
 You can see previous Summer of Code projects at the [Archive page](archive.html).
