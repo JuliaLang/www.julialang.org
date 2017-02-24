@@ -3,6 +3,8 @@ layout: default
 title:  General Projects – Summer of Code
 ---
 
+# {{ page.title }}
+
 {% include toc.html %}
 
 ## Expanding and improving LearnBase/JuliaML

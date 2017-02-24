@@ -3,6 +3,8 @@ layout: default
 title:  Numerical Projects – Summer of Code
 ---
 
+# {{ page.title }}
+
 {% include toc.html %}
 
 For all of these projects, potential mentors are [Steven Johnson](https://github.com/stevengj), [Simon Byrne](https://github.com/simonbyrne) and [Tim Holy](https://github.com/timholy).

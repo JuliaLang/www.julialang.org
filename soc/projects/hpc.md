@@ -3,6 +3,8 @@ layout: default
 title:  HPC Projects – Summer of Code
 ---
 
+# {{ page.title }}
+
 Julia is emerging as a serious tool for technical computing and is ideally suited for the ever-growing needs of big data analytics. This set of proposed projects addresses specific areas for improvement in analytics algorithms and distributed data management.
 
 {% include toc.html %}

@@ -3,6 +3,8 @@ layout: default
 title:  DiffEq Projects – Summer of Code
 ---
 
+# {{ page.title }}
+
 {% include toc.html %}
 
 ## DiffEq-specific differentiation library to ease development of fast native stiff solvers

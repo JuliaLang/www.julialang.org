@@ -3,6 +3,8 @@ layout: default
 title:  Compiler Projects – Summer of Code
 ---
 
+# {{page.title}}
+
 {% include toc.html %}
 
 ## C Linter
