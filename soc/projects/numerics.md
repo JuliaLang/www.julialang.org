@@ -66,7 +66,7 @@ This project proposal is for implementing native Julia algorithms for massively 
 **Mentors:** [Sacha Verweij](https://github.com/Sacha0)
 
 # Base Mathematics Libraries
- si
+
 ## Upgrading openlibm
 
 [OpenLibm](http://openlibm.org) is a portable libm implementation used by Julia. It has fallen behind msun, from where it was forked a few years ago. This project seeks to update OpenLibm with all the latest bugfixes to msun. At the same time the [MUSL libm](http://git.musl-libc.org/cgit/musl/tree/src/math) implementation will be considered as an alternative to base openlibm on. A significant testsuite based on various existing [libm testsuites](http://nsz.repo.hu/libm/#tests) will be created.
