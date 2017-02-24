@@ -17,7 +17,7 @@ Iterative methods for solving numerical linear algebraic problems are crucial fo
 
 **Expected Results**: New high-performance backend native iterative solvers.
 
-**Mentors:** [Jiahao Chen](https://jiahao.github.io/), [Mauro](https://github.com/mauro3)
+**Mentors:** [Jiahao Chen](https://jiahao.github.io/)
 
 ## Native usage of LinearMaps in iterative solvers
 
@@ -26,6 +26,8 @@ While one normally thinks of solving the linear equation Ax=b with A being a mat
 **Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra.
 
 **Expected Results**: The ability to use more general LinearMaps in the IterativeSolvers.jl methods.
+
+**Mentors:** [Jiahao Chen](https://jiahao.github.io/)
 
 ## PETSc integration for scalable technical computing
 
@@ -61,7 +63,7 @@ This project proposal is for implementing native Julia algorithms for massively 
 
 **Expected Results**: A native Julia package for parallel sparse linear algebra methods.
 
-**Mentors:** [Andreas Noack](https://github.com/andreasnoack)
+**Mentors:** [Sacha Verweij](https://github.com/Sacha0)
 
 # Base Mathematics Libraries
 
@@ -93,7 +95,7 @@ and boundary cases.
 
 **Expected Results**: New and faster methods for evaluating properties of special functions.
 
-**Mentors:** [Alex Arslan](https://github.com/ararslan)
+**Mentors:** [Simon Byrne](https://github.com/simonbyrne)
 
 ## Matrix functions
 
