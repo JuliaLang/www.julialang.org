@@ -7,7 +7,7 @@ title:  Numerical Projects – Summer of Code
 
 {% include toc.html %}
 
-For all of these projects, potential mentors are [Steven Johnson](https://github.com/stevengj), [Simon Byrne](https://github.com/simonbyrne) and [Tim Holy](https://github.com/timholy).
+For all of these projects, potential mentors are [Steven Johnson](https://github.com/stevengj) and [Simon Byrne](https://github.com/simonbyrne).
 
 # Numerical Linear Algebra
 
@@ -117,9 +117,9 @@ This project proposes to implement state of the art algorithms that extend the c
 ## A standards-compliant interval arithmetic library
 
 Interval arithmetic provides a way to perform computations with floating-point numbers that are guaranteed to be correct, by
-wrapping each operand in an interval. [`ValidatedNumerics.jl`](https://github.com/dpsanders/ValidatedNumerics.jl) is a native Julia package providing interval functions that has a significant amount of functionality. 
+wrapping each operand in an interval. [`ValidatedNumerics.jl`](https://github.com/dpsanders/ValidatedNumerics.jl) is a native Julia package providing interval functions that has a significant amount of functionality.
 
-This project proposes to achieve compliance of this package with the [IEEE 1788-2015 Standard](https://standards.ieee.org/findstds/standard/1788-2015.html), which specifies how interval arithmetic packages should behave. This would make the package one of the first few packages to be fully compliant with the standard. It would involve adding some functions, writing documentation, improving the test suite, writing a compliance document, and overhauling and simplifying the code that already exists. The goal is to make this package a reference for interval arithmetic implementations. 
+This project proposes to achieve compliance of this package with the [IEEE 1788-2015 Standard](https://standards.ieee.org/findstds/standard/1788-2015.html), which specifies how interval arithmetic packages should behave. This would make the package one of the first few packages to be fully compliant with the standard. It would involve adding some functions, writing documentation, improving the test suite, writing a compliance document, and overhauling and simplifying the code that already exists. The goal is to make this package a reference for interval arithmetic implementations.
 
 **Recommended Skills**: Mathematical background; a basic understanding of floating-point arithmetic; an eye for detail and aesthetics; strong writing skills.
 
@@ -129,9 +129,9 @@ This project proposes to achieve compliance of this package with the [IEEE 1788-
 ## Inverse (or "backward") functions and contractors for interval constraint propagation
 
 One important application of interval arithmetic is to the characterization of sets that satisfy certain inequalities ("set inversion"), as used, for example, in optimization, robotics, and the proof of mathematical theorems via rigorous numerical calculation. The state-of-the-art technique for this is interval constraint propagation, in particular the concept of "contractors".
-The package [`IntervalConstraintProgramming.jl`](https://github.com/dpsanders/IntervalConstraintProgramming.jl) contains basic interval constraint propagation tools for polynomials. 
+The package [`IntervalConstraintProgramming.jl`](https://github.com/dpsanders/IntervalConstraintProgramming.jl) contains basic interval constraint propagation tools for polynomials.
 
-This project will develop a package `IntervalContractors.jl` to refactor out the part of the package dealing with contractors and inverse functions, which will enable the inversion of functions involving transcendental functions such as `sin` and `exp`. 
+This project will develop a package `IntervalContractors.jl` to refactor out the part of the package dealing with contractors and inverse functions, which will enable the inversion of functions involving transcendental functions such as `sin` and `exp`.
 
 To do so, it will be necessary to implement inverse functions for the standard functions, such as `sin`, `exp`, etc, as well as the corresponding contractors. These inverse functions return sets, expressed as intervals, that contain the inverse image of a given set. Two versions of these functions will be produced: one that returns an interval, and the other that may return the union of several disjoint intervals.
 
