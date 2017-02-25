@@ -120,7 +120,7 @@ Machine learning has become a popular tool for understanding data, but scientist
 
 ## Bayesian estimation for parameters of differential equations
 
-Bayesian estimation of parameters for differential equations is a popular technique since this outputs probability distributions for the underlying parameters. Julia's `ParameterizedFunction` makes it easy to solve differential equations with explicit parameters, and holds enough information to be used with [Stan.jl](https://github.com/goedman/Stan.jl). The purpose for this project is to create a function in [DiffEqParamEstim.jl](https://github.com/JuliaDiffEq/DiffEqParamEstim.jl) which translates the saved information of the model definition in a `ParameterizedFunction` to automatically write the input to Stan.jl, and tools for tweaking the inputs. Additionally, one can think about writing their own computational engine for Bayesian estimation using Julia-based tools like [Mocha.jl](https://github.com/pluskid/Mocha.jl), which would be able to use more of the JuliaDiffEq ecosystem.
+Bayesian estimation of parameters for differential equations is a popular technique since this outputs probability distributions for the underlying parameters. Julia's `ParameterizedFunction` makes it easy to solve differential equations with explicit parameters, and holds enough information to be used with [Stan.jl](https://github.com/goedman/Stan.jl). The purpose for this project is to create a function in [DiffEqParamEstim.jl](https://github.com/JuliaDiffEq/DiffEqParamEstim.jl) which translates the saved information of the model definition in a `ParameterizedFunction` to automatically write the input to Stan.jl, and tools for tweaking the inputs. Additionally, one can think about writing their own computational engine for Bayesian estimation using Julia-based tools like [Mocha.jl](https://github.com/pluskid/Mocha.jl) or [Klara.jl](https://github.com/JuliaStats/Klara.jl), which would be able to use more of the JuliaDiffEq ecosystem.
 
 **Recommended Skills**: Background knowledge in Bayesian estimation.
 
@@ -132,10 +132,26 @@ Bayesian estimation of parameters for differential equations is a popular techni
 
 One of the major uses for differential equations solvers is for partial differential equations (PDEs). PDEs are solved by discretizing to create ODEs which are then solved using ODE solvers. However, in many cases a good understanding of the PDEs are required to perform this discretization and minimize the error. The purpose of this project is to produce a library with common PDE discretizations to make it easier for users to solve common PDEs.
 
-**Recommended Skills**: Background knowledge in numerical methods for solving PDEs.
+The core of this project will be to build tooling that can be used to make it easy to discretize any partial differential equation in an efficient manner. This will be used to build a finite difference solver for the Heat Equation, a canonical problem in many fields, which can be profiled and benchmarked to ensure speed and accuracy. From there, the student can use these tools to take other canoncial partial differential equations, doing things such as:
+
+1) Discretizations of fluid dynamical equations, such as diffusion-advection-convection equations. 
+2) Extensions of discretizations to stochastic (random) partial differential equations.
+3) Tackling more efficiency issues: full utilization of operator linearity, split operator and IMEX (implicit-explicit) discretizations.
+4) Discretizations of hyperbolic PDEs such as the Hamilton-Jacobi-Bellman equations.
+5) Using stochastic differential equation (SDE) solvers to efficiently (and highly parallel) approximate certain PDEs.
+
+**Recommended Skills**: Background knowledge in numerical methods for solving differential equations. Some basic knowledge of PDEs, but mostly a willingness to learn and a strong understanding of calculus and linear algebra.
 
 **Expected Results**: A production-quality PDE solver package for some common PDEs.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
+## A Wrapper for the Fenics Finite Element Toolbox
 
+[FEniCS](https://fenicsproject.org/) is a popular finite element toolbox which makes it easy to build finite element discretizations of partial differential equations. These finite element toolboxes are decades long projects which require many man hours to build. Thus a pure-Julia library may not be feasible for quite some time, but are very useful in many scientific disciplines. The purpose of this project would be to build a wrapper for this library which makes it easy to use FEniCS within Julia.
+
+**Recommended Skills**: Prior knowledge of linear algebra and calculus is recommended to understand the concepts. An understanding of numerical methods for PDEs is not required, but the ability to learn about them (and learn to use them) is. Previous experience with Python is recommended.
+
+**Expected Results**: A production-quality wrapper of FEniCS.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
