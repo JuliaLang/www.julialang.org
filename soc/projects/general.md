@@ -86,3 +86,24 @@ While many common data structures are encouraged to be implemented in packages, 
 **Recommended Skills**: Ability to write type-stable Julia code. Ability to find performance issues. Knowledge about data structures and related algorithms.
 
 **Mentors:** [Jameson Nash](https://github.com/vtjnash)
+
+## Expanding the reach of Interact.jl with WebIO.jl
+
+[Interact.jl](https://github.com/JuliaGizmos/Interact.jl), host of the popular `@manipulate` macro, is a package for interacting with Julia code using UI widgets. It currently has a couple of serious limitations:
+
+1. It only works inside IJulia.
+2. A third-party package cannot build interactive features for it (See [#38](https://github.com/JuliaGizmos/Interact.jl/issues/38) for example).
+
+[WebIO.jl](https://github.com/shashi/WebIO.jl) is a new package for interactive HTML output in varied web-based front-ends to Julia, namely [Jupyter/IJulia](https://github.com/JuliaLang/IJulia.jl), the [Juno IDE](http://junolab.org/), [Mux](https://github.com/JuliaWeb/Mux.jl), and [Blink](https://github.com/JunoLab/Blink.jl). The idea is that these front-ends will support WebIO's display and communication API, while graphics packages like Plotls.jl or Interact.jl can build on a common counterpart display and communication API to create UIs. This means that graphics package authors need to write a widget once and it will work on all these front-ends. It also means that widgets from different packages based on WebIO.jl can be composed seamlessly.
+
+This project involves rewriting Interact.jl using [WebIO.jl](https://github.com/shashi/WebIO.jl) to make it available on more front-ends than just IJulia.
+
+It is a great opportunity to rethink what a package for manipulating interactive output could do. For example: can one interactively play with output from a package like Compose.jl using `@manipulate` or a similar construct (e.g. move a circle or draw a rectangle)? What would Compose.jl minimally have to do to support such interactions? How can Interact.jl help? Another scenario: can PlotlyJS use Interact.jl/WebIO.jl to support [drill down](http://www.highcharts.com/demo/column-drilldown) charts so that data can be loaded lazily from Julia as and when the user requests it? Can the state of the spreadsheet from DataFrames.jl be synced with a PlotlyJS plot?...
+
+While these are all interesting questions to consider, the scope of this package is only to provide basic widgets (such as those in Interact.jl) and re-implement the `@manipulate` macro on top of them.
+
+**Expected Results**: A package with basic UI widgets built on top of WebIO.jl, `@manipulate` macro with at least the same features as it does now.
+
+**Recommended Skills**: writing generic Julia code and modular JavaScript code, writing asynchronous programs in Julia. Good aesthetic sense with UIs is a bonus!
+
+**Mentors**: [Shashi Gowda](https://github.com/shashi)
