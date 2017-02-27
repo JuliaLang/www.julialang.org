@@ -140,3 +140,22 @@ To do so, it will be necessary to implement inverse functions for the standard f
 **Expected results**: A library of interval contractors for interval constraint propagation.
 
 **Mentors:** [David P. Sanders](https://github.com/dpsanders), [Luis Benet](https://github.com/lbenet)
+
+## Native Bignums
+
+Julia currently supports big integers, rationals and floats, making use of the GMP and MPFR libraries. However, the current implementation is very basic, performance is far from optimal compared to hand-written GMP code, and the GMP license is GPL 3.
+
+This project therefore involves exploring ways to improve bignums, possibly including:
+
+* Reimplementation of BigInt in Julia
+* Pooling bignum objects to avoid setup / teardown cost
+* Exposing a mutating API for library consumers
+* Lazy graph style APIs which can rewrite terms or apply optimisations
+
+This experimentation could be carried out as a package with a new implementation, or as patches over the existing implementation in Base.
+
+**Expected Results**: An implementation of BigNums in Julia with increased performance over the current one.
+
+**Require Skills**: Familiarity with extended precision numerics and performance considerations. Familiarity either with Julia or GMP.
+
+**Mentors**: [Jameson Nash](https://github.com/vtjnash), [Yichao Yu](https://github.com/yuyichao)

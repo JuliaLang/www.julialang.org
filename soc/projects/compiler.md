@@ -9,7 +9,7 @@ title:  Compiler Projects – Summer of Code
 
 ## Improved code-generation for un-inferred code
 
-Currently the quality (perfomance) of generated code does not degrade particularly gracefully as the quality of type-inference degrades. There are a number of difference projects possible here. Some example optimization opportunities include:
+Currently the quality (performance) of generated code does not degrade particularly gracefully as the quality of type-inference degrades. There are a number of different projects possible here. Some example optimization opportunities include:
 
 - Calling convention for varargs functions (https://github.com/JuliaLang/julia/issues/5402)
 - Call-site splatting optimizations (https://github.com/JuliaLang/julia/issues/13359)
@@ -17,7 +17,7 @@ Currently the quality (perfomance) of generated code does not degrade particular
 - More calling conventions, permitting improved performance (unboxed argument passing) when the direct method target is not known
 - Value domination and liveness analysis for optimizing stack space and gc-root allocation
 
-**Recommended Skills**: Experience with reading LLVM IR or assembly. An understanding of formal logic and using it develop improved code transformations.
+**Recommended Skills**: Experience with reading LLVM IR or assembly. An understanding of formal logic and using it to develop improved code transformations.
 
 **Mentors**: [Jameson Nash](https://github.com/vtjnash)
 
@@ -27,7 +27,7 @@ The starting point should likely be https://github.com/JuliaLang/Juleps/pull/21.
 
 **Expected Results**: Initiate replacement of the `Nullable{T}` with an implementation based around `Union{T, Void}` and `Union{Some{T}, Void}`.
 
-**Recommended Skills**: Experience with performance testing and Julia. Experience with data analysis also a big advantage.
+**Recommended Skills**: Experience with performance testing and Julia. Experience with data analysis involving missing values also a big advantage.
 
 **Mentors**: [Jameson Nash](https://github.com/vtjnash)
 
@@ -52,4 +52,3 @@ Memory errors in Julia's underlying C code are sometimes difficult to trace, and
 **Recommended Skills**: Experience with Julia's C runtime.
 
 **Mentors**: [Keno Fischer](https://github.com/Keno), [Yichao Yu](https://github.com/yuyichao)
-
