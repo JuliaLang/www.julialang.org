@@ -19,7 +19,7 @@ Possible projects are:
 
 **Recommended Skills**: General knowledge of the JuliaML project and aims, or wide knowledge of machine learning as a field, is a plus.
 
-**Mentors**: [Christof Stocker](https://github.com/Evizero), [Tom Breloff](https://github.com/tbreloff), [JuliaML Members](https://github.com/orgs/JuliaML/people)
+**Mentors**: [Christof Stocker](https://github.com/Evizero), [JuliaML Members](https://github.com/orgs/JuliaML/people)
 
 ## Standardized dataset packaging
 
