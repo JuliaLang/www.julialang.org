@@ -82,3 +82,7 @@ While many common data structures are encouraged to be implemented in packages, 
 - Changing Base.Dict to an ordered dict representation (http://datastructuresjl.readthedocs.io/en/latest/ordered_containers.html, https://github.com/JuliaLang/julia/pull/10116)
 - Experiment with using alternative Dict hash structures (such as Robin Hood Hashing, used by [Rust](https://doc.rust-lang.org/beta/std/collections/struct.HashMap.html))
 - Implementation and tests for assorted asynchronous, threaded storage primitives and data channels
+
+**Recommended Skills**: Ability to write type-stable Julia code. Ability to find performance issues. Knowledge about data structures and related algorithms.
+
+**Mentors:** [Jameson Nash](https://github.com/vtjnash)
