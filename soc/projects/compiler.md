@@ -30,21 +30,3 @@ Julia's method cache is shared by all call sites of a generic function. Although
 **Recommended Skills**: Knowledge of LLVM and Julia's compiler.
 
 **Mentors**: [Jameson Nash](https://github.com/vtjnash), [Yichao Yu](https://github.com/yuyichao)
-
-## Faster Bignums
-
-Julia currently supports big integers, rationals and floats, making use of the GMP library. However, the current implementation is very basic, and performance is far from optimal compared to hand-written GMP code.
-
-This project therefore involves exploring ways to speed up bignums, possibly including:
-
-* Pooling bignum objects to avoid setup / teardown cost
-* Exposing a mutating API for library consumers
-* Lazy graph style APIs which can rewrite terms or apply optimisations
-
-This experimentation could be carried out as a package with a new implementation, or as patches over the existing implementation in Base.
-
-**Expected Results**: An implementation of BigNums in Julia with increased performance over the current one.
-
-**Require Skills**: Familiarity with general techniques for optimisation, like object pooling. Familiarity either with Julia and its FFI, or GMP itself.
-
-**Mentors**: [Jameson Nash](https://github.com/vtjnash), [Yichao Yu](https://github.com/yuyichao)
