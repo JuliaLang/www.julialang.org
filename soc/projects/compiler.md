@@ -7,6 +7,40 @@ title:  Compiler Projects – Summer of Code
 
 {% include toc.html %}
 
+## Improved code-generation for un-inferred code
+
+Currently the quality (perfomance) of generated code does not degrade particularly gracefully as the quality of type-inference degrades. There are a number of difference projects possible here. Some example optimization opportunities include:
+
+- Calling convention for varargs functions (https://github.com/JuliaLang/julia/issues/5402)
+- Call-site splatting optimizations (https://github.com/JuliaLang/julia/issues/13359)
+- Keyword argument inference / inlining
+- More calling conventions, permitting improved performance (unboxed argument passing) when the direct method target is not known
+- Value domination and liveness analysis for optimizing stack space and gc-root allocation
+
+**Recommended Skills**: Experience with reading LLVM IR or assembly. An understanding of formal logic and using it develop improved code transformations.
+
+**Mentors**: [Jameson Nash](https://github.com/vtjnash)
+
+## Better Nullables
+
+The starting point should likely be https://github.com/JuliaLang/Juleps/pull/21. This will need further elaboration and study to identify any areas that are likely to be problematic under the new approach. Also will require new code and testing to demonstrate the performance and usability of the new code patterns; and to begin deprecation and replacement of the existing code pattern with Nullables.
+
+**Expected Results**: Initiate replacement of the `Nullable{T}` with an implementation based around `Union{T, Void}` and `Union{Some{T}, Void}`.
+
+**Recommended Skills**: Experience with performance testing and Julia. Experience with data analysis also a big advantage.
+
+**Mentors**: [Jameson Nash](https://github.com/vtjnash)
+
+## Thread-safety
+
+There are many remaining components that need to be updated to use thread-safe algorithms before Julia's threading will be stable for general usage. Some basic data-structures (such as the TypeMap) are missing correct RCU and memory barriers to ensure race-free answers. IO is also currently unavailable for multi-threaded code. The `realloc` operation for arrays (i.e. `resize!`) may be more reliable if it was implemented using RCU `malloc` (delaying the free until a gc-safepoint has been reached on all threads).
+
+**Expected Results**: Demonstrate that a program that fails at the beginning of the summer can now run to completion, or show what remains to be fixed to get it working. Start a test framework to help find bugs and race conditions in the current implementation, and to detect future regressions in multi-threading behavior.
+
+**Recommended Skills**: Experience with thread-safety in C.
+
+**Mentors**: [Jameson Nash](https://github.com/vtjnash), [Yichao Yu](https://github.com/yuyichao)
+
 ## C Linter
 
 Memory errors in Julia's underlying C code are sometimes difficult to trace, and missing garbage-collector "roots" (GC roots) can lead to segfaults and other problems. One potential way to make it easier to find such errors would be to write a package that checks Julia's `src/` directory for missing GC roots. A Julia-based solution might leverage the [Clang.jl](https://github.com/ihnorton/Clang.jl) package to parse the C code, determine which call chains can trigger garbage collection, and then look for objects that lack GC root protection. Alternatively, the same strategy might be implemented in C++ by writing a plugin for [Clang's static analyzer](http://clang-analyzer.llvm.org/). Another attractive approach is to leverage [coccinelle](http://coccinelle.lip6.fr/).
@@ -17,34 +51,5 @@ Memory errors in Julia's underlying C code are sometimes difficult to trace, and
 
 **Recommended Skills**: Experience with Julia's C runtime.
 
-**Mentors**: [Jameson Nash](https://github.com/vtjnash), [Yichao Yu](https://github.com/yuyichao)
+**Mentors**: [Keno Fischer](https://github.com/Keno), [Yichao Yu](https://github.com/yuyichao)
 
-## Specialized call-site method caching
-
-Julia's method cache is shared by all call sites of a generic function. Although whenever single dispatch is provable we generate a direct call, there are some cases where dynamic dispatch is inevitable. When the compiler can prove (using type inference) that the possible matches for a call site is small enough, it would be a huge performance win to generate a small cache specific to this call site.
-
-**Expected Results**: A PR for Base Julia implementing this optimisation.
-
-**Required Skills**: Good understanding of C/C++.
-
-**Recommended Skills**: Knowledge of LLVM and Julia's compiler.
-
-**Mentors**: [Jameson Nash](https://github.com/vtjnash), [Yichao Yu](https://github.com/yuyichao)
-
-## Faster Bignums
-
-Julia currently supports big integers, rationals and floats, making use of the GMP library. However, the current implementation is very basic, and performance is far from optimal compared to hand-written GMP code.
-
-This project therefore involves exploring ways to speed up bignums, possibly including:
-
-* Pooling bignum objects to avoid setup / teardown cost
-* Exposing a mutating API for library consumers
-* Lazy graph style APIs which can rewrite terms or apply optimisations
-
-This experimentation could be carried out as a package with a new implementation, or as patches over the existing implementation in Base.
-
-**Expected Results**: An implementation of BigNums in Julia with increased performance over the current one.
-
-**Require Skills**: Familiarity with general techniques for optimisation, like object pooling. Familiarity either with Julia and its FFI, or GMP itself.
-
-**Mentors**: [Jameson Nash](https://github.com/vtjnash), [Yichao Yu](https://github.com/yuyichao)
