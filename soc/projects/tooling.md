@@ -11,6 +11,23 @@ title:  Tooling Projects – Summer of Code
 
 The [Juno](http://junolab.org) is open to general project ideas (from here or not); feel free to get in contact via the [forum](http://discourse.julialang.org/) to discuss!
 
+## Progress Metre Improvements
+
+Right now Juno's progress metre works well but is fairly basic. In particular, it could be improved by:
+
+* Automatically reducing its own overhead, to avoid slowing down tight loops significantly,
+* Supporting cancellation so that long-running computations can be safely interrupted,
+* Supporting nested loops like `for i = 1:10, j = 1:10`,
+* and having a real fallback in the console, rather than simply falling through.
+
+These issues prevent package authors from using `@progress` over loops without modification, in many cases. This project would therefore involve improving on the above fronts (roughly in that order of priority).
+
+**Expected Results**: Patches to Juno.jl implementing the above improvements.
+
+**Recommended Skills**: Some experience with Julia and Juno is good, but only general programming skills are required.
+
+**Mentors**: [Mike Innes](https://github.com/mikeinnes)
+
 ## Documentation search & navigation
 
 We'd like to make finding and viewing relevant documentation a core part of the Juno/Julia experience. As well as viewing docs for a particular function, it'd be great to take advantage of the extensive Markdown docs provided by packages for other purposes. For example, a basic doc search engine could allow users to find relevant functionality even when they don't know the names of the functions involved. (This could even be extended to searching across all packages!)
