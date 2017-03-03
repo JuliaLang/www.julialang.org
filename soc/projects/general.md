@@ -7,20 +7,6 @@ title:  General Projects – Summer of Code
 
 {% include toc.html %}
 
-## Expanding and improving LearnBase/JuliaML
-
-[LearnBase](https://github.com/Evizero/LearnBase.jl) is an attempt to create common abstractions and tools for machine learning frameworks. Common functionality like data loading, loss functions or training processes can be defined generically, and then easily combined with a specific approach (e.g. an SVM).
-
-Possible projects are:
-  * Contributing to the generic functionality in JuliaML (e.g. creating or improving a package for loading data sets, or implementing training process, etc)
-  * Pure-Julia implementations of specific model types (e.g. decision trees or SVMs) which integrate with the JuliaML ecosystem.
-
-**Required Skills**: Knowledge of the machine learning technique(s) to be implemented.
-
-**Recommended Skills**: General knowledge of the JuliaML project and aims, or wide knowledge of machine learning as a field, is a plus.
-
-**Mentors**: [Christof Stocker](https://github.com/Evizero), [JuliaML Members](https://github.com/orgs/JuliaML/people)
-
 ## Standardized dataset packaging
 
 Scientific and technical computing often makes use of publicly available datasets. Often, there's a lot of overhead to finding these data sets and coercing them into a usable format. Packages like [RDatasets.jl](https://github.com/johnmyleswhite/RDatasets.jl/) and [MNIST.jl](https://github.com/johnmyleswhite/MNIST.jl) attempt to make this easier by downloading data automatically and providing it as a Julia data structure.
