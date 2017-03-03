@@ -9,7 +9,7 @@ Plotting in Julia is available through external packages.
 
 ## Plots
 
-[Plots.jl](https://github.com/tbreloff/Plots.jl) is a plotting metapackage which
+[Plots.jl](https://github.com/JuliaPlots/Plots.jl) is a plotting metapackage which
 brings many different plotting packages under a single API, making it easy to swap
 between plotting "backends". Installation and example usage is as follows:
 
@@ -32,7 +32,7 @@ visualizations the extension packages have added to Plots.jl.
 
 ## PyPlot
 
-[PyPlot](https://github.com/stevengj/PyPlot.jl) uses the Julia PyCall
+[PyPlot](https://github.com/JuliaPy/PyPlot.jl) uses the Julia PyCall
 package to call Python's matplotlib directly from Julia with little or
 no overhead (arrays are passed without making a copy). Make sure that
 Python and MatPlotlib are correctly installed. Installation of
@@ -60,6 +60,4 @@ draw(SVG("output.svg", 6inch, 3inch), plot([sin, cos], 0, 25))
 
 Gadfly's interface will be familiar to users of R's
 [ggplot2](http://ggplot2.org) package. See
-[examples](https://github.com/dcjones/Gadfly.jl/tree/master/doc) and
-documentation on the [Gadfly](https://github.com/dcjones/Gadfly.jl)
-homepage.
+examples and documentation on the [Gadfly](http://gadflyjl.org) homepage.

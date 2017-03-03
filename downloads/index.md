@@ -8,14 +8,14 @@ title:  Julia Downloads
 We provide several ways for you to run Julia:
 
 * In the terminal using the built-in Julia command line.
-* The [Juno](http://www.junolab.org) integrated development environment (IDE).
 * In the browser on [JuliaBox.com](https://www.juliabox.com) with Jupyter notebooks. No installation is required -- just point your browser there, login and start computing.
+* [JuliaPro](http://juliacomputing.com/products/juliapro.html) by [Julia Computing](http://juliacomputing.com) is a batteries included distribution of Julia. It includes the [Juno IDE](http://junolab.org), the [Gallium debugger](https://github.com/Keno/Gallium.jl), and a number of packages for plotting, optimization, machine learning, databases and much more (requires registration).
 
 Plotting capabilities are provided by external packages such as
-[PyPlot.jl](https://github.com/stevengj/PyPlot.jl) and [Gadfly.jl](http://gadflyjl.org). 
-A package which integrates most of Julia's plotting backends into one convenient and 
-well-documented API is [Plots.jl](https://github.com/tbreloff/Plots.jl). Look at the 
-[plotting instructions](plotting.html) to install a plotting package. If you are using 
+[PyPlot.jl](https://github.com/JuliaPy/PyPlot.jl) and [Gadfly.jl](http://gadflyjl.org).
+A package which integrates most of Julia's plotting backends into one convenient and
+well-documented API is [Plots.jl](https://github.com/JuliaPlots/Plots.jl). Look at the
+[plotting instructions](plotting.html) to install a plotting package. If you are using
 JuliaBox, all of these plotting packages are pre-installed.
 
 ## Julia (command line version)
@@ -53,10 +53,6 @@ trouble installing Julia.  Checksums for this release are available in both [MD5
 If the provided download files do not work for you, please [file an
 issue in the Julia project](https://github.com/JuliaLang/julia/issues).
 
-## Juno IDE
-
-Please see the [Juno website](http://junolab.org) for setup instructions, and [the discussion forum](http://discuss.junolab.org) for any questions or issues.
-
 # Older Releases
 
 Older releases of Julia for all platforms are available on the [Older releases page](http://julialang.org/downloads/oldreleases.html).
@@ -66,8 +62,8 @@ For Julia 0.4, only bugfixes are being supported. Releases older than 0.4 are no
 # Nightly builds
 
 These are bleeding-edge binaries of the latest version of Julia under
-development, which you can use to get a preview of the latest work.  
-The nightly builds are for developer previews and not intended for 
+development, which you can use to get a preview of the latest work.
+The nightly builds are for developer previews and not intended for
 normal use. You can expect many packages not to work with this version.
 Most users are advised to use the latest official release version of Julia, above.
 
