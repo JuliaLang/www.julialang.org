@@ -236,6 +236,7 @@ Europe
 * [Zurich Julia Users Group](http://www.meetup.com/Zurich-Julia-User-Group/)
 * [Vienna Julia Meetup](http://www.meetup.com/Vienna-Julia-Meetup/)
 * [Julia Users Berlin](https://www.meetup.com/Julia-Users-Group/), see also our [news site](http://julia-users-berlin.github.io/)
+* [Warszawskie Forum Julia](https://www.meetup.com/Warszawskie-Forum-Julia/)
 
 Asia
 
