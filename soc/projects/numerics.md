@@ -40,7 +40,6 @@ This project proposal is to develop a new Julia package to interface with PETsc,
 
 **Expected Results**: New wrappers for PETSc functions in the [PETSc.jl](https://github.com/JuliaParallel/PETSc.jl) package.
 
-**Mentors:** [Jared Crean](https://github.com/JaredCrean2)
 
 ## Parallel dense linear algebra routines
 
