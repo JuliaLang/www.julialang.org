@@ -3,6 +3,28 @@ layout: default
 title:  The Julia Language
 ---
 
+<div style="display: flex; flex-direction: row; align-items:center; margin-bottom: 32px">
+    <div style="width: 48%; text-align: center">
+        <div style="justify-content:center; margin-bottom: 16px; display: flex; flex-direction: row; align-items:center">
+            <a href="http://juliacon.org"><img src="http://juliacon.org/2017/assets/img/logo.svg" style="width:200px; height: auto"></a>
+            <div style="margin-left: 16px; margin-top: 16px; font-weight: bold; font-size: 2.5em">2017</div>
+        </div>
+        <div>
+            June 20th - June 24th 2017, Berkeley, CA. <br>
+            <a href="http://juliacon.org/2017/cfp">CfP</a> closes on March 25th!
+        </div>
+    </div>
+    <div style="width: 48%; text-align: center">
+        <div style="justify-content:center; margin-bottom: 16px; display: flex; flex-direction: row; align-items:center">
+            <a href="/soc/ideas-page.html"><img src="/images/julia-gsoc-logo.svg" style="width:200px; height: auto"></a>
+        </div>
+        <div>
+            Julia is part of <b><a href="https://summerofcode.withgoogle.com/">Google Summer of Code 2017</a>!</b><br>
+            Check out <a href="/soc/ideas-page.html">our project ideas</a> and get involved!
+        </div>
+    </div>
+</div>
+
 [Julia](http://julialang.org) is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments.
 It provides a sophisticated compiler, [distributed parallel execution](http://docs.julialang.org/en/stable/manual/parallel-computing/), numerical accuracy, and an [extensive mathematical function library](http://docs.julialang.org/en/stable/stdlib/).
 Julia's Base library, largely written in Julia itself, also integrates mature, best-of-breed open source C and Fortran libraries for [linear algebra](http://docs.julialang.org/en/stable/stdlib/linalg/), [random number generation](http://docs.julialang.org/en/stable/stdlib/numbers/#random-numbers), [signal processing](http://docs.julialang.org/en/stable/stdlib/math/#signal-processing), and [string processing](http://docs.julialang.org/en/stable/stdlib/strings/#strings).
