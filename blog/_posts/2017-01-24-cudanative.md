@@ -37,7 +37,8 @@ Most of the time it boils down to the following commands:
 ```
 $ git clone https://github.com/JuliaLang/julia.git
 $ cd julia
-$ make      # add -jN if you have N logical CPU cores
+$ git checkout v0.6.0-pre.alpha  # or any later tag
+$ make                           # add -jN for N parallel jobs
 $ ./julia
 ```
 
