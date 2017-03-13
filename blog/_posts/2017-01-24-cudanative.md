@@ -125,7 +125,29 @@ phases:
 
 All this is hidden behind the call to `@cuda`, which generates code to compile our kernel
 upon first use. Every subsequent invocation will re-use that code, convert and upload
-arguments[^1], and finally launch the kernel.
+arguments[^1], and finally launch the kernel. And much like we're used to on the CPU, you
+can introspect this code using runtime reflection:
+
+```julia
+# CUDAnative.jl provides alternatives to the @code_ macros,
+# looking past @cuda and converting argument types
+julia> CUDAnative.@code_llvm @cuda (1,len) kernel_vadd(d_a, d_b, d_c)
+define void @julia_kernel_vadd_68711 {
+    [LLVM IR]
+}
+
+# ... but you can also invoke without @cuda
+julia> @code_ptx kernel_vadd(d_a, d_b, d_c)
+.visible .func julia_kernel_vadd_68729(...) {
+    [PTX CODE]
+}
+
+# or manually specify types (this is error prone!)
+julia> code_sass(kernel_vadd, (CuDeviceArray{Float32,2},CuDeviceArray{Float32,2},CuDeviceArray{Float32,2}))
+code for sm_20
+        Function : julia_kernel_vadd_68481
+[SASS CODE]
+```
 
 [^1]: See the [README]({{page.cudanative_tree}}/README.md#object-arguments) for a note on how expensive this currently is.
 
