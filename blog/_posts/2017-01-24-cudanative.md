@@ -2,7 +2,7 @@
 layout: post
 title:  "Technical preview: Native GPU programming with CUDAnative.jl"
 author: <a href="https://github.com/maleadt">Tim Besard</a>
-cudanative_tree: https://github.com/JuliaGPU/CUDAnative.jl/blob/6e6ec23ef4def367dec6ae0ba3e43f1d9daae7ec
+cudanative_tree: https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271
 ---
 
 After 2 years of slow but steady development, we would like to announce the first preview
@@ -135,8 +135,8 @@ example, the `{thread,block,grid}{Idx,Dim}` functions provide access to the size
 of each level of work. Local shared memory can be created using the `@cuStaticSharedMem` and
 `@cuDynamicSharedMem` macros, while `@cuprintf` can be used to display a formatted string
 from within a kernel function. Many [math
-functions]({{page.cudanative_tree}}/src/intrinsics.jl#L486-L795) are also available; these
-should be used instead of similar functions in the standard library.
+functions]({{page.cudanative_tree}}/src/device/intrinsics.jl#L486-L795) are also available;
+these should be used instead of similar functions in the standard library.
 
 
 ### What is missing?
