@@ -157,7 +157,7 @@ example, the `{thread,block,grid}{Idx,Dim}` functions provide access to the size
 of each level of work. Local shared memory can be created using the `@cuStaticSharedMem` and
 `@cuDynamicSharedMem` macros, while `@cuprintf` can be used to display a formatted string
 from within a kernel function. Many [math
-functions]({{page.cudanative_tree}}/src/device/intrinsics.jl#L486-L795) are also available;
+functions]({{page.cudanative_tree}}/src/device/intrinsics.jl#L499-L807) are also available;
 these should be used instead of similar functions in the standard library.
 
 
