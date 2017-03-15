@@ -395,7 +395,7 @@ require multidimensional computation.
 It's worth noting one point that has thus far remained unstated: all
 of the examples here are relatively *cache efficient*.  This is a key
 property to observe when writing [efficient
-code](http://julialang.org/blog/2013/09/fast-numeric/).  In
+code](http://julialang.org/blog/2013/09/fast-numeric).  In
 particular, julia arrays are stored in first-to-last dimension order
 (for matrices, "column-major" order), and hence you should nest
 iterations from last-to-first dimensions.  For example, in the
