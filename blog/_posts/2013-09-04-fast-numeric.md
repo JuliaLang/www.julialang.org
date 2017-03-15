@@ -254,4 +254,4 @@ Here are a couple of packages that might be useful for those interested in high 
 
 * [Devectorize.jl](https://github.com/lindahua/Devectorize.jl) – macros and functions to de-vectorize vector expressions. With this package, users can write computations in high-level vectorized way while enjoying the high run-time performance of hand-coded de-vectorized loops.
 
-Check out the [Julia package list](http://pkg.julialang.org/) for many more packages. Julia also ships with a [sampling profiler](http://docs.julialang.org/en/latest/stdlib/profile/) to measure where your code is spending most of its time. When in doubt, measure don't guess!
+Check out the [Julia package list](http://pkg.julialang.org/) for many more packages. Julia also ships with a [sampling profiler](http://docs.julialang.org/en/latest/stdlib/profile) to measure where your code is spending most of its time. When in doubt, measure don't guess!
