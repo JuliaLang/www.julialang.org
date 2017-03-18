@@ -2,6 +2,7 @@
 layout: default
 title:  The Julia Language
 ---
+<link rel="canonical" href="http://julialang.org">
 
 <div style="display: flex; flex-direction: row; align-items:center; margin-bottom: 32px">
     <div style="width: 48%; text-align: center">
