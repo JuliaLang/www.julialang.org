@@ -310,22 +310,18 @@ As part of the Julia language project, we have developed an approach that yields
 	Year = {2012}}
 
 @article{BEKS14,
-	Abstract = {The Julia programming language is gaining enormous popularity. Julia was designed to be easy and fast. Most importantly, Julia shatters deeply established notions widely held in the applied community:
-
-1. High-level, dynamic code has to be slow by some sort of law of nature.
-2. It is sensible to prototype in one language and then recode in another language.
-3. There are parts of a system for the programmer, and other parts best left untouched as they are built by the experts.
-
-Julia began with a deep understanding of the needs of the scientific programmer and the needs of the computer in mind. Bridging cultures that have often been distant, Julia combines expertise from computer science and computational science creating a new approach to scientific computing. This note introduces the programmer to the language and the underlying design theory. It invites the reader to rethink the fundamental foundations of numerical computing systems.
-
-In particular, there is the fascinating dance between specialization and abstraction. Specialization allows for custom treatment. We can pick just the right algorithm for the right circumstance and this can happen at runtime based on argument types (code selection via multiple dispatch). Abstraction recognizes what remains the same after differences are stripped away and ignored as irrelevant. The recognition of abstraction allows for code reuse (generic programming). A simple idea that yields incredible power. The Julia design facilitates this interplay in many explicit and subtle ways for machine performance and, most importantly, human convenience.},
-	Eprinttype = {arXiv},
-	Author = {Jeff Bezanson and Alan Edelman and Stefan Karpinski and Viral B. Shah},
-	Eprint = {1411.1607},
-	Month = {November},
-	Eprintclass = {cs.MS},
-	Title = {{J}ulia: A Fresh Approach to Numerical Computing},
-	Year = {2014}}
+	Abstract = {Bridging cultures that have often been distant, Julia combines expertise from the diverse fields of computer science and computational science to create a new approach to numerical computing. Julia is designed to be easy and fast and questions notions generally held to be “laws of nature" by practitioners of numerical computing: (1) High-level dynamic programs have to be slow; (2) One must prototype in one language and then rewrite in another language for speed or deployment; (3) There are parts of a system appropriate for the programmer, and other parts that are best left untouched as they have been built by the experts. We introduce the Julia programming language and its design---a dance between specialization and abstraction. Specialization allows for custom treatment. Multiple dispatch, a technique from computer science, picks the right algorithm for the right circumstance. Abstraction, which is what good computation is really about, recognizes what remains the same after differences are stripped away. Abstractions in mathematics are captured as code through another technique from computer science, generic programming. Julia shows that one can achieve machine performance without sacrificing human convenience.},
+author = {Jeff Bezanson and Alan Edelman and Stefan Karpinski and Viral B. Shah},
+title = {Julia: A Fresh Approach to Numerical Computing},
+journal = {SIAM Review},
+volume = {59},
+number = {1},
+pages = {65-98},
+year = {2017},
+doi = {10.1137/141000671},
+URL = {http://julialang.org/publications/julia-fresh-approach-BEKS.pdf},
+eprint = {http://dx.doi.org/10.1137/141000671}
+}
 
 @article{SO14,
 	Abstract = {We investigate the use of conformal maps for the acceleration of convergence of the trapezoidal rule and Sinc numerical methods. The conformal map is a polynomial adjustment to the sinh map, and allows the treatment of a finite number of singularities in the complex plane. In the case where locations are unknown, the so-called Sinc-Pad\'e approximants are used to provide approximate results. This adaptive method is shown to have almost the same convergence properties. We use the conformal maps to generate high accuracy solutions to several challenging integrals, nonlinear waves, and multidimensional integrals.},
