@@ -18,7 +18,7 @@ Check out the [application guidelines](guidelines/) once you have a project in m
 
 We have our project ideas organised roughly into the skillsets required:
 
-* [Machine Learning](projects/md.html) – Work on the Machine Learning packages in Julia's ecosystem.
+* [Machine Learning](projects/ml.html) – Work on the Machine Learning packages in Julia's ecosystem.
 * [Compiler](projects/compiler.html) – work on the Julia compiler's internals to make things better for everyone.
 * [HPC](projects/hpc.html) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Numerics](projects/numerics.html) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
