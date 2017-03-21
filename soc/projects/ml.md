@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  General Projects – Summer of Code
+title: Machine Learning General Projects – Summer of Code
 ---
 
 {% include toc.html %}
