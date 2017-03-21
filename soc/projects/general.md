@@ -7,18 +7,6 @@ title:  General Projects – Summer of Code
 
 {% include toc.html %}
 
-## Standardized dataset packaging
-
-Scientific and technical computing often makes use of publicly available datasets. Often, there's a lot of overhead to finding these data sets and coercing them into a usable format. Packages like [RDatasets.jl](https://github.com/johnmyleswhite/RDatasets.jl/) and [MNIST.jl](https://github.com/johnmyleswhite/MNIST.jl) attempt to make this easier by downloading data automatically and providing it as a Julia data structure.
-
-This project involves building a "[BinDeps.jl](https://github.com/JuliaLang/BinDeps.jl) for data" which would make the creation of data-providing packages easier. The package would make it easy to download / unzip large files and check their integrity them in a cross-platform way. Facilities for downloading specific datasets can then be built on top of this.
-
-**Expected Results**: A BinDeps-like package for downloading and managing data, as well as examples of this package used with specific data sets.
-
-**Recommended Skills**: Only standard programming skills are needed for this project. Familiarity with Julia is a plus.
-
-**Mentors**: [JuliaML Members](https://github.com/orgs/JuliaML/people)
-
 ## Enhanced clipboard
 
 Julia's functions for getting and setting the clipboard are currently limited to text; it would be useful to extend them to allow the transfer of other data (for example, spreadsheet data or images).
