@@ -17,7 +17,7 @@ The [Torch](https://github.com/torch/torch7) library provides a fast implementat
 
 ## Data loading and training processes for Flux.jl
 
-Currently [Flux](https://github.com/MikeInnes/Flux.jl) only supports standard Stochastic Gradient Descent as a way of training neural networks. This project would involve implementing other optimisers like ADAM in the library.
+Currently [Flux](https://github.com/MikeInnes/Flux.jl) best supports a basic (stochastic) gradient descent training process. This project would involve implementing other optimisers like ADAM in the library, as well as extending the training processes to carry out user-configurable analysis or reporting during training.
 
 **Expected Results**: New optimisers for the Flux library.
 
