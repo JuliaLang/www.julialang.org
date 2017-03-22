@@ -42,7 +42,7 @@ Various Julia projects are hosted under the following umbrella organizations on 
 * [JuliaLang](https://github.com/JuliaLang) – [The language](http://www.julialang.org/)
 * [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language
 * [JuliaLangPt](https://github.com/JuliaLangPt) – Site for translation of Julia documentation, etc. to Portuguese
-* [JuliaCN](https://github.com/JuliaCN) – An open-source orgnization for Julia localization in Chinese
+* [JuliaCN](https://github.com/JuliaCN) – An open-source organization for Julia localization in Chinese
 * [JuliaTokyo](https://github.com/JuliaTokyo) – Julia resources in the Japanese language
 
 ## Computing
