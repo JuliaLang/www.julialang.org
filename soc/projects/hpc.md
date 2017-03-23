@@ -21,6 +21,8 @@ The [LightGraphs.jl](https://github.com/JuliaGraphs/LightGraphs.jl) package prov
 
 **Expected Results**: creation of LightGraphs-based data structures and algorithms that take advantage of large-scale parallel computing environments.
 
+**Mentorship Inquiries**: Drop by [LightGraphs.jl on Gitter](https://gitter.im/JuliaGraphs/LightGraphs.jl).
+
 ## Ensure that Julia runs smoothly on current large HPC systems
 
 Julia employs several techniques that are novel in the field of high performance computing, such as just-in-time compiling, or first-class support of an interactive environment, or dynamically adding/removing worker processes. This clashes with the traditional ahead-of-time compiled programes running in batch mode. However, the advantages of Julia's approach are clear. This project explores how "typical" Julia programs can be run efficiently on current large scale systems such as, e.g. [Blue Waters](https://bluewaters.ncsa.illinois.edu) or [Cori](http://www.nersc.gov/users/computational-systems/cori/).
