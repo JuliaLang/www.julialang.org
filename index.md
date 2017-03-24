@@ -12,7 +12,7 @@ title:  The Julia Language
         </div>
         <div>
             June 20th - June 24th 2017, Berkeley, CA. <br>
-            <a href="http://juliacon.org/2017/cfp">CfP</a> closes on March 25th!
+            <a href="http://juliacon.org/2017/cfp">CfP</a> closes on March <del>25th</del> 31st!
         </div>
     </div>
     <div style="width: 48%; text-align: center">
