@@ -13,7 +13,7 @@ The [Torch](https://github.com/torch/torch7) library provides a fast implementat
 
 **Recommended Skills**: Knowledge of Julia's C FFI and calling C code.
 
-**Mentors**: Mike Innes
+**Mentors**: Mike Innes, Pontus Stenetorp
 
 ## Data loading and training processes for Flux.jl
 
