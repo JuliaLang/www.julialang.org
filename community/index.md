@@ -242,6 +242,7 @@ Asia
 
 * [Bangalore Julia User Group](http://www.meetup.com/Bangalore-Julia-User-Group/)
 * [Beijing Julia User Group](https://www.meetup.com/juliacn/)
+* [JuliaDelhi](https://www.meetup.com/Juliadelhi/)
 
 Australia
 
