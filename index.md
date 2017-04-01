@@ -17,7 +17,7 @@ title:  The Julia Language
     </div>
     <div style="width: 48%; text-align: center">
         <div style="justify-content:center; margin-bottom: 16px; display: flex; flex-direction: row; align-items:center">
-            <a href="/soc/ideas-page.html"><img src="/images/julia-gsoc-logo.svg" style="width:200px; height: auto"></a>
+            <a href="/soc/ideas-page.html"><img src="/images/juliasock.png" style="width:88px; height: auto"></a>
         </div>
         <div>
             Julia is part of <b><a href="https://summerofcode.withgoogle.com/">Google Summer of Code 2017</a>!</b><br>
