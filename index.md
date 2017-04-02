@@ -7,7 +7,7 @@ title:  The Julia Language
 <div style="display: flex; flex-direction: row; align-items:center; margin-bottom: 32px">
     <div style="width: 48%; text-align: center">
         <div style="justify-content:center; margin-bottom: 16px; display: flex; flex-direction: row; align-items:center">
-            <a href="http://juliacon.org"><img src="http://juliacon.org/2017/assets/img/logo.svg" style="width:200px; height: auto"></a>
+            <a href="http://juliacon.org"><img src="/images/juliacon2017.svg" style="width:200px; height: auto"></a>
             <div style="margin-left: 16px; margin-top: 16px; font-weight: bold; font-size: 2.5em">2017</div>
         </div>
         <div>
