@@ -23,7 +23,7 @@ navigation:
     title: teaching
   - url: "/publications/"
     title: publications
-  - url: "/soc/"
+  - url: "/soc/ideas-page.html"
     title: GSoC
   - url: "http://juliacon.org"
     title: juliacon
@@ -43,4 +43,3 @@ featuredvideos:
   - site: youtube
     id: e6-hcOHO0tc
     title: "Gallium - the Julia Debugger"
-baseurl: "/julialang.github.com"

@@ -2,8 +2,31 @@
 layout: default
 title:  The Julia Language
 ---
+<link rel="canonical" href="http://julialang.org">
 
-Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments.
+<div style="display: flex; flex-direction: row; align-items:center; margin-bottom: 32px">
+    <div style="width: 48%; text-align: center">
+        <div style="justify-content:center; margin-bottom: 16px; display: flex; flex-direction: row; align-items:center">
+            <a href="http://juliacon.org"><img src="/images/juliacon2017.svg" style="width:200px; height: auto"></a>
+            <div style="margin-left: 16px; margin-top: 16px; font-weight: bold; font-size: 2.5em">2017</div>
+        </div>
+        <div>
+            June 20th - June 24th 2017, Berkeley, CA. <br>
+            <a href="http://juliacon.org/2017/cfp">CfP</a> closes on March <del>25th</del> 31st!
+        </div>
+    </div>
+    <div style="width: 48%; text-align: center">
+        <div style="justify-content:center; margin-bottom: 16px; display: flex; flex-direction: row; align-items:center">
+            <a href="/soc/ideas-page.html"><img src="/images/juliasock.png" style="width:88px; height: auto"></a>
+        </div>
+        <div>
+            Julia is part of <b><a href="https://summerofcode.withgoogle.com/">Google Summer of Code 2017</a>!</b><br>
+            Check out <a href="/soc/ideas-page.html">our project ideas</a> and get involved!
+        </div>
+    </div>
+</div>
+
+[Julia](http://julialang.org) is a high-level, high-performance dynamic programming language for numerical computing.
 It provides a sophisticated compiler, [distributed parallel execution](http://docs.julialang.org/en/stable/manual/parallel-computing/), numerical accuracy, and an [extensive mathematical function library](http://docs.julialang.org/en/stable/stdlib/).
 Julia's Base library, largely written in Julia itself, also integrates mature, best-of-breed open source C and Fortran libraries for [linear algebra](http://docs.julialang.org/en/stable/stdlib/linalg/), [random number generation](http://docs.julialang.org/en/stable/stdlib/numbers/#random-numbers), [signal processing](http://docs.julialang.org/en/stable/stdlib/math/#signal-processing), and [string processing](http://docs.julialang.org/en/stable/stdlib/strings/#strings).
 In addition, the Julia developer community is contributing a number of [external packages](http://pkg.julialang.org) through Julia's built-in package manager at a rapid pace. [IJulia](https://github.com/JuliaLang/IJulia.jl), a collaboration between the [Jupyter](http://jupyter.org) and Julia communities, provides a powerful browser-based graphical notebook interface to Julia.
@@ -61,7 +84,9 @@ We encourage you to skim the code to get a sense for how easy or difficult numer
 The following micro-benchmark results were obtained on a single core (serial execution) on an Intel(R) Xeon(R) CPU E7-8850 2.00GHz CPU with 1TB of 1067MHz DDR3 RAM, running Linux:
 
 <div class="figure">
+<div class="cs-benchmark-table">
 {% include benchmarks.html %}
+</div>
 <p class="caption"><b>Figure:</b>
 benchmark times relative to C (smaller is better, C performance = 1.0).
 </p>
@@ -79,7 +104,7 @@ with <a href="https://github.com/dcjones/Gadfly.jl">Gadfly</a>.
 These benchmarks, while not comprehensive, do test compiler performance on a range of common code patterns, such as function calls, string parsing, sorting, numerical loops, random number generation, and array operations.
 It is important to note that these benchmark implementations are not written for absolute maximal performance (the fastest code to compute `fib(20)` is the constant literal `6765`).
 Rather, all of the benchmarks are written to test the performance of specific algorithms implemented in each language.
-In particular, all languages use the same algorithm: the Fibonacci benchmarks are all recursive while the pi summation benchmarks are all iterative; the "algorithm" for random matrix multiplication is to call LAPACK, except where that's not possible, such as in JavaScript.
+In particular, all languages use the same algorithm: the Fibonacci benchmarks are all recursive while the pi summation benchmarks are all iterative; the "algorithm" for random matrix multiplication is to call the most obvious built-in/standard random-number and matmul routines (or to directly call BLAS if the language does not provide a high-level matmul), except where a matmul/BLAS call is not possible (such as in JavaScript).
 The point of these benchmarks is to compare the performance of specific *algorithms* across language implementations, not to compare the fastest means of computing a result, which in most high-level languages relies on calling C code.
 Raw benchmark numbers in CSV format are available [here](/benchmarks.csv).
 
@@ -125,12 +150,12 @@ This continuous spectrum of programming levels is a hallmark of the Julia approa
 # Designed for Parallelism and Cloud Computing
 
 Julia does not impose any particular style of parallelism on the user.
-Instead, it provides a number of [key building blocks for distributed computation](/manual/parallel-computing), making it flexible enough to support a number of styles of parallelism, and allowing users to add more.
+Instead, it provides a number of [key building blocks for distributed computation](http://docs.julialang.org/en/stable/manual/parallel-computing), making it flexible enough to support a number of styles of parallelism, and allowing users to add more.
 The following simple example demonstrates how to count the number of heads in a large number of coin tosses in parallel.
 
 {% highlight julia %}
 nheads = @parallel (+) for i=1:100000000
-  int(randbool())
+  rand(Bool)
 end
 {% endhighlight %}
 

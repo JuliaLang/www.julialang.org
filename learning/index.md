@@ -4,6 +4,9 @@ title:  Learning Julia
 ---
 # Books
 
+- [Julia: High Performance Programming](https://www.packtpub.com/application-development/julia-high-performance-programming) by Ivo Balbaert, Avik Sengupta, Malcolm Sherrington
+ (697 pages; published: November 2016; ISBN: 9781787125704) 
+   In this learning path, you will learn to use an interesting and dynamic programming language—Julia! This book is a combination and curation of the three separate books by the three authors.
 - [Julia Programming for Operations Research: A Primer on Computing](http://www.chkwon.net/julia) by Changhyun Kwon (246 pages; published: 2016-05; ISBN: 978-1533328793) 
     This book aims to teach how one can solve various optimization problems arising in operations research and management science. 
 - [Julia High Performance](https://www.packtpub.com/application-development/julia-high-performance) by Avik Sengupta (120 pages; published: 2016-05; ISBN: 9781785880919) 
@@ -12,15 +15,19 @@ title:  Learning Julia
 - [Getting Started with Julia Programming](https://www.packtpub.com/application-development/getting-started-julia-programming/) by Ivo Balbaert - published by Packt Publishing (214 pages; published: 2015-02-28; ISBN: 9781783284795)
 - [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks) by Bruce Tate, Fred Daoud, Jack Moffit and Ian Dees - published by The Pragmatic Programmers (350 pages; published: 2014-11-15; ISBN: 978-1-94122-215-7)
     This book contains a Julia tutorial chapter (written by Jack Moffitt and Bruce Tate) for programmers new to Julia, which is very good, with nice examples and exercises.
-
+- [Julia for Data Science](https://www.packtpub.com/big-data-and-business-intelligence/julia-data-science) by Anshul Joshi (348 pages; published: 2016-09; ISBN: 9781785289699)
+    Explore the world of data science from scratch with Julia by your side
+- [Julia for Data Science](https://technicspub.com/analytics/) by Zacharias Voulgaris PhD (415 pages; published: 2016-09-01; ISBN: 9781634621304). Master the essentials of data science through the Julia programming ecosystem (no prior knowledge of the language is required), accompanied by a variety of interesting examples and exercises.
+- [Julia Cookbook](https://www.packtpub.com/application-development/julia-cookbook/) by Jalem Raj Rohit - published by Packt Publishing (172 pages; published: 2016-09; ISBN: 9781785882012)
+- [Julia Solutions](https://www.packtpub.com/big-data-and-business-intelligence/julia-solutions-video) by Jalem Raj Rohit - A comprehensive guide to learn data science for a Julia programmer - Produced by Packt Publishing (2 hours and 52 minutes long; published: January 31, 2017; ISBN: 9781787283299)
 
 ## Upcoming
 
 - [Learn Julia](http://www.manning.com/voncsefalvay/) by [Chris von Csefalvay](http://www.chrisvoncsefalvay.com) - published by Manning (approx. 375 pages, in [Early Access](http://www.manning.com/about/meap.html), ISBN: 9781617292835). The companion Github repo to the book is available [here](https://github.com/chrisvoncsefalvay/juliabook).
 
-
 # Tutorials
 
+- [A Deep Introduction to Julia for Data Science and Scientific Computing](http://ucidatascienceinitiative.github.io/IntroToJulia/) by [Chris Rackauckas](http://chrisrackauckas.com/)
 - [Programming in Julia (Quantitative Economics)](http://quant-econ.net/jl/learning_julia.html) - by Thomas J. Sargent and John Stachurski. Along with being a complete textbook with Julia code for macroeconomics, this also is a very good introduction to Julia.
 - [The Julia Express](https://github.com/bkamins/The-Julia-Express) by [Bogumił Kamiński](http://bogumilkaminski.pl)
 - [Introducing Julia wikibook](https://en.wikibooks.org/wiki/Introducing_Julia)
@@ -30,6 +37,7 @@ title:  Learning Julia
 - [Learn Julia the Hard Way](https://github.com/chrisvoncsefalvay/learn-julia-the-hard-way) by [Chris von Csefalvay](http://chrisvoncsefalvay.com/)
 - [Hands-on Julia](https://github.com/dpsanders/hands_on_julia) by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/)
 
+
 # Resources
 
 - [A Julia cheat sheet](http://math.mit.edu/~stevenj/Julia-cheatsheet.pdf) by [Steve Johnson](http://math.mit.edu/~stevenj/)
@@ -37,6 +45,8 @@ title:  Learning Julia
 - [Why your next project should use Julia](https://speakerdeck.com/eford/why-your-next-project-should-use-julia) slides from seminar by [Eric Ford](http://www.personal.psu.edu/~ebf11/) 
 
 # Videos: Tutorials
+
+- [Invitation to Julia](https://www.youtube.com/watch?v=gQ1y5NUD_RI) by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/) at JuliaCon 2015. Supporting material [here](https://github.com/dpsanders/invitation_to_julia).
 
 - [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/) gave a detailed [Julia tutorial at SciPy 2014](https://www.youtube.com/watch?v=vWkgEddb4-A), which is a great starting point for a new Julia user. Also download the relevant [IJulia notebooks](https://github.com/dpsanders/scipy_2014_julia) that are used in the tutorial.
 
@@ -46,7 +56,7 @@ title:  Learning Julia
 
 <iframe width="400" height="225" src="https://www.youtube.com/embed/jhlVHoeB05A?list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi" frameborder="0" allowfullscreen></iframe>
 
-- [Invitation to Julia](https://www.youtube.com/watch?v=gQ1y5NUD_RI) by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/) at JuliaCon 2015. Supporting material [here](https://github.com/dpsanders/invitation_to_julia).
+- [Julia Tutorial](https://www.youtube.com/watch?v=AyvyVS6u8AM) by [Chase Coleman](http://www.chasegcoleman.com/) at PyDataDC 2016. Supporting material [here](https://github.com/cc7768/PyDataDC_julia).
 
 # Videos: Special topics
 

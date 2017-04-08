@@ -22,6 +22,10 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 # Publications relating to Julia packages
 
+## [Flows.jl](https://github.com/HaraldHofstaetter/Flows.jl)
+
+[@AHK16]
+
 ## [CauseMap.jl](https://github.com/cyrusmaher/CauseMap.jl)
 
 [@MH15]
@@ -39,6 +43,10 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 ### [JuMP.jl](https://github.com/JuliaOpt/JuMP.jl)
 
 [@LD13]
+
+### [SwitchTimeOpt.jl](https://github.com/bstellato/SwitchTimeOpt.jl)
+
+[@SOG16]
 
 ## Numerical linear algebra
 
@@ -76,6 +84,8 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 
 # Technical computing applications
 
+[@CLLDNR17]
+
 [@HPOEPP16] Code available in [CellwiseEditingDifferentiation.jl](https://github.com/scidom/CellwiseEditingDifferentiation.jl).
 
 [@OPV16]
@@ -103,6 +113,16 @@ requests](https://github.com/JuliaLang/julialang.github.com/).
 [@SEKBK13]
 
 [@BZFPZWP14] Code available in [GaussDCA.jl](https://github.com/carlobaldassi/GaussDCA.jl).
+
+[@RZRB16]
+
+[@RSLLBHGL16]
+
+[@PK16]
+
+[@GBZWP16] Code available in [ParalogMatching.jl](https://github.com/Mirmu/ParalogMatching.jl).
+
+[@BBCILSZ16] Code available in [BinaryCommitteeMachineRSGD.jl](https://github.com/carlobaldassi/BinaryCommitteeMachineRSGD.jl) and [BinaryCommitteeMachineFBP.jl](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl).
 
 # Theses
 
