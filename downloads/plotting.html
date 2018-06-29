@@ -24,13 +24,13 @@ title:  Plotting in Julia
 
       <pre>
         <code class="julia">
-          Pkg.add("Plots")
-          using Plots
-          plotly() # Choose the Plotly.jl backend for web interactivity
-          plot(rand(5,5),linewidth=2,title="My Plot")
-          Pkg.add("PyPlot") # Install a different backend
-          pyplot() # Switch to using the PyPlot.jl backend
-          plot(rand(5,5),linewidth=2,title="My Plot") # The same plotting command works
+    Pkg.add("Plots")
+    using Plots
+    plotly() # Choose the Plotly.jl backend for web interactivity
+    plot(rand(5,5),linewidth=2,title="My Plot")
+    Pkg.add("PyPlot") # Install a different backend
+    pyplot() # Switch to using the PyPlot.jl backend
+    plot(rand(5,5),linewidth=2,title="My Plot") # The same plotting command works
         </code>
       </pre>
 
@@ -61,10 +61,10 @@ title:  Plotting in Julia
 
       <pre>
         <code class="julia">
-          Pkg.add("PyPlot")
-          using PyPlot
-          x = linspace(0,2*pi,1000); y = sin.(3*x + 4*cos.(2*x))
-          plot(x, y, color="red", linewidth=2.0, linestyle="--")
+    Pkg.add("PyPlot")
+    using PyPlot
+    x = linspace(0,2*pi,1000); y = sin.(3*x + 4*cos.(2*x))
+    plot(x, y, color="red", linewidth=2.0, linestyle="--")
         </code>
       </pre>
     </div>
@@ -83,9 +83,9 @@ title:  Plotting in Julia
 
       <pre>
         <code class="julia">
-          Pkg.add("Gadfly")
-          using Gadfly
-          draw(SVG("output.svg", 6inch, 3inch), plot([sin, cos], 0, 25))
+    Pkg.add("Gadfly")
+    using Gadfly
+    draw(SVG("output.svg", 6inch, 3inch), plot([sin, cos], 0, 25))
         </code>
       </pre>
 
