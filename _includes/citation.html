@@ -1,0 +1,11 @@
+{% assign pub = include.pub %}
+<b>{{ pub.title }}</b>.
+{% for author in pub.authors %}{% if forloop.first %}{% elsif forloop.last %} and {% else %}, {% endif %}{{ author | split: ", " | reverse | join: " " }}{% endfor %}
+({{ pub.year }})
+{% if pub.journal %}<i>{{ pub.journal }}</i>{% endif %}{% if pub.booktitle %}<i>{{ pub.booktitle }}</i>{% endif %}{% if pub.volume %}, {{ pub.volume }}{% endif %}{% if pub.issue %}({{ pub.issue }}){% endif %}{% if pub.pages %}: {{ pub.pages | replace:'--','&ndash;'}}{% endif %}.
+{% if pub.doi %}doi:&nbsp;<a href="http://dx.doi.org/{{ pub.doi }}">{{ pub.doi }}</a>. {% endif %}
+{% if pub.pmid %}pmid:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/{{ pub.pmid }}">{{ pub.pmid }}</a>. {% endif %}
+{% if pub.arxiv %}arXiv:&nbsp;<a href="https://arxiv.org/abs/{{ pub.arxiv }}">{{ pub.arxiv }}</a>. {% endif %}
+{% if pub.link %}url:&nbsp;<a href="{{ pub.link }}">{{ pub.link }}</a>. {% endif %}
+{% if pub.packages %}Packages: {% for pkg in pub.packages %}{% if forloop.first %}{% elsif forloop.last %} and {% else %}, {% endif %}<a href="{{ pkg[1] }}">{{ pkg[0] }}</a>{% endfor %}. {% endif %}
+

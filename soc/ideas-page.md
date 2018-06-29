@@ -18,13 +18,15 @@ Check out the [application guidelines](guidelines/) once you have a project in m
 
 We have our project ideas organised roughly into the skillsets required:
 
-* [Machine Learning](projects/ml.html) – Work on the Machine Learning packages in Julia's ecosystem.
+* [Data Science & Machine Learning](projects/ml.html) – work on making data work for you and everyone else.
 * [Compiler](projects/compiler.html) – work on the Julia compiler's internals to make things better for everyone.
 * [HPC](projects/hpc.html) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Numerics](projects/numerics.html) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
 * [Differential Equations](projects/diffeq.html) - Numerical methods for high-performance solving of differential equation models
 * [Tooling](projects/tooling.html) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
 * [Images](projects/images.html) – extend Julia's suite of tools for visualization and analysis of images.
+* [Audio and DSP](projects/audiodsp.html) – improve Julia's analysis, processing, and synthesis packages for audio and more general digital signal processing.
 * [General](projects/general.html) – jack-of-all-trades projects that don't require special skills.
+* [Graphics](projects/graphics.html) - projects ranging from low level OpenGL rendering to high level plotting
 
 You can see previous Summer of Code projects at the [Archive page](archive.html).

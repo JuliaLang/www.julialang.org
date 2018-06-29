@@ -1,9 +1,13 @@
----
-layout: common
----
-<div class="u-center u-container header">
-  {% include title.html %}
-  {% include links.html %}
-</div>
+<!DOCTYPE html>
+<html>
 
-{{ content }}
+<head>
+  {% include head.html %}
+</head>
+
+<body>
+  {{ content }}
+  {% include scripts.html %}
+</body>
+
+</html>

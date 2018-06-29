@@ -1,61 +1,31 @@
 ---
 layout: homepage
-title: Julia - A fresh approach to technical computing
+title:  The Julia Language
+julia_version: v1.0
 ---
 
-<div class="intro-wrapper">
-  <div class="u-container u-center intro-container u-flex u-hbox u-items-center">
-    <div class="intro-text u-serif u-extra-light u-text-center">
-      <b class="u-regular">Julia</b> is a technical computing language.<br> Its familiar syntax and smart compiler give you <br> the highest possible performance from <br>  the easiest possible code.
-    </div>
-    <div class="download-links u-center u-extra-light">
-      <a  href="/downloads/" class="u-button download-button s-bg-green-2">Download Julia</a> or <a href="https://julialang.readthedocs.org">Read more...</a>
-    </div>
-  </div>
-</div>
+{% include mainmenu.html %}
 
-{% include features.html %}
+{% include jumbotron.html %}
 
-<div class="u-vskip-2"></div>
+{% include languagefeatures.html %}
+<br />
 
-<div class="video-reel u-container u-center">
-  <h2>Featured Videos</h2>
-  <div class="u-vskip"></div>
-  <div class="u-hbox u-flex">
-  <div class="u-hskip"></div>
-  {% for item in site.featuredvideos %}
-    {% include video-item.html site=item.site id=item.id title=item.title %}
-  {% endfor %}
-  </div>
-  <div class="u-vskip"></div>
-  <div>Check out the <strong><a href="https://www.youtube.com/JuliaLanguage">YouTube channel</a></strong> for more &rarr;</div>
-</div>
+{% include ecosystem.html %}
 
-<div class="u-vskip-2"></div>
+{% include ides.html %}
+<br/><br/>
 
-<div class="blog-sneakpeek u-center u-container">
-  <h2>Recent blog entries</h2>
-  <div class="u-vskip"></div>
+{% include packages.html %}
 
-  <ul class="recent-posts">
-    {% for post in site.categories.blog limit:7 %}
-      <li>
-        <span class="timestamp">{{ post.date | date_to_string }}</span>
-        <a class="postlink" href="{{ post.url }}">{{ post.title }}</a>
-    {% if post.author %}
-    ~
-    <span class="author">{{ post.author }}</span>
-    {% elsif post.authors %}
-    <span class="author">
-      {% for author in post.authors %}
-        {{ author }}{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    </span>
-    {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
-</div>
+{% include blogs.html %}
+<br /><br />
 
-<div class="u-vskip-3"></div>
+{% include contact.html %}
 
+{% include videos.html %}
+<br />
+
+{% include footermenu.html %}
+
+{% include footer.html %}

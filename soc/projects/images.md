@@ -28,13 +28,3 @@ OpenCV is one of the pre-eminent image-processing frameworks, and there is an ex
 **Expected Results:** A rejuvinated OpenCV package that integrates more effectively into the ecosystem of JuliaImages.
 
 **Mentors:** [Maximiliano Suster](https://github.com/maxruby) and [Tim Holy](https://github.com/timholy/).
-
-## Image segmentation
-
-Image segmentation is the process of dividing an image up into constituent objects. While imperfect, a number of well-tested [algorithms](https://en.wikipedia.org/wiki/Image_segmentation) have been developed for this task. This project would implement a number of these algorithms in pure Julia, building on existing packages and the framework in JuliaImages. This project would also develop a number of tutorials/demonstrations illustrating the methods.
-
-**Recommended skills:** Strong mathematical background and the ability to read primary literature.
-
-**Expected Results:** Implementation of additional algorithms for segmentation. Some contributions would be to existing or new packages in JuliaImages, others might leverage work in the wider Julia ecosystem. Documentation and tutorials would be hosted at the main JuliaImages site.
-
-**Mentors:** [Anchit Navelkar](https://github.com/mronian) and [Tim Holy](https://github.com/timholy/).

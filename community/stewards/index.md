@@ -45,7 +45,7 @@ In general, violations of the community standards will generate one or more of t
 
 ## Bans
 
-The public Julia mailing lists (e.g. [julia-users](https://groups.google.com/forum/#!forum/julia-users)) and GitHub pages (e.g. issues and pull requests) are normally open forums for all good-faith contributors.
+The public Julia forums (e.g. [Discourse](https://discourse.julialang.org/)) and GitHub pages (e.g. issues and pull requests) are normally open forums for all good-faith contributors.
 In extreme cases, repeated violations of the Community Standards may lead to the banning of a contributor from one or more of these public forums.
 Such total bans are expected to be rare and are not to be undertaken lightly.
 

@@ -11,25 +11,27 @@ For all of these projects, potential mentors are [Steven Johnson](https://github
 
 # Numerical Linear Algebra
 
-## Native Julia implementations of iterative solvers for numerical linear algebra
+## Implementing eigenvalue problem solvers for sparse matrices
 
-Iterative methods for solving numerical linear algebraic problems are crucial for big data applications, which often involve matrices that are too large to store in memory or even to compute its matrix elements explicitly. Iterative Krylov methods such as conjugate gradients (CG) and the generalized minimal residual (GMRES) methods have proven to be particular valuable for a wide variety of applications such as eigenvalue finding, convex optimization, and even systems control. This project proposes to implement a comprehensive suite of iterative solver algorithms in Julia's native [IterativeSolvers.jl](https://github.com/JuliaLang/IterativeSolvers.jl) package, as described in the [implementation roadmap](https://github.com/JuliaLang/IterativeSolvers.jl/issues/1). Students will be encouraged to refactor the codebase to better expose the mathematical structure of the underlying Arnoldi and Lanczos iterations, thus promoting code composability without sacrificing performance.
+The [IterativeSolvers.jl](https://github.com/JuliaLang/IterativeSolvers.jl) package is lacking iterative methods for the (generalized) eigenvalue problem Ax = λBx. The goal of this project is to implement the Arnoldi or Lanczos method as a solver for the eigenvalue problem and to compare its performance with the `eigs` function.
+
+For instance, the student can start by implementing the Arnoldi method for non-Hermitian eigenvalue problems Ax = λx. The method should then be improved with the implicit restart procedure (IRAM) and finally extended to the generalized eigenvalue problem Ax = λBx.
+
+**Recommended Skills**: familiarity with numerical linear algebra.
+
+**Expected Results**: a fast and native eigenvalue problem solver.
+
+**Mentors:** [Harmen Stoppels](https://github.com/haampie/)
+
+## Implementing iterative methods for linear systems of equations
+
+High-dimensional linear systems of equations Ax = b need often to be solved by preconditioned iterative methods, simply because direct methods are too expensive. The [IterativeSolvers.jl](https://github.com/JuliaLang/IterativeSolvers.jl) package provides a variety of these iterative methods already, such as GMRES, BiCGStab and Conjugate Gradients. There are still methods to be implemented, including (variations of) QMR and Conjugate Residuals. Furthermore, the package itself can be improved by: solving the issue of the return types of solvers ([#6](https://github.com/JuliaMath/IterativeSolvers.jl/issues/6), [#185](https://github.com/JuliaMath/IterativeSolvers.jl/issues/185)) and allowing custom array types.
 
 **Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra.
 
-**Expected Results**: New high-performance backend native iterative solvers.
+**Expected Results**: New iterative methods and an improved API of the IterativeSolvers.jl package.
 
-**Mentors:** [Jiahao Chen](https://jiahao.github.io/)
-
-## Native usage of LinearMaps in iterative solvers
-
-While one normally thinks of solving the linear equation Ax=b with A being a matrix, this concept is more generally applied to A being a linear map. In many domains of science, this idea of directly using a linear map instead of a matrix allows for one to solve the equation in a more efficient manner. Iterative methods for linear solving only require the ability compute `A*x` in order solve the system, and thus these methods can be extended to use more general linear maps. By restructuring IterativeSolvers.jl to use `LinearMap` types from [LinearMaps.jl](https://github.com/Jutho/LinearMaps.jl), these applications can be directly supported in the library.
-
-**Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra.
-
-**Expected Results**: The ability to use more general LinearMaps in the IterativeSolvers.jl methods.
-
-**Mentors:** [Jiahao Chen](https://jiahao.github.io/)
+**Mentors:** [Harmen Stoppels](https://github.com/haampie/)
 
 ## PETSc integration for scalable technical computing
 
@@ -124,23 +126,46 @@ This project proposes to achieve compliance of this package with the [IEEE 1788-
 
 **Expected results**: A library that fulfills the IEEE 1788-2015 standard.
 
+**Mentors:** [David P. Sanders](https://github.com/dpsanders)
+
+
+## Guaranteed root finding with intervals
+
+Interval arithmetic provides a way to perform computations with continuous sets of real  numbers or vectors, for example to bound the range of a function over a given set.
+
+This can be used to find roots (zeros) of functions in a *guaranteed* way, by excluding regions where there are no roots and zooming in on roots, but always within a given interval.
+
+A basic branch-and-prune algorithm has been implemented in  [`IntervalRootFinding.jl`](https://github.com/JuliaIntervals/IntervalRootFinding.jl).
+
+This project proposes to significantly improve these methods using techniques found in the interval arithmetic literature.
+
+**Recommended skills**: Multivariable calculus and linear algebra; a basic understanding of floating-point arithmetic.
+
+**Expected results**: A state-of-the-art root finding library in pure Julia.
+
 **Mentors:** [David P. Sanders](https://github.com/dpsanders), [Luis Benet](https://github.com/lbenet)
-## Inverse (or "backward") functions and contractors for interval constraint propagation
 
-One important application of interval arithmetic is to the characterization of sets that satisfy certain inequalities ("set inversion"), as used, for example, in optimization, robotics, and the proof of mathematical theorems via rigorous numerical calculation. The state-of-the-art technique for this is interval constraint propagation, in particular the concept of "contractors".
-The package [`IntervalConstraintProgramming.jl`](https://github.com/dpsanders/IntervalConstraintProgramming.jl) contains basic interval constraint propagation tools for polynomials.
 
-This project will develop a package `IntervalContractors.jl` to refactor out the part of the package dealing with contractors and inverse functions, which will enable the inversion of functions involving transcendental functions such as `sin` and `exp`.
+## Global optimization with intervals
 
-To do so, it will be necessary to implement inverse functions for the standard functions, such as `sin`, `exp`, etc, as well as the corresponding contractors. These inverse functions return sets, expressed as intervals, that contain the inverse image of a given set. Two versions of these functions will be produced: one that returns an interval, and the other that may return the union of several disjoint intervals.
+Interval arithmetic provides a way to perform computations with continuous sets of real  numbers or vectors, for example to bound the range of a function over a given set.
 
-**Recommended Skills**: Mathematical background including basic set theory.
+This can be used to do global optimization of functions in a deterministic way, that is, find the global minimum of a non-convex, nonlinear function $f:\mathbb{R}^n \to \mathbb{R}$.
+Interval methods for global optimization provide a guaranteed bound for the global optimum, and sets that contain the optimizers.
 
-**Expected results**: A library of interval contractors for interval constraint propagation.
+A basic branch-and-bound algorithm has already been implemented in  [`IntervalOptimization.jl`](https://github.com/JuliaIntervals/IntervalOptimization.jl), but it can be significantly improved.
 
-**Mentors:** [David P. Sanders](https://github.com/dpsanders), [Luis Benet](https://github.com/lbenet)
+This project proposes to develop a state-of-the-art global optimization routine in Julia, by applying techniques found in the interval arithmetic and global optimization literature.
+This may involve developing code for McCormick relaxations and/or affine arithmetic.
 
-## Native Bignums
+**Recommended skills**: Multivariable calculus and linear algebra; a basic understanding of floating-point arithmetic.
+
+**Expected results**: A state-of-the-art global optimization library in pure Julia.
+
+**Mentors:** [David P. Sanders](https://github.com/dpsanders)
+
+
+# Native Bignums
 
 Julia currently supports big integers, rationals and floats, making use of the GMP and MPFR libraries. However, the current implementation is very basic, performance is far from optimal compared to hand-written GMP code, and the GMP license is GPL 3.
 

@@ -1,4 +1,4 @@
-  <div class="navbar u-subtle-text-shadow">
+<ul class="links">
   {% for item in site.navigation %}
       {% assign class = nil %}
       {% if page.url contains item.url and item.url != '/' %}
@@ -7,9 +7,13 @@
       {% if page.url == '/' and item.url == '/' %}
           {% assign class = 'active' %}
       {% endif %}
-      <a href="{{ site.basurl }}{{ item.url }}" class="{{ class }}">{{ item.title }}</a>
+      {% assign prefix = site.baseurl %}
+      {% if item.url contains 'http://' or item.url contains 'https://' %}
+        {% assign prefix = nil %}
+      {% endif %}
+      <li><a href="{{ prefix }}{{ item.url }}" class="{{ class }}">{{ item.title }}</a></li>
   {% endfor %}
-  </div>
+</ul>
 
 <!--
 

@@ -1,0 +1,23 @@
+---
+type: "article"
+title: "Self-induced temperature gradients in Brownian dynamics"
+authors:
+- Jack Devine
+- M. W. Jack
+year: "2017"
+volume: "96"
+issue: 6
+pages: "062130"
+journal: Physical Review E
+doi: "10.1103/PhysRevE.96.062130"
+---
+Brownian  systems  often  surmount  energy  barriers  by  absorbing  and  emitting  heat  to  and  from  their  local
+environment.  Usually,  the  temperature  gradients  created  by  this  heat  exchange  are  assumed  to  dissipate
+instantaneously.  Here  we  relax  this  assumption  to  consider  the  case  where  Brownian  dynamics  on  a  time-
+independent potential can lead to self-induced temperature gradients. In the same way that externally imposed
+temperature gradients can cause directed motion, these self-induced gradients affect the dynamics of the Brownian
+system. The result is a coupling between the local environment and the Brownian subsystem. We explore the
+resulting dynamics and thermodynamics of these coupled systems and develop a robust method for numerical
+simulation.  In  particular,  by  focusing  on  one-dimensional  situations,  we  show  that  self-induced  temperature
+gradients reduce barrier-crossing rates. We also consider a heat engine and a heat pump based on temperature
+gradients induced by a Brownian system in a nonequilibrium potential.

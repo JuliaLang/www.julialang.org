@@ -2,6 +2,12 @@ This is the GitHub repository for the Julia programming language project's main 
 
 The Julia website is generated using GitHub pages and Jekyll, as [explained here](https://help.github.com/articles/using-jekyll-with-pages).
 
+## Running using Docker
+
+After installing [`docker`](http://docker.com/), run `make run` to build and run the website within the a container built from the [`jekyll/jekyll` image](https://hub.docker.com/r/jekyll/jekyll/) that contains all the necessary prerequisites.  Modifying files will cause the website to rebuild in real time.
+
+## Running manually
+
 In short, be sure you have ruby installed, and then run these commands
 
     gem install bundler
