@@ -1,8 +1,16 @@
 ---
-layout: common
+layout: homepage
 ---
-{% include title.html %}
-{% include links.html %}
+
+{% include mainmenu.html %}
+
+<br /><br />
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-12">
+      <h1>{{ title }}</h1>
 
 <div id="blogpost">
   <h1>{{ page.title }}</h1>
@@ -37,3 +45,13 @@ layout: common
   </ul>
 </div>
 {% endif %}
+
+</div>
+</div>
+</div>
+
+<br />
+
+{% include footermenu.html %}
+
+{% include footer.html %}
