@@ -154,6 +154,8 @@
 }
 .blog h3 a {
   color: #4D64AE;
+  display: block;
+  min-height: 42px;
 }
 .blog .article-date {
   font-size: 12px;
