@@ -73,6 +73,30 @@
               </div>
             </div>
           </div>
+          <hr>
+          <div class="row code-sample">
+            <div class="col-lg-12">
+              <h6>Code sample for rendering the Lorenz Attractor</h6>
+              <p>
+                Data visualization has a complicated history. Plotting software makes trade-offs between features and simplicity, speed and beauty, and a static.
+              </p>
+              <pre>
+                <code class="julia">
+function fill_twos!(a)
+  for i=1:length(a)
+    a[i] = 2
+  end
+end
+
+function fast_strange_twos(n)
+  a = Array(randbool() ? Int64 : Float64, n)
+  fill_twos!(a)
+  return a
+end
+                </code>
+              </pre>
+            </div>
+          </div>
         </div>
       </div>
 

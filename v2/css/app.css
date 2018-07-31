@@ -193,15 +193,16 @@
 .social-network.youtube {
   background-image: url("../img/youtube.png");
   margin-top: 14px;
+  border-bottom: 0;
 }
 .social-network.twitter {
   background-image: url("../img/twitter.png");
   margin-top: 14px;
+  border-bottom: 0;
 }
 .social-network.github {
   background-image: url("../img/github.png");
   margin-top: 14px;
-  border-bottom: 0;
 }
 .social-network.facebook {
   background-image: url("../img/facebook.png");
@@ -343,6 +344,14 @@ h4.card-title {
 
 #ecosystem-tab-content div.tab-pane h4 {
   color: #CA3C32;
+}
+#ecosystem-tab-content div.tab-pane h6 {
+  color: #CA3C32;
+  font-weight: 600;
+}
+
+#ecosystem-tab-content div.tab-pane div.code-sample p {
+  font-size: 14px;
 }
 
 img.ecosystem-image {
