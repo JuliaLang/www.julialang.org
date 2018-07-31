@@ -63,7 +63,10 @@
             <div class="col-lg-12">
               <img src="images/lorenz.gif" class="ecosystem-image" style="width: 400px;" />
               <div class="container">
-                <h4>Data visualization and Plotting</h4>
+                <h4>
+                  Data visualization and Plotting
+                  <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#exampleModal">Code</button>
+                </h4>
                 <p>
                   Data visualization has a complicated history. Plotting software makes trade-offs between features and simplicity, speed and beauty, and a static and dynamic interface. Some packages make a display and never change it, while others make updates in real-time.
                 </p>
@@ -73,15 +76,20 @@
               </div>
             </div>
           </div>
-          <hr>
-          <div class="row code-sample">
-            <div class="col-lg-12">
-              <h6>Code sample for rendering the Lorenz Attractor</h6>
-              <p>
-                Data visualization has a complicated history. Plotting software makes trade-offs between features and simplicity, speed and beauty, and a static.
-              </p>
-              <pre>
-                <code class="julia">
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Lorenz Attractor in Julia</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <pre>
+                    <code class="julia">
 function fill_twos!(a)
   for i=1:length(a)
     a[i] = 2
@@ -93,10 +101,16 @@ function fast_strange_twos(n)
   fill_twos!(a)
   return a
 end
-                </code>
-              </pre>
+                    </code>
+                  </pre>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
 
