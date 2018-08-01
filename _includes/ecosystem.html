@@ -24,8 +24,9 @@
             <a class="nav-link" id="general-tab" data-toggle="tab" href="#tab-general" role="tab" aria-controls="general" aria-selected="false">General Purpose</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="computing-tab" data-toggle="tab" href="#tab-computing" role="tab" aria-controls="computing" aria-selected="false">Parallel Computing</a>
+            <a class="nav-link" id="ds-tab" data-toggle="tab" href="#tab-ds" role="tab" aria-controls="ds" aria-selected="false">Data Science</a>
           </li>
+          
           <li class="nav-item">
             <a class="nav-link" id="math-tab" data-toggle="tab" href="#tab-math" role="tab" aria-controls="math" aria-selected="false">Machine Learning</a>
           </li>
@@ -33,7 +34,7 @@
             <a class="nav-link" id="sci-tab" data-toggle="tab" href="#tab-sci" role="tab" aria-controls="sci" aria-selected="false">Scientific Domains</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="ds-tab" data-toggle="tab" href="#tab-ds" role="tab" aria-controls="ds" aria-selected="false">Data Science</a>
+            <a class="nav-link" id="computing-tab" data-toggle="tab" href="#tab-computing" role="tab" aria-controls="computing" aria-selected="false">Parallel Computing</a>
           </li>
         </ul>
       </div>
@@ -69,10 +70,14 @@
                   Parallel and Heterogeneous Computing
                 </h4>
                 <p>
-                Julia is designed for parallelism, and provides built-in primitives for parallel computing at every level: <b>vectorization (SIMD)</b>, <b>multithreading</b> and <b>distributed computing</b>, which <a href = "https://arxiv.org/pdf/1801.10277.pdf">lets it run on supercomputers</a>.
+                Julia is designed for parallelism, and provides built-in primitives for parallel computing at every level: 
+                <b><a href = "https://docs.julialang.org/en/stable/stdlib/simd-types/"> vectorization (SIMD)</a></b>, 
+                <b><a href = "https://docs.julialang.org/en/stable/manual/parallel-computing/#Multi-Threading-(Experimental)-1">multithreading</a></b> and 
+                <b><a href = "https://docs.julialang.org/en/stable/manual/parallel-computing/">distributed computing</a></b>, 
+                which <a href = "https://arxiv.org/pdf/1801.10277.pdf">lets it run on supercomputers</a>.
                 </p>
                 <p>
-                Julia's sophisticated compiler can also generate machine code for various hardware accelerators, such as GPUs and Xeon Phis. Write generic code that runs all platforms, without worrying about lower level details. 
+                Julia's sophisticated compiler can also generate machine code for various hardware accelerators, such as <a href = "https://github.com/JuliaGPU/CUDAnative.jl">GPUs</a> and Xeon Phis. Write generic code that runs all platforms, without worrying about lower level details. 
                 </p>
               </div>
             </div>
@@ -88,10 +93,19 @@
                   Scalable Machine Learning
                 </h4>
                 <p>
-                  Julia provides powerful tools for deep learning, machine learning and AI. Julia’s mathematical syntax makes it an ideal way to express algorithms just as they are written in papers, while Flux turns code into trainable models with automatic differentiation, GPU acceleration and support for terabytes of data. 
+                  Julia provides powerful tools for 
+                  <a href = "https://github.com/FluxML/Flux.jl"> deep learning </a>, 
+                  <a href = "http://juliaml.github.io"> machine learning </a> and AI. Julia’s mathematical syntax makes it an ideal way to express algorithms just as they are written in papers, build trainable models with 
+                  <a href = "http://www.juliadiff.org">automatic differentiation</a>, 
+                  <a href = "https://github.com/JuliaGPU/CuArrays.jl">GPU acceleration</a> and support for terabytes of data. 
                 </p>
                 <p>
-                  Julia's rich machine learning ecosystem also provides supervised learning algorithms such as regression, decision trees, and unsupervised learning algorithms such as clustering. You can also find packages for Bayesian Networks and Markov Chain Monte Carlo. 
+                  Julia's rich machine learning ecosystem also provides supervised learning algorithms such as 
+                  <a href = "https://github.com/JuliaStats/GLM.jl">regression </a>, 
+                  <a href = "https://github.com/bensadeghi/DecisionTree.jl">decision trees</a>, and unsupervised learning algorithms such as 
+                  <a href = "https://github.com/JuliaStats/Clustering.jl">clustering</a>. You can also find packages for 
+                  <a href = "https://github.com/sisl/BayesNets.jl">Bayesian Networks</a> and 
+                  <a href = "https://github.com/JuliaStats/Klara.jl">Markov Chain Monte Carlo</a>. 
                 </p>
               </div>
             </div>
@@ -109,13 +123,12 @@
                 <p>
                   Julia can be found in a wide variety of scientific domains: 
                   <ul>
-                    <li> Biology </li>
-                    <li> Astronomy </li>
-                    <li> Ecology </li>
-                    <li> Economics and Finance</li>
-                    <li> Quantum Computing </li>
-                    <li> Operations Research </li>
-                    <li> High Performance Computing </li>
+                    <li><a href = "https://biojulia.net"> Biology </a></li>
+                    <li><a href = "http://juliaastro.github.io"> Astronomy</a></li>
+                    <li><a href = "https://github.com/EcoJulia">Ecology </a></li>
+                    <li><a href = "https://github.com/QuantEcon">Economics and Finance</a></li>
+                    <li><a href = "https://www.juliaopt.org"> Operations Research </a></li>
+                    <li><a href = "https://github.com/JuliaMath/">Computational Mathematics</a> </li>
                   </ul>
                 </p>
               </div>
@@ -132,10 +145,18 @@
                   Interact with your Data
                 </h4>
                 <p>
-                  The Julia data ecosystem lets you load multidimensional datasets quickly, perform aggregations, joins and preprocessing operations, and save them to disk in efficient formats. You can also perform online computations on streaming data  
+                  The Julia data ecosystem lets you load multidimensional datasets quickly, perform aggregations, joins and preprocessing operations in parallel, and save them to disk in efficient formats. You can also perform 
+                  <a href = "https://github.com/joshday/OnlineStats.jl">online computations</a> on streaming data. Whether you're looking for the convenient and familiar 
+                  <a href = "http://juliadata.github.io/DataFrames.jl/stable/">DataFrames</a>, or highly scalable 
+                  <a href = "http://juliadb.org">in-memory operations</a>, Julia provides you a rich variety of tools.   
                 </p>
                 <p>
-                  Julia also integrates with every popular database you've heard of. 
+                  Julia also integrates with every popular database you've heard of, including 
+                  <a href = "https://github.com/JuliaDatabases/MySQL.jl">MySQL</a>, 
+                  <a href = "https://github.com/JuliaDatabases/JDBC.jl">JDBC</a>, 
+                  <a href = "https://github.com/JuliaDatabases/ODBC.jl">ODBC</a>, 
+                  <a href = "https://github.com/JuliaParallel/HDFS.jl">HDFS</a> and 
+                  <a href = "https://github.com/JuliaDatabases/Hive.jl"> Hive </a>. 
                 </p>
               </div>
             </div>
