@@ -196,15 +196,15 @@
                   <pre>
                     <code class="julia">
 function fill_twos!(a)
-  for i=1:length(a)
-    a[i] = 2
-  end
+    for i = 1:length(a)
+        a[i] = 2
+    end
 end
 
 function fast_strange_twos(n)
-  a = Array(randbool() ? Int64 : Float64, n)
-  fill_twos!(a)
-  return a
+    a = Vector{rand(Bool) ? Int64 : Float64}(undef, n)
+    fill_twos!(a)
+    return a
 end
                     </code>
                   </pre>
