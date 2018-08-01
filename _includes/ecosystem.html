@@ -21,19 +21,20 @@
             <a class="nav-link active" id="viz-tab" data-toggle="tab" href="#tab-viz" role="tab" aria-controls="viz" aria-selected="true">Visualization</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="general-tab" data-toggle="tab" href="#tab-general" role="tab" aria-controls="general" aria-selected="false">General</a>
+            <a class="nav-link" id="general-tab" data-toggle="tab" href="#tab-general" role="tab" aria-controls="general" aria-selected="false">General Purpose</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="computing-tab" data-toggle="tab" href="#tab-computing" role="tab" aria-controls="computing" aria-selected="false">Computing</a>
+            <a class="nav-link" id="ds-tab" data-toggle="tab" href="#tab-ds" role="tab" aria-controls="ds" aria-selected="false">Data Science</a>
           </li>
+          
           <li class="nav-item">
-            <a class="nav-link" id="math-tab" data-toggle="tab" href="#tab-math" role="tab" aria-controls="math" aria-selected="false">Mathematics</a>
+            <a class="nav-link" id="math-tab" data-toggle="tab" href="#tab-math" role="tab" aria-controls="math" aria-selected="false">Machine Learning</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="sci-tab" data-toggle="tab" href="#tab-sci" role="tab" aria-controls="sci" aria-selected="false">Scientific Domains</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="ds-tab" data-toggle="tab" href="#tab-ds" role="tab" aria-controls="ds" aria-selected="false">Data Science</a>
+            <a class="nav-link" id="computing-tab" data-toggle="tab" href="#tab-computing" role="tab" aria-controls="computing" aria-selected="false">Parallel Computing</a>
           </li>
         </ul>
       </div>
@@ -41,28 +42,132 @@
       <div class="tab-content" id="ecosystem-tab-content">
         <div class="tab-pane" id="tab-general" role="tabpanel" aria-labelledby="general-tab">
           <h3 class="tab-title">General</h3>
+          <img src="images/minesweeper.png" class="ecosystem-image" style="width: 400px; height: 280px" />
           <div class="container-fluid">
-
+            <h4>
+              Build, Deploy or Embed Your Code
+            </h4>
+            <p>
+              Julia lets you write UIs, statically compile your code, or even deploy it on a webserver. It also has powerful shell-like capabilities for managing other processes. It provides Lisp-like macros and other metaprogramming facilites. 
+            </p>
+            <p>
+              It is also friendly with other languages, providing stable interfaces with: 
+                <a href = "https://docs.julialang.org/en/stable/manual/calling-c-and-fortran-code/">C</a>, 
+                <a href = "https://github.com/JuliaPy/PyCall.jl">Python</a>, 
+                <a href = "https://github.com/JuliaInterop/RCall.jl">R</a>, 
+                <a href = "https://github.com/JuliaInterop/JavaCall.jl">Java</a>,
+              and many more. 
+            </p>
           </div>
         </div>
         <div class="tab-pane" id="tab-computing" role="tabpanel" aria-labelledby="computing-tab">
           <h3 class="tab-title">Computing</h3>
+          <div class="row">
+            <div class="col-lg-12">
+              <img src="images/parallel-prefix.png" class="ecosystem-image" style="width: 400px; height: 280px" />
+              <div class="container-fluid">
+                <h4>
+                  Parallel and Heterogeneous Computing
+                </h4>
+                <p>
+                Julia is designed for parallelism, and provides built-in primitives for parallel computing at every level: 
+                <b><a href = "https://docs.julialang.org/en/stable/stdlib/simd-types/"> vectorization (SIMD)</a></b>, 
+                <b><a href = "https://docs.julialang.org/en/stable/manual/parallel-computing/#Multi-Threading-(Experimental)-1">multithreading</a></b> and 
+                <b><a href = "https://docs.julialang.org/en/stable/manual/parallel-computing/">distributed computing</a></b>, 
+                which <a href = "https://arxiv.org/pdf/1801.10277.pdf">lets it run on supercomputers</a>.
+                </p>
+                <p>
+                Julia's sophisticated compiler can also generate machine code for various hardware accelerators, such as <a href = "https://github.com/JuliaGPU/CUDAnative.jl">GPUs</a> and Xeon Phis. Write generic code that runs all platforms, without worrying about lower level details. 
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="tab-pane" id="tab-math" role="tabpanel" aria-labelledby="math-tab">
           <h3 class="tab-title">Math</h3>
+          <div class="row">
+            <div class="col-lg-12">
+              <img src="images/metalhead.png" class="ecosystem-image" style="width: 400px;" />
+              <div class="container">
+                <h4>
+                  Scalable Machine Learning
+                </h4>
+                <p>
+                  Julia provides powerful tools for 
+                  <a href = "https://github.com/FluxML/Flux.jl"> deep learning </a>, 
+                  <a href = "http://juliaml.github.io"> machine learning </a> and AI. Julia’s mathematical syntax makes it an ideal way to express algorithms just as they are written in papers, build trainable models with 
+                  <a href = "http://www.juliadiff.org">automatic differentiation</a>, 
+                  <a href = "https://github.com/JuliaGPU/CuArrays.jl">GPU acceleration</a> and support for terabytes of data. 
+                </p>
+                <p>
+                  Julia's rich machine learning ecosystem also provides supervised learning algorithms such as 
+                  <a href = "https://github.com/JuliaStats/GLM.jl">regression </a>, 
+                  <a href = "https://github.com/bensadeghi/DecisionTree.jl">decision trees</a>, and unsupervised learning algorithms such as 
+                  <a href = "https://github.com/JuliaStats/Clustering.jl">clustering</a>. You can also find packages for 
+                  <a href = "https://github.com/sisl/BayesNets.jl">Bayesian Networks</a> and 
+                  <a href = "https://github.com/JuliaStats/Klara.jl">Markov Chain Monte Carlo</a>. 
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="tab-pane" id="tab-sci" role="tabpanel" aria-labelledby="sci-tab">
           <h3 class="tab-title">Sci</h3>
+          <div class="row">
+            <div class="col-lg-12">
+              <img src="images/logos.png" class="ecosystem-image" style="width: 400px;" />
+              <div class="container">
+                <h4>
+                  Rich Ecosystem for Scientific Computing
+                </h4>
+                <p>
+                  Julia can be found in a wide variety of scientific domains: 
+                  <ul>
+                    <li><a href = "https://biojulia.net"> Biology </a></li>
+                    <li><a href = "http://juliaastro.github.io"> Astronomy</a></li>
+                    <li><a href = "https://github.com/EcoJulia">Ecology </a></li>
+                    <li><a href = "https://github.com/QuantEcon">Economics and Finance</a></li>
+                    <li><a href = "https://www.juliaopt.org"> Operations Research </a></li>
+                    <li><a href = "https://github.com/JuliaMath/">Computational Mathematics</a> </li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="tab-pane" id="tab-ds" role="tabpanel" aria-labelledby="ds-tab">
           <h3 class="tab-title">DS</h3>
+          <div class="row">
+            <div class="col-lg-12">
+              <img src="images/onlinestats.gif" class="ecosystem-image" style="width: 400px;" />
+              <div class="container">
+                <h4>
+                  Interact with your Data
+                </h4>
+                <p>
+                  The Julia data ecosystem lets you load multidimensional datasets quickly, perform aggregations, joins and preprocessing operations in parallel, and save them to disk in efficient formats. You can also perform 
+                  <a href = "https://github.com/joshday/OnlineStats.jl">online computations</a> on streaming data. Whether you're looking for the convenient and familiar 
+                  <a href = "http://juliadata.github.io/DataFrames.jl/stable/">DataFrames</a>, or highly scalable 
+                  <a href = "http://juliadb.org">in-memory operations</a>, Julia provides you a rich variety of tools.   
+                </p>
+                <p>
+                  Julia also integrates with every popular database you've heard of, including 
+                  <a href = "https://github.com/JuliaDatabases/MySQL.jl">MySQL</a>, 
+                  <a href = "https://github.com/JuliaDatabases/JDBC.jl">JDBC</a>, 
+                  <a href = "https://github.com/JuliaDatabases/ODBC.jl">ODBC</a>, 
+                  <a href = "https://github.com/JuliaParallel/HDFS.jl">HDFS</a> and 
+                  <a href = "https://github.com/JuliaDatabases/Hive.jl"> Hive </a>. 
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="tab-pane active" id="tab-viz" role="tabpanel" aria-labelledby="viz-tab">
           <h3 class="tab-title">Viz</h3>
           <div class="row">
             <div class="col-lg-12">
-              <img src="images/lorenz.gif" class="ecosystem-image" style="width: 400px;" />
               <div class="container">
+                <img src="images/lorenz.gif" class="ecosystem-image" style="width: 400px;" />
                 <h4>
                   Data visualization and Plotting
                   <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#exampleModal">Code</button>
