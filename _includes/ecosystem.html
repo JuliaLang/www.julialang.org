@@ -27,7 +27,7 @@
             <a class="nav-link" id="computing-tab" data-toggle="tab" href="#tab-computing" role="tab" aria-controls="computing" aria-selected="false">Parallel Computing</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="math-tab" data-toggle="tab" href="#tab-math" role="tab" aria-controls="math" aria-selected="false">Mathematics</a>
+            <a class="nav-link" id="math-tab" data-toggle="tab" href="#tab-math" role="tab" aria-controls="math" aria-selected="false">Machine Learning</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="sci-tab" data-toggle="tab" href="#tab-sci" role="tab" aria-controls="sci" aria-selected="false">Scientific Domains</a>
@@ -41,12 +41,21 @@
       <div class="tab-content" id="ecosystem-tab-content">
         <div class="tab-pane" id="tab-general" role="tabpanel" aria-labelledby="general-tab">
           <h3 class="tab-title">General</h3>
+          <img src="images/minesweeper.png" class="ecosystem-image" style="width: 400px; height: 280px" />
           <div class="container-fluid">
             <h4>
-              Build, Deploy and Ship Your Code
+              Build, Deploy or Embed Your Code
             </h4>
             <p>
-              Julia lets you deploy your code on a webserver, or write a UI for it, create standalone binaries, and ship it. 
+              Julia lets you write UIs, statically compile your code, or even deploy it on a webserver. It also has powerful shell-like capabilities for managing other processes. It provides Lisp-like macros and other metaprogramming facilites. 
+            </p>
+            <p>
+              It is also friendly with other languages, providing stable interfaces with: 
+                <a href = "https://docs.julialang.org/en/stable/manual/calling-c-and-fortran-code/">C</a>, 
+                <a href = "https://github.com/JuliaPy/PyCall.jl">Python</a>, 
+                <a href = "https://github.com/JuliaInterop/RCall.jl">R</a>, 
+                <a href = "https://github.com/JuliaInterop/JavaCall.jl">Java</a>,
+              and many more. 
             </p>
           </div>
         </div>
@@ -54,15 +63,16 @@
           <h3 class="tab-title">Computing</h3>
           <div class="row">
             <div class="col-lg-12">
-              <div class="container">
+              <img src="images/parallel-prefix.png" class="ecosystem-image" style="width: 400px; height: 280px" />
+              <div class="container-fluid">
                 <h4>
                   Parallel and Heterogeneous Computing
                 </h4>
                 <p>
-                Julia provides built-in primitives for parallel computing at every level: <b>vectorization (SIMD)</b>, <b>multithreading</b> and <b>distributed computing</b>, which lets it run on supercomputers (link required).
+                Julia is designed for parallelism, and provides built-in primitives for parallel computing at every level: <b>vectorization (SIMD)</b>, <b>multithreading</b> and <b>distributed computing</b>, which lets it run on supercomputers (link required).
                 </p>
                 <p>
-                Julia's sophisticated compiler can also generate machine code for various hardware accelerators, such as GPUs and Xeon Phis. Write generic code that runs all platforms, as fast as you want. 
+                Julia's sophisticated compiler can also generate machine code for various hardware accelerators, such as GPUs and Xeon Phis. Write generic code that runs all platforms, without worrying about lower level details. 
                 </p>
               </div>
             </div>
@@ -72,16 +82,16 @@
           <h3 class="tab-title">Math</h3>
           <div class="row">
             <div class="col-lg-12">
-              <img src="images/lorenz.gif" class="ecosystem-image" style="width: 400px;" />
+              <img src="images/metalhead.png" class="ecosystem-image" style="width: 400px;" />
               <div class="container">
                 <h4>
-                  Parallel and Heterogeneous Computing
+                  Scalable Machine Learning
                 </h4>
                 <p>
-                Julia provides built-in primitives for parallel computing at every level: <b>vectorization (SIMD)</b>, <b>multithreading</b> and <b>distributed computing</b>, which lets it run on supercomputers (link required).
+                  Julia provides powerful tools for deep learning, machine learning and statistical analysis.  
                 </p>
                 <p>
-                Julia's sophisticated compiler can also generate machine code for various hardware accelerators, such as GPUs and Xeon Phis. Write generic code that runs all platforms, as fast as you want. 
+                 
                 </p>
               </div>
             </div>
@@ -96,12 +106,13 @@
                 <h4>
                   Rich Ecosystem for Scientific Computing
                 </h4>
-                <p>
-                Julia provides built-in primitives for parallel computing at every level: <b>vectorization (SIMD)</b>, <b>multithreading</b> and <b>distributed computing</b>, which lets it run on supercomputers (link required).
-                </p>
-                <p>
-                Julia's sophisticated compiler can also generate machine code for various hardware accelerators, such as GPUs and Xeon Phis. Write generic code that runs all platforms, as fast as you want. 
-                </p>
+                <ul>
+                  <li> Biology </li>
+                  <li> Astronomy </li>
+                  <li> Ecology </li>
+                  <li> Economics and Finance</li>
+                  <li> Quantum Computing </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -110,16 +121,16 @@
           <h3 class="tab-title">DS</h3>
           <div class="row">
             <div class="col-lg-12">
-              <img src="images/lorenz.gif" class="ecosystem-image" style="width: 400px;" />
+              <img src="images/onlinestats.gif" class="ecosystem-image" style="width: 400px;" />
               <div class="container">
                 <h4>
-                  Machine Learning at Petascale
+                  Interact with your Data
                 </h4>
                 <p>
-                Julia provides built-in primitives for parallel computing at every level: <b>vectorization (SIMD)</b>, <b>multithreading</b> and <b>distributed computing</b>, which lets it run on supercomputers (link required).
+                Perform all kinds of useful data operations.
                 </p>
                 <p>
-                Julia's sophisticated compiler can also generate machine code for various hardware accelerators, such as GPUs and Xeon Phis. Write generic code that runs all platforms, as fast as you want. 
+                JuliaDB, DataFrames, TextParse  
                 </p>
               </div>
             </div>
