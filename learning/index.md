@@ -87,6 +87,9 @@ title:  Learning Julia
   <li><a href="https://juliaobserver.com/">Julia Observer - A website for browsing Julia packages</a> by <a href="http://seg.al/">Dan Segal</a></li>
 </ul>
 
+<br>
+<hr>
+<br>
 
 <h1 id="julia-in-the-classroom">Julia in the classroom</h1>
 
