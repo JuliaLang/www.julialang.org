@@ -138,4 +138,296 @@ title:  Learning Julia
   <li><a href="http://www.admin-magazine.com/HPC/Articles/Julia-A-New-Language-For-Technical-Computing">Julia: A New Language For Technical Computing</a> by Douglas Eadline in Admin magazine</li>
 </ul>
 <br>
+
+
+<h1 id="julia-in-the-classroom">Julia in the classroom</h1>
+
+<p>Julia is ready for the classroom. We encourage instructors to participate in the <a href="http://julialang.org/community">Julia community resources</a> for questions about Julia or specific packages. This page puts together various resources that instructors may find useful. Tutorials and other learning materials are in the <a href="http://julialang.org/learning">learning section</a> of the website.</p>
+
+<h2 id="moocs-teaching-julia">MOOCs teaching Julia</h2>
+
+<ul>
+  <li>Coursera, University of Cape Town
+    <ul>
+      <li><a href="https://www.coursera.org/learn/julia-programming">Julia Scientific Programming</a> online course, (Dr. Juan H Klopper, Dr. Henri Laurie)
+a</li>
+    </ul>
+  </li>
+  <li>edX MITx
+    <ul>
+      <li><a href="https://www.edx.org/course/optimization-methods-business-analytics-mitx-15-053x">15.053x</a>, Optimization Methods in Business Analytics MOOC (massive online open course), (Prof. <a href="https://www.edx.org/bio/james-orlin">James Orlin</a>)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="classes-using-julia-for-teaching">Classes using Julia for teaching</h2>
+
+<p>Julia is now being used in several universities and online courses. If you know of other classes using Julia for teaching, please consider <a href="https://github.com/JuliaLang/julialang.github.com/edit/master/teaching/index.md">updating this list</a>.</p>
+
+<ul>
+  <li>AGH University of Science and Technology, Poland <!--50.0657033,19.9189586670586-->
+    <ul>
+      <li><a href="http://home.agh.edu.pl/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej">Signal processing in medical diagnostic systems</a> (Tomasz Pieciak), Spring 2015</li>
+    </ul>
+  </li>
+  <li>Arizona State University <!--33.42165145,-111.932582859275-->
+    <ul>
+      <li>MAT 423, Numerical Analysis (Prof. Clemens Heitzinger), Fall 2014</li>
+    </ul>
+  </li>
+  <li>Azad University, Science and Research Branch <!--35.3068355,47.0064782-->
+    <ul>
+      <li>CE 3820, Modeling and Evaluation (Dr. Arman Shokrollahi), Fall 2014</li>
+    </ul>
+  </li>
+  <li>Brown University <!--41.8268682,-71.4012314581107-->
+    <ul>
+      <li><a href="http://cs.brown.edu/courses/csci1810/">CSCI 1810</a>, Computational Molecular Biology (Prof. Benjamin J. Raphael), Fall 2014</li>
+    </ul>
+  </li>
+  <li><a href="www.bme.hu">Budapest University of Technology and Economics</a> <!--47.4796299,19.0561698643001-->
+    <ul>
+      <li>[Applications of Differential Equations and Vector Analysis for Engineers II.] (<a href="https://sites.google.com/site/brszilagyi/">Brigitta Szilágyi</a>)</li>
+    </ul>
+  </li>
+  <li>City University of New York <!--40.74851885,-73.9836392743124-->
+    <ul>
+      <li><a href="http://wiener.math.csi.cuny.edu/verzani/classes/MTH229/">MTH 229</a>, Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the <a href="http://mth229.github.io">MTH 229 Projects</a> page.</li>
+    </ul>
+  </li>
+  <li>Cornell University <!--42.4489498,-76.4746831983026-->
+    <ul>
+      <li><a href="http://www.cs.cornell.edu/~bindel/class/cs5220-s14/">CS 5220</a>, Applications of Parallel Computers (Prof. David Bindel), Spring 2014</li>
+    </ul>
+  </li>
+  <li>
+    <p>École Polytechnique Fédérale de Lausanne <!--46.5186594,6.566561505148-->
+[CIVIL 557] <a href="Decision-aid methodologies in transportation">Decision-aid methodologies in transportation</a> (Mor Kaspi, Virginie Lurkin), Spring 2017</p>
+  </li>
+  <li><a href="www.eief.it">Einaudi Institute for Economics and Finance, Rome</a> <!--41.907984,12.495731-->
+    <ul>
+      <li><a href="http://www.gragusa.org/teaching/eief_dsge">Econometrics of DSGE Models</a> (<a href="http://www.gragusa.org">Giuseppe Ragusa</a>)</li>
+    </ul>
+  </li>
+  <li>Emory University <!--33.7915703,-84.3183726165067-->
+    <ul>
+      <li><a href="http://www.mathcs.emory.edu/~lruthot/courses/sp15-math346.html">MATH 346</a>, Introduction to Optimization Theory (Prof. Lars Ruthotto), Spring 2015</li>
+      <li><a href="http://www.mathcs.emory.edu/~lruthot/courses/math516.html">MATH 516</a>, Numerical Analysis II (Prof. Lars Ruthotto), Spring 2015</li>
+    </ul>
+  </li>
+  <li>Federal Rural University of Rio de Janeiro (UFRRJ) <!---22.768476,-43.685035-->
+    <ul>
+      <li>TM429, Introduction to Recommender Systems (Prof. <a href="https://github.com/filipebraida">Filipe Braida</a>), Fall 2016, Spring 2017</li>
+    </ul>
+  </li>
+  <li><a href="http://www.ufal.edu.br">Federal University of Alagoas</a> (<em>Universidade Federal de Alagoas</em>, UFAL) <!---9.555682,-35.777877-->
+    <ul>
+      <li>COMP272, Distributed Systems (<a href="https://sites.google.com/a/ic.ufal.br/andrelage">Prof. André Lage-Freitas</a>): 2015, 2016, and 2017</li>
+    </ul>
+  </li>
+  <li><a href="http://www.ufpr.br/">Federal University of Paraná</a> (<em>Universidade Federal do Paraná</em>, UFPR) <!-- -25.4510802,-49.2328735-->
+    <ul>
+      <li>CM103, Mathematics Laboratory (<a href="http://abelsiqueira.github.io/">Prof. Abel Soares Siqueira</a>): 2016, 2017, and 2018</li>
+      <li>CM106, Nonlinear Optimization (<a href="http://abelsiqueira.github.io/">Prof. Abel Soares Siqueira</a>): 2018</li>
+    </ul>
+  </li>
+  <li>Federal University of Uberlândia, Institute of Physics <!---18.918506,-48.25817-->
+    <ul>
+      <li><a href="http://www.infis.ufu.br/gerson">GFM050</a>, Física Computacional (Prof. Gerson J. Ferreira), Fall 2016</li>
+    </ul>
+  </li>
+  <li>IIT Indore <!--22.52036,75.920723-->
+    <ul>
+      <li><a href="https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course">ApplNLA</a>, Modern Applications of Numerical Linear Algebra (Prof. <a href="http://www.fesb.unist.hr/~slap/index1.html">Ivan Slapnicar</a>), June 2016</li>
+    </ul>
+  </li>
+  <li>Iowa State University <!--42.02791015,-93.6446441473745-->
+    <ul>
+      <li><a href="https://github.com/heike/stat590f">STAT 590F</a>, Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann), Fall 2014</li>
+    </ul>
+  </li>
+  <li><a href="www.luiss.it">Luiss University Rome</a>, <a href="http://economiaefinanza.luiss.it">Department of Economics and Finance</a> <!--41.92150525,12.5132906979167-->
+    <ul>
+      <li><a href="http://www.gragusa.org/teaching/et">Econometric Theory</a> (<a href="http://www.gragusa.org">Giuseppe Ragusa</a>)</li>
+    </ul>
+  </li>
+  <li>Massachusetts Institute of Technology (MIT) <!--42.3583961,-71.0956778766393-->
+    <ul>
+      <li><a href="https://stellar.mit.edu/courseguide/course/6/fa15/6.251/">6.251/15.081</a>, Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas), Fall 2015</li>
+      <li><a href="http://web.mit.edu/18.06/www/">18.06</a>, Linear Algebra: Fall 2015, Dr. <a href="https://github.com/ajt60gaibb">Alex Townsend</a>; Fall 2014, Prof. Alexander Postnikov; Fall <a href="http://stellar.mit.edu/S/course/18/fa13/18.06">2013</a>, Prof. Alan Edelman</li>
+      <li><a href="http://math.mit.edu/~stevenj/18.303/">18.303</a>, Linear Partial Differential Equations: Analysis and Numerics (Prof. <a href="https://github.com/stevengj">Steven G. Johnson</a>), Fall 2013–2016.</li>
+      <li><a href="http://beowulf.csail.mit.edu/18.337">18.337/6.338</a>, Numerical Computing with Julia (Prof. <a href="https://github.com/alanedelman">Alan Edelman</a>). <a href="http://courses.csail.mit.edu/18.337/2015">Fall 2015</a> (<a href="https://github.com/alanedelman/18.337_2015">IJulia notebooks</a>).  Fall 2013–</li>
+      <li><a href="http://math.mit.edu/classes/18.085/2015FA/index.html">18.085/0851</a>, Computational Science And Engineering I (Prof. Pedro J. Sáenz)</li>
+      <li><a href="http://homerreid.dyndns.org/teaching/18.330/">18.330</a>, Introduction to Numerical Analysis (Dr. Homer Reid), Spring 2013–2015</li>
+      <li><a href="http://math.mit.edu/~stevenj/18.335/">18.335</a>, Introduction to Numerical Methods (Prof. Steven G. Johnson), Fall 2013, Spring 2015</li>
+      <li><a href="http://web.mit.edu/18.338/www/">18.338</a>, Eigenvalues Of Random Matrices (Prof. Alan Edelman), Spring 2015</li>
+      <li><a href="https://math.mit.edu/classes/18.S096/iap17/">18.S096</a>, Performance Computing in a High Level Language (Steven G. Johnson, Alan Edelman, David Sanders, Jeff Bezanson), January 2017.</li>
+      <li><a href="http://optimization.mit.edu/class.php?id=6.255J">15.093/6.255</a>, Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos), Fall 2014</li>
+      <li><a href="https://github.com/IainNZ/ORSoftwareTools2014">15.S60</a>, Software Tools for Operations Research (Iain Dunning), Spring 2014</li>
+      <li><a href="https://stellar.mit.edu/S/course/15/sp14/15.083/">15.083</a>, Integer Programming and Combinatorial Optimization (Prof. Juan Pablo Vielma), Spring 2014</li>
+    </ul>
+  </li>
+  <li>Northeastern University, Fall 2016 <!--42.34255795,-71.0905490240477-->
+    <ul>
+      <li>MTH3300: Applied Probability &amp; Statistics</li>
+    </ul>
+  </li>
+  <li><a href="https://www.uni-obuda.hu">Óbuda University</a>, <a href="http://nik.uni-obuda.hu">John von Neumann Faculty of Informatics, Institute of Applied Mathematics</a> <!--47.53837475,19.0333089565642-->
+    <ul>
+      <li>[Intelligent Development Tools (Hungarian)]</li>
+      <li>[Intelligent Development Tools (English)]</li>
+      <li>[Fundamental Mathematical Methods (English)]</li>
+    </ul>
+  </li>
+  <li>Pennsylvania State University <!--39.94560975,-79.6594009593437-->
+    <ul>
+      <li><a href="http://www.personal.psu.edu/~ebf11/teach/astro585/">ASTRO 585</a>, High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2014 - <a href="https://github.com/eford/Astro585_2014_Spring">github repo</a></li>
+      <li><a href="http://www.personal.psu.edu/~ebf11/teach/astro585/">ASTRO 585</a>, High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Fall 2015 - <a href="https://github.com/eford/Astro585_2015_Fall_Public">github repo</a></li>
+    </ul>
+  </li>
+  <li>Pontifical Catholic University of Rio de Janeiro (PUC-Rio) <!---22.979107,-43.233083-->
+    <ul>
+      <li>Programming in Julia (Prof. <a href="https://github.com/Thuener">Thuener Silva</a>), Summer 2017</li>
+      <li>Linear Optimization (Prof. <a href="https://alexandrestreet.wordpress.com/">Alexandre Street</a>), Spring 2017</li>
+      <li>Decision and Risk Analysis (Prof. <a href="http://www.ind.puc-rio.br/es/equipe-dei/docentes/quadro-principal/davi-valladao/">Davi Valladão</a>), Fall 2015</li>
+    </ul>
+  </li>
+  <li>Purdue University <!--40.4319722,-86.923893679845-->
+    <ul>
+      <li><a href="https://www.cs.purdue.edu/homes/dgleich/cs514-2016/">CS51400</a>, Numerical Analysis (Prof. <a href="https://www.cs.purdue.edu/homes/dgleich/">David Gleich</a>), Spring 2016</li>
+    </ul>
+  </li>
+  <li>Royal Military Academy (Brussels <!--50.84451, 4.39342-->
+    <ul>
+      <li><a href="http://www.rma.ac.be/en/rma-bachelor-in-engineering.html">ES123</a>, Computer Algorithms and Programming Project (Prof. <a href="http://www.rma.ac.be/en/rma-contact.html">Ben Lauwens</a>), Spring 2018</li>
+      <li><a href="http://www.rma.ac.be/en/rma-bachelor-in-engineering.html">ES313</a>, Mathematical modelling and Computer Simulation (Prof. <a href="http://www.rma.ac.be/en/rma-contact.html">Ben Lauwens</a>), Fall 2018</li>
+    </ul>
+  </li>
+  <li>“Sapienza” University of Rome, Italy <!--41.903763,12.514438-->
+    <ul>
+      <li><a href="http://www.iasi.cnr.it/~liuzzi/teachita.htm">Operations Research</a> (Giampaolo Liuzzi), Spring 2015</li>
+      <li><a href="http://www.iasi.cnr.it/~liuzzi/teachita.htm">Optimization for Complex Systems</a> (Giampaolo Liuzzi), Spring 2016</li>
+    </ul>
+  </li>
+  <li><a href="http://www.sciencespo.fr">Sciences Po Paris</a>, <a href="http://econ.sciences-po.fr">Department of Economics</a>, Spring 2016. <!--48.85389775,2.32902123126581-->
+    <ul>
+      <li><a href="https://github.com/ScPo-CompEcon/Syllabus">Computational Economics for PhDs</a> (<a href="https://floswald.github.io">Florian Oswald</a>)</li>
+    </ul>
+  </li>
+  <li>SGH Warsaw School of Economics, Poland <!--52.208872,21.008658-->
+    <ul>
+      <li>223490-0286, Statistical Learning Methods (<a href="http://bogumilkaminski.pl/about/">Bogumił Kamiński</a>): Fall 2017, Spring 2018</li>
+      <li>234900-0286, Agent-Based Modeling (<a href="http://bogumilkaminski.pl/about/">Bogumił Kamiński</a>): Fall 2017, Spring 2018</li>
+      <li>239420-0553, <em>Introduction to Deep Learning</em> module (<a href="http://bogumilkaminski.pl/about/">Bogumił Kamiński</a>): Spring 2018</li>
+    </ul>
+  </li>
+  <li>Southcentral Kentucky Community and Technical College <!--36.9844203,-86.4766572339932-->
+    <ul>
+      <li>CIT 120 Computational Thinking (Inst. <a href="https://github.com/snotskie/">Bryan Knowles</a>), Online, Fall 2017</li>
+    </ul>
+  </li>
+  <li>Stanford University <!--37.431089,-122.169300939407-->
+    <ul>
+      <li><a href="http://www.stanford.edu/class/aa222/">AA222</a>, Introduction to Multidisciplinary Design Optimization (Prof. Mykel J. Kochenderfer), Spring 2014</li>
+      <li><a href="http://www.stanford.edu/class/aa228/">AA228/CS238</a>, Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer), Fall 2014</li>
+      <li><a href="http://stanford.edu/class/ee103/">EE103</a>, Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2014</li>
+      <li><a href="https://github.com/icme/cme257-advanced-julia/">CME 257</a>, Advanced Topics in Scientific Computing with Julia (Mr. <a href="https://github.com/bnels">Brad Nelson</a>), Fall 2015</li>
+      <li><a href="http://stanford.edu/class/ee103/">EE103</a>, Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2015</li>
+    </ul>
+  </li>
+  <li><a href="https://www.statistik.tu-dortmund.de/sfb823.html">TU Dortmund / SFB 823</a>, Germany <!--51.4915,7.41225-->
+    <ul>
+      <li>One week introductory course into Julia with applications in statistics and economics (<a href="https://www.statistik.tu-dortmund.de/conring.html">Tileman Conring</a>): Spring 2018</li>
+    </ul>
+  </li>
+  <li>Universidad Nacional Autónoma de México <!--19.647012,-101.22900565-->
+    <ul>
+      <li><a href="https://github.com/computo-fc/fisica_computacional">Física computacional</a> (Prof. David P. Sanders), Fall 2014</li>
+      <li>Métodos numéricos para sistemas dinámicos (Prof. Luis Benet), Fall 2014</li>
+      <li><a href="https://github.com/dpsanders/MetodosNumericosAvanzados">Métodos numéricos avanzados</a> (Prof. David P. Sanders and Prof. Luis Benet), Spring 2015</li>
+      <li><a href="https://github.com/dpsanders/metodos-monte-carlo">Métodos computacionales para la física estadística</a> (Prof. David P. Sanders), Spring 2015</li>
+    </ul>
+  </li>
+  <li>Universidad Nacional Pedro Ruiz Gallo, Lambayeque, Perú <!---6.707546,-79.9069734-->
+    <ul>
+      <li>Julia: el lenguaje del futuro, <a href="http://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro">Semana de Integración de Ingeniería Electrónica</a>, (Oscar William Neciosup Vera), Spring 2015</li>
+    </ul>
+  </li>
+  <li>University at Buffalo <!--43.0015201,-78.7870697019128-->
+    <ul>
+      <li><a href="http://www.chkwon.net/teaching/ie-572/">IE 572</a> Linear Programming (Prof. Changhyun Kwon), Fall 2014</li>
+    </ul>
+  </li>
+  <li>University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016 <!--51.22281,4.410232-->
+    <ul>
+      <li>Computational Neuroscience (2070FBDBMW), Master of Biomedical Sciences, of Biochemistry, of Physics (<a href="https://www.uantwerpen.be/popup/opleidingsonderdeel.aspx?catalognr=2070FBDBMW&amp;taal=nl&amp;aj=2016">Michele Giugliano</a>)</li>
+    </ul>
+  </li>
+  <li>University of California, Los Angeles (UCLA) <!--34.068921,-118.445181-->
+    <ul>
+      <li><a href="http://hua-zhou.github.io/teaching/biostatm280-2017spring/">Stat M230/Biomath 280/Biostat M280</a>, Statistical Computing, Spring 2017 (Prof. <a href="https://github.com/Hua-Zhou">Hua Zhou</a>)</li>
+    </ul>
+  </li>
+  <li>University of Cologne, Institute for Theoretical Physics <!--50.928162,6.928819-->
+    <ul>
+      <li><a href="http://www.thp.uni-koeln.de/trebst/Lectures/2016-CompPhys.shtml">Computational Physics</a> (Prof. Simon Trebst), Summer 2016</li>
+      <li><a href="http://www.thp.uni-koeln.de/~bulla/cp-ss17.html">Computational Physics</a> (Prof. Ralf Bulla), Summer 2017</li>
+      <li><a href="http://www.thp.uni-koeln.de/trebst/Lectures/2017-StatPhys.shtml">Statistical Physics</a> (Prof. Simon Trebst), Winter 2017</li>
+      <li><a href="http://www.thp.uni-koeln.de/trebst/Lectures/2018-CompManyBody.shtml">Computational Many-Body Physics</a> (Prof. Simon Trebst), Summer 2018</li>
+    </ul>
+  </li>
+  <li>University of Connecticut, Storrs
+    <ul>
+      <li>CHEG 5395, Metaheuristic and Heuristic Methods in Chemical Engineering (Prof. Ranjan Srivastava), Spring 2018</li>
+    </ul>
+  </li>
+  <li>University of Edinburgh <!--55.94938435,-3.18005288130257-->
+    <ul>
+      <li>Spring 2017, <a href="http://www.drps.ed.ac.uk/16-17/dpt/cxmath11146.htm">MATH11146</a>, Modern optimization methods for big data problems (Prof. <a href="http://www.maths.ed.ac.uk/~prichtar/index.html">Peter Richtarik</a>)</li>
+      <li>Spring 2016, <a href="http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm">MATH11146</a>, Modern optimization methods for big data problems (Prof. <a href="http://www.maths.ed.ac.uk/~prichtar/index.html">Peter Richtarik</a>)</li>
+    </ul>
+  </li>
+  <li>University of Glasgow, School of Mathematics and Statistics <!--55.87230815,-4.28922544277935-->
+    <ul>
+      <li>An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics (<a href="http://www.gla.ac.uk/schools/mathematicsstatistics/staff/theodorepapamarkou/">Theodore Papamarkou</a>), September 2017</li>
+    </ul>
+  </li>
+  <li>University of South Florida <!--28.0599999,-82.4138361902512-->
+    <ul>
+      <li><a href="http://www.chkwon.net/teaching/esi-6491/">ESI 6491</a>, Linear Programming and Network Optimization (Prof. Changhyun Kwon), Fall 2015</li>
+      <li><a href="http://www.chkwon.net/teaching/ein-6935/">EIN 6945</a>, Nonlinear Optimization and Game Theory (Prof. <a href="http://www.chkwon.net/">Changhyun Kwon</a>), Spring 2016</li>
+    </ul>
+  </li>
+  <li>University of Sydney <!---33.88902715,151.189420694852-->
+    <ul>
+      <li><a href="http://www.maths.usyd.edu.au/u/olver/teaching/MATH3976/">MATH3076/3976</a>, Mathematical Computing (Assoc. Prof. <a href="http://www.maths.usyd.edu.au/u/olver/">Sheehan Olver</a>), Fall 2016</li>
+    </ul>
+  </li>
+  <li>Université Paul Sabatier, Toulouse <!--43.5601417,1.4635117-->
+    <ul>
+      <li><a href="http://www.irit.fr/cimi-machine-learning/node/15">Optimization in Machine Learning</a>, (Prof. <a href="http://www.maths.ed.ac.uk/~prichtar/">Peter Richtarik</a>), Fall 2015</li>
+    </ul>
+  </li>
+  <li><a href="http://www.ulg.ac.be/">Université de Liège</a> <!--50.64080705,5.57643469040658-->
+    <ul>
+      <li><a href="http://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2016-2017-discrete-optimisation">MATH0462</a>, Discrete Optimization (Prof. <a href="http://www.montefiore.ulg.ac.be/~louveaux/">Quentin Louveaux</a>), Fall 2016</li>
+      <li><a href="http://progcours.ulg.ac.be/cocoon/cours/MATH0461-2.html">MATH0461</a>, Introduction to Numerical Optimization (Prof. <a href="http://www.montefiore.ulg.ac.be/~louveaux/">Quentin Louveaux</a>), Fall 2016</li>
+      <li><a href="http://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2015-2016-discrete-optimisation">MATH0462</a>, Discrete Optimization (Prof. <a href="http://www.montefiore.ulg.ac.be/~louveaux/">Quentin Louveaux</a>), Fall 2015</li>
+    </ul>
+  </li>
+  <li>Université de Montréal <!--45.5268737,-73.7086164-->
+    <ul>
+      <li><a href="https://admission.umontreal.ca/cours-et-horaires/cours/IFT-1575/">IFT1575</a>, Modèles de recherche opérationnelle (Prof. <a href="https://www.iro.umontreal.ca/~gendron/">Bernard Gendron</a>), Fall 2017</li>
+      <li><a href="https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3245/">IFT3245</a>, Simulation et modèles (Prof. <a href="https://www.iro.umontreal.ca/~bastin/">Fabian Bastin</a>), Fall 2017</li>
+      <li><a href="https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3515/">IFT3515</a>, Optimisation non linéaire (Prof. <a href="https://www.iro.umontreal.ca/~bastin/">Fabian Bastin</a>), Winter 2017-2018</li>
+      <li><a href="https://admission.umontreal.ca/cours-et-horaires/cours/IFT-6512/">IFT6512</a>, Programmation stochastique (Prof. <a href="https://www.iro.umontreal.ca/~bastin/">Fabian Bastin</a>), Winter 2018</li>
+    </ul>
+  </li>
+  <li>Western University Canada <!--43.00535865,-81.2748046243065-->
+    <ul>
+      <li><a href="http://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html">CS 2101A</a>, Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza), Fall 2013</li>
+    </ul>
+  </li>
+</ul>
+
 </div>
