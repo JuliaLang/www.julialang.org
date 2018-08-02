@@ -95,50 +95,6 @@ title:  Learning Julia
   <li><a href="https://speakerdeck.com/eford/why-your-next-project-should-use-julia">Why your next project should use Julia</a> slides from seminar by <a href="http://www.personal.psu.edu/~ebf11/">Eric Ford</a></li>
 </ul>
 
-<h1 id="videos-tutorials">Videos: Tutorials</h1>
-
-<ul>
-  <li>
-    <a href="https://www.youtube.com/watch?v=gQ1y5NUD_RI">Invitation to Julia</a> by <a href="http://sistemas.fciencias.unam.mx/~dsanders/">David P. Sanders</a> at JuliaCon 2015. Supporting material <a href="https://github.com/dpsanders/invitation_to_julia">here</a>.
-  </li>
-  <li>
-    <a href="http://sistemas.fciencias.unam.mx/~dsanders/">David P. Sanders</a> gave a detailed <a href="https://www.youtube.com/watch?v=vWkgEddb4-A">Julia tutorial at SciPy 2014</a>, which is a great starting point for a new Julia user. Also download the relevant <a href="https://github.com/dpsanders/scipy_2014_julia">IJulia notebooks</a> that are used in the tutorial.
-  </li>
-  <li><a href="http://math.mit.edu/~stevenj/">Steven Johnson’s</a> keynote at EuroSciPy 2014: Crossing Language Barriers with Julia, SciPy, and IPython <a href="https://www.youtube.com/watch?v=jhlVHoeB05A&amp;list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi">video</a> and <a href="https://github.com/stevengj/Julia-EuroSciPy14">supporting material</a>.</li>
-  <li><a href="https://www.youtube.com/watch?v=AyvyVS6u8AM">Julia Tutorial</a> by <a href="http://www.chasegcoleman.com/">Chase Coleman</a> at PyDataDC 2016. Supporting material <a href="https://github.com/cc7768/PyDataDC_julia">here</a>.</li>
-</ul>
-
-<h1 id="videos-special-topics">Videos: Special topics</h1>
-
-<ul>
-  <li>
-    <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM">JuliaCon 2015 videos</a>. 61 videos on a wide range of subjects, from the future of the core language to using parallel programming and air traffic control.
-  </li>
-  <li>
-    <a href="https://www.youtube.com/watch?v=68yy33jOkOs">Free probability, random matrices and disorder in organic semiconductors</a> by Jiahao Chen with the related <a href="http://www.slideshare.net/acidflask/free-probability-random-matrices-and-disorder-in-organic-semiconductors">slides</a> and <a href="http://nbviewer.ipython.org/github/jiahao/ijulia-notebooks-assorted/blob/master/RMT%20history.ipynb">IJulia notebook</a>.
-  </li>
-  <li><a href="https://www.youtube.com/watch?v=VS0fnUOAKpI">Fast and Flexible Linear Algebra in Julia</a> by Andreas Noack Jensen at Stanford in April 2015. The <a href="http://andreasnoack.github.io/talks/2015AprilStanford_AndreasNoack.ipynb">IJulia notebook</a> is also available.</li>
-  <li>
-    <a href="https://yow.eventer.com/yow-2014-1222/how-julia-goes-faster-by-leah-hanson-1694">How Julia Goes Faster</a> by Leah Hanson in December 2014.</p>
-  </li>
-  <li>
-    <a href="http://www.juliacon.org">JuliaCon 2014</a> featured <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd">a number of talks</a> on various aspects of Julia and its development. <a href="https://github.com/JuliaCon/presentations">Slides and IJulia notebooks</a> are on Github.
-  </li>
-  <li>A set of <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ">video tutorials</a> were recorded at MIT in January 2013. <a href="https://github.com/JuliaLang/julia-tutorial">Slides and other materials</a> from the tutorial are on GitHub.</li>
-</ul>
-
-
-<h1 id="articles-and-blog-posts">Articles and blog posts</h1>
-
-<ul>
-  <li><a href="https://software.intel.com/en-us/articles/vectorization-in-julia">Vectorization in Julia</a> by <a href="https://github.com/ArchRobison">Arch Robison</a></li>
-  <li><a href="http://graydon2.dreamwidth.org/">Graydon Hoare</a> on Julia: <a href="http://graydon2.dreamwidth.org/3186.html">part 1</a>, <a href="http://graydon2.dreamwidth.org/189377.html">part 2</a></li>
-  <li><a href="http://arstechnica.com/science/2014/05/scientific-computings-future-can-any-coding-language-top-a-1950s-behemoth/">Scientific computing’s future: Can any coding language top a 1950s behemoth?</a> by Lee Phillips on ArsTechnica</li>
-  <li><a href="http://ilp.mit.edu/newsstory.jsp?id=19970">HPC Programming with Ease</a> by Eric Brown for the MIT Industrial Liaison Program</li>
-  <li><a href="http://www.admin-magazine.com/HPC/Articles/Julia-A-New-Language-For-Technical-Computing">Julia: A New Language For Technical Computing</a> by Douglas Eadline in Admin magazine</li>
-</ul>
-<br>
-
 
 <h1 id="julia-in-the-classroom">Julia in the classroom</h1>
 
