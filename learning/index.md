@@ -11,25 +11,18 @@ title:  Learning Julia
 
 ## Past
 * [Intro to Julia](https://www.youtube.com/watch?v=4igzy3bGVkQ), by Jane Herriman (December 19, 2017) 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4igzy3bGVkQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 * Intro to Julia by Jane Herriman (January 25, 2018)
 * [Intro to solving differential equations in Julia](https://www.youtube.com/watch?v=KPEqYtEd-zY),
 by Chris Rackauckas (February 6, 2018)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KPEqYtEd-zY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 * Intro to Julia, by Jane Herriman (February 15, 2018)
 * [Intro to JuliaDB, a package for working with large persistent data sets](https://www.youtube.com/watch?v=d5SzUh2_ono) by Josh Day and Shashi Gowda (February 28, 2018)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/d5SzUh2_ono" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 * Intro to Julia, by Jane Herriman (April 6, 2018)
 * [Introducción a Julia en español](https://youtu.be/LbTbs-0pOuc), by Miguel Raz Guzmán (April 7, 2018)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LbTbs-0pOuc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 * Intro to Julia, by Jane Herriman (May 4, 2018)
 * [Intro to dynamical systems in Julia](https://www.youtube.com/watch?v=13hqE_1a158), by George Datseris (May 10, 2018)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/13hqE_1a158" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 * [Intro to Julia Data Frames](https://www.youtube.com/watch?v=0-Xsts_s5Wc), by Bogumił Kamiński (May 24, 2018)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0-Xsts_s5Wc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 * Intro to Julia,  by Jane Herriman (June 8, 2018)
 * [Intro to the Queryverse, a Julia data science stack](https://www.youtube.com/watch?v=OFPNph-WxLM), by David Anthoff (June 14, 2018)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/OFPNph-WxLM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Get jupyter notebooks for all past tutorials [here](https://github.com/JuliaComputing/JuliaBoxTutorials) or run them directly on [JuliaBox](JuliaBox.com)!
 
@@ -82,11 +75,9 @@ Get jupyter notebooks for all past tutorials [here](https://github.com/JuliaComp
 
 - [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/) gave a detailed [Julia tutorial at SciPy 2014](https://www.youtube.com/watch?v=vWkgEddb4-A), which is a great starting point for a new Julia user. Also download the relevant [IJulia notebooks](https://github.com/dpsanders/scipy_2014_julia) that are used in the tutorial.
 
-<iframe width="400" height="225" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6T0dEHtj0GZymvT6ODIJWj0" frameborder="0" allowfullscreen></iframe>
 
 - [Steven Johnson's](http://math.mit.edu/~stevenj/) keynote at EuroSciPy 2014: Crossing Language Barriers with Julia, SciPy, and IPython [video](https://www.youtube.com/watch?v=jhlVHoeB05A&list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi) and [supporting material](https://github.com/stevengj/Julia-EuroSciPy14).
 
-<iframe width="400" height="225" src="https://www.youtube.com/embed/jhlVHoeB05A?list=PLYx7XA2nY5GfavGAILg08spnrR7QWLimi" frameborder="0" allowfullscreen></iframe>
 
 - [Julia Tutorial](https://www.youtube.com/watch?v=AyvyVS6u8AM) by [Chase Coleman](http://www.chasegcoleman.com/) at PyDataDC 2016. Supporting material [here](https://github.com/cc7768/PyDataDC_julia).
 
@@ -96,21 +87,17 @@ Get jupyter notebooks for all past tutorials [here](https://github.com/JuliaComp
 
 - [Free probability, random matrices and disorder in organic semiconductors](https://www.youtube.com/watch?v=68yy33jOkOs) by Jiahao Chen with the related [slides](http://www.slideshare.net/acidflask/free-probability-random-matrices-and-disorder-in-organic-semiconductors) and [IJulia notebook](http://nbviewer.ipython.org/github/jiahao/ijulia-notebooks-assorted/blob/master/RMT%20history.ipynb).
 
-<iframe width="400" height="225" src="https://www.youtube.com/embed/68yy33jOkOs" frameborder="0" allowfullscreen></iframe>
 
 - [Fast and Flexible Linear Algebra in Julia](https://www.youtube.com/watch?v=VS0fnUOAKpI) by Andreas Noack Jensen at Stanford in April 2015. The [IJulia notebook](http://andreasnoack.github.io/talks/2015AprilStanford_AndreasNoack.ipynb) is also available.
 
-<iframe width="400" height="225" src="https://www.youtube.com/embed/VS0fnUOAKpI" frameborder="0" allowfullscreen></iframe>
 
 - [How Julia Goes Faster](https://yow.eventer.com/yow-2014-1222/how-julia-goes-faster-by-leah-hanson-1694) by Leah Hanson in December 2014.
 
 - [JuliaCon 2014](http://www.juliacon.org) featured [a number of talks](https://www.youtube.com/playlist?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd) on various aspects of Julia and its development. [Slides and IJulia notebooks](https://github.com/JuliaCon/presentations) are on Github.
 
-<iframe width="400" height="225" src="//www.youtube.com/embed/videoseries?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe>
 
 - A set of [video tutorials](https://www.youtube.com/playlist?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ) were recorded at MIT in January 2013. [Slides and other materials](https://github.com/JuliaLang/julia-tutorial) from the tutorial are on GitHub.
 
-<iframe width="400" height="225" src="https://www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Si2sjMkrPY-wt2mEouZgaZ" frameborder="0" allowfullscreen></iframe>
 
 # Articles and blog posts
 
