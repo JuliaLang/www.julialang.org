@@ -76,13 +76,6 @@ title:  Learning Julia
   <li><a href="http://quant-econ.net/jl/learning_julia.html">Programming in Julia (Quantitative Economics)</a> - by Thomas J. Sargent and John Stachurski. Along with being a complete textbook with Julia code for macroeconomics, this also is a very good introduction to Julia.</li>
   <li><a href="https://github.com/bkamins/The-Julia-Express">The Julia Express</a> by <a href="http://bogumilkaminski.pl">Bogumił Kamiński</a></li>
   <li><a href="https://en.wikibooks.org/wiki/Introducing_Julia">Introducing Julia wikibook</a></li>
-  <li><a href="http://www.scolvin.com/juliabyexample/">Julia by Example</a> by <a href="http://www.scolvin.com/">Samuel Colvin</a></li>
-  <li><a href="https://github.com/scidom/StatsLearningByExample.jl">Statistical Learning in Julia by Example</a> by <a href="http://www.gla.ac.uk/schools/mathematicsstatistics/staff/theodorepapamarkou/">Theodore Papamarkou</a></li>
-  <li><a href="http://learnxinyminutes.com/docs/julia/">Learn Julia in Y minutes</a> by <a href="http://blog.leahhanson.us/">Leah Hanson</a></li>
-  <li><a href="https://github.com/chrisvoncsefalvay/learn-julia-the-hard-way">Learn Julia the Hard Way</a> by <a href="http://chrisvoncsefalvay.com/">Chris von Csefalvay</a></li>
-  <li><a href="https://github.com/dpsanders/hands_on_julia">Hands-on Julia</a> by <a href="http://sistemas.fciencias.unam.mx/~dsanders/">David P. Sanders</a></li>
-  <li><a href="https://www.analyticsvidhya.com/blog/2017/10/comprehensive-tutorial-learn-data-science-julia-from-scratch/">A Comprehensive Tutorial to Learn Data Science with Julia from Scratch</a> by <a href="https://www.analyticsvidhya.com/blog/author/mohdsanadzakirizvigmail-com/">Mohd Sanad Zaki Rizvi</a></li>
-  <li><a href="https://github.com/BenLauwens/ThinkJulia.jl">Think Julia</a> - a Julia version of <a href="http://www.greenteapress.com/thinkpython/thinkpython.html">Alan Downey’s</a> “Think Python: How to Think Like a Computer Scientist”</li>
 </ul>
 
 <h1 id="resources">Resources</h1>
@@ -92,7 +85,6 @@ title:  Learning Julia
   <li><a href="https://github.com/stevengj/1806/blob/master/julia/Julia-cheatsheet.pdf">A Julia cheat sheet</a> by <a href="http://math.mit.edu/~stevenj/">Steven Johnson</a></li>
   <li><a href="https://github.com/svaksha/Julia.jl#index">Julia.jl - Curated list of Julia resources and packages</a> by <a href="http://svaksha.com/pages/Bio">Svaksha</a></li>
   <li><a href="https://juliaobserver.com/">Julia Observer - A website for browsing Julia packages</a> by <a href="http://seg.al/">Dan Segal</a></li>
-  <li><a href="https://speakerdeck.com/eford/why-your-next-project-should-use-julia">Why your next project should use Julia</a> slides from seminar by <a href="http://www.personal.psu.edu/~ebf11/">Eric Ford</a></li>
 </ul>
 
 
