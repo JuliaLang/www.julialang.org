@@ -1,30 +1,51 @@
 ---
-layout: default
+layout: homepage
 title:  Learning Julia
 ---
 
-# Online tutorials
-## Upcoming
+{% include mainmenu.html %}
 
-* [Intro to Julia](https://www.youtube.com/watch?v=BYW2J2WWkj8), by Jane Herriman on July 20, 2018 at 10AM PDT/1PM EDT/19:00CET
-* Intro to Julia for data science, by Huda Nassar, date TBD
+<br>
+<br>
+<div class="container">
+    <h1> Online tutorials </h1>
+        <br>
+        <h2> Upcoming </h2>
 
-## Past
-* [Intro to Julia](https://www.youtube.com/watch?v=4igzy3bGVkQ), by Jane Herriman (December 19, 2017) 
-* Intro to Julia by Jane Herriman (January 25, 2018)
-* [Intro to solving differential equations in Julia](https://www.youtube.com/watch?v=KPEqYtEd-zY),
-by Chris Rackauckas (February 6, 2018)
-* Intro to Julia, by Jane Herriman (February 15, 2018)
-* [Intro to JuliaDB, a package for working with large persistent data sets](https://www.youtube.com/watch?v=d5SzUh2_ono) by Josh Day and Shashi Gowda (February 28, 2018)
-* Intro to Julia, by Jane Herriman (April 6, 2018)
-* [Introducción a Julia en español](https://youtu.be/LbTbs-0pOuc), by Miguel Raz Guzmán (April 7, 2018)
-* Intro to Julia, by Jane Herriman (May 4, 2018)
-* [Intro to dynamical systems in Julia](https://www.youtube.com/watch?v=13hqE_1a158), by George Datseris (May 10, 2018)
-* [Intro to Julia Data Frames](https://www.youtube.com/watch?v=0-Xsts_s5Wc), by Bogumił Kamiński (May 24, 2018)
-* Intro to Julia,  by Jane Herriman (June 8, 2018)
-* [Intro to the Queryverse, a Julia data science stack](https://www.youtube.com/watch?v=OFPNph-WxLM), by David Anthoff (June 14, 2018)
+        <ul>
+            <li><a href = "https://www.youtube.com/watch?v=BYW2J2WWkj8">Intro to Julia</a>, 
+                    by Jane Herriman on July 20, 2018 at 10AM PDT/1PM EDT/19:00CET </li>
+            <li> Intro to Julia for data science, by Huda Nassar, date TBD </li>
+        </ul>
 
-Get jupyter notebooks for all past tutorials [here](https://github.com/JuliaComputing/JuliaBoxTutorials) or run them directly on [JuliaBox](JuliaBox.com)!
+        <h2>Past </h2>
+
+        <ul>
+            <li> <a href = "https://www.youtube.com/watch?v=4igzy3bGVkQ">Intro to Julia</a>, 
+                by Jane Herriman (December 19, 2017) </li>
+            <li> Intro to Julia by Jane Herriman (January 25, 2018) </li>
+            <li> <a href="https://www.youtube.com/watch?v=KPEqYtEd-zY">Intro to solving differential equations in Julia</a>,
+                by Chris Rackauckas (February 6, 2018) </li>
+            <li> Intro to Julia, by Jane Herriman (February 15, 2018) </li>
+            <li> <a href="https://www.youtube.com/watch?v=d5SzUh2_ono">Intro to JuliaDB, a package for working with large persistent data sets</a>, 
+                by Josh Day and Shashi Gowda (February 28, 2018) </li>
+            <li> Intro to Julia, by Jane Herriman (April 6, 2018) </li>
+            <li> <a href="https://youtu.be/LbTbs-0pOuc">Introducción a Julia en español</a>, 
+                by Miguel Raz Guzmán (April 7, 2018) </li>
+            <li> Intro to Julia, by Jane Herriman (May 4, 2018) </li>
+            <li> <a href="https://www.youtube.com/watch?v=13hqE_1a158">Intro to dynamical systems in Julia</a>, 
+                by George Datseris (May 10, 2018) </li>
+            <li> <a href="https://www.youtube.com/watch?v=0-Xsts_s5W">Intro to Julia Data Frames</a>, 
+                by Bogumił Kamiński (May 24, 2018) </li>
+            <li> Intro to Julia,  by Jane Herriman (June 8, 2018) </li>
+            <li> <a href="https://www.youtube.com/watch?v=OFPNph-WxLM">Intro to the Queryverse, a Julia data science stack</a>, 
+                by David Anthoff (June 14, 2018) </li>
+        </ul>
+
+<p>
+    Get jupyter notebooks for all past tutorials <a href="https://github.com/JuliaComputing/JuliaBoxTutorials">here</a> 
+        or run them directly on <a href="https://juliabox.com">JuliaBox</a>.
+</p>
 
 # Books
 
@@ -106,3 +127,4 @@ Get jupyter notebooks for all past tutorials [here](https://github.com/JuliaComp
 - [Scientific computing’s future: Can any coding language top a 1950s behemoth?](http://arstechnica.com/science/2014/05/scientific-computings-future-can-any-coding-language-top-a-1950s-behemoth/) by Lee Phillips on ArsTechnica
 - [HPC Programming with Ease](http://ilp.mit.edu/newsstory.jsp?id=19970) by Eric Brown for the MIT Industrial Liaison Program
 - [Julia: A New Language For Technical Computing](http://www.admin-magazine.com/HPC/Articles/Julia-A-New-Language-For-Technical-Computing) by Douglas Eadline in Admin magazine
+</div>
