@@ -223,7 +223,7 @@ following figure reports the time it takes `blackscholes` to run on
 arrays of 100 million elements, this time on a 36-core machine with
 128 GB of RAM [[2](#footnote2)]:
 
-![Benchmark results for plain Julia and ParallelAccelerator implementations of the Black-Scholes formula](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/parallelaccelerator_figures/black-scholes-2016-01-31-blogpost.png?raw=true)
+![Benchmark results for plain Julia and ParallelAccelerator implementations of the Black-Scholes formula](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/parallelaccelerator_figures/black-scholes-2016-01-31-blogpost.png?raw=true)
 
 The first three bars of the above figure show performance results for
 ParallelAccelerator using different numbers of threads.  Since
@@ -478,7 +478,7 @@ ParallelAccelerator implementations of `blur`, each running for 100
 iterations on the aforementioned 7095x5322 source image, run using the
 same machine as for the previous Black-Scholes benchmark.
 
-![Benchmark results for plain Julia and ParallelAccelerator implementations of Gaussian blur](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/parallelaccelerator_figures/gaussian-blur-2016-03-02-blogpost.png?raw=true)
+![Benchmark results for plain Julia and ParallelAccelerator implementations of Gaussian blur](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/parallelaccelerator_figures/gaussian-blur-2016-03-02-blogpost.png?raw=true)
 
 The rightmost column shows the results for plain Julia, using the
 first implementation of `blur` shown above.  The three columns to the
@@ -506,7 +506,7 @@ that can be compiled by an external C++ compiler.  The following
 figure shows an overview of the ParallelAccelerator compilation
 process:
 
-![The ParallelAccelerator compiler pipeline](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/parallelaccelerator_figures/compiler-pipeline.png?raw=true)
+![The ParallelAccelerator compiler pipeline](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/parallelaccelerator_figures/compiler-pipeline.png?raw=true)
 
 As many readers of this blog will know, Julia has good support for
 [inspecting and manipulating its own ASTs](http://docs.julialang.org/en/release-0.4/devdocs/reflection/).

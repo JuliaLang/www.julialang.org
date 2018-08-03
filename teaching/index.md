@@ -17,7 +17,7 @@ a
 
 ## Classes using Julia for teaching
 
-Julia is now being used in several universities and online courses. If you know of other classes using Julia for teaching, please consider [updating this list](https://github.com/JuliaLang/julialang.github.com/edit/master/teaching/index.md).
+Julia is now being used in several universities and online courses. If you know of other classes using Julia for teaching, please consider [updating this list](https://github.com/JuliaLang/www.julialang.org/edit/master/teaching/index.md).
 
 - AGH University of Science and Technology, Poland <!--50.0657033,19.9189586670586-->
   * [Signal processing in medical diagnostic systems](http://home.agh.edu.pl/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej) (Tomasz Pieciak), Spring 2015

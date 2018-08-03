@@ -37,27 +37,27 @@ The optional `pixelspacing` input tells `display` that this image has a fixed as
 
 You should get a window with your image:
 
-![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo1.jpg?raw=true)
+![photo](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/photo1.jpg?raw=true)
 
 OK, nice.
 But we can start to have some fun if we resize the window, which causes the image to get bigger or smaller:
 
-![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo2.jpg?raw=true)
+![photo](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/photo2.jpg?raw=true)
 
 Note the black perimeter; that's because we've specified the aspect ratio through the `pixelspacing` input, and when the window doesn't have the same aspect ratio as the image you'll have a perimeter either horizontally or vertically.
 Try it without specifying `pixelspacing`, and you'll see that the image stretches to fill the window, but it looks distorted:
 
     display(img)
 
-![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo3.jpg?raw=true)
+![photo](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/photo3.jpg?raw=true)
 
 (This won't work if you've already defined `"pixelspacing"` for `img`; if necessary, use `delete!(img, "pixelspacing")` to remove that setting.)
 
 Next, click and drag somewhere inside the image.
 You'll see the typical rubberband selection, and once you let go the image display will zoom in on the selected region. 
 
-![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo4.jpg?raw=true)
-![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo5.jpg?raw=true)
+![photo](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/photo4.jpg?raw=true)
+![photo](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/photo5.jpg?raw=true)
 
 Again, the aspect ratio of the display is preserved.
 Double-clicking on the image restores the display to full size.
@@ -83,8 +83,8 @@ or switch the `x` and `y` axes with
 
     display(img, pixelspacing = [1,1], xy=["y","x"])
 
-![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo6.jpg?raw=true)
-![photo](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/photo7.jpg?raw=true)
+![photo](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/photo6.jpg?raw=true)
+![photo](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/photo7.jpg?raw=true)
 
 To experience the full functionality, you'll need a "4D  image," a movie (time sequence) of 3D images.
 If you don't happen to have one lying around, you can create one via `include("test/test4d.jl")`, where `test` means the test directory in `ImageView`.
@@ -93,7 +93,7 @@ This creates a solid cone that changes color over time, again in the variable `i
 Then, type `display(img)`.
 You should see something like this:
 
-![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/display_GUI.jpg?raw=true)
+![GUI snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/display_GUI.jpg?raw=true)
 
 The green circle is a "slice" from the cone.
 At the bottom of the window you'll see a number of buttons and our current location, `z=1` and `t=1`, which correspond to the base of the cone and the beginning of the movie, respectively.
@@ -106,7 +106,7 @@ If you have a wheel mouse, Alt-scroll changes the time, and Ctrl-Alt-scroll chan
 
 You can change the playback speed by right-clicking in an empty space within the navigation bar, which brings up a popup (context) menu:
 
-![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/popup.jpg?raw=true)
+![GUI snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/popup.jpg?raw=true)
 
 <br />
 <br />
@@ -119,7 +119,7 @@ You might want to see a different set of slices from the 4d image:
 Initially you'll see nothing, but that's because this edge of the image is black.
 Type 151 into the `y:` entry box (note its name has changed) and hit enter, or move the "y" slider into the middle of its range; now you'll see the cone from the side.
 
-![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/display_GUI2.jpg?raw=true)
+![GUI snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/display_GUI2.jpg?raw=true)
 
 This GUI is also useful for "plain movies" (2d images with time), in which case the `z` controls will be omitted and it will behave largely as a typical movie-player.
 Likewise, the `t` controls will be omitted for 3d images lacking a temporal component, making this a nice viewer for MRI scans.
@@ -369,7 +369,7 @@ The first three lines create the window and the frame. `pack` is an alternative 
 Here we'll have a frame `pack`ed in the window, and the widgets will be `grid`ded inside the frame.)
 After that fourth line, the window is rather tiny; the call to `pack` causes the frame to fill to expand the whole window, but at the moment the frame has no contents, so the window is as small as it can be.
 
-![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/navigation1.jpg?raw=true)
+![GUI snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/navigation1.jpg?raw=true)
 
 We need a `showframe` callback; for now let's create a very simple one that will help in testing:
 
@@ -386,12 +386,12 @@ Finally, we initialize the widgets:
 
     init_navigation!(f, ctrls, state, showframe)
 
-![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/navigation2.jpg?raw=true)
+![GUI snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/navigation2.jpg?raw=true)
 
 Now when you click on buttons, or change the text in the entry boxes, you'll see the GUI in action.
 You can tell from the command line output, generated by `showframe`, what's happening internally:
 
-![GUI snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/navigation_repl.jpg?raw=true)
+![GUI snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/navigation_repl.jpg?raw=true)
 
 Hopefully this demonstrates another nice feature of developing GUIs in Julia: it's straightforward to build re-usable components.
 This navigation frame can be added as an element to any window, and the grid layout manager takes care of the rest.

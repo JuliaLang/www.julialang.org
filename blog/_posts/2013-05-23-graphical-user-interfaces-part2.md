@@ -41,7 +41,7 @@ The call to `pack` specifies that this canvas fills the entire window, and simul
 Note that the window is currently blank, because we haven't drawn anything to it yet, so you can see whatever was lying underneath.
 In my case it captured a small region of my desktop:
 
-![cairo snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/cairo_example2.jpg?raw=true)
+![cairo snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/cairo_example2.jpg?raw=true)
 
 
 Now let's do some drawing.
@@ -72,7 +72,7 @@ Perhaps surprisingly, nothing happened.
 The reason is that the Tk Canvas implements a technique called [double buffering](http://en.wikipedia.org/wiki/Multiple_buffering#Double_buffering_in_computer_graphics), which means that you do all your drawing to a back (hidden) surface, and then blit the completed result to the front (visible) surface.
 We can see this in action simply by bringing another window over the top of the window we're using to draw, and then bringing our window back to the top; suddenly you'll see a nice blue rectangle within the window, surrounded by whatever is in the background window(s):
 
-![cairo snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/cairo_example3.jpg?raw=true)
+![cairo snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/cairo_example3.jpg?raw=true)
 
 Fortunately, to display your graphics you don't have to rely on users changing the stacking order of windows: call `reveal(c)` to update the front surface with the contents of the back surface, followed by `update()` (or perhaps better, `Tk.update()` since `update` is a fairly generic name) to give Tk a chance to expose the front surface to the OS's window manager.
 
@@ -106,7 +106,7 @@ Let's illustrate this by adding a solid green rectangle with a magenta border, l
 
 Here is our masterpiece, where the "background" may differ for you (mine was positioned over the bottom of a wikipedia page):
 
-![cairo snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/cairo_example.jpg?raw=true)
+![cairo snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/cairo_example.jpg?raw=true)
 
 ### Rendering an image
 
@@ -133,7 +133,7 @@ Here `x`, `y`, `w`, `h` are user-coordinates of your canvas, not pixels on the s
 
 The image should now be displayed within your window (squashed, because we haven't worried about aspect ratio):
 
-![cairo snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/cairo_image1.jpg?raw=true)
+![cairo snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/cairo_image1.jpg?raw=true)
 
 It fills only part of the window because of the coordinate system we've established, where the range `0:10` corresponds to an inset region in the center of the window.
 
@@ -177,7 +177,7 @@ Obviously, you can use this `redraw` function even for the initial rendering of 
 
 If you grab the window handle and resize it, now you should see something like this:
 
-![cairo snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/cairo_image2.jpg?raw=true)
+![cairo snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/cairo_image2.jpg?raw=true)
 
 Voila! We're really getting somewhere now.
 
@@ -283,7 +283,7 @@ Finally, let's plot something inside the Canvas:
     reveal(c)
     Tk.update()
 
-![Winston snapshot](https://github.com/JuliaLang/julialang.github.com/blob/master/blog/_posts/GUI_figures/winston.jpg?raw=true)
+![Winston snapshot](https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/GUI_figures/winston.jpg?raw=true)
 
 You'll note that you can resize this window, and the plot grows or shrinks accordingly.
 
