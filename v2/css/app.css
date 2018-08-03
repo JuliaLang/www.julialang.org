@@ -22,8 +22,8 @@
 }
 
 .main-heading {
-  font-family: "Futura LT Bold";
-  font-size: 36px;
+  font-family: "Futura LT Medium";
+  font-size: 48px;
 }
 .secondary-heading {
   font-family: "Futura LT Medium";
@@ -49,7 +49,7 @@
 }
 
 .section-heading .lead {
-  font-family: "Futura LT Bold";
+  font-family: "Futura LT Medium";
   font-weight: 700;
   font-size: 28px;
 }
@@ -66,7 +66,7 @@
 }
 .feature h4 {
   text-align: center;
-  font-family: "Futura LT Bold";
+  font-family: "Futura LT Medium";
   font-weight: 700;
   font-size: 18px;
 }
@@ -148,7 +148,7 @@
   text-align: left;
 }
 .blog h3 {
-  font-family: "Futura LT Bold";
+  font-family: "Futura LT Medium";
   font-size: 18px;
   margin-bottom: 0;
 }
@@ -179,7 +179,7 @@
   border-bottom: 1px solid #ccc;
 }
 .social-network h4 {
-  font-family: "Futura LT Bold";
+  font-family: "Futura LT Medium";
   font-size: 16px;
 }
 .social-network.discourse {
@@ -236,7 +236,7 @@
   font-family: "Futura LT Medium";
 }
 .footer-menu h6 {
-  font-family: "Futura LT Bold";
+  font-family: "Futura LT Medium";
   font-weight: 500;
   font-size: 14px;
 }
@@ -381,23 +381,23 @@ img.ecosystem-image {
 }
 
 h1 {
-  font-family: "Futura LT Bold";
+  font-family: "Futura LT Medium";
   font-size: 36px;
 }
 h2 {
-  font-family: "Futura LT Bold";
+  font-family: "Futura LT Medium";
   font-size: 32px;
 }
 h3 {
-  font-family: "Futura LT Bold";
+  font-family: "Futura LT Medium";
   font-size: 28px;
 }
 h3 {
-  font-family: "Futura LT Bold";
+  font-family: "Futura LT Medium";
   font-size: 24px;
 }
 h4 {
-  font-family: "Futura LT Bold";
+  font-family: "Futura LT Medium";
   font-size: 20px;
 }
 
