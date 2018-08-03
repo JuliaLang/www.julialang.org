@@ -395,6 +395,11 @@ img.ecosystem-image {
 .jumbotron {
   background-image: url('../img/splash-img.png');
   background-repeat: repeat-x;
+  background-size: auto 100%;
+}
+
+img {
+  max-width: 100%;
 }
 
 .page-heading .main-heading {
