@@ -281,9 +281,8 @@ a</li>
     <ul>
       <li><a href="http://www.stanford.edu/class/aa222/">AA222</a>, Introduction to Multidisciplinary Design Optimization (Prof. Mykel J. Kochenderfer), Spring 2014</li>
       <li><a href="http://www.stanford.edu/class/aa228/">AA228/CS238</a>, Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer), Fall 2014</li>
-      <li><a href="http://stanford.edu/class/ee103/">EE103</a>, Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2014</li>
+      <li><a href="http://stanford.edu/class/ee103/">EE103</a>, Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2014, Fall 2015</li>
       <li><a href="https://github.com/icme/cme257-advanced-julia/">CME 257</a>, Advanced Topics in Scientific Computing with Julia (Mr. <a href="https://github.com/bnels">Brad Nelson</a>), Fall 2015</li>
-      <li><a href="http://stanford.edu/class/ee103/">EE103</a>, Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2015</li>
     </ul>
   </li>
   <li><a href="https://www.statistik.tu-dortmund.de/sfb823.html">TU Dortmund / SFB 823</a>, Germany <!--51.4915,7.41225-->
