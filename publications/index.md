@@ -7,7 +7,7 @@ title:  Julia Publications
 
 <br /><br/>
 
-<div class = "container"> 
+<div class = "container">
 <p>For citing Julia, we recommend:</p>
 
 <p>
@@ -24,8 +24,8 @@ available on <a href = "https://scholar.google.com/scholar?cites=123739778154256
 Scholar</a>.
 </p>
 
-We welcome additions to this list in the form of 
-<a href = "https://github.com/JuliaLang/julialang.github.com/tree/master/_publications#readme">pull requests</a>.
+We welcome additions to this list in the form of
+<a href = "https://github.com/JuliaLang/www.julialang.org/tree/master/_publications#readme">pull requests</a>.
 <br><br>
 
 {% assign pubs_grouped = site.publications | group_by: 'year' | sort: 'name' | reverse %}
