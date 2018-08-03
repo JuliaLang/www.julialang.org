@@ -52,7 +52,7 @@ Most also have channels on the main Julia Slack channel, and sub-forums on the m
 
 ## Scientific Domains
 
-* [BioJulia](https://github.com/BioJulia) – Biology ([Gitter](https://gitter.im/BioJulia/home))
+* [BioJulia](https://github.com/BioJulia) – Biology ([![Discord](https://img.shields.io/badge/discord-chat-blue.svg?style=flat-square&logo=discord&colorB=%237289DA)](https://discord.gg/z73YNFz))
 * [EcoJulia](https://github.com/EcoJulia) – Ecology
 * [JuliaAstro](https://github.com/JuliaAstro) – [Astronomy](https://juliaastro.github.io/) ([Gitter](https://gitter.im/JuliaAstro/home))
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
