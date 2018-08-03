@@ -8,7 +8,7 @@ title:  Julia Publications
 <br /><br/>
 
 <div class = "container">
-<p>For citing Julia, we recommend:</p>
+<p>Research on Julia is carried out at the <a href="https://julia.mit.edu">Julia Lab at MIT</a> and in many other research groups worldwide. If you use Julia for your research, we request citing the following paper:</p>
 
 <p>
 {% assign beks17 = site.publications | where:"path","_publications/BEKS17.md" | first %}
@@ -16,11 +16,11 @@ title:  Julia Publications
 </p>
 
 <p>
-The following is a list of publications about the Julia language, its
-standard library, Julia packages, and technical computing applications
-using code written in Julia. The list below is by no means complete,
-and is based on submissions by authors. A broader list of papers is
-available on <a href = "https://scholar.google.com/scholar?cites=12373977815425691465&as_sdt=40000005&sciodt=0,22&hl=en">Google
+Here's a list of publications about the Julia language, its standard
+library, Julia packages, and technical computing applications. It
+is by no means complete, and is based on submissions by
+authors. A broader list of papers is available on <a href =
+"https://scholar.google.com/scholar?cites=12373977815425691465&as_sdt=40000005&sciodt=0,22&hl=en">Google
 Scholar</a>.
 </p>
 
