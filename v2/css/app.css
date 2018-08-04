@@ -359,8 +359,16 @@ h4.card-title {
 }
 
 .btn-primary {
-  background-color: #4D64AE;
-  border-color: #4D64AE;
+  background-color: #9259a3;
+  border-color: #9259a3;
+}
+.btn-success {
+  background-color: #399746;
+  border-color: #399746;
+}
+.btn-danger {
+  background-color: #ca3c32;
+  border-color: #ca3c32;
 }
 .link {
   color: #4D64AE;
