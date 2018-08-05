@@ -117,6 +117,38 @@ detection employed in the defaults of DifferentialEquations.jl.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
+## Scalable Bifurcation Plotting via Deflation
+
+Bifurcation plotting allows a scientist to determine how the steady states of
+an equation evolve as a given parameter is changed. Existing software such as
+PyDSTool, MatCont, and AUTO utilize a classic technique called arclength
+continuation in order to generate a plot. However, this method has three major
+issues: (1) signatures for detecting each type of bifurcation must be explicitly
+coded, (2) it does not scale to high dimensions, and (3) it is not able to
+detect disconnected bifurcations.
+
+A [newer technique known as deflation](http://people.maths.ox.ac.uk/beentjes/Essays/MScThesis2015-10.pdf)
+can be used instead to compute bifurcation diagrams in a way that does not
+require specialization on every possible type of bifurcation, allowing the
+method to easily scale to higher dimensions and be more robust. In addition,
+this method does not require continuation from previous branches and thus
+is able to detect disconnection bifurcation branches. However, since
+the [method is quite recent](https://arxiv.org/pdf/1603.00809.pdf), no open
+source software make use of this technique. The goal of this project is to
+implement this method in order to create a bifurcation visualizer that works
+well with the JuliaDiffEq ecosystem, and demonstrate its ability to handle
+new classes of bifurcations beyond that of the previous software.
+
+**Recommended Skills**: Knowledge of calculus and linear algebra (Newton's
+method) is all that's required. Previous experience with dynamical systems
+theory is preferred but can be picked up along the way.
+
+**Expected Results**: A functional bifurcation plotting package.
+
+**Mentors**: [Chris Rackauckas](www.github.com/ChrisRackauckas) and 
+[Christoph Ortner](https://github.com/cortner)
+
+
 ## Parallelization of the Sundials Solver Library
 
 The Sundials set of solvers is a popular library for performing the time stepping
