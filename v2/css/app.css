@@ -20,6 +20,10 @@
 #logo {
   padding: 0 20px 0 0;
 }
+#logo img {
+  width: 85px;
+  height: 55px;
+}
 
 .main-heading {
   /* font-family: "Futura LT Medium"; */
@@ -399,7 +403,7 @@ img.ecosystem-image {
 }
 
 img {
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 
 .page-heading .main-heading {
