@@ -56,7 +56,7 @@ innovative language features. Some of the new features since version 0.6 include
 * A brand new built-in [package manager](https://docs.julialang.org/en/latest/stdlib/Pkg/)
   brings enormous performance improvements and makes it easier than ever to install packages
   and their dependencies. It also supports per-project package environments and recording
-  the exact state of a working application to share others—and with your future self.
+  the exact state of a working application to share with others—and with your future self.
   Finally, the redesign also introduces seamless support for private packages and package
   repositories. You can install and manage private packages with the same tools as you’re
   used to for the open source package ecosystem.
@@ -102,7 +102,7 @@ innovative language features. Some of the new features since version 0.6 include
   around long-lived objects, which frees programmers to use convenient high-level
   abstractions without performance costs.
 
-* Parametric types constructors are now always called with the same syntax as they are
+* Parametric type constructors are now always called with the same syntax as they are
   declared. This eliminates an obscure but confusing corner of language syntax.
 
 * The iteration protocol has been completely redesigned to make it easier to implement many
