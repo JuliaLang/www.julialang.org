@@ -408,6 +408,7 @@ img {
 
 .page-heading .main-heading {
   color: #fff;
+  font-weight: 100;
 }
 .page-heading .secondary-heading {
   color: #ccc;
@@ -459,4 +460,8 @@ table th {
 }
 #top-alert p {
   margin-bottom: 0;
+}
+
+#main-jumbo {
+  padding: 3rem 2rem;
 }
