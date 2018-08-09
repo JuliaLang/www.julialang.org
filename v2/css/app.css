@@ -451,6 +451,25 @@ table th {
   background-color: #eee;
 }
 
+blockquote {
+  background: #f8f8f8;
+  border-left: 7px solid #ccc;
+  margin: 1.5em 7px;
+  padding: 0.2em 7px;
+  quotes: "\201C""\201D";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 3.5em;
+  line-height: 0.1em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+  font-style: italic;
+}
+
 #top-alert {
   padding-left: 0;
   padding-right: 0;
