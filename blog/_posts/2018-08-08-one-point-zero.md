@@ -59,7 +59,9 @@ innovative language features. Some of the new features since version 0.6 include
   the exact state of a working application to share with others—and with your future self.
   Finally, the redesign also introduces seamless support for private packages and package
   repositories. You can install and manage private packages with the same tools as you’re
-  used to for the open source package ecosystem.
+  used to for the open source package ecosystem. The [presentation at
+  JuliaCon](https://www.youtube.com/watch?v=GBi__3nF-rM) provides a good overview of the new
+  design and behavior.
 
 * Julia has a new [canonical representation for missing
   values](https://julialang.org/blog/2018/06/missing). Being able to represent and work with
