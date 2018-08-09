@@ -91,7 +91,7 @@ innovative language features. Some of the new features since version 0.6 include
 * The dot operator can now be overloaded, allowing types to use the `obj.property` syntax
   for meanings other than getting and setting struct fields. This is especially useful for
   smoother interop with class-based languages such as Python and Java. Property accessor
-  overloading also allows the the syntax for getting a column of data to match named tuple
+  overloading also allows the syntax for getting a column of data to match named tuple
   syntax: you can write `table.version` to access the `version` column of a table just as
   `row.version` accesses the `version` field of a single row.
 
