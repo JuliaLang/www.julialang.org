@@ -5,9 +5,13 @@
 ---
 
 The much anticipated 1.0 release of [Julia](https://julialang.org) is the culmination of
-nearly a decade of work to build a language for greedy programmers. Julia was [first
-publicly announced](https://julialang.org/blog/2012/02/why-we-created-julia) with a number
-of strong demands on the language:
+nearly a decade of work to build a language for greedy programmers. JuliaCon2018
+celebrated the event with a reception where the community officially [set the version to
+1.0.0 together](https://www.youtube.com/watch?v=1jN5wKvN-Uk#t=3850).
+
+Julia was [first publicly
+announced](https://julialang.org/blog/2012/02/why-we-created-julia) with a number of strong
+demands on the language:
 
 > We want a language that’s open source, with a liberal license. We want the speed of C with
 > the dynamism of Ruby. We want a language that’s homoiconic, with true macros like Lisp,
