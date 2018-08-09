@@ -42,8 +42,8 @@ Try Julia by [downloading version 1.0 now](https://julialang.org/downloads/). If
 upgrading code from Julia 0.6 or earlier, we encourage you to first use the transitional 0.7
 release, which includes deprecation warnings to help guide you through the upgrade process.
 Once your code is warning-free, you can change to 1.0 without any functional changes. The
-package ecosystem is in the midst of taking advantage of this stepping stone and many
-packages are already 1.0-compatible! This includes ...
+registered packages are in the midst of taking advantage of this stepping stone and
+releasing 1.0-compatible updates.
 
 The single most significant new feature in Julia 1.0, of course, is a commitment to language
 API stability: code you write for Julia 1.0 will continue to work in Julia 1.1, 1.2, etc.
