@@ -101,7 +101,7 @@ innovative language features. Some of the new features since version 0.6 include
   syntax: you can write `table.version` to access the `version` column of a table just as
   `row.version` accesses the `version` field of a single row.
 
-* Julia’s own optimizer has gotten smarter in more ways than we can list here, but a few
+* Julia’s optimizer has gotten smarter in more ways than we can list here, but a few
   highlights are worth mentioning. The optimizer can now propagate constants through
   function calls, allowing much better dead-code elimination and static evaluation than
   before. The compiler is also much better at avoiding allocation of short-lived wrappers
