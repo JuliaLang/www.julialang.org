@@ -25,18 +25,24 @@
   height: 55px;
 }
 
-.main-heading {
-  /* font-family: "Futura LT Medium"; */
+.swapout-heading {
   font-family: "Roboto", sans-serif;
-  font-weight: 100;
+  font-weight: 300;
   font-size: 48px;
 }
+
+.static-heading {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+}
+
 .secondary-heading {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 18px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .page-heading a {
@@ -408,7 +414,7 @@ img {
 
 .page-heading .main-heading {
   color: #fff;
-  font-weight: 100;
+  font-weight: 400;
 }
 .page-heading .secondary-heading {
   color: #ccc;
