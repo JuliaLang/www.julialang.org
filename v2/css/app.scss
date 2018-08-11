@@ -1,89 +1,168 @@
+---
+---
+
+html {
+  font-size: 100%;
+}
+
+// Menu bar or drawer
 #main-menu {
   background-color: #fff !important;
   padding: 0;
+
+  li.nav-item {
+    padding: 16px;
+    border-bottom: 2px solid #fff;
+
+    &:hover {
+      background-color: #eee;
+      border-bottom: 2px solid #CA3C32;
+    }
+
+    &.donate:hover {
+      background-color: #fff;
+      border-bottom: 0;
+    }
+
+    &.active {
+      border-bottom: 2px solid #CA3C32;
+    }
+  }
 }
-#main-menu li.nav-item {
-  padding: 16px;
-  border-bottom: 2px solid #fff;
+
+// Alert bar at the top
+#top-alert {
+  padding-left: 0;
+  padding-right: 0;
+
+  .alert {
+    margin-bottom: 0.2rem;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
 }
-#main-menu li.nav-item:hover {
-  background-color: #eee;
-  border-bottom: 2px solid #CA3C32;
-}
-#main-menu li.nav-item.donate:hover {
-  background-color: #fff;
-  border-bottom: 0;
-}
-#main-menu li.nav-item.active {
-  border-bottom: 2px solid #CA3C32;
-}
+
+// Julia logo
 #logo {
   padding: 0 20px 0 0;
+  img {
+    width: 85px;
+    height: 55px;
+  }
 }
-#logo img {
-  width: 85px;
-  height: 55px;
+
+// Jumbotron
+.jumbotron {
+  background-image: url('../img/splash-img.png');
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+
+  a.link {
+    color: #ccc;
+  }
+}
+#main-jumbo {
+  padding: 3rem 2rem;
+}
+
+// Page title Fade-in/fade-out words in the jumbotron
+.page-heading {
+  color: #fff;
+  font-weight: 400;
+
+  .secondary-heading {
+    color: #ccc;
+  }
+
+  a {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+  }
 }
 
 .swapout-heading {
   font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-size: 48px;
+  font-weight: 100;
+  font-size: 2rem;
+  padding-bottom: 5px;
+
+  @media (max-width: 576px) {
+    font-size: 1.5rem;
+  }
 }
 
 .static-heading {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 1.25rem;
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
+  }
 }
 
 .secondary-heading {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-size: 18px;
-  margin-bottom: 30px;
-}
-
-.page-heading a {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
   font-weight: 400;
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
+  }
 }
 
 .extra-link {
-  font-size: 12px;
+  font-size: 0.75rem;
   text-decoration: none !important;
 }
 
-.language-features {
+// Section headings
+.section-heading {
+  .lead {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  h5 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+.blue-heading {
   text-align: center;
   color: #4D64AE;
-}
-.language-features hr {
-  background-color: #4D64AE;
+
+  hr {
+    background-color: #4D64AE;
+  }
 }
 
-.section-heading .lead {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-weight: 700;
-  font-size: 28px;
-}
-.section-heading h2 {
-  margin-bottom: 10px;
-}
-.section-heading h5 {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-weight: 400p
-  font-size: 16px;
+.red-heading {
+  text-align: center;
+  color: #CA3C32;
+
+  hr {
+    background-color: #CA3C32;
+  }
 }
 
-.feature {
-  /* text-align: center; */
+.alt-color {
+  background-color: #F2F2F2;
 }
+
+// Language features
 .feature h4 {
   text-align: left;
   /* border-bottom: 1px solid #4D64AE; */
@@ -102,14 +181,6 @@
   text-justify: inter-character;
 }
 
-.ecosystem {
-  text-align: center;
-  color: #CA3C32;
-}
-
-.alt-color {
-  background-color: #F2F2F2;
-}
 #ecosystem-tab {
   border: 0;
   width: 100%;
@@ -136,9 +207,6 @@
   min-height: 300px;
   margin-bottom: 20px;
   /* padding: 20px; */
-}
-.ecosystem hr {
-  background-color: #CA3C32;
 }
 
 .ide, .blog, .video {
@@ -264,25 +332,21 @@
 }
 
 .btn {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
 }
 
 .footer-menu {
   background-color: #394059;
   color: #fff;
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
 }
 .footer-menu h6 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 14px;
 }
 .footer-menu ul.nav li a {
   padding: 3px 0;
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 13px;
   color: #fff;
@@ -291,7 +355,6 @@
 .footer-copy {
   background-color: #2C2F3E;
   color: #fff;
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   padding: 10px 0;
@@ -313,7 +376,6 @@ h4.card-title {
 
 .tab-title {
   background-color: #CA3C32;
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   padding: 18px 20px;
@@ -402,53 +464,26 @@ img.ecosystem-image {
   margin-right: 20px;
 }
 
-.jumbotron {
-  background-image: url('../img/splash-img.png');
-  background-repeat: repeat-x;
-  background-size: auto 100%;
-}
-
-img {
-  /* max-width: 100%; */
-}
-
-.page-heading .main-heading {
-  color: #fff;
-  font-weight: 400;
-}
-.page-heading .secondary-heading {
-  color: #ccc;
-}
-
-.jumbotron a.link {
-  color: #ccc;
-}
 
 
-.container {
-  /* font-family: "Futura LT Medium"; */
-}
+
 
 h1 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 36px;
 }
 h2 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 32px;
 }
 h3 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 24px;
 }
 h4 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 20px;
 }
@@ -474,19 +509,4 @@ blockquote:before {
 blockquote p {
   display: inline;
   font-style: italic;
-}
-
-#top-alert {
-  padding-left: 0;
-  padding-right: 0;
-}
-#top-alert .alert {
-  margin-bottom: 0.2rem;
-}
-#top-alert p {
-  margin-bottom: 0;
-}
-
-#main-jumbo {
-  padding: 3rem 2rem;
 }
