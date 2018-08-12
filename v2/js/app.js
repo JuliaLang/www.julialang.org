@@ -1,8 +1,8 @@
 $(function(){
-  // console.log(platform.os);
   hljs.initHighlightingOnLoad();
 });
 
+// Shuffle an array
 function shuffle(a) {
   var j, x, i;
   for (i = a.length - 1; i > 0; i--) {
@@ -16,28 +16,21 @@ function shuffle(a) {
 
 // Cycle through words in the jumbotron
 $(function() {
-  things = [
-    ["Machine learning researchers", "brain–computer interfaces", "#"],
-    ["Mathematicians", "differential equations", "http://sched.co/FQ3h"],
-    // ["Physicists", "quantum simulations", "http://sched.co/FQ4H"],
-    // ["Statisticans", "Bayesian inference", "http://sched.co/FQ4J"],
-    // ["Space scientists", "systems engineering"],
-    // ["Insurers", "risk models"],
-    // ["Energy companies", "load forecasting"],
-    // ["Geophysicists", "data analysis"],
-    // ["Researchers", "parallel computing"],
-    // ["Economists", "supercomputers"],
-    // ["Students", "code"],
-    // ["Engineers", "LIDAR data"],
-    // ["Whale spotters", "neural networks"],
-    // ["Kids", "Minecraft"],
-    ["Engineers", "robots"]
-  ]
-  shuffle(things)
+  // default content
+  things = [["People", "code"]];
+  $.getJSON("v2/data/amazing-things.json", function(data) {
+    things = [];
+    $.each(data, function(key, val) {
+      things.push(val)
+    })
+    shuffle(things)
+  });
+
   // loop through and replace elements every 5 seconds
   count = 0;
+  initial_interval = 2500;
   interval = 5000;
-  setInterval(function() {
+  randomise = function() {
     count++;
     i = count % things.length;
     object = things[i][0];
@@ -53,5 +46,9 @@ $(function() {
       }
       $(this).html(text).fadeIn(300);
     });
-  }, interval);
+  };
+  setTimeout(function() {
+    randomise();
+    setInterval(randomise, interval)
+  }, initial_interval);
 });
