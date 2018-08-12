@@ -1,6 +1,11 @@
 ---
 ---
 
+$blue: #4D64AE;
+$red: #CA3C32;
+$green: #399746;
+$purple: #9259A3;
+
 html {
   font-size: 100%;
 }
@@ -16,7 +21,7 @@ html {
 
     &:hover {
       background-color: #eee;
-      border-bottom: 2px solid #CA3C32;
+      border-bottom: 2px solid $red;
     }
 
     &.donate:hover {
@@ -25,7 +30,7 @@ html {
     }
 
     &.active {
-      border-bottom: 2px solid #CA3C32;
+      border-bottom: 2px solid $red;
     }
   }
 }
@@ -67,7 +72,7 @@ html {
   padding: 3rem 2rem;
 }
 
-// Page title Fade-in/fade-out words in the jumbotron
+// Page title
 .page-heading {
   color: #fff;
   font-weight: 400;
@@ -82,6 +87,7 @@ html {
   }
 }
 
+// Fade-in/fade-out words in the jumbotron
 .swapout-heading {
   font-family: "Roboto", sans-serif;
   font-weight: 100;
@@ -99,12 +105,11 @@ html {
   font-size: 1.25rem;
 
   @media (max-width: 576px) {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 
 .secondary-heading {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 1.25rem;
@@ -140,22 +145,19 @@ html {
   }
 }
 
-.blue-heading {
+@mixin color-heading($color) {
   text-align: center;
-  color: #4D64AE;
+  color: $color;
 
   hr {
-    background-color: #4D64AE;
+    background-color: $color
   }
 }
-
+.blue-heading {
+  @include color-heading($blue)
+}
 .red-heading {
-  text-align: center;
-  color: #CA3C32;
-
-  hr {
-    background-color: #CA3C32;
-  }
+  @include color-heading($red)
 }
 
 .alt-color {
@@ -163,24 +165,32 @@ html {
 }
 
 // Language features
-.feature h4 {
-  text-align: left;
-  /* border-bottom: 1px solid #4D64AE; */
-  padding-bottom: 5px;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  color: #4D64AE;
-  font-size: 18px;
-}
-.feature p {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  text-align: left;
-  text-justify: inter-character;
+.feature {
+  padding-bottom: 20px;
+
+  h4 {
+    text-align: left;
+    padding-bottom: 5px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    color: $blue;
+    font-size: 18px;
+  }
+
+  p {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    text-align: left;
+    text-justify: inter-character;
+  }
+
+  .outer-link {
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+  }
 }
 
+// Language ecosystem
 #ecosystem-tab {
   border: 0;
   width: 100%;
@@ -188,13 +198,12 @@ html {
 #ecosystem-tab .nav-item a {
   padding: 18px 0;
   border: 0;
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 14px;
 }
 #ecosystem-tab .nav-item a.active {
-  border-top: 4px solid #CA3C32;
-  color: #CA3C32;
+  border-top: 4px solid $red;
+  color: $red;
 }
 #ecosystem-tab .nav-item a {
   color: #898989;
@@ -218,14 +227,6 @@ html {
   border-bottom: 20px solid #fff;
 }
 
-.feature {
-  padding-bottom: 20px;
-}
-.feature .outer-link {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  text-align: center;
-}
 .ide-feature {
   text-align: center;
 }
@@ -239,23 +240,20 @@ html {
 }
 
 .packages {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
 }
 
 .blog {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   text-align: left;
 }
 .blog h3 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   margin-bottom: 0;
 }
 .blog h3 a {
-  color: #4D64AE;
+  color: $blue;
   display: block;
   min-height: 42px;
 }
@@ -272,7 +270,6 @@ html {
 }
 
 .social-network {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   background-position: top left;
@@ -282,7 +279,6 @@ html {
   border-bottom: 1px solid #ccc;
 }
 .social-network h4 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 16px;
 }
@@ -316,7 +312,6 @@ html {
 
 .video {
   text-align: left;
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   background-color: #fff;
 }
@@ -331,9 +326,6 @@ html {
   font-size: 14px;
 }
 
-.btn {
-  font-family: "Roboto", sans-serif;
-}
 
 .footer-menu {
   background-color: #394059;
@@ -375,13 +367,12 @@ h4.card-title {
 }
 
 .tab-title {
-  background-color: #CA3C32;
+  background-color: $red;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   padding: 18px 20px;
   border: 0;
   font-weight: 400;
-  /* border-top: 4px solid #CA3C32; */
   color: #fff;
 }
 
@@ -430,12 +421,42 @@ h4.card-title {
   }
 }
 
-.btn-primary {
-  background-color: #4D64AE;
-  border-color: #4D64AE;
+// buttons
+@mixin color-button($color) {
+  color: #fff;
+  background-color: $color;
+  border-color: $color;
+
+  &:hover {
+    color: #fff;
+    background-color: darken($color, 10);
+    border-color: darken($color, 10);
+  }
+
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled).active:focus, {
+    box-shadow: 0 0 0 0.2rem $color;
+  }
 }
+
+.btn {
+  font-family: "Roboto", sans-serif;
+}
+.btn-blue {
+  @include color-button($blue);
+}
+.btn-red {
+  @include color-button($red);
+}
+.btn-green {
+  @include color-button($green);
+}
+.btn-purple {
+  @include color-button($purple);
+}
+
 .link {
-  color: #4D64AE;
+  color: $blue;
 }
 
 .footer-menu-item {
@@ -448,10 +469,10 @@ h4.card-title {
 }
 
 #ecosystem-tab-content div.tab-pane h4 {
-  color: #CA3C32;
+  color: $red;
 }
 #ecosystem-tab-content div.tab-pane h6 {
-  color: #CA3C32;
+  color: $red;
   font-weight: 600;
 }
 
@@ -463,10 +484,6 @@ img.ecosystem-image {
   float: left;
   margin-right: 20px;
 }
-
-
-
-
 
 h1 {
   font-family: "Roboto", sans-serif;
