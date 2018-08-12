@@ -12,14 +12,14 @@ nearly a decade of work to build a language for greedy programmers. JuliaCon2018
 celebrated the event with a reception where the community officially [set the version to
 1.0.0 together](https://www.youtube.com/watch?v=1jN5wKvN-Uk#t=3850). -->
 
-Julia 語言 [第一次公開發佈](https://julialang.org /blog/2012/02/why-we-created-julia) 並有不少強烈的期待：
+Julia 語言 [第一次公開發佈](https://julialang.org/blog/2012/02/why-we-created-julia) 並有不少強烈的期待：
 
 <!-- Julia was [first publicly
 announced](https://julialang.org/blog/2012/02/why-we-created-julia) with a number of strong
 demands on the language: -->
 
 > 我們想要一個開源的語言，擁有自由的版權。我們想要 C 的速度和 Ruby 的動態。我們想要有一個語法與內在表示有一致性（homoiconic）的語言，
-> 並且像 Lisp 一樣擁有真的巨集，但是擁有像 Matlab 一樣熟悉好懂的數學符號。我們也想要像 Python 一樣好用的泛用型程式語言，
+> 並且像 Lisp 一樣擁有真的 macro，但是擁有像 Matlab 一樣熟悉好懂的數學符號。我們也想要像 Python 一樣好用的泛用型程式語言，
 > 處理統計要和 R 一樣，處理字串要和 Perl 一樣地自然，要有和 Matlab 一樣強大的線性代數功能，串接程式要如同 shell 一樣好用。
 > 要學習的東西極致簡單，同時能讓大多數嚴苛的黑客寫起來開心。我們希望它是互動式的而且也是可編譯的。
 
@@ -39,9 +39,9 @@ around the world iteratively refining and shaping Julia in pursuit of that goal.
 people have contributed to Julia itself and even more people have made thousands of amazing
 open source Julia packages. All told, we have built a language that is: -->
 
-* 快速：Julia 一開始就是為高效能設計的。 Julia 可以藉由 LLVM 被編譯成不同平台的高效組譯程式碼。
-* 泛用：Julia 使用多重分派作為程式典範，可以更容易表達物件導向和函式式的設計模式。標準函式庫提供了非同步 I/O，行程控制，日誌記錄，效能分析，套件管理器等等。
-* 動態：Julia 是動態型別的，感覺像腳本語言，並且很好地支援互動式的操作方式。
+* 快速：Julia 一開始就是為高效能設計的。 Julia 可以藉由 LLVM 被編譯成不同平台的高效機器碼。
+* 泛用：Julia 使用多重分派（multiple dispatch）作為程式典範（paradigm），可以更容易表達物件導向和函式式的設計模式。標準函式庫提供了非同步 I/O，行程控制，日誌記錄，效能分析，套件管理器等等。
+* 動態：Julia 是動態型別的，用起來像腳本語言，並且很好地支援互動式的操作方式。
 * 技術：Julia 擅長數值運算，有非常貼近數學的語法，支援多種數值型別，並且支援平行運算。Julia 的多重分派結合數值和陣列相關的資料型別可以說是渾然天成。
 * 選擇性的型別標註：Julia 有豐富的資料型別描述，型別宣告可以使得程式更加清楚和穩固。
 * 組合性：Julia 的套件可以很和諧的一起運作。矩陣的單位數量或是資料表中一行的貨幣和顏色可以一起運作並且擁有良好的效能。
@@ -66,7 +66,7 @@ open source Julia packages. All told, we have built a language that is: -->
 如果你現在從 Julia 0.6 或者更早的版本開始升級程式碼，我們建議你先使用過渡的 0.7 版本，
 其中包括了棄用警告（deprecation warning）來指導你升級的過程。一旦你的程式碼無警告通過，
 那麼你可以無痛將程式碼更改為 1.0 版本。
-已註冊過的套件可以利用這個來踏腳石並發布與 1.0 相容的版本更新。
+已註冊過的套件可以利用這個來作為墊腳石並發布與 1.0 相容的版本更新。
 
 <!-- Try Julia by [downloading version 1.0 now](https://julialang.org/downloads/). If you’re
 upgrading code from Julia 0.6 or earlier, we encourage you to first use the transitional 0.7
@@ -89,9 +89,9 @@ packages, tools, and new features built upon this solid foundation. -->
 <!-- But Julia 1.0 in not just about stability, it also introduces several new, powerful and
 innovative language features. Some of the new features since version 0.6 include: -->
 
-* 一個全新的內建 [套件管理器](https://docs.julialang.org/en/latest/stdlib/Pkg/)。它比過去的套件管理器效能更好，在安狀套件上也比以往更加簡單。
+* 一個全新的內建 [套件管理器](https://docs.julialang.org/en/latest/stdlib/Pkg/)。它比過去的套件管理器效能更好，在安裝套件上也比以往更加簡單。
 它也為每個專案支援虛擬環境並記錄目前工作環境的狀態然後將它分享給其它開發者或者是自己。最後重新設計的套件管理器也帶來了
-私有套件和 repository 的無縫銜接。你同樣可以使用開源套件的方式來管理及安裝自己的私有套件。這個 [JuliaCon 的簡報](https://www.youtube.com/watch?v=GBi__3nF-rM)
+私有套件和 repository 的無縫銜接。你同樣可以使用開源套件的方式來管理及安裝自己的私有套件。這個 [JuliaCon 的演講](https://www.youtube.com/watch?v=GBi__3nF-rM)
 展示了套件管理器的新設計。
 
 <!-- * A brand new built-in [package manager](https://docs.julialang.org/en/latest/stdlib/Pkg/)
@@ -119,7 +119,7 @@ innovative language features. Some of the new features since version 0.6 include
   speed of custom C or C++ missing data representations in other systems, while also being
   far more general and flexible. -->
 
-* 內建的 `String` 型別可以安全地使用並且處理任意的資料。你的程式不會因為一個無效 Unicode 字元而崩潰好幾個小時或者好幾天。
+* 內建的 `String` 型別可以安全地使用並且處理任意的資料。你的程式不會因為一個無效 Unicode 字元而壞掉好幾個小時或者好幾天。
 所有的字串資料會保留，同時指出哪些字元是有效的，哪些是無效的，這樣允許你的應用程式安全而方便地執行在不可避免缺陷的真實世界的資料中。
 
 <!-- * The built-in `String` type can now safely hold arbitrary data. Your program won’t fail
@@ -130,7 +130,7 @@ innovative language features. Some of the new features since version 0.6 include
 
 * Broadcasting 已經成為語言的核心特性，並且有著方便的語法支援，現在，它將比過去更加強大。在 Julia 1.0 裡，
 [賦予自定義型別 broadcasting 特性](https://julialang.org/blog/2018/05/extensible-broadcast-fusion) 和在 GPU 和向量化硬體上實作最佳的運算都更加容易，
-為未來實現更高效能建造了道路。
+這是為未來更多的效能提升鋪路。
 
 <!-- * Broadcasting is already a core language feature with convenient syntax—and it’s now more
   powerful than ever. In Julia 1.0 it’s simple to [extend broadcasting to custom
@@ -147,7 +147,7 @@ innovative language features. Some of the new features since version 0.6 include
   (name="Julia", version=v"1.0.0", releases=8)` and access the `version` column as
   `row.version` with the same performance as the less convenient `row[2]`. -->
 
-* 點運算子現在可以被重載，並且允許型別使用 `obj.property` 的方式來存取物件資訊，而不是用 setting 和 getting 的方式。
+* 點運算子現在可以被重載，並且允許型別使用 `obj.property` 的方式來存取物件資訊，而不是用額外撰寫欄位 setting 和 getting function 的方式。
 這有助於將以類別為基礎的語言例如 Python 和 Java 更加流暢地翻譯到 Julia。屬性存取器的重載讓存取一行資料與 named tuples 的存取語法一致：你可以寫 `table.version` 來獲取表格中的 `version` 這一行，就如同 `row.version` 會取得
 `version` 這一列的這個欄位一樣。
 
@@ -169,7 +169,7 @@ innovative language features. Some of the new features since version 0.6 include
   around long-lived objects, which frees programmers to use convenient high-level
   abstractions without performance costs. -->
 
-* 參數化型別的建構子現在將使用和宣告同樣的語法來呼叫。這將減少一些對語法的困惑。
+* 參數化型別（Parametric type）的建構子（constructors）現在將使用和宣告同樣的語法來呼叫。這將減少一些對語法的困惑。
 
 <!-- * Parametric type constructors are now always called with the same syntax as they are
   declared. This eliminates an obscure but confusing corner of language syntax. -->
@@ -208,7 +208,7 @@ innovative language features. Some of the new features since version 0.6 include
 
 我們仔細地審查了 Julia 的 API，並且提高了它的一致性和可用性。很多費解的命名和低效的實作都被重新命名和重構，
 能夠更優雅地發揮 Julia 的能力。這樣的改變促使集合的使用方式更加一致和連貫。確保在整個語言中遵循一致的參數的順序，
-並且將關鍵詞參數（現在更快了）整合到了 API 中。
+並且將關鍵字參數（現在更快了）整合到了 API 中。
 
 <!-- * We’ve done a thorough review of all of Julia’s APIs to improve consistency and usability.
   Many obscure legacy names and inefficient programming patterns have been renamed or
