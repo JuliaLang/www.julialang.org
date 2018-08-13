@@ -1,32 +1,40 @@
 <!-- jumbotron -->
-<div class="container">
-  <div class="jumbotron" style="text-align: center;" id="main-jumbo">
-    <div class="container page-heading">
-      <h1 class="display-5 main-heading">
-        The Julia Programming Language
-      </h1>
-<!--
-      <p class="lead secondary-heading">
-        Julia is a highly productive language that runs fast
-      </p>
--->
-</br/>
-      <div class="row">
-        <div class="col-lg-3 col-md-1 col-sm-1"></div>
-        <div class="col-lg-3 col-md-5 col-sm-5">
-          <a class="btn btn-success btn-lg btn-block" href="/downloads" role="button">Download {{ page.julia_version }}</a>
-        </br/>
+<div class="jumbotron" style="text-align: center;" id="main-jumbo">
+  <div class="container page-heading">
+    <h1 class="main-heading">
+      <div class="swapout-heading" id="words1">People</div>
+      <div class="static-heading">are using Julia to do amazing things with</div>
+      <div class="swapout-heading" id="words2">code.</div>
+    </h1>
+    <div class="secondary-heading">
+      What will <em>you</em> do?
+    </div>
 
-        </div>
-        <div class="col-lg-3 col-md-5 col-sm-5 docs">
-          <a class="btn btn-primary btn-lg btn-block" href="//docs.julialang.org" role="button">Documentation</a>
-        </br/>
-        </div>
-        <div class="col-3 col-md-1 col-sm-1"></div>
+    <div class="row pb-3">
+      <div class="col-md-2 col-lg-3"></div>
+      <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
+        <a class="btn btn-red btn-lg btn-block" href="/downloads" role="button">
+          Download {{ page.julia_version }}
+        </a>
       </div>
-      <div clsss="row">
-        <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+      <br />
+      <div class="col-md-2 col-lg-3"></div>
+      <div class="col-md-2 col-lg-3"></div>
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+        <a class="btn btn-purple btn-lg btn-block" href="//juliabox.com/" role="button">
+          Try it online
+        </a>
       </div>
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+        <a class="btn btn-blue btn-lg btn-block" href="//docs.julialang.org" role="button">
+          Documentation
+        </a>
+      </div>
+      <br />
+      <div class="col-md-2 col-lg-3"></div>
+    </div>
+    </div>
+      <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
     </div>
   </div>
 </div>

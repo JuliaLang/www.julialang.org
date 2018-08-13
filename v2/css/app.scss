@@ -1,109 +1,196 @@
+---
+---
+
+$blue: #4D64AE;
+$red: #CA3C32;
+$green: #399746;
+$purple: #9259A3;
+
+html {
+  font-size: 100%;
+}
+
+// Menu bar or drawer
 #main-menu {
   background-color: #fff !important;
   padding: 0;
+
+  li.nav-item {
+    padding: 16px;
+    border-bottom: 2px solid #fff;
+
+    &:hover {
+      background-color: #eee;
+      border-bottom: 2px solid $red;
+    }
+
+    &.donate:hover {
+      background-color: #fff;
+      border-bottom: 0;
+    }
+
+    &.active {
+      border-bottom: 2px solid $red;
+    }
+  }
 }
-#main-menu li.nav-item {
-  padding: 16px;
-  border-bottom: 2px solid #fff;
+
+// Alert bar at the top
+#top-alert {
+  padding-left: 0;
+  padding-right: 0;
+
+  .alert {
+    margin-bottom: 0.2rem;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
 }
-#main-menu li.nav-item:hover {
-  background-color: #eee;
-  border-bottom: 2px solid #CA3C32;
-}
-#main-menu li.nav-item.donate:hover {
-  background-color: #fff;
-  border-bottom: 0;
-}
-#main-menu li.nav-item.active {
-  border-bottom: 2px solid #CA3C32;
-}
+
+// Julia logo
 #logo {
   padding: 0 20px 0 0;
-}
-#logo img {
-  width: 85px;
-  height: 55px;
+  img {
+    width: 85px;
+    height: 55px;
+  }
 }
 
-.main-heading {
-  /* font-family: "Futura LT Medium"; */
+// Jumbotron
+.jumbotron {
+  background-image: url('../img/splash-img.png');
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+
+  a.link {
+    color: #ccc;
+  }
+}
+#main-jumbo {
+  padding: 3rem 2rem;
+}
+
+// Page title
+.page-heading {
+  color: #fff;
+  font-weight: 400;
+
+  .secondary-heading {
+    color: #ccc;
+  }
+
+  a {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+  }
+}
+
+// Fade-in/fade-out words in the jumbotron
+.swapout-heading {
   font-family: "Roboto", sans-serif;
   font-weight: 100;
-  font-size: 48px;
-}
-.secondary-heading {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  margin-bottom: 50px;
+  font-size: 2rem;
+  padding-bottom: 5px;
+
+  @media (max-width: 576px) {
+    font-size: 1.5rem;
+  }
 }
 
-.page-heading a {
-  /* font-family: "Futura LT Medium"; */
+.static-heading {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+  font-size: 1.25rem;
+
+  @media (max-width: 576px) {
+    font-size: 1.1rem;
+  }
+}
+
+.secondary-heading {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
+  }
 }
 
 .extra-link {
-  font-size: 12px;
+  font-size: 0.75rem;
   text-decoration: none !important;
 }
 
-.language-features {
+// Section headings
+.section-heading {
+  .lead {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  h5 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+@mixin color-heading($color) {
   text-align: center;
-  color: #4D64AE;
-}
-.language-features hr {
-  background-color: #4D64AE;
-}
+  color: $color;
 
-.section-heading .lead {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-weight: 700;
-  font-size: 28px;
+  hr {
+    background-color: $color
+  }
 }
-.section-heading h2 {
-  margin-bottom: 10px;
+.blue-heading {
+  @include color-heading($blue)
 }
-.section-heading h5 {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-weight: 400p
-  font-size: 16px;
-}
-
-.feature {
-  /* text-align: center; */
-}
-.feature h4 {
-  text-align: left;
-  /* border-bottom: 1px solid #4D64AE; */
-  padding-bottom: 5px;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  color: #4D64AE;
-  font-size: 18px;
-}
-.feature p {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  text-align: left;
-  text-justify: inter-character;
-}
-
-.ecosystem {
-  text-align: center;
-  color: #CA3C32;
+.red-heading {
+  @include color-heading($red)
 }
 
 .alt-color {
   background-color: #F2F2F2;
 }
+
+// Language features
+.feature {
+  padding-bottom: 20px;
+
+  h4 {
+    text-align: left;
+    padding-bottom: 5px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    color: $blue;
+    font-size: 18px;
+  }
+
+  p {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    text-align: left;
+    text-justify: inter-character;
+  }
+
+  .outer-link {
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+  }
+}
+
+// Language ecosystem
 #ecosystem-tab {
   border: 0;
   width: 100%;
@@ -111,13 +198,12 @@
 #ecosystem-tab .nav-item a {
   padding: 18px 0;
   border: 0;
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 14px;
 }
 #ecosystem-tab .nav-item a.active {
-  border-top: 4px solid #CA3C32;
-  color: #CA3C32;
+  border-top: 4px solid $red;
+  color: $red;
 }
 #ecosystem-tab .nav-item a {
   color: #898989;
@@ -131,9 +217,6 @@
   margin-bottom: 20px;
   /* padding: 20px; */
 }
-.ecosystem hr {
-  background-color: #CA3C32;
-}
 
 .ide, .blog, .video {
   background-color: #F2F2F2;
@@ -144,14 +227,6 @@
   border-bottom: 20px solid #fff;
 }
 
-.feature {
-  padding-bottom: 20px;
-}
-.feature .outer-link {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  text-align: center;
-}
 .ide-feature {
   text-align: center;
 }
@@ -165,23 +240,20 @@
 }
 
 .packages {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
 }
 
 .blog {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   text-align: left;
 }
 .blog h3 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   margin-bottom: 0;
 }
 .blog h3 a {
-  color: #4D64AE;
+  color: $blue;
   display: block;
   min-height: 42px;
 }
@@ -198,7 +270,6 @@
 }
 
 .social-network {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   background-position: top left;
@@ -208,7 +279,6 @@
   border-bottom: 1px solid #ccc;
 }
 .social-network h4 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 16px;
 }
@@ -242,7 +312,6 @@
 
 .video {
   text-align: left;
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   background-color: #fff;
 }
@@ -257,26 +326,19 @@
   font-size: 14px;
 }
 
-.btn {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-}
 
 .footer-menu {
   background-color: #394059;
   color: #fff;
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
 }
 .footer-menu h6 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 14px;
 }
 .footer-menu ul.nav li a {
   padding: 3px 0;
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 13px;
   color: #fff;
@@ -285,7 +347,6 @@
 .footer-copy {
   background-color: #2C2F3E;
   color: #fff;
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   padding: 10px 0;
@@ -306,14 +367,12 @@ h4.card-title {
 }
 
 .tab-title {
-  background-color: #CA3C32;
-  /* font-family: "Futura LT Medium"; */
+  background-color: $red;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   padding: 18px 20px;
   border: 0;
   font-weight: 400;
-  /* border-top: 4px solid #CA3C32; */
   color: #fff;
 }
 
@@ -362,12 +421,42 @@ h4.card-title {
   }
 }
 
-.btn-primary {
-  background-color: #4D64AE;
-  border-color: #4D64AE;
+// buttons
+@mixin color-button($color) {
+  color: #fff;
+  background-color: $color;
+  border-color: $color;
+
+  &:hover {
+    color: #fff;
+    background-color: darken($color, 10);
+    border-color: darken($color, 10);
+  }
+
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled).active:focus, {
+    box-shadow: 0 0 0 0.2rem $color;
+  }
 }
+
+.btn {
+  font-family: "Roboto", sans-serif;
+}
+.btn-blue {
+  @include color-button($blue);
+}
+.btn-red {
+  @include color-button($red);
+}
+.btn-green {
+  @include color-button($green);
+}
+.btn-purple {
+  @include color-button($purple);
+}
+
 .link {
-  color: #4D64AE;
+  color: $blue;
 }
 
 .footer-menu-item {
@@ -380,10 +469,10 @@ h4.card-title {
 }
 
 #ecosystem-tab-content div.tab-pane h4 {
-  color: #CA3C32;
+  color: $red;
 }
 #ecosystem-tab-content div.tab-pane h6 {
-  color: #CA3C32;
+  color: $red;
   font-weight: 600;
 }
 
@@ -396,53 +485,22 @@ img.ecosystem-image {
   margin-right: 20px;
 }
 
-.jumbotron {
-  background-image: url('../img/splash-img.png');
-  background-repeat: repeat-x;
-  background-size: auto 100%;
-}
-
-img {
-  /* max-width: 100%; */
-}
-
-.page-heading .main-heading {
-  color: #fff;
-  font-weight: 100;
-}
-.page-heading .secondary-heading {
-  color: #ccc;
-}
-
-.jumbotron a.link {
-  color: #ccc;
-}
-
-
-.container {
-  /* font-family: "Futura LT Medium"; */
-}
-
 h1 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 36px;
 }
 h2 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 32px;
 }
 h3 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 24px;
 }
 h4 {
-  /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-size: 20px;
 }
@@ -468,19 +526,4 @@ blockquote:before {
 blockquote p {
   display: inline;
   font-style: italic;
-}
-
-#top-alert {
-  padding-left: 0;
-  padding-right: 0;
-}
-#top-alert .alert {
-  margin-bottom: 0.2rem;
-}
-#top-alert p {
-  margin-bottom: 0;
-}
-
-#main-jumbo {
-  padding: 3rem 2rem;
 }
