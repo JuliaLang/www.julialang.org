@@ -12,7 +12,6 @@ pages: "631-634"
 booktitle: "2016 IEEE International Geoscience and Remote Sensing Symposium (IGARSS)"
 publisher: "IEEE"
 doi: "10.1109/IGARSS.2016.7729158"
-link: "http://ieeexplore.ieee.org/document/7729158/"
 packages:
   CloudArray.jl: https://github.com/gsd-ufal/CloudArray.jl
 ---
