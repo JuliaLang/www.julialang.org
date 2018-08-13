@@ -62,7 +62,7 @@ open source Julia packages. All told, we have built a language that is: -->
   quantities, or data table columns of currencies and colors, just work — and with good
   performance. -->
 
-现在可以通过[下载Julia 1.0版本]((https://julialang.org/downloads/))来尝试Julia。
+现在可以通过[下载Julia 1.0版本](https://julialang.org/downloads/)来尝试Julia。
 如果你现在从Julia 0.6或者更早的版本开始升级代码，我们建议你先使用过渡性的0.7版本，
 其中包括了弃用警告（deprecation warning）来指导你的升级过程。一旦你的代码无警告通过，
 那么你可以在没有任何功能变化的情况下将代码更改为1.0版本。
