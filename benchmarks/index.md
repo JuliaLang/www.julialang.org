@@ -32,24 +32,26 @@ high-level matmul), except where a matmul/BLAS call is not possible
 
 <img src="/images/benchmarks.svg">
 
-<p>The data presented here is generated using <a href="http://nbviewer.ipython.org/url/julialang.org/benchmarks/benchmarks.ipynb">
-this IJulia benchmarks notebook</a>.</p>
 
-<p>C and Fortran compiled with gcc 4.8.5, taking best timing from all
+<p>
+The benchmark data shown above were computed with Julia v1.0.0, SciLua v1.0.0-b12, Rust 1.27.0,
+Go 1.9, Java 1.8.0_17, Javascript V8 6.2.414.54, Matlab R2018a, Anaconda Python 3.6.3, R 3.5.0,
+and Octave 4.2.2. C and Fortran are compiled with gcc 7.3.1, taking the best timing from all
 optimization levels (-O0 through -O3).  C, Fortran, Go, Julia, Lua,
-Python, and Octave use <a href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a> v0.2.19 for
-matrix operations; Mathematica uses Intel(R) MKL.  The Python
-environment is <a href="https://anaconda.org/anaconda/python">Anaconda
-Python</a> v3.6.3.  The Python implementations of
-<tt>matrix_statistics</tt> and <tt>matrix_multiply</tt> use <a href="http://www.numpy.org/">NumPy</a> v1.13.1 and OpenBLAS v0.2.19
+Python, and Octave use <a href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a> v0.2.20 for
+matrix operations; Mathematica uses Intel(R) MKL. The Python implementations of
+<tt>matrix_statistics</tt> and <tt>matrix_multiply</tt> use <a href="http://www.numpy.org/">NumPy</a> v1.14.0 and OpenBLAS v0.2.20
 functions; the rest are pure Python implementations. Raw benchmark
 numbers in CSV format are available <a href="/benchmarks/benchmarks.csv">here</a> and the
 benchmark source code for each language can be found in the <tt>perf.</tt>
-files listed <a href="https://github.com/JuliaLang/Microbenchmarks">here</a>.</p>
+files listed <a href="https://github.com/JuliaLang/Microbenchmarks">here</a>.
+The plot is generated using <a href="http://nbviewer.ipython.org/url/julialang.org/benchmarks/benchmarks.ipynb">
+this IJulia benchmarks notebook</a>.</p>
+
 
 <p>These micro-benchmark results were obtained on a single core (serial
 execution) on an Intel(R) Core(TM) i7-3960X 3.30GHz CPU with 64GB of
-1600MHz DDR3 RAM, running openSUSE LEAP 42.3 Linux.</p>
-
+1600MHz DDR3 RAM, running openSUSE LEAP 15.0 Linux.</p>
 
 </div>
+
