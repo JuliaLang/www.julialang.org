@@ -4,6 +4,10 @@ title: "GSoC 2018 and Speech Recognition for the Flux Model Zoo: The Conclusion"
 author: <a href="https://github.com/maetshju">Matthew C. Kelley</a>
 ---
 
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 Here we are on the other end of Google Summer of Code 2018. It has been a challenging and educational experience, and I wouldn't have it any other way. I am thankful to the Julia community for supporting me through this. I've learned a lot and become even more familiar with neural nets than I was before, and I learned how to do basic GPU programming, which will be incredibly useful for my academic career.
 
 The rest of this blog post will summarize my project and the work I've done over the whole summer, remark on what work remains to be done, and conclude with a brief tutorial of how to run the code I've written to try it out for yourself.
@@ -28,11 +32,11 @@ The real trial was getting the CTC loss to run correctly and efficiently. I at f
 
 As it would turn out, there was a slight error in my implementation that stemmed from Baidu's warp-ctc library itself. As I did when I wrote a [blog post about this error](https://maetshju.github.io/update5.html), I do not know whether it is actually an error in the context of the rest of Baidu's code. However, after fixing the error, I saw the loss decrease significantly in my code. Specifically, there was a section of code that evaluated to
 
-$$\beta(t, u) = y_{{l'}_u}^{t + 1}\sum_{i = u}^{g(u)} \beta(t + 1, i)\, ,$$
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#x3B2;</mi><mo>(</mo><mi>t</mi><mo>,</mo><mi>u</mi><mo>)</mo><mo>=</mo><msubsup><mi>y</mi><mrow><mi>l</mi><msub><mo>'</mo><mi>u</mi></msub></mrow><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msubsup><munderover><mo>&#x2211;</mo><mrow><mi>i</mi><mo>=</mo><mi>u</mi></mrow><mrow><mi>g</mi><mo>(</mo><mi>u</mi><mo>)</mo></mrow></munderover><mi>&#x3B2;</mi><mo>(</mo><mi>t</mi><mo>+</mo><mn>1</mn><mo>,</mo><mi>i</mi><mo>)</mo><mo>&#x200A;</mo><mo>,</mo></math>
 
 when it should have evaluated to
 
-$$\beta(t, u) = \sum_{i = u}^{g(u)} \beta(t + 1, i)y_{{l'}_i}^{t + 1}\, .$$
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#x3B2;</mi><mo>(</mo><mi>t</mi><mo>,</mo><mi>u</mi><mo>)</mo><mo>=</mo><munderover><mo>&#x2211;</mo><mrow><mi>i</mi><mo>=</mo><mi>u</mi></mrow><mrow><mi>g</mi><mo>(</mo><mi>u</mi><mo>)</mo></mrow></munderover><mi>&#x3B2;</mi><mo>(</mo><mi>t</mi><mo>+</mo><mn>1</mn><mo>,</mo><mi>i</mi><mo>)</mo><msubsup><mi>y</mi><mrow><mi>l</mi><msub><mo>'</mo><mi>i</mi></msub></mrow><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msubsup><mo>&#x200A;</mo><mo>.</mo></math>
 
 More information on this is available in [my previous post on it](https://maetshju.github.io/update5.html). Making this change caused the network to finally output label predictions for each time step of data. The labels don't necessarily always make sense, but it is at least making predictions.
 
