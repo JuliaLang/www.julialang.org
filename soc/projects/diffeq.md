@@ -145,9 +145,42 @@ theory is preferred but can be picked up along the way.
 
 **Expected Results**: A functional bifurcation plotting package.
 
-**Mentors**: [Chris Rackauckas](www.github.com/ChrisRackauckas) and 
+**Mentors**: [Chris Rackauckas](www.github.com/ChrisRackauckas) and
 [Christoph Ortner](https://github.com/cortner)
 
+## Tools for global and adjoint sensitivity analysis
+
+Global Sensitivity Analysis is a popular tool to assess the affect that parameters
+have on a differential equation model. A good introduction [can be found in this thesis](http://discovery.ucl.ac.uk/19896/). Global Sensitivity Analysis tools can be
+much more efficient than Local Sensitivity Analysis tools, and give a better
+view of how parameters affect the model in a more general sense.
+The goal of this project would be to implement more global
+sensitivity analysis methods like the eFAST method into [DiffEqSensitivity.jl](https://github.com/JuliaDiffEq/DiffEqSensitivity.jl) which
+can be used with any differential equation solver on the common interface.
+
+**Recommended Skills**: An understanding of how to use DifferentialEquations.jl
+to solve equations.
+
+**Expected Results**: Efficient functions for performing global sensitivity
+analysis.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+
+## Quantum Algorithms for Differential Equations
+
+Quantum computing might be the next big thing. Using
+[Yao.jl](https://github.com/QuantumBFS/Yao.jl) one can efficiently simulate
+quantum algorithms, making Julia the perfect place to start implementing
+quantum differential equation solvers! Papers describing such possible algorithms
+[already exist](https://arxiv.org/abs/0812.4423) and an experimental GSoC can
+implement these algorithms to try them out.
+
+**Recommended Skills**: An understanding of differential equation solvers and
+and quantum mechanics is a must.
+
+**Expected Results**: Implementations of quantum ODE solvers.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
 ## Parallelization of the Sundials Solver Library
 
