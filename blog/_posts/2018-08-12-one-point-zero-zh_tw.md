@@ -62,7 +62,7 @@ open source Julia packages. All told, we have built a language that is: -->
   quantities, or data table columns of currencies and colors, just work — and with good
   performance. -->
 
-現在可以 [下載 Julia 1.0 版本]((https://julialang.org/downloads/)) 來試試 Julia。
+現在可以 [下載 Julia 1.0 版本](https://julialang.org/downloads/) 來試試 Julia。
 如果你現在從 Julia 0.6 或者更早的版本開始升級程式碼，我們建議你先使用過渡的 0.7 版本，
 其中包括了棄用警告（deprecation warning）來指導你升級的過程。一旦你的程式碼無警告通過，
 那麼你可以無痛將程式碼更改為 1.0 版本。
@@ -226,7 +226,7 @@ innovative language features. Some of the new features since version 0.6 include
     而 Nvidia 的 GPU 也可以透過 [CUDANative.jl](https://github.com/JuliaGPU/CUDAnative.jl) 來直接編寫程式（不需要撰寫 CUDA 程式碼），
     而支援 Google TPU 的介面也正在開發中。
 
-<!-- * A number of new external packages are being built specifically around the new capabilities 
+<!-- * A number of new external packages are being built specifically around the new capabilities
   of Julia 1.0. For example:
     * The data processing and manipulation ecosystem is being revamped to take advantage of
       the new missingness support.
