@@ -22,7 +22,7 @@ trackbacks:
     - Twitter trackbacks: "http://topsy.com/julialang.org/"
     - Russian translation: "http://habrahabr.ru/blogs/programming/138577/"
     - Linux.org.ru blog post (Russian): "http://www.linux.org.ru/news/opensource/7440863"
-    - Simplified Chinese translation: "http://sd.csdn.net/a/20120223/312315.html"
+    - Simplified Chinese translation: "https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN"
     - Traditional Chinese translation: "http://www.hellogcc.org/archives/666"
     - Linuxfr.org blog post (French): "http://linuxfr.org/news/version-1-0-de-julia"
 ---

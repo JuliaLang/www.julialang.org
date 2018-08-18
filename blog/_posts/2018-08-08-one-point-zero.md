@@ -4,6 +4,8 @@
  snippet: "Announcing the release of Julia 1.0"
 ---
 
+Translations:  <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-es">Spanish</a>
+
 The much anticipated 1.0 release of [Julia](https://julialang.org) is the culmination of
 nearly a decade of work to build a language for greedy programmers. JuliaCon2018
 celebrated the event with a reception where the community officially [set the version to
@@ -139,7 +141,7 @@ innovative language features. Some of the new features since version 0.6 include
   follows a consistent standard throughout the language, and to incorporate (the now faster)
   keyword arguments into APIs where appropriate.
 
-* A number of new external packages are being built specifically around the new capabilities 
+* A number of new external packages are being built specifically around the new capabilities
   of Julia 1.0. For example:
     * The data processing and manipulation ecosystem is being revamped to take advantage of
       the new missingness support.
