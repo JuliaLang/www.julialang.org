@@ -33,9 +33,7 @@ The idea used in the [A2C model](https://github.com/tejank10/Flux-baselines/blob
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DDPG: Score vs Episodes
 
-Some of these models have been deployed on Flux's [website](https://fluxml.ai). CartPole example has been trained on Deep Q Networks and the pong example is trained on Duel-DQN.
-
-[Here](https://www.youtube.com/watch?v=L3pqMUDVrT0) is a demo of Pong trained using Flux.
+Some of these models have been deployed on Flux's [website](https://fluxml.ai/experiments). [CartPole example](https://fluxml.ai/experiments/cartPole/) has been trained on Deep Q Networks. An Atari-Pong example will also be added in a few days. It is trained on Duel-DQN. [Here](https://www.youtube.com/watch?v=L3pqMUDVrT0) is a demo of Pong trained using Flux.
 #### Targets achieved
 1. [Advantage Actor-Critic](https://github.com/tejank10/Flux-baselines/blob/master/actor-critic/a2c.jl)
 2. [Duel DQN](https://github.com/tejank10/Flux-baselines/blob/master/dqn/duel-dqn.jl)
@@ -108,4 +106,4 @@ Decoupled Neural Interface is a new technique to train the momdel. It does not u
 During the past three months, I learn a lot about Reinforcement Learning and AlphaGo in particular. I experienced training an RL model for days, finally saw it working well! I encountered the issues faced in training the models and learnt to overcome them. All in all, as an aspiring ML engineer these three months have been the most productive months. I am glad that I could meet most of my objectives. I have worked on some extra models to make up for the objectives I could not meet.
 
 ## Acknowledgements
-I really would like to thank my mentor Mike Innes for guiding me throughtout the project, and James Bradbury for his valuable inputs for improving the code in the Reinforcement Learning models. I also would like to thank Neethu Mariya Joy for deploying the trained models on th web. And last but not the least, NumFOCUS: for sponsoring me and all other JSoC students for JuliaCon'18 London.
+I really would like to thank my mentor [Mike Innes](https://github.com/MikeInnes) for guiding me throughtout the project, and [James Bradbury](https://github.om/jekbradbury) for his valuable inputs for improving the code in the Reinforcement Learning models. I also would like to thank [Neethu Mariya Joy](https://github.com/roboneet) for deploying the trained models on th web. And last but not the least, The Julia Project and NumFOCUS: for sponsoring me and all other JSoC students for JuliaCon'18 London.
