@@ -20,7 +20,7 @@
             <h3>
               <a href="{{ post.url }}" class="title">{{ post.title }}</a>
             </h3>
-            <span class="article-date">{{ post.date | date_to_string }}</span>
+            <span class="article-date">{{ post.date | date: "%Y-%m-%d" }}</span>
             <p>
                 {{ post.snippet | truncatewords:20 }}
             </p>
