@@ -41,7 +41,7 @@ Julia is now being used in several universities and online courses. If you know 
   * [CS 5220](http://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel), Spring 2014
 
 - École Polytechnique Fédérale de Lausanne <!--46.5186594,6.566561505148-->
-  [CIVIL 557] [Decision-aid methodologies in transportation](Decision-aid methodologies in transportation) (Mor Kaspi, Virginie Lurkin), Spring 2017
+  [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
 
 - [Einaudi Institute for Economics and Finance, Rome](www.eief.it) <!--41.907984,12.495731-->
   * [Econometrics of DSGE Models](http://www.gragusa.org/teaching/eief_dsge) ([Giuseppe Ragusa](http://www.gragusa.org))
@@ -150,7 +150,7 @@ Julia is now being used in several universities and online courses. If you know 
   * [Computational Physics](http://www.thp.uni-koeln.de/~bulla/cp-ss17.html) (Prof. Ralf Bulla), Summer 2017
   * [Statistical Physics](http://www.thp.uni-koeln.de/trebst/Lectures/2017-StatPhys.shtml) (Prof. Simon Trebst), Winter 2017
   * [Computational Many-Body Physics](http://www.thp.uni-koeln.de/trebst/Lectures/2018-CompManyBody.shtml) (Prof. Simon Trebst), Summer 2018
-  
+
 - University of Connecticut, Storrs
   *  CHEG 5395, Metaheuristic and Heuristic Methods in Chemical Engineering (Prof. Ranjan Srivastava), Spring 2018
 

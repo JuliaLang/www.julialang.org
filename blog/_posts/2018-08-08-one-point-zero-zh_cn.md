@@ -245,7 +245,7 @@ innovative language features. Some of the new features since version 0.6 include
       are programmed using the [CUDANative.jl](https://github.com/JuliaGPU/CUDAnative.jl)
       package, and a port to Google TPUs is in the works. -->
 
-还有很多没有被列举的大大小小的提高。你可以通过 [0.7 NEWS 文件](https://docs.julialang.org/en/release-0.7/NEWS/)查看
+还有很多没有被列举的大大小小的提高。你可以通过 [0.7 NEWS 文件](https://github.com/JuliaLang/julia/blob/release-0.7/NEWS.md)查看
 完整的更新。在我们2012年的 ["为什么我们创造来Julia"博文](https://julialang.org/blog/2012/02/why-we-created-julia)里，我们写到：
 
 > 它还没有完工——但是已经可以发布一个1.0版本了（其实等了6年才要发布）——我们创造的这个语言叫做Julia。
