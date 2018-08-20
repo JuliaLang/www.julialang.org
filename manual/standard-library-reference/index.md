@@ -1,4 +1,4 @@
 ---
 layout: redirect
-target: http://docs.julialang.org/en/latest/stdlib/
+target: https://docs.julialang.org/en/latest/stdlib/
 ---
