@@ -403,7 +403,7 @@ img.ecosystem-image {
 }
 
 img {
-  /* max-width: 100%; */
+  max-width: 100%;
 }
 
 .page-heading .main-heading {
@@ -483,4 +483,18 @@ blockquote p {
 
 #main-jumbo {
   padding: 3rem 2rem;
+}
+
+code, table.benchmarks tbody {
+  font: 9pt Monaco, 'Consolas', monospace;
+}
+
+pre {
+  border: 1px solid #ddd;
+  background: rgb(250, 250, 250);
+  margin: 1em -1.5em;
+  padding: 1em 1.5em;
+  overflow: auto;
+  direction: ltr;
+  border-radius: 5px;
 }
