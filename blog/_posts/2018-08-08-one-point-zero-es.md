@@ -110,7 +110,7 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
 
 * El lenguaje en sí es significativamente más esbelto, con muchos componentes siendo escindidos a paquetes en la
   "biblioteca estándar" que es liberada con Julia pero que no es parte del lenguaje "base". Si los necesitas, solo
-  necesitas importar (sin instalar) pero no estarás coaccionado a hacerlo. En el futuro, esto permitirá que las bibliotecas
+  necesitas importar (sin instalar) pero no estarás coaccionada a hacerlo. En el futuro, esto permitirá que las bibliotecas
   estándar sean versionadas y actualizadas independientemente de Julia, permitiendo que evolucionen y se mejoren más rápido.
 
 * Hemos revisado extensamente todas las APIs de Julia para mejorar la consistencia y usabilidad. Muchos nombres 
