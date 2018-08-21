@@ -156,7 +156,7 @@ innovative language features. Some of the new features since version 0.6 include
       package, and a port to Google TPUs is in the works.
 
 There are countless other improvements, both large and small. For a complete list of
-changes, see the [0.7 NEWS file](https://docs.julialang.org/en/release-0.7/NEWS/). In our
+changes, see the [0.7 NEWS file](https://github.com/JuliaLang/julia/blob/release-0.7/NEWS.md). In our
 original [“Why We Created Julia” blog
 post](https://julialang.org/blog/2012/02/why-we-created-julia) in 2012, we wrote
 

@@ -240,7 +240,7 @@ innovative language features. Some of the new features since version 0.6 include
       are programmed using the [CUDANative.jl](https://github.com/JuliaGPU/CUDAnative.jl)
       package, and a port to Google TPUs is in the works. -->
 
-還有無數個大大小小的改善。你可以查看 [0.7 NEWS 文件](https://docs.julialang.org/en/release-0.7/NEWS/) 當中的完整的更新。
+還有無數個大大小小的改善。你可以查看 [0.7 NEWS 文件](https://github.com/JuliaLang/julia/blob/release-0.7/NEWS.md) 當中的完整的更新。
 在我們 2012 年的 ["為什麼我們創造 Julia" 文章](https://julialang.org/blog/2012/02/why-we-created-julia) 裡，我們寫到：
 
 <!-- There are countless other improvements, both large and small. For a complete list of

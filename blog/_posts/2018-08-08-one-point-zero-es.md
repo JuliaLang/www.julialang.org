@@ -20,13 +20,13 @@ número de exigencias sobre el lenguaje:
 > un shell. Algo que sea sumamente sencillo de aprender, pero que mantenga a los hackers más serios
 > felices. Queremos que sea interactivo y que sea compilado.
 
-Una comunidad vibrante y fructífera ha crecido alrededor de este lenguaje, con gente de 
+Una comunidad vibrante y fructífera ha crecido alrededor de este lenguaje, con gente de
 todo el mundo iterativamente refinando y reformulado Julia para cumplir su meta. Más de 700
 personas han contribuido a Julia en sí y aún más gente han hecho miles de asombrosos paquetes de código abierto. En resumen, hemos construido un lenguaje que es:
 
 * **Rápido**: Julia fue diseñado desde el principio para tener alto rendimiento. Los programas de Julia
   se compilan a código nativo eficiente para muchas plataformas por medio de LLVM.
-* **General**: Usa despacho múltiple como paradigma, facilitando expresar muchos patrones de 
+* **General**: Usa despacho múltiple como paradigma, facilitando expresar muchos patrones de
   la programación orientada a objetos ó programación funcional. La biblioteca estándar provee
   I/O asíncrono, control de procesos, logging, perfiles, un administrador de paquetes y más.
 * **Técnico**: Sobresale en cómputo numérico con una sintaxis excelente para las matemáticas,
@@ -77,7 +77,7 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
 
 * Las tuplas con nombre son rasgo nuevo que permite representar y accesar datos por nombre y de manera eficiente. Puedes, por ejemplo,
   representar una hilera de datos como `row =
-  (name="Julia", version=v"1.0.0", releases=8)` y accesar su columna `version` como 
+  (name="Julia", version=v"1.0.0", releases=8)` y accesar su columna `version` como
   `row.version` con la misma velocidad que el inconveniente `row[2]`.
 
 * El operador punto ahora puede ser sobrecargado, permitiendo así que tipos usen la sintaxis `obj.propiedad` para
@@ -96,7 +96,7 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
 * Los constructores de tipos paramétricos ahora se llaman con la misma sintaxis con la que se declaran. Esto
   elimina una barrera rebuscada pero confusa de sintaxis.
 
-* El protocolo de iteración ha sido completamente rediseñado para facilitar implementar muchos tipos de 
+* El protocolo de iteración ha sido completamente rediseñado para facilitar implementar muchos tipos de
   iterables. En vez de —`start`, `next`, `done`—uno ahora define métodos de uno y dos argumentos para la función
   `iterate`. Esto frecuentemente permite que la iteración se defina con un sólo método y un valor por default para 
   el estado inicial. Aunado a lo anterior, es posible implementar iteradores que solo saben si han terminado
@@ -121,7 +121,7 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
 
 * Un gran número de paquetería externa ha sido específicamente construida alrededor de las ventajas de Julia 1.0, tales como:
     * El ecosistema de procesamiento y manipulación de manejo de datos fue reorganizado alrededor de los valores faltantes.
-    
+
     * [Cassette.jl](https://github.com/jrevels/Cassette.jl) provee un poderoso mecanismo para inyectar pases de transformación de
     código al compilador de Julia, permitiendo análisis post-hoc y extensión de código existente. Además de la instrumentación para
     programadores como un debugger y un profiler, esto también puede implementar diferenciación automática para tareas de *machine learning*.
@@ -137,6 +137,6 @@ post](https://julialang.org/blog/2012/02/why-we-created-julia) en 2012, escribim
 > No está completo, pero es tiempo de liberar la versión 1.0 del lenguaje que creamos llamado
 > [Julia](https://julialang.org).
 
-Tal vez nos adelantamos un poco con la versión 1.0, pero el tiempo finalmente ha llegado y es un release fantástico. 
+Tal vez nos adelantamos un poco con la versión 1.0, pero el tiempo finalmente ha llegado y es un release fantástico.
 Estamos verdaderamente orgullosos de lo que hemos logrado con los miles de programadores que han contribuido en tantas maneras a este lenguaje
 verdaderamente moderno para programación general y numérica.
