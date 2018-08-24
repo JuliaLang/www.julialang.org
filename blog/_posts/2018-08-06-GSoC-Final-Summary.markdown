@@ -1,9 +1,7 @@
 ---
 layout: post
-title: "GSoC'18: Final Summary"
-date:   2018-08-06 16:00 +0530
-categories: jekyll update
-tags: julia
+title: "GSoC 2018: Reinforcement Learning and Generative models using Flux"
+author: <a href="https://github.com/tejank10">Tejan Karmali</a>
 ---
 
 Hello, world!
