@@ -30,6 +30,7 @@ Julia is now being used in several universities and online courses. If you know 
 
 - Brown University <!--41.8268682,-71.4012314581107-->
   * [CSCI 1810](http://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael), Fall 2014
+  * [DATA 1010](http://sswatson.com/classes/data1010/), Introduction to Probability, Statistics, and Machine Learning (Samuel S. Watson), Fall 2018
 
 - [Budapest University of Technology and Economics](www.bme.hu) <!--47.4796299,19.0561698643001-->
   * [Applications of Differential Equations and Vector Analysis for Engineers II.] ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
