@@ -61,7 +61,7 @@ Julia is now being used in several universities and online courses. If you know 
   * [GFM050](http://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
   
 - Hadsel High School, Stokmarknes, Nordland, Norway
-  * [REA3034] Programmering og modeling (Programming and modeling with Julia and Snap), 2018/19 (High school lektor Olav A Marschall, M.sc. Computer Science)
+  * [REA3034](http://www.hadsel.vgs.no/AnsattOversikt.aspx?MId1=15925&PersonId=16964) Programming and modeling with Julia and Snap, 2018/19 (High school lektor Olav A Marschall, M.sc. Computer Science)
 
 - IIT Indore <!--22.52036,75.920723-->
   * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://www.fesb.unist.hr/~slap/index1.html)), June 2016
