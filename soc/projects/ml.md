@@ -145,6 +145,33 @@ This project is to leverage those APIs, to allow others to leaverage those data 
 
 **Mentors**: [Lyndon White (oxinabox)](https://github.com/oxinabox/)
 
+## Accelerating optimization via machine learning with surrogate models
+
+In many cases, when attempting to optimize a function `f(p)` each calculation
+of `f` is very expensive. For example, evaluating `f` may require solving a
+PDE or other applications of complex linear algebra. Thus, instead of always
+directly evaluating `f`, one can develop a surrogate model `g` which is
+approximately `f` by training on previous data collected from `f` evaluations.
+This technique of using a trained surrogate in place of the real function
+is called surrogate optimization and mixes techniques from machine learning
+to accelerate optimization.
+
+Advanced techniques [utilize radial basis functions](https://www.cambridge.org/core/journals/acta-numerica/article/kernel-techniques-from-machine-learning-to-meshless-methods/00686923110F799A1537C4F02BBAAE8E) and Gaussian
+processes in order to interpolate to new parameters to estimate `f` in areas
+which have not been sampled. [Adaptive training techniques](http://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/9c8e3fd4d8874d60c1257052003eced6/e7dc33e4da12c5a9c12576d8002e442b/$FILE/Jones01.pdf) explore how to pick new areas
+to evaluate `f` to better hone in on global optima. The purpose of this project
+is to explore these techniques and build a package which performs surrogate
+optimizations.
+
+**Recommended Skills**: Background knowledge of standard machine learning,
+statistical, or optimization techniques. Strong knowledge of numerical analysis
+is helpful but not required.
+
+**Expected Results**: Library functions for performing surrogate optimization
+with tests on differential equation models.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+
 ## Parameter estimation for nonlinear dynamical models
 
 Machine learning has become a popular tool for understanding data, but scientists
@@ -159,11 +186,14 @@ The purpose of this project is to utilize the growing array of statistical,
 optimization, and machine learning tools in the Julia ecosystem to build
 library functions that make it easy for scientists to perform this parameter
 estimation with the most high-powered and robust methodologies. Possible projects
-include investigating methods for Bayesian estimation of parameters via Stan.jl
+include improving methods for Bayesian estimation of parameters via Stan.jl
 and Julia-based libraries like Turing.jl, or global optimization-based approaches.
 Novel techniques like classifying model outcomes via support vector machines
 and deep neural networks is can also be considered. Research and benchmarking
 to attempt to find the most robust methods will take place in this project.
+Additionally, the implementation of methods for estimating structure, such
+as [topological sensitivity analysis](http://www.pnas.org/content/111/52/18507)
+along with performance enhancements to existing methods will be considered.
 
 Some work in this area can be found in
 [DiffEqParamEstim.jl](https://github.com/JuliaDiffEq/DiffEqParamEstim.jl)
