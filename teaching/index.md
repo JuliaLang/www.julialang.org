@@ -11,9 +11,11 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 - Coursera, University of Cape Town
   * [Julia Scientific Programming](https://www.coursera.org/learn/julia-programming) online course, (Dr. Juan H Klopper, Dr. Henri Laurie)
-a
 - edX MITx
   * [15.053x](https://www.edx.org/course/optimization-methods-business-analytics-mitx-15-053x), Optimization Methods in Business Analytics MOOC (massive online open course), (Prof. [James Orlin](https://www.edx.org/bio/james-orlin))
+- lynda.com
+  * [Julia for Data Scientists First Look](https://www.lynda.com/Julia-tutorials/Julia-Data-Scientists-First-Look/512735-2.html), online 33min introduction to Julia, (Dr. [Barton Poulson](https://www.lynda.com/Barton-Poulson/984353-1.html))
+
 
 ## Classes using Julia for teaching
 
