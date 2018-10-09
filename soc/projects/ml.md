@@ -110,40 +110,6 @@ JuliaDB is a distributed analytical database. It uses Julia’s multi-processing
 
 **Mentors**: [Shashi Gowda](https://shashi.github.io), [Mike Innes](http://mikeinnes.github.io/)
 
-## Making Aquiring Open-Data Easy
-
-Goverments and Universities are releasing huge amounts of data under Open Data policies.
-Web portals such as:
- - http://data.gov
- - http://data.gov.au
- - https://dataverse.harvard.edu/
- - http://datadryad.org/
- - https://figshare.com/
- 
-Expose great quanities of data just wating to be used.
-
-[DataDeps.jl](https://github.com/oxinabox/DataDeps.jl) is a package that helps data scientists ensures that anyone running their code has all the data it needs, no matter when or where it is run.
-To do this it needs a registration block, which is a chunk of julia code which says where the data can be download, who created it, what terms and conditions are on its use etc.
-For a simple dataset that is all in one file writing this is pretty easy -- copy and paste the info from the website hosting the data.
-When you want to dozens of datasets, some of which have dozens of files (and no easy way to download a .zip of all of them), writing this registration block is a bit more work.
-
-[DataDepsGenerators.jl](https://github.com/oxinabox/DataDepsGenerators.jl) exists to solve that.
-Give it a URL (or other identifier) for a page describing a dataset, and outputs all the code for a registration block, that you can copy and paste straight into your julia project.
-Right now DataDepsGenerators only supports a couple of sites: GitHub (for https://github.com/BuzzFeedNews/ and https://github.com/fivethirtyeight/data/ and others) and the [UCI ML Repository](https://archive.ics.uci.edu/ml/datasets/).
-This project aims to change that by adding support for the [CKAN](http://docs.ckan.org/en/latest/api/index.html) and the [OA-PMH](https://www.openarchives.org/OAI/openarchivesprotocol.html) APIs.
-
-The [CKAN](http://docs.ckan.org/en/latest/api/index.html) and the [OA-PMH](https://www.openarchives.org/OAI/openarchivesprotocol.html) APIs allow the automated extraction of metadata for a dataset.
-They are primarily used by goverment "data.gov.\*" sites and research repositories respectively.
-Together they host millions of datasets, furfilling those institutions open data policies.
-
-This project is to leverage those APIs, to allow others to leaverage those data repositories to produce easily repeatable, data driven research.
-
-
-**Expected Results**: a series of patches to [DataDepsGenerators.jl](https://github.com/oxinabox/DataDepsGenerators.jl), giving it the capacity to generate a DataDeps registration block for any dataset hosted on site exposing a CRAN, or OAI-PMH API.
-
-**Recommended Skills**: Familarity with web APIs and related technolgies (e.g. REST, JSON, XML (Probably not OAUTH, but if you've done OAUTH then your more than familar enough)). Some practice with webscraping is likely to be useful. A love of data and of doing cool things with it, is a big plus.
-
-**Mentors**: [Lyndon White (oxinabox)](https://github.com/oxinabox/)
 
 ## Accelerating optimization via machine learning with surrogate models
 
