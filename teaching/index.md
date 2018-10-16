@@ -188,6 +188,10 @@ Julia is now being used in several universities and online courses. If you know 
   * [IFT3515](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3515/), Optimisation non linéaire (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2017-2018
   * [IFT6512](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-6512/), Programmation stochastique (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2018
 
+- Skolkovo Institute of Science and Technology (Skoltech) <!---22.979107,-43.233083-->
+  * Fundamentals on Power Systems (Prof. [David Pozo](https://sites.google.com/site/davidpozocamara/)), Winter 2018, Fall 2018
+  * Power Markets and Regulation (Prof. [David Pozo](https://sites.google.com/site/davidpozocamara/)), Spring 2018
+  
 - Western University Canada <!--43.00535865,-81.2748046243065-->
   * [CS 2101A](http://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza), Fall 2013
 
