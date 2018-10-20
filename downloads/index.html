@@ -49,6 +49,13 @@ title:  Julia Downloads
       <h2>Current stable release (v1.0.1)</h2>
       <p> <a href="#0.7.0">
         If transitioning from Julia 0.6.0 strongly consider working the the transitional Julia v0.7.0 release rather than moving directly and completely to v1.0.0.
+        Versions 1.0.0 and 0.7.0 are largely equivalent, with the primary difference being that 0.7.0 includes deprecation warnings
+        for functionality and behavior changed between previous releases and 1.0.0. For example, invoking deprecated methods
+        will emit a warning in 0.7.0 but will cause a MethodError in 1.0.0 as they have been removed.
+        It is thus often useful to have a copy of julia 0.7 even if working in 1.0 to allow the checking of what a 0.6 method has been deprecated to,
+        as 0.6.
+
+        Note that 1.0.x versions contain bugfixes not available on 0.7 releases.
       </a></p>
       
       <table class="downloads table table-hover table-responsive table-bordered">
@@ -124,13 +131,6 @@ title:  Julia Downloads
       <h2 id="0.7.0">Previous stable release (v0.7.0)</h2>
       <p>
         Julia v0.7.0 is a transitional release, intended to aid the transition from Julia v0.6, to Julia v1.0.
-        Versions 1.0.0 and 0.7.0 are largely equivalent, with the primary difference being that 0.7.0 includes deprecation warnings
-        for functionality and behavior changed between previous releases and 1.0.0. For example, invoking deprecated methods
-        will emit a warning in 0.7.0 but will cause a MethodError in 1.0.0 as they have been removed.
-        It is thus often useful to have a copy of julia 0.7 even if working in 1.0 to allow the checking of what a 0.6 method has been deprecated to,
-        as 0.6.
-
-        Note that 1.0.x versions contain bugfixes not available on 0.7 releases.
       </p>
       
       <table class="downloads table table-hover table-responsive table-bordered">
