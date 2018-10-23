@@ -19,9 +19,9 @@ title:  Scientific Projects – Summer of Code
 
 ## Quantum Computation: Visualization of Quantum Circuits
 
-Although, there is already a pretty printing for quantum circuits in [Yao.jl](https://github.com/QuantumBFS/Yao.jl) as a tree, we are still lack of visualizing a quantum circuit defined as [block tree](https://quantumbfs.github.io/Yao.jl/latest/man/blocks/). And we have already have basic plotting utilities in Julia, like [Luxor.jl](https://github.com/JuliaGraphics/Luxor.jl). It would be great and more convenient to provide multiple theme for plotting a quantum circuit with Yao.jl to various formats.
+Although, there is already a pretty printing for quantum circuits in [Yao.jl](https://github.com/QuantumBFS/Yao.jl) as a tree, we are still lack of visualizing a quantum circuit defined as [block tree](https://quantumbfs.github.io/Yao.jl/latest/man/blocks/). And we have already had basic plotting utilities in Julia, like [Luxor.jl](https://github.com/JuliaGraphics/Luxor.jl). It would be great and more convenient to provide multiple theme for plotting a quantum circuit with Yao.jl to various formats.
 
-**Recommended Skills**: Basic knowledge in plotting in Julia with Luxor.jl.
+**Recommended Skills**: Basic knowledge in programatic visualization. Experienced with Luxor.jl is preferred but can be learned along the way.
 **Expected Results**: Provide Yao.jl an extension package that converts a block tree to an image, which contains not only the circuit but also mark of composite blocks, users should be able to change theme for paper or multi-media use.
 **Mentors**: [Roger Luo](https://github.com/Roger-luo/)
 **References**: some demo image can be found in Yao.jl's [doc](https://quantumbfs.github.io/Yao.jl/latest/tutorial/QFT/)
@@ -37,7 +37,7 @@ A Tensor network is a constraction of tensors, it has wide applications in physi
 
 To make this task interesting, we will create a UTF-8 based pictograph for tensor operations, making the contraction process more intuitive. And this task is very suited for Julia, since it supports not only [UTF-8 character input](https://docs.julialang.org/en/v0.6.0/manual/unicode-input/), but also [UTF-8 operators](https://github.com/JuliaLang/julia/blob/c200b4cdb9620b6df369ae3c735cf3af30b6a47f/src/julia-parser.scm). For the details, please read this [proposal](https://github.com/QuantumBFS/FunnyTN.jl/blob/master/docs/src/dev/proposal.md).
 
-**Recommended Skills:** Background knowledge in Julia language and linear algebra.
+**Recommended Skills:** Background knowledge in Julia language and linear algebra, experience with tensor networks is preferred, but it won't be hard to learn tensor networks if you know what is matrix multiplication.
 
 **Expected Results:** A high performance tensor network contraction package based on treewidth algorithm, and use it as a kind of Register in Yao for quantum circuit simulation.
 
@@ -57,3 +57,7 @@ Tensor Networks used in quantum machine learning
 
 Package ITensor in C++ for simulating quantum many body systems
 * [ITensor](http://itensor.org/)
+
+Tutorial for tensor networks:
+
+* [Hand-waving and Interpretive Dance: An Introductory Course on Tensor Networks](https://arxiv.org/abs/1603.03039)
