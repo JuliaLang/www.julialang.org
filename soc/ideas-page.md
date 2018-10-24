@@ -22,6 +22,7 @@ We have our project ideas organised roughly into the skillsets required:
 * [Compiler](projects/compiler.html) – work on the Julia compiler's internals to make things better for everyone.
 * [HPC](projects/hpc.html) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Numerics](projects/numerics.html) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
+* [Science](projects/science.html) - provide Julia with the ability for scientific research in various fields.
 * [Differential Equations](projects/diffeq.html) - Numerical methods for high-performance solving of differential equation models
 * [Tooling](projects/tooling.html) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
 * [Images](projects/images.html) – extend Julia's suite of tools for visualization and analysis of images.
