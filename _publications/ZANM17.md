@@ -11,7 +11,7 @@ journal: "Bioinformatics"
 volume: "33"
 number: "4"
 pages: "564--565"
-doi: "https://doi.org/10.1093/bioinformatics/btw646"
+doi: "10.1093/bioinformatics/btw646"
 packages:
   MIToS.jl: https://github.com/diegozea/MIToS.jl
 ---
