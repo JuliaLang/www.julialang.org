@@ -18,7 +18,7 @@ authors:
 - Stefan Schupp
 year: "2018"
 pages: "23--52"
-doi: "https://doi.org/10.29007/73mb"
+doi: "10.29007/73mb"
 packages:
   Reachability.jl: https://github.com/JuliaReach/Reachability.jl
 ---

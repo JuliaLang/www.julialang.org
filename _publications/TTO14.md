@@ -6,6 +6,7 @@ authors:
 - Thomas Trogdon
 - Sheehan Olver
 year: "2014"
+doi: "10.1093/imanum/drv002"
 packages:
   FastGaussQuadrature.jl: https://github.com/ajt60gaibb/FastGaussQuadrature.jl
 ---

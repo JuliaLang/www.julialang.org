@@ -7,6 +7,7 @@ authors:
 - Michael J E Sternberg
 year: "2017"
 journal: "Structure"
+doi: "10.1016/j.str.2017.01.008"
 volume: "25"
 pages: "546-558"
 packages:
