@@ -8,7 +8,7 @@ authors:
 - Marco Concetto Rudilosso
 - Neethu Mariya Joy
 - Tejan Karmali
-- Avik Pal Singh
+- Avik Pal
 - Viral Shah
 year: "2018"
 arxiv: 1811.01457
