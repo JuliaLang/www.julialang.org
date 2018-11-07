@@ -1,7 +1,7 @@
 ---
 title: "Fashionable Modelling with Flux"
 authors:
-- Micheal J Innes
+- Michael J Innes
 - Elliot Saba
 - Keno Fischer
 - Dhairya Gandhi
