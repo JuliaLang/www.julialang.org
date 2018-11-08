@@ -159,6 +159,7 @@ Julia is now being used in several universities and online courses. If you know 
 
 - University of Connecticut, Storrs
   *  CHEG 5395, Metaheuristic and Heuristic Methods in Chemical Engineering (Prof. Ranjan Srivastava), Spring 2018
+  *  BIST/STAT 5535, Nonparametric Methods (Prof. HaiYing Wang), Fall 2018
 
 - University of Edinburgh <!--55.94938435,-3.18005288130257-->
   * Spring 2017, [MATH11146](http://www.drps.ed.ac.uk/16-17/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/index.html))
