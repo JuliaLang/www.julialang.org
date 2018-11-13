@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: homepage
 title:  Summer of Code Ideas Page
 redirect_from:
   - /jsoc.html
