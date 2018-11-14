@@ -104,7 +104,7 @@ JuliaDB is a distributed analytical database. It uses Julia’s multi-processing
 - Copy a table to GPU -- this may be as simple as converting every column into a CuArray or GPUArray
 - `map`, `reduce` and `filter` operation -- apply simple functions on a large table that is on the GPU
   - Ensure that columnar storage format is made use of in the lower level code generated.
-- The `groupby` and `join` operations may involve first implementing an efficient [`sortperm`](https://docs.julialang.org/en/stable/stdlib/sort/#Base.sortperm) that utilize the GPU, or an efficient hash table on the GPU
+- The `groupby` and `join` operations may involve first implementing an efficient [`sortperm`](https://docs.julialang.org/en/v1/base/sort/#Base.sortperm) that utilize the GPU, or an efficient hash table on the GPU
 - `groupby` kernel on GPU
 - `join` kernel on GPU (stretch goal)
 
@@ -183,23 +183,23 @@ simultaneously.
 
 ## Artificial Intelligence Library Package based on Artificial Intelligence - A Modern Approach (AIMA)
 
-AIMA is a seminal text on representation of agents to solve AI problems. Most packages 
+AIMA is a seminal text on representation of agents to solve AI problems. Most packages
 available today as AI libraries tend to focus on ML only and not the architectural
-aspect of AI. The scope of the project is to create a library with a clean API 
-(following AIMA) to easily allow the application of core algorithms to AI problems. 
-The student will implement a package that brings together implementations of algorithms 
-like depth-first search and simulated annealing, both from other Julia packages and 
-from sample code in the AIMA book, and build sample programs to demonstrate AI 
+aspect of AI. The scope of the project is to create a library with a clean API
+(following AIMA) to easily allow the application of core algorithms to AI problems.
+The student will implement a package that brings together implementations of algorithms
+like depth-first search and simulated annealing, both from other Julia packages and
+from sample code in the AIMA book, and build sample programs to demonstrate AI
 applications. Starter code can be found at [AIMACore]
 (https://github.com/sambitdash/AIMACore.jl) along with [AIMASamples]
 (https://github.com/sambitdash/AIMASamples.jl).
 
-**Recommended Skills**: Previous experience with AI or the ability to quickly pick up on 
+**Recommended Skills**: Previous experience with AI or the ability to quickly pick up on
 the AI algorithms in AIMA
 
 **Expected Results**: A well-documented library of functions derived from the AIMA book.
 
-**Mentors** [Sambit Kumar Dash](https://github.com/sambitdash). 
+**Mentors** [Sambit Kumar Dash](https://github.com/sambitdash).
 
 ## A SQL backend for Query.jl
 
