@@ -2,6 +2,7 @@ permalink: /:categories/:year/:month/:title
 highlighter: rouge
 plugins:
   - jekyll-redirect-from
+  - jekyll-feed
 navigation:
   - title: home
     url: /
