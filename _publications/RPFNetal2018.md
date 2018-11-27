@@ -1,3 +1,4 @@
+---
 authors:
  - Jeffrey Regier
  - Kiran Pamnany
@@ -17,3 +18,4 @@ booktitle: International Parallel and Distributed Processing Symposium (IPDPS)
 arxiv: 1801.10277
 packages:
   Celeste.jl: https://github.com/jeff-regier/Celeste.jl
+---
