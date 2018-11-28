@@ -28,3 +28,20 @@ OpenCV is one of the pre-eminent image-processing frameworks, and there is an ex
 **Expected Results:** A rejuvinated OpenCV package that integrates more effectively into the ecosystem of JuliaImages.
 
 **Mentors:** [Maximiliano Suster](https://github.com/maxruby) and [Tim Holy](https://github.com/timholy/).
+
+## Contributions to a Stereo Matching Package
+
+When two images are taken of a scene with a calibrated stereo rig it is possible to construct a three-dimensional model of the scene provided that one can determine the coordinates of corresponding points in the two images. The task of determining the coordinates of corresponding points is frequenly called *stereo matching* or *disparity estimation*. Numerous algorithms for this task have been proposed over the years and new ones continue to be developed. 
+
+This project will implement several stereo matching algorithms. Emphasis will be placed on *efficient* implementations which leverage all of Julia's features for writing fast code. 
+
+Example algorithms: 
+  1. Bleyer, Michael, Christoph Rhemann, and Carsten Rother. "PatchMatch Stereo-Stereo Matching with Slanted Support Windows." Bmvc. Vol. 11. 2011.
+  2. Hirschmuller, Heiko. "Accurate and efficient stereo processing by semi-global matching and mutual information." Computer Vision and Pattern Recognition, 2005. CVPR 2005. IEEE Computer Society Conference on. Vol. 2. IEEE, 2005.
+  3. Gehrig, Stefan K., and Clemens Rabe. "Real-time semi-global matching on the CPU." Computer Vision and Pattern Recognition Workshops (CVPRW), 2010 IEEE Computer Society Conference on. IEEE, 2010.
+
+**Recommended skills:** Sufficient familiarity with the Julia language to be able to write *performant* code in Julia.
+
+**Expected Results:** Fast implementations of both classic and more-recent stereo matching algorithms.  
+
+**Mentors:** [Zygmunt Szpak](https://github.com/zygmuntszpak).
