@@ -40,8 +40,8 @@ Example algorithms:
   2. Hirschmuller, Heiko. "Accurate and efficient stereo processing by semi-global matching and mutual information." Computer Vision and Pattern Recognition, 2005. CVPR 2005. IEEE Computer Society Conference on. Vol. 2. IEEE, 2005.
   3. Gehrig, Stefan K., and Clemens Rabe. "Real-time semi-global matching on the CPU." Computer Vision and Pattern Recognition Workshops (CVPRW), 2010 IEEE Computer Society Conference on. IEEE, 2010.
 
-**Recommended skills:** Sufficient familiarity with the Julia language to be able to write *performant* code in Julia.
+**Recommended skills:** Familiarity with typical Julia performance traps and ability to benchmark code. Ideally you will have some awareness of which operations allocate memory, what a "view" of a matrix is, and what it means to write "type-stable" code. 
 
-**Expected Results:** Fast implementations of both classic and more-recent stereo matching algorithms.  
+**Expected Results:** Fast implementations of both classic and more recent stereo matching algorithms.  
 
 **Mentors:** [Zygmunt Szpak](https://github.com/zygmuntszpak).
