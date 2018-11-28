@@ -15,7 +15,7 @@ The [LightGraphs.jl](https://github.com/JuliaGraphs/LightGraphs.jl) package prov
 
 **Expected Results**: creation of LightGraphs-based data structures and algorithms that take advantage of large-scale parallel computing environments.
 
-**Mentorship Inquiries**: Drop by [LightGraphs.jl on Gitter](https://gitter.im/JuliaGraphs/LightGraphs.jl).
+**Mentorship Inquiries**: Drop by #graphs on Slack or [file a new issue on Github](https://github.com/JuliaGraphs/LightGraphs.jl/issues/new).
 
 ## Simple persistent distributed storage
 
