@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Building a Language and Compiler for Machine Learning
-author: Mike Innes, Elliot Saba, Keno Fischer, James Bradbury, Dhairya Gandhi, Marco Concetto Rudilosso, Neethu Mariya Joy, Tejan Karmali, Avik Pal, Matt Kelley, Viral Shah
+author: Mike Innes, James Bradbury, Keno Fischer, Dhairya Gandhi, Neethu Mariya Joy, Tejan Karmali, Matt Kelley, Avik Pal, Marco Concetto Rudilosso, Elliot Saba, Viral Shah, Deniz Yuret
 ---
 
 # Building a Language and Compiler for Machine Learning
