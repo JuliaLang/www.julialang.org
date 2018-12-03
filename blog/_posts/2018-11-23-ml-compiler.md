@@ -10,13 +10,13 @@ Since we [originally proposed](https://julialang.org/blog/2017/12/ml&pl) the nee
 
 Where current frameworks fall short, several exciting new projects have sprung up that dispense with graphs entirely, to bring differentiable programming to the mainstream. [Myia](https://github.com/mila-udem/myia), by the Theano team, differentiates and compiles a subset of Python to high-performance GPU code. [Swift for TensorFlow](https://github.com/tensorflow/swift) extends Swift so that compatible functions can be compiled to TensorFlow graphs. And finally, the [Flux](https://github.com/FluxML/Flux.jl) ecosystem is extending Julia’s compiler with a number of ML-focused tools, including first-class gradients, just-in-time CUDA kernel compilation, automatic batching and support for new hardware such as TPUs.
 
-All of these projects have enormous potential, but we think Julia has an edge. This post, based on our [paper to be presented at NIPS MLSys](https://arxiv.org/abs/1811.01457), will explore how we have used Julia to re-think ML tooling from the ground up, and provides some insight into the work that modern ML tools need to do.
+All of these projects have enormous potential, but we think Julia has an edge. This post, based on our [paper to be presented at NeurIPS MLSys](https://arxiv.org/abs/1811.01457), will explore how we have used Julia to re-think ML tooling from the ground up, and provides some insight into the work that modern ML tools need to do.
 
 ## Enter Flux
 
 We need a language to write differentiable algorithms, and Flux takes Julia to be this language. Being designed from the ground up for mathematical and numerical computing, Julia is unusually well-suited for expressing ML algorithms.  Meanwhile, its mix of modern design and new ideas in the compiler makes it easier to address the high performance needs of cutting edge ML.
 
-Where typical frameworks are all-encompassing monoliths in hundreds of thousands of lines of C++, Flux is only a thousand lines of straightforward Julia code. Simply take [one package for gradients](https://github.com/FluxML/Zygote.jl), [one package for GPU support](https://github.com/JuliaGPU/CuArrays.jl/), sprinkle with some light convenience functions, bake for fifteen minutes and out pops a fully-featured ML stack.
+Where typical frameworks are all-encompassing monoliths in hundreds of thousands of lines of C++, Flux is only a thousand lines of straightforward Julia code. Simply take [one package for gradients (Zygote.jl)](https://github.com/FluxML/Zygote.jl), [one package for GPU support (CuArrays.jl)](https://github.com/JuliaGPU/CuArrays.jl/), sprinkle with some light convenience functions, bake for fifteen minutes and out pops a fully-featured ML stack.
 
 Like the other next-gen ML systems, Flux is committed to providing an intuitive (“eager” or “define-by-run”) interface, and takes a hard line against any kind of [graph building](https://www.tensorflow.org/guide/autograph) or [performance annotations](https://pytorch.org/docs/master/jit.html). We support all of the language's features, from control flow and data structures to macros. Users can code interactively in Jupyter notebooks and combine high-performance numerics with convenient plotting and visualisation. But we also want to get the benefits traditionally held by “static graph” frameworks – zero-overhead source-to-source AD, operator fusion, multi-GPU/distributed training, and single-binary deployment.
 
@@ -32,7 +32,7 @@ A key advantage of Julia for this task is that it can be used to implement funda
 
 ## Compiling Julia for GPUs
 
-GPU programming is an essential part of modern ML. But the GPU is often treated as an implementation detail; frameworks provide kernels internally, but the user only sees a limited set of mathematical operations and can’t program the GPU directly. In contrast, GPU programming in Julia is first-class all the way down to CUDA kernels (which can happily be written and run from a script or notebook).
+GPU programming is an essential part of modern ML. But the GPU is often treated as an implementation detail; frameworks provide kernels internally, but the user only sees a limited set of mathematical operations and can’t program the GPU directly. In contrast, GPU programming in Julia is [first-class](https://devblogs.nvidia.com/gpu-computing-julia-programming-language/) all the way down to CUDA kernels (which can happily be written and run from a script or notebook).
 
 A simple vector addition kernel looks similar to the CUDA C equivalent.
 
@@ -46,7 +46,7 @@ end
 
 However, Julia's type specialization enables a powerful set of additional abstractions on the GPU. For example, the code above is not restricted to dense arrays of floats, and could instead be given sparse arrays of complex numbers; Julia's normal specialization mechanisms would generate a new set of PTX instructions on the fly. We can even abstract this code further into a “higher-order kernel” that accepts the `+` function (or `*`, or arbitrary user-defined `f`) and thus create a whole family of functions `map(f, x, y)` in [four lines of code](http://mikeinnes.github.io/2017/08/24/cudanative.html).
 
-This enables some powerful tricks, even if you never write CUDA code yourself. For example, we can transparently fuse a large broadcast expression like `1 / (1 + exp(-x))`, *and* its backwards pass, into a single GPU kernel, getting [significant speedups](https://arxiv.org/abs/1810.08297).
+This enables some powerful tricks, even if you never write CUDA code yourself. For example, we can transparently fuse a large broadcast expression like `1 / (1 + exp(-x))`, *and* its backwards pass, into a single GPU kernel, getting [significant speedups](https://arxiv.org/abs/1810.08297). We expect the native GPU code generation capabilities and ecosystem will power various Julia based machine learning libraries going forward.
 
 ## Julia on TPUs
 
@@ -66,4 +66,4 @@ We suggest that this problem is identical to that of Single Program Multiple Dat
 
 We believe that the future of machine learning rests in language and compiler technology, and in particular, in extending new or existing languages to meet the high demands of ML research. This is good not just for the ML community, but for numerical programming in general; languages that can support differentiation, vectorisation and exotic hardware well will be powerful enough to drive many advancements in science.
 
-There is some way to go before these next-generation tools – Myia, Swift/TF and Flux – are as production-ready as their existing framework counterparts, TensorFlow and PyTorch. But if you’re breaking new ground in ML, they might well be your best bet. Give them a go, and see what the future of machine learning looks like.
+There is some way to go before these next-generation tools – Myia, Swift/TF and [Flux](http://fluxml.ai) – are as production-ready as their existing framework counterparts, TensorFlow, PyTorch, and [Knet](https://github.com/denizyuret/Knet.jl). But if you’re breaking new ground in ML, they might well be your best bet. Give them a go, and see what the future of machine learning looks like.
