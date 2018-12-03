@@ -4,8 +4,6 @@ title:  Building a Language and Compiler for Machine Learning
 author: Mike Innes, James Bradbury, Keno Fischer, Dhairya Gandhi, Neethu Mariya Joy, Tejan Karmali, Matt Kelley, Avik Pal, Marco Concetto Rudilosso, Elliot Saba, Viral Shah, Deniz Yuret
 ---
 
-# Building a Language and Compiler for Machine Learning
-
 Since we [originally proposed](https://julialang.org/blog/2017/12/ml&pl) the need for a first-class language, compiler and ecosystem for machine learning (ML), there have been plenty of interesting developments in the field. Not only have the tradeoffs in existing systems, such as TensorFlow and PyTorch, not been resolved, but they are clearer than ever now that both frameworks contain distinct [“static graph”](https://pytorch.org/docs/master/jit.html) and [“eager execution”](https://www.tensorflow.org/guide/eager) interfaces. Meanwhile, the idea of ML models fundamentally being differentiable algorithms – often called [differentiable programming](https://www.facebook.com/yann.lecun/posts/10155003011462143) – has caught on.
 
 Where current frameworks fall short, several exciting new projects have sprung up that dispense with graphs entirely, to bring differentiable programming to the mainstream. [Myia](https://github.com/mila-udem/myia), by the Theano team, differentiates and compiles a subset of Python to high-performance GPU code. [Swift for TensorFlow](https://github.com/tensorflow/swift) extends Swift so that compatible functions can be compiled to TensorFlow graphs. And finally, the [Flux](https://github.com/FluxML/Flux.jl) ecosystem is extending Julia’s compiler with a number of ML-focused tools, including first-class gradients, just-in-time CUDA kernel compilation, automatic batching and support for new hardware such as TPUs.
