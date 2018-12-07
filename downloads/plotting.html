@@ -24,6 +24,7 @@ title:  Plotting in Julia
 
       <pre>
         <code class="julia">
+    using Pkg
     Pkg.add("Plots")
     using Plots
     plotly() # Choose the Plotly.jl backend for web interactivity
@@ -61,6 +62,7 @@ title:  Plotting in Julia
 
       <pre>
         <code class="julia">
+    using Pkg
     Pkg.add("PyPlot")
     using PyPlot
     x = range(0,stop=2*pi,length=1000); y = sin.(3*x + 4*cos.(2*x))
@@ -83,6 +85,7 @@ title:  Plotting in Julia
 
       <pre>
         <code class="julia">
+    using Pkg
     Pkg.add("Gadfly")
     using Gadfly
     draw(SVG("output.svg", 6inch, 3inch), plot([sin, cos], 0, 25))
