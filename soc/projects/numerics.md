@@ -68,6 +68,18 @@ This project proposal is for implementing native Julia algorithms for massively 
 
 **Mentors:** [Sacha Verweij](https://github.com/Sacha0)
 
+## Generic linear algebra
+
+Julia supports many different numeric types, both in Base (e.g. `Float32`, `Float64`, `BigFloat`, `Complex`, `Rational`), as well as other packages (e.g. [Quaternions.jl](https://github.com/JuliaGeometry/Quaternions.jl), [ArbFloats.jl](https://github.com/JuliaArbTypes/ArbFloats.jl), [FixedPointNumbers.jl](https://github.com/JuliaMath/FixedPointNumbers.jl)). There is some limited support for linear algebra with these types (e.g. matrix multiplication and LU factorizations), but outside these support is limited.
+
+This project would focus on improving this functionality via the [GenericLinearAlgebra.jl](https://github.com/JuliaLinearAlgebra/GenericLinearAlgebra.jl) and [GenericSVD.jl](https://github.com/JuliaLinearAlgebra/GenericSVD.jl). In many cases, these could be based on standard algorithms in books like [Golub and Van Loan](https://jhupbooks.press.jhu.edu/content/matrix-computations-0), or translating similar concepts from LAPACK.
+
+**Recommended Skills**: An understanding of linear algebra and basic numerical analysis.
+
+**Expected results**: Linear algebra routines which work on different numeric types, and corresponding tests.
+
+**Mentors**: [Simon Byrne](https://github.com/simonbyrne)
+
 # Base Mathematics Libraries
 
 ## Upgrading openlibm
