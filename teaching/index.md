@@ -207,12 +207,6 @@ The Julia and [IPython](http://ipython.org) teams have collaborated to
 develop [IJulia](https://github.com/JuliaLang/IJulia.jl), which
 provides a powerful graphical notebook interface to Julia.
 
-## Packages
-
-The Julia community has put together a number of
-[packages](http://pkg.julialang.org/)
-spanning multiple disciplines.
-
 ## The Julia manual
 
 The [Julia manual](http://docs.julialang.org/) contains a
