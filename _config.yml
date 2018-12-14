@@ -12,8 +12,6 @@ navigation:
     title: downloads
   - url: "http://docs.julialang.org/"
     title: docs
-  - url: "http://pkg.julialang.org/"
-    title: packages
   - url: "/blog/"
     title: blog
   - url: "/community/"
