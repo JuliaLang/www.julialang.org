@@ -34,7 +34,7 @@ The possibilities are pretty much endless here. This project will require a pret
 
 ## Model Import and Export
 
-Sharing models with other frameworks would enables us to both export models (say to JavaScript for the browser, or TensorFlow Lite for mobile, or NNVM for optimised training) and to take advantage of the large set of [trained models in the wild](https://github.com/BVLC/caffe/wiki/Model-Zoo) in Julia code.
+Sharing models with other frameworks would enable us to both export models (say to JavaScript for the browser, or TensorFlow Lite for mobile, or NNVM for optimised training) and to take advantage of the large set of [trained models in the wild](https://github.com/BVLC/caffe/wiki/Model-Zoo) in Julia code.
 
 This involves several stages, some or all of which could be tackled over the course of a project.
 
