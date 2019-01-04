@@ -32,33 +32,28 @@ Although, there is already a pretty printing for quantum circuits in [Yao.jl](ht
 **References**: some demo image can be found in Yao.jl's [doc](https://quantumbfs.github.io/Yao.jl/latest/tutorial/QFT/)
 
 
-## Quantum Computation: Tensor Network for Quantum Circuit Simulation
+## Quantum Computation: Funny Tensor Networks
 
-A Tensor network is a constraction of tensors, it has wide applications in physics and machine learning. Especially, the similation scheme based on treewidth algorithm help us better simulate intermediate size quantum circuits with limited entanglement.
-
-> Simulating quantum computation by contracting tensor networks
-> Igor L. Markov, Yaoyun Shi
-> https://arxiv.org/abs/quant-ph/0511069
+A Tensor network is a constraction of tensors, it has wide applications in physics and machine learning. Now we are going to borrow state of the art technics from both fields to build our new **Julia** tensor network package with **automatic differentiation** and **GPU support**!
 
 To make this task interesting, we will create a UTF-8 based pictograph for tensor operations, making the contraction process more intuitive. And this task is very suited for Julia, since it supports not only [UTF-8 character input](https://docs.julialang.org/en/v0.6.0/manual/unicode-input/), but also [UTF-8 operators](https://github.com/JuliaLang/julia/blob/c200b4cdb9620b6df369ae3c735cf3af30b6a47f/src/julia-parser.scm). For the details, please read this [proposal](https://github.com/QuantumBFS/FunnyTN.jl/blob/master/docs/src/dev/proposal.md).
 
-**Recommended Skills:** Background knowledge in Julia language and linear algebra, experience with tensor networks is preferred, but it won't be hard to learn tensor networks if you know what is matrix multiplication.
+**Recommended Skills:** Basic knowledges about Julia language and linear algebra is required. Students who has experience with tensor networks are preferred.
 
-**Expected Results:** A high performance tensor network contraction package based on treewidth algorithm, and use it as a kind of Register in Yao for quantum circuit simulation.
+**Expected Results:** A high performance Julia tensor network package with GPU and autodiff support.
 
 **Mentors:** [JinGuo Liu](https://github.com/GiggleLiu)
 
 **References:**
 
-Tensor Networks used in quantum machine learning
+Don't be scared by these fancy terms, Julia has strong support to [tensor operations](https://github.com/Jutho/TensorOperations.jl), writting [native cuda code in Julia](https://julialang.org/blog/2017/03/cudanative) has similar experience as CPU programming. Also the hard bit - [autodiff for svd](https://github.com/FluxML/Flux.jl/pull/474) has already got a PR in FLux.jl.
+
+In this paper, we have got a pytorch implementation of "MPS + GPU + autodiff"
 
 > Unsupervised Generative Modeling Using Matrix Product States
 > Zhao-Yu Han, Jun Wang, Heng Fan, Lei Wang, and Pan Zhang
 > [Phys. Rev. X 8, 031012 – Published 17 July 2018](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031012)
-
-> Towards Quantum Machine Learning with Tensor Networks
-> William Huggins, Piyush Patel, K. Birgitta Whaley, E. Miles Stoudenmire
-> https://arxiv.org/abs/1803.11537
+> http://lib.itp.ac.cn/html/panzhang/mps/tutorial/;jsessionid=EE5916C954A336C33871E9FB087B626B
 
 Package ITensor in C++ for simulating quantum many body systems
 * [ITensor](http://itensor.org/)
