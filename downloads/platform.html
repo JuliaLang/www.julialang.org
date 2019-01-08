@@ -79,7 +79,10 @@ title:  Platform specific instructions for installing Julia
       <h3>Generic Binaries</h3>
       <p>
         The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find
-        the <code>julia</code> executable. First, extract the <code>.tar.gz</code> file downloaded from the <a href="index.html">downloads page</a> to a folder on your computer.
+        the <code>julia</code> executable. First, extract the <code>.tar.gz</code> file downloaded from the <a href="index.html">downloads page</a> to a folder on your computer. If the downloaded file is <code>julia-1.0.3-linux-x86_64.tar.gz</code>, first <code>cd</code> to the directory it is in, then run
+        <pre>
+            tar -xzf julia-1.0.3-linux-x86_64.tar.gz
+        </pre>
         To run Julia, you can do any of the following:
 
         <ul>
@@ -90,18 +93,17 @@ title:  Platform specific instructions for installing Julia
       </p>
 
       <p>
-        For example, to create a symbolic link to <code>julia</code> inside the <code>/usr/local/bin</code> folder, you can do the following:
+        For example, if the <code>.tar.gz</code> file was extracted to <code>/home/foo/Downloads/julia-1.0.3/</code>, to create a symbolic link to <code>julia</code> in the <code>/usr/bin</code> folder run
 
         <pre>
           <code class="bash">
-    sudo ln -s <where you extracted the julia archive>/bin/julia /usr/local/bin/julia
+            sudo ln -s /home/foo/Downloads/julia-1.0.3/bin/julia /usr/bin/julia
           </code>
         </pre>
       </p>
 
       <p>
-        On some Linux distributions, you may need to use a folder other than <code>/usr/local/bin</code>.
-        To check which folders are on your <code>PATH</code>, you can run <code>echo $PATH</code>.
+        Note that this relies on the files in <code>/home/foo/Downloads/julia-1.0.3/</code> not being deleted. To check which folders are on your <code>PATH</code>, you can run <code>echo $PATH</code>.
       </p>
 
       <br />
