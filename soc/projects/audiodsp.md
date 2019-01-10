@@ -1,11 +1,9 @@
 ---
-layout: default
+layout: insidepage
 title:  JuliaAudio Projects – Summer of Code
 ---
 
 # {{ page.title }}
-
-{% include toc.html %}
 
 The [JuliaAudio](https://github.com/JuliaAudio) family of packages defines stream and buffer types useful for working with regularly-sampled signals, in particular digital audio. These packages provide functionality for offline audio processing of audio files, as well as online processing for signals from the sound card, network streams, or files larger than system memory.
 

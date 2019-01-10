@@ -1,13 +1,9 @@
 ---
-layout: default
+layout: insidepage
 title:  Tooling Projects – Summer of Code
 ---
 
 # {{ page.title }}
-
-{% include toc.html %}
-
-# Tooling
 
 ## IDE Tooling
 

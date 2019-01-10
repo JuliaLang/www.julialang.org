@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: insidepage
 title:  Using Julia in the classroom
 ---
 
@@ -61,7 +61,7 @@ Julia is now being used in several universities and online courses. If you know 
 
 - Federal University of Uberlândia, Institute of Physics <!---18.918506,-48.25817-->
   * [GFM050](http://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
-  
+
 - Hadsel High School, Stokmarknes, Nordland, Norway
   * [REA3034](http://www.hadsel.vgs.no/AnsattOversikt.aspx?MId1=15925&PersonId=16964) Programming and modeling with Julia and Snap, 2018/19 (High school lektor Olav A Marschall, M.sc. Computer Science)
 
@@ -192,7 +192,7 @@ Julia is now being used in several universities and online courses. If you know 
 - Skolkovo Institute of Science and Technology (Skoltech) <!---22.979107,-43.233083-->
   * Fundamentals on Power Systems (Prof. [David Pozo](https://sites.google.com/site/davidpozocamara/)), Winter 2018, Fall 2018
   * Power Markets and Regulation (Prof. [David Pozo](https://sites.google.com/site/davidpozocamara/)), Spring 2018
-  
+
 - Western University Canada <!--43.00535865,-81.2748046243065-->
   * [CS 2101A](http://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza), Fall 2013
 

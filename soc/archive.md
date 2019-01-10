@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: insidepage
 title: Julia's Summer of Code projects
 ---
 # Julia's Summers of Code Archive

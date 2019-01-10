@@ -1,13 +1,11 @@
 ---
-layout: default
+layout: insidepage
 title:  Graphic Projects – Summer of Code
 ---
 
 # {{ page.title }}
 
-{% include toc.html %}
-
-## Makie 
+## Makie
 
 ### Improve Documentation + add Examples
 

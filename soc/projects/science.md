@@ -1,13 +1,9 @@
 ---
-layout: default
+layout: insidepage
 title:  Scientific Projects – Summer of Code
 ---
 
 # {{ page.title }}
-
-{% include toc.html %}
-
-
 
 ## Quantum Computation: Simualation of Noisy Circuits
 

@@ -1,11 +1,10 @@
 ---
-layout: default
+layout: insidepage
 title:  DiffEq Projects – Summer of Code
 ---
 
 # {{ page.title }}
 
-{% include toc.html %}
 
 ## Native Julia ODE, SDE, DAE, DDE, and (S)PDE Solvers
 
@@ -31,7 +30,7 @@ methods to implement are:
 - Approximate matrix factorization
 - Runge-Kutta-Chebyschev Methods (high stability RK methods)
 - Fully Implicit Runge-Kutta (FIRK) methods
-- Anderson Acceleration 
+- Anderson Acceleration
 - Boundary value problem (BVP) solvers like MIRK and collocation methods
 - BDF methods for differential-algebraic equations (DAEs)
 - Methods for stiff stochastic differential equations
@@ -49,14 +48,14 @@ linear algebra, and the ability (or eagerness to learn) to write fast code.
 
 ## Performance enhancements for differential equation solvers
 
-Wouldn't it be cool to have had a part in the development of widely used efficient 
+Wouldn't it be cool to have had a part in the development of widely used efficient
 differential equation solvers? DifferentialEquations.jl has a wide range of existing
 methods and [an extensive benchmark suite](https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl)
 which is used for tuning the methods for performance. Many of its methods are already the fastest
-in their class, but there is still a lot of performance enhancement work that can be done. 
-In this project you can learn the details about a wide range of methods and dig into the 
-optimization of the algorithm's strategy and the implementation in order to improve benhcmarks. 
-Projects that could potentially improve the performance of the full differential equations 
+in their class, but there is still a lot of performance enhancement work that can be done.
+In this project you can learn the details about a wide range of methods and dig into the
+optimization of the algorithm's strategy and the implementation in order to improve benhcmarks.
+Projects that could potentially improve the performance of the full differential equations
 ecosystem include:
 
 - Alternative adaptive stepsize techniques and step optimization
