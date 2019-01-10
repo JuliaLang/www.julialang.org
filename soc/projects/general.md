@@ -1,11 +1,9 @@
 ---
-layout: default
+layout: insidepage
 title:  General Projects – Summer of Code
 ---
 
 # {{ page.title }}
-
-{% include toc.html %}
 
 ## Calling Julia from Python
 
@@ -89,26 +87,26 @@ passes for boundcheck elimination, or simple passes to replace a set of function
 ## Minecraft Examples for Julia on the Raspberry Pi
 
 Minecraft is, by some measures, the most popular video game ever. On the Raspberry Pi, the Minecraft
-world can be programatically controlled. This provides an incredible platform to teach children to code -- 
-an unique combination of the physical and the virtual. 
+world can be programatically controlled. This provides an incredible platform to teach children to code --
+an unique combination of the physical and the virtual.
 
-This project will aim to create content in the form of example programs that showcase using Julia on the Pi 
-to control Minecraft. Some inspiration might be derived from a [similar book in R](https://github.com/ropenscilabs/miner_book). 
-This code will use the [PiCraft.jl](https://github.com/JuliaBerry/PiCraft.jl) Julia package which provides the infrastructure to 
-connect to Minecraft on the Pi. 
+This project will aim to create content in the form of example programs that showcase using Julia on the Pi
+to control Minecraft. Some inspiration might be derived from a [similar book in R](https://github.com/ropenscilabs/miner_book).
+This code will use the [PiCraft.jl](https://github.com/JuliaBerry/PiCraft.jl) Julia package which provides the infrastructure to
+connect to Minecraft on the Pi.
 
 **Expected Results**: A set of example programs with documentation
 
-**Recommended skills**: Basic Julia programming skills, some familiarity with R *or* Python. Access to a Rasberry Pi will be helpful. 
+**Recommended skills**: Basic Julia programming skills, some familiarity with R *or* Python. Access to a Rasberry Pi will be helpful.
 
 **Mentors**: [Avik Sengupta](https://github.com/aviks/)
 
 ## Liquid Templating Library
 
 [Liquid](http://shopify.github.io/liquid/) is a popular templating library, used primarily from Ruby. A pure Julia implementation
-of Liquid would be useful for web application authors in Julia. 
+of Liquid would be useful for web application authors in Julia.
 
-**Expected Results**: A pure Julia package that can compile a liquid template to Julia code. 
+**Expected Results**: A pure Julia package that can compile a liquid template to Julia code.
 
 **Recommended skills**: Basic Julia programming skills. Familiarity with parsing techniques.  
 

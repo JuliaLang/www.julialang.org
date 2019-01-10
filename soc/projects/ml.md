@@ -1,9 +1,7 @@
 ---
-layout: default
+layout: insidepage
 title: Data Science and Machine Learning Projects – Summer of Code
 ---
-
-{% include toc.html %}
 
 Note that for any of these projects you should have code samples as part of your application, ideally as patches to one of the ML or GPU libraries or in the form of working ML models.
 

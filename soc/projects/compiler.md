@@ -1,11 +1,9 @@
 ---
-layout: default
+layout: insidepage
 title:  Compiler Projects – Summer of Code
 ---
 
 # {{page.title}}
-
-{% include toc.html %}
 
 ## Improved code-generation for un-inferred code
 
