@@ -5,6 +5,17 @@ title: Data Science and Machine Learning Projects – Summer of Code
 
 Note that for any of these projects you should have code samples as part of your application, ideally as patches to one of the ML or GPU libraries or in the form of working ML models.
 
+## NLP Tools and Models
+
+Build deep learning models for Natural Language Processing in Julia. [TextAnalysis](https://github.com/juliatext/TextAnalysis.jl)  and [WordTokenizers](https://github.com/JuliaText/WordTokenizers.jl) contains the basic algorithms and data structures to work with textual data in Julia. On top of that base, we want to build modern deep learning models based on recent research. This project will need familiarity with [Flux](http://fluxml.ai) and deep learning concepts. The following tasks can span multiple students and projects. 
+
+* Implement BERT in Julia
+* Implement ELMo in Julia
+* Implement practical models for sentiment analysis, NER, classification and parsing
+* Test and validate these models
+
+**Mentors**: [Avik Sengupta](https://github.com/aviks/) & [Lyndon White](https://github.com/oxinabox/)
+
 ## Model Zoo Examples
 
 [Flux](https://github.com/FluxML/Flux.jl)'s [model zoo](https://github.com/FluxML/model-zoo/) contains examples of a wide range of deep learning models and techniques. This project would involve adding new models, showing how to recreate state-of-the-art results (e.g. AlphaGo) or interesting and unusual model architectures (e.g. transformer networks). We'd be particularly interested in any models involving reinforcement learning, or anything with images, sound or speech.
