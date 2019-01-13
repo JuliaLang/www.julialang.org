@@ -97,8 +97,9 @@ Julia is now being used in several universities and online courses. If you know 
   * [Fundamental Mathematical Methods (English)]
 
 - Pennsylvania State University <!--39.94560975,-79.6594009593437-->
-  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2014 - [github repo](https://github.com/eford/Astro585_2014_Spring)
-  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
+  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), Seminar: High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2014 - [github repo](https://github.com/eford/Astro585_2014_Spring)
+  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), Seminar: High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
+  * [ASTRO 528](https://psuastro528.github.io/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2019 - [github repos](https://github.com/PsuAstro528)
 
 - Pontifical Catholic University of Rio de Janeiro (PUC-Rio) <!---22.979107,-43.233083-->
   * Programming in Julia (Prof. [Thuener Silva](https://github.com/Thuener)), Summer 2017
