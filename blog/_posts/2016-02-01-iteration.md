@@ -177,6 +177,8 @@ function boxcar3(A::AbstractArray)
 end
 {% endhighlight %}
 
+(Note that this example is only for Julia versions 1.1 and higher.)
+
 Let's walk through this line by line:
 
 - `out = similar(A)` allocates the output. In a "real" implementation,
