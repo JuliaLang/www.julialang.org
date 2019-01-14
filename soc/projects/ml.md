@@ -11,7 +11,7 @@ Build deep learning models for Natural Language Processing in Julia. [TextAnalys
 
 * Implement BERT in Julia
 * Implement ELMo in Julia
-* Implement practical models for sentiment analysis, NER, classification and parsing
+* Implement practical models for sentiment analysis, part of speech (POS) tagging, named entity recognition (NER), classification and parsing
 * Test and validate these models
 
 **Mentors**: [Avik Sengupta](https://github.com/aviks/) & [Lyndon White](https://github.com/oxinabox/)
