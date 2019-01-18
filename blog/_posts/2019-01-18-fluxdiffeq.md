@@ -5,7 +5,7 @@ author: Chris Rackauckas, Mike Innes, Yingbo Ma, Lyndon White, Vaibhav Dixit
 ---
 
 The [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
-paper has been a hot topic ever since it has made a splash as Best Paper of
+paper has been a hot topic even before it made a splash as Best Paper of
 NeuralIPS 2018. By mixing ordinary differential equations and neural networks
 they were able to improve training speeds and accuracy over ResNet. Now with the
 floodgates opened causing a merge of differential equations merging with machine
@@ -13,13 +13,13 @@ learning, the purpose of this blog post is into introduce the reader to
 differential equations from a data science perspective and show how to mix these
 tools with neural nets.
 
-The advantages of the Julia DifferentialEquations.jl library for numerically solving
+The advantages of the Julia [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl) library for numerically solving
 differential equations have been
 [discussed in detail in other posts](http://www.stochasticlifestyle.com/comparison-differential-equation-solver-suites-matlab-r-julia-python-c-fortran/).
 Recently, these native Julia differential equation solvers have successfully been embedded
-into the Flux.jl deep learning package, to allow the use of a full suite of
+into the [Flux.jl](https://github.com/FluxML/Flux.jl/) deep learning package, to allow the use of a full suite of
 highly tested and optimized DiffEq methods within neural networks. Using the new package
-DiffEqFlux.jl, we will show the reader how to easily add differential equation
+[DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl/), we will show the reader how to easily add differential equation
 layers to neural networks using a range of differential equations models, including stiff ordinary
 differential equations, stochastic differential equations, delay differential
 equations, and hybrid (discontinuous) differential equations.
