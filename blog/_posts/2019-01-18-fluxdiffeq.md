@@ -13,7 +13,7 @@ learning, the purpose of this blog post is into introduce the reader to
 differential equations from a data science perspective and show how to mix these
 tools with neural nets.
 
-The advantages of the Julia DifferentialEquations.jl library for numerically solving
+The advantages of the Julia [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl) library for numerically solving
 differential equations have been
 [discussed in detail in other posts](http://www.stochasticlifestyle.com/comparison-differential-equation-solver-suites-matlab-r-julia-python-c-fortran/).
 Recently, these native Julia differential equation solvers have successfully been embedded
