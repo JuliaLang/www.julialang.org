@@ -4,6 +4,13 @@ title:  FluxDiffEq.jl: A Julia Library for Neural Differential Equations
 author: Chris Rackauckas, Mike Innes, Yingbo Ma, Lyndon White, Vaibhav Dixit
 ---
 
+In this blog post we
+will show you how to easily, efficiently, and
+robustly add differential equation solvers to
+neural networks in Julia.
+
+![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif)
+
 The [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
 paper has been a hot topic even before it made a splash as Best Paper of
 NeuralIPS 2018. By mixing ordinary differential equations and neural networks
@@ -313,9 +320,9 @@ cb()
 Flux.train!(loss_rd, params, data, opt, cb = cb)
 ```
 
-![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif)
+The result of this is the animation shown at the top.
 
-Flux.jl then finds the parameters of the neural network (`p`) which minimize
+Flux.jl finds the parameters of the neural network (`p`) which minimize
 the cost function, i.e. it trains the neural network: it just so happens that here training the neural network happens to include solving an ODE.
 Since our cost function put a penalty whenever the number of
 rabbits was far from 1, our neural network found parameters where our population
