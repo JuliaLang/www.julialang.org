@@ -313,7 +313,7 @@ cb()
 Flux.train!(loss_rd, params, data, opt, cb = cb)
 ```
 
-![Flux ODE Training Animation]()
+![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif)
 
 Flux.jl then finds the parameters of the neural network (`p`) which minimize
 the cost function, i.e. it trains the neural network: it just so happens that here training the neural network happens to include solving an ODE.
@@ -474,10 +474,10 @@ prob = DDEProblem(delay_lotka_volterra,[1.0,1.0],h,(0.0,10.0),constant_lags=[0.1
 p = param([2.2, 1.0, 2.0, 0.4])
 params = Flux.Params([p])
 function predict_rd_dde()
-  diffeq_rd(p,vec,prob,MethodOfSteps(Tsit5()),saveat=0.1)
+  diffeq_fd(p,reduction,prob,101,MethodOfSteps(Tsit5()),saveat=0.1)
 end
-loss_rd_dde() = sum(abs2,x-1 for x in predict_rd_dde())
-loss_rd_dde()
+loss_fd_dde() = sum(abs2,x-1 for x in predict_fd_dde())
+loss_fd_dde()
 ```
 
 Additionally we can add randomness to our differential equation to simulate
@@ -497,8 +497,8 @@ prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[1.0,1.0],(0.0,10.0))
 
 p = param([2.2, 1.0, 2.0, 0.4])
 params = Flux.Params([p])
-function predict_rd_sde()
-  diffeq_fd(p,vec,prob,SOSRI(),saveat=0.1)
+function predict_fd_sde()
+  diffeq_fd(p,reduction,101,prob,SOSRI(),saveat=0.1)
 end
 loss_fd_sde() = sum(abs2,x-1 for x in predict_fd_sde())
 loss_fd_sde()
@@ -521,7 +521,7 @@ cb()
 Flux.train!(loss_fd_sde, params, data, opt, cb = cb)
 ```
 
-![SDE NN Animation]()
+![SDE NN Animation](https://user-images.githubusercontent.com/1814174/51399524-2c6abf80-1b14-11e9-96ae-0192f7debd03.gif)
 
 And we can keep going. There are differential equations
 [which are piecewise constant](http://docs.juliadiffeq.org/latest/tutorials/discrete_stochastic_example.html)
