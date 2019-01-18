@@ -178,6 +178,8 @@ using Plots
 plot(sol)
 ```
 
+![LV Solution Plot](https://user-images.githubusercontent.com/1814174/51388169-9a07f300-1af6-11e9-8c6c-83c41e81d11c.png)
+
 Optional arguments can be passed to control the ODE solver to customise most aspects of the numerical integration.
 For example, if you've some familiarity with the area, a good choice for
 this equation is to use the 5th order Runge-Kutta method `Tsit5()` (related to the `dopri` method,
@@ -260,12 +262,15 @@ t = 0:0.1:10.0
 scatter!(t,A)
 ```
 
+![Data points plot](https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png)
+
 So this is what we wanted: a vector which is the time series of `x(t)` saved at every 0.1 time steps
 given that the parameters are `p`. To write this using the layer function, we simply make
 our solution handling be in the function `reduction` used above in `diffeq_rd(p,reduction,prob,args...;kwargs...)`.
 Thus this code is equivalent to:
 
 ```julia
+using FluxDiffEq
 reduction(sol) = sol[1,:]
 diffeq_rd(p,reduction,prob,Tsit5(),saveat=0.1)
 ```
@@ -307,6 +312,8 @@ cb()
 
 Flux.train!(loss_rd, params, data, opt, cb = cb)
 ```
+
+![Flux ODE Training Animation]()
 
 Flux.jl then finds the parameters of the neural network (`p`) which minimize
 the cost function, i.e. it trains the neural network: it just so happens that here training the neural network happens to include solving an ODE.
@@ -418,6 +425,8 @@ using Plots
 plot(sol,xscale=:log10,tspan=(0.1,1e11))
 ```
 
+![ROBER Plot](https://user-images.githubusercontent.com/1814174/51388944-eb18e680-1af8-11e9-874f-09478759596e.png)
+
 Stabilizing explicit methods via PI-adaptive controllers, step prediction in
 implicit solvers, etc. are all intricate details that take a lot of time and
 testing in order to build methods which are efficient for the more difficult
@@ -511,6 +520,8 @@ cb()
 
 Flux.train!(loss_fd_sde, params, data, opt, cb = cb)
 ```
+
+![SDE NN Animation]()
 
 And we can keep going. There are differential equations
 [which are piecewise constant](http://docs.juliadiffeq.org/latest/tutorials/discrete_stochastic_example.html)
