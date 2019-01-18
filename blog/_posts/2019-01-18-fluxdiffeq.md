@@ -4,8 +4,6 @@ title:  FluxDiffEq.jl: A Julia Library for Neural Differential Equations
 author: Chris Rackauckas, Mike Innes, Yingbo Ma, Lyndon White, Vaibhav Dixit
 ---
 
-#
-
 The [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
 paper has been a hot topic ever since it has made a splash as Best Paper of
 NeuralIPS 2018. By mixing ordinary differential equations and neural networks
