@@ -118,7 +118,7 @@ of the nonlinear transformation. Thus instead of doing $y=ML(x)$, we put the
 machine learning model on the derivative, $y'(x) = ML(x)$, and now solve the ODE.
 Why would you ever do this? Well, one motivation is that, if you were to do this
 and then solve the ODE using the simplest and most error prone method, the
-Euler method, what you get is equivalent to a recurrent neural network. The way
+Euler method, what you get is equivalent to a [residual neural network](https://arxiv.org/abs/1512.03385). The way
 the Euler method works is to notice that $y'(x) = \frac{dy}{dx}$, then write
 
 $$\Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x) \text{ which implies that } y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).$$
