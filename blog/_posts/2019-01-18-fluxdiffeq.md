@@ -17,7 +17,7 @@ The advantages of the Julia DifferentialEquations.jl library for numerically sol
 differential equations have been
 [discussed in detail in other posts](http://www.stochasticlifestyle.com/comparison-differential-equation-solver-suites-matlab-r-julia-python-c-fortran/).
 Recently, these native Julia differential equation solvers have successfully been embedded
-into the Flux.jl deep learning package, to allow the use of a full suite of
+into the [Flux.jl](https://github.com/FluxML/Flux.jl/) deep learning package, to allow the use of a full suite of
 highly tested and optimized DiffEq methods within neural networks. Using the new package
 [DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl/), we will show the reader how to easily add differential equation
 layers to neural networks using a range of differential equations models, including stiff ordinary
