@@ -4,10 +4,8 @@ title:  FluxDiffEq.jl: A Julia Library for Neural Differential Equations
 author: Chris Rackauckas, Mike Innes, Yingbo Ma, Lyndon White, Vaibhav Dixit
 ---
 
-In this blog post we
-will show you how to easily, efficiently, and
-robustly add differential equation solvers to
-neural networks in Julia.
+In this blog post we will show you how to easily, efficiently, and
+robustly add differential equation solvers to neural networks in Julia.
 
 ![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif)
 
@@ -15,35 +13,41 @@ The [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
 paper has been a hot topic even before it made a splash as Best Paper of
 NeurIPS 2018. By mixing ordinary differential equations and neural networks
 they were able to reduce the number of parameters and reduce memory costs in
-comparison to ResNet. Now with the
-floodgates opened causing a merge of differential equations with machine
-learning, the purpose of this blog post is into introduce the reader to
-differential equations from a data science perspective and show how to mix these
-tools with neural nets.
+comparison to ResNet. Now with the floodgates opened causing a merge of
+differential equations with machine learning, the purpose of this blog post is
+into introduce the reader to differential equations from a data science
+perspective and show how to mix these tools with neural nets.
 
-The advantages of the Julia [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl) library for numerically solving
-differential equations have been
+The advantages of the Julia
+[DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl) library for numerically solving differential equations have been
 [discussed in detail in other posts](http://www.stochasticlifestyle.com/comparison-differential-equation-solver-suites-matlab-r-julia-python-c-fortran/).
+Along with its
+[extensive benchmarking against classic Fortran methods](https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl),
+it includes other modern features such as
+[GPU acceleration](http://www.stochasticlifestyle.com/solving-systems-stochastic-pdes-using-gpus-julia/),
+[distributed (multi-node) parallelism](http://docs.juliadiffeq.org/latest/features/monte_carlo.html),
+and [sophisticated event handling](http://docs.juliadiffeq.org/latest/features/callback_functions.html).
 Recently, these native Julia differential equation solvers have successfully been embedded
 into the [Flux.jl](https://github.com/FluxML/Flux.jl/) deep learning package, to allow the use of a full suite of
 highly tested and optimized DiffEq methods within neural networks. Using the new package
-[DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl/), we will show the reader how to easily add differential equation
+[DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl/),
+we will show the reader how to easily add differential equation
 layers to neural networks using a range of differential equations models, including stiff ordinary
 differential equations, stochastic differential equations, delay differential
 equations, and hybrid (discontinuous) differential equations.
 
-This is the first user-friendly toolbox to combine state-of-the-art differential
-equations and neural networks seamlessly together. The blog post will also show
+This is the first user-friendly toolbox to combine a fully-featured differential
+equations solver library and neural networks seamlessly together. The blog post will also show
 why the flexibility of a full differential equation solver suite is necessary
 for doing this properly. With the ability to fuse neural networks
-seemlessly with ODEs, SDEs, DAEs, DDEs, stiff equations, and different methods
+seamlessly with ODEs, SDEs, DAEs, DDEs, stiff equations, and different methods
 for adjoint sensitivity calculations, this is a large generalization of the
 neural ODEs work and will allow researchers to better explore the problem
 domain.
 
 (Note: If you are interested in this work and are an undergraduate or graduate
 student, we have Google Summer of Code projects available in this area. This
-[pays quite handsomely over the summer](https://developers.google.com/open-source/gsoc/help/student-stipends).
+[pays quite well over the summer](https://developers.google.com/open-source/gsoc/help/student-stipends).
 Please join the [Julia Slack](https://slackinvite.julialang.org/) and the #jsoc channel to discuss in more detail.)
 
 ## What do differential equations have to do with machine learning?
@@ -51,7 +55,7 @@ Please join the [Julia Slack](https://slackinvite.julialang.org/) and the #jsoc 
 The first question someone not familiar with the field might ask is, why are
 differential equations important in this context? The simple answer is that a
 differential equation is a way to specify an arbitrary nonlinear transform by
-mathematically encoding prior structural assumptions. 
+mathematically encoding prior structural assumptions.
 
 Let's unpack that statement a bit. There are generally three ways
 to define a nonlinear transformation. The first is to explicitly say what it is.
