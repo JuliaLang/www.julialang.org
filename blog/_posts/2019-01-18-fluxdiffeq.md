@@ -46,7 +46,7 @@ neural ODEs work and will allow researchers to better explore the problem
 domain.
 
 (Note: If you are interested in this work and are an undergraduate or graduate
-student, we have Google Summer of Code projects available in this area. This
+student, we have [Google Summer of Code projects available in this area](https://julialang.org/soc). This
 [pays quite well over the summer](https://developers.google.com/open-source/gsoc/help/student-stipends).
 Please join the [Julia Slack](https://slackinvite.julialang.org/) and the #jsoc channel to discuss in more detail.)
 
@@ -73,21 +73,20 @@ The reason why the model $ML$ is interesting is because its form is basic but ad
 data itself. For example, a simple neural network (in design matrix form) with
 sigmoid activation functions then the model is simply matrix multiplications followed
 by sigmoids, meaning $ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$ is a three-layer deep
-neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters. You then choose $W$ such that
-$ML(x)=y$ reasonably fits the function you wanted it to fit. The theory and practice of
-machine learning confirms that this is a good way to learn nonlinearities.
+neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters.
+You then choose $W$ such that $ML(x)=y$ reasonably fits the function you wanted it to fit.
+The theory and practice of machine learning confirms that this is a good way to learn nonlinearities.
 For example, the Universal Approximation Theorem states that, for
 enough layers or enough parameters (i.e. sufficiently large $W_{i}$ matrices), $ML(x)$
 can approximate any nonlinear function sufficiently close (subject to common constraints).
 
 So great, this always works! But it has some caveats, the main being
-that it has to learn everything about the nonlinear transform directly from the
-data. In many cases we might not know the full nonlinear equation, but we may
-know details about its structure. For example, the nonlinear function could be
-the population of rabbits in the forest, and we might know that their rate of births
-is dependent on the current population. Thus instead of starting from nothing,
-we may want to use this known a priori relation and a set of parameters that defines it. For the
-rabbits, let's say that we want to learn
+that it has to learn everything about the nonlinear transform directly from the data.
+In many cases we do not know the full nonlinear equation, but we may know details about its structure.
+For example, the nonlinear function could be the population of rabbits in the forest,
+and we might know that their rate of births is dependent on the current population.
+Thus instead of starting from nothing, we may want to use this known _a priori_ relation and a set of parameters that defines it.
+For the rabbits, let's say that we want to learn
 
 $$\text{rabbits tomorrow} = \text{Model}(\text{rabbits today}).$$
 
@@ -132,16 +131,16 @@ of the nonlinear transformation. Thus instead of doing $y=ML(x)$, we put the
 machine learning model on the derivative, $y'(x) = ML(x)$, and now solve the ODE.
 Why would you ever do this? Well, one motivation is that, if you were to do this
 and then solve the ODE using the simplest and most error prone method, the
-Euler method, what you get is equivalent to a [residual neural network](https://arxiv.org/abs/1512.03385). The way
-the Euler method works is to notice that $y'(x) = \frac{dy}{dx}$, then write
+Euler method, what you get is equivalent to a [residual neural network](https://arxiv.org/abs/1512.03385).
+The way the Euler method works is based on the fact that $y'(x) = \frac{dy}{dx}$, thus
 
 $$\Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x) \text{ which implies that } y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).$$
 
-Looking familiar now? This is the basis of an RNN, the foundation of ResNet and
-all of the best AI systems known to date. The genius of the neural ordinary
-differential equation paper was to notice this and say, let's just model the
-differential equation directly and then solve it using a much better numerical
-ODE solver method. The creation of numerical ODE solvers is a science that goes
+Looking familiar now? This is the basis of a residual network (ResNet) which is  type of RNN,
+and is the foundation of many of the best AI systems known to date.
+The genius of the neural ordinary differential equation paper was to notice this and say,
+let's just model the differential equation directly and then solve it using a much better numerical ODE solver methods.
+The creation of numerical ODE solvers is a science that goes
 all the way back to the first computers, and can adaptively choose step sizes $\Delta x$
 and use high order approximations to reduce the number of steps required to get
 sufficiently small error. By swapping out the Euler discretization with the LSODE
