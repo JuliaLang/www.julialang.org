@@ -14,8 +14,9 @@ neural networks in Julia.
 The [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
 paper has been a hot topic even before it made a splash as Best Paper of
 NeuralIPS 2018. By mixing ordinary differential equations and neural networks
-they were able to improve training speeds and accuracy over ResNet. Now with the
-floodgates opened causing a merge of differential equations merging with machine
+they were able to reduce the number of parameters and reduce memory costs in
+comparison to ResNet. Now with the
+floodgates opened causing a merge of differential equations with machine
 learning, the purpose of this blog post is into introduce the reader to
 differential equations from a data science perspective and show how to mix these
 tools with neural nets.
@@ -34,7 +35,7 @@ equations, and hybrid (discontinuous) differential equations.
 This is the first user-friendly toolbox to combine state-of-the-art differential
 equations and neural networks seamlessly together. The blog post will also show
 why the flexibility of a full differential equation solver suite is necessary
-for doing this properly. With the ability to solve fuse neural networks
+for doing this properly. With the ability to fuse neural networks
 seemlessly with ODEs, SDEs, DAEs, DDEs, stiff equations, and different methods
 for adjoint sensitivity calculations, this is a large generalization of the
 neural ODEs work and will allow researchers to better explore the problem
@@ -45,12 +46,14 @@ student, we have Google Summer of Code projects available in this area. This
 [pays quite handsomely over the summer](https://developers.google.com/open-source/gsoc/help/student-stipends).
 Please join the [Julia Slack](https://slackinvite.julialang.org/) and the #jsoc channel to discuss in more detail.)
 
-## Why differential equations and how are they related to machine learning models?
+## What do differential equations have to do with machine learning?
 
 The first question someone not familiar with the field might ask is, why are
 differential equations important in this context? The simple answer is that a
-differential equation is a way to specify an arbitrary nonlinear transform via
-its structure. Let's unpack that statement a bit. There are generally three ways
+differential equation is a way to specify an arbitrary nonlinear transform by
+mathematically encoding prior structural assumptions. 
+
+Let's unpack that statement a bit. There are generally three ways
 to define a nonlinear transformation. The first is to explicitly say what it is.
 For example, the sigmoid function is $\sigma(x)=\frac{e^x}{e^x + 1}$.This only works
 if you know the exact functional form that relates the input to the output.
@@ -323,7 +326,8 @@ Flux.train!(loss_rd, params, data, opt, cb = cb)
 The result of this is the animation shown at the top.
 
 Flux.jl finds the parameters of the neural network (`p`) which minimize
-the cost function, i.e. it trains the neural network: it just so happens that here training the neural network happens to include solving an ODE.
+the cost function, i.e. it trains the neural network: it just so happens that
+here that the forward pass of the neural network happens to include solving an ODE.
 Since our cost function put a penalty whenever the number of
 rabbits was far from 1, our neural network found parameters where our population
 of rabbits and wolves are both constant 1.
@@ -377,7 +381,7 @@ and be done with it?
 This is the strategy which was taken with
 [torchdiffeq](https://github.com/rtqichen/torchdiffeq) which implements an adaptive
 Runge Kutta 4-5 (`dopri5`) and an Adams-Bashforth-Moulton method (`adams`)
-The issue are not sufficient for all, or even most, ODEs. A classic example of this is the
+The issue is that these two methods are not sufficient for all, or even most, ODEs. A classic example of this is the
 [ROBER ODE](https://www.radford.edu/~thompson/vodef90web/problems/demosnodislin/Single/DemoRobertson/demorobertson.pdf).
 The most well-tested (and optimized) implementation of an Adams-Bashforth-Moulton
 method is the [CVODE integrator in the C++ package SUNDIALS](https://computation.llnl.gov/projects/sundials)
@@ -544,13 +548,13 @@ in Julia. Remember that this is simply an ODE where the derivative function
 is defined by a neural network itself. To do this, let's first define the
 neural net for the derivative. We can use a multilayer ...
 
-## The core technical challenge: backpropogation through differential equation solvers
+## The core technical challenge: backpropagation through differential equation solvers
 
 Let's end by explaining the technical issue that needed a solution to make this
 all possible. The core to any neural network framework is the ability to
-backpropogate derivatives in order to calculate the gradient of the loss function
+backpropagate derivatives in order to calculate the gradient of the loss function
 with respect to the network's parameters. Thus if we stick an ODE solver as a
-layer in a neural network, we need to backpropogate through it.
+layer in a neural network, we need to backpropagate through it.
 
 There are multiple ways to do this. The most common is known as (adjoint) sensitivity
 analysis. Sensitivity analysis defines a new ODE whose solution gives the
@@ -600,7 +604,7 @@ This inaccuracy is the reason why the method from the neural ODE paper is not
 implemented in software suites, but it once again highlights a detail. Not
 all ODEs will have a large error due to this issue. And on ODEs where it's not
 a problem, this will be the most efficient way to do adjoint sensitivity
-analysis. Thus once again we arive at the conclusion that one method is not
+analysis. Thus once again we arrive at the conclusion that one method is not
 enough.
 
 In DifferentialEquations.jl we are investigating many different methods for
