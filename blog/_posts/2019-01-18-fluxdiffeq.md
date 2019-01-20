@@ -118,7 +118,7 @@ amounts of data, differential equations have become an attractive option for
 specifying nonlinearities in a learnable (via the parameters) but constrained
 form. They are essentially a way of incorporating prior domain-specific knowledge of the structural relations
 between the inputs and outputs. Given this way of looking at the two, both methods
-tradeoff advantages and disadvantages, making them complementary tools for modeling.
+trade off advantages and disadvantages, making them complementary tools for modeling.
 It seems like a clear next step in scientific practice to start putting them
 together in new and exciting ways!
 
