@@ -155,7 +155,7 @@ ODEs, you may want to watch our
 and look through the
 [ODE tutorial of the DifferentialEquations.jl documentation](http://docs.juliadiffeq.org/latest/tutorials/ode_example.html).
 The idea is that you define an `ODEProblem` via a derivative equation `u'=f(u,p,t)`,
-and provide an initial condition `u0`, and a timespan `tspan` to solve over , and
+and provide an initial condition `u0`, and a timespan `tspan` to solve over, and
 specify the parameters `p`.
 
 For example, the
