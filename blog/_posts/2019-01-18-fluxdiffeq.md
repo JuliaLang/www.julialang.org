@@ -620,7 +620,7 @@ perform automatic differentiation on the native Julia differential equation
 solvers themselves, and this can increase performance while giving new features.
 Our findings show that forward-mode automatic differentiation is fastest when
 there are less than 100 parameters in the differential equations, and that for
-large enough number of parameters adjoint sensitivity analysis is the most efficient. Even
+a large enough number of parameters adjoint sensitivity analysis is the most efficient. Even
 then, we have good reason to believe that
 [the next generation reverse-mode automatic differentiation via source-to-source AD, Zygote.jl](https://julialang.org/blog/2018/12/ml-language-compiler),
 will be more efficient than all of the adjoint sensitivity implementations for
