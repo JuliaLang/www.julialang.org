@@ -402,7 +402,7 @@ prob = ODEProblem(rober,[1.0;0.0;0.0],(0.0,1e11),(0.04,3e7,1e4))
 solve(prob,CVODE_Adams())
 ```
 
-(For those familar with solving ode's in  MATLAB, this is similar to `ode113`)
+(For those familiar with solving ODEs in  MATLAB, this is similar to `ode113`)
 
 If you try the `dopri` method from
 [Ernst Hairer's Fortran Suite](https://www.unige.ch/~hairer/software.html), you
