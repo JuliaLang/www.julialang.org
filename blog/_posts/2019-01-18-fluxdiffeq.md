@@ -159,7 +159,7 @@ and provide an initial condition `u0`, and a timespan `tspan` to solve over, and
 specify the parameters `p`.
 
 For example, the
-[Lotka-Volerra equations describe the dynamics of the population of  rabbits and wolves](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations).
+[Lotka-Volerra equations describe the dynamics of the population of rabbits and wolves](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations).
 They can be written as:
 
 $$
