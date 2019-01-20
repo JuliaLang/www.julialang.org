@@ -570,7 +570,7 @@ like [FATODE](http://people.cs.vt.edu/~asandu/Software/FATODE/index.html),
 have been available with this adjoint method for a long time (CVODES came out
 in 2005!). [DifferentialEquations.jl has sensitivity analysis implemented too](http://docs.juliadiffeq.org/latest/analysis/sensitivity.html)
 
-The problem with adjoint sensitivity analysis methods is that they require
+The efficiency problem with adjoint sensitivity analysis methods is that they require
 multiple forward solutions of the ODE. As you would expect, this is very costly.
 Methods like the checkpointing scheme in CVODES reduce the cost by saving closer
 time points to make the forward solutions shorter at the cost of using more
@@ -607,10 +607,11 @@ This inaccuracy is the reason why the method from the neural ODE paper is not
 implemented in software suites, but it once again highlights a detail. Not
 all ODEs will have a large error due to this issue. And on ODEs where it's not
 a problem, this will be the most efficient way to do adjoint sensitivity
-analysis. Thus once again we arrive at the conclusion that one method is not
-enough.
+analysis. And this method only applies to ODEs. Not only that, it doesn't even
+apply to all ODEs. For example, ODEs with discontinuities ([events](http://docs.juliadiffeq.org/latest/features/callback_functions.html)) are excluded by the assumptions of the derivation.
+Thus once again we arrive at the conclusion that one method is not enough.
 
-In DifferentialEquations.jl we are investigating many different methods for
+In DifferentialEquations.jl have implemented many different methods for
 computing the derivatives of differential equations with respect to parameters.
 We have a [recent preprint](https://arxiv.org/abs/1812.01892) detailing
 some of these results. One of the things we have found is that direct use of
@@ -626,10 +627,24 @@ then, we have good reason to believe that
 will be more efficient than all of the adjoint sensitivity implementations for
 large numbers of parameters.
 
-Thus being able to switch between different gradient methods without changing
+It is worth noting that using automatic differentiation in this form is almost
+impossible for libraries which utilize precompiled shared libraries that call
+C/C++/Fortran packages (SciPy, deSolve), and so this is a unique feature of the
+Julia differential equation suite. While entire ODE solver libraries could in
+theory be recoded into PyTorch or TensorFlow, doing so for a fully featured
+suite would be a difficult process without much promise for performance. For
+example, it is well-known that production-quality ODE solvers in
+C++/Fortran/Julia make heavy use of mutation in first class nonlinear functions
+to stave off the heavy memory pressure of allocating small arrays in a loop,
+but this kind of workflow is
+[mentioned in the documentation as not well-optimized in PyTorch](https://pytorch.org/docs/master/notes/autograd.html#in-place-operations-with-autograd). Other concerns of this fashion
+make Julia an exceptional choice for this application.
+
+Altogether, being able to switch between different gradient methods without changing
 the rest of your code is crucial for having a scalable, optimized, and
 maintainable framework for integrating differential equations and neural networks.
-And this is precisely what FluxDiffEq.jl is doing. There are three functions:
+And this is precisely what FluxDiffEq.jl gives the user direct access to. There
+are three functions:
 
 - `diffeq_rd` uses Flux.jl's reverse-mode AD through the differential equation
   solver.
@@ -637,7 +652,7 @@ And this is precisely what FluxDiffEq.jl is doing. There are three functions:
   equation solver.
 - `diffeq_adjoint` uses adjoint sensitivity analysis to "backprop the ODE solver"
 
-With a similar API. Thus to switch from a reverse-mode AD layer to a forward-mode
+With a similar API. Therefore, to switch from a reverse-mode AD layer to a forward-mode
 AD layer, one simply has to change a single character. Since Julia-based automatic
 differentiation works on Julia code, the native Julia differential equation
 solvers will continue to benefit from advances in this field.
