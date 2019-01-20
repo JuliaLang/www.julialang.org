@@ -136,7 +136,7 @@ The way the Euler method works is based on the fact that $y'(x) = \frac{dy}{dx}$
 
 $$\Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x) \text{ which implies that } y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).$$
 
-Looking familiar now? This is the basis of a residual network (ResNet) which is  type of RNN,
+Looking familiar now? This is the basis of a residual network (ResNet) which is a type of recurrent neural network (RNN),
 and is the foundation of many of the best AI systems known to date.
 The genius of the neural ordinary differential equation paper was to notice this and say,
 let's just model the differential equation directly and then solve it using a much better numerical ODE solver methods.
