@@ -59,7 +59,7 @@ mathematically encoding prior structural assumptions.
 
 Let's unpack that statement a bit. There are generally three ways
 to define a nonlinear transformation. The first is to explicitly say what it is.
-For example, the sigmoid function is $\sigma(x)=\frac{e^x}{e^x + 1}$.This only works
+For example, the sigmoid function is $\sigma(x)=\frac{e^x}{e^x + 1}$. This only works
 if you know the exact functional form that relates the input to the output.
 However, in many cases, such exact relations are not known a priori.
 So how do you do nonlinear modeling if you don't know the nonlinearity?
