@@ -15,7 +15,7 @@ NeurIPS 2018. By mixing ordinary differential equations and neural networks
 they were able to reduce the number of parameters and reduce memory costs in
 comparison to ResNet. Now with the floodgates opened causing a merge of
 differential equations with machine learning, the purpose of this blog post is
-into introduce the reader to differential equations from a data science
+to introduce the reader to differential equations from a data science
 perspective and show how to mix these tools with neural nets.
 
 The advantages of the Julia
@@ -61,7 +61,7 @@ Let's unpack that statement a bit. There are generally three ways
 to define a nonlinear transformation. The first is to explicitly say what it is.
 For example, the sigmoid function is $\sigma(x)=\frac{e^x}{e^x + 1}$. This only works
 if you know the exact functional form that relates the input to the output.
-However, in many cases, such exact relations are not known a priori.
+However, in many cases, such exact relations are not known *a priori*.
 So how do you do nonlinear modeling if you don't know the nonlinearity?
 
 There are two separate ways to then handle this problem. One method is machine
@@ -71,7 +71,7 @@ $ML$, where you put $x$ into the program and it spits out values $y$. But if you
 about it differently, this is actually just a nonlinear transformation $y=ML(x)$.
 The reason why the model $ML$ is interesting is because its form is basic but adapts to the
 data itself. For example, a simple neural network (in design matrix form) with
-sigmoid activation functions then the model is simply matrix multiplications followed
+sigmoid activation functions is simply matrix multiplications followed
 by sigmoids, meaning $ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$ is a three-layer deep
 neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters.
 You then choose $W$ such that $ML(x)=y$ reasonably fits the function you wanted it to fit.
@@ -222,7 +222,7 @@ sol[2,5]
 sol.t[5]
 ```
 
-is the solution of the 2nd variable (`y`) at the the 5th time point. Notice that
+is the solution of the 2nd variable (`y`) at the 5th time point. Notice that
 the 5th time point is `0.4` since we set `saveat=0.1`. If we did not set `saveat`,
 this would be adaptively chosen. More details on handling the solution type
 [can be found in the DifferentialEquations.jl documentation](http://docs.juliadiffeq.org/latest/basics/solution.html).
@@ -330,7 +330,7 @@ The result of this is the animation shown at the top.
 
 Flux.jl finds the parameters of the neural network (`p`) which minimize
 the cost function, i.e. it trains the neural network: it just so happens that
-here that the forward pass of the neural network happens to include solving an ODE.
+the forward pass of the neural network includes solving an ODE.
 Since our cost function put a penalty whenever the number of
 rabbits was far from 1, our neural network found parameters where our population
 of rabbits and wolves are both constant 1.
@@ -472,7 +472,7 @@ actually due to the amount of bunnies in the past. Using a lag term in a
 differential equation's derivative makes this equation known as a delay
 differential equation (DDE). Since
 [DifferentialEquations.jl handles DDEs](http://docs.juliadiffeq.org/latest/tutorials/dde_example.html)
-through the same interface as ODEs, it they can be used as a layer in
+through the same interface as ODEs, it can be used as a layer in
 Flux.jl as well. Here's an example:
 
 ```julia
@@ -488,10 +488,10 @@ prob = DDEProblem(delay_lotka_volterra,[1.0,1.0],h,(0.0,10.0),constant_lags=[0.1
 p = param([2.2, 1.0, 2.0, 0.4])
 params = Flux.Params([p])
 function predict_rd_dde()
-  diffeq_fd(p,reduction,prob,101,MethodOfSteps(Tsit5()),saveat=0.1)
+  diffeq_rd(p,reduction,prob,101,MethodOfSteps(Tsit5()),saveat=0.1)
 end
-loss_fd_dde() = sum(abs2,x-1 for x in predict_fd_dde())
-loss_fd_dde()
+loss_rd_dde() = sum(abs2,x-1 for x in predict_rd_dde())
+loss_rd_dde()
 ```
 
 Additionally we can add randomness to our differential equation to simulate
