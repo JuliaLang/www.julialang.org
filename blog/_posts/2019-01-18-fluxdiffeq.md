@@ -64,15 +64,18 @@ if you know the exact functional form that relates the input to the output.
 However, in many cases, such exact relations are not known *a priori*.
 So how do you do nonlinear modeling if you don't know the nonlinearity?
 
-There are two separate ways to then handle this problem. One method is machine
-learning. Usually this is presented as you have some $x$ and you want to predict
-$y$. This generation of a prediction from $x$ is the machine learning model, call it
-$ML$, where you put $x$ into the program and it spits out values $y$. But if you think
+There are two common ways to handle this problem. One method is to use machine
+learning. In a typical machine learning problem, you are given some input $x$ and
+you want to predict an output $y$. This generation of a prediction $y$ from $x$
+is a machine learning model (let's call it $ML$).  During training, we attempt to
+adjust the parameters of $ML$ so that it generates accurate predictions.  We
+can then use $ML$ for inference (i.e., produce $y$s for novel inputs $x$).
+But if you think
 about it differently, this is actually just a nonlinear transformation $y=ML(x)$.
-The reason why the model $ML$ is interesting is because its form is basic but adapts to the
+The reason $ML$ is interesting is because its form is basic but adapts to the
 data itself. For example, a simple neural network (in design matrix form) with
 sigmoid activation functions is simply matrix multiplications followed
-by sigmoids, meaning $ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$ is a three-layer deep
+by application of sigmoid functions. Specifically, meaning $ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$ is a three-layer deep
 neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters.
 You then choose $W$ such that $ML(x)=y$ reasonably fits the function you wanted it to fit.
 The theory and practice of machine learning confirms that this is a good way to learn nonlinearities.
