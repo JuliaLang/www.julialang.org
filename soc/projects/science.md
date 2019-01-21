@@ -30,9 +30,7 @@ Although, there is already a pretty printing for quantum circuits in [Yao.jl](ht
 
 ## Quantum Computation: Funny Tensor Networks
 
-A Tensor network is a constraction of tensors, it has wide applications in physics and machine learning. Now we are going to borrow state of the art technics from both fields to build our new **Julia** tensor network package with **automatic differentiation** and **GPU support**!
-
-To make this task interesting, we will create a UTF-8 based pictograph for tensor operations, making the contraction process more intuitive. And this task is very suited for Julia, since it supports not only [UTF-8 character input](https://docs.julialang.org/en/v0.6.0/manual/unicode-input/), but also [UTF-8 operators](https://github.com/JuliaLang/julia/blob/c200b4cdb9620b6df369ae3c735cf3af30b6a47f/src/julia-parser.scm). For the details, please read this [proposal](https://github.com/QuantumBFS/FunnyTN.jl/blob/master/docs/src/dev/proposal.md).
+A Tensor network is a constraction of tensors, it has wide applications in both physics and machine learning fields, it can represent a quantum wave function, a probablistic model and even a quantum circuit simulation. Now we are going to borrow state of the art technics from both fields to build our new **Julia** tensor network package with **automatic differentiation** and **GPU support**!
 
 **Recommended Skills:** Basic knowledges about Julia language and linear algebra is required. Students who has experience with tensor networks are preferred.
 
@@ -47,12 +45,12 @@ Don't be scared by these fancy terms, Julia has strong support to [tensor operat
 In this paper, we have got a pytorch implementation of "MPS + GPU + autodiff"
 
 > Unsupervised Generative Modeling Using Matrix Product States
+>
 > Zhao-Yu Han, Jun Wang, Heng Fan, Lei Wang, and Pan Zhang
-> [Phys. Rev. X 8, 031012 – Published 17 July 2018](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031012)
-> http://lib.itp.ac.cn/html/panzhang/mps/tutorial/;jsessionid=EE5916C954A336C33871E9FB087B626B
-
-Package ITensor in C++ for simulating quantum many body systems
-* [ITensor](http://itensor.org/)
+>
+> [Phys. Rev. X 8, 031012](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031012)
+>
+> Tutorial Code: http://lib.itp.ac.cn/html/panzhang/mps/tutorial/
 
 Tutorial for tensor networks:
 
