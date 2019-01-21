@@ -30,9 +30,9 @@ Although, there is already a pretty printing for quantum circuits in [Yao.jl](ht
 
 ## Quantum Computation: Funny Tensor Networks
 
-A Tensor network is a constraction of tensors, it has wide applications in both physics and machine learning fields, it can represent a quantum wave function, a probablistic model and even a quantum circuit simulation. Now we are going to borrow state of the art technics from both fields to build our new **Julia** tensor network package with **automatic differentiation** and **GPU support**!
+A Tensor network is a contraction of tensors, it has wide applications in both physics and machine learning fields, it can represent a quantum wave function, a probabilistic model and even a quantum circuit simulation. Now we are going to borrow state of the art technics from both fields to build our new **Julia** tensor network package with **automatic differentiation** and **GPU support**!
 
-**Recommended Skills:** Basic knowledges about Julia language and linear algebra is required. Students who has experience with tensor networks are preferred.
+**Recommended Skills:** Basic knowledge about Julia language and linear algebra is required. Students who has experience with tensor networks are preferred.
 
 **Expected Results:** A high performance Julia tensor network package with GPU and autodiff support.
 
@@ -40,9 +40,9 @@ A Tensor network is a constraction of tensors, it has wide applications in both 
 
 **References:**
 
-Don't be scared by these fancy terms, Julia has strong support to [tensor operations](https://github.com/Jutho/TensorOperations.jl), writting [native cuda code in Julia](https://julialang.org/blog/2017/03/cudanative) has similar experience as CPU programming. Also the hard bit - [autodiff for svd](https://github.com/FluxML/Flux.jl/pull/474) has already got a PR in FLux.jl.
+Don't be scared by these fancy terms, Julia has strong support to [tensor operations](https://github.com/Jutho/TensorOperations.jl), writing [native CUDA code in Julia](https://julialang.org/blog/2017/03/cudanative) has similar experience as CPU programming. Also the hard bit - [autodiff for svd](https://github.com/FluxML/Flux.jl/pull/474) has already got a PR in FLux.jl.
 
-In this paper, we have got a pytorch implementation of "MPS + GPU + autodiff"
+In this paper, we have got a PyTorch implementation of "MPS + GPU + autodiff"
 
 > Unsupervised Generative Modeling Using Matrix Product States
 >
