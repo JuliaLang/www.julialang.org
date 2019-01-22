@@ -219,7 +219,7 @@ increasingly experimenting with much more complex functions, such as ray tracers
 physics engines.
 
 Turns out that differential equations solvers fit this framework, too: A solve
-take in some vector `p` (which might include parameters like the initial
+takes in some vector `p` (which might include parameters like the initial
 starting point), and outputs some new vector, the solution. Moreover it's
 differentiable, which means we can put it straight into a larger differentiable
 program. This larger program can happily include neural networks, and we can keep
