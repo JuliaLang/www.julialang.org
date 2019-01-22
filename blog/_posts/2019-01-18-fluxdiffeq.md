@@ -762,7 +762,7 @@ analysis. And this method only applies to ODEs. Not only that, it doesn't even
 apply to all ODEs. For example, ODEs with discontinuities ([events](http://docs.juliadiffeq.org/latest/features/callback_functions.html)) are excluded by the assumptions of the derivation.
 Thus once again we arrive at the conclusion that one method is not enough.
 
-In DifferentialEquations.jl have implemented many different methods for
+In DifferentialEquations.jl we have implemented many different methods for
 computing the derivatives of differential equations with respect to parameters.
 We have a [recent preprint](https://arxiv.org/abs/1812.01892) detailing
 some of these results. One of the things we have found is that direct use of
