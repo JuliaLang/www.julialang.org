@@ -569,6 +569,15 @@ tspan = (0.0f0,25.0f0)
 x->neural_ode(x,dudt,tspan,Tsit5(),saveat=0.1)
 ```
 
+As a side note, to run this on the GPU, it is sufficient to make the initial
+condition and neural network be on the GPU. This will cause the entire ODE
+solver's internal operations to take place on the GPU without extra data
+transfers in the integration scheme. This looks like:
+
+```julia
+x->neural_ode(gpu(x),gpu(dudt),tspan,BS3(),saveat=0.1)
+```
+
 Let's explain what this layer is by going under the hood. Essentially, if you
 were to do this yourself, you would do so by defining the ODE derivative as
 the solution of the neural network, and then making your diffeq layer a function
@@ -592,7 +601,7 @@ reduction(sol) = Array(sol)
 x->diffeq_fd(p,reduction,2,prob,Tsit5(),u0=x,saveat=t)
 ```
 
-## Understanding the Neural ODE layer by example
+## Understanding the Neural ODE layer behavior by example
 
 Now let's use the neural ODE layer in an example to find out what it means.
 First, let's generate a time series of the Lotka-Volterra equation saved at
