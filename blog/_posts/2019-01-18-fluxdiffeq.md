@@ -567,7 +567,7 @@ the `neural_ode` helper function:
 
 ```julia
 tspan = (0.0f0,25.0f0)
-x->neural_ode(x,dudt,tspan,Tsit5(),saveat=0.1)
+x->neural_ode(dudt,x,tspan,Tsit5(),saveat=0.1)
 ```
 
 As a side note, to run this on the GPU, it is sufficient to make the initial
@@ -576,7 +576,7 @@ solver's internal operations to take place on the GPU without extra data
 transfers in the integration scheme. This looks like:
 
 ```julia
-x->neural_ode(gpu(x),gpu(dudt),tspan,BS3(),saveat=0.1)
+x->neural_ode(gpu(dudt),gpu(x),tspan,BS3(),saveat=0.1)
 ```
 
 Let's explain what this layer is by going under the hood. Essentially, if you
@@ -629,7 +629,7 @@ as before:
 ```julia
 dudt = Chain(Dense(2,50,tanh),Dense(50,2))
 tspan = (0.0f0,10.0f0)
-n_ode = x->neural_ode(x,dudt,tspan,Tsit5(),saveat=0.1)
+n_ode = x->neural_ode(dudt,x,tspan,Tsit5(),saveat=0.1)
 ```
 
 Notice that the `neural_ode` has the same timespan and `saveat` as the solution
@@ -643,7 +643,7 @@ The code for the plot is:
 ```julia
 pred = n_ode(u0) # Get the prediction using the correct initial condition
 scatter(0.0:0.1:10.0,ode_data[1,:],label="data")
-scatter!(0.0:0.1:10.0,pred[1,:],label="prediction")  
+scatter!(0.0:0.1:10.0,Flux.data(pred[1,:]),label="prediction")  
 ```
 
 But now let's train our neural network. To do so, define a prediction function like before, and then
@@ -665,7 +665,7 @@ opt = ADAM(0.1)
 cb = function () #callback function to observe training
   display(loss_n_ode())
   # plot current prediction against data
-  cur_pred = predict_n_ode()
+  cur_pred = Flux.data(predict_n_ode())
   pl = scatter(0.0:0.1:10.0,ode_data[1,:],label="data")
   scatter!(pl,0.0:0.1:10.0,cur_pred[1,:],label="prediction")
   plot(pl)
