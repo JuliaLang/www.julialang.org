@@ -100,15 +100,11 @@ title:  Julia Downloads
     <div class="col-12">
       <h2>Long-term support release (v1.0.3)</h2>
       <p>
-        If transitioning from Julia 0.6.0, strongly consider working with the transitional Julia <a href="#0.7.0">v0.7.0 release</a> rather than moving directly and completely to v1.0.0.
-        Versions 1.0.0 and 0.7.0 are largely equivalent, with the primary difference being that 0.7.0 includes deprecation warnings
-        for functionality and behavior changed between previous releases and 1.0.0. For example, invoking deprecated methods
-        will emit a warning in 0.7.0 but will cause a MethodError in 1.0.0 as they have been removed.
-        It is thus often useful to have a copy of Julia 0.7 even if working in 1.0 to allow the checking of what a 0.6 method has been deprecated to.
-
-        Note that 1.0.x versions contain bugfixes not available on 0.7 releases.
+        Users updating code written on older versions to work with 1.0 may be interested in
+        using Julia 0.7 during the upgrade process, available on the old releases page.
+        It is a transitional release that provides deprecation warnings for functionality
+        that differs between Julia 0.6 and 1.0.
       </p>
-
       <table class="downloads table table-hover table-responsive table-bordered">
         <tbody>
           <tr>
@@ -183,67 +179,10 @@ title:  Julia Downloads
 
   <div class="row">
     <div class="col-12">
-      <h2 id="0.7.0">Previous stable release (v0.7.0)</h2>
-      <p>
-        Julia v0.7.0 is a transitional release, intended to aid the transition from Julia v0.6, to Julia v1.0.
-      </p>
-
-      <table class="downloads table table-hover table-responsive table-bordered">
-        <tbody>
-          <tr>
-            <th rowspan="2"> Windows Self-Extracting Archive (.exe) <a href="platform.html#windows">[help]</a></th>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.7/julia-0.7.0-win32.exe">32-bit</a> </td>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/0.7/julia-0.7.0-win64.exe">64-bit</a> </td>
-          </tr>
-          <tr>
-            <td colspan="6">Windows 7/Windows Server 2012 users also require
-              <a href="https://docs.microsoft.com/en-us/powershell/wmf/overview">Windows Management Framework 3.0 or later</a></td>
-          </tr>
-          <tr>
-            <th> macOS 10.8+ Package (.dmg) <a href="platform.html#macos">[help]</a></th>
-            <td colspan="3"> </td>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.7/julia-0.7.0-mac64.dmg">64-bit</a> </td>
-          </tr>
-          </tr>
-          <tr>
-            <th> Generic Linux Binaries for x86 <a href="platform.html#generic-binaries">[help]</a></th>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/0.7/julia-0.7.0-linux-i686.tar.gz">32-bit</a>
-              (<a href="https://julialang-s3.julialang.org/bin/linux/x86/0.7/julia-0.7.0-linux-i686.tar.gz.asc">GPG</a>)
-            </td>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x64/0.7/julia-0.7.0-linux-x86_64.tar.gz">64-bit</a>
-                (<a href="https://julialang-s3.julialang.org/bin/linux/x64/0.7/julia-0.7.0-linux-x86_64.tar.gz.asc">GPG</a>)
-            </td>
-          </tr>
-          <tr>
-            <th> Generic FreeBSD Binaries for x86 <a href="platform.html#generic-binaries">[help]</a></th>
-            <td colspan="3"> </td>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/0.7/julia-0.7.0-freebsd-x86_64.tar.gz">64-bit</a>
-                (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/0.7/julia-0.7.0-freebsd-x86_64.tar.gz.asc">GPG</a>)
-            </td>
-          </tr>
-          </tr>
-          <tr>
-            <th> Source </th>
-            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.7.0/julia-0.7.0.tar.gz">Tarball</a>
-                  (<a href="https://github.com/JuliaLang/julia/releases/download/v0.7.0/julia-0.7.0.tar.gz.asc">GPG</a>)
-            </td>
-            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.7.0/julia-0.7.0-full.tar.gz">Tarball with dependencies</a>
-              (<a href="https://github.com/JuliaLang/julia/releases/download/v0.7.0/julia-0.7.0-full.tar.gz.asc">GPG</a>)
-            </td>
-            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/v0.7.0">GitHub</a> </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <br />
-
-  <div class="row">
-    <div class="col-12">
       <h2>Older Releases</h2>
       <p>
-        Older releases of Julia for all platforms are available on the <a href="oldreleases.html">Older releases page</a>. Releases older than 0.6 are now unmaintained.
+        Older releases of Julia for all platforms are available on the <a href="oldreleases.html">Older releases page</a>.
+        Releases older than 1.0 are now unmaintained.
       </p>
     </div>
   </div>
