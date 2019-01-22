@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  DiffEqFlux.jl: A Julia Library for Neural Differential Equations
-author: Chris Rackauckas, Mike Innes, Yingbo Ma, Lyndon White, Vaibhav Dixit
+author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit
 ---
 
 In this blog post we will show you how to easily, efficiently, and
@@ -166,7 +166,9 @@ For example, the
 They can be written as:
 
 $$
-Put Lotka-Volterra equations
+\begin{align}
+x^\prime $= \alpha x + \beta x y
+y^\prime $= -\gamma y + \gamma x y
 $$
 
 and encoded in Julia like:
@@ -286,7 +288,7 @@ our solution handling be in the function `reduction` used above in `diffeq_rd(p,
 Thus this code is equivalent to:
 
 ```julia
-using FluxDiffEq
+using Flux, FluxDiffEq
 reduction(sol) = sol[1,:]
 diffeq_rd(p,reduction,prob,Tsit5(),saveat=0.1)
 ```
@@ -552,7 +554,143 @@ It is worth noting that FluxDiffEq.jl uses only around ~50 lines of code to pull
 Let's go all the way back for a second and now implement the neural ODE layer
 in Julia. Remember that this is simply an ODE where the derivative function
 is defined by a neural network itself. To do this, let's first define the
-neural net for the derivative. We can use a multilayer ...
+neural net for the derivative. In Flux, we can define a multilayer perceptron
+with 1 hidden layer and a `tanh` activation function like:
+
+```julia
+dudt = Chain(Dense(2,50,tanh),Dense(50,2))
+```
+
+To define a `neural_ode` layer, we then just need to give it a timespan and use
+the `neural_ode` helper function:
+
+```julia
+tspan = (0.0f0,25.0f0)
+x->neural_ode(x,dudt,tspan,Tsit5(),saveat=0.1)
+```
+
+Let's explain what this layer is by going under the hood. Essentially, if you
+were to do this yourself, you would do so by defining the ODE derivative as
+the solution of the neural network, and then making your diffeq layer a function
+of the initial condition. Thus, what is happening is:
+
+```julia
+# Get the parameters out of the neural network
+p = Flux.data(destructure(dudt))
+
+# Define the ODE as the forward pass of the neural network with weights `p`
+dudt_(du,u::TrackedArray,p,t) = du .= restructure(dudt,p)(u)
+dudt_(du,u::AbstractArray,p,t) = du .= Flux.data(restructure(dudt,p)(u))
+
+# Define the ODEProblem with that derivative
+prob = ODEProblem(dudt_,nothing,tspan,p)
+
+# Use the reduction that turns the solution into a time series array
+reduction(sol) = Array(sol)
+
+# Make the diffeq layer a function of the initial condition
+x->diffeq_fd(p,reduction,2,prob,Tsit5(),u0=x,saveat=t)
+```
+
+## Understanding the Neural ODE layer by example
+
+Now let's use the neural ODE layer in an example to find out what it means.
+First, let's generate a time series of the Lotka-Volterra equation saved at
+every 0.1 timesteps:
+
+```julia
+function lotka_volterra(du,u,p,t)
+  x, y = u
+  α, β, δ, γ = p
+  du[1] = dx = α*x - β*x*y
+  du[2] = dy = -δ*y + γ*x*y
+end
+u0 = [1.0,1.0]
+tspan = (0.0,10.0)
+p = [1.5,1.0,3.0,1.0]
+prob = ODEProblem(lotka_volterra,u0,tspan,p)
+ode_data = Array(solve(prob,Tsit5(),saveat=0.1))
+```
+
+Now let's pit a neural ODE against our Lotka-Volterra equation. To do so, we
+will define a single layer neural network which just has the same neural ODE
+as before:
+
+```julia
+dudt = Chain(Dense(2,50,tanh),Dense(50,2))
+tspan = (0.0f0,10.0f0)
+n_ode = x->neural_ode(x,dudt,tspan,Tsit5(),saveat=0.1)
+```
+
+Notice that the `neural_ode` has the same timespan and `saveat` as the solution
+that generated the data. This means that given an `x` (and initial value), it
+will generate a guess for what it things the time series will be where the
+dynamics (the structure) is predicted by the internal neural network. Let's see
+what time series it gives before we train the network. Since Lotka-Volterra
+has two-dependent variables, we will simplify the plot by only showing the `x`.
+The code for the plot is:
+
+```julia
+pred = n_ode(u0) # Get the prediction using the correct initial condition
+scatter(0.0:0.1:10.0,ode_data[1,:],label="data")
+scatter!(0.0:0.1:10.0,pred[1,:],label="prediction")  
+```
+
+But now let's train our neural network. To do so, define a prediction function like before, and then
+define a loss between our prediction and data:
+
+```julia
+function predict_n_ode()
+  n_ode(u0)
+end
+loss_n_ode() = sum(abs2,ode_data .- predict_n_ode())
+```
+
+And now we train the neural network and watch as it learns how to
+predict our time series:
+
+```julia
+data = Iterators.repeated((), 100)
+opt = ADAM(0.1)
+cb = function () #callback function to observe training
+  display(loss_n_ode())
+  # plot current prediction against data
+  cur_pred = predict_n_ode()
+  pl = scatter(0.0:0.1:10.0,ode_data[1,:],label="data")
+  scatter!(pl,0.0:0.1:10.0,cur_pred[1,:],label="prediction")
+  plot(pl)
+end
+
+# Display the ODE with the initial parameter values.
+cb()
+
+Flux.train!(loss_n_ode, params, data, opt, cb = cb)
+```
+
+Notice that what's not being learned is the solution to the ODE.
+Instead, what's learned is the tiny ODE system from which the ODE
+solution is generated. I.e., the neural network inside the neural_ode
+layer has learned this function:
+
+```julia
+function lotka_volterra(du,u,p,t)
+  x, y = u
+  α, β, δ, γ = p
+  du[1] = dx = α*x - β*x*y
+  du[2] = dy = -δ*y + γ*x*y
+end
+```
+
+Thus **it learned a compact representation of how the nonlinear function
+works**, and it can easily extrapolate to what would happen with
+different starting conditions. Not only that, it's a very flexible
+method for learning such representations. For example, if your data is
+unevenly spaced at time points `t`, just pass in `saveat=t` and the
+ODE solver takes care of it.
+
+As you could probably guess by now, the DiffEqFlux.jl has all kinds of
+extra related goodies like Neural SDEs (`neural_msde`) for you to explore in your
+applications, but we'll leave those for future discussions.
 
 ## The core technical challenge: backpropagation through differential equation solvers
 
