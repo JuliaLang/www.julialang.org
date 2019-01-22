@@ -698,7 +698,7 @@ method for learning such representations. For example, if your data is
 unevenly spaced at time points `t`, just pass in `saveat=t` and the
 ODE solver takes care of it.
 
-As you could probably guess by now, the DiffEqFlux.jl has all kinds of
+As you could probably guess by now, DiffEqFlux.jl has all kinds of
 extra related goodies like Neural SDEs (`neural_msde`) for you to explore in your
 applications, but we'll leave those for future discussions.
 
