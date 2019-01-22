@@ -362,7 +362,8 @@ m = Chain(
   softmax)
 ```
 
-or we can stick it into a convolutional neural network:
+or we can stick it into a convolutional neural network, where the previous
+layers define the initial condition for the ODE:
 
 ```julia
 m = Chain(
@@ -371,7 +372,7 @@ m = Chain(
   Conv((2,2), 16=>8, relu),
   x -> maxpool(x, (2,2)),
   x -> reshape(x, :, size(x, 4)),
-  p -> diffeq_rd(p,reduction,prob,Tsit5(),saveat=0.1),
+  x -> diffeq_rd(p,reduction,prob,Tsit5(),saveat=0.1,u0=x),
   Dense(288, 10), softmax) |> gpu
 ```
 
@@ -547,7 +548,7 @@ And we can keep going. There are differential equations
 used in biological simulations, or
 [jump diffusion equations from financial models](http://docs.juliadiffeq.org/latest/tutorials/jump_diffusion.html),
 and the solvers map right over to the Flux.jl neural network frame work through FluxDiffEq.jl
-It is worth noting that FluxDiffEq.jl uses only around ~50 lines of code to pull this all off.
+It is worth noting that FluxDiffEq.jl uses only around ~100 lines of code to pull this all off.
 
 ## Implementing the Neural ODE layer in Julia
 
