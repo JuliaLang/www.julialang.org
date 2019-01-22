@@ -719,7 +719,7 @@ like [FATODE](http://people.cs.vt.edu/~asandu/Software/FATODE/index.html),
 [CASADI](https://web.casadi.org/), and
 [CVODES](https://computation.llnl.gov/projects/sundials/cvodes)
 have been available with this adjoint method for a long time (CVODES came out
-in 2005!) and lastly [DifferentialEquations.jl also provides extensive sensitivity analysis implementation](http://docs.juliadiffeq.org/latest/analysis/sensitivity.html).
+in 2005!) and lastly [DifferentialEquations.jl also provides an extensive sensitivity analysis implementation](http://docs.juliadiffeq.org/latest/analysis/sensitivity.html).
 
 The efficiency problem with adjoint sensitivity analysis methods is that they require
 multiple forward solutions of the ODE. As you would expect, this is very costly.
@@ -779,8 +779,8 @@ will be more efficient than all of the adjoint sensitivity implementations for
 large numbers of parameters.
 
 It is worth noting that using automatic differentiation in this form is almost
-impossible for libraries which utilize precompiled shared libraries that call
-C/C++/Fortran packages (SciPy, deSolve), and so this is a unique feature of the
+impossible for libraries which utilize precompiled C/C++/Fortran packages 
+(SciPy, deSolve), and so this is a unique feature of the
 Julia differential equation suite. While entire ODE solver libraries could in
 theory be recoded into PyTorch or TensorFlow, doing so for a fully featured
 suite would be a difficult process without much promise for performance. For
