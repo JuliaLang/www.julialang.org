@@ -637,7 +637,7 @@ that generated the data. This means that given an `x` (and initial value), it
 will generate a guess for what it things the time series will be where the
 dynamics (the structure) is predicted by the internal neural network. Let's see
 what time series it gives before we train the network. Since Lotka-Volterra
-has two-dependent variables, we will simplify the plot by only showing the `x`.
+has two dependent variables, we will simplify the plot by only showing the `x`.
 The code for the plot is:
 
 ```julia
