@@ -4,26 +4,6 @@ title:  DiffEqFlux.jl – A Julia Library for Neural Differential Equations
 author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit
 ---
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-processEscapes: true,
-processEnvironments: true
-},
-// Center justify equations in code and markdown cells. Elsewhere
-// we use CSS to left justify single line equations in code cells.
-displayAlign: 'center',
-"HTML-CSS": {
-styles: {'.MathJax_Display': {"margin": 0}},
-linebreaks: { automatic: true }
-}
-});
-</script>
-
 In this blog post we will show you how to easily, efficiently, and
 robustly add differential equation (DiffEq) solvers to neural networks in Julia.
 
@@ -86,21 +66,21 @@ However, in many cases, such exact relations are not known *a priori*.
 So how do you do nonlinear modeling if you don't know the nonlinearity?
 
 One way to address this is to use machine
-learning. In a typical machine learning problem, you are given some input $x$ and
-you want to predict an output $y$. This generation of a prediction $y$ from $x$
-is a machine learning model (let's call it $ML$).  During training, we attempt to
-adjust the parameters of $ML$ so that it generates accurate predictions.  We
-can then use $ML$ for inference (i.e., produce $y$s for novel inputs $x$).
-This is just a nonlinear transformation $y=ML(x)$.
-The reason $ML$ is interesting is because its form is basic but adapts to the
+learning. In a typical machine learning problem, you are given some input [[x]] and
+you want to predict an output [[y]]. This generation of a prediction [[y]] from [[x]]
+is a machine learning model (let's call it [[ML]]).  During training, we attempt to
+adjust the parameters of [[ML]] so that it generates accurate predictions.  We
+can then use [[ML]] for inference (i.e., produce [[y]]s for novel inputs [[x]]).
+This is just a nonlinear transformation [[y=ML(x)]].
+The reason [[ML]] is interesting is because its form is basic but adapts to the
 data itself. For example, a simple neural network (in design matrix form) with
 sigmoid activation functions is simply matrix multiplications followed
-by application of sigmoid functions. Specifically,  $ML(x)=\sigma(W_{3} \sigma(W_{2} \sigma(W_{1} x)))$ is a three-layer deep
-neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters.
-You then choose $W$ such that $ML(x)=y$ reasonably fits the function you wanted it to fit.
+by application of sigmoid functions. Specifically,  [[ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))]] is a three-layer deep
+neural network, where [[W=(W_1,W_2,W_3)]] are learnable parameters.
+You then choose [[W]] such that [[ML(x)=y]] reasonably fits the function you wanted it to fit.
 The theory and practice of machine learning confirms that this is a good way to learn nonlinearities.
 For example, the Universal Approximation Theorem states that, for
-enough layers or enough parameters (i.e. sufficiently large $W_{i}$ matrices), $ML(x)$
+enough layers or enough parameters (i.e. sufficiently large [[W_{i}]] matrices), [[ML(x)]]
 can approximate any nonlinear function sufficiently close (subject to common constraints).
 
 So great, this always works! But it has some caveats, the main being
@@ -111,7 +91,7 @@ and we might know that their rate of births is dependent on the current populati
 Thus instead of starting from nothing, we may want to use this known _a priori_ relation and a set of parameters that defines it.
 For the rabbits, let's say that we want to learn
 
-$$\text{rabbits tomorrow} = \text{Model}(\text{rabbits today}).$$
+$[[\text{rabbits tomorrow} = \text{Model}(\text{rabbits today}).]]
 
 In this case, we have prior knowledge of the rate of births being dependent on
 the current population. The way to mathematically state this
@@ -119,11 +99,11 @@ structural assumption is via a differential equation. Here, what we are saying
 is that the birth rate of the rabbit population at a given time point increases
 when we have more rabbits. The simplest way of encoding that is
 
-$$\text{rabbits}'(t) = \alpha\cdot \text{rabbits}(t)$$
+$[[\text{rabbits}'(t) = \alpha\cdot \text{rabbits}(t)]]
 
-where $\alpha$ is some learnable constant. If you know your calculus, the solution
-here is exponential growth from the starting point with a growth rate $\alpha$:
-$\text{rabbits}(t_\text{start})e^(\alpha t)$. But notice that we didn't need to know the
+where [[\alpha]] is some learnable constant. If you know your calculus, the solution
+here is exponential growth from the starting point with a growth rate [[\alpha]]:
+[[\text{rabbits}(t_\text{start})e^{(\alpha t)}]]. But notice that we didn't need to know the
 solution to the differential equation to validate the idea: we encoded the
 structure of the model and mathematics itself then outputs what the solution
 should be. Because of this, differential equations have been the tool of choice
@@ -150,14 +130,16 @@ together in new and exciting ways!
 The neural ordinary differential equation is one of many ways to put these two
 subjects together. The simplest way of explaining it is that, instead of
 learning the nonlinear transformation directly, we wish to learn the structures
-of the nonlinear transformation. Thus instead of doing $y=ML(x)$, we put the
-machine learning model on the derivative, $y'(x) = ML(x)$, and now solve the ODE.
+of the nonlinear transformation. Thus instead of doing $[[y=ML(x)]], we put the
+machine learning model on the derivative, $[[y'(x) = ML(x)]], and now solve the ODE.
 Why would you ever do this? Well, one motivation is that, if you were to do this
 and then solve the ODE using the simplest and most error prone method, the
 Euler method, what you get is equivalent to a [residual neural network](https://arxiv.org/abs/1512.03385).
-The way the Euler method works is based on the fact that $y'(x) = \frac{dy}{dx}$, thus
+The way the Euler method works is based on the fact that $[[y'(x) = \frac{dy}{dx}]], thus
 
-$$\Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x) \text{ which implies that } y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).$$
+$[[\Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x)]]
+which implies that
+$[[y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).]]
 
 This looks similar in structure to a ResNet, one of the most successful image
 processing models. The insight of the the Neural ODEs paper was that
@@ -166,7 +148,7 @@ of "infinitely deep" model as each layer tends to zero. Rather than adding more
 layers, we can just model the differential equation directly and then solve it
 using a purpose-built ODE solver. Numerical ODE solvers are a science that goes
 all the way back to the first computers, and modern ones can adaptively choose
-step sizes $\Delta x$ and use high order approximations to dratically reduce the
+step sizes [[\Delta x]] and use high order approximations to dratically reduce the
 number of actual steps required. And as it turns out, this works well in
 practice, too.
 
@@ -185,12 +167,8 @@ For example, the
 [Lotka-Volerra equations describe the dynamics of the population of rabbits and wolves](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations).
 They can be written as:
 
-$$
-\begin{align}
-x^\prime $= \alpha x + \beta x y
-y^\prime $= -\gamma y + \gamma x y
-\end{align}
-$$
+$[[x^\prime = \alpha x + \beta x y]]
+$[[y^\prime = -\gamma y + \gamma x y]]
 
 and encoded in Julia like:
 
