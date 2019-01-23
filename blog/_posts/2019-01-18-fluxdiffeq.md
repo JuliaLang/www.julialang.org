@@ -5,7 +5,7 @@ author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White
 ---
 
 In this blog post we will show you how to easily, efficiently, and
-robustly add differential equation (DiffEq) solvers to neural networks in Julia.
+robustly use differential equation (DiffEq) solvers with neural networks in Julia.
 
 ![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif)
 
