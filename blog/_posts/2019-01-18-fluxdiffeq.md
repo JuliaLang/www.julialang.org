@@ -731,7 +731,7 @@ solvers will continue to benefit from advances in this field.
 Machine learning and differential equations are destined to come together due to
 their complementary ways of describing a nonlinear world. In the Julia ecosystem
 we have merged the differential equation and deep learning packages in such a
-way that new developments in the two domains can directly be used together.
+way that new independent developments in the two domains can directly be used together.
 We are only beginning to understand the possibilities that have opened up with
 this software. We hope that future blog posts will detail some of the cool
 applications which mix the two disciplines, such as embedding our coming
