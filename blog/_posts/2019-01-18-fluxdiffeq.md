@@ -10,17 +10,15 @@ robustly use differential equation (DiffEq) solvers with neural networks in Juli
 ![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif)
 
 The [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
-paper has attracted significant attention even before it was awarded Best Paper of NeurIPS 2018.
-The overall contribution is that they've combined two disparate fields and have opened up an exciting 
-research area. One specific application is their ODENet, a continuous depth model that uses an ODE solver to
-adaptively compute the model output, has constant memory, and uses fewer parameters with comparable performance
-compared to ResNet.
-Among other contributions, combining these two disparate fields greatly
-reduced the number of parameters and memory costs in comparison to ResNet. But
-this is only the beginning: neural networks and differential equations were born
-to be together. This blog post, a collaboration between authors of [Flux](https://github.com/FluxML/Flux.jl), [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl) and the Neural ODEs paper, will explain why, outline current
-and future directions for this work, and start to give a sense of what's
-possible with state-of-the-art tools.
+paper has been a hot topic even before it made a splash as Best Paper of NeurIPS 2018.
+The paper already gives many exciting results combining these two
+disparate fields, but this is only the beginning: neural networks and
+differential equations were born to be together. This blog post, a collaboration
+between authors of [Flux](https://github.com/FluxML/Flux.jl),
+[DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl)
+and the Neural ODEs paper, will explain why, outline current and future
+directions for this work, and start to give a sense of what's possible with
+state-of-the-art tools.
 
 The advantages of the Julia
 [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl) library for numerically solving differential equations have been
@@ -167,7 +165,7 @@ and provide an initial condition `u0`, and a timespan `tspan` to solve over, and
 specify the parameters `p`.
 
 For example, the
-[Lotka-Volerra equations describe the dynamics of the population of rabbits and wolves](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations).
+[Lotka-Volterra equations describe the dynamics of the population of rabbits and wolves](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations).
 They can be written as:
 
 $[[x^\prime = \alpha x + \beta x y]]
