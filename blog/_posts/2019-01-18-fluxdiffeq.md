@@ -233,14 +233,7 @@ program. This larger program can happily include neural networks, and we can kee
 using standard optimisation techniques like ADAM to optimise their weights.
 
 DiffEqFlux.jl makes it convenient to do just this; let's take it for a spin.
-
-The most basic differential equation layer is `diffeq_rd`. The way to understand this
-function is that it does the following. It takes in parameters for the integrand, `p`,
-it puts it in the differential equation defined by `prob`, solves it with
-the chosen arguments (solver, tolerance, etc), and then gets a vector out through
-some function `reduction`. For example, in our Lotka-Volerra problem, let's say we wanted
-to go from `p` to a vector of an evenly-spaced time series for `x(t)`.
-In the REPL, we would write:
+We'll start by solving an equation as before, without gradients.
 
 ```julia
 p = [1.5,1.0,3.0,1.0]
@@ -259,20 +252,15 @@ scatter!(t,A)
 
 ![Data points plot](https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png)
 
-So this is what we wanted: a vector which is the time series of `x(t)` saved at every 0.1 time steps
-given that the parameters are `p`. To write this using the layer function, we simply make
-our solution handling be in the function `reduction` used above in `diffeq_rd(p,reduction,prob,args...;kwargs...)`.
-Thus this code is equivalent to:
+The most basic differential equation layer is `diffeq_rd`, which does the same
+thing with a slightly altered syntax. `diffeq_rd` takes in parameters `p` for
+the integrand, puts it in the differential equation defined by `prob`, and
+solves it with the chosen arguments (solver, tolerance, etc). For example:
 
 ```julia
 using Flux, DiffEqFlux
-reduction(sol) = sol[1,:]
-diffeq_rd(p,reduction,prob,Tsit5(),saveat=0.1)
+diffeq_rd(p,prob,Tsit5(),saveat=0.1)
 ```
-
-As a reminder, this is a function which takes in a parameter vector `p`,
-solves the Lotka-Volterra problem `prob` with our chosen ODE solver arguments,
-and then gets a vector out via `reduction` which is the time series of `x(t)`.
 
 The nice thing about `diffeq_rd` is that it takes care of the type handling
 necessary to make it compatible with the neural network framework (here Flux). To show this,
@@ -284,7 +272,7 @@ p = param([2.2, 1.0, 2.0, 0.4]) # Initial Parameter Vector
 params = Flux.Params([p])
 
 function predict_rd() # Our 1-layer neural network
-  diffeq_rd(p,reduction,prob,Tsit5(),saveat=0.1)
+  diffeq_rd(p,prob,Tsit5(),saveat=0.1)
 end
 
 loss_rd() = sum(abs2,x-1 for x in predict_rd()) # loss function
@@ -334,7 +322,7 @@ we can stick it right in there:
 m = Chain(
   Dense(28^2, 32, relu),
   # this would require an ODE of 32 parameters
-  p -> diffeq_rd(p,reduction,prob,Tsit5(),saveat=0.1),
+  p -> diffeq_rd(p,prob,Tsit5(),saveat=0.1),
   Dense(32, 10),
   softmax)
 ```
@@ -349,7 +337,7 @@ m = Chain(
   Conv((2,2), 16=>8, relu),
   x -> maxpool(x, (2,2)),
   x -> reshape(x, :, size(x, 4)),
-  x -> diffeq_rd(p,reduction,prob,Tsit5(),saveat=0.1,u0=x),
+  x -> diffeq_rd(p,prob,Tsit5(),saveat=0.1,u0=x),
   Dense(288, 10), softmax) |> gpu
 ```
 
@@ -448,7 +436,7 @@ prob = DDEProblem(delay_lotka_volterra,[1.0,1.0],h,(0.0,10.0),constant_lags=[0.1
 p = param([2.2, 1.0, 2.0, 0.4])
 params = Flux.Params([p])
 function predict_rd_dde()
-  diffeq_rd(p,reduction,prob,101,MethodOfSteps(Tsit5()),saveat=0.1)
+  diffeq_rd(p,prob,101,MethodOfSteps(Tsit5()),saveat=0.1)
 end
 loss_rd_dde() = sum(abs2,x-1 for x in predict_rd_dde())
 loss_rd_dde()
@@ -472,7 +460,7 @@ prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[1.0,1.0],(0.0,10.0))
 p = param([2.2, 1.0, 2.0, 0.4])
 params = Flux.Params([p])
 function predict_fd_sde()
-  diffeq_fd(p,reduction,101,prob,SOSRI(),saveat=0.1)
+  diffeq_fd(p,sol->sol[1,:],101,prob,SOSRI(),saveat=0.1)
 end
 loss_fd_sde() = sum(abs2,x-1 for x in predict_fd_sde())
 loss_fd_sde()
