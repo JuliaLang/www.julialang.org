@@ -731,14 +731,14 @@ solvers will continue to benefit from advances in this field.
 Machine learning and differential equations are destined to come together due to
 their complementary ways of describing a nonlinear world. In the Julia ecosystem
 we have merged the differential equation and deep learning packages in such a
-way that new developments in the two domains can directly be used together.
+way that new independent developments in the two domains can directly be used together.
 We are only beginning to understand the possibilities that have opened up with
 this software. We hope that future blog posts will detail some of the cool
 applications which mix the two disciplines, such as embedding our coming
 pharmacometric simulation engine [PuMaS.jl](https://doi.org/10.1007/s10928-018-9606-9)
 into the deep learning framework. With access to the full range of solvers for ODEs,
 SDEs, DAEs, DDEs, PDEs, discrete stochastic equations, and more, we are
-interested to see what kinds of next generation neural networks you build with Julia.
+interested to see what kinds of next generation neural networks you will build with Julia.
 
 Note: a citable version of this post will be published on
 Arxiv soon.
