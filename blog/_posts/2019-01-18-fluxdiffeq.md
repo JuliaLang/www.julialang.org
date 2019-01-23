@@ -5,7 +5,7 @@ author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White
 ---
 
 In this blog post we will show you how to easily, efficiently, and
-robustly add differential equation (DiffEq) solvers to neural networks in Julia.
+robustly use differential equation (DiffEq) solvers with neural networks in Julia.
 
 ![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif)
 
@@ -133,8 +133,8 @@ subjects together. The simplest way of explaining it is that, instead of
 learning the nonlinear transformation directly, we wish to learn the structures
 of the nonlinear transformation. Thus instead of doing $[[y=ML(x)]], we put the
 machine learning model on the derivative, $[[y'(x) = ML(x)]], and now solve the ODE.
-Why would you ever do this? Well, one motivation is that, if you were to do this
-and then solve the ODE using the simplest and most error prone method, the
+Why would you ever do this? Well, one motivation is that defining the model in this way
+and then solving the ODE using the simplest and most error prone method, the
 Euler method, what you get is equivalent to a [residual neural network](https://arxiv.org/abs/1512.03385).
 The way the Euler method works is based on the fact that $[[y'(x) = \frac{dy}{dx}]], thus
 
