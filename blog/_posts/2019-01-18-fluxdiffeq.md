@@ -10,8 +10,8 @@ robustly add differential equation (DiffEq) solvers to neural networks in Julia.
 ![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif)
 
 The [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
-paper has been a hot topic even before it made a splash as Best Paper of NeurIPS
-2018. Among other demonstrations, combining these two disparate fields greatly
+paper has been a hot topic even before it made a splash as Best Paper of NeurIPS 2018.
+Among other demonstrations, combining these two disparate fields greatly
 reduced the number of parameters and memory costs in comparison to ResNet. But
 this is only the beginning: neural networks and differential equations were born
 to be together. This blog post, a collaboration between authors of Julia's
