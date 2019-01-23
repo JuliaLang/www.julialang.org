@@ -10,12 +10,13 @@ robustly add differential equation solvers to neural networks in Julia.
 ![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif)
 
 The [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
-paper has been a hot topic even before it made a splash as Best Paper of NeurIPS
-2018. Among other demonstrations, combining these two disparate fields enabled
-the authors to reduce the number of parameters and reduce memory costs in
-comparison to ResNet. But this is only the beginning: neural networks and
-differential equations were born to be together. This blog post will explain
-why, and start to give a sense of what's possible with state-of-the-art tools.
+paper has been a hot topic even before it made a splash as Best Paper of
+NeurIPS 2018. By mixing ordinary differential equations and neural networks
+they were able to reduce the number of parameters and reduce memory costs in
+comparison to ResNet. Now with the floodgates opened causing a merge of
+differential equations with machine learning, the purpose of this blog post is
+to introduce the reader to differential equations from a data science
+perspective and show how to mix these tools with neural nets.
 
 The advantages of the Julia
 [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl) library for numerically solving differential equations have been
@@ -27,7 +28,7 @@ it includes other modern features such as
 [distributed (multi-node) parallelism](http://docs.juliadiffeq.org/latest/features/monte_carlo.html),
 and [sophisticated event handling](http://docs.juliadiffeq.org/latest/features/callback_functions.html).
 Recently, these native Julia differential equation solvers have successfully been embedded
-into the [Flux](https://github.com/FluxML/Flux.jl/) deep learning package, to allow the use of a full suite of
+into the [Flux.jl](https://github.com/FluxML/Flux.jl/) deep learning package, to allow the use of a full suite of
 highly tested and optimized DiffEq methods within neural networks. Using the new package
 [DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl/),
 we will show the reader how to easily add differential equation
@@ -35,13 +36,14 @@ layers to neural networks using a range of differential equations models, includ
 differential equations, stochastic differential equations, delay differential
 equations, and hybrid (discontinuous) differential equations.
 
-This is the first toolbox to combine a fully-featured differential equations
-solver library and neural networks seamlessly together. The blog post will also
-show why the flexibility of a full differential equation solver suite is
-necessary. With the ability to fuse neural networks with ODEs, SDEs, DAEs, DDEs,
-stiff equations, and different methods for adjoint sensitivity calculations,
-this is a large generalization of the neural ODEs work and will allow
-researchers to better explore the problem domain.
+This is the first user-friendly toolbox to combine a fully-featured differential
+equations solver library and neural networks seamlessly together. The blog post will also show
+why the flexibility of a full differential equation solver suite is necessary
+for doing this properly. With the ability to fuse neural networks
+seamlessly with ODEs, SDEs, DAEs, DDEs, stiff equations, and different methods
+for adjoint sensitivity calculations, this is a large generalization of the
+neural ODEs work and will allow researchers to better explore the problem
+domain.
 
 (Note: If you are interested in this work and are an undergraduate or graduate
 student, we have [Google Summer of Code projects available in this area](https://julialang.org/soc). This
@@ -73,7 +75,7 @@ about it differently, this is actually just a nonlinear transformation $y=ML(x)$
 The reason $ML$ is interesting is because its form is basic but adapts to the
 data itself. For example, a simple neural network (in design matrix form) with
 sigmoid activation functions is simply matrix multiplications followed
-by application of sigmoid functions. Specifically, $ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$ is a three-layer deep
+by application of sigmoid functions. Specifically, meaning $ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$ is a three-layer deep
 neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters.
 You then choose $W$ such that $ML(x)=y$ reasonably fits the function you wanted it to fit.
 The theory and practice of machine learning confirms that this is a good way to learn nonlinearities.
@@ -137,16 +139,16 @@ The way the Euler method works is based on the fact that $y'(x) = \frac{dy}{dx}$
 
 $$\Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x) \text{ which implies that } y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).$$
 
-This looks similar in structure to a ResNet, one of the most successful image
-processing models. The insight of the the Neural ODEs paper was that
-increasingly deep and powerful ResNet-like models effectively approximate a kind
-of "infinitely deep" model as each layer tends to zero. Rather than adding more
-layers, we can just model the differential equation directly and then solve it
-using a purpose-built ODE solver. Numerical ODE solvers are a science that goes
-all the way back to the first computers, and modern ones can adaptively choose
-step sizes $\Delta x$ and use high order approximations to dratically reduce the
-number of actual steps required. And as it turns out, this works well in
-practice, too.
+Looking familiar now? This is the basis of a residual network (ResNet) which is a type of recurrent neural network (RNN),
+and is the foundation of many of the best AI systems known to date.
+The genius of the neural ordinary differential equation paper was to notice this and say,
+let's just model the differential equation directly and then solve it using a much better numerical ODE solver methods.
+The creation of numerical ODE solvers is a science that goes
+all the way back to the first computers, and can adaptively choose step sizes $\Delta x$
+and use high order approximations to reduce the number of steps required to get
+sufficiently small error. By swapping out the Euler discretization with the LSODE
+numerical ODE solver, their results were good enough to make everyone think twice
+about reflexively using an RNN.
 
 ## How do you solve an ODE?
 
@@ -196,6 +198,40 @@ plot(sol)
 
 ![LV Solution Plot](https://user-images.githubusercontent.com/1814174/51388169-9a07f300-1af6-11e9-8c6c-83c41e81d11c.png)
 
+Optional arguments can be passed to control the ODE solver to customise most aspects of the numerical integration.
+For example, if you've some familiarity with the area, a good choice for
+this equation is to use the 5th order Runge-Kutta method `Tsit5()` (related to the `dopri` method,
+or `ode45` in MATLAB). We can also say that we want this solved with a relative error
+tolerance of `1e-8`, and that we want the solution saved at every `0.1` time points. This looks like:
+
+```julia
+sol = solve(prob,Tsit5(),saveat=0.1,reltol=1e-8)
+```
+
+There are a lot more arguments you can pass in to customise most aspects of the ODE solver,
+as
+[specified in the documentation](http://docs.juliadiffeq.org/latest/basics/common_solver_opts.html),
+but these will suffice for our demonstration.
+
+Note that the solution of a differential equation is a continuous object, so
+for example
+
+```julia
+sol(5.24)
+```
+
+gives the solution at time `5.24`. It also acts as an array, where
+
+```julia
+sol[2,5]
+sol.t[5]
+```
+
+is the solution of the 2nd variable (`y`) at the 5th time point. Notice that
+the 5th time point is `0.4` since we set `saveat=0.1`. If we did not set `saveat`,
+this would be adaptively chosen. More details on handling the solution type
+[can be found in the DifferentialEquations.jl documentation](http://docs.juliadiffeq.org/latest/basics/solution.html).
+
 One last thing to note is that we can make our initial condition (`u0`) and time spans (`tspans`)
 to be functions of the parameters (the elements of `p`). For example, we can define the `ODEProblem`:
 
@@ -209,33 +245,20 @@ prob = ODEProblem(lotka_volterra,u0_f,tspan_f,p)
 In this form, everything about the problem is determined by the parameter vector (`p`, referred to
 as `θ` in associated literature). The utility of this will be seen later.
 
-DifferentialEquations.jl has many powerful options for customising things like
-accuracy, tolerances, solver methods, events and more; check out [the
-docs](http://docs.juliadiffeq.org/latest/) for more details on how to use it in
-more advanced ways.
-
 ## Let's Put an ODE Into a Neural Net Framework!
 
-To understand embedding an ODE into a neural network, let's look at what a
-neural network layer actually is. A layer is really just a *differentiable
-function* which takes in a vector of size `n` and spits out a new vector of size
-`m`. That's it! Layers have traditionally been simple functions like matrix
-multiply, but in the spirit of [differentiable
-programming](https://julialang.org/blog/2018/12/ml-language-compiler) people are
-increasingly experimenting with much more complex functions, such as ray tracers and
-physics engines.
+To understand embedding an ODE into a neural network, let's recall what a layer
+of a neural network actually is. A layer is a transformation 𝐑ⁿ→𝐑ᵐ which
+takes in a vector of size `n` and spits out a new vector of size `m`. That's it!
+So a differential equation layer is simply a layer that takes in a parameter
+vector `p` (of size `n`) and spits out a new vector (of size `m`). You can do this
+manually using the
+[`remake` function in DifferentialEquations.jl](http://docs.juliadiffeq.org/latest/basics/problem.html#Modification-of-problem-types-1),
+or you can use the Flux.jl layers defined in DiffEqFlux.jl. Let's give those a spin.
 
-Turns out that differential equations solvers fit this framework, too: A solve
-takes in some vector `p` (which might include parameters like the initial
-starting point), and outputs some new vector, the solution. Moreover it's
-differentiable, which means we can put it straight into a larger differentiable
-program. This larger program can happily include neural networks, and we can keep
-using standard optimisation techniques like ADAM to optimise their weights.
-
-DiffEqFlux.jl makes it convenient to do just this; let's take it for a spin.
-
-The most basic differential equation layer is `diffeq_rd`. The way to understand this
-function is that it does the following. It takes in parameters for the integrand, `p`,
+The most basic differential equation layer is `diffeq_rd`. The function is of
+the form `diffeq_rd(p,reduction,prob,args...;kwargs...)`. The way to understand this
+function is that it does the following. It takes in the parameter vector `p`,
 it puts it in the differential equation defined by `prob`, solves it with
 the chosen arguments (solver, tolerance, etc), and then gets a vector out through
 some function `reduction`. For example, in our Lotka-Volerra problem, let's say we wanted
@@ -265,7 +288,7 @@ our solution handling be in the function `reduction` used above in `diffeq_rd(p,
 Thus this code is equivalent to:
 
 ```julia
-using Flux, DiffEqFlux
+using Flux, FluxDiffEq
 reduction(sol) = sol[1,:]
 diffeq_rd(p,reduction,prob,Tsit5(),saveat=0.1)
 ```
@@ -275,7 +298,7 @@ solves the Lotka-Volterra problem `prob` with our chosen ODE solver arguments,
 and then gets a vector out via `reduction` which is the time series of `x(t)`.
 
 The nice thing about `diffeq_rd` is that it takes care of the type handling
-necessary to make it compatible with the neural network framework (here Flux). To show this,
+necessary to make it compatible with the neural network framework (here Flux.jl). To show this,
 let's define a neural network with the function as our single layer, and then a loss
 function that is the squared distance of the output values from `1`. In Flux, this looks like:
 
@@ -310,7 +333,7 @@ Flux.train!(loss_rd, params, data, opt, cb = cb)
 
 The result of this is the animation shown at the top.
 
-Flux finds the parameters of the neural network (`p`) which minimize
+Flux.jl finds the parameters of the neural network (`p`) which minimize
 the cost function, i.e. it trains the neural network: it just so happens that
 the forward pass of the neural network includes solving an ODE.
 Since our cost function put a penalty whenever the number of
@@ -318,7 +341,7 @@ rabbits was far from 1, our neural network found parameters where our population
 of rabbits and wolves are both constant 1.
 
 Now that we have solving ODEs as just a layer, we can add it anywhere. For example,
-the multilayer perceptron is written in Flux as
+the multilayer perceptron is written in Flux.jl as
 
 ```julia
 m = Chain(
@@ -353,26 +376,27 @@ m = Chain(
   Dense(288, 10), softmax) |> gpu
 ```
 
-As long as you can write down the forward pass, we can take any parameterised,
-differentiable program and optimise it. The world is your oyster.
+The world is your oyster.
 
 ## Why is a full ODE solver suite necessary for doing this well?
 
-Where we have combined an existing solver suite and deep learning library, the
-excellent [torchdiffeq](https://github.com/rtqichen/torchdiffeq) project takes
-an alternative approach, instead implementing solver methods directly in
-PyTorch, including an adaptive Runge Kutta 4-5 (`dopri5`) and an
-Adams-Bashforth-Moulton method (`adams`). However, while their approach is very
-effective for certain kinds of models, not having access to a full solver suite
-is limiting.
+With Julia we have solved the technical issue of embedding native
+differential equation solvers inside of the neural network framework. Details
+of how it was done will follow, but we have to address the necessary question
+first: why was this important to do at all? Or another way to put it is, why
+not just re-implement a few simple ODE solvers into a neural network framework
+and be done with it?
 
-Consider the following example, the [ROBER
-ODE](https://www.radford.edu/~thompson/vodef90web/problems/demosnodislin/Single/DemoRobertson/demorobertson.pdf).
-The most well-tested (and optimized) implementation of an
-Adams-Bashforth-Moulton method is the [CVODE integrator in the C++ package
-SUNDIALS](https://computation.llnl.gov/projects/sundials) (a derivative of the
-classic LSODE). Let's use DifferentialEquations.jl to call CVODE with its Adams
-method and have it solve the ODE for us:
+This is the strategy which was taken with
+[torchdiffeq](https://github.com/rtqichen/torchdiffeq) which implements an adaptive
+Runge Kutta 4-5 (`dopri5`) and an Adams-Bashforth-Moulton method (`adams`)
+The issue is that these two methods are not sufficient for all, or even most, ODEs. A classic example of this is the
+[ROBER ODE](https://www.radford.edu/~thompson/vodef90web/problems/demosnodislin/Single/DemoRobertson/demorobertson.pdf).
+The most well-tested (and optimized) implementation of an Adams-Bashforth-Moulton
+method is the [CVODE integrator in the C++ package SUNDIALS](https://computation.llnl.gov/projects/sundials)
+(a derivative of the classic LSODE).
+Let's use DifferentialEquations.jl to call CVODE with its Adams method and have
+it solve the ODE for us:
 
 ```julia
 rober = @ode_def Rober begin
@@ -384,16 +408,36 @@ prob = ODEProblem(rober,[1.0;0.0;0.0],(0.0,1e11),(0.04,3e7,1e4))
 solve(prob,CVODE_Adams())
 ```
 
-(For those familiar with solving ODEs in MATLAB, this is similar to `ode113`)
+(For those familiar with solving ODEs in  MATLAB, this is similar to `ode113`)
 
-Both this and the `dopri` method from [Ernst Hairer's Fortran
-Suite](https://www.unige.ch/~hairer/software.html) stall and fail to solve the
-equation. This happens because the ODE is
-[stiff](https://en.wikipedia.org/wiki/Stiff_equation), and thus methods with
-"smaller stability regions" will not be able to solve it appropriately (for more
-details, I suggest reading Hairer's Solving Ordinary Differential Equations II).
-On the other hand `KenCarp4()` to this problem, the equation is solved in a
-blink of an eye:
+If you try the `dopri` method from
+[Ernst Hairer's Fortran Suite](https://www.unige.ch/~hairer/software.html), you
+get the same issue:
+
+```julia
+using ODEInterfaceDiffEq
+solve(prob,dopri5())
+```
+
+(note: this is like MATLAB's `ode45`)
+
+Both of these stall and fail to solve the equation. It's not an implementation
+issue either. Our native Julia versions of these methods (`DP5()` and `VCABM`)
+also exhibit the same behavior. It's actually a well-known property of these
+methods on this kind of ODE.
+This ODE is known to be a [stiff ODE](https://en.wikipedia.org/wiki/Stiff_equation),
+and thus methods with "smaller stability regions" will not be able to solve it
+appropriately (for more details, I suggest reading Hairer's Solving Ordinary
+Differential Equations II).
+
+I chose these two methods because these are the ones implemented in torchdiffeq
+and mentioned in the neural ordinary differential equations paper. They are not
+bad methods by any means, they are classics because of how efficient they are
+on a good number of problems. But it's clear from this example that they are
+not applicable to all ODEs. Instead, you need the flexibility to choose other
+solvers which have different properties such as increased stiffness. For example,
+when applying `KenCarp4()` to this problem, the equation is solved in a blink of
+an eye:
 
 ```julia
 sol = solve(prob,KenCarp4())
@@ -403,23 +447,25 @@ plot(sol,xscale=:log10,tspan=(0.1,1e11))
 
 ![ROBER Plot](https://user-images.githubusercontent.com/1814174/51388944-eb18e680-1af8-11e9-874f-09478759596e.png)
 
-This is just one example of subtlety in integration: Stabilizing explicit
-methods via PI-adaptive controllers, step prediction in implicit solvers, etc.
-are all intricate details that take a lot of time and testing to become
-efficient and robust. Different problems require different methods: [Symplectic
-integrators](http://docs.juliadiffeq.org/latest/solvers/dynamical_solve.html#Symplectic-Integrators-1)
-are required to [adequately handle physical many problems without
-drift](https://scicomp.stackexchange.com/questions/29149/what-does-symplectic-mean-in-reference-to-numerical-integrators-and-does-scip/29154#29154),
-and tools like [IMEX
-integrators](http://docs.juliadiffeq.org/latest/solvers/split_ode_solve.html#Implicit-Explicit-(IMEX)-ODE-1)
-are required to handle ODEs which [come from partial differential
-equations](https://www.youtube.com/watch?v=okGybBmihOE). Building a
-production-quality solver is thus an enormous undertaking and relatively few
-exist.
-
-Rather than building an ML-specific solver suite in parallel to one suitable for
-scientific computing, in Julia they are one and the same, meaning you can take
-advantage of all of these methods today.
+Stabilizing explicit methods via PI-adaptive controllers, step prediction in
+implicit solvers, etc. are all intricate details that take a lot of time and
+testing in order to build methods which are efficient for the more difficult
+equations. This is why very few production-quality solvers have ever been
+created. For example, R's deSolve and Python's SciPy simply wrap the older
+Fortran methods, as detailed
+[in the ODE solver summary post](http://www.stochasticlifestyle.com/comparison-differential-equation-solver-suites-matlab-r-julia-python-c-fortran/))
+Not only that, but different problems require different methods.
+[Symplectic integrators](http://docs.juliadiffeq.org/latest/solvers/dynamical_solve.html#Symplectic-Integrators-1)
+are required to [adequately handle physical many problems without drift](https://scicomp.stackexchange.com/questions/29149/what-does-symplectic-mean-in-reference-to-numerical-integrators-and-does-scip/29154#29154),
+and tools like [IMEX integrators](http://docs.juliadiffeq.org/latest/solvers/split_ode_solve.html#Implicit-Explicit-(IMEX)-ODE-1)
+are required to handle ODEs which [come from partial differential equations](https://www.youtube.com/watch?v=okGybBmihOE).
+Thus building and maintaining a full set of optimized differential equation
+solvers is itself an entire research programme. Given the intricacy of such
+a topic, reimplementing the solvers with all of the details into every
+machine learning framework is an infeasible task. By embedding the work of our
+DifferentialEquations.jl project into Flux.jl, we can continue to develop the
+differential equation solvers for traditional scientific computing
+and the users of Flux.jl will benefit from all of our work.
 
 ## What kinds of differential equations are there?
 
@@ -433,7 +479,7 @@ differential equation's derivative makes this equation known as a delay
 differential equation (DDE). Since
 [DifferentialEquations.jl handles DDEs](http://docs.juliadiffeq.org/latest/tutorials/dde_example.html)
 through the same interface as ODEs, it can be used as a layer in
-Flux as well. Here's an example:
+Flux.jl as well. Here's an example:
 
 ```julia
 function delay_lotka_volterra(du,u,h,p,t)
@@ -459,7 +505,7 @@ how random events can cause extra births or more deaths than expected. This
 kind of equation is known as a stochastic differential equation (SDE).
 Since [DifferentialEquations.jl handles SDEs](http://docs.juliadiffeq.org/latest/tutorials/sde_example.html)
 (and is currently the only library with adaptive stiff and non-stiff SDE integrators),
-these can be handled as a layer in Flux similarly. Here's a neural net layer
+these can be handled as a layer in Flux.jl similarly. Here's a neural net layer
 with an SDE:
 
 ```julia
@@ -501,8 +547,8 @@ And we can keep going. There are differential equations
 [which are piecewise constant](http://docs.juliadiffeq.org/latest/tutorials/discrete_stochastic_example.html)
 used in biological simulations, or
 [jump diffusion equations from financial models](http://docs.juliadiffeq.org/latest/tutorials/jump_diffusion.html),
-and the solvers map right over to the Flux neural network frame work through FluxDiffEq.jl
-FluxDiffEq.jl uses only around ~100 lines of code to pull this all off.
+and the solvers map right over to the Flux.jl neural network frame work through FluxDiffEq.jl
+It is worth noting that FluxDiffEq.jl uses only around ~100 lines of code to pull this all off.
 
 ## Implementing the Neural ODE layer in Julia
 
@@ -531,6 +577,29 @@ transfers in the integration scheme. This looks like:
 
 ```julia
 x->neural_ode(gpu(dudt),gpu(x),tspan,BS3(),saveat=0.1)
+```
+
+Let's explain what this layer is by going under the hood. Essentially, if you
+were to do this yourself, you would do so by defining the ODE derivative as
+the solution of the neural network, and then making your diffeq layer a function
+of the initial condition. Thus, what is happening is:
+
+```julia
+# Get the parameters out of the neural network
+p = Flux.data(destructure(dudt))
+
+# Define the ODE as the forward pass of the neural network with weights `p`
+dudt_(du,u::TrackedArray,p,t) = du .= restructure(dudt,p)(u)
+dudt_(du,u::AbstractArray,p,t) = du .= Flux.data(restructure(dudt,p)(u))
+
+# Define the ODEProblem with that derivative
+prob = ODEProblem(dudt_,nothing,tspan,p)
+
+# Use the reduction that turns the solution into a time series array
+reduction(sol) = Array(sol)
+
+# Make the diffeq layer a function of the initial condition
+x->diffeq_fd(p,reduction,2,prob,Tsit5(),u0=x,saveat=t)
 ```
 
 ## Understanding the Neural ODE layer behavior by example
@@ -568,7 +637,7 @@ n_ode = x->neural_ode(dudt,x,tspan,Tsit5(),saveat=t,reltol=1e-7,abstol=1e-9)
 
 Notice that the `neural_ode` has the same timespan and `saveat` as the solution
 that generated the data. This means that given an `x` (and initial value), it
-will generate a guess for what it thinks the time series will be where the
+will generate a guess for what it things the time series will be where the
 dynamics (the structure) is predicted by the internal neural network. Let's see
 what time series it gives before we train the network. Since the ODE
 has two-dependent variables, we will simplify the plot by only showing the first.
@@ -620,25 +689,16 @@ Instead, what's learned is the tiny ODE system from which the ODE
 solution is generated. I.e., the neural network inside the neural_ode
 layer has learned this function:
 
-```julia
-function lotka_volterra(du,u,p,t)
-  x, y = u
-  α, β, δ, γ = p
-  du[1] = dx = α*x - β*x*y
-  du[2] = dy = -δ*y + γ*x*y
-end
-```
-
-Thus **it learned a compact representation of how the nonlinear function
-works**, and it can easily extrapolate to what would happen with
+Thus **it learned a compact representation of how the
+timeseries works**, and it can easily extrapolate to what would happen with
 different starting conditions. Not only that, it's a very flexible
 method for learning such representations. For example, if your data is
 unevenly spaced at time points `t`, just pass in `saveat=t` and the
 ODE solver takes care of it.
 
-As you could probably guess by now, DiffEqFlux.jl has all kinds of
+As you could probably guess by now, the DiffEqFlux.jl has all kinds of
 extra related goodies like Neural SDEs (`neural_msde`) for you to explore in your
-applications.
+applications, but we'll leave those for future discussions.
 
 ## The core technical challenge: backpropagation through differential equation solvers
 
@@ -657,7 +717,7 @@ like [FATODE](http://people.cs.vt.edu/~asandu/Software/FATODE/index.html),
 [CASADI](https://web.casadi.org/), and
 [CVODES](https://computation.llnl.gov/projects/sundials/cvodes)
 have been available with this adjoint method for a long time (CVODES came out
-in 2005!) and lastly [DifferentialEquations.jl also provides an extensive sensitivity analysis implementation](http://docs.juliadiffeq.org/latest/analysis/sensitivity.html).
+in 2005!). [DifferentialEquations.jl has sensitivity analysis implemented too](http://docs.juliadiffeq.org/latest/analysis/sensitivity.html)
 
 The efficiency problem with adjoint sensitivity analysis methods is that they require
 multiple forward solutions of the ODE. As you would expect, this is very costly.
@@ -700,12 +760,12 @@ analysis. And this method only applies to ODEs. Not only that, it doesn't even
 apply to all ODEs. For example, ODEs with discontinuities ([events](http://docs.juliadiffeq.org/latest/features/callback_functions.html)) are excluded by the assumptions of the derivation.
 Thus once again we arrive at the conclusion that one method is not enough.
 
-In DifferentialEquations.jl we have implemented many different methods for
+In DifferentialEquations.jl have implemented many different methods for
 computing the derivatives of differential equations with respect to parameters.
 We have a [recent preprint](https://arxiv.org/abs/1812.01892) detailing
 some of these results. One of the things we have found is that direct use of
 automatic differentiation can be one of the most efficient and flexible methods.
-Julia's ForwardDiff.jl, Flux, and ReverseDiff.jl can directly be applied to
+Julia's ForwardDiff.jl, Flux.jl, and ReverseDiff.jl can directly be applied to
 perform automatic differentiation on the native Julia differential equation
 solvers themselves, and this can increase performance while giving new features.
 Our findings show that forward-mode automatic differentiation is fastest when
@@ -716,13 +776,26 @@ then, we have good reason to believe that
 will be more efficient than all of the adjoint sensitivity implementations for
 large numbers of parameters.
 
+It is worth noting that using automatic differentiation in this form is almost
+impossible for libraries which utilize precompiled shared libraries that call
+C/C++/Fortran packages (SciPy, deSolve), and so this is a unique feature of the
+Julia differential equation suite. While entire ODE solver libraries could in
+theory be recoded into PyTorch or TensorFlow, doing so for a fully featured
+suite would be a difficult process without much promise for performance. For
+example, it is well-known that production-quality ODE solvers in
+C++/Fortran/Julia make heavy use of mutation in first class nonlinear functions
+to stave off the heavy memory pressure of allocating small arrays in a loop,
+but this kind of workflow is
+[mentioned in the documentation as not well-optimized in PyTorch](https://pytorch.org/docs/master/notes/autograd.html#in-place-operations-with-autograd). Other concerns of this fashion
+make Julia an exceptional choice for this application.
+
 Altogether, being able to switch between different gradient methods without changing
 the rest of your code is crucial for having a scalable, optimized, and
 maintainable framework for integrating differential equations and neural networks.
 And this is precisely what FluxDiffEq.jl gives the user direct access to. There
 are three functions:
 
-- `diffeq_rd` uses Flux's reverse-mode AD through the differential equation
+- `diffeq_rd` uses Flux.jl's reverse-mode AD through the differential equation
   solver.
 - `diffeq_fd` uses ForwardDiff.jl's forward-mode AD through the differential
   equation solver.
