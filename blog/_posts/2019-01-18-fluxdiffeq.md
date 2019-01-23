@@ -135,7 +135,7 @@ subjects together. The simplest way of explaining it is that, instead of
 learning the nonlinear transformation directly, we wish to learn the structures
 of the nonlinear transformation. Thus instead of doing $[[y=ML(x)]], we put the
 machine learning model on the derivative, $[[y'(x) = ML(x)]], and now solve the ODE.
-Why would you ever do this? Well, one motivation is that, if you were to do this
+Why would you ever do this? Well, one motivation is that defining the model in this way
 and then solve the ODE using the simplest and most error prone method, the
 Euler method, what you get is equivalent to a [residual neural network](https://arxiv.org/abs/1512.03385).
 The way the Euler method works is based on the fact that $[[y'(x) = \frac{dy}{dx}]], thus
