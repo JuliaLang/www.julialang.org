@@ -274,7 +274,7 @@ p = param([2.2, 1.0, 2.0, 0.4]) # Initial Parameter Vector
 params = Flux.Params([p])
 
 function predict_rd() # Our 1-layer neural network
-  diffeq_rd(p,prob,Tsit5(),saveat=0.1)
+  diffeq_rd(p,prob,Tsit5(),saveat=0.1)[1,:]
 end
 
 loss_rd() = sum(abs2,x-1 for x in predict_rd()) # loss function
@@ -324,7 +324,7 @@ we can stick it right in there:
 m = Chain(
   Dense(28^2, 32, relu),
   # this would require an ODE of 32 parameters
-  p -> diffeq_rd(p,prob,Tsit5(),saveat=0.1),
+  p -> diffeq_rd(p,prob,Tsit5(),saveat=0.1)[1,:],
   Dense(32, 10),
   softmax)
 ```
@@ -339,7 +339,7 @@ m = Chain(
   Conv((2,2), 16=>8, relu),
   x -> maxpool(x, (2,2)),
   x -> reshape(x, :, size(x, 4)),
-  x -> diffeq_rd(p,prob,Tsit5(),saveat=0.1,u0=x),
+  x -> diffeq_rd(p,prob,Tsit5(),saveat=0.1,u0=x)[1,:],
   Dense(288, 10), softmax) |> gpu
 ```
 
@@ -438,7 +438,7 @@ prob = DDEProblem(delay_lotka_volterra,[1.0,1.0],h,(0.0,10.0),constant_lags=[0.1
 p = param([2.2, 1.0, 2.0, 0.4])
 params = Flux.Params([p])
 function predict_rd_dde()
-  diffeq_rd(p,prob,101,MethodOfSteps(Tsit5()),saveat=0.1)
+  diffeq_rd(p,prob,101,MethodOfSteps(Tsit5()),saveat=0.1)[1,:]
 end
 loss_rd_dde() = sum(abs2,x-1 for x in predict_rd_dde())
 loss_rd_dde()
