@@ -73,7 +73,7 @@ about it differently, this is actually just a nonlinear transformation $y=ML(x)$
 The reason $ML$ is interesting is because its form is basic but adapts to the
 data itself. For example, a simple neural network (in design matrix form) with
 sigmoid activation functions is simply matrix multiplications followed
-by application of sigmoid functions. Specifically, meaning $ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$ is a three-layer deep
+by application of sigmoid functions. Specifically, $ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$ is a three-layer deep
 neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters.
 You then choose $W$ such that $ML(x)=y$ reasonably fits the function you wanted it to fit.
 The theory and practice of machine learning confirms that this is a good way to learn nonlinearities.
@@ -521,7 +521,7 @@ the `neural_ode` helper function:
 
 ```julia
 tspan = (0.0f0,25.0f0)
-x->neural_ode(x,dudt,tspan,Tsit5(),saveat=0.1)
+x->neural_ode(dudt,x,tspan,Tsit5(),saveat=0.1)
 ```
 
 As a side note, to run this on the GPU, it is sufficient to make the initial
@@ -530,7 +530,7 @@ solver's internal operations to take place on the GPU without extra data
 transfers in the integration scheme. This looks like:
 
 ```julia
-x->neural_ode(gpu(x),gpu(dudt),tspan,BS3(),saveat=0.1)
+x->neural_ode(gpu(dudt),gpu(x),tspan,BS3(),saveat=0.1)
 ```
 
 ## Understanding the Neural ODE layer behavior by example
@@ -560,21 +560,21 @@ as before:
 ```julia
 dudt = Chain(Dense(2,50,tanh),Dense(50,2))
 tspan = (0.0f0,10.0f0)
-n_ode = x->neural_ode(x,dudt,tspan,Tsit5(),saveat=0.1)
+n_ode = x->neural_ode(dudt,x,tspan,Tsit5(),saveat=0.1)
 ```
 
 Notice that the `neural_ode` has the same timespan and `saveat` as the solution
 that generated the data. This means that given an `x` (and initial value), it
-will generate a guess for what it things the time series will be where the
+will generate a guess for what it thinks the time series will be where the
 dynamics (the structure) is predicted by the internal neural network. Let's see
 what time series it gives before we train the network. Since Lotka-Volterra
-has two-dependent variables, we will simplify the plot by only showing the `x`.
+has two dependent variables, we will simplify the plot by only showing the `x`.
 The code for the plot is:
 
 ```julia
 pred = n_ode(u0) # Get the prediction using the correct initial condition
 scatter(0.0:0.1:10.0,ode_data[1,:],label="data")
-scatter!(0.0:0.1:10.0,pred[1,:],label="prediction")  
+scatter!(0.0:0.1:10.0,Flux.data(pred[1,:]),label="prediction")  
 ```
 
 But now let's train our neural network. To do so, define a prediction function like before, and then
@@ -596,7 +596,7 @@ opt = ADAM(0.1)
 cb = function () #callback function to observe training
   display(loss_n_ode())
   # plot current prediction against data
-  cur_pred = predict_n_ode()
+  cur_pred = Flux.data(predict_n_ode())
   pl = scatter(0.0:0.1:10.0,ode_data[1,:],label="data")
   scatter!(pl,0.0:0.1:10.0,cur_pred[1,:],label="prediction")
   plot(pl)
@@ -629,7 +629,7 @@ method for learning such representations. For example, if your data is
 unevenly spaced at time points `t`, just pass in `saveat=t` and the
 ODE solver takes care of it.
 
-As you could probably guess by now, the DiffEqFlux.jl has all kinds of
+As you could probably guess by now, DiffEqFlux.jl has all kinds of
 extra related goodies like Neural SDEs (`neural_msde`) for you to explore in your
 applications.
 
@@ -650,7 +650,7 @@ like [FATODE](http://people.cs.vt.edu/~asandu/Software/FATODE/index.html),
 [CASADI](https://web.casadi.org/), and
 [CVODES](https://computation.llnl.gov/projects/sundials/cvodes)
 have been available with this adjoint method for a long time (CVODES came out
-in 2005!). [DifferentialEquations.jl has sensitivity analysis implemented too](http://docs.juliadiffeq.org/latest/analysis/sensitivity.html)
+in 2005!) and lastly [DifferentialEquations.jl also provides an extensive sensitivity analysis implementation](http://docs.juliadiffeq.org/latest/analysis/sensitivity.html).
 
 The efficiency problem with adjoint sensitivity analysis methods is that they require
 multiple forward solutions of the ODE. As you would expect, this is very costly.
@@ -693,7 +693,7 @@ analysis. And this method only applies to ODEs. Not only that, it doesn't even
 apply to all ODEs. For example, ODEs with discontinuities ([events](http://docs.juliadiffeq.org/latest/features/callback_functions.html)) are excluded by the assumptions of the derivation.
 Thus once again we arrive at the conclusion that one method is not enough.
 
-In DifferentialEquations.jl have implemented many different methods for
+In DifferentialEquations.jl we have implemented many different methods for
 computing the derivatives of differential equations with respect to parameters.
 We have a [recent preprint](https://arxiv.org/abs/1812.01892) detailing
 some of these results. One of the things we have found is that direct use of
