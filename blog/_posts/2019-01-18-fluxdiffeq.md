@@ -189,6 +189,7 @@ $$
 \begin{align}
 x^\prime $= \alpha x + \beta x y
 y^\prime $= -\gamma y + \gamma x y
+\end{align}
 $$
 
 and encoded in Julia like:
