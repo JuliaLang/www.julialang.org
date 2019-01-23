@@ -95,7 +95,7 @@ This is just a nonlinear transformation $y=ML(x)$.
 The reason $ML$ is interesting is because its form is basic but adapts to the
 data itself. For example, a simple neural network (in design matrix form) with
 sigmoid activation functions is simply matrix multiplications followed
-by application of sigmoid functions. Specifically,  $ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$ is a three-layer deep
+by application of sigmoid functions. Specifically,  $ML(x)=\sigma(W_{3} \sigma(W_{2} \sigma(W_{1} x)))$ is a three-layer deep
 neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters.
 You then choose $W$ such that $ML(x)=y$ reasonably fits the function you wanted it to fit.
 The theory and practice of machine learning confirms that this is a good way to learn nonlinearities.
