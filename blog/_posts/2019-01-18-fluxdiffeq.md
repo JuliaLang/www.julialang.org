@@ -11,6 +11,10 @@ robustly use differential equation (DiffEq) solvers with neural networks in Juli
 
 The [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
 paper has attracted significant attention even before it was awarded Best Paper of NeurIPS 2018.
+The overall contribution is that they've combined two disparate fields and have opened up an exciting 
+research area. One specific application is their ODENet, a continuous depth model that uses an ODE solver to
+adaptively compute the model output, has constant memory, and uses fewer parameters with comparable performance
+compared to ResNet.
 Among other contributions, combining these two disparate fields greatly
 reduced the number of parameters and memory costs in comparison to ResNet. But
 this is only the beginning: neural networks and differential equations were born
