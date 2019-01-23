@@ -299,7 +299,7 @@ Flux.train!(loss_rd, params, data, opt, cb = cb)
 ```
 
 The result of this is the animation shown at the top.
-[This code as a .jl file can be found in the model-zoo]()
+[This code can be found in the model-zoo](https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/ode.jl)
 
 Flux finds the parameters of the neural network (`p`) which minimize
 the cost function, i.e. it trains the neural network: it just so happens that
@@ -447,7 +447,7 @@ loss_rd_dde()
 
 The full code for this example, including generating an
 animation,
-[can be found in the model-zoo]()
+[can be found in the model-zoo](https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/dde.jl)
 
 Additionally we can add randomness to our differential equation to simulate
 how random events can cause extra births or more deaths than expected. This
@@ -492,7 +492,7 @@ Flux.train!(loss_fd_sde, params, data, opt, cb = cb)
 
 ![SDE NN Animation](https://user-images.githubusercontent.com/1814174/51399524-2c6abf80-1b14-11e9-96ae-0192f7debd03.gif)
 
-[This code as a .jl file can be found in the model-zoo]()
+[This code can be found in the model-zoo](https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/sde.jl)
 
 And we can keep going. There are differential equations
 [which are piecewise constant](http://docs.juliadiffeq.org/latest/tutorials/discrete_stochastic_example.html)
@@ -614,7 +614,7 @@ Flux.train!(loss_n_ode, ps, data, opt, cb = cb)
 
 ![Neural ODE Train](https://user-images.githubusercontent.com/1814174/51585825-dc3f8480-1ea8-11e9-8498-18cf55fba3e6.gif)
 
-[This code as a .jl file can be found in the model-zoo]()
+[This code can be found in the model-zoo](https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/neural_ode.jl)
 
 Notice that we are not learning a solution to the ODE.
 Instead, what we are learning is the tiny ODE system from which the ODE
