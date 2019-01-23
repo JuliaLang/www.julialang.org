@@ -529,7 +529,7 @@ transfers in the integration scheme. This looks like[^gpu]:
 x->neural_ode(gpu(dudt),gpu(x),tspan,BS3(),saveat=0.1)
 ```
 
-[^gpu]: We have changed the solver from Tsit5 to BS3, as Tsit5 is [currently not GPU compatible]((https://github.com/JuliaDiffEq/OrdinaryDiffEq.jl/issues/106)).
+[^gpu]: We have changed the solver from Tsit5 to BS3, as Tsit5 is [currently not GPU compatible](https://github.com/JuliaDiffEq/OrdinaryDiffEq.jl/issues/106).
 
 ## Understanding the Neural ODE layer behavior by example
 
