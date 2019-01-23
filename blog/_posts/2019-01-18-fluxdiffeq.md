@@ -607,10 +607,10 @@ Flux.train!(loss_n_ode, ps, data, opt, cb = cb)
 
 ![Neural ODE Train](https://user-images.githubusercontent.com/1814174/51585825-dc3f8480-1ea8-11e9-8498-18cf55fba3e6.gif)
 
-Notice that what's not being learned is the solution to the ODE.
-Instead, what's learned is the tiny ODE system from which the ODE
+Notice that we are not learning a solution to the ODE.
+Instead, what we are learning is the tiny ODE system from which the ODE
 solution is generated. I.e., the neural network inside the neural_ode
-layer has learned this function:
+layer learns this function:
 
 Thus **it learned a compact representation of how the
 time series works**, and it can easily extrapolate to what would happen with
