@@ -739,3 +739,6 @@ pharmacometric simulation engine [PuMaS.jl](https://doi.org/10.1007/s10928-018-9
 into the deep learning framework. With access to the full range of solvers for ODEs,
 SDEs, DAEs, DDEs, PDEs, discrete stochastic equations, and more, we are
 interested to see what kinds of next generation neural networks you build with Julia.
+
+Note: a citable version of this post will be published on
+Arxiv soon.
