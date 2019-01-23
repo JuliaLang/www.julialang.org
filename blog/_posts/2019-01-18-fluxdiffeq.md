@@ -4,6 +4,26 @@ title:  DiffEqFlux.jl – A Julia Library for Neural Differential Equations
 author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit
 ---
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+processEscapes: true,
+processEnvironments: true
+},
+// Center justify equations in code and markdown cells. Elsewhere
+// we use CSS to left justify single line equations in code cells.
+displayAlign: 'center',
+"HTML-CSS": {
+styles: {'.MathJax_Display': {"margin": 0}},
+linebreaks: { automatic: true }
+}
+});
+</script>
+
 In this blog post we will show you how to easily, efficiently, and
 robustly add differential equation (DiffEq) solvers to neural networks in Julia.
 
