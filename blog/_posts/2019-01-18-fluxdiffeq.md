@@ -438,7 +438,7 @@ prob = DDEProblem(delay_lotka_volterra,[1.0,1.0],h,(0.0,10.0),constant_lags=[0.1
 p = param([2.2, 1.0, 2.0, 0.4])
 params = Flux.Params([p])
 function predict_rd_dde()
-  diffeq_rd(p,prob,101,MethodOfSteps(Tsit5()),saveat=0.1)[1,:]
+  diffeq_rd(p,prob,MethodOfSteps(Tsit5()),saveat=0.1)[1,:]
 end
 loss_rd_dde() = sum(abs2,x-1 for x in predict_rd_dde())
 loss_rd_dde()
