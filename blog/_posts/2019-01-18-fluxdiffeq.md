@@ -605,46 +605,51 @@ x->diffeq_fd(p,reduction,2,prob,Tsit5(),u0=x,saveat=t)
 ## Understanding the Neural ODE layer behavior by example
 
 Now let's use the neural ODE layer in an example to find out what it means.
-First, let's generate a time series of the Lotka-Volterra equation saved at
-every 0.1 timesteps:
+First, let's generate a time series of an ODE at evenly spaced time points.
+We'll use the test equation from the Neural ODE paper.
 
 ```julia
-function lotka_volterra(du,u,p,t)
-  x, y = u
-  α, β, δ, γ = p
-  du[1] = dx = α*x - β*x*y
-  du[2] = dy = -δ*y + γ*x*y
+u0 = Float32[2.; 0.]
+datasize = 30
+tspan = (0.0f0,1.5f0)
+
+function trueODEfunc(du,u,p,t)
+    true_A = [-0.1 2.0; -2.0 -0.1]
+    du .= ((u.^3)'true_A)'
 end
-u0 = [1.0,1.0]
-tspan = (0.0,10.0)
-p = [1.5,1.0,3.0,1.0]
-prob = ODEProblem(lotka_volterra,u0,tspan,p)
-ode_data = Array(solve(prob,Tsit5(),saveat=0.1))
+t = range(tspan[1],tspan[2],length=datasize)
+prob = ODEProblem(trueODEfunc,u0,tspan)
+ode_data = Array(solve(prob,Tsit5(),saveat=t))
 ```
 
-Now let's pit a neural ODE against our Lotka-Volterra equation. To do so, we
+Now let's pit a neural ODE against this data. To do so, we
 will define a single layer neural network which just has the same neural ODE
-as before:
+as before (but lower the tolerances to help it converge closer, makes for a
+better animation!):
 
 ```julia
-dudt = Chain(Dense(2,50,tanh),Dense(50,2))
-tspan = (0.0f0,10.0f0)
-n_ode = x->neural_ode(dudt,x,tspan,Tsit5(),saveat=0.1)
+dudt = Chain(x -> x.^3,
+             Dense(2,50,tanh),
+             Dense(50,2))
+ps = Flux.params(dudt)
+n_ode = x->neural_ode(dudt,x,tspan,Tsit5(),saveat=t,reltol=1e-7,abstol=1e-9)
 ```
 
 Notice that the `neural_ode` has the same timespan and `saveat` as the solution
 that generated the data. This means that given an `x` (and initial value), it
 will generate a guess for what it things the time series will be where the
 dynamics (the structure) is predicted by the internal neural network. Let's see
-what time series it gives before we train the network. Since Lotka-Volterra
-has two-dependent variables, we will simplify the plot by only showing the `x`.
+what time series it gives before we train the network. Since the ODE
+has two-dependent variables, we will simplify the plot by only showing the first.
 The code for the plot is:
 
 ```julia
 pred = n_ode(u0) # Get the prediction using the correct initial condition
-scatter(0.0:0.1:10.0,ode_data[1,:],label="data")
-scatter!(0.0:0.1:10.0,Flux.data(pred[1,:]),label="prediction")  
+scatter(t,ode_data[1,:],label="data")
+scatter!(t,Flux.data(pred[1,:]),label="prediction")
 ```
+
+![Neural ODE Start](https://user-images.githubusercontent.com/1814174/51585822-d9449400-1ea8-11e9-8665-956a16e95207.png)
 
 But now let's train our neural network. To do so, define a prediction function like before, and then
 define a loss between our prediction and data:
@@ -660,22 +665,24 @@ And now we train the neural network and watch as it learns how to
 predict our time series:
 
 ```julia
-data = Iterators.repeated((), 100)
+data = Iterators.repeated((), 1000)
 opt = ADAM(0.1)
 cb = function () #callback function to observe training
   display(loss_n_ode())
   # plot current prediction against data
   cur_pred = Flux.data(predict_n_ode())
-  pl = scatter(0.0:0.1:10.0,ode_data[1,:],label="data")
-  scatter!(pl,0.0:0.1:10.0,cur_pred[1,:],label="prediction")
-  plot(pl)
+  pl = scatter(t,ode_data[1,:],label="data")
+  scatter!(pl,t,cur_pred[1,:],label="prediction")
+  display(plot(pl))
 end
 
 # Display the ODE with the initial parameter values.
 cb()
 
-Flux.train!(loss_n_ode, params, data, opt, cb = cb)
+Flux.train!(loss_n_ode, ps, data, opt, cb = cb)
 ```
+
+![Neural ODE Train](https://user-images.githubusercontent.com/1814174/51585825-dc3f8480-1ea8-11e9-8498-18cf55fba3e6.gif)
 
 Notice that what's not being learned is the solution to the ODE.
 Instead, what's learned is the tiny ODE system from which the ODE
