@@ -14,8 +14,7 @@ paper has been a hot topic even before it made a splash as Best Paper of NeurIPS
 Among other demonstrations, combining these two disparate fields greatly
 reduced the number of parameters and memory costs in comparison to ResNet. But
 this is only the beginning: neural networks and differential equations were born
-to be together. This blog post, a collaboration between authors of Julia's
-DiffEq and ML tools and the Neural ODEs paper, will explain why, outline current
+to be together. This blog post, a collaboration between authors of [Flux](https://github.com/FluxML/Flux.jl), [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl) and the Neural ODEs paper, will explain why, outline current
 and future directions for this work, and start to give a sense of what's
 possible with state-of-the-art tools.
 
