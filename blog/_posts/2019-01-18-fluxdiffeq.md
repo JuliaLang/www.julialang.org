@@ -13,8 +13,8 @@ The [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
 paper has been a hot topic even before it made a splash as Best Paper of
 NeurIPS 2018. By mixing ordinary differential equations and neural networks
 they were able to reduce the number of parameters and reduce memory costs in
-comparison to ResNet. Now with the floodgates opened causing a merge of
-differential equations with machine learning, the purpose of this blog post is
+comparison to ResNet. This opened the floodgates opened showing that the potential of merging
+differential equations with machine learning. The purpose of this blog post is
 to introduce the reader to differential equations from a data science
 perspective and show how to mix these tools with neural nets.
 
@@ -57,25 +57,25 @@ differential equations important in this context? The simple answer is that a
 differential equation is a way to specify an arbitrary nonlinear transform by
 mathematically encoding prior structural assumptions.
 
-Let's unpack that statement a bit. There are generally three ways
-to define a nonlinear transformation. The first is to explicitly say what it is.
-For example, the sigmoid function is $\sigma(x)=\frac{e^x}{e^x + 1}$. This only works
+Let's unpack that statement a bit. There are three
+common ways to define a nonlinear transform: direct
+modeling, machine learning, and differential equations.
+Directly writing down the nonlinear function only works
 if you know the exact functional form that relates the input to the output.
 However, in many cases, such exact relations are not known *a priori*.
 So how do you do nonlinear modeling if you don't know the nonlinearity?
 
-There are two common ways to handle this problem. One method is to use machine
+One way to address this is to use machine
 learning. In a typical machine learning problem, you are given some input $x$ and
 you want to predict an output $y$. This generation of a prediction $y$ from $x$
 is a machine learning model (let's call it $ML$).  During training, we attempt to
 adjust the parameters of $ML$ so that it generates accurate predictions.  We
 can then use $ML$ for inference (i.e., produce $y$s for novel inputs $x$).
-But if you think
-about it differently, this is actually just a nonlinear transformation $y=ML(x)$.
+This is just a nonlinear transformation $y=ML(x)$.
 The reason $ML$ is interesting is because its form is basic but adapts to the
 data itself. For example, a simple neural network (in design matrix form) with
 sigmoid activation functions is simply matrix multiplications followed
-by application of sigmoid functions. Specifically, meaning $ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$ is a three-layer deep
+by application of sigmoid functions. Specifically,  $ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$ is a three-layer deep
 neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters.
 You then choose $W$ such that $ML(x)=y$ reasonably fits the function you wanted it to fit.
 The theory and practice of machine learning confirms that this is a good way to learn nonlinearities.
@@ -139,16 +139,16 @@ The way the Euler method works is based on the fact that $y'(x) = \frac{dy}{dx}$
 
 $$\Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x) \text{ which implies that } y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).$$
 
-Looking familiar now? This is the basis of a residual network (ResNet) which is a type of recurrent neural network (RNN),
-and is the foundation of many of the best AI systems known to date.
+Looking familiar now? This is the basis of a residual network (ResNet)
+which is the foundation of many of the best AI systems known to date.
 The genius of the neural ordinary differential equation paper was to notice this and say,
 let's just model the differential equation directly and then solve it using a much better numerical ODE solver methods.
 The creation of numerical ODE solvers is a science that goes
 all the way back to the first computers, and can adaptively choose step sizes $\Delta x$
 and use high order approximations to reduce the number of steps required to get
 sufficiently small error. By swapping out the Euler discretization with the LSODE
-numerical ODE solver, their results were good enough to make everyone think twice
-about reflexively using an RNN.
+numerical ODE solver, their results were interesting enough to make everyone think twice
+about reflexively using a ResNet.
 
 ## How do you solve an ODE?
 
@@ -562,8 +562,8 @@ with 1 hidden layer and a `tanh` activation function like:
 dudt = Chain(Dense(2,50,tanh),Dense(50,2))
 ```
 
-To define a `neural_ode` layer, we then just need to give it a timespan and use
-the `neural_ode` helper function:
+To define a `neural_ode` layer, we then just need to give
+it a timespan and use the `neural_ode` function:
 
 ```julia
 tspan = (0.0f0,25.0f0)
@@ -576,6 +576,7 @@ solver's internal operations to take place on the GPU without extra data
 transfers in the integration scheme. This looks like:
 
 ```julia
+# Currently Tsit5 is purposely not GPU compatible due to Julia v1.0 bug
 x->neural_ode(gpu(dudt),gpu(x),tspan,BS3(),saveat=0.1)
 ```
 
@@ -690,7 +691,7 @@ solution is generated. I.e., the neural network inside the neural_ode
 layer has learned this function:
 
 Thus **it learned a compact representation of how the
-timeseries works**, and it can easily extrapolate to what would happen with
+time series works**, and it can easily extrapolate to what would happen with
 different starting conditions. Not only that, it's a very flexible
 method for learning such representations. For example, if your data is
 unevenly spaced at time points `t`, just pass in `saveat=t` and the
@@ -749,12 +750,12 @@ sol = solve(prob,CVODE_Adams(),reltol=1e-12,abstol=1e-12)
 @show sol[end]-u0 #[-17.5445, -14.7706, 39.7985]
 ```
 
-(here we once again use the CVODE C++ solvers from SUNDIALS since they are a close
-match to the SciPy integrators used in the neural ODE paper)
+(Here we once again use the CVODE C++ solvers from SUNDIALS since they are a close
+match to the SciPy integrators used in the neural ODE paper.)
 
 This inaccuracy is the reason why the method from the neural ODE paper is not
 implemented in software suites, but it once again highlights a detail. Not
-all ODEs will have a large error due to this issue. And on ODEs where it's not
+all ODEs will have a large error due to this issue. And for ODEs where it's not
 a problem, this will be the most efficient way to do adjoint sensitivity
 analysis. And this method only applies to ODEs. Not only that, it doesn't even
 apply to all ODEs. For example, ODEs with discontinuities ([events](http://docs.juliadiffeq.org/latest/features/callback_functions.html)) are excluded by the assumptions of the derivation.
@@ -769,8 +770,9 @@ Julia's ForwardDiff.jl, Flux.jl, and ReverseDiff.jl can directly be applied to
 perform automatic differentiation on the native Julia differential equation
 solvers themselves, and this can increase performance while giving new features.
 Our findings show that forward-mode automatic differentiation is fastest when
-there are less than 100 parameters in the differential equations, and that for
-a large enough number of parameters adjoint sensitivity analysis is the most efficient. Even
+there are less than 100 parameters in the differential
+equations, and that for >100 number of parameters adjoint
+sensitivity analysis is the most efficient. Even
 then, we have good reason to believe that
 [the next generation reverse-mode automatic differentiation via source-to-source AD, Zygote.jl](https://julialang.org/blog/2018/12/ml-language-compiler),
 will be more efficient than all of the adjoint sensitivity implementations for
@@ -793,7 +795,7 @@ Altogether, being able to switch between different gradient methods without chan
 the rest of your code is crucial for having a scalable, optimized, and
 maintainable framework for integrating differential equations and neural networks.
 And this is precisely what FluxDiffEq.jl gives the user direct access to. There
-are three functions:
+are three functions with a similar API:
 
 - `diffeq_rd` uses Flux.jl's reverse-mode AD through the differential equation
   solver.
@@ -801,7 +803,7 @@ are three functions:
   equation solver.
 - `diffeq_adjoint` uses adjoint sensitivity analysis to "backprop the ODE solver"
 
-With a similar API. Therefore, to switch from a reverse-mode AD layer to a forward-mode
+Therefore, to switch from a reverse-mode AD layer to a forward-mode
 AD layer, one simply has to change a single character. Since Julia-based automatic
 differentiation works on Julia code, the native Julia differential equation
 solvers will continue to benefit from advances in this field.
