@@ -4,6 +4,8 @@ title:  DiffEqFlux.jl – A Julia Library for Neural Differential Equations
 author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit
 ---
 
+Translations:  <a href="https://julialang.org/blog/2019/01/fluxdiffeq-zh_tw">Traditional Chinese</a>
+
 In this blog post we will show you how to easily, efficiently, and
 robustly use differential equation (DiffEq) solvers with neural networks in Julia.
 
