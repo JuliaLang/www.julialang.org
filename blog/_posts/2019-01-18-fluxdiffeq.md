@@ -169,7 +169,7 @@ For example, the
 They can be written as:
 
 $[[x^\prime = \alpha x + \beta x y]]
-$[[y^\prime = -\gamma y + \gamma x y]]
+$[[y^\prime = -\delta y + \gamma x y]]
 
 and encoded in Julia like:
 
