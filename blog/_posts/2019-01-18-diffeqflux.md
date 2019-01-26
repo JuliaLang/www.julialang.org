@@ -3,7 +3,7 @@ layout: post
 title: DiffEqFlux.jl – A Julia Library for Neural Differential Equations
 author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit
 redirect_from:
-  - "/blog/2019/01/fluxdiffeq"
+  - /blog/_posts/2019-01-18-fluxdiffeq
 ---
 
 In this blog post we will show you how to easily, efficiently, and
