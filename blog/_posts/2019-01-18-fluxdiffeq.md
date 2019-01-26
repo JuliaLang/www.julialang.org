@@ -714,7 +714,7 @@ large numbers of parameters.
 Altogether, being able to switch between different gradient methods without changing
 the rest of your code is crucial for having a scalable, optimized, and
 maintainable framework for integrating differential equations and neural networks.
-And this is precisely what FluxDiffEq.jl gives the user direct access to. There
+And this is precisely what DiffEqFlux.jl gives the user direct access to. There
 are three functions with a similar API:
 
 - `diffeq_rd` uses Flux's reverse-mode AD through the differential equation
