@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  DiffEqFlux.jl – A Julia Library for Neural Differential Equations
+title: [DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl) – A Julia Library for Neural Differential Equations
 author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit
 ---
 
@@ -498,8 +498,8 @@ And we can keep going. There are differential equations
 [which are piecewise constant](http://docs.juliadiffeq.org/latest/tutorials/discrete_stochastic_example.html)
 used in biological simulations, or
 [jump diffusion equations from financial models](http://docs.juliadiffeq.org/latest/tutorials/jump_diffusion.html),
-and the solvers map right over to the Flux neural network frame work through FluxDiffEq.jl
-FluxDiffEq.jl uses only around ~100 lines of code to pull this all off.
+and the solvers map right over to the Flux neural network framework through DiffEqFlux.jl.
+DiffEqFlux.jl uses only around ~100 lines of code to pull this all off.
 
 ## Implementing the Neural ODE layer in Julia
 
