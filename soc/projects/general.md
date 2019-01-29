@@ -44,46 +44,6 @@ Implementation of mid-level features - specifically routing, load-balancing, coo
 
 **Mentors**: [Mike Innes](https://github.com/MikeInnes)
 
-## WebAssembly
-
-[WebAssembly](http://webassembly.org/) is a new standard for running compiled code in a web browser. If Julia can generate WebAssembly, it opens up many opportunities to embed Julia "apps" in web interfaces. Julia is well positioned here because Julia can already compile efficient LLVM bitcode. LLVM bitcode can be translated into WebAssembly by [Emscripten](http://emscripten.org/) or with a direct LLVM [backend](https://github.com/llvm-mirror/llvm/tree/master/lib/Target/WebAssembly).
-
-The two most promising approaches to generate WebAssembly are outlined as follows.
-
-1. **Extended CUDAnative approach** –  The experimental [ExportWebAssembly package](https://github.com/tshort/ExportWebAssembly.jl/) uses code from the [CUDAnative package](https://github.com/JuliaGPU/CUDAnative.jl) to produce LLVM bitcode on the fly. It works great for simple code (type stable code with no use of libjulia or other C functions). Math code that uses immutable structs and/or StaticArrays works well with this approach. The main downside is that it is so limited–-no arrays, no strings, no IO, etc. The main work with this approach is to substitute out libjulia-type functions with equivalents that work in JavaScript/WebAssembly. For example, [this](https://github.com/tshort/ExportWebAssembly.jl/blob/master/examples/crude-array.jl) crude example shows a custom array type that could work with WebAssembly. The main steps in this approach are: (1) write a package to create WebAssembly-friendly versions of basic Julia types and operations (Dicts, Strings, Arrays, and printing) and (2) use the [Cassette package](https://github.com/jrevels/Cassette.jl) or another approach to replace standard Julia dispatches involving these basic types with the WebAssembly-friendly versions.
-
-2. **[CodeGen.jl](https://github.com/tshort/CodeGen.jl) approach** – This package uses the [LLVM package](https://github.com/maleadt/LLVM.jl) to directly generate bitcode based on code_typed Julia code. There is a branch of [ExportWebAssembly](https://github.com/tshort/ExportWebAssembly.jl/tree/codegen-jl) that uses this. This can use libjulia functions (also compiled to LLVM bitcode), so a wider range of Julia code may work. Some decently complex code runs, including some simple array creation and manipulation. But, there are still many gaps that need to be filled in here to be able to run Julia code in general. The main work with this approach is in upgrading the CodeGen package to support more Julia code. This method offers the most control over code generation and may allow the widest Julia code coverage (including code that links to C and Fortran libraries).
-
-**Expected Results**: An upgraded version of the ExportWebAssembly package that supports a wider range of Julia code.
-
-**Recommended skills**: Familiarity with (or willingness to learn) LLVM IR helps when interpreting Julia output before it is converted to WebAssembly; for the CodeGen approach, familiarity with C++ helps to interpret the C++ code in Julia that does code generation
-
-**Mentors**: [Tom Short](https://github.com/tshort)
-
-
-## Improve IR transformation API + 0.7 support for Sugar
-
-Improve the new [MacroTools](https://github.com/MikeInnes/MacroTools.jl/) based IR rewriting capabilities in [Sugar.jl](https://github.com/SimonDanisch/Sugar.jl).
-
-There are 2 ways to match IR and rewrite the matching expressions in Sugar right now:
-
-1) match with function, e.g. rewrite all expressions for which is_goto(::Expr)::Bool returns true.
-
-2) MacroTools based form, which uses [Julia expressions](https://github.com/SimonDanisch/Sugar.jl/blob/sd/07/src/patterns.jl#L175) to define what to match
-
-Those capabilities are already fairly evolved on the branch [sd/07](https://github.com/SimonDanisch/Sugar.jl/tree/sd/07),
-but they need thorough tests.
-After making sure they work reliably, the project will be about refactoring Sugar
-to use the new infrastructure to offer generic passes over the Julia IR, to e.g.
-remove goto labels and replace them by the correct control flow statements,
-passes for boundcheck elimination, or simple passes to replace a set of functions.
-
-**Expected Results**: Release a new version of Sugar including 0.7 compatibility and the new API
-
-**Recommended skills**: Knowledge of Julia's AST, IR and MacroTools would be great
-
-**Mentors**: [Simon Danisch](https://github.com/SimonDanisch/)
-
 ## Minecraft Examples for Julia on the Raspberry Pi
 
 Minecraft is, by some measures, the most popular video game ever. On the Raspberry Pi, the Minecraft
