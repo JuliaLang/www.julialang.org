@@ -18,6 +18,7 @@ Check out the [application guidelines](guidelines/) once you have a project in m
 
 We have our project ideas organised roughly into the skillsets required:
 
+* [Turing projects](projects/turing.html) for probabilistic modelling and probabilistic programming.
 * [Flux projects](https://fluxml.ai/gsoc.html) for machine learning.
 * [Compiler](projects/compiler.html) – work on the Julia compiler's internals to make things better for everyone.
 * [HPC](projects/hpc.html) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
