@@ -22,8 +22,8 @@ navigation:
     title: learning
   - url: "/teaching/"
     title: teaching
-  - url: "/publications/"
-    title: publications
+  - url: "/research/"
+    title: research
   - url: "/soc/ideas-page.html"
     title: GSoC
   - url: "http://juliacon.org"
