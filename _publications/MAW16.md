@@ -1,6 +1,6 @@
 ---
 type: "article"
-title: "
+title: ""
 authors:
 - Werder, Mauro A.
 year: "2016"
