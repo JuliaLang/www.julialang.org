@@ -21,6 +21,7 @@ We have our project ideas organised roughly into the skillsets required:
 * [Turing projects](projects/turing.html) for probabilistic modelling and probabilistic programming.
 * [Flux projects](https://fluxml.ai/gsoc.html) for machine learning.
 * [Compiler](projects/compiler.html) – work on the Julia compiler's internals to make things better for everyone.
+* [Web Platform](projects/wasm.html) - work on the Julia wasm backend or other aspects of julia in the browser.
 * [HPC](projects/hpc.html) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Numerics](projects/numerics.html) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
 * [Science](projects/science.html) - provide Julia with the ability for scientific research in various fields.
