@@ -1,6 +1,6 @@
 ---
  layout: post
- title: "Julia 1.0" (Spanish)
+ title: "Julia 1.0 (Spanish)"
  snippet: "Anunciando el release de Julia 1.0"
 ---
 
