@@ -12,7 +12,7 @@ robustly use differential equation (DiffEq) solvers with neural networks in Juli
 ![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif)
 
 The [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)
-paper has attracted significant attention even before it was awarded Best Paper of NeurIPS 2018.
+paper has attracted significant attention even before it was awarded one of the Best Papers of NeurIPS 2018.
 The paper already gives many exciting results combining these two
 disparate fields, but this is only the beginning: neural networks and
 differential equations were born to be together. This blog post, a collaboration
