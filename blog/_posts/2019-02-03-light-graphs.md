@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "GSoC 2018: Parallel Implementations of Graph Analysis Algorithms"
+title: "GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms"
 author: <a href="https://github.com/SohamTamba">Soham Tamba</a>
 ---
 
@@ -36,11 +36,11 @@ td{
 
 **Benchmark Graph Datasets:**
 
-No. | Graph | Vertices | Edges 
+No. | Graph | Vertices | Edges
 :---: | :---------: | :------------: | :-----------------:
-1 | Twitter Social Circles | 81,306 | 1,342,310 
+1 | Twitter Social Circles | 81,306 | 1,342,310
 2 | Astro-Physics Collaboration | 17,903 | 197,031
-3 | Facebook Social Circles | 4,039 | 88,234 
+3 | Facebook Social Circles | 4,039 | 88,234
 
 <br>
 The graphs were obtained from the [SNAPDatasets](https://github.com/JuliaGraphs/SNAPDatasets.jl) repository.
@@ -85,35 +85,35 @@ Sequential | 13.63 | 3.11 | 0.41
 
 # Get the code
 
-This section lists the functionality implemented and a link to the corresponding branch in my [cloned LightGraphs repository](https://github.com/SohamTamba/LightGraphs.jl). 
+This section lists the functionality implemented and a link to the corresponding branch in my [cloned LightGraphs repository](https://github.com/SohamTamba/LightGraphs.jl).
 
 ### Completed and merged
 
 The following branches have been merged into LightGraphs master:
 
 - [Parallel Breadth-First Search](https://github.com/SohamTamba/LightGraphs.jl/tree/Parallel_GDistances)
-- [Kruskal MST](https://github.com/SohamTamba/LightGraphs.jl/tree/kruskal_sort_IDS) 
-- [Sequential/Parallel Johnson APSP](https://github.com/SohamTamba/LightGraphs.jl/tree/Soham/John_Shortest_Path)  
-- [Parallel Floyd Warshall APSP](https://github.com/SohamTamba/LightGraphs.jl/tree/Parallel_Floyd_Warshall) 
-- [Parallel Bellman Ford SSSP](https://github.com/SohamTamba/LightGraphs.jl/tree/Parallel_Bellman_Ford) 
+- [Kruskal MST](https://github.com/SohamTamba/LightGraphs.jl/tree/kruskal_sort_IDS)
+- [Sequential/Parallel Johnson APSP](https://github.com/SohamTamba/LightGraphs.jl/tree/Soham/John_Shortest_Path)
+- [Parallel Floyd Warshall APSP](https://github.com/SohamTamba/LightGraphs.jl/tree/Parallel_Floyd_Warshall)
+- [Parallel Bellman Ford SSSP](https://github.com/SohamTamba/LightGraphs.jl/tree/Parallel_Bellman_Ford)
 - [Parallel PageRank](https://github.com/SohamTamba/LightGraphs.jl/tree/Parallel_Page_Rank)
-- [PageRank](https://github.com/SohamTamba/LightGraphs.jl/tree/Seq_PageRank) 
+- [PageRank](https://github.com/SohamTamba/LightGraphs.jl/tree/Seq_PageRank)
 - [Load-balanced Partitioning](https://github.com/SohamTamba/LightGraphs.jl/tree/Parallel_Page_Rank)
-- [Prim MST](https://github.com/SohamTamba/LightGraphs.jl/tree/Prim_PQ) 
-- [Dijkstra SSSP I](https://github.com/SohamTamba/LightGraphs.jl/tree/Dijkstra_Performance_Docs) 
-- [Dijkstra SSSP II](https://github.com/SohamTamba/LightGraphs.jl/tree/Dijkstra_Allocations) 
+- [Prim MST](https://github.com/SohamTamba/LightGraphs.jl/tree/Prim_PQ)
+- [Dijkstra SSSP I](https://github.com/SohamTamba/LightGraphs.jl/tree/Dijkstra_Performance_Docs)
+- [Dijkstra SSSP II](https://github.com/SohamTamba/LightGraphs.jl/tree/Dijkstra_Allocations)
 - [Greedy Heuristics](https://github.com/SohamTamba/LightGraphs.jl/tree/All_Greedy)
-1. Minimum Vertex Cover 
+1. Minimum Vertex Cover
 2. Minimum Dominating Set
 3. Maximum Independent Set
 4. Vertex Connectivity
 
-- [Parallel Random Heuristics](https://github.com/SohamTamba/LightGraphs.jl/tree/genrate_reduce) 
+- [Parallel Random Heuristics](https://github.com/SohamTamba/LightGraphs.jl/tree/genrate_reduce)
 - [Karger Minimum Cut](https://github.com/SohamTamba/LightGraphs.jl/tree/Karger_min_cut)
 - [Multi-threaded Centrality Measures](https://github.com/SohamTamba/LightGraphs.jl/tree/Threaded_Centrality)
-1. Betweeness Centrality 
-2. Closeness Centrality 
-3. Stress Centrality 
+1. Betweeness Centrality
+2. Closeness Centrality
+3. Stress Centrality
 
 ###  Completed but not applicable
 
