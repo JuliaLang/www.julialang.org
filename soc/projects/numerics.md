@@ -191,6 +191,7 @@ This project therefore involves exploring ways to improve bignums, possibly incl
 * Pooling bignum objects to avoid setup / teardown cost
 * Exposing a mutating API for library consumers
 * Lazy graph style APIs which can rewrite terms or apply optimisations
+* Modifying GMP itself to support high-performance garbage-collection
 
 This experimentation could be carried out as a package with a new implementation, or as patches over the existing implementation in Base.
 
@@ -198,4 +199,4 @@ This experimentation could be carried out as a package with a new implementation
 
 **Require Skills**: Familiarity with extended precision numerics and performance considerations. Familiarity either with Julia or GMP.
 
-**Mentors**: [Jameson Nash](https://github.com/vtjnash), [Yichao Yu](https://github.com/yuyichao)
+**Mentors**: [Jameson Nash](https://github.com/vtjnash)

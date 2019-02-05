@@ -79,3 +79,14 @@ This will enable us to generate webgl shaders and opengl shaders from the same J
 **Expected Results**: Turn the current prototype into a functioning package
 **Recommended skills**: Some OpenGL and Web (specifically ThreeJS) knowledge will be required.
 **Mentors**: [Simon Danisch](https://github.com/SimonDanisch/)
+
+
+## QML.jl Improvements
+
+The [QML.jl](https://github.com/barche/QML.jl) package provides Julia bindings for [Qt QML](http://doc.qt.io/qt-5/qtqml-index.html) on Windows, OS X and Linux. In the current state, basic functionality is available, but there is room for improvement regarding integration with [GLVisualize](https://github.com/JuliaGL/GLVisualize.jl) and plotting packages such as [GR](https://github.com/jheinen/GR.jl) (see also [issue 23](https://github.com/barche/QML.jl/issues/23)) or [Plots](https://github.com/JuliaPlots/Plots.jl). Another area of work is supporting more elaborate data models.
+
+**Expected Results**: Improvements to the QML.jl package along one of these lines.
+
+**Recommended Skills**: Familiarity with both Julia and the QT framework.
+
+**Mentors**: [Bart Janssens](https://github.com/barche)
