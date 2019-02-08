@@ -31,7 +31,7 @@ Various projects were proposed by the community in [GSOC 2015](http://julialang.
 - **Brian Cohen ([@notthemessiah](https://github.com/notthemessiah))** will be working on implementing a test suite and documentation for Escher.jl (mentor: Shashi Gowda [@shashi](https://github.com/shashi))
 - **Ambuj Agrawal**, Improving debug information generation in Julia (mentor: Keno Fischer [@Keno](https://github.com/Keno))
 
-# Google Summer of Code 2014 projects
+## Google Summer of Code 2014
 
 Julia was accepted as part of [GSOC 2014](http://julialang.org/gsoc/2014/). Many of the contributors in
 GSOC 2014 were mentors for JSOC 2015.
