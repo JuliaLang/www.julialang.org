@@ -6,6 +6,18 @@ title: Julia's Summer of Code projects
 
 Take a look at the [Ideas Page](/soc/ideas-page) and contribute your ideas or edits.
 
+## Google Summer of Code 2018
+
+In 2018, Julia participated in GSoC under the [NumFOCUS umbrella organization](https://julialang.org/blog/2018/02/gsoc2018-numfocus), and [over 20 projects](https://summerofcode.withgoogle.com/archive/2018/organizations/6485922656813056/) were supported. Some of the students published their work in the [Julia blog](https://julialang.org/blog/).
+
+## Google Summer of Code 2017
+
+16 Julia projects were supported in [GSoC 2017](https://summerofcode.withgoogle.com/archive/2017/organizations/6682672759832576/). Some of the students published their work in the [Julia blog](https://julialang.org/blog/).
+
+## Google Summer of Code 2016
+
+10 Julia projects were supported in [GSoC 2016](https://summerofcode.withgoogle.com/archive/2016/organizations/5096506709245952/).
+
 ## Julia Summer of Code 2015
 
 Various projects were proposed by the community in [GSOC 2015](http://julialang.org/gsoc/2015/). However, Julia did not make it to GSOC 2015. Julia organized its own Summer of Code this year thanks to a generous sponsorship for the same from **[Gordon and Betty Moore Foundation](https://www.moore.org)**. The projects in Julia Summer of Code 2015 were.
