@@ -19,8 +19,14 @@
     ga('send', 'pageview');
   </script>
 
-  <script type="text/javascript">window.liveSettings={api_key:"ab25420d08984953bd7435fd47506f96"};</script>
-  <script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"></script>
 </head>
 
 <body>
@@ -33,45 +39,6 @@
 
       <a href="https://github.com/JuliaLang/www.julialang.org/edit/master/{{ page.path }}">Edit this page on GitHub.</a>
     </div>
-
-    <!-- Add "contribute" link to the Transifex language dropdown -->
-    <script>
-      // Create a link element for the translation prompt
-      var txPromptLink = document.createElement( "a" );
-      txPromptLink.href = "https://www.transifex.com/julialang-i18n/julialang-web/";
-      txPromptLink.appendChild( document.createTextNode( "Add your language!" ) );
-      txPromptLink.style.fontWeight = "bold";
-
-      // Wrap the translation prompt link in a list item element
-      var txPrompt = document.createElement( "li" );
-      txPrompt.appendChild( txPromptLink );
-
-      // The Transifex dropdown is created dynamically,
-      // so we need to use the DOM MutationObserver API
-      // (https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
-      // to know when the menu is ready so we can add our element to it.
-
-      // Callback function to execute when mutations are observed
-      var callback = function(mutationsList, observer) {
-        for(var mutation of mutationsList) {
-          if (mutation.addedNodes.length >= 1) {
-            var addedNode = mutation.addedNodes[0];
-            if (addedNode.nodeType == Node.ELEMENT_NODE && addedNode.id == "tx-live-lang-picker") {
-              // Add the translation prompt list item to the list of languages
-              addedNode.appendChild( txPrompt );
-              // Stop observing the body element for mutations
-              observer.disconnect();
-            }
-          }
-        }
-      };
-
-      // Create an observer instance linked to the callback function
-      var observer = new MutationObserver(callback);
-
-      // Start observing the body element for adding and removal of child elements
-      observer.observe(document.body, { childList: true });
-    </script>
 
 <!--Flipcause Integration v3.0// Flipcause Integration Instructions:
     Install the following code block once in the website Header (after <head> tag) -->

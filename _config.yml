@@ -10,7 +10,7 @@ navigation:
     url: "https://github.com/JuliaLang/julia"
   - url: "/downloads/"
     title: downloads
-  - url: "http://docs.julialang.org/"
+  - url: "https://docs.julialang.org/"
     title: docs
   - url: "/blog/"
     title: blog
@@ -22,11 +22,11 @@ navigation:
     title: learning
   - url: "/teaching/"
     title: teaching
-  - url: "/publications/"
-    title: publications
+  - url: "/research/"
+    title: research
   - url: "/soc/ideas-page.html"
     title: GSoC
-  - url: "http://juliacon.org"
+  - url: "https://juliacon.org"
     title: juliacon
 collections:
   publications:

@@ -1,6 +1,6 @@
 ---
  layout: post
- title: "Julia 1.0"
+ title: "Julia 1.0 (Simplified Chinese)"
  snippet: "Julia 1.0正式发布"
 ---
 

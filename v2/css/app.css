@@ -498,3 +498,16 @@ pre {
   direction: ltr;
   border-radius: 5px;
 }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	.navbar-expand-lg .navbar-nav .nav-link {
+		padding-right: .1rem;
+		padding-left: .1rem;
+	}
+}
+
+@media (max-width: 575px) {
+	.main-heading {
+		font-size: 36px;
+	}
+}
