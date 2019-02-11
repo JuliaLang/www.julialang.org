@@ -36,4 +36,4 @@ In 2015, the four co-creators of Julia along with [Keno Fischer](https://www.lin
 
 ## Conclusion
 
-I hope that this clarifies what the entities surrounding the Julia project are and how they relate to each other. This picture will certainly evlove and change over time, and as it does so we'll try to keep an accurate description of these entities and relationships available as they develop.
+I hope that this clarifies what the entities surrounding the Julia project are and how they relate to each other. This picture will certainly evolve and change over time, and as it does so we'll try to keep an accurate description of these entities and relationships available as they develop.
