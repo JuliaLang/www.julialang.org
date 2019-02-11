@@ -33,3 +33,7 @@ What kind of money goes to Julia through NumFOCUS and how is it spent? When you 
 ## Julia Computing
 
 In 2015, the four co-creators of Julia along with [Keno Fischer](https://www.linkedin.com/in/keno-fischer-974261b0/) and [Deepak Vinchhi](https://www.linkedin.com/in/deepakvinchhi/) founded [Julia Computing](https://juliacomputing.com/), a United States C corporation. Julia Computing provides products, support and services around Julia, including [JuliaBox](https://juliabox.com), [JuliaPro](https://juliacomputing.com/products/juliapro.html), [JuliaTeam](https://juliacomputing.com/products/juliateam.html) and [JuliaAcademy](https://academy.juliabox.com). The company employs many of the top contributors to Julia itself (half of the top ten contributors by commits) and to major Julia packages, especially for data science and machine learning. Even though there’s no formal connection between the company and the open source project, Julia Computing is deeply committed to Julia’s success and is proud to sponsor JuliaCon each year and drive so much development of open source Julia code.
+
+## Conclusion
+
+I hope that this clarifies what the entities surrounding the Julia project are and how they relate to each other. This picture will certainly evlove and change over time, and as it does so we'll try to keep an accurate description of these entities and relationships available as they develop.
