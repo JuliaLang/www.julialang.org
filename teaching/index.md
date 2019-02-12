@@ -101,6 +101,11 @@ Julia is now being used in several universities and online courses. If you know 
   * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), Seminar: High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
   * [ASTRO 528](https://psuastro528.github.io/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2019 - [github repos](https://github.com/PsuAstro528)
 
+- Polytechnique Montréal <!--45.5046609,-73.6152741-->
+  * [MTH6412](https://www.polymtl.ca/etudes/cours/implementation-dalgo-de-rech-operationnel) Implémentation d'algorithmes de recherche opérationnelle (Prof. [Dominique Orban](http://dpo.github.io)), Fall 2018
+  * [MTH8211](https://www.polymtl.ca/etudes/cours/algebre-lineaire-numerique-appliquee) Algèbre linéaire numérique appliquée (Prof. [Steven Dufour](https://www.polymtl.ca/expertises/dufour-steven)), Winter 2018, 2019
+  * [MTH8408](https://www.polymtl.ca/etudes/cours/methodes-doptimisation-et-controle-optimal) Méthodes d'optimisation et de contrôle optimal (Prof. [Dominique Orban](http://dpo.github.io)), Winter 2017, 2019
+
 - Pontifical Catholic University of Rio de Janeiro (PUC-Rio) <!---22.979107,-43.233083-->
   * Programming in Julia (Prof. [Thuener Silva](https://github.com/Thuener)), Summer 2017
   * Linear Optimization (Prof. [Alexandre Street](https://alexandrestreet.wordpress.com/)), Spring 2017
