@@ -164,6 +164,11 @@ Julia is now being used in several universities and online courses. If you know 
 - University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016 <!--51.22281,4.410232-->
   * Computational Neuroscience (2070FBDBMW), Master of Biomedical Sciences, of Biochemistry, of Physics ([Michele Giugliano](https://www.uantwerpen.be/popup/opleidingsonderdeel.aspx?catalognr=2070FBDBMW&taal=nl&aj=2016))
 
+- University of California, Berkeley (UCB)
+  * Math 124 - [Prof. Per-Olof Persson](http://persson.berkeley.edu/), 2019-
+  * Math 228A - [Prof. Lin Lin](https://github.com/lin-lin/2018Fall_228A), 2017-
+  * Math 228B - [Prof. Per-Olof Persson](http://persson.berkeley.edu/), 2019-
+
 - University of California, Los Angeles (UCLA) <!--34.068921,-118.445181-->
   * [Stat M230/Biomath 280/Biostat M280](http://hua-zhou.github.io/teaching/biostatm280-2018spring/), Statistical Computing, Spring 2018 (Prof. [Hua Zhou](https://github.com/Hua-Zhou))
 
