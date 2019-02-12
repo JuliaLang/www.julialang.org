@@ -58,7 +58,7 @@ Julia is now being used in several universities and online courses. If you know 
 
 - [Federal University of Alagoas](http://www.ufal.edu.br) (_Universidade Federal de Alagoas_, UFAL) <!---9.555682,-35.777877-->
   * COMP272, Distributed Systems ([Prof. André Lage-Freitas](https://sites.google.com/a/ic.ufal.br/andrelage)): 2015, 2016, and 2017
-  
+
 - [Federal University of Paraná, Curitiba, Brazil](http://www.ufpr.br) (_Universidade Federal do Paraná_, UFPR) <!---25.4288721,-49.2676105-->
   * CM087, Numerical Analysis Topics ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2017s1
   * CM096, Numerical Analysis I ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2019s1
@@ -86,12 +86,12 @@ Julia is now being used in several universities and online courses. If you know 
 
 - Massachusetts Institute of Technology (MIT) <!--42.3583961,-71.0956778766393-->
   * [6.251/15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas), Fall 2015
-  * [18.06](http://web.mit.edu/18.06/www/), Linear Algebra: Fall 2015, Dr. [Alex Townsend](https://github.com/ajt60gaibb); Fall 2014, Prof. Alexander Postnikov; Fall [2013](http://stellar.mit.edu/S/course/18/fa13/18.06), Prof. Alan Edelman
-  * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj)), Fall 2013–2016.
-  * [18.337/6.338](http://beowulf.csail.mit.edu/18.337), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). [Fall 2015](http://courses.csail.mit.edu/18.337/2015) ([IJulia notebooks](https://github.com/alanedelman/18.337_2015)).  Fall 2013–
+  * [18.06](http://web.mit.edu/18.06/www/), Linear Algebra: [Alex Townsend](https://github.com/ajt60gaibb), Alexander Postnikov, Prof. Alan Edelman, 2013-
+  * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj)), Prof. [Chris Rackauckas](http://chrisrackauckas.com/) 2013–
+  * [18.337/6.338](http://beowulf.csail.mit.edu/18.337), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). 2013–
   * [18.085/0851](http://math.mit.edu/classes/18.085/2015FA/index.html), Computational Science And Engineering I (Prof. Pedro J. Sáenz)
   * [18.330](http://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid), Spring 2013–2015
-  * [18.335](http://math.mit.edu/~stevenj/18.335/), Introduction to Numerical Methods (Prof. Steven G. Johnson), Fall 2013, Spring 2015
+  * [18.335](http://math.mit.edu/~stevenj/18.335/), Introduction to Numerical Methods (Prof. Steven G. Johnson), Fall 201-
   * [18.338](http://web.mit.edu/18.338/www/), Eigenvalues Of Random Matrices (Prof. Alan Edelman), Spring 2015
   * [18.S096](https://math.mit.edu/classes/18.S096/iap17/), Performance Computing in a High Level Language (Steven G. Johnson, Alan Edelman, David Sanders, Jeff Bezanson), January 2017.
   * [15.093/6.255](http://optimization.mit.edu/class.php?id=6.255J), Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos), Fall 2014
