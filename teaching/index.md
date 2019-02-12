@@ -58,6 +58,16 @@ Julia is now being used in several universities and online courses. If you know 
 
 - [Federal University of Alagoas](http://www.ufal.edu.br) (_Universidade Federal de Alagoas_, UFAL) <!---9.555682,-35.777877-->
   * COMP272, Distributed Systems ([Prof. André Lage-Freitas](https://sites.google.com/a/ic.ufal.br/andrelage)): 2015, 2016, and 2017
+  
+- [Federal University of Paraná, Curitiba, Brazil](http://www.ufpr.br) (_Universidade Federal do Paraná_, UFPR) <!---25.4288721,-49.2676105-->
+  * CM087, Numerical Analysis Topics ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2017s1
+  * CM096, Numerical Analysis I ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2019s1
+  * CM103, Applied Mathematics Laboratory ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2016s2, 2017s2, 2018s2
+  * CM106, Optimization ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2018s1
+  * CM114, Computational Methods of Optimization ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2015s2, 2016s2
+  * CM116, Applied Mathematics Topics ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2016s2, 2018s2
+  * CM141, Mathematics Topics ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2016s2
+  * CMM014, Numerical Calculus ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2019s1
 
 - Federal University of Uberlândia, Institute of Physics <!---18.918506,-48.25817-->
   * [GFM050](http://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
