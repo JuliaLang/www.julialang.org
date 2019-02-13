@@ -1,9 +1,11 @@
 ---
-layout: insidepage
+layout: default
 title:  Numerical Projects – Summer of Code
 ---
 
 # {{ page.title }}
+
+{% include toc.html %}
 
 For all of these projects, potential mentors are [Steven Johnson](https://github.com/stevengj) and [Simon Byrne](https://github.com/simonbyrne).
 
@@ -65,24 +67,6 @@ This project proposal is for implementing native Julia algorithms for massively 
 **Expected Results**: A native Julia package for parallel sparse linear algebra methods.
 
 **Mentors:** [Sacha Verweij](https://github.com/Sacha0)
-
-## Generic linear algebra
-
-Julia supports many different numeric types, both in Base (e.g. `Float32`, `Float64`, `BigFloat`, `Complex`, `Rational`), as well as other packages (e.g. [Quaternions.jl](https://github.com/JuliaGeometry/Quaternions.jl), [ArbFloats.jl](https://github.com/JuliaArbTypes/ArbFloats.jl), [FixedPointNumbers.jl](https://github.com/JuliaMath/FixedPointNumbers.jl), [Unitful.jl](https://github.com/ajkeller34/Unitful.jl)).
-
-Currently there exists some limited support for generic linear algebra in the LinearAlgebra stdlib (e.g. matrix multiplication and LU factorizations), as well as more experimental code in [GenericLinearAlgebra.jl](https://github.com/JuliaLinearAlgebra/GenericLinearAlgebra.jl) and [GenericSVD.jl](https://github.com/JuliaLinearAlgebra/GenericSVD.jl) packages.
-
-The focus of this project will be to improve this functionality. Potential tasks include:
-- Implementing more operations, based on standard algorithms in books like [Golub and Van Loan](https://jhupbooks.press.jhu.edu/content/matrix-computations-0), or translating similar concepts from LAPACK.
-- General code maintenance: improving generality, reducing duplicate code, clarifying and documenting interfaces.
-- Developing accurate test cases, e.g. by deriving appropriate error bounds.
-- Documenting the necessary interfaces required by numeric types for these to work correctly.
-
-**Recommended Skills**: An understanding of linear algebra and basic numerical analysis.
-
-**Expected results**: Linear algebra routines which work on different numeric types, and corresponding tests.
-
-**Mentors**: [Simon Byrne](https://github.com/simonbyrne)
 
 # Base Mathematics Libraries
 
@@ -181,6 +165,23 @@ This may involve developing code for McCormick relaxations and/or affine arithme
 **Mentors:** [David P. Sanders](https://github.com/dpsanders)
 
 
+## Taylor models and a guaranteed ODE solver
+
+Combining interval arithmetic and Taylor series, it is possible to
+write an integrator for ordinary differential equations (ODEs) that gives results that are guaranteed (rigorous), i.e. we get a tube that is guaranteed to contain the true solution of the ODE.
+
+The groundwork has been laid, but the project will require reading papers on the subject and experimenting with different implementations for performance, for example using different polynomial representations.
+
+This also has applications to [reachability analysis](https://github.com/JuliaReach) of dynamical systems.
+
+**Recommended skills**: Multivariable calculus and linear algebra; understanding of floating-point arithmetic; ability to read papers and implement generic algorithms which allow to swap different libraries in and out.
+
+**Expected results**: A state-of-the-art library for Taylor models and guaranteed ODE solving.
+
+**Mentors:** [David P. Sanders](https://github.com/dpsanders), [Luis Benet](https://github.com/lbenet)
+
+
+
 # Native Bignums
 
 Julia currently supports big integers, rationals and floats, making use of the GMP and MPFR libraries. However, the current implementation is very basic, performance is far from optimal compared to hand-written GMP code, and the GMP license is GPL 3.
@@ -191,7 +192,6 @@ This project therefore involves exploring ways to improve bignums, possibly incl
 * Pooling bignum objects to avoid setup / teardown cost
 * Exposing a mutating API for library consumers
 * Lazy graph style APIs which can rewrite terms or apply optimisations
-* Modifying GMP itself to support high-performance garbage-collection
 
 This experimentation could be carried out as a package with a new implementation, or as patches over the existing implementation in Base.
 
@@ -199,4 +199,4 @@ This experimentation could be carried out as a package with a new implementation
 
 **Require Skills**: Familiarity with extended precision numerics and performance considerations. Familiarity either with Julia or GMP.
 
-**Mentors**: [Jameson Nash](https://github.com/vtjnash)
+**Mentors**: [Jameson Nash](https://github.com/vtjnash), [Yichao Yu](https://github.com/yuyichao)
