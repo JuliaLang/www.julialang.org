@@ -44,3 +44,10 @@ Someone who is more experienced in writing GPU kernels is also welcome to enrich
 tiled iterations, filtering primitives, moving windows, etc.
 
 **Mentors**: Simon Danisch
+
+### MAGMA binding
+
+[MAGMA](https://developer.nvidia.com/magma) is a collection of next generation linear algebra (LA) GPU accelerated libraries designed and implemented by the team that developed LAPACK and ScaLAPACK. Julia has already have the functionality to create such binding by simply calling its C API via `ccall`. By binding this to the JuliaGPU ecosystem, a lot applications could benefit it from it. What we need will
+just be a few bindings in Julia like what's lying in [CuArrays.jl](https://github.com/JuliaGPU/CuArrays.jl), use [BinaryProvider.jl](https://github.com/JuliaPackaging/BinaryProvider.jl) to provide downloads, and some unit tests on JuliaGPU's CI.
+
+**Mentors** [Roger-luo](https://github.com/Roger-luo), [Viral B. Shah](https://github.com/ViralBShah)
