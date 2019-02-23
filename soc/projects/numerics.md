@@ -169,7 +169,7 @@ Interval arithmetic provides a way to perform computations with continuous sets 
 This can be used to do global optimization of functions in a deterministic way, that is, find the global minimum of a non-convex, nonlinear function $f:\mathbb{R}^n \to \mathbb{R}$.
 Interval methods for global optimization provide a guaranteed bound for the global optimum, and sets that contain the optimizers.
 
-A basic branch-and-bound algorithm has already been implemented in  [`IntervalOptimization.jl`](https://github.com/JuliaIntervals/IntervalOptimization.jl), but it can be significantly improved.
+A basic branch-and-bound algorithm has already been implemented in  [`IntervalOptimisation.jl`](https://github.com/JuliaIntervals/IntervalOptimisation.jl), but it can be significantly improved.
 
 This project proposes to develop a state-of-the-art global optimization routine in Julia, by applying techniques found in the interval arithmetic and global optimization literature.
 This may involve developing code for McCormick relaxations and/or affine arithmetic.
