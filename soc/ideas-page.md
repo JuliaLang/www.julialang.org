@@ -28,7 +28,6 @@ We have our project ideas organised roughly into the skillsets required:
 * [Differential Equations](projects/diffeq.html) - Numerical methods for high-performance solving of differential equation models
 * [Tooling](projects/tooling.html) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
 * [Images](projects/images.html) – extend Julia's suite of tools for visualization and analysis of images.
-* [Audio and DSP](projects/audiodsp.html) – improve Julia's analysis, processing, and synthesis packages for audio and more general digital signal processing.
 * [General](projects/general.html) – jack-of-all-trades projects that don't require special skills.
 * [Graphics](projects/graphics.html) - projects ranging from low level OpenGL rendering to high level plotting
 * [Tabular Data](projects/tables.html)
