@@ -29,6 +29,7 @@ We have our project ideas organised roughly into the skillsets required:
 * [Tooling](projects/tooling.html) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
 * [Images](projects/images.html) – extend Julia's suite of tools for visualization and analysis of images.
 * [General](projects/general.html) – jack-of-all-trades projects that don't require special skills.
+* [Graphs](projects/graphs.html)
 * [Graphics](projects/graphics.html) - projects ranging from low level OpenGL rendering to high level plotting
 * [Tabular Data](projects/tables.html)
 
