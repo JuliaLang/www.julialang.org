@@ -130,7 +130,8 @@ can be helpful.
 **Expected Results**: Implementations of matrix coloring and automatic sparsity
 detection employed in the defaults of DifferentialEquations.jl.
 
-**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas),
+[Mathieu Besançon](https://github.com/matbesancon)
 
 ## Scalable Bifurcation Plotting via Deflation
 
