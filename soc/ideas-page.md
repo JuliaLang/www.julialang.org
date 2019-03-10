@@ -32,5 +32,6 @@ We have our project ideas organised roughly into the skillsets required:
 * [Graphs](projects/graphs.html) – extend the JuliaGraphs ecosystem with new algorithms and tools.
 * [Graphics](projects/graphics.html) – projects ranging from low level OpenGL rendering to high level plotting.
 * [Tabular Data](projects/tables.html)
+* [Continuous time signal processing](projects/kalmanbucy.html)
 
 You can see previous Summer of Code projects at the [Archive page](archive.html).
