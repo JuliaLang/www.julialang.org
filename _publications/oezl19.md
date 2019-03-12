@@ -9,7 +9,7 @@ authors:
 - Christopher Laughman
 year: "2019"
 pages: 
-doi: https://doi.org/10.3384/ecp19157589
+doi: 10.3384/ecp19157589
 arxiv:
 packages:
   ModiaMedia.jl: https://github.com/ModiaSim/ModiaMedia.jl
