@@ -80,8 +80,7 @@ VS Code.
 ## VS Code extension
 
 We are generally looking for folks that want to help with the [julia VS Code extension](https://github.com/JuliaEditorSupport/julia-vscode).
-We have a long list of open issues, and some of them amount to significant
-projects.
+We have a long list of open issues, and some of them amount to significant projects. One particularly rewarding project would be adding debugger functionality to the VS Code extension.
 
 **Required Skills**: TypeScript, julia, web development.
 
