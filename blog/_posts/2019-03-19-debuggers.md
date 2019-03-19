@@ -47,8 +47,7 @@ etc.), so it should be your go-to choice for particularly difficult cases.
 <screenshots>
 
 Rebugger also features an "edit" interface. For more information, see
-[Rebugger's documentation](https://timholy.github.io/Rebugger.jl/dev/)
-or watch a [video]().
+[Rebugger's documentation](https://timholy.github.io/Rebugger.jl/dev/).
 
 # An overview of the packages
 
@@ -201,7 +200,11 @@ noticed that it was defeated by many language constructs (e.g.,
 functions containing keyword arguments, `@eval`-generated methods,
 etc).  Most of the underlying causes were resolved by
 LoweredCodeUtils, which is in turn used by Revise, which then feeds
-the necessary data to CodeTracking for consumption by Rebugger.
+the necessary data to CodeTracking for consumption by Rebugger.  As
+one measure of the difference, of the more than 10,000 methods in
+Base, Revise 1.1.0 fails to capture 1,425 method signatures (a failure
+rate of 13%). In contrast, Revise 2.0.0 misses only 10 (<0.1%).
+
 Consequently, in addition to the new "interpret" interface, the new
 Rebugger is much better at its original "edit" interface, too.
 
