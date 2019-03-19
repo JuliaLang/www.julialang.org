@@ -39,12 +39,19 @@ in remote sessions through a console interface---you can alternatively
 perform debugging via the REPL.  There are two REPL interfaces:
 Debugger offers a "step, next, continue" interface similar to
 debuggers like `gdb`, whereas Rebugger aims to provide a console interface
-that is remiscent of an IDE. Debugger has some capabilities that none
+that is reminiscent of an IDE. Debugger has some capabilities that none
 of the other interfaces offer (e.g., very fine-grained control over
 stepping, the ability to execute the generator of generated functions,
 etc.), so it should be your go-to choice for particularly difficult cases.
 
-<screenshots>
+<Debugger screenshot(s)>
+
+Rebugger enters calls via a key binding, by default Meta-i (probably
+Esc-i, Alt-i, or option-i).  Try typing `gcd(10, 20)`, and *without
+hitting enter* type Meta-i. After a short pause you should see some
+display; type `?` to see the possible actions:
+
+![Rebugger](/images/blog/2019-03-19-debuggers/rebugger_interpret.png)
 
 Rebugger also features an "edit" interface. For more information, see
 [Rebugger's documentation](https://timholy.github.io/Rebugger.jl/dev/).
@@ -182,7 +189,7 @@ LoweredCodeUtils is the package for you.
 ## CodeTracking
 
 [CodeTracking][CT] was designed to act as a simple, lightweight "query
-API" for retreiving data from [Revise][RV]. Essentially,
+API" for retrieving data from [Revise][RV]. Essentially,
 LoweredCodeUtils performs analysis, Revise manages changes that occur
 over time, and CodeTracking informs the rest of the world.  For
 CodeTracking to do anything interesting, you need to be running
