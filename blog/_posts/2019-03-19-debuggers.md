@@ -7,22 +7,31 @@ author: <a href="https://github.com/pfitzseb">Sebastian Pfiztner</a>
 author: <a href="https://github.com/Keno">Keno Fischer</a>
 ---
 
-The authors are pleased to announce the immediate availability of a
-debugger for the Julia programming language. The core infrastructure
-is in [JuliaInterpreter][JI].  Currently there are also three separate
-front-ends: a full-featured IDE in [Juno][], a REPL (console) GUI-like
-mode in [Rebugger][RB], and "step/next/continue" console interface in
-[Debugger][DB]. The new debugging infrastructure allows you to move
-stepwise through code, but you can also set breakpoints and trap
-errors. Moreover, the new debugging capabilities have been written to
-integrate seamlessly with [Revise][RV], so that you can continuously
-analyze and modify code in a single session.  Indeed, Revise has been
-rewritten with JuliaInterpreter at its foundation, and this has given
-both Revise and Rebugger powerful new capabilities. To better support
-a multitude of consumers, Revise has been split into two packages, and
-now offers a convenient "query" API in the [CodeTracking][CT] package
-to allow other packages to ask questions about the code in your
-running Julia session.
+
+The authors are pleased to annouce the release of a fully-featured
+debugger for Julia. You can now easily debug and introspect Julia code
+in a variety of ways:
+
+* Step into functions and manually walk through your code while inspecting its state
+
+* Set breakpoints and trap errors, allowing you to discover what went
+  wrong at the point of trouble
+
+* Interactively update and replace existing code to rapidly fix bugs
+  in place without restarting
+
+* Use the full-featured IDE in [Juno][] to bundle all these
+  features together in an easy to use graphical interface
+
+The debugger is itself a collection of tools that enable those
+features. The core is powered by [an interpreter][JI] that can
+faithfully run Julia code while allowing various front-ends to control its
+execution. Each front-end is its own package: [Juno][] incorporates
+the debugger into its IDE, [Rebugger][RB] provides a REPL text UI, and
+the traditional step/next/continue command-line interface is provided
+by [Debugger][DB]. All these new debugging capabilities seamlessly
+integrate with [Revise][RV], so that you can continuously analyze and
+modify code in a single session.
 
 # A brief user-level introduction to the front end debuggers
 
@@ -49,7 +58,7 @@ of its features:
 ![Debugger.jl](/images/blog/2019-03-19-debuggers/debugger_jl_screenshot.png)
 
 
-In the screenshot, the function `closestpair` is debugged by prepending the call 
+In the screenshot, the function `closestpair` is debugged by prepending the call
 with the `@enter` macro. Execution is then suspended on the first line of the function (line 4)
 and it is possible to see a breakpoint on line 8. Running the command `c` (short for "continue")
 execution is resumed until a breakpoint is encountered. At this point, the command `fr`
@@ -58,10 +67,10 @@ where the execution of the code suspended due to the breakpoint.
 Finally, a "Julia REPL mode" is entered using the `` ` `` key.
 This gives a normal Julia REPL mode with the addition that the local variables are available.
 
-Rebugger enters calls via a key binding, by default Meta-i (probably
-Esc-i, Alt-i, or option-i).  Try typing `gcd(10, 20)`, and *without
-hitting enter* type Meta-i. After a short pause you should see some
-display; type `?` to see the possible actions:
+Rebugger enters calls via a key binding. To try it, type `gcd(10, 20)`
+and *without hitting enter* type Meta-i (Esc-i, Alt-i, or option-i).
+After a short pause you should see some display; type `?` to see the
+possible actions:
 
 ![Rebugger](/images/blog/2019-03-19-debuggers/rebugger_interpret.png)
 
@@ -104,8 +113,8 @@ decided to extend it in many ways:
   These optimizations reduce---but come nowhere close to
   eliminating---the most serious disadvantage of running all code in the
   interpreter: slow performance. It is hoped that the performance gap
-  between compiled and interpreted code, which is now as high as 1000×
-  in some cases, will narrow in the coming months.  However, the
+  between compiled and interpreted code, which can be many orders of magnitude,
+  will narrow in the coming months.  However, the
   interpreter will always be slower than compiled code.
 
   It's also worth noting that there are cases where the interpreter
@@ -229,9 +238,8 @@ Rebugger is much better at its original "edit" interface, too.
 
 Revise (and consequently Rebugger) has also gained some other new
 abilities, like handling methods defined at the REPL.  In the longer
-term, its foundation on LoweredCodeUtils may support more extensive
-analysis allowing Revise to update [dependent
-blocks](https://github.com/timholy/Revise.jl/issues/249).
+term, the deep analysis of code permitted by JuliaInterpreter and
+LoweredCodeUtils may support features that were formerly out of reach.
 
 # Summary
 
