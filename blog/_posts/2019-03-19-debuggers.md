@@ -43,8 +43,20 @@ that is reminiscent of an IDE. Debugger has some capabilities that none
 of the other interfaces offer (e.g., very fine-grained control over
 stepping, the ability to execute the generator of generated functions,
 etc.), so it should be your go-to choice for particularly difficult cases.
+Below is a screenshot of a short session using Debugger.jl, showing some
+of its features:
 
-<Debugger screenshot(s)>
+![Debugger.jl](/images/blog/2019-03-19-debuggers/debugger_jl_screenshot.png)
+
+
+In the screenshot, the function `closestpair` is debugged by prepending the call 
+with the `@enter` macro. Execution is then suspended on the first line of the function (line 4)
+and it is possible to see a breakpoint on line 8. Running the command `c` (short for "continue")
+execution is resumed until a breakpoint is encountered. At this point, the command `fr`
+(short for "frame") shows all the local variables and their values at the point
+where the execution of the code suspended due to the breakpoint.
+Finally, a "Julia REPL mode" is entered using the `` ` `` key.
+This gives a normal Julia REPL mode with the addition that the local variables are available.
 
 Rebugger enters calls via a key binding, by default Meta-i (probably
 Esc-i, Alt-i, or option-i).  Try typing `gcd(10, 20)`, and *without
