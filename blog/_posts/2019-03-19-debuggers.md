@@ -8,7 +8,7 @@ author: <a href="https://github.com/Keno">Keno Fischer</a>
 ---
 
 
-The authors are pleased to annouce the release of a fully-featured
+The authors are pleased to announce the release of a fully-featured
 debugger for Julia. You can now easily debug and introspect Julia code
 in a variety of ways:
 
