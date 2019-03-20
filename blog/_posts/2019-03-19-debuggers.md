@@ -52,7 +52,7 @@ The `Juno.@run` macro interprets your code and drops you in a
 debugging session if it hits a breakpoint, while `Juno.@enter` allows
 you to step through starting from the first line.
 
-## Rebugger and Debugger
+## Debugger and Rebugger
 
 If you have a different favorite editor than Atom---or sometimes work
 in remote sessions through a console interface---you can alternatively
@@ -71,7 +71,7 @@ of its features:
 
 In the screenshot, the function `closestpair` is debugged by prepending the call
 with the `@enter` macro. Execution is then suspended on the first line of the function (line 4)
-and it is possible to see a breakpoint on line 8. Running the command `c` (short for "continue")
+and it is possible to see a breakpoint on line 8. Upon running the command `c` (short for "continue"),
 execution is resumed until a breakpoint is encountered. At this point, the command `fr`
 (short for "frame") shows all the local variables and their values at the point
 where the execution of the code suspended due to the breakpoint.
@@ -80,7 +80,7 @@ This gives a normal Julia REPL mode with the addition that the local variables a
 
 Rebugger enters calls via a key binding. To try it, type `gcd(10, 20)`
 and *without hitting enter* type Meta-i (Esc-i, Alt-i, or option-i).
-After a short pause you should see some display; type `?` to see the
+After a short pause the display should update; type `?` to see the
 possible actions:
 
 ![Rebugger](/images/blog/2019-03-19-debuggers/rebugger_interpret.png)
@@ -96,11 +96,11 @@ an overview of the underpinnings of the new ecosystem.
 
 ## JuliaInterpreter
 
-[JuliaInterpreter][JI] is the lynchpin of the entire stack; it
+[JuliaInterpreter][JI] is the lynch pin of the entire stack; it
 contains the logic needed to evaluate and inspect running Julia code.
 An
 [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing))
-lends itself naturally to stepwise code evaluation and the
+lends itself naturally to step-wise code evaluation and the
 implementation of breakpoints.
 
 JuliaInterpreter descended from an original package
@@ -120,7 +120,7 @@ decided to extend it in many ways:
   breakpoints and trap errors.
 
 - JuliaInterpreter received numerous performance enhancements, and now
-  can run stepwise through code at roughly 50× its original speed.
+  can run step-wise through code at roughly 50× its original speed.
   These optimizations reduce---but come nowhere close to
   eliminating---the most serious disadvantage of running all code in the
   interpreter: slow performance. It is hoped that the performance gap
@@ -132,9 +132,9 @@ decided to extend it in many ways:
   feels faster, at least on initial execution. Julia's JIT compiler
   produces excellent results, but all that code-analysis takes time;
   there is interest in exploring whether running more code in the
-  interpreter could reduce latencies, a.k.a. the "time to first plot"
+  interpreter could reduce latency, a.k.a. the "time to first plot"
   problem. JuliaInterpreter is a potential tool for exploring that
-  tradeoff, and it appears that [not much additional work would be
+  trade off, and it appears that [not much additional work would be
   needed](https://github.com/JuliaDebug/JuliaInterpreter.jl/issues/44).
 
 - JuliaInterpreter gained the ability to interpret "top-level code",
@@ -228,7 +228,7 @@ CodeTracking to do anything interesting, you need to be running
 Revise; to allow CodeTracking to be a lightweight dependency, it
 relies on Revise to populate its own internal variables.
 
-See CodeTracking's README for more information.
+See [CodeTracking's README][CT] for more information.
 
 ## Revise and Rebugger
 
