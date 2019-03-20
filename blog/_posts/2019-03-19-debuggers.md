@@ -40,6 +40,17 @@ a couple of screen shots that highlight the new capabilities.
 
 ## Juno
 
+Juno provides a rich user interface around the interpreter and allows
+you to set breakpoints and step through directly in the source
+code. The debugger REPL can execute arbitrary code in a local context
+and the Workspace allows you to inspect local variables. The screenshot
+below shows a small debugging session for `gcd`:
+
+![Juno](/images/blog/2019-03-19-debuggers/juno.png)
+
+The `Juno.@run` macro interprets your code and drops you in a
+debugging session if it hits a breakpoint, while `Juno.@enter` allows
+you to step through starting from the first line.
 
 ## Rebugger and Debugger
 
