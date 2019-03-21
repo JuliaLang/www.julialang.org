@@ -1,10 +1,7 @@
 ---
 layout: post
 title: "A Julia interpreter and debugger"
-author: <a href="https://github.com/timholy">Tim Holy</a>
-author: <a href="https://github.com/KristofferC">Kristoffer Carlsson</a>
-author: <a href="https://github.com/pfitzseb">Sebastian Pfitzner</a>
-author: <a href="https://github.com/Keno">Keno Fischer</a>
+author: <a href="https://github.com/timholy">Tim Holy</a>, <a href="https://github.com/KristofferC">Kristoffer Carlsson</a>, <a href="https://github.com/pfitzseb">Sebastian Pfitzner</a>, <a href="https://github.com/Keno">Keno Fischer</a>
 ---
 
 
