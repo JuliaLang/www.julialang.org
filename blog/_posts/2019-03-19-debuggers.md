@@ -106,7 +106,7 @@ written by Keno Fischer. In its original form (prior to Jan 2019),
 ASTInterpreter2 was a fairly small but sophisticated package, capable
 of handling many advanced aspects of Julia's internal representation
 of code.  It was in need of updating to the many changes in Julia 1.0,
-although most of that work had already been done by Neethu Joy in late 2018.
+although most of that work had already been done by [Neethu Joy](https://github.com/Roboneet) in late 2018.
 When we began our own efforts, we finished the updates and
 decided to extend it in many ways:
 
@@ -157,7 +157,7 @@ decided to extend it in many ways:
   variables, the handling of try/catch, locks and threads, and the
   treatment of `@eval`ed code.  Some of these problems were isolated
   for us from the test suite failures by two additional contributors,
-  Gunnar Farnebäck and Don MacMillen.
+  [Gunnar Farnebäck](https://github.com/GunnarFarneback) and [Don MacMillen](https://github.com/macd).
 
   As of this writing, most of the cleanly-isolated problems have been
   fixed.  While we are still far from perfect, the pursuit of such a
