@@ -4,7 +4,7 @@ title:  DiffEqFlux.jl – 一個 Julia 的神經微分方程套件
 author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit, 譯者：杜岳華（Yueh-Hua Tu）Dboy Liao (Yin-Chen Liao)
 ---
 
-在這篇部落格文章中，我們將會展示在 Julia 中使用微分方程解算器（DiffEq solver）在神經網路上有多麼簡單、有效而且穩定。
+在這篇文章中，我們將會展示在 Julia 中使用微分方程解算器（DiffEq solver）搭配神經網路有多麼簡單、有效而且穩定。
 
 <!-- In this blog post we will show you how to easily, efficiently, and
 robustly use differential equation (DiffEq) solvers with neural networks in Julia. -->
@@ -14,7 +14,7 @@ robustly use differential equation (DiffEq) solvers with neural networks in Juli
 <!-- ![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif) -->
 
 [Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366)，
-在這篇文章得到 NeurIPS 2018 的最佳論文獎的殊榮之前，早已成為熱門話題。
+在這篇文章得到 NeurIPS 2018 的最佳論文獎的殊榮之前，其早已成為熱門話題。
 這篇論文給出了許多令人讚賞的結果，他結合了兩個不相干的領域，但這只不過是個開始而已：
 神經網路與微分方程簡直天生絕配。這篇部落格文章來自 [Flux](https://github.com/FluxML/Flux.jl)
 套件的作者與 [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl)
@@ -34,13 +34,13 @@ state-of-the-art tools. -->
 
  Julia 中運用數值方法來解微分方程的 [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl) 函式庫
 的眾多優勢已經在[其他文章中被詳細討論](http://www.stochasticlifestyle.com/comparison-differential-equation-solver-suites-matlab-r-julia-python-c-fortran/)。
-除了[經典 Fortran 方法的眾多效能評測](https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl)，
-他包含了其他現代功能，像是 [GPU 加速](http://www.stochasticlifestyle.com/solving-systems-stochastic-pdes-using-gpus-julia/)、
+除了[經典 Fortran 方法的眾多效能評測](https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl)之外，
+它包含了其他新穎的功能，像是 [GPU 加速](http://www.stochasticlifestyle.com/solving-systems-stochastic-pdes-using-gpus-julia/)、
 [分散式（多節點）平行運算](http://docs.juliadiffeq.org/latest/features/monte_carlo.html)
 以及[精密的事件處理](http://docs.juliadiffeq.org/latest/features/callback_functions.html)。
 最近，這些 Julia 土生土長的微分方程方法已經成功地整合進 [Flux](https://github.com/FluxML/Flux.jl/) 深度學習套件，
 並允許在神經網路中使用整套完整測試、優化的 DiffEq 方法。
-使用新套件 [DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl/)，我們將會展示給讀者
+我們將會使用新套件 [DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl/) 展示給讀者，
 在神經網路中增加微分方程層有多麼簡單，並可以使用一系列微分方程方法，
 包含剛性（stiff）常微分方程、隨機微分方程、延遲微分方程，以及混合（非連續）微分方程。
 
@@ -62,7 +62,7 @@ layers to neural networks using a range of differential equations models, includ
 differential equations, stochastic differential equations, delay differential
 equations, and hybrid (discontinuous) differential equations. -->
 
-這是第一個完美結合完整微分方程方法及神經網路模型的工具組。這個部落格文章將會說明為什麼完整微分方程
+這是第一個完美結合完整微分方程方法及神經網路模型的套件。這個部落格文章將會說明為什麼完整微分方程
 方法套組的彈性如此重要。能夠融合神經網路及 ODEs、SDEs、DAEs、DDEs、剛性方程，
 以及像伴隨敏感度運算（adjoint sensitivity calculations）這樣不同的方法，
 這是一個神經微分方程重大的廣義化工作，將來提供更好的工具讓研究者去探索問題領域。
