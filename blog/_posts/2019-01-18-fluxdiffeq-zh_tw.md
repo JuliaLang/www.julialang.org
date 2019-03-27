@@ -91,42 +91,43 @@ Please join the [Julia Slack](https://slackinvite.julialang.org/) and the #jsoc 
 
 <!-- ## What do differential equations have to do with machine learning? -->
 
-對於不熟悉相關領域的人來說，想必第一個問題自然是：為什麼微分方程在神經網絡這個脈絡下，會有舉足輕重的關聯？簡而言之，微分方程可以藉由數學模型來敘述、編碼 (encoding) 先驗的結構化假設，來表示任何一種非線性系統。
+對於不熟悉相關領域的人來說，想必第一個問題自然是：為什麼微分方程在神經網絡這個脈絡下，會有舉足輕重的關聯？
+簡而言之，微分方程可以藉由數學模型來敘述、編碼 (encoding) 先驗的結構化假設，來表示任何一種非線性系統。
 
-讓我們稍稍解釋一下最後這句話在說什麼。一般來說，主要有三種方法來定義一個非線性轉換: 直接數學建模、機器學習與微分方程式。直接數學建模可以直接寫下輸入與輸出間的非線性轉換，但只有在輸入與輸出間的函數關係形式為已知時可用，然而大部分的狀況，兩者間的確切關係並不是事先知道的。所以大多數的問題是，你如何在輸入輸出間的關係未知的情況下，來對其做非線性數學建模？
-
-其中一種解決方法是使用機器學習演算法。典型的機器學習處理的問題裡，會給定一些輸入資料 [[x]] 和你想預測的輸出 [[y]]。而由給定 [[x]] 產生預測值 [[y]] 就是一個機器學習模型 (以下稱作 [[ML]])。在訓練階段，我們想辦法調整 [[ML]] 的參數讓它得以產生更正確的預測值。接下來，我們即可用 [[ML]] 進行推論 (即針對事前沒見過的 `x` 值去產生相對應的 [[y]])。同時，這也不過是一個非線性轉換而已 [[y=ML(x)]]。但是 [[ML]] 有趣的地方在於他本身數學模型的形式可以非常基本但卻可以調整適應至各種資料。舉例來說，一個簡單的以 sigmoid 函數作為激活函數的神經網絡模型 (以設計矩陣的形式，design matrix)，本質上來說就是簡單的矩陣運算複合帶入 sigmoid 函數裡。舉例來說，[[ML(x)=σ(W3⋅σ(W2⋅σ(W1⋅x)))]] 即是一個簡單的三層神經網絡模型，其中 [[W=(W1, W2, W3)]] 為可以被調整的模型參數。接下來即是選擇適當的 [[W]] 使得 [[ML(x)=y]] 可以合理的逼近收集到的資料。相關機器學習理論已經保證了這是一個估計非線性系統的一個好方法。舉例來說，Universal Approximation Theorem 說明了只要有足夠的層數或參數 (即夠大的 [[W]] 矩陣)，[[ML(x)]] 可以逼近任何非線性函數 (在常見的限制條件下)。
-
-這太好了，它總是有解！然而有幾個必須注意的地方，主要在於這模型需直接從資料裡學習非線性轉換。但在大多數的狀況，我們並不知曉有興趣的非線性方程整體，但我們卻可以知道它的*結構細節*。舉例來說，這個非線性轉換可以是關於森林裡的兔子的數量，而我們可能知道兔子群體的出生率正比於其數量。因此，與其從無到有去學習兔子群體數量的非線性模型，我們或許希望能夠套用這個數量與出生率的已知*先驗（a priori）*關係，和一組參數來描寫它。對於我們的兔子群體模型來說，可以寫成
-
-$[[\text{rabbits(明日)} = \text{Model}(\text{rabbits(今日)}).]]
-
-在這個例子裡，我們得知群體出生率正比於群體數量這個先驗知識。而如果用數學的方式去描述這個關於兔子群體大小結構的假設，即是微分方程。在這裡，我們想描寫的事準確地說，是在給定的某一時間點的兔子群體的出生率將會隨著兔子群體大小的增加而增加。簡單地寫的話，可以寫成以下的式子
-
-$[[\text{rabbits}'(t) = \alpha\cdot \text{rabbits}(t)]]
-
-其中，[[α]] 是可以學習調整的參數。如果你還記得以前學過的微積分，這個方程的解即為成長率為 `α` 的指數成長函數:
-
-[[\text{rabbits}(t_\text{start})e^{(\alpha t)}]]
-
-其中 [[rabbits(start)]] 為初始的兔子數量。但值得注意的是，其實我們並不需要知道這個微分方程的解才能驗證以下想法：我們只需描寫模型的結構條件，數學即可幫助我們求解出這個解應該有的樣子。基於這個理由，使得微分方程成為許多科學領域的工具。例如物理學的基本定律明述了電荷的作用力 ([馬克士威方程組](https://en.wikipedia.org/wiki/Maxwell%27s_equations))。這些方程組對於物體如何改變是重要的方程組，因此這些方程組的解即是物體*將會*在哪裡的預測結果。
-
-<!-- ## What do differential equations have to do with machine learning?
-
-The first question someone not familiar with the field might ask is, why are
+<!-- The first question someone not familiar with the field might ask is, why are
 differential equations important in this context? The simple answer is that a
 differential equation is a way to specify an arbitrary nonlinear transform by
-mathematically encoding prior structural assumptions.
+mathematically encoding prior structural assumptions. -->
 
-Let's unpack that statement a bit. There are three
+讓我們稍稍解釋一下最後這句話在說什麼。一般來說，主要有三種方法來定義一個非線性轉換: 直接數學建模、機器學習與微分方程式。
+直接數學建模可以直接寫下輸入與輸出間的非線性轉換，但只有在輸入與輸出間的函數關係形式為已知時可用，
+然而大部分的狀況，兩者間的確切關係並不是事先知道的。所以大多數的問題是，
+你如何在輸入輸出間的關係未知的情況下，來對其做非線性數學建模？
+
+<!-- Let's unpack that statement a bit. There are three
 common ways to define a nonlinear transform: direct
 modeling, machine learning, and differential equations.
 Directly writing down the nonlinear function only works
 if you know the exact functional form that relates the input to the output.
 However, in many cases, such exact relations are not known *a priori*.
-So how do you do nonlinear modeling if you don't know the nonlinearity?
+So how do you do nonlinear modeling if you don't know the nonlinearity? -->
 
-One way to address this is to use machine
+其中一種解決方法是使用機器學習演算法。典型的機器學習處理的問題裡，會給定一些輸入資料 [[x]] 和你想預測的輸出 [[y]]。
+而由給定 [[x]] 產生預測值 [[y]] 就是一個機器學習模型（以下稱作 [[ML]]）。
+在訓練階段，我們想辦法調整 [[ML]] 的參數讓它得以產生更正確的預測值。
+接下來，我們即可用 [[ML]] 進行推論 (即針對事前沒見過的 `x` 值去產生相對應的 [[y]])。
+同時，這也不過是一個非線性轉換而已 [[y=ML(x)]]。
+但是 [[ML]] 有趣的地方在於他本身數學模型的形式可以非常基本但卻可以調整適應至各種資料。
+舉例來說，一個簡單的以 sigmoid 函數作為激活函數的神經網絡模型（以設計矩陣的形式，design matrix），
+本質上來說就是簡單的矩陣運算複合帶入 sigmoid 函數裡。
+舉例來說，[[ML(x)=σ(W3⋅σ(W2⋅σ(W1⋅x)))]] 即是一個簡單的三層神經網絡模型，
+其中 [[W=(W1, W2, W3)]] 為可以被調整的模型參數。
+接下來即是選擇適當的 [[W]] 使得 [[ML(x)=y]] 可以合理的逼近收集到的資料。
+相關機器學習理論已經保證了這是一個估計非線性系統的一個好方法。
+舉例來說，Universal Approximation Theorem 說明了只要有足夠的層數或參數（即夠大的 [[W]] 矩陣），
+[[ML(x)]] 可以逼近任何非線性函數 (在常見的限制條件下)。
+
+<!-- One way to address this is to use machine
 learning. In a typical machine learning problem, you are given some input [[x]] and
 you want to predict an output [[y]]. This generation of a prediction [[y]] from [[x]]
 is a machine learning model (let's call it [[ML]]).  During training, we attempt to
@@ -142,29 +143,51 @@ You then choose [[W]] such that [[ML(x)=y]] reasonably fits the function you wan
 The theory and practice of machine learning confirms that this is a good way to learn nonlinearities.
 For example, the Universal Approximation Theorem states that, for
 enough layers or enough parameters (i.e. sufficiently large [[W_{i}]] matrices), [[ML(x)]]
-can approximate any nonlinear function sufficiently close (subject to common constraints).
+can approximate any nonlinear function sufficiently close (subject to common constraints). -->
 
-So great, this always works! But it has some caveats, the main being
+這太好了，它總是有解！然而有幾個必須注意的地方，主要在於這模型需直接從資料裡學習非線性轉換。
+但在大多數的狀況，我們並不知曉有興趣的非線性方程整體，但我們卻可以知道它的*結構細節*。
+舉例來說，這個非線性轉換可以是關於森林裡的兔子的數量，而我們可能知道兔子群體的出生率正比於其數量。
+因此，與其從無到有去學習兔子群體數量的非線性模型，我們或許希望能夠套用這個數量與出生率的已知*先驗（a priori）*關係，
+和一組參數來描寫它。對於我們的兔子群體模型來說，可以寫成
+
+<!-- So great, this always works! But it has some caveats, the main being
 that it has to learn everything about the nonlinear transform directly from the data.
 In many cases we do not know the full nonlinear equation, but we may know details about its structure.
 For example, the nonlinear function could be the population of rabbits in the forest,
 and we might know that their rate of births is dependent on the current population.
 Thus instead of starting from nothing, we may want to use this known _a priori_ relation and a set of parameters that defines it.
-For the rabbits, let's say that we want to learn
+For the rabbits, let's say that we want to learn -->
 
-$[[\text{rabbits tomorrow} = \text{Model}(\text{rabbits today}).]]
+$[[\text{rabbits(明日)} = \text{Model}(\text{rabbits(今日)}).]]
 
-In this case, we have prior knowledge of the rate of births being dependent on
+在這個例子裡，我們得知群體出生率正比於群體數量這個先驗知識。
+而如果用數學的方式去描述這個關於兔子群體大小結構的假設，即是微分方程。
+在這裡，我們想描寫的事準確地說，是在給定的某一時間點的兔子群體的出生率將會隨著兔子群體大小的增加而增加。
+簡單地寫的話，可以寫成以下的式子
+
+<!-- In this case, we have prior knowledge of the rate of births being dependent on
 the current population. The way to mathematically state this
 structural assumption is via a differential equation. Here, what we are saying
 is that the birth rate of the rabbit population at a given time point increases
-when we have more rabbits. The simplest way of encoding that is
+when we have more rabbits. The simplest way of encoding that is -->
 
 $[[\text{rabbits}'(t) = \alpha\cdot \text{rabbits}(t)]]
 
-where [[\alpha]] is some learnable constant. If you know your calculus, the solution
-here is exponential growth from the starting point with a growth rate [[\alpha]]:
-[[\text{rabbits}(t_\text{start})e^{(\alpha t)}]]. But notice that we didn't need to know the
+其中，[[α]] 是可以學習調整的參數。如果你還記得以前學過的微積分，
+這個方程的解即為成長率為 `α` 的指數成長函數:
+
+<!-- where [[\alpha]] is some learnable constant. If you know your calculus, the solution
+here is exponential growth from the starting point with a growth rate [[\alpha]]: -->
+
+[[\text{rabbits}(t_\text{start})e^{(\alpha t)}]]
+
+其中 [[rabbits(start)]] 為初始的兔子數量。但值得注意的是，其實我們並不需要知道這個微分方程的解
+才能驗證以下想法：我們只需描寫模型的結構條件，數學即可幫助我們求解出這個解應該有的樣子。
+基於這個理由，使得微分方程成為許多科學領域的工具。例如物理學的基本定律明述了電荷的作用力 ([馬克士威方程組](https://en.wikipedia.org/wiki/Maxwell%27s_equations))。
+這些方程組對於物體如何改變是重要的方程組，因此這些方程組的解即是物體*將會*在哪裡的預測結果。
+
+<!-- But notice that we didn't need to know the
 solution to the differential equation to validate the idea: we encoded the
 structure of the model and mathematics itself then outputs what the solution
 should be. Because of this, differential equations have been the tool of choice
