@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  DiffEqFlux.jl – 一個 Julia 的神經微分方程套件
+title:  DiffEqFlux.jl – Julia 的神經微分方程套件
 author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit, 譯者：杜岳華（Yueh-Hua Tu）Dboy Liao (Yin-Chen Liao)
 ---
 
@@ -113,14 +113,14 @@ However, in many cases, such exact relations are not known *a priori*.
 So how do you do nonlinear modeling if you don't know the nonlinearity? -->
 
 其中一種解決方法是使用機器學習演算法。典型的機器學習處理的問題裡，會給定一些輸入資料 [[x]] 和你想預測的輸出 [[y]]。
-而由給定 [[x]] 產生預測值 [[y]] 就是一個機器學習模型（以下稱作 [[ML]]）。
+而由給定 [[x]] 產生預測值 [[y]] 就是一個機器學習模型（以下稱作 [[ML]]）。
 在訓練階段，我們想辦法調整 [[ML]] 的參數讓它得以產生更正確的預測值。
-接下來，我們即可用 [[ML]] 進行推論 (即針對事前沒見過的 `x` 值去產生相對應的 [[y]])。
+接下來，我們即可用 [[ML]] 進行推論 (即針對事前沒見過的 [[x]] 值去產生相對應的 [[y]])。
 同時，這也不過是一個非線性轉換而已 [[y=ML(x)]]。
 但是 [[ML]] 有趣的地方在於他本身數學模型的形式可以非常基本但卻可以調整適應至各種資料。
-舉例來說，一個簡單的以 sigmoid 函數作為激活函數的神經網絡模型（以設計矩陣的形式，design matrix），
+舉例來說，一個簡單的以 sigmoid 函數作為激活函數的神經網路模型（以設計矩陣的形式，design matrix），
 本質上來說就是簡單的矩陣運算複合帶入 sigmoid 函數裡。
-舉例來說，[[ML(x)=σ(W3⋅σ(W2⋅σ(W1⋅x)))]] 即是一個簡單的三層神經網絡模型，
+舉例來說，[[ML(x)=σ(W3⋅σ(W2⋅σ(W1⋅x)))]] 即是一個簡單的三層神經網路模型，
 其中 [[W=(W1, W2, W3)]] 為可以被調整的模型參數。
 接下來即是選擇適當的 [[W]] 使得 [[ML(x)=y]] 可以合理的逼近收集到的資料。
 相關機器學習理論已經保證了這是一個估計非線性系統的一個好方法。
@@ -174,7 +174,7 @@ when we have more rabbits. The simplest way of encoding that is -->
 
 $[[\text{rabbits}'(t) = \alpha\cdot \text{rabbits}(t)]]
 
-其中，[[α]] 是可以學習調整的參數。如果你還記得以前學過的微積分，
+其中，[[α]] 是可以學習調整的參數。如果你還記得以前學過的微積分，
 這個方程的解即為成長率為 `α` 的指數成長函數:
 
 <!-- where [[\alpha]] is some learnable constant. If you know your calculus, the solution
@@ -183,9 +183,9 @@ here is exponential growth from the starting point with a growth rate [[\alpha]]
 [[\text{rabbits}(t_\text{start})e^{(\alpha t)}]]
 
 其中 [[rabbits(start)]] 為初始的兔子數量。但值得注意的是，其實我們並不需要知道這個微分方程的解
-才能驗證以下想法：我們只需描寫模型的結構條件，數學即可幫助我們求解出這個解應該有的樣子。
-基於這個理由，使得微分方程成為許多科學領域的工具。例如物理學的基本定律明述了電荷的作用力 ([馬克士威方程組](https://en.wikipedia.org/wiki/Maxwell%27s_equations))。
-這些方程組對於物體如何改變是重要的方程組，因此這些方程組的解即是物體*將會*在哪裡的預測結果。
+才能驗證以下想法：我們只需描寫模型的結構條件，數學即可幫助我們求解出這個解應該有的樣子。
+基於這個理由，使得微分方程成為許多科學領域的工具。例如物理學的基本定律明述了電荷的作用力 ([馬克士威方程組](https://en.wikipedia.org/wiki/Maxwell%27s_equations))。
+這些方程組對於物體如何改變是重要的方程組，因此這些方程組的解即是物體*將會*在哪裡的預測結果。
 
 <!-- But notice that we didn't need to know the
 solution to the differential equation to validate the idea: we encoded the
@@ -521,7 +521,7 @@ m = Chain(
   Dense(288, 10), softmax) |> gpu
 ```
 
-只要你可以寫下向前傳播 (forward pass)，我們就可以處理任何參數化可微分的程序並優化它。一個新世界即為你的囊中之物啊。
+只要你可以寫下向前傳播 (forward pass)，我們就可以處理任何參數化可微分的程序並優化它。一個新世界即為你的囊中之物啊。
 <!-- As long as you can write down the forward pass, we can take any parameterised,
 differentiable program and optimise it. The world is your oyster. -->
 
