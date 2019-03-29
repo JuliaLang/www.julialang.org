@@ -5,26 +5,11 @@ title:  Tabular Data – Summer of Code
 
 # {{ page.title }}
 
-## Parquet.jl enhancements
+## Parquet.jl enhancements and JuliaDB
 
-Efficient storage of tabular data is an important component of the data analysis story in the ecosystem. Julia has many options here -- JLD, JuliaDB’s built-in serialization, CSV.write. These either suffer from lack of performance or lack of standardization. Parquet is a format for efficient storage of tabular data used in the Hadoop world. It has compression techniques which reduce disk usage as well as speed up reads. A well-rounded Parquet implementation in Julia will solve the current issues with storage formats and let Julia interoperate with software from the Hadoop world.
+[Apache Parquet](https://parquet.apache.org/) is a binary data format for tabular data. It has features for compression and memory-mapping of datasets on disk. A decent implementation of Parquet in Julia is likely to be highly performant. It will be useful as a standard format for distributing tabular data in a binary format. JuliaDB (submodule [MemPool](https://github.com/JuliaComputing/MemPool.jl/blob/master/src/io.jl)) currently requires a binary format for efficient storage and data transfer, but right now resorts to a custom but fast implementation. Users are asked not to take it seriously because it breaks from release to release. Having a Parquet reader and writer will solve this problem by standardizing the format. Prior work includes [Parquet.jl](https://github.com/JuliaIO/Parquet.jl) which only has a Parquet reader. Having written a basic Parquet reader and writer, you will need to shift your focus to performance-oriented array types in JuliaDB: namely PooledArrays, and StringArrays (from WeakRefStrings.jl), StructArrays, and finally tables. You will also need to make sure that bits-types such as Dates, Rational numbers etc. are efficiently stored and memory-mapped on load. Then you will make Parquet the default format for loading, saving and (possibly) _communicating data between processes_ in JuliaDB. By doing this project you will learn about the performance engineering a distributed, out-of-core analytical database.
 
-Parquet.jl currently contains a reader for Parquet files. This project involves implementing the writer for Parquet files, as well as some enhancements to the reading functionality.
-
-**Deliverables:**
-
-_Reader enhancements:_
-
-Read a file as a NamedTuple of vectors (using NamedTuples.jl on Julia 0.6). This is on similar lines, but different from the current cursor-based reader. Probably as an implementation of `AbstractBuilder` that returns NamedTuple of column vectors, combined with a new iterator/cursor that returns a bunch of records instead of individual records.
-
-_Writer support:_
-
-- Write a table (in the form of a NamedTuple of vectors) to disk.
-  Note: we will use NamedTuple of vectors as a minimal table which can be converted back into DataFrames or IndexedTables
-- Implement the compression features provided in the Parquet spec-
-Optionally auto detect compression scheme based on the data.
-
-**Mentors**: [Tanmay Mohapatra](https://github.com/tanmaykm)
+**Mentors:** [Shashi Gowda](https://github.com/shashi), [Tanmay Mohapatra](https://github.com/tanmaykm)
 
 ## GPU support in JuliaDB
 
