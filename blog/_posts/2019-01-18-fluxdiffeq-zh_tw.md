@@ -146,7 +146,7 @@ enough layers or enough parameters (i.e. sufficiently large [[W_{i}]] matrices),
 can approximate any nonlinear function sufficiently close (subject to common constraints). -->
 
 這太好了，它總是有解！然而有幾個必須注意的地方，主要在於這模型需直接從資料裡學習非線性轉換。
-但在大多數的狀況，我們並不知曉有興趣的非線性方程整體，但我們卻可以知道它的*結構細節*。
+但在大多數的狀況，我們並不知曉實際的非線性方程整體，但我們卻可以知道它的*結構細節*。
 舉例來說，這個非線性轉換可以是關於森林裡的兔子的數量，而我們可能知道兔子群體的出生率正比於其數量。
 因此，與其從無到有去學習兔子群體數量的非線性模型，我們或許希望能夠套用這個數量與出生率的已知*先驗（a priori）*關係，
 和一組參數來描寫它。對於我們的兔子群體模型來說，可以寫成
@@ -175,7 +175,7 @@ when we have more rabbits. The simplest way of encoding that is -->
 $[[\text{rabbits}'(t) = \alpha\cdot \text{rabbits}(t)]]
 
 其中，[[α]] 是可以學習調整的參數。如果你還記得以前學過的微積分，
-這個方程的解即為成長率為 `α` 的指數成長函數:
+這個方程的解即為成長率為 [[\alpha]] 的指數成長函數:
 
 <!-- where [[\alpha]] is some learnable constant. If you know your calculus, the solution
 here is exponential growth from the starting point with a growth rate [[\alpha]]: -->
@@ -245,9 +245,9 @@ $[[y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).]] -->
 這在結構上相似於 ResNet，最為成功的影像處理模型之一。
 Neural ODEs 論文的洞見就是，更加深、更加強大的類 ResNet 的模型可以有效地逼近類似於「無限深」，
 如同每一層趨近於零的模型。
-我們可以只是直接建構微分方程，並沒有多增加層數，然後用特製的微分方程方法求解。
-數值微分方程方法是個科學方法，可以追溯回到第一台電腦時期，而現代方法可以視情況調整步長 [[\Delta x]]，
-以及使用高階逼近的方法來大幅減少實際需要的步數。並且事實證明，他實務上也運作得很好。
+我們可以直接建構微分方程，不透過增加層數這種手段，隨後用特製的微分方程方法求解。
+數值微分方程方法是門可以追溯到第一台電腦出現時期的科學，而現代方法可以動態調整 step sizes [[\Delta x]]，
+以及使用高階逼近的方法來大幅減少實際需要的步數。並且事實證明，它實務上也運作得很好。
 
 <!-- This looks similar in structure to a ResNet, one of the most successful image
 processing models. The insight of the the Neural ODEs paper was that
@@ -268,7 +268,7 @@ practice, too. -->
 你可能想要參考我們的[用 Julia 解微分方程影片教學](https://www.youtube.com/watch?v=KPEqYtEd-zY)，
 以及參考我們的[DifferentialEquations.jl 微分方程教學手冊](http://docs.juliadiffeq.org/latest/tutorials/ode_example.html)。
 概念是這樣的，如果你透過導函數 `u'=f(u,p,t)` 定義一個 `ODEProblem`，
-接著提供一個初始條件 `u0`，一個需要解的時間區段 `tspan`，以及相關的參數 `p`。
+接著就能用初始條件 `u0` 、時間區段 `tspan`，以及相關的參數 `p` 去解這個問題。
 
 <!-- First, how do you numerically specify and solve an ODE? If you're new to solving
 ODEs, you may want to watch our
@@ -339,7 +339,7 @@ prob = ODEProblem(lotka_volterra,u0_f,tspan_f,p)
 <!-- In this form, everything about the problem is determined by the parameter vector (`p`, referred to
 as `θ` in associated literature). The utility of this will be seen later. -->
 
-DifferentialEquations.jl 提供非常多強大的選項可以客製化一些指標，
+DifferentialEquations.jl 提供非常多強大的選項以供客製化，
 像是準確度（accuracy）、容忍度（tolerances）、微分方程方法、事件等等；可以參考
 [手冊](http://docs.juliadiffeq.org/latest/)以獲得更多進階的使用方式。
 
@@ -353,7 +353,7 @@ more advanced ways. -->
 <!-- ## Let's Put an ODE Into a Neural Net Framework! -->
 
 要理解一個微分方程是怎麼被嵌入到一個神經網路中，那我們就要看看一個神經網路層實際上是什麼。
-一個層實際上就是一個*可微分函數*，他會吃進一個大小為 `n` 的向量，然後吐出一個大小為 `m` 的新向量。
+一個層實際上就是一個*可微分函數*，它會吃進一個大小為 `n` 的向量，然後吐出一個大小為 `m` 的新向量。
 就這樣！網路層傳統上是使用簡單的函數，像是矩陣相乘，但有了[可微分程式設計](https://julialang.org/blog/2017/12/ml&pl-zh_tw)的精神，
 人們越來越傾向實驗複雜的函數，像是光線追蹤以及物理引擎。
 
@@ -521,7 +521,7 @@ m = Chain(
   Dense(288, 10), softmax) |> gpu
 ```
 
-只要你可以寫下向前傳播 (forward pass)，我們就可以處理任何參數化可微分的程序並優化它。一個新世界即為你的囊中之物啊。
+只要你可以寫下 forward pass，我們就可以處理任何參數化可微分的程序並優化它。一個新世界即為你的囊中之物啊。
 <!-- As long as you can write down the forward pass, we can take any parameterised,
 differentiable program and optimise it. The world is your oyster. -->
 
@@ -582,7 +582,7 @@ plot(sol,xscale=:log10,tspan=(0.1,1e11))
 
 這不過是個積分法一些微小細節的範例：藉由 PI-適應性控制器和步距預測隱式解算器等，都有著複雜微小的細節並需要長時間的開發與測試，才能變成有效率並穩定的求解器。而不同的問題也會需要不同的方法：如為了在許多[物理問題上得到夠好的解並避免偏移](https://scicomp.stackexchange.com/questions/29149/what-does-symplectic-mean-in-reference-to-numerical-integrators-and-does-scip/29154#29154)，[Symplectic 積分器]((http://docs.juliadiffeq.org/latest/solvers/dynamical_solve.html#Symplectic-Integrators-1))是必須的；另外像是 [IMEX 積分器](ttp://docs.juliadiffeq.org/latest/solvers/split_ode_solve.html#Implicit-Explicit-(IMEX)-ODE-1) 在求解偏微分方程上也是不可或缺的。由此可見建立一個具產品水準的求解器是有迫切需要，但目前相對稀少的。
 
-在科學運算這個領域，與其另外為了機器學習另外設計積分器工具庫，在 Julia 裡兩者並無不同，也就是說你可以直接利用這些現成的積分器。
+在科學運算這個領域，常常會為了機器學習類型的方法設計獨立的函式庫，但在 Julia 中裡兩者並無不同，也就是說你可以直接利用這些現成的函式庫。
 
 <!-- This is just one example of subtlety in integration: Stabilizing explicit
 methods via PI-adaptive controllers, step prediction in implicit solvers, etc.
@@ -642,7 +642,11 @@ loss_rd_dde()
 animation,
 [can be found in the model-zoo](https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/dde.jl) -->
 
-除此之外，我們也可以在微分方程中加入隨機項去模擬隨機事件如何影響預期外的出生或死亡。這類的微分方程被稱為隨機微分方程 (SDE)。由於 [DifferentialEquations.jl 同樣也可以處理隨機微分方程](http://docs.juliadiffeq.org/latest/tutorials/sde_example.html) (也是目前唯一一個包含剛性與非剛性隨機微分方程積分器的函式庫)，也同樣可以用類似方法引入 Flux 作為神經網路的一層。以下是使用 SDE 作為神經網路一層的範例：
+除此之外，我們也可以在微分方程中導入隨機性去模擬隨機事件如何影響預期外的出生或死亡。
+這類的微分方程被稱為隨機微分方程 (SDE)。
+由於 [DifferentialEquations.jl 同樣也可以處理隨機微分方程](http://docs.juliadiffeq.org/latest/tutorials/sde_example.html) (也是目前唯一一個包含剛性與非剛性隨機微分方程解算器的函式庫)，
+也同樣可以用類似方法引入 Flux 作為神經網路的一層。
+以下是使用 SDE 作為神經網路一層的範例：
 <!-- Additionally we can add randomness to our differential equation to simulate
 how random events can cause extra births or more deaths than expected. This
 kind of equation is known as a stochastic differential equation (SDE).
@@ -699,7 +703,7 @@ FluxDiffEq.jl uses only around ~100 lines of code to pull this all off. -->
 
 ## 用 Julia 實作一個常微分方程神經網路層
 
-現在我們回頭用 Julia 實作一個常微分方程神經網路層吧！牢記這不過就是一個把常微分方程中的導數函數替換成一個神經網路層。為此，我們先來定義一個神經網路做為導數。在 Flux 中，我們可以以下的程式碼實作一個多層感知器，帶有一層隱藏層和 `tanh` 作為激發函數：
+現在我們回頭用 Julia 實作一個常微分方程神經網路層吧！牢記這不過就是一個把常微分方程中的導數函數替換成一個神經網路層。為此，我們先來定義一個神經網路做為導數。在 Flux 中，我們可以以下的程式碼實作一個多層感知器，帶有一層隱藏層和 `tanh` 作為 activation function：
 <!-- ## Implementing the Neural ODE layer in Julia
 
 Let's go all the way back for a second and now implement the neural ODE layer
@@ -971,8 +975,8 @@ maintainable framework for integrating differential equations and neural network
 And this is precisely what FluxDiffEq.jl gives the user direct access to. There
 are three functions with a similar API: -->
 
-- `diffeq_rd` 使用了 Flux 的自動微分反向模式求解。
-- `diffeq_fd` 使用了 ForwardDiff.jl 的自動微分前向模式求解。
+- `diffeq_rd` 使用了 Flux 的 reverse-mode AD 求解。
+- `diffeq_fd` 使用了 ForwardDiff.jl 的 forward-mode AD 求解。
 - `diffeq_adjoint` 使用了伴隨敏感性分析來「反向傳遞」求解。
 
 <!-- - `diffeq_rd` uses Flux's reverse-mode AD through the differential equation
