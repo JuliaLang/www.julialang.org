@@ -158,6 +158,22 @@ Julia is now being used in several universities and online courses. If you know 
 - Universidad Nacional Pedro Ruiz Gallo, Lambayeque, Perú <!---6.707546,-79.9069734-->
     * Julia: el lenguaje del futuro, [Semana de Integración de Ingeniería Electrónica](http://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro), (Oscar William Neciosup Vera), Spring 2015
 
+- [Université de Bretagne-Sud](http://www.univ-ubs.fr), Lorient, France <!--47.747145,3.393270-->
+    * ANR2201 - Data Analysis ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2018-
+    * INOE301 - Scheduling ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+    * MAOE501 - Advanced Scheduling ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+    * MTH2151 - Graphs ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2019-
+    * MTH2153 - Numerical methods 1(Dr. Bertrand Banos), 2018-
+    * MTH2251 - Mathematical Programming ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2018-
+    * MTH2254 - Multi-objective optimization ([Prof. Xavier Gandibleux](https://xgandibleux.github.io/)), 2018-
+    * MTH2352 - Heuristics and metaheuristics ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2019-
+    * OADE301 - Decision aiding tools ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+    * OPCE501 - Combinatorial Optimization ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2019-
+    * OPE401 - Operations Research ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+    * ROP2301 - Optimization ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2018-
+    * UNOE401 - Digital factory and optimization ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+    * UVOE501 - Virtual factory and optimization ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+
 - University at Buffalo <!--43.0015201,-78.7870697019128-->
   * [IE 572](http://www.chkwon.net/teaching/ie-572/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
 
