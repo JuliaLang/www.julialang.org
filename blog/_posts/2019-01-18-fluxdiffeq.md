@@ -6,6 +6,8 @@ redirect_from:
   - /blog/_posts/2019-01-18-fluxdiffeq
 ---
 
+Translations:  <a href="https://julialang.org/blog/2019/01/fluxdiffeq-zh_tw">Traditional Chinese</a>
+
 In this blog post we will show you how to easily, efficiently, and
 robustly use differential equation (DiffEq) solvers with neural networks in Julia.
 
