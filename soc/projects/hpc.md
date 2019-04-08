@@ -19,23 +19,6 @@ Distributed computation frameworks like Hadoop/MapReduce have demonstrated the u
 
 This project proposal is to implement a native Julia framework for distributed execution for general purpose data parallelism, using dynamic, runtime-generated general task graphs which are flexible enough to describe multiple classes of parallel algorithms. Students will be expected to weave together native Julia parallelism constructs such as the `ClusterManager` for massively parallel execution, and automate the handling of data dependencies using native Julia `RemoteRefs` as remote data futures and handles. Students will also be encouraged to experiment with novel scheduling algorithms.
 
-## GPUArrays
-
-### Integration with existing GPU libraries
-
-In GPUArrays we don't want to reinvent the wheel and leverage the great power of CU/CL - BLAS ( or even CU/CL - FFT).
-Fortunately, Julia's abstract array interface makes it fairly straightforward to integrate these libraries in a natural way, since Julia already has OpenBLAS deeply integrated in the base array abstraction.
-We have a basic strategy laid out for the integration and can mentor someone who is willing to write the it!
-
-### JIT compiling GPU Code
-
-GPUArrays heavily relies on just in time compilation of high performance kernels on the arrays.
-The foundation for this is already part of GPUArrays in form of a basic map/reduce/broadcast implementation, using a Transpiler and CUDAnative.
-What we now need is a lot of tests, improvements to the compiler/transpiler, benchmarks and fine tuning the performance of our kernels.
-Someone who is more experienced in writing GPU kernels is also welcome to enrich GPUArrays with the implementation of more advanced kernels, e.g.
-tiled iterations, filtering primitives, moving windows, etc.
-
-**Mentors**: Simon Danisch
 
 ### MAGMA binding
 
