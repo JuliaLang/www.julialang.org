@@ -26,7 +26,7 @@ to define and use our own primitive type with a simple example.
 
 ## The problem
 
-After declaring our new primitive type, that's say we do the following:
+After declaring our new primitive type, that is to say we do the following:
 
 ```julia
     primitive type A 72 end
