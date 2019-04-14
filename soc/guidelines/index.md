@@ -14,25 +14,26 @@ potential mentors to help find interesting projects. The Slack channel `#jsoc` i
 dedicated to helping students get the help they need. Additionally, you should
 make use of these connections to start making some small contributions and
 progress on your project early on. While PRs before the applications are not
-required, GSoC is extremely competitive, so the more ways you have to show your
-commitment, the better.
+required, the Julia Language organization programs are extremely competitive,
+so the more ways you have to show your commitment, the better.
 
 # Application Instructions
 
-GSoC applications must be submitted to https://summerofcode.withgoogle.com. We
-recommend having a mentor to help you with the application process. Please feel
-free to share your draft applications in the `#jsoc` channel of the Slack to
-receive feedback.
-
-Our organization does not have page or formatting requirements, but we recommend
-building a formal PDF document of less than 10 pages which is formatted using
-Word or LaTeX. If you have any questions, contact the Julia GSoC administrators
-at summerofcode@julialang.org.
+- GSoD applications must be submitted to https://developers.google.com/season-of-docs/.
+- GSoC applications must be submitted to https://summerofcode.withgoogle.com.
 
 # Application Guidelines
 
 Applications are free-form, so you can discuss your project in whatever way you
-feel is best. The key questions we will ask ourselves when considering it are:
+feel is best. Our organization does not have page or formatting requirements, but we recommend
+building a formal PDF document of less than 10 pages which is formatted using
+Word or LaTeX. If you have any questions, contact the Julia Language student
+programs administrators at studentprograms@julialang.org. We
+recommend having a mentor to help you with the application process. Please feel
+free to share your draft applications in the `#jsoc` channel of the Slack to
+receive feedback.
+
+The key questions we will ask ourselves when considering it are:
 
 * Is the student committed to the project?
 * Is the plan a reasonable amount to do in three months?
@@ -76,9 +77,9 @@ the project
   - Have you contributed to open source projects before? (Link us to some issues
     and patches, if any)
   - Why are you interested in Julia? Have you used it much before? You need to
-    demonstrate your ability to use Julia by the beginning of the GSoC.
-    GSoC is not for learning the Julia language, though extensive prior experience
-    is not required.
+    demonstrate your ability to use Julia by the beginning of the of the program.
+    Trainee programs are not for learning the Julia language, though extensive
+    prior experience is not required.
   - Do you have the mathematical/scientific background for your project? Many
     of the Julialang projects have a significant portion that require technical
     expertise and applicants need to demonstrate their ability to handle the
