@@ -1,6 +1,6 @@
 ---
 layout: insidepage
-title:  Programs
+title:  Julia Seasons of Contributions
 redirect_from:
   - /jsoc.html
   - /gsoc/2015/index.html
@@ -8,9 +8,9 @@ redirect_from:
   - /soc/index.html
 ---
 
-# The Julia Language Organization Programs
+# Julia Seasons of Contributions
 
-The Julia Language Organization participates in various programming to fund students and other developers to contribute to the open source ecosystem. Below are the current programs that the Julia Language is participating in. For any questions, please consult the program administrators at programs@julialang.org
+The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding students and other developers to contribute to the open source ecosystem. Below are the current programs that the Julia Language is participating in. For any questions, please consult the program administrators at jsoc@julialang.org
 
 ## Google Season of Docs (GSoD)
 
