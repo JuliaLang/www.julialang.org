@@ -18,27 +18,15 @@ The Julia organization will be a participant in the 2019 Google Season of Docs w
 
 Below we have a list of broad areas in the Julia open source ecosystem which are participating in the GSoD program. If interested in these areas, get in touch with the mentors through the `#jsoc` channel or through email. Check out the [application guidelines](guidelines/) once you have a project in mind.
 
-**Table of Contents**
+### Projects
 
-The following topics have been proposed for technical writers:
-
-### Differential Equations
-
-DifferentialEquations.jl is a widely used Julia library for solving ordinary, stochastic, delay, any many more types of differential equations. Below are the proposed projects in this area. Technical writers may wish to do a combination of these projects. The mentor for the JuliaDiffEq projects is [Chris Rackauckas](https://github.com/ChrisRackauckas).
-
-#### Updated Documentation and Doc Testing
-
-DifferentialEquations.jl's documentation at [DiffEqDocs.jl](https://github.com/JuliaDiffEq/DiffEqDocs.jl) was one of the first [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) projects, and as such much of its internals are in dire need of updates. Notably, automated reference handling would fix issues with dead links that are not uncommon. Additionally, none of the examples run doc tests, and thus currently the organization relies on user issues to find out when to update the pages. Lastly, there are many requests for a PDF form of this documentation since many of the materials are only featured in this form, yet sadly there is currently no PDF builder associated with DiffEqDocs.jl even though Documenter.jl has recently gained this functionality.
-
-#### Tutorial Writing
-
-The JuliaDiffEq organization hosts the [DiffEqTutorials.jl](https://github.com/JuliaDiffEq/DiffEqTutorials.jl) repository which auto-builds websites and pdfs from tutorials. Tutorials generally center features of DifferentialEquations.jl or on application domains. Technical writers who have an expertise in areas like biological modeling may wish to contribute tutorials that showcase how to use DifferentialEquations.jl to solve problems arising in their discipline.
-
-#### Automated Benchmarks and Performance Regression Flagging
-
-The organization hosts the [DiffEqBenchmarks.jl](https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl) repository which generates websites and pdfs describing the performance relationships not only between the native Julia differential equation solvers, but also between the commonly used C++ and Fortran methods, making it the most comprehensive set of differential equation solver benchmarks. These benchmarking scripts utilize [Weave.jl](https://github.com/mpastell/Weave.jl) to automate the process. Technical writers can contribute benchmarks which cover new areas and types of differential equations and add explanatory details and summaries to help with the interpretation of benchmarks. Additionally, skilled technical writers may with to help setup systems to update the benchmarks in some semi-automated form, along with detection and flagging whenever performance regressions are found (i.e. the benchmark equivalent to doc tests).
+The topics that have been proposed for technical writers can be found on [the Google Season of Docs projects page](gsod/projects.html).
 
 ## NumFOCUS Small Development Grants
+
+Semi-quarterly NumFOCUS puts out a call for small development grants. The Julia language organization puts out a call for proposals from the community for grant proposals. There are no restrictions on what the funding can be used for. Code development, documentation work, educational, sustainability, and diversity initiatives, or other types of projects are all eligible. Since only one application can be put in for the Julia project, an internal selection process is used to determine to chose which is the proposals will be submitted to NumFOCUS. For examples of grants that were funded in the first round, [previous awards](https://www.numfocus.org/blog/numfocus-awards-development-grants-to-open-source-projects-spring-2018)
+
+Up to $3,000 is available per proposal. The total allocated funding from NumFOCUS was $20,000 in previous cycles, meaning that not every project will be able to receive a grant. This total amount is adjusted depending on the number and quality of proposals this may be adjusted up or down.
 
 ## Google Summer of Code (GSoC)
 
@@ -48,24 +36,24 @@ This page lists a bunch of project ideas, meant to serve as starting points as y
 
 Check out the [application guidelines](guidelines/) once you have a project in mind.
 
-**Table of Contents**
+### Projects
 
 We have our project ideas organized roughly into the skillsets required:
 
-* [Turing projects](projects/turing.html) for probabilistic modelling and probabilistic programming.
+* [Turing projects](gsoc/turing.html) for probabilistic modelling and probabilistic programming.
 * [Flux projects](https://fluxml.ai/gsoc.html) for machine learning.
-* [Compiler](projects/compiler.html) – work on the Julia compiler's internals to make things better for everyone.
-* [Web Platform](projects/wasm.html) – work on the Julia wasm backend or other aspects of julia in the browser.
-* [HPC](projects/hpc.html) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
-* [Numerics](projects/numerics.html) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
-* [Science](projects/science.html) – provide Julia with the ability for scientific research in various fields.
-* [Differential Equations](projects/diffeq.html) - Numerical methods for high-performance solving of differential equation models.
-* [Tooling](projects/tooling.html) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
-* [Images](projects/images.html) – extend Julia's suite of tools for visualization and analysis of images.
-* [General](projects/general.html) – jack-of-all-trades projects that don't require special skills.
-* [Graphs](projects/graphs.html) – extend the JuliaGraphs ecosystem with new algorithms and tools.
-* [Graphics](projects/graphics.html) – projects ranging from low level OpenGL rendering to high level plotting.
-* [Tabular Data](projects/tables.html)
-* [Continuous time signal processing](projects/kalmanbucy.html)
+* [Compiler](gsoc/compiler.html) – work on the Julia compiler's internals to make things better for everyone.
+* [Web Platform](gsoc/wasm.html) – work on the Julia wasm backend or other aspects of julia in the browser.
+* [HPC](gsoc/hpc.html) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
+* [Numerics](gsoc/numerics.html) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
+* [Science](gsoc/science.html) – provide Julia with the ability for scientific research in various fields.
+* [Differential Equations](gsoc/diffeq.html) - Numerical methods for high-performance solving of differential equation models.
+* [Tooling](gsoc/tooling.html) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
+* [Images](gsoc/images.html) – extend Julia's suite of tools for visualization and analysis of images.
+* [General](gsoc/general.html) – jack-of-all-trades projects that don't require special skills.
+* [Graphs](gsoc/graphs.html) – extend the JuliaGraphs ecosystem with new algorithms and tools.
+* [Graphics](gsoc/graphics.html) – projects ranging from low level OpenGL rendering to high level plotting.
+* [Tabular Data](gsoc/tables.html)
+* [Continuous time signal processing](gsoc/kalmanbucy.html)
 
 You can see previous Summer of Code projects at the [Archive page](archive.html).
