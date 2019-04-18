@@ -30,3 +30,16 @@ The central website of [JuliaGraphs](https://juliagraphs.github.io/) offers an o
 
 The documentation of all JuliaGraphs packages, such as [LightGraphs](https://juliagraphs.github.io/LightGraphs.jl/latest/) is developer-oriented, showing the API of the different types and functions of the packages.
 Some step-by-step examples and motivation for the use of each feature can be added, making it more accessible for users of the package.
+
+## Statistics
+
+The [JuliaStats](https://github.com/juliastats) organization hosts packages solving various problems in data analysis and statistics, from computing [distances](https://github.com/JuliaStats/Distances.jl/) to [grouping data points together](http://juliastats.github.io/Clustering.jl/stable).
+This breadth of scope makes it challenging to keep track of which task is performed in each package.
+
+### JuliaStats website
+
+The [main website](http://juliastats.github.io) is at the moment displaying a brief list of packages from the ecosystem. We could use this central place to map the features to the different packages, and how to use them in different situations.
+
+### Problem-oriented documentation
+
+For key packages such as [Distributions.jl](https://juliastats.github.io/Distributions.jl/stable), tutorials could be written in the same fashion as introductions to the analysis problem at hand and how it gets solved in the package using the API.
