@@ -1,17 +1,13 @@
 ---
-layout: default
+layout: insidepage
 title:  Tooling Projects – Summer of Code
 ---
 
 # {{ page.title }}
 
-{% include toc.html %}
-
-# Tooling
-
 ## IDE Tooling
 
-The [Juno](http://junolab.org) is open to general project ideas (from here or not); feel free to get in contact via the [forum](http://discourse.julialang.org/) to discuss!
+[Juno](http://junolab.org) is open to general project ideas (from here or not); feel free to get in contact via the [forum](http://discourse.julialang.org/) to discuss!
 
 ## Progress Meter Improvements
 
@@ -28,7 +24,7 @@ These issues prevent package authors from using `@progress` over loops without m
 
 **Recommended Skills**: Some experience with Julia and Juno is good, but only general programming skills are required.
 
-**Mentors**: [Mike Innes](https://github.com/mikeinnes)
+**Mentors**: [Sebastian Pfitzner](https://github.com/pfitzseb)
 
 ## Package installation UI
 
@@ -40,7 +36,7 @@ This could also be extended by having metadata about the package, such as a read
 
 **Recommended Skills**: Familiarity with javascript and/or atom package development.
 
-**Mentors**: [Mike Innes](https://github.com/mikeinnes)
+**Mentors**: [Sebastian Pfitzner](https://github.com/pfitzseb)
 
 ## Julia Code Analysis
 
@@ -66,7 +62,7 @@ While static analysis has long been used as a tool for understanding and finding
 
 **Required Skills:** Some familiarity with Julia, but more importantly javascript and/or Atom development.
 
-**Mentors**: [Mike Innes](https://github.com/MikeInnes)
+**Mentors**: [Sebastian Pfitzner](https://github.com/pfitzseb)
 
 ## Live editing for Weave files in VS Code
 
@@ -84,8 +80,7 @@ VS Code.
 ## VS Code extension
 
 We are generally looking for folks that want to help with the [julia VS Code extension](https://github.com/JuliaEditorSupport/julia-vscode).
-We have a long list of open issues, and some of them amount to significant
-projects.
+We have a long list of open issues, and some of them amount to significant projects. One particularly rewarding project would be adding debugger functionality to the VS Code extension.
 
 **Required Skills**: TypeScript, julia, web development.
 

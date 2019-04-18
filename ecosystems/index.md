@@ -61,6 +61,8 @@ Most also have channels on the main Julia Slack channel, and sub-forums on the m
 * [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
 * [JuliaDynamics](https://github.com/JuliaDynamics) - [Dynamical systems](https://juliadynamics.github.io/DynamicalSystems.jl/latest/), nonlinear dynamics and chaos.
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
+* [JuliaReach](https://github.com/JuliaReach) – Reachability Computations for Dynamical Systems ([Gitter](https://gitter.im/JuliaReach/Lobby))
+
 
 ## Data Science
 * [JuliaML](https://github.com/JuliaML) – [Machine Learning](https://juliaml.github.io/)  ([Gitter](https://gitter.im/JuliaML/chat))

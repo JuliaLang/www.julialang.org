@@ -35,6 +35,7 @@ title:  Julia Downloads
           <li> In the terminal using the built-in Julia command line.
           <li> In the browser on <a href="https://www.juliabox.com">JuliaBox.com</a> with Jupyter notebooks.
                 No installation is required -- just point your browser there, login and start computing.
+          <li> Using <a href="https://docs.docker.com/">Docker</a> images from <a href = "https://hub.docker.com/_/julia">Docker Hub</a> maintained by the <a href="https://github.com/docker-library/julia">Docker Community</a>.
           <li> <a href="http://juliacomputing.com/products/juliapro.html">JuliaPro</a> by
                 <a href="http://juliacomputing.com">Julia Computing</a>
                 includes Julia and the <a href="http://junolab.org" >Juno IDE</a>, along with access to a curated set of packages for plotting, optimization, machine learning, databases and much more (requires registration).
@@ -46,53 +47,115 @@ title:  Julia Downloads
 
   <div class="row">
     <div class="col-12">
-      <h2>Current stable release (v1.0.1)</h2>
+      <h2>Current stable release (v1.1.0)</h2>
       <table class="downloads table table-hover table-responsive table-bordered">
         <tbody>
           <tr>
             <th rowspan="2"> Windows Self-Extracting Archive (.exe) <a href="platform.html#windows">[help]</a></th>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.0/julia-1.0.1-win32.exe">32-bit</a> </td>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.0/julia-1.0.1-win64.exe">64-bit</a> </td>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.1/julia-1.1.0-win32.exe">32-bit</a> </td>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.1/julia-1.1.0-win64.exe">64-bit</a> </td>
           </tr>
           <tr>
             <td colspan="6">Windows 7/Windows Server 2012 users also require
               <a href="https://docs.microsoft.com/en-us/powershell/wmf/overview">Windows Management Framework 3.0 or later</a></td>
           </tr>
           <tr>
-            <th> macOS Package (.dmg) <a href="platform.html#macos">[help]</a></th>
-            <td colspan="6"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.0/julia-1.0.1-mac64.dmg">10.8+ 64-bit</a> </td>
+            <th> macOS 10.8+ Package (.dmg) <a href="platform.html#macos">[help]</a></th>
+            <td colspan="3"> </td>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.1/julia-1.1.0-mac64.dmg">64-bit</a> </td>
           </tr>
           <tr>
             <th> Generic Linux Binaries for x86 <a href="platform.html#generic-binaries">[help]</a></th>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.0/julia-1.0.1-linux-i686.tar.gz">32-bit</a>
-              (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.0/julia-1.0.1-linux-i686.tar.gz.asc">GPG</a>)
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.1/julia-1.1.0-linux-i686.tar.gz">32-bit</a>
+              (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.1/julia-1.1.0-linux-i686.tar.gz.asc">GPG</a>)
             </td>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.1-linux-x86_64.tar.gz">64-bit</a>
-                (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.1-linux-x86_64.tar.gz.asc">GPG</a>)
-            </td>
-          </tr>
-          <tr>
-            <th> Generic Linux Binaries for ARM <a href="platform.html#generic-binaries">[help]</a></th>
-            <td colspan="6"> <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.0/julia-1.0.0-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
-              (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.0/julia-1.0.0-linux-armv7l.tar.gz.asc">GPG</a>)
-              Note: this is the 1.0.0 download. We are currently having issues with our ARM infrastructure, and this page will be updated once a new build is available.
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x64/1.1/julia-1.1.0-linux-x86_64.tar.gz">64-bit</a>
+                (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.1/julia-1.1.0-linux-x86_64.tar.gz.asc">GPG</a>)
             </td>
           </tr>
           <tr>
             <th> Generic FreeBSD Binaries for x86 <a href="platform.html#generic-binaries">[help]</a></th>
-            <td colspan="6"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.0/julia-1.0.1-freebsd-x86_64.tar.gz">64-bit</a>
-                (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.0/julia-1.0.1-freebsd-x86_64.tar.gz.asc">GPG</a>)
+            <td colspan="3"> </td>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.1/julia-1.1.0-freebsd-x86_64.tar.gz">64-bit</a>
+                (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.1/julia-1.1.0-freebsd-x86_64.tar.gz.asc">GPG</a>)
             </td>
           </tr>
           <tr>
             <th> Source </th>
-            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v1.0.1/julia-1.0.1.tar.gz">Tarball</a>
-                  (<a href="https://github.com/JuliaLang/julia/releases/download/v1.0.1/julia-1.0.1.tar.gz.asc">GPG</a>)
+            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v1.1.0/julia-1.1.0.tar.gz">Tarball</a>
+                  (<a href="https://github.com/JuliaLang/julia/releases/download/v1.1.0/julia-1.1.0.tar.gz.asc">GPG</a>)
             </td>
-            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v1.0.1/julia-1.0.1-full.tar.gz">Tarball with dependencies</a>
-              (<a href="https://github.com/JuliaLang/julia/releases/download/v1.0.1/julia-1.0.1-full.tar.gz.asc">GPG</a>)
+            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v1.1.0/julia-1.1.0-full.tar.gz">Tarball with dependencies</a>
+              (<a href="https://github.com/JuliaLang/julia/releases/download/v1.1.0/julia-1.1.0-full.tar.gz.asc">GPG</a>)
             </td>
-            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/v1.0.1">GitHub</a> </td>
+            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/v1.1.0">GitHub</a> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="col-12">
+      <h2>Long-term support release (v1.0.3)</h2>
+      <p>
+        Users updating code written on older versions to work with 1.0 may be interested in
+        using Julia 0.7 during the upgrade process, available on the old releases page.
+        It is a transitional release that provides deprecation warnings for functionality
+        that differs between Julia 0.6 and 1.0.
+      </p>
+      <table class="downloads table table-hover table-responsive table-bordered">
+        <tbody>
+          <tr>
+            <th rowspan="2"> Windows Self-Extracting Archive (.exe) <a href="platform.html#windows">[help]</a></th>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.0/julia-1.0.3-win32.exe">32-bit</a> </td>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.0/julia-1.0.3-win64.exe">64-bit</a> </td>
+          </tr>
+          <tr>
+            <td colspan="6">Windows 7/Windows Server 2012 users also require
+              <a href="https://docs.microsoft.com/en-us/powershell/wmf/overview">Windows Management Framework 3.0 or later</a></td>
+          </tr>
+          <tr>
+            <th> macOS 10.8+ Package (.dmg) <a href="platform.html#macos">[help]</a></th>
+            <td colspan="3"> </td>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.0/julia-1.0.3-mac64.dmg">64-bit</a> </td>
+          </tr>
+          <tr>
+            <th> Generic Linux Binaries for x86 <a href="platform.html#generic-binaries">[help]</a></th>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.0/julia-1.0.3-linux-i686.tar.gz">32-bit</a>
+              (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.0/julia-1.0.3-linux-i686.tar.gz.asc">GPG</a>)
+            </td>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.3-linux-x86_64.tar.gz">64-bit</a>
+                (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.3-linux-x86_64.tar.gz.asc">GPG</a>)
+            </td>
+          </tr>
+          <tr>
+            <th> Generic Linux Binaries for ARM <a href="platform.html#generic-binaries">[help]</a></th>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.0/julia-1.0.3-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
+              (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.0/julia-1.0.3-linux-armv7l.tar.gz.asc">GPG</a>)
+            </td>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.0/julia-1.0.3-linux-aarch64.tar.gz">64-bit (AArch64)</a>
+                (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.0/julia-1.0.3-linux-aarch64.tar.gz.asc">GPG</a>)
+            </td>
+          </tr>
+          <tr>
+            <th> Generic FreeBSD Binaries for x86 <a href="platform.html#generic-binaries">[help]</a></th>
+            <td colspan="3"> </td>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.0/julia-1.0.3-freebsd-x86_64.tar.gz">64-bit</a>
+                (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.0/julia-1.0.3-freebsd-x86_64.tar.gz.asc">GPG</a>)
+            </td>
+          </tr>
+          <tr>
+            <th> Source </th>
+            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v1.0.3/julia-1.0.3.tar.gz">Tarball</a>
+                  (<a href="https://github.com/JuliaLang/julia/releases/download/v1.0.3/julia-1.0.3.tar.gz.asc">GPG</a>)
+            </td>
+            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v1.0.3/julia-1.0.3-full.tar.gz">Tarball with dependencies</a>
+              (<a href="https://github.com/JuliaLang/julia/releases/download/v1.0.3/julia-1.0.3-full.tar.gz.asc">GPG</a>)
+            </td>
+            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/v1.0.3">GitHub</a> </td>
           </tr>
         </tbody>
       </table>
@@ -102,73 +165,14 @@ title:  Julia Downloads
       <p>
         Please see <a href="platform.html">platform specific instructions</a> if you have
         trouble installing Julia.
-        Checksums for this release are available in both <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.0.1.md5">MD5</a> and
-        <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.0.1.sha256">SHA256</a> format.
+        Checksums for this release are available in both <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.0.3.md5">MD5</a> and
+        <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.0.3.sha256">SHA256</a> format.
       </p>
 
       <p>
         If the provided download files do not work for you, please <a href="https://github.com/JuliaLang/julia/issues">file an
         issue in the Julia project</a>.
       </p>
-
-      <p>
-        You may be interested, especially as an existing package author or maintainer, in downloading Julia v0.7.0, shown below.
-        Versions 1.0.0 and 0.7.0 are largely equivalent, with the primary difference being that 0.7.0 includes deprecation warnings
-        for functionality and behavior changed between previous releases and 1.0.0. For example, invoking deprecated methods
-        will emit a warning in 0.7.0 but will cause an (intentional) runtime error in 1.0.0.
-
-        Note that 1.0.x versions contain bugfixes not available on 0.7 releases.
-      </p>
-    </div>
-  </div>
-
-  <br />
-
-  <div class="row">
-    <div class="col-12">
-      <h2>Previous stable release (v0.7.0)</h2>
-      <table class="downloads table table-hover table-responsive table-bordered">
-        <tbody>
-          <tr>
-            <th rowspan="2"> Windows Self-Extracting Archive (.exe) <a href="platform.html#windows">[help]</a></th>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.7/julia-0.7.0-win32.exe">32-bit</a> </td>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/0.7/julia-0.7.0-win64.exe">64-bit</a> </td>
-          </tr>
-          <tr>
-            <td colspan="6">Windows 7/Windows Server 2012 users also require
-              <a href="https://docs.microsoft.com/en-us/powershell/wmf/overview">Windows Management Framework 3.0 or later</a></td>
-          </tr>
-          <tr>
-            <th> macOS Package (.dmg) <a href="platform.html#macos">[help]</a></th>
-            <td colspan="6"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.7/julia-0.7.0-mac64.dmg">10.8+ 64-bit</a> </td>
-          </tr>
-          <tr>
-            <th> Generic Linux Binaries for x86 <a href="platform.html#generic-binaries">[help]</a></th>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/0.7/julia-0.7.0-linux-i686.tar.gz">32-bit</a>
-              (<a href="https://julialang-s3.julialang.org/bin/linux/x86/0.7/julia-0.7.0-linux-i686.tar.gz.asc">GPG</a>)
-            </td>
-            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x64/0.7/julia-0.7.0-linux-x86_64.tar.gz">64-bit</a>
-                (<a href="https://julialang-s3.julialang.org/bin/linux/x64/0.7/julia-0.7.0-linux-x86_64.tar.gz.asc">GPG</a>)
-            </td>
-          </tr>
-          <tr>
-            <th> Generic FreeBSD Binaries for x86 <a href="platform.html#generic-binaries">[help]</a></th>
-            <td colspan="6"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/0.7/julia-0.7.0-freebsd-x86_64.tar.gz">64-bit</a>
-                (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/0.7/julia-0.7.0-freebsd-x86_64.tar.gz.asc">GPG</a>)
-            </td>
-          </tr>
-          <tr>
-            <th> Source </th>
-            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.7.0/julia-0.7.0.tar.gz">Tarball</a>
-                  (<a href="https://github.com/JuliaLang/julia/releases/download/v0.7.0/julia-0.7.0.tar.gz.asc">GPG</a>)
-            </td>
-            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.7.0/julia-0.7.0-full.tar.gz">Tarball with dependencies</a>
-              (<a href="https://github.com/JuliaLang/julia/releases/download/v0.7.0/julia-0.7.0-full.tar.gz.asc">GPG</a>)
-            </td>
-            <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/v0.7.0">GitHub</a> </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 
@@ -178,7 +182,8 @@ title:  Julia Downloads
     <div class="col-12">
       <h2>Older Releases</h2>
       <p>
-        Older releases of Julia for all platforms are available on the <a href="oldreleases.html">Older releases page</a>. Releases older than 0.6 are now unmaintained.
+        Older releases of Julia for all platforms are available on the <a href="oldreleases.html">Older releases page</a>.
+        Releases older than 1.0 are now unmaintained.
       </p>
     </div>
   </div>

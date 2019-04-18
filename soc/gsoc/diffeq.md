@@ -1,11 +1,10 @@
 ---
-layout: default
+layout: insidepage
 title:  DiffEq Projects – Summer of Code
 ---
 
 # {{ page.title }}
 
-{% include toc.html %}
 
 ## Native Julia ODE, SDE, DAE, DDE, and (S)PDE Solvers
 
@@ -31,21 +30,10 @@ methods to implement are:
 - Approximate matrix factorization
 - Runge-Kutta-Chebyschev Methods (high stability RK methods)
 - Fully Implicit Runge-Kutta (FIRK) methods
-- Anderson-Accelerated delay equation stepping
+- Anderson Acceleration
 - Boundary value problem (BVP) solvers like MIRK and collocation methods
 - BDF methods for differential-algebraic equations (DAEs)
 - Methods for stiff stochastic differential equations
-
-Additionally, projects could potentially improve the performance of the full
-differential equations ecosystem include:
-
-- Approximate matrix factorization
-- Alternative adaptive stepsize techniques and step optimization
-- Quasi-Newton globalization and optimization
-- Cache size reductions
-- Enhanced within-method multithreading, distributed parallelism, and GPU usage
-- Improved automated method choosing
-- Adaptive preconditioning on large-scale (PDE) discretizations
 
 Many of these methods are the basis of high-efficiency partial differential
 equation (PDE) solvers and are thus important to many communities like
@@ -55,6 +43,33 @@ computational fluid dynamics, mathematical biology, and quantum mechanics.
 linear algebra, and the ability (or eagerness to learn) to write fast code.
 
 **Expected Results**: Contributions of production-quality solver methods.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+
+## Performance enhancements for differential equation solvers
+
+Wouldn't it be cool to have had a part in the development of widely used efficient
+differential equation solvers? DifferentialEquations.jl has a wide range of existing
+methods and [an extensive benchmark suite](https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl)
+which is used for tuning the methods for performance. Many of its methods are already the fastest
+in their class, but there is still a lot of performance enhancement work that can be done.
+In this project you can learn the details about a wide range of methods and dig into the
+optimization of the algorithm's strategy and the implementation in order to improve benhcmarks.
+Projects that could potentially improve the performance of the full differential equations
+ecosystem include:
+
+- Alternative adaptive stepsize techniques and step optimization
+- Pointer swapping tricks
+- Quasi-Newton globalization and optimization
+- Cache size reductions
+- Enhanced within-method multithreading, distributed parallelism, and GPU usage
+- Improved automated method choosing
+- Adaptive preconditioning on large-scale (PDE) discretizations
+
+**Recommended Skills**: Background knowledge in numerical analysis, numerical
+linear algebra, and the ability (or eagerness to learn) to write fast code.
+
+**Expected Results**: Improved benchmarks to share with the community.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
@@ -115,7 +130,8 @@ can be helpful.
 **Expected Results**: Implementations of matrix coloring and automatic sparsity
 detection employed in the defaults of DifferentialEquations.jl.
 
-**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas),
+[Mathieu Besançon](https://github.com/matbesancon)
 
 ## Scalable Bifurcation Plotting via Deflation
 

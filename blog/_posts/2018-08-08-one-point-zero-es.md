@@ -1,6 +1,6 @@
 ---
  layout: post
- title: "Julia 1.0"
+ title: "Julia 1.0 (Spanish)"
  snippet: "Anunciando el release de Julia 1.0"
 ---
 
@@ -39,7 +39,7 @@ personas han contribuido a Julia en sí y aún más gente han hecho miles de aso
 
 Prueba Julia bajando la [versión 1.0 ahora](https://julialang.org/downloads/). Si estás actualizando
 código de Julia 0.6 o versiones anteriores, te recomendamos que primero uses la versión 0.7 como transición. Una vez
-que tu código esté libre de advertencias (*warnings*), puedes cambiarlo a 1.0 sin ninguna pérdida de funcionalidad. Los paquetes registrados 
+que tu código esté libre de advertencias (*warnings*), puedes cambiarlo a 1.0 sin ninguna pérdida de funcionalidad. Los paquetes registrados
 están aprovechando esta etapa de transición y liberando sus actualizaciones compatibles con 1.0.
 
 La ventaja más importante de Julia 1.0 es, por supuesto, es un compromiso de estabilidad de API:
@@ -51,7 +51,7 @@ Sin embargo, Julia 1.0 no es solamente sobre estabilidad, también introduce nue
 Algunas de estas novedades desde la versión 0.6 incluyen:
 
 * Un nuevo e incluido [administrador de paquetes](https://docs.julialang.org/en/latest/stdlib/Pkg/)
-  trae enormes mejoras de rendimiento y facilita más que nunca la instalación de paquetes y sus 
+  trae enormes mejoras de rendimiento y facilita más que nunca la instalación de paquetes y sus
   dependencias. También soporta ambientes particulares para cada proyecto y registros de estado exactos para
   una aplicación para poderla compartir con los demás - y tu futuro yo. Finalmente, el rediseño también introduce
   soporte integrado para paquetes privados y repositorios. Tú puedes instalar y administrar paqueterías
@@ -61,9 +61,9 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
 * Julia tiene una nueva [representación canónica para valores faltantes](https://julialang.org/blog/2018/06/missing).
   Poder representar y trabajar con datos faltantes es fundamental para estadísticas y ciencias de datos. En estilo Juliano,
   la nueva solución es general, componible y rápida. Cualquier colección general puede eficientemente
-  soportar valores faltantes simplemente al permitir que elementos incluyan el valor predefinido `missing`. 
+  soportar valores faltantes simplemente al permitir que elementos incluyan el valor predefinido `missing`.
   El rendimiento de dadas colecciones "tipadas como uniones" hubieran sido demasiado lento en versiones anteriores
-  de Julia, pero mejoras en el compilador permiten ahora que en Julia sea comparable a la velocidad de valores faltantes 
+  de Julia, pero mejoras en el compilador permiten ahora que en Julia sea comparable a la velocidad de valores faltantes
   en C ó C++ en otros sistemas, mientras que sigue siendo mucho más general y flexible.
 
 * El tipo `String` ahora puede contener datos arbitrarios. Tu programa no fallará después de horas ó días porque
@@ -71,7 +71,7 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
   son válidos o inválidos, permitiendo que sus aplicaciones sean conveniente y seguramente usadas en datos reales con todas sus
   inevitables complicaciones.
 
-* "Broadcasting" ya es una ventaja clave con sintaxis conveniente -- y ahora es más poderosa que nunca. En 
+* "Broadcasting" ya es una ventaja clave con sintaxis conveniente -- y ahora es más poderosa que nunca. En
   Julia 1.0 es fácil [extender broadcasting a tipos del usuario](https://julialang.org/blog/2018/05/extensible-broadcast-fusion) e implementarlo
   en cálculos optimizados para GPUs y hardware vectorizado, pavimentando el camino para aún más mejoras en el futuro.
 
@@ -98,7 +98,7 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
 
 * El protocolo de iteración ha sido completamente rediseñado para facilitar implementar muchos tipos de
   iterables. En vez de —`start`, `next`, `done`—uno ahora define métodos de uno y dos argumentos para la función
-  `iterate`. Esto frecuentemente permite que la iteración se defina con un sólo método y un valor por default para 
+  `iterate`. Esto frecuentemente permite que la iteración se defina con un sólo método y un valor por default para
   el estado inicial. Aunado a lo anterior, es posible implementar iteradores que solo saben si han terminado
   una vez que han intentado y fallado en producir un valor -- justo el tipo de iteradores que son ubicuos en I/O,
   producidores/consumidores, etc. Julia puede expresar estos iteradores directa y correctamente.
@@ -113,7 +113,7 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
   necesitas importar (sin instalar) pero no estarás coaccionada a hacerlo. En el futuro, esto permitirá que las bibliotecas
   estándar sean versionadas y actualizadas independientemente de Julia, permitiendo que evolucionen y se mejoren más rápido.
 
-* Hemos revisado extensamente todas las APIs de Julia para mejorar la consistencia y usabilidad. Muchos nombres 
+* Hemos revisado extensamente todas las APIs de Julia para mejorar la consistencia y usabilidad. Muchos nombres
   tradicionales rebuscados y patrones ineficientes han sido renombrados o refactorizados para empatar elegantemente con las capacidades de Julia.
   Esto ha promovido cambios para trabajar con colecciones de manera más consistente y coherente, y asegurar que el orden de los argumentos
   sea un estándar consistente a lo largo del lenguaje, y para incorporar los (ahora más rápidos) argumentos "keyword" en las APIs
@@ -125,12 +125,12 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
     * [Cassette.jl](https://github.com/jrevels/Cassette.jl) provee un poderoso mecanismo para inyectar pases de transformación de
     código al compilador de Julia, permitiendo análisis post-hoc y extensión de código existente. Además de la instrumentación para
     programadores como un debugger y un profiler, esto también puede implementar diferenciación automática para tareas de *machine learning*.
-    
+
     * Se ha incrementado enormemente el soporte para arquitecturas heterogéneas y se ha desacoplado aún más del funcionamiento
     interno del compilador. Los Intel KNLs funcionan en Julia. Los GPUs de Nvidia son programados usando [CUDANative.jl](https://github.com/JuliaGPU/CUDAnative.jl)
     y un port para los TPUs de Google está siendo desarrollado.
 
-Éstas son solo algunas de las mejoras. Para una lista completa de los cambios, lee el archivo [0.7 NEWS](https://docs.julialang.org/en/release-0.7/NEWS/). En el post 
+Éstas son solo algunas de las mejoras. Para una lista completa de los cambios, lee el archivo [0.7 NEWS](https://docs.julialang.org/en/release-0.7/NEWS/). En el post
 original [“Why We Created Julia” blog
 post](https://julialang.org/blog/2012/02/why-we-created-julia) en 2012, escribimos
 

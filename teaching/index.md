@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: insidepage
 title:  Using Julia in the classroom
 ---
 
@@ -59,9 +59,19 @@ Julia is now being used in several universities and online courses. If you know 
 - [Federal University of Alagoas](http://www.ufal.edu.br) (_Universidade Federal de Alagoas_, UFAL) <!---9.555682,-35.777877-->
   * COMP272, Distributed Systems ([Prof. André Lage-Freitas](https://sites.google.com/a/ic.ufal.br/andrelage)): 2015, 2016, and 2017
 
+- [Federal University of Paraná, Curitiba, Brazil](http://www.ufpr.br) (_Universidade Federal do Paraná_, UFPR) <!---25.4288721,-49.2676105-->
+  * CM087, Numerical Analysis Topics ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2017s1
+  * CM096, Numerical Analysis I ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2019s1
+  * CM103, Applied Mathematics Laboratory ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2016s2, 2017s2, 2018s2
+  * CM106, Optimization ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2018s1
+  * CM114, Computational Methods of Optimization ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2015s2, 2016s2
+  * CM116, Applied Mathematics Topics ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2016s2, 2018s2
+  * CM141, Mathematics Topics ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2016s2
+  * CMM014, Numerical Calculus ([Prof. Abel Soares Siqueira](http://abelsiqueira.github.io/)): 2019s1
+
 - Federal University of Uberlândia, Institute of Physics <!---18.918506,-48.25817-->
   * [GFM050](http://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
-  
+
 - Hadsel High School, Stokmarknes, Nordland, Norway
   * [REA3034](http://www.hadsel.vgs.no/AnsattOversikt.aspx?MId1=15925&PersonId=16964) Programming and modeling with Julia and Snap, 2018/19 (High school lektor Olav A Marschall, M.sc. Computer Science)
 
@@ -76,12 +86,12 @@ Julia is now being used in several universities and online courses. If you know 
 
 - Massachusetts Institute of Technology (MIT) <!--42.3583961,-71.0956778766393-->
   * [6.251/15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas), Fall 2015
-  * [18.06](http://web.mit.edu/18.06/www/), Linear Algebra: Fall 2015, Dr. [Alex Townsend](https://github.com/ajt60gaibb); Fall 2014, Prof. Alexander Postnikov; Fall [2013](http://stellar.mit.edu/S/course/18/fa13/18.06), Prof. Alan Edelman
-  * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj)), Fall 2013–2016.
-  * [18.337/6.338](http://beowulf.csail.mit.edu/18.337), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). [Fall 2015](http://courses.csail.mit.edu/18.337/2015) ([IJulia notebooks](https://github.com/alanedelman/18.337_2015)).  Fall 2013–
+  * [18.06](http://web.mit.edu/18.06/www/), Linear Algebra: [Alex Townsend](https://github.com/ajt60gaibb), Alexander Postnikov, Prof. Alan Edelman, 2013-
+  * [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj)), Prof. [Chris Rackauckas](http://chrisrackauckas.com/) 2013–
+  * [18.337/6.338](http://beowulf.csail.mit.edu/18.337), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). 2013–
   * [18.085/0851](http://math.mit.edu/classes/18.085/2015FA/index.html), Computational Science And Engineering I (Prof. Pedro J. Sáenz)
   * [18.330](http://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid), Spring 2013–2015
-  * [18.335](http://math.mit.edu/~stevenj/18.335/), Introduction to Numerical Methods (Prof. Steven G. Johnson), Fall 2013, Spring 2015
+  * [18.335](http://math.mit.edu/~stevenj/18.335/), Introduction to Numerical Methods (Prof. Steven G. Johnson), Fall 201-
   * [18.338](http://web.mit.edu/18.338/www/), Eigenvalues Of Random Matrices (Prof. Alan Edelman), Spring 2015
   * [18.S096](https://math.mit.edu/classes/18.S096/iap17/), Performance Computing in a High Level Language (Steven G. Johnson, Alan Edelman, David Sanders, Jeff Bezanson), January 2017.
   * [15.093/6.255](http://optimization.mit.edu/class.php?id=6.255J), Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos), Fall 2014
@@ -97,8 +107,14 @@ Julia is now being used in several universities and online courses. If you know 
   * [Fundamental Mathematical Methods (English)]
 
 - Pennsylvania State University <!--39.94560975,-79.6594009593437-->
-  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2014 - [github repo](https://github.com/eford/Astro585_2014_Spring)
-  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
+  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), Seminar: High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2014 - [github repo](https://github.com/eford/Astro585_2014_Spring)
+  * [ASTRO 585](http://www.personal.psu.edu/~ebf11/teach/astro585/), Seminar: High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
+  * [ASTRO 528](https://psuastro528.github.io/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2019 - [github repos](https://github.com/PsuAstro528)
+
+- Polytechnique Montréal <!--45.5046609,-73.6152741-->
+  * [MTH6412](https://www.polymtl.ca/etudes/cours/implementation-dalgo-de-rech-operationnel) Implémentation d'algorithmes de recherche opérationnelle (Prof. [Dominique Orban](http://dpo.github.io)), Fall 2018
+  * [MTH8211](https://www.polymtl.ca/etudes/cours/algebre-lineaire-numerique-appliquee) Algèbre linéaire numérique appliquée (Prof. [Steven Dufour](https://www.polymtl.ca/expertises/dufour-steven)), Winter 2018, 2019
+  * [MTH8408](https://www.polymtl.ca/etudes/cours/methodes-doptimisation-et-controle-optimal) Méthodes d'optimisation et de contrôle optimal (Prof. [Dominique Orban](http://dpo.github.io)), Winter 2017, 2019
 
 - Pontifical Catholic University of Rio de Janeiro (PUC-Rio) <!---22.979107,-43.233083-->
   * Programming in Julia (Prof. [Thuener Silva](https://github.com/Thuener)), Summer 2017
@@ -142,11 +158,32 @@ Julia is now being used in several universities and online courses. If you know 
 - Universidad Nacional Pedro Ruiz Gallo, Lambayeque, Perú <!---6.707546,-79.9069734-->
     * Julia: el lenguaje del futuro, [Semana de Integración de Ingeniería Electrónica](http://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro), (Oscar William Neciosup Vera), Spring 2015
 
+- [Université de Bretagne-Sud](http://www.univ-ubs.fr), Lorient, France <!--47.747145,3.393270-->
+    * ANR2201 - Data Analysis ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2018-
+    * INOE301 - Scheduling ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+    * MAOE501 - Advanced Scheduling ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+    * MTH2151 - Graphs ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2019-
+    * MTH2153 - Numerical methods 1(Dr. Bertrand Banos), 2018-
+    * MTH2251 - Mathematical Programming ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2018-
+    * MTH2254 - Multi-objective optimization ([Prof. Xavier Gandibleux](https://xgandibleux.github.io/)), 2018-
+    * MTH2352 - Heuristics and metaheuristics ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2019-
+    * OADE301 - Decision aiding tools ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+    * OPCE501 - Combinatorial Optimization ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2019-
+    * OPE401 - Operations Research ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+    * ROP2301 - Optimization ([Prof. Marc Sevaux](http://people.univ-ubs.fr/marc.sevaux/)), 2018-
+    * UNOE401 - Digital factory and optimization ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+    * UVOE501 - Virtual factory and optimization ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
+
 - University at Buffalo <!--43.0015201,-78.7870697019128-->
   * [IE 572](http://www.chkwon.net/teaching/ie-572/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
 
 - University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016 <!--51.22281,4.410232-->
   * Computational Neuroscience (2070FBDBMW), Master of Biomedical Sciences, of Biochemistry, of Physics ([Michele Giugliano](https://www.uantwerpen.be/popup/opleidingsonderdeel.aspx?catalognr=2070FBDBMW&taal=nl&aj=2016))
+
+- University of California, Berkeley (UCB)
+  * Math 124 - [Prof. Per-Olof Persson](http://persson.berkeley.edu/), 2019-
+  * Math 228A - [Prof. Lin Lin](https://github.com/lin-lin/2018Fall_228A), 2017-
+  * Math 228B - [Prof. Per-Olof Persson](http://persson.berkeley.edu/), 2019-
 
 - University of California, Los Angeles (UCLA) <!--34.068921,-118.445181-->
   * [Stat M230/Biomath 280/Biostat M280](http://hua-zhou.github.io/teaching/biostatm280-2018spring/), Statistical Computing, Spring 2018 (Prof. [Hua Zhou](https://github.com/Hua-Zhou))
@@ -159,6 +196,7 @@ Julia is now being used in several universities and online courses. If you know 
 
 - University of Connecticut, Storrs
   *  CHEG 5395, Metaheuristic and Heuristic Methods in Chemical Engineering (Prof. Ranjan Srivastava), Spring 2018
+  *  BIST/STAT 5535, Nonparametric Methods (Prof. HaiYing Wang), Fall 2018
 
 - University of Edinburgh <!--55.94938435,-3.18005288130257-->
   * Spring 2017, [MATH11146](http://www.drps.ed.ac.uk/16-17/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/index.html))
@@ -191,7 +229,7 @@ Julia is now being used in several universities and online courses. If you know 
 - Skolkovo Institute of Science and Technology (Skoltech) <!---22.979107,-43.233083-->
   * Fundamentals on Power Systems (Prof. [David Pozo](https://sites.google.com/site/davidpozocamara/)), Winter 2018, Fall 2018
   * Power Markets and Regulation (Prof. [David Pozo](https://sites.google.com/site/davidpozocamara/)), Spring 2018
-  
+
 - Western University Canada <!--43.00535865,-81.2748046243065-->
   * [CS 2101A](http://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza), Fall 2013
 
@@ -205,12 +243,6 @@ Windows.
 The Julia and [IPython](http://ipython.org) teams have collaborated to
 develop [IJulia](https://github.com/JuliaLang/IJulia.jl), which
 provides a powerful graphical notebook interface to Julia.
-
-## Packages
-
-The Julia community has put together a number of
-[packages](http://pkg.julialang.org/)
-spanning multiple disciplines.
 
 ## The Julia manual
 
