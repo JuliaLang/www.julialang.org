@@ -17,3 +17,16 @@ The JuliaDiffEq organization hosts the [DiffEqTutorials.jl](https://github.com/J
 ### Automated Benchmarks and Performance Regression Flagging
 
 The organization hosts the [DiffEqBenchmarks.jl](https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl) repository which generates websites and pdfs describing the performance relationships not only between the native Julia differential equation solvers, but also between the commonly used C++ and Fortran methods, making it the most comprehensive set of differential equation solver benchmarks. These benchmarking scripts utilize [Weave.jl](https://github.com/mpastell/Weave.jl) to automate the process. Technical writers can contribute benchmarks which cover new areas and types of differential equations and add explanatory details and summaries to help with the interpretation of benchmarks. Additionally, skilled technical writers may with to help setup systems to update the benchmarks in some semi-automated form, along with detection and flagging whenever performance regressions are found (i.e. the benchmark equivalent to doc tests).
+
+## Graphs
+
+LightGraphs.jl provides a set of abstractions, reference implementations and essential algorithms to build and work on graphs.
+
+### Central website
+
+The central website of [JuliaGraphs](https://juliagraphs.github.io/) offers an overview of the ecosystem packages and is still mostly a description. It can be improved to become the first resource for people getting started with graphs in Julia with a quick tour of the feature, some visual explanations of the algorithms.
+
+### Tutorials
+
+The documentation of all JuliaGraphs packages, such as [LightGraphs](https://juliagraphs.github.io/LightGraphs.jl/latest/) is developer-oriented, showing the API of the different types and functions of the packages.
+Some step-by-step examples and motivation for the use of each feature can be added, making it more accessible for users of the package.
