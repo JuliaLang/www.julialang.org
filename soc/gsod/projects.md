@@ -61,3 +61,11 @@ There are a lot of high quality open-source ML tutorials for users to not just l
 ### Model-Zoo Examples
 
 The model-zoo is where a lot of the examples of modeling lives. From basic MLPs to advanced reinforcement learning and differentiable programming demos, we would like to have literature around them in a manner that can be understood by [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl). This way we have an awesome range of models and examples in a notebook style format available automatically for tinkering by users.
+
+## VS Code extension
+
+The [Julia VS Code extension](https://github.com/JuliaEditorSupport/julia-vscode) currently has hardly any documentation. We are looking for someone to flesh out the docs and the [homepage](https://www.julia-vscode.org/) for the extension.
+
+## Queryverse
+
+[Queryverse](https://www.queryverse.org/) is a family of packages in the data science space. Many packages have rudimentary documentation but could use updates, polish, proper tutorials etc. We are looking for help with documentation for all packages, and to build out the homepage for the project.
