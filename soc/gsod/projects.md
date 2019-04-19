@@ -43,3 +43,21 @@ The [main website](http://juliastats.github.io) is at the moment displaying a br
 ### Problem-oriented documentation
 
 For key packages such as [Distributions.jl](https://juliastats.github.io/Distributions.jl/stable), tutorials could be written in the same fashion as introductions to the analysis problem at hand and how it gets solved in the package using the API.
+
+## Flux (Machine Learning)
+
+[Flux.jl](https://github.com/FluxML/Flux.jl) is an elegant approach to machine learning in Julia. It is designed to be hackable and flexible, extendable and exposes powerful AD tools. It also provides abstractions over the popular layers and optimisers used in neural networks. It is built with differentiable programming in mind.
+
+### Updated Documentation and Website
+
+The [documentation](https://fluxml.ai/Flux.jl/stable/) for Flux.jl needs updating and references to model examples where necessary. Flux.jl runs doctests with every commit. The docs only expose a limited subset of the possible ways the APIs can function, and while efforts have been made to ensure that most usecases have been represented, we would like the user to get a feel of how they can leverage a more expressive training loop, or carry out very custom optimisation routines, etc. This could be done by way of motivating use cases in the API design.
+
+As a part of this, the content on the main landing page https://fluxml.ai can be revamped to highlight some of the interesting progress. The website could use some poilsh with regards to further clarify the messaging without overwhelming a newcomer, while showing off some of the finer grained details to a veteran eye.
+
+### Port ML Tutorials
+
+There are a lot of high quality open-source ML tutorials for users to not just learn a new conept but also get a feel for the underlying tooling they use. The PyTorch tutorials and the Fast.ai courses are some of our favorites. We would like Flux ports of the same which can be published on the website.
+
+### Model-Zoo Examples
+
+The model-zoo is where a lot of the examples of modeling lives. From basic MLPs to advanced reinforcement learning and differentiable programming demos, we would like to have literature around them in a manner that can be understood by [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl). This way we have an awesome range of models and examples in a notebook style format available automatically for tinkering by users.
