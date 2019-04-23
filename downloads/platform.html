@@ -15,9 +15,10 @@ title:  Platform specific instructions for installing Julia
       <br />
 
       <h2 id='windows'>Windows</h2>
+
+      <h3>Manual installation</h3>
       <p>
         Julia is available for Windows 7 and later, both 32 bit and 64 bit.
-
         <ol>
           <li>Download the Windows julia.exe installer for your platform. 32-bit julia works on both x86 and x86_64. 64-bit julia will only run on 64-bit Windows (x86_64).
           <li>Run the downloaded program to extract julia
@@ -41,6 +42,17 @@ title:  Platform specific instructions for installing Julia
       <p>
         Uninstallation is performed by deleting the extracted directory and the packages directory in <code>%HOME%/.julia</code>.
         If you would also like to remove your preferences files, remove <code>%HOME%/.juliarc.jl</code> and <code>%HOME%/.julia_history</code>.
+      </p>
+
+      <h3>Chocolatey</h3>
+      <p>If you use Chocolatey for package management, you can install the latest Julia release by executing the following one-liner, in either a powershell or command prompt:
+        <pre>
+          <code class="bash">
+    choco install julia --confirm
+          </code>
+        </pre>
+      Chocolatey automatically creates a shim for the Julia executable, so you simply type <code>julia</code> to run Julia in the terminal.
+      When a new version is released simply execute <code>choco upgrade julia --confirm</code>. If you want to uninstall Julia run <code>choco uninstall julia --confirm</code>.
       </p>
 
       <br />
