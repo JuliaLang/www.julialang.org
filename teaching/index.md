@@ -75,6 +75,10 @@ Julia is now being used in several universities and online courses. If you know 
 - Hadsel High School, Stokmarknes, Nordland, Norway
   * [REA3034](http://www.hadsel.vgs.no/AnsattOversikt.aspx?MId1=15925&PersonId=16964) Programming and modeling with Julia and Snap, 2018/19 (High school lektor Olav A Marschall, M.sc. Computer Science)
 
+- [Holy Cross of Davao College, Davao City, Philippines (College of Engineering and Technology)](http://www.hcdc.edu.ph/)
+  * CpE 414C, Feedback and Control Systems (Prof. [Karl Anthony B. Baluyot](https://gitlab.com/integrated.xtal)), Summer, May 2019
+  * CpE 425C, Embedded Systems with Robotics (Prof. [Karl Anthony B. Baluyot](https://gitlab.com/integrated.xtal)), 2nd Semester, November 2018
+  
 - IIT Indore <!--22.52036,75.920723-->
   * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://www.fesb.unist.hr/~slap/index1.html)), June 2016
 
