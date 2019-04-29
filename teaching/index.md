@@ -197,6 +197,8 @@ Julia is now being used in several universities and online courses. If you know 
   * [Computational Physics](http://www.thp.uni-koeln.de/~bulla/cp-ss17.html) (Prof. Ralf Bulla), Summer 2017
   * [Statistical Physics](http://www.thp.uni-koeln.de/trebst/Lectures/2017-StatPhys.shtml) (Prof. Simon Trebst), Winter 2017
   * [Computational Many-Body Physics](http://www.thp.uni-koeln.de/trebst/Lectures/2018-CompManyBody.shtml) (Prof. Simon Trebst), Summer 2018
+  * [Advanced Julia for Physicists](https://github.com/crstnbr/julia-workshop), Graduate/Post-Graduate Workshop (Carsten Bauer), Summer 2018
+  * [Computational Physics](http://www.thp.uni-koeln.de/trebst/Lectures/2019-CompPhys.shtml) (Prof. Simon Trebst), Summer 2019
 
 - University of Connecticut, Storrs
   *  CHEG 5395, Metaheuristic and Heuristic Methods in Chemical Engineering (Prof. Ranjan Srivastava), Spring 2018
