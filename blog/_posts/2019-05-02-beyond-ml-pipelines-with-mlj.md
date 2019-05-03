@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Beyond machine learning pipelines with MLJ"
-author: Anthony Blaom, Diego Arenas, Franz Kiraly, Yiannis Simillides, Sebastian Vollmer
+authors: Anthony Blaom, Diego Arenas, Franz Kiraly, Yiannis Simillides, Sebastian Vollmer
 ---
 
 <!---
