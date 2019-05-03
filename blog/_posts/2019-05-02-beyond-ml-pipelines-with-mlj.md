@@ -51,7 +51,7 @@ composition.
 
 &#9758; Video from [London Julia User Group meetup in March 2019](https://www.youtube.com/watch?v=CfHkjNmj1eE) (skip to [demo at 21'39](https://youtu.be/CfHkjNmj1eE?t=21m39s)) &nbsp;
 
-[![London Julia User Group](images/0.jpg)](http://www.youtube.com/watch?v=CfHkjNmj1eE)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CfHkjNmj1eE?start=1300" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 &#9758;  The MLJ [tour](https://github.com/alan-turing-institute/MLJ.jl/blob/master/docs/src/tour.ipynb)
 &nbsp;
