@@ -1,3 +1,9 @@
+---
+layout: post
+title: "Beyond machine learning pipelines with MLJ"
+author: Anthony Blaom, Diego Arenas, Franz Kiraly, Yiannis Simillides, Sebastian Vollmer
+---
+
 <!---
 ![](https://github.com/JuliaLang/www.julialang.org/tree/master/images/blog/2019-04-26-MLJ/learningcurves.png)
 ![](https://github.com/JuliaLang/www.julialang.org/tree/master/images/blog/2019-04-26-MLJ/heatmap.png)
@@ -6,11 +12,6 @@
 Images to be placed
 -->
 <!-- Diagrams drew with with http://dia-installer.de -->
----
-layout: post
-title: "Beyond machine learning pipelines with MLJ"
-author: Anthony Blaom, Diego Arenas, Franz Kiraly, Yiannis Simillides, Sebastian Vollmer
----
 
 <!---
 - learning curves (from `examples/random_forest.jl`)
