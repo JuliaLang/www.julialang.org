@@ -9,13 +9,13 @@ authors: Anthony Blaom, Diego Arenas, Franz Kiraly, Yiannis Simillides, Sebastia
 - tuning plots (from `examples/two_parameter_plot.jl`)
 -->
 <p float="left" align="middle">
-  <img src="/images/blog/2019-05-02-MLJ/learningcurves.png" width="400" />
-  <img src="/images/blog/2019-05-02-MLJ/heatmap.png" width="400" />
+  <img src="/images/blog/2019-05-02-MLJ/learningcurves.png" width="200" />
+  <img src="/images/blog/2019-05-02-MLJ/heatmap.png" width="200" />
 </p>
 
 <p float="left" align="middle">
-  <img src="/images/blog/2019-05-02-MLJ/wrapped_ridge.png" width="400" />
-  <img src="/images/blog/2019-05-02-MLJ/MLPackages.png" width="400" />
+  <img src="/images/blog/2019-05-02-MLJ/wrapped_ridge.png" width="200" />
+  <img src="/images/blog/2019-05-02-MLJ/MLPackages.png" width="200" />
 </p>
 
 
