@@ -5,26 +5,17 @@ authors: Anthony Blaom, Diego Arenas, Franz Kiraly, Yiannis Simillides, Sebastia
 ---
 
 <!---
-![](https://github.com/JuliaLang/www.julialang.org/tree/master/images/blog/2019-04-26-MLJ/learningcurves.png)
-![](https://github.com/JuliaLang/www.julialang.org/tree/master/images/blog/2019-04-26-MLJ/heatmap.png)
-![](https://github.com/JuliaLang/www.julialang.org/tree/master/images/blog/2019-04-26-MLJ/packages.jpg)
-![](https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-04-26-MLJ/wrapped_ridge.png)
-Images to be placed
--->
-<!-- Diagrams drew with with http://dia-installer.de -->
-
-<!---
 - learning curves (from `examples/random_forest.jl`)
 - tuning plots (from `examples/two_parameter_plot.jl`)
 -->
 <p float="left" align="middle">
-  <img src="https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-04-26-MLJ/learningcurves.png" width="400" />
-  <img src="https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-04-26-MLJ/heatmap.png" width="400" />
+  <img src="/images/blog/2019-05-02-MLJ/learningcurves.png" width="400" />
+  <img src="/images/blog/2019-05-02-MLJ/heatmap.png" width="400" />
 </p>
 
 <p float="left" align="middle">
-  <img src="https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-04-26-MLJ/wrapped_ridge.png" width="400" />
-  <img src="https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-04-26-MLJ/MLPackages.png" width="400" />
+  <img src="/images/blog/2019-05-02-MLJ/wrapped_ridge.png" width="400" />
+  <img src="/images/blog/2019-05-02-MLJ/MLPackages.png" width="400" />
 </p>
 
 
@@ -73,7 +64,7 @@ composition.
 
 
 <!---
-![](https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-04-26-MLJ/wrapped_ridge.png)
+![](https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-05-02-MLJ/wrapped_ridge.png)
 -->
 
 
@@ -132,9 +123,9 @@ the following schematic of a simple two-model stack, viewed as a
 network:
 
 <!---
-![](https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-04-26-MLJ/two_model_stack.png)
+![](https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-05-02-MLJ/two_model_stack.png)
 -->
-![](https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-04-26-MLJ/two_model_stack.png)
+![](https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-05-02-MLJ/two_model_stack.png)
 
 ## Building a simple network
 
