@@ -101,7 +101,7 @@ While a relatively small number of machine learning models currently
 implement the MLJ interface, work in progress aims to wrap models
 supported by the popular python framework, scikit-learn, as a
 temporary expedient. For a comparison of the MLJ's design with the
-Julia wrap [ScitLearn.jl](https://github.com/cstjean/ScikitLearn.jl),
+Julia wrap [ScikitLearn.jl](https://github.com/cstjean/ScikitLearn.jl),
 see this
 [FAQ](https://github.com/alan-turing-institute/MLJ.jl/blob/master/docs/src/frequently_asked_questions.md).
 
