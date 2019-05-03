@@ -63,11 +63,6 @@ composition.
 &#9758; Star'ing us to show support for [MLJ](https://github.com/alan-turing-institute/MLJ.jl) would be greatly appreciated!
 
 
-<!---
-![](https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-05-02-MLJ/wrapped_ridge.png)
--->
-
-
 ## MLJ features
 
 MLJ already has substantial functionality:
@@ -122,10 +117,7 @@ in prediction and training modes is different. This can be seen from
 the following schematic of a simple two-model stack, viewed as a
 network:
 
-<!---
-![](https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-05-02-MLJ/two_model_stack.png)
--->
-![](https://github.com/JuliaLang/www.julialang.org/blob/master/images/blog/2019-05-02-MLJ/two_model_stack.png)
+![](/images/blog/2019-05-02-MLJ/two_model_stack.png)
 
 ## Building a simple network
 
