@@ -48,12 +48,115 @@ title:  Julia Downloads
   <p>
     Please see <a href="platform.html">platform specific instructions</a> for further installation instructions and if you have trouble installing Julia.
   </p>
+
+  <div class="row">
+    <div class="col-12">
+      <h2>Currently supported platforms</h2>
+      <p>
+        The platforms currently supported by Julia are outlined below.
+        They are divided into a tier system which ranks them based on the what users can
+        expect for each.
+      </p>
+      <table width="50%" class="downloads table table-hover table-responsive">
+        <tbody>
+          <tr>
+            <th> Operating System </th>
+            <th> OS Version </th>
+            <th> Architecture </th>
+            <th> Support Tier </th>
+          </tr>
+          <tr>
+            <td> macOS </td>
+            <td> 10.8+ </td>
+            <td> x86-64 (64-bit) </td>
+            <td> Tier 1 </td>
+          </tr>
+          <tr>
+            <td rowspan="2"> Windows </td>
+            <td rowspan="2"> 7+ </td>
+            <td> x86-64 (64-bit) </td>
+            <td> Tier 1 <td>
+          </tr>
+          <tr>
+            <!-- Windows cont. -->
+            <td> i686 (32-bit) </td>
+            <td> Tier 1 </td>
+          </tr>
+          <tr>
+            <td rowspan="2"> FreeBSD </td>
+            <td rowspan="2"> 11.0+ </td>
+            <td> x86-64 (64-bit) </td>
+            <td> Tier 1 </td>
+          </tr>
+          <tr>
+            <!-- FreeBSD cont. -->
+            <td> i686 (32-bit) </td>
+            <td> Tier 3 </td>
+          </tr>
+          <tr>
+            <td rowspan="6"> Linux </td>
+            <td rowspan="6"> 2.6.18+ </td>
+            <td> x86-64 (64-bit) </td>
+            <td> Tier 1 </td>
+          </tr>
+          <tr>
+            <!-- Linux cont. -->
+            <td> i686 (32-bit) </td>
+            <td> Tier 1 </td>
+          </tr>
+          <tr>
+            <!-- Linux cont. -->
+            <td> ARMv7 (32-bit) </td>
+            <td> Tier 3 </td>
+          </tr>
+          <tr>
+            <!-- Linux cont. -->
+            <td> ARMv8 (64-bit) </td>
+            <td> Tier 3 </td>
+          </tr>
+          <tr>
+            <!-- Linux cont. -->
+            <td> x86-64 musl libc </td>
+            <td> Tier 3 </td>
+          </tr>
+          <tr>
+            <!-- Linux cont. -->
+            <td> PowerPC (64-bit) </td>
+            <td> Tier 4 </td>
+          </tr>
+        </tbody>
+      </table>
+      <h3> Support tiers </h3>
+      <ul>
+        <li>
+          <b>Tier 1</b>:
+          Julia is guaranteed to build from source and pass all tests on these platforms
+          when built with the default options. Official binaries are always available and
+          CI is run on every commit to ensure support is actively maintained.
+        </li>
+        <li>
+          <b>Tier 2</b>:
+          Julia is guaranteed to build from source using the default build options, but
+          may or may not pass all tests. Official binaries are available on a case-by-case
+          basis.
+        </li>
+        <li>
+          <b>Tier 3</b>:
+          Julia may or may not build. If it does, it is unlikely to pass tests. Binaries
+          may be available in some cases. When they are, they should be considered
+          <i>experimental</i>. Ongoing support is dependent on community efforts.
+        </li>
+        <li>
+          <b>Tier 4</b>:
+          Julia is known not to build.
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-12">
       <h2>Current stable release (v1.1.0)</h2>
-      <p>
-        Note: ARM binaries are not available for v1.1. Please use ARM binaries for v1.0.
-      </p>
       <table class="downloads table table-hover table-responsive table-bordered">
         <tbody>
           <tr>
@@ -77,6 +180,15 @@ title:  Julia Downloads
             </td>
             <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x64/1.1/julia-1.1.0-linux-x86_64.tar.gz">64-bit</a>
                 (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.1/julia-1.1.0-linux-x86_64.tar.gz.asc">GPG</a>)
+            </td>
+          </tr>
+          <tr>
+            <th> Generic Linux Binaries for ARM <a href="platform.html#generic-binaries">[help]</a></th>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.1/julia-1.1.0-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
+              (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.1/julia-1.1.0-linux-armv7l.tar.gz.asc">GPG</a>)
+            </td>
+            <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.1/julia-1.1.0-linux-aarch64.tar.gz">64-bit (AArch64)</a>
+                (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.1/julia-1.1.0-linux-aarch64.tar.gz.asc">GPG</a>)
             </td>
           </tr>
           <tr>
