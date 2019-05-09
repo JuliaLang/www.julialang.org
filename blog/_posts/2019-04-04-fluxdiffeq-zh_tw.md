@@ -732,11 +732,8 @@ solver's internal operations to take place on the GPU without extra data
 transfers in the integration scheme. This looks like[^gpu]: -->
 
 ```julia
-x->neural_ode(gpu(dudt),gpu(x),tspan,BS3(),saveat=0.1)
+x->neural_ode(gpu(dudt),gpu(x),tspan,Tsit5(),saveat=0.1)
 ```
-
-[^gpu]: 在這裡，由於Tsit5[無法在 GPU 上執行](https://github.com/JuliaDiffEq/OrdinaryDiffEq.jl/issues/106)，我們把解算器從 Tsit5 改成 BS3。
-<!-- [^gpu]: We have changed the solver from Tsit5 to BS3, as Tsit5 is [currently not GPU compatible](https://github.com/JuliaDiffEq/OrdinaryDiffEq.jl/issues/106). -->
 
 ## 用範例理解常微分神經網路的行為
 <!-- ## Understanding the Neural ODE layer behavior by example -->
