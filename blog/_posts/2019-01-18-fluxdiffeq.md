@@ -528,13 +528,11 @@ x->neural_ode(dudt,x,tspan,Tsit5(),saveat=0.1)
 As a side note, to run this on the GPU, it is sufficient to make the initial
 condition and neural network be on the GPU. This will cause the entire ODE
 solver's internal operations to take place on the GPU without extra data
-transfers in the integration scheme. This looks like[^gpu]:
+transfers in the integration scheme. This looks like:
 
 ```julia
-x->neural_ode(gpu(dudt),gpu(x),tspan,BS3(),saveat=0.1)
+x->neural_ode(gpu(dudt),gpu(x),tspan,Tsit5(),saveat=0.1)
 ```
-
-[^gpu]: We have changed the solver from Tsit5 to BS3, as Tsit5 is [currently not GPU compatible](https://github.com/JuliaDiffEq/OrdinaryDiffEq.jl/issues/106).
 
 ## Understanding the Neural ODE layer behavior by example
 
