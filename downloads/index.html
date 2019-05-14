@@ -47,7 +47,7 @@ title:  Julia Downloads
 
   <div class="row">
     <div class="col-12">
-      Please see <a href="platform.html">platform specific instructions</a> for further installation instructions and if you have trouble installing Julia. If the provided download files do not work for you, please <a href="https://github.com/JuliaLang/julia/issues">file an issue in the Julia project</a>. Different OSes and architectures have varying tiers of support, and are listed at the bottom of this page.
+      Please see <a href="platform.html">platform specific instructions</a> for further installation instructions and if you have trouble installing Julia. If the provided download files do not work for you, please <a href="https://github.com/JuliaLang/julia/issues">file an issue in the Julia project</a>. Different OSes and architectures have varying <a href="#support-tiers">tiers of support</a>, and are listed at the bottom of this page.
     </div>
   </div>
 
@@ -55,7 +55,7 @@ title:  Julia Downloads
 
   <div class="row">
     <div class="col-12">
-      <h2>Current stable release: v1.1.0</h2>
+      <h2 id='tiers'>Current stable release: v1.1.0</h2>
       <p>
         Checksums for this release are available in
         both <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.1.0.md5">MD5</a>
@@ -239,11 +239,11 @@ title:  Julia Downloads
 
   <div class="row">
     <div class="col-12">
-      <h2>Currently supported platforms</h2>
+      <h2 id='support-tiers'>Currently supported platforms</h2>
       <p>
         The platforms currently supported by Julia are outlined below.
-        They are divided into a tier system which ranks them based on the what users can
-        expect for each.
+        They are divided into a tier system which ranks them based on
+        the what users can expect for each.
       </p>
       <table width="50%" class="downloads table table-hover table-responsive">
         <tbody>
@@ -271,17 +271,6 @@ title:  Julia Downloads
             <td> Tier 1 </td>
           </tr>
           <tr>
-            <td rowspan="2"> FreeBSD </td>
-            <td rowspan="2"> 11.0+ </td>
-            <td> x86-64 (64-bit) </td>
-            <td> Tier 1 </td>
-          </tr>
-          <tr>
-            <!-- FreeBSD cont. -->
-            <td> i686 (32-bit) </td>
-            <td> Tier 3 </td>
-          </tr>
-          <tr>
             <td rowspan="6"> Linux </td>
             <td rowspan="6"> 2.6.18+ </td>
             <td> x86-64 (64-bit) </td>
@@ -294,13 +283,18 @@ title:  Julia Downloads
           </tr>
           <tr>
             <!-- Linux cont. -->
+            <td> Nvidia PTX (64-bit) </td>
+            <td> Tier 1 <a href="https://github.com/JuliaGPU/CUDAnative.jl">(External)</a> </td>
+          </tr>
+          <tr>
+            <!-- Linux cont. -->
             <td> ARMv7 (32-bit) </td>
-            <td> Tier 3 </td>
+            <td> Tier 2 </td>
           </tr>
           <tr>
             <!-- Linux cont. -->
             <td> ARMv8 (64-bit) </td>
-            <td> Tier 3 </td>
+            <td> Tier 2 </td>
           </tr>
           <tr>
             <!-- Linux cont. -->
@@ -310,11 +304,22 @@ title:  Julia Downloads
           <tr>
             <!-- Linux cont. -->
             <td> PowerPC (64-bit) </td>
-            <td> Tier 4 </td>
+            <td> Tier 3 </td>
+          </tr>
+          <tr>
+            <td rowspan="2"> FreeBSD </td>
+            <td rowspan="2"> 11.0+ </td>
+            <td> x86-64 (64-bit) </td>
+            <td> Tier 1 </td>
+          </tr>
+          <tr>
+            <!-- FreeBSD cont. -->
+            <td> i686 (32-bit) </td>
+            <td> Tier 3 </td>
           </tr>
         </tbody>
       </table>
-      <h3> Support tiers </h3>
+      <h3>Support tiers for the latest stable release of Julia</h3>
       <ul>
         <li>
           <b>Tier 1</b>:
