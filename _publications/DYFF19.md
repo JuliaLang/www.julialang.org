@@ -10,6 +10,7 @@ year: "2019"
 pages: "518--525"
 booktitle: "International Symposium on Cluster, Cloud and Grid Computing (CCGRID) Workshop on High Performance Machine Learning Workshop"
 doi: "10.1109/CCGRID.2019.00066"
+link: https://www.cs.bgu.ac.il/~dinari/papers/dpmm_hpml2019.pdf
 packages:
   DPMMSubClusters.jl: https://github.com/dinarior/DPMMSubClusters.jl
 ---
