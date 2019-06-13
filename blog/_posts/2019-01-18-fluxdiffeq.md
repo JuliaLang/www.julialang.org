@@ -742,5 +742,25 @@ into the deep learning framework. With access to the full range of solvers for O
 SDEs, DAEs, DDEs, PDEs, discrete stochastic equations, and more, we are
 interested to see what kinds of next generation neural networks you will build with Julia.
 
-Note: a citable version of this post will be published on
-Arxiv soon.
+Note: a citable version of this post is published on [Arxiv](https://arxiv.org/abs/1902.02376). 
+
+```
+@article{DBLP:journals/corr/abs-1902-02376,
+  author    = {Christopher Rackauckas and
+               Mike Innes and
+               Yingbo Ma and
+               Jesse Bettencourt and
+               Lyndon White and
+               Vaibhav Dixit},
+  title     = {DiffEqFlux.jl - {A} Julia Library for Neural Differential Equations},
+  journal   = {CoRR},
+  volume    = {abs/1902.02376},
+  year      = {2019},
+  url       = {http://arxiv.org/abs/1902.02376},
+  archivePrefix = {arXiv},
+  eprint    = {1902.02376},
+  timestamp = {Tue, 21 May 2019 18:03:36 +0200},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/abs-1902-02376},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+```
