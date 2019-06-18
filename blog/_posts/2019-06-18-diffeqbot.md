@@ -18,7 +18,7 @@ sol = solve(prob, Tsit5())
 DIAGRAMS["Fig1"] = plot(sol)
 ```
 
-Right now, `DIAGRAMS` cannot be a recursive Dictionary, i.e. an element of the dictionary can only be a reference to the plot.
+Right now, `DIAGRAMS` cannot be a recursive dictionary, i.e. an element of the dictionary can only be a reference to the plot.
 
 ## How does DiffEqBot work internally?
 
@@ -55,7 +55,7 @@ failed_job:
 ![](https://i.imgur.com/ORRPWx7.jpg)
 
 
-4. As soon as we make this commit on the `BenchmarkingRepo` on the branch, the Gitlab CI detects that this pushed branch has a config file in it and it goes wild. It knows now that it needs to run this script! It looks for availible Giltab Runners. We don't use shared runner as they are not suitable for benchmarking jobs. We have our own dedicated Gitlab Runner for this purpose.
+4. As soon as we make this commit on the `BenchmarkingRepo` on the branch, the Gitlab CI detects that this pushed branch has a config file in it and it goes wild. It knows now that it needs to run this script! It looks for availible Gitlab Runners. We don't use shared runner as they are not suitable for benchmarking jobs. We have our own dedicated Gitlab Runner for this purpose.
 
 ![](https://i.imgur.com/vYvx4Ta.jpg)
 
