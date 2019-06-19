@@ -124,4 +124,3 @@ We have for now given access to only certain members of the organization. We cal
 
 I absolutely love this new member of our community. But it still has several shortcomings. As seen above, due to security concerns, we have allowed only certain members of the organization access to run the benchmarks. Also, we have a basic frontend ready for display of reports, but an even more better design is welcome! We might also need more commands for DiffEqBot than just `runbenchmarks` and `abort`. All these extra features would be a cherry on top. I also plan to make it open source and maintain a proper documentation so that other communities can also deploy this for thier uses and maybe help in its development too!
 
--- Kanav Gupta
