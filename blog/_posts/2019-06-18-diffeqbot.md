@@ -26,11 +26,11 @@ DiffEqBot works by jumping accross many repositories and it has been all possibl
 
 1. You make a comment on the pull request to run the benchmarks. With the help of GitHub webhooks, `comment` event is posted on a Heroku app. You get the repository's name and pull request number where this comment is made. It makes sure all the sanity checks, like if the person can run benchmarks or not, or the repository is registered or not etc.
 
-![](https://i.imgur.com/YoigTvy.png)
+<div style="text-align:center"><img src="https://i.imgur.com/YoigTvy.png" /></div>
 
 2. DiffEqBot checks if there is another job is pending/running for the same pull request. It rejects the request if there is, otherwise it accepts the job. It makes the respective comment on the GitHub PR. This is done using the [Jobs API](https://docs.gitlab.com/ee/api/jobs.html) of Gitlab. (I know you must be confused from where did Gitlab come from; this will be explained in the next point)
 
-![](https://i.imgur.com/lWS8i7X.jpg)
+<div style="text-align:center"><img src="https://i.imgur.com/lWS8i7X.jpg" /></div>
 
 
 3. Here comes the tricky part. We have a seperate dedicated Gitlab private repository called `BenchmarkingRepo` which is basically an empty repository, but plays an important role which would be explained now. DiffEqBot checks out a branch with name formatted as `REPONAME-PR` and generates a Gitlab CI configuration script (`.gitlab-ci.yml`) and makes a commit on this branch. What this configuration does is, pull the PR where the request is made, run the benchmarks, and post the results back to the bot. Basically the script is -
@@ -52,20 +52,20 @@ failed_job:
   when: on_failure
 ```
 
-![](https://i.imgur.com/ORRPWx7.jpg)
+<div style="text-align:center"><img src="https://i.imgur.com/ORRPWx7.jpg" /></div>
 
 
 4. As soon as we make this commit on the `BenchmarkingRepo` on the branch, the Gitlab CI detects that this pushed branch has a config file in it and it goes wild. It knows now that it needs to run this script! It looks for available Gitlab Runners. We don't use shared runner as they are not suitable for benchmarking jobs. We have our own dedicated Gitlab Runner for this purpose.
 
-![](https://i.imgur.com/vYvx4Ta.jpg)
+<div style="text-align:center"><img src="https://i.imgur.com/vYvx4Ta.jpg" /></div>
 
 5. In the `some_script_to_run_becnhmarks.jl` file, we make a request back to DiffEqBot along with the report in JSON format in the end. When this happens, DiffEqBot makes a commit on the Reports repository on GitHub submitting the markdown script. 
 
-![](https://i.imgur.com/49pIrAe.jpg)  
+<div style="text-align:center"><img src="https://i.imgur.com/49pIrAe.jpg" /></div>  
 
 6. Then it makes a comment on the same PR notifying that the job is complete and report is generated.
 
-![](https://i.imgur.com/XN8sQMo.png)
+<div style="text-align:center"><img src="https://i.imgur.com/XN8sQMo.png" /></div>
 
 Voila :tada: The job is done, all thanks to DiffEqBot!
 
