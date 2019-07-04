@@ -16,7 +16,9 @@ year: "2019"
 pages: "14--40"
 doi: "10.29007/bj1w"
 packages:
-  Reachability.jl: https://github.com/JuliaReach/Reachability.jl, LazySets: https://github.com/JuliaReach/LazySets.jl, ARCH2019_RE: https://github.com/JuliaReach/ARCH2019_RE 
+    Reachability.jl: https://github.com/JuliaReach/Reachability.jl
+    LazySets: https://github.com/JuliaReach/LazySets.jl
+    ARCH2019_RE: https://github.com/JuliaReach/ARCH2019_RE
 ---
 
 This report presents the results of a friendly competition for formal verification of continuous and hybrid systems with
