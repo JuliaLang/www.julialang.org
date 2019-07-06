@@ -18,7 +18,12 @@ year: "2019"
 pages: "41--61"
 doi: "10.29007/m75b"
 packages:
-  Reachability.jl: https://github.com/JuliaReach/Reachability.jl, LazySets: https://github.com/JuliaReach/LazySets.jl, TaylorModels: https://github.com/JuliaIntervals/TaylorModels.jl/, TaylorSeries: https://github.com/JuliaDiff/TaylorSeries.jl, TaylorIntegration: https://github.com/PerezHz/TaylorIntegration.jl, ARCH2019_RE: https://github.com/JuliaReach/ARCH2019_RE 
+    ARCH2019_RE: https://github.com/JuliaReach/ARCH2019_RE
+    LazySets.jl: https://github.com/JuliaReach/LazySets.jl
+    Reachability.jl: https://github.com/JuliaReach/Reachability.jl
+    TaylorIntegration.jl: https://github.com/PerezHz/TaylorIntegration.jl
+    TaylorSeries.jl: https://github.com/JuliaDiff/TaylorSeries.jl
+    TaylorModels.jl: https://github.com/JuliaIntervals/TaylorModels.jl
 ---
 
 We present the results of a friendly competition for formal verification of continuous and hybrid systems with nonlinear 
