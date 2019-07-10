@@ -63,9 +63,9 @@ Most also have channels on the main Julia Slack channel, and sub-forums on the m
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
 * [JuliaReach](https://github.com/JuliaReach) – Reachability Computations for Dynamical Systems ([Gitter](https://gitter.im/JuliaReach/Lobby))
 
-
 ## Data Science
 * [JuliaML](https://github.com/JuliaML) – [Machine Learning](https://juliaml.github.io/)  ([Gitter](https://gitter.im/JuliaML/chat))
+* [FluxML](https://github.com/FluxML) – [The Elegant Machine Learning Stack](https://fluxml.ai/)
 * [JuliaStats](https://github.com/JuliaStats) – [Statistics](http://juliastats.github.io/)
 * [JuliaImages](https://github.com/JuliaImages) – Image processing
 * [JuliaText](https://github.com/JuliaText) – Natural Language Processing (NLP), Computational linguistics  and (textual) information retrieval
