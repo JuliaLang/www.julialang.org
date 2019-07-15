@@ -11,8 +11,10 @@ caring about performance, so we've known for years that we would need a good
 story for multi-threaded, multi-core execution.
 Today we are happy to announce a major new chapter in that story.
 We are releasing an entirely new threading interface for Julia programs:
-fully general task parallelism, inspired by parallel programming systems
+general task parallelism, inspired by parallel programming systems
 like [Cilk][] and [Go][].
+Task parallelism is now available on the master branch, and a beta version will be
+released as part of the upcoming Julia version 1.3.
 
 In this paradigm, any piece of a program can be marked for execution in parallel,
 and a "task" will be started to run that code automatically on an available thread.
@@ -37,9 +39,9 @@ parallel with the following line computing `fib(n - 1)`.
 
 This model of parallelism has many wonderful properties.
 I think of it as somewhat analogous to garbage collection: with GC, you
-can freely allocate objects without worrying about how it works or when and how they
-are freed.
-With task parallelism, you freely spawn tasks without worrying about where they run.
+freely allocate objects without worrying about when and how they are freed.
+With task parallelism, you freely spawn tasks --- potentially millions of them --- without
+worrying about where they run.
 
 The model is portable and free from low-level details.
 You don't need to explicitly start and stop threads, and you don't even need to know how
@@ -113,6 +115,11 @@ variable:
 ```
 $ JULIA_NUM_THREADS=4 ./julia
 ```
+
+The [Juno IDE][] automatically sets the number of threads based on the number of
+available processor cores, and also provides a graphical interface for changing
+the number of threads, so setting the variable manually is not necessary
+in that environment.
 
 The `Threads` submodule of `Base` houses most of the thread-specific functionality,
 such as querying the number of threads and the ID of the current thread:
@@ -241,12 +248,14 @@ all recursive calls.
 Re-using the temporary array is more difficult with parallelism, but
 still possible --- more on that a little later.
 
-## Moving to a parallel world
+## How to move to a parallel world
 
-All of this will be released as part of Julia version 1.3.
 During the 1.3 series the new thread runtime is considered to be in beta testing.
 An "official" version will appear in a later release, to give us time to settle
 on an API we can commit to for the long term.
+Here's what you need to know if you want to upgrade your code over this period.
+
+### Task scheduling and synchronization
 
 To aid compatibility, code will continue to run within a single thread by default.
 When tasks are launched using existing primitives (`schedule`, `@async`), they
@@ -277,6 +286,8 @@ synchronizing tasks).
 hold the lock for a short time.
 `Semaphore` and `Event` are also available, completing the standard set of
 synchronization primitives.
+
+### Thread-local state
 
 Julia code naturally tends to be purely functional (no side effects or mutation),
 or only uses local mutation, so migrating to full thread-safety will hopefully
@@ -315,7 +326,7 @@ Finally, use the array reserved for the current thread, instead of allocating a 
     copyto!(temp, 1, v, lo, m-lo+1)
 ```
 
-## Note on random numbers
+### Seeding the default random number generator
 
 Julia's default global random number generator (`rand()`) is a particularly
 challenging case for thread-safety.
@@ -359,12 +370,19 @@ windows), defaulting to 4MiB each (2MiB on 32-bit systems).
 This can use quite a bit of virtual memory, so don't be alarmed if `top`
 shows your shiny new multi-threaded Julia code using 100GiB of address
 space.
-2<sup>64</sup> (ok, in practice more like 2<sup>48</sup>) is a big number, and integers are,
-fortunately, free.
+The vast majority of this space will not consume real resources, and is only
+there in case a task needs to execute a deep call chain (which will hopefully
+not persist for long).
 These are larger stacks than task systems in lower-level languages would
 probably provide, but we feel it makes good use of the CPU and OS kernel's
 highly refined memory management capabilities, while greatly reducing the
 possibility of stack overflow.
+
+The default stack size is a build-time option, set in `src/options.h`.
+The `Task` constructor also has an undocumented second argument allowing
+you to specify a stack size per-task.
+Using it is not recommended, since it is hard to predict how much stack
+space will be needed, for instance by the compiler or called libraries.
 
 A thread can switch to running a given task simply (in principle) by switching
 its stack pointer to refer to the new task's stack and jumping to the next
@@ -372,8 +390,11 @@ instruction.
 As soon as a task is done running, we can immediately release its stack back
 to the pool, avoiding excessive GC pressure.
 
-In practice, we have an alternate implementation of stack switching that trades
-time for memory by copying only live stack data.
+We also have an alternate implementation of stack switching (controlled by the
+`ALWAYS_COPY_STACKS` variable in `options.h`) that trades time for memory by
+copying live stack data when a task switch occurs.
+We fall back to this implementation if stacks are consuming too much address
+space (some platforms impose a limit, which we exceeded in early testing).
 And of course, each implementation has code for multiple platforms and
 architectures, often requiring assembly language.
 Stack switching is a rich topic that could very well fill a blog post on its own.
@@ -405,10 +426,10 @@ thread, and per-thread queues for running tasks associated with each thread.
 
 ### Sleeping idle threads
 
-When there aren't enough tasks to keep all threads busy, some need to block to avoid
+When there aren't enough tasks to keep all threads busy, some need to sleep to avoid
 using 100% of all CPUs all the time.
 This is a tricky synchronization problem, since some threads might be scheduling new work
-while other threads are deciding to block.
+while other threads are deciding to sleep.
 
 ### Where does the scheduler run?
 
@@ -428,7 +449,7 @@ stack.
 
 While trying to get this new functionality working, we encountered several
 maddeningly difficult bugs.
-My hands-down favorite was a mysterious hang on Windows that was fixed
+The clear favorite was a mysterious hang on Windows that was fixed
 by literally [flipping a single bit][].
 
 
@@ -440,7 +461,7 @@ our threading capabilities:
 
 * Performance work on task switch and I/O latency.
 * Adding parallelism to the standard library. Many common operations like sorting and
-  array broadcasting can now use multiple threads internally.
+  array broadcasting could now use multiple threads internally.
 * Consider allowing task migration.
 * Improved debugging tools.
 * Explore API extensions like cancel points.
@@ -449,7 +470,7 @@ our threading capabilities:
 
 ## Acknowledgements
 
-We would like to gratefully acknowledge funding support from Intel and relational.ai
+We would like to gratefully acknowledge funding support from Intel and relationalAI
 that made it possible to develop these new capabilities.
 
 We are also grateful to the several people who patiently tried this functionality
@@ -461,4 +482,5 @@ to keep going!
 [Cilk]: http://cilk.mit.edu/
 [Go]: https://tour.golang.org/concurrency/1
 [PARTR]: https://github.com/kpamnany/partr
+[Juno IDE]: https://junolab.org/
 [flipping a single bit]: https://github.com/JuliaLang/libuv/commit/26dbe5672c33fc885462c509fe2a9b36f35866fd
