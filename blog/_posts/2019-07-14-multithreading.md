@@ -38,7 +38,7 @@ parallel with the following line computing `fib(n - 1)`.
 `fetch(t)` waits for task `t` to complete and gets its return value.
 
 This model of parallelism has many wonderful properties.
-I think of it as somewhat analogous to garbage collection: with GC, you
+We see it as somewhat analogous to garbage collection: with GC, you
 freely allocate objects without worrying about when and how they are freed.
 With task parallelism, you freely spawn tasks --- potentially millions of them --- without
 worrying about where they run.
@@ -63,7 +63,7 @@ multi-core parallelism is unleashed over the entire Julia package ecosystem.
 One of the most surprising aspects of this new feature is just how long it has been in
 the works.
 From the very beginning --- prior even to the 0.1 release --- Julia has had the `Task`
-type, providing symmetric coroutines and event-based I/O.
+type providing symmetric coroutines, which we've used for event-based I/O.
 So we have always had a unit of *concurrency* in the language, it just wasn't *parallel*
 (simultaneous streams of execution) yet.
 We knew we needed parallelism though, so in 2014 (roughly the version 0.3 timeframe) we
@@ -89,13 +89,13 @@ So the next logical step was to merge the `Task` and threading systems, and "sim
 We had many early discussions with Arch Robison (then also of Intel) and concluded
 that this was the best model for our language.
 After version 0.5 (around 2016) Kiran started experimenting with a new parallel
-task scheduler [PARTR][] based on the idea of depth-first scheduling.
+task scheduler [partr][] based on the idea of depth-first scheduling.
 He sold all of us on it with some nice animated slides, and it also didn't hurt that
 he was willing to do some of the work.
-The plan was to first develop PARTR as a standalone C library so it could be tested
+The plan was to first develop partr as a standalone C library so it could be tested
 and benchmarked on its own, and then integrate it with the Julia runtime.
 
-After Kiran completed the standalone version of PARTR, we embarked on a series of
+After Kiran completed the standalone version of partr, we embarked on a series of
 work sessions including Anton Malakhov (also of Intel) to figure out how to do
 the integration.
 The Julia runtime brings many extra features, such as garbage collection and
@@ -228,7 +228,7 @@ julia> b = copy(a); @time psort!(b);
 
 While the run times are bit variable, we see a definite speedup from using
 two threads.
-The laptop I ran this on has four hyperthreads, and I find it especially amazing
+The laptop we ran this on has four hyperthreads, and it is especially amazing
 that the performance of this code continues to scale if we add a third thread:
 
 ```
@@ -236,8 +236,21 @@ julia> b = copy(a); @time psort!(b);
   1.511860 seconds (3.77 k allocations: 686.935 MiB, 6.45% gc time)
 ```
 
-I don't know about you, but thinking about this two-way decomposition
-algorithm running on three threads makes my head hurt a little!
+Thinking about this two-way decomposition algorithm running on three threads
+can make your head hurt a little!
+In our view, this helps underscore how "automatic" this interface makes
+parallelism feel.
+
+Let's try a different machine with more CPU cores:
+
+```
+$ for n in 1 2 4 8 16; do    JULIA_NUM_THREADS=$n ./julia psort.jl; done
+  2.958881 seconds (3.58 k allocations: 686.932 MiB, 4.71% gc time)
+  1.868720 seconds (3.77 k allocations: 686.935 MiB, 7.03% gc time)
+  1.222777 seconds (3.78 k allocations: 686.935 MiB, 9.14% gc time)
+  0.958517 seconds (3.79 k allocations: 686.935 MiB, 18.21% gc time)
+  0.836891 seconds (3.78 k allocations: 686.935 MiB, 21.10% gc time)
+```
 
 Notice that this speedup occurs despite the parallel code allocating
 *drastically* more memory than the standard routine.
@@ -326,6 +339,21 @@ Finally, use the array reserved for the current thread, instead of allocating a 
     copyto!(temp, 1, v, lo, m-lo+1)
 ```
 
+After these minor modifications, let's check performance on our large
+machine:
+
+```
+$ for n in 1 2 4 8 16; do    JULIA_NUM_THREADS=$n ./julia psort.jl; done
+  2.723312 seconds (3.07 k allocations: 152.852 MiB, 0.14% gc time)
+  1.711112 seconds (3.28 k allocations: 229.149 MiB, 0.59% gc time)
+  0.971327 seconds (3.28 k allocations: 381.737 MiB, 1.60% gc time)
+  0.782790 seconds (3.28 k allocations: 686.913 MiB, 8.63% gc time)
+  0.722063 seconds (3.33 k allocations: 1.267 GiB, 21.43% gc time)
+```
+
+Definitely faster, but we do seem to have some work to do on the
+scalability of the runtime system.
+
 ### Seeding the default random number generator
 
 Julia's default global random number generator (`rand()`) is a particularly
@@ -352,7 +380,7 @@ your own RNG objects (e.g. `Rand.MersenneTwister()`).
 
 As with garbage collection, the simple interface (`@par`) belies great
 complexity underneath.
-Here I will try to summarize some of the main difficulties and design
+Here we will try to summarize some of the main difficulties and design
 decisions we faced.
 
 ### Allocating and switching task stacks
@@ -452,6 +480,14 @@ maddeningly difficult bugs.
 The clear favorite was a mysterious hang on Windows that was fixed
 by literally [flipping a single bit][].
 
+Another good one was a [missing exception handling personality][].
+In hindsight that could have been straightforward, but was confounded by two
+factors: first, the failure mode caused the kernel to stop our process in a way
+that we were not able to intercept in a debugger, and second, the failure was
+triggered by a seemingly-unrelated change.
+All Julia stack frames have an exception handling personality set, so the problem
+could only appear in the runtime system outside any Julia frame --- a narrow window,
+since of course we are usually executing Julia code.
 
 ## Looking forward
 
@@ -464,8 +500,9 @@ our threading capabilities:
   array broadcasting could now use multiple threads internally.
 * Consider allowing task migration.
 * Improved debugging tools.
-* Explore API extensions like cancel points.
+* Explore API extensions, e.g. cancel points.
 * Provide alternate schedulers.
+* Explore integration with the [TAPIR][] parallel IR (some early work [here][]).
 
 
 ## Acknowledgements
@@ -481,6 +518,9 @@ to keep going!
 [free lunch]: http://www.gotw.ca/publications/concurrency-ddj.htm
 [Cilk]: http://cilk.mit.edu/
 [Go]: https://tour.golang.org/concurrency/1
-[PARTR]: https://github.com/kpamnany/partr
+[partr]: https://github.com/kpamnany/partr
 [Juno IDE]: https://junolab.org/
 [flipping a single bit]: https://github.com/JuliaLang/libuv/commit/26dbe5672c33fc885462c509fe2a9b36f35866fd
+[missing exception handling personality]: https://github.com/JuliaLang/julia/pull/32570
+[TAPIR]: http://cilk.mit.edu/tapir/
+[here]: https://github.com/JuliaLang/julia/pull/31086
