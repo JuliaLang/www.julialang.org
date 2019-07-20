@@ -5,7 +5,7 @@ author: Jeff Bezanson, Jameson Nash
 ---
 
 Software performance depends more and more on exploiting multiple processor cores.
-The [free lunch][] is still over.
+The [free lunch][] from Moore's Law is still over.
 Well, we here in the Julia developer community have something of a reputation for
 caring about performance, so we've known for years that we would need a good
 story for multi-threaded, multi-core execution.
