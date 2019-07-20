@@ -54,6 +54,7 @@ This property is crucial for a high-level language where a lot of work is done b
 functions.
 You need to be free to write whatever code you need --- including parallel code ---
 without worrying about how the libraries it calls are implemented.
+(*in the future we plan to extend this to C libraries such as BLAS, currently it only applies to Julia code)
 
 This is, in fact, the reason we are excited about this announcement: from this point on,
 multi-core parallelism is unleashed over the entire Julia package ecosystem.
