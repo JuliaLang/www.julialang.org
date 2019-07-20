@@ -65,7 +65,7 @@ One of the most surprising aspects of this new feature is just how long it has b
 the works.
 From the very beginning --- prior even to the 0.1 release --- Julia has had the `Task`
 type providing symmetric coroutines, which we've used for event-based I/O.
-So we have always had a unit of *concurrency* in the language, it just wasn't *parallel*
+So we have always had a unit of *concurrency* (independent streams of execution) in the language, it just wasn't *parallel* (simultaneous)
 (simultaneous streams of execution) yet.
 We knew we needed parallelism though, so in 2014 (roughly the version 0.3 timeframe) we
 set about the long process of making all of our code thread-safe.
