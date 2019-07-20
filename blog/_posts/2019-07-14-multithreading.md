@@ -75,7 +75,6 @@ wasn't *parallel* (simultaneous streams of execution) yet.
 We knew we needed thread-based parallelism though, so in 2014 (roughly the version 0.3 timeframe) we
 set about the long process of making all of our code thread-safe.
 Yichao Yu put in some particularly impressive work on the garbage collector and thread-local-storage performance.
-handling.
 Kiran Pamnany (of Intel) designed some basic infrastructure for scheduling multiple threads and managing atomic datastructures.
 running multiple threads.
 
