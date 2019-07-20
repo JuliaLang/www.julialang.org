@@ -76,14 +76,12 @@ We knew we needed thread-based parallelism though, so in 2014 (roughly the versi
 set about the long process of making all of our code thread-safe.
 Yichao Yu put in some particularly impressive work on the garbage collector and thread-local-storage performance.
 Kiran Pamnany (of Intel) designed some basic infrastructure for scheduling multiple threads and managing atomic datastructures.
-running multiple threads.
 
 In version 0.5 about two years later, we released the `@threads for` macro with "experimental" status which could handle simple parallel loops running on all cores.
-which provides simple parallel loops.
 Even though that wasn't the final design we wanted, it did two important jobs:
 it let Julia programmers start taking advantage of multiple cores, and provided
 test cases to shake out thread-related bugs in our runtime.
-`@threads` had some huge limitations, however.
+That initial `@threads` had some huge limitations, however:
 `@threads` loops could not be nested: if the functions they called used `@threads`
 recursively, those inner loops would only occupy the CPU that called them.
 It was also incompatible with our `Task` and I/O system: you couldn't do any I/O or
@@ -228,13 +226,13 @@ Let's time the code under `JULIA_NUM_THREADS=2`:
 ```
 julia> a = rand(20000000);
 
-julia> b = copy(a); @time sort!(b, alg = MergeSort);
+julia> b = copy(a); @time sort!(b, alg = MergeSort);   # single-threaded
   2.589243 seconds (11 allocations: 76.294 MiB, 0.17% gc time)
 
 julia> b = copy(a); @time sort!(b, alg = MergeSort);
   2.582697 seconds (11 allocations: 76.294 MiB, 2.25% gc time)
 
-julia> b = copy(a); @time psort!(b);
+julia> b = copy(a); @time psort!(b);    # two threads
   1.770902 seconds (3.78 k allocations: 686.935 MiB, 4.25% gc time)
 
 julia> b = copy(a); @time psort!(b);
@@ -244,7 +242,7 @@ julia> b = copy(a); @time psort!(b);
 While the run times are bit variable, we see a definite speedup from using
 two threads.
 The laptop we ran this on has four hyperthreads, and it is especially amazing
-that the performance of this code continues to scale if we add a third thread:
+that the performance of this code continues to improve if we add a third thread:
 
 ```
 julia> b = copy(a); @time psort!(b);
