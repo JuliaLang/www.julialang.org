@@ -71,7 +71,7 @@ We knew we needed parallelism though, so in 2014 (roughly the version 0.3 timefr
 set about the long process of making all of our code thread-safe.
 Yichao Yu put in some particularly impressive work on the garbage collector and thread-local-storage performance.
 handling.
-Kiran Pamnany (of Intel) put some basic infrastructure in place for starting and
+Kiran Pamnany (of Intel) designed some basic infrastructure for scheduling multiple threads and managing atomic datastructures.
 running multiple threads.
 
 Within about two years, we were ready to release the `@threads` macro in version 0.5,
