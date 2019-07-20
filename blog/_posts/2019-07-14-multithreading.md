@@ -74,7 +74,7 @@ handling.
 Kiran Pamnany (of Intel) designed some basic infrastructure for scheduling multiple threads and managing atomic datastructures.
 running multiple threads.
 
-Within about two years, we were ready to release the `@threads` macro in version 0.5,
+In version 0.5 about two years later, we released the `@threads for` macro with "experimental" status which could handle simple parallel loops running on all cores.
 which provides simple parallel loops.
 Even though that wasn't the final design we wanted, it did two important jobs:
 it let Julia programmers start taking advantage of multiple cores, and provided
