@@ -12,7 +12,7 @@ story for multi-threaded, multi-core execution.
 Today we are happy to announce a major new chapter in that story.
 We are releasing an entirely new threading interface for Julia programs:
 general task parallelism, inspired by parallel programming systems
-like [Cilk][] and [Go][].
+like [Cilk][], [Intel Threading Building Blocks][] and [Go][].
 Task parallelism is now available on the master branch, and a beta version will be
 released as part of the upcoming Julia version 1.3.
 
@@ -518,6 +518,7 @@ to keep going!
 
 [free lunch]: http://www.gotw.ca/publications/concurrency-ddj.htm
 [Cilk]: http://cilk.mit.edu/
+[Intel Threading Building Blocks]: https://software.intel.com/en-us/intel-tbb/
 [Go]: https://tour.golang.org/concurrency/1
 [partr]: https://github.com/kpamnany/partr
 [Juno IDE]: https://junolab.org/
