@@ -133,7 +133,7 @@ julia> Threads.threadid()
 1
 ```
 
-`@threads` loops still work, except now I/O is no problem:
+Existing `@threads for` uses will still work, and now I/O is fully supported:
 
 ```
 julia> Threads.@threads for i = 1:10
