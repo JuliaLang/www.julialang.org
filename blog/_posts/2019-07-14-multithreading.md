@@ -7,14 +7,16 @@ author: Jeff Bezanson, Jameson Nash
 Software performance depends more and more on exploiting multiple processor cores.
 The [free lunch][] from Moore's Law is still over.
 Well, we here in the Julia developer community have something of a reputation for
-caring about performance, so we've known for years that we would need a good
-story for multi-threaded, multi-core execution.
+caring about performance.
+We have already built a lot of functionality for multi-process, distributed
+programming and GPUs, but we've known for years that we would also need a good
+story for fast, composable multi-threading.
 Today we are happy to announce a major new chapter in that story.
-We are releasing an entirely new threading interface for Julia programs:
+We are releasing a preview of an entirely new threading interface for Julia programs:
 general task parallelism, inspired by parallel programming systems
-like [Cilk][], [Intel Threading Building Blocks][] and [Go][].
+like [Cilk][], [Intel Threading Building Blocks][] (TBB) and [Go][].
 Task parallelism is now available on the master branch, and a beta version will be
-released as part of the upcoming Julia version 1.3.
+included as part of the upcoming Julia version 1.3.
 
 In this paradigm, any piece of a program can be marked for execution in parallel,
 and a "task" will be started to run that code automatically on an available thread.
@@ -22,25 +24,27 @@ A dynamic scheduler handles all the decisions and details for you.
 Here's an example of parallel code you can now write in Julia:
 
 ```
+using Base.Threads
+
 function fib(n::Int)
     if n < 2
         return n
     end
-    t = @par fib(n - 2)
+    t = @spawn fib(n - 2)
     return fib(n - 1) + fetch(t)
 end
 ```
 
 This, of course, is the classic highly-inefficient tree recursive implementation of
-the Fibonacci sequence --- but running on any number of processor cores!
-The line `t = @par fib(n - 2)` starts a task to compute `fib(n - 2)`, which runs in
+the Fibonacci sequence---but running on any number of processor cores!
+The line `t = @spawn fib(n - 2)` starts a task to compute `fib(n - 2)`, which runs in
 parallel with the following line computing `fib(n - 1)`.
 `fetch(t)` waits for task `t` to complete and gets its return value.
 
 This model of parallelism has many wonderful properties.
 We see it as somewhat analogous to garbage collection: with GC, you
 freely allocate objects without worrying about when and how they are freed.
-With task parallelism, you freely spawn tasks --- potentially millions of them --- without
+With task parallelism, you freely spawn tasks---potentially millions of them---without
 worrying about where they run.
 
 The model is portable and free from low-level details.
@@ -52,22 +56,23 @@ functions that themselves start parallel tasks, and everything works.
 Your CPUs will not be over-subscribed with threads.
 This property is crucial for a high-level language where a lot of work is done by library
 functions.
-You need to be free to write whatever code you need --- including parallel code ---
-without worrying about how the libraries it calls are implemented.
-(*in the future we plan to extend this to C libraries such as BLAS, currently it only applies to Julia code)
+You need to be free to write whatever code you need---including parallel code---
+without worrying about how the libraries it calls are implemented
+(currently only for Julia code, but in the future we plan to extend this to native libraries
+such as BLAS).
 
-This is, in fact, the reason we are excited about this announcement: from this point on,
+This is, in fact, the main reason we are excited about this announcement: from this point on,
 multi-core parallelism is unleashed over the entire Julia package ecosystem.
 
 ## Some history
 
 One of the most surprising aspects of this new feature is just how long it has been in
 the works.
-From the very beginning --- prior even to the 0.1 release --- Julia has had the `Task`
+From the very beginning---prior even to the 0.1 release---Julia has had the `Task`
 type providing symmetric coroutines, which we've used for event-based I/O.
-So we have always had a unit of *concurrency* (independent streams of execution) in the language, it just wasn't *parallel* (simultaneous)
-(simultaneous streams of execution) yet.
-We knew we needed parallelism though, so in 2014 (roughly the version 0.3 timeframe) we
+So we have always had a unit of *concurrency* (independent streams of execution) in the language, it just
+wasn't *parallel* (simultaneous streams of execution) yet.
+We knew we needed thread-based parallelism though, so in 2014 (roughly the version 0.3 timeframe) we
 set about the long process of making all of our code thread-safe.
 Yichao Yu put in some particularly impressive work on the garbage collector and thread-local-storage performance.
 handling.
@@ -80,8 +85,8 @@ Even though that wasn't the final design we wanted, it did two important jobs:
 it let Julia programmers start taking advantage of multiple cores, and provided
 test cases to shake out thread-related bugs in our runtime.
 `@threads` had some huge limitations, however.
-`@threads` loops could not be nested: all the functions you call from within such a loop
-must not themselves use `@threads`.
+`@threads` loops could not be nested: if the functions they called used `@threads`
+recursively, those inner loops would only occupy the CPU that called them.
 It was also incompatible with our `Task` and I/O system: you couldn't do any I/O or
 switch among `Task`s inside a threaded loop.
 
@@ -89,20 +94,20 @@ So the next logical step was to merge the `Task` and threading systems, and "sim
 (cue laughter) allow `Task`s to run simultaneously on a pool of threads.
 We had many early discussions with Arch Robison (then also of Intel) and concluded
 that this was the best model for our language.
-After version 0.5 (around 2016) Kiran started experimenting with a new parallel
+After version 0.5 (around 2016), Kiran started experimenting with a new parallel
 task scheduler [partr][] based on the idea of depth-first scheduling.
 He sold all of us on it with some nice animated slides, and it also didn't hurt that
 he was willing to do some of the work.
 The plan was to first develop partr as a standalone C library so it could be tested
-and benchmarked on its own, and then integrate it with the Julia runtime.
+and benchmarked on its own and then integrate it with the Julia runtime.
 
-After Kiran completed the standalone version of partr, we embarked on a series of
-work sessions including Anton Malakhov (also of Intel) to figure out how to do
-the integration.
+After Kiran completed the standalone version of partr, a few of us (the authors of
+this post, as well as Keno Fischer and Intel's Anton Malakhov) embarked on a series of
+face-to-face work sessions to figure out how to do the integration.
 The Julia runtime brings many extra features, such as garbage collection and
 event-based I/O, so this was not entirely straightforward.
 Somewhat disappointingly, though not unusually for a complex software project,
-it took much longer than expected --- nearly two years --- to get the new
+it took much longer than expected---nearly two years---to get the new
 system working reliably.
 A later section of this post will explain some of the internals and difficulties
 involved for the curious.
@@ -159,6 +164,8 @@ for parallelism.
 Here is that code:
 
 ```
+using Base.Threads
+
 # sort the elements of `v` in place, from indices `lo` to `hi` inclusive
 function psort!(v, lo::Int=1, hi::Int=length(v))
     if lo >= hi                       # 1 or 0 elements; nothing to do
@@ -171,7 +178,7 @@ function psort!(v, lo::Int=1, hi::Int=length(v))
 
     mid = (lo+hi)>>>1                 # find the midpoint
 
-    half = @par psort!(v, lo, mid)    # task to sort the lower half; will run
+    half = @spawn psort!(v, lo, mid)  # task to sort the lower half; will run
     psort!(v, mid+1, hi)              # in parallel with the current call sorting
                                       # the upper half
     wait(half)                        # wait for the lower half to finish
@@ -200,14 +207,22 @@ end
 ```
 
 This is just a standard mergesort implementation, similar to the one in Julia's
-`Base` library, with only the tiny addition of the `@par` construct on one
+`Base` library, with only the tiny addition of the `@spawn` construct on one
 of the recursive calls.
+Julia's `Distributed` standard library has also exported a `@spawn` macro for
+quite a while, but we plan to discontinue it in favor of the new threaded
+meaning (though it will still be available in 1.x versions, for backwards
+compatibility).
+This way of expressing parallelism is much more useful in shared memory,
+and "spawn" is a pretty standard term in task parallel APIs (used in Cilk
+as well as [TBB][], for example).
+
 `wait` simply waits for the specified task to finish.
 The code works by modifying its input, so we don't need the task's return value.
 Indicating that a return value is not needed is the only difference with the
 `fetch` call used in the earlier `fib` example.
 Note that we explicitly request `MergeSort` when calling Julia's standard `sort!`,
-to make sure we're comparing apples to apples --- `sort!` actually uses
+to make sure we're comparing apples to apples---`sort!` actually uses
 quicksort by default for sorting numbers, which tends to be faster for random data.
 Let's time the code under `JULIA_NUM_THREADS=2`:
 
@@ -260,7 +275,7 @@ arrays allocated on each call.
 The reference sorting routine re-uses a single temporary buffer among
 all recursive calls.
 Re-using the temporary array is more difficult with parallelism, but
-still possible --- more on that a little later.
+still possible---more on that a little later.
 
 ## How to move to a parallel world
 
@@ -329,7 +344,7 @@ We simply need to allocate one array per thread.
 Next, we modify the recursive calls to reuse the space:
 
 ```
-    half = @par psort!(v, lo, mid, temps)
+    half = @spawn psort!(v, lo, mid, temps)
     psort!(v, mid+1, hi, temps)
 ```
 
@@ -379,7 +394,7 @@ your own RNG objects (e.g. `Rand.MersenneTwister()`).
 
 ## Under the hood
 
-As with garbage collection, the simple interface (`@par`) belies great
+As with garbage collection, the simple interface (`@spawn`) belies great
 complexity underneath.
 Here we will try to summarize some of the main difficulties and design
 decisions we faced.
@@ -487,7 +502,7 @@ factors: first, the failure mode caused the kernel to stop our process in a way
 that we were not able to intercept in a debugger, and second, the failure was
 triggered by a seemingly-unrelated change.
 All Julia stack frames have an exception handling personality set, so the problem
-could only appear in the runtime system outside any Julia frame --- a narrow window,
+could only appear in the runtime system outside any Julia frame---a narrow window,
 since of course we are usually executing Julia code.
 
 ## Looking forward
@@ -500,8 +515,13 @@ our threading capabilities:
 * Adding parallelism to the standard library. Many common operations like sorting and
   array broadcasting could now use multiple threads internally.
 * Consider allowing task migration.
+* Provide more atomic operations at the Julia level.
+* Using multiple threads in the compiler.
+* More performant parallel loops and reductions, with more scheduling options.
+* Allow adding more threads at run time.
 * Improved debugging tools.
 * Explore API extensions, e.g. cancel points.
+* Thread-safe data structures.
 * Provide alternate schedulers.
 * Explore integration with the [TAPIR][] parallel IR (some early work [here][]).
 
@@ -526,3 +546,4 @@ to keep going!
 [missing exception handling personality]: https://github.com/JuliaLang/julia/pull/32570
 [TAPIR]: http://cilk.mit.edu/tapir/
 [here]: https://github.com/JuliaLang/julia/pull/31086
+[TBB]: https://software.intel.com/en-us/node/506304
