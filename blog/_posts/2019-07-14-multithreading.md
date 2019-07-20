@@ -156,7 +156,7 @@ A perennial favorite example is mergesort, which divides its input in half
 and recursively sorts each half.
 The halves can be sorted independently, yielding a natural opportunity
 for parallelism.
-Here is the code:
+Here is that code:
 
 ```
 # sort the elements of `v` in place, from indices `lo` to `hi` inclusive
