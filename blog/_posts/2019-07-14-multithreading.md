@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Announcing composable multi-threaded parallelism in Julia
-author: Jeff Bezanson, Jameson Nash
+author: Jeff Bezanson (Julia Computing), Jameson Nash (Julia Computing), Kiran Pamnany (Intel)
 ---
 
 Software performance depends more and more on exploiting multiple processor cores.
@@ -24,7 +24,7 @@ A dynamic scheduler handles all the decisions and details for you.
 Here's an example of parallel code you can now write in Julia:
 
 ```
-using Base.Threads
+import Base.Threads.@spawn
 
 function fib(n::Int)
     if n < 2
@@ -75,7 +75,7 @@ wasn't *parallel* (simultaneous streams of execution) yet.
 We knew we needed thread-based parallelism though, so in 2014 (roughly the version 0.3 timeframe) we
 set about the long process of making all of our code thread-safe.
 Yichao Yu put in some particularly impressive work on the garbage collector and thread-local-storage performance.
-Kiran Pamnany (of Intel) designed some basic infrastructure for scheduling multiple threads and managing
+Kiran designed some basic infrastructure for scheduling multiple threads and managing
 atomic datastructures.
 
 In version 0.5 about two years later, we released the `@threads for` macro with "experimental" status
@@ -91,7 +91,7 @@ switch among `Task`s inside a threaded loop.
 
 So the next logical step was to merge the `Task` and threading systems, and "simply"
 (cue laughter) allow `Task`s to run simultaneously on a pool of threads.
-We had many early discussions with Arch Robison (then also of Intel) and concluded
+We had many early discussions with Arch Robison (then of Intel) and concluded
 that this was the best model for our language.
 After version 0.5 (around 2016), Kiran started experimenting with a new parallel
 task scheduler [partr][] based on the idea of depth-first scheduling.
@@ -163,7 +163,7 @@ for parallelism.
 Here is that code:
 
 ```
-using Base.Threads
+import Base.Threads.@spawn
 
 # sort the elements of `v` in place, from indices `lo` to `hi` inclusive
 function psort!(v, lo::Int=1, hi::Int=length(v))
@@ -256,16 +256,21 @@ can make your head hurt a little!
 In our view, this helps underscore how "automatic" this interface makes
 parallelism feel.
 
-Let's try a different machine with more CPU cores:
+Let's try a different machine with slightly lower single thread performance,
+but more CPU cores:
 
 ```
 $ for n in 1 2 4 8 16; do    JULIA_NUM_THREADS=$n ./julia psort.jl; done
-  2.958881 seconds (3.58 k allocations: 686.932 MiB, 4.71% gc time)
-  1.868720 seconds (3.77 k allocations: 686.935 MiB, 7.03% gc time)
-  1.222777 seconds (3.78 k allocations: 686.935 MiB, 9.14% gc time)
-  0.958517 seconds (3.79 k allocations: 686.935 MiB, 18.21% gc time)
-  0.836891 seconds (3.78 k allocations: 686.935 MiB, 21.10% gc time)
+  2.949212 seconds (3.58 k allocations: 686.932 MiB, 4.70% gc time)
+  1.861985 seconds (3.77 k allocations: 686.935 MiB, 9.32% gc time)
+  1.112285 seconds (3.78 k allocations: 686.935 MiB, 4.45% gc time)
+  0.787816 seconds (3.80 k allocations: 686.935 MiB, 2.08% gc time)
+  0.655762 seconds (3.79 k allocations: 686.935 MiB, 4.62% gc time)
 ```
+
+The `psort.jl` script simply defines the `psort!` function, calls it once
+to avoid measuring compilation overhead, and then runs the same commands
+we used above.
 
 Notice that this speedup occurs despite the parallel code allocating
 *drastically* more memory than the standard routine.
@@ -364,15 +369,12 @@ machine:
 
 ```
 $ for n in 1 2 4 8 16; do    JULIA_NUM_THREADS=$n ./julia psort.jl; done
-  2.723312 seconds (3.07 k allocations: 152.852 MiB, 0.14% gc time)
-  1.711112 seconds (3.28 k allocations: 229.149 MiB, 0.59% gc time)
-  0.971327 seconds (3.28 k allocations: 381.737 MiB, 1.60% gc time)
-  0.782790 seconds (3.28 k allocations: 686.913 MiB, 8.63% gc time)
-  0.722063 seconds (3.33 k allocations: 1.267 GiB, 21.43% gc time)
+  2.813555 seconds (3.08 k allocations: 153.448 MiB, 1.44% gc time)
+  1.731088 seconds (3.28 k allocations: 192.195 MiB, 0.37% gc time)
+  1.028344 seconds (3.30 k allocations: 221.997 MiB, 0.37% gc time)
+  0.750888 seconds (3.31 k allocations: 267.298 MiB, 0.54% gc time)
+  0.620054 seconds (3.38 k allocations: 298.295 MiB, 0.77% gc time)
 ```
-
-Definitely faster, but we do seem to have some work to do on the
-scalability of the runtime system.
 
 ### Random number generation
 
@@ -508,6 +510,8 @@ since of course we are usually executing Julia code.
 ## Looking forward
 
 While we are excited about this milestone, a lot of work remains.
+This alpha release introduces the `@spawn` construct, but is not intended to finalize
+its design.
 Here are some of the points we hope to focus on to further develop
 our threading capabilities:
 
@@ -533,7 +537,9 @@ that made it possible to develop these new capabilities.
 
 We are also grateful to the several people who patiently tried this functionality
 while it was in development and filed bug reports or pull requests, and spurred us
-to keep going!
+to keep going.
+If you encounter any issues using threads in Julia, please let us know on [GitHub][] or
+our [Discourse][] forum!
 
 
 [free lunch]: http://www.gotw.ca/publications/concurrency-ddj.htm
@@ -549,3 +555,5 @@ to keep going!
 [TBB]: https://software.intel.com/en-us/node/506304
 [Intel]: https://www.intel.com/
 [relationalAI]: http://relational.ai/
+[GitHub]: https://github.com/JuliaLang/julia/issues
+[Discourse]: https://discourse.julialang.org/
