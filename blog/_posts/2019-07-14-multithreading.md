@@ -75,9 +75,11 @@ wasn't *parallel* (simultaneous streams of execution) yet.
 We knew we needed thread-based parallelism though, so in 2014 (roughly the version 0.3 timeframe) we
 set about the long process of making all of our code thread-safe.
 Yichao Yu put in some particularly impressive work on the garbage collector and thread-local-storage performance.
-Kiran Pamnany (of Intel) designed some basic infrastructure for scheduling multiple threads and managing atomic datastructures.
+Kiran Pamnany (of Intel) designed some basic infrastructure for scheduling multiple threads and managing
+atomic datastructures.
 
-In version 0.5 about two years later, we released the `@threads for` macro with "experimental" status which could handle simple parallel loops running on all cores.
+In version 0.5 about two years later, we released the `@threads for` macro with "experimental" status
+which could handle simple parallel loops running on all cores.
 Even though that wasn't the final design we wanted, it did two important jobs:
 it let Julia programmers start taking advantage of multiple cores, and provided
 test cases to shake out thread-related bugs in our runtime.
@@ -298,20 +300,25 @@ on the condition itself:
 
 ```
 lock(cond::Threads.Condition)
-while !ready
-    wait(cond)
+try
+    while !ready
+        wait(cond)
+    end
+finally
+    unlock(cond)
 end
-unlock(cond)
 ```
 
 As in previous versions, the standard lock to use to protect critical sections
 is `ReentrantLock`, which is now thread-safe (it was previously only used for
 synchronizing tasks).
-`Threads.SpinLock` is also available, to be used in rare circumstances where
-(1) only threads and not tasks need to be synchronized, and (2) you expect to
-hold the lock for a short time.
-`Semaphore` and `Event` are also available, completing the standard set of
-synchronization primitives.
+There are some other types of locks (`Threads.SpinLock` and `Threads.Mutex`) defined
+mostly for internal purposes.
+These are used in rare circumstances where (1) only threads and not tasks will be
+synchronized, and (2) you know the the lock will only be held for a short time.
+
+The `Threads` module also provides `Semaphore` and `Event` types, which have their
+standard definitions.
 
 ### Thread-local state
 
@@ -328,16 +335,14 @@ that cannot be duplicated for each thread.
 But for high-performance code we recommend thread-local state.
 Our `psort!` routine above can be improved in this way.
 Here is a recipe.
-First, we modify the function to accept pre-allocated buffers, using a default
+First, we modify the function signature to accept pre-allocated buffers, using a default
 argument value to allocate space automatically when the caller doesn't provide it:
 
 ```
-function psort!(v, lo::Int=1, hi::Int=length(v), temps = [similar(v,cld(length(v),2)) for i = 1:Threads.nthreads()])
+function psort!(v, lo::Int=1, hi::Int=length(v), temps=[similar(v, 0) for i = 1:Threads.nthreads()])
 ```
 
-The maximum size of temporary array our mergesort needs is half the array, using
-ceiling division (`cld`) to handle odd lengths.
-We simply need to allocate one array per thread.
+We simply need to allocate one initially-empty array per thread.
 Next, we modify the recursive calls to reuse the space:
 
 ```
@@ -345,10 +350,12 @@ Next, we modify the recursive calls to reuse the space:
     psort!(v, mid+1, hi, temps)
 ```
 
-Finally, use the array reserved for the current thread, instead of allocating a new one:
+Finally, use the array reserved for the current thread, instead of allocating a new one,
+and resize it as needed:
 
 ```
     temp = temps[Threads.threadid()]
+    length(temp) < m-lo+1 && resize!(temp, m-lo+1)
     copyto!(temp, 1, v, lo, m-lo+1)
 ```
 
@@ -367,27 +374,20 @@ $ for n in 1 2 4 8 16; do    JULIA_NUM_THREADS=$n ./julia psort.jl; done
 Definitely faster, but we do seem to have some work to do on the
 scalability of the runtime system.
 
-### Seeding the default random number generator
+### Random number generation
 
-Julia's default global random number generator (`rand()`) is a particularly
-challenging case for thread-safety.
-We have split it into separate random streams for each thread, allowing
-code with `rand()` to be freely parallelized and get independent random
-numbers on each thread.
+The approach we've taken with Julia's default global random number generator (`rand()` and friends)
+is to make it thread-specific.
+On first use, each thread will create an independent instance of the default RNG type
+(currently `MersenneTwister`) seeded from system entropy.
+All operations that affect the random number state (`rand`, `srand`, `randn`, etc.) will then operate
+on only the current thread's RNG state.
+This way, multiple independent code sequences that seed and then use random numbers will individually
+work as expected.
 
-However, seeding (`Random.seed!(n)`) is trickier.
-Seeding all of the per-thread streams would require some kind of synchronization
-among threads, which would unacceptably slow down random number generation.
-It also makes a very limited amount of sense: threading introduces its own
-nondeterminism, so you cannot get much predictability by seeding one thread's
-state from another.
-Therefore we decided to have the `seed!(n)` call affect only the current thread's
-state.
-That way, multiple independent code sequences that seed and then use random
-numbers can at least individually work as expected.
-For more elaborate seeding requirements, we recommend allocating and passing
-your own RNG objects (e.g. `Rand.MersenneTwister()`).
-
+If you need all threads to use a known initial seed, you will need to set it up explicitly.
+For that kind of more precise control, or better performance, we recommend allocating and passing your
+own RNG objects (e.g. `Rand.MersenneTwister()`).
 
 ## Under the hood
 
@@ -425,19 +425,22 @@ you to specify a stack size per-task.
 Using it is not recommended, since it is hard to predict how much stack
 space will be needed, for instance by the compiler or called libraries.
 
-A thread can switch to running a given task simply (in principle) by switching
-its stack pointer to refer to the new task's stack and jumping to the next
-instruction.
+A thread can switch to running a given task just by adjusting its registers to
+appear to “return from” the previous task switch.
+We allocate a new stack out of a local pool just before we start running it.
 As soon as a task is done running, we can immediately release its stack back
 to the pool, avoiding excessive GC pressure.
 
 We also have an alternate implementation of stack switching (controlled by the
 `ALWAYS_COPY_STACKS` variable in `options.h`) that trades time for memory by
 copying live stack data when a task switch occurs.
+This may not be compatible with foreign code that uses `cfunction`,
+so it is not the default.
+
 We fall back to this implementation if stacks are consuming too much address
-space (some platforms impose a limit, which we exceeded in early testing).
+space (some platforms—notably Linux and 32-bit machines—impose a fairly low limit).
 And of course, each implementation has code for multiple platforms and
-architectures, often requiring assembly language.
+architectures, sometimes optimized further with inline assembly.
 Stack switching is a rich topic that could very well fill a blog post on its own.
 
 ### I/O
@@ -446,13 +449,14 @@ We use libuv for cross-platform event-based I/O.
 It is designed to be able to function within a multithreaded program, but is not
 explicitly a multithreaded I/O library and so doesn't support concurrent use from
 multiple threads out of the box.
-We decided to protect access to libuv structures with a lock, and then allow any thread
+For now, we protect access to libuv structures with a single global lock, and then allow any thread
 (one at a time) to run the event loop.
 When another thread needs the event loop thread to wake up, it issues an async signal.
 This can happen for multiple reasons, including another thread scheduling new work,
-or another thread needing to run garbage collection.
+another thread starting to run garbage collection, or another thread that wants to take
+the IO lock to do IO.
 
-### Task migration
+### Task migration across system threads
 
 In general, a task might start running on one thread, block for a while, and then
 restart on another.
@@ -482,9 +486,8 @@ recently-blocked task.
 That works fine, but it means a task can exist in a strange intermediate state
 where it is considered not to be running, and yet is in fact running the
 scheduler.
-In particular, we need to make sure no other thread sees that task and thinks
-"oh, there's a task I can run", causing it to scribble on the scheduler's
-stack.
+In particular, it means we might pull a task out of the scheduler queue just
+to realize that we don't need to switch away at all.
 
 ### Classic bugs
 
@@ -518,14 +521,14 @@ our threading capabilities:
 * Allow adding more threads at run time.
 * Improved debugging tools.
 * Explore API extensions, e.g. cancel points.
-* Thread-safe data structures.
+* Standard library of thread-safe data structures.
 * Provide alternate schedulers.
 * Explore integration with the [TAPIR][] parallel IR (some early work [here][]).
 
 
 ## Acknowledgements
 
-We would like to gratefully acknowledge funding support from Intel and relationalAI
+We would like to gratefully acknowledge funding support from [Intel][] and [relationalAI][]
 that made it possible to develop these new capabilities.
 
 We are also grateful to the several people who patiently tried this functionality
@@ -544,3 +547,5 @@ to keep going!
 [TAPIR]: http://cilk.mit.edu/tapir/
 [here]: https://github.com/JuliaLang/julia/pull/31086
 [TBB]: https://software.intel.com/en-us/node/506304
+[Intel]: https://www.intel.com/
+[relationalAI]: http://relational.ai/
