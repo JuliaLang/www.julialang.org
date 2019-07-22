@@ -48,15 +48,16 @@
               Build, Deploy or Embed Your Code
             </h4>
             <p>
-              Julia lets you write UIs, statically compile your code, or even deploy it on a webserver. It also has powerful shell-like capabilities for managing other processes. It provides Lisp-like macros and other metaprogramming facilities.
+              Julia lets you <a href="https://github.com/JuliaGizmos/WebIO.jl">write UIs</a>, <a href="https://github.com/JuliaLang/PackageCompiler.jl">statically compile</a> your code, or even deploy it on a <a href="https://github.com/JuliaWeb/HTTP.jl">webserver</a>. It also has powerful shell-like capabilities for <a href="https://docs.julialang.org/en/v1/manual/running-external-programs/">managing other processes</a>. It provides Lisp-like macros and other <a href="https://docs.julialang.org/en/v1/manual/metaprogramming/">metaprogramming</a> facilities.
             </p>
             <p>
-              It is also friendly with other languages, providing stable interfaces with:
-                <a href = "https://docs.julialang.org/en/stable/manual/calling-c-and-fortran-code/">C</a>,
+              Julia has foreign function interfaces for
+                <a href = "https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/">C/Fortran</a>,
+                <a href = "https://github.com/Keno/Cxx.jl">C++</a>,
                 <a href = "https://github.com/JuliaPy/PyCall.jl">Python</a>,
                 <a href = "https://github.com/JuliaInterop/RCall.jl">R</a>,
                 <a href = "https://github.com/JuliaInterop/JavaCall.jl">Java</a>,
-              and many more.
+              and many other languages. Julia can also be embedded in other programs through its <a href="https://docs.julialang.org/en/v1/manual/embedding/">embedding API</a>. Specifically, Python programs can call Julia using <a href="https://github.com/JuliaPy/pyjulia">PyJulia</a>. R programs can do the same with <a href="https://cran.r-project.org/web/packages/JuliaCall/index.html">R's JuliaCall</a>, which is demonstrated by <a href="https://rpubs.com/dmbates/377897">calling MixedModels.jl from R</a>.
             </p>
           </div>
         </div>
@@ -71,13 +72,13 @@
                 </h4>
                 <p>
                 Julia is designed for parallelism, and provides built-in primitives for parallel computing at every level:
-                <b><a href = "https://docs.julialang.org/en/stable/stdlib/simd-types/"> vectorization (SIMD)</a></b>,
-                <b><a href = "https://docs.julialang.org/en/stable/manual/parallel-computing/#Multi-Threading-(Experimental)-1">multithreading</a></b> and
-                <b><a href = "https://docs.julialang.org/en/stable/manual/parallel-computing/">distributed computing</a></b>,
-                which <a href = "https://arxiv.org/pdf/1801.10277.pdf">lets it run on supercomputers</a>.
+                <b><a href = "https://docs.julialang.org/en/v1/base/simd-types/"> instruction level parallelism</a></b>,
+                <b><a href = "https://docs.julialang.org/en/v1/manual/parallel-computing/#Multi-Threading-(Experimental)-1">multi-threading</a></b> and
+                <b><a href = "https://docs.julialang.org/en/v1/manual/parallel-computing/">distributed computing</a></b>.
+                The <a href="https://github.com/jeff-regier/Celeste.jl">Celeste.jl </a> project <a href = "https://arxiv.org/pdf/1801.10277.pdf"> achieved 1.5 PetaFLOP/s</a> on the <a href="https://cs.lbl.gov/news-media/news/2016/celeste-enhancements-create-new-opportunities-in-sky-surveys/">Cori supercomputer at NERSC</a> using 650,000 cores.
                 </p>
                 <p>
-                Julia's sophisticated compiler can also generate machine code for various hardware accelerators, such as <a href = "https://github.com/JuliaGPU/CUDAnative.jl">GPUs</a> and Xeon Phis. Write generic code that runs all platforms, without worrying about lower level details.
+                The Julia compiler can also generate native code for various hardware accelerators, such as <a href = "https://github.com/JuliaGPU/CUDAnative.jl">GPUs</a> and Xeon Phis. Packages such as <a href="https://github.com/JuliaParallel/DistributedArrays.jl">DistributedArrays.jl</a> and <a href="https://github.com/JuliaParallel/Dagger.jl">Dagger.jl</a> provide higher levels of abstraction for parallelism.
                 </p>
               </div>
             </div>
@@ -94,17 +95,16 @@
                 </h4>
                 <p>
                   Julia provides powerful tools for deep learning
-                  (<a href = "https://github.com/FluxML/Flux.jl">Flux</a> and
-                  <a href = "https://github.com/denizyuret/Knet.jl">Knet</a>),
+                  (<a href = "https://github.com/FluxML/Flux.jl">Flux.jl</a> and
+                  <a href = "https://github.com/denizyuret/Knet.jl">Knet.jl</a>),
                   <a href = "http://juliaml.github.io"> machine learning </a> and AI. Julia’s mathematical syntax makes it an ideal way to express algorithms just as they are written in papers, build trainable models with
                   <a href = "http://www.juliadiff.org">automatic differentiation</a>,
-                  <a href = "https://github.com/JuliaGPU/CuArrays.jl">GPU acceleration</a> and support for terabytes of data.
+                  <a href = "https://github.com/JuliaGPU/CuArrays.jl">GPU acceleration</a> and support for terabytes of data with <a href="http://juliadb.org">JuliaDB</a>.
                 </p>
                 <p>
-                  Julia's rich machine learning ecosystem also provides supervised learning algorithms such as
-                  <a href = "https://github.com/JuliaStats/GLM.jl">regression</a>,
-                  <a href = "https://github.com/bensadeghi/DecisionTree.jl">decision trees</a>, and unsupervised learning algorithms such as
-                  <a href = "https://github.com/JuliaStats/Clustering.jl">clustering</a>. You can also find packages for
+                  Julia's rich machine learning and statistics ecosystem includes capabilities for
+                  <a href = "https://github.com/JuliaStats/GLM.jl">generalized linear models</a>,
+                  <a href = "https://github.com/bensadeghi/DecisionTree.jl">decision trees</a>, and <a href = "https://github.com/JuliaStats/Clustering.jl">clustering</a>. You can also find packages for
                   <a href = "https://github.com/sisl/BayesNets.jl">Bayesian Networks</a> and
                   <a href = "https://github.com/JuliaStats/Klara.jl">Markov Chain Monte Carlo</a>.
                 </p>
@@ -125,19 +125,21 @@
                   Julia is designed from the ground up to be very good at numerical and scientific computing.
                   This can be seen in the abundance of scientific tooling written in Julia, such as the state-of-the-art
                   differential equations ecosystem
-                  <a href = "http://juliadiffeq.org/">(DiffEq)</a>, optimization tools
-                  (<a href = "https://github.com/JuliaOpt/JuMP.jl">JuMP</a> and
-                  <a href = "https://github.com/JuliaNLSolvers/Optim.jl">Optim</a>), iterative linear solvers
-                  <a href = "https://github.com/JuliaMath/IterativeSolvers.jl">(IterativeSolvers)</a> and many more, that can drive all your simulations.
+                  <a href = "http://juliadiffeq.org/">(DifferentialEquations.jl)</a>, optimization tools
+                  (<a href = "https://github.com/JuliaOpt/JuMP.jl">JuMP.jl</a> and
+                  <a href = "https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a>), iterative linear solvers
+                  <a href = "https://github.com/JuliaMath/IterativeSolvers.jl">(IterativeSolvers.jl)</a>, a robust framework for Fourier transforms
+                  <a href = "https://github.com/JuliaMath/AbstractFFTs.jl">(AbstractFFTs.jl)</a>, a general purpose quantum simulation framework <a href = "https://github.com/QuantumBFS/Yao.jl">(Yao.jl), and many more, that can drive all your simulations.
                   </p>
                   Julia also offers a number of domain-specific ecosystems, such as in biology
                   <a href = "https://github.com/BioJulia"> (BioJulia)</a>, operations research
-                  <a href = "https://www.juliaopt.org"> (JuliaOpt)</a></li>, quantum physics
-                  <a href = "https://github.com/qojulia/QuantumOptics.jl"> (QuantumOptics)</a>, nonlinear dynamics
+                  <a href = "https://www.juliaopt.org"> (JuliaOpt)</a></li>, image processing
+                  <a href = "http://juliaimages.github.io/latest/">(JuliaImages)</a>, quantum physics
+                  (<a href = "https://github.com/QuantumBFS">QuantumBFS</a>, <a href = "https://github.com/qojulia/QuantumOptics.jl">QuantumOptics</a>), nonlinear dynamics
                   <a href = "https://github.com/JuliaDynamics"> (JuliaDynamics)</a>, quantitative economics
                   <a href = "https://github.com/QuantEcon">(QuantEcon)</a>, astronomy
                   <a href = "http://juliaastro.github.io"> (JuliaAstro)</a></li> and ecology
-                  <a href = "https://github.com/EcoJulia">(EcoJulia)</a></li>. With a set of highly enthused
+                  <a href = "https://github.com/EcoJulia">(EcoJulia)</a></li>. With a set of highly enthusiastic
                   developers and maintainers from various parts of the scientific community, this ecosystem will only continue to get
                   bigger and bigger.
                 </p>
@@ -155,21 +157,20 @@
                   Interact with your Data
                 </h4>
                 <p>
-                  The Julia data ecosystem lets you load multidimensional datasets quickly, perform aggregations, joins and preprocessing operations in parallel, and save them to disk in efficient formats. You can also perform
-                  <a href = "https://github.com/joshday/OnlineStats.jl">online computations</a> on streaming data. Whether you're looking for the convenient and familiar
+                  The Julia data ecosystem lets you load multidimensional datasets quickly, perform aggregations, joins and preprocessing operations in parallel, and save them to disk in efficient formats. You can also perform online computations on streaming data with
+                  <a href = "https://github.com/joshday/OnlineStats.jl">OnlineStats.jl</a>. Whether you're looking for the convenient and familiar
                   <a href = "http://juliadata.github.io/DataFrames.jl/stable/">DataFrames</a>, or a new approach with
                   <a href = "http://juliadb.org">JuliaDB</a>, Julia provides you a rich variety of tools.
-                  The
-                  <a href = "https://github.com/queryverse/Queryverse.jl">Queryverse package</a> acts
-                  a meta package through which you can access these tools with Julian APIs. In addition to working with tabular data, the <a href = "https://juliagraphs.github.io">JuliaGraphs</a> packages make it easy to work with combinatorial data.
+                  The 
+                  <a href = "https://www.queryverse.org/">Queryverse</a> provides query, file IO and visualization functionality. In addition to working with tabular data, the <a href = "https://juliagraphs.github.io">JuliaGraphs</a> packages make it easy to work with combinatorial data.
                 </p>
                 <p>
-                  Julia also integrates with every popular database you've heard of, including
-                  <a href = "https://github.com/JuliaDatabases/MySQL.jl">MySQL</a>,
-                  <a href = "https://github.com/JuliaDatabases/JDBC.jl">JDBC</a>,
-                  <a href = "https://github.com/JuliaDatabases/ODBC.jl">ODBC</a>,
-                  <a href = "https://github.com/JuliaParallel/HDFS.jl">HDFS</a> and
-                  <a href = "https://github.com/JuliaDatabases/Hive.jl"> Hive </a>.
+                  Julia can work with almost all databases using
+                  <a href = "https://github.com/JuliaDatabases/JDBC.jl">JDBC.jl</a> and
+                  <a href = "https://github.com/JuliaDatabases/ODBC.jl">ODBC.jl</a> drivers. In addition, it also integrates with the Hadoop ecosystem using
+                  <a href = "https://github.com/dfdx/Spark.jl">Spark.jl</a>,
+                  <a href = "https://github.com/JuliaParallel/HDFS.jl">HDFS.jl</a>, and
+                  <a href = "https://github.com/JuliaDatabases/Hive.jl"> Hive.jl</a>.
 
                 </p>
               </div>
@@ -192,7 +193,7 @@
                   Data visualization has a complicated history. Plotting software makes trade-offs between features and simplicity, speed and beauty, and a static and dynamic interface. Some packages make a display and never change it, while others make updates in real-time.
                 </p>
                 <p>
-                    <a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It sits above other backends, like GR or PyPlot, connecting commands with implementation. If one backend does not support your desired features or make the right trade-offs, you can just switch to another backend with one command. No need to change your code. No need to learn a new syntax. Plots might be the last plotting package you ever learn.
+                    <a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It provides a common API across various <a href="http://docs.juliaplots.org/latest/backends/">backends</a>, like <a href="https://github.com/jheinen/GR.jl">GR.jl</a>, <a href="https://github.com/JuliaPy/PyPlot.jl">PyPlot.jl</a>, and <a href="https://github.com/sglyon/PlotlyJS.jl">PlotlyJS.jl</a>. Users who prefer a more grammar of graphics style API might like the pure Julia <a href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a> plotting package. <a href="https://github.com/fredo-dedup/VegaLite.jl">VegaLite.jl</a> provides the <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> grammar of interactive graphics interface as a Julia package. For those who do not wish to leave the comfort of the terminal, there is also <a href="http://docs.juliaplots.org/latest/backends/">UnicodePlots.jl</a>.
                 </p>
               </div>
             </div>

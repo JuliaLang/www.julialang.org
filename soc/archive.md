@@ -1,12 +1,24 @@
 ---
-layout: default
+layout: insidepage
 title: Julia's Summer of Code projects
 ---
-# Julia's Summers of Code Archive
+# Summer of Code Archives
 
-Take a look at the [Ideas Page](/soc/ideas-page) and contribute your ideas or edits.
+Julia has greatly benefited from the Google Summer of Code. In the last 5 years, over 50 students have contributed to Julia and various Julia packages. Many of these students have become regular Julia contributors well beyond their summer projects. Take a look at the [Ideas Page](/soc/ideas-page) and contribute your ideas.
 
-## Julia Summer of Code 2015
+## GSoC 2018
+
+In 2018, Julia participated in GSoC under the [NumFOCUS umbrella organization](https://julialang.org/blog/2018/02/gsoc2018-numfocus), and [over 20 projects](https://summerofcode.withgoogle.com/archive/2018/organizations/6485922656813056/) were supported. Some of the students published their work in the [Julia blog](https://julialang.org/blog/).
+
+## GSoC 2017
+
+16 Julia projects were supported in [GSoC 2017](https://summerofcode.withgoogle.com/archive/2017/organizations/6682672759832576/). Some of the students published their work in the [Julia blog](https://julialang.org/blog/).
+
+## GSoC 2016
+
+10 Julia projects were supported in [GSoC 2016](https://summerofcode.withgoogle.com/archive/2016/organizations/5096506709245952/).
+
+## JSoC 2015
 
 Various projects were proposed by the community in [GSOC 2015](http://julialang.org/gsoc/2015/). However, Julia did not make it to GSOC 2015. Julia organized its own Summer of Code this year thanks to a generous sponsorship for the same from **[Gordon and Betty Moore Foundation](https://www.moore.org)**. The projects in Julia Summer of Code 2015 were.
 
@@ -19,7 +31,7 @@ Various projects were proposed by the community in [GSOC 2015](http://julialang.
 - **Brian Cohen ([@notthemessiah](https://github.com/notthemessiah))** will be working on implementing a test suite and documentation for Escher.jl (mentor: Shashi Gowda [@shashi](https://github.com/shashi))
 - **Ambuj Agrawal**, Improving debug information generation in Julia (mentor: Keno Fischer [@Keno](https://github.com/Keno))
 
-# Google Summer of Code 2014 projects
+## GSoC 2014
 
 Julia was accepted as part of [GSOC 2014](http://julialang.org/gsoc/2014/). Many of the contributors in
 GSOC 2014 were mentors for JSOC 2015.

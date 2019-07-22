@@ -1,0 +1,87 @@
+---
+layout: homepage
+title:  Julia Research, Prizes and and Publications
+redirect_from:
+  - /publications/
+  - /prizes/
+---
+
+{% include mainmenu.html %}
+
+<br /><br/>
+
+<div class = "container">
+
+<h2>Research</h2>
+<p>
+<p>Research on Julia is carried out at the <a href="https://julia.mit.edu">Julia Lab at MIT</a> and at many universities worldwide. If you use Julia in your research, we request citing the following paper:</p>
+
+<p>
+{% assign beks17 = site.publications | where:"path","_publications/BEKS17.md" | first %}
+<div>{% include citation.html pub=beks17 %}</div>
+</p>
+
+<h2>Prizes and Awards</h2>
+Researchers contributing to Julia have been awarded various prizes:
+<ul>
+<li> <a href="https://sinews.siam.org/Details-Page/january-prize-spotlight-jeff-bezanson-steven-l-brunton-jack-dongarra-stefan-karpinski-and-viral-b-shah">James H. Wilkinson Prize for Numerical Software</a>: Jeff Bezanson, Stefan Karpinski, and Viral Shah for Julia (2019)
+<li> <a href="https://www.forbes.com/profile/keno-fischer/?list=30under30-enterprise-technology#2388dab7190f">Forbes 30 under 30 in Enterprise Technology</a>: Keno Fischer for Julia (2019)
+<li> <a href="https://julialang.org/blog/2018/09/julia-community-prizes">Julia Community Prize</a>: Tim Besard, Katharine Hyatt, Chris Rackauckas, and Elliot Saba (2018)
+<li> <a href="https://dsweb.siam.org/The-Magazine/Article/winners-of-the-dsweb-2018-software-contest">DSWeb 2018 Software Contest</a>: George Datseris for DynamicalSystems.jl (2018)
+<li> <a href="https://globenewswire.com/news-release/2018/09/26/1576496/0/en/InfoWorld-Recognizes-Open-Source-Software-Technologies-Driving-Business-Innovation.html">Best of Open Source Software (Bossie) Award</a>: The Julia project (2018)
+<li> <a href="https://connect.informs.org/computing/awards/ics-prize">INFORMS Computing Society Prize</a>: Miles Lubin, Iain Dunning, and Joey Huchette for JuMP.jl (2016)
+<li> <a href="https://www.computer.org/web/awards/charles-babbage">IEEE-CS Charles Babbage Award</a>: Alan Edelman for Julia (2015)
+</ul>
+
+<h2>Sponsors</h2>
+<p>
+We thank our sponsors for making Julia possible:
+<ul>
+<li> <a href="https://www.ll.mit.edu">Lincoln Laboratory</a>: <a href="http://www.mit.edu/~kepner/">Dr. Jeremy Kepner</a> is the founding sponsor of the Julia project.
+<li> <a href="https://www.moore.org/article-detail?newsUrlName=bringing-julia-from-beta-to-1.0-to-support-data-intensive-scientific-computing">Gordon and Betty Moore Foundation</a>
+<li> <a href="https://sloan.org/grant-detail/7999">Alfred P. Sloan Foundation</a>
+<li> Intel
+<li> Research grants from various agencies have led to Julia contributions: <a href="https://nsf.gov">NSF</a>, <a href="https://www.darpa.mil/">DARPA</a>, <a href="https://www.nih.gov/">NIH</a>, <a href="https://nasa.gov">NASA</a>, and <a href="https://www.faa.gov/">FAA</a>.
+</ul>
+
+<h2>Publications</h2>
+<p>
+Here's a list of publications about the Julia language, its standard
+library, Julia packages, and technical computing applications. It
+is by no means complete, and is based on submissions by
+authors. A broader list of papers is available on <a href =
+"https://scholar.google.com/scholar?cites=12373977815425691465&as_sdt=40000005&sciodt=0,22&hl=en">Google
+Scholar</a>.
+</p>
+
+In order to make Julia packages and projects easy to cite, the
+community has settled on a standard location and format for
+bibliographic information.  Please add a CITATION.bib file (BibTeX
+format) in the top-level directory of your package or repo. The key
+for the bib entry should be &lt;PackageName.jl&gt;-&lt;year&gt;-&lt;letter&gt; (Use a
+letter if you have multiple citations in same year). For example, see
+the
+<a href="https://github.com/JuliaLang/julia/blob/master/CITATION.bib">CITATION.bib</a>
+file in the Julia repo.
+
+We welcome additions to this list in the form of
+<a href = "https://github.com/JuliaLang/www.julialang.org/tree/master/_publications#readme">pull requests</a>.
+<br><br>
+
+{% assign pubs_grouped = site.publications | group_by: 'year' | sort: 'name' | reverse %}
+<ul class="publist">
+{% for eachyear in pubs_grouped  %}
+  <h2> {{ eachyear.name }} </h2>
+  {% for pub in eachyear.items %}
+  <li id="{{ pub.path | remove: "_publications/" | remove: ".md"  }}">{% include citation.html pub=pub %}</li>
+  {% endfor %}
+  <br/><br/>
+{% endfor %}
+</ul>
+</div>
+
+<br /><br />
+
+{% include footermenu.html %}
+
+{% include footer.html %}

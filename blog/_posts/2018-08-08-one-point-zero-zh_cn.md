@@ -1,6 +1,6 @@
 ---
  layout: post
- title: "Julia 1.0"
+ title: "Julia 1.0 (Simplified Chinese)"
  snippet: "Julia 1.0正式发布"
 ---
 
@@ -62,7 +62,7 @@ open source Julia packages. All told, we have built a language that is: -->
   quantities, or data table columns of currencies and colors, just work — and with good
   performance. -->
 
-现在可以通过[下载Julia 1.0版本]((https://julialang.org/downloads/))来尝试Julia。
+现在可以通过[下载Julia 1.0版本](https://julialang.org/downloads/)来尝试Julia。
 如果你现在从Julia 0.6或者更早的版本开始升级代码，我们建议你先使用过渡性的0.7版本，
 其中包括了弃用警告（deprecation warning）来指导你的升级过程。一旦你的代码无警告通过，
 那么你可以在没有任何功能变化的情况下将代码更改为1.0版本。
@@ -245,7 +245,7 @@ innovative language features. Some of the new features since version 0.6 include
       are programmed using the [CUDANative.jl](https://github.com/JuliaGPU/CUDAnative.jl)
       package, and a port to Google TPUs is in the works. -->
 
-还有很多没有被列举的大大小小的提高。你可以通过 [0.7 NEWS 文件](https://docs.julialang.org/en/release-0.7/NEWS/)查看
+还有很多没有被列举的大大小小的提高。你可以通过 [0.7 NEWS 文件](https://github.com/JuliaLang/julia/blob/release-0.7/NEWS.md)查看
 完整的更新。在我们2012年的 ["为什么我们创造来Julia"博文](https://julialang.org/blog/2012/02/why-we-created-julia)里，我们写到：
 
 > 它还没有完工——但是已经可以发布一个1.0版本了（其实等了6年才要发布）——我们创造的这个语言叫做Julia。

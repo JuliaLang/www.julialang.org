@@ -210,7 +210,7 @@ table.benchmarks {
 /* Inline code and code blocks */
 
 code, table.benchmarks tbody {
-  font: 9pt Monaco, 'Consolas', monospace;
+  font: Monaco, 'Consolas', monospace;
 }
 
 pre {
