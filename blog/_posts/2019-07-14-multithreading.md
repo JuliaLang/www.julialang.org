@@ -8,15 +8,15 @@ Software performance depends more and more on exploiting multiple processor core
 The [free lunch][] from Moore's Law is still over.
 Well, we here in the Julia developer community have something of a reputation for
 caring about performance.
-We have already built a lot of functionality for multi-process, distributed
+In pursuit of it, we have already built a lot of functionality for multi-process, distributed
 programming and GPUs, but we've known for years that we would also need a good
-story for fast, composable multi-threading.
+story for composable multi-threading.
 Today we are happy to announce a major new chapter in that story.
 We are releasing a preview of an entirely new threading interface for Julia programs:
 general task parallelism, inspired by parallel programming systems
 like [Cilk][], [Intel Threading Building Blocks][] (TBB) and [Go][].
-Task parallelism is now available on the master branch, and a beta version will be
-included as part of the upcoming Julia version 1.3.
+Task parallelism is now available in the v1.3.0-alpha release, an early preview
+of Julia version 1.3.0 likely to be released in a couple months.
 
 In this paradigm, any piece of a program can be marked for execution in parallel,
 and a "task" will be started to run that code automatically on an available thread.
@@ -73,9 +73,9 @@ type providing symmetric coroutines, which we've used for event-based I/O.
 So we have always had a unit of *concurrency* (independent streams of execution) in the language, it just
 wasn't *parallel* (simultaneous streams of execution) yet.
 We knew we needed thread-based parallelism though, so in 2014 (roughly the version 0.3 timeframe) we
-set about the long process of making all of our code thread-safe.
+set about the long process of making our code thread-safe.
 Yichao Yu put in some particularly impressive work on the garbage collector and thread-local-storage performance.
-Kiran designed some basic infrastructure for scheduling multiple threads and managing
+One of the authors (Kiran) designed some basic infrastructure for scheduling multiple threads and managing
 atomic datastructures.
 
 In version 0.5 about two years later, we released the `@threads for` macro with "experimental" status
@@ -244,7 +244,7 @@ julia> b = copy(a); @time psort!(b);
 While the run times are bit variable, we see a definite speedup from using
 two threads.
 The laptop we ran this on has four hyperthreads, and it is especially amazing
-that the performance of this code continues to improve if we add a third thread:
+that performance continues to improve if we add a third thread:
 
 ```
 julia> b = copy(a); @time psort!(b);
@@ -328,7 +328,7 @@ standard definitions.
 ### Thread-local state
 
 Julia code naturally tends to be purely functional (no side effects or mutation),
-or only uses local mutation, so migrating to full thread-safety will hopefully
+or to use only local mutation, so migrating to full thread-safety will hopefully
 be easy in many cases.
 But if your code uses shared state and you'd like to make it thread-safe, there
 is some work to do.
@@ -382,7 +382,7 @@ The approach we've taken with Julia's default global random number generator (`r
 is to make it thread-specific.
 On first use, each thread will create an independent instance of the default RNG type
 (currently `MersenneTwister`) seeded from system entropy.
-All operations that affect the random number state (`rand`, `srand`, `randn`, etc.) will then operate
+All operations that affect the random number state (`rand`, `randn`, `seed!`, etc.) will then operate
 on only the current thread's RNG state.
 This way, multiple independent code sequences that seed and then use random numbers will individually
 work as expected.
@@ -409,7 +409,7 @@ There are many possible approaches to this, with different tradeoffs.
 As we often do, we tried to pick a method that would maximize throughput
 and reliability.
 We have a shared pool of stacks allocated by `mmap` (`VirtualAlloc` on
-windows), defaulting to 4MiB each (2MiB on 32-bit systems).
+Windows), defaulting to 4MiB each (2MiB on 32-bit systems).
 This can use quite a bit of virtual memory, so don't be alarmed if `top`
 shows your shiny new multi-threaded Julia code using 100GiB of address
 space.
@@ -428,7 +428,7 @@ Using it is not recommended, since it is hard to predict how much stack
 space will be needed, for instance by the compiler or called libraries.
 
 A thread can switch to running a given task just by adjusting its registers to
-appear to “return from” the previous task switch.
+appear to "return from" the previous switch away from that task.
 We allocate a new stack out of a local pool just before we start running it.
 As soon as a task is done running, we can immediately release its stack back
 to the pool, avoiding excessive GC pressure.
@@ -488,7 +488,7 @@ recently-blocked task.
 That works fine, but it means a task can exist in a strange intermediate state
 where it is considered not to be running, and yet is in fact running the
 scheduler.
-In particular, it means we might pull a task out of the scheduler queue just
+One implication of that is that we might pull a task out of the scheduler queue just
 to realize that we don't need to switch away at all.
 
 ### Classic bugs
