@@ -17,6 +17,8 @@ general task parallelism, inspired by parallel programming systems
 like [Cilk][], [Intel Threading Building Blocks][] (TBB) and [Go][].
 Task parallelism is now available in the v1.3.0-alpha release, an early preview
 of Julia version 1.3.0 likely to be released in a couple months.
+You can find binaries with this feature on the [downloads page][], or build
+the [master branch][] from source.
 
 In this paradigm, any piece of a program can be marked for execution in parallel,
 and a "task" will be started to run that code automatically on an available thread.
@@ -557,3 +559,5 @@ our [Discourse][] forum!
 [relationalAI]: http://relational.ai/
 [GitHub]: https://github.com/JuliaLang/julia/issues
 [Discourse]: https://discourse.julialang.org/
+[downloads page]: https://julialang.org/downloads/
+[master branch]: https://github.com/JuliaLang/julia
