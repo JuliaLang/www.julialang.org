@@ -1,18 +1,18 @@
 ---
 layout: post
-title:  发布Julia中的可组合多线程并行(Simplified Chinese)
+title:  Julia将支持可组合的多线程并行机制
 author: Jeff Bezanson (Julia Computing), Jameson Nash (Julia Computing), Kiran Pamnany (Intel)
 ---
 
-摩尔定律带来的[免费性能提升][free lunch]已经结束，
+摩尔定律带来的[免费性能提升（free lunch）][free lunch]已经结束，
 软件性能越来越依赖于利用多个处理器核心。
 Julia社区一直以对计算性能的关注而出名。
 为了追求性能，我们已经为多进程、分布式编程和 GPU 构建了许多功能，
 但多年来，我们一直知道我们还需要一个可组合的多线程支持。
 今天，我们很高兴地宣布这一方向的重要进展。
-我们将发布一个 Julia 的全新的线程接口：
+我们将发布一个全新的Julia线程接口：
 一个受到[Cilk][]，[Intel Threading Building Blocks][] (TBB) 以及 [Go][]等启发的
-通用任务并行（general task parallelism）。 
+通用任务并行（general task parallelism）机制。 
 任务并行现在已在 v1.3.0-alpha 版本中提供，这是 Julia 1.3.0 的早期预览版，预计在几个月内发布。
 您可以在下载页面上找到具有此功能的二进制文件，或者从源代码[主分支][master branch]构建。
 
