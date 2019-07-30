@@ -13,7 +13,7 @@ Julia社区一直以对计算性能的关注而出名。
 我们将发布一个全新的Julia线程接口：
 一个受到[Cilk][]，[Intel Threading Building Blocks][] (TBB) 以及 [Go][]等启发的
 通用任务并行（general task parallelism）机制。 
-任务并行现在已在 v1.3.0-alpha 版本中提供，这是 Julia 1.3.0 的早期预览版，正式版预计将在几个月内发布。
+任务并行现在已在 v1.3.0-alpha 版本中提供，Julia 1.3.0 的早期预览版预计将在几个月内发布。
 您可以在下载页面上找到具有此功能的二进制文件，或者从源代码[主分支][master branch]构建。
 
 在这个例子中，程序的任何部分都可以标记为并行执行，
