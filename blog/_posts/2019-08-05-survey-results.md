@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Julia User & Developer Survey 2019
-author: Andrew Claster (Julia Computing)
+author: Viral Shah (Julia Computing), Andrew Claster (Julia Computing), Abhijith C (Julia Computing)
 ---
 
 We conducted the first annual Julia User & Developer Survey in June, and the [results](/images/2019-julia-user-developer-survey.pdf) were presented by [Viral Shah at JuliaCon on July 23](https://youtu.be/yx6lBSHqGfc). 
