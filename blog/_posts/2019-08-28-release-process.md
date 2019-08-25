@@ -124,7 +124,7 @@ One point to note, since people are sometimes confused but this: feature freeze 
 
 Even though they are a standard part of release process, it may not be obvious to people what the purpose of alpha and beta releases is or what a "release candidate" is. Why do these "pre-release" versions exist? I know this was not fully apparent to me until I started to try to actually make software releases. These releases are all about communication with the people who depend on your software. They act as a signal saying "please test this now". Each one requests a different kind of feedback from different kinds of users:
 
-- An alpha release says: "this is not feature complete yet and almost certainly has bugs, but we want early feedback on some important new features so that we can change them or fix them before they become baked in stone."
+- An alpha release says: "this is not feature complete yet and almost certainly has bugs, but we want early feedback on some important new features so that we can change them or fix them before they become carved in stone."
 
 - A beta release is very similar to an alpha release but one can expect a bit more polish and fewer bugs since there has probably already been an alpha. We have only ever done beta releases for Julia 0.6 and 0.7 (aka 1.0 with deprecations), both of which had alpha releases first. The epic 0.7 release even had a second beta because we really wanted to make sure we got as much feedback as we could.
 
