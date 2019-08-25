@@ -11,12 +11,7 @@ authors:
   - Pearson, John
 year: "2019"
 month: "July"
-journal: "Unpublished (arXiv)"
-volume: ""
-number: ""
-pages: ""
-issn: ""
-doi: ""
+arxiv: 1907.08611
 packages:
   Distributions.jl: https://github.com/JuliaStats/Distributions.jl
 ---
