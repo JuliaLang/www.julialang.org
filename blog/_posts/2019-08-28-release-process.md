@@ -126,7 +126,7 @@ Even though they are a standard part of release process, it may not be obvious t
 
 - An alpha release says: "this is not feature complete yet and almost certainly has bugs, but we want early feedback on some important new features so that we can change them or fix them before they become carved in stone."
 
-- A beta release is very similar to an alpha release but one can expect a bit more polish and fewer bugs since there has probably already been an alpha. We have only ever done beta releases for Julia 0.6 and 0.7 (aka 1.0 with deprecations), both of which had alpha releases first. The epic 0.7 release even had a second beta because we really wanted to make sure we got as much feedback as we could.
+- A beta release is very similar to an alpha release but one can expect a bit more polish and fewer bugs since there has probably already been an alpha. We have only ever done beta releases for Julia 0.6 and 0.7 (aka 1.0 with deprecations), both of which had alpha releases first.
 
 - A release candidate says: "this is really almost ready, please test it now and let us know if there are any bugs at all because otherwise we might end up making a release that has bugs that affect your application." A release candidate should actually be a version that, as far as we know when it's tagged, could be the next release. In other words, it should contain no known release-blocking bugs.
 
