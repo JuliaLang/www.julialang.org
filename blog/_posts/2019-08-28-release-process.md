@@ -120,6 +120,18 @@ As a result of overlapping development and stabilization, if release candidate p
 
 One point to note, since people are sometimes confused but this: feature freeze only affects new functionality—bugs can be fixed at any point on any branch. It is never too late for a bug fix. The only time where a bug fix will not go on a release branch is if it is no longer maintained. Even then, if someone else wants to fix a bug and go through the process of making a new release, we will gladly help, we just won’t do it ourselves.
 
+# Why pre-release versions?
+
+Even though they are a standard part of release process, it may not be obvious to people what the purpose of alpha and beta releases is or what a "release candidate" is. Why do these "pre-release" versions exist? I know this was not fully apparent to me until I started to try to actually make software releases. These releases are all about communication with the people who depend on your software. They act as a signal saying "please test this now". Each one requests a different kind of feedback from different kinds of users:
+
+- An alpha release says: "this is not feature complete yet and almost certainly has bugs, but we want early feedback on some important new features so that we can change them or fix them before they become baked in stone."
+
+- A beta release is very similar to an alpha release but one can expect a bit more polish and fewer bugs since there has probably already been an alpha. We have only ever done beta releases for Julia 0.6 and 0.7 (aka 1.0 with deprecations), both of which had alpha releases first. The epic 0.7 release even had a second beta because we really wanted to make sure we got as much feedback as we could.
+
+- A release candidate says: "this is really almost ready, please test it now and let us know if there are any bugs at all because otherwise we might end up making a release that has bugs that affect your application." A release candidate should actually be a version that, as far as we know when it's tagged, could be the next release. In other words, it should contain no known release-blocking bugs.
+
+So when you see an alpha or a beta or a release candidate, try it! Let us know if it doesn't work for you in any way. Doing that will help make sure that the final release is as smooth and high quality _for you_ as possible.
+
 # Release maintenance
 
 On the subject of bug fixes: the life of a release is not done when `x.y.0` is tagged: there are any number of `x.y.z` bug-fix releases that may be tagged as well. How does this process work? Bugs are fixed on all active branches, but they are generally fixed on the most current branch which has the bug and then "backported" to all earlier branches which are still active. So, for example, if a bug exists on `master`, it will be fixed on `master` and the pull request (PR) that fixes it is labelled on GitHub with `backport x.y` for all active branches which also have the bug. Since the current active branches are `master`, `release-1.3` (unstable), `release-1.2` (stable) and `release-1.0` (LTS), the fix for a bug on master would be labelled with `backport 1.3`, `backport 1.2` and `backport 1.0`. The change is then cherry-picked (using `git cherry-pick -x`) onto each of these branches for the next patch release of that branch. If the fix applies cleanly and passes tests, that's great. If not, then additional manual work may be required to make a fix that applies to a branch.
