@@ -22,7 +22,7 @@ This information is collected from a small set of posts on [discourse](https://d
 
 - Patch releases should also avoid changing internals unless it is necessary to fix a bug. Even though changing non-public code is technically fair game in any release, we want to avoid it in the name of minimizing the risk associated with patch upgrades as much as possible.
 
-- Patch releases will be released approximately monthly for the currently active release branchs (more below), unless there are insufficient bug fixes on the release branch to warrant a new release, in which case a month might get skipped.
+- Patch releases will be released approximately monthly for the currently active release branches (more below), unless there are insufficient bug fixes on the release branch to warrant a new release, in which case a month might get skipped.
 
 - About five days before a patch release is supposed to go out, we will run PkgEval on the backports branch; if it looks good, we'll merge it and then freeze the release branch and announce on discourse that the release branch is ready for testing. If everything looks good after five days, the new patch version will be tagged.
 
@@ -42,11 +42,11 @@ This information is collected from a small set of posts on [discourse](https://d
 
 - What a major release does allow, however, is fixing obvious API design mistakes—the kinds of bad, confusing APIs that everyone will be glad to be rid of. It also allows changing low-level things that will break some libraries, but which need to be broken in order to make really fundamental improvements to the language. Changes to Julia's AST representation and how macros work fall into this latter category.
 
-- My favorite example of a breaking change that I want to make in Julia 2.0 is to turn multithreading on by default instead of requiring the user to opt in. Technically this is breaking: if someone wrote thread-unsafe code in 1.x, assuming single-threaded execution by default, if we suddenly turn threading on in Julia 1.5, their code will stop working, breaking our SemVer compatibility promise for non-breaking minor releases. So we need to wait until 2.0 to flip that switch.
+- My favorite example of a breaking change that I want to make in Julia 2.0 is to turn multithreading on by default instead of requiring the user to opt in. Technically this is breaking: if someone wrote thread-unsafe code in 1.x, assuming single-threaded execution by default, if we suddenly turn threading on in Julia 1.x, their code will stop working, breaking our SemVer compatibility promise for non-breaking minor releases. So we need to wait until 2.0 to flip that switch.
 
 # Long term support
 
-Some users are happy to upgrade Julia all the time to get the hottest new features as soon as they're ready. Some people are even happy to build Julia's master branch every day and try out new features before they may by fully baked. Others don't want to upgrade Julia more than every year or so, if that often. Ideally, we'd love to provide bug fixes forever for every minor release of Julia we've ever made. If we had infinite resources, we'd backport every bug fix to every old release branch it applies to. Realistically, however, we don't really have the capacity to maintain more than two active backport branches at a time. Always backporting to the oldest version around (`1.0.x` forever) seems wrong, though, since then people who want stability are then actively discouraged from upgrading or using new features _ever_. So we've decided on a compromise of having at most four active branches going at any time:
+Some users are happy to upgrade Julia all the time to get the hottest new features as soon as they're ready. Some people are even happy to build Julia's master branch every day and try out new features before they may be fully baked. Others don't want to upgrade Julia more than every year or so, if that often. Ideally, we'd love to provide bug fixes forever for every minor release of Julia we've ever made. If we had infinite resources, we'd backport every bug fix to every old release branch it applies to. Realistically, however, we don't really have the capacity to maintain more than two active backport branches at a time. Always backporting to the oldest version around (`1.0.x` forever) seems wrong, though, since then people who want stability are then actively discouraged from upgrading or using new features _ever_. So we've decided on a compromise of having at most four active branches going at any time:
 
 - the **`master`** branch: where all development work happens, from bug fixes to new features and minor changes and eventually, when we start working on 2.0, breaking changes.
 
@@ -83,7 +83,7 @@ If these two criteria are satisfied by a new LTS branch, then users in the "low 
 
 We've discussed what various kinds of releases mean and what types of changes can go into them, but we haven't talked much about how a release actually gets made. In this section I'll outline how we go from working on features on the `master` branch to tagging a final version of the release and after that making patches of that release. I will use the word “bugs” to refer to both bugs in the usual sense of incorrect code but also “performance bugs”—i.e. code that runs slower than we consider acceptable. In Julia, performance is a vital property and we often consider performance issues to be blocking bugs. The following is an outline of the sequence of events surrounding a minor release numbered `x.y.0`:
 
-- *Development* (four months)
+- **Development** (four months)
 	- on the `master` branch
 		- develop new features, fix bugs, etc.
 	- tag `x.y.0-alpha` (optional)
@@ -94,7 +94,7 @@ We've discussed what various kinds of releases mean and what types of changes ca
 		- create `release-x.y`, the new unstable release branch
 	    - no new features will be merged on the release branch, only bug fixes
 	    - new features can continue to be merged on the master branch, they just won’t go into the `x.y.z` release
-- *Stabilization* (weeks to months)
+- **Stabilization** (weeks to months)
 	- on the `release-x.y` branch
 	    - fix all known release-blocking bugs
 	- tag `x.y.0-rc1`
@@ -105,7 +105,7 @@ We've discussed what various kinds of releases mean and what types of changes ca
 	- tag `x.y.0-rcN`
 	    - one week without any release-blocking bugs
 	- tag `x.y.0` final
-- *Maintenance* (until `x.y` declared unmaintained)
+- **Maintenance** (until `x.y` declared unmaintained)
 	- on the `release-x.y` branch
 	    - backport bug fixes to the `release-x.y` branch
 	- tag `x.y.1` (a month or two later)
