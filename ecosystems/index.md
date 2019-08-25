@@ -77,5 +77,7 @@ Most also have channels on the main Julia Slack channel, and sub-forums on the m
 
 * [GiovineItalia](https://github.com/GiovineItalia) – Plotting (with [Gadfly](https://github.com/GiovineItalia/Gadfly.jl))
 * [JuliaPlots](https://github.com/JuliaPlots) – [Data visualization](https://juliaplots.github.io/)
+    * [Plots.jl](http://juliaplots.org) - Powerful convenience for Julia visualizations and data analysis
+    * [Makie.jl](http://makie.juliaplots.org/dev) - High-level, fast and interactive plotting on the GPU
 * [JuliaGL](https://github.com/JuliaGL) – OpenGL API and ecosystem ([Gitter](https://gitter.im/JuliaGL/meta))
 * [JuliaGraphics](https://github.com/JuliaGraphics) – Drawing, colors, GUIs
