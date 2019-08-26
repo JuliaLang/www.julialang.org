@@ -84,33 +84,33 @@ If these two criteria are satisfied by a new LTS branch, then users in the "low 
 We've discussed what various kinds of releases mean and what types of changes can go into them, but we haven't talked much about how a release actually gets made. In this section I'll outline how we go from working on features on the `master` branch to tagging a final version of the release and after that making patches of that release. I will use the word “bugs” to refer to both bugs in the usual sense of incorrect code but also “performance bugs”—i.e. code that runs slower than we consider acceptable. In Julia, performance is a vital property and we often consider performance issues to be blocking bugs. The following is an outline of the sequence of events surrounding a `x.y.0` minor release:
 
 - **Development** (4 months)
-	- on the `master` branch
-		- develop new features, fix bugs, etc.
-	- tag `x.y.0-alpha` (optional)
-	    - very early preview of a new release—it is not feature frozen yet any may have known bugs
-	- tag `x.y.0-beta` (optional)
-	    - slightly later preview of a new release—it is still not feature frozen yet any may have known bugs
-	- `x.y.0` feature freeze
-		- create `release-x.y`, the new unstable release branch
-	    - no new features will be merged on the release branch, only bug fixes
-	    - new features can continue to be merged on the master branch, they just won’t go into the `x.y.z` release
+    - on the `master` branch
+        - develop new features, fix bugs, etc.
+    - tag `x.y.0-alpha` (optional)
+        - very early preview of a new release—it is not feature frozen yet any may have known bugs
+    - tag `x.y.0-beta` (optional)
+        - slightly later preview of a new release—it is still not feature frozen yet any may have known bugs
+    - `x.y.0` feature freeze
+        - create `release-x.y`, the new unstable release branch
+        - no new features will be merged on the release branch, only bug fixes
+        - new features can continue to be merged on the master branch, they just won’t go into the `x.y.z` release
 - **Stabilization** (1-4 months)
-	- on the `release-x.y` branch
-	    - fix all known release-blocking bugs
-	- tag `x.y.0-rc1`
-	    - fix all known release-blocking bugs
-	- tag `x.y.0-rc2`
-	    - fix all known release-blocking bugs
+    - on the `release-x.y` branch
+        - fix all known release-blocking bugs
+    - tag `x.y.0-rc1`
+        - fix all known release-blocking bugs
+    - tag `x.y.0-rc2`
+        - fix all known release-blocking bugs
     - ...
-	- tag `x.y.0-rcN`
-	    - one week without any release-blocking bugs
-	- tag `x.y.0` final
+    - tag `x.y.0-rcN`
+        - one week without any release-blocking bugs
+    - tag `x.y.0` final
 - **Maintenance** (until `x.y` declared unmaintained)
-	- on the `release-x.y` branch
-	    - backport bug fixes to the `release-x.y` branch
-	- tag `x.y.1` (a month or two later)
-	    - backport bug fixes to the `release-x.y` branch
-	- ...
+    - on the `release-x.y` branch
+        - backport bug fixes to the `release-x.y` branch
+    - tag `x.y.1` (a month or two later)
+        - backport bug fixes to the `release-x.y` branch
+    - ...
 
 You can tell just from a glance that this might be a long and unpredictable process. In particular, the stabilization phase can take a highly variable amount of time—from a few weeks to months. This creates a tension between assuring quality and wanting to have a predictable rate of releases. On the one hand, we do not want to rush the release candidate process since it is very much what ensures that each Julia releas has the quality and stability that you've come to expect. On the other hand, we don't want the overall rate of releases to be held hostage to the vagries of how long debugging takes—and we all know that can be a long, painstaking process for any project, and especially for something as complex as a programming language.
 
