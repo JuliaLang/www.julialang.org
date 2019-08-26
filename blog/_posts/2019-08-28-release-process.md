@@ -50,11 +50,11 @@ Some users are happy to upgrade Julia all the time to get the hottest new featur
 
 - The **`master`** branch: where all development work happens, from bug fixes to new features and minor changes and eventually, when we start working on 2.0, breaking changes.
 
-- The **unstable release branch** (currently `release-1.3`): the release branch that is feature frozen but where active bug fixing and performance work is still happening _prior_ to a new minor release. Typically bug fixes are done on master and then backported to this branch. There isn't always an unstable release branch—this only exists after a feature freeze and the corresponding release.
+- The **unstable release** branch (currently `release-1.3`): the release branch that is feature frozen but where active bug fixing and performance work is still happening _prior_ to a new minor release. Typically bug fixes are done on master and then backported to this branch. There isn't always an unstable release branch—this only exists after a feature freeze and the corresponding release.
 
-- The **stable release branch** (currently `release-1.2`): the release branch of the minor (or major) version which has most recently been released. This always exists and gets all applicable bug fixes backported to it from `master`. Future patch releases of the minor version will be made from this branch (e.g. `1.2.1`).
+- The **stable release** branch (currently `release-1.2`): the release branch of the minor (or major) version which has most recently been released. This always exists and gets all applicable bug fixes backported to it from `master`. Future patch releases of the minor version will be made from this branch (e.g. `1.2.1`).
 
-- A **long term support (LTS) branch** (currently `release-1.0`): an older release branch that will continue to get applicable bug fixes for as long as it continues to be the LTS branch. Extra effort is made to backport bug fixes to this branch—it may get its own versions of bug fixes as necessary when a later fix doesn't apply cleanly.
+- A **long term support (LTS)** branch (currently `release-1.0`): an older release branch that will continue to get applicable bug fixes for as long as it continues to be the LTS branch. Extra effort is made to backport bug fixes to this branch—it may get its own versions of bug fixes as necessary when a later fix doesn't apply cleanly.
 
 A new unstable release branch is created every time there's a feature freeze, it becomes the new stable release branch as soon as the first stable release is made on that branch: i.e. when we release `1.3.0` final, the `release-1.3` branch will become the new stable release branch, `release-1.2` will become unmaintained and there won't be any current unstable release branch until the next feature freeze.
 
