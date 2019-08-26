@@ -40,9 +40,7 @@ This information is collected from a small set of posts on [discourse](https://d
 
 - Major releases can, according to SemVer, break anything at all. However, realistically we know how we want to write Julia code and that's not going to fundamentally change: most user-level code will stay the same in Julia 2.0 even though we're "allowed" to break things. Breaking things for no reason is not what this is about.
 
-- What a major release does allow, however, is fixing obvious API design mistakes—the kinds of bad, confusing APIs that everyone will be glad to be rid of. It also allows changing low-level things that will break some libraries, but which need to be broken in order to make really fundamental improvements to the language. Changes to Julia's AST representation and how macros work fall into this latter category.
-
-- My favorite example of a breaking change that I want to make in Julia 2.0 is to turn multithreading on by default instead of requiring the user to opt in. Technically this is breaking: if someone wrote thread-unsafe code in 1.x, assuming single-threaded execution by default, if we suddenly turn threading on in Julia 1.x, their code will stop working, breaking our SemVer compatibility promise for non-breaking minor releases. So we need to wait until 2.0 to flip that switch.
+- What a major release does allow, however, is fixing obvious API design mistakes—the kinds of bad, confusing APIs that everyone will be glad to be rid of. It also allows changing low-level things that will break some libraries, but which need to be broken in order to make really fundamental improvements to the language.
 
 # Long term support
 
