@@ -44,7 +44,7 @@ This information is collected from a small set of posts on [discourse](https://d
 
 # Long term support
 
-Some users are happy to upgrade Julia all the time to get the hottest new features as soon as they're ready. Some people are even happy to build Julia's master branch every day and try out new features before they may be fully baked. Others don't want to upgrade Julia more than every year or so, if that often. Ideally, we'd love to provide bug fixes forever for every minor release of Julia we've ever made. If we had infinite resources, we'd backport every bug fix to every old release branch it applies to. Realistically, however, we don't really have the capacity to maintain more than two active backport branches at a time. So we've decided on a compromise of having at most four active branches going at any time:
+Some users are happy to upgrade Julia all the time to get the hottest new features as soon as they're ready. Some people are even happy to build Julia's master branch every day and try out new features before they may be fully baked. Others don't want to upgrade Julia more than every year or so, if that often. Ideally, we'd love to provide bug fixes forever for every minor release of Julia we've ever made. If we had infinite resources, we'd backport every bug fix to every old release branch it applies to. Realistically, however, we don't really have the capacity to maintain more than a few active backport branches at a time. So we've decided on a compromise of having at most four active branches going at any time:
 
 - The **`master`** branch: where all development work happens, from bug fixes to new features and minor changes and eventually, when we start working on 2.0, breaking changes.
 
