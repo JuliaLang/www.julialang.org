@@ -30,7 +30,7 @@ This information is collected from a small set of posts on [discourse](https://d
 
 - Minor releases increment the middle digit of Julia's version number, e.g. going from `1.2.3` to `1.3.0`.
 
-- Minor releases may include bug fixes, new features and "minor changes"—which is the term we're using for technically breaking changes that are sufficiently unlikely to break anyone's code _and_ which do, in fact, do not break things in the package ecosystem as determined by running PkgEval to verify that there isn't any breakage.
+- Minor releases may include bug fixes, new features and "minor changes"—which is the term we're using for technically breaking changes that are sufficiently unlikely to break anyone's code _and_ which, in fact, do not break things in the package ecosystem as determined by running PkgEval to verify that there isn't any breakage.
 
 - Minor releases are also where significant refactorings of internals go, since we should only be refactoring to the extent that is necessary for fixing bugs in patch releases. This means that if you're relying on some internal Julia stuff that's not public, your code might break in a minor release. This is allowed according to SemVer since the change isn't to a public API—so technically it can break at any time; but we will avoid this in patch releases, so minor releases will be where you have to watch out if you rely on internals somehow.
 
@@ -85,13 +85,13 @@ We've discussed what various kinds of releases mean and what types of changes ca
     - on the `master` branch
         - develop new features, fix bugs, etc.
     - tag `x.y.0-alpha` (optional)
-        - very early preview of a new release—it is not feature frozen yet any may have known bugs
+        - very early preview of a new release—it is not feature frozen yet and may have known bugs
     - tag `x.y.0-beta` (optional)
-        - slightly later preview of a new release—it is still not feature frozen yet any may have known bugs
+        - slightly later preview of a new release—it is still not feature frozen yet and may have known bugs
     - `x.y.0` feature freeze
         - create `release-x.y`, the new unstable release branch
         - no new features will be merged on the release branch, only bug fixes
-        - new features can continue to be merged on the master branch, they just won’t go into the `x.y.z` release
+        - new features can continue to be merged on the `master` branch, they just won’t go into the `x.y.z` release
 - **Stabilization** (1-4 months)
     - on the `release-x.y` branch
         - fix all known release-blocking bugs
@@ -116,7 +116,7 @@ We resolve the tension between assuring the quality of releases and keeping a pr
 
 As a result of overlapping development and stabilization, if release candidate process takes an unusually long time, the final release of `x.y.0` might happen at around the same time as the feature freeze for `x.(y+1).0`. This happened with `1.2.0` and `1.3.0`, for example. There was some confusion and consternation expressed about this on discourse, but that's the inevitable side effect of keeping a predictable release rate. The `1.2` stabilization phase was an unusually long one, which happens sometimes. We're always examining our process and thinking about how to improve it. One change which might help is running PkgEval more often in a completely automated fashion so that we know earlier when a change during development breaks packages. Running PkgEval early and often makes it easier to narrow down which change caused the breakage. If anyone wants to get involved and help make the Julia release process better, helping with PkgEval would be a really high impact piece of work which does not require deep technical knowledge.
 
-One point to note, since people are sometimes confused but this: feature freeze only affects new functionality—bugs can be fixed at any point on any branch. It is never too late for a bug fix. The only time where a bug fix will not go on a release branch is if it is no longer maintained. Even then, if someone else wants to fix a bug and go through the process of making a new release, we will gladly help, we just won’t do it ourselves.
+One point to note, since people are sometimes confused by this: feature freeze only affects new functionality—bugs can be fixed at any point on any branch. It is never too late for a bug fix. The only time where a bug fix will not go on a release branch is if it is no longer maintained. Even then, if someone else wants to fix a bug and go through the process of making a new release, we will gladly help, we just won’t do it ourselves.
 
 # Why pre-release versions?
 
