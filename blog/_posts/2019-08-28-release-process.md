@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Julia’s Release Process
-author: [Stefan Karpinski](https://karpinski.org/) ([Julia Computing](https://juliacomputing.com/))
+author: Stefan Karpinski (Julia Computing)
 ---
 
 People involved in the day-to-day development of a project tend to become so familiar with its rhythm and process that they internalize it and it feels like everyone must just _know_ how each stage unfolds. Of course, from the outside looking in it's not so obvious. So I thought it might be helpful to the broader Julia community—and maybe even for other programming language communities—to actually write down Julia's release process, including the details of:
