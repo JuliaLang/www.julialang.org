@@ -18,7 +18,9 @@ This information is collected from a small set of posts on [discourse](https://d
 
 - Patch releases increment the last digit of Julia's version number, e.g. going from `1.2.3` to `1.2.4`.
 
-- Patch releases, following [SemVer](https://semver.org/), should only contain bug fixes, low-risk performance improvements, and documentation updates. Of course, what exactly constitutes a bug fix can be more subjective than one might naïvely imagine since people write code that relies on buggy behavior. In general, we try to be very conservative with patch releases and use [PkgEval](https://github.com/JuliaComputing/NewPkgEval.jl) to ensure that there's minimal risk. People should be confident that they can just upgrade to the latest patch release without worrying about it breaking things.
+- Patch releases, following SemVer, should only contain bug fixes, low-risk performance improvements, and documentation updates. Of course, what exactly constitutes a bug fix can be more subjective than one might naïvely imagine since people write code that relies on buggy behavior. In general, we try to be very conservative with patch releases and use [PkgEval](https://github.com/JuliaComputing/NewPkgEval.jl)[^1] to ensure that there's minimal risk. People should be confident that they can just upgrade to the latest patch release without worrying about it breaking things.
+
+[^1]: PkgEval is a tool for running the test suites of all Julia packages, which helps us make sure that we haven't inadvertently broken anything. Each failure is examined when a release is made: we verify that the failure isn't due to a violation of SemVer and try to make pull requests to fix packages, regardless of the cause of the failure.
 
 - Patch releases should also avoid changing internals unless it is necessary to fix a bug. Even though changing non-public code is technically fair game in any release, we want to avoid it in the name of minimizing the risk associated with patch upgrades as much as possible.
 
