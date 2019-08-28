@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Julia's Release Process"
+title:  Julia’s Release Process
 author: [Stefan Karpinski](https://karpinski.org/) ([Julia Computing](https://juliacomputing.com/))
 ---
 
