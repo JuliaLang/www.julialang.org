@@ -9,7 +9,7 @@ author: 罗秀哲，田俊
 [集智俱乐部](https://swarma.org), [机器之心](https://syncedreview.com/)对本次活动的大力支持。本次活动有100余人注册，实到50余人。
 线上直播在线人数达1600余人。
 
-本次活动的视频以及上传至[JuliaCN@B站](https://www.bilibili.com/video/av65371788)，相关材料已上传到GitHub：[JuliaCN/MeetUpMaterials](https://github.com/JuliaCN/MeetUpMaterials)。
+本次活动的视频已上传至[JuliaCN@B站](https://www.bilibili.com/video/av65371788)，相关材料已上传到GitHub：[JuliaCN/MeetUpMaterials](https://github.com/JuliaCN/MeetUpMaterials)。
 
 ![people](/images/blog/2019-08-31-julia-beijing-2019/people.jpg)
 
