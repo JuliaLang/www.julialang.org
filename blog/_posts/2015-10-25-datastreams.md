@@ -62,4 +62,4 @@ Quick rundown of each package:
 * DataStream scheduling/management: I'm also interested in developing capabilities around scheduling and managing DataStreams.
 
 
-_The work on DataStreams.jl was carried out as part of the Julia Summer of Code program, made possible thanks to the generous support of the [Gordon and Betty Moore Foundation](https://moore.org), and MIT._
+_The work on DataStreams.jl was carried out as part of the Julia Summer of Code program, made possible thanks to the generous support of the [Gordon and Betty Moore Foundation](https://www.moore.org), and MIT._
