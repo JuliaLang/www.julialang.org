@@ -57,15 +57,16 @@ title:  Julia Downloads
 
   <br />
 
+  <h2 id='tiers'>Current stable release: v1.2.0 (Aug 20, 2019)</h2>
+  <p>
+    Checksums for this release are available in
+    both <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.2.0.md5">MD5</a>
+    and <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.2.0.sha256">SHA256</a>
+    formats.
+  </p>
+
   <div class="row">
     <div class="col-12">
-      <h2 id='tiers'>Current stable release: v1.2.0 (Aug 20, 2019)</h2>
-      <p>
-        Checksums for this release are available in
-        both <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.2.0.md5">MD5</a>
-        and <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.2.0.sha256">SHA256</a>
-        formats.
-      </p>
       <table class="downloads table table-hover table-responsive table-bordered">
         <tbody>
           <tr>
@@ -120,20 +121,21 @@ title:  Julia Downloads
 
   <br />
 
+  <h2>Long-term support (LTS) release: v1.0.5 (Sep 9, 2019)</h2>
+  <p>
+    Users updating code written on older versions to work with 1.0
+    may be interested in using Julia 0.7 during the upgrade
+    process, available on the old releases page.  It is a
+    transitional release that provides deprecation warnings for
+    functionality that differs between Julia 0.6 and
+    1.0. Checksums for this release are available in
+    both, <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.0.5.md5">MD5</a>
+    and <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.0.5.sha256">SHA256</a>
+    formats.
+  </p>
+
   <div class="row">
     <div class="col-12">
-      <h2>Long-term support (LTS) release: v1.0.5 (Sep 9, 2019)</h2>
-      <p>
-        Users updating code written on older versions to work with 1.0
-        may be interested in using Julia 0.7 during the upgrade
-        process, available on the old releases page.  It is a
-        transitional release that provides deprecation warnings for
-        functionality that differs between Julia 0.6 and
-        1.0. Checksums for this release are available in
-        both, <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.0.5.md5">MD5</a>
-        and <a href="https://julialang-s3.julialang.org/bin/checksums/julia-1.0.5.sha256">SHA256</a>
-        formats.
-      </p>
       <table class="downloads table table-hover table-responsive table-bordered">
         <tbody>
           <tr>
@@ -191,16 +193,17 @@ title:  Julia Downloads
 
   <br />
 
+  <h2>Upcoming release: v1.3.0-rc1 (Aug 18, 2019)</h2>
+  <p>
+    We're currently testing release candidates for Julia v1.3.0, an upcoming minor release
+    in the 1.x series of releases. We encourage developers and interested users to try it
+    out and report any issues they encounter. As a prerelease, it should not be considered
+    production-ready; it's intended to give users a chance to try out 1.3 with their code
+    before the full release.
+  </p>
+
   <div class="row">
     <div class="col-12">
-      <h2>Upcoming release: v1.3.0-rc1 (Aug 18, 2019)</h2>
-      <p>
-        We're currently testing release candidates for Julia v1.3.0, an upcoming minor release
-        in the 1.x series of releases. We encourage developers and interested users to try it
-        out and report any issues they encounter. As a prerelease, it should not be considered
-        production-ready; it's intended to give users a chance to try out 1.3 with their code
-        before the full release.
-      </p>
       <table class="downloads table table-hover table-responsive table-bordered">
         <tbody>
           <tr>
@@ -255,56 +258,45 @@ title:  Julia Downloads
 
   <br />
 
-  <div class="row">
-    <div class="col-12">
-      <h2>Older Releases</h2>
-      <p>
-        Older releases of Julia for all platforms are available on the <a href="oldreleases.html">Older releases page</a>.
-        Releases older than 1.0 are now unmaintained.
-      </p>
-    </div>
-  </div>
+  <h2>Older Releases</h2>
+  <p>
+    Older releases of Julia for all platforms are available on the <a href="oldreleases.html">Older releases page</a>.
+    Releases older than 1.0 are now unmaintained.
+  </p>
 
   <br />
 
-  <div class="row">
-    <div class="col-12">
-      <h2>Nightly builds</h2>
-      <p>
-        Nightly builds of the current unstable development version of Julia are available on the
-        <a href="nightlies.html">nightlies page</a>.
-        These are intended as developer previews into the latest work and are not intended for
-        normal use.
-        Most users are advised to use the current release version of Julia, above.
-      </p>
-    </div>
-  </div>
+  <h2>Nightly builds</h2>
+  <p>
+    Nightly builds of the current unstable development version of Julia are available on the
+    <a href="nightlies.html">nightlies page</a>.
+    These are intended as developer previews into the latest work and are not intended for
+    normal use.
+    Most users are advised to use the current release version of Julia, above.
+  </p>
 
   <br />
 
-  <div class="row">
-    <div class="col-12">
-      <h2>Download verification</h2>
-      <p>
-        All Julia binary releases are cryptographically secured using the traditional methods on each
-        operating system platform.  macOS and Windows releases are codesigned by certificates that are
-        verified by the operating system before installation.  Generic Linux tarballs and source tarballs
-        are signed via GPG using <a href="../juliareleases.asc">this key</a>.  Ubuntu and Fedora/RHEL/CentOS/SL
-        releases are signed by their own keys that are verified by the package managers when installing.
-      </p>
-    </div>
-  </div>
+  <h2>Download verification</h2>
+  <p>
+    All Julia binary releases are cryptographically secured using the traditional methods on each
+    operating system platform.  macOS and Windows releases are codesigned by certificates that are
+    verified by the operating system before installation.  Generic Linux tarballs and source tarballs
+    are signed via GPG using <a href="../juliareleases.asc">this key</a>.  Ubuntu and Fedora/RHEL/CentOS/SL
+    releases are signed by their own keys that are verified by the package managers when installing.
+  </p>
 
   <br />
 
+  <h2 id='support-tiers'>Currently supported platforms</h2>
+  <p>
+    The platforms currently supported by Julia are outlined below.
+    They are divided into a tier system which ranks them based on
+    the what users can expect for each.
+  </p>
+
   <div class="row">
     <div class="col-12">
-      <h2 id='support-tiers'>Currently supported platforms</h2>
-      <p>
-        The platforms currently supported by Julia are outlined below.
-        They are divided into a tier system which ranks them based on
-        the what users can expect for each.
-      </p>
       <table class="downloads table table-hover table-responsive">
         <tbody>
           <tr>
