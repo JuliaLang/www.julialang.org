@@ -322,7 +322,7 @@ synchronizing tasks).
 There are some other types of locks (`Threads.SpinLock` and `Threads.Mutex`) defined
 mostly for internal purposes.
 These are used in rare circumstances where (1) only threads and not tasks will be
-synchronized, and (2) you know the the lock will only be held for a short time.
+synchronized, and (2) you know the lock will only be held for a short time.
 
 The `Threads` module also provides `Semaphore` and `Event` types, which have their
 standard definitions.
