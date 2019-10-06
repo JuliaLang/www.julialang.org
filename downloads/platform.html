@@ -20,8 +20,6 @@ title:  Platform specific instructions
       </p>
 
       <h2 id='windows'>Windows</h2>
-
-      <h3>Manual installation</h3>
       <p>
         Julia is available for Windows 7 and later, both 32 bit and 64 bit.
         <ol>
@@ -46,7 +44,7 @@ title:  Platform specific instructions
       </p>
 
       <p>
-        Uninstallation is performed by deleting the extracted directory and the packages directory in <code>%HOME%/.julia</code>.
+        Uninstallation is performed by using the Windows uninstaller (or deleting the extracted directory) and the packages directory in <code>%HOME%/.julia</code>.
         If you would also like to remove your preferences files, remove <code>%HOME%/.juliarc.jl</code> and <code>%HOME%/.julia_history</code>.
       </p>
 
@@ -60,7 +58,7 @@ title:  Platform specific instructions
 
       <p>
         Uninstall Julia by deleting Julia.app and the packages directory in <code>~/.julia</code>. Multiple Julia.app binaries can co-exist without interfering with each other.
-        If you would also like to remove your preferences files, remove <code>~/.juliarc.jl</code>.
+        If you would also like to remove your preferences files, remove <code>~/.juliarc.jl</code> and <code>~/.julia_history</code>.
       </p>
 
       <br />
@@ -89,7 +87,7 @@ title:  Platform specific instructions
 
         <pre>
           <code class="bash">
-    sudo ln -s &lt;where you extracted the julia archive&gt;/bin/julia /usr/local/bin/julia
+            sudo ln -s &lt;where you extracted the julia archive&gt;/bin/julia /usr/local/bin/julia
           </code>
         </pre>
       </p>
@@ -101,9 +99,8 @@ title:  Platform specific instructions
 
       <br />
 
-      <h2>Uninstalling Julia</h2>
       <p>
-        In cases where the Operating System can delete the Julia installation, that is the preferred way to uninstall Julia. Julia installs all its files in a single directory. In cases where the Operating System does not provide a way to uninstall Julia, deleting the folder where Julia was installed is sufficient. If you would also like to remove your packages and preferences files, they are <code>~/.julia</code> and <code>~/.juliarc.jl</code>.
+        Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove <code>~/.julia</code>. The startup file is at <code>~/.juliarc.jl</code> and the history at <code>~/.julia_history</code>.
       </p>
 
 
@@ -163,8 +160,8 @@ title:  Platform specific instructions
 
         <pre>
           <code class="bash">
-    sudo dnf copr enable nalimilan/julia
-    sudo yum install julia
+            sudo dnf copr enable nalimilan/julia
+            sudo yum install julia
           </code>
         </pre>
       </p>
@@ -174,8 +171,8 @@ title:  Platform specific instructions
 
         <pre>
           <code class="bash">
-    sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
-    sudo yum install julia
+            sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
+            sudo yum install julia
           </code>
         </pre>
       </p>
@@ -207,8 +204,8 @@ title:  Platform specific instructions
 
         <pre>
           <code class="bash">
-     sudo dnf copr enable nalimilan/julia-nightlies
-     sudo yum install julia
+            sudo dnf copr enable nalimilan/julia-nightlies
+            sudo yum install julia
           </code>
         </pre>
       </p>
@@ -262,11 +259,8 @@ title:  Platform specific instructions
 
       <h2>Uninstalling Julia</h2>
       <p>
-        Uninstallation depends on the method you used to install Julia. If you installed from a package manager such as <code>apt-get</code> or <code>yum</code>, use the package manager to remove julia,
-        for example <code>apt-get remove julia</code> or <code>yum remove julia</code>. If you did a source build, you can remove it by deleting your julia source folder.
-        If you would also like to remove your preferences files, they are <code>~/.julia</code> and <code>~/.juliarc.jl</code>.
+        Uninstallation depends on the method you used to install Julia. If you installed from a package manager such as <code>apt-get</code> or <code>yum</code>, use the package manager to remove julia, for example <code>apt-get remove julia</code> or <code>yum remove julia</code>. If you did a source build, you can remove it by deleting your julia source folder. If you would also like to remove your preferences files, they are <code>~/.julia</code> and <code>~/.juliarc.jl</code>.
       </p>
-
 
 
     </div>
