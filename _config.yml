@@ -1,3 +1,4 @@
+google_analytics: UA-28835595-1
 permalink: /:categories/:year/:month/:title
 highlighter: rouge
 plugins:
