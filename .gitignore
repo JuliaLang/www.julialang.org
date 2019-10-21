@@ -3,6 +3,7 @@
 .*~
 .*.sw?
 .DS_Store
-.ruby-version
-
-Gemfile.lock
+/.jekyll-metadata
+/.ruby-version
+/.ruby-gemset
+/Gemfile.lock
