@@ -46,6 +46,21 @@ linear algebra, and the ability (or eagerness to learn) to write fast code.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
+## Neural networks for solving differential equations
+
+Neural networks can be used as a method for efficiently solving difficult partial
+differential equations. Efficient implementations from recent papers are being
+explored as part of the [NeuralNetDiffEq.jl](https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl)
+package. The [issue tracker](https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl/issues)
+contains links to papers which would be interesting new neural network based methods to
+implement and benchmark against classical techniques.
+
+**Recommended Skills**: Background knowledge in numerical analysis and machine learning.
+
+**Expected Results**: New neural network based solver methods.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+
 ## Performance enhancements for differential equation solvers
 
 Wouldn't it be cool to have had a part in the development of widely used efficient
@@ -81,17 +96,19 @@ of numerical PDE methods, or one can build "full-stop" PDE solvers for specific
 PDEs. There are many different ways solving PDEs could be approached, and here
 are some ideas for potential projects:
 
-1. Enhancement of existing tools for discretizing PDEs. The finite differencing
+1. Automated PDE discretization tooling. We want users to describe a PDE in its mathematical
+   form and automate the rest of the solution process. See [this issue for details](https://github.com/JuliaDiffEq/DifferentialEquations.jl/issues/469).
+2. Enhancement of existing tools for discretizing PDEs. The finite differencing
    (FDM) library [DiffEqOperators.jl](https://github.com/JuliaDiffEq/DiffEqOperators.jl)
    could be enahnced to allow non-uniform grids or composition of operators. The
    finite element method (FEM) library [FEniCS.jl](https://github.com/JuliaDiffEq/FEniCS.jl)
    could wrap more of the FEniCS library.
-2. Full stop solvers of common fluid dynamical equations, such as diffusion-advection-
+3. Full stop solvers of common fluid dynamical equations, such as diffusion-advection-
    convection equations, or of hyperbolic PDEs such as the Hamilton-Jacobi-Bellman
    equations would be useful to many users.
-3. Using stochastic differential equation (SDE) solvers to efficiently (and
+4. Using stochastic differential equation (SDE) solvers to efficiently (and
    highly parallel) approximate certain PDEs.
-4. Development of ODE solvers for more efficiently solving specific types of
+5. Development of ODE solvers for more efficiently solving specific types of
    PDE discretizations. See the "Native Julia solvers for ordinary differential
    equations" project.
 
@@ -103,68 +120,7 @@ to learn and a strong understanding of calculus and linear algebra.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
-## Automatic Computation of Sparse Jacobians
-
-Differential equation systems which arise from partial differential equation
-discretizations and large-scale chemical interaction networks from climate and
-biological sciences often exhibit sparse connections. These models require
-implicit and exponential methods in order to handle the stiffness involved in
-the equations. However, using a stiff solver can be costly since it requires
-calculating or factorizing a Jacobian. In many cases this can be heavily sped
-up if the Jacobian is sparse, but this requires the user to provide an
-analytically-derived calculation for the full Jacobian.
-
-However, alternative methods can be used in order to automatically calculate
-sparse Jacobians. Matrix coloring algorithms can be utilized to speed up
-calculations of derivatives when a known sparsity pattern is given, and this
-can be combined with both numerical differentiation and automatic differentiation
-via dual number seeding. Additionally, automatic detection of sparsity patterns
-can be employed to allow for building sparse matrices for use in the coloring
-algorithm. This would give a pipeline for simplified sparsity handling in the
-differential equation solvers.
-
-**Recommended Skills**: Basic calculus and linear algebra is most of what's
-needed with strong programming skills. Background knowledge in numerical analysis
-can be helpful.
-
-**Expected Results**: Implementations of matrix coloring and automatic sparsity
-detection employed in the defaults of DifferentialEquations.jl.
-
-**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas),
-[Mathieu Besançon](https://github.com/matbesancon)
-
-## Scalable Bifurcation Plotting via Deflation
-
-Bifurcation plotting allows a scientist to determine how the steady states of
-an equation evolve as a given parameter is changed. Existing software such as
-PyDSTool, MatCont, and AUTO utilize a classic technique called arclength
-continuation in order to generate a plot. However, this method has three major
-issues: (1) signatures for detecting each type of bifurcation must be explicitly
-coded, (2) it does not scale to high dimensions, and (3) it is not able to
-detect disconnected bifurcations.
-
-A [newer technique known as deflation](http://people.maths.ox.ac.uk/beentjes/Essays/MScThesis2015-10.pdf)
-can be used instead to compute bifurcation diagrams in a way that does not
-require specialization on every possible type of bifurcation, allowing the
-method to easily scale to higher dimensions and be more robust. In addition,
-this method does not require continuation from previous branches and thus
-is able to detect disconnection bifurcation branches. However, since
-the [method is quite recent](https://arxiv.org/pdf/1603.00809.pdf), no open
-source software make use of this technique. The goal of this project is to
-implement this method in order to create a bifurcation visualizer that works
-well with the JuliaDiffEq ecosystem, and demonstrate its ability to handle
-new classes of bifurcations beyond that of the previous software.
-
-**Recommended Skills**: Knowledge of calculus and linear algebra (Newton's
-method) is all that's required. Previous experience with dynamical systems
-theory is preferred but can be picked up along the way.
-
-**Expected Results**: A functional bifurcation plotting package.
-
-**Mentors**: [Chris Rackauckas](www.github.com/ChrisRackauckas) and
-[Christoph Ortner](https://github.com/cortner)
-
-## Tools for global and adjoint sensitivity analysis
+## Tools for global sensitivity analysis
 
 Global Sensitivity Analysis is a popular tool to assess the affect that parameters
 have on a differential equation model. A good introduction [can be found in this thesis](http://discovery.ucl.ac.uk/19896/). Global Sensitivity Analysis tools can be
@@ -179,42 +135,5 @@ to solve equations.
 
 **Expected Results**: Efficient functions for performing global sensitivity
 analysis.
-
-**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
-
-## Quantum Algorithms for Differential Equations
-
-Quantum computing might be the next big thing. Using
-[Yao.jl](https://github.com/QuantumBFS/Yao.jl) one can efficiently simulate
-quantum algorithms, making Julia the perfect place to start implementing
-quantum differential equation solvers! Papers describing such possible algorithms
-[already exist](https://arxiv.org/abs/0812.4423) and an experimental GSoC can
-implement these algorithms to try them out.
-
-**Recommended Skills**: An understanding of differential equation solvers and
-and quantum mechanics is a must.
-
-**Expected Results**: Implementations of quantum ODE solvers.
-
-**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
-
-## Parallelization of the Sundials Solver Library
-
-The Sundials set of solvers is a popular library for performing the time stepping
-portion of large-scale partial differential equation (PDE) solvers. This library
-has the ability to be internally parallelized, supporting threading, multi-node
-distributed parallelism, and GPUs. The Julia package
-[Sundials.jl](https://github.com/JuliaDiffEq/Sundials.jl) is a wrapper for the
-Sundials library which is almost feature-complete with the wrapped code. However,
-the functionality that it does not make use of is the parallelization. The purpose
-of this project is to build the tooling to be able to utilize the parallelization
-parts from within Julia, and benchmarking their effectiveness on large PDEs.
-
-**Recommended Skills**: Background knowledge in C++. Some knowledge of parallel
-computing is preferred.
-
-**Expected Results**: Examples showing how to utilize the direct wrappers to
-perform calculations in parallel and the ability to "flip a switch" to turn on
-parallelism in high-level APIs.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
