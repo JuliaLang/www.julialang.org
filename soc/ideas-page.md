@@ -10,17 +10,12 @@ redirect_from:
 
 # Julia Seasons of Contributions
 
-The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding students and other developers to contribute to the open source ecosystem. Below are the current programs that the Julia Language is participating in. For any questions, please consult the program administrators at jsoc@julialang.org
+The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding and/or mentoring students and other developers to contribute to the open source ecosystem. Below are the current programs that the Julia Language is participating in. For any questions, please consult the program administrators at jsoc@julialang.org
 
-## Google Season of Docs (GSoD)
+## Google Code-In
 
-The Julia organization will be a participant in the 2019 Google Season of Docs which runs from August 1st to November 29th for most projects, with long running projects finishing on February 28th. Participants in this program are technical writers with a willingness to help Julia and its package ecosystem's documentation. Unlike the GSoC program, writers are not required to be students. Technical writers will pair with organization mentors to learn about their favorite Julia modules and packages and help appropriately document their capabilities.
+The Julia organization will be a participant in the 2019 Google Code In program which  runs from December 2019 to January 2020. Participants in this program are high school students aged 13-17, many of whom are new to programming, or to open source. The program consists of small, guided tasks, with help and mentorship available to complete them. Please visit the [Julia project page](https://codein.withgoogle.com/organizations/the-julia-programming-language/) on the Code In site for more information. 
 
-Below we have a list of broad areas in the Julia open source ecosystem which are participating in the GSoD program. If interested in these areas, get in touch with the mentors through the `#jsoc` channel or through email. Check out the [application guidelines](guidelines/) once you have a project in mind.
-
-### Projects
-
-The topics that have been proposed for technical writers can be found on [the Google Season of Docs projects page](gsod/projects.html).
 
 ## NumFOCUS Small Development Grants
 
