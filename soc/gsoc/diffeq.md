@@ -137,3 +137,71 @@ to solve equations.
 analysis.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+
+## Parameter identifiability analysis
+
+Parameter identifiability analysis is an analysis that describes whether the
+parameters of a dynamical system can be identified from data or whether they
+are redundent. There are two forms of identifiability analysis: structural
+and practical. Structural identifiability analysis relates changes in the
+solution of the ODE directly to other parameters, showcasing that it is
+impossible to distinguish between parameter A being higher and parameter B
+being lower, or the vice versa situation, given only data about the solution
+because of how the two interact. This could be done directly on the symbolic
+form of the equation as part of 
+[ModelingToolkit.jl](https://github.com/JuliaDiffEq/ModelingToolkit.jl).
+Meanwhile, practical identifiability analysis looks as to whether the parameters
+are non-identifiable in a practical sense, for example if two parameters are
+numerically indistinguishable (given possibly noisy data). In this case, numerical
+techniques being built in DiffEqSensitivity.jl, such as a 
+[nonlinear likelihood profiler](https://github.com/JuliaDiffEq/DiffEqSensitivity.jl/issues/109)
+or an
+[information sensitivity measure](https://github.com/JuliaDiffEq/DiffEqSensitivity.jl/issues/108)
+can be used to showcase whether a parameter has a unique enough effect to be determined.
+
+**Recommended Skills**: A basic background in differential equations and the ability to use
+numerical ODE solver libraries. Background in the numerical analysis of differential equation
+solvers is not required.
+
+**Expected Results**: Efficient and high-quality implementations of parameter identifiability
+methods.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+
+## Model Order Reduction
+
+Model order reduction is a technique for automatically finding a small model which approximates
+the large model but is computationally much cheaper. We plan to use the infrustructure built
+by ModelingToolkit.jl to [implement a litany of methods](https://github.com/JuliaDiffEq/ModelingToolkit.jl/issues/58)
+and find out the best way to accelerate differential equation solves.
+
+**Recommended Skills**: A basic background in differential equations and the ability to use
+numerical ODE solver libraries. Background in the numerical analysis of differential equation
+solvers is not required.
+
+**Expected Results**: Efficient and high-quality implementations of model order reduction methods.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+
+## Automated symbolic manipulations of differential equation systems
+
+Numerically solving a differential equation can be difficult, and thus it can be helpful for
+users to simplify their model before handing it to the solver. Alas this takes time... so
+let's automate it! [ModelingToolkit.jl](https://github.com/JuliaDiffEq/ModelingToolkit.jl) is
+a project for automating the model transformation process. Various parts of the library are
+still open, such as:
+
+- Support for DAEs, DDEs, and SDEs
+- Pantelides algorithm for DAE index reduction
+- Lamperti transforms
+- Automatic construction of adjoint solutions
+- Tearing in nonlinear solvers
+- Solving distributed delay equations
+
+**Recommended Skills**: A basic background in differential equations and the ability to use
+numerical ODE solver libraries. Background in the numerical analysis of differential equation
+solvers is not required.
+
+**Expected Results**: Efficient and high-quality implementations of model transformation methods.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
