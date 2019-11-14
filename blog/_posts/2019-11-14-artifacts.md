@@ -225,7 +225,7 @@ ENV["GDK_PIXBUF_MODULE_FILE"] = joinpath(artifact_path(loaders_cache_hash), "loa
 ENV["GDK_PIXBUF_MODULEDIR"] = gdk_pixbuf_loaders_dir
 ```
 
-Within the `__init__()` method of `Gtk`, this is looking to see if a local cache of `gdk-pixbuf` loaders has been generated.  This cache is machine-specific, and must be generated upon first run of the module.  Doing so requires invoking a binary from the `gdk_pixbuf_jll` package, which is done using that JLL package's `gdk_pixbuf_query_loaders` export.  By writing the result out to a new artifact and binding that artifact to a `MutableArtifacts.toml` file (an arbitrarily-named `.gitignore`'d file), we are able to dynamically cache binary objects that are kept separately from the rest of our package data.  Gtk is thereafter informed of the cache location through environment variables.
+Within the `__init__()` method of `Gtk`, this is looking to see if a local cache of `gdk-pixbuf` loaders has been generated.  This cache is machine-specific, and must be generated upon first run of the module.  Doing so requires invoking a binary from the `gdk_pixbuf_jll` package, which is done using that JLL package's `gdk_pixbuf_query_loaders` export.  By writing the result out to a new artifact and binding that artifact to a `MutableArtifacts.toml` file (an arbitrarily-named `.gitignore`'d file), we are able to dynamically cache binary objects that are kept separately from the rest of our package data.  Gtk is thereafter informed of the cache location through environment variables.  We hope to improve this experience even further through the introduction of [explicitly lifecycled caches](https://github.com/JuliaLang/Pkg.jl/issues/796#issuecomment-523154714) in a future Pkg release.
 
 # Reproducibility is Important
 
