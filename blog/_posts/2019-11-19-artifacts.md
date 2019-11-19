@@ -4,8 +4,6 @@ title: Pkg + BinaryBuilder -- The Next Generation
 author: Elliot Saba, Stefan Karpinski, Kristoffer Carlsson
 ---
 
-# Pkg + BinaryBuilder -- The Next Generation
-
 Over the past few months, we have been iterating on and refining a design for `Pkg` in Julia 1.3+ to reason about binary objects that are not Julia packages.  While the motivating application for this work has been improving the installation experience for binaries built with [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl), the artifacts subsystem is much more general and is widely applicable to all Julia packages.
 
 # Pkg Artifacts
