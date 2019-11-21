@@ -94,7 +94,7 @@ iris_dataset_path = artifact_path(iris_hash)
 
 For the specific use case of using artifacts that were previously bound, we have the shorthand notation `artifact"name"` which will automatically search for the `Artifacts.toml` file contained within the current package, look up the given artifact by name, install it if it is not yet installed, then return the path to that given artifact.
 
-## Artifact lifefycle
+## Artifact lifecycle
 
 Artifacts are all installed within a global `artifacts` directory within your Julia package depot, usually within `~/.julia/artifacts`, keyed by content hash.  While artifacts are designed to work well with Julia's multi-depot layering system, and also provides a [mechanism for overriding artifact locations](https://julialang.github.io/Pkg.jl/dev/artifacts/#Overriding-artifact-locations-1) to aid in system administrators desiring to use specific, local, versions of libraries, in general we find that installing binary artifacts into a single, user-owned location like this works very well for the average Julia user.  These artifacts stay installed on-disk until a `Pkg.gc()` cleans away packages and artifacts that have been unused for at least one month.  The garbage collector determines artifacts and packages are unused when a particular version/content-hash is not referred to by any `Manifest.toml` or `Artifacts.toml` file on disk.  The garbage collector walks every `Manifest.toml` and `Artifacts.toml` file that has ever been loaded by Julia, and marks all reachable artifacts and package versions as used.  All non-marked artifacts and package versions are then noted as such, and any that have been continually noted as unused for a one month are automatically deleted.
 
@@ -118,7 +118,7 @@ products = [
 ]
 ```
 
-With such products defined, the JLL package will contain the `data_txt`, `libdataproc` and `mungify_exe` symbols exported. For `FileProduct` variables, the exported value is a string pointing to the location of the file on-disk.  For `LibraryProduct` variables, it is a string corresponding to the `SONAME` of the desired library (it will have already been `dlopen()`'ed during the `__init__()` method of the JLL package module so typical `ccall()` usage applies), and for `ExecutableProduct` variables, the exported value is a function that can be called to set appropriate environment variables such as `PATH` and `LD_LIBRARY_PATH`.  This is necessary so that nested depdenencies works properly, e.g. `ffmpeg` calling the `x264` binary during video encoding.  Example:
+With such products defined, the JLL package will contain the `data_txt`, `libdataproc` and `mungify_exe` symbols exported. For `FileProduct` variables, the exported value is a string pointing to the location of the file on-disk.  For `LibraryProduct` variables, it is a string corresponding to the `SONAME` of the desired library (it will have already been `dlopen()`'ed during the `__init__()` method of the JLL package module so typical `ccall()` usage applies), and for `ExecutableProduct` variables, the exported value is a function that can be called to set appropriate environment variables such as `PATH` and `LD_LIBRARY_PATH`.  This is necessary so that nested dependencies works properly, e.g. `ffmpeg` calling the `x264` binary during video encoding.  Example:
 
 ```julia
 using c_simple_jll
