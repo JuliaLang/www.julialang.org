@@ -6,6 +6,7 @@ authors:
 - Raj Rao Nadakuditi
 - Thomas Trogdon
 year: "2014"
+doi: "10.1142/S2010326315500021"
 arxiv: 1404.0071
 packages:
   RandomMatrices.jl: https://github.com/jiahao/RandomMatrices.jl

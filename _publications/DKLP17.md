@@ -9,6 +9,7 @@ journal: "SIAM J. Sci. Comput."
 volume: "39"
 issue: "5"
 pages: "A1879--A1902"
+doi: "10.1137/16M1093896"
 link: "http://sma.epfl.ch/~anchpcommon/publications/ttensors_pp.pdf"
 packages:
   TensorToolbox.jl: https://github.com/lanaperisa/TensorToolbox.jl

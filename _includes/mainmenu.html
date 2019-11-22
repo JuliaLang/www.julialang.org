@@ -5,7 +5,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
 
     <a class="navbar-brand" href="/" id="logo">
-      <img src="/v2/img/logo.svg" height="55" width="85" />
+      <img src="/v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
     </a>
 
     <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,10 +33,13 @@
           <a class="nav-link" href="/learning">Learning</a>
         </li>
         <li class="nav-item {% if current_page[1] == 'publications' %} active {% endif %} flex-md-fill text-md-center">
-          <a class="nav-link" href="/publications">Research</a>
+          <a class="nav-link" href="/research">Research</a>
+        </li>
+        <li class="nav-item {% if current_page[1] == 'soc' %} active {% endif %} flex-md-fill text-md-center">
+          <a class="nav-link" href="/soc/ideas-page">JSoC</a>
         </li>
         <li class="nav-item donate flex-md-fill text-md-center">
-          <a class="btn btn-success" href="https://www.flipcause.com/widget/widget_home/MjI1Nw==">Donate</a>
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
         </li>
       </ul>
     </div>

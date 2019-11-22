@@ -1,7 +1,9 @@
+google_analytics: UA-28835595-1
 permalink: /:categories/:year/:month/:title
 highlighter: rouge
 plugins:
   - jekyll-redirect-from
+  - jekyll-feed
 navigation:
   - title: home
     url: /
@@ -9,10 +11,8 @@ navigation:
     url: "https://github.com/JuliaLang/julia"
   - url: "/downloads/"
     title: downloads
-  - url: "http://docs.julialang.org/"
+  - url: "https://docs.julialang.org/"
     title: docs
-  - url: "http://pkg.julialang.org/"
-    title: packages
   - url: "/blog/"
     title: blog
   - url: "/community/"
@@ -23,11 +23,11 @@ navigation:
     title: learning
   - url: "/teaching/"
     title: teaching
-  - url: "/publications/"
-    title: publications
+  - url: "/research/"
+    title: research
   - url: "/soc/ideas-page.html"
     title: GSoC
-  - url: "http://juliacon.org"
+  - url: "https://juliacon.org"
     title: juliacon
 collections:
   publications:

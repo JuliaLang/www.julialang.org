@@ -61,9 +61,11 @@ Most also have channels on the main Julia Slack channel, and sub-forums on the m
 * [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
 * [JuliaDynamics](https://github.com/JuliaDynamics) - [Dynamical systems](https://juliadynamics.github.io/DynamicalSystems.jl/latest/), nonlinear dynamics and chaos.
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
+* [JuliaReach](https://github.com/JuliaReach) – Reachability Computations for Dynamical Systems ([Gitter](https://gitter.im/JuliaReach/Lobby))
 
 ## Data Science
 * [JuliaML](https://github.com/JuliaML) – [Machine Learning](https://juliaml.github.io/)  ([Gitter](https://gitter.im/JuliaML/chat))
+* [FluxML](https://github.com/FluxML) – [The Elegant Machine Learning Stack](https://fluxml.ai/)
 * [JuliaStats](https://github.com/JuliaStats) – [Statistics](http://juliastats.github.io/)
 * [JuliaImages](https://github.com/JuliaImages) – Image processing
 * [JuliaText](https://github.com/JuliaText) – Natural Language Processing (NLP), Computational linguistics  and (textual) information retrieval
@@ -75,5 +77,7 @@ Most also have channels on the main Julia Slack channel, and sub-forums on the m
 
 * [GiovineItalia](https://github.com/GiovineItalia) – Plotting (with [Gadfly](https://github.com/GiovineItalia/Gadfly.jl))
 * [JuliaPlots](https://github.com/JuliaPlots) – [Data visualization](https://juliaplots.github.io/)
+    * [Plots.jl](http://juliaplots.org) - Powerful convenience for Julia visualizations and data analysis
+    * [Makie.jl](http://makie.juliaplots.org/dev) - High-level, fast and interactive plotting on the GPU
 * [JuliaGL](https://github.com/JuliaGL) – OpenGL API and ecosystem ([Gitter](https://gitter.im/JuliaGL/meta))
 * [JuliaGraphics](https://github.com/JuliaGraphics) – Drawing, colors, GUIs

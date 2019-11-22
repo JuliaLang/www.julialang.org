@@ -6,6 +6,7 @@ authors:
 - Richard Slevinsky
 - Hassan Safouhi
 year: "2014"
+doi: "10.1016/j.aop.2015.05.026"
 arxiv: 1411.2089
 ---
 A quantum anharmonic oscillator is defined by the Hamiltonian H, where the potential is given by V. Using the Sinc collocation method combined with the double exponential transformation, we develop a method to efficiently compute highly accurate approximations of energy eigenvalues for anharmonic oscillators. Convergence properties of the proposed method are presented.  Using the principle of minimal sensitivity, we introduce an alternate expression for the mesh size for the Sinc collocation method which improves considerably the accuracy in computing eigenvalues for potentials with multiple wells.

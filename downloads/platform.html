@@ -1,23 +1,27 @@
 ---
 layout: homepage
-title:  Platform specific instructions for installing Julia
+title:  Platform specific instructions
 ---
 
 {% include mainmenu.html %}
 
 <br /><br />
 
+
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1>Platform Specific Instructions</h1>
+      <h1>Platform Specific Instructions for Official Binaries</h1>
 
       <br />
 
-      <h2>Windows</h2>
+      <p>
+      All official Julia binaries produce portable installations. Once installed, the directory in which Julia was installed can be moved to a different location on the same computer, or even to a different computer.
+      </p>
+
+      <h2 id='windows'>Windows</h2>
       <p>
         Julia is available for Windows 7 and later, both 32 bit and 64 bit.
-
         <ol>
           <li>Download the Windows julia.exe installer for your platform. 32-bit julia works on both x86 and x86_64. 64-bit julia will only run on 64-bit Windows (x86_64).
           <li>Run the downloaded program to extract julia
@@ -32,39 +36,28 @@ title:  Platform specific instructions for installing Julia
           see <a href="https://discourse.julialang.org/t/errors-for-git-pkg/9351">this Discourse thread</a> for more details.
           <li><a href="https://docs.microsoft.com/en-us/powershell/wmf/overview">Windows Management Framework 3.0 or later</a> to include PowerShell 3.0 or later.
         </ul>
+        It is recommended that users on these legacy Windows systems install and use a terminal besides `cmd.exe` since the default terminal application has known issues which affect its usability with Julia and other libuv-based cross-platform software.
       </p>
 
       <p>
-        The <a href="https://github.com/JuliaLang/julia/blob/master/README.windows.md">Windows README</a> contains information on dependencies.
+        The <a href="https://github.com/JuliaLang/julia/blob/master/doc/build/windows.md">Windows README</a> contains information on dependencies.
       </p>
 
       <p>
-        Uninstallation is performed by deleting the extracted directory and the packages directory in <code>%HOME%/.julia</code>.
-        If you would also like to remove your preferences files, remove <code>%HOME%/.juliarc.jl</code> and <code>%HOME%/.julia_history</code>.
+        Uninstallation is performed by using the Windows uninstaller (or deleting the extracted directory). The packages directory in <code>%HOME%/.julia</code> can be deleted if you would no longer like to retain the user installed packages. If you would also like to remove your preferences files, remove <code>%HOME%/.juliarc.jl</code> and <code>%HOME%/.julia_history</code>.
       </p>
 
       <br />
 
-      <h2>macOS</h2>
+      <h2 id='macos'>macOS</h2>
       <p>
-        On Mac, a <code>Julia-&lt;version&gt;.dmg</code> file is provided, which contains Julia.app. Installation is the same as any other Mac software --
+        On macOS, a <code>Julia-&lt;version&gt;.dmg</code> file is provided, which contains Julia.app. Installation is the same as any other Mac software --
         copy the <code>Julia-&lt;version&gt;.app</code> to your hard-drive (anywhere) or run from the disk image. Julia runs on macOS 10.8 and later releases.
       </p>
 
       <p>
         Uninstall Julia by deleting Julia.app and the packages directory in <code>~/.julia</code>. Multiple Julia.app binaries can co-exist without interfering with each other.
-        If you would also like to remove your preferences files, remove <code>~/.juliarc.jl</code>.
-      </p>
-
-      <p>
-        An alternative to installing Julia from the downloaded .dmg is by using the <a href="https://brew.sh/">Homebrew package manager</a>.
-        In your terminal, run
-
-        <pre>
-          <code class="bash">
-    brew cask install julia
-          </code>
-        </pre>
+        If you would also like to remove your preferences files, remove <code>~/.juliarc.jl</code> and <code>~/.julia_history</code>.
       </p>
 
       <br />
@@ -76,7 +69,6 @@ title:  Platform specific instructions for installing Julia
 
       <br />
 
-      <h3>Generic Binaries</h3>
       <p>
         The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find
         the <code>julia</code> executable. First, extract the <code>.tar.gz</code> file downloaded from the <a href="index.html">downloads page</a> to a folder on your computer.
@@ -94,7 +86,7 @@ title:  Platform specific instructions for installing Julia
 
         <pre>
           <code class="bash">
-    sudo ln -s <where you extracted the julia archive>/bin/julia /usr/local/bin/julia
+    sudo ln -s &lt;where you extracted the julia archive&gt;/bin/julia /usr/local/bin/julia
           </code>
         </pre>
       </p>
@@ -106,7 +98,40 @@ title:  Platform specific instructions for installing Julia
 
       <br />
 
-      <h3>Distribution-Specific Packages</h3>
+      <p>
+        Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove <code>~/.julia</code>. The startup file is at <code>~/.juliarc.jl</code> and the history at <code>~/.julia_history</code>.
+      </p>
+
+
+      <h1>Platform Specific Instructions for Non-Official Binaries</h1>
+
+      <h2>Chocolatey on Windows</h2>
+      <p>If you use Chocolatey for package management, you can install the latest Julia release by executing the following one-liner, in either a powershell or command prompt:
+        <pre>
+          <code class="bash">
+    choco install julia --confirm
+          </code>
+        </pre>
+      Chocolatey automatically creates a shim for the Julia executable, so you simply type <code>julia</code> to run Julia in the terminal.
+      When a new version is released simply execute <code>choco upgrade julia --confirm</code>. If you want to uninstall Julia run <code>choco uninstall julia --confirm</code>.
+      </p>
+
+      <br />
+
+      <h2>HomeBrew on Mac</h2>
+        An alternative to installing Julia from the downloaded .dmg is by using the <a href="https://brew.sh/">Homebrew package manager</a>.
+        In your terminal, run
+
+        <pre>
+          <code class="bash">
+    brew cask install julia
+          </code>
+        </pre>
+      </p>
+
+      <br />
+
+      <h2>Various Linux Distributions</h2>
       <p>
         The following distribution-specific packages are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with.
         In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.
@@ -198,7 +223,18 @@ title:  Platform specific instructions for installing Julia
         </pre>
       </p>
 
-      <h3>FreeBSD Ports</h3>
+
+      <h3>Debian/Ubuntu</h3>
+      Recent Debian/ubuntu distributions include their own build of Julia, which can be installed in the usual way. If this is not the version of Julia you want, you will need to use the official binaries.
+
+      <pre>
+          <code class="bash">
+    sudo apt-get install julia
+          </code>
+        </pre>
+      </p>
+
+      <h2>FreeBSD Ports</h2>
       <p>
         Julia is available in the <a href="https://svnweb.freebsd.org/ports/head/lang/julia/">Ports Collection</a>.<br />
         To install from the FreeBSD binary package manager, <code>pkg</code>, run
@@ -222,10 +258,10 @@ title:  Platform specific instructions for installing Julia
 
       <h2>Uninstalling Julia</h2>
       <p>
-        Uninstallation depends on the method you used to install Julia. If you installed from a package manager such as <code>apt-get</code> or <code>yum</code>, use the package manager to remove julia,
-        for example <code>apt-get remove julia</code> or <code>yum remove julia</code>. If you did a source build, you can remove it by deleting your julia source folder.
-        If you would also like to remove your preferences files, they are <code>~/.julia</code> and <code>~/.juliarc.jl</code>.
+        Uninstallation depends on the method you used to install Julia. If you installed from a package manager such as <code>apt-get</code> or <code>yum</code>, use the package manager to remove julia, for example <code>apt-get remove julia</code> or <code>yum remove julia</code>. If you did a source build, you can remove it by deleting your julia source folder. If you would also like to remove your preferences files, they are <code>~/.julia</code> and <code>~/.juliarc.jl</code>.
       </p>
+
+
     </div>
   </div>
 </div>
