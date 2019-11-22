@@ -236,6 +236,9 @@ Julia is now being used in several universities and online courses. If you know 
   * Fundamentals on Power Systems (Prof. [David Pozo](https://sites.google.com/site/davidpozocamara/)), Winter 2018, Fall 2018
   * Power Markets and Regulation (Prof. [David Pozo](https://sites.google.com/site/davidpozocamara/)), Spring 2018
 
+- University of Washington <!--47.655548,-122.303200-->
+  * [AMATH 515A](https://amath.washington.edu/courses/2019/winter/amath/515/a), Optimization: Fundamentals and Applications.  (Prof. Aleksandr Aravkin), Winter 2019
+
 - Western University Canada <!--43.00535865,-81.2748046243065-->
   * [CS 2101A](http://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza), Fall 2013
 
