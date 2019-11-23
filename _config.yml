@@ -4,6 +4,7 @@ highlighter: rouge
 plugins:
   - jekyll-redirect-from
   - jekyll-feed
+  - jekyll-sitemap
 navigation:
   - title: home
     url: /
