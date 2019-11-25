@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Pkg + BinaryBuilder -- The Next Generation
+title: Reliable and Reproducible Binary Artifacts for Julia Packages
 author: Elliot Saba, Stefan Karpinski, Kristoffer Carlsson
 ---
 
