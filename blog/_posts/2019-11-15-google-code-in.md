@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  The Julia Language participates in Google's Code-In Contest
-author: Avik Sengupta and Logan Kilpatrick
+author: Avik Sengupta, Dhairya Gandhi and Logan Kilpatrick
 ---
 
 We are pleased to announce that The Julia Language has been accepted to participate in the Google Code-In program. This is a contest for 13-17 year olds, introducing them to the world of open source development.
