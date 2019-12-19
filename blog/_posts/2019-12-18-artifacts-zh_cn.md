@@ -118,7 +118,7 @@ products = [
 ]
 ```
 
-有了这些产物的定义，JLL包就会导出 `data_txt`、`libdataproc` 和 `mungify_exe` 这三个符号。`FileProduct` 导出的变量是字符串，指向这个文件在硬盘上的位置；`LibraryProduct` 变量是对应这个链接库的 `SONAME` 的字符串（链接库会在这个包所在模块的 `__init()` 方法里被 `dlopen()` 加载，所以可以像平常那样 `ccall()` 调用）；`ExecutableProduct` 变量导出的是函数，调用它就会设置合适的环境变量，比如 `PATH` 和 `LD_LIBRARY_PATH`，这对于嵌套依赖来说很有必要，比如 `ffmpeg` 在视频编码时调用 `x264` 程序。举个例子： 
+有了这些产物的定义，JLL包就会导出 `data_txt`、`libdataproc` 和 `mungify_exe` 这三个符号。`FileProduct` 导出的变量是字符串，指向这个文件在硬盘上的位置；`LibraryProduct` 变量是对应这个链接库的 `SONAME` 的字符串（链接库会在这个包所在模块的 `__init__()` 方法里被 `dlopen()` 加载，所以可以像平常那样 `ccall()` 调用）；`ExecutableProduct` 变量导出的是函数，调用它就会设置合适的环境变量，比如 `PATH` 和 `LD_LIBRARY_PATH`，这对于嵌套依赖来说很有必要，比如 `ffmpeg` 在视频编码时调用 `x264` 程序。举个例子： 
 
 ```julia
 using c_simple_jll
