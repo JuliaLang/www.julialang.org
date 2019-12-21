@@ -152,8 +152,9 @@ title:  Platform specific instructions
       <p>
         If you are using CentOS (version 7 or higher), directly run:
 
-        <pre>sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
-    sudo yum install julia</pre>
+        <pre>
+        sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
+        sudo yum install julia</pre>
       </p>
 
       <p>
@@ -182,8 +183,8 @@ title:  Platform specific instructions
         If you are using Fedora (version 19 or higher), directly run:
 
         <pre>
-    sudo dnf copr enable nalimilan/julia-nightlies
-    sudo yum install julia
+        sudo dnf copr enable nalimilan/julia-nightlies
+        sudo yum install julia
         </pre>
       </p>
 
@@ -194,39 +195,30 @@ title:  Platform specific instructions
       <p>
         New versions are built every night. If you have already installed julia and you want to upgrade to the latest version, do:
 
-        <pre>
-    sudo yum upgrade julia
-        </pre>
+        <pre>sudo yum upgrade julia</pre>
       </p>
 
 
       <h3>Debian/Ubuntu</h3>
+      <p>
       Recent Debian/ubuntu distributions include their own build of Julia, which can be installed in the usual way. If this is not the version of Julia you want, you will need to use the official binaries.
 
-      <pre>
-          <code class="bash">
-    sudo apt-get install julia
-          </code>
-        </pre>
+      <pre>sudo apt-get install julia</pre>
       </p>
 
       <h2>FreeBSD Ports</h2>
       <p>
         Julia is available in the <a href="https://svnweb.freebsd.org/ports/head/lang/julia/">Ports Collection</a>.<br />
         To install from the FreeBSD binary package manager, <code>pkg</code>, run
-        <pre>
-          <code class="bash">
-    pkg install julia
-          </code>
-        </pre>
+        <pre>pkg install julia</pre>
       </p>
 
       <p>
         To build and install Julia from source within the Ports framework, run
         <pre>
-    cd /usr/ports/lang/julia
-    make clean
-    make install
+        cd /usr/ports/lang/julia
+        make clean
+        make install
         </pre>
       </p>
 
