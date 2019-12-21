@@ -15,9 +15,11 @@ In short, be sure you have ruby installed, and then run these commands
 Next, you will need to change your present working directory to the root of this repository. 
 
 To install bundler, run
+
     bundle config set path 'vendor'
     
 then
+
     bundle install 
 
 from the root of this repository to fetch all dependencies and install them locally.
