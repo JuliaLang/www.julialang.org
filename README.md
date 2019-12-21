@@ -11,10 +11,14 @@ After installing [`docker`](http://docker.com/), run `make run` to build and run
 In short, be sure you have ruby installed, and then run these commands
 
     gem install bundler
+    
+Next, you will need to change your present working directory to the root of this repository. 
 
-to install bundler, run
-
-    bundle install --path vendor --binstubs
+To install bundler, run
+    bundle config set path 'vendor'
+    
+then
+    bundle install 
 
 from the root of this repository to fetch all dependencies and install them locally.
 You only have to do this once.
