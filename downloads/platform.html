@@ -53,7 +53,7 @@ title:  Platform specific instructions
   
       <p>
         Add <code>julia</code> to the PATH by saving the following in your `~/.bash_history`. You can then also start Julia in the Terminal.<br />
-        <code>export PATH=$PATH:/Applications/Julia-<version>.app/Contents/Resources/julia/bin/julia</code>
+        <pre>export PATH=$PATH:/Applications/Julia-<version>.app/Contents/Resources/julia/bin/julia</pre>
       </p>
   
       <p>
@@ -160,7 +160,7 @@ sudo yum install julia</pre>
       <p>
         Note that Fedora guidelines advise against uploading new breaking releases to official repositories: therefore your distribution will not provide the new major versions of Julia which were published after it.
         When reporting issues, please ensure you are using the latest available release by using one of the Copr repositories displayed on this page.
-        In order to use nightly Julia builds, replace `nalimilan/julia` with `nalimilan/julia-nightlies` in the instructions above. These can then be updated with <code>yum upgrade julia</code>.
+        In order to use nightly Julia builds, replace <code>nalimilan/julia</code> with <code>nalimilan/julia-nightlies</code> in the instructions above. These can then be updated with <code>yum upgrade julia</code>.
       </p>
 
       <br />
@@ -174,7 +174,7 @@ sudo yum install julia</pre>
 
       <h2>FreeBSD Ports</h2>
       <p>
-        Julia is available in the <a href="https://svnweb.freebsd.org/ports/head/lang/julia/">Ports Collection</a>.<br />
+        Julia is available in the <a href="https://svnweb.freebsd.org/ports/head/lang/julia/">Ports Collection</a>.
         To install from the FreeBSD binary package manager, <code>pkg</code>, run
         <pre>pkg install julia</pre>
       </p>
