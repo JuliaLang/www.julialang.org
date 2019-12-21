@@ -30,17 +30,13 @@ title:  Platform specific instructions
       </p>
 
       <p>
-        Windows 7/Windows Server 2012 users will also need to install:
+        Windows 7 / Windows Server 2012 users will also need to install:
         <ul>
           <li>the <a href="https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in">TLS easy_fix</a> for the package manager to work,
           see <a href="https://discourse.julialang.org/t/errors-for-git-pkg/9351">this Discourse thread</a> for more details.
           <li><a href="https://docs.microsoft.com/en-us/powershell/wmf/overview">Windows Management Framework 3.0 or later</a> to include PowerShell 3.0 or later.
         </ul>
         It is recommended that users on these legacy Windows systems install and use a terminal besides `cmd.exe` since the default terminal application has known issues which affect its usability with Julia and other libuv-based cross-platform software.
-      </p>
-
-      <p>
-        The <a href="https://github.com/JuliaLang/julia/blob/master/doc/build/windows.md">Windows README</a> contains information on dependencies.
       </p>
 
       <p>
@@ -51,10 +47,15 @@ title:  Platform specific instructions
 
       <h2 id='macOS'>macOS</h2>
       <p>
-        On macOS, a <code>Julia-&lt;version&gt;.dmg</code> file is provided, which contains Julia.app. Installation is the same as any other Mac software --
-        copy the <code>Julia-&lt;version&gt;.app</code> to your hard-drive (anywhere) or run from the disk image. Julia runs on macOS 10.8 and later releases.
+        On macOS, a <code>Julia-&lt;version&gt;.dmg</code> file is provided, which contains Julia.app. Installation is the same as any other Mac software.
+        Drag the <code>Julia-&lt;version&gt;.app</code> to Applications. You can also run Julia from the disk image. Julia runs on macOS 10.8 and later releases.
       </p>
-
+  
+      <p>
+        Add <code>julia</code> to the PATH by saving the following in your `~/.bash_history`. You can then also start Julia in the Terminal.
+        <code>export PATH=$PATH:/Applications/Julia-<version>.app/Contents/Resources/julia/bin/julia</code>
+      </p>
+  
       <p>
         Uninstall Julia by deleting Julia.app and the packages directory in <code>~/.julia</code>. Multiple Julia.app binaries can co-exist without interfering with each other.
         If you would also like to remove your preferences files, remove <code>~/.juliarc.jl</code> and <code>~/.julia_history</code>.
