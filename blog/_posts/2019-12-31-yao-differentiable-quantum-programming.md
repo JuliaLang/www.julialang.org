@@ -3,7 +3,7 @@ layout: post
 title:  Yao.jl - Differentiable Quantum Programming In Julia
 authors:
     - <a href="https://rogerluo.me/">Xiu-Zhe (Roger) Luo</a>
-     - <a href="https://github.com/GiggleLiu">Jin-Guo Liu</a>
+    - <a href="https://github.com/GiggleLiu">Jin-Guo Liu</a>
 ---
 
 We introduce [Yao](http://yaoquantum.org/), a Julia software for solving practical problems in quantum computation research.
@@ -15,23 +15,18 @@ Why we created Yao? To be short, we are as greedy [as Julia itself](https://juli
 ### Differentiable
 As many other Julia blog posts (as well as the paper, [arXiv: 1907.07587](https://arxiv.org/abs/1907.07587)) have mentioned: gradients can be a better programmer than humans sometimes. In Yao, to support recent progress in [parameterized quantum circuits](https://arxiv.org/abs/1906.07682), we developed our own domain specific automatic differentiation (AD) engine that is able to make use of the reversible nature of quantum circuits, which allows differentiating through the circuit with constant memory independent to its depth during simulation. On the other hand, we also provide a forward mode gradient that can produce quantum gradients implementable on real quantum device. Moreover, the builtin AD engine can be integrated with the general purpose AD engine [Zygote](https://github.com/FluxML/Zygote.jl) to differentiable a quantum circuit with general classical programs.
 
-The following is an glance for a Variational Quantum Eigen Solver
+The following is an glance for a Variational Quantum Eigensolver
 
 ```julia
 using Yao, YaoExtensions
 # number of qubits and circuit depth
-n, d = 4, 5
+n, d = 10, 10000
 circuit = dispatch!(variational_circuit(n, d),:random)
 
 h = heisenberg(n)
 
 for i in 1:1000
-    # pick the one you like
-    # either reverse mode
-    # _, grad = expect'(h, zero_state(n) => circuit)
-    # or forward mode
-    grad = faithful_grad(h, zero_state(n) => circuit; nshots=1)
-  
+    _, grad = expect'(h, zero_state(n) => circuit)
     dispatch!(-, circuit, 1e-2 * grad)
     println("Step $i, energy = $(real.(expect(h, zero_state(n)=>circuit)))")
 end
@@ -45,8 +40,7 @@ First, we make use of **Julia's package system**. The package **Yao** itself (an
 
 ![stack](http://docs.yaoquantum.org/dev/assets/images/stack.png)
 
-Second, thanks to Julia's **multiple dispatch and type system**. We defined an interface for quantum registers and circuit building blocks. Like many other things in Julia, one only need to implement a few necessary interfaces for a new quantum
-register or blocks, the rest will just work!
+Second, thanks to Julia's **multiple dispatch and type system**. We defined an interface for quantum registers and circuit building blocks. Like many other things in Julia, one only need to implement a few necessary interfaces for a new quantum register or blocks, the rest will just work!
 
 This extensibility also make it possible for us to support several features with tiny effort, such as [symbolic computation](http://tutorials.yaoquantum.org/dev/generated/quick-start/5.shor-9-code/), GPU acceleration.
 
