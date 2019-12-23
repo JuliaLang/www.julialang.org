@@ -3,12 +3,10 @@ layout: post
 title:  Yao.jl - Differentiable Quantum Programming In Julia
 authors:
     - <a href="https://rogerluo.me/">Xiu-Zhe (Roger) Luo</a>
-    - <a href="https://github.com/GiggleLiu">Jin-Guo Liu</a>
-    - Pan Zhang
-    - Lei Wang
+     - <a href="https://github.com/GiggleLiu">Jin-Guo Liu</a>
 ---
 
-We introduce Yao, a Julia software for solving practical problems in quantum computation research.
+We introduce [Yao](http://yaoquantum.org/), a Julia software for solving practical problems in quantum computation research.
 Quantum computation is a promising computation approach that provides a brand new platform
 for scientists to explore in near term. The name Yao comes from the first Chinese character for unitary (幺正).
 
@@ -20,19 +18,20 @@ As many other Julia blog posts (as well as the paper, [arXiv: 1907.07587](https:
 The following is an glance for a Variational Quantum Eigen Solver
 
 ```julia
-using Yao, Yao.AD, YaoExtensions
-# number of qubits and depth
+using Yao, YaoExtensions
+# number of qubits and circuit depth
 n, d = 4, 5
 circuit = dispatch!(variational_circuit(n, d),:random)
 
 h = heisenberg(n)
 
-# pick the one you like
-# either reverse-mode
-# or forward mode
-# grad = faithful_grad(h, zero_state(n) => circuit; nshots=100)
 for i in 1:1000
-    _, grad = expect'(h, zero_state(n) => circuit)
+    # pick the one you like
+    # either reverse mode
+    # _, grad = expect'(h, zero_state(n) => circuit)
+    # or forward mode
+    grad = faithful_grad(h, zero_state(n) => circuit; nshots=1)
+  
     dispatch!(-, circuit, 1e-2 * grad)
     println("Step $i, energy = $(real.(expect(h, zero_state(n)=>circuit)))")
 end
