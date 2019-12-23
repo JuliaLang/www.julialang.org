@@ -58,4 +58,4 @@ You can view more detailed benchmark report [here](https://github.com/Roger-luo/
 So far, we are happy to announce its birth, but the journey just starts. We want to make Yao a practical toolbox for quantum computing research in Julia. We want compilation to actual hardware, circuit simplification, visualization, tensor network
 and more! Although, we have some beta users helping us shape this software during [actual research work](http://yaoquantum.org/research/). We still need more use cases to shape it further. If you are interested in this idea, join us and let's make it a more and more powerful tool for quantum computing research!
 
-For more details behind the design, please check our paper: 
+For more details behind our design, please check the paper:
