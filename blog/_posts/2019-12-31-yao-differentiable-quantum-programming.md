@@ -73,6 +73,9 @@ By making use of this extensibility from core, we developed more features. This 
 - and [more work-in-progress packages](https://github.com/QuantumBFS)
 
 ### Efficient
+Efficiency matters especially in parameterized quantum circuits that requires a lot numerical experiments, thus, we also
+want Yao to be efficient enough on these tasks.
+
 Besides all other exciting features, Yao achieves the-state-of-art performance on intermediate-sized quantum circuits by making use of [the native GPU programming in Julia](https://devblogs.nvidia.com/gpu-computing-julia-programming-language/) and specialization based on multiple dispatch.
 
 ![relative](http://docs.yaoquantum.org/dev/assets/images/relative_pcircuit.png)
