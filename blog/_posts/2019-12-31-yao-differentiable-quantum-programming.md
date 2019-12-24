@@ -19,13 +19,11 @@ alt="Yao Logo" width="210">
 Why we created Yao? To be short, we are as greedy [as Julia itself](https://julialang.org/blog/2012/02/why-we-created-julia). We want something
 
 ### Differentiable
-Like many other Julia blog posts (as well as the paper, [arXiv: 1907.07587](https://arxiv.org/abs/1907.07587)) have mentioned: gradients can be a better programmer than humans sometimes.
+Like many other Julia blog posts (as well as the [Zygote paper](https://arxiv.org/abs/1907.07587)) have mentioned: gradients can be a better programmer than humans sometimes.
+In Yao, we implemented a builtin **domain-specific** automatic differentiation (AD) engine make use of the reversible nature of quantum circuits. In quantum simulations, memory is often the bottlenet, the reversible AD engine can avoid the caching of intermediate states in traditonal reverse mode AD.
+One can still port this builtin AD engine to a machine learning package like [Zygote](https://github.com/FluxML/Zygote.jl), e.g. this [gate learning example](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/PortZygote/gate\_learning.jl).
 
-However, the automatic differentiation (AD) problem for quantum computing is very different from other general AD problems. The memory cost is extremely high in the simulation. Thus the normal reverse mode AD is impossible to use when the circuit is deep or large.
-
-In Yao, to support recent progress in [parameterized quantum circuits](https://arxiv.org/abs/1906.07682), we developed our **domain-specific high-performance** automatic differentiation engine that can make use of the reversible nature of quantum circuits, that allows differentiating through the circuit with constant memory independent to its depth during the simulation. On the other hand, we also provide a forward mode gradient that can produce the quantum gradient that can be implemented on a real quantum device. Moreover, the builtin AD engine [can be integrated](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/PortZygote/gate\_learning.jl) with the general-purpose source-to-source AD engine [Zygote](https://github.com/FluxML/Zygote.jl) to differentiable a quantum circuit with general classical programs.
-
-The following is a glance for a Variational Quantum Eigensolver
+Yao provides some easy to use differentiation utilities for frequently used losses like `filidety'`, `expect'`, and `operator_fidelity'`. The following is a glance for a Variational Quantum Eigensolver
 
 ```julia
 using Yao, YaoExtensions
@@ -36,23 +34,20 @@ circuit = dispatch!(variational_circuit(n, d),:random)
 h = heisenberg(n)
 
 for i in 1:1000
- _, grad = expect'(h, zero_state(n) => circuit)
- dispatch!(-, circuit, 1e-2 * grad)
- println("Step $i, energy = $(real.(expect(h, zero_state(n)=>circuit)))")
+    _, grad = expect'(h, zero_state(n) => circuit)
+    dispatch!(-, circuit, 1e-2 * grad)
+    println("Step $i, energy = $(real.(expect(h, zero_state(n)=>circuit)))")
 end
 ```
 
-More examples are included in our [tutorial](http://tutorials.yaoquantum.org/dev/) and our [Quantum Algorithm Zoo](https://github.com/QuantumBFS/QuAlgorithmZoo.jl), including:
+This example of trains a 10000 layer parametrized circuit (~300000 parameters) to find the ground state of a 10 site heisenberg model. One can try it on a laptop. More examples are included in our [tutorial](http://tutorials.yaoquantum.org/dev/) and our [Quantum Algorithm Zoo](https://github.com/QuantumBFS/QuAlgorithmZoo.jl), including:
 
 - [Quantum Circuit Born Machine](http://tutorials.yaoquantum.org/dev/generated/quick-start/6.quantum-circuit-born-machine/)
 - [Quantum generative adversarial circuits](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/QuGAN)
-- [Porting the builtin AD engine to Zygote for gate learning](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/PortZygote/gate\_learning.jl)
+- [Gate learning with operator fidelity](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/PortZygote/gate\_learning.jl)
 - [Variational Quantum Eigensolver](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/VQE)
 
 ### Extensible
-As new research ideas keep emerging every day and every hour, software targeting to help daily research should be highly
-modular, extensible, and coherent with the ecosystem. Since even the field, quantum software itself is a rapidly growing field. We want it to be extensible enough for researchers and developers to extend it at any level for any possible type of research.
-
 The package **Yao** itself (and its CUDA version **CuYao**) is only a meta-package, and the concrete implementation is separated into several packages. The core includes the following packages:
 
 - [YaoBase](https://github.com/QuantumBFS/YaoBase.jl) Abstract interface definitions and some common tools
