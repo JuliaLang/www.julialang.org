@@ -72,27 +72,36 @@ title:  Platform specific instructions
 
       <p>
         The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find
-        the <code>julia</code> executable. First, extract the <code>.tar.gz</code> file downloaded from the <a href="index.html">downloads page</a> to a folder on your computer.
+        the <code>julia</code> executable.
+      </p>
+
+      <p>
+        First, download the <code>.tar.gz</code> file from the <a href="index.html">downloads page</a>. You need to extract this file to a suitable location.
+        To extract the file, you can use the following command:
+
+        <pre>tar -xvzf julia-x.y.z-linux-x86_64.tar.gz</pre>
+
+        This will extract the files to a folder named <code>julia-x.y.z</code>. We would refer this as <code>&lt;Julia directory&gt;</code>.
         To run Julia, you can do any of the following:
 
         <ul>
           <li>Create a symbolic link to <code>julia</code> inside a folder which is on your system <code>PATH</code>
           <li>Add Julia's <code>bin</code> folder to your system <code>PATH</code> environment variable
-          <li>Invoke the <code>julia</code> executable by using its full path, as in <code><where you extracted Julia>/bin/julia</code>
+          <li>Invoke the <code>julia</code> executable by using its full path, as in <code>&lt;Julia directory&gt;/bin/julia</code>
         </ul>
       </p>
 
       <p>
-        For example, to create a symbolic link to <code>julia</code> inside the <code>/usr/local/bin</code> folder, you can do the following:
+        To add Julia's <code>bin</code> folder to <code>PATH</code> environment variable, you can edit the <code>~/.bash_profile</code> or <code>~/.bashrc</code> file.
+        Open the file in your favourite editor and add a new line as follows:
 
-        <pre>sudo ln -s &lt;Julia directory&gt;/bin/julia /usr/local/bin/julia</pre>
+        <pre>export PATH="$PATH:/path/to/&lt;Julia directory&gt;/bin</pre>
       </p>
 
       <p>
-        On some Linux distributions, you may need to use a folder other than <code>/usr/local/bin</code>.
-        To check which folders are on your <code>PATH</code>, you can run <code>echo $PATH</code>.
+        Apart from this, there are several ways through which you can change environment variable. You can follow <a href="https://help.ubuntu.com/community/EnvironmentVariables">this guide</a>
+        to find out a way convenient for you.
       </p>
-
       <p>
         Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove <code>~/.julia</code>. The startup file is at <code>~/.juliarc.jl</code> and the history at <code>~/.julia_history</code>.
       </p>
