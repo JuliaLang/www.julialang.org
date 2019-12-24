@@ -10,10 +10,18 @@ We introduce [Yao](http://yaoquantum.org/), a Julia software for solving practic
 Quantum computation is a promising computation approach that provides a brand new platform
 for scientists to explore in the near term. The name Yao comes from the first Chinese character for unitary (幺正).
 
+<div align="center"> <img
+src="http://yaoquantum.org/assets/images/logo.png"
+alt="Yao Logo" width="210">
+<p>The Logo of Yao</p>
+</div>
+
 Why we created Yao? To be short, we are as greedy [as Julia itself](https://julialang.org/blog/2012/02/why-we-created-julia). We want something
 
 ### Differentiable
-Like many other Julia blog posts (as well as the paper, [arXiv: 1907.07587](https://arxiv.org/abs/1907.07587)) have mentioned: gradients can be a better programmer than humans sometimes. In Yao, to support recent progress in [parameterized quantum circuits](https://arxiv.org/abs/1906.07682), we developed our domain-specific high-performance automatic differentiation (AD) engine that can make use of the reversible nature of quantum circuits, that allows differentiating through the circuit with constant memory independent to its depth during the simulation. On the other hand, we also provide a forward mode gradient that can produce quantum gradients implementable on a real quantum device. Moreover, the builtin AD engine can be integrated with the general-purpose AD engine [Zygote](https://github.com/FluxML/Zygote.jl) to differentiable a quantum circuit with general classical programs.
+Like many other Julia blog posts (as well as the paper, [arXiv: 1907.07587](https://arxiv.org/abs/1907.07587)) have mentioned: gradients can be a better programmer than humans sometimes. However, the automatic differentiation (AD) problem for quantum computing is very different from other general AD problems. The memory cost is extremely high in the simulation. Thus the normal reverse mode AD is impossible to use when the circuit is deep or large.
+
+In Yao, to support recent progress in [parameterized quantum circuits](https://arxiv.org/abs/1906.07682), we developed our domain-specific high-performance automatic differentiation engine that can make use of the reversible nature of quantum circuits, that allows differentiating through the circuit with constant memory independent to its depth during the simulation. On the other hand, we also provide a forward mode gradient that can produce the quantum gradient that can be implemented on a real quantum device. Moreover, the builtin AD engine can be integrated with the general-purpose AD engine [Zygote](https://github.com/FluxML/Zygote.jl) to differentiable a quantum circuit with general classical programs.
 
 The following is a glance for a Variational Quantum Eigensolver
 
