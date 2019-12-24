@@ -51,7 +51,7 @@ a hardware-free intermediate representation that we call Quantum Blocks Intermed
 
 Second, thanks to Julia's **multiple dispatch and type system**. We defined an interface for quantum registers and circuit building blocks. And like many other things in Julia, the builtin implementation is written in a very generic fashion. Thus one only needs to implement a few necessary interfaces for a new quantum register or blocks. The rest will just work!
 
-This extensibility also makes it possible for us to support several features with little efforts, such as [**symbolic computation**](http://tutorials.yaoquantum.org/dev/generated/quick-start/5.shor-9-code/), **GPU acceleration** and more!
+This extensibility also makes it possible for us to support several features with little efforts, such as [**symbolic computation**](http://tutorials.yaoquantum.org/v0.6.0/generated/quick-start/5.shor-9-code/), [**GPU acceleration**](https://github.com/QuantumBFS/CuYao.jl) and more!
 
 ### Efficient
 Although Yao does not aim to simulate large quantum circuits (such as simulating a 50-qubit random quantum circuit) to tackle the quantum supremacy simulation, our design put a strong emphasis on small to intermediate-sized quantum circuits since the high-performance simulation of such circuits is crucial for the design of near-term algorithms that run repeatedly
