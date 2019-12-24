@@ -53,9 +53,9 @@ More examples are included in our [tutorial](http://tutorials.yaoquantum.org/dev
 As new research ideas keep emerging every day and every hour, software targeting to help daily research should be highly
 modular, extensible, and coherent with the ecosystem. Since even the field, quantum software itself is a rapidly growing field. We want it to be extensible enough for researchers and developers to extend it at any level for any possible type of research.
 
-The package **Yao** itself (and its CUDA version **CuYao**) is just a meta-package, and the concrete implementation is separated into several packages. The core includes the following packages:
+The package **Yao** itself (and its CUDA version **CuYao**) is only a meta-package, and the concrete implementation is separated into several packages. The core includes the following packages:
 
-- [YaoBase](https://github.com/QuantumBFS/YaoBase.jl) Abstract interface definitions and some common tools, this includes:
+- [YaoBase](https://github.com/QuantumBFS/YaoBase.jl) Abstract interface definitions and some common tools
 - [YaoArrayRegister](https://github.com/QuantumBFS/YaoArrayRegister.jl) The implementation of quantum simulator instructions and the full amplitude simulated quantum register.
 - [YaoBlocks](https://github.com/QuantumBFS/YaoBlocks.jl) The implementation of Yao's hadware free Quantum Blocks Intermediate Representation (QBIR) and some specialization for certain quantum blocks.
 
