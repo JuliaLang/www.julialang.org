@@ -63,7 +63,9 @@ On the other hand, different functionalities in Yao are built around QBIR as sho
 
 ![qbir](http://docs.yaoquantum.org/dev/assets/images/YaoFramework.png)
 
-Thanks to Julia's **multiple dispatch and type system**. We defined an interface for quantum registers and circuit building blocks. And like many other things in Julia, the builtin implementation is written in a very generic fashion. Thus one only needs to implement a few necessary interfaces for a new quantum register or blocks. The rest will just work! This includes:
+Thanks to Julia's **multiple dispatch and type system**. We defined an interface for quantum registers and circuit building blocks. And like many other things in Julia, the builtin implementation is written in a very generic fashion. Thus one only needs to implement a few necessary interfaces for a new quantum register or blocks. The rest will just work!
+
+By making use of this extensibility from core, we developed more features. This includes:
 
 - Symbolic Calculation for Quantum Circuits in [YaoSym](https://github.com/QuantumBFS/YaoSym.jl)
 - CUDA acceleration for classical simulation in [CuYao](https://github.com/QuantumBFS/CuYao.jl)
