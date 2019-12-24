@@ -34,13 +34,14 @@ end
 
 ### Extensible
 As new research ideas keep emerging in every day and every hour, a software targeting to help daily research should be highly
-modular and extensible. Since even the field, quantum software itself, is a rapid growing field, we would like a hierarchical architecture that allows researchers and developers to extend it at any level for any possible type of research.
+modular, extensible and coherent with the ecosystem. Since even the field, quantum software itself, is a rapid growing field, we would like a hierarchical architecture that allows researchers and developers to extend it at any level for any possible type of research.
 
-First, we make use of **Julia's package system**. The package **Yao** itself (and its CUDA version **CuYao**) is just a meta-package and the concrete implementation is separated into several packages as shown below.
+First, we make use of **Julia's package system**. The package **Yao** itself (and its CUDA version **CuYao**) is just a meta-package and the concrete implementation is separated into several packages. Different functionalities are built around
+a hardware free intermediate representation that we call Quantum Blocks Intermediate Representation (QBIR) as shown below
 
-![stack](http://docs.yaoquantum.org/dev/assets/images/stack.png)
+![qbir](http://docs.yaoquantum.org/dev/assets/images/YaoFramework.png)
 
-Second, thanks to Julia's **multiple dispatch and type system**. We defined an interface for quantum registers and circuit building blocks. Like many other things in Julia, one only need to implement a few necessary interfaces for a new quantum register or blocks, the rest will just work!
+Second, thanks to Julia's **multiple dispatch and type system**. We defined an interface for quantum registers and circuit building blocks. And like many other things in Julia, the builtin implementation is written in a very generic fashion, thus one only need to implement a few necessary interfaces for a new quantum register or blocks, the rest will just work!
 
 This extensibility also make it possible for us to support several features with tiny effort, such as [symbolic computation](http://tutorials.yaoquantum.org/dev/generated/quick-start/5.shor-9-code/), GPU acceleration.
 
@@ -50,12 +51,12 @@ or in parallel.
 
 To be short, in the benchmark below, by making use of [the native GPU programming in Julia](https://devblogs.nvidia.com/gpu-computing-julia-programming-language/) and specialization based on multiple dispatch, we show that **Yao** achieves the-state-of-art performance on intermediate-sized quantum circuits.
 
-![](https://github.com/Roger-luo/quantum-benchmarks/raw/master/images/pcircuit_relative.png)
+![relative](http://docs.yaoquantum.org/dev/assets/images/relative_pcircuit.png)
 
 You can view more detailed benchmark report [here](https://github.com/Roger-luo/quantum-benchmarks/blob/master/RESULTS.md).
 
 ## What's more?
-So far, we are happy to announce its birth, but the journey just starts. We want to make Yao a practical toolbox for quantum computing research in Julia. We want compilation to actual hardware, circuit simplification, visualization, tensor network
+So far, we are happy to announce its birth, but the journey just starts. We want to make Yao a practical toolbox for quantum computing research in Julia. We would like to have actual hardware compilation, circuit simplification, visualization, tensor network
 and more! Although, we have some beta users helping us shape this software during [actual research work](http://yaoquantum.org/research/). We still need more use cases to shape it further. If you are interested in this idea, join us and let's make it a more and more powerful tool for quantum computing research!
 
-For more details behind our design, please check the paper:
+For more details behind our design, please check [our latest paper](https://arxiv.org/abs/1912.10877).
