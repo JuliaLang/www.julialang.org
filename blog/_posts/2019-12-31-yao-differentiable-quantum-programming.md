@@ -59,7 +59,7 @@ The package **Yao** itself (and its CUDA version **CuYao**) is just a meta-packa
 - [YaoArrayRegister](https://github.com/QuantumBFS/YaoArrayRegister.jl) The implementation of quantum simulator instructions and the full amplitude simulated quantum register.
 - [YaoBlocks](https://github.com/QuantumBFS/YaoBlocks.jl) The implementation of Yao's hadware free Quantum Blocks Intermediate Representation (QBIR) and some specialization for certain quantum blocks.
 
-Different functionalities are built around QBIR as shown below
+One can easily create new extension by adding component packages as dependency. In Yao, different functionalities are built around QBIR as shown below
 
 ![qbir](http://docs.yaoquantum.org/dev/assets/images/YaoFramework.png)
 
