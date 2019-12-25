@@ -33,19 +33,19 @@ Yao provides some easy to use differentiation utilities for frequently used loss
 ```julia
 using Yao, YaoExtensions
 # number of qubits and circuit depth
-n, d = 10, 10000
+n, d = 16, 100
 circuit = dispatch!(variational_circuit(n, d),:random)
 
 h = heisenberg(n)
 
-for i in 1:1000
+for i in 1:100
     _, grad = expect'(h, zero_state(n) => circuit)
     dispatch!(-, circuit, 1e-2 * grad)
     println("Step $i, energy = $(real.(expect(h, zero_state(n)=>circuit)))")
 end
 ```
 
-This example of trains a 10000 layer parametrized circuit (~300000 parameters) to find the ground state of a 10 site heisenberg model. Due to the efficient implementation, one can try this example on his laptop. This AD engine can be ported to a machine learning package like [Zygote](https://github.com/FluxML/Zygote.jl) seamlessly, like in this [gate learning example](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/PortZygote/gate\_learning.jl). More examples are included in our [tutorial](http://tutorials.yaoquantum.org/dev/) and our [Quantum Algorithm Zoo](https://github.com/QuantumBFS/QuAlgorithmZoo.jl), including:
+This example of trains a 100 layer parametrized circuit (4816 parameters) to find the ground state of a 16 site heisenberg model. Due to the efficient implementation, one can try this example on his laptop. This AD engine can be ported to a machine learning package like [Zygote](https://github.com/FluxML/Zygote.jl) seamlessly, like in this [gate learning example](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/PortZygote/gate\_learning.jl). More examples are included in our [tutorial](http://tutorials.yaoquantum.org/dev/) and our [Quantum Algorithm Zoo](https://github.com/QuantumBFS/QuAlgorithmZoo.jl), including:
 
 - [Quantum Circuit Born Machine](http://tutorials.yaoquantum.org/dev/generated/quick-start/6.quantum-circuit-born-machine/)
 - [Quantum generative adversarial circuits](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/QuGAN)
