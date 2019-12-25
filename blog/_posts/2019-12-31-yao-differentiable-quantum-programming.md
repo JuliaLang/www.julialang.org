@@ -48,6 +48,7 @@ This example of trains a 10000 layer parametrized circuit (~300000 parameters) t
 - [Variational Quantum Eigensolver](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/VQE)
 
 ### Extensible
+As new research ideas keep emerging every day and every hour, we want it to be extensible enough for researchers and developers to extend it at any level for any possible type of research.
 The package **Yao** itself (and its CUDA version **CuYao**) is only a meta-package, and the concrete implementation is separated into several packages. The core includes the following packages:
 
 - [YaoBase](https://github.com/QuantumBFS/YaoBase.jl) Abstract interface definitions and some common tools
