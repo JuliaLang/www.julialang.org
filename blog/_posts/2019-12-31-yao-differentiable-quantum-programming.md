@@ -20,7 +20,7 @@ Why we created Yao? To be short, we are as greedy [as Julia itself](https://juli
 
 ### Differentiable
 Like many other Julia blog posts (as well as the [Zygote paper](https://arxiv.org/abs/1907.07587)) have mentioned: gradients can be a better programmer than humans sometimes.
-In Yao, we implemented a builtin **domain-specific** automatic differentiation (AD) engine make use of the reversible nature of quantum circuits. In quantum simulations, memory is often the bottlenet, the reversible AD engine can avoid the caching of intermediate states in traditonal reverse mode AD.
+In Yao, we implemented a builtin **domain-specific** automatic differentiation (AD) engine make use of the reversible nature of quantum circuits. In quantum simulations, memory is often the bottleneck, the reversible AD engine can avoid the caching of intermediate states in general reverse mode AD.
 One can still port this builtin AD engine to a machine learning package like [Zygote](https://github.com/FluxML/Zygote.jl), e.g. this [gate learning example](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/PortZygote/gate\_learning.jl).
 
 Yao provides some easy to use differentiation utilities for frequently used losses like `filidety'`, `expect'`, and `operator_fidelity'`. The following is a glance for a Variational Quantum Eigensolver
