@@ -40,7 +40,7 @@ h = heisenberg(n)
 
 for i in 1:100
     _, grad = expect'(h, zero_state(n) => circuit)
-    dispatch!(-, circuit, 1e-2 * grad)
+    dispatch!(-, circuit, 1e-1 * grad)
     println("Step $i, energy = $(real.(expect(h, zero_state(n)=>circuit)))")
 end
 ```
