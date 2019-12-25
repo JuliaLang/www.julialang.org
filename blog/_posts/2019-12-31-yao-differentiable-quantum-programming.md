@@ -48,8 +48,11 @@ This example of trains a 10000 layer parametrized circuit (~300000 parameters) t
 
 ### Extensible
 As new research ideas keep emerging every day and every hour, we want it to be extensible enough for researchers and developers to extend it at any level for any possible type of research.
+
+##### Register extension
 Our CUDA extension [CuYao](https://github.com/QuantumBFS/CuYao.jl) reuse a lot of existing functions thanks to the [clever design of CUDAnative](https://arxiv.org/abs/1712.03112). CuYao contains only several hundread lines of device code, but has the best performance (see the figure in section Efficient) up to our knowledge.
 
+##### Quantum gate and algorithms
 Not only the quantum register can be extended easily, quantum blocks can also be extended with little effort, for example the FSim gate that appear in [Google quantum supremacy experiment](https://www.nature.com/articles/s41586-019-1666-5) can be defined as
 ```
 julia> using Yao, LuxurySparse
@@ -59,11 +62,8 @@ julia> @const_gate FSim = mat((ISWAP * control(2, 2, 1=>shift(-π/6)))')
 We have more predefined utilities in YaoExtensions, including [quantum frourier transformation circuit](https://github.com/QuantumBFS/YaoExtensions.jl/blob/master/src/easybuild/qft_circuit.jl), [hardware efficient vartiational circuit](https://github.com/QuantumBFS/YaoExtensions.jl/blob/master/src/easybuild/variational_circuit.jl), [random supremacy circuit](https://github.com/QuantumBFS/YaoExtensions.jl/blob/master/src/easybuild/supremacy_circuit.jl) and [google 53 qubit circuit](https://github.com/QuantumBFS/YaoExtensions.jl/blob/master/src/easybuild/google53.jl).
 One can develop algorithms easily with this extensibility. Here is a [non-complete list of quantum algorithms](https://github.com/QuantumBFS/QuAlgorithmZoo.jl) that we wrote or contributed by Julia community.
 
-On the other hand, different functionalities in Yao are built around QBIR as shown below
-
-![qbir](http://docs.yaoquantum.org/dev/assets/images/YaoFramework.png)
-
-To try the example in this illustration, remember typing `using Yao; @vars θ ϕ`. Due to the generic type in Julia, [symbolic calculation is supported](https://github.com/QuantumBFS/YaoSym.jl) by porting [SymEngine](https://github.com/symengine/SymEngine.jl). One can differentiate a quantum circuit analytically, confirm shor's 9 qubit code analytically (see [our paper](https://arxiv.org/abs/1912.10877)).
+##### Symbolic computation
+Due to the generic type in Julia, [symbolic calculation is supported](https://github.com/QuantumBFS/YaoSym.jl) by porting [SymEngine](https://github.com/symengine/SymEngine.jl). One can differentiate a quantum circuit analytically, confirm shor's 9 qubit code analytically (see [our paper](https://arxiv.org/abs/1912.10877)).
 
 
 ### Efficient
@@ -77,6 +77,13 @@ Besides all other exciting features, Yao achieves the-state-of-art performance o
 You can view a more detailed benchmark report [here](https://github.com/Roger-luo/quantum-benchmarks/blob/master/RESULTS.md).
 
 ## What's more?
-So far, we are happy to announce its birth, but the journey just starts. We want to make Yao a practical toolbox for quantum computing research in Julia. We would like to have actual hardware compilation (e.g. to [OpenQASM](https://github.com/QuantumBFS/YaoQASM.jl)), circuit simplification ([YaoIR](https://github.com/QuantumBFS/YaoIR.jl)), visualization, tensor network (check this [web application](http://yaoquantum.org/qbirplayground.html)), and more! Although, we have some beta users helping us shape this software during [real research work](http://yaoquantum.org/research/). We still need more use cases to develop it further. If you are interested in this idea, [join us](https://github.com/QuantumBFS/Yao.jl/blob/master/CONTRIBUTING.md), and let's make it a more and more powerful tool for quantum computing research!
+So far, we are happy to announce its birth, but the journey just starts.
+Yao has a growing ecosystem around QBIR as shown below
+
+![qbir](http://docs.yaoquantum.org/dev/assets/images/YaoFramework.png)
+
+Note: Type `using Yao; @vars θ ϕ` before trying this example. 
+
+In the future, we want to make Yao a practical toolbox for quantum computing research in Julia. We would like to have actual hardware compilation (e.g. to [OpenQASM](https://github.com/QuantumBFS/YaoQASM.jl)), circuit simplification ([YaoIR](https://github.com/QuantumBFS/YaoIR.jl)), visualization, tensor network (check this [web application](http://yaoquantum.org/qbirplayground.html)), and more! Although, we have some beta users helping us shape this software during [real research work](http://yaoquantum.org/research/). We still need more use cases to develop it further. If you are interested in this idea, [join us](https://github.com/QuantumBFS/Yao.jl/blob/master/CONTRIBUTING.md), and let's make it a more and more powerful tool for quantum computing research!
 
 For more details behind our design, please check [our latest paper](https://arxiv.org/abs/1912.10877).
