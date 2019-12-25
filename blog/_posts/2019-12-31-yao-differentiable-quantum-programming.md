@@ -16,6 +16,12 @@ alt="Yao Logo" width="210">
 <p>The Logo of Yao</p>
 </div>
 
+The features in Yao are developed based on quantum block intermediate representation (QBIR) as shown below (Note: Type `using Yao; @vars θ ϕ` before trying this example.)
+
+![qbir](http://docs.yaoquantum.org/dev/assets/images/YaoFramework.png)
+
+Instead of providing people a black box simulator, QBIR provides anything one want to know about a circuit, including C=circuit parameters, matrix representations of operators, and even gradients.
+
 Why we created Yao? To be short, we are as greedy [as Julia itself](https://julialang.org/blog/2012/02/why-we-created-julia). We want something
 
 ### Differentiable
@@ -54,7 +60,7 @@ Our CUDA extension [CuYao](https://github.com/QuantumBFS/CuYao.jl) reuse a lot o
 
 ##### Quantum gate and algorithms
 Not only the quantum register can be extended easily, quantum blocks can also be extended with little effort, for example the FSim gate that appear in [Google quantum supremacy experiment](https://www.nature.com/articles/s41586-019-1666-5) can be defined as
-```
+```julia
 julia> using Yao, LuxurySparse
 
 julia> @const_gate FSim = mat((ISWAP * control(2, 2, 1=>shift(-π/6)))')
@@ -78,12 +84,6 @@ You can view a more detailed benchmark report [here](https://github.com/Roger-lu
 
 ## What's more?
 So far, we are happy to announce its birth, but the journey just starts.
-Yao has a growing ecosystem around QBIR as shown below
-
-![qbir](http://docs.yaoquantum.org/dev/assets/images/YaoFramework.png)
-
-Note: Type `using Yao; @vars θ ϕ` before trying this example. 
-
 In the future, we want to make Yao a practical toolbox for quantum computing research in Julia. We would like to have actual hardware compilation (e.g. to [OpenQASM](https://github.com/QuantumBFS/YaoQASM.jl)), circuit simplification ([YaoIR](https://github.com/QuantumBFS/YaoIR.jl)), visualization, tensor network (check this [web application](http://yaoquantum.org/qbirplayground.html)), and more! Although, we have some beta users helping us shape this software during [real research work](http://yaoquantum.org/research/). We still need more use cases to develop it further. If you are interested in this idea, [join us](https://github.com/QuantumBFS/Yao.jl/blob/master/CONTRIBUTING.md), and let's make it a more and more powerful tool for quantum computing research!
 
 For more details behind our design, please check [our latest paper](https://arxiv.org/abs/1912.10877).
