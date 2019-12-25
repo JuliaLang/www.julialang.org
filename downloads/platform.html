@@ -24,10 +24,33 @@ title:  Platform specific instructions
         Julia is available for Windows 7 and later, both 32 bit and 64 bit.
         <ol>
           <li>Download the Windows julia.exe installer for your platform. 32-bit julia works on both x86 and x86_64. 64-bit julia will only run on 64-bit Windows (x86_64).
-          <li>Run the downloaded program to extract julia
-          <li>Double-click the julia shortcut in the unpacked folder to start julia
+          <li>Run the downloaded program to extract Julia.
+          <li>At the "Choose Installation directory" step, copy the Path in the "Destination Folder" into a Notepad or similar file for future reference, and finish installation.
+          <li>At this point, you can decide whether you want to invoke Julia by simply typing <code>julia</code> in the command line, or paste the entire path you saved in the Notepad. To invoke Julia by simply typing <code>julia</code> in the command line, perform the following steps.
         </ol>
+        <p>
+          If on Windows 10,
+          <ol>
+            <li>Hit (Windows Key + R) to open run, and type in <code>sysdm.cpl</code> and hit enter. This will open up the System Properties. Click on the "Advanced" tab.
+            <li>Now, click the "Environment Variables..." button.
+            <li>Under the "System Variables" section (the lower half), find the row with "Path" in the first column, and click edit.
+            <li>The "Edit environment variable" UI will appear. Here, click "New", and paste in the text you copied into the Notepad.
+            <li>Hit OK and dismiss all the dialogs. You can now run Julia from the command line!
+          </ol>
+        </p>
+        <p>
+          Else, if on Windows 7 or 8,
+          <ol>
+            <li>Hit (Windows Key + R) to open run, and type in <code>sysdm.cpl</code> and hit enter. This will open up the System Properties.
+            <li>In the System Properties window, click the Advanced tab, and then click "Environment Variables".
+            <li>In the System Variables window, highlight Path, and click Edit.
+            <li>In the Edit System Variables window, move the cursor to the end of the field.
+            <li>If there is no semicolon at the end, add it and paste in the text you copied into the notepad.
+            <li>Hit OK and dismiss all the dialogs. You can now run Julia from the command line!
+          </ol>
+        </p>
       </p>
+
 
       <p>
         Windows 7 / Windows Server 2012 users will also need to install:
