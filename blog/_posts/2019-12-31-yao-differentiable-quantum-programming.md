@@ -6,7 +6,7 @@ authors:
  - <a href="https://github.com/GiggleLiu">Jin-Guo Liu</a>
 ---
 
-We introduce [Yao](http://yaoquantum.org/), an open-source Julia software for solving practical problems in quantum computation research.
+We introduce [Yao](http://yaoquantum.org/) ([**Check our latest paper**](https://arxiv.org/abs/1912.10877)), an open-source Julia software for solving practical problems in quantum computation research.
 Quantum computation is a promising computation approach that provides a brand new platform
 for scientists to explore in the near term. The name Yao comes from the first Chinese character for unitary (幺正).
 
@@ -16,11 +16,7 @@ alt="Yao Logo" width="210">
 <p>The Logo of Yao</p>
 </div>
 
-The features in Yao are developed based on quantum block intermediate representation (QBIR) as shown below (Note: Type `using Yao; @vars θ ϕ` before trying this example.)
-
-![qbir](http://docs.yaoquantum.org/dev/assets/images/YaoFramework.png)
-
-Instead of providing people a black box simulator, QBIR provides anything one want to know about a circuit, including C=circuit parameters, matrix representations of operators, and even gradients.
+[![asciicast](https://asciinema.org/a/aMlxq3Lh9s4xDFy89VEYdb29N.svg)](https://asciinema.org/a/aMlxq3Lh9s4xDFy89VEYdb29N?speed=2)
 
 Why we created Yao? To be short, we are as greedy [as Julia itself](https://julialang.org/blog/2012/02/why-we-created-julia). We want something
 
