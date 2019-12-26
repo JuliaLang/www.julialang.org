@@ -33,3 +33,9 @@ navigation:
 collections:
   publications:
     permalink: /publications/:path
+---
+title: Jekyll Redirect 301
+redirect_from:
+  - /download/
+permalink: /downloads/
+---
