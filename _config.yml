@@ -33,3 +33,4 @@ navigation:
 collections:
   publications:
     permalink: /publications/:path
+include: [_redirects]
