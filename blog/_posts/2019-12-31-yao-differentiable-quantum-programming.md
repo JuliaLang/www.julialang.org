@@ -16,8 +16,6 @@ alt="Yao Logo" width="210">
 <p>The Logo of Yao</p>
 </div>
 
-[![asciicast](https://asciinema.org/a/HaDO421J58cmKhIBbVPhJHIr7.svg)](https://asciinema.org/a/HaDO421J58cmKhIBbVPhJHIr7?speed=2)
-
 Why we created Yao? To be short, we are as greedy [as Julia itself](https://julialang.org/blog/2012/02/why-we-created-julia). We want something
 
 ### Differentiable
@@ -83,3 +81,7 @@ So far, we are happy to announce its birth, but the journey just starts.
 In the future, we want to make Yao a practical toolbox for quantum computing research in Julia. We would like to have actual hardware compilation (e.g. to [OpenQASM](https://github.com/QuantumBFS/YaoQASM.jl)), circuit simplification ([YaoIR](https://github.com/QuantumBFS/YaoIR.jl)), visualization, tensor network (check this [web application](http://yaoquantum.org/qbirplayground.html)), and more! Although, we have some beta users helping us shape this software during [real research work](http://yaoquantum.org/research/). We still need more use cases to develop it further. If you are interested in this idea, [join us](https://github.com/QuantumBFS/Yao.jl/blob/master/CONTRIBUTING.md), and let's make it a more and more powerful tool for quantum computing research!
 
 For more details behind our design, please check [our latest paper](https://arxiv.org/abs/1912.10877).
+
+Your Yao's journey starts here
+
+[![asciicast](https://asciinema.org/a/HaDO421J58cmKhIBbVPhJHIr7.svg)](https://asciinema.org/a/HaDO421J58cmKhIBbVPhJHIr7?speed=2)
