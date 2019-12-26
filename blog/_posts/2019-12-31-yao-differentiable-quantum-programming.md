@@ -16,7 +16,7 @@ alt="Yao Logo" width="210">
 <p>The Logo of Yao</p>
 </div>
 
-[![asciicast](https://asciinema.org/a/aMlxq3Lh9s4xDFy89VEYdb29N.svg)](https://asciinema.org/a/aMlxq3Lh9s4xDFy89VEYdb29N?speed=2)
+[![asciicast](https://asciinema.org/a/HaDO421J58cmKhIBbVPhJHIr7.svg)](https://asciinema.org/a/HaDO421J58cmKhIBbVPhJHIr7?speed=2)
 
 Why we created Yao? To be short, we are as greedy [as Julia itself](https://julialang.org/blog/2012/02/why-we-created-julia). We want something
 
