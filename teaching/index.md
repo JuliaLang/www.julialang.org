@@ -38,7 +38,7 @@ Julia is now being used in several universities and online courses. If you know 
   * [Applications of Differential Equations and Vector Analysis for Engineers II.] ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
 
 - City University of New York <!--40.74851885,-73.9836392743124-->
-  * [MTH 229](http://wiener.math.csi.cuny.edu/verzani/classes/MTH229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](http://mth229.github.io) page.
+  * [MTH 229](https://www.math.csi.cuny.edu/abhijit/229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](http://mth229.github.io) page.
 
 - Cornell University <!--42.4489498,-76.4746831983026-->
   * [CS 5220](http://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel), Spring 2014
@@ -47,7 +47,7 @@ Julia is now being used in several universities and online courses. If you know 
   [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
 
 - [Einaudi Institute for Economics and Finance, Rome](www.eief.it) <!--41.907984,12.495731-->
-  * [Econometrics of DSGE Models](http://www.gragusa.org/teaching/eief_dsge) ([Giuseppe Ragusa](http://www.gragusa.org))
+  * [Econometrics of DSGE Models](https://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://www.gragusa.org))
 
 - Emory University <!--33.7915703,-84.3183726165067-->
   * [MATH 346](http://www.mathcs.emory.edu/~lruthot/courses/sp15-math346.html), Introduction to Optimization Theory (Prof. Lars Ruthotto), Spring 2015
@@ -80,13 +80,13 @@ Julia is now being used in several universities and online courses. If you know 
   * CpE 425C, Embedded Systems with Robotics (Prof. [Karl Anthony B. Baluyot](https://gitlab.com/integrated.xtal)), 2nd Semester, November 2018
   
 - IIT Indore <!--22.52036,75.920723-->
-  * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://www.fesb.unist.hr/~slap/index1.html)), June 2016
+  * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. Ivan Slapnicar), June 2016
 
 - Iowa State University <!--42.02791015,-93.6446441473745-->
   * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann), Fall 2014
 
 - [Luiss University Rome](www.luiss.it), [Department of Economics and Finance](http://economiaefinanza.luiss.it) <!--41.92150525,12.5132906979167-->
-  * [Econometric Theory](http://www.gragusa.org/teaching/et) ([Giuseppe Ragusa](http://www.gragusa.org))
+  * [Econometric Theory](https://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](http://www.gragusa.org))
 
 - Massachusetts Institute of Technology (MIT) <!--42.3583961,-71.0956778766393-->
   * [6.251/15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas), Fall 2015
@@ -98,7 +98,7 @@ Julia is now being used in several universities and online courses. If you know 
   * [18.335](http://math.mit.edu/~stevenj/18.335/), Introduction to Numerical Methods (Prof. Steven G. Johnson), Fall 201-
   * [18.338](http://web.mit.edu/18.338/www/), Eigenvalues Of Random Matrices (Prof. Alan Edelman), Spring 2015
   * [18.S096](https://math.mit.edu/classes/18.S096/iap17/), Performance Computing in a High Level Language (Steven G. Johnson, Alan Edelman, David Sanders, Jeff Bezanson), January 2017.
-  * [15.093/6.255](http://optimization.mit.edu/class.php?id=6.255J), Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos), Fall 2014
+  * 15.093/6.255, Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos), Fall 2014
   * [15.S60](https://github.com/IainNZ/ORSoftwareTools2014), Software Tools for Operations Research (Iain Dunning), Spring 2014
   * [15.083](https://stellar.mit.edu/S/course/15/sp14/15.083/), Integer Programming and Combinatorial Optimization (Prof. Juan Pablo Vielma), Spring 2014
 
@@ -123,7 +123,7 @@ Julia is now being used in several universities and online courses. If you know 
 - Pontifical Catholic University of Rio de Janeiro (PUC-Rio) <!---22.979107,-43.233083-->
   * Programming in Julia (Prof. [Thuener Silva](https://github.com/Thuener)), Summer 2017
   * Linear Optimization (Prof. [Alexandre Street](https://alexandrestreet.wordpress.com/)), Spring 2017
-  * Decision and Risk Analysis (Prof. [Davi Valladão](http://www.ind.puc-rio.br/es/equipe-dei/docentes/quadro-principal/davi-valladao/)), Fall 2015
+  * Decision and Risk Analysis (Prof. [Davi Valladão](http://www.ind.puc-rio.br/en/equipe/davi-michel-valladao/)), Fall 2015
 
 - Purdue University <!--40.4319722,-86.923893679845-->
   * [CS51400](https://www.cs.purdue.edu/homes/dgleich/cs514-2016/), Numerical Analysis (Prof. [David Gleich](https://www.cs.purdue.edu/homes/dgleich/)), Spring 2016
@@ -154,7 +154,7 @@ Julia is now being used in several universities and online courses. If you know 
   * One week introductory course into Julia with applications in statistics and economics ([Tileman Conring](https://www.statistik.tu-dortmund.de/conring.html)): Spring 2018
 
 - Universidad Nacional Autónoma de México <!--19.647012,-101.22900565-->
-  * [Física computacional](https://github.com/computo-fc/fisica_computacional) (Prof. David P. Sanders), Fall 2014
+  * [Física computacional](https://github.com/dpsanders/fisica_computacional) (Prof. David P. Sanders), Fall 2014
   * Métodos numéricos para sistemas dinámicos (Prof. Luis Benet), Fall 2014
   * [Métodos numéricos avanzados](https://github.com/dpsanders/MetodosNumericosAvanzados) (Prof. David P. Sanders and Prof. Luis Benet), Spring 2015
   * [Métodos computacionales para la física estadística](https://github.com/dpsanders/metodos-monte-carlo) (Prof. David P. Sanders), Spring 2015
@@ -179,14 +179,14 @@ Julia is now being used in several universities and online courses. If you know 
     * UVOE501 - Virtual factory and optimization ([Dr. Alexandru Olteanu](http://people.univ-ubs.fr/alexandru.olteanu/)), 2018-
 
 - University at Buffalo <!--43.0015201,-78.7870697019128-->
-  * [IE 572](http://www.chkwon.net/teaching/ie-572/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
+  * [IE 572](https://www.chkwon.net/teaching/#ie-572-linear-programming/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
 
 - University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016 <!--51.22281,4.410232-->
   * Computational Neuroscience (2070FBDBMW), Master of Biomedical Sciences, of Biochemistry, of Physics ([Michele Giugliano](https://www.uantwerpen.be/popup/opleidingsonderdeel.aspx?catalognr=2070FBDBMW&taal=nl&aj=2016))
 
 - University of California, Berkeley (UCB)
   * Math 124 - [Prof. Per-Olof Persson](http://persson.berkeley.edu/), 2019-
-  * Math 228A - [Prof. Lin Lin](https://github.com/lin-lin/2018Fall_228A), 2017-
+  * Math 228A - [Prof. Lin Lin](https://github.com/lin-lin/MATH228A), 2017-
   * Math 228B - [Prof. Per-Olof Persson](http://persson.berkeley.edu/), 2019-
 
 - University of California, Los Angeles (UCLA) <!--34.068921,-118.445181-->
@@ -209,7 +209,7 @@ Julia is now being used in several universities and online courses. If you know 
   * Spring 2016, [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/index.html))
 
 - University of Glasgow, School of Mathematics and Statistics <!--55.87230815,-4.28922544277935-->
-  * An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](http://www.gla.ac.uk/schools/mathematicsstatistics/staff/theodorepapamarkou/)), September 2017
+  * An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](https://www.gla.ac.uk/postgraduate/taught/dataanalytics/)), September 2017
 
 - University of South Florida <!--28.0599999,-82.4138361902512-->
   * [ESI 6491](http://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon), Fall 2015
@@ -219,7 +219,7 @@ Julia is now being used in several universities and online courses. If you know 
   * [MATH3076/3976](http://www.maths.usyd.edu.au/u/olver/teaching/MATH3976/), Mathematical Computing (Assoc. Prof. [Sheehan Olver](http://www.maths.usyd.edu.au/u/olver/)), Fall 2016
 
 - Université Paul Sabatier, Toulouse <!--43.5601417,1.4635117-->
-  * [Optimization in Machine Learning](http://www.irit.fr/cimi-machine-learning/node/15), (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/)), Fall 2015
+  * [Optimization in Machine Learning](hhttps://www.irit.fr/cimi-machine-learning/), (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/)), Fall 2015
 
 - [Université de Liège](http://www.ulg.ac.be/) <!--50.64080705,5.57643469040658-->
   * [MATH0462](http://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2016-2017-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016

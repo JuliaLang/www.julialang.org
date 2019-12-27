@@ -38,4 +38,4 @@ While we speculate that a highly-optimized distributed implementation in, say, C
 implementation in Julia, from our perspective as machinelearning researchers (as opposed to HPC researchers), the latter
 also offers a practical and monetary value due to the ease of
 development and abstraction level. Our code is publicly available
-at https://github.com/dinarior/dpmm subclusters.jl
+at https://github.com/dinarior/dpmm_subclusters.jl

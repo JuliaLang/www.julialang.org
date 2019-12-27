@@ -13,17 +13,13 @@ trackbacks:
     - Phoronix: "http://www.phoronix.com/scan.php?page=news_item&px=MTA2ODg"
     - The Endeavor (John D. Cook): "http://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/"
     - Walking Randomly: "http://www.walkingrandomly.com/?p=87"
-    - Miguel Bazdresch: "http://2pif.info/op/julia.html"
     - Douglas Bates: "http://dmbates.blogspot.in/2012/03/julia-version-of-multinomial-sampler_12.html"
     - Vince Buffalo: "http://vincebuffalo.org/2012/03/07/thoughts-on-julia.html"
     - John Myles White: "http://www.johnmyleswhite.com/notebook/2012/03/31/julia-i-love-you/"
-    - Shane Conway: "http://www.statalgo.com/2012/03/24/statistics-with-julia/"
     - Tim Salimans: "http://timsalimans.com/gibbs-sampling-with-julia/"
-    - Twitter trackbacks: "http://topsy.com/julialang.org/"
     - Russian translation: "http://habrahabr.ru/blogs/programming/138577/"
     - Linux.org.ru blog post (Russian): "http://www.linux.org.ru/news/opensource/7440863"
     - Simplified Chinese translation: "https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN"
-    - Traditional Chinese translation: "http://www.hellogcc.org/archives/666"
     - Linuxfr.org blog post (French): "http://linuxfr.org/news/version-1-0-de-julia"
 ---
 

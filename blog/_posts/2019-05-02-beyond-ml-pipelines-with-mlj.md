@@ -48,7 +48,7 @@ composition.
 &nbsp;
 
 &#9758; Building a [self-tuning random
-  forest](https://github.com/alan-turing-institute/MLJ.jl/blob/master/examples/random_forest.ipynb)
+  forest](https://alan-turing-institute.github.io/MLJTutorials/)
 &nbsp;
 
 &#9758; An MLJ [docker image](https://github.com/ysimillides/mlj-docker) (including tour)
@@ -56,7 +56,7 @@ composition.
 &#9758; Implementing the MLJ interface for a [new model](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/)
 &nbsp;
 
-&#9758; How to [contribute](https://github.com/alan-turing-institute/MLJ.jl/blob/master/CONTRIBUTE.md)
+&#9758; How to [contribute](https://github.com/alan-turing-institute/MLJ.jl/blob/master/CONTRIBUTING.md)
 
 &#9758; Julia [Slack](http://julialang.slack.com) channel: \#mlj.
 
@@ -208,7 +208,7 @@ yhat(Xnew)           # to predict on new data
 Once a pipeline like this has been built and tested on sample data, it
 can be exported as a stand-alone model, ready to be trained on any
 dataset. For details, see the MLJ
-[documentation](https://alan-turing-institute.github.io/MLJ.jl/dev/learning_networks/). In
+[documentation](https://alan-turing-institute.github.io/MLJTutorials/pub/getting-started/learning-networks.html). In
 the future, Julia macros will allow common architectures (e.g., linear
 pipelines) to be built in a couple of lines.
 

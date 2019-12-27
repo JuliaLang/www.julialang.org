@@ -22,7 +22,7 @@ Julia is distributed with well-validated implementations of the standard suite o
 However, there are a range of projects that could be done to improve the quality, performance, or usability of these builtin structures.
 Some ideas include:
 
-- Changing Base.Dict to an ordered dict representation (http://juliacollections.github.io/DataStructures.jl/latest/ordered_containers.html, https://github.com/JuliaLang/julia/pull/10116)
+- Changing Base.Dict to an ordered dict representation (https://juliacollections.github.io/DataStructures.jl/latest/ordered_containers/, https://github.com/JuliaLang/julia/pull/10116)
 - Experiment with using alternative Dict hash structures (such as Robin Hood Hashing, used by [Rust](https://doc.rust-lang.org/beta/std/collections/struct.HashMap.html))
 - Implementation and tests for assorted asynchronous, threaded storage primitives and data channels
 - Array growth-rate parameter

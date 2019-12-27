@@ -11,7 +11,7 @@ Often the best ideas are the ones that candidate SoC students come up with on th
 
 ## Wide-ranging demos
 
-For new or occasional users, JuliaImages would benefit from a large collection of complete worked examples organized by topic. While the current documentation contains many "mini-demos," they are scattered; an organized page would help users quickly find what they need. We have [set up a landing page](http://juliaimages.github.io/latest/demos.html), but many more demos are needed. [Scikit-image](http://scikit-image.org/docs/stable/auto_examples/) is one potential model.
+For new or occasional users, JuliaImages would benefit from a large collection of complete worked examples organized by topic. While the current documentation contains many "mini-demos," they are scattered; an organized page would help users quickly find what they need. We have [set up a landing page](https://juliaimages.org/latest/democards/examples/), but many more demos are needed. [Scikit-image](http://scikit-image.org/docs/stable/auto_examples/) is one potential model.
 
 This "project" might also be split among multiple students who contribute demos as part of their work in a focused area of JuliaImages.
 

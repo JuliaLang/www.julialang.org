@@ -229,6 +229,6 @@ array in an expression like `sum(X.^2 .+ Y.^2)`.
 [hacks]: https://github.com/MikeInnes/TakingBroadcastSeriously.jl "TakingBroadcastSeriously.jl"
 [documented and available to packages]: https://docs.julialang.org/en/latest/manual/interfaces/#man-interfaces-broadcasting-1 "Julia manual: Customizing broadcast"
 [`BitArray`s]: https://docs.julialang.org/en/latest/base/arrays/#Base.BitArray "Julia documentation for BitArray"
-[`LinearAlgebra` standard library]: https://docs.julialang.org/en/latest/stdlib/LinearAlgebra/#Linear-Algebra-1 "Julia documentation for LinearAlgebra"
-[structured matrices]: https://docs.julialang.org/en/latest/stdlib/LinearAlgebra/#Special-matrices-1 "Special matrices in LinearAlgebra"
+[`LinearAlgebra` standard library]: https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#Linear-Algebra-1 "Julia documentation for LinearAlgebra"
+[structured matrices]: https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#Special-matrices-1 "Special matrices in LinearAlgebra"
 [`Meta.@lower`]: https://docs.julialang.org/en/latest/base/base/#Base.Meta.@lower "Julia documentation: `Meta.@lower`"

@@ -333,6 +333,6 @@ This is the same Cartesian product expansion that the shell does if multiple `{.
 
 ## Further Reading
 
-You can read more in Julia's [online manual](http://docs.julialang.org/en/release-0.1/manual/running-external-programs/), including how to construct complex pipelines, and how shell-compatible quoting and interpolation rules in Julia's backtick syntax make it both simple and safe to cut-and-paste shell commands into Julia code.
+You can read more in Julia's [online manual](https://docs.julialang.org/en/v1/manual/running-external-programs/), including how to construct complex pipelines, and how shell-compatible quoting and interpolation rules in Julia's backtick syntax make it both simple and safe to cut-and-paste shell commands into Julia code.
 The whole system is designed on the principle that the easiest thing to do should also be the right thing.
 The end result is that starting and interacting with external processes in Julia is both convenient and safe.

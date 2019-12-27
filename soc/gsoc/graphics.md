@@ -24,7 +24,7 @@ for the example database.
 
 ### Develop a Cairo/GR/WebVisualize backend
 
-This project involves overloading the [Makie API](https://github.com/JuliaPlots/Makie.jl/tree/master/src/atomics)
+This project involves overloading the [Makie API](https://github.com/JuliaPlots/Makie.jl)
 for backends to draw all the different plot types.
 You will start with a skeleton from already present backends, so it's about filling the
 gaps and making sure all tests pass for the new backend.
