@@ -15,7 +15,7 @@ I'd like to share that experience with you to introduce the new interface and as
 ## Iteration in Julia 0.6
 
 Previously, Julia's iteration interface consisted of three methods: `start`, `next`, and `done`.
-A good way to demonstrate how these work together is to show the transformation from a `for` loop to the equivalent `while` loop using those functions. I've taken this from the [Julia Interfaces documentation](https://docs.julialang.org/en/release-0.6/manual/interfaces/#man-interface-iteration-1), written by [Matt Bauman](https://github.com/mbauman) and others.
+A good way to demonstrate how these work together is to show the transformation from a `for` loop to the equivalent `while` loop using those functions. I've taken this from the [Julia Interfaces documentation](https://docs.julialang.org/en/v1/manual/interfaces/#man-interface-iteration-1), written by [Matt Bauman](https://github.com/mbauman) and others.
 
 A simple `for` loop like this:
 

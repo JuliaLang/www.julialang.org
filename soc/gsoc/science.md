@@ -17,7 +17,7 @@ title:  Scientific Projects – Summer of Code
 
 ## Quantum Computation: Visualization of Quantum Circuits
 
-Although, there is already a pretty printing for quantum circuits in [Yao.jl](https://github.com/QuantumBFS/Yao.jl) as a tree, we are still lack of visualizing a quantum circuit defined as [block tree](https://quantumbfs.github.io/Yao.jl/latest/man/blocks/). And we have already had basic plotting utilities in Julia, like [Luxor.jl](https://github.com/JuliaGraphics/Luxor.jl). It would be great and more convenient to provide multiple theme for plotting a quantum circuit with Yao.jl to various formats.
+Although, there is already a pretty printing for quantum circuits in [Yao.jl](https://github.com/QuantumBFS/Yao.jl) as a tree, we are still lack of visualizing a quantum circuit defined as [block tree](hhttps://docs.yaoquantum.org/dev/man/blocks.html). And we have already had basic plotting utilities in Julia, like [Luxor.jl](https://github.com/JuliaGraphics/Luxor.jl). It would be great and more convenient to provide multiple theme for plotting a quantum circuit with Yao.jl to various formats.
 
 **Recommended Skills**: Basic knowledge in programatic visualization. Experienced with Luxor.jl is preferred but can be learned along the way.
 
@@ -25,7 +25,7 @@ Although, there is already a pretty printing for quantum circuits in [Yao.jl](ht
 
 **Mentors**: [Roger Luo](https://github.com/Roger-luo/)
 
-**References**: some demo image can be found in Yao.jl's [doc](https://quantumbfs.github.io/Yao.jl/latest/tutorial/QFT/)
+**References**: some demo image can be found in Yao.jl's [doc](https://docs.yaoquantum.org/dev/index.html)
 
 
 ## Quantum Computation: Funny Tensor Networks
@@ -49,8 +49,6 @@ In this paper, we have got a PyTorch implementation of "MPS + GPU + autodiff"
 > Zhao-Yu Han, Jun Wang, Heng Fan, Lei Wang, and Pan Zhang
 >
 > [Phys. Rev. X 8, 031012](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031012)
->
-> Tutorial Code: http://lib.itp.ac.cn/html/panzhang/mps/tutorial/
 
 Tutorial for tensor networks:
 
@@ -69,4 +67,4 @@ Zonotopes provide a very good middle ground between hyperrectangular approximati
 
 **Mentors:** [Marcelo Forets](http://github.com/mforets) and [Christian Schilling](https://github.com/schillic).
 
-**References:** See [Reachability.jl#Publications](https://juliareach.github.io/Reachability.jl/latest/publications.html) and references therein, or contact us in the [gitter channel](https://gitter.im/JuliaReach/Lobby).
+**References:** See [Reachability.jl#Publications](https://juliareach.github.io/Reachability.jl/stable/publications/) and references therein, or contact us in the [gitter channel](https://gitter.im/JuliaReach/Lobby).

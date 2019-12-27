@@ -384,11 +384,11 @@ julia> Profile.print(format=:tree, recur=:flat)
 Total snapshots: 629
 ```
 
-I think this looks cool, and vaguely even shows how I would conceptualize the functions in my head. This is availble right now only on [my jn/profile-recurflat](https://github.com/JuliaLang/julia/tree/jn/profile-recurflat) branch, but should be a PR soon, and show up in the JuliaLang v1.4 release.
+I think this looks cool, and vaguely even shows how I would conceptualize the functions in my head. This is availble right now only on my jn/profile-recurflat branch, but should be a PR soon, and show up in the JuliaLang v1.4 release.
 
 ## Final thoughts
 
-There's many more tools for examining profile exploration tools that I haven't mentioned, including the venerable [ProfileView.jl](https://github.com/timholy/ProfileView.jl) and [Juno.jl](https://docs.junolab.org/stable/man/juno_frontend.html#Profiler-1). And there's other tools too for working on performance questions, such as the simple [@time](https://docs.julialang.org/en/v1/base/base/#Base.@time) and the batteries-included [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl) . Those will often then lead to needing to do deeper exploration of the code. For that next step, consider using [Cthulhu.jl](https://github.com/JuliaDebug/Cthulhu.jl) and [learning more about other kinds of debugging](https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/).
+There's many more tools for examining profile exploration tools that I haven't mentioned, including the venerable [ProfileView.jl](https://github.com/timholy/ProfileView.jl) and [Juno.jl](https://docs.junolab.org/stable/man/juno_frontend/#Profiler-1). And there's other tools too for working on performance questions, such as the simple [@time](https://docs.julialang.org/en/v1/base/base/#Base.@time) and the batteries-included [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl) . Those will often then lead to needing to do deeper exploration of the code. For that next step, consider using [Cthulhu.jl](https://github.com/JuliaDebug/Cthulhu.jl) and [learning more about other kinds of debugging](https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/).
 
 And finally, we're working on a [memory profiler](https://github.com/JuliaLang/julia/pull/31534) for JuliaLang to let you explore questions of memory consumption, similar to the time-duration-consumed questions explored above. So watch for more updates to come!
 

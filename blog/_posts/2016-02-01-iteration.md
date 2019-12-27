@@ -27,7 +27,7 @@ capabilities represent a vastly simplified approach.
 
 Let's introduce these iterators with an extension of an example taken
 from the
-[manual](http://docs.julialang.org/en/latest/manual/arrays/#Iteration-1).
+[manual](https://docs.julialang.org/en/v1/manual/arrays/#Iteration-1).
 
 # eachindex, CartesianIndex, and CartesianIndices
 
@@ -123,7 +123,7 @@ is that some `AbstractArray`s cannot be indexed efficiently with a
 linear index; in contrast, a much wider class of objects can be
 efficiently indexed with a multidimensional iterator.  (SubArrays are,
 generally speaking, [a prime
-example](http://docs.julialang.org/en/latest/devdocs/subarrays).)
+example](https://docs.julialang.org/en/v1/devdocs/subarrays).)
 `eachindex` is designed to pick the most efficient iterator for the
 given array type.  You can even use
 
@@ -322,7 +322,7 @@ However, here we want to emphasize that this design---having a separate
 `sumalongdims!` from `sumalongdims`---often mitigates the worst aspects
 of inference problems. This trick, using a [function-call to separate a
 performance-critical step from a potentially type-unstable
-precursor](http://docs.julialang.org/en/latest/manual/performance-tips/#kernel-functions-1),
+precursor](https://docs.julialang.org/en/v1/manual/performance-tips/#kernel-functions-1),
 is sometimes referred to as introducing a *function barrier*.
 It allows Julia's compiler to generate a well-optimized version of
 `sumalongdims!` even if the intermediate type of `B` is not known.

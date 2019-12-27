@@ -247,7 +247,7 @@ You can see these details in `rubberband.jl`.
 For many GUIs in Julia, an important component will be the ability to display data graphically.
 While we could draw graphs directly with Cairo, it would be a lot of work to build from scratch; fortunately, there's an excellent package, Winston, that already does this.
 
-Since there's a nice set of [examples](https://github.com/nolta/Winston.jl/blob/master/doc/examples.md) of some of the things you can do with Winston, here our focus is very narrow: how do you integrate Winston plots into GUIs built with Tk.
+Since there's a nice set of [examples](https://winston.readthedocs.io/en/latest/examples.html) of some of the things you can do with Winston, here our focus is very narrow: how do you integrate Winston plots into GUIs built with Tk.
 Fortunately, this is quite easy.
 Let's walk through an example:
 

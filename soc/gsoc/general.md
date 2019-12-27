@@ -21,7 +21,7 @@ Another related side-project might be to explore adding Type information to the 
 
 ## Automated performance measurements
 
-The Nanosoldier.jl project (and related https://github.com/JuliaCI/BaseBenchmarks) tests for performance impacts of some changes.
+The Nanosoldier.jl project (and related https://github.com/JuliaCI/BaseBenchmarks.jl) tests for performance impacts of some changes.
 However, there remains many areas that are not covered (such as compile time) while other areas are over-covered
 (greatly increasing the duration of the test for no benefit) and some tests may not be configured appropriately for statistical power.
 Furthermore, the current reports are very primitive and can only do a basic pair-wise comparison,

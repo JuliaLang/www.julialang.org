@@ -26,7 +26,7 @@ interesting.  This is really a "user-oriented" blog post, hinting at
 some of the ways this new feature can make your life simpler.  For
 developers who want to write code that supports arrays with arbitrary
 indices, see
-[this documentation page](http://docs.julialang.org/en/latest/devdocs/offset-arrays).
+[this documentation page](https://docs.julialang.org/en/v1/devdocs/offset-arrays).
 
 ## Why should we care which indices an array has? A first example
 
@@ -625,5 +625,5 @@ the following tendencies:
   implicitly assume indexing starts at 1.
 
 Developers are referred to
-[Julia's documentation](http://docs.julialang.org/en/latest/devdocs/offset-arrays)
+[Julia's documentation](https://docs.julialang.org/en/v1/devdocs/offset-arrays)
 for further guidance.

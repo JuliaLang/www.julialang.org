@@ -11,10 +11,10 @@ Most also have channels on the main Julia Slack channel, and sub-forums on the m
 ## International localisation efforts & Resources
 
 * [Julia-i18n](https://github.com/Julia-i18n) – Internationalization (i18n) and localization (L10n) for Julians ([Twitter](https://twitter.com/julia_i18n), [Gitter](https://gitter.im/Julia-i18n/julia-i18n) )
-* [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language ([Mailing-list](https://groups.google.com/forum/#!forum/julialanges), [Twitter](https://twitter.com/JuliaLangsEs), [Discord](https://discord.me/julialang-es), [Facebook](https://www.facebook.com/groups/julialang.es/), [WhatsApp](https://chat.whatsapp.com/invite/J9T033nZO8MLn96wWjlnHb))
+* [JuliaLangEs](https://github.com/JuliaLangEs) – Julia resources in the Spanish language ([Mailing-list](https://groups.google.com/forum/#!forum/julialanges), [Twitter](https://twitter.com/JuliaLangsEs), [Facebook](https://www.facebook.com/groups/julialang.es/), [WhatsApp](https://chat.whatsapp.com/invite/J9T033nZO8MLn96wWjlnHb))
 * [JuliaLangPt](https://github.com/JuliaLangPt) – Julia resources in the Portuguese language ([Gitter](https://gitter.im/JuliaLangPt/julia))
 * [JuliaCN](https://github.com/JuliaCN) – An open-source organization for Julia localization in Chinese (QQ ID 188374671, )
-* [JuliaTokyo](https://github.com/JuliaTokyo) – Julia resources in the Japanese language ([Mailing-list](https://groups.google.com/forum/#!forum/julia-tokyo), [Twitter](https://twitter.com/JuliaLangJa), [Slack](https://juliatokyo.slack.com), [Slack invite](https://julia-tokyo-inviter.herokuapp.com/), [Facebook](https://www.facebook.com/groups/885166968160540/))
+* [JuliaTokyo](https://github.com/JuliaTokyo) – Julia resources in the Japanese language ([Mailing-list](https://groups.google.com/forum/#!forum/julia-tokyo), [Twitter](https://twitter.com/JuliaLangJa), [Slack](https://juliatokyo.slack.com), [Facebook](https://www.facebook.com/groups/885166968160540/))
 * [JuliaGerman](https://github.com/JuliaLangGerman) – Julia resources in the German language ([manual](https://github.com/JuliaLangGerman/Julia_Handbuch_Deutsch))
 
 ## General
@@ -33,7 +33,7 @@ Most also have channels on the main Julia Slack channel, and sub-forums on the m
 * [JuliaGPU](https://github.com/JuliaGPU) – GPU Computing
 * [JuliaInterop](https://github.com/JuliaInterop) – Easy interoperability between Julia and not-Julia
 * [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
-* [JuliaParallel](https://github.com/JuliaParallel) – [Parallel programming in Julia](http://juliaparallel.github.io/)
+* [JuliaParallel](https://github.com/JuliaParallel) – [Parallel programming in Julia](https://github.com/JuliaParallel)
 * [JuliaWeb](https://github.com/JuliaWeb) – Webstack for building web services
 * [JuliaCloud](https://github.com/juliacloud) - Cloud providers
 

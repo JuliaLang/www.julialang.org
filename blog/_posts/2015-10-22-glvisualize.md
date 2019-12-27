@@ -35,7 +35,7 @@ https://gist.github.com/SimonDanisch/e0a8a2cbc3106ce6c123#file-dragndrop-jl
 
 Another feature I've been working on is better 2D support.
 I've implemented different anti-aliased marker, text rendering and line types.
-Apart from the image markers, they all use the [distance field technique](http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf), to achieve view independent anti-aliasing.
+Apart from the image markers, they all use the [distance field technique](https://steamcdn-a.akamaihd.net/apps/valve/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf), to achieve view independent anti-aliasing.
 Here are a few examples:
 
 ![lines](https://github.com/SimonDanisch/Blog/blob/master/10-22-15-jsoc/lines.png?raw=true)

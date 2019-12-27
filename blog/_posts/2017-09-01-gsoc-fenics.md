@@ -74,7 +74,7 @@ vtkfile = File("poisson/solution.pvd")
 vtkfile << U.pyobject #exports the solution to a vtkfile
 
 ```
-Apart from just defining the problem, we can also access and save the arrays corresponding to various variational forms. These return an [array type](https://docs.julialang.org/en/latest/stdlib/arrays/)
+Apart from just defining the problem, we can also access and save the arrays corresponding to various variational forms. These return an [array type](https://docs.julialang.org/en/v1/base/arrays/)
 We can do this as follows :
 
 ```julia

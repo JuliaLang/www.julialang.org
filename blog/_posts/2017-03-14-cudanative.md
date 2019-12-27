@@ -2,7 +2,6 @@
 layout: post
 title:  "Technical preview: Native GPU programming with CUDAnative.jl"
 author: <a href="https://github.com/maleadt">Tim Besard</a>
-cudanative_tree: https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271
 ---
 
 After 2 years of slow but steady development, we would like to announce the first preview
@@ -149,7 +148,7 @@ code for sm_20
 [SASS CODE]
 ```
 
-[^1]: See the [README]({{page.cudanative_tree}}/README.md#object-arguments) for a note on how expensive this currently is.
+[^1]: See the [README](https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/README.md#object-arguments) for a note on how expensive this currently is.
 
 Another important part of CUDAnative.jl are the intrinsics: special functions and macros
 that provide functionality hard or impossible to express using normal functions. For
@@ -157,7 +156,7 @@ example, the `{thread,block,grid}{Idx,Dim}` functions provide access to the size
 of each level of work. Local shared memory can be created using the `@cuStaticSharedMem` and
 `@cuDynamicSharedMem` macros, while `@cuprintf` can be used to display a formatted string
 from within a kernel function. Many [math
-functions]({{page.cudanative_tree}}/src/device/intrinsics.jl#L499-L807) are also available;
+functions](https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/src/device/intrinsics.jl#L499-L807) are also available;
 these should be used instead of similar functions in the standard library.
 
 
@@ -189,7 +188,7 @@ the examples and tests in the CUDAnative and CUDAdrv repositories.
 ## Another example: parallel reduction
 
 For a more complex example, let's have a look at a [parallel
-reduction]({{page.cudanative_tree}}/examples/reduce/reduce.cu) for [Kepler-generation
+reduction](https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/examples/reduce/reduce.cu) for [Kepler-generation
 GPUs](https://devblogs.nvidia.com/parallelforall/faster-parallel-reductions-kepler/). This
 is a typical well-optimized GPU implementation, using fast communication primitives at each
 level of execution. For example, threads within a warp execute together on a SIMD-like core,
@@ -198,7 +197,7 @@ on the same core but don't necessarily execute together, which means they need t
 communicate through core local memory. Another level up, only the GPU's DRAM memory is a
 viable communication medium.
 
-The [Julia version of this algorithm]({{page.cudanative_tree}}/examples/reduce/reduce.jl)
+The [Julia version of this algorithm](https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/examples/reduce/reduce.jl)
 looks pretty similar to the CUDA original: this is as intended, because CUDAnative.jl is a
 counterpart to CUDA C. The new version is much more generic though, specializing both on the
 reduction operator and value type. And just like we're used to with regular Julia code, the
@@ -208,7 +207,7 @@ the argument types.
 
 So how does it perform? Turns out, pretty good! The chart below compares the performance of
 both the CUDAnative.jl and CUDA C implementations[^2], using BenchmarkTools.jl to [measure
-the execution time]({{page.cudanative_tree}}/examples/reduce/benchmark.jl). The small
+the execution time](https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/examples/reduce/benchmark.jl). The small
 constant overhead (note the logarithmic scale) is due to a deficiency in argument passing,
 and will be fixed.
 
