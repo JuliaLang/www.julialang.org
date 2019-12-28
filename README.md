@@ -25,14 +25,24 @@ then
 from the root of this repository to fetch all dependencies and install them locally.
 You only have to do this once.
 
-Now you can run
+Now you need to check your ruby version by running `ruby -v` in the terminal. 
+
+If you are on `ruby 2.6.3p62` or older run: 
 
     ./bin/jekyll serve --future
 
+Else run:
+
+    bundle exec jekyll serve --future
+
 in the root of this repository to serve it, usually on [http://localhost:4000](http://localhost:4000).
 Or with other options, such as internet-visible on port 4444 with all drafts:
+    
+    ./bin/jekyll serve --incremental -H 0.0.0.0 -P 4444 -l --future --unpublished --drafts 
+    
+The above code is for `ruby 2.6.3p62` or older. The below code is for any version that is newer. 
 
-    ./bin/jekyll serve --incremental -H 0.0.0.0 -P 4444 -l --future --unpublished --drafts
+    bundle exec jekyll serve --incremental -H 0.0.0.0 -P 4444 -l --future --unpublished --drafts
 
 You can then edit the sources and Jekyll will rebuild changed files. To see
 changes, reload the page you edited.
