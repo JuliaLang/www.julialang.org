@@ -37,6 +37,10 @@ Else run:
 
 in the root of this repository to serve it, usually on [http://localhost:4000](http://localhost:4000).
 Or with other options, such as internet-visible on port 4444 with all drafts:
+    
+    ./bin/jekyll serve --incremental -H 0.0.0.0 -P 4444 -l --future --unpublished --drafts 
+    
+The above code is for `ruby 2.6.3p62` or older. The below code is for any version that is newer. 
 
     bundle exec jekyll serve --incremental -H 0.0.0.0 -P 4444 -l --future --unpublished --drafts
 
