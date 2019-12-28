@@ -26,6 +26,7 @@ from the root of this repository to fetch all dependencies and install them loca
 You only have to do this once.
 
 Now you need to check your ruber version by running `ruby -v` in the terminal. 
+
 If you are on `ruby 2.6.3p62` or older run: 
 
     ./bin/jekyll serve --future
