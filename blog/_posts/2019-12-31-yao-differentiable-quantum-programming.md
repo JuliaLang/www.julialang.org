@@ -38,7 +38,7 @@ for i in 1:100
 end
 ```
 
-This example trains a 100 layer parametrized circuit (4816 parameters) to find the ground state of a 16 site heisenberg model. The engine can also be integrated with general AD framework such as [Zygote](https://github.com/FluxML/Zygote.jl) seamlessly, e.g, in this in this [gate learning example](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/PortZygote/gate\_learning.jl), we use differentiable programming to find the decomposition of a given unitary.
+This example trains a 100 layer parametrized circuit (4816 parameters) to find the ground state of a 16 site heisenberg model. The engine can also be integrated with general AD framework such as [Zygote](https://github.com/FluxML/Zygote.jl) seamlessly, e.g, in our [gate learning example](https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/PortZygote/gate\_learning.jl), we use differentiable programming to find the decomposition of a given unitary. You can find more in our [tutorial](http://tutorials.yaoquantum.org/dev/) and [Quantum Algorithm Zoo](https://github.com/QuantumBFS/QuAlgorithmZoo.jl).
 
 ### Extensible
 As new research ideas keep emerging every day and every hour. Even the field quantum software itself grows rapidly. We want a framework that is flexible enough for researchers and developers to extend it at any level for any possible type of research.
@@ -60,6 +60,6 @@ by making use of [the native GPU programming in Julia](https://devblogs.nvidia.c
 ## What's more?
 So far, we are happy to announce its birth, but the journey just starts.
 
-In the future, we want to have more! We want have actual hardware compilation (e.g. to [OpenQASM](https://github.com/QuantumBFS/YaoQASM.jl)), circuit simplification and compilation ([YaoIR](https://github.com/QuantumBFS/YaoIR.jl)), visualization, tensor network (check this [web application](http://yaoquantum.org/qbirplayground.html)), and more!
+We want more! We want actual hardware compilation (e.g. to [OpenQASM](https://github.com/QuantumBFS/YaoQASM.jl)), circuit simplification and compilation ([YaoIR](https://github.com/QuantumBFS/YaoIR.jl)), visualization, tensor network (check the [online playground](http://yaoquantum.org/qbirplayground.html)), and more!
 
-Although, some beta users helped us shape this software during [real research work](http://yaoquantum.org/research/), we still need more use cases to develop it further. If you are interested in this idea, [join us](https://github.com/QuantumBFS/Yao.jl/blob/master/CONTRIBUTING.md), and let's make it a more and more powerful tool for quantum computing research!
+Although, some beta users helped us shape this software during [real research work](http://yaoquantum.org/research/), we still need more use cases to develop it further and more people to join us. If you are interested in this idea, [join us](https://github.com/QuantumBFS/Yao.jl/blob/master/CONTRIBUTING.md), and let's make it a more and more powerful tool for quantum computing research!
