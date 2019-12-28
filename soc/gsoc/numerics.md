@@ -9,28 +9,6 @@ For all of these projects, potential mentors are [Steven Johnson](https://github
 
 # Numerical Linear Algebra
 
-## Implementing eigenvalue problem solvers for sparse matrices
-
-The [IterativeSolvers.jl](https://github.com/JuliaLang/IterativeSolvers.jl) package is lacking iterative methods for the (generalized) eigenvalue problem Ax = λBx. The goal of this project is to implement the Arnoldi or Lanczos method as a solver for the eigenvalue problem and to compare its performance with the `eigs` function.
-
-For instance, the student can start by implementing the Arnoldi method for non-Hermitian eigenvalue problems Ax = λx. The method should then be improved with the implicit restart procedure (IRAM) and finally extended to the generalized eigenvalue problem Ax = λBx.
-
-**Recommended Skills**: familiarity with numerical linear algebra.
-
-**Expected Results**: a fast and native eigenvalue problem solver.
-
-**Mentors:** [Harmen Stoppels](https://github.com/haampie/)
-
-## Implementing iterative methods for linear systems of equations
-
-High-dimensional linear systems of equations Ax = b need often to be solved by preconditioned iterative methods, simply because direct methods are too expensive. The [IterativeSolvers.jl](https://github.com/JuliaLang/IterativeSolvers.jl) package provides a variety of these iterative methods already, such as GMRES, BiCGStab and Conjugate Gradients. There are still methods to be implemented, including (variations of) QMR and Conjugate Residuals. Furthermore, the package itself can be improved by: solving the issue of the return types of solvers ([#6](https://github.com/JuliaMath/IterativeSolvers.jl/issues/6), [#185](https://github.com/JuliaMath/IterativeSolvers.jl/issues/185)) and allowing custom array types.
-
-**Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra.
-
-**Expected Results**: New iterative methods and an improved API of the IterativeSolvers.jl package.
-
-**Mentors:** [Harmen Stoppels](https://github.com/haampie/)
-
 ## PETSc integration for scalable technical computing
 
 [PETSc](http://www.mcs.anl.gov/petsc) is a widely used framework of data structures and computational routines suitable for massively scaling scientific computations. Many of these algorithms are also ideally suited for big data applications such as computing principal components of very large sparse matrices and solving complicated forecasting models with distributed methods for solving partial differential equations.
