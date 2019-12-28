@@ -27,7 +27,7 @@ Most also have channels on the main Julia Slack channel, and sub-forums on the m
 
 ## Computing
 
-* [JuliaArrays](https://github.com/JuliaArrays) – Custom array types (and utilities for building array types) 
+* [JuliaArrays](https://github.com/JuliaArrays) – Custom array types (and utilities for building array types)
 * [JuliaBerry](https://github.com/JuliaBerry) – [Julia resources for the Raspberry Pi](https://juliaberry.github.io/)
 * [JuliaCI](https://github.com/JuliaCI) – Continuous Integration Support for Julia packages
 * [JuliaGPU](https://github.com/JuliaGPU) – GPU Computing
@@ -52,16 +52,17 @@ Most also have channels on the main Julia Slack channel, and sub-forums on the m
 
 ## Scientific Domains
 
+* [JuliaRobotics](https://github.com/JuliaRobotics) -  Robot control, simulation, navigation, and visualization.
 * [BioJulia](https://github.com/BioJulia) – Biology ([![Discord](https://img.shields.io/badge/discord-chat-blue.svg?style=flat-square&logo=discord&colorB=%237289DA)](https://discord.gg/z73YNFz))
 * [EcoJulia](https://github.com/EcoJulia) – Ecology
 * [JuliaAstro](https://github.com/JuliaAstro) – [Astronomy](https://juliaastro.github.io/) ([Gitter](https://gitter.im/JuliaAstro/home))
+* [JuliaDynamics](https://github.com/JuliaDynamics) - [Dynamical systems](https://juliadynamics.github.io/DynamicalSystems.jl/latest/), nonlinear dynamics and chaos.
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
-* [JuliaQuantum](https://github.com/JuliaQuantum) – [Julia libraries for quantum science and technology](http://juliaquantum.github.io/) ([Gitter](https://gitter.im/JuliaQuantum/home))
 * [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
-* [JuliaDynamics](https://github.com/JuliaDynamics) - [Dynamical systems](https://juliadynamics.github.io/DynamicalSystems.jl/latest/), nonlinear dynamics and chaos.
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
 * [JuliaReach](https://github.com/JuliaReach) – Reachability Computations for Dynamical Systems ([Gitter](https://gitter.im/JuliaReach/Lobby))
+* [JuliaQuantum](https://github.com/JuliaQuantum) – [Julia libraries for quantum science and technology](http://juliaquantum.github.io/) ([Gitter](https://gitter.im/JuliaQuantum/home))
 
 ## Data Science
 * [JuliaML](https://github.com/JuliaML) – [Machine Learning](https://juliaml.github.io/)  ([Gitter](https://gitter.im/JuliaML/chat))
