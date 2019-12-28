@@ -1,3 +1,8 @@
+
+<head>
+  <meta name="description" content="If you use Julia in your research, we request citing the paper 'Julia: A Fresh Approach to Numerical Computing'."/>
+</head>
+
 {% assign pub = include.pub %}
 <b>{{ pub.title }}</b>.
 {% for author in pub.authors %}{% if forloop.first %}{% elsif forloop.last %} and {% else %}, {% endif %}{{ author | split: ", " | reverse | join: " " }}{% endfor %}
