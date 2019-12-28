@@ -21,7 +21,7 @@ Like many other Julia blog posts (as well as the [Zygote paper](https://arxiv.or
 
 However, automatic differentiation (AD) for quantum circuits is quite different from regular programs: the memory allocation cost in circuit simulation can be extremely high due to caching the intermediate states in the general context. And in forward mode AD, we need extra semantic to preserve the quantum circuit -- so it can be implemented on the real device.
 
-In Yao, to accomplish this goal, we implemented a builtin **domain-specific** automatic differentiation (AD) engine to make use of the reversible nature of quantum circuits. The following is an example of a variational quantum eigensolver algorithm. With our effiient AD engine, you should be able to try it on your laptop
+In Yao, to accomplish this goal, we implemented a builtin **domain-specific** automatic differentiation (AD) engine to make use of the reversible nature of quantum circuits. The following is an example of a variational quantum eigensolver algorithm. With our efficient AD engine, you should be able to try it on your laptop
 
 ```julia
 using Yao, YaoExtensions
