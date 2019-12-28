@@ -30,7 +30,8 @@ navigation:
     title: GSoC
   - url: "https://juliacon.org"
     title: juliacon
+  - url: "/download/"
+    title: download
 collections:
   publications:
     permalink: /publications/:path
-include: [_redirects]
