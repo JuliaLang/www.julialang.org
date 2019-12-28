@@ -1,8 +1,6 @@
 ---
 layout: insidepage
 title:  Application Guidelines
-redirect_from:
-  - /gsoc/guidelines/index.html
 ---
 
 # Before the Application

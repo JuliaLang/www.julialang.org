@@ -2,8 +2,6 @@
 layout: post
 title: DiffEqFlux.jl – A Julia Library for Neural Differential Equations
 author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit
-redirect_from:
-  - /blog/_posts/2019-01-18-fluxdiffeq
 ---
 
 Translations:  <a href="https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw">Traditional Chinese</a>
@@ -742,7 +740,7 @@ into the deep learning framework. With access to the full range of solvers for O
 SDEs, DAEs, DDEs, PDEs, discrete stochastic equations, and more, we are
 interested to see what kinds of next generation neural networks you will build with Julia.
 
-Note: a citable version of this post is published on [Arxiv](https://arxiv.org/abs/1902.02376). 
+Note: a citable version of this post is published on [Arxiv](https://arxiv.org/abs/1902.02376).
 
 ```
 @article{DBLP:journals/corr/abs-1902-02376,
