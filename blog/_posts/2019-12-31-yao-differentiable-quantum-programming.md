@@ -6,7 +6,7 @@ authors:
  - <a href="https://github.com/GiggleLiu">Jin-Guo Liu</a>
 ---
 
-We introduce [Yao](http://yaoquantum.org/) ([**Check our latest paper**](https://arxiv.org/abs/1912.10877)), an open-source Julia package for solving practical problems in quantum computation research. The name Yao comes from the first Chinese character for unitary (幺正).
+We introduce [**Yao**](http://yaoquantum.org/) ([check our latest paper](https://arxiv.org/abs/1912.10877)), an open-source Julia package for solving practical problems in quantum computation research. The name Yao comes from the first Chinese character for unitary (幺正).
 
 <div align="center"> <img
 src="http://yaoquantum.org/assets/images/logo.png"
