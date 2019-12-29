@@ -4,7 +4,13 @@ title: Julia's Summer of Code projects
 ---
 # Summer of Code Archives
 
-Julia has greatly benefited from the Google Summer of Code. In the last 6 years, over 50 students have contributed to Julia and various Julia packages. Many of these students have become regular Julia contributors well beyond their summer projects. Take a look at the [Ideas Page](/soc/ideas-page) and contribute your ideas.
+Julia has greatly benefited from the Google Summer of Code. In the last 6 years, over 70 students have contributed to Julia and various Julia packages. Many of these students have become regular Julia contributors well beyond their summer projects. Take a look at the [Ideas Page](/soc/ideas-page) and contribute your ideas.
+
+## GSoC 2019
+
+In 2019, we recieved an even larger number of very high quality applications but could only fufill 15 slots through GSoC. Not wanting to lose some very impressive students and their exciting projects, we decided to supplement the program with the Julia Season of Contributions (JSoC), using some community funds. Details on the program were announced here: https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc/23922
+
+[Here is a list of all the projects for GSoC and JSoC 2019](https://julialang.org/blog/2019/05/jsoc19).
 
 ## GSoC 2018
 
