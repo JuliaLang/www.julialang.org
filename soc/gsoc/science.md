@@ -59,7 +59,7 @@ Tutorial for tensor networks:
 
 Zonotopes are representations of extended use in set-based analysis, since linear transformations and Minkowski sums can be computed efficiently. However, they are are not closed under intersections. In the literature there exist different alternatives for overapproximation of zonotope intersections with other set types. The package [LazySets.jl](https://github.com/JuliaReach/LazySets.jl) already offers support for zonotopes but lacks some of the state-of-the-art methods.
 
-Zonotopes provide a very good middle ground between hyperrectangular approximations and general polyhedral approximations in terms of performance and accuracy. Applications of this project are the verification of hybrid dynamical systems (see [juliareach.org](juliareach.org)) and in neural network verification (see [AI2](https://ieeexplore.ieee.org/document/8418593) and [NeuralVerification.jl](https://github.com/sisl/NeuralVerification.jl) project).
+Zonotopes provide a very good middle ground between hyperrectangular approximations and general polyhedral approximations in terms of performance and accuracy. Applications of this project are the verification of hybrid dynamical systems (see [juliareach.com](http://juliareach.com)) and in neural network verification (see [AI2](https://ieeexplore.ieee.org/document/8418593) and [NeuralVerification.jl](https://github.com/sisl/NeuralVerification.jl) project).
 
 **Recommended Skills:** Basic knowledge on convex geometry and polyhedral computations is preferred but can be learned along the way. A taste for writing efficient code. 
 
