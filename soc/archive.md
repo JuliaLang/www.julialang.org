@@ -4,7 +4,13 @@ title: Julia's Summer of Code projects
 ---
 # Summer of Code Archives
 
-Julia has greatly benefited from the Google Summer of Code. In the last 5 years, over 50 students have contributed to Julia and various Julia packages. Many of these students have become regular Julia contributors well beyond their summer projects. Take a look at the [Ideas Page](/soc/ideas-page) and contribute your ideas.
+Julia has greatly benefited from the Google Summer of Code. In the last 6 years, over 70 students have contributed to Julia and various Julia packages. Many of these students have become regular Julia contributors well beyond their summer projects. Take a look at the [Ideas Page](/soc/ideas-page) and contribute your ideas.
+
+## GSoC 2019
+
+In 2019, we recieved an even larger number of very high quality applications but could only fufill 15 slots through GSoC. Not wanting to lose some very impressive students and their exciting projects, we decided to supplement the program with the Julia Season of Contributions (JSoC), using some community funds. Details on the program were announced here: https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc/23922
+
+[Here is a list of all the projects for GSoC and JSoC 2019](https://julialang.org/blog/2019/05/jsoc19).
 
 ## GSoC 2018
 
@@ -20,7 +26,7 @@ In 2018, Julia participated in GSoC under the [NumFOCUS umbrella organization](h
 
 ## JSoC 2015
 
-Various projects were proposed by the community in [GSOC 2015](http://julialang.org/gsoc/2015/). However, Julia did not make it to GSOC 2015. Julia organized its own Summer of Code this year thanks to a generous sponsorship for the same from **[Gordon and Betty Moore Foundation](https://www.moore.org)**. The projects in Julia Summer of Code 2015 were.
+Various projects were proposed by the community in GSOC 2015. However, Julia did not make it to GSOC 2015. Julia organized its own Summer of Code this year thanks to a generous sponsorship for the same from **[Gordon and Betty Moore Foundation](https://www.moore.org)**. The projects in Julia Summer of Code 2015 were.
 
 - **David Gold [@davidagold](https://github.com/davidagold))**, [Nullable arrays](http://julialang.org/blog/2015/10/nullablearrays) (mentor: John Myles White [@johnmyleswhite](https://github.com/johnmyleswhite))
 - **Jacob Quinn ([@quinnj](https://github.com/quinnj))**, [Composable streams for data transfer and processing](http://julialang.org/blog/2015/10/datastreams) (mentor: Viral B. Shah [@ViralBShah](https://github.com/ViralBShah))
@@ -33,7 +39,7 @@ Various projects were proposed by the community in [GSOC 2015](http://julialang.
 
 ## GSoC 2014
 
-Julia was accepted as part of [GSOC 2014](http://julialang.org/gsoc/2014/). Many of the contributors in
+Julia was accepted as part of GSOC 2014. Many of the contributors in
 GSOC 2014 were mentors for JSOC 2015.
 
 - **Simon Danisch** - [3D Visualization Package for Julia](https://www.google-melange.com/gsoc/project/details/google/gsoc2014/simon_danisch/5757334940811264)
