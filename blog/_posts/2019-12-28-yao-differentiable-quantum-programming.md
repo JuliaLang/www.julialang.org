@@ -55,7 +55,7 @@ By making use of [native GPU programming in Julia](https://devblogs.nvidia.com/g
 
 ![relative](http://docs.yaoquantum.org/dev/assets/images/relative_pcircuit.png)
 
-*You can view a more [detailed benchmark] (https://github.com/Roger-luo/quantum-benchmarks/blob/master/RESULTS.md)* here.
+*You can view a more [detailed benchmark](https://github.com/Roger-luo/quantum-benchmarks/blob/master/RESULTS.md)* here.
 
 ## What's more?
 So far, we are happy to announce its birth, but the journey just starts.
