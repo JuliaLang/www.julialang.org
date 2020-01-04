@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: single
 title:  The Julia Project
 ---
 
