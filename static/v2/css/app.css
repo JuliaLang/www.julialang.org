@@ -505,6 +505,14 @@ code, table.benchmarks tbody {
   font: 9pt Monaco, 'Consolas', monospace;
 }
 
+code.has-jax {
+  font: inherit;
+  font-size: 100%;
+  background: inherit;
+  border: inherit;
+  color: #515151;
+}
+
 pre {
   border: 1px solid #ddd;
   background: rgb(250, 250, 250);
