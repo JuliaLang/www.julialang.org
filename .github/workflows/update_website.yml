@@ -1,0 +1,13 @@
+name: Push Changes To Website
+
+on: push 
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1.0.0
+      - run: brew install hugo
+      - name: switching from HTTPS to SSH
+        run: git remote set-url origin ${{ secrets.DeployPAT }}
+      - run: ./publish_to_ghpages.sh
