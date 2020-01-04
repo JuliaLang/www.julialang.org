@@ -68,11 +68,11 @@ Here is the result of running the same loop over a comparable `NullableArray`:
 
 As can be seen, naively looping over a `NullableArray` is on the same order of magnitude as naively looping over a regular `Array` in terms of both time elapsed and memory allocated. Below is a set of plots (drawn with [Gadfly.jl](https://github.com/dcjones/Gadfly.jl)) that visualize the results of running 20 benchmark samples of `f` over both `NullableArray` and `DataArray` arguments each consisting of 5,000,000 random `Float64` values and containing either zero null entries or approximately half randomly chosen null entries.
 
-![f_plot.png](/images/2015-10-03-nullablearrays-images/f_plot.png)
+![f_plot.png](/images/blog/2015-10-03-nullablearrays-images/f_plot.png)
 
 Of course, it is possible to bring the performance of such a loop over a `DataArray` up to par with that of a loop over an `Array`. But such optimizations generally introduce additional complexity that oughtn’t to be required to achieve acceptable performance in such a simple task. Considerably more complex code can be required to achieve performance in more involved implementations, such as that of `broadcast!`. We intend for `NullableArray`s to to perform well under involved tasks involving missing data while requiring as little interaction with `NullableArray` internals as possible. This includes allowing users to leverage extant implementations without sacrificing performance. Consider for instance the results of relying on Base’s implementation of `broadcast!` for `DataArray` and `NullableArray` arguments (i.e., having omitted the respective `src/broadcast.jl` from each package’s source code). Below are plots that visualize the results of running 20 benchmark samples of `broadcast!(dest, src1, src2)`, where `dest` and `src2` are `5_000_000 x 2` `Array`s, `NullableArray`s or `DataArray`s, and `src1` is a `5_000_000 x 1` `Array`, `NullableArray` or `DataArray`. As above, the `NullableArray` and `DataArray` arguments are tested in cases with either zero or approximately half null entries:
 
-![bcast_plot.png](/images/2015-10-03-nullablearrays-images/bcast_plot.png)
+![bcast_plot.png](/images/blog/2015-10-03-nullablearrays-images/bcast_plot.png)
 
 We have designed the `NullableArray` type to feel as much like a regular `Array` as possible. However, that `NullableArray`s return `Nullable` objects is a significant departure from both `Array` and `DataArray` behavior. Arguably the most important issue is to support user-defined functions that lack methods for `Nullable` arguments as they interact with `Nullable` and `NullableArray` objects. Throughout my project I have also worked to develop interfaces that make dealing with `Nullable` objects user-friendly and safe.
 
