@@ -6,7 +6,7 @@
           <h3>Download</h3>
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="/downloads/index.html">Julia {{ page.julia_version }}</a>
+              <a class="nav-link" href="/downloads/index.html">Julia {{ .Params.julia_version }}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/downloads/oldreleases.html">Older</a>
@@ -17,7 +17,7 @@
           <h3>Documentation</h3>
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="https://docs.julialang.org/en/v1/">Julia {{ page.julia_version }}</a>
+              <a class="nav-link" href="https://docs.julialang.org/en/v1/">Julia {{ .Params.julia_version }}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://docs.juliacn.com">Julia (CN)</a>

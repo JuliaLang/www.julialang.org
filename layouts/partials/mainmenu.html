@@ -1,5 +1,4 @@
-{% assign current_page = (page.url | downcase | split: '/') %}
-{% comment %} {{current_page[1] | inspect}} {% endcomment %}
+{{ $current_page := index (first 2 (split (delimit (split .RelPermalink "/") "," "") ",")) 1 }}
 <!-- main menu -->
 <div class="container py-3 py-lg-0">
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
@@ -17,26 +16,26 @@
         <!-- li class="nav-item {% if current_page[1] == nil %} active {% endif %} flex-md-fill text-md-center">
           <a class="nav-link" href="/">Home</a>
         </li -->
-        <li class="nav-item {% if current_page[1] == 'downloads' %} active {% endif %} flex-md-fill text-md-center">
-          <a class="nav-link" href="/downloads">Download</a>
+        <li class="nav-item {{ if eq $current_page "downloads" }} active {{ end }} flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
         </li>
         <li class="nav-item flex-md-fill text-md-center">
           <a class="nav-link" href="//docs.julialang.org">Documentation</a>
         </li>
-        <li class="nav-item {% if current_page[1] == 'blog' %} active {% endif %} flex-md-fill text-md-center">
+        <li class="nav-item {{ if eq $current_page "blog" }} active {{ end }} flex-md-fill text-md-center">
           <a class="nav-link" href="/blog/">Blog</a>
         </li>
-        <li class="nav-item {% if current_page[1] == 'community' %} active {% endif %} flex-md-fill text-md-center">
-          <a class="nav-link" href="/community">Community</a>
+        <li class="nav-item {{ if eq $current_page "community" }} active {{ end }} flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
         </li>
-        <li class="nav-item {% if current_page[1] == 'learning' %} active {% endif %} flex-md-fill text-md-center">
-          <a class="nav-link" href="/learning">Learning</a>
+        <li class="nav-item {{ if eq $current_page "learning" }} active {{ end }} flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learning</a>
         </li>
-        <li class="nav-item {% if current_page[1] == 'publications' %} active {% endif %} flex-md-fill text-md-center">
-          <a class="nav-link" href="/research">Research</a>
+        <li class="nav-item {{ if eq $current_page "research" }} active {{ end }} flex-md-fill text-md-center">
+          <a class="nav-link" href="/research/">Research</a>
         </li>
-        <li class="nav-item {% if current_page[1] == 'soc' %} active {% endif %} flex-md-fill text-md-center">
-          <a class="nav-link" href="/soc/ideas-page">JSoC</a>
+        <li class="nav-item {{ if eq $current_page "soc" }} active {{ end }} flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
         </li>
         <li class="nav-item donate flex-md-fill text-md-center">
           <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
