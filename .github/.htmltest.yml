@@ -26,3 +26,4 @@ IgnoreURLs:
   - "http://bowtie-bio.sourceforge.net"
   - "https://www.tensorflow.org/"
   - "http://purl.flvc.org/"
+  - "https://www.luiss.edu/"
