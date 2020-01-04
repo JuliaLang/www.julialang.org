@@ -1,9 +1,9 @@
 ---
-layout: insidepage
+layout: single
 title:  Numerical Projects – Summer of Code
 ---
 
-# {{ page.title }}
+# {{< get_param title >}}
 
 For all of these projects, potential mentors are [Steven Johnson](https://github.com/stevengj).
 

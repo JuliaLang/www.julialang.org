@@ -1,9 +1,9 @@
 ---
-layout: insidepage
+layout: single
 title: Stochastic differential equations and continuous time signal processing – Summer of Code
 ---
 
-# {{ page.title }}
+# {{< get_param title >}}
 
 ## Filtering and smoothing large non-linear continuous time systems
 

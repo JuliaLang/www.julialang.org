@@ -1,9 +1,9 @@
 ---
-layout: insidepage
+layout: single
 title:  Web Platform Projects – Summer of Code
 ---
 
-# {{page.title}}
+# {{< get_param title >}}
 
 Julia has early support for targeting WebAssembly and running in the web browser. Please note that this is a rapidly moving area (see the [project repository](https://github.com/Keno/julia-wasm) for a more detailed overview), so if you are interested in this work, please make sure to inform yourself of the current state and talk to us to scope out an appropriate project. The below is intended as a set of possible starting points.
 

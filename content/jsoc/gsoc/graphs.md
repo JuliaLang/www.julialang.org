@@ -1,9 +1,9 @@
 ---
-layout: insidepage
+layout: single
 title:  JuliaGraphs – Summer of Code
 ---
 
-# {{ page.title }}
+# {{< get_param title >}}
 
 The JuliaGraphs ecosystem offers a set of abstractions and algorithms for various aspects of graph modeling and analysis.
 [LightGraphs.jl](https://github.com/JuliaGraphs/LightGraphs.jl) is the central

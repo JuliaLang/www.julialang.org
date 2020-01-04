@@ -1,9 +1,9 @@
 ---
-layout: insidepage
+layout: single
 title:  DiffEq Projects – Summer of Code
 ---
 
-# {{ page.title }}
+# {{< get_param title >}}
 
 
 ## Native Julia ODE, SDE, DAE, DDE, and (S)PDE Solvers

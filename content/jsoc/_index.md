@@ -1,5 +1,5 @@
 ---
-layout: insidepage
+layout: single
 title:  Julia Seasons of Contributions
 ---
 
@@ -30,20 +30,20 @@ Check out the [application guidelines](guidelines/) once you have a project in m
 
 We have our project ideas organized roughly into the skillsets required:
 
-* [Turing projects](gsoc/turing.html) for probabilistic modelling and probabilistic programming.
-* [Flux projects](https://fluxml.ai/gsoc.html) for machine learning.
-* [Compiler](gsoc/compiler.html) – work on the Julia compiler's internals to make things better for everyone.
-* [Web Platform](gsoc/wasm.html) – work on the Julia wasm backend or other aspects of julia in the browser.
-* [HPC](gsoc/hpc.html) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
-* [Numerics](gsoc/numerics.html) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
-* [Science](gsoc/science.html) – provide Julia with the ability for scientific research in various fields.
-* [Differential Equations](gsoc/diffeq.html) - Numerical methods for high-performance solving of differential equation models.
-* [Tooling](gsoc/tooling.html) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
-* [Images](gsoc/images.html) – extend Julia's suite of tools for visualization and analysis of images.
-* [General](gsoc/general.html) – jack-of-all-trades projects that don't require special skills.
-* [Graphs](gsoc/graphs.html) – extend the JuliaGraphs ecosystem with new algorithms and tools.
-* [Graphics](gsoc/graphics.html) – projects ranging from low level OpenGL rendering to high level plotting.
-* [Tabular Data](gsoc/tables.html)
-* [Continuous time signal processing](gsoc/kalmanbucy.html)
+* [Turing projects](gsoc/turing/) for probabilistic modelling and probabilistic programming.
+* [Flux projects](https://fluxml.ai/gsoc) for machine learning.
+* [Compiler](gsoc/compiler/) – work on the Julia compiler's internals to make things better for everyone.
+* [Web Platform](gsoc/wasm/) – work on the Julia wasm backend or other aspects of julia in the browser.
+* [HPC](gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
+* [Numerics](gsoc/numerics/) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
+* [Science](gsoc/science/) – provide Julia with the ability for scientific research in various fields.
+* [Differential Equations](gsoc/diffeq/) - Numerical methods for high-performance solving of differential equation models.
+* [Tooling](gsoc/tooling/) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
+* [Images](gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
+* [General](gsoc/general/) – jack-of-all-trades projects that don't require special skills.
+* [Graphs](gsoc/graphs/) – extend the JuliaGraphs ecosystem with new algorithms and tools.
+* [Graphics](gsoc/graphics/) – projects ranging from low level OpenGL rendering to high level plotting.
+* [Tabular Data](gsoc/tables/)
+* [Continuous time signal processing](gsoc/kalmanbucy/)
 
-You can see previous Summer of Code projects at the [Archive page](archive.html).
+You can see previous Summer of Code projects at the [Archive page](archive/).

@@ -1,9 +1,9 @@
 ---
-layout: insidepage
+layout: single
 title:  JuliaImages Projects – Summer of Code
 ---
 
-# {{ page.title }}
+# {{< get_param title >}}
 
 [JuliaImages](https://github.com/JuliaImages) (see the [documentation](http://juliaimages.github.io/latest/)) is a framework in Julia for multidimensional arrays, image processing, and computer vision (CV). It has an active development community and offers many features that unify CV and biomedical 3D/4D image processing, support big data, and promote interactive exploration.
 
