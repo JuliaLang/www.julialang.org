@@ -1,3 +1,4 @@
+AllowExternalLinksToFail: true
 CheckDoctype: false
 ExternalTimeout: 60
 IgnoreCanonicalBrokenLinks: true
@@ -7,23 +8,3 @@ IgnoreDirs:
   - download
   - manual
   - blog/2012/02/为什么我们要创造julia-simplified-chinese
-IgnoreURLs:
-  - "https://dl.acm.org"
-  - "http://holylab.wustl.edu"
-  - "http://app.juliadiffeq.org"
-  - "https://juliaopt.org"
-  - "https://www.linkedin.com"
-  - "https://www.bilibili.com"
-  - "http://faculty.cse.tamu.edu/davis/suitesparse.html"
-  - "https://www.meetup.com"
-  - "www.hcdc.edu.ph"
-  - "http://ee380.stanford.edu/"
-  - "http://dx.doi.org/10.1088/1742-5468/aa5335"
-  - "http://dx.doi.org/10.1093/bioinformatics/btw646"
-  - "http://discovery.ucl.ac.uk/19896/"
-  - "https://www.iro.umontreal.ca/~bastin/"
-  - "http://dx.doi.org/10.1093/imanum/drv002"
-  - "http://bowtie-bio.sourceforge.net"
-  - "https://www.tensorflow.org/"
-  - "http://purl.flvc.org/"
-  - "https://www.luiss.edu/"

@@ -17,7 +17,7 @@ jobs:
       run: hugo --gc
 
     - name: test-links
-      run: ./bin/htmltest public -c .github/.htmltest.yml
+      run: ./bin/htmltest_mod public -c .github/.htmltest.yml
 
     # - name: Deploy
     #   uses: peaceiris/actions-gh-pages@v2
