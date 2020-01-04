@@ -1,5 +1,5 @@
 ---
-layout: insidepage
+layout: single
 title:  Using Julia in the classroom
 ---
 
@@ -19,7 +19,7 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 
 ## Classes using Julia for teaching
 
-Julia is now being used in several universities and online courses. If you know of other classes using Julia for teaching, please consider [updating this list](https://github.com/JuliaLang/www.julialang.org/edit/master/teaching/index.md).
+Julia is now being used in several universities and online courses. If you know of other classes using Julia for teaching, please consider [updating this list](https://github.com/JuliaLang/www.julialang.org/edit/master/content/teaching/_index.md).
 
 - AGH University of Science and Technology, Poland <!--50.0657033,19.9189586670586-->
   * [Signal processing in medical diagnostic systems](http://home.agh.edu.pl/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej) (Tomasz Pieciak), Spring 2015
@@ -34,7 +34,7 @@ Julia is now being used in several universities and online courses. If you know 
   * [CSCI 1810](http://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael), Fall 2014
   * [DATA 1010](http://sswatson.com/classes/data1010/), Introduction to Probability, Statistics, and Machine Learning (Samuel S. Watson), Fall 2018
 
-- [Budapest University of Technology and Economics](www.bme.hu) <!--47.4796299,19.0561698643001-->
+- [Budapest University of Technology and Economics](http://www.bme.hu/) <!--47.4796299,19.0561698643001-->
   * [Applications of Differential Equations and Vector Analysis for Engineers II.] ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
 
 - City University of New York <!--40.74851885,-73.9836392743124-->
@@ -46,7 +46,7 @@ Julia is now being used in several universities and online courses. If you know 
 - École Polytechnique Fédérale de Lausanne <!--46.5186594,6.566561505148-->
   [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
 
-- [Einaudi Institute for Economics and Finance, Rome](www.eief.it) <!--41.907984,12.495731-->
+- [Einaudi Institute for Economics and Finance, Rome](http://www.eief.it/eief/) <!--41.907984,12.495731-->
   * [Econometrics of DSGE Models](https://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://www.gragusa.org))
 
 - Emory University <!--33.7915703,-84.3183726165067-->
@@ -85,7 +85,7 @@ Julia is now being used in several universities and online courses. If you know 
 - Iowa State University <!--42.02791015,-93.6446441473745-->
   * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann), Fall 2014
 
-- [Luiss University Rome](www.luiss.it), [Department of Economics and Finance](http://economiaefinanza.luiss.it) <!--41.92150525,12.5132906979167-->
+- [Luiss University Rome](https://www.luiss.edu/), [Department of Economics and Finance](http://economiaefinanza.luiss.it) <!--41.92150525,12.5132906979167-->
   * [Econometric Theory](https://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](http://www.gragusa.org))
 
 - Massachusetts Institute of Technology (MIT) <!--42.3583961,-71.0956778766393-->
