@@ -77,7 +77,7 @@ The simple answer is that ForwardDiff.jl's AD-based methods are, in many cases, 
 
 The key technique leveraged by ForwardDiff.jl is the implementation of several different `ForwardDiffNumber` types, each of which allocate storage space for both normal values and derivative values. Elementary numerical functions on a `ForwardDiffNumber` are then overloaded to evaluate both the original function and the function's derivative, returning the results in the form of a new `ForwardDiffNumber`.
 
-Thus, we can pass these number types into a general function $$f$$ (which is assumed to be composed of the overloaded elementary functions), and the derivative information is naturally propagated at each step of the calculation by way of the chain rule. The final result of the evaluation (usually a `ForwardDiffNumber` or an array of them) then contains both $$f(x)$$ and $$f'(x)$$, where $$x$$ was the original point of evaluation.
+Thus, we can pass these number types into a general function $f$ (which is assumed to be composed of the overloaded elementary functions), and the derivative information is naturally propagated at each step of the calculation by way of the chain rule. The final result of the evaluation (usually a `ForwardDiffNumber` or an array of them) then contains both $f(x)$ and $f'(x)$, where $x$ was the original point of evaluation.
 
 # Simple Forward Mode AD in Julia
 

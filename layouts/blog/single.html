@@ -29,7 +29,7 @@
   <div id="trackbacks">
     <b>Trackbacks:</b><ul>
     {{ range .Params.trackbacks }}
-      {{ range $index, $value := .trackback_hash }}
+      {{ range $index, $value := . }}
         <li><a href="{{ $value }}">{{ $index }}</a></li>
       {{ end }}
     {{ end }}

@@ -7,5 +7,6 @@ disableKinds:
 permalinks:
   blog: "blog/:year/:month/:title"
 markup:
+  defaultMarkdownHandler: blackfriday
   highlight:
     style: emacs

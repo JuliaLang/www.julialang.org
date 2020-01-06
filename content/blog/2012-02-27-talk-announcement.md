@@ -5,7 +5,7 @@ title: Stanford Talk Announcement
 ---
 
 I will be speaking about Julia at the
-<a href="http://www.stanford.edu/class/ee380/">Stanford EE Computer Systems Colloquium</a>
+[Stanford EE Computer Systems Colloquium](http://www.stanford.edu/class/ee380/)
 on Wednesday, February 29 at 4:15PM PST.
 The title of the talk is *Julia: A Fast Dynamic Language For Technical Computing*.
 

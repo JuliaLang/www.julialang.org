@@ -214,12 +214,14 @@ Of course, doing this manually is tedious, and as a result, it largely isn't don
 The default behavior — and therefore the easiest and most common behavior — is to assume that shelled out commands worked and completely ignore failures.
 To make our "foo" counting example well-behaved, we would have to wrap it in a function like so:
 
-    def foo_count(dir)
-      n = `set -o pipefail;
-           find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
-      raise("pipeline failed") unless $?.success?
-      return n
-    end
+```py
+def foo_count(dir)
+    n = `set -o pipefail;
+        find #{Shellwords.shellescape(dir)} -type f -print0  | xargs -0 grep foo | wc -l`.to_i
+    raise("pipeline failed") unless $?.success?
+    return n
+end
+```
 
 This function behaves the way we would like it to:
 

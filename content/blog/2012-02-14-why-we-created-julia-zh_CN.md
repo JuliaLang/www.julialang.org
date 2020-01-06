@@ -44,12 +44,10 @@ trackbacks:
 
 尽管我们意识到了自己有多贪心，我们还是想要拥有这些功能。大概在两年半之前，我们开始创造这种能满足我们贪念的语言。它还没有完工——但是已经可以发布一个1.0版本了（其实等了6年才要发布）——我们创造的这个语言叫做Julia。它已经实现了我们这次乱七八糟需求的90%，而现在她需要来自更多人的乱七八糟的需求，来让她走得更远。如果你也是一位贪心不足，不可理喻，需索无度的码场二逼青年，希望你能来试试这个东东。
 
-<p>
 作者：Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman
-</br>
+
 译者：Roger
-</br>
-翻译自：<a href="https://julialang.org/blog/2012/02/why-we-created-julia">Why we create Julia</a>
-</br>
-参考自：<a href="https://www.douban.com/note/203945680/">豆瓣：为什么我们要创造Julia</a>
-</p>
+
+翻译自：[Why we create Julia](/blog/2012/02/why-we-created-julia/)
+
+参考自：[豆瓣：为什么我们要创造Julia](https://www.douban.com/note/203945680/)
