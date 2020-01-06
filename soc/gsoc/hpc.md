@@ -18,11 +18,3 @@ This project proposes to implement a very simple persistent storage mechanism fo
 Distributed computation frameworks like Hadoop/MapReduce have demonstrated the usefulness of an abstraction layer that takes care of low level concurrency concerns such as atomicity and fine-grained synchronization, thus allowing users to concentrate on task-level decomposition of extremely large problems such as massively distributed text processing. However, the tree-based scatter/gather design of MapReduce limits its usefulness for general purpose data parallelism, and in particular poses significant restrictions on the implementation of iterative algorithms.
 
 This project proposal is to implement a native Julia framework for distributed execution for general purpose data parallelism, using dynamic, runtime-generated general task graphs which are flexible enough to describe multiple classes of parallel algorithms. Students will be expected to weave together native Julia parallelism constructs such as the `ClusterManager` for massively parallel execution, and automate the handling of data dependencies using native Julia `RemoteRefs` as remote data futures and handles. Students will also be encouraged to experiment with novel scheduling algorithms.
-
-
-### MAGMA binding
-
-[MAGMA](https://developer.nvidia.com/magma) is a collection of next generation linear algebra (LA) GPU accelerated libraries designed and implemented by the team that developed LAPACK and ScaLAPACK. Julia has already have the functionality to create such binding by simply calling its C API via `ccall`. By binding this to the JuliaGPU ecosystem, a lot applications could benefit it from it. What we need will
-just be a few bindings in Julia like what's lying in [CuArrays.jl](https://github.com/JuliaGPU/CuArrays.jl), use [BinaryProvider.jl](https://github.com/JuliaPackaging/BinaryProvider.jl) to provide downloads, and some unit tests on JuliaGPU's CI.
-
-**Mentors** [Roger-luo](https://github.com/Roger-luo), [Viral B. Shah](https://github.com/ViralBShah)
