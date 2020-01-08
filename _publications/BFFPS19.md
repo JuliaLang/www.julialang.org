@@ -10,7 +10,7 @@ authors:
 - Christian Schilling
 year: "2019"
 pages:
-doi: 
+doi: "10.1145/3302504.3311804"
 arxiv: 1901.10736
 packages:
   LazySets.jl: https://github.com/JuliaReach/LazySets.jl

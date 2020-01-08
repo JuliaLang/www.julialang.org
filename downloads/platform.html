@@ -1,125 +1,188 @@
 ---
 layout: homepage
-title:  Platform specific instructions for installing Julia
+title:  Platform specific instructions
 ---
+
+<head>
+  <meta name="description" content="These are platform specific installation instruction for Julia. 
+  Instructions are available for macOS, Windows, and Linux. Click here to learn more."/>
+</head>
 
 {% include mainmenu.html %}
 
 <br /><br />
 
+
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1>Platform Specific Instructions</h1>
+      <h1>Platform Specific Instructions for Official Binaries</h1>
 
       <br />
 
-      <h2>Windows</h2>
       <p>
-        Julia is available for Windows 7 and later, both 32 bit and 64 bit.
-
-        <ol>
-          <li>Download the Windows julia.exe installer for your platform. 32-bit julia works on both x86 and x86_64. 64-bit julia will only run on 64-bit Windows (x86_64).
-          <li>Run the downloaded program to extract julia
-          <li>Double-click the julia shortcut in the unpacked folder to start julia
-        </ol>
+      All official Julia binaries produce portable installations. Once installed, the directory in which Julia was installed can be moved to a different location on the same computer, or even to a different computer.
       </p>
 
+      <h2 id='Windows'>Windows</h2>
       <p>
-        Windows 7/Windows Server 2012 users will also need to install:
+        Julia is available for Windows 7 and later, both 32 bit and 64 bit.
+        <ol>
+          <li>Download the Windows julia.exe installer for your platform. 32-bit julia works on both x86 and x86_64. 64-bit julia will only run on 64-bit Windows (x86_64).
+          <li>Run the downloaded program to extract Julia.
+          <li>At the "Choose Installation directory" step, copy the Path in the "Destination Folder" into a Notepad or similar file for future reference, and finish installation.
+          <li>At this point, you can decide whether you want to invoke Julia by simply typing <code>julia</code> in the command line, or paste the entire path you saved in the Notepad. To invoke Julia by simply typing <code>julia</code> in the command line, perform the following steps.
+        </ol>
+        <p>
+          If on Windows 10,
+          <ol>
+            <li>Hit (Windows Key + R) to open run, and type in <code>sysdm.cpl</code> and hit enter. This will open up the System Properties. Click on the "Advanced" tab.
+            <li>Now, click the "Environment Variables..." button.
+            <li>Under the "System Variables" section (the lower half), find the row with "Path" in the first column, and click edit.
+            <li>The "Edit environment variable" UI will appear. Here, click "New", and paste in the text you copied into the Notepad.
+            <li>Hit OK and dismiss all the dialogs. You can now run Julia from the command line!
+          </ol>
+        </p>
+        <p>
+          Else, if on Windows 7 or 8,
+          <ol>
+            <li>Hit (Windows Key + R) to open run, and type in <code>sysdm.cpl</code> and hit enter. This will open up the System Properties.
+            <li>In the System Properties window, click the Advanced tab, and then click "Environment Variables".
+            <li>In the System Variables window, highlight Path, and click Edit.
+            <li>In the Edit System Variables window, move the cursor to the end of the field.
+            <li>If there is no semicolon at the end, add it and paste in the text you copied into the notepad.
+            <li>Hit OK and dismiss all the dialogs. You can now run Julia from the command line!
+          </ol>
+        </p>
+      </p>
+
+
+      <p>
+        Windows 7 / Windows Server 2012 users will also need to install:
         <ul>
           <li>the <a href="https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in">TLS easy_fix</a> for the package manager to work,
           see <a href="https://discourse.julialang.org/t/errors-for-git-pkg/9351">this Discourse thread</a> for more details.
           <li><a href="https://docs.microsoft.com/en-us/powershell/wmf/overview">Windows Management Framework 3.0 or later</a> to include PowerShell 3.0 or later.
         </ul>
+        It is recommended that users on these legacy Windows systems install and use a terminal besides <code>cmd.exe</code> since the default terminal application has known issues which affect its usability with Julia and other libuv-based cross-platform software.
       </p>
 
       <p>
-        The <a href="https://github.com/JuliaLang/julia/blob/master/README.windows.md">Windows README</a> contains information on dependencies.
-      </p>
-
-      <p>
-        Uninstallation is performed by deleting the extracted directory and the packages directory in <code>%HOME%/.julia</code>.
-        If you would also like to remove your preferences files, remove <code>%HOME%/.juliarc.jl</code> and <code>%HOME%/.julia_history</code>.
+        Uninstallation is performed by using the Windows uninstaller (or deleting the extracted directory). The packages directory in <code>%HOME%/.julia</code> can be deleted if you would no longer like to retain the user installed packages. If you would also like to remove your preferences files, remove <code>%HOME%/.juliarc.jl</code> and <code>%HOME%/.julia_history</code>.
       </p>
 
       <br />
 
-      <h2>macOS</h2>
+      <h2 id='macOS'>macOS</h2>
       <p>
-        On Mac, a <code>Julia-&lt;version&gt;.dmg</code> file is provided, which contains Julia.app. Installation is the same as any other Mac software --
-        copy the <code>Julia-&lt;version&gt;.app</code> to your hard-drive (anywhere) or run from the disk image. Julia runs on macOS 10.8 and later releases.
+        On macOS, a <code>Julia-&lt;version&gt;.dmg</code> file is provided, which contains <code>Julia-&lt;version&gt;.app</code>. Installation is the same as any other Mac software.
+        Drag the <code>Julia-&lt;version&gt;.app</code> to Applications Folder's Shortcut. You can also run Julia from the disk image by opening the app. Julia runs on macOS 10.8 and later releases.
+      </p>
+  
+      <p>
+        To start running Julia from the Terminal, you can add <code>julia</code> to the PATH.
+        First, open up the Terminal and determine whether you are using <code>zsh</code> or <code>bash</code> as your Terminal shell.
       </p>
 
       <p>
-        Uninstall Julia by deleting Julia.app and the packages directory in <code>~/.julia</code>. Multiple Julia.app binaries can co-exist without interfering with each other.
-        If you would also like to remove your preferences files, remove <code>~/.juliarc.jl</code>.
+        If you are using <code>zsh</code>, type the following in the Terminal:
+        <pre>open -a TextEdit ~/.zshrc</pre>
+        If you are using <code>bash</code>, type the following in the Terminal:
+        <pre>open -a TextEdit ~/.bash_profile</pre>
       </p>
-
+  
       <p>
-        An alternative to installing Julia from the downloaded .dmg is by using the <a href="https://brew.sh/">Homebrew package manager</a>.
-        In your terminal, run
-
-        <pre>
-          <code class="bash">
-    brew cask install julia
-          </code>
-        </pre>
+        The commands above should open up a shell profile page in a GUI text editor. <br />
+        Now, for both <code>zsh</code> and <code>bash</code> users, you can add the following to the bottom of the profile page: <br />
+        <pre>export PATH="/Applications/Julia-&lt;version&gt;.app/Contents/Resources/julia/bin:${PATH}"</pre>
+        Remember to replace the version of <code>Julia-&lt;version&gt;.app</code> above with the version of your Julia app.
+        Once that is done, you can close the shell profile page and quit Terminal.
+        Now, just simply open Terminal again, type in <code>julia</code> in it, and it should run your version of Julia!
+      </p>
+  
+      <p>
+        You can uninstall Julia by deleting Julia.app and the packages directory in <code>~/.julia</code>. Multiple Julia.app binaries can co-exist without interfering with each other.
+        If you would also like to remove your preferences files, remove <code>~/.juliarc.jl</code> and <code>~/.julia_history</code>.
       </p>
 
       <br />
 
-      <h2>Linux and FreeBSD</h2>
+      <h2 id='Linux'>Linux and FreeBSD</h2>
       <p>
         It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD.
       </p>
 
       <br />
 
-      <h3>Generic Binaries</h3>
       <p>
         The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find
-        the <code>julia</code> executable. First, extract the <code>.tar.gz</code> file downloaded from the <a href="index.html">downloads page</a> to a folder on your computer.
+        the <code>julia</code> executable.
+      </p>
+
+      <p>
+        First, download the <code>.tar.gz</code> file from the <a href="index.html">downloads page</a>. You need to extract this file to a suitable location.
+        To extract the file, you can use the following command:
+
+        <pre>tar -xvzf julia-x.y.z-linux-x86_64.tar.gz</pre>
+
+        This will extract the files to a folder named <code>julia-x.y.z</code>. We would refer this as <code>&lt;Julia directory&gt;</code>.
         To run Julia, you can do any of the following:
 
         <ul>
           <li>Create a symbolic link to <code>julia</code> inside a folder which is on your system <code>PATH</code>
           <li>Add Julia's <code>bin</code> folder to your system <code>PATH</code> environment variable
-          <li>Invoke the <code>julia</code> executable by using its full path, as in <code><where you extracted Julia>/bin/julia</code>
+          <li>Invoke the <code>julia</code> executable by using its full path, as in <code>&lt;Julia directory&gt;/bin/julia</code>
         </ul>
       </p>
 
       <p>
-        For example, to create a symbolic link to <code>julia</code> inside the <code>/usr/local/bin</code> folder, you can do the following:
+        To add Julia's <code>bin</code> folder to <code>PATH</code> environment variable, you can edit the <code>~/.bash_profile</code> or <code>~/.bashrc</code> file.
+        Open the file in your favourite editor and add a new line as follows:
 
-        <pre>
-          <code class="bash">
-    sudo ln -s <where you extracted the julia archive>/bin/julia /usr/local/bin/julia
-          </code>
-        </pre>
+        <pre>export PATH="$PATH:/path/to/&lt;Julia directory&gt;/bin"</pre>
       </p>
 
       <p>
-        On some Linux distributions, you may need to use a folder other than <code>/usr/local/bin</code>.
-        To check which folders are on your <code>PATH</code>, you can run <code>echo $PATH</code>.
+        Apart from this, there are several ways through which you can change environment variable. You can follow <a href="https://help.ubuntu.com/community/EnvironmentVariables">this guide</a>
+        to find out a way convenient for you.
+      </p>
+      <p>
+        Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove <code>~/.julia</code>. The startup file is at <code>~/.juliarc.jl</code> and the history at <code>~/.julia_history</code>.
       </p>
 
       <br />
 
-      <h3>Distribution-Specific Packages</h3>
+      <h1 id='Unofficial'>Platform Specific Instructions for Unofficial Binaries</h1>
+
+      <br />
+
       <p>
         The following distribution-specific packages are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with.
         In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.
       </p>
 
-      <p>
-        Instructions will be added here as more linux distributions start including julia. If your Linux distribution is not listed here, you should still be able to run julia by building from source.
-        See the <a href="https://github.com/JuliaLang/julia/blob/master/README.md">Julia README</a> for more detailed information.
+      <br />
+
+      <h2>Chocolatey on Windows</h2>
+      <p>If you use Chocolatey for package management, you can install the latest Julia release by executing the following one-liner, in either a powershell or command prompt:
+        <pre>choco install julia --confirm</pre>
+      Chocolatey automatically creates a shim for the Julia executable, so you simply type <code>julia</code> to run Julia in the terminal.
+      When a new version is released simply execute <code>choco upgrade julia --confirm</code>. If you want to uninstall Julia run <code>choco uninstall julia --confirm</code>.
       </p>
 
       <br />
 
-      <h3>Fedora/RHEL/CentOS/SL/OEL</h3>
+      <h2>HomeBrew on Mac</h2>
+        Julia can be installed using the <a href="https://brew.sh/">Homebrew package manager</a> as follows:
+
+        <pre>brew cask install julia</pre>
+        
+        This automatically puts the binary into a directory in the user's PATH, so you can simply type <code>julia</code> to run Julia in the terminal.
+      </p>
+
+      <br />
+
+      <h2>Fedora/RHEL/CentOS/SL/OEL Linux</h2>
       <p>
         A <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia/">Copr repository</a> is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic
         updating to the latest stable version of Julia.
@@ -133,22 +196,16 @@ title:  Platform specific instructions for installing Julia
         If you are using Fedora (version 19 or higher), directly run:
 
         <pre>
-          <code class="bash">
-    sudo dnf copr enable nalimilan/julia
-    sudo yum install julia
-          </code>
-        </pre>
+sudo dnf copr enable nalimilan/julia
+sudo yum install julia</pre>
       </p>
 
       <p>
         If you are using CentOS (version 7 or higher), directly run:
 
         <pre>
-          <code class="bash">
-    sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
-    sudo yum install julia
-          </code>
-        </pre>
+sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
+sudo yum install julia</pre>
       </p>
 
       <p>
@@ -159,73 +216,25 @@ title:  Platform specific instructions for installing Julia
       <p>
         Note that Fedora guidelines advise against uploading new breaking releases to official repositories: therefore your distribution will not provide the new major versions of Julia which were published after it.
         When reporting issues, please ensure you are using the latest available release by using one of the Copr repositories displayed on this page.
+        In order to use nightly Julia builds, replace <code>nalimilan/julia</code> with <code>nalimilan/julia-nightlies</code> in the instructions above. These can then be updated with <code>yum upgrade julia</code>.
       </p>
 
       <br />
 
-      <h3>Fedora/RHEL/CentOS/SL/OEL nightlies installation instructions</h3>
+      <h2>Debian/Ubuntu Linux</h2>
       <p>
-        A <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies/">Copr repository</a> is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for
-        automatic updating to the latest development version of Julia.
+      Recent Debian/ubuntu distributions include their own build of Julia, which can be installed in the usual way. If this is not the version of Julia you want, you will need to use the official binaries.
+
+      <pre>sudo apt install julia</pre>
       </p>
 
+      <h2>FreeBSD Ports</h2>
       <p>
-        If you are using RHEL, CentOS, Scientific Linux or Oracle Enterprise Linux (version 5 or higher), first <a href="https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F">enable EPEL</a> for your distribution version. Then follow the steps below.
-      </p>
-
-      <p>
-        If you are using Fedora (version 19 or higher), directly run:
-
-        <pre>
-          <code class="bash">
-    sudo dnf copr enable nalimilan/julia-nightlies
-    sudo yum install julia
-          </code>
-        </pre>
-      </p>
-
-      <p>
-        If <code>dnf</code> is not available for your distribution, download the relevant <code>.repo</code> file from the Copr webpage, copy it to <code>/etc/yum.repos</code>, and run the second command.
-      </p>
-
-      <p>
-        New versions are built every night. If you have already installed julia and you want to upgrade to the latest version, do:
-
-        <pre>
-          <code class="bash">
-    sudo yum upgrade julia
-          </code>
-        </pre>
-      </p>
-
-      <h3>FreeBSD Ports</h3>
-      <p>
-        Julia is available in the <a href="https://svnweb.freebsd.org/ports/head/lang/julia/">Ports Collection</a>.<br />
+        Julia is available in the <a href="https://svnweb.freebsd.org/ports/head/lang/julia/">Ports Collection</a>.
         To install from the FreeBSD binary package manager, <code>pkg</code>, run
-        <pre>
-          <code class="bash">
-    pkg install julia
-          </code>
-        </pre>
+        <pre>pkg install julia</pre>
       </p>
 
-      <p>
-        To build and install Julia from source within the Ports framework, run
-        <pre>
-          <code class="bash">
-    cd /usr/ports/lang/julia
-    make clean
-    make install
-          </code>
-        </pre>
-      </p>
-
-      <h2>Uninstalling Julia</h2>
-      <p>
-        Uninstallation depends on the method you used to install Julia. If you installed from a package manager such as <code>apt-get</code> or <code>yum</code>, use the package manager to remove julia,
-        for example <code>apt-get remove julia</code> or <code>yum remove julia</code>. If you did a source build, you can remove it by deleting your julia source folder.
-        If you would also like to remove your preferences files, they are <code>~/.julia</code> and <code>~/.juliarc.jl</code>.
-      </p>
     </div>
   </div>
 </div>

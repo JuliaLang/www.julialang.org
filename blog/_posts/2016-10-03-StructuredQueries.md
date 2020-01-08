@@ -371,7 +371,7 @@ Recall that the present query framework extracts the "value expression" of a que
 row -> lift(*, row[1], row[2])
 ```
 
-While there is a [simpler way](https://github.com/davidagold/AbstractTables.jl/blob/2a7771ce865b961fa0e454508ce8b7aa6a85e1fd/src/column_indexable/query/select.jl#L43-L48) to achieve standard lifting semantics, this approach (which is currently employed by the column-indexing collection machinery) does not easily support non-standard lifting semantics such as three-valued logic.
+While there is a [simpler way](https://github.com/davidagold/AbstractTables.jl/blob/master/src/column_indexable/query/select.jl) to achieve standard lifting semantics, this approach (which is currently employed by the column-indexing collection machinery) does not easily support non-standard lifting semantics such as three-valued logic.
 
 The higher-order lifting approach is not without its own drawbacks. Most notably, non-standard lifting semantics, such as three-valued logic, are more difficult to implement and are subject to restrictions that do not apply to the method extension lifting approach. The details of this difficulty is the proper subject of another blog post. The summary of the problem is: higher-order lifting (via code transformation, such as within `@query`) can only give non-standard lifting semantics to methods called explicitly within the expression passed to `@query`. That is,
 

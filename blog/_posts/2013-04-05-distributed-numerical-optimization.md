@@ -104,7 +104,7 @@ expect an MPI wrapper for Julia will appear in the future (see also <a
 href="https://github.com/lcw/julia-mpi">here</a>).
 
 Reading the <a
-href="http://docs.julialang.org/en/release-0.1/manual/parallel-computing/">manual</a>
+href="https://docs.julialang.org/en/v1/manual/parallel-computing/">manual</a>
 on parallel computing is highly recommended, and I won't try to reproduce it in
 this post. Instead, we'll dig into and extend one of the examples it presents.
 
@@ -138,7 +138,7 @@ The implementation of ``pmap`` in Julia is
 
 On first sight, this code is not particularly intuitive. The ``@spawnlocal``
 macro creates a *<a
-href="http://docs.julialang.org/en/latest/manual/control-flow/#man-tasks">task</a>*
+href="https://docs.julialang.org/en/v1/manual/control-flow/#man-tasks">task</a>*
 on the *master process* (e.g. process 1). Each task feeds work to a
 corresponding worker; the call ``remotecall_fetch(p, f, lst[idx])`` function
 calls ``f`` on process ``p`` and returns the result when finished. Tasks are

@@ -59,7 +59,7 @@ packages, tools, and new features built upon this solid foundation.
 But Julia 1.0 in not just about stability, it also introduces several new, powerful and
 innovative language features. Some of the new features since version 0.6 include:
 
-* A brand new built-in [package manager](https://docs.julialang.org/en/latest/stdlib/Pkg/)
+* A brand new built-in [package manager](https://docs.julialang.org/en/v1/stdlib/Pkg/)
   brings enormous performance improvements and makes it easier than ever to install packages
   and their dependencies. It also supports per-project package environments and recording
   the exact state of a working application to share with others—and with your future self.

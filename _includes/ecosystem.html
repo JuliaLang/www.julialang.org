@@ -1,4 +1,9 @@
 <!-- ecosystem -->
+
+<head>
+  <meta name="description" content="Learn more about what's going on in the Julia ecosystem and useful features of Julia that facilitate faster computing."/>
+</head>
+
 <div class="container-fluid alt-color">
     <br />
 
@@ -42,7 +47,7 @@
       <div class="tab-content" id="ecosystem-tab-content">
         <div class="tab-pane" id="tab-general" role="tabpanel" aria-labelledby="general-tab">
           <h3 class="tab-title">General Computing</h3>
-          <img src="images/minesweeper.png" class="pb-2 ecosystem-image" style="width: 400px; height: 280px" />
+          <img src="images/minesweeper.png" class="pb-2 ecosystem-image" style="width: 400px; height: 280px" alt="minesweeper gameover" />
           <div class="container-fluid">
             <h4>
               Build, Deploy or Embed Your Code
@@ -65,7 +70,7 @@
           <h3 class="tab-title">Parallel Computing</h3>
           <div class="row">
             <div class="col-lg-12">
-              <img src="images/parallel-prefix.png" class="pb-2 ecosystem-image" style="width: 400px; height: 280px" />
+              <img src="images/parallel-prefix.png" class="pb-2 ecosystem-image" style="width: 400px; height: 280px" alt="parallel prefix graphical result" />
               <div class="container-fluid">
                 <h4>
                   Parallel and Heterogeneous Computing
@@ -75,7 +80,7 @@
                 <b><a href = "https://docs.julialang.org/en/v1/base/simd-types/"> instruction level parallelism</a></b>,
                 <b><a href = "https://docs.julialang.org/en/v1/manual/parallel-computing/#Multi-Threading-(Experimental)-1">multi-threading</a></b> and
                 <b><a href = "https://docs.julialang.org/en/v1/manual/parallel-computing/">distributed computing</a></b>.
-                The <a href="https://github.com/jeff-regier/Celeste.jl">Celeste.jl </a> project <a href = "https://arxiv.org/pdf/1801.10277.pdf"> achieved 1.5 PetaFLOP/s</a> on the <a href="https://cs.lbl.gov/news-media/news/2016/celeste-enhancements-create-new-opportunities-in-sky-surveys/">Cori supercomputer at NERSC</a> using 650,000 cores.
+                The <a href="https://github.com/jeff-regier/Celeste.jl">Celeste.jl </a> project <a href = "https://arxiv.org/pdf/1801.10277.pdf" title = "PDF paper on Cataloging the Visible Universe through Bayesian Inference at Petascale hosted on arxiv.org"> achieved 1.5 PetaFLOP/s</a> on the <a href="https://cs.lbl.gov/news-media/news/2016/celeste-enhancements-create-new-opportunities-in-sky-surveys/">Cori supercomputer at NERSC</a> using 650,000 cores.
                 </p>
                 <p>
                 The Julia compiler can also generate native code for various hardware accelerators, such as <a href = "https://github.com/JuliaGPU/CUDAnative.jl">GPUs</a> and Xeon Phis. Packages such as <a href="https://github.com/JuliaParallel/DistributedArrays.jl">DistributedArrays.jl</a> and <a href="https://github.com/JuliaParallel/Dagger.jl">Dagger.jl</a> provide higher levels of abstraction for parallelism.
@@ -88,7 +93,7 @@
           <h3 class="tab-title">Machine Learning</h3>
           <div class="row">
             <div class="col-lg-12">
-              <img src="images/cartpole.gif" class="pb-2 ecosystem-image" style="width: 400px; height: 267px" />
+              <img src="images/cartpole.gif" class="pb-2 ecosystem-image" style="width: 400px; height: 267px" alt="cartpole reinforcement learning problem visualization" />
               <div class="container">
                 <h4>
                   Scalable Machine Learning
@@ -106,7 +111,7 @@
                   <a href = "https://github.com/JuliaStats/GLM.jl">generalized linear models</a>,
                   <a href = "https://github.com/bensadeghi/DecisionTree.jl">decision trees</a>, and <a href = "https://github.com/JuliaStats/Clustering.jl">clustering</a>. You can also find packages for
                   <a href = "https://github.com/sisl/BayesNets.jl">Bayesian Networks</a> and
-                  <a href = "https://github.com/JuliaStats/Klara.jl">Markov Chain Monte Carlo</a>.
+                  <a href = "https://github.com/TuringLang/Turing.jl">Markov Chain Monte Carlo</a>.
                 </p>
               </div>
             </div>
@@ -116,7 +121,7 @@
           <h3 class="tab-title">Scientific Computing</h3>
           <div class="row">
             <div class="col-lg-12">
-              <img src="images/lorenz.gif" class="pb-2 ecosystem-image" style="width: 400px;" />
+              <img src="images/lorenz.gif" class="pb-2 ecosystem-image" style="width: 400px;" alt="Lorenz Attractor visualization" />
               <div class="container">
                 <h4>
                   Rich Ecosystem for Scientific Computing
@@ -129,7 +134,7 @@
                   (<a href = "https://github.com/JuliaOpt/JuMP.jl">JuMP.jl</a> and
                   <a href = "https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a>), iterative linear solvers
                   <a href = "https://github.com/JuliaMath/IterativeSolvers.jl">(IterativeSolvers.jl)</a>, a robust framework for Fourier transforms
-                  <a href = "https://github.com/JuliaMath/AbstractFFTs.jl">(AbstractFFTs.jl)</a>, a general purpose quantum simulation framework <a href = "https://github.com/QuantumBFS/Yao.jl">(Yao.jl), and many more, that can drive all your simulations.
+                  <a href = "https://github.com/JuliaMath/AbstractFFTs.jl">(AbstractFFTs.jl)</a>, a general purpose quantum simulation framework <a href = "https://github.com/QuantumBFS/Yao.jl">(Yao.jl)</a>, and many more, that can drive all your simulations.
                   </p>
                   Julia also offers a number of domain-specific ecosystems, such as in biology
                   <a href = "https://github.com/BioJulia"> (BioJulia)</a>, operations research
@@ -151,7 +156,7 @@
           <h3 class="tab-title">Data Science</h3>
           <div class="row">
             <div class="col-lg-12">
-              <img src="images/onlinestats.gif" class="pb-2 ecosystem-image" style="width: 400px;" />
+              <img src="images/onlinestats.gif" class="pb-2 ecosystem-image" style="width: 400px;" alt="Visualization of weighted data changing as more data is plotted" />
               <div class="container">
                 <h4>
                   Interact with your Data
@@ -161,9 +166,8 @@
                   <a href = "https://github.com/joshday/OnlineStats.jl">OnlineStats.jl</a>. Whether you're looking for the convenient and familiar
                   <a href = "http://juliadata.github.io/DataFrames.jl/stable/">DataFrames</a>, or a new approach with
                   <a href = "http://juliadb.org">JuliaDB</a>, Julia provides you a rich variety of tools.
-                  The
-                  <a href = "https://github.com/queryverse/Queryverse.jl">Queryverse package</a> acts
-                  a meta package through which you can access these tools with Julian APIs. In addition to working with tabular data, the <a href = "https://juliagraphs.github.io">JuliaGraphs</a> packages make it easy to work with combinatorial data.
+                  The 
+                  <a href = "https://www.queryverse.org/">Queryverse</a> provides query, file IO and visualization functionality. In addition to working with tabular data, the <a href = "https://juliagraphs.github.io">JuliaGraphs</a> packages make it easy to work with combinatorial data.
                 </p>
                 <p>
                   Julia can work with almost all databases using
@@ -183,7 +187,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="container">
-                <img src="images/waves.gif" class="pb-2 ecosystem-image" style="width: 400px;" />
+                <img src="images/waves.gif" class="pb-2 ecosystem-image" style="width: 400px;" alt="Visualization of waves in 3D, as a heatmap, and on the x y axis" />
                 <h4>
                   Data Visualization and Plotting
                   <!--
@@ -194,7 +198,7 @@
                   Data visualization has a complicated history. Plotting software makes trade-offs between features and simplicity, speed and beauty, and a static and dynamic interface. Some packages make a display and never change it, while others make updates in real-time.
                 </p>
                 <p>
-                    <a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It provides a common API across various <a href="http://docs.juliaplots.org/latest/backends/">backends</a>, like <a href="https://github.com/jheinen/GR.jl">GR.jl</a>, <a href="https://github.com/JuliaPy/PyPlot.jl">PyPlot.jl</a>, and <a href="https://github.com/sglyon/PlotlyJS.jl">PlotlyJS.jl</a>. Users who prefer a more grammar of graphics style API might like the pure Julia <a href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a> plotting package. For those who do not wish to leave the comfort of the terminal, there is also <a href="http://docs.juliaplots.org/latest/backends/">UnicodePlots.jl</a>.
+                    <a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It provides a common API across various <a href="http://docs.juliaplots.org/latest/backends/">backends</a>, like <a href="https://github.com/jheinen/GR.jl">GR.jl</a>, <a href="https://github.com/JuliaPy/PyPlot.jl">PyPlot.jl</a>, and <a href="https://github.com/sglyon/PlotlyJS.jl">PlotlyJS.jl</a>. Users who prefer a more grammar of graphics style API might like the pure Julia <a href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a> plotting package. <a href="https://github.com/fredo-dedup/VegaLite.jl">VegaLite.jl</a> provides the <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> grammar of interactive graphics interface as a Julia package. For those who do not wish to leave the comfort of the terminal, there is also <a href="http://docs.juliaplots.org/latest/backends/">UnicodePlots.jl</a>.
                 </p>
               </div>
             </div>

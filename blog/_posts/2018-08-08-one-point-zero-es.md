@@ -50,7 +50,7 @@ funcionalidades construidas sobre una base sólida.
 Sin embargo, Julia 1.0 no es solamente sobre estabilidad, también introduce nuevas y poderosas innovaciones del lenguaje.
 Algunas de estas novedades desde la versión 0.6 incluyen:
 
-* Un nuevo e incluido [administrador de paquetes](https://docs.julialang.org/en/latest/stdlib/Pkg/)
+* Un nuevo e incluido [administrador de paquetes](https://docs.julialang.org/en/v1/stdlib/Pkg/)
   trae enormes mejoras de rendimiento y facilita más que nunca la instalación de paquetes y sus
   dependencias. También soporta ambientes particulares para cada proyecto y registros de estado exactos para
   una aplicación para poderla compartir con los demás - y tu futuro yo. Finalmente, el rediseño también introduce
@@ -130,7 +130,7 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
     interno del compilador. Los Intel KNLs funcionan en Julia. Los GPUs de Nvidia son programados usando [CUDANative.jl](https://github.com/JuliaGPU/CUDAnative.jl)
     y un port para los TPUs de Google está siendo desarrollado.
 
-Éstas son solo algunas de las mejoras. Para una lista completa de los cambios, lee el archivo [0.7 NEWS](https://docs.julialang.org/en/release-0.7/NEWS/). En el post
+Éstas son solo algunas de las mejoras. Para una lista completa de los cambios, lee el archivo [0.7 NEWS](https://docs.julialang.org/en/v0.7/NEWS/). En el post
 original [“Why We Created Julia” blog
 post](https://julialang.org/blog/2012/02/why-we-created-julia) en 2012, escribimos
 

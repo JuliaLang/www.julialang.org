@@ -71,7 +71,7 @@
 .section-heading h5 {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
-  font-weight: 400p
+  font-weight: 400;
   font-size: 16px;
 }
 
@@ -120,7 +120,7 @@
   color: #CA3C32;
 }
 #ecosystem-tab .nav-item a {
-  color: #898989;
+  color: #686f77;
 }
 #ecosystem-tab-content div.tab-pane {
   background-color: #fff;
@@ -187,7 +187,7 @@
 }
 .blog .article-date {
   font-size: 12px;
-  color: #999;
+  color: #6f6f6f;
 }
 .blog p {
   border-top: 1px solid #ccc;
@@ -260,6 +260,18 @@
 .btn {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
+}
+
+.btn-success {
+	background-color: #008a00;
+}
+
+.btn-outline-primary {
+	color: #0072ee;
+}
+
+.btn-outline-danger {
+	color: #d91b35;
 }
 
 .footer-menu {
@@ -447,6 +459,10 @@ h4 {
   font-size: 20px;
 }
 
+a {
+	color: #005bc0;
+}
+
 table th {
   background-color: #eee;
 }
@@ -506,8 +522,77 @@ pre {
 	}
 }
 
+.navbar-light .navbar-nav .nav-link {
+	color: #767676;
+}
+
 @media (max-width: 575px) {
 	.main-heading {
 		font-size: 36px;
 	}
+}
+
+
+
+caption {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #777;
+    text-align: left;
+}
+th {
+    text-align: left;
+}
+table {
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #dedede;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    text-transform: none;
+    background-color: #777;
+    color: white;
+    text-align: left;
+}
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+table col[class*="col-"] {
+    position: static;
+    display: table-column;
+    float: none;
+}
+table td[class*="col-"],
+table th[class*="col-"] {
+    position: static;
+    display: table-cell;
+    float: none;
+}
+
+table tr td {
+    hyphens: auto;
 }

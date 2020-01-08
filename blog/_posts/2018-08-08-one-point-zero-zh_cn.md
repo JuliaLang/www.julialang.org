@@ -91,12 +91,12 @@ packages, tools, and new features built upon this solid foundation. -->
 <!-- But Julia 1.0 in not just about stability, it also introduces several new, powerful and
 innovative language features. Some of the new features since version 0.6 include: -->
 
-* 一个全新的内建 [包管理器](https://docs.julialang.org/en/latest/stdlib/Pkg/)。它比过去的包管理器性能更好，
+* 一个全新的内建 [包管理器](https://docs.julialang.org/en/v1/stdlib/Pkg/)。它比过去的包管理器性能更好，
 也更加简单。它也支持虚拟环境和记录当前工作环境的状态然后将其分享给其它开发者或者是自己。最后重新设计的包管理器也带来了
 私有包和包的仓库的无缝衔接。你可以用使用开源生态同样的方式用它来管理自己的私有包。这个 [JuliaCon的幻灯片](https://www.youtube.com/watch?v=GBi__3nF-rM)
 展示了新设计的包管理器。
 
-<!-- * A brand new built-in [package manager](https://docs.julialang.org/en/latest/stdlib/Pkg/)
+<!-- * A brand new built-in [package manager](https://docs.julialang.org/en/v1/stdlib/Pkg/)
   brings enormous performance improvements and makes it easier than ever to install packages
   and their dependencies. It also supports per-project package environments and recording
   the exact state of a working application to share with others—and with your future self.
@@ -251,7 +251,7 @@ innovative language features. Some of the new features since version 0.6 include
 > 它还没有完工——但是已经可以发布一个1.0版本了（其实等了6年才要发布）——我们创造的这个语言叫做Julia。
 
 <!-- There are countless other improvements, both large and small. For a complete list of
-changes, see the [0.7 NEWS file](https://docs.julialang.org/en/release-0.7/NEWS/). In our
+changes, see the [0.7 NEWS file](https://docs.julialang.org/en/v0.7/NEWS/). In our
 original [“Why We Created Julia” blog
 post](https://julialang.org/blog/2012/02/why-we-created-julia) in 2012, we wrote
 

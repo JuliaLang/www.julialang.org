@@ -15,5 +15,5 @@ volume: "7"
 number: "12145"
 doi: "10.1038/ncomms12145"
 packages:
-  CellwiseEditingDifferentiation.jl: https://github.com/scidom/CellwiseEditingDifferentiation.jl
+  CellwiseEditingDifferentiation.jl: https://github.com/papamarkou/CellwiseEditingDifferentiation.jl
 ---

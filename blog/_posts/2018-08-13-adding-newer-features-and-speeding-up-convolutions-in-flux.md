@@ -66,7 +66,7 @@ When benchmarking the Flux Convolution Code, we figured out some of the major bo
 
 ### Fixing the API of new Metalhead models
 
-Some models like GoogleNet and Resnet were added to Metalhead recently (special thanks to __Ayush Shridhar [@ayush1999]__ for his work on __ONNX.jl__). However, this code is __generated automatically__ and not necessarily human readable. Moreover, the only thing we could do we these models was to perform predictions. We can't use it for something like feature extraction. So we ported some of my models from the model-zoo and manually load the weights into it. For more detailed usage of Metalhead go [here](https://avik-pal.github.io/blog/2018-07-01-Computer_Vision_using_Metalhead/).
+Some models like GoogleNet and Resnet were added to Metalhead recently (special thanks to __Ayush Shridhar [@ayush1999]__ for his work on __ONNX.jl__). However, this code is __generated automatically__ and not necessarily human readable. Moreover, the only thing we could do we these models was to perform predictions. We can't use it for something like feature extraction. So we ported some of my models from the model-zoo and manually load the weights into it.
 
 ### Improve the accuracy of Metalhead models
 
@@ -120,7 +120,7 @@ Next up was to perform benchmarks for the current implementations in Flux and so
 
 # Experience at JuliaCON
 
-I was able to attend JuliaCon 2018 in London. Thanks to __The Julia Project__ and __NumFOCUS__ for funding this trip. I got the opportunity to present a [poster](http://home.iitk.ac.in/~avikpal/JuliaCon%20Poster.pdf) on the work I had done during my GSoC. It was the first conference I was attending, so it was indeed quite a unique experience. I was able to share my work with other people and even got some valuable advice regarding it. Also, I discovered some new cool open-sourced projects that I would like to contribute to in the future. Finally, it's always a pleasure to meet the people I have been interacting with in Slack.
+I was able to attend JuliaCon 2018 in London. Thanks to __The Julia Project__ and __NumFOCUS__ for funding this trip. I got the opportunity to present a poster on the work I had done during my GSoC. It was the first conference I was attending, so it was indeed quite a unique experience. I was able to share my work with other people and even got some valuable advice regarding it. Also, I discovered some new cool open-sourced projects that I would like to contribute to in the future. Finally, it's always a pleasure to meet the people I have been interacting with in Slack.
 
 # Why use Julia and Flux for Deep Learning?
 
