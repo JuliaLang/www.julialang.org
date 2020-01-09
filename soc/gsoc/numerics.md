@@ -5,7 +5,7 @@ title:  Numerical Projects – Summer of Code
 
 # {{ page.title }}
 
-For all of these projects, potential mentors are [Steven Johnson](https://github.com/stevengj) and [Simon Byrne](https://github.com/simonbyrne).
+For all of these projects, potential mentors are [Steven Johnson](https://github.com/stevengj).
 
 # Numerical Linear Algebra
 
@@ -60,7 +60,7 @@ The focus of this project will be to improve this functionality. Potential tasks
 
 **Expected results**: Linear algebra routines which work on different numeric types, and corresponding tests.
 
-**Mentors**: [Simon Byrne](https://github.com/simonbyrne)
+**Mentors**: ???
 
 ## Trace estimation of the inverse
 
@@ -70,19 +70,7 @@ Getting a good estimate of the trace of a function of a (sparse) matrix purely f
 
 **Expected results**: Routine(s) for trace estimation of the inverse of a matrix, corresponding tests and an accuracy analysis.
 
-**Mentors**: [Mohamed Tarek](https://github.com/mohamed82008) and [Simon Byrne](https://github.com/simonbyrne)
-
-# Base Mathematics Libraries
-
-## Upgrading openlibm
-
-[OpenLibm](http://openlibm.org) is a portable libm implementation used by Julia. It has fallen behind msun, from where it was forked a few years ago. This project seeks to update OpenLibm with all the latest bugfixes to msun. At the same time the [MUSL libm](http://git.musl-libc.org/cgit/musl/tree/src/math) implementation will be considered as an alternative to base openlibm on. A significant testsuite based on various existing [libm testsuites](http://nsz.repo.hu/libm/#tests) will be created.
-
-**Recommended Skills**: A strong understanding of calculus.
-
-**Expected Results**: New and faster methods for evaluating elementary mathematical functions. Benchmarks showing the performance differences for various implementations.
-
-**Mentors:** [Simon Byrne](https://github.com/simonbyrne)
+**Mentors**: [Mohamed Tarek](https://github.com/mohamed82008)
 
 ## Special functions
 
@@ -102,7 +90,7 @@ and boundary cases.
 
 **Expected Results**: New and faster methods for evaluating properties of special functions.
 
-**Mentors:** [Simon Byrne](https://github.com/simonbyrne)
+**Mentors:** ???
 
 ## Matrix functions
 
