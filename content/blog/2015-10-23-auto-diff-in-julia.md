@@ -150,7 +150,9 @@ The best way to illustrate the performance gains that can be achieved using Forw
 
 The function we'll be using in our test is the [Ackley function](http://www.sfu.ca/~ssurjano/ackley.html), which is mathematically defined as
 
+{{< formula >}}
 $$f(\vec{x}) = -a \exp\left( -b \sqrt{\frac{1}{k} \sum_{i=1}^k x^{2}_{i}} \right) - \exp\left(\frac{1}{k} \sum_{i=1}^k \cos(cx_{i})\right) + a + \exp(1)$$
+{{< /formula >}}
 
 Here's the definition of the function in Julia:
 
@@ -213,7 +215,9 @@ As you can see, Python + AlgoPy falls pretty short of the speeds achieved by Jul
 
 Another metric that might be useful to look at is the "slowdown ratio" between the gradient evaluation time and the function evaluation time, defined as:
 
+{{< formula >}}
 $$\text{slowdown ratio} = \frac{\text{gradient time}}{\text{function time}}$$
+{{< /formula >}}
 
 Here are the results (lower is better):
 

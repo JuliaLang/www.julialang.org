@@ -321,7 +321,9 @@ used to smooth or otherwise "filter" arrays. The idea is that starting
 from an array `A`, each local neighborhood is weighted by a "kernel"
 `kern`, producing an output value according to the following formula:
 
+{{< formula >}}
 $$ F[I] = \sum_J A[I+J] kern[J] $$
+{{< /formula >}}
 
 This is the formula for
 [correlation](https://en.wikipedia.org/wiki/Cross-correlation); the

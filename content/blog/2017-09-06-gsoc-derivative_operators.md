@@ -4,26 +4,6 @@ date: "2017-09-06T00:00:00Z"
 title: 'GSoC 2017: Efficient Discretizations of PDE Operators'
 ---
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-processEscapes: true,
-processEnvironments: true
-},
-// Center justify equations in code and markdown cells. Elsewhere
-// we use CSS to left justify single line equations in code cells.
-displayAlign: 'center',
-"HTML-CSS": {
-styles: {'.MathJax_Display': {"margin": 0}},
-linebreaks: { automatic: true }
-}
-});
-</script>
-
 This project is an attempt towards building a PDE solver for JuliaDiffEq using the [Finite Difference Method](https://en.wikipedia.org/wiki/Finite_difference_method)(FDM) approach. We take up the FDM approach instead of [FEM](https://en.wikipedia.org/wiki/Finite_element_method) and [FVM](https://en.wikipedia.org/wiki/Finite_volume_method) as there are many toolboxes which already exist for FEM and FVM but not for FDM. Also, there are many use cases where the geometry of the problem is simple enough to be solved by FDM methods which are much faster due to their being able to avoid the bottleneck step of matrix multiplication by using Linear transformations to mimic the effect of a matrix multiplication. Since matrix multiplication basically transforms a vector element to a weighted sum of the neighbouring elements, this can be easily acheived using a special function which acts on the vector in optimal $\mathcal{O}(n)$ time.
 
 The result is a new package called [DiffEqOperators.jl](https://github.com/JuliaDiffEq/DiffEqOperators.jl) which creates efficient discretizations of partial differential operators thereby converting PDEs to ODEs which can be solved efficiently by existing ODE solvers. The `DerivativeOperator` is based on central differencing schemes of approximating derivatives at a point whereas the `UpwindOperators` are based on one-sided differencing schemes where the solution is typically a wave moving in a particular direction. The package also supports a variety of boundary conditions like [Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_boundary_condition), [Neumann](https://en.wikipedia.org/wiki/Neumann_boundary_condition), [Periodic](https://en.wikipedia.org/wiki/Periodic_boundary_conditions) and the [Robin](https://en.wikipedia.org/wiki/Robin_boundary_condition) [boundary condition](https://en.wikipedia.org/wiki/Boundary_value_problem).
@@ -34,20 +14,26 @@ $h = \Delta x = \frac{1}{N+1}$ and $x_i = ih$ for $i = 0, 1,...,N+1$ and
 $k = \Delta t = \frac{T}{M+1}$ and $t_j = jk$ for $j = 0, 1,...,M+1$. \\ 
 The discrete unknowns are scalars $u_i^j$ for the above values of i and j, and it is hoped that $u_i^j$ will be an approximation of $u(x_i, t_j)$. The right-hand side of the equation is discretized by setting $f_i^j = f(x_i, t_j)$. We also use the notation
 
+{{< formula >}}
 $$ U^{j} = \begin{pmatrix}
 u_1^j\\ 
 u_2^j \\
 \vdots \\
 u_N^j
 \end{pmatrix} $$
+{{< /formula >}}
 to denote the vector of approximate values on the space grid at time $t_j$.
 
+{{< formula >}}
 $$\frac{\partial u}{\partial t}(x_i,t_j) \approx \frac{u(x_i,t_{j+1}) - u(x_i,t_j)}{k}$$
+{{< /formula >}}
 
 and for the second space derivative, by combining a forward and a backward differential quotient, we obtain the central approximation
 
+{{< formula >}}
 $$ \frac{\partial^2u   }{\partial x^2}(x_i,t_j) \approx \frac{\frac{u(x_{i+1},t_j) - u(x_i,t_j)}{h} - \frac{u(x_i,t_j) - u(x_{i-1},t_j)}{h}}{h} = \frac{u(x_{i-1},t_j) - 2u(x_i,t_j) + u(x_{i+1}, t_j)}
 {h^2} $$
+{{< /formula >}}
 
 So the weights corresponding to the second order partial derivative are $[1, -2, 1]$. The finite difference method mimics these approximations by replacing the exact values of the solution at the grid points by the discrete unknowns.
 
@@ -66,6 +52,7 @@ $\frac{U^{j+1} - U^j}{k} + A_h U^j = F^j \textit{ for } j = 1,...,M$
 
 When we want to apply this operator on the vector $U$, the weight vector turns into a matrix called the transformation matrix $A_h$
 
+{{< formula >}}
 $$ A_h = \begin{pmatrix}
 2 & -1 & 0 &  \cdots  & 0\\ 
 -1 & 2 & -1 &  \cdots  & 0\\ 
@@ -75,6 +62,7 @@ $$ A_h = \begin{pmatrix}
 \end{pmatrix}
 \textit{such that }
 \frac{\partial^2U^j}{\partial x^2} \approx A_h*U^j $$
+{{< /formula >}}
 
 But matrix multiplication is costly, therefore it would be preferable to have the linear operator of the double partial differential instead of the transformation matrix.
 It would look something like:-
@@ -150,8 +138,10 @@ Stencil multiplications are **embarrassingly parallel** and this have been taken
 ## Solving the Heat equation using DiffEqOperators
 
 Now let us solve the solve the famous heat equation using the explicit discretization on a 2D `space x time` grid. The heat equation is:-
-        
+
+{{< formula >}}
 $$\frac{\partial u}{\partial t} - \frac{\partial^2 u}{\partial x^2} = 0$$
+{{< /formula >}}
 
 For this example we consider a Dirichlet boundary condition with the initial distribution being parabolic. Since we have fixed the value at boundaries (in this case equal), after a long time we expect the 1D rod to be heated in a linear manner.
 
@@ -183,11 +173,14 @@ Not all PDEs can be solved with central derivatives, for example the **KdV wave 
 
 
 For these very cases the [upwind scheme](https://en.wikipedia.org/wiki/Upwind_scheme) has been devised. It denote a class of numerical discretization methods for solving hyperbolic PDEs. They attempt to discretize hyperbolic PDEs by using differencing biased in the direction determined by the sign of the characteristic speeds. For example the 1D linear advection equation
+{{< formula >}}
 $$
 \frac{\partial u}{\partial t} + a\frac{\partial u}{\partial x}=0
 $$
-describes a wave propagating along the x-axis with a velocity $a$. If $a$ is positive, the traveling wave solution of the equation above propagates towards the right, the left side is then called the upwind side and the right side is called the the downwind side. If the finite difference scheme for the spatial derivative, $\frac{\partial u}{\partial x}$ contains more points in the upwind side, the scheme is called **upwind scheme**. Considering a case of 2nd upwind scheme, define
+{{< /formula >}}
+describes a wave propagating along the x-axis with a velocity $a$. If $a$ is positive, the traveling wave solution of the equation above propagates towards the right, the left side is then called the upwind side and the right side is called the the downwind side. If the finite difference scheme for the spatial derivative, {{< formula >}}$\frac{\partial u}{\partial x}${{< formula >}} contains more points in the upwind side, the scheme is called **upwind scheme**. Considering a case of 2nd upwind scheme, define
 
+{{< formula >}}
 $$ a^{+} = max(a,0)$$
 
 $$a^{-} = min(a,0)$$
@@ -195,9 +188,10 @@ $$a^{-} = min(a,0)$$
 $$u_x^- = \frac{3u_i^n-4u_{i-1}^n+u_{i-2}^n}{2\Delta x}$$
 
 $$u_x^+ = \frac{-u_{i+2}^n+4u_{i+1}^n-3u_{i}^n}{2\Delta x} $$
+{{< /formula >}}
 
 The general solution can then be written as follows:-
-$u_i^{n+1} = u_i^n - \Delta t[a^{+}u_x^{-} + a^{-}u_x^{+}]$
+{{< formula >}}$u_i^{n+1} = u_i^n - \Delta t[a^{+}u_x^{-} + a^{-}u_x^{+}]${{< formula >}}
 
 The solution of the **KdV equation** using upwind operator looks better.
 

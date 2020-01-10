@@ -7,26 +7,6 @@ date: "2017-09-01T00:00:00Z"
 title: 'GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox'
 ---
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-processEscapes: true,
-processEnvironments: true
-},
-// Center justify equations in code and markdown cells. Elsewhere
-// we use CSS to left justify single line equations in code cells.
-displayAlign: 'center',
-"HTML-CSS": {
-styles: {'.MathJax_Display': {"margin": 0}},
-linebreaks: { automatic: true }
-}
-});
-</script>
-
 # Introduction
 
 Throughout this Google Summer of Code project I, along with my mentors, aimed to create a Wrapper for the FEniCS Finite Element Toolbox in the Julia Language. Our work done can be found at [FEniCS.jl](https://github.com/JuliaDiffEq/FEniCS.jl) . This would allow users to perform FEM calculations directly in Julia, utilizing our [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) wrapping functionality. We currently have wrapped the main  functionality, along with providing the necessary instructions to add further components when they are deemed necessary. Members of the Julia community not directly related to the project also contributed small fixes and suggestions throughout the project. The majority of the code produced has already been merged to the GitHub repository (which was created specifically for this project). One of the main improvements which would greatly increase its usage would be the further integration with the JuliaDiffEq package. 

@@ -20,7 +20,9 @@ optimization side of things.
 
 The cutting-plane algorithm is a method for solving the optimization problem
 
+{{< formula >}}
 $$\min_{x \in \mathbb R^d} \sum_{i=1}^n f_i(x)$$
+{{< /formula >}}
 
 where the functions \\( f_i \\) are convex but not necessarily differentiable.
 The absolute value function \\( |x| \\) and the 1-norm \\( ||x|| _ 1 \\) are

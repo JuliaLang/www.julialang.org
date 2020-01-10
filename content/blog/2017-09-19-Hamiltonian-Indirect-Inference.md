@@ -4,26 +4,6 @@ date: "2017-09-19T00:00:00Z"
 title: 'GSoC 2017 Project: Hamiltonian Indirect Inference'
 ---
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-processEscapes: true,
-processEnvironments: true
-},
-// Center justify equations in code and markdown cells. Elsewhere
-// we use CSS to left justify single line equations in code cells.
-displayAlign: 'center',
-"HTML-CSS": {
-styles: {'.MathJax_Display': {"margin": 0}},
-linebreaks: { automatic: true }
-}
-});
-</script>
-
 # Bayesian_Examples.jl
 This is a writeup of my project for the Google Summer of Code 2017. The
 associated repository contains examples of estimating various models. In
@@ -46,8 +26,10 @@ First the data is generated, once we have the data, we can estimate the paramete
 
 To summarize the method, first we have the parameter vector $\theta$ and the observed data y. We would like to calculate the likelihood of $\ell(\theta|y)$, but it is intractable or costly to compute. In this case, with pdBIL we have to find an auxiliary model (A) that we use to approximate the true likelihood in the following way:
 * First we have to generate points, denote with **x\*** from the data generating process with the previously proposed parameters $\theta$.
-* Then we compute the MLE of the auxiliary likelihood under **x** to get the parameters denoted by $\phi$. \
+* Then we compute the MLE of the auxiliary likelihood under **x** to get the parameters denoted by {{< formula >}}$\phi${{< formula >}}. \
+{{< formula >}}
 $$\phi(x^{\star}) = argmax_{\phi} (x^{\star}|\phi)$$
+{{< /formula >}}
 
 * Under these parameters \phi, we can now compute the likelihood of $\ell_{A}(y|\phi). It is desirable to have the auxiliary likelihood as close to the true likelihood as possible, in the sense of capturing relevant aspects of the model and the
 generated data.
@@ -71,9 +53,11 @@ The continuous-time version of the Ornstein-Ulenbeck Stochastic - volatiltiy mod
 
 The discrete-time version of the Ornstein-Ulenbeck Stochastic - volatility model:
 
+{{< formula >}}
 $$y_{t} = x_{t} + \epsilon_{t} where \epsilon_{t} ∼ \Chi^{2}(1)$$
 
 $$x_{t} = \rho * x_{t-1} + \sigma * \nu_{t}  where \nu_{t} ∼ N(0, 1)$$
+{{< /formula >}}
 
 The discrete-time version was used as the data-generating process. Where yₜ denotes the logarithm of return, $x_{t}$ is the logarithm of variance, while $\epsilon_{t}$ and $\nu_{t}$ are unobserved noise terms.
 

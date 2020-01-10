@@ -4,26 +4,6 @@ date: "2017-08-28T00:00:00Z"
 title: 'GSoC 2017: Documentation Browser for Juno'
 ---
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {
-inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-processEscapes: true,
-processEnvironments: true
-},
-// Center justify equations in code and markdown cells. Elsewhere
-// we use CSS to left justify single line equations in code cells.
-displayAlign: 'center',
-"HTML-CSS": {
-styles: {'.MathJax_Display': {"margin": 0}},
-linebreaks: { automatic: true }
-}
-});
-</script>
-
 The aim of this GSoC project is to provide a convenient way to access documentation in the
 Juno IDE. Any work on this has to be on the Julia side (for getting the necessary
 information by introspection) *and* on the Atom side (for presenting said information).
@@ -75,9 +55,11 @@ SQL.jl was giving me quite a hard time *and* doesn't ship the FTS extension by d
 
 A custom implementation did not seem too hard at first, but requires a *good* scoring function
 that, given a search query `needle`, maps a docstring to a number between 0 and 1:
+{{< formula >}}
 $$
 score: (needle,\\,docstr) \\mapsto [0, 1]
 $$
+{{< /formula >}}
 At first I tried rolling my own string comparison function (with mixed success), but then I
 stumbled upon the excellent [StringDistances.jl](https://github.com/matthieugomez/StringDistances.jl)
 which does pretty much all I needed.
