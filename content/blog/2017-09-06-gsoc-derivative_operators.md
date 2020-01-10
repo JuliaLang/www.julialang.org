@@ -10,9 +10,9 @@ The result is a new package called [DiffEqOperators.jl](https://github.com/Julia
 
 ## MOTIVATION
 The general idea of finite difference methods is to generate finite difference weights corresponding to a differential operator allowing a certain level of approximation. The time and space variable are divided to form a grid where 
-$h = \Delta x = \frac{1}{N+1}$ and $x_i = ih$ for $i = 0, 1,...,N+1$ and 
-$k = \Delta t = \frac{T}{M+1}$ and $t_j = jk$ for $j = 0, 1,...,M+1$. \\ 
-The discrete unknowns are scalars $u_i^j$ for the above values of i and j, and it is hoped that $u_i^j$ will be an approximation of $u(x_i, t_j)$. The right-hand side of the equation is discretized by setting $f_i^j = f(x_i, t_j)$. We also use the notation
+{{< formula >}}$h = \Delta x = \frac{1}{N+1}$ and $x_i = ih$ for $i = 0, 1,...,N+1$ and 
+$k = \Delta t = \frac{T}{M+1}$ and $t_j = jk$ for $j = 0, 1,...,M+1$.{{< /formula >}} \\ 
+The discrete unknowns are scalars {{< formula >}}$u_i^j${{< /formula >}} for the above values of i and j, and it is hoped that {{< formula >}}$u_i^j${{< /formula >}} will be an approximation of {{< formula >}}$u(x_i, t_j)${{< /formula >}}. The right-hand side of the equation is discretized by setting {{< formula >}}$f_i^j = f(x_i, t_j)${{< /formula >}}. We also use the notation
 
 {{< formula >}}
 $$ U^{j} = \begin{pmatrix}
@@ -40,15 +40,15 @@ So the weights corresponding to the second order partial derivative are $[1, -2,
 In this particular case, we end up with the following scheme:
 
 {{< formula >}}
-\left\{\begin{matrix}
+\begin{matrix}
 \frac{u_j^{j+1} - u_i^j}{k} - \frac{u_{i-1}^j - 2u_i^j + u_{i+1}^j}{h^2} = f_i^j \textit{ for } i = 1,...,N,j = 1,...,M \\
 u_i^0 = u_0(x_i) \textit{ for } i = 1,...,N\\
 u_0^j = u_{N+1}^j = 0 \textit{ for } j = 1,...,M+1\\
-\end{matrix}\right.
+\end{matrix}.
 {{< /formula >}}
 
 This is the stencil rewritten as a recurrence. Writing it out in vector form, we get:-
-$\frac{U^{j+1} - U^j}{k} + A_h U^j = F^j \textit{ for } j = 1,...,M$
+{{< formula >}}$\frac{U^{j+1} - U^j}{k} + A_h U^j = F^j \textit{ for } j = 1,...,M${{< /formula >}}
 
 When we want to apply this operator on the vector $U$, the weight vector turns into a matrix called the transformation matrix $A_h$
 
@@ -67,21 +67,23 @@ $$ A_h = \begin{pmatrix}
 But matrix multiplication is costly, therefore it would be preferable to have the linear operator of the double partial differential instead of the transformation matrix.
 It would look something like:-
 
-    function double_partial(x,dx)
-      for i in 2:length(dx)-1
-        dx[i] = -1*x[i-1] + 2*x[i] + -1*x[i+1]
-      end
-      dx[1] = 2*x[1] + -1*x[2]
-      dx[end] = -1*x[end-1] + 2*x[end]
-    end
+```jl
+function double_partial(x,dx)
+  for i in 2:length(dx)-1
+    dx[i] = -1*x[i-1] + 2*x[i] + -1*x[i+1]
+  end
+  dx[1] = 2*x[1] + -1*x[2]
+  dx[end] = -1*x[end-1] + 2*x[end]
+end
+```
 
 This function acts on the vector in an optimal $\mathcal{O}(n)$ time as compared to the inefficient $\mathcal{O}(n^2)$ time taken by matrix multiplication while still avoiding the overheads of sparse matrices.
 
 So to convert the PDE into an ODE, we discritize the equation in space but not in time. Then this ODE can be solved efficiently by the existing solvers. Our semi-linear  heat equation also known as the reaction-diffusion equation transforms to the following ODE.
-$u_i' = A_{h}u_i + f(t,u_i)$
-Where $A$ is a linear operator and not the transformation matrix. Thus we will have to make the ODE solvers of **DifferentialEquations.jl** compatible with linear operators also.
+{{< formula >}}$u_i' = A_{h}u_i + f(t,u_i)${{< /formula >}}
+Where {{< formula >}}$A${{< /formula >}} is a linear operator and not the transformation matrix. Thus we will have to make the ODE solvers of **DifferentialEquations.jl** compatible with linear operators also.
 
-Since it is tedious to compute the Taylor coefficients by hand, Fornberg gave an algorithm to compute them efficiently for any derivative and approximation order. These stencils can efficiently compute derivatives at any point by taking appropriately weighted sums of neighboring points. For example, $[-1, 2, -1]$ is the second order stencil for calculating the 2nd derivative at a point.
+Since it is tedious to compute the Taylor coefficients by hand, Fornberg gave an algorithm to compute them efficiently for any derivative and approximation order. These stencils can efficiently compute derivatives at any point by taking appropriately weighted sums of neighboring points. For example, {{< formula >}}$[-1, 2, -1]${{< /formula >}} is the second order stencil for calculating the 2nd derivative at a point.
 
 In **DiffEqOperators.jl** we can easily extract stencils of any derivative and approximation order from an operator. For eg.
 
@@ -178,7 +180,7 @@ $$
 \frac{\partial u}{\partial t} + a\frac{\partial u}{\partial x}=0
 $$
 {{< /formula >}}
-describes a wave propagating along the x-axis with a velocity $a$. If $a$ is positive, the traveling wave solution of the equation above propagates towards the right, the left side is then called the upwind side and the right side is called the the downwind side. If the finite difference scheme for the spatial derivative, {{< formula >}}$\frac{\partial u}{\partial x}${{< formula >}} contains more points in the upwind side, the scheme is called **upwind scheme**. Considering a case of 2nd upwind scheme, define
+describes a wave propagating along the x-axis with a velocity $a$. If $a$ is positive, the traveling wave solution of the equation above propagates towards the right, the left side is then called the upwind side and the right side is called the the downwind side. If the finite difference scheme for the spatial derivative, {{< formula >}}$\frac{\partial u}{\partial x}${{< /formula >}} contains more points in the upwind side, the scheme is called **upwind scheme**. Considering a case of 2nd upwind scheme, define
 
 {{< formula >}}
 $$ a^{+} = max(a,0)$$
@@ -191,7 +193,7 @@ $$u_x^+ = \frac{-u_{i+2}^n+4u_{i+1}^n-3u_{i}^n}{2\Delta x} $$
 {{< /formula >}}
 
 The general solution can then be written as follows:-
-{{< formula >}}$u_i^{n+1} = u_i^n - \Delta t[a^{+}u_x^{-} + a^{-}u_x^{+}]${{< formula >}}
+{{< formula >}}$u_i^{n+1} = u_i^n - \Delta t[a^{+}u_x^{-} + a^{-}u_x^{+}]${{< /formula >}}
 
 The solution of the **KdV equation** using upwind operator looks better.
 
