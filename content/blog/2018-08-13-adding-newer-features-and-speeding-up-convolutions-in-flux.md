@@ -61,7 +61,7 @@ There are a variety of Convolution Algorithms around. All these use the properti
 When benchmarking the Flux Convolution Code, we figured out some of the major bottlenecks that were coming out of the `Backward Pass for Convolution Bias`. Hence the natural choice was to wrap the CUDNN Function which efficiently calculates the Gradient for Bias. Also, we were able to wrap a function for applying `activation` and `adding bias` at the same time. To use this function, `cudnnConvolutionBiasActivationFunction` we needed to wrap the Activation Forward and Backward Pass functions. Now lets see what kind of speed improvements we achieved with this update.
 
 <p align = "center">
-    <img src = "../../../images/blog/2018-08-13-GSoC-Flux-Computer-Vision/flux_internal_benchmarks.png" width="750" height="500">
+    <img src = "../../../../images/blog/2018-08-13-GSoC-Flux-Computer-Vision/flux_internal_benchmarks.png" width="750" height="500">
 </p>
 
 ### Fixing the API of new Metalhead models
@@ -89,7 +89,7 @@ trained(VGG11) # We get an error as we don't currently have a trained VGG11 mode
 This package provides a simple API to generate [dreams](https://en.wikipedia.org/wiki/DeepDream) on the desired image. You need to provide the image, choose what type of dream you want and which model to use. This package relies on Flux and Metalhead for its trained models.
 
 <p align = "center">
-    <img src = "../../../images/blog/2018-08-13-GSoC-Flux-Computer-Vision/deepdream.jpg" width="750" height="750">
+    <img src = "../../../../images/blog/2018-08-13-GSoC-Flux-Computer-Vision/deepdream.jpg" width="750" height="750">
 </p>
 
 The above image was generated using `guided deepdream`.
@@ -109,7 +109,7 @@ This is the implementation of the paper __[Perceptual Losses for Real-Time Style
 Below is a small example of style transfer on MonaLisa
 
 <p align = "center">
-    <img src = "../../../images/blog/2018-08-13-GSoC-Flux-Computer-Vision/styletransfer.jpg" width="750" height="750">
+    <img src = "../../../../images/blog/2018-08-13-GSoC-Flux-Computer-Vision/styletransfer.jpg" width="750" height="750">
 </p>
 
 # Overview of the Work done in GSoC 2018
@@ -143,5 +143,5 @@ Firstly, I should thank __Google__ for organizing Google Summer of Code which ga
 -----------------------------------------------------------------
 
 <p align = "center">
-    <img src = "../../../images/blog/2018-08-13-GSoC-Flux-Computer-Vision/gsoc_logo.png" width="700">
+    <img src = "../../../../images/blog/2018-08-13-GSoC-Flux-Computer-Vision/gsoc_logo.png" width="700">
 </p>

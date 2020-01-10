@@ -108,7 +108,7 @@ Julia is now being used in several universities and online courses. If you know 
     *   [MTH 229](https://www.math.csi.cuny.edu/abhijit/229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](http://mth229.github.io) page.
 *   Cornell University
     *   [CS 5220](http://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel), Spring 2014
-*   École Polytechnique Fédérale de Lausanne \[CIVIL 557\] [Decision-aid methodologies in transportation](Decision-aid methodologies in transportation) (Mor Kaspi, Virginie Lurkin), Spring 2017
+*   École Polytechnique Fédérale de Lausanne \[CIVIL 557\] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
     
 *   [Einaudi Institute for Economics and Finance, Rome](http://www.eief.it/eief/)
     *   [Econometrics of DSGE Models](https://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://www.gragusa.org))

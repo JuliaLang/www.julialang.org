@@ -35,7 +35,7 @@ Julia is now being used in several universities and online courses. If you know 
   * [DATA 1010](http://sswatson.com/classes/data1010/), Introduction to Probability, Statistics, and Machine Learning (Samuel S. Watson), Fall 2018
 
 - [Budapest University of Technology and Economics](http://www.bme.hu/) <!--47.4796299,19.0561698643001-->
-  * [Applications of Differential Equations and Vector Analysis for Engineers II.] ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
+  * Applications of Differential Equations and Vector Analysis for Engineers II. ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
 
 - City University of New York <!--40.74851885,-73.9836392743124-->
   * [MTH 229](https://www.math.csi.cuny.edu/abhijit/229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](http://mth229.github.io) page.
