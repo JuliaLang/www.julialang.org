@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Julia 0.5 Release Announcement</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>Julia 0.5 Release Announcement</h1>
+
+    <p class="metadata">
+      <span class="timestamp">10 October, 2016</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author">The Julia Community</span>
+      
+    </p>
+
+    
+
+<p>After over a year of development, the Julia community is proud to announce
+the release of version 0.5 of the Julia language and standard library.
+This release contains major language refinements and numerous standard library improvements.
+A long list of changes is available in the <a href="https://github.com/JuliaLang/julia/blob/release-0.5/NEWS.md#julia-v050-release-notes">NEWS log</a> found in our main repository, with a summary reproduced below.
+A separate blog post detailing some of the <a href="../../../../blog/2016/10/julia-0.5-highlights">highlights of the new release</a> has also been posted.</p>
+
+<p>We&rsquo;ll be releasing regular bugfix backports from the 0.5.x line, which is recommended for users requiring a stable language and API.
+Major feature work is ongoing on master for 0.6-dev.</p>
+
+<p>The Julia ecosystem continues to grow, and there are now <a href="https://github.com/JuliaRegistries/General/blob/master/Registry.toml">over one thousand</a> registered packages!
+The third annual <a href="http://juliacon.org/">JuliaCon</a> took place in Cambridge, MA in the <a href="http://julialang.org/blog/2016/09/juliacon2016">summer of 2016</a>, with an exciting line up of talks and keynotes.
+Most of them are <a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6SQPwZUDtAM59-wPzCPyD_S">available to view</a>.</p>
+
+<p>Binaries are available from the <a href="http://julialang.org/downloads/">main download page</a> or visit <a href="https://juliabox.com/">JuliaBox</a> to try this release from the comfort of your browser. Happy Coding!</p>
+
+<h3 id="notable-compiler-and-language-changes">Notable compiler and language changes:</h3>
+
+<ul>
+<li><p>The major focus of this release has been the ability to write fast functional code, removing the earlier performance penalty for anonymous functions and closures.
+This has been achieved via each function and closure now being its own type, and the captured variables of a closure are fields of its type.
+All functions, including anonymous functions, are now generic and support all features.</p></li>
+
+<li><p>Experimental support for <a href="https://docs.julialang.org/en/v1/manual/parallel-computing/#multi-threading-experimental">multi threading</a>.</p></li>
+
+<li><p>All dimensions indexed by <a href="https://github.com/JuliaLang/julia/issues/13612">scalars are now dropped</a>, whereas previously only trailing scalar dimensions would be omitted from the result.
+This is a major breaking changes, but has been made to make the indexing rules much more consistent.</p></li>
+
+<li><p><a href="https://github.com/JuliaLang/julia/issues/4470">Generator expressions</a> now can create iterators that are computed only on demand.</p></li>
+
+<li><p>Experimental support for <a href="https://github.com/JuliaLang/julia/issues/16260">arrays whose indexing</a> starts from values other than 1. Standard Julia arrays are still 1-based, but external packages can implement array types with indexing from arbitrary indices.</p></li>
+
+<li><p>Major simplification of the <a href="https://github.com/JuliaLang/julia/issues/16107">string types</a>, unifying <code>ASCIIString</code> and <code>UTF8String</code> as <code>String</code>, as well as moving types and functions related to different encodings out of the standard library.</p></li>
+
+<li><p><a href="https://github.com/JuliaLang/julia/issues/11196">Package operations</a> now use the <code>libgit2</code> library rather than shelling out to command line git. This makes these calls to package related functions much faster, and more reliable, especially on Windows.</p></li>
+
+<li><p>And <a href="https://github.com/JuliaLang/julia/blob/release-0.5/NEWS.md#julia-v050-release-notes">many many more</a> changes and improvements&hellip;</p></li>
+</ul>
+
+<h3 id="ports">Ports</h3>
+
+<p>Julia now runs on the ARM and Power architectures, making it possible to use it on the widest variety of hardware, from the smallest embedded machines to the largest HPC systems. Porting a language to a new architecture is never easy, so special thanks to the people who made it possible. Part of the work to create the Power port was supported by IBM, for which we are grateful.</p>
+
+<h3 id="developing-with-julia">Developing with Julia</h3>
+
+<p>The Julia debugger, <a href="https://github.com/Keno/Gallium.jl">Gallium</a>, is now ready to use. It allows for a full, multi language debug experience, debugging Julia and C code with ease. The debugger is also integrated with <a href="http://junolab.org">Juno</a>, the Julia IDE that is now fully featured and ready to use.</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>GSoC 2017: Implementing iterative solvers for numerical linear algebra</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>GSoC 2017: Implementing iterative solvers for numerical linear algebra</h1>
+
+    <p class="metadata">
+      <span class="timestamp">23 August, 2017</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author">Harmen Stoppels, Andreas Noack</span>
+      
+    </p>
+
+    
+
+<p>The central part of my GSoC project is about implementing the Jacobi-Davidson method natively in Julia, available in <a href="https://github.com/haampie/JacobiDavidson.jl">JacobiDavidson.jl</a>. This method computes a few approximate solutions of the eigenvalue problem $Ax = \lambda Bx$ for large and sparse matrices $A$ and $B$. As it uses iterative solvers internally, much time has gone into improving <a href="https://github.com/JuliaMath/IterativeSolvers.jl">IterativeSolvers.jl</a> in general. Lastly, as iterative solvers are typically used with preconditioners, I have implemented the incomplete LU factorization for sparse matrices as well in <a href="https://github.com/haampie/ILU.jl">ILU.jl</a>.</p>
+
+<h2 id="jacobidavidson-jl">JacobiDavidson.jl</h2>
+
+<p>The <a href="https://github.com/haampie/JacobiDavidson.jl">Jacobi-Davidson implementation</a> is ready for use and can be applied to solving the (generalized) eigenvalue problem for non-Hermitian matrices. It&rsquo;s similar to the <code>eigs</code> method already available in Julia: it gives you a couple eigenvalues near a specified target in the complex plane.</p>
+
+<p>At this point no official release has been tagged yet, as there is still some work to be done: hopefully the functions for the generalized and ordinary eigenvalue problem can largely be merged as they are very similar. Also, some optimizations for Hermitian problems should yet be implemented; lastly the methods do not yet support generic vectors and numbers.</p>
+
+<h2 id="iterativesolvers-jl">IterativeSolvers.jl</h2>
+
+<p>We have been preparing a new release of <a href="https://github.com/JuliaMath/IterativeSolvers.jl">IterativeSolvers.jl</a> that improves speed and memory usage of solvers like GMRES, CG, Chebyshev iteration, stationary methods and the Power Method. Also two new methods MINRES and BiCGStab(l) are available, together with efficient implementations of stationary methods for Julia&rsquo;s <code>SparseMatrixCSC</code> matrix type.</p>
+
+<p>Additionally the package has been upgraded to Julia 0.6 and the documentation has been restructured and improved.</p>
+
+<h2 id="ilu-jl">ILU.jl</h2>
+
+<p>Iterative methods for linear systems $Ax = b$ such as BiCGStab(l) might not converge quickly on any given matrix $A$. Typically convergence is best if the matrix $A$ is just a perturbation of the identity matrix. If that&rsquo;s not the case, preconditioners might help: rather than solving $Ax = b$ you could try and solve $(PA)x = Pb$ where $P$ is a preconditioner such that $PA$ is closer to the identity matrix.</p>
+
+<p>A perfect preconditioner would compute the full LU decomposition of $A$, but that&rsquo;s too much computational work and would require way to much of memory. A well-known trick is to compute the LU factorization only approximately, by dropping small terms during the process. This is called incomplete LU or ILU.</p>
+
+<p>As ILU for the <code>SparseMatrixCSC</code> type was not yet available in Julia, I&rsquo;ve implemented it based on the article &ldquo;Crout versions of ILU for general sparse matrices&rdquo; by Na Li, Yousef Saad and Edmond Chow.</p>
+
+<p>The package <a href="https://github.com/haampie/ILU.jl">ILU.jl</a> is completely ready for use and is well tested.</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>Below you can find a few examples on how to use the packages I&rsquo;ve been working on.</p>
+
+<h3 id="jacobi-davidson">Jacobi-Davidson</h3>
+
+<p>Let&rsquo;s take a look at a toy example of the generalized eigenvalue problem $Ax = \lambda Bx$ where $A$ and $B$ are diagonal matrices of size $n \times n$ with $A<em>{kk} = \sqrt{k}$ and $B</em>{kk} = 1 / \sqrt{k}$. The eigenvalues are just the integers $1, \cdots, n$. Our goal is to find a few eigenvalues right in the interior of the spectrum near $n / 2$.</p>
+
+<p>We implement the action of the matrices $A$ and $B$ matrix-free, using LinearMaps.jl:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">using</span> LinearMaps<span style="color:#666"></span>
+
+<span style="color:#a2f;font-weight:bold">function</span> myA!<span style="color:#666"></span>(y<span style="color:#666"></span>, x<span style="color:#666"></span>)
+  <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span> <span style="color:#666">:</span> length<span style="color:#666"></span>(x<span style="color:#666"></span>)
+    <span style="color:#a2f">@inbounds</span><span style="color:#666"></span> y<span style="color:#666"></span>[i<span style="color:#666"></span>] <span style="color:#666">=</span> sqrt<span style="color:#666"></span>(i<span style="color:#666"></span>) <span style="color:#666">*</span> x<span style="color:#666"></span>[i<span style="color:#666"></span>]
+  <span style="color:#a2f;font-weight:bold">end</span>
+<span style="color:#a2f;font-weight:bold">end</span>
+
+<span style="color:#a2f;font-weight:bold">function</span> myB!<span style="color:#666"></span>(y<span style="color:#666"></span>, x<span style="color:#666"></span>)
+  <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span> <span style="color:#666">:</span> length<span style="color:#666"></span>(x<span style="color:#666"></span>)
+    <span style="color:#a2f">@inbounds</span><span style="color:#666"></span> y<span style="color:#666"></span>[i<span style="color:#666"></span>] <span style="color:#666">=</span> x<span style="color:#666"></span>[i<span style="color:#666"></span>] <span style="color:#666">/</span> sqrt<span style="color:#666"></span>(i<span style="color:#666"></span>)
+  <span style="color:#a2f;font-weight:bold">end</span>
+<span style="color:#a2f;font-weight:bold">end</span>
+
+n<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">100_000</span>
+A<span style="color:#666"></span> <span style="color:#666">=</span> LinearMap<span style="color:#666"></span>{<span style="color:#0b0;font-weight:bold">Complex128</span>}(myA!<span style="color:#666"></span>, n<span style="color:#666"></span>; ismutating<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">true</span>)
+B<span style="color:#666"></span> <span style="color:#666">=</span> LinearMap<span style="color:#666"></span>{<span style="color:#0b0;font-weight:bold">Complex128</span>}(myB!<span style="color:#666"></span>, n<span style="color:#666"></span>; ismutating<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">true</span>)</code></pre></div>
+<p>The order of the matrices is <code>100_000</code>. It turns out that if we target eigenvalues in the interior of the spectrum, iterative solvers used internally in Jacobi-Davidson might have trouble solving very indefinite systems.</p>
+
+<p>In that case we should use a preconditioner for $(A - \tau B)$, where $\tau$ is the target. We will just use the exact inverse, which is a diagonal matrix $P$ with entries $P_{kk} = \sqrt{k} / (k - \tau)$. It can be implemented matrix-free and in-place:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">import</span> Base<span style="color:#666"></span><span style="color:#666">.</span>LinAlg<span style="color:#666"></span><span style="color:#666">.</span>A_ldiv_B!<span style="color:#666"></span>
+
+<span style="color:#a2f;font-weight:bold">struct</span> SuperPreconditioner<span style="color:#666"></span>{numT<span style="color:#666"></span> <span style="color:#666">&lt;</span><span style="color:#666">:</span> <span style="color:#0b0;font-weight:bold">Number</span>}
+    target<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span>numT<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span>
+
+<span style="color:#a2f;font-weight:bold">function</span> A_ldiv_B!<span style="color:#666"></span>(p<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span>SuperPreconditioner<span style="color:#666"></span>, x<span style="color:#666"></span>)
+    <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span> <span style="color:#666">:</span> length<span style="color:#666"></span>(x<span style="color:#666"></span>)
+        <span style="color:#a2f">@inbounds</span><span style="color:#666"></span> x<span style="color:#666"></span>[i<span style="color:#666"></span>] <span style="color:#666">*=</span> sqrt<span style="color:#666"></span>(i<span style="color:#666"></span>) <span style="color:#666">/</span> (i<span style="color:#666"></span> <span style="color:#666">-</span> p<span style="color:#666"></span><span style="color:#666">.</span>target<span style="color:#666"></span>)
+    <span style="color:#a2f;font-weight:bold">end</span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+<p>Now we call Jacobi-Davidson with the <code>Near</code> target and pass the preconditioner. We use GMRES as the iterative solver, but we could have used BiCGStabl(l) as well.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">using</span> JacobiDavidson<span style="color:#666"></span>
+
+τ<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">50_000.1</span> <span style="color:#666">+</span> <span style="color:#666">0</span><span style="color:#a2f">im</span>
+target<span style="color:#666"></span> <span style="color:#666">=</span> Near<span style="color:#666"></span>(τ<span style="color:#666"></span>)
+P<span style="color:#666"></span> <span style="color:#666">=</span> SuperPreconditioner<span style="color:#666"></span>(τ<span style="color:#666"></span>)
+
+schur<span style="color:#666"></span>, residuals<span style="color:#666"></span> <span style="color:#666">=</span> jdqz<span style="color:#666"></span>(A<span style="color:#666"></span>, B<span style="color:#666"></span>, 
+    gmres_solver<span style="color:#666"></span>(n<span style="color:#666"></span>, iterations<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">10</span>),
+    preconditioner<span style="color:#666"></span> <span style="color:#666">=</span> P<span style="color:#666"></span>,
+    target<span style="color:#666"></span> <span style="color:#666">=</span> target<span style="color:#666"></span>,
+    pairs<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">5</span>,
+    ɛ<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1e-9</span>,
+    min_dimension<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">5</span>,
+    max_dimension<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">10</span>,
+    max_iter<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">200</span>,
+    verbose<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">true</span>
+)</code></pre></div>
+<p>It converges to the eigenvalues 49999, 50000, 50001, 50002 and 50004:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#666">50004.00000000014</span> <span style="color:#666">+</span> <span style="color:#666">3.5749921718300463e-12</span><span style="color:#a2f">im</span>
+<span style="color:#666">49999.999999986496</span> <span style="color:#666">-</span> <span style="color:#666">7.348301591250897e-12</span><span style="color:#a2f">im</span>
+<span style="color:#666">50001.00000000359</span> <span style="color:#666">-</span> <span style="color:#666">1.9761169705101647e-11</span><span style="color:#a2f">im</span>
+<span style="color:#666">49998.99999999998</span> <span style="color:#666">-</span> <span style="color:#666">1.0866253642291695e-10</span><span style="color:#a2f">im</span>
+<span style="color:#666">50002.00000000171</span> <span style="color:#666">-</span> <span style="color:#666">2.3559720511618024e-11</span><span style="color:#a2f">im</span></code></pre></div>
+<p>It does not yet detect 50003, but that might happen when <code>pairs</code> is increased a bit. As a result of our preconditioner, Jacobi-Davidson converges very quickly:</p>
+
+<p><img src="../../../../images/blog/2017-08-23-native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/resnorm.svg" alt="Residual norm" /></p>
+
+<p>It&rsquo;s not easy to construct a preconditioner this good for any given problem, but usually people tend to know what works well in specific classes of problems. If no specific preconditioner is availabe, you can always try a general one such as ILU. The next section illustrates that.</p>
+
+<h3 id="ilu-example">ILU example</h3>
+
+<p>As an example of how ILU can be used we generate a non-symmetric, banded matrix having a structure that typically arises in finite differences schemes of three-dimensional problems:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">n<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">64</span>
+N<span style="color:#666"></span> <span style="color:#666">=</span> n<span style="color:#666"></span><span style="color:#666">^</span><span style="color:#666">3</span>
+A<span style="color:#666"></span> <span style="color:#666">=</span> spdiagm<span style="color:#666"></span>((fill<span style="color:#666"></span>(<span style="color:#666">-</span><span style="color:#666">1.0</span>, n<span style="color:#666"></span> <span style="color:#666">-</span> <span style="color:#666">1</span>), fill<span style="color:#666"></span>(<span style="color:#666">3.0</span>, n<span style="color:#666"></span>), fill<span style="color:#666"></span>(<span style="color:#666">-</span><span style="color:#666">2.0</span>, n<span style="color:#666"></span> <span style="color:#666">-</span> <span style="color:#666">1</span>)), (<span style="color:#666">-</span><span style="color:#666">1</span>, <span style="color:#666">0</span>, <span style="color:#666">1</span>))
+Id<span style="color:#666"></span> <span style="color:#666">=</span> speye<span style="color:#666"></span>(n<span style="color:#666"></span>)
+A<span style="color:#666"></span> <span style="color:#666">=</span> kron<span style="color:#666"></span>(A<span style="color:#666"></span>, Id<span style="color:#666"></span>) <span style="color:#666">+</span> kron<span style="color:#666"></span>(Id<span style="color:#666"></span>, A<span style="color:#666"></span>)
+A<span style="color:#666"></span> <span style="color:#666">=</span> kron<span style="color:#666"></span>(A<span style="color:#666"></span>, Id<span style="color:#666"></span>) <span style="color:#666">+</span> kron<span style="color:#666"></span>(Id<span style="color:#666"></span>, A<span style="color:#666"></span>)
+x<span style="color:#666"></span> <span style="color:#666">=</span> ones<span style="color:#666"></span>(N<span style="color:#666"></span>)
+b<span style="color:#666"></span> <span style="color:#666">=</span> A<span style="color:#666"></span> <span style="color:#666">*</span> x<span style="color:#666"></span></code></pre></div>
+<p>The matrix $A$ has size $64^3 \times 64^3$. We want to solve the problem $Ax = b$ using for instance BiCGStab(2), but it turns out that convergence can get slow when the size of the problem grows. A quick benchmark shows it takes about 2.0 seconds to solve the problem to a reasonable tolerance:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#666">&gt;</span> <span style="color:#a2f;font-weight:bold">using</span> BenchmarkTools<span style="color:#666"></span>, IterativeSolvers<span style="color:#666"></span>
+<span style="color:#666">&gt;</span> my_x<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f">@btime</span><span style="color:#666"></span> bicgstabl<span style="color:#666"></span>(<span style="color:#666">$</span>A<span style="color:#666"></span>, <span style="color:#666">$</span>b<span style="color:#666"></span>, <span style="color:#666">2</span>, max_mv_products<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">2000</span>);
+<span style="color:#666">2.051</span> s<span style="color:#666"></span>
+<span style="color:#666">&gt;</span> norm<span style="color:#666"></span>(b<span style="color:#666"></span> <span style="color:#666">-</span> A<span style="color:#666"></span> <span style="color:#666">*</span> my_x<span style="color:#666"></span>) <span style="color:#666">/</span> norm<span style="color:#666"></span>(b<span style="color:#666"></span>)
+<span style="color:#666">1.6967043606691152e-9</span></code></pre></div>
+<p>Now let&rsquo;s construct the ILU factorization:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#666">&gt;</span> <span style="color:#a2f;font-weight:bold">using</span> ILU<span style="color:#666"></span>
+<span style="color:#666">&gt;</span> LU<span style="color:#666"></span> <span style="color:#666">=</span> crout_ilu<span style="color:#666"></span>(A<span style="color:#666"></span>, τ<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">0.1</span>)
+<span style="color:#666">&gt;</span> nnz<span style="color:#666"></span>(LU<span style="color:#666"></span>) <span style="color:#666">/</span> nnz<span style="color:#666"></span>(A<span style="color:#666"></span>)
+<span style="color:#666">2.1180353639352374</span></code></pre></div>
+<p>Using the above drop tolerance $\tau$, our ILU factorization stores only about twice as many entries as the original matrix, which is reasonable. Let&rsquo;s see what happens when we benchmark the solver again, now with ILU as a preconditioner:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#666">&gt;</span> my_x<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f">@btime</span><span style="color:#666"></span> bicgstabl<span style="color:#666"></span>(<span style="color:#666">$</span>A<span style="color:#666"></span>, <span style="color:#666">$</span>b<span style="color:#666"></span>, <span style="color:#666">2</span>, Pl<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">$</span>LU<span style="color:#666"></span>, max_mv_products<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">2000</span>);
+<span style="color:#666">692.187</span> ms<span style="color:#666"></span>
+<span style="color:#666">&gt;</span> norm<span style="color:#666"></span>(b<span style="color:#666"></span> <span style="color:#666">-</span> A<span style="color:#666"></span> <span style="color:#666">*</span> my_x<span style="color:#666"></span>) <span style="color:#666">/</span> norm<span style="color:#666"></span>(b<span style="color:#666"></span>)
+<span style="color:#666">2.133397068536056e-9</span></code></pre></div>
+<p>It solves the problem 66% faster to the same tolerance. There is of course a caveat, as constructing the preconditioner itself takes time as well:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#666">&gt;</span> LU<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f">@btime</span><span style="color:#666"></span> crout_ilu<span style="color:#666"></span>(<span style="color:#666">$</span>A<span style="color:#666"></span>, τ<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">0.1</span>);
+<span style="color:#666">611.019</span> ms<span style="color:#666"></span></code></pre></div>
+<p>So all in all the problem is solved about 36% faster. However, if we have multiple right-hand sides for the same matrix, we can construct the preconditioner only once and use it multiple times. Even when the matrix changes slightly you could reuse the ILU factorization. The latter is exactly what happens in Jacobi-Davidson.</p>
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+
+<p>I would really want to thank my GSoC mentor Andreas Noack for the many discussions we had in chat and video calls. Also I would like to thank the Julia community in general for giving me a warm welcome, both online and at JuliaCon 2017.</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>DiffEq Projects – Summer of Code</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../" id="logo">
+      <img src="../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br/>
+
+  <div class = "container">
+  
+
+<h1 id="hahahugoshortcode-s0-hbhb">DiffEq Projects – Summer of Code</h1>
+
+<h2 id="native-julia-ode-sde-dae-dde-and-s-pde-solvers">Native Julia ODE, SDE, DAE, DDE, and (S)PDE Solvers</h2>
+
+<p>The DifferentialEquations.jl ecosystem has an extensive set of state-of-the-art
+methods for solving differential equations. By mixing native methods and wrapped
+methods under the same dispatch system, <a href="https://arxiv.org/abs/1807.06430">DifferentialEquations.jl serves both as a system to deploy and research the most modern efficient methodologies</a>.
+While most of the basic methods have been developed and optimized, many newer
+methods need high performance implementations and real-world tests of their
+efficiency claims. In this project students will be paired with current
+researchers in the discipline to get a handle on some of the latest techniques
+and build efficient implementations into the *DiffEq libraries
+(OrdinaryDiffEq.jl, StochasticDiffEq.jl, DelayDiffEq.jl). Possible families of
+methods to implement are:</p>
+
+<ul>
+<li>Implicit-Explicit (IMEX) Methods</li>
+<li>Geometric (exponential) integrators</li>
+<li>Low memory Runge-Kutta methods</li>
+<li>Multistep methods specialized for second order ODEs (satellite simulation)</li>
+<li>Parallel (multithreaded) extrapolation (both explicit and implicit)</li>
+<li>Parallel Implicit Integrating Factor Methods (PDEs and SPDEs)</li>
+<li>Parallel-in-time ODE Methods</li>
+<li>Rosenbrock-W methods</li>
+<li>Approximate matrix factorization</li>
+<li>Runge-Kutta-Chebyschev Methods (high stability RK methods)</li>
+<li>Fully Implicit Runge-Kutta (FIRK) methods</li>
+<li>Anderson Acceleration</li>
+<li>Boundary value problem (BVP) solvers like MIRK and collocation methods</li>
+<li>BDF methods for differential-algebraic equations (DAEs)</li>
+<li>Methods for stiff stochastic differential equations</li>
+</ul>
+
+<p>Many of these methods are the basis of high-efficiency partial differential
+equation (PDE) solvers and are thus important to many communities like
+computational fluid dynamics, mathematical biology, and quantum mechanics.</p>
+
+<p><strong>Recommended Skills</strong>: Background knowledge in numerical analysis, numerical
+linear algebra, and the ability (or eagerness to learn) to write fast code.</p>
+
+<p><strong>Expected Results</strong>: Contributions of production-quality solver methods.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+<h2 id="neural-networks-for-solving-differential-equations">Neural networks for solving differential equations</h2>
+
+<p>Neural networks can be used as a method for efficiently solving difficult partial
+differential equations. Efficient implementations from recent papers are being
+explored as part of the <a href="https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl">NeuralNetDiffEq.jl</a>
+package. The <a href="https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl/issues">issue tracker</a>
+contains links to papers which would be interesting new neural network based methods to
+implement and benchmark against classical techniques.</p>
+
+<p><strong>Recommended Skills</strong>: Background knowledge in numerical analysis and machine learning.</p>
+
+<p><strong>Expected Results</strong>: New neural network based solver methods.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+<h2 id="performance-enhancements-for-differential-equation-solvers">Performance enhancements for differential equation solvers</h2>
+
+<p>Wouldn&rsquo;t it be cool to have had a part in the development of widely used efficient
+differential equation solvers? DifferentialEquations.jl has a wide range of existing
+methods and <a href="https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl">an extensive benchmark suite</a>
+which is used for tuning the methods for performance. Many of its methods are already the fastest
+in their class, but there is still a lot of performance enhancement work that can be done.
+In this project you can learn the details about a wide range of methods and dig into the
+optimization of the algorithm&rsquo;s strategy and the implementation in order to improve benhcmarks.
+Projects that could potentially improve the performance of the full differential equations
+ecosystem include:</p>
+
+<ul>
+<li>Alternative adaptive stepsize techniques and step optimization</li>
+<li>Pointer swapping tricks</li>
+<li>Quasi-Newton globalization and optimization</li>
+<li>Cache size reductions</li>
+<li>Enhanced within-method multithreading, distributed parallelism, and GPU usage</li>
+<li>Improved automated method choosing</li>
+<li>Adaptive preconditioning on large-scale (PDE) discretizations</li>
+</ul>
+
+<p><strong>Recommended Skills</strong>: Background knowledge in numerical analysis, numerical
+linear algebra, and the ability (or eagerness to learn) to write fast code.</p>
+
+<p><strong>Expected Results</strong>: Improved benchmarks to share with the community.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+<h2 id="discretizations-of-partial-differential-equations">Discretizations of partial differential equations</h2>
+
+<p>There are two ways to approach libraires for partial differential equations (PDEs):
+one can build &ldquo;toolkits&rdquo; which enable users to discretize any PDE but require knowledge
+of numerical PDE methods, or one can build &ldquo;full-stop&rdquo; PDE solvers for specific
+PDEs. There are many different ways solving PDEs could be approached, and here
+are some ideas for potential projects:</p>
+
+<ol>
+<li>Automated PDE discretization tooling. We want users to describe a PDE in its mathematical
+form and automate the rest of the solution process. See <a href="https://github.com/JuliaDiffEq/DifferentialEquations.jl/issues/469">this issue for details</a>.</li>
+<li>Enhancement of existing tools for discretizing PDEs. The finite differencing
+(FDM) library <a href="https://github.com/JuliaDiffEq/DiffEqOperators.jl">DiffEqOperators.jl</a>
+could be enahnced to allow non-uniform grids or composition of operators. The
+finite element method (FEM) library <a href="https://github.com/JuliaDiffEq/FEniCS.jl">FEniCS.jl</a>
+could wrap more of the FEniCS library.</li>
+<li>Full stop solvers of common fluid dynamical equations, such as diffusion-advection-
+convection equations, or of hyperbolic PDEs such as the Hamilton-Jacobi-Bellman
+equations would be useful to many users.</li>
+<li>Using stochastic differential equation (SDE) solvers to efficiently (and
+highly parallel) approximate certain PDEs.</li>
+<li>Development of ODE solvers for more efficiently solving specific types of
+PDE discretizations. See the &ldquo;Native Julia solvers for ordinary differential
+equations&rdquo; project.</li>
+</ol>
+
+<p><strong>Recommended Skills</strong>: Background knowledge in numerical methods for solving
+differential equations. Some basic knowledge of PDEs, but mostly a willingness
+to learn and a strong understanding of calculus and linear algebra.</p>
+
+<p><strong>Expected Results</strong>: A production-quality PDE solver package for some common PDEs.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+<h2 id="tools-for-global-sensitivity-analysis">Tools for global sensitivity analysis</h2>
+
+<p>Global Sensitivity Analysis is a popular tool to assess the affect that parameters
+have on a differential equation model. A good introduction <a href="http://discovery.ucl.ac.uk/19896/">can be found in this thesis</a>. Global Sensitivity Analysis tools can be
+much more efficient than Local Sensitivity Analysis tools, and give a better
+view of how parameters affect the model in a more general sense.
+The goal of this project would be to implement more global
+sensitivity analysis methods like the eFAST method into <a href="https://github.com/JuliaDiffEq/DiffEqSensitivity.jl">DiffEqSensitivity.jl</a> which
+can be used with any differential equation solver on the common interface.</p>
+
+<p><strong>Recommended Skills</strong>: An understanding of how to use DifferentialEquations.jl
+to solve equations.</p>
+
+<p><strong>Expected Results</strong>: Efficient functions for performing global sensitivity
+analysis.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+<h2 id="parameter-identifiability-analysis">Parameter identifiability analysis</h2>
+
+<p>Parameter identifiability analysis is an analysis that describes whether the
+parameters of a dynamical system can be identified from data or whether they
+are redundent. There are two forms of identifiability analysis: structural
+and practical. Structural identifiability analysis relates changes in the
+solution of the ODE directly to other parameters, showcasing that it is
+impossible to distinguish between parameter A being higher and parameter B
+being lower, or the vice versa situation, given only data about the solution
+because of how the two interact. This could be done directly on the symbolic
+form of the equation as part of
+<a href="https://github.com/JuliaDiffEq/ModelingToolkit.jl">ModelingToolkit.jl</a>.
+Meanwhile, practical identifiability analysis looks as to whether the parameters
+are non-identifiable in a practical sense, for example if two parameters are
+numerically indistinguishable (given possibly noisy data). In this case, numerical
+techniques being built in DiffEqSensitivity.jl, such as a
+<a href="https://github.com/JuliaDiffEq/DiffEqSensitivity.jl/issues/109">nonlinear likelihood profiler</a>
+or an
+<a href="https://github.com/JuliaDiffEq/DiffEqSensitivity.jl/issues/108">information sensitivity measure</a>
+can be used to showcase whether a parameter has a unique enough effect to be determined.</p>
+
+<p><strong>Recommended Skills</strong>: A basic background in differential equations and the ability to use
+numerical ODE solver libraries. Background in the numerical analysis of differential equation
+solvers is not required.</p>
+
+<p><strong>Expected Results</strong>: Efficient and high-quality implementations of parameter identifiability
+methods.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+<h2 id="model-order-reduction">Model Order Reduction</h2>
+
+<p>Model order reduction is a technique for automatically finding a small model which approximates
+the large model but is computationally much cheaper. We plan to use the infrustructure built
+by ModelingToolkit.jl to <a href="https://github.com/JuliaDiffEq/ModelingToolkit.jl/issues/58">implement a litany of methods</a>
+and find out the best way to accelerate differential equation solves.</p>
+
+<p><strong>Recommended Skills</strong>: A basic background in differential equations and the ability to use
+numerical ODE solver libraries. Background in the numerical analysis of differential equation
+solvers is not required.</p>
+
+<p><strong>Expected Results</strong>: Efficient and high-quality implementations of model order reduction methods.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+<h2 id="automated-symbolic-manipulations-of-differential-equation-systems">Automated symbolic manipulations of differential equation systems</h2>
+
+<p>Numerically solving a differential equation can be difficult, and thus it can be helpful for
+users to simplify their model before handing it to the solver. Alas this takes time&hellip; so
+let&rsquo;s automate it! <a href="https://github.com/JuliaDiffEq/ModelingToolkit.jl">ModelingToolkit.jl</a> is
+a project for automating the model transformation process. Various parts of the library are
+still open, such as:</p>
+
+<ul>
+<li>Support for DAEs, DDEs, and SDEs</li>
+<li>Pantelides algorithm for DAE index reduction</li>
+<li>Lamperti transforms</li>
+<li>Automatic construction of adjoint solutions</li>
+<li>Tearing in nonlinear solvers</li>
+<li>Solving distributed delay equations</li>
+</ul>
+
+<p><strong>Recommended Skills</strong>: A basic background in differential equations and the ability to use
+numerical ODE solver libraries. Background in the numerical analysis of differential equation
+solvers is not required.</p>
+
+<p><strong>Expected Results</strong>: Efficient and high-quality implementations of model transformation methods.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+<h2 id="integration-of-fenics-jl-with-dolfin-adjoint-zygote-jl-for-scientific-machine-learning">Integration of FEniCS.jl with dolfin-adjoint + Zygote.jl for Scientific Machine Learning</h2>
+
+<p>Scientific machine learning requires mixing scientific computing libraries with machine learning.
+<a href="https://www.stochasticlifestyle.com/the-essential-tools-of-scientific-machine-learning-scientific-ml/">This blog post highlights how the tooling of Julia is fairly advanced in this field</a> compared to alternatives such as Python,
+but one area that has not been completely worked out is integration of automatic differentiation
+with partial differential equations.
+<a href="https://github.com/JuliaDiffEq/FEniCS.jl">FEniCS.jl</a> is a wrapper to the
+<a href="https://fenicsproject.org/">FEniCS</a> project for finite element solutions of partial differential
+equations. We would like to augment the Julia wrappers to allow for integration with Julia&rsquo;s
+automatic differentiation libraries like <a href="https://github.com/FluxML/Zygote.jl">Zygote.jl</a> by
+using <a href="http://www.dolfin-adjoint.org/en/release/">dolfin-adjoint</a>. This would require setting up
+this library for automatic installation for Julia users and writing adjoint passes which utilize
+this adjoint builder library. It would result in the first total integration between PDEs and
+neural networks.</p>
+
+<p><strong>Recommended Skills</strong>: A basic background in differential equations and Python. Having previous
+Julia knowledge is preferred but not strictly required.</p>
+
+<p><strong>Expected Results</strong>: Efficient and high-quality implementations of adjoints for Zygote.jl over FEniCS.jl functions.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+  </div>
+  <br /><br />
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../v2/js/jquery.min.js"></script>
+<script src="../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../v2/js/platform.js"></script>
+<script src="../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+  <script src="../../../v2/js/jquery.min.js"></script>
+<script src="../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../v2/js/platform.js"></script>
+<script src="../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

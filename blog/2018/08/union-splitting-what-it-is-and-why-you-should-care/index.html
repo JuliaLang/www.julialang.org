@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Union-splitting: what it is, and why you should care</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>Union-splitting: what it is, and why you should care</h1>
+
+    <p class="metadata">
+      <span class="timestamp">09 August, 2018</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author"><a href="https://github.com/timholy">Tim Holy</a></span>
+      
+    </p>
+
+    <p>Among those who follow Julia&rsquo;s development closely, one of the (many) new features causing great excitement is something called &ldquo;Union-splitting.&rdquo;
+Here at JuliaCon 2018 I&rsquo;ve found myself explaining this feature repeatedly, so I thought I&rsquo;d write this blog post to help disseminate this important information more widely.
+Let me start by saying that I&rsquo;m not the expert here&mdash;this is a feature added by Jameson Nash and Jacob Quinn, and enhanced by optimizer improvements by Keno Fisher&mdash;but I am one of the many people truly excited about how this is already changing how I write Julia code.</p>
+
+<p>Here&rsquo;s the background: in the old days, you had to take great care to make sure that nearly every function you wrote returned a predictable type.
+Experienced Julia programmers regularly reached for a tool, <code>@code_warntype</code>, to check whether code exhibited the dreaded &ldquo;type instability.&rdquo;
+This was code that returned (as determined by Julia&rsquo;s inference engine) objects either of type <code>Any</code> or objects of type <code>Union{Type1, Type2, ...}</code>.
+The first meant that the inference engine was unable to make any specific statements about the return type; the latter meant that inference was able to determine a specific list of possible return types.
+Unfortunately, the compiler wasn&rsquo;t particularly good at taking advantage of this partial knowledge, and so in practice either of these outcomes predictably implied very bad things for the performance of your code.</p>
+
+<p>Fast forward to 0.7 and 1.0, and the landscape is both &ldquo;the same&rdquo; and &ldquo;completely different.&rdquo;
+By this I mean that <code>Any</code> still indicates a likely problem, as the compiler can&rsquo;t do anything to optimize the code.
+But often, <code>Union{Type1, Type2, ...}</code> is nothing to worry about, because it causes little or no performance hit of any kind.</p>
+
+<p>How does this magic work?
+Very briefly, let&rsquo;s imagine you have a block of code inside a function that looks like this:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">    ret1<span style="color:#666"></span> <span style="color:#666">=</span> function1<span style="color:#666"></span>(args<span style="color:#666"></span><span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>)
+    ret2<span style="color:#666"></span> <span style="color:#666">=</span> function2<span style="color:#666"></span>(ret1<span style="color:#666"></span>, <span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>)
+    ret3<span style="color:#666"></span> <span style="color:#666">=</span> function3<span style="color:#666"></span>(ret1<span style="color:#666"></span>, ret2<span style="color:#666"></span>, <span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>)
+    <span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span></code></pre></div>
+<p>Let&rsquo;s imagine that <code>ret1</code> can be one of two types, <code>A</code> or <code>B</code> (i.e, <code>Union{A,B}</code>).
+In older versions of Julia, here&rsquo;s what would happen: starting after <code>function1</code>, the compiler would say &ldquo;I can&rsquo;t tell which method of <code>function2</code> should be used.&rdquo;
+So it wouldn&rsquo;t specialize any of the code
+thereafter; instead, each time this block got executed, it would take the actual type of <code>ret1</code> and start poring through the method tables,  performing type-intersection trying to find an applicable compiled version of <code>function2</code>.
+The computations involved in type intersection, while very well optimized, are nevertheless quite demanding, and consequently the &ldquo;method lookup&rdquo; step was quite slow (especially for functions that had tens or hundreds of methods).</p>
+
+<p>In Julia 0.7 and 1.0, the compiler does something quite different: it automatically (without any effort on your part) compiles the block above to something that schematically looks like this:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">    ret1<span style="color:#666"></span> <span style="color:#666">=</span> function1<span style="color:#666"></span>(args<span style="color:#666"></span><span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>)    <span style="color:#080;font-style:italic"># ret1 isa Union{A,B}</span>
+    <span style="color:#a2f;font-weight:bold">if</span> ret1<span style="color:#666"></span> <span style="color:#a2f">isa</span> A<span style="color:#666"></span>
+        ret2<span style="color:#666"></span> <span style="color:#666">=</span> function2_specialized_for_A<span style="color:#666"></span>(ret1<span style="color:#666"></span>, <span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>)
+        ret3<span style="color:#666"></span> <span style="color:#666">=</span> function3_specialized_for_A<span style="color:#666"></span>(ret1<span style="color:#666"></span>, ret2<span style="color:#666"></span>, <span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>)
+        <span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>
+    <span style="color:#a2f;font-weight:bold">else</span>
+        ret2<span style="color:#666"></span> <span style="color:#666">=</span> function2_specialized_for_B<span style="color:#666"></span>(ret1<span style="color:#666"></span>, <span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>)
+        ret3<span style="color:#666"></span> <span style="color:#666">=</span> function3_specialized_for_B<span style="color:#666"></span>(ret1<span style="color:#666"></span>, ret2<span style="color:#666"></span>, <span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>)
+        <span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>
+    <span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+<p>The difference here is huge.
+While Julia can&rsquo;t know ahead of time the precise type of <code>ret1</code>, within the first block it definitely is of type <code>A</code> (because it checked), and within the second block it is definitely of type <code>B</code> (because that&rsquo;s the only other option).
+Consequently, Julia can <strong>look up the appropriate compiled methods for <code>function2</code> and <code>function3</code> at compile time rather than run time</strong>, and that allows it to be blazingly fast when you actually run it.</p>
+
+<p>Now, I hear some of you saying, &ldquo;but there&rsquo;s that branch in there, and branches are slow compared to many other CPU instructions.&rdquo;
+True enough.
+But a single branch is almost inconsequential compared to method lookup; moreover, in cases where Union-splitting gets used, it&rsquo;s often the case that you would have needed that branch anyway.
+In such cases, the cost is literally zero.</p>
+
+<p>To illustrate why, consider the operation <code>findfirst(isequal(7), A)</code> for an array <code>A</code>, which formerly always returned an integer indicating the first index of <code>A</code> at which it found the value 7.
+One problematic case arises: what if <code>A</code> doesn&rsquo;t contain any 7s?
+Previously, we used to return 0, and the receiver had to check <code>if ret1 == 0</code> to determine whether execution needed to divert to error-handling code.
+Consequently, in properly-written code there was no getting away from needing that branch.
+Worse, if you forgot to check, and <code>function2</code> didn&rsquo;t error when you passed it 0, then you would likely get a meaningless answer.
+That is far worse than getting an error, because it&rsquo;s much harder to track down where wrong results come from.</p>
+
+<p>In Julia 0.7 and 1.0, Milan Bouchet-Valat rewrote all of our <code>find*</code> functions, of which one change (among many) was that <code>findfirst</code> now returns <code>nothing</code> when it fails to find the requested value.
+Unlike the old approach of returning 0, this return value is truly unambigous and robust against generalizations of indexing where 0 might be a perfectly valid array index.
+It also gives you more reliable code, because if you forget to check, really there&rsquo;s not much you can do with <code>nothing</code> that doesn&rsquo;t trigger a (very welcome) error.
+And thanks to Union-splitting, it doesn&rsquo;t cause any kind of performance penalty whatsoever.</p>
+
+<p>So, while Union-splitting might initially sound like some kind of arcane feature of interest only to compiler gurus, the reality is that it changes how you should be designing your code, and it allows more understandable and robust software.
+That&rsquo;s the kind of feature everyone can appreciate.</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

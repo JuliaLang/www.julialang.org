@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Profiling tool wins and woes.</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>Profiling tool wins and woes.</h1>
+
+    <p class="metadata">
+      <span class="timestamp">16 September, 2019</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author"><a href="http://github.com/vtjnash/">Jameson Nash</a></span>
+      
+    </p>
+
+    
+
+<p>Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: <a href="http://www.brendangregg.com/flamegraphs.html">brendangregg&rsquo;s often cloned flamegraphs tool</a> was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.</p>
+
+<h2 id="learn-more">Learn more!</h2>
+
+<p>If you want to learn how they are supposed to work, I suggest looking at other resources first, such as:</p>
+
+<ul>
+<li>Julia Evans on learning to be a wizard: <a href="https://wizardzines.com/zines/perf/">https://wizardzines.com/zines/perf/</a></li>
+<li>Julia Evans taking a sabbatical to write a profiler tool: <a href="https://jvns.ca/categories/ruby-profiler/">https://jvns.ca/categories/ruby-profiler/</a></li>
+<li>Brendan Gregg on perf: <a href="http://www.brendangregg.com/perf.html">http://www.brendangregg.com/perf.html</a></li>
+<li>Brendan Gregg on flamegraphs: <a href="http://www.brendangregg.com/flamegraphs.html">http://www.brendangregg.com/flamegraphs.html</a></li>
+</ul>
+
+<p>Then come back here to dive deeper!</p>
+
+<h2 id="deep-dive-into-deeper-stacks">Deep Dive into Deeper Stacks</h2>
+
+<p>I wanted to look into a couple profilers to see how they would handle recursion. This is a tricky area, both in getting compilers to output useful benchmarks, and in getting profiling tools to summarize the interpretation of it. And since I work on Julia, I can try to fix problems I find there, making the world a better place! For the other tools I tested, I&rsquo;m hoping this collection of observations may help those projects learn ways to improve from other projects. So if it seems I&rsquo;m just enjoying finding problems, that&rsquo;s true, but I also am also actively making fixes and improvements through this effort.</p>
+
+<h2 id="unit-under-test">Unit Under Test</h2>
+
+<p>We&rsquo;re going to use recursive Fibonacci as our test function, since it&rsquo;s dead simple to write in most languages, but we don&rsquo;t see compilers getting &ldquo;too clever&rdquo; and eliminating the recursion. Here&rsquo;s the basic formulation we&rsquo;ll use:</p>
+<pre><code>fib(n) :
+    n > 1 => fib(n - 1) + fib(n - 2)
+    else  => 1</code></pre>
+<p>Furthermore, we&rsquo;ll also try making each of those recursive calls actually indirect through another function to give a slightly more complex backtrace:</p>
+<pre><code>fib_r(n) : fib(n)</code></pre>
+<h2 id="profiling-c-code">Profiling C code</h2>
+
+<p>First, let&rsquo;s look at a sample C program:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">fib</span>(<span style="color:#0b0;font-weight:bold">int</span> n);
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">fib_r</span>(<span style="color:#0b0;font-weight:bold">int</span> n) {
+    <span style="color:#a2f;font-weight:bold">return</span> fib(n);
+}
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">fib</span>(<span style="color:#0b0;font-weight:bold">int</span> n) {
+    <span style="color:#a2f;font-weight:bold">return</span> n <span style="color:#666">&gt;</span> <span style="color:#666">1</span> <span style="color:#666">?</span> fib_r(n <span style="color:#666">-</span> <span style="color:#666">1</span>) <span style="color:#666">+</span> fib_r(n <span style="color:#666">-</span> <span style="color:#666">2</span>) <span style="color:#666">:</span> <span style="color:#666">1</span>;
+}
+<span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">main</span>(<span style="color:#0b0;font-weight:bold">void</span>) {
+    <span style="color:#a2f;font-weight:bold">return</span> fib(<span style="color:#666">40</span>);
+}</code></pre></div>
+<p>On my macOS machine, this takes on the order of one second, so that&rsquo;s usually a good number of samples. I&rsquo;m going to use a few options to prevent certain stack optimizations, and otherwise let the compiler do it&rsquo;s best. The <code>-fno-optimize-sibling-calls</code> option prohibits the compiler from using a tailcall, which ensures <code>fib_r</code> stays in the stacktrace recording and that <code>fib</code> can&rsquo;t be partially optimized into a loop. The <code>-fno-inline</code> is there to help preserve the predictability of the record.</p>
+<pre><code>$ clang -Wall -Werror -pedantic -std=c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c -o fib
+$ time ./fib
+real    0m0.723s
+user    0m0.717s
+sys     0m0.003s
+$ instruments -t "Time Profiler" ./fib
+Instruments Trace Complete: instrumentscli0.trace
+$ open instrumentscli0.trace</code></pre>
+<p>In <code>Instruments.app</code>, this does quite well, except for one peculiar combination of options.</p>
+
+<p><img src="../../../../images/blog/2019-09-16-profilers/profile-instruments-bad.png" alt="Instruments.app bad result" /></p>
+
+<p>I don&rsquo;t know how it computed those numbers, but note that the total runtime was 738 ms, so all those numbers that are some multiple of that (1.47 s, 1.15 s, 230 ms) are wrong.</p>
+
+<p>But in any other mode, we can see that it&rsquo;s on the right track:</p>
+
+<p><img src="../../../../images/blog/2019-09-16-profilers/profile-instruments-good.png" alt="Instruments.app good result" /></p>
+
+<p>The only problem I can identify here is that all of the self-weights are zero in this view. In the source code view, the lines are properly annotated with counts.</p>
+
+<p>On Linux, with the <code>perf</code> tool, this is pretty similar to use:</p>
+<pre><code>$ gcc -Wall -Werror -pedantic -std=c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c
+$ perf record --call-graph dwarf ./a.out
+[ perf record: Woken up 153 times to write data ]
+[ perf record: Captured and wrote 38.221 MB perf.data (4748 samples) ]</code></pre>
+<p>But I couldn&rsquo;t get this to generate a satisfactory report. I think the fault is with the dwarf implementation, so it seems you should be careful when using it to make decisions.</p>
+<pre><code>$ perf report --stdio --call-graph=none
+# Total Lost Samples: 0
+#
+# Samples: 4K of event 'cycles:uppp'
+# Event count (approx.): 3344003009
+#
+# Children      Self  Command  Shared Object     Symbol
+# ........  ........  .......  ................  ..................................
+#
+    64.22%    64.22%  a.out    a.out             [.] fib
+    43.30%    35.77%  a.out    a.out             [.] fib_r
+     8.75%     0.00%  a.out    [unknown]         [.] 0x00007ffc2454634f
+     7.52%     0.00%  a.out    a.out             [.] _start
+     7.52%     0.00%  a.out    a.out             [.] main</code></pre>
+<p>I tried various options including <code>-gdwarf-2</code>, <code>-gdwarf-4</code>, <code>-fno-omit-frame-pointer</code><sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>, and switching to <code>clang</code>. None of those helped much.
+With FPO disabled, the clang results were much better than with gcc (both improved), but clang&rsquo;s output was also a smidgen slower running,
+so that might be a contributing factor (more overhead).</p>
+
+<p>But combining the compiler option <code>-fno-omit-frame-pointer</code> with the perf option <code>--call-graph fp</code> worked.</p>
+<pre><code>$ perf report --stdio --call-graph=none
+# Total Lost Samples: 0
+#
+# Samples: 4K of event 'cycles:uppp'
+# Event count (approx.): 2752040208
+#
+# Children      Self  Command  Shared Object     Symbol
+# ........  ........  .......  ................  ..........................
+#
+    99.99%    65.02%  a.out    a.out             [.] fib
+    99.99%    34.97%  a.out    a.out             [.] fib_r
+    99.99%     0.00%  a.out    a.out             [.] main
+    99.99%     0.00%  a.out    libc-2.27.so      [.] __libc_start_main
+    99.99%     0.00%  a.out    [unknown]         [.] 0x077e258d4c544155</code></pre>
+<p>Here we see it&rsquo;s got the right children (total) and self weights!</p>
+
+<p>There&rsquo;s also a bunch of other options for <code>--call-graph</code>, but all of them spewed vast amounts of (mis)information, so I&rsquo;ve opted not to try to fit that in here.</p>
+
+<h2 id="profiling-julialang-code">Profiling JuliaLang code</h2>
+
+<p>Now let&rsquo;s see how JuliaLang (v1.3) does:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@noinline</span><span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">function</span> fib<span style="color:#666"></span>(n<span style="color:#666"></span>)
+         <span style="color:#a2f;font-weight:bold">return</span> n<span style="color:#666"></span> <span style="color:#666">&gt;</span> <span style="color:#666">1</span> <span style="color:#666">?</span> fib_r<span style="color:#666"></span>(n<span style="color:#666"></span> <span style="color:#666">-</span> <span style="color:#666">1</span>) <span style="color:#666">+</span> fib_r<span style="color:#666"></span>(n<span style="color:#666"></span> <span style="color:#666">-</span> <span style="color:#666">2</span>) <span style="color:#666">:</span> <span style="color:#666">1</span>
+       <span style="color:#a2f;font-weight:bold">end</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@noinline</span><span style="color:#666"></span> fib_r<span style="color:#666"></span>(n<span style="color:#666"></span>) <span style="color:#666">=</span> fib<span style="color:#666"></span>(n<span style="color:#666"></span>)
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> fib<span style="color:#666"></span>(<span style="color:#666">40</span>)
+  <span style="color:#666">0.738735</span> seconds<span style="color:#666"></span> (<span style="color:#666">3.16</span> k<span style="color:#666"></span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">176.626</span> KiB<span style="color:#666"></span>)
+<span style="color:#666">165580141</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f;font-weight:bold">using</span> Profile<span style="color:#666"></span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@profile</span><span style="color:#666"></span> fib<span style="color:#666"></span>(<span style="color:#666">40</span>)
+<span style="color:#666">165580141</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> Profile<span style="color:#666"></span><span style="color:#666">.</span>print<span style="color:#666"></span>(format<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">:</span>flat<span style="color:#666"></span>, sortedby<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">:</span>count<span style="color:#666"></span>)
+ Count<span style="color:#666"></span> File<span style="color:#666"></span>      Line<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Function</span>
+    <span style="color:#666">12</span> int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span>      <span style="color:#666">52</span> <span style="color:#666">-</span>
+    <span style="color:#666">14</span> int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span>      <span style="color:#666">53</span> <span style="color:#666">+</span>
+   <span style="color:#666">212</span> boot<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span>    <span style="color:#666">330</span> eval<span style="color:#666"></span>
+  <span style="color:#666">5717</span> REPL<span style="color:#666"></span>[<span style="color:#666">2</span>]      <span style="color:#666">1</span> fib_r<span style="color:#666"></span>
+  <span style="color:#666">6028</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]      <span style="color:#666">2</span> fib<span style="color:#666"></span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> count<span style="color:#666"></span>(<span style="color:#666">=</span><span style="color:#666">=</span>(<span style="color:#666">0</span>), Profile<span style="color:#666"></span><span style="color:#666">.</span>fetch<span style="color:#666"></span>())
+<span style="color:#666">585</span></code></pre></div>
+<p>So that&rsquo;s pretty bad—we appear to have about 212 samples, going by the counts on the <code>eval</code> function at the top of the stack. And we&rsquo;re told that about 2000% of the time was in <code>fib</code>. Clearly not true. What happened here? We computed that <code>fib</code> (and <code>fib_r</code>) each appeared an average of 10-20 times in every backtrace, so we over-represent them in our flat-format output. OK, so first thing to do is to fix that: each frame should only be counted once towards each output line.</p>
+
+<p>But there&rsquo;s also the recursive option, which doesn&rsquo;t suffer from this particular issue. So how does it fare:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> Profile<span style="color:#666"></span><span style="color:#666">.</span>print<span style="color:#666"></span>(format<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">:</span>tree<span style="color:#666"></span>)
+<span style="color:#666">260</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>(<span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int64</span>)
+<span style="color:#666">112</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>(<span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int64</span>)
+<span style="color:#666">212</span> task<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">333</span>; REPL<span style="color:#666"></span><span style="color:#666">.</span>var<span style="color:#666"></span><span style="color:#b44">&#34;</span><span style="color:#b44">#</span><span style="color:#b44">#</span><span style="color:#b44">2</span><span style="color:#b44">6</span><span style="color:#b44">#</span><span style="color:#b44">2</span><span style="color:#b44">7</span><span style="color:#b44">&#34;</span>
+ <span style="color:#666">212</span> REPL<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">118</span>; <span style="color:#a2f;font-weight:bold">macro</span> expansion<span style="color:#666"></span>
+  <span style="color:#666">212</span> REPL<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">86</span>; eval_user_input<span style="color:#666"></span>
+   <span style="color:#666">212</span> boot<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">330</span>; eval<span style="color:#666"></span>
+  ╎<span style="color:#666"></span> <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>  <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>   <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>     <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">210</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">209</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">208</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">208</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">208</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">208</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">208</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">208</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">206</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">205</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">203</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">201</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">199</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">199</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">196</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">194</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">190</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">187</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">1</span>   REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">175</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">170</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">4</span>   REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">151</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">143</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">2</span>   REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">120</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">109</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">85</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">76</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">56</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">48</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">3</span>  REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">28</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">26</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">10</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">7</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">2</span>; fib<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">2</span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>; fib_r<span style="color:#666"></span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">1</span> int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">52</span>; <span style="color:#666">-</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">1</span>  int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">53</span>; <span style="color:#666">+</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">1</span>  int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">52</span>; <span style="color:#666">-</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">1</span>  int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">52</span>; <span style="color:#666">-</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">1</span>  int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">53</span>; <span style="color:#666">+</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">4</span>  int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">52</span>; <span style="color:#666">-</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">5</span>   int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">53</span>; <span style="color:#666">+</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">2</span>   int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">52</span>; <span style="color:#666">-</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">2</span>   int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">53</span>; <span style="color:#666">+</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">2</span>   int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">52</span>; <span style="color:#666">-</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>     <span style="color:#666">1</span>   int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">53</span>; <span style="color:#666">+</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>   <span style="color:#666">1</span>   int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">52</span>; <span style="color:#666">-</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span> <span style="color:#666">1</span>   int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">53</span>; <span style="color:#666">+</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    <span style="color:#666">1</span>   int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">53</span>; <span style="color:#666">+</span>
+  ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>    ╎<span style="color:#666"></span>  <span style="color:#666">2</span>   int<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">53</span>; <span style="color:#666">+</span></code></pre></div>
+<p>We also see this has issues with identifying the stack in many cases (almost 40% failed!), similar to <code>perf</code>. One way to improve that (reducing to ~10% failure rate) is to disable the omit-frame-pointer option, like we did before. Currently this requires this source code change:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#000080;font-weight:bold">diff --git a/src/jitlayers.cpp b/src/jitlayers.cpp
+</span><span style="color:#000080;font-weight:bold"></span><span style="color:#000080;font-weight:bold">index cf339d8a4b..f6e9c08e2c 100644
+</span><span style="color:#000080;font-weight:bold"></span><span style="color:#a00000">--- a/src/jitlayers.cpp
+</span><span style="color:#a00000"></span><span style="color:#00a000">+++ b/src/jitlayers.cpp
+</span><span style="color:#00a000"></span><span style="color:#800080;font-weight:bold">@@ -3,9 +3,7 @@
+</span><span style="color:#800080;font-weight:bold"></span> #include &#34;llvm-version.h&#34;
+ #include &#34;platform.h&#34;
+ #include &#34;options.h&#34;
+<span style="color:#a00000">-#if defined(_OS_WINDOWS_) || defined(_OS_FREEBSD_)
+</span><span style="color:#a00000"></span> #  define JL_DISABLE_FPO
+<span style="color:#a00000">-#endif
+</span><span style="color:#a00000"></span> 
+ #include &lt;iostream&gt;
+ #include &lt;sstream&gt;
+</code></pre></div>
+<p>But otherwise, this seems fairly accurate, but yikes, what an arrow! I needed over 40 frames this way, and that makes this pretty hard to interpret.
+Spiky frame-graphs like this can be quite misleading to look at since it&rsquo;s the sum of the widths that&rsquo;s important, but the most visually compelling areas (the spikes) are an orthogonal axis.
+And so this layout can make it really hard to see where the time is being spent in aggregate, especially with recursion causing the height of the important widths to shift vertically.</p>
+
+<p>Julia implements several options, including <code>noisefloor</code>, <code>mincount</code> and <code>maxdepth</code>, to help with many situations, but they do nothing for this example.
+The <code>mincount</code> option (also present in <code>Instruments.app</code> for min and max # samples; and in <code>perf</code> as a min percent threshold) drops any line that doesn&rsquo;t meet that threshold. The <code>maxdepth</code> option (aka <code>print_limit</code> in <code>perf</code>) cuts off the tree after some recursion limit.
+The <code>noisefloor</code> option is similar to <code>mincount</code>, but operates as a relative fraction of the noise estimate in the parent frame, instead of a constant threshold (I&rsquo;m not aware of a similar option in other tools). This can help hide frames from the tree that contribute little to the immediate performance. This is based on the value engineering principle of focusing on the largest contributors first and the <a href="https://github.com/JuliaLang/julia/pull/18043">statistical measure of sampling noise</a> given as <code>child &lt; noisefloor*sqrt(parent)</code>. For many problems, these options can be greatly beneficial to quickly isolate the biggest contributors.</p>
+
+<p>However, none of these option are helpful for our tree above. We need more tools in our toolbox!</p>
+
+<p>Let&rsquo;s now examine how we can try to consolidate the recursive frames somehow. One option is the flat reports we looked at earlier.</p>
+
+<p>Here&rsquo;s that same flat report above with the counts corrected (in Julia v1.4-dev), and some extra information also now compiled for it:</p>
+<pre><code>julia> Profile.print(format=:flat, sortedby=:counts)
+ Count  Overhead File      Line Function
+   228         2 ./boot.jl  330 eval
+     2         2 ./int.jl    52 -
+    25        25 ./int.jl    53 +
+   321       155 ./REPL[2]    1 fib_r
+   514       426 ./REPL[1]    2 fib
+Total snapshots: 610</code></pre>
+<p>That&rsquo;s better, and now the information matches the tree! But unlike the tree view, this flat view doesn&rsquo;t show context. Some of those functions are very common, like <code>+</code>, and it might not be sufficient to see them in aggregate like this. Can we combine the benefits of both views somehow?</p>
+
+<h2 id="better-recursion-handling">Better recursion handling</h2>
+
+<p>Let&rsquo;s now look at some different approaches some tools take to flatten this recursion to make it easier to find insights.</p>
+
+<p>First, the Instruments.app tool we&rsquo;ve looked at above has an option to collapse recursive calls, which will take a callstack with one repeated entry and replace it with one entry that takes the sum of that recursion. This has no effect on our example code, since there&rsquo;s two entries being repeated. While this mode can simplify the stack view and make it easier to explore, it doesn&rsquo;t provide us with additional insight into the code.</p>
+
+<p>There&rsquo;s another visualization-only tool called Speedscope which has <a href="https://github.com/jlfwong/speedscope/pull/68">an option to do this</a>. It imports profile files created by many other tools and languages, so we&rsquo;ll import the earlier <code>perf</code> file and see how it does against our lineup:</p>
+
+<p><img src="../../../../images/blog/2019-09-16-profilers/profile-speedscope.png" alt="Speedscope bad result" /></p>
+
+<p>Looks about right! Only one silly nit: it claims the sum of all frames identical to the highlighted frame (just itself) took 367.38 ms (good), but that the highlighted frame alone took 1.05 s (oops, the tool must be computing the count of the wrong summary information). But otherwise, this seems to show about the right information we&rsquo;ve come to expect.</p>
+
+<p>Let&rsquo;s look closer at what it&rsquo;s doing using their <a href="https://www.speedscope.app/#profileURL=https://raw.githubusercontent.com/jlfwong/speedscope/master/sample/profiles/stackcollapse/recursion.txt">stackcollapse recursion sample</a> with left-heavy view and &lsquo;r&rsquo;ecursion-flattened view shows one solution. Here we see that it simply drops any repeated frames when examining the call tree. This works out fine for our simple <code>fib</code> example, but shows some artifacts when we look at their sample data. Notice how the blue frame &copy; is always charged to the green frame (b), even though half of the calls actually came from the red frame (a)?</p>
+
+<p>When I showed this post to my friend, he suggested I also include his <a href="https://github.com/vchuravy/PProf.jl">PProf.jl</a> package here (a JuliaLang front end for the <a href="https://github.com/google/pprof">pprof</a> visualization tool). This was a good suggestion, as it provides several alternative graphical representations. First, it can produce a callgrind format graphic:</p>
+
+<p><img src="../../../../images/blog/2019-09-16-profilers/profile-pprof.png" alt="PProf" /></p>
+
+<p>This is nice! We get to visualize the static functions call tree simultaneously with the weight each function contributes to the time. However, this format can be a bit limited on the total quantity of information it can fit, so it might not always help. The <code>pprof</code> tool automatically filters out smaller frames to aid the user in seeing the important ones, and provides several options for adding and removing functions from the view.</p>
+
+<p>In addition, the <code>pprof</code> tool has a sandwich text report that summarizes the caller and callee list around each profile sample:</p>
+<pre><code>      Type: events
+Showing nodes accounting for 632, 100% of 632 total
+----------------------------------------------------------+-------------
+      flat  flat%   sum%        cum   cum%   calls calls% + context
+----------------------------------------------------------+-------------
+                                               273 52.20% |   fib REPL:-1
+                                               273 52.20% |   fib_r REPL:1
+       417 65.98% 65.98%        523 82.75%                | fib REPL:2
+                                               273 52.20% |   fib_r REPL:1
+----------------------------------------------------------+-------------
+                                               273 72.03% |   fib REPL:2
+       178 28.16% 94.15%        379 59.97%                | fib_r REPL:1
+                                               273 72.03% |   fib REPL:2
+                                                33  8.71% |   + ./int.jl:2
+                                                 1  0.26% |   - ./int.jl:2
+----------------------------------------------------------+-------------
+                                                33   100% |   + ./int.jl:2 (inline)
+        33  5.22% 99.37%         33  5.22%                | + ./int.jl:53
+----------------------------------------------------------+-------------
+                                                 1   100% |   - ./int.jl:2 (inline)
+         1  0.16% 99.53%          1  0.16%                | - ./int.jl:52
+----------------------------------------------------------+-------------</code></pre>
+<p>Let&rsquo;s combine all those ideas to make a new option for our Julia plain-text tree view: flattened recursion. Here&rsquo;s the docstring for the new argument to <code>Profile.print</code>:</p>
+
+<ul>
+<li><code>recur</code> &ndash; Controls the recursion handling in <code>:tree</code> format. <code>:off</code> (default) prints the tree as normal. <code>:flat</code> instead
+compresses any recursion (by ip), showing the approximate effect of converting any self-recursion into an iterator.
+<code>:flatc</code> does the same but also includes collapsing of C frames (may do odd things around <code>jl_apply</code>).</li>
+</ul>
+
+<p>So this will no longer be a literal interpretation of the stack, but will show a particular linearization where each recursive call was re-written as a loop. This has a few secondary implications.
+It means that we may now see counts that sum to greater than their parent. For example, 100% (<sup>236</sup>&frasl;<sub>236</sub>) of the time inside the parent <code>fib</code> was spent inside the child <code>fib_r</code>, and additionally, 4% (<sup>9</sup>&frasl;<sub>236</sub>) were recorded as being part of a direct call to <code>fib</code> from <code>fib</code> (an artifact caused by unreliable stack recording). Additionally, if you recall the definition of <code>fib</code> above, <code>fib</code> has two distinct calls to <code>fib_r</code>. Since the goal was to rearrange recursive calls, and not recursive lines, we expect to see those two calls reflected exactly in the profile shape too. However, there&rsquo;s no distinction made between <em>which</em> call each was from (unless you also pass <code>collapse=false</code><sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>).</p>
+<pre><code>julia> Profile.print(format=:tree, recur=:flat)
+94  ./REPL[1]:1; fib_r(::Int64)
+260 ./REPL[2]:2; fib(::Int64)
+275 ./task.jl:333; (::REPL.var"##26#27"{REPL.REPLBackend})()
+ 275 ./REPL.jl:118; macro expansion
+  275 ./REPL.jl:86; eval_user_input(::Any, ::REPL.REPLBackend)
+   275 ./boot.jl:330; eval(::Module, ::Any)
+  ╎ 273 ./REPL[2]:2; fib(::Int64)
+  ╎  273 ./REPL[1]:1; fib_r(::Int64)
+  ╎   273 ./REPL[2]:2; fib(::Int64)
+  ╎    49 ./REPL[1]:1; fib_r(::Int64)
+  ╎    1  ./REPL[2]:2; fib(::Int64)
+  ╎    39 ./int.jl:53; +
+  ╎    3  ./int.jl:52; -
+  ╎  1   ./REPL[2]:2; fib(::Int64)
+Total snapshots: 629</code></pre>
+<p>I think this looks cool, and vaguely even shows how I would conceptualize the functions in my head. This is availble right now only on my jn/profile-recurflat branch, but should be a PR soon, and show up in the JuliaLang v1.4 release.</p>
+
+<h2 id="final-thoughts">Final thoughts</h2>
+
+<p>There&rsquo;s many more tools for examining profile exploration tools that I haven&rsquo;t mentioned, including the venerable <a href="https://github.com/timholy/ProfileView.jl">ProfileView.jl</a> and <a href="https://docs.junolab.org/stable/man/juno_frontend/#Profiler-1">Juno.jl</a>. And there&rsquo;s other tools too for working on performance questions, such as the simple <a href="https://docs.julialang.org/en/v1/base/base/#Base.@time">@time</a> and the batteries-included <a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a> . Those will often then lead to needing to do deeper exploration of the code. For that next step, consider using <a href="https://github.com/JuliaDebug/Cthulhu.jl">Cthulhu.jl</a> and <a href="https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/">learning more about other kinds of debugging</a>.</p>
+
+<p>And finally, we&rsquo;re working on a <a href="https://github.com/JuliaLang/julia/pull/31534">memory profiler</a> for JuliaLang to let you explore questions of memory consumption, similar to the time-duration-consumed questions explored above. So watch for more updates to come!</p>
+
+<hr />
+
+<p>Post-note: There was also an off-by-one lookup error in Profile.jl too that will soon be resolved. This is almost never an issue, but we can sometimes notice it as bogus information showing some frame that should never have been reached. For example, we can profile a call to the expensive <code>cpuid</code> instruction, and see that there&rsquo;s a bogus frame that makes it appear we used some code that happened to be located outside the target function was somehow getting used.</p>
+<pre><code>julia> testf() = for i = 1:10^7; ccall(:jl_cpuid, Cvoid, (Ref{NTuple{4,Int32}}, Int32), (0,0,0,0), 0); end
+julia> @profile testf()
+julia> Profile.print(C=true)
+201 ./REPL[2]:1; testf()
+ 199 ./REPL[1]:1; cpuid
+  3   ./processor_x86.cpp:8; jl_cpuid
+  192 ./processor_x86.cpp:12; jl_cpuid
+  1   ./libjulia.1.4.dylib:?; _GLOBAL__sub_I_runtime_ccall.cpp</code></pre><div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">When writing this, I forget to also test the <code>--fasynchronous-unwind-tables</code> flag to <code>gcc</code>, which is supposed to be exact. However, it seemed not to make a difference to <code>perf</code>. My understanding is that this flag was already the default on x86-64. To confirm this, I tested the inverse flag (<code>-fno-asynchronous-unwind-tables</code>) and noted that this did make the result even worse.
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+
+<li id="fn:2"><p>The <code>collapse=false</code> option controls whether to merge the profile by line number or to keep them distinct by instruction pointer. One useful code-maintence trick is to try to ensure each line does relatively little, so that line numbers are a precise source of information. This doesn&rsquo;t need to be taken to the extreme, as I do below as an example (nearly writing out a <a href="https://en.m.wikipedia.org/wiki/Three-address_code">3AC</a> manually), since several of these statements will likely get optimized and moved anyways. But sometimes it can be invaluable to see if one <code>fib_r</code> call was more expensive than the other in our example, or to know <em>which</em> array was being indexed just from the stacktrace, etc.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f">@noinline</span><span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">function</span> fib<span style="color:#666"></span>(n<span style="color:#666"></span>)
+    <span style="color:#a2f;font-weight:bold">if</span> n<span style="color:#666"></span> <span style="color:#666">&gt;</span> <span style="color:#666">1</span>
+        n<span style="color:#666"></span> <span style="color:#666">-=</span> <span style="color:#666">1</span>
+        x1<span style="color:#666"></span> <span style="color:#666">=</span> fib_r<span style="color:#666"></span>(n<span style="color:#666"></span>)
+        n<span style="color:#666"></span> <span style="color:#666">-=</span> <span style="color:#666">1</span>
+        x2<span style="color:#666"></span> <span style="color:#666">=</span> fib_r<span style="color:#666"></span>(n<span style="color:#666"></span>)
+        y<span style="color:#666"></span> <span style="color:#666">=</span> x1<span style="color:#666"></span> <span style="color:#666">+</span> x2<span style="color:#666"></span>
+    <span style="color:#a2f;font-weight:bold">else</span>
+        y<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span>
+    <span style="color:#a2f;font-weight:bold">end</span>
+    <span style="color:#a2f;font-weight:bold">return</span> y<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div> <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

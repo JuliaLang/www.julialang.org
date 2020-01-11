@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>StructuredQueries.jl - A generic data manipulation framework</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>StructuredQueries.jl - A generic data manipulation framework</h1>
+
+    <p class="metadata">
+      <span class="timestamp">03 October, 2016</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author"><a href="https://github.com/davidagold">David Gold</a></span>
+      
+    </p>
+
+    
+
+<p>This post describes my work conducted this summer at the <a href="http://julia.mit.edu/">Julia Lab</a> to develop <a href="https://github.com/davidagold/StructuredQueries.jl/">StructuredQueries.jl</a>, a generic data manipulation framework for <a href="http://julialang.org/">Julia</a>.</p>
+
+<p>Our initial vision for this work was much inspired by Hadley Wickham&rsquo;s <a href="https://github.com/hadley/dplyr">dplyr</a> R package, which provides data manipulation verbs that are generic over in-memory R tabular data structures and SQL databases, and <a href="https://github.com/JuliaStats/DataFramesMeta.jl">DataFramesMeta</a> (begun by <a href="https://github.com/tshort">Tom Short</a>), which provides metaprogramming facilities for working with Julia <code>DataFrame</code>s.</p>
+
+<p>While a generic querying interface is a worthwhile end in itself (and has been discussed <a href="https://groups.google.com/d/topic/julia-dev/jL2FSL4EneE/discussion">elsewhere</a>), it may also be useful for solving problems specific to in-memory Julia tabular data structures. We will discuss how a query interface suggests solutions to two important problems facing the development of tabular data structures in Julia: the <em>column-indexing</em> and <em>nullable semantics</em> problems. So, the present post will describe both the progress of my work and also discuss a wider scope of issues concerning support for tabular data structures in Julia. I will provide some context for these issues; the reader should feel free to skip over any uninteresting details.</p>
+
+<hr />
+
+<p>Recall that the primary shortcoming of <a href="https://travis-ci.org/JuliaStats/DataArrays.jl">DataArrays.jl</a> is that it does not allow for type-inferable indexing. That is, the means by which missing values are represented in <code>DataArray</code>s &ndash; i.e. with a token <code>NA::NAtype</code> object &ndash; entails that the most specific return type inferable from <code>Base.getindex(df::DataArray{T}, i)</code> is <code>Union{T, NAtype}</code>. This means that until Julia&rsquo;s compiler can better handle small <code>Union</code> types, code that naively indexes into a <code>DataArray</code> will perform unnecessarily poorly.</p>
+
+<p><a href="https://github.com/JuliaStats/NullableArrays.jl">NullableArrays.jl</a> <a href="http://julialang.org/blog/2015/10/nullablearrays">remedied</a> this shortcoming by representing both missing and present values of type <code>T</code> as objects of type <code>Nullable{T}</code>. However, this solution has limitations in other respects. First, use of <code>NullableArray</code>s does nothing to support type inference in column-indexing of <code>DataFrame</code>s. That is, the return type of <code>Base.getindex(df::DataFrame, field::Symbol)</code> is not straightforwardly inferable, even if <code>DataFrame</code>s are built over <code>NullableArray</code>s. Call this first problem the <em>column-indexing problem</em>. Second, NullableArrays introduces certain difficulties centered around the <code>Nullable</code> type. Call this second problem the <em>nullable semantics problem</em>.</p>
+
+<p>The column-indexing problem is <a href="http://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/">well-documented</a>. To see the difficulty, consider the following function</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> f<span style="color:#666"></span>(df<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span>DataFrame<span style="color:#666"></span>)
+    A<span style="color:#666"></span> <span style="color:#666">=</span> df<span style="color:#666"></span>[<span style="color:#666">:</span>A<span style="color:#666"></span>]
+    x<span style="color:#666"></span> <span style="color:#666">=</span> zero<span style="color:#666"></span>(eltype<span style="color:#666"></span>(A<span style="color:#666"></span>))
+    <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#a2f">in</span> eachindex<span style="color:#666"></span>(A<span style="color:#666"></span>)
+        x<span style="color:#666"></span> <span style="color:#666">+=</span> A<span style="color:#666"></span>[i<span style="color:#666"></span>]
+    <span style="color:#a2f;font-weight:bold">end</span>
+    <span style="color:#a2f;font-weight:bold">return</span> x<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+<p>where <code>df[:A]</code> retrieves the column named <code>:A</code> from <code>df</code>. A user might reasonably expect the above to be idiomatic Julia: the work is written in a <code>for</code> loop that is wrapped inside a function. However, this code will not be (ahead-of-time) compiled to efficient machine instructions because the type of the object that <code>df[:A]</code> returns cannot be inferred during static analysis. This is because there is nothing the <code>DataFrame</code> type can do to communicate the <code>eltype</code>s of its columns to the compiler.</p>
+
+<p>The nullable semantics problem is described throughout a dispersed series of GitHub issues (the interested reader can start <a href="https://github.com/JuliaStats/NullableArrays.jl/issues/95">here</a> and <a href="https://github.com/JuliaStats/NullableArrays.jl/pull/85">here</a>) (and <a href="https://groups.google.com/d/topic/julia-dev/WD7-vQeweJE/discussion">at least one</a> mailing list post). To my knowledge, a self-contained treatment has not been given (I don&rsquo;t necessarily claim to be giving one now). The problem has two parts, which I&rsquo;ll call the &ldquo;easy question&rdquo; and the &ldquo;hard question&rdquo;, respectively:</p>
+
+<ol>
+<li><p>What should the semantics of <code>f(x::Nullable{T})</code> be given a definition of <code>f(x::T)</code>?</p></li>
+
+<li><p>How should we implement these semantics in a sufficiently general and user-friendly way?</p></li>
+</ol>
+
+<p>In most cases, the answer to the easy question is clear: <code>f(x::Nullable{T})</code> should return an empty <code>Nullable{U}</code> if <code>x</code> is null and <code>Nullable(f(x.value))</code> if <code>x</code> is not null. There is a question of how to choose the type parameter <code>U</code>, but a solution involving Julia&rsquo;s type inference facilities seems to be about right. (The discussion of <a href="https://github.com/JuliaLang/julia/pull/16622">0.5-style comprehensions</a> and <a href="https://github.com/JuliaLang/julia/issues/7258">one</a> or <a href="https://github.com/JuliaLang/julia/pull/11034">two</a> discussions about the return type of <code>map</code> over an empty array, were all influential on this matter.) We will refer to these semantics as the <em>standard lifting semantics</em>. It is worth noting that there is at least one considerable alternative to standard lifting semantics, at least in the realm of binary operators on <code>Nullable{Bool}</code> arguments: <a href="https://en.wikipedia.org/wiki/Three-valued_logic">three-valued logic</a>. But whether to use three-valued logic or standard lifting semantics is usually clear from the context of the program and the intention of the programmer.</p>
+
+<p>On the other hand, the hard question is still unresolved. There are a number of possible solutions, and it&rsquo;s difficult to know how to weigh their costs and benefits.</p>
+
+<p>We&rsquo;ll return to the column-indexing problem and the hard question of nullable semantics after we&rsquo;ve described the present query interface. Before we dive in, I want to emphasize that this blog post is a status update, not a release notice (though StructuredQueries is registered so that you can play with it if you like). StructuredQueries (SQ) is a work in progress, and it will likely remain that way for some time. I hope to convince the reader that SQ nonetheless represents an interesting and worthwhile direction for the development of tabular data facilities in Julia.</p>
+
+<h2 id="the-query-framework">The query framework</h2>
+
+<p>The StructuredQueries package provides a framework for representing the <em>structure</em> of a query without assuming any specific corresponding <em>semantics</em>. By the structure of a query, we mean the series of particular manipulation verbs invoked and the respective arguments passed to these verbs. By the semantics of a query, we mean the actual behavior of executing a query with a particular structure against a particular data source. A query semantics thus depends both on the structure of the query and on the type of the data source against which the query is executed. We will refer to the implementation of a particular query semantics as a <em>collection machinery</em>.</p>
+
+<p>Decoupling the representation of a query&rsquo;s structure from the collection machinery helps to make the present query framework</p>
+
+<ul>
+<li>generic &ndash; the framework should be able to support multiple backends.</li>
+<li>modular &ndash; the framework should encourage modularity of collection machinery.</li>
+<li>extensible &ndash; the framework should be easily extensible to represent (relatively) arbitrary manipulations.</li>
+</ul>
+
+<p>These desiderata are interrelated. For instance, modularity of collection machinery allows the latter to be re-used in support for different data backends, thereby supporting generality as well.</p>
+
+<p>In this section we&rsquo;ll describe how SQ represents query structures. In the following sections we&rsquo;ll see how SQ&rsquo;s query representation framework suggests solutions to the column-indexing and nullable semantics problems described above.</p>
+
+<p>To express a query in SQ, one uses the <code>@query</code> macro:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f">@query</span><span style="color:#666"></span> qry<span style="color:#666"></span></code></pre></div>
+<p>where <code>qry</code> is Julia code that follows a certain structure that we will describe below. <code>qry</code> is parsed according to what we&rsquo;ll call a <em>query context</em>. By a <em>context</em> we mean a general semantics for Julia code that may differ from the semantics of the standard Julia environment. That is to say: though <code>qry</code> must be valid Julia syntax, the code is not run as it would were it executed outside of the <code>@query</code> macro. Rather, code such as <code>qry</code> that occurs inside of a query context is subject to a number of transformations before it is run. <code>@query</code> uses these transformations to produce a graphical representation of the structure of <code>qry</code>. An <code>@query qry</code> invocation returns a <code>Query</code> object, which wraps the query graph produced as a result of processing <code>qry</code>.</p>
+
+<p>We said above that SQ represents queries in terms of their structure but does not itself guarantee any particular semantics. This allows packages to implement their own semantics for a given query structure. To demonstrate this design, I&rsquo;ve put together (i) an <a href="https://github.com/davidagold/AbstractTables.jl">abstract tabular data type</a>, <code>AbstractTable</code>; (ii) an <a href="https://github.com/davidagold/AbstractTables.jl#column-indexable-interface">interface</a> to support a collection machinery against what I call <em>column-indexable</em> types <code>T &lt;: AbstractTable</code>; and (iii) a <a href="https://github.com/davidagold/TablesDemo.jl">concrete tabular data type</a>, <code>Table &lt;: AbstractTable</code> that satisfies the column-indexable interface and therefore inherits a collection machinery to support SQ queries.</p>
+
+<p>This following behavior mimics that which one would expect from querying against a <code>DataFrame</code>. The main reason for putting together a demonstration using <code>Table</code>s and not <code>DataFrame</code>s has to do with ease of experimentation. I can more easily modify the <code>AbstractTable</code>/<code>Table</code> types and interfaces more easily than I can the <code>DataFrame</code> type and interface. Indeed, this project has become just as much about designing an in-memory Julia tabular data type that is most compatible with a Julia query framework as it is about designing a query framework compatible with an in-memory Julia tabular data type. Fortunately, the implementation of backend support for <code>Table</code>s will be straightforward to port to support for <code>DataFrame</code>s once we decide where such support should live.</p>
+
+<p>Let&rsquo;s dive into the query interface by considering examples using the iris data set. (Though the package TablesDemo.jl is intended solely as a demonstration, it is registered so that readers can easily install it with <code>Pkg.add(&quot;TablesDemo.jl&quot;)</code> and follow along.)</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> iris<span style="color:#666"></span> <span style="color:#666">=</span> Table<span style="color:#666"></span>(CSV<span style="color:#666"></span><span style="color:#666">.</span>Source<span style="color:#666"></span>(joinpath<span style="color:#666"></span>(Pkg<span style="color:#666"></span><span style="color:#666">.</span>dir<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b44">T</span><span style="color:#b44">a</span><span style="color:#b44">b</span><span style="color:#b44">l</span><span style="color:#b44">e</span><span style="color:#b44">s</span><span style="color:#b44">&#34;</span>), <span style="color:#b44">&#34;</span><span style="color:#b44">c</span><span style="color:#b44">s</span><span style="color:#b44">v</span><span style="color:#b44">/</span><span style="color:#b44">i</span><span style="color:#b44">r</span><span style="color:#b44">i</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">c</span><span style="color:#b44">s</span><span style="color:#b44">v</span><span style="color:#b44">&#34;</span>)))
+Tables<span style="color:#666"></span><span style="color:#666">.</span>Table<span style="color:#666"></span>
+│<span style="color:#666"></span> Row<span style="color:#666"></span> │<span style="color:#666"></span> sepal_length<span style="color:#666"></span> │<span style="color:#666"></span> sepal_width<span style="color:#666"></span> │<span style="color:#666"></span> petal_length<span style="color:#666"></span> │<span style="color:#666"></span> petal_width<span style="color:#666"></span> │<span style="color:#666"></span> species<span style="color:#666"></span>  │<span style="color:#666"></span>
+├─────┼──────────────┼─────────────┼──────────────┼─────────────┼──────────┤<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">1</span>   │<span style="color:#666"></span> <span style="color:#666">5.1</span>          │<span style="color:#666"></span> <span style="color:#666">3.5</span>         │<span style="color:#666"></span> <span style="color:#666">1.4</span>          │<span style="color:#666"></span> <span style="color:#666">0.2</span>         │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span> │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">2</span>   │<span style="color:#666"></span> <span style="color:#666">4.9</span>          │<span style="color:#666"></span> <span style="color:#666">3.0</span>         │<span style="color:#666"></span> <span style="color:#666">1.4</span>          │<span style="color:#666"></span> <span style="color:#666">0.2</span>         │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span> │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">3</span>   │<span style="color:#666"></span> <span style="color:#666">4.7</span>          │<span style="color:#666"></span> <span style="color:#666">3.2</span>         │<span style="color:#666"></span> <span style="color:#666">1.3</span>          │<span style="color:#666"></span> <span style="color:#666">0.2</span>         │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span> │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">4</span>   │<span style="color:#666"></span> <span style="color:#666">4.6</span>          │<span style="color:#666"></span> <span style="color:#666">3.1</span>         │<span style="color:#666"></span> <span style="color:#666">1.5</span>          │<span style="color:#666"></span> <span style="color:#666">0.2</span>         │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span> │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">5</span>   │<span style="color:#666"></span> <span style="color:#666">5.0</span>          │<span style="color:#666"></span> <span style="color:#666">3.6</span>         │<span style="color:#666"></span> <span style="color:#666">1.4</span>          │<span style="color:#666"></span> <span style="color:#666">0.2</span>         │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span> │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">6</span>   │<span style="color:#666"></span> <span style="color:#666">5.4</span>          │<span style="color:#666"></span> <span style="color:#666">3.9</span>         │<span style="color:#666"></span> <span style="color:#666">1.7</span>          │<span style="color:#666"></span> <span style="color:#666">0.4</span>         │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span> │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">7</span>   │<span style="color:#666"></span> <span style="color:#666">4.6</span>          │<span style="color:#666"></span> <span style="color:#666">3.4</span>         │<span style="color:#666"></span> <span style="color:#666">1.4</span>          │<span style="color:#666"></span> <span style="color:#666">0.3</span>         │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span> │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">8</span>   │<span style="color:#666"></span> <span style="color:#666">5.0</span>          │<span style="color:#666"></span> <span style="color:#666">3.4</span>         │<span style="color:#666"></span> <span style="color:#666">1.5</span>          │<span style="color:#666"></span> <span style="color:#666">0.2</span>         │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span> │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">9</span>   │<span style="color:#666"></span> <span style="color:#666">4.4</span>          │<span style="color:#666"></span> <span style="color:#666">2.9</span>         │<span style="color:#666"></span> <span style="color:#666">1.4</span>          │<span style="color:#666"></span> <span style="color:#666">0.2</span>         │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span> │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">10</span>  │<span style="color:#666"></span> <span style="color:#666">4.9</span>          │<span style="color:#666"></span> <span style="color:#666">3.1</span>         │<span style="color:#666"></span> <span style="color:#666">1.5</span>          │<span style="color:#666"></span> <span style="color:#666">0.1</span>         │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span> │<span style="color:#666"></span>
+⋮<span style="color:#666"></span>
+with<span style="color:#666"></span> <span style="color:#666">140</span> more<span style="color:#666"></span> rows<span style="color:#666"></span><span style="color:#666">.</span></code></pre></div>
+<p>We can then use <code>@query</code> to express a query against this data set &ndash; say, filtering rows according to a condition on <code>sepal_length</code>:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> q<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f">@query</span><span style="color:#666"></span> filter<span style="color:#666"></span>(iris<span style="color:#666"></span>, sepal_length<span style="color:#666"></span> <span style="color:#666">&gt;</span> <span style="color:#666">5.0</span>)
+Query<span style="color:#666"></span> with<span style="color:#666"></span> Tables<span style="color:#666"></span><span style="color:#666">.</span>Table<span style="color:#666"></span> source<span style="color:#666"></span></code></pre></div>
+<p>This produces a <code>Query{S}</code> object, where <code>S</code> is the type of the data source</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> typeof<span style="color:#666"></span>(q<span style="color:#666"></span>)
+StructuredQueries<span style="color:#666"></span><span style="color:#666">.</span>Query<span style="color:#666"></span>{Tables<span style="color:#666"></span><span style="color:#666">.</span>Table<span style="color:#666"></span>}</code></pre></div>
+<p>The structure of the query passed to <code>@query</code> consists of a <em>manipulation verb</em> (e.g. <code>filter</code>) that in turn takes a <em>data source</em> (e.g. <code>iris</code>) for its first argument and any number of <em>query arguments</em> (e.g. <code>sepal_length &gt; 5.0</code>) for its latter arguments. These are the three different &ldquo;parts&rdquo; of a query: (1) data sources (or just &ldquo;sources&rdquo;), (2) manipulation verbs (or just &ldquo;verbs&rdquo;), and (3) query arguments.</p>
+
+<p>Each part of a query induces its own context in which code is evaluated. The most significant aspect of such contexts is name resolution. That is to say, names resolve differently depending on which part of a query they appear in and in what capacity they appear:</p>
+
+<ol>
+<li><p>In a data source specification context &ndash; e.g., as the first argument to a verb such as <code>filter</code> above &ndash; names are evaluated in the enclosing scope of the <code>@query</code> invocation. Thus, <code>iris</code> in the query used to define <code>q</code> above refers precisely to the <code>Table</code> object to which the name is bound in the top level of <code>Main</code>.</p></li>
+
+<li><p>Names of manipulation verbs are not resolved to objects but rather merely signal how to construct the graphical representation of the query. (Indeed, in what follows there is no such function <code>filter</code> that is ever invoked in the execution of a query involving a <code>filter</code> clause.)</p></li>
+
+<li><p>Names of functions called within a query argument context, such as <code>&gt;</code> in <code>sepal_length &gt; 5.0</code> are evaluated in the enclosing scope of the <code>@query</code> invocation.</p></li>
+
+<li><p>Names that appear as arguments to function calls within a query argument context, such as <code>sepal_length</code> in <code>sepal_length &gt; 5.0</code> are not resolved to objects but are rather parsed as &ldquo;attributes&rdquo; of the data source (in this case, <code>iris</code>). When the data source is a tabular data structure, such attributes are taken to be column names, but such behavior is just a feature of a particular query semantics (see below in the section &ldquo;Roadmap and open questions&rdquo;.) The attributes that are passed as arguments to a given function call in a query argument are stored as data in the graphical query representation.</p></li>
+</ol>
+
+<p>One can pipe arguments to verbs inside an <code>@query</code> context. For instance, the <code>Query</code> above is equivalent to that produced by</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f">@query</span><span style="color:#666"></span> iris<span style="color:#666"></span> <span style="color:#666">|&gt;</span> filter<span style="color:#666"></span>(sepal_length<span style="color:#666"></span> <span style="color:#666">&gt;</span> <span style="color:#666">5.0</span>)</code></pre></div>
+<p>In this case, the first argument (<code>sepal_length &gt; 5.0</code>) to the verb <code>filter</code> is not a data source specification (<code>iris</code>), which is instead the first argument to <code>|&gt;</code>, but is rather a query argument (<code>sepal_length &gt; 5.0</code>).</p>
+
+<p><code>Query</code> objects represent the structure of a query composed of the three building blocks above. To see how, lets take a look at the internals of a <code>Query</code>:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> fieldnames<span style="color:#666"></span>(q<span style="color:#666"></span>)
+<span style="color:#666">2</span><span style="color:#666">-</span>element<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Symbol</span>,<span style="color:#666">1</span>}<span style="color:#666">:</span>
+ <span style="color:#666">:</span>source<span style="color:#666"></span>
+ <span style="color:#666">:</span>graph<span style="color:#666"></span></code></pre></div>
+<p>The first field, <code>:source</code>, just contains the data source specified in the query &ndash; in this case, the <code>Table</code> object that was bound to the name <code>iris</code> when the query was specified. The second field, <code>:graph</code> contains a(n admittedly not very interesting) graphical representation of the query structure:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> q<span style="color:#666"></span><span style="color:#666">.</span>graph<span style="color:#666"></span>
+FilterNode<span style="color:#666"></span>
+  arguments<span style="color:#666"></span><span style="color:#666">:</span>
+      <span style="color:#666">1</span>)  sepal_length<span style="color:#666"></span> <span style="color:#666">&gt;</span> <span style="color:#666">5.0</span>
+  inputs<span style="color:#666"></span><span style="color:#666">:</span>
+      <span style="color:#666">1</span>)  DataNode<span style="color:#666"></span>
+            source<span style="color:#666"></span><span style="color:#666">:</span>  unset<span style="color:#666"></span> source<span style="color:#666"></span></code></pre></div>
+<p>The <code>filter</code> verb from the original <code>qry</code> expression passed to <code>@query</code> is represented in the graph by a <code>FilterNode</code> object and that the data source is represented by a <code>DataNode</code> object. Both <code>FilterNode</code> and <code>DataNode</code> are leaf subtypes of the abstract <code>QueryNode</code> type. The <code>FilterNode</code> is connected to the <code>DataNode</code> via the <code>:input</code> field of the former. In general, these connections constitute directed acyclic graphs. We may refer to such graphs as <code>QueryNode</code> graphs or query graphs.</p>
+
+<p>SQ currently recognizes the following verbs out of the box &ndash; that is, it properly incorporates them into a <code>QueryNode</code> graph:</p>
+
+<ul>
+<li><code>select</code></li>
+<li><code>filter</code></li>
+<li><code>groupby</code></li>
+<li><code>summarize</code></li>
+<li><code>orderby</code></li>
+<li><code>innerjoin</code> (or just <code>join</code>)</li>
+<li><code>leftjoin</code></li>
+<li><code>outerjoin</code></li>
+<li><code>crossjoin</code></li>
+</ul>
+
+<p>One uses <code>collect(q::Query)</code> to materialize <code>q</code> as a concrete set results set &ndash; hence the term &ldquo;collection machinery&rdquo;. Note that the set of verbs that receive support from the column-indexable interface &ndash; that is, the verbs that may be <code>collect</code>ed against a column-indexable data source &ndash; currently only includes the first four: <code>select</code>, <code>filter</code>, <code>groupby</code>, and <code>summarize</code>. This is what such support currently looks like:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> q<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f">@query</span><span style="color:#666"></span> iris<span style="color:#666"></span> <span style="color:#666">|&gt;</span>
+           filter<span style="color:#666"></span>(sepal_length<span style="color:#666"></span> <span style="color:#666">&gt;</span> <span style="color:#666">5.0</span>) <span style="color:#666">|&gt;</span>
+           groupby<span style="color:#666"></span>(species<span style="color:#666"></span>, log<span style="color:#666"></span>(petal_length<span style="color:#666"></span>) <span style="color:#666">&gt;</span> <span style="color:#666">.</span><span style="color:#666">5</span>) <span style="color:#666">|&gt;</span>
+           summarize<span style="color:#666"></span>(avg<span style="color:#666"></span> <span style="color:#666">=</span> mean<span style="color:#666"></span>(digamma<span style="color:#666"></span>(petal_width<span style="color:#666"></span>)))
+Query<span style="color:#666"></span> with<span style="color:#666"></span> Tables<span style="color:#666"></span><span style="color:#666">.</span>Table<span style="color:#666"></span> source<span style="color:#666"></span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> q<span style="color:#666"></span><span style="color:#666">.</span>graph<span style="color:#666"></span>
+SummarizeNode<span style="color:#666"></span>
+  arguments<span style="color:#666"></span><span style="color:#666">:</span>
+      <span style="color:#666">1</span>)  avg<span style="color:#666"></span><span style="color:#666">=</span>mean<span style="color:#666"></span>(digamma<span style="color:#666"></span>(petal_width<span style="color:#666"></span>))
+  inputs<span style="color:#666"></span><span style="color:#666">:</span>
+      <span style="color:#666">1</span>)  GroupbyNode<span style="color:#666"></span>
+            arguments<span style="color:#666"></span><span style="color:#666">:</span>
+                <span style="color:#666">1</span>)  species<span style="color:#666"></span>
+                <span style="color:#666">2</span>)  log<span style="color:#666"></span>(petal_length<span style="color:#666"></span>) <span style="color:#666">&gt;</span> <span style="color:#666">0.5</span>
+            inputs<span style="color:#666"></span><span style="color:#666">:</span>
+                <span style="color:#666">1</span>)  FilterNode<span style="color:#666"></span>
+                      arguments<span style="color:#666"></span><span style="color:#666">:</span>
+                          <span style="color:#666">1</span>)  sepal_length<span style="color:#666"></span> <span style="color:#666">&gt;</span> <span style="color:#666">5.0</span>
+                      inputs<span style="color:#666"></span><span style="color:#666">:</span>
+                          <span style="color:#666">1</span>)  DataNode<span style="color:#666"></span>
+                                source<span style="color:#666"></span><span style="color:#666">:</span>  unset<span style="color:#666"></span> source<span style="color:#666"></span>
+
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> collect<span style="color:#666"></span>(q<span style="color:#666"></span>)
+Grouped<span style="color:#666"></span> Tables<span style="color:#666"></span><span style="color:#666">.</span>Table<span style="color:#666"></span>
+Groupings<span style="color:#666"></span> by<span style="color:#666"></span><span style="color:#666">:</span>
+    species<span style="color:#666"></span>
+    log<span style="color:#666"></span>(petal_length<span style="color:#666"></span>) <span style="color:#666">&gt;</span> <span style="color:#666">0.5</span> (with<span style="color:#666"></span> alias<span style="color:#666"></span> <span style="color:#666">:</span>pred_1<span style="color:#666"></span>)
+
+Source<span style="color:#666"></span><span style="color:#666">:</span> Tables<span style="color:#666"></span><span style="color:#666">.</span>Table<span style="color:#666"></span>
+│<span style="color:#666"></span> Row<span style="color:#666"></span> │<span style="color:#666"></span> species<span style="color:#666"></span>      │<span style="color:#666"></span> pred_1<span style="color:#666"></span> │<span style="color:#666"></span> avg<span style="color:#666"></span>       │<span style="color:#666"></span>
+├─────┼──────────────┼────────┼───────────┤<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">1</span>   │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">v</span><span style="color:#b44">i</span><span style="color:#b44">r</span><span style="color:#b44">g</span><span style="color:#b44">i</span><span style="color:#b44">n</span><span style="color:#b44">i</span><span style="color:#b44">c</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span>  │<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">true</span>   │<span style="color:#666"></span> <span style="color:#666">0.428644</span>  │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">2</span>   │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span>     │<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">true</span>   │<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">3.17557</span>  │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">3</span>   │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">v</span><span style="color:#b44">e</span><span style="color:#b44">r</span><span style="color:#b44">s</span><span style="color:#b44">i</span><span style="color:#b44">c</span><span style="color:#b44">o</span><span style="color:#b44">l</span><span style="color:#b44">o</span><span style="color:#b44">r</span><span style="color:#b44">&#34;</span> │<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">true</span>   │<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">0.136551</span> │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">4</span>   │<span style="color:#666"></span> <span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">s</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span>     │<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">false</span>  │<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">4.7391</span>   │<span style="color:#666"></span></code></pre></div>
+<p>We hope to include support for the other verbs in the near future.</p>
+
+<p>Again we emphasize that this collection machinery is provided by the AbstractTables package, not StructuredQueries. As we see above, the latter provides a framework for representing a query structure, whereas packages such as AbstractTables (i) decide what it means to execute a query with a particular structure against a particular backend, and (ii) provide the implementation of the behavior in (i).</p>
+
+<p>We provide a convenience macro, <code>@collect(qry)</code>, which is equivalent to <code>collect(@query(qry))</code>, for when one wishes to query and collect in the same command:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@collect</span><span style="color:#666"></span> iris<span style="color:#666"></span> <span style="color:#666">|&gt;</span>
+           filter<span style="color:#666"></span>(erf<span style="color:#666"></span>(petal_length<span style="color:#666"></span>) <span style="color:#666">/</span> petal_length<span style="color:#666"></span> <span style="color:#666">&gt;</span> log<span style="color:#666"></span>(sepal_width<span style="color:#666"></span>) <span style="color:#666">/</span> <span style="color:#666">1.5</span>) <span style="color:#666">|&gt;</span>
+           summarize<span style="color:#666"></span>(sum<span style="color:#666"></span> <span style="color:#666">=</span> sum<span style="color:#666"></span>(ifelse<span style="color:#666"></span>(rand<span style="color:#666"></span>() <span style="color:#666">&gt;</span> <span style="color:#666">.</span><span style="color:#666">5</span>, sin<span style="color:#666"></span>(petal_width<span style="color:#666"></span>), <span style="color:#666">0.0</span>)))
+Tables<span style="color:#666"></span><span style="color:#666">.</span>Table<span style="color:#666"></span>
+│<span style="color:#666"></span> Row<span style="color:#666"></span> │<span style="color:#666"></span> sum<span style="color:#666"></span>       │<span style="color:#666"></span>
+├─────┼───────────┤<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">1</span>   │<span style="color:#666"></span> <span style="color:#666">0.0998334</span> │<span style="color:#666"></span></code></pre></div>
+<p>Again, note the patterns of name resolution: names of functions (e.g. <code>erf</code>) invoked within the context of a query argument are evaluated within the enclosing scope of the <code>@query</code> invocation, whereas names in the arguments of such functions (e.g. <code>petal_length</code>) are taken to be attributes of the data source (i.e., <code>iris</code>).</p>
+
+<h3 id="dummy-sources">Dummy sources</h3>
+
+<p>We saw above how there are three parts to a query structure: verbs, sources and query arguments. A <code>Query</code> object represents the verbs and query arguments together in the <code>QueryNode</code> graph and wraps the data source separately. This suggests that one ought to be able to generate query graphs using <code>@query</code> even if one does not specify a particular data source. One can do precisely this by using <em>dummy sources</em>, which are essentially placeholders that can be &ldquo;filled in&rdquo; with particular data sources later, when one calls <code>collect</code>. To indicate a source as a dummy source, simply prepend it with a <code>:</code>. For instance:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> q<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f">@query</span><span style="color:#666"></span> select<span style="color:#666"></span>(<span style="color:#666">:</span>src<span style="color:#666"></span>, twice_sepal_length<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">2</span> <span style="color:#666">*</span> sepal_length<span style="color:#666"></span>)
+Query<span style="color:#666"></span> with<span style="color:#666"></span> dummy<span style="color:#666"></span> source<span style="color:#666"></span> src<span style="color:#666"></span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> collect<span style="color:#666"></span>(q<span style="color:#666"></span>, src<span style="color:#666"></span> <span style="color:#666">=</span> iris<span style="color:#666"></span>)
+Tables<span style="color:#666"></span><span style="color:#666">.</span>Table<span style="color:#666"></span>
+│<span style="color:#666"></span> Row<span style="color:#666"></span> │<span style="color:#666"></span> twice_sepal_length<span style="color:#666"></span> │<span style="color:#666"></span>
+├─────┼────────────────────┤<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">1</span>   │<span style="color:#666"></span> <span style="color:#666">10.2</span>               │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">2</span>   │<span style="color:#666"></span> <span style="color:#666">9.8</span>                │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">3</span>   │<span style="color:#666"></span> <span style="color:#666">9.4</span>                │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">4</span>   │<span style="color:#666"></span> <span style="color:#666">9.2</span>                │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">5</span>   │<span style="color:#666"></span> <span style="color:#666">10.0</span>               │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">6</span>   │<span style="color:#666"></span> <span style="color:#666">10.8</span>               │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">7</span>   │<span style="color:#666"></span> <span style="color:#666">9.2</span>                │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">8</span>   │<span style="color:#666"></span> <span style="color:#666">10.0</span>               │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">9</span>   │<span style="color:#666"></span> <span style="color:#666">8.8</span>                │<span style="color:#666"></span>
+│<span style="color:#666"></span> <span style="color:#666">10</span>  │<span style="color:#666"></span> <span style="color:#666">9.8</span>                │<span style="color:#666"></span>
+⋮<span style="color:#666"></span>
+with<span style="color:#666"></span> <span style="color:#666">140</span> more<span style="color:#666"></span> rows<span style="color:#666"></span><span style="color:#666">.</span></code></pre></div>
+<p>Whatever the name of the dummy source (minus the <code>:</code>) was in the query must be the key in the kwarg passed to <code>collect</code>. Otherwise, the method will fail:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> collect<span style="color:#666"></span>(q<span style="color:#666"></span>, tbl<span style="color:#666"></span> <span style="color:#666">=</span> iris<span style="color:#666"></span>)
+ERROR<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#0b0;font-weight:bold">ArgumentError</span><span style="color:#666">:</span> Undefined<span style="color:#666"></span> source<span style="color:#666"></span><span style="color:#666">:</span> tbl<span style="color:#666"></span><span style="color:#666">.</span> Check<span style="color:#666"></span> spelling<span style="color:#666"></span> <span style="color:#a2f">in</span> query<span style="color:#666"></span><span style="color:#666">.</span>
+ <span style="color:#a2f">in</span> <span style="color:#080;font-style:italic">#collect#5(::Array{Any,1}, ::Function, ::StructuredQueries.Query{Symbol}) at /Users/David/.julia/v0.6/StructuredQueries/src/query/collect.jl:23</span>
+ <span style="color:#a2f">in</span> (<span style="color:#666">:</span><span style="color:#666">:</span>Base<span style="color:#666"></span><span style="color:#666">.</span><span style="color:#080;font-style:italic">#kw##collect)(::Array{Any,1}, ::Base.#collect, ::StructuredQueries.Query{Symbol}) at ./&lt;missing&gt;:0</span></code></pre></div>
+<h2 id="the-two-problems">The two problems</h2>
+
+<p>Now that we&rsquo;ve seen what the SQ query framework itself consists of, we can discuss how such a framework may help to solve the column-indexing and nullable semantics problems.</p>
+
+<h3 id="type-inferability">Type-inferability</h3>
+
+<p>Recall that the column-indexing problem consists in the inability of type inference to detect the return type of</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> f<span style="color:#666"></span>(df<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span>DataFrame<span style="color:#666"></span>)
+    A<span style="color:#666"></span> <span style="color:#666">=</span> df<span style="color:#666"></span>[<span style="color:#666">:</span>A<span style="color:#666"></span>]
+    x<span style="color:#666"></span> <span style="color:#666">=</span> zero<span style="color:#666"></span>(eltype<span style="color:#666"></span>(A<span style="color:#666"></span>))
+    <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#a2f">in</span> eachindex<span style="color:#666"></span>(A<span style="color:#666"></span>)
+        x<span style="color:#666"></span> <span style="color:#666">+=</span> A<span style="color:#666"></span>[i<span style="color:#666"></span>]
+    <span style="color:#a2f;font-weight:bold">end</span>
+    <span style="color:#a2f;font-weight:bold">return</span> x<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+<p>What <em>would</em> make <code>f</code> above amenable to type inference is to pass <code>A = df[:A]</code> above to an inner function that executes the loop, for instance</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">f_inner<span style="color:#666"></span>(A<span style="color:#666"></span>)
+    x<span style="color:#666"></span> <span style="color:#666">=</span> zero<span style="color:#666"></span>(eltype<span style="color:#666"></span>(A<span style="color:#666"></span>))
+    <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#a2f">in</span> <span style="color:#666">1</span><span style="color:#666">:</span>length<span style="color:#666"></span>(A<span style="color:#666"></span>)
+        x<span style="color:#666"></span> <span style="color:#666">+=</span> A<span style="color:#666"></span>[i<span style="color:#666"></span>]
+    <span style="color:#a2f;font-weight:bold">end</span>
+    <span style="color:#a2f;font-weight:bold">return</span> x<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+<p>As long as <code>f_inner</code> does not get inlined, type inference will run &ldquo;at&rdquo; the point at which the body of <code>f</code> calls <code>f_inner</code> and will have access to the <code>eltype</code> of <code>df[:A]</code>, since the latter is passed as an argument to <code>f_inner</code>.</p>
+
+<p>This strategy of introducing a function barrier also works when one requires multiple columns. For instance, suppose I wanted to generate a new column <code>C</code> where <code>C[i] = g(A[i], B[i])</code>. The following solution is type-inferable since the type parameters of the zipped iterator <code>zip(A, B)</code> reflects the <code>eltype</code>s of <code>A</code> and <code>B</code>:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> f<span style="color:#666"></span>(g<span style="color:#666"></span>, df<span style="color:#666"></span>)
+    A<span style="color:#666"></span>, B<span style="color:#666"></span> <span style="color:#666">=</span> df<span style="color:#666"></span>[<span style="color:#666">:</span>A<span style="color:#666"></span>], df<span style="color:#666"></span>[<span style="color:#666">:</span>B<span style="color:#666"></span>]
+    C<span style="color:#666"></span> <span style="color:#666">=</span> similar<span style="color:#666"></span>(A<span style="color:#666"></span>)
+    f_inner!<span style="color:#666"></span>(C<span style="color:#666"></span>, g<span style="color:#666"></span>, zip<span style="color:#666"></span>(A<span style="color:#666"></span>, B<span style="color:#666"></span>))
+    <span style="color:#a2f;font-weight:bold">return</span> DataFrame<span style="color:#666"></span>(C<span style="color:#666"></span> <span style="color:#666">=</span> C<span style="color:#666"></span>)
+<span style="color:#a2f;font-weight:bold">end</span>
+
+<span style="color:#a2f;font-weight:bold">function</span> f_inner!<span style="color:#666"></span>(C<span style="color:#666"></span>, g<span style="color:#666"></span>, itr<span style="color:#666"></span>) <span style="color:#080;font-style:italic"># bang because mutates C</span>
+    <span style="color:#a2f;font-weight:bold">for</span> (a<span style="color:#666"></span>, b<span style="color:#666"></span>) <span style="color:#a2f">in</span> itr<span style="color:#666"></span>
+        C<span style="color:#666"></span>[i<span style="color:#666"></span>] <span style="color:#666">=</span> g<span style="color:#666"></span>(a<span style="color:#666"></span>, b<span style="color:#666"></span>)
+    <span style="color:#a2f;font-weight:bold">end</span>
+    <span style="color:#a2f;font-weight:bold">return</span> C<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+<p>In other words: If one intends to iterate over the rows of some subset of columns of a <code>DataFrame</code>, then at some point there must be a function barrier through which is passed an argument whose signature reflects the <code>eltype</code>s of the relevant columns.</p>
+
+<p>The manipulation described above could be expressed for a column-indexable table (e.g. a <code>Table</code> object) as</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f">@query</span><span style="color:#666"></span> select<span style="color:#666"></span>(tbl<span style="color:#666"></span>, C<span style="color:#666"></span> <span style="color:#666">=</span> A<span style="color:#666"></span> <span style="color:#666">*</span> B<span style="color:#666"></span>)</code></pre></div>
+<p>The <a href="https://github.com/davidagold/AbstractTables.jl/tree/master/src/column_indexable/query">collection machinery</a> that supports this query against, say, a <code>Table</code> source essentially <a href="https://github.com/davidagold/AbstractTables.jl/blob/master/src/column_indexable/query/select.jl">follows</a> the above pattern of <code>f</code> and <code>f_inner</code>. That is, an outer function passes a &ldquo;scalar kernel&rdquo; (here, <code>row -&gt; row[1] * row[2]</code>) that reflects the structure of <code>A * B</code> and a &ldquo;row iterator&rdquo; (here <code>zip(tbl[:A], tbl[:B])</code>) to an inner function that computes the value of the scalar kernel applied to the &ldquo;rows&rdquo; returned by iterating over the row iterator. (Note that the argument to the scalar kernel is assumed to be a <code>Tuple</code> whose individual elements assume the positions of named attributes (such as <code>A</code> and <code>B</code>) in the body of the &ldquo;value expression&rdquo; (here <code>A * B</code>) from which the scalar kernel is generated).</p>
+
+<p>The scalar kernel and the information about which column to extract from <code>tbl</code> and <code>zip</code> together are all stored in the <code>QueryNode</code> graph produced by <code>@query</code>. Much of the work in producing such a graph consists in extracting such information from the <code>qry</code> expression (here <code>select(tbl, C = A * B)</code>) and processing it to produce (i) a lambda that captures the form of the transformation (<code>A * B</code>), (ii) a <code>Symbol</code> that names the resultant column (<code>C</code>) and a <code>Vector{Symbol}</code> that lists the relevant argument column names (<code>[:A, :B]</code>) in the order they are encountered during the production of the lambda.</p>
+
+<p>Note that these data (a scalar kernel and result and argument fields) are not necessary to generate SQL code from a raw query argument, say the <code>Expr</code> object <code>:( C = A * B )</code>. Thus, one might argue that it is somewhat wasteful to compute such data and store it in the <code>QueryNode</code> graph when one might be able to compute the data at run-time dispatch of <code>collect</code> on a <code>Query{S}</code> where <code>S</code> is a type that satisfies the column-indexable interface. This is a good point, but there are two considerations to account. The first is that computing the scalar kernel and extracting the result and argument fields from the query argument is probably not prohibitively expensive. The second is that generating the scalar kernel at run-time (i) involves use of <code>eval</code>, which is to be avoided, and (ii) may involve a lot of work to re-incorporate the module information of names appearing in expression to be <code>eval</code>&rsquo;d into a scalar kernel. For now, it is easiest to generate scalar kernels at macroexpand-time and let them come along for the ride in the <code>QueryNode</code> graph even if the latter is to be collected against a data source (e.g. a SQL connection) that doesn&rsquo;t need such data.</p>
+
+<p>The use of metaprogramming to circumvent type-inferability is not a new strategy. Indeed, it is the basis for the <a href="https://github.com/JuliaStats/DataFramesMeta.jl">DataFramesMeta</a> manipulation framework. The interested reader is referred <a href="https://github.com/JuliaStats/DataFrames.jl/issues/523#issuecomment-33908369">here</a> and <a href="https://github.com/JuliaStats/DataFramesMeta.jl/issues/1">here</a> for more on the history and motivation for these endeavors.</p>
+
+<h3 id="the-hard-question-of-nullable-semantics">The hard question of nullable semantics</h3>
+
+<p>Recall the hard question of nullable semantics involves implementing a given lifting semantics &ndash; that is, a given behavior for <code>f(x::Nullable{T})</code> given a defined method <code>f(x::T)</code>&ndash; in a &ldquo;general&rdquo; way.</p>
+
+<p>One solution &ndash; perhaps the most obvious, and which I have <a href="https://github.com/JuliaStats/NullableArrays.jl/commit/e3d68ab2502e3e8c2e9e6b7c299f9078b9154e3e#diff-04c6e90faac2675aa89e2176d2eec7d8R140">previously endorsed</a> &ndash; involves defining the method <code>f(x::Nullable{T})</code> as something like</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> f<span style="color:#666"></span>(x<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Nullable</span>{T<span style="color:#666"></span>})
+    <span style="color:#a2f;font-weight:bold">if</span> isnull<span style="color:#666"></span>(x<span style="color:#666"></span>)
+        <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#0b0;font-weight:bold">Nullable</span>{U<span style="color:#666"></span>}()
+    <span style="color:#a2f;font-weight:bold">else</span>
+        <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#0b0;font-weight:bold">Nullable</span>(f<span style="color:#666"></span>(x<span style="color:#666"></span><span style="color:#666">.</span>value<span style="color:#666"></span>))
+    <span style="color:#a2f;font-weight:bold">end</span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+<p>with natural analogues for methods with n-ary arguments. This process is a bit cumbersome, but it would not be difficult to automate with a macro with which one could annotate the original definition <code>f(x::T)</code>. Call this approach the &ldquo;method extension lifting&rdquo; approach.</p>
+
+<p>The method extension lifting approach is very flexible. However, it does face some difficulties. One must somehow decide which functions should be lifted in this manner, and it&rsquo;s not clear how this line (between lifted and non-lifted functions) ought to be drawn. And if one cannot edit the definition of a function then a macro is of no use; one must manually introduce the lifted variant.</p>
+
+<p>There is a further problem. If one wants to support lifting over arguments with &ldquo;mixed&rdquo; signatures &ndash; i.e. signatures in which some argument types are <code>Nullable</code> and some are not &ndash; then one has either to extend the promotion machinery or to define methods for mixed signatures, e.g. <code>+{T}(x, y::Nullable{T})</code>. That may end up being a lot of methods. Even if their definition can be automated with metaprogramming, the compilation costs associated with method proliferation may be considerable (but I haven&rsquo;t tested this).</p>
+
+<p>Finally, there is the problem described in <a href="https://github.com/JuliaStats/NullableArrays.jl/issues/148#issuecomment-249335994">NullableArrays.jl#148</a>. I won&rsquo;t repeat the entire argument here. The summary of this problem is: if one is going to rely on a minimal set of lifted operators to support generic lifting of user-defined functions, those user-defined functions essentially have to give up much of multiple dispatch.</p>
+
+<p>The difficulties associated with method extension lifting are not insurmountable, but the solution &ndash; namely, keeping a repository of lifted methods &ndash; requires an undetermined amount of maintenance and coordination.</p>
+
+<p>Another way to implement standard lifting semantics is by means of a higher-order function &ndash; that is, on Julia 0.5 where higher-order functions are performant. Such a function &ndash; call it <code>lift</code> &ndash; might look like the following:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> lift<span style="color:#666"></span>(f<span style="color:#666"></span>, x<span style="color:#666"></span>)
+    <span style="color:#a2f;font-weight:bold">if</span> hasvalue<span style="color:#666"></span>(x<span style="color:#666"></span>)
+        <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#0b0;font-weight:bold">Nullable</span>(f<span style="color:#666"></span>(x<span style="color:#666"></span>))
+    <span style="color:#a2f;font-weight:bold">else</span>
+        U<span style="color:#666"></span> <span style="color:#666">=</span> Core<span style="color:#666"></span><span style="color:#666">.</span>Inference<span style="color:#666"></span><span style="color:#666">.</span>return_type<span style="color:#666"></span>(f<span style="color:#666"></span>, (typeof<span style="color:#666"></span>(x<span style="color:#666"></span>),))
+        <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#0b0;font-weight:bold">Nullable</span>{U<span style="color:#666"></span>}()
+    <span style="color:#a2f;font-weight:bold">end</span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+<p>This definition can naturally be extended to methods with more than one argument. The primary advantage of this approach over method extension lifting is its generality: one needs only to define one (two, three) higher-order <code>lift</code> method to support lifting of all functions of one (two, <em>n</em>) argument(s), as opposed to having to define a lifted version for each such function. Note that as long as <code>hasvalue</code> has some generic fallback method for non-<code>Nullable</code> arguments, such <code>lift</code> functions cover both standard and mixed-signature lifting. (Ideally one would ensure that the code is optimized for when types are non-<code>Nullable</code>; in particular, one would ensure that the dead branch is removed &ndash; cf. <a href="https://github.com/JuliaLang/julia/pull/18484">julia#18484</a>.) Call this approach the &ldquo;higher-order lifting&rdquo; approach.</p>
+
+<p>So, with the higher-order lifting approach we might better avoid method proliferation and generality worries, which is nice. However, now we require users to invoke <code>lift</code> everywhere. In particular, to lift <code>f(g(x))</code> over a <code>Nullable</code> argument <code>x</code>, one needs to write <code>lift(f, lift(g, x))</code>. The least we could do in this case is provide an <code>@lift</code> macro that, say, traverses the AST of <code>f(g(x))</code> and replaces each function call <code>f(...)</code> by an invocation of <code>lift(f, ...)</code>. That might be reasonable, but it&rsquo;s still an artifact of implementation details of support for missing values, and ideally it would not be exposed to users.</p>
+
+<p>Recall that the present query framework extracts the &ldquo;value expression&rdquo; of a query argument (for instance, <code>B * C</code> in the query argument <code>C = A * B</code>) and generates a lambda that mimics the former&rsquo;s structure (in this case, <code>row -&gt; row[1] * row[2]</code>). A proposed modification (see <a href="https://github.com/davidagold/_AbstractTables.jl/issues/2">AbstractTables#2</a>) to this process is to modify the AST of the value expression (<code>A * B</code>) by appropriately inserting calls to <code>lift</code>, e.g.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">row<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> lift<span style="color:#666"></span>(<span style="color:#666">*</span>, row<span style="color:#666"></span>[<span style="color:#666">1</span>], row<span style="color:#666"></span>[<span style="color:#666">2</span>])</code></pre></div>
+<p>While there is a <a href="https://github.com/davidagold/AbstractTables.jl/blob/master/src/column_indexable/query/select.jl">simpler way</a> to achieve standard lifting semantics, this approach (which is currently employed by the column-indexing collection machinery) does not easily support non-standard lifting semantics such as three-valued logic.</p>
+
+<p>The higher-order lifting approach is not without its own drawbacks. Most notably, non-standard lifting semantics, such as three-valued logic, are more difficult to implement and are subject to restrictions that do not apply to the method extension lifting approach. The details of this difficulty is the proper subject of another blog post. The summary of the problem is: higher-order lifting (via code transformation, such as within <code>@query</code>) can only give non-standard lifting semantics to methods called explicitly within the expression passed to <code>@query</code>. That is,</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f">@query</span><span style="color:#666"></span> filter<span style="color:#666"></span>(tbl<span style="color:#666"></span>, A<span style="color:#666"></span> <span style="color:#666">|</span> B<span style="color:#666"></span>)</code></pre></div>
+<p>can be given, say, three-valued logic semantics via higher-order lifting, but</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">f<span style="color:#666"></span>(x<span style="color:#666"></span>, y<span style="color:#666"></span>) <span style="color:#666">=</span> x<span style="color:#666"></span> <span style="color:#666">|</span> y<span style="color:#666"></span>
+<span style="color:#a2f">@query</span><span style="color:#666"></span> filter<span style="color:#666"></span>(tbl<span style="color:#666"></span>, f<span style="color:#666"></span>(A<span style="color:#666"></span>, B<span style="color:#666"></span>))</code></pre></div>
+<p>cannot.</p>
+
+<p>Which approach to solving the hard question of <code>Nullable</code> semantics is better? It really is not clear. Right now, the Julia statistics community is trying out both solutions. I am hopeful time and experimentation will yield new insights.</p>
+
+<h2 id="sql-backends">SQL backends</h2>
+
+<p>Above we have seen (i) how the implementation of a generic querying interface suggested a solution to the column-indexing and the <code>Nullable</code> semantics problems and (ii) how these latter solutions may be implemented in a manner generic over so-called column-indexable in-memory Julia tabular data structures. But we haven&rsquo;t said anything about how the interface is generic over tables other than in-memory Julia objects. In particular, we desire that the above framework be applicable to SQL database connections as well.</p>
+
+<p><a href="https://github.com/yeesian">Yeesian Ng</a>, who provided invaluable feedback and ideas during the development of SQ, also began to develop such an extension in a package called <a href="https://github.com/yeesian/SQLQuery.jl/pull/2">SQLQuery</a>. We are working to further integrate it with StructuredQueries in  <a href="https://github.com/yeesian/SQLQuery.jl/pull/2">SQLQuery.jl#2</a>, and we encourage the reader to stay tuned for updates concerning this endeavor.</p>
+
+<h2 id="roadmap-and-open-questions">Roadmap and open questions</h2>
+
+<p>There is a general roadmap available at  <a href="https://github.com/davidagold/StructuredQueries.jl/issues/19">structuredQueries.jl#19</a>. I&rsquo;ll briefly describe some of what I believe are the most pressing/interesting open questions.</p>
+
+<p>Interpolation syntax and implementation are both significant open questions. Suppose I wish to refer to a name in the enclosing scope of an <code>@query</code> invocation. A straightforward syntax would be to prepend the interpolated variable with <code>$</code>, as in</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">c<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">.</span><span style="color:#666">5</span>
+q<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f">@query</span><span style="color:#666"></span> filter<span style="color:#666"></span>(tbl<span style="color:#666"></span>, A<span style="color:#666"></span> <span style="color:#666">&gt;</span> <span style="color:#666">$</span>c<span style="color:#666"></span>)</code></pre></div>
+<p>How should this be implemented? For full generality, we would like to be able to &ldquo;capture&rdquo; <code>c</code> from the enclosing scope and store it <code>q</code>. One way to do so is to include <code>c</code> in the closure of a lambda <code>() -&gt; c</code> that we store in <code>q</code>. However, there is the question of how to deal with <a href="https://github.com/davidagold/StructuredQueries.jl/issues/22#issuecomment-244995697">problems of type-inferability</a>. Solving this problem may either require or strongly suggest some sort of &ldquo;parametrized queries&rdquo; API by which one can designate a name inside of a query argument context a <em>parameter</em> that can then be bound after the <code>@query</code> invocation, e.g. specified as kwargs to <code>collect</code> or to a function like <code>bind!(q::Query[; kwargs...])</code>.</p>
+
+<p>We are also still deciding what the general syntax within a query context should look like. A big part of this decision concerns how aliasing and related functionality ought to work. See <a href="https://github.com/davidagold/StructuredQueries.jl/issues/21">StructuredQueries.jl#21</a> for more details. This issue is similar to that of interpolation syntax insofar as both involve name resolution within different query contexts (e.g. in a data source specification context vs. a query argument context).</p>
+
+<p>Finally, extensibility of not only <code>collect</code> but also of the graph generation facilities is an important issue, of which we hope to say more in a later post.</p>
+
+<h2 id="related-work">Related work</h2>
+
+<p>As mentioned above, <a href="https://github.com/JuliaStats/DataFramesMeta.jl">DataFramesMeta</a> is a pioneering approach to enhancing tabular data support in Julia via metaprogramming. Another exciting (and slightly more mature than the presently discussed package) endeavor in the realm of generic data manipulation facilities support is <a href="https://github.com/davidanthoff/Query.jl">Query.jl</a> by <a href="https://github.com/davidanthoff">David Anthoff</a>. Query.jl and SQ are very similar in their objectives, though different in important respects. A comparison of these packages is the proper topic of a separate blog post.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The foregoing post has described a work in progress. Not just the StructuredQueries package, but also the Julia statistical ecosystem. Though it will likely take a while for this ecosystem to mature, the general trend I&rsquo;ve observed over the past two years is encouraging. It&rsquo;s also worth noting that much of what is described above would have been difficult to conceive without developments of the Julia language. In particular, performant higher-order functions and type-inferable map have both allowed us to explore solutions that were previously made difficult by the amount of metaprogramming required to ensure type-inferability. It will be interesting to see what we can come up with given the improvements to Julia in 0.6 and beyond.</p>
+
+<p>I&rsquo;m very grateful to John Myles White for his guidance on this project, to Yeesian Ng at MIT for his collaboration, to Viral Shah and Alan Edelman for arranging this opportunity, and to many others at Julia Central and elsewhere for their help and insight.</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

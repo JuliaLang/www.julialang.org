@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Graft.jl - General purpose graph analytics for Julia</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>Graft.jl - General purpose graph analytics for Julia</h1>
+
+    <p class="metadata">
+      <span class="timestamp">22 August, 2016</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author"><a href="https://github.com/pranavtbhat">Pranav Thulasiram Bhat</a></span>
+      
+    </p>
+
+    
+
+<p>This blog post describes my work on <a href="https://github.com/pranavtbhat/Graft.jl">Graft.jl</a>, a general purpose graph analysis package for Julia. For those unfamiliar with graph algorithms, a quick <a href="https://www.cl.cam.ac.uk/teaching/1011/PrincComm/slides/graph_theory_1-11.pdf">introduction</a> might help.</p>
+
+<h1 id="proposal">Proposal</h1>
+
+<p>My proposal, titled <a href="https://github.com/pranavtbhat/Gsoc2016/blob/master/Proposal.md">ParallelGraphs</a>, was to develop a parallelized/distributed graph algorithms
+library. However, in the first month or so, we decided to work towards a more general framework that supports data analysis on
+networks (graphs with attributes defined on vertices and edges).
+Our change in direction was mainly motivated by:</p>
+
+<ul>
+<li>The challenges associated with distributed graph computations. <a href="http://www.frankmcsherry.org/graph/scalability/cost/2015/01/15/COST.html">This</a>
+blog post was an eye opener.</li>
+<li>Only very large graphs, of the order of terabytes or petabytes, require distributed execution. Most useful graphs can be analyzed on a single compute node.</li>
+<li>Multi-threading is under heavy development, and we decided to wait for the full multi-threaded programming model to be available.</li>
+<li>As we looked at public datasets, we felt that the ability to combine graph theoretic analyses with real world data was the missing piece in Julia. <a href="https://github.com/JuliaGraphs/LightGraphs.jl">LightGraphs.jl</a> already provides fast implementations for most graph algorithms, so we decided to target
+graph data analysis.</li>
+</ul>
+
+<p>The modified proposal could be summarized as the development of a package that supports:</p>
+
+<ul>
+<li>Vertex and edge metadata : Key value pairs for vertices and edges.</li>
+<li>Vertex labelling : Allow vertices to be referenced, externally, through arbitrary Julia types.</li>
+<li>SQL like queries for edge data and metadata.</li>
+<li>Compatibility with <code>LightGraphs</code></li>
+</ul>
+
+<h1 id="graft">Graft</h1>
+
+<p><code>ParallelGraphs</code> turned out to be a misnomer, since we were moving towards a more general purpose data analysis framework. So we chose the name <code>Graft</code>, a kind of abbreviation for Graph Toolkit. The following sections detail <code>Graft's</code> features:</p>
+
+<h2 id="vertex-and-edge-metadata">Vertex and Edge Metadata</h2>
+
+<p>Graphs are often representations of real world entities, and the relationships between them. Such entities (and their relationships), often have data attached to them.
+While it is quite straightforward to store vertex data (a simple table will suffice), storing edges and their data is very tricky. The data should be structured on the
+source and target vertices, should support random access and should be vectorized for queries.</p>
+
+<p>At first we tried placing the edge data in a SparseMatrixCSC. This turned out to be a bad idea, because sparse matrices are designed for numeric storage.
+A simpler solution is to store edge metadata in a DataFrame, and have a SparseMatrixCSC map edges onto indices for the DataFrame. This strategy needed a lot less
+code, and the benchmarks were more promising. Mutations such as the addition or removal of vertices and edges become more complicated however.</p>
+
+<h2 id="vertex-labelling">Vertex Labelling</h2>
+
+<p>Most graph libraries do not support vertex labelling. It can be very confusing to refer to a vertex by its (often long) integer identifier. It is also
+computationally expensive to use non-integer labels in the implementation of the package (any such implementation would involve dictionaries). There is no reason, however,
+for the user to have to use integer labels externally. Graft supports two modes of vertex labelling. By default, a vertex is identified by its internal identifier. A user
+can assign labels of any arbitrary Julia type to identify vertices, overriding the internal identifiers. This strategy, we feel, makes a reasonable compromise between
+user experience and performance.</p>
+
+<p>If vertex labels were used in the internal implementation, the graph data structure would probably look like this:</p>
+<pre><code>  Dict(
+     "Alice" => Dict(
+        "age" => 34,
+        "occupation"  => "Doctor",
+        "adjacencies" => Dict("Bob" => Dict("relationship" => "follow")))
+     ),
+     "Bob" => Dict(
+        "age" => 36,
+        "occupation"  => "Software Engineer",
+        "adjacencies" => Dict("Charlie" => Dict("relationship" => "friend"))
+     ),
+     "Charlie" => Dict(
+        "age" => 30,
+        "occupation"  => "Lawyer",
+        "adjacencies" => Dict("David" => Dict("relationship" => "follow"))
+     ),
+     "David" => Dict(
+        "age" => 29,
+        "occupation" => "Athlete",
+        "adjacencies" => Dict("Alice" => Dict("relationship" => "friend"))
+     )
+  )</code></pre>
+<p>Cleary, using labels internally is a very bad idea. Any sort of data access would set off multiple dictionary look-ups. Instead, if a bidirectional map
+could be used to translate labels into vertex identifiers and back, the number of dictionary lookups could be reduced to one. The data would also be better structured for query processing.</p>
+<pre><code>  # Label Map to resolve queries
+  LabelMap(
+     # Forward map : labels to vertex identifiers
+     Dict("Alice" => 1, "David" => 4", "Charlie" => 3, Bob" => 2),
+
+     # Reverse map : vertex identifiers to labels
+     String["Alice, "Bob", "Charlie", "David"]
+  )
+
+  # Vertex DataFrame
+  4×2 DataFrames.DataFrame
+  │ Row │ age │ occupation          │
+  ├─────┼─────┼─────────────────────┤
+  │ 1   │ 34  │ "Doctor"            │
+  │ 2   │ 36  │ "Software Engineer" │
+  │ 3   │ 30  │ "Lawyer"            │
+  │ 4   │ 29  │ "Athlete"           │
+
+  # SparseMatrixCSC : maps edges onto indices into Edge DataFrame
+  4×4 sparse matrix with 4 Int64 nonzero entries:
+     [4, 1]  =  1
+     [1, 2]  =  2
+     [2, 3]  =  3
+     [3, 4]  =  4
+
+  # Edge DataFrame
+  4×1 DataFrames.DataFrame
+  │ Row │ relationship │
+  ├─────┼──────────────┤
+  │ 1   │ "follow"     │
+  │ 2   │ "friend"     │
+  │ 3   │ "follow"     │
+  │ 4   │ "friend"     │</code></pre>
+<h2 id="sql-like-queries">SQL Like Queries</h2>
+
+<p>Graft&rsquo;s query notation is borrowed from <a href="https://github.com/davidagold/jplyr.jl">Jplyr</a>. The <code>@query</code> macro is used to simplify the query syntax, and
+accepts a pipeline of abstractions separated by the pipe operator <code>|&gt;</code>. The stages are described through abstractions:</p>
+
+<h3 id="eachvertex">eachvertex</h3>
+
+<p>Accepts an expression, that is run over every vertex. Vertex properties can be expressed using the dot notation. Some reserved properties are <code>v.id</code>, <code>v.label</code>,
+<code>v.adj</code>, <code>v.indegree</code> and <code>v.outdegree</code>.
+Examples:</p>
+<pre><code>  # Check if the user has overridden the default labels
+  julia> @query(g |> eachvertex(v.id == v.label)) |> all
+
+  # Kirchoff's law :P
+  julia> @query(g |> eachvertex(v.outdegree - v.indegree)) .== 0</code></pre>
+<h3 id="eachedge">eachedge</h3>
+
+<p>Accepts an expression, that is run over every edge. The symbol <code>s</code> is used to denote
+the source vertex, and <code>t</code> is used to denote the target vertex in the edge. The symbol <code>e</code> is used to denote
+the edge itself. Edge properties can be expressed through the dot notation. Some reserved properties are <code>e.source</code>, <code>e.target</code>, <code>e.mutualcount</code>, and <code>e.mutual</code>.
+Examples:</p>
+<pre><code>  # Arithmetic expression on edge, source and target properties
+  julia> @query g |> eachedge(e.p1 - s.p1 - t.p1)
+
+
+  # Check if constituent vertices have the same outdegree
+  julia> @query g |> eachedge(s.outdegree == t.outdegree)
+
+
+  # Count the number of "mutual friends" between the source and target vertices in each edge
+  julia> @query g |> eachedge(e.mutualcount)</code></pre>
+<h3 id="filter">filter</h3>
+
+<p>Accepts vertex or edge expressions and computes subgraphs with a subset of vertices, or a subset
+of edges, or both.
+Examples:</p>
+<pre><code>  # Remove vertices where property p1 equals property p2
+  @query g |> filter(v.p1 != v.p2)
+
+  # Remove self loops from the graph
+  @query g |> filter(e.source != e.target)</code></pre>
+<h3 id="select">select</h3>
+
+<p>Returns a subgraph with a subset of vertex properties, or a subset of edge properties or both.
+Examples:</p>
+<pre><code>  # Preserve vertex properties p1, p2 and nothing else
+  @query g |> select(v.p1, v.p2)
+
+  # Preserve vertex property p1 and edge property p2
+  @query g |> select(v.p1, e.p2)</code></pre>
+<h1 id="demonstration">Demonstration</h1>
+
+<p>The typical workflow we hope to support with <code>Graft</code> is:</p>
+
+<ul>
+<li>Load a graph from memory</li>
+<li>Use the query abstractions to construct new vertex/edge properties or obtain subgraphs.</li>
+<li>Run complex queries on the subgraphs, or export data to <code>LightGraphs</code> and run computationally expensive algorithms there.</li>
+<li>Bring the data back into <code>Graft</code> as a new property, or use it to modify the graphs structure.</li>
+</ul>
+
+<p>The following examples should demonstrate this workflow:</p>
+
+<ul>
+<li><a href="https://github.com/pranavtbhat/Graft.jl/blob/master/examples/google%2B.ipynb">Google+</a>: This demo uses a real, somewhat large, dataset with plenty of text data.</li>
+<li><a href="https://github.com/pranavtbhat/Graft.jl/blob/master/examples/baseball.ipynb">Baseball Players</a>: Two separate datasets spliced together, a table on baseball players
+and a trust network. The resulting data is quite absurd, but does a good job of showing the quantitative queries Graft can run.</li>
+</ul>
+
+<h1 id="future-work">Future Work</h1>
+
+<ul>
+<li>Graph IO : Support more graph file formats.</li>
+<li>Improve the query interface: The current pipelined macro based syntax has a learning curve, and the macro itself does some eval at runtime. We would like to move towards a cleaner composable syntax, that will pass off as regular Julia commands.</li>
+<li>New abstractions, such as Group-by, sort, and table output.</li>
+<li>Database backends : A RDBMS can be used instead of the DataFrames. Or Graft can serve as a wrapper on a GraphDB such as Neo4j.</li>
+<li>Integration with ComputeFramework for out of core processing. Support for parallelized IO, traversals and queries.</li>
+</ul>
+
+<p>More information can be found <a href="https://github.com/pranavtbhat/Graft.jl/issues">here</a></p>
+
+<h1 id="acknowledgements">Acknowledgements</h1>
+
+<p>This work was carried out as part of the Google Summer of Code program, under the guidance of mentors: <a href="https://github.com/viralbshah">Viral B Shah</a> and <a href="https://github.com/shashi">Shashi Gowda</a>.</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

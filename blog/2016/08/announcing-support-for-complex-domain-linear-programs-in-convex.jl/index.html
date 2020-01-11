@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Announcing support for complex-domain linear programs in Convex.jl</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>Announcing support for complex-domain linear programs in Convex.jl</h1>
+
+    <p class="metadata">
+      <span class="timestamp">17 August, 2016</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author">Ayush Pandey</span>
+      
+    </p>
+
+    <p>I am pleased to announce the support for complex-domain linear programs (LPs) in Convex.jl. As one of the <em>Google Summer of Code</em> students under <em>The Julia Language</em>, I had proposed to implement the support for complex semidefinite programming. In the first phase of project, I started by tackling the problem of complex-domain LPs where in first subphase, I had announced the support for complex coefficients during <a href="https://www.youtube.com/watch?v=fHG4uEOlMbY">JuliaCon&rsquo;16</a> and now I take this opportunity to announce the support for complex variables in LPs.</p>
+
+<p>Complex-domain LPs consist of a real linear objective function, real linear inequality constraints, and real and complex linear equality constraints.</p>
+
+<p>In order to enable complex-domain LPs, we came up with these ideas:</p>
+
+<ol>
+<li>We redefined the <strong>conic_form!</strong> of every affine atom to accept complex arguments.</li>
+<li>Every complex variable z was internally represented as <code>z = z1 + i*z2</code>, where z1 and z2 are real.</li>
+<li>We introduced two new affine atoms <strong>real</strong> and <strong>imag</strong> which return the real and the imaginary parts of the complex variable respectively.</li>
+<li>transpose and ctranspose perform differently on complex variables so a new atom <strong>CTransposeAtom</strong> was created.</li>
+<li>A complex-equality constraint <em>RHS = LHS</em> can be decomposed into two corresponding real equalities constraint <em>real(RHS) = real(LHS)</em> and <em>imag(RHS) = imag(LHS)</em></li>
+</ol>
+
+<p>After above changes were made to the codebase, we wrote two use cases to demonstrate the usability and the correctness of our idea which I am presenting below:</p>
+<pre><code># Importing Packages
+Pkg.clone("https://github.com/Ayush-iitkgp/Convex.jl/tree/gsoc2")
+using Convex
+
+# Complex LP with real variable
+n = 10 # variable dimension (parameter)
+m = 5 # number of constraints (parameter)
+xo = rand(n)
+A = randn(m,n) + im*randn(m,n)
+b = A * xo 
+# Declare a real variable
+x = Variable(n)
+p1 = minimize(sum(x), A*x == b, x>=0) 
+# Notice A*x==b is complex equality constraint 
+solve!(p1)
+x1 = x.value
+
+# Let's now solve by decomposing complex equality constraint into the corresponding real and imaginary part.
+p2 = minimize(sum(x), real(A)*x == real(b), imag(A)*x==imag(b), x>=0)
+solve!(p2)
+x2 = x.value
+x1==x2 # should return true
+
+
+# Let's now consider an example using a complex variable
+# Complex LP with complex variable
+n = 10 # variable dimension (parameter)
+m = 5 # number of constraints (parameter)
+xo = rand(n)+im*rand(n)
+A = randn(m,n) + im*randn(m,n)
+b = A * xo
+
+# Declare a complex variable
+x = ComplexVariable(n)
+p1 = minimize(real(sum(x)), A*x == b, real(x)>=0, imag(x)>=0)
+solve!(p1)
+x1 = x.value
+
+xr = Variable(n)
+xi = Variable(n)
+p2 = minimize(sum(xr), real(A)*xr-imag(A)*xi == real(b), imag(A)*xr+real(A)*xi == imag(b), xr>=0, xi>=0)
+solve!(p2)
+x1== xr.value + im*xi.value # should return true</code></pre>
+<p>List of all the affine atoms are as follows:</p>
+
+<ol>
+<li>addition, substraction, multiplication, division</li>
+<li>indexing and slicing</li>
+<li>k-th diagonal of a matrix</li>
+<li>construct diagonal matrix</li>
+<li>transpose and ctranspose</li>
+<li>stacking</li>
+<li>sum</li>
+<li>trace</li>
+<li>conv</li>
+<li>real and imag</li>
+</ol>
+
+<p>Now, I am working towards implementing complex-domain second order conic programming. Meanwhile, I invite the Julia community to play around with the complex-domain LPs. The link to the development branch is <a href="https://github.com/Ayush-iitkgp/Convex.jl/tree/gsoc2">here</a>.</p>
+
+<p>Looking forward to your suggestions!</p>
+
+<p>Special thanks to my mentors Madeleine Udell and Dvijotham Krishnamurthy!</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

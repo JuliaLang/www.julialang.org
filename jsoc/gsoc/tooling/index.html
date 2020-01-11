@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Tooling Projects – Summer of Code</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../" id="logo">
+      <img src="../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br/>
+
+  <div class = "container">
+  
+
+<h1 id="hahahugoshortcode-s0-hbhb">Tooling Projects – Summer of Code</h1>
+
+<h2 id="ide-tooling">IDE Tooling</h2>
+
+<p><a href="http://junolab.org">Juno</a> is open to general project ideas (from here or not); feel free to get in contact via the <a href="http://discourse.julialang.org/">forum</a> to discuss!</p>
+
+<h2 id="progress-meter-improvements">Progress Meter Improvements</h2>
+
+<p>Right now Juno&rsquo;s progress metre works well but is fairly basic. In particular, it could be improved by:</p>
+
+<ul>
+<li>Automatically reducing its own overhead, to avoid slowing down tight loops significantly,</li>
+<li>Supporting cancellation so that long-running computations can be safely interrupted,</li>
+<li>Supporting nested loops like <code>for i = 1:10, j = 1:10</code>,</li>
+<li>and having a real fallback in the console, rather than simply falling through.</li>
+</ul>
+
+<p>These issues prevent package authors from using <code>@progress</code> over loops without modification, in many cases. This project would therefore involve improving on the above fronts (roughly in that order of priority).</p>
+
+<p><strong>Expected Results</strong>: Patches to Juno.jl implementing the above improvements.</p>
+
+<p><strong>Recommended Skills</strong>: Some experience with Julia and Juno is good, but only general programming skills are required.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/pfitzseb">Sebastian Pfitzner</a></p>
+
+<h2 id="package-installation-ui">Package installation UI</h2>
+
+<p>Juno could provide a simple way to browse available packages and view what&rsquo;s installed on their system. To start with, this project could simply provide a GUI that reads in package data from <code>~/.julia</code>, including available packages and installed versions, and buttons which call the relevant <code>Pkg.*</code> methods.</p>
+
+<p>This could also be extended by having metadata about the package, such as a readme, github stars, activity and so on. To support this we probably need a <a href="http://pkg.julialang.org">pkg.julialang.org</a> style API which provides the info in JSON format.</p>
+
+<p><strong>Expected Results</strong>: A UI in Juno for package operations.</p>
+
+<p><strong>Recommended Skills</strong>: Familiarity with javascript and/or atom package development.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/pfitzseb">Sebastian Pfitzner</a></p>
+
+<h2 id="julia-code-analysis">Julia Code Analysis</h2>
+
+<p>The foundation for tools like refactoring, linting or autoformatting is a powerful framework for reading and writing Julia code while preserving various features of the source code; comments, original formatting, and perhaps even syntax errors. This could build on the work in <a href="https://github.com/JuliaLang/JuliaParser.jl">JuliaParser.jl</a>.</p>
+
+<p>Related would be various tools for doing static or dynamic analysis of Julia code in order to find errors. A simple example would be linting indentation; combined with information from the parser, this could be a powerful way to reduce beginner frustration over <code>unexpected )</code> style error messages.</p>
+
+<p><strong>Expected Results</strong>: Tools for source-to-source transformations of Julia code, preserving comments and whitespace.</p>
+
+<p><strong>Recommended Skills</strong>: Experience with parsing, or even familiarity with JuliaParser.jl itself.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/Keno">Keno Fischer</a></p>
+
+<h2 id="performance-linting">Performance Linting</h2>
+
+<p>Concepts relevant to Julia code&rsquo;s performance, like &lsquo;type-stability&rsquo;, are often implicit in written code, making it hard for new users in particular to catch slow code early on. However, this also represents a challenge for static analysis, since in general concrete type information won&rsquo;t be available until runtime.</p>
+
+<p>A potential solution to this is to hook into function calls (users will most likely call a function with test inputs after writing it) and then use dynamically-available information, such as the output of <code>code_typed</code>, to find performance issues such as non-concrete types, use of global variables etc, and present these as lint warnings in the IDE.</p>
+
+<p>While static analysis has long been used as a tool for understanding and finding problems in code, the use of dynamically available information is unexplored (with the exception of tracing JIT compilers, which demonstrate the power of the concept). This project has plenty of interesting extensions and could have the most interesting long-term implications.</p>
+
+<p><strong>Expected Results</strong>: IDE integration and tooling which detects performance issues.</p>
+
+<p><strong>Required Skills:</strong> Some familiarity with Julia, but more importantly javascript and/or Atom development.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/pfitzseb">Sebastian Pfitzner</a></p>
+
+<h2 id="live-editing-for-weave-files-in-vs-code">Live editing for Weave files in VS Code</h2>
+
+<p>This project would add an interactive UI for <a href="https://github.com/mpastell/Weave.jl">Weave.jl</a>
+documents to the <a href="https://github.com/JuliaEditorSupport/julia-vscode">julia VS Code extension</a>.</p>
+
+<p><strong>Required Skills</strong>: Good understanding of TypeScript, web UI development,
+strong general julia skills.</p>
+
+<p><strong>Expected Results</strong>: A highly interactive UI for julia markdown files in
+VS Code.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/davidanthoff">David Anthoff</a></p>
+
+<h2 id="vs-code-extension">VS Code extension</h2>
+
+<p>We are generally looking for folks that want to help with the <a href="https://github.com/JuliaEditorSupport/julia-vscode">julia VS Code extension</a>.
+We have a long list of open issues, and some of them amount to significant projects. One particularly rewarding project would be adding debugger functionality to the VS Code extension.</p>
+
+<p><strong>Required Skills</strong>: TypeScript, julia, web development.</p>
+
+<p><strong>Expected Results</strong>: Depends on the specific projects we would agree on.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/davidanthoff">David Anthoff</a></p>
+
+<h1 id="graphical-user-interfaces">Graphical user interfaces</h1>
+
+<h2 id="interactive-ui-libraries-and-tooling">Interactive UI libraries and tooling</h2>
+
+<p><a href="https://github.com/JuliaGizmos/WebIO.jl">WebIO.jl</a> is an exciting new library that enables two-way interaction between julia and web technologies (html/css/js). We are looking for project proposals in, possibly a combination of the following areas:</p>
+
+<ul>
+<li>Tools for building dashboards, and easily deploying them to the web, ala R&rsquo;s Shiny, and Plotly&rsquo;s dash</li>
+<li>Wrapping js libraries such as D3, interact.js, Plotly&rsquo;s dash?</li>
+<li>Reliability/Testing - (tools to) enable browser based automated tests for WebIO, InteractNext, and other projects built on WebIO</li>
+</ul>
+
+<p>We&rsquo;re open to your project ideas. Join us on the <a href="https://julialang.slack.com/messages/gizmos/">#gizmos slack channel</a> to discuss or ping <code>@shashi</code> or <code>@JobJob</code> in a <a href="http://discourse.julialang.org/">discourse post</a>.</p>
+
+<p><strong>Required Skills</strong>: Experience with JavaScript front-end development, some familiarity with Julia</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/shashi">Shashi Gowda</a>, <a href="https://github.com/JobJob">Joel Mason</a></p>
+
+<h2 id="gui-library-integration">GUI library integration</h2>
+
+<p><a href="https://github.com/barche/QML.jl">QML.jl</a> provides an interface to connect a <a href="https://doc.qt.io/qt-5.10/qmlapplications.html">QML</a> GUI to a Julia backend. Some ideas for improvement here are:
+* Use <a href="https://github.com/JuliaGizmos/Observables.jl">Observables.jl</a> to provide a more &ldquo;Julian&rdquo; way to pass data between the GUI and Julia. Work on this has already started on the <a href="https://github.com/barche/QML.jl/tree/observables">observables branch</a> in QML.jl. Discussion: <a href="https://github.com/barche/QML.jl/issues/43">https://github.com/barche/QML.jl/issues/43</a>
+* Support <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> directly for creating an editable TableView. Inspiration: <a href="https://discourse.julialang.org/t/visual-workflow-tool-for-julia-lets-build-one/9384/4">https://discourse.julialang.org/t/visual-workflow-tool-for-julia-lets-build-one/9384/4</a>
+* Make one <a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> GUI to rule them all. Inspiration: <a href="https://discourse.julialang.org/t/best-plot-package/7458">https://discourse.julialang.org/t/best-plot-package/7458</a> and <a href="https://discourse.julialang.org/t/where-is-actual-development-in-plotting/6224">https://discourse.julialang.org/t/where-is-actual-development-in-plotting/6224</a>
+* Build QmlReactive (but using Observables maybe). Inspiration: <a href="https://github.com/JuliaGizmos/GtkReactive.jl">https://github.com/JuliaGizmos/GtkReactive.jl</a></p>
+
+<p><strong>Required Skills</strong>: Some familarity with Julia, prior QML experience would also help.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/barche">Bart Janssens</a>, <a href="https://github.com/shashi">Shashi Gowda</a> for the Observables part</p>
+
+  </div>
+  <br /><br />
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../v2/js/jquery.min.js"></script>
+<script src="../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../v2/js/platform.js"></script>
+<script src="../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+  <script src="../../../v2/js/jquery.min.js"></script>
+<script src="../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../v2/js/platform.js"></script>
+<script src="../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Julia Downloads on </title>
+    <link>julialang.org/downloads/</link>
+    <description>Recent content in Julia Downloads on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="julialang.org/downloads/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Julia Downloads (nightly binaries)</title>
+      <link>julialang.org/downloads/nightlies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>julialang.org/downloads/nightlies/</guid>
+      <description>Nightly builds  These are bleeding-edge binaries of the latest version of Julia under development, which you can use to get a preview of the latest work. The nightly builds are for developer previews and not intended for normal use. You can expect many packages not to work with this version. Most users are advised to use the latest official release version of Julia.    Windows Self-Extracting Archive (.</description>
+    </item>
+    
+    <item>
+      <title>Julia Downloads (Old releases)</title>
+      <link>julialang.org/downloads/oldreleases/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>julialang.org/downloads/oldreleases/</guid>
+      <description>Older Unmaintained Releases  Old releases are available should you need to use them to run Julia code written for those releases. Note that these are not actively developed nor maintained anymore. v1.2.0 (Aug 20, 2019)    Windows (.exe) [help] 32-bit  64-bit     macOS 10.8+ (.dmg) [help]  64-bit     Generic Linux Binaries for x86 [help] 32-bit (GPG)  64-bit (GPG)     Generic Linux Binaries for ARM [help] 32-bit (ARMv7-a hard float) (GPG)  64-bit (AArch64) (GPG)     Generic FreeBSD Binaries for x86 [help]  64-bit (GPG)     Source  Tarball (GPG)  Tarball with dependencies (GPG)  GitHub     v1.</description>
+    </item>
+    
+    <item>
+      <title>Platform specific instructions</title>
+      <link>julialang.org/downloads/platform/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>julialang.org/downloads/platform/</guid>
+      <description>Platform Specific Instructions for Official Binaries All official Julia binaries produce portable installations. Once installed, the directory in which Julia was installed can be moved to a different location on the same computer, or even to a different computer.
+Windows Julia is available for Windows 7 and later, both 32 bit and 64 bit.
+ Download the Windows julia.exe installer for your platform. 32-bit julia works on both x86 and x86_64.</description>
+    </item>
+    
+    <item>
+      <title>Plotting in Julia</title>
+      <link>julialang.org/downloads/plotting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>julialang.org/downloads/plotting/</guid>
+      <description>{% include mainmenu.html %} Plotting in Julia Plotting in Julia is available through external packages.
+Plots  Plots.jl is a plotting metapackage which brings many different plotting packages under a single API, making it easy to swap between plotting &#34;backends&#34;. Installation and example usage is as follows:  using Pkg Pkg.add(&#34;Plots&#34;) using Plots plotly() # Choose the Plotly.jl backend for web interactivity plot(rand(5,5),linewidth=2,title=&#34;My Plot&#34;) Pkg.add(&#34;PyPlot&#34;) # Install a different backend pyplot() # Switch to using the PyPlot.</description>
+    </item>
+    
+  </channel>
+</rss>

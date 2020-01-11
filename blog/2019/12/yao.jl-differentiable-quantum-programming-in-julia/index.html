@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Yao.jl - Differentiable Quantum Programming In Julia</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>Yao.jl - Differentiable Quantum Programming In Julia</h1>
+
+    <p class="metadata">
+      <span class="timestamp">28 December, 2019</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author">
+        <a href="https://rogerluo.me/">Xiu-Zhe (Roger) Luo</a>, <a href="https://github.com/GiggleLiu">Jin-Guo Liu</a>
+      </span>
+      
+    </p>
+
+    
+
+<p>We introduce <a href="https://yaoquantum.org/"><strong>Yao</strong></a> (<a href="https://arxiv.org/abs/1912.10877">check our latest paper</a>), an open-source Julia package for solving practical problems in quantum computation research. The name Yao comes from the first Chinese character for unitary (幺正).</p>
+
+<div align="center"> <img
+src="https://yaoquantum.org/assets/images/logo.png"
+alt="Yao Logo" width="210">
+<p>The Logo of Yao</p>
+</div>
+
+<p>Why we created Yao? To be short, we are as greedy <a href="https://julialang.org/blog/2012/02/why-we-created-julia">as Julia itself</a>. We want something that is:</p>
+
+<h3 id="differentiable">Differentiable</h3>
+
+<p>Like many other Julia blog posts (as well as the <a href="https://arxiv.org/abs/1907.07587">Zygote paper</a>) have mentioned: gradients can be a better programmer than humans sometimes. In quantum computing, they can be used for variational algorithms, quantum control, gate learning, etc. Thus, we want to have differentiable programming on quantum circuits as well!</p>
+
+<p>However, automatic differentiation (AD) for quantum circuits is quite different from regular programs: the memory allocation cost in circuit simulation can be extremely high due to caching the intermediate states in the general context. And in forward mode AD, we need extra semantics to preserve the quantum circuit &ndash; so that it can be implemented on the real device.</p>
+
+<p>In Yao, to accomplish this goal, we implemented a builtin <strong>domain-specific</strong> automatic differentiation (AD) engine to make use of the reversible nature of quantum circuits. The following is an example of a variational quantum eigensolver algorithm. With our efficient AD engine, you should be able to try it on your laptop</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">using</span> Yao<span style="color:#666"></span>, YaoExtensions<span style="color:#666"></span>
+<span style="color:#080;font-style:italic"># number of qubits and circuit depth</span>
+n<span style="color:#666"></span>, d<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">16</span>, <span style="color:#666">100</span>
+circuit<span style="color:#666"></span> <span style="color:#666">=</span> dispatch!<span style="color:#666"></span>(variational_circuit<span style="color:#666"></span>(n<span style="color:#666"></span>, d<span style="color:#666"></span>),<span style="color:#666">:</span>random<span style="color:#666"></span>)
+
+h<span style="color:#666"></span> <span style="color:#666">=</span> heisenberg<span style="color:#666"></span>(n<span style="color:#666"></span>)
+
+<span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#a2f">in</span> <span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">100</span>
+ _<span style="color:#666"></span>, grad<span style="color:#666"></span> <span style="color:#666">=</span> expect<span style="color:#666">&#39;</span>(h<span style="color:#666"></span>, zero_state<span style="color:#666"></span>(n<span style="color:#666"></span>) <span style="color:#666">=</span><span style="color:#666">&gt;</span> circuit<span style="color:#666"></span>)
+ dispatch!<span style="color:#666"></span>(<span style="color:#666">-</span>, circuit<span style="color:#666"></span>, <span style="color:#666">1e-1</span> <span style="color:#666">*</span> grad<span style="color:#666"></span>)
+ println<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b44">S</span><span style="color:#b44">t</span><span style="color:#b44">e</span><span style="color:#b44">p</span><span style="color:#b44"> </span><span style="color:#b68;font-weight:bold">$i</span><span style="color:#b44">,</span><span style="color:#b44"> </span><span style="color:#b44">e</span><span style="color:#b44">n</span><span style="color:#b44">e</span><span style="color:#b44">r</span><span style="color:#b44">g</span><span style="color:#b44">y</span><span style="color:#b44"> </span><span style="color:#b44">=</span><span style="color:#b44"> </span><span style="color:#b68;font-weight:bold">$</span>(real<span style="color:#666"></span><span style="color:#666">.</span>(expect<span style="color:#666"></span>(h<span style="color:#666"></span>, zero_state<span style="color:#666"></span>(n<span style="color:#666"></span>)<span style="color:#666">=</span><span style="color:#666">&gt;</span>circuit<span style="color:#666"></span>)))<span style="color:#b44">&#34;</span>)
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+<p>This example trains a 100 layer parametrized circuit (4816 parameters) to find the ground state of a 16 site Heisenberg model. The engine can also be integrated with general AD framework such as <a href="https://github.com/FluxML/Zygote.jl">Zygote</a> seamlessly, e.g., in our <a href="https://github.com/QuantumBFS/QuAlgorithmZoo.jl/blob/v0.1.0/examples/PortZygote/gate_learning.jl">gate learning example</a>. We use differentiable programming to find the decomposition of a given unitary. You can learn more in our <a href="https://tutorials.yaoquantum.org/dev/">tutorial</a> and <a href="https://github.com/QuantumBFS/QuAlgorithmZoo.jl">Quantum Algorithm Zoo</a>.</p>
+
+<h3 id="extensible">Extensible</h3>
+
+<p>New research ideas keep emerging every day and every hour. The field quantum software itself grows rapidly. We want a framework that is flexible enough for researchers and developers to extend it at any level for any possible type of research.</p>
+
+<p>First, we designed and developed a hardware-free intermediate representation (the Quantum Block Intermediate Representation, QBIR) to represent and manipulate quantum circuits and a set of quantum register interface. This design enables one to extend Yao to customized algorithms, hardware and more by overloading the relevant interfaces. For example, while achieving the state-of-the-art performance as shown in next section, we extend our CUDA backend in <a href="https://github.com/QuantumBFS/CuYao.jl">CuYao</a> with only a few hundred lines of code written in native Julia with <a href="https://arxiv.org/abs/1712.03112">CUDAnative</a>. With some patches and syntax sugar, Yao just works with the symbolic engine <a href="https://github.com/symengine/SymEngine.jl">SymEngine</a> that allows you to differentiate, and calculate a quantum circuit with symbolic computation.</p>
+
+<p>Second, like other projects in Julia, we make Yao extensible at the architecture level. The package Yao (or its CUDA backend CuYao) is only a meta-package that re-exports other component packages.  Developers can customize their own
+software with light-weight dependencies and develop new features rapidly.</p>
+
+<h3 id="efficient">Efficient</h3>
+
+<p>Efficiency also matters especially in research that evolves numerical experiments, such as variational quantum algorithms. Besides all other exciting features, we still want this framework to achieve the-state-of-art performance in the simulation.</p>
+
+<p>By making use of <a href="https://devblogs.nvidia.com/gpu-computing-julia-programming-language/">native GPU programming in Julia</a> and specialization based on multiple dispatch, Yao achieves state-of-the-art performance on intermediate-sized quantum circuits.</p>
+
+<p><img src="https://docs.yaoquantum.org/dev/assets/images/relative_pcircuit.png" alt="relative" /></p>
+
+<p><em>You can view a more <a href="https://github.com/Roger-luo/quantum-benchmarks/blob/master/RESULTS.md">detailed benchmark</a></em> here.</p>
+
+<h2 id="what-s-more">What&rsquo;s more?</h2>
+
+<p>So far, we are happy to announce its birth, but the journey just starts.</p>
+
+<p>We still want actual hardware compilation (e.g. to <a href="https://github.com/QuantumBFS/YaoQASM.jl">OpenQASM</a>), circuit simplification and compilation (<a href="https://github.com/QuantumBFS/YaoIR.jl">YaoIR</a>), visualization, tensor network (check the <a href="https://yaoquantum.org/qbirplayground.html">online playground</a>), and more!</p>
+
+<p>Although some beta users helped us shape this software during <a href="https://yaoquantum.org/research/">real research work</a>, we still need more use cases to develop it further and more people to join us. If you are interested in this idea, <a href="https://github.com/QuantumBFS/Yao.jl/blob/master/CONTRIBUTING.md">join us</a>, and let&rsquo;s build a powerful tool for quantum computing research!</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

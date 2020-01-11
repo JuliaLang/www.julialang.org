@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../" id="logo">
+      <img src="../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br/>
+
+  <div class = "container">
+  
+
+<h1 id="julia-s-google-season-of-docs-projects">Julia&rsquo;s Google Season of Docs Projects</h1>
+
+<p>Below are the projects which have been proposed for Google Season of Docs.</p>
+
+<h2 id="differential-equations">Differential Equations</h2>
+
+<p>DifferentialEquations.jl is a widely used Julia library for solving ordinary, stochastic, delay, any many more types of differential equations. Below are the proposed projects in this area. Technical writers may wish to do a combination of these projects. The mentor for the JuliaDiffEq projects is <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a>.</p>
+
+<h3 id="updated-documentation-and-doc-testing">Updated Documentation and Doc Testing</h3>
+
+<p>DifferentialEquations.jl&rsquo;s documentation at <a href="https://github.com/JuliaDiffEq/DiffEqDocs.jl">DiffEqDocs.jl</a> was one of the first <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> projects, and as such much of its internals are in dire need of updates. Notably, automated reference handling would fix issues with dead links that are not uncommon. Additionally, none of the examples run doc tests, and thus currently the organization relies on user issues to find out when to update the pages. Lastly, there are many requests for a PDF form of this documentation since many of the materials are only featured in this form, yet sadly there is currently no PDF builder associated with DiffEqDocs.jl even though Documenter.jl has recently gained this functionality.</p>
+
+<h3 id="tutorial-writing">Tutorial Writing</h3>
+
+<p>The JuliaDiffEq organization hosts the <a href="https://github.com/JuliaDiffEq/DiffEqTutorials.jl">DiffEqTutorials.jl</a> repository which auto-builds websites and pdfs from tutorials. Tutorials generally center features of DifferentialEquations.jl or on application domains. Technical writers who have an expertise in areas like biological modeling may wish to contribute tutorials that showcase how to use DifferentialEquations.jl to solve problems arising in their discipline.</p>
+
+<h3 id="automated-benchmarks-and-performance-regression-flagging">Automated Benchmarks and Performance Regression Flagging</h3>
+
+<p>The organization hosts the <a href="https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl">DiffEqBenchmarks.jl</a> repository which generates websites and pdfs describing the performance relationships not only between the native Julia differential equation solvers, but also between the commonly used C++ and Fortran methods, making it the most comprehensive set of differential equation solver benchmarks. These benchmarking scripts utilize <a href="https://github.com/mpastell/Weave.jl">Weave.jl</a> to automate the process. Technical writers can contribute benchmarks which cover new areas and types of differential equations and add explanatory details and summaries to help with the interpretation of benchmarks. Additionally, skilled technical writers may with to help setup systems to update the benchmarks in some semi-automated form, along with detection and flagging whenever performance regressions are found (i.e. the benchmark equivalent to doc tests).</p>
+
+<h2 id="graphs">Graphs</h2>
+
+<p>LightGraphs.jl provides a set of abstractions, reference implementations and essential algorithms to build and work on graphs.</p>
+
+<h3 id="central-website">Central website</h3>
+
+<p>The central website of <a href="https://juliagraphs.github.io/">JuliaGraphs</a> offers an overview of the ecosystem packages and is still mostly a description. It can be improved to become the first resource for people getting started with graphs in Julia with a quick tour of the feature, some visual explanations of the algorithms.</p>
+
+<h3 id="tutorials">Tutorials</h3>
+
+<p>The documentation of all JuliaGraphs packages, such as <a href="https://juliagraphs.github.io/LightGraphs.jl/latest/">LightGraphs</a> is developer-oriented, showing the API of the different types and functions of the packages.
+Some step-by-step examples and motivation for the use of each feature can be added, making it more accessible for users of the package.</p>
+
+<h2 id="statistics">Statistics</h2>
+
+<p>The <a href="https://github.com/juliastats">JuliaStats</a> organization hosts packages solving various problems in data analysis and statistics, from computing <a href="https://github.com/JuliaStats/Distances.jl/">distances</a> to <a href="http://juliastats.github.io/Clustering.jl/stable">grouping data points together</a>.
+This breadth of scope makes it challenging to keep track of which task is performed in each package.</p>
+
+<h3 id="juliastats-website">JuliaStats website</h3>
+
+<p>The <a href="http://juliastats.github.io">main website</a> is at the moment displaying a brief list of packages from the ecosystem. We could use this central place to map the features to the different packages, and how to use them in different situations.</p>
+
+<h3 id="problem-oriented-documentation">Problem-oriented documentation</h3>
+
+<p>For key packages such as <a href="https://juliastats.github.io/Distributions.jl/stable">Distributions.jl</a>, tutorials could be written in the same fashion as introductions to the analysis problem at hand and how it gets solved in the package using the API.</p>
+
+<h2 id="flux-machine-learning">Flux (Machine Learning)</h2>
+
+<p><a href="https://github.com/FluxML/Flux.jl">Flux.jl</a> is an elegant approach to machine learning in Julia. It is designed to be hackable and flexible, extendable and exposes powerful AD tools. It also provides abstractions over the popular layers and optimisers used in neural networks. It is built with differentiable programming in mind.</p>
+
+<h3 id="updated-documentation-and-website">Updated Documentation and Website</h3>
+
+<p>The <a href="https://fluxml.ai/Flux.jl/stable/">documentation</a> for Flux.jl needs updating and references to model examples where necessary. Flux.jl runs doctests with every commit. The docs only expose a limited subset of the possible ways the APIs can function, and while efforts have been made to ensure that most usecases have been represented, we would like the user to get a feel of how they can leverage a more expressive training loop, or carry out very custom optimisation routines, etc. This could be done by way of motivating use cases in the API design.</p>
+
+<p>As a part of this, the content on the main landing page <a href="https://fluxml.ai">https://fluxml.ai</a> can be revamped to highlight some of the interesting progress. The website could use some poilsh with regards to further clarify the messaging without overwhelming a newcomer, while showing off some of the finer grained details to a veteran eye.</p>
+
+<h3 id="port-ml-tutorials">Port ML Tutorials</h3>
+
+<p>There are a lot of high quality open-source ML tutorials for users to not just learn a new conept but also get a feel for the underlying tooling they use. The PyTorch tutorials and the Fast.ai courses are some of our favorites. We would like Flux ports of the same which can be published on the website.</p>
+
+<h3 id="model-zoo-examples">Model-Zoo Examples</h3>
+
+<p>The model-zoo is where a lot of the examples of modeling lives. From basic MLPs to advanced reinforcement learning and differentiable programming demos, we would like to have literature around them in a manner that can be understood by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a>. This way we have an awesome range of models and examples in a notebook style format available automatically for tinkering by users.</p>
+
+<h2 id="vs-code-extension">VS Code extension</h2>
+
+<p>The <a href="https://github.com/JuliaEditorSupport/julia-vscode">Julia VS Code extension</a> currently has hardly any documentation. We are looking for someone to flesh out the docs and the <a href="https://www.julia-vscode.org/">homepage</a> for the extension.</p>
+
+<h2 id="queryverse">Queryverse</h2>
+
+<p><a href="https://www.queryverse.org/">Queryverse</a> is a family of packages in the data science space. Many packages have rudimentary documentation but could use updates, polish, proper tutorials etc. We are looking for help with documentation for all packages, and to build out the homepage for the project.</p>
+
+  </div>
+  <br /><br />
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../v2/js/jquery.min.js"></script>
+<script src="../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../v2/js/platform.js"></script>
+<script src="../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+  <script src="../../../v2/js/jquery.min.js"></script>
+<script src="../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../v2/js/platform.js"></script>
+<script src="../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

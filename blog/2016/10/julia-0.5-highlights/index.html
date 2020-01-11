@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Julia 0.5 Highlights</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>Julia 0.5 Highlights</h1>
+
+    <p class="metadata">
+      <span class="timestamp">11 October, 2016</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author">Stefan Karpinski</span>
+      
+    </p>
+
+    
+
+<p><em>To follow along with the examples in this blog post and run them live, you can go to <a href="https://juliabox.com/">JuliaBox</a>, create a free login, and open the &ldquo;Julia 0.5 Highlights&rdquo; notebook under &ldquo;What&rsquo;s New in 0.5&rdquo;. The notebook can also be downloaded from <a href="https://raw.githubusercontent.com/JuliaLang/www.julialang.org/master/blog/_posts/Julia-0.5-highlights-notebook/Julia%200.5%20Highlights.ipynb">here</a>.</em></p>
+
+<p><a href="../../../../blog/2016/10/julia-0.5-release-announcement/">Julia 0.5</a> is a pivotal release.
+It introduces more transformative features than any release since the first official version.
+Moreover, several of these features set the stage for even more to come in the <a href="https://www.youtube.com/watch?v=5gXMpbY1kJY">lead up to Julia 1.0</a>.
+In this post, we&rsquo;ll go through some of the major changes in 0.5, including improvements to functional programming, comprehensions, generators, arrays, strings, and more.</p>
+
+<h2 id="functions">Functions</h2>
+
+<p>Julia has always supported functional programming features:</p>
+
+<ul>
+<li>anonymous functions (<a href="https://en.wikipedia.org/wiki/Anonymous_function">lambdas</a>),</li>
+<li>inner functions that close over local variables (<a href="https://en.wikipedia.org/wiki/Closure_(computer_programming)">closures</a>),</li>
+<li>functions passed to and from other functions (<a href="https://en.wikipedia.org/wiki/First-class_function">first-class</a> and <a href="https://en.wikipedia.org/wiki/Higher-order_function">higher-order</a> functions).</li>
+</ul>
+
+<p>Before this release, however, these features all came with a significant performance cost.
+In a language that targets high-performance technical computing, that&rsquo;s a serious limitation.
+So the Julia standard library and ecosystem have been rife with work-arounds to get the expressiveness of functional programming without the performance problems.
+But the right solution, of course, is to make functional programming fast – ideally just as fast as the optimal hand-written version of your code would be.
+In Julia 0.5, it is.
+And that changes everything.</p>
+
+<p>This change is so important that there will be a separate blog post about it in the coming weeks, explaining how higher-order functions, closures and lambdas have been made so efficient, as well as detailing the kinds of zero-cost abstractions these changes enable.
+But for now, I&rsquo;ll just tease with a little timing comparison.
+First, some definitions – they&rsquo;re the same in both 0.4 and 0.5:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">v<span style="color:#666"></span> <span style="color:#666">=</span> rand<span style="color:#666"></span>(<span style="color:#666">10</span><span style="color:#666">^</span><span style="color:#666">7</span>);                   <span style="color:#080;font-style:italic"># 10 million random numbers</span>
+double_it_vec<span style="color:#666"></span>(v<span style="color:#666"></span>) <span style="color:#666">=</span> <span style="color:#666">2</span>v<span style="color:#666"></span>             <span style="color:#080;font-style:italic"># vectorized doubling of input</span>
+double_it_map<span style="color:#666"></span>(v<span style="color:#666"></span>) <span style="color:#666">=</span> map<span style="color:#666"></span>(x<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">&gt;</span><span style="color:#666">2</span>x<span style="color:#666"></span>, v<span style="color:#666"></span>)  <span style="color:#080;font-style:italic"># map a lambda over input</span></code></pre></div>
+
+<p>First, a timing comparison in Julia 0.4:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">VERSION</span>
+v<span style="color:#666"></span><span style="color:#b44">&#34;</span><span style="color:#b44">0</span><span style="color:#b44">.</span><span style="color:#b44">4</span><span style="color:#b44">.</span><span style="color:#b44">7</span><span style="color:#b44">&#34;</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> mean<span style="color:#666"></span>([<span style="color:#a2f">@elapsed</span><span style="color:#666"></span>(double_it_vec<span style="color:#666"></span>(v<span style="color:#666"></span>)) <span style="color:#a2f;font-weight:bold">for</span> _<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">100</span>])
+<span style="color:#666">0.024444888209999998</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> mean<span style="color:#666"></span>([<span style="color:#a2f">@elapsed</span><span style="color:#666"></span>(double_it_map<span style="color:#666"></span>(v<span style="color:#666"></span>)) <span style="color:#a2f;font-weight:bold">for</span> _<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">100</span>])
+<span style="color:#666">0.5515606454499999</span></code></pre></div>
+
+<p>On 0.4, the functional version using <code>map</code> is 22 times slower than the vectorized version, which uses specialized generated code for maximal speed.
+Now, the same comparison in Julia 0.5:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">VERSION</span>
+v<span style="color:#666"></span><span style="color:#b44">&#34;</span><span style="color:#b44">0</span><span style="color:#b44">.</span><span style="color:#b44">5</span><span style="color:#b44">.</span><span style="color:#b44">0</span><span style="color:#b44">&#34;</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> mean<span style="color:#666"></span>([<span style="color:#a2f">@elapsed</span><span style="color:#666"></span>(double_it_vec<span style="color:#666"></span>(v<span style="color:#666"></span>)) <span style="color:#a2f;font-weight:bold">for</span> _<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">100</span>])
+<span style="color:#666">0.024549842180000003</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> mean<span style="color:#666"></span>([<span style="color:#a2f">@elapsed</span><span style="color:#666"></span>(double_it_map<span style="color:#666"></span>(v<span style="color:#666"></span>)) <span style="color:#a2f;font-weight:bold">for</span> _<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">100</span>])
+<span style="color:#666">0.023871925960000002</span></code></pre></div>
+
+<p>The version using <code>map</code> is as fast as the vectorized one in 0.5.
+In this case, writing <code>2v</code> happens to be more convenient than writing <code>map(x-&gt;2x, v)</code>, so we may choose not to use <code>map</code> here, but there are many cases where functional constructs are clearer, more general, and more convenient.
+Now, they are also fast.</p>
+
+<h3 id="ambiguous-methods">Ambiguous methods</h3>
+
+<p>One design decision that any multiple dispatch language must make is how to handle dispatch ambiguities: cases where none of the methods applicable to a given set of arguments is more specific than the rest.
+Suppose, for example, that a generic function, <code>f</code>, has the following methods:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">f<span style="color:#666"></span>(a<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int</span>, b<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>) <span style="color:#666">=</span> <span style="color:#666">1</span>
+f<span style="color:#666"></span>(a<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>, b<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int</span>) <span style="color:#666">=</span> <span style="color:#666">2</span></code></pre></div>
+
+<p>In Julia 0.4 and earlier, the second method definition causes an ambiguity warning:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">WARNING<span style="color:#666"></span><span style="color:#666">:</span> New<span style="color:#666"></span> definition<span style="color:#666"></span>
+    f<span style="color:#666"></span>(<span style="color:#0b0;font-weight:bold">Real</span>, <span style="color:#0b0;font-weight:bold">Int64</span>) at<span style="color:#666"></span> none<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">1</span>
+is<span style="color:#666"></span> ambiguous<span style="color:#666"></span> with<span style="color:#666"></span><span style="color:#666">:</span>
+    f<span style="color:#666"></span>(<span style="color:#0b0;font-weight:bold">Int64</span>, <span style="color:#0b0;font-weight:bold">Real</span>) at<span style="color:#666"></span> none<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">1.</span>
+To<span style="color:#666"></span> fix<span style="color:#666"></span>, define<span style="color:#666"></span>
+    f<span style="color:#666"></span>(<span style="color:#0b0;font-weight:bold">Int64</span>, <span style="color:#0b0;font-weight:bold">Int64</span>)
+before<span style="color:#666"></span> the<span style="color:#666"></span> new<span style="color:#666"></span> definition<span style="color:#666"></span><span style="color:#666">.</span></code></pre></div>
+
+<p>This warning is clear and gets right to the point: the case <code>f(a,b)</code> where <code>a</code> and <code>b</code> are of type <code>Int</code> (aka <code>Int64</code> on 64-bit systems) is ambiguous.
+Evaluating <code>f(3,4)</code> calls the first method of <code>f</code> – but this behavior is undefined.
+Giving a warning whenever methods <em>could</em> be ambiguous is a fairly conservative choice: it urges people to define a method covering the ambiguous intersection before even defining the methods that overlap.
+When we decided to give warnings for potentially ambiguous methods, we hoped that people would avoid ambiguities and all would be well in the world.</p>
+
+<p>Warning about method ambiguities turns out to be both too strict and too lenient.
+It&rsquo;s far too easy for ambiguities to arise when shared generic functions serve as extension points across unrelated packages.
+When many packages extend the same generic functions, it&rsquo;s common for the methods added to have some ambiguous overlap.
+This happens even when each package has no ambiguities on its own.
+Worse still, slight changes to one package can introduce ambiguities elsewhere, resulting in the least fun game of <a href="https://en.wikipedia.org/wiki/Whac-A-Mole#Colloquial_usage">whack-a-mole</a> ever.
+At the same time, the fact that ambiguities <em>only</em> cause warnings means that people learn to ignore them, which is annoying at best, and dangerous at worst: it&rsquo;s far too easy for a real problem to be hidden by a barrage of insignificant ambiguity warnings.
+In particular, on 0.4 and earlier if an ambiguous method is actually called, no error occurs.
+Instead, one of the possible methods is called, based on the order in which methods were defined – which is essentially arbitrary when they come from different packages.
+Usually the method works – it does apply, after all – but this is clearly not the right thing to do.</p>
+
+<p>The solution is simple: in Julia 0.5 the existence of potential ambiguities is fine, but actually calling an ambiguous method is an immediate error.
+The above method definitions for <code>f</code>, which previously triggered a warning, are now silent, but <em>calling</em> <code>f</code> with two <code>Int</code> arguments is a method dispatch error:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> f<span style="color:#666"></span>(<span style="color:#666">3</span>,<span style="color:#666">4</span>)
+ERROR<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#0b0;font-weight:bold">MethodError</span><span style="color:#666">:</span> f<span style="color:#666"></span>(<span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int64</span>, <span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int64</span>) is<span style="color:#666"></span> ambiguous<span style="color:#666"></span><span style="color:#666">.</span> Candidates<span style="color:#666"></span><span style="color:#666">:</span>
+  f<span style="color:#666"></span>(a<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>, b<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int64</span>) at<span style="color:#666"></span> REPL<span style="color:#666"></span>[<span style="color:#666">2</span>]<span style="color:#666">:</span><span style="color:#666">1</span>
+  f<span style="color:#666"></span>(a<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int64</span>, b<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>) at<span style="color:#666"></span> REPL<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">:</span><span style="color:#666">1</span>
+ <span style="color:#a2f">in</span> eval<span style="color:#666"></span>(<span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Module</span>, <span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Any</span>) at<span style="color:#666"></span> <span style="color:#666">./</span>boot<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">231</span>
+ <span style="color:#a2f">in</span> <span style="color:#a2f;font-weight:bold">macro</span> expansion<span style="color:#666"></span> at<span style="color:#666"></span> <span style="color:#666">./</span>REPL<span style="color:#666"></span><span style="color:#666">.</span>jl<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">92</span> [inlined<span style="color:#666"></span>]
+ <span style="color:#a2f">in</span> (<span style="color:#666">:</span><span style="color:#666">:</span>Base<span style="color:#666"></span><span style="color:#666">.</span>REPL<span style="color:#666"></span><span style="color:#666">.</span><span style="color:#080;font-style:italic">##1#2{Base.REPL.REPLBackend})() at ./event.jl:46</span></code></pre></div>
+
+<p>This improves the experience of using the Julia package ecosystem considerably, while also making Julia safer and more reliable.
+No more torrent of insignificant ambiguity warnings.
+No more playing ambiguity whack-a-mole when someone else refactors their code and accidentally introduces ambiguities in yours.
+No more risk that a method call could be silently broken because of warnings that we&rsquo;ve all learned to ignore.</p>
+
+<h3 id="return-type-annotations">Return type annotations</h3>
+
+<p>A long-requested feature has been the ability to annotate method definitions with an explicit return type.
+This aids the clarity of code, serves as self-documentation, helps the compiler reason about code, and ensures that return types are what programmers intend them to be.
+In 0.5, you can annotate method definitions with a return type like so:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> clip<span style="color:#666"></span>{T<span style="color:#666"></span><span style="color:#666">&lt;</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>}(x<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span>T<span style="color:#666"></span>, lo<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>, hi<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>)<span style="color:#666">:</span><span style="color:#666">:</span>T<span style="color:#666"></span>
+    <span style="color:#a2f;font-weight:bold">if</span> x<span style="color:#666"></span> <span style="color:#666">&lt;</span> lo<span style="color:#666"></span>
+        <span style="color:#a2f;font-weight:bold">return</span> lo<span style="color:#666"></span>
+    <span style="color:#a2f;font-weight:bold">elseif</span> x<span style="color:#666"></span> <span style="color:#666">&gt;</span> hi<span style="color:#666"></span>
+        <span style="color:#a2f;font-weight:bold">return</span> hi<span style="color:#666"></span>
+    <span style="color:#a2f;font-weight:bold">else</span>
+        <span style="color:#a2f;font-weight:bold">return</span> x<span style="color:#666"></span>
+    <span style="color:#a2f;font-weight:bold">end</span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+
+<p>This function is similar to the built-in <a href="https://docs.julialang.org/en/v1/base/math/#Base.Math.clamp"><code>clamp</code></a> function, but let&rsquo;s consider this definition for the sake of example.
+The return annotation on <code>clip</code> has the effect of inserting implicit calls to <code>x-&gt;convert(T, x)</code> at each return point of the method.
+It has no effect on any other method of <code>clip</code>, only the one where the annotation occurs.
+In this case, the annotation ensures that this method always returns a value of the same type as <code>x</code>, regardless of the types of <code>lo</code> and <code>hi</code>:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> clip<span style="color:#666"></span>(<span style="color:#666">0.5</span>, <span style="color:#666">1</span>, <span style="color:#666">2</span>) <span style="color:#080;font-style:italic"># convert(T, lo)</span>
+<span style="color:#666">1.0</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> clip<span style="color:#666"></span>(<span style="color:#666">1.5</span>, <span style="color:#666">1</span>, <span style="color:#666">2</span>) <span style="color:#080;font-style:italic"># convert(T, x)</span>
+<span style="color:#666">1.5</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> clip<span style="color:#666"></span>(<span style="color:#666">2.5</span>, <span style="color:#666">1</span>, <span style="color:#666">2</span>) <span style="color:#080;font-style:italic"># convert(T, hi)</span>
+<span style="color:#666">2.0</span></code></pre></div>
+
+<p>You&rsquo;ll note that the annotated return type here is <code>T</code>, which is a type parameter of the <code>clip</code> method.
+Not only is that allowed, but the return type can be an arbitrary expression of argument values, type parameters, and values from outer scopes.
+For example, here is a variation that promotes its arguments:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> clip2<span style="color:#666"></span>(x<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>, lo<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>, hi<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>)<span style="color:#666">:</span><span style="color:#666">:</span>promote_type<span style="color:#666"></span>(typeof<span style="color:#666"></span>(x<span style="color:#666"></span>), typeof<span style="color:#666"></span>(lo<span style="color:#666"></span>), typeof<span style="color:#666"></span>(hi<span style="color:#666"></span>))
+    <span style="color:#a2f;font-weight:bold">if</span> x<span style="color:#666"></span> <span style="color:#666">&lt;</span> lo<span style="color:#666"></span>
+        <span style="color:#a2f;font-weight:bold">return</span> lo<span style="color:#666"></span>
+    <span style="color:#a2f;font-weight:bold">elseif</span> x<span style="color:#666"></span> <span style="color:#666">&gt;</span> hi<span style="color:#666"></span>
+        <span style="color:#a2f;font-weight:bold">return</span> hi<span style="color:#666"></span>
+    <span style="color:#a2f;font-weight:bold">else</span>
+        <span style="color:#a2f;font-weight:bold">return</span> x<span style="color:#666"></span>
+    <span style="color:#a2f;font-weight:bold">end</span>
+<span style="color:#a2f;font-weight:bold">end</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> clip2<span style="color:#666"></span>(<span style="color:#666">2</span>, <span style="color:#666">1</span>, <span style="color:#666">3</span>)
+<span style="color:#666">2</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> clip2<span style="color:#666"></span>(<span style="color:#666">2</span>, <span style="color:#666">1</span>, <span style="color:#666">13</span><span style="color:#666">/</span><span style="color:#666">/</span><span style="color:#666">5</span>)
+<span style="color:#666">2</span><span style="color:#666">/</span><span style="color:#666">/</span><span style="color:#666">1</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> clip2<span style="color:#666"></span>(<span style="color:#666">2.5</span>, <span style="color:#666">1</span>, <span style="color:#666">13</span><span style="color:#666">/</span><span style="color:#666">/</span><span style="color:#666">5</span>)
+<span style="color:#666">2.5</span></code></pre></div>
+
+<p>Return type annotations are a fairly simple syntactic transformation, but they make it easier to write methods with consistent and predictable return types.
+If different branches of your code can lead to slightly different types, the fix is now as simple as putting a single type annotation on the entire method.</p>
+
+<h3 id="vectorized-function-calls">Vectorized function calls</h3>
+
+<p>Julia 0.5 introduces the syntax <code>f.(A1, A2, ...)</code> for vectorized function calls.
+This syntax translates to <code>broadcast(f, A1, A2, ...)</code>, where <code>broadcast</code> is a higher-order function (introduced in 0.2), which generically implements the kind of broadcasting behavior found in Julia&rsquo;s &ldquo;dotted operators&rdquo; such as <code>.+</code>, <code>.-</code>, <code>.*</code>, and <code>./</code>.
+Since higher-order functions are now efficient, writing <code>broadcast(f,v,w)</code> and <code>f.(v,w)</code> are both about as fast as loops specialized for the operation <code>f</code> and the shapes of <code>v</code> and <code>w</code>.
+This syntax lets you vectorize your scalar functions the way built-in vectorized functions like <code>log</code>, <code>exp</code>, and <code>atan2</code> work.
+In fact, in the future, this syntax will likely replace the pre-vectorized methods of functions like <code>exp</code> and <code>log</code>, so that users will write <code>exp.(v)</code> to exponentiate a vector of values.
+This may seem a little bit uglier, but it&rsquo;s more consistent than choosing an essentially arbitrarily set of functions to pre-vectorize, and as I&rsquo;ll explain below, this approach can also have significant performance benefits.</p>
+
+<p>To give a more concrete sense of what this syntax can be used for, consider the <code>clip</code> function defined above for real arguments.
+This scalar function can be applied to vectors using vectorized call syntax without any further method definitions:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> v<span style="color:#666"></span> <span style="color:#666">=</span> randn<span style="color:#666"></span>(<span style="color:#666">10</span>)
+<span style="color:#666">10</span><span style="color:#666">-</span>element<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>}<span style="color:#666">:</span>
+ <span style="color:#666">-</span><span style="color:#666">0.868996</span>
+  <span style="color:#666">1.79301</span>
+ <span style="color:#666">-</span><span style="color:#666">0.309632</span>
+  <span style="color:#666">1.16802</span>
+ <span style="color:#666">-</span><span style="color:#666">1.57178</span>
+ <span style="color:#666">-</span><span style="color:#666">0.223385</span>
+ <span style="color:#666">-</span><span style="color:#666">0.608423</span>
+ <span style="color:#666">-</span><span style="color:#666">1.54862</span>
+ <span style="color:#666">-</span><span style="color:#666">1.33672</span>
+  <span style="color:#666">0.864448</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> clip<span style="color:#666"></span>(v<span style="color:#666"></span>, <span style="color:#666">-</span><span style="color:#666">1</span>, <span style="color:#666">1</span>)
+ERROR<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#0b0;font-weight:bold">MethodError</span><span style="color:#666">:</span> no<span style="color:#666"></span> method<span style="color:#666"></span> matching<span style="color:#666"></span> clip<span style="color:#666"></span>(<span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>}, <span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int64</span>, <span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int64</span>)
+Closest<span style="color:#666"></span> candidates<span style="color:#666"></span> are<span style="color:#666"></span><span style="color:#666">:</span>
+  clip<span style="color:#666"></span>{T<span style="color:#666"></span><span style="color:#666">&lt;</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>}(<span style="color:#666">:</span><span style="color:#666">:</span>T<span style="color:#666"></span><span style="color:#666">&lt;</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>, <span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>, <span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Real</span>) at<span style="color:#666"></span> REPL<span style="color:#666"></span>[<span style="color:#666">2</span>]<span style="color:#666">:</span><span style="color:#666">2</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> clip<span style="color:#666"></span><span style="color:#666">.</span>(v<span style="color:#666"></span>, <span style="color:#666">-</span><span style="color:#666">1</span>, <span style="color:#666">1</span>)
+<span style="color:#666">10</span><span style="color:#666">-</span>element<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>}<span style="color:#666">:</span>
+ <span style="color:#666">-</span><span style="color:#666">0.868996</span>
+  <span style="color:#666">1.0</span>
+ <span style="color:#666">-</span><span style="color:#666">0.309632</span>
+  <span style="color:#666">1.0</span>
+ <span style="color:#666">-</span><span style="color:#666">1.0</span>
+ <span style="color:#666">-</span><span style="color:#666">0.223385</span>
+ <span style="color:#666">-</span><span style="color:#666">0.608423</span>
+ <span style="color:#666">-</span><span style="color:#666">1.0</span>
+ <span style="color:#666">-</span><span style="color:#666">1.0</span>
+  <span style="color:#666">0.864448</span></code></pre></div>
+
+<p>The second and third arguments don&rsquo;t need to be scalars – as with dotted operators, they can be vectors as well, and the <code>clip</code> operation will be applied to each corresponding triple of values:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> clip<span style="color:#666"></span><span style="color:#666">.</span>(v<span style="color:#666"></span>, repmat<span style="color:#666"></span>([<span style="color:#666">-</span><span style="color:#666">1</span>,<span style="color:#666">0.5</span>],<span style="color:#666">5</span>), repmat<span style="color:#666"></span>([<span style="color:#666">-</span><span style="color:#666">0.5</span>,<span style="color:#666">1</span>],<span style="color:#666">5</span>))
+<span style="color:#666">10</span><span style="color:#666">-</span>element<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>}<span style="color:#666">:</span>
+ <span style="color:#666">-</span><span style="color:#666">0.868996</span>
+  <span style="color:#666">1.0</span>
+ <span style="color:#666">-</span><span style="color:#666">0.5</span>
+  <span style="color:#666">1.0</span>
+ <span style="color:#666">-</span><span style="color:#666">1.0</span>
+  <span style="color:#666">0.5</span>
+ <span style="color:#666">-</span><span style="color:#666">0.608423</span>
+  <span style="color:#666">0.5</span>
+ <span style="color:#666">-</span><span style="color:#666">1.0</span>
+  <span style="color:#666">0.864448</span></code></pre></div>
+
+<p>From these examples, it may be unclear why this operation is called &ldquo;<code>broadcast</code>&rdquo;.
+The function gets its name from the following behavior:
+wherever one of its arguments has a singleton dimension (i.e. dimension of size 1), it &ldquo;broadcasts&rdquo; that value along the corresponding dimension of the other arguments when applying the operator.
+Broadcasting allows dotted operations to easily do handy tricks like mean-centering the columns of a matrix:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> A<span style="color:#666"></span> <span style="color:#666">=</span> rand<span style="color:#666"></span>(<span style="color:#666">3</span>,<span style="color:#666">4</span>);
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> B<span style="color:#666"></span> <span style="color:#666">=</span> A<span style="color:#666"></span> <span style="color:#666">.-</span> mean<span style="color:#666"></span>(A<span style="color:#666"></span>,<span style="color:#666">1</span>)
+<span style="color:#666">3</span>×4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+  <span style="color:#666">0.343976</span>   <span style="color:#666">0.427378</span>  <span style="color:#666">-</span><span style="color:#666">0.503356</span>  <span style="color:#666">-</span><span style="color:#666">0.00448691</span>
+ <span style="color:#666">-</span><span style="color:#666">0.210096</span>  <span style="color:#666">-</span><span style="color:#666">0.531489</span>   <span style="color:#666">0.168928</span>  <span style="color:#666">-</span><span style="color:#666">0.128212</span>
+ <span style="color:#666">-</span><span style="color:#666">0.13388</span>    <span style="color:#666">0.104111</span>   <span style="color:#666">0.334428</span>   <span style="color:#666">0.132699</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> mean<span style="color:#666"></span>(B<span style="color:#666"></span>,<span style="color:#666">1</span>)
+<span style="color:#666">1</span>×4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ <span style="color:#666">0.0</span>  <span style="color:#666">0.0</span>  <span style="color:#666">0.0</span>  <span style="color:#666">0.0</span></code></pre></div>
+
+<p>The matrix <code>A</code> is 3×4 and <code>mean(A,1)</code> is 1×4 so the <code>.-</code> operator broadcasts the subtraction of each mean value along the corresponding column of A, thereby mean-centering each column.
+Combining this broadcasting behavior with vectorized call syntax lets us write some fairly fancy custom array operations very concisely:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> clip<span style="color:#666"></span><span style="color:#666">.</span>(B<span style="color:#666"></span>, [<span style="color:#666">-</span><span style="color:#666">0.3</span>, <span style="color:#666">-</span><span style="color:#666">0.2</span>, <span style="color:#666">-</span><span style="color:#666">0.1</span>], [<span style="color:#666">0.4</span>, <span style="color:#666">0.3</span>, <span style="color:#666">0.2</span>, <span style="color:#666">0.1</span>]<span style="color:#666">&#39;</span>)
+<span style="color:#666">3</span>×4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+  <span style="color:#666">0.343976</span>   <span style="color:#666">0.3</span>       <span style="color:#666">-</span><span style="color:#666">0.3</span>       <span style="color:#666">-</span><span style="color:#666">0.00448691</span>
+ <span style="color:#666">-</span><span style="color:#666">0.2</span>       <span style="color:#666">-</span><span style="color:#666">0.2</span>        <span style="color:#666">0.168928</span>  <span style="color:#666">-</span><span style="color:#666">0.128212</span>
+ <span style="color:#666">-</span><span style="color:#666">0.1</span>        <span style="color:#666">0.104111</span>   <span style="color:#666">0.2</span>        <span style="color:#666">0.1</span></code></pre></div>
+
+<p>This expression clips each element of <code>B</code> with its own specific <code>(hi,lo)</code> pair from this matrix:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> [(lo<span style="color:#666"></span>,hi<span style="color:#666"></span>) <span style="color:#a2f;font-weight:bold">for</span> lo<span style="color:#666"></span><span style="color:#666">=</span>[<span style="color:#666">-</span><span style="color:#666">0.3</span>, <span style="color:#666">-</span><span style="color:#666">0.2</span>, <span style="color:#666">-</span><span style="color:#666">0.1</span>], hi<span style="color:#666"></span><span style="color:#666">=</span>[<span style="color:#666">0.4</span>, <span style="color:#666">0.3</span>, <span style="color:#666">0.2</span>, <span style="color:#666">0.1</span>]]
+<span style="color:#666">3</span>×4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Tuple</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#0b0;font-weight:bold">Float64</span>},<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ (<span style="color:#666">-</span><span style="color:#666">0.3</span>,<span style="color:#666">0.4</span>)  (<span style="color:#666">-</span><span style="color:#666">0.3</span>,<span style="color:#666">0.3</span>)  (<span style="color:#666">-</span><span style="color:#666">0.3</span>,<span style="color:#666">0.2</span>)  (<span style="color:#666">-</span><span style="color:#666">0.3</span>,<span style="color:#666">0.1</span>)
+ (<span style="color:#666">-</span><span style="color:#666">0.2</span>,<span style="color:#666">0.4</span>)  (<span style="color:#666">-</span><span style="color:#666">0.2</span>,<span style="color:#666">0.3</span>)  (<span style="color:#666">-</span><span style="color:#666">0.2</span>,<span style="color:#666">0.2</span>)  (<span style="color:#666">-</span><span style="color:#666">0.2</span>,<span style="color:#666">0.1</span>)
+ (<span style="color:#666">-</span><span style="color:#666">0.1</span>,<span style="color:#666">0.4</span>)  (<span style="color:#666">-</span><span style="color:#666">0.1</span>,<span style="color:#666">0.3</span>)  (<span style="color:#666">-</span><span style="color:#666">0.1</span>,<span style="color:#666">0.2</span>)  (<span style="color:#666">-</span><span style="color:#666">0.1</span>,<span style="color:#666">0.1</span>)</code></pre></div>
+
+<p>Vectorized call syntax avoids ever materializing this array of pairs, however, and the messy code to apply <code>clip</code> to each element of <code>B</code> with the corresponding <code>lo</code> and <code>hi</code> values doesn&rsquo;t have to be written.
+When <code>B</code> is larger than a toy example, not constructing a temporary matrix of <code>(lo,hi)</code> pairs can be a big efficiency win.</p>
+
+<p>There is a bit more to the story about vectorized call syntax.
+It&rsquo;s common to write expressions applying multiple vectorized functions to some arrays.
+For example, one might write something like:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">max<span style="color:#666"></span>(abs<span style="color:#666"></span>(X<span style="color:#666"></span>), abs<span style="color:#666"></span>(Y<span style="color:#666"></span>))</code></pre></div>
+
+<p>This computes the absolute values of each element of <code>X</code> and <code>Y</code> and takes the larger of the corresponding elements from <code>abs(X)</code> and <code>abs(Y)</code>.
+In this traditional vectorized form, the code allocates two temporary intermediate arrays – one to store each of <code>abs(X)</code> and <code>abs(Y)</code>.
+If we use the new vectorized function call syntax, however, these calls are syntactically fused into a <em>single</em> call to <code>broadcast</code> with an anonymous function.
+In other words, we write this:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">max<span style="color:#666"></span><span style="color:#666">.</span>(abs<span style="color:#666"></span><span style="color:#666">.</span>(X<span style="color:#666"></span>), abs<span style="color:#666"></span><span style="color:#666">.</span>(Y<span style="color:#666"></span>))</code></pre></div>
+
+<p>which internally becomes this:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">broadcast<span style="color:#666"></span>((x<span style="color:#666"></span>, y<span style="color:#666"></span>)<span style="color:#666">-</span><span style="color:#666">&gt;</span>max<span style="color:#666"></span>(abs<span style="color:#666"></span>(x<span style="color:#666"></span>), abs<span style="color:#666"></span>(y<span style="color:#666"></span>)), X<span style="color:#666"></span>, Y<span style="color:#666"></span>)</code></pre></div>
+
+<p>This version of the computation avoids allocating any intermediate arrays and performs the entire vectorized computation all at once, directly into the result array.
+We can see this difference in memory usage and speed when we benchmark these expressions:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f;font-weight:bold">using</span> BenchmarkTools<span style="color:#666"></span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> X<span style="color:#666"></span>, Y<span style="color:#666"></span> <span style="color:#666">=</span> rand<span style="color:#666"></span>(<span style="color:#666">1000</span>,<span style="color:#666">1000</span>), rand<span style="color:#666"></span>(<span style="color:#666">1000</span>,<span style="color:#666">1000</span>);
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@benchmark</span><span style="color:#666"></span> max<span style="color:#666"></span>(abs<span style="color:#666"></span>(X<span style="color:#666"></span>), abs<span style="color:#666"></span>(Y<span style="color:#666"></span>))
+BenchmarkTools<span style="color:#666"></span><span style="color:#666">.</span>Trial<span style="color:#666"></span><span style="color:#666">:</span>
+  memory<span style="color:#666"></span> estimate<span style="color:#666"></span><span style="color:#666">:</span>  <span style="color:#666">22.89</span> mb<span style="color:#666"></span>
+  minimum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">13.95</span> ms<span style="color:#666"></span> (<span style="color:#666">1.77</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  median<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>      <span style="color:#666">14.17</span> ms<span style="color:#666"></span> (<span style="color:#666">1.76</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  mean<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>        <span style="color:#666">14.32</span> ms<span style="color:#666"></span> (<span style="color:#666">1.78</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  maximum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">17.15</span> ms<span style="color:#666"></span> (<span style="color:#666">3.47</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@benchmark</span><span style="color:#666"></span> max<span style="color:#666"></span><span style="color:#666">.</span>(abs<span style="color:#666"></span><span style="color:#666">.</span>(X<span style="color:#666"></span>), abs<span style="color:#666"></span><span style="color:#666">.</span>(Y<span style="color:#666"></span>))
+BenchmarkTools<span style="color:#666"></span><span style="color:#666">.</span>Trial<span style="color:#666"></span><span style="color:#666">:</span>
+  memory<span style="color:#666"></span> estimate<span style="color:#666"></span><span style="color:#666">:</span>  <span style="color:#666">7.63</span> mb<span style="color:#666"></span>
+  minimum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">2.84</span> ms<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  median<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>      <span style="color:#666">2.98</span> ms<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  mean<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>        <span style="color:#666">3.27</span> ms<span style="color:#666"></span> (<span style="color:#666">18.26</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  maximum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">5.96</span> ms<span style="color:#666"></span> (<span style="color:#666">65.68</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#666">22.89</span><span style="color:#666">/</span><span style="color:#666">7.63</span>, <span style="color:#666">16.63</span><span style="color:#666">/</span><span style="color:#666">3.84</span>
+(<span style="color:#666">3.0</span>,<span style="color:#666">4.330729166666667</span>)</code></pre></div>
+
+<p>I&rsquo;m using the <a href="https://github.com/JuliaCI/BenchmarkTools.jl"><code>BenchmarkTools</code></a> package here instead of hand-rolled timing loops. <code>BenchmarkTools</code> has been carefully designed to avoid many of the common pitfalls of benchmarking code and to provide sound statistical estimates of how much time and memory your code uses.
+For the sake of brevity, I&rsquo;m omitting some of the less relevant output from <code>@benchmark</code>.</p>
+
+<p>As you can see, the dotted form uses 3 times less memory and is 4.3 times faster.
+These improvements come from avoiding temporary allocations and performing the entire computation in a single pass over the arrays.
+Even greater reduction in allocation can occur when we use the new <code>.=</code> operator to also do vectorized assignment:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> Z<span style="color:#666"></span> <span style="color:#666">=</span> zeros<span style="color:#666"></span>(X<span style="color:#666"></span>); <span style="color:#080;font-style:italic"># matrix of zeros similar to X</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@benchmark</span><span style="color:#666"></span> Z<span style="color:#666"></span> <span style="color:#666">.=</span> max<span style="color:#666"></span><span style="color:#666">.</span>(abs<span style="color:#666"></span><span style="color:#666">.</span>(X<span style="color:#666"></span>), abs<span style="color:#666"></span><span style="color:#666">.</span>(Y<span style="color:#666"></span>))
+BenchmarkTools<span style="color:#666"></span><span style="color:#666">.</span>Trial<span style="color:#666"></span><span style="color:#666">:</span>
+  memory<span style="color:#666"></span> estimate<span style="color:#666"></span><span style="color:#666">:</span>  <span style="color:#666">96.00</span> bytes<span style="color:#666"></span>
+  minimum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">1.76</span> ms<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  median<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>      <span style="color:#666">1.82</span> ms<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  mean<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>        <span style="color:#666">1.89</span> ms<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  maximum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">4.24</span> ms<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)</code></pre></div>
+
+<p>With in-place vectorized assignment, we can fill the pre-allocated array, <code>Z</code>, without doing any allocation (the 96 bytes is an artifact), and do so 7.3 times faster than the old-style vectorized computation.
+This can be a big win in situations where we can reuse the same output array for multiple computations.</p>
+
+<p>The last major missing piece of vectorized call syntax is yet to come – it will be implemented in the next version of Julia.
+Dotted operators like <code>.+</code> and <code>.*</code> will cease to be their own independent operators and simply become the vectorized forms of the corresponding scalar operators, <code>+</code> and <code>*</code>.
+In other words, instead of <code>.+</code> being a function as it is now, with its own behavior independent of <code>+</code>, when you write <code>X .+ Y</code> it will mean <code>broadcast(+, X, Y)</code>.
+Furthermore, dotted operators will participate in the same syntax-level fusion as other vectorized calls, so an expression like <code>exp.(log.(X) .+ log.(Y))</code> will translate into a single call to broadcast:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">broadcast<span style="color:#666"></span>((x<span style="color:#666"></span>, y<span style="color:#666"></span>)<span style="color:#666">-</span><span style="color:#666">&gt;</span>exp<span style="color:#666"></span>(log<span style="color:#666"></span>(x<span style="color:#666"></span>) <span style="color:#666">+</span> log<span style="color:#666"></span>(y<span style="color:#666"></span>)), X<span style="color:#666"></span>, Y<span style="color:#666"></span>)</code></pre></div>
+
+<p>This change will complete the transition to a generalized approach to vectorized function application (including syntax-level loop fusion), which will make Julia&rsquo;s story for writing allocation-free array code much stronger.</p>
+
+<h2 id="comprehensions">Comprehensions</h2>
+
+<p>Julia&rsquo;s array comprehensions have always supported some advanced features such as iterating with several variables to produce multidimensional arrays.
+This release rounds out the functionality of comprehensions with two additional features: nested generation with multiple <code>for</code> clauses, and filtering with a trailing <code>if</code> clause.
+To demonstrate these features, consider making a dollar (100¢) using quarters (25¢), dimes (10¢), nickels (5¢) and pennies (1¢).
+We can generate an array of tuples of total values in each kind of coin by using a comprehension with nested <code>for</code> clauses:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> change<span style="color:#666"></span> <span style="color:#666">=</span> [(q<span style="color:#666"></span>,d<span style="color:#666"></span>,n<span style="color:#666"></span>,p<span style="color:#666"></span>) <span style="color:#a2f;font-weight:bold">for</span> q<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0</span><span style="color:#666">:</span><span style="color:#666">25</span><span style="color:#666">:</span><span style="color:#666">100</span> <span style="color:#a2f;font-weight:bold">for</span> d<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0</span><span style="color:#666">:</span><span style="color:#666">10</span><span style="color:#666">:</span><span style="color:#666">100</span><span style="color:#666">-</span>q<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">for</span> n<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0</span><span style="color:#666">:</span><span style="color:#666">5</span><span style="color:#666">:</span><span style="color:#666">100</span><span style="color:#666">-</span>q<span style="color:#666"></span><span style="color:#666">-</span>d<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">for</span> p<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">100</span><span style="color:#666">-</span>q<span style="color:#666"></span><span style="color:#666">-</span>d<span style="color:#666"></span><span style="color:#666">-</span>n<span style="color:#666"></span>]
+<span style="color:#666">242</span><span style="color:#666">-</span>element<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">NTuple</span>{<span style="color:#666">4</span>,<span style="color:#0b0;font-weight:bold">Int64</span>},<span style="color:#666">1</span>}<span style="color:#666">:</span>
+ (<span style="color:#666">0</span>,<span style="color:#666">0</span>,<span style="color:#666">0</span>,<span style="color:#666">100</span>)
+ (<span style="color:#666">0</span>,<span style="color:#666">0</span>,<span style="color:#666">5</span>,<span style="color:#666">95</span>)
+ (<span style="color:#666">0</span>,<span style="color:#666">0</span>,<span style="color:#666">10</span>,<span style="color:#666">90</span>)
+ (<span style="color:#666">0</span>,<span style="color:#666">0</span>,<span style="color:#666">15</span>,<span style="color:#666">85</span>)
+ (<span style="color:#666">0</span>,<span style="color:#666">0</span>,<span style="color:#666">20</span>,<span style="color:#666">80</span>)
+ (<span style="color:#666">0</span>,<span style="color:#666">0</span>,<span style="color:#666">25</span>,<span style="color:#666">75</span>)
+ ⋮<span style="color:#666"></span>
+ (<span style="color:#666">75</span>,<span style="color:#666">10</span>,<span style="color:#666">5</span>,<span style="color:#666">10</span>)
+ (<span style="color:#666">75</span>,<span style="color:#666">10</span>,<span style="color:#666">10</span>,<span style="color:#666">5</span>)
+ (<span style="color:#666">75</span>,<span style="color:#666">10</span>,<span style="color:#666">15</span>,<span style="color:#666">0</span>)
+ (<span style="color:#666">75</span>,<span style="color:#666">20</span>,<span style="color:#666">0</span>,<span style="color:#666">5</span>)
+ (<span style="color:#666">75</span>,<span style="color:#666">20</span>,<span style="color:#666">5</span>,<span style="color:#666">0</span>)
+ (<span style="color:#666">100</span>,<span style="color:#666">0</span>,<span style="color:#666">0</span>,<span style="color:#666">0</span>)</code></pre></div>
+
+<p>There are a few notable differences from the multidimensional array syntax:</p>
+
+<ul>
+<li>Each iteration is a new <code>for</code> clause, rather than a single compound iteration separated by commas;</li>
+<li>Each successive <code>for</code> clause <em>can</em> refer to variables from the previous clauses;</li>
+<li>The result is a single flat vector regardless of how many nested <code>for</code> clauses there are.</li>
+</ul>
+
+<p>The tuple <code>(q,d,n,p)</code> in the comprehension body is a breakdown of monetary value into quarters, dimes, nickels and pennies.
+Note that the iteration range for <code>p</code> isn&rsquo;t a range at all, it&rsquo;s a single value, <code>100-q-d-n</code>, the unique number guaranteeing that each tuple adds up to a dollar.
+(This relies on the fact that a number behaves like an immutable zero-dimensional container, holding only itself, a behavior which is sometimes convenient but which has been the subject of significant debate.
+As of 0.5 it still works.)
+We can verify that each tuple adds up to 100:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> extrema<span style="color:#666"></span>([sum<span style="color:#666"></span>(t<span style="color:#666"></span>) <span style="color:#a2f;font-weight:bold">for</span> t<span style="color:#666"></span> <span style="color:#a2f">in</span> change<span style="color:#666"></span>])
+(<span style="color:#666">100</span>,<span style="color:#666">100</span>)</code></pre></div>
+
+<p>Since 100 is both the minimum and maximum of all the tuple sums, we know they are all exactly 100.
+So, there are 242 ways to make a dollar with common coins.
+But suppose we want to ensure that the value in pennies is less than the value in nickels, and so forth.
+By adding a filter clause, we can do this easily too:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> [(q<span style="color:#666"></span>,d<span style="color:#666"></span>,n<span style="color:#666"></span>,p<span style="color:#666"></span>) <span style="color:#a2f;font-weight:bold">for</span> q<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0</span><span style="color:#666">:</span><span style="color:#666">25</span><span style="color:#666">:</span><span style="color:#666">100</span> <span style="color:#a2f;font-weight:bold">for</span> d<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0</span><span style="color:#666">:</span><span style="color:#666">10</span><span style="color:#666">:</span><span style="color:#666">100</span><span style="color:#666">-</span>q<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">for</span> n<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0</span><span style="color:#666">:</span><span style="color:#666">5</span><span style="color:#666">:</span><span style="color:#666">100</span><span style="color:#666">-</span>q<span style="color:#666"></span><span style="color:#666">-</span>d<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">for</span> p<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">100</span><span style="color:#666">-</span>q<span style="color:#666"></span><span style="color:#666">-</span>d<span style="color:#666"></span><span style="color:#666">-</span>n<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">if</span> p<span style="color:#666"></span> <span style="color:#666">&lt;</span> n<span style="color:#666"></span> <span style="color:#666">&lt;</span> d<span style="color:#666"></span> <span style="color:#666">&lt;</span> q<span style="color:#666"></span>]
+<span style="color:#666">4</span><span style="color:#666">-</span>element<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">NTuple</span>{<span style="color:#666">4</span>,<span style="color:#0b0;font-weight:bold">Int64</span>},<span style="color:#666">1</span>}<span style="color:#666">:</span>
+ (<span style="color:#666">50</span>,<span style="color:#666">30</span>,<span style="color:#666">15</span>,<span style="color:#666">5</span>)
+ (<span style="color:#666">50</span>,<span style="color:#666">30</span>,<span style="color:#666">20</span>,<span style="color:#666">0</span>)
+ (<span style="color:#666">50</span>,<span style="color:#666">40</span>,<span style="color:#666">10</span>,<span style="color:#666">0</span>)
+ (<span style="color:#666">75</span>,<span style="color:#666">20</span>,<span style="color:#666">5</span>,<span style="color:#666">0</span>)</code></pre></div>
+
+<p>The only difference here is the <code>if p &lt; n &lt; d &lt; q</code> clause at the end of the comprehension, which has the effect that the result only contains cases where this predicate holds true.
+There are exactly four ways to make a dollar with strictly increasing value from pennies to nickels to dimes to quarters.</p>
+
+<p>Nested and filtered comprehensions aren&rsquo;t earth-shattering features – everything you can do with them can be done in a variety of other ways – but they are expressive and convenient, found in other languages, and they allow you to try more things with your data quickly and easily, with less pointless refactoring.</p>
+
+<h2 id="generators">Generators</h2>
+
+<p>In the previous section we used an array comprehension to take the sum of each tuple, save the sums as an array, and then pass that array of sums to the <code>extrema</code> function to find the largest and smallest sum (they&rsquo;re all 100):</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> extrema<span style="color:#666"></span>([sum<span style="color:#666"></span>(t<span style="color:#666"></span>) <span style="color:#a2f;font-weight:bold">for</span> t<span style="color:#666"></span> <span style="color:#a2f">in</span> change<span style="color:#666"></span>])
+  <span style="color:#666">0.000072</span> seconds<span style="color:#666"></span> (<span style="color:#666">8</span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">2.203</span> KB<span style="color:#666"></span>)
+(<span style="color:#666">100</span>,<span style="color:#666">100</span>)</code></pre></div>
+
+<p>Wrapping this in the <code>@time</code> macro shows that this expression allocates 2.2 KB of memory – mostly for the array of sums, which is thrown away after the computation.
+But allocating an array just to find its extrema is unnecessary:
+the minimum and maximum can be computed over streamed data by keeping the largest and smallest values seen so far.
+In other words, this calculation could be expressed with constant memory overhead by interleaving the production of values with computation of extrema.
+Previously, expressing this interleaved computation required some amount of refactoring, and many approaches were considerably less efficient.
+In 0.5, if you simply omit the square brackets around an array comprehension, you get a <em>generator expression</em>, which instead of producing an array of values, can be iterated over, yielding one value at a time.
+Since <code>extrema</code> works with arbitrary iterable objects – including generators – expressing an interleaved calculation using constant memory is now as simple as deleting <code>[</code> and <code>]</code>:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> extrema<span style="color:#666"></span>(sum<span style="color:#666"></span>(t<span style="color:#666"></span>) <span style="color:#a2f;font-weight:bold">for</span> t<span style="color:#666"></span> <span style="color:#a2f">in</span> change<span style="color:#666"></span>)
+  <span style="color:#666">0.000066</span> seconds<span style="color:#666"></span> (<span style="color:#666">6</span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">208</span> bytes<span style="color:#666"></span>)
+(<span style="color:#666">100</span>,<span style="color:#666">100</span>)</code></pre></div>
+
+<p>This avoids allocating a temporary array of sums entirely, instead computing the next tuple&rsquo;s sum only when the <code>extrema</code> function is ready to accept a new value.
+Using a generator reduces the memory overhead to 208 bytes – the size of the the return value.
+More importantly, the memory usage doesn&rsquo;t depend on the size of the <code>change</code> array anymore – it will always be just 208 bytes, even if <code>change</code> holds a trillion tuples.
+It&rsquo;s not hard to imagine situations where such a reduction in asymptotic memory usage is crucial.
+The similar syntax between array comprehensions and generator expressions makes it trivial to move back and forth between the two styles of computation as needed.</p>
+
+<h3 id="initializing-collections">Initializing collections</h3>
+
+<p>The new generator syntax dovetails particularly nicely with Julia&rsquo;s convention for constructing collections – to make a new collection, you call the constructor with a single iterable argument, which yields the values you want in the new collection.
+In its simplest form, this looks something like:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#0b0;font-weight:bold">IntSet</span>([<span style="color:#666">1</span>, <span style="color:#666">4</span>, <span style="color:#666">9</span>, <span style="color:#666">16</span>, <span style="color:#666">25</span>, <span style="color:#666">36</span>, <span style="color:#666">49</span>, <span style="color:#666">64</span>])
+<span style="color:#0b0;font-weight:bold">IntSet</span>([<span style="color:#666">1</span>, <span style="color:#666">4</span>, <span style="color:#666">9</span>, <span style="color:#666">16</span>, <span style="color:#666">25</span>, <span style="color:#666">36</span>, <span style="color:#666">49</span>, <span style="color:#666">64</span>])</code></pre></div>
+
+<p>In this expression, an array of integers is passed to the <code>IntSet</code> constructor to create an object representing that set, which in this case happen to be small squares.
+Once constructed, the <code>IntSet</code> object no longer refers to the original array of integers.
+Instead, it uses a bitmask to efficiently store and operate on sets.
+It displays itself as you would construct it from an array, but that&rsquo;s merely for convenience – there&rsquo;s no actual array anymore.</p>
+
+<p>Now, I&rsquo;m a human (no blogbots here) and I find typing out even short sequences of perfect squares tedious and error prone – despite a math degree, I&rsquo;m awful at arithmetic.
+It would be much easier to generate squares with an array comprehension:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#0b0;font-weight:bold">IntSet</span>([k<span style="color:#666"></span><span style="color:#666">^</span><span style="color:#666">2</span> <span style="color:#a2f;font-weight:bold">for</span> k<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">8</span>])
+<span style="color:#0b0;font-weight:bold">IntSet</span>([<span style="color:#666">1</span>, <span style="color:#666">4</span>, <span style="color:#666">9</span>, <span style="color:#666">16</span>, <span style="color:#666">25</span>, <span style="color:#666">36</span>, <span style="color:#666">49</span>, <span style="color:#666">64</span>])</code></pre></div>
+
+<p>This comprehension produces the same array of integers that I typed manually above.
+As before, creating this array object is unnecessary – it would be even better to generate the desired squares as they are inserted into the new <code>IntSet</code>.
+Which, of course, is precisely what generator expressions allow:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#0b0;font-weight:bold">IntSet</span>(k<span style="color:#666"></span><span style="color:#666">^</span><span style="color:#666">2</span> <span style="color:#a2f;font-weight:bold">for</span> k<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">8</span>)
+<span style="color:#0b0;font-weight:bold">IntSet</span>([<span style="color:#666">1</span>, <span style="color:#666">4</span>, <span style="color:#666">9</span>, <span style="color:#666">16</span>, <span style="color:#666">25</span>, <span style="color:#666">36</span>, <span style="color:#666">49</span>, <span style="color:#666">64</span>])</code></pre></div>
+
+<p>Using a generator here is just as clear, more concise, and significantly more efficient:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f;font-weight:bold">using</span> BenchmarkTools<span style="color:#666"></span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@benchmark</span><span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">IntSet</span>([k<span style="color:#666"></span><span style="color:#666">^</span><span style="color:#666">2</span> <span style="color:#a2f;font-weight:bold">for</span> k<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">8</span>])
+BenchmarkTools<span style="color:#666"></span><span style="color:#666">.</span>Trial<span style="color:#666"></span><span style="color:#666">:</span>
+  memory<span style="color:#666"></span> estimate<span style="color:#666"></span><span style="color:#666">:</span>  <span style="color:#666">320.00</span> bytes<span style="color:#666"></span>
+  minimum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">163.00</span> ns<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  median<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>      <span style="color:#666">199.00</span> ns<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  mean<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>        <span style="color:#666">245.18</span> ns<span style="color:#666"></span> (<span style="color:#666">12.95</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  maximum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">5.36</span> μs<span style="color:#666"></span> (<span style="color:#666">92.47</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@benchmark</span><span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">IntSet</span>(k<span style="color:#666"></span><span style="color:#666">^</span><span style="color:#666">2</span> <span style="color:#a2f;font-weight:bold">for</span> k<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">8</span>)
+BenchmarkTools<span style="color:#666"></span><span style="color:#666">.</span>Trial<span style="color:#666"></span><span style="color:#666">:</span>
+  memory<span style="color:#666"></span> estimate<span style="color:#666"></span><span style="color:#666">:</span>  <span style="color:#666">160.00</span> bytes<span style="color:#666"></span>
+  minimum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">114.00</span> ns<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  median<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>      <span style="color:#666">139.00</span> ns<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  mean<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>        <span style="color:#666">165.74</span> ns<span style="color:#666"></span> (<span style="color:#666">11.48</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  maximum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">4.82</span> μs<span style="color:#666"></span> (<span style="color:#666">93.20</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)</code></pre></div>
+
+<p>As you can see from this benchmark, the version with an array comprehension uses twice as much memory and is 50% slower than constructing the same <code>IntSet</code> using a generator expression.</p>
+
+<h4 id="constructing-dictionaries">Constructing dictionaries</h4>
+
+<p>Generators can be used to construct dictionaries too, and this use case deserves some special attention since it completes a multi-release process of putting user-defined dictionary types on an equal footing with the built-in <code>Dict</code> type.
+In Julia 0.3, the <code>=&gt;</code> operator only existed as part of syntax for constructing <code>Dict</code> objects:
+<code>[k₁ =&gt; v₁, k₂ =&gt; v₂]</code> and <code>[k(i) =&gt; v(i) for i = c]</code>.
+This design was based on other dynamic languages where dictionaries are among a small set of built-in types with special syntax that are deeply integrated into the language.
+As Julia&rsquo;s ecosystem has matured, however, it has become apparent that Julia is actually more like Java or C++ in this respect than it is like Python or Lua: the <code>Dict</code> type isn&rsquo;t that special – it happens to be defined in the standard library, but is otherwise quite ordinary.
+Many programs use other dictionary implementations: for example, the tree-based <code>SortedDict</code> type, which sorts values by key, or <code>OrderedDict</code>, which maintains keys in the order they are inserted.
+Having special syntax only for <code>Dict</code> makes using other dictionary implementations problematic.
+In 0.3, there was no good syntax for constructing values of these dictionaries – the best one could do was to invoke a constructor with an array of two-tuples:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">SortedDict<span style="color:#666"></span>([(k₁<span style="color:#666"></span>, v₁<span style="color:#666"></span>), (k₂<span style="color:#666"></span>, v₂<span style="color:#666"></span>)])        <span style="color:#080;font-style:italic"># fixed-size dictionaries</span>
+SortedDict<span style="color:#666"></span>([(k<span style="color:#666"></span>(i<span style="color:#666"></span>), v<span style="color:#666"></span>(i<span style="color:#666"></span>)) <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#a2f">in</span> c<span style="color:#666"></span>])   <span style="color:#080;font-style:italic"># dictionary comprehensions</span></code></pre></div>
+
+<p>Not only are these constructions inconvenient and ugly, they&rsquo;re also inefficient since they create temporary heap-allocated arrays of heap-allocated tuples of key-value pairs.
+With much relief, we can now instead write:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">SortedDict<span style="color:#666"></span>(k₁<span style="color:#666"></span> <span style="color:#666">=</span><span style="color:#666">&gt;</span> v₁<span style="color:#666"></span>, k₂<span style="color:#666"></span> <span style="color:#666">=</span><span style="color:#666">&gt;</span> v₂<span style="color:#666"></span>)          <span style="color:#080;font-style:italic"># fixed-size dictionaries, since 0.4</span>
+SortedDict<span style="color:#666"></span>(k<span style="color:#666"></span>(i<span style="color:#666"></span>) <span style="color:#666">=</span><span style="color:#666">&gt;</span> v<span style="color:#666"></span>(i<span style="color:#666"></span>) <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#666">=</span> c<span style="color:#666"></span>)      <span style="color:#080;font-style:italic"># dictionary comprehensions, since 0.5</span></code></pre></div>
+
+<p>This last syntax combines two orthogonal features introduced in 0.4 and 0.5, respectively:</p>
+
+<ul>
+<li><code>k =&gt; v</code> as a standalone syntax for a <code>Pair</code> object, and</li>
+<li>generator expressions, particularly to initialize collections.</li>
+</ul>
+
+<p>The <code>Dict</code> type is now constructed in exactly the same way:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#0b0;font-weight:bold">Dict</span>(<span style="color:#b44">&#34;</span><span style="color:#b44">f</span><span style="color:#b44">o</span><span style="color:#b44">o</span><span style="color:#b44">&#34;</span> <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">1</span>, <span style="color:#b44">&#34;</span><span style="color:#b44">b</span><span style="color:#b44">a</span><span style="color:#b44">r</span><span style="color:#b44">&#34;</span> <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">2</span>)
+<span style="color:#0b0;font-weight:bold">Dict</span>{String<span style="color:#666"></span>,<span style="color:#0b0;font-weight:bold">Int64</span>} with<span style="color:#666"></span> <span style="color:#666">2</span> entries<span style="color:#666"></span><span style="color:#666">:</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">b</span><span style="color:#b44">a</span><span style="color:#b44">r</span><span style="color:#b44">&#34;</span> <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">2</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">f</span><span style="color:#b44">o</span><span style="color:#b44">o</span><span style="color:#b44">&#34;</span> <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">1</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#0b0;font-weight:bold">Dict</span>(<span style="color:#b44">&#34;</span><span style="color:#b44">*</span><span style="color:#b44">&#34;</span><span style="color:#666">^</span>k<span style="color:#666"></span> <span style="color:#666">=</span><span style="color:#666">&gt;</span> k<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">for</span> k<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">10</span>)
+<span style="color:#0b0;font-weight:bold">Dict</span>{String<span style="color:#666"></span>,<span style="color:#0b0;font-weight:bold">Int64</span>} with<span style="color:#666"></span> <span style="color:#666">10</span> entries<span style="color:#666"></span><span style="color:#666">:</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">&#34;</span> <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">10</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">&#34;</span>        <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">3</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">&#34;</span>    <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">7</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">&#34;</span>   <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">8</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">*</span><span style="color:#b44">&#34;</span>          <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">1</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">&#34;</span>         <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">2</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">&#34;</span>       <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">4</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">&#34;</span>  <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">9</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">&#34;</span>      <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">5</span>
+  <span style="color:#b44">&#34;</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">*</span><span style="color:#b44">&#34;</span>     <span style="color:#666">=</span><span style="color:#666">&gt;</span> <span style="color:#666">6</span></code></pre></div>
+
+<p>This generalization makes the syntax for constructing a <code>Dict</code> slightly longer, but we feel that the increased consistency, ability to change dictionary implementations with a simple search-and-replace, and putting user-defined dictionary-like types on the same level as the built-in <code>Dict</code> type make this change well worthwhile.</p>
+
+<h2 id="arrays">Arrays</h2>
+
+<p>The 0.5 release was originally intended to include a large number of disruptive array changes, collectively dubbed &ldquo;Arraymageddon&rdquo;.
+After much discussion, experimentation and benchmarking, this set of breaking changes was significantly reduced for a variety of reasons:</p>
+
+<ul>
+<li>Some changes were deemed not to be good ideas after all;</li>
+<li>Others were of unclear benefit, so it was decided to reconsider them in the future once there is more information to support a decision;</li>
+<li>A few didn&rsquo;t get implemented due to lack of developer time, including some cases where everyone agrees there&rsquo;s a problem but there is not yet any complete design for a solution.</li>
+</ul>
+
+<p>Although not many breaking changes happened in 0.5, this was a major release for Julia&rsquo;s array infrastructure.
+The code to implement various complex polymorphic indexing operations for generic arrays and array-like structures was majorly refactored, and in the process it shrank by 40% while becoming more complete, more general, and faster.
+You can read more about the very cool things you can now do with array-like types in an excellent pair of blog posts published here earlier in the year: <a href="../../../../blog/2016/02/multidimensional-algorithms-and-iteration/"><em>Multidimensional algorithms and iteration</em></a> and <a href="../../../../blog/2016/03/generalizing-abstractarrays-opportunities-and-challenges/"><em>Generalizing AbstractArrays</em></a>.
+In the next two subsections, I&rsquo;ll go over some of the array changes that did happen in 0.5.</p>
+
+<h3 id="dimension-sum-slices">Dimension sum slices</h3>
+
+<p>The most significant breaking change in the 0.5 cycle affects multidimensional array slicing.
+To explain it we&rsquo;ll need a little terminology.
+A <em>singleton dimension</em> of a multidimensional array is a dimension whose size is 1.
+For example, a 5x1 matrix has a trailing singleton dimension and may be called a &ldquo;column matrix&rdquo;, and a 1x5 matrix has a leading singleton dimension and may be called a &ldquo;row matrix&rdquo;.
+A <em>scalar slice</em> refers to a dimension in a multidimensional slice expression where the index is a scalar integer (considered to be zero-dimensional), rather than a 1-dimensional range or vector, or some higher-dimensional collection of indices.
+For example, in <code>A[1,:]</code> the first slice is scalar, the second is not; in <code>A[:,2]</code> the second slice is scalar, the first is not; in <code>A[3,4]</code> both slices are scalar.</p>
+
+<p>All previous versions of Julia have dropped trailing scalar slices when performing multidimensional array slicing.
+That is, when an array was sliced with multiple indices, the resulting array had the number of dimensions of the original array minus the number of trailing scalar slices.
+So when you sliced a column out of a matrix the result was a 1-dimensional vector, but when you sliced a row the result was a 2-dimensional row matrix:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">VERSION</span>
+v<span style="color:#666"></span><span style="color:#b44">&#34;</span><span style="color:#b44">0</span><span style="color:#b44">.</span><span style="color:#b44">4</span><span style="color:#b44">.</span><span style="color:#b44">7</span><span style="color:#b44">&#34;</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> M<span style="color:#666"></span> <span style="color:#666">=</span> [i<span style="color:#666"></span><span style="color:#666">+</span>j<span style="color:#666"></span><span style="color:#666">^</span><span style="color:#666">2</span> <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">3</span>, j<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">4</span>]
+<span style="color:#666">3</span>x4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ <span style="color:#666">2</span>  <span style="color:#666">5</span>  <span style="color:#666">10</span>  <span style="color:#666">17</span>
+ <span style="color:#666">3</span>  <span style="color:#666">6</span>  <span style="color:#666">11</span>  <span style="color:#666">18</span>
+ <span style="color:#666">4</span>  <span style="color:#666">7</span>  <span style="color:#666">12</span>  <span style="color:#666">19</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> M<span style="color:#666"></span>[<span style="color:#666">:</span>,<span style="color:#666">1</span>] <span style="color:#080;font-style:italic"># vector</span>
+<span style="color:#666">3</span><span style="color:#666">-</span>element<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">1</span>}<span style="color:#666">:</span>
+ <span style="color:#666">2</span>
+ <span style="color:#666">3</span>
+ <span style="color:#666">4</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> M<span style="color:#666"></span>[<span style="color:#666">3</span>,<span style="color:#666">:</span>] <span style="color:#080;font-style:italic"># row matrix</span>
+<span style="color:#666">1</span>x4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ <span style="color:#666">4</span>  <span style="color:#666">7</span>  <span style="color:#666">12</span>  <span style="color:#666">19</span></code></pre></div>
+
+<p>This rule is handy for linear algebra since row and column slices have distinct types and different orientations, but its complexity, asymmetry, and lack of generality make it less than ideal for arrays as general purpose containers.
+With more dimensions, the asymmetry of this behavior can be seen even in a single slice operation:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">VERSION</span>
+v<span style="color:#666"></span><span style="color:#b44">&#34;</span><span style="color:#b44">0</span><span style="color:#b44">.</span><span style="color:#b44">4</span><span style="color:#b44">.</span><span style="color:#b44">7</span><span style="color:#b44">&#34;</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> T<span style="color:#666"></span> <span style="color:#666">=</span> [i<span style="color:#666"></span><span style="color:#666">+</span>j<span style="color:#666"></span><span style="color:#666">^</span><span style="color:#666">2</span><span style="color:#666">+</span>k<span style="color:#666"></span><span style="color:#666">^</span><span style="color:#666">3</span> <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">3</span>, j<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">4</span>, k<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">2</span>]
+<span style="color:#666">3</span>x4x2<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">3</span>}<span style="color:#666">:</span>
+[<span style="color:#666">:</span>, <span style="color:#666">:</span>, <span style="color:#666">1</span>] <span style="color:#666">=</span>
+ <span style="color:#666">3</span>  <span style="color:#666">6</span>  <span style="color:#666">11</span>  <span style="color:#666">18</span>
+ <span style="color:#666">4</span>  <span style="color:#666">7</span>  <span style="color:#666">12</span>  <span style="color:#666">19</span>
+ <span style="color:#666">5</span>  <span style="color:#666">8</span>  <span style="color:#666">13</span>  <span style="color:#666">20</span>
+
+[<span style="color:#666">:</span>, <span style="color:#666">:</span>, <span style="color:#666">2</span>] <span style="color:#666">=</span>
+ <span style="color:#666">10</span>  <span style="color:#666">13</span>  <span style="color:#666">18</span>  <span style="color:#666">25</span>
+ <span style="color:#666">11</span>  <span style="color:#666">14</span>  <span style="color:#666">19</span>  <span style="color:#666">26</span>
+ <span style="color:#666">12</span>  <span style="color:#666">15</span>  <span style="color:#666">20</span>  <span style="color:#666">27</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> T<span style="color:#666"></span>[<span style="color:#666">2</span>,<span style="color:#666">:</span>,<span style="color:#666">2</span>]
+<span style="color:#666">1</span>x4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ <span style="color:#666">11</span>  <span style="color:#666">14</span>  <span style="color:#666">19</span>  <span style="color:#666">26</span></code></pre></div>
+
+<p>The leading dimension of this slice is retained while the trailing dimension is discarded – even though both are scalar slices.
+The result array is neither 3-dimensional like the original, nor 1-dimensional like the collective indexes (0 + 1 + 0); instead, it&rsquo;s 2-dimensional – apropos of nothing.
+Here, in another fairly similar slice, all dimensions are kept:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> T<span style="color:#666"></span>[<span style="color:#666">:</span>,<span style="color:#666">4</span>,<span style="color:#666">:</span>]
+<span style="color:#666">3</span>x1x2<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">3</span>}<span style="color:#666">:</span>
+[<span style="color:#666">:</span>, <span style="color:#666">:</span>, <span style="color:#666">1</span>] <span style="color:#666">=</span>
+ <span style="color:#666">18</span>
+ <span style="color:#666">19</span>
+ <span style="color:#666">20</span>
+
+[<span style="color:#666">:</span>, <span style="color:#666">:</span>, <span style="color:#666">2</span>] <span style="color:#666">=</span>
+ <span style="color:#666">25</span>
+ <span style="color:#666">26</span>
+ <span style="color:#666">27</span></code></pre></div>
+
+<p>By comparison, the new slicing behavior in 0.5 is simple, systematic, and symmetrical.
+(And not original by any means – APL pioneered this array slicing scheme in the 1960s.)
+In Julia 0.5, when an array is sliced, the dimension of the result is the sum of the dimensions of the slices, and the dimension sizes of the result are the concatenation of the sizes of the slices.
+Thus, row slices and column slices both produce vectors:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">VERSION</span>
+v<span style="color:#666"></span><span style="color:#b44">&#34;</span><span style="color:#b44">0</span><span style="color:#b44">.</span><span style="color:#b44">5</span><span style="color:#b44">.</span><span style="color:#b44">0</span><span style="color:#b44">&#34;</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> M<span style="color:#666"></span>[<span style="color:#666">:</span>,<span style="color:#666">1</span>] <span style="color:#080;font-style:italic"># vector: 1 + 0 = 1</span>
+<span style="color:#666">3</span><span style="color:#666">-</span>element<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">1</span>}<span style="color:#666">:</span>
+ <span style="color:#666">2</span>
+ <span style="color:#666">3</span>
+ <span style="color:#666">4</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> M<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>] <span style="color:#080;font-style:italic"># vector: 0 + 1 = 1</span>
+<span style="color:#666">4</span><span style="color:#666">-</span>element<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">1</span>}<span style="color:#666">:</span>
+  <span style="color:#666">2</span>
+  <span style="color:#666">5</span>
+ <span style="color:#666">10</span>
+ <span style="color:#666">170</span></code></pre></div>
+
+<p>Similarly, slicing a 3-dimensional array with scalars in all but one dimension also produces a vector:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> T<span style="color:#666"></span>[<span style="color:#666">2</span>,<span style="color:#666">:</span>,<span style="color:#666">2</span>] <span style="color:#080;font-style:italic"># vector: 0 + 1 + 0 = 1</span>
+<span style="color:#666">4</span><span style="color:#666">-</span>element<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">1</span>}<span style="color:#666">:</span>
+ <span style="color:#666">11</span>
+ <span style="color:#666">14</span>
+ <span style="color:#666">19</span>
+ <span style="color:#666">26</span></code></pre></div>
+
+<p>The only example from above that doesn&rsquo;t produce a vector is the last one:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> T<span style="color:#666"></span>[<span style="color:#666">:</span>,<span style="color:#666">4</span>,<span style="color:#666">:</span>] <span style="color:#080;font-style:italic"># matrix: 1 + 0 + 1 = 2</span>
+<span style="color:#666">3</span>×2<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ <span style="color:#666">18</span>  <span style="color:#666">25</span>
+ <span style="color:#666">19</span>  <span style="color:#666">26</span>
+ <span style="color:#666">20</span>  <span style="color:#666">27</span></code></pre></div>
+
+<p>The result is a matrix since the leading and trailing slices are ranges, and the middle slice disappears since it is scalar, leaving a matrix.
+The 0.5 slicing behavior naturally generalizes to higher dimensional slices:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">I</span> <span style="color:#666">=</span> [<span style="color:#666">1</span> <span style="color:#666">2</span> <span style="color:#666">1</span>; <span style="color:#666">1</span> <span style="color:#666">3</span> <span style="color:#666">2</span>]
+<span style="color:#666">2</span>×3<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ <span style="color:#666">1</span>  <span style="color:#666">2</span>  <span style="color:#666">1</span>
+ <span style="color:#666">1</span>  <span style="color:#666">3</span>  <span style="color:#666">2</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> J<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">4</span> <span style="color:#666">2</span> <span style="color:#666">1</span> <span style="color:#666">3</span>]
+<span style="color:#666">1</span>×4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ <span style="color:#666">4</span>  <span style="color:#666">2</span>  <span style="color:#666">1</span>  <span style="color:#666">3</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> M<span style="color:#666"></span>[<span style="color:#a2f">I</span>,J<span style="color:#666"></span>]
+<span style="color:#666">2</span>×3×1×4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">4</span>}<span style="color:#666">:</span>
+[<span style="color:#666">:</span>, <span style="color:#666">:</span>, <span style="color:#666">1</span>, <span style="color:#666">1</span>] <span style="color:#666">=</span>
+ <span style="color:#666">17</span>  <span style="color:#666">18</span>  <span style="color:#666">17</span>
+ <span style="color:#666">17</span>  <span style="color:#666">19</span>  <span style="color:#666">18</span>
+
+[<span style="color:#666">:</span>, <span style="color:#666">:</span>, <span style="color:#666">1</span>, <span style="color:#666">2</span>] <span style="color:#666">=</span>
+ <span style="color:#666">5</span>  <span style="color:#666">6</span>  <span style="color:#666">5</span>
+ <span style="color:#666">5</span>  <span style="color:#666">7</span>  <span style="color:#666">6</span>
+
+[<span style="color:#666">:</span>, <span style="color:#666">:</span>, <span style="color:#666">1</span>, <span style="color:#666">3</span>] <span style="color:#666">=</span>
+ <span style="color:#666">2</span>  <span style="color:#666">3</span>  <span style="color:#666">2</span>
+ <span style="color:#666">2</span>  <span style="color:#666">4</span>  <span style="color:#666">3</span>
+
+[<span style="color:#666">:</span>, <span style="color:#666">:</span>, <span style="color:#666">1</span>, <span style="color:#666">4</span>] <span style="color:#666">=</span>
+ <span style="color:#666">10</span>  <span style="color:#666">11</span>  <span style="color:#666">10</span>
+ <span style="color:#666">10</span>  <span style="color:#666">12</span>  <span style="color:#666">11</span></code></pre></div>
+
+<p>Here we have the following natural identity on dimensions:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">size<span style="color:#666"></span>(M<span style="color:#666"></span>[<span style="color:#a2f">I</span>,J<span style="color:#666"></span>]) <span style="color:#666">=</span><span style="color:#666">=</span> (size<span style="color:#666"></span>(<span style="color:#a2f">I</span>,<span style="color:#666">1</span>), size<span style="color:#666"></span>(<span style="color:#a2f">I</span>,<span style="color:#666">2</span>), size<span style="color:#666"></span>(J<span style="color:#666"></span>,<span style="color:#666">1</span>), size<span style="color:#666"></span>(J<span style="color:#666"></span>,<span style="color:#666">2</span>))</code></pre></div>
+
+<p>In addition to being more systematic and symmetrical, this new behavior allows many complex indexing operations to be expressed concisely.</p>
+
+<p>Although the change to multidimensional slicing behavior is a significant breaking change, it has caused surprisingly little havoc in the Julia package ecosystem.
+It tends to primarily affect linear algebra code, and when code does break, it&rsquo;s usually fairly clear what is broken and what needs to be done to fix it.
+When updating your code, if you need to keep a dimension that is dropped under the new indexing behavior, you can write <code>M[1:1,:]</code>:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> M<span style="color:#666"></span>[<span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">1</span>,<span style="color:#666">:</span>]
+<span style="color:#666">1</span>×4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ <span style="color:#666">0.950951</span>  <span style="color:#666">0.713032</span>  <span style="color:#666">0.0835119</span>  <span style="color:#666">0.897018</span></code></pre></div>
+
+<p>Since integer range construction can be eliminated by Julia&rsquo;s compiler, writing this is free but has the effect of keeping a dimension which would otherwise be dropped under the new rules.
+Unfortunately, there&rsquo;s no way to make this change without breaking some code – we apologize in advance for the inconvenience, and we hope you find the improvement to be worthwhile.</p>
+
+<h3 id="array-views">Array views</h3>
+
+<p>One of the major news items of 0.5 is a non-change:
+array slices still create copies of array data.
+There was a lot of discussion about changing the default behavior to creating views, but we ended up deciding against this change and keeping the old behavior.
+The motivation for views by default was to improve performance drastically in a variety of slow cases, but after a lot of discussion, experiments, and benchmarks, it was decided not to make this change.
+The conversation about this decision is long, so I&rsquo;ll summarize the major points:</p>
+
+<ul>
+<li><p>Slicing should either consistently produce views or copies.
+Unpredictably doing one or the other depending on types – or worse still, on runtime values – would be a disaster for writing reliable, generic code.</p></li>
+
+<li><p>Guaranteeing view semantics for all abstract arrays – especially sparse and custom array types – is hard and can be quite slow and/or expensive in general cases.</p></li>
+
+<li><p>Even in the case of dense arrays with cheap array views, it&rsquo;s not clear that views are always a performance win.
+In some cases they definitely are, but in others the fact that a copied slice is contiguous and has optimal memory ordering for iteration overwhelms the benefit of not copying.</p></li>
+
+<li><p>Copied slices are easier to reason about and less likely to lead to subtle bugs than views.
+Views can lead to situations where someone modifies the view, not realizing that it&rsquo;s a view, thereby unintentionally modifying the original array.
+These kinds of bugs are hard to track down and even harder to notice.</p></li>
+
+<li><p>There is no clear transition or deprecation strategy.
+Changing from copying slices to views would be a major compatibility issue.
+We generally give programmers deprecation warnings when some behavior is going to break or change in the next release.
+Sometimes we can&rsquo;t do that so we just bite the bullet and break code with an error. But changing slices to views wouldn&rsquo;t break code with an error, it would just silently cause code to produce different, incorrect results.
+There&rsquo;s no clear way to make this transition safely.</p></li>
+</ul>
+
+<p>Taken together this makes a compelling case against changing the default slicing behavior to returning views.
+That said, even if they&rsquo;re not the default, views are a crucial tool for performance in some situations.
+Accordingly, a huge amount of work went into improving the ergonomics of views in 0.5, including:</p>
+
+<ul>
+<li><p>Renaming the function for view construction from &ldquo;<code>sub</code>&rdquo; to &ldquo;<code>view</code>&rdquo;, which seems like a much better name.</p></li>
+
+<li><p>Array views now support all forms of indexing supported by arrays.
+Previously, views did not support some of the more complex forms of array indexing.</p></li>
+
+<li><p>The <code>@view</code> macro was introduced, allowing the use of natural slicing syntax for views.
+In other words you can now write <code>@view A[1:end-1,2:end]</code> instead of <code>view(A, 1:size(A,1)-1, 2:size(A,2))</code>.</p></li>
+</ul>
+
+<p>Since views are an such important tool for both performance and for expressing complex mutating operations on arrays (especially with higher order functions), we may introduce a special syntax for view slices in the future.
+In particular, the syntax <code>A@[I...]</code> had a fair amount of popular support.
+Stay tuned!</p>
+
+<h2 id="and-more">And more&hellip;</h2>
+
+<p>This is far from the full extent of the improvements introduced in Julia 0.5, but this blog post is already getting quite long, so I&rsquo;ll just summarize a few of the other big ticket items:</p>
+
+<ul>
+<li><p>The set of string types and operations has been significantly simplified and streamlined.
+The <code>ASCIIString</code> and <code>UTF8String</code> types have been merged into a single <code>String</code> type, and the <code>UTF16String</code> and <code>UTF32String</code> and related functions have been moved into the <a href="https://github.com/JuliaArchive/LegacyStrings.jl"><code>LegacyStrings</code></a> package, which keeps the same implementations as 0.4.
+In the future, better support for different string encodings will be developed under the <a href="https://github.com/nalimilan/StringEncodings.jl"><code>StringEncodings</code></a> package.</p></li>
+
+<li><p>Most functionality related to prime generation, primality checking and combinatorics, has been moved into two external packages: <a href="https://github.com/JuliaMath/Primes.jl"><code>Primes</code></a> and <a href="https://github.com/JuliaMath/Combinatorics.jl"><code>Combinatorics</code></a>.
+To use these functions, you&rsquo;ll need to install these packages and do <code>using Primes</code> or <code>using Combinatorics</code> as necessary.</p></li>
+
+<li><p>Julia&rsquo;s LLVM version was upgraded from 3.3 to 3.7.1.
+This may not seem like a big deal, but the transition required herculean effort by many core Julia contributors.
+For a series of different and impossibly annoying reasons, LLVM versions 3.4, 3.5 and 3.6 were not usable for Julia, so we&rsquo;re very happy to be back to using current versions of our favorite compiler framework.</p></li>
+
+<li><p>Support for compiling and running on <a href="https://en.wikipedia.org/wiki/ARM_architecture">ARM</a> chips is much improved since 0.4.
+Julia 0.5 also introduced initial support for <a href="https://en.wikipedia.org/wiki/Power_Architecture">Power</a> systems, a development which has been supported and driven by IBM.
+We will be expanding and improving support for many architectures going forward.
+With support for ARM and Power, Julia is already a productive platform for technical computing from embedded systems to big iron.</p></li>
+
+<li><p>The 0.5 release has experimental multithreading support.
+This isn&rsquo;t ready for production usage, but it&rsquo;s fun to play around with and you can already get impressive performance gains – scalability is a key focus.
+Julia&rsquo;s threading provides true concurrent execution like C++, Go or Java:
+different threads can do work at the same time, up to the number of physical cores available.</p></li>
+
+<li><p>Interactive debugging support has been a weak spot in the Julia ecosystem for some time, but not any more.
+On a vanilla build of Julia 0.5, you can install the <a href="https://github.com/Keno/Gallium.jl"><code>Gallium</code></a> package to get a full-fledged, high-performance debugger:
+set breakpoints, step through code, examine variables, and inspect stack frames.</p></li>
+</ul>
+
+<p>I hope you&rsquo;ve enjoyed this overview of highlights from the new release of Julia, and that you enjoy the release itself even more.
+Julia 0.5 is easily the strongest release to date, but of course the next one will be even better :)</p>
+
+<p>Happy coding!</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

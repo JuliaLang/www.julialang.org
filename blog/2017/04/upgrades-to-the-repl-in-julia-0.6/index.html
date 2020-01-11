@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Upgrades to the REPL in Julia 0.6</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>Upgrades to the REPL in Julia 0.6</h1>
+
+    <p class="metadata">
+      <span class="timestamp">25 April, 2017</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author"><a href="https://kristofferc.github.io/">Kristoffer Carlsson</a></span>
+      
+    </p>
+
+    
+
+<p>Since version 0.3, Julia has come with a command-line interface — a <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>
+ — that is completely written in Julia (<a href="https://github.com/JuliaLang/julia/pull/6270">PR #6270</a>).
+Among other features, the REPL provides code completion, history with reverse search, and a rich set of customizable key bindings. (See the <a href="https://docs.julialang.org/en/v1/manual/getting-started/">Interacting with Julia</a> part of the manual for the REPL documentation.)
+Even so, the REPL in Julia 0.6 includes quite a few new visual tweaks and features.
+In this blog post, we look into some of these changes and customizations to the Julia REPL, available in 0.6.</p>
+
+<h2 id="prompt-pasting">Prompt pasting</h2>
+
+<p>It is quite common (as in the Julia manual and in subsequent code blocks of this blog post) to write snippets of Julia code like they were copied straight from a REPL session, for example:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> f<span style="color:#666"></span>() <span style="color:#666">=</span> rand<span style="color:#666"></span>(<span style="color:#666">10</span><span style="color:#666">^</span><span style="color:#666">6</span>)
+f<span style="color:#666"></span> (generic<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">function</span> with<span style="color:#666"></span> <span style="color:#666">1</span> method<span style="color:#666"></span>)
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> f<span style="color:#666"></span>();
+  <span style="color:#666">0.052948</span> seconds<span style="color:#666"></span> (<span style="color:#666">25.05</span> k<span style="color:#666"></span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">8.769</span> MiB<span style="color:#666"></span>)</code></pre></div>
+<p>If you wanted to try out this code in 0.5, you would typically copy the code into a text editor, remove the <code>julia&gt;</code> prompt, remove the output, and then finally have code that looked like:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">f<span style="color:#666"></span>() <span style="color:#666">=</span> rand<span style="color:#666"></span>(<span style="color:#666">10</span><span style="color:#666">^</span><span style="color:#666">6</span>);
+
+<span style="color:#a2f">@time</span><span style="color:#666"></span> f<span style="color:#666"></span>();</code></pre></div>
+<p>which could then be pasted back into the REPL to be executed.
+In 0.6, the REPL comes with a feature called <em>prompt pasting</em> by which a pasted expression starting with <code>julia&gt;</code> automatically has prompts and eventual output scrubbed before being executed.
+If you have a 0.6 REPL currently at hand, you can try to copy and paste the example with the prompt and output above directly into the REPL and you will see that it works in exactly the same way as if we had manually removed them.</p>
+
+<p>Unfortunately, for technical reasons (no support for bracket pasting), this feature does not work in the standard cmd-terminal on Windows.
+There are, however, multiple alternative terminal emulators on Windows that do support this, e.g. <a href="https://sourceforge.net/projects/console/">Console2</a> or <a href="https://www.cygwin.com/">Cygwin</a>.</p>
+
+<h2 id="printing-of-stack-traces">Printing of stack traces</h2>
+
+<p>When an error occurs, the REPL prints the exception that was thrown along with a <a href="https://en.wikipedia.org/wiki/Stack_trace">stack trace</a>: a list tracing back through the sequence of function calls and source code lines that were being executed when the error occurred.
+In previous versions of Julia, the stack trace might omit some function calls that were <a href="https://en.wikipedia.org/wiki/Inline_expansion">inlined</a>, making it harder to understand.
+In Julia 0.6, the stack trace includes function calls that were inlined.
+Unfortunately, in combination with the Julia idiom of breaking complex tasks into many smaller functions, this can sometimes lead to long stack traces.
+Furthermore, the stack trace includes the type signature of the methods being called, but these type signatures can sometimes be quite verbose (e.g. for union types or types taking many parameters).
+Julia 0.6 greatly improves the readability of this output by coloration, numbering, and interactive features described below.</p>
+
+<p>In earlier Julia versions, stack traces were printed without much structure.
+Everything was printed in bold red which made it a bit difficult to find the information one was looking for.
+As an example, here is a screenshot from an error thrown on 0.5:</p>
+
+<p><img src="../../../../images/blog/2017-02-24-repl0.6/0.5stacktrace.png" alt="Stacktrace in 0.5" /></p>
+
+<p>Finding the relevant information can be quite difficult, especially the file name and line numbers since they are not aligned in any way.
+In 0.6, this is what is currently shown for the same error:</p>
+
+<p><img src="../../../../images/blog/2017-02-24-repl0.6/0.6stacktrace.png" alt="Stacktrace in 0.6" /></p>
+
+<p>Stack trace presentation has improved significantly: Stack traces no longer print in red, while associated error messages continue to print in red.
+Stack traces also no longer print entirely in bold; only function names and line information now appear in bold.
+These changes visually separate the most frequently sought information (the associated error message, function names and line information) from the surrounding text, making that information much easier to pick out.
+Additionally, each stack frame in the stack trace prints numbered, making individual stack frames easier to refer to.
+(Apart from these changes to stack trace presentation, <code>BoundsErrors</code> no longer display with the associated collection&rsquo;s contents, decreasing visual noise.)
+Furthermore, you can now customize stack frame function and line information print colors by setting the environment variables <code>JULIA_STACKFRAME_FUNCTION_COLOR</code> and <code>JULIA_STACKFRAME_LINEINFO_COLOR</code> respectively.</p>
+
+<p>For example, setting</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">ENV</span>[<span style="color:#b44">&#34;</span><span style="color:#b44">J</span><span style="color:#b44">U</span><span style="color:#b44">L</span><span style="color:#b44">I</span><span style="color:#b44">A</span><span style="color:#b44">_</span><span style="color:#b44">S</span><span style="color:#b44">T</span><span style="color:#b44">A</span><span style="color:#b44">C</span><span style="color:#b44">K</span><span style="color:#b44">F</span><span style="color:#b44">R</span><span style="color:#b44">A</span><span style="color:#b44">M</span><span style="color:#b44">E</span><span style="color:#b44">_</span><span style="color:#b44">L</span><span style="color:#b44">I</span><span style="color:#b44">N</span><span style="color:#b44">E</span><span style="color:#b44">I</span><span style="color:#b44">N</span><span style="color:#b44">F</span><span style="color:#b44">O</span><span style="color:#b44">_</span><span style="color:#b44">C</span><span style="color:#b44">O</span><span style="color:#b44">L</span><span style="color:#b44">O</span><span style="color:#b44">R</span><span style="color:#b44">&#34;</span>] <span style="color:#666">=</span> <span style="color:#666">:</span>cyan<span style="color:#666"></span>;
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">ENV</span>[<span style="color:#b44">&#34;</span><span style="color:#b44">J</span><span style="color:#b44">U</span><span style="color:#b44">L</span><span style="color:#b44">I</span><span style="color:#b44">A</span><span style="color:#b44">_</span><span style="color:#b44">S</span><span style="color:#b44">T</span><span style="color:#b44">A</span><span style="color:#b44">C</span><span style="color:#b44">K</span><span style="color:#b44">F</span><span style="color:#b44">R</span><span style="color:#b44">A</span><span style="color:#b44">M</span><span style="color:#b44">E</span><span style="color:#b44">_</span><span style="color:#b44">F</span><span style="color:#b44">U</span><span style="color:#b44">N</span><span style="color:#b44">C</span><span style="color:#b44">T</span><span style="color:#b44">I</span><span style="color:#b44">O</span><span style="color:#b44">N</span><span style="color:#b44">_</span><span style="color:#b44">C</span><span style="color:#b44">O</span><span style="color:#b44">L</span><span style="color:#b44">O</span><span style="color:#b44">R</span><span style="color:#b44">&#34;</span>] <span style="color:#666">=</span> <span style="color:#666">:</span>yellow<span style="color:#666"></span>;</code></pre></div>
+<p>and rerunning the example above yields</p>
+
+<p><img src="../../../../images/blog/2017-02-24-repl0.6/0.6stacktrace_conf.png" alt="Stacktrace in 0.6 with configured colors" /></p>
+
+<p>In addition to the visual changes to the stack trace, there is also a new interactive feature, possible now that we can refer to stack frames by number.
+After a stack trace has been printed, you can simply enter the number of one of the stack frames in the REPL, press <code>CTRL + Q</code> and the file will be opened in
+an editor at the line number corresponding to that stack frame.
+To set the editor, use the environment variable <code>EDITOR</code>, for example <code>ENV[&quot;EDITOR&quot;] = &quot;subl&quot;</code> for the Sublime Text editor.
+This can be used when you quickly want to fix a typo or just to jump around with the editor in the call stack leading up to the error.
+Note that it is currently not possible to open the location of a stack frame that refers to code directly evaluated in the REPL.</p>
+
+<h2 id="more-colors">More colors</h2>
+
+<p>While not strictly related to the REPL, it is still within the scope of this post to describe some of the changes made to the color printing functionalities in Julia 0.6.
+Previously, it was only possible to use 8 colors for printing (see <code>help?&gt; Base.text_colors</code>) by using the function <code>print_with_color</code>.
+In 0.6, light versions of these colors (prefixed by <code>light_</code>) are also supported, increasing the number of named colors to 16.
+In addition, an integer between 0 and 255 can now be used as a color (see <a href="https://commons.wikimedia.org/wiki/File:Xterm_256color_chart.svg">this chart</a> for a reference).
+These new colors are possible to use wherever an option previously existed to change the color of some element in the REPL.
+Another change is that, by default, the function <code>print_with_color</code> no longer prints in bold; instead a new keyword argument <code>bold::Bool</code> was introduced that controls this.</p>
+
+<p>Some examples of this functionality are given in the figure below:</p>
+
+<p><img src="../../../../images/blog/2017-02-24-repl0.6/0.6colors.png" alt="Colors in 0.6" /></p>
+
+<h2 id="default-style-of-input-output-text">Default style of input/output text</h2>
+
+<p>Previously, the default style of entered code and shown objects in the REPL was bold; this was changed in 0.6 to instead use standard &ldquo;light&rdquo; text.
+However, as the example below shows, it is possible to change this back to bold, or to any other color:</p>
+
+<p><img src="../../../../images/blog/2017-02-24-repl0.6/0.6input_output_conf.png" alt="Input/output text colors in 0.6" /></p>
+
+<h2 id="taking-repl-customization-even-further">Taking REPL-customization even further</h2>
+
+<p>If you would like to take REPL customization even further, I would encourage you to take a look at the <a href="https://github.com/KristofferC/OhMyREPL.jl"><code>OhMyREPL</code></a> package (author of this post is also author of that package).
+Some of the features described in this post were upstreamed to Base Julia from that package, but for now, some of the more advanced features, like syntax highlighting, matching bracket highlighting and customization of input/output prompts, still live only in the <code>OhMyREPL</code> package.</p>
+
+<h2 id="acknowledgments">Acknowledgments</h2>
+
+<p>Thanks to Sacha Verweij, Steven G. Johnson, Tony Kelman and Alex Arslan for valuable comments and suggestions.</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

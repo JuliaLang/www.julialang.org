@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>JSoC 2015 project: NullableArrays.jl</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>JSoC 2015 project: NullableArrays.jl</h1>
+
+    <p class="metadata">
+      <span class="timestamp">16 October, 2015</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author">David Gold</span>
+      
+    </p>
+
+    
+
+<p>My project under the 2015 <a href="../../../../jsoc">Julia Summer of Code</a> program has been to develop the <a href="https://github.com/JuliaStats/NullableArrays.jl">NullableArrays</a> package, which provides the <code>NullableArray</code> data type and its respective interface. I first encountered Julia earlier this year as a suggestion for which language I ought to learn as a matriculating PhD student in statistics. This summer has been an incredible opportunity for me both to develop as a young programmer and to contribute to an open-source community as full of possibility as Julia&rsquo;s. I&rsquo;d be remiss not to thank <a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>&rsquo;s group at MIT, <a href="http://numfocus.org/">NumFocus</a>, and the <a href="https://www.moore.org/">Gordon &amp; Betty Moore Foundation</a> for their financial support, <a href="https://github.com/johnmyleswhite/">John Myles White</a> for his mentorship and guidance, and many others of the Julia community who have helped to contribute both to the package and to my edification as a programmer over the summer. Much of my work on this project was conducted at the <a href="https://www.recurse.com">Recurse Center</a>, where I received the support of an amazing community of self-directed learners.</p>
+
+<h2 id="the-nullablearray-data-structure">The <code>NullableArray</code> data structure</h2>
+
+<p><code>NullableArray</code>s are array structures that efficiently represent missing values without incurring the performance difficulties that face <code>DataArray</code> objects, which have heretofore been used to store data that include missing values. The core issue responsible for <code>DataArray</code>s performance woes concerns the way in which the former represent missing values, i.e. through a token <code>NA</code> object of token type <code>NAType</code>. In particular, indexing into, say, a <code>DataArray{Int}</code> can return an object either of type <code>Int</code> or of type <code>NAType</code>. This design does not provide sufficient information to Julia&rsquo;s type inference system at JIT-compilation time to support the sort of static analysis that Julia&rsquo;s compiler can otherwise leverage to emit efficient machine code. We can illustrate as much through following example, in which we calculate the sum of five million random <code>Float64</code>s stored in a <code>DataArray</code>:</p>
+<pre><code>julia> using DataArrays
+# warnings suppressed…
+
+julia> A = rand(5_000_000);
+
+julia> D = DataArray(A);
+
+julia> function f(D::AbstractArray)
+           x = 0.0
+           for i in eachindex(D)
+               x += D[i]
+           end
+           x
+       end
+f (generic function with 1 method)
+
+julia> f(D);
+
+julia> @time f(D)
+  0.163567 seconds (10.00 M allocations: 152.598 MB, 9.21% gc time)
+2.500102419334644e6</code></pre>
+<p>Looping through and summing the elements of <code>D</code> is over twenty times slower and allocates far more memory than running the same loop over <code>A</code>:</p>
+<pre><code>julia> f(A);
+
+julia> @time f(A)
+  0.007465 seconds (5 allocations: 176 bytes)
+2.500102419334644e6</code></pre>
+<p>This is because the code generated for <code>f(D)</code> must assume that <code>getindex(D, i)</code> for an arbitrary index <code>i</code> may return an object either of type <code>Float64</code> or of type <code>NAType</code> and hence must “box” every object returned from indexing into <code>D</code>. The performance penalty incurred by this requirement is reflected in the comparison above. (The interested reader can find more about these issues <a href="http://www.johnmyleswhite.com/notebook/2014/11/29/whats-wrong-with-statistics-in-julia/">here</a>.)</p>
+
+<p>On the other hand, <code>NullableArray</code>s are designed to support the sort of static analysis used by Julia’s type inference system to generate efficient machine code. The crux of the strategy is to use a single type — <code>Nullable{T}</code> — to represent both missing and present values. <code>Nullable{T}</code> objects are specialized containers that hold precisely either one or zero values. A <code>Nullable</code> that wraps, say, <code>5</code> can be taken to represent a present value of <code>5</code>, whereas an empty <code>Nullable{Int}</code> can represent a missing value that, if it had been present, would have been of type <code>Int</code>. Crucially, both such objects are of the same type, i.e. <code>Nullable{Int}</code>. Interested readers can hear a bit more on these design considerations in my <a href="https://www.youtube.com/watch?v=2v5k28F80BQ">JuliaCon 2015 lighting talk</a>.</p>
+
+<p>Here is the result of running the same loop over a comparable <code>NullableArray</code>:</p>
+<pre><code>julia> using NullableArrays
+
+julia> X = NullableArray(A);
+
+julia> function f(X::NullableArray)
+           x = Nullable(0.0)
+           for i in eachindex(X)
+               x += X[i]
+           end
+           x
+       end
+f (generic function with 1 method)
+
+julia> f(X);
+
+julia> @time f(X)
+  0.009812 seconds (5 allocations: 192 bytes)
+Nullable(2.500102419334644e6)</code></pre>
+<p>As can be seen, naively looping over a <code>NullableArray</code> is on the same order of magnitude as naively looping over a regular <code>Array</code> in terms of both time elapsed and memory allocated. Below is a set of plots (drawn with <a href="https://github.com/dcjones/Gadfly.jl">Gadfly.jl</a>) that visualize the results of running 20 benchmark samples of <code>f</code> over both <code>NullableArray</code> and <code>DataArray</code> arguments each consisting of 5,000,000 random <code>Float64</code> values and containing either zero null entries or approximately half randomly chosen null entries.</p>
+
+<p><img src="../../../../images/blog/2015-10-03-nullablearrays-images/f_plot.png" alt="f_plot.png" /></p>
+
+<p>Of course, it is possible to bring the performance of such a loop over a <code>DataArray</code> up to par with that of a loop over an <code>Array</code>. But such optimizations generally introduce additional complexity that oughtn’t to be required to achieve acceptable performance in such a simple task. Considerably more complex code can be required to achieve performance in more involved implementations, such as that of <code>broadcast!</code>. We intend for <code>NullableArray</code>s to to perform well under involved tasks involving missing data while requiring as little interaction with <code>NullableArray</code> internals as possible. This includes allowing users to leverage extant implementations without sacrificing performance. Consider for instance the results of relying on Base’s implementation of <code>broadcast!</code> for <code>DataArray</code> and <code>NullableArray</code> arguments (i.e., having omitted the respective <code>src/broadcast.jl</code> from each package’s source code). Below are plots that visualize the results of running 20 benchmark samples of <code>broadcast!(dest, src1, src2)</code>, where <code>dest</code> and <code>src2</code> are <code>5_000_000 x 2</code> <code>Array</code>s, <code>NullableArray</code>s or <code>DataArray</code>s, and <code>src1</code> is a <code>5_000_000 x 1</code> <code>Array</code>, <code>NullableArray</code> or <code>DataArray</code>. As above, the <code>NullableArray</code> and <code>DataArray</code> arguments are tested in cases with either zero or approximately half null entries:</p>
+
+<p><img src="../../../../images/blog/2015-10-03-nullablearrays-images/bcast_plot.png" alt="bcast_plot.png" /></p>
+
+<p>We have designed the <code>NullableArray</code> type to feel as much like a regular <code>Array</code> as possible. However, that <code>NullableArray</code>s return <code>Nullable</code> objects is a significant departure from both <code>Array</code> and <code>DataArray</code> behavior. Arguably the most important issue is to support user-defined functions that lack methods for <code>Nullable</code> arguments as they interact with <code>Nullable</code> and <code>NullableArray</code> objects. Throughout my project I have also worked to develop interfaces that make dealing with <code>Nullable</code> objects user-friendly and safe.</p>
+
+<p>Given a method <code>f</code> defined on an argument signature of types <code>(U1, U2, …, UN)</code>, we would like to provide an accessible, safe and performant way for a user to call <code>f</code> on an argument of signature <code>(Nullable{U1}, Nullable{U2}, …, Nullable{UN})</code> without having to extend <code>f</code> herself. Doing so should return <code>Nullable(f(get(u1), get(u1), …, get(un)))</code> if each argument is non-null, and should return an empty <code>Nullable</code> if any argument is null. Systematically extending an arbitrary method <code>f</code> over <code>Nullable</code> argument signatures is often referred to as “lifting” <code>f</code> over the <code>Nullable</code> arguments.</p>
+
+<p>NullableArrays offers keyword arguments for certain methods such as <code>broadcast</code> and <code>map</code> that direct the latter methods to lift passed function arguments over <code>NullableArray</code> arguments:</p>
+<pre><code>julia> X = NullableArray(collect(1:10), rand(Bool, 10))
+10-element NullableArray{Int64,1}:
+ #NULL
+ #NULL
+ #NULL
+     4
+     5
+     6
+     7
+     8
+ #NULL
+    10
+
+julia> f(x::Int) = 2x
+f (generic function with 2 methods)
+
+julia> map(f, X)
+ERROR: MethodError: `f` has no method matching f(::Nullable{Int64})
+Closest candidates are:
+  f(::Any, ::Any)
+ [inlined code] from /Users/David/.julia/v0.4/NullableArrays/src/map.jl:93
+ in _F_ at /Users/David/.julia/v0.4/NullableArrays/src/map.jl:124
+ in map at /Users/David/.julia/v0.4/NullableArrays/src/map.jl:172
+
+julia> map(f, X; lift=true)
+10-element NullableArray{Int64,1}:
+ #NULL
+ #NULL
+ #NULL
+     8
+    10
+    12
+    14
+    16
+ #NULL
+    20</code></pre>
+<p>I also plan to release shortly a small package that will offer a more flexible “lift” macro, which will be able to lift function calls over <code>Nullable</code> arguments within a variety of expression types.</p>
+
+<p>We hope that the new NullableArrays package will help to support not only Julia’s statistical computing ecosystem as it moves forward but also any endeavor that requires an efficient, developed interface for handling arrays of <code>Nullable</code> objects. Please do try the package, submit feature requests, report bugs, and, if you’re interested, submit a PR or two. Happy coding!</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

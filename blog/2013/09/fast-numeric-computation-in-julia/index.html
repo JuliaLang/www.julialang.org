@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Fast Numeric Computation in Julia</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>Fast Numeric Computation in Julia</h1>
+
+    <p class="metadata">
+      <span class="timestamp">04 September, 2013</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author"><a href="http://dahua.me">Dahua Lin</a></span>
+      
+    </p>
+
+    
+
+<p>Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality.
+With Julia, you can focus on your problem, keep your codes clean, and more importantly, write fast codes without diving into lower level languages such as C or Fortran even when performance is critical.</p>
+
+<p>However, you should not take this potential speed for granted. To get your codes fast, you should keep performance in mind and follow general best practice guidelines. Here, I would like to share with you my experience in writing efficient codes for numerical computation.</p>
+
+<h2 id="first-make-it-correct">First, make it correct</h2>
+
+<p>As in any language, the foremost goal when you implement your algorithm is to <em>make it correct</em>.
+An algorithm that doesn&rsquo;t work correctly is useless no matter how fast it runs. One can always optimize the codes afterwards when necessary.
+When there are different approaches to a problem, you should choose the one that is <em>asymptotically more efficient</em>.
+For example, an unoptimized quick-sort implementation can easily beat a carefully optimized bubble-sort when sorting even moderately large arrays.
+Given a particular choice of algorithm, however, implementing it carefully and observing common performance guidelines can still make a big difference in performance – I will focus on this in the remaining part.</p>
+
+<h2 id="devectorize-expressions">Devectorize expressions</h2>
+
+<p>Users of other high level languages such as MATLAB<sup>®</sup> or Python are often advised to <em>vectorize</em> their codes as much as possible to get performance, because loops are slow in those languages. In Julia, on the other hand, loops can run as fast as those written in C and you no longer have to count on vectorization for speed. Actually, turning vectorized expressions into loops, which we call <em>devectorization</em>, often results in even higher performance.</p>
+
+<p>Consider the following:</p>
+<pre><code>r = exp(-abs(x-y))</code></pre>
+<p>Very simple expression, right?
+Behind the scenes, however, it takes a lot of steps and temporary arrays to get you the results of this expression.
+The following sequence of temporary array constructions is what is done to compute the above expression:</p>
+<pre><code>n = length(x)
+
+tmp1 = Array(Float64, n)
+for i = 1:n
+    tmp1[i] = x[i]-y[i]
+end
+
+tmp2 = Array(Float64, n)
+for i = 1:n
+    tmp2[i] = abs(tmp1[i])
+end
+
+tmp3 = Array(Float64, n)
+for i = 1:n
+    tmp3[i] = -tmp2[i]
+end
+
+r = Array(Float64, n)
+for i = 1:n
+    r[i] = exp(tmp3[i])
+end</code></pre>
+<p>We can see that this procedure creates three temporary arrays and it takes four passes to complete the computation.
+This introduces significant overhead:</p>
+
+<ul>
+<li>It takes time to allocate memory for the temporary arrays;</li>
+<li>It takes time to reclaim the memory of these arrays during garbage collection;</li>
+<li>It takes time to traverse the memory – generally, fewer passes means higher efficiency.</li>
+</ul>
+
+<p>Such overhead is significant in practice, often leading to 2x to 3x slow down. To get optimal performance, one should <em>devectorize</em> this code like so:</p>
+<pre><code>r = similar(x) 
+for i = 1:length(x)
+    r[i] = exp(-abs(x[i]-y[i]))
+end</code></pre>
+<p>This version finishes the computation in one pass, without introducing any temporary arrays. Moreover, if <code>r</code> is pre-allocated, one can even omit the statment that creates <code>r</code>. The <a href="https://github.com/lindahua/Devectorize.jl"><em>Devectorize.jl</em></a> package provides a macro <code>@devec</code> that can automatically translate vectorized expressions into loops:</p>
+<pre><code>using Devectorize
+
+@devec r = exp(-abs(x-y))</code></pre>
+<p>The comprehension syntax also provides a concise syntax for devectorized computation:</p>
+<pre><code>r = [exp(-abs(x[i]-y[i])) for i = 1:length(x)]</code></pre>
+<p>Note that comprehension always creates new arrays to store the results. Hence, to write results to pre-allocated arrays, you still have to devectorize the computation manually or use the <code>@devec</code> macro.</p>
+
+<h2 id="merge-computations-into-a-single-loop">Merge computations into a single loop</h2>
+
+<p>Traversing arrays, especially large ones, may incur cache misses or even page faults, both of which can cause significant latency.
+Thus, it is desirable to minimize the number of round trips to memory as much as possible.
+For example, you may compute multiple maps with one loop:</p>
+<pre><code>for i = 1:length(x)
+    a[i] = x[i] + y[i]
+    b[i] = x[i] - y[i]
+end</code></pre>
+<p>This is usually faster than writing <code>a = x + y; b = x - y</code>.</p>
+
+<p>The following example shows how you can compute multiple statistics (e.g. sum, max, and min) over a dataset efficiently.</p>
+<pre><code>n = length(x)
+rsum = rmax = rmin = x[1]
+for i = 2:n
+    xi = x[i]
+    rsum += xi
+    if xi > rmax
+        rmax = xi
+    elseif xi < rmin
+        rmin = xi
+    end
+end</code></pre>
+<h2 id="write-cache-friendly-codes">Write cache-friendly codes</h2>
+
+<p>Modern computer systems have a complicated heterogeneous memory structure that combines registers, multiple levels of caches, and RAM. Data are accessed through the cache hierarchy – a smaller and much faster memory that stores copies of frequently used data.</p>
+
+<p>Most systems do not provide ways to directly control the cache system. However, you can take steps to make it much easier for the automated cache management system to help you if you write <em>cache-friendly</em> codes. In general, you don&rsquo;t have to understand every detail about how a cache system works. It is often sufficient to observe the simple rule below:</p>
+
+<blockquote>
+<p>Access data in a pattern similar to how the data resides in memory – don&rsquo;t jump around between non-contiguous locations in memory.</p>
+</blockquote>
+
+<p>This is sometimes referred to as the <em>principle of locality</em>. For example, if <code>x</code> is a contiguous array, then after reading <code>x[i]</code>, it is much more likely that <code>x[i+1]</code> is already in the cache than it is that <code>x[i+1000000]</code> is, in which case it will be <em>much</em> faster to access <code>x[i+1]</code> than <code>x[i+1000000]</code>.</p>
+
+<p>Julia arrays are stored in column-major order, which means that the rows of a column are contiguous, but the columns of a row are generally not. It is therefore generally more efficient to access data column-by-column than row-by-row.
+Consider the problem of computing the sum of each row in a matrix. It is natural to implement this as follows:</p>
+<pre><code>m, n = size(a)
+r = Array(Float64, m)
+
+for i = 1:m
+    s = 0.
+    for j = 1:n
+        s += a[i,j]
+    end
+    r[i] = s
+end</code></pre>
+<p>The loop here accesses the elements row-by-row, as <code>a[i,1], a[i,2], ..., a[i,n]</code>. The interval between these elements is <code>m</code>. Intuitively, it jumps at the stride of length <code>m</code> from the begining of each row to the end in each inner loop, and then jumps back to the begining of next row. This is not very efficient, especially when <code>m</code> is large.</p>
+
+<p>This procedure can be made much more cache-friendly by changing the order of computation:</p>
+<pre><code>for i = 1:m
+    r[i] = a[i,1]
+end
+
+for j = 2:n, i = 1:m
+    r[i] += a[i,j]
+end</code></pre>
+<p>Some benchmarking shows that this version can be <em>5-10 times</em> faster than the one above for large matrices.</p>
+
+<h2 id="avoid-creating-arrays-in-loops">Avoid creating arrays in loops</h2>
+
+<p>Creating arrays requires memory allocation and adds to the workload of the garbage collector. Reusing the same array is a good way to reduce the cost of memory management.</p>
+
+<p>It is not uncommon that you want to update arrays in an iterative algorithm. For example, in K-means, you may want to update both the cluster means and distances in each iteration. A straightforward way to do this might look like:</p>
+<pre><code>while !converged && t < maxiter
+    means = compute_means(x, labels)
+    dists = compute_distances(x, means)
+    labels = assign_labels(dists)
+    ...
+end</code></pre>
+<p>In this implementation of K-means, the arrays <code>means</code>, <code>dists</code>, and <code>labels</code> are recreated at each iteration. This reallocation of memory on each step is unnecessary. The sizes of these arrays are fixed, and their storage can be reused across iterations. The following alternative code is a more efficient way to implement the same algorithm:</p>
+<pre><code>d, n = size(x)
+
+# pre-allocate storage
+means = Array(Float64, d, K)
+dists = Array(Float64, K, n)
+labels = Array(Int, n)
+
+while !converged && t < maxiter
+    update_means!(means, x, labels)
+    update_distances!(dists, x, means)
+    update_labels!(labels, dists)
+    ...
+end</code></pre>
+<p>In this version, the functions invoked in the loop updates pre-allocated arrays in-place.</p>
+
+<p>If you are writing a package, it is recommended that you provide two versions for each function that outputs arrays: one that performs the update in-place, and another that returns a new array. The former can usually be implemented as a light-weight wrapper of the latter that copies the input array before modifying it.
+A good example is the <a href="https://github.com/JuliaStats/Distributions.jl"><em>Distributions.jl</em></a> package, which provides both <code>logpdf</code> and <code>logpdf!</code>, so that one can write <code>lp = logpdf(d,x)</code> when a new array is needed, or <code>logpdf!(lp,d,x)</code> when <code>lp</code> has been pre-allocated.</p>
+
+<h2 id="identify-opportunities-to-use-blas">Identify opportunities to use BLAS</h2>
+
+<p>Julia wraps a large number of <a href="http://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms">BLAS</a> routines for linear algebraic computation. These routines are the result of decades of research and optimization by many of the world&rsquo;s top experts in fast numerical computation. As a result, using them where possible can provide performance boosts that seem almost magical – BLAS routines are often orders of magnitude faster than the simple loop implementations they replace.</p>
+
+<p>For example, consider accumulating weighted versions of vectors as follows:</p>
+<pre><code>r = zeros(size(x,1))
+for j = 1:size(x,2)
+    r += x[:,j] * w[j]
+end</code></pre>
+<p>You can replace the statement <code>r += x[:,j] * w[j]</code> with a call to the BLAS <code>axpy!</code> function to get better performance:</p>
+<pre><code>for j = 1:size(x,2)
+    axpy!(w[j], x[:,j], r)
+end</code></pre>
+<p>This, however, is still far from being optimal. If you are familiar with linear algebra, you may have probably found that this is just matrix-vector multiplication, and can be written as <code>r = x * w</code>, which is not only shorter, simpler and clearer than either of the above loops – it also runs much faster than either versions.</p>
+
+<p>Our next example is a subtler application of BLAS routines to computing pairwise Euclidean distances between columns in two matrices. Below is a straightforward implementation that directly computes pairwise distances:</p>
+<pre><code>m, n = size(a)
+r = Array(Float64, m, n)
+
+for j = 1:n, i = 1:m
+    r[i,j] = sqrt(sum(abs2(a[:,i] - b[:,j])))
+end</code></pre>
+<p>This is clearly suboptimal – a lot of temporary arrays are created in evaluating the expression in the inner loop. To speed this up, we can devectorize the inner expression:</p>
+<pre><code>d, m = size(a)
+n = size(b,2)
+r = Array(Float64, m, n)
+
+for j = 1:n, i = 1:m
+        s = 0.
+        for k = 1:d
+            s += abs2(a[k,i] - b[k,j])
+        end
+        r[i,j] = sqrt(s)
+    end
+end</code></pre>
+<p>This version is much more performant than the vectorized form. But is it the best we can do? By employing an alternative strategy, we can write a even faster algorithm for computing pairwise distances. The trick is that the squared Euclidean distance between two vectors can be expanded as:</p>
+<pre><code>sum(abs2(x-y)) == sum(abs2(x)) + sum(abs2(y)) - 2*dot(x,y)</code></pre>
+<p>If we evaluate these three terms separately, the computation can be mapped to BLAS routines perfectly. Below, we have a new implementation of pairwise distances written using only BLAS routines, including the norm calls that are wrapped by the <a href="https://github.com/lindahua/NumericExtensions.jl"><em>NumericExtensions.jl</em></a> package:</p>
+<pre><code>using NumericExtensions   # for sqsum
+using Base.LinAlg.BLAS    # for gemm!
+
+m, n = size(a)
+
+sa = sqsum(a, 1)   # sum(abs2(x)) for each column in a
+sb = sqsum(b, 1)   # sum(abs2(y)) for each column in b
+
+r = sa .+ reshape(sb, 1, n)          # first two terms
+gemm!('T', 'N', -2.0, a, b, 1.0, r)  # add (-2.0) * a' * b to r
+
+for i = 1:length(r)
+    r[i] = sqrt(r[i])
+end</code></pre>
+<p>This version is over <em>100 times</em> faster than our original implementation — the <code>gemm</code> function in BLAS has been optimized to the extreme by many talented developers and engineers over the past few decades.</p>
+
+<p>We should mention that you don&rsquo;t have to implement this yourself if you really want to compute pairwise distances: the <a href="https://github.com/lindahua/Distance.jl"><em>Distance.jl</em></a> package provides optimized implementations of a broad variety of distance metrics, including this one. We presented this optimization trick as an example to illustrate the substantial performance gains that can be achieved by writing code that uses BLAS routines wherever possible.</p>
+
+<h2 id="explore-available-packages">Explore available packages</h2>
+
+<p>Julia has a very active open source ecosystem. A variety of packages have been developed that provide optimized algorithms for high performance computation.
+Look for a package that does what you need before you decide to roll your own – and if you don&rsquo;t find what you need, consider contributing it!
+Here are a couple of packages that might be useful for those interested in high performance computation:</p>
+
+<ul>
+<li><p><a href="https://github.com/lindahua/NumericExtensions.jl">NumericExtensions.jl</a> – extensions to Julia&rsquo;s base functionality for high-performance support for a variety of common computations (many of these will gradually get moved into base Julia).</p></li>
+
+<li><p><a href="https://github.com/lindahua/Devectorize.jl">Devectorize.jl</a> – macros and functions to de-vectorize vector expressions. With this package, users can write computations in high-level vectorized way while enjoying the high run-time performance of hand-coded de-vectorized loops.</p></li>
+</ul>
+
+<p>Check out the <a href="http://pkg.julialang.org/">Julia package list</a> for many more packages. Julia also ships with a <a href="https://docs.julialang.org/en/v1/stdlib/Profile/">sampling profiler</a> to measure where your code is spending most of its time. When in doubt, measure don&rsquo;t guess!</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

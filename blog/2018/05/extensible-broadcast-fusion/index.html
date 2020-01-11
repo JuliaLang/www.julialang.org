@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Extensible broadcast fusion</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>Extensible broadcast fusion</h1>
+
+    <p class="metadata">
+      <span class="timestamp">11 May, 2018</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author"><a href="https://github.com/mbauman">Matt Bauman (Julia Computing)</a></span>
+      
+    </p>
+
+    
+
+<p>Julia version 0.7 brings with it an exciting new feature: the ability to customize broadcast
+fusion! This recently-merged change is the culmination of a long iterative design process
+that involved many members of the community. We have converged on a highly extensible
+interface that should satisfy many use-cases. In this blog post I&rsquo;ll explain why this is a
+big deal by reviewing some of the key features and just scratch the surface of all that is
+possible with this new design. I&rsquo;m quite certain that our enterprising community will come
+up with many more clever ways to exploit this new structure in the future.</p>
+
+<p><a href="https://docs.julialang.org/en/latest/manual/arrays/#Broadcasting-1" title="Julia documentation for Broadcasting">Broadcasting</a> is a core feature of Julia: it allows you to compactly and efficiently
+express an elementwise operation over containers and scalars by annotating operators and
+function calls with a <code>.</code>. In cases where the sizes don&rsquo;t match, broadcasting will virtually
+extend missing dimensions or &ldquo;singleton&rdquo; dimensions (which contain only one value) by
+repeating them to fill the outer shape. For example, the expression <code>([1, 2, 3] .+ [10 20 30
+40]) ./ 10</code> combines a 3-element column vector, a 1x4 matrix, and a scalar to compute a 3x4
+result. I imagine this as &ldquo;extruding&rdquo; the vector across the columns of the one-row matrix
+and spreading the division by 10 across the entire result:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> ([<span style="color:#666">1</span>, <span style="color:#666">2</span>, <span style="color:#666">3</span>] <span style="color:#666">.+</span> [<span style="color:#666">10</span> <span style="color:#666">20</span> <span style="color:#666">30</span> <span style="color:#666">40</span>]) <span style="color:#666">./</span> <span style="color:#666">10</span>
+<span style="color:#666">3</span>×4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ <span style="color:#666">1.1</span>  <span style="color:#666">2.1</span>  <span style="color:#666">3.1</span>  <span style="color:#666">4.1</span>
+ <span style="color:#666">1.2</span>  <span style="color:#666">2.2</span>  <span style="color:#666">3.2</span>  <span style="color:#666">4.2</span>
+ <span style="color:#666">1.3</span>  <span style="color:#666">2.3</span>  <span style="color:#666">3.3</span>  <span style="color:#666">4.3</span></code></pre></div>
+<p>Since version 0.6, Julia has executed this expression by <a href="https://julialang.org/blog/2017/01/moredots" title="More Dots: Syntactic Loop Fusion in Julia">&ldquo;fusing&rdquo;</a> the two operations
+into a single kernel. That is, instead of first constructing an integer matrix resulting
+from the addition (<code>[11 21 31 41; 12 22 ...]</code>) and then subsequently using a second loop to
+divide each element by 10, Julia does both the addition and division for each element at the
+same time, making just one pass through the output array and skipping intermediate array(s)
+entirely. This fusion optimization happens as a syntax-level transformation so it is
+guaranteed to occur and easy to reason about. Version 0.7 adds an extensible API on top of
+this feature that allows arrays to customize precisely how this operates.</p>
+
+<p>Julia now uses a first-class data structure to &ldquo;lazily&rdquo; represent a fused broadcast
+expression before executing it. If you&rsquo;re not a package developer this may not mean all that
+much to you, but you&rsquo;ll still reap the many rewards. In Base Julia and its standard
+libraries alone, this means:</p>
+
+<ul>
+<li><p><a href="https://docs.julialang.org/en/latest/base/arrays/#Base.BitArray" title="Julia documentation for BitArray"><code>BitArray</code>s</a> can identify cases where they can operate on 64 boolean elements at once,
+yielding huge performance gains — often two orders of magnitude or more! For an easy
+example, I&rsquo;ll just use random data with a simple <code>A</code> and not <code>B</code> predicate:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f;font-weight:bold">using</span> BenchmarkTools<span style="color:#666"></span>, Random<span style="color:#666"></span>
+       srand<span style="color:#666"></span>(<span style="color:#666">0</span>)
+       A<span style="color:#666"></span> <span style="color:#666">=</span> bitrand<span style="color:#666"></span>(<span style="color:#666">10</span><span style="color:#666">^</span><span style="color:#666">6</span>)
+       B<span style="color:#666"></span> <span style="color:#666">=</span> bitrand<span style="color:#666"></span>(<span style="color:#666">10</span><span style="color:#666">^</span><span style="color:#666">6</span>)
+       <span style="color:#a2f">@benchmark</span><span style="color:#666"></span> <span style="color:#666">$</span>A<span style="color:#666"></span> <span style="color:#666">.</span><span style="color:#666">&amp;</span> <span style="color:#666">.!</span><span style="color:#666">$</span>B<span style="color:#666"></span>
+BenchmarkTools<span style="color:#666"></span><span style="color:#666">.</span>Trial<span style="color:#666"></span><span style="color:#666">:</span>
+  memory<span style="color:#666"></span> estimate<span style="color:#666"></span><span style="color:#666">:</span>  <span style="color:#666">122.23</span> KiB<span style="color:#666"></span>
+  allocs<span style="color:#666"></span> estimate<span style="color:#666"></span><span style="color:#666">:</span>  <span style="color:#666">3</span>
+  <span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span>
+  minimum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">7.891</span> μs<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  median<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>      <span style="color:#666">13.152</span> μs<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  mean<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>        <span style="color:#666">17.826</span> μs<span style="color:#666"></span> (<span style="color:#666">9.62</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  maximum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">591.497</span> μs<span style="color:#666"></span> (<span style="color:#666">95.73</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  <span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span>
+  samples<span style="color:#666"></span><span style="color:#666">:</span>          <span style="color:#666">10000</span>
+  evals<span style="color:#666"></span><span style="color:#666">/</span>sample<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">1</span></code></pre></div>
+<p>Compare this to previously on 0.6:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">BenchmarkTools<span style="color:#666"></span><span style="color:#666">.</span>Trial<span style="color:#666"></span><span style="color:#666">:</span>
+  memory<span style="color:#666"></span> estimate<span style="color:#666"></span><span style="color:#666">:</span>  <span style="color:#666">126.45</span> KiB<span style="color:#666"></span>
+  allocs<span style="color:#666"></span> estimate<span style="color:#666"></span><span style="color:#666">:</span>  <span style="color:#666">6</span>
+  <span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span>
+  minimum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">3.615</span> ms<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  median<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>      <span style="color:#666">3.741</span> ms<span style="color:#666"></span> (<span style="color:#666">0.00</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  mean<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>        <span style="color:#666">3.764</span> ms<span style="color:#666"></span> (<span style="color:#666">0.18</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  maximum<span style="color:#666"></span> time<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">7.744</span> ms<span style="color:#666"></span> (<span style="color:#666">50.18</span><span style="color:#666">%</span> GC<span style="color:#666"></span>)
+  <span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span><span style="color:#666">--</span>
+  samples<span style="color:#666"></span><span style="color:#666">:</span>          <span style="color:#666">1328</span>
+  evals<span style="color:#666"></span><span style="color:#666">/</span>sample<span style="color:#666"></span><span style="color:#666">:</span>     <span style="color:#666">1</span></code></pre></div>
+<p>That&rsquo;s upwards of a <strong>450x performance gain</strong>.</p></li>
+
+<li><p>Broadcasted operations over ranges can now simply re-compute a new range instead of
+working element-wise if it&rsquo;s possible. For example, the expression <code>((1:10000) .+ 20) .* 7</code>
+doesn&rsquo;t need to allocate a vector for 10,000 elements — it doesn&rsquo;t even need to do 10,000
+computations. It can instead operate in terms of the start, stop, and step and return a
+new range that represents the result: <code>147:7:70140</code>. This new feature allows them to
+<strong>transform <em>O(N)</em> computations into <em>O(1)</em></strong>. On version 0.6, ranges were in this strange
+place where <code>(1:10000) + 20</code> implemented the fast <em>O(1)</em> computation of a new range, but
+all other array types had deprecated addition with numbers in favor of explicit <code>.+</code>
+broadcasting for clearer semantics and improved performance. Thanks to this new API,
+ranges can now identify these cases and fully support broadcasting in an efficient manner.</p></li>
+
+<li><p>The <a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#Special-matrices-1" title="Special matrices in LinearAlgebra">structured matrices</a> in the <a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#Linear-Algebra-1" title="Julia documentation for LinearAlgebra"><code>LinearAlgebra</code> standard library</a> no longer return
+sparse arrays as the result of a broadcasted operation. They&rsquo;ll now either maintain an
+appropriate structure or return a dense array. For example:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f;font-weight:bold">using</span> LinearAlgebra<span style="color:#666"></span>
+       d<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#0b0;font-weight:bold">Diagonal</span>(<span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">3</span>)
+<span style="color:#666">3</span>×3<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Diagonal</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#0b0;font-weight:bold">UnitRange</span>{<span style="color:#0b0;font-weight:bold">Int64</span>}}<span style="color:#666">:</span>
+ <span style="color:#666">1</span>  <span style="color:#666">⋅</span>  <span style="color:#666">⋅</span>
+ <span style="color:#666">⋅</span>  <span style="color:#666">2</span>  <span style="color:#666">⋅</span>
+ <span style="color:#666">⋅</span>  <span style="color:#666">⋅</span>  <span style="color:#666">3</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> d<span style="color:#666"></span> <span style="color:#666">./</span> <span style="color:#666">10</span>
+<span style="color:#666">3</span>×3<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Diagonal</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>}}<span style="color:#666">:</span>
+ <span style="color:#666">0.1</span>   <span style="color:#666">⋅</span>    <span style="color:#666">⋅</span>
+  <span style="color:#666">⋅</span>   <span style="color:#666">0.2</span>   <span style="color:#666">⋅</span>
+  <span style="color:#666">⋅</span>    <span style="color:#666">⋅</span>   <span style="color:#666">0.3</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> t<span style="color:#666"></span> <span style="color:#666">=</span> d<span style="color:#666"></span> <span style="color:#666">.+</span> <span style="color:#0b0;font-weight:bold">LowerTriangular</span>(rand<span style="color:#666"></span>(<span style="color:#666">3</span>,<span style="color:#666">3</span>))
+<span style="color:#666">3</span>×3<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">LowerTriangular</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">2</span>}}<span style="color:#666">:</span>
+ <span style="color:#666">1.5446</span>     <span style="color:#666">⋅</span>         <span style="color:#666">⋅</span>
+ <span style="color:#666">0.529211</span>  <span style="color:#666">2.26095</span>    <span style="color:#666">⋅</span>
+ <span style="color:#666">0.533674</span>  <span style="color:#666">0.373702</span>  <span style="color:#666">3.88408</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> t<span style="color:#666"></span> <span style="color:#666">.+</span> <span style="color:#666">100</span>
+<span style="color:#666">3</span>×3<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ <span style="color:#666">101.327</span>  <span style="color:#666">100.0</span>    <span style="color:#666">100.0</span>
+ <span style="color:#666">100.85</span>   <span style="color:#666">102.138</span>  <span style="color:#666">100.0</span>
+ <span style="color:#666">100.575</span>  <span style="color:#666">100.129</span>  <span style="color:#666">103.839</span></code></pre></div>
+<p>Previously, Julia 0.6 would have returned a <code>SparseMatrixCSC</code> for <code>d ./ 10</code> and an <code>Array</code> for <code>d .+ LowerTriangular(rand(3,3))</code>.</p></li>
+
+<li><p>Finally, broadcasting at the global scope is now pre-compilable, and you can use
+dot-broadcast inside generated functions. This wasn&rsquo;t a huge limitation in the past, but
+it did surprise folks timing an in-place broadcast like <code>@time y .*= 2</code> and seeing thousands of allocations:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#080;font-style:italic"># Previously:</span>
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> y<span style="color:#666"></span> <span style="color:#666">=</span> rand<span style="color:#666"></span>(<span style="color:#666">1000</span>);
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> y<span style="color:#666"></span> <span style="color:#666">.*=</span> <span style="color:#666">2</span>;
+  <span style="color:#666">0.032775</span> seconds<span style="color:#666"></span> (<span style="color:#666">17.43</span> k<span style="color:#666"></span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">947.671</span> KiB<span style="color:#666"></span>)
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> y<span style="color:#666"></span> <span style="color:#666">.*=</span> <span style="color:#666">2</span>;
+  <span style="color:#666">0.020790</span> seconds<span style="color:#666"></span> (<span style="color:#666">4.27</span> k<span style="color:#666"></span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">233.457</span> KiB<span style="color:#666"></span>)
+
+<span style="color:#080;font-style:italic"># Now on Julia 0.7:</span>
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> y<span style="color:#666"></span> <span style="color:#666">=</span> rand<span style="color:#666"></span>(<span style="color:#666">1000</span>);
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> y<span style="color:#666"></span> <span style="color:#666">.*=</span> <span style="color:#666">2</span>;
+  <span style="color:#666">0.060494</span> seconds<span style="color:#666"></span> (<span style="color:#666">90.41</span> k<span style="color:#666"></span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">5.529</span> MiB<span style="color:#666"></span>)
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> y<span style="color:#666"></span> <span style="color:#666">.*=</span> <span style="color:#666">2</span>;
+  <span style="color:#666">0.000020</span> seconds<span style="color:#666"></span> (<span style="color:#666">6</span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">208</span> bytes<span style="color:#666"></span>)</code></pre></div></li>
+</ul>
+
+<p>I&rsquo;ll now dive deeper into exactly how this new API works.</p>
+
+<h3 id="the-representation-of-a-fused-broadcast">The representation of a fused broadcast</h3>
+
+<p>You can see precisely how a fused broadcast is represented with <a href="https://docs.julialang.org/en/latest/base/base/#Base.Meta.@lower" title="Julia documentation: `Meta.@lower`"><code>Meta.@lower</code></a>, but in
+simpler terms the expression <code>([1, 2, 3] .+ [10 20 30 40]) ./ 10</code> is effectively a syntax
+transformation for:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f;font-weight:bold">using</span> <span style="color:#666">.</span>Broadcast<span style="color:#666"></span><span style="color:#666">:</span> materialize<span style="color:#666"></span>, broadcasted<span style="color:#666"></span>
+       bc<span style="color:#666"></span> <span style="color:#666">=</span> broadcasted<span style="color:#666"></span>(<span style="color:#666">/</span>, broadcasted<span style="color:#666"></span>(<span style="color:#666">+</span>, [<span style="color:#666">1</span>, <span style="color:#666">2</span>, <span style="color:#666">3</span>], [<span style="color:#666">10</span> <span style="color:#666">20</span> <span style="color:#666">30</span> <span style="color:#666">40</span>]), <span style="color:#666">10</span>)
+       materialize<span style="color:#666"></span>(bc<span style="color:#666"></span>)
+<span style="color:#666">3</span>×4<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">2</span>}<span style="color:#666">:</span>
+ <span style="color:#666">1.1</span>  <span style="color:#666">2.1</span>  <span style="color:#666">3.1</span>  <span style="color:#666">4.1</span>
+ <span style="color:#666">1.2</span>  <span style="color:#666">2.2</span>  <span style="color:#666">3.2</span>  <span style="color:#666">4.2</span>
+ <span style="color:#666">1.3</span>  <span style="color:#666">2.3</span>  <span style="color:#666">3.3</span>  <span style="color:#666">4.3</span></code></pre></div>
+<p>In this case, that <code>bc</code> object is an instance of a <code>Broadcasted</code> struct. It just holds onto
+the function and its arguments — and its arguments may include other nested <code>Broadcasted</code>
+structs. The <code>materialize</code> function does a bit of pre-processing and then calls <code>copy(bc)</code>,
+which allocates the result and then finally loops over the result and executes the functions.</p>
+
+<p>Each step along the way is extensible, leveraging the power of Julia&rsquo;s multiple dispatch,
+inlining and argument specialization for near-zero overhead. With this basic framework in
+mind, you can begin to see how the built-in and standard library arrays are able to
+implement all those new features mentioned above:</p>
+
+<ul>
+<li><p>When broadcasting into a <code>BitArray</code>, it can first introspect the functions and their
+arguments in the expression tree to see if it can operate at the level of the packed
+64-bit chunks as <code>UInt64</code>s instead of working bit-by-bit. It can even convert boolean-only
+operators like <code>!</code> to their equivalent bitwise operators like <code>~</code>.</p></li>
+
+<li><p>Ranges are able to &ldquo;opt-out&rdquo; of fusion by defining specialized <code>Broadcast.broadcasted</code>
+methods that immediately return those re-computed ranges. This means that they do not fuse
+multiple operations at all, but in exchange they get an <em>O(1)</em> algorithm.</p></li>
+
+<li><p>When <code>LinearAlgebra</code>&rsquo;s structured matrices are asked to allocate the result, their
+specialized <code>broadcast_similar</code> methods can walk through the <code>Broadcasted</code> expression tree
+and identify if any structure will remain.</p></li>
+
+<li><p>Fused broadcast expressions no longer construct an anonymous function behind your back;
+they just construct new instances of a Julia data structure that simply call functions
+that are already defined. This is what allows them to be precompiled and work in generated
+functions.</p></li>
+</ul>
+
+<h3 id="looking-to-the-future">Looking to the future</h3>
+
+<p>Of course, this is all <a href="https://docs.julialang.org/en/latest/manual/interfaces/#man-interfaces-broadcasting-1" title="Julia manual: Customizing broadcast">documented and available to packages</a>. There&rsquo;s no secret sauce that
+we&rsquo;re hoarding for ourselves. It&rsquo;ll be exciting to see how the many creative minds in the
+package ecosystem manage to take advantage of all this new functionality. Some of the places
+where I see this yielding a significant benefit include machine learning applications and
+computation on GPUs.</p>
+
+<p>Historically, some of the machine learning libraries have put in place <a href="https://github.com/MikeInnes/TakingBroadcastSeriously.jl" title="TakingBroadcastSeriously.jl">hacks</a> to allow their arrays to
+opt-out of fusion. The new broadcasting API instead allows them to opt-out of fusion with a first-class and fully
+supported mechanism that is much simpler to implement. Further, many deep learning
+techniques are heavily dependent upon differentiation; in some cases introspecting a
+broadcasted kernel will allow them to use an exact analytical result instead of computing
+differentials.</p>
+
+<p>Finally, fusing a complicated broadcast expression into a single kernel has already been a
+huge boon to the performance of arrays on GPUs. Most GPU programming packages won&rsquo;t
+necessarily need to introspect or customize the broadcasted expression, but they&rsquo;re looking
+to the future to a potential extension that would allow fusing <em>a reduction</em> with the
+broadcasted expression. While not possible yet, the bulk of the machinery is in place to
+operate directly upon the <code>Broadcasted</code> lazy wrapper instead of allocating the intermediate
+array in an expression like <code>sum(X.^2 .+ Y.^2)</code>.</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>The Julia Project and Its Entities</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>The Julia Project and Its Entities</h1>
+
+    <p class="metadata">
+      <span class="timestamp">12 February, 2019</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author"><a href="https://github.com/StefanKarpinski">Stefan Karpinski</a></span>
+      
+    </p>
+
+    
+
+<p>There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. It’s pretty hard to know about these things without being in the thick of it. In this blog post I’ll give an overview of these groups and how they’re related to the project.</p>
+
+<h2 id="julia">Julia</h2>
+
+<p>The Julia project was founded by <a href="https://github.com/JeffBezanson">Jeff Bezanson</a>, <a href="https://en.wikipedia.org/wiki/Alan_Edelman">Alan Edelman</a>, <a href="https://en.wikipedia.org/wiki/Viral_B._Shah">Viral Shah</a> and myself (<a href="https://en.wikipedia.org/wiki/Stefan_Karpinski">Stefan Karpinski</a>). It consists of some code and a community of people who work on that code. The most clear cut line that can be drawn is that there is a set of people who have commit access to the <a href="https://github.com/JuliaLang">JuliaLang</a> GitHub organization: there are currently 67 committers (36 active and 31 dormant). This set of people doesn’t really define the project, however, since there are many people who are prolific contributors to the Julia ecosystem but who do not have “commit bit.” The communal nature of open source makes it difficult to precisely define where the Julia project ends and the greater community begins, which is exactly how we like it.</p>
+
+<h2 id="julia-stewards">Julia Stewards</h2>
+
+<p>One official group of people representing the Julia project does exist: <a href="https://julialang.org/community/stewards/">Julia Stewards</a>. This group exists to handle conflict resolution and reports of inappropriate or problematic behavior in the Julia community and ecosystem. The current stewards are: Milan Bouchet-Valat, Simon Byrne, Tim Holy, Katharine Hyatt, Steven Johnson, Stefan Karpinski, and Viral Shah. This group gets (rare) emails about potentially problematic situations and confidentially discusses and decides on what to do about them. The stewards group is not responsible for making any kinds of technical decisions or steering the project in any other way—it just exists to handle complaints and disputes, which fortunately are exceedingly rare.</p>
+
+<h2 id="the-julia-lab">The Julia Lab</h2>
+
+<p>A lot of the early work on the development of core Julia was done at MIT in what is now known as <a href="https://julia.mit.edu">The Julia Lab</a> under the direction of professor Alan Edelman. All of the co-creators of Julia have been part of the lab at some point. In those early days, we didn’t call it the Julia Lab yet, it was just an office where some people worked on high performance computing, numerical linear algebra, <a href="https://en.wikipedia.org/wiki/Random_matrix">random matrix theory</a>, and this new programming language called Julia. Although not formally part of the Julia Lab, <a href="https://www.ll.mit.edu/biographies/jeremy-kepner">Jeremy Kepner</a> of Lincoln Laboratory was an early believer in and funder of the lab’s work on Julia and continues to support this work. Since those early days, things have gotten a lot more organized under the leadership (in chronological order) of <a href="https://jiahao.github.io">Jiahao Chen</a>, <a href="https://github.com/andreasnoack">Andreas Noack</a> and <a href="https://github.com/vchuravy">Valentin Churavy</a>, and the Julia Lab remains a steady source of major innovations and contributions to Julia.</p>
+
+<p>There are several other groups at MIT that have made major contributions to Julia over the years besides the Julia Lab. <a href="https://en.wikipedia.org/wiki/Steven_G._Johnson">Steven Johnson</a>, also a professor at MIT, heads up his own group but in his spare time has become one of the most prolific contributors to Julia (currently #10 by commits). The <a href="http://www.juliaopt.org">JuMP</a> and <a href="https://github.com/jrevels/Cassette.jl">Cassette</a> projects are primarily developed by current and former members of professor Juan Pablo Vielma’s <a href="http://www.mit.edu/~jvielma/students.html">optimization research group</a>. There are so many research groups at MIT using Julia these days, making major contributions to its ecosystem and to science, that it has become commonplace for Alan to discover that some neighbor of his at <a href="https://www.csail.mit.edu">CSAIL</a> is using Julia completely unbeknownst to him. So definitely don’t consider this list exhaustive—I just didn’t want to appear to give the Julia Lab all the credit for work on Julia coming out of MIT. And of course, there’s incredible work being done on Julia by people at many other universities all around the world.</p>
+
+<h2 id="numfocus">NumFOCUS</h2>
+
+<p>NumFOCUS is a US 501&copy;(3) nonprofit organization promoting open practices in scientific research, data science, and scientific computing by serving as a fiscal sponsor for open source projects and organizing community-driven educational programs in these areas. Through NumFOCUS, both <a href="http://numfocus.org/membership">individuals</a> and <a href="https://numfocus.org/sponsors">corporations</a> have the opportunity to donate to any of NumFOCUS’s fiscally sponsored projects including Julia, NumPy, Jupyter, Pandas, JuMP, rOpenSci, QuantEcon, and <a href="https://numfocus.org/sponsored-projects/">many others</a>. This is possible because these projects have entered into a contractual and legal relationship with NumFOCUS. This means that a set of people serving as the project’s leadership body has signed an agreement stating that they, or their successors, will manage the technical direction and programs of the project within the scope of the organization’s nonprofit status. NumFOCUS is the legal and financial administrator of project funds, disbursing as requested by the project’s leadership body with ultimate oversight by the NumFOCUS board of directors.</p>
+
+<p>Despite what “fiscally sponsored project” may sound like, NumFOCUS does not have a big bag of money that it gives out to projects however it wants to. Rather, it means that NumFOCUS is legally able to accept donations from individuals, companies, private foundations and government entities to be spent on the fiscally sponsored projects. There are <a href="https://numfocus.org/sponsored-projects/affiliated-projects">other projects</a> affiliated with NumFOCUS that are not fiscally sponsored, including Conda, Cython, Dask, SciPy, and scikit-learn. These projects can’t receive money through NumFOCUS because they don’t have the same legal relationship.</p>
+
+<p>Julia’s signatories with NumFOCUS are Jeff Bezanson, Tim Holy, Steven Johnson, Viral Shah, and John Myles White. This set of people was chosen to be trustworthy, independent (not all from any one company or organization), and representative of the open source project. Signatories provide oversight to make sure that funding is being used for legitimate purposes. Other members of the Julia community are also actively involved with NumFOCUS in other capacities: I am a former board member and still on the <a href="https://numfocus.org/community/people#people-advisorycouncil">advisory council</a> and Jane Herriman is a current <a href="https://numfocus.org/community/people#people-directors">board member</a>.</p>
+
+<p>What kind of money goes to Julia through NumFOCUS and how is it spent? When you click on the &ldquo;Donate to Julia button&rdquo; on the Julia website, your donation goes to NumFOCUS and is earmarked to be used for the Julia project. This money is used to pay for infrastructure and personnel costs, including website hosting, continuous integration services, and anyone who is working on Julia through NumFOCUS (no one at the moment). By far the biggest flow of money through NumFOCUS for Julia is for the annual Julia conference—JuliaCon. Money from JuliaCon ticket sales and sponsorships go to NumFOCUS which then pays vendors for services required to make JuliaCon happen and reimburse anyone who has reimbursable conference-related expenses. Excess money (if any) from JuliaCon goes into the same pool as donations. JuliaCon finances are managed by the finance chair and approved by the JuliaCon organizing committee as representatives of the project and community. All money that goes in and out of NumFOCUS is a matter of <a href="https://numfocus.org/legal">public record</a> since it is a nonprofit.</p>
+
+<h2 id="julia-computing">Julia Computing</h2>
+
+<p>In 2015, the four co-creators of Julia along with <a href="https://github.com/keno">Keno Fischer</a> and <a href="https://www.linkedin.com/in/deepakvinchhi/">Deepak Vinchhi</a> founded <a href="https://juliacomputing.com/">Julia Computing</a>, a United States C corporation. Julia Computing provides products, support and services around Julia, including <a href="https://juliabox.com">JuliaBox</a>, <a href="https://juliacomputing.com/products/juliapro.html">JuliaPro</a>, <a href="https://juliacomputing.com/products/juliateam.html">JuliaTeam</a> and <a href="https://juliaacademy.com/">JuliaAcademy</a>. The company employs many of the top contributors to Julia itself (half of the top ten contributors by commits) and to major Julia packages, especially for data science and machine learning. Even though there’s no formal connection between the company and the open source project, Julia Computing is deeply committed to Julia’s success and is proud to sponsor JuliaCon each year and drive so much open source Julia development.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>I hope that this clarifies what the entities surrounding the Julia project are and how they relate to each other. This picture will certainly evolve and change over time, and as it does so we&rsquo;ll try to keep an accurate description of these entities and relationships available as they develop.</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

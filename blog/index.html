@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>The Julia Blog</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../v2/css/app.css" />
+<link rel="stylesheet" href="../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+<head>
+  <meta name="description" content="This blog discusses numerical, technical, distributed and parallel computing, as well as programming language design in the scope of Julia. Read more here."/>
+</head>
+
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../" id="logo">
+      <img src="../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12">
+        <h1>The Julia Blog</h1>
+  
+        <p>The Julia blog discusses issues of numerical, technical, distributed and parallel computing, as well as programming language design, and how these issues touch upon the design and implementation of the Julia programming language. Also see the <a href="http://juliacomputing.com/blog/">Julia Computing blog</a> for another source of information regarding ongoing Julia development.</p>
+        <p>Blogs from the broader Julia community can be found at <a href="https://www.juliabloggers.com">Julia Bloggers</a>.</p>
+  
+        <div class="row">
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/12/yao.jl-differentiable-quantum-programming-in-julia/" class="title" data-proofer-ignore>Yao.jl - Differentiable Quantum Programming In Julia</a>
+              </h3>
+              <span class="article-date">28 December 2019</span>
+              <p>
+                We introduce Yao (check our latest paper), an open-source Julia package for …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/12/%E4%B8%BA-julia-%E5%8C%85%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8F%AF%E9%9D%A0%E5%8F%AF%E5%A4%8D%E7%8E%B0%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B7%A5%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="title" data-proofer-ignore>为 Julia 包设计的可靠、可复现的二进制工件系统</a>
+              </h3>
+              <span class="article-date">18 December 2019</span>
+              <p>
+                在过去的几个月里，我们在持续迭代和完善一个 Julia 1.3+ 中 Pkg 的设计方案，它用来处理不是 Julia 包的二进制对象。 …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/11/reliable-and-reproducible-binary-artifacts-for-julia-packages/" class="title" data-proofer-ignore>Reliable and Reproducible Binary Artifacts for Julia Packages</a>
+              </h3>
+              <span class="article-date">19 November 2019</span>
+              <p>
+                Over the past few months, we have been iterating on and refining a design for …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/11/the-julia-language-participates-in-googles-code-in-contest/" class="title" data-proofer-ignore>The Julia Language participates in Google&#39;s Code-In Contest</a>
+              </h3>
+              <span class="article-date">15 November 2019</span>
+              <p>
+                We are pleased to announce that The Julia Language has been accepted to …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/09/profiling-tool-wins-and-woes./" class="title" data-proofer-ignore>Profiling tool wins and woes.</a>
+              </h3>
+              <span class="article-date">16 September 2019</span>
+              <p>
+                Profiling tools are awesome. They let us see what actually is affecting our …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/09/julia-workshopbeijing-and-the-julia-localization-prize/" class="title" data-proofer-ignore>Julia Workshop@Beijing and the Julia Localization Prize</a>
+              </h3>
+              <span class="article-date">07 September 2019</span>
+              <p>
+                A Julia workshop in China was hosted by JuliaCN in Beijing on Aug 24, 2019. This …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/09/julia%E5%A4%8F%E5%AD%A3%E4%BC%9A%E8%AE%AEbeijing-%E6%9C%AC%E5%9C%B0%E5%8C%96%E5%A5%96/" class="title" data-proofer-ignore>Julia夏季会议@Beijing &amp; 本地化奖</a>
+              </h3>
+              <span class="article-date">07 September 2019</span>
+              <p>
+                JuliaCN在8月24日，中国北京举办了自2016以来第五次Julia会议。我们非常感谢Julia社区对本次活动的支持， 以及彩云科技, 微软中国, 集智俱乐 …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/09/julia%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B/" class="title" data-proofer-ignore>Julia的版本发布流程</a>
+              </h3>
+              <span class="article-date">07 September 2019</span>
+              <p>
+                从事软件开发的行家里手们对版本发布流程与节奏如此了若指掌，以至于他们将其精髓内化（internalize）并以为人人都懂得这些“浅显的道理”。 可是事实恰好相 …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/08/julias-release-process/" class="title" data-proofer-ignore>Julia’s Release Process</a>
+              </h3>
+              <span class="article-date">28 August 2019</span>
+              <p>
+                People involved in the day-to-day development of a project tend to become so …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/08/julia-user-developer-survey-2019/" class="title" data-proofer-ignore>Julia User &amp; Developer Survey 2019</a>
+              </h3>
+              <span class="article-date">06 August 2019</span>
+              <p>
+                We conducted the first annual Julia User &amp; Developer Survey in June, and the …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/07/julia%E5%B0%86%E6%94%AF%E6%8C%81%E5%8F%AF%E7%BB%84%E5%90%88%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E6%9C%BA%E5%88%B6/" class="title" data-proofer-ignore>Julia将支持可组合的多线程并行机制</a>
+              </h3>
+              <span class="article-date">30 July 2019</span>
+              <p>
+                摩尔定律带来的免费性能提升（free lunch）几近结束， 软件性能越来越依赖于利用多个处理器核心。 Julia社区一直以对计算性能的关注而出名。 为了追求性 …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/07/announcing-composable-multi-threaded-parallelism-in-julia/" class="title" data-proofer-ignore>Announcing composable multi-threaded parallelism in Julia</a>
+              </h3>
+              <span class="article-date">23 July 2019</span>
+              <p>
+                Software performance depends more and more on exploiting multiple processor …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/06/hello-diffeqbot/" class="title" data-proofer-ignore>Hello @DiffEqBot</a>
+              </h3>
+              <span class="article-date">18 June 2019</span>
+              <p>
+                Hi! Today we all got a new member to the DiffEq family. Say hi to our own …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/05/a-summer-of-julia-2019/" class="title" data-proofer-ignore>A Summer of Julia 2019</a>
+              </h3>
+              <span class="article-date">31 May 2019</span>
+              <p>
+                Every summer, we welcome a large group of students working on Julia and its …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/05/beyond-machine-learning-pipelines-with-mlj/" class="title" data-proofer-ignore>Beyond machine learning pipelines with MLJ</a>
+              </h3>
+              <span class="article-date">02 May 2019</span>
+              <p>
+                Introduction MLJ is an open-source machine learning toolbox written in pure …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/04/diffeqflux.jl-julia-%E7%9A%84%E7%A5%9E%E7%B6%93%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%A5%97%E4%BB%B6/" class="title" data-proofer-ignore>DiffEqFlux.jl – Julia 的神經微分方程套件</a>
+              </h3>
+              <span class="article-date">04 April 2019</span>
+              <p>
+                在這篇文章中，我們將會展示在 Julia 中使用微分方程解算器（DiffEq solver）搭配神經網路有多麼簡單、有效而且穩定。
+Neural …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/03/a-julia-interpreter-and-debugger/" class="title" data-proofer-ignore>A Julia interpreter and debugger</a>
+              </h3>
+              <span class="article-date">19 March 2019</span>
+              <p>
+                The authors are pleased to announce the release of a fully-featured debugger for …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/02/the-julia-project-and-its-entities/" class="title" data-proofer-ignore>The Julia Project and Its Entities</a>
+              </h3>
+              <span class="article-date">12 February 2019</span>
+              <p>
+                There are a number of entities surrounding the Julia programming language. …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/02/gsoc-2018-parallel-implementations-of-graph-analysis-algorithms/" class="title" data-proofer-ignore>GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms</a>
+              </h3>
+              <span class="article-date">03 February 2019</span>
+              <p>
+                This blog briefly summarises my GSoC 2018 project (Parallel Graph Development) …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2019/01/diffeqflux.jl-a-julia-library-for-neural-differential-equations/" class="title" data-proofer-ignore>DiffEqFlux.jl – A Julia Library for Neural Differential Equations</a>
+              </h3>
+              <span class="article-date">18 January 2019</span>
+              <p>
+                Translations: Traditional Chinese
+In this blog post we will show you how to …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/12/building-a-language-and-compiler-for-machine-learning/" class="title" data-proofer-ignore>Building a Language and Compiler for Machine Learning</a>
+              </h3>
+              <span class="article-date">03 December 2018</span>
+              <p>
+                Since we originally proposed the need for a first-class language, compiler and …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/09/how-to-get-started-with-julia-1.0s-package-manager/" class="title" data-proofer-ignore>How to get started with Julia 1.0&#39;s package manager</a>
+              </h3>
+              <span class="article-date">12 September 2018</span>
+              <p>
+                For those of you in the midst of transitioning or preparing to transition to …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/09/a-portrait-of-juliacon-2018/" class="title" data-proofer-ignore>A portrait of JuliaCon 2018</a>
+              </h3>
+              <span class="article-date">11 September 2018</span>
+              <p>
+                So much went well! As the venue of the Julia 1.0 release and the largest meeting …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/09/the-julia-community-prizes-2018/" class="title" data-proofer-ignore>The Julia Community Prizes, 2018</a>
+              </h3>
+              <span class="article-date">04 September 2018</span>
+              <p>
+                The Julia Community Prizes celebrate the amazing set of scientists, developers …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/08/gsoc-2018-and-speech-recognition-for-the-flux-model-zoo-the-conclusion/" class="title" data-proofer-ignore>GSoC 2018 and Speech Recognition for the Flux Model Zoo: The Conclusion</a>
+              </h3>
+              <span class="article-date">14 August 2018</span>
+              <p>
+                Here we are on the other end of Google Summer of Code 2018. It has been a …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/08/gsoc-2018-adding-newer-features-and-speeding-up-convolutions-in-flux/" class="title" data-proofer-ignore>GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux</a>
+              </h3>
+              <span class="article-date">13 August 2018</span>
+              <p>
+                Over the summer I have been working at improving the Computer Vision …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/08/union-splitting-what-it-is-and-why-you-should-care/" class="title" data-proofer-ignore>Union-splitting: what it is, and why you should care</a>
+              </h3>
+              <span class="article-date">09 August 2018</span>
+              <p>
+                Among those who follow Julia&rsquo;s development closely, one of the (many) new …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/08/julia-1.0/" class="title" data-proofer-ignore>Julia 1.0</a>
+              </h3>
+              <span class="article-date">08 August 2018</span>
+              <p>
+                Translations: Simplified Chinese, Traditional Chinese, Spanish
+The much …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/08/julia-1.0-simplified-chinese/" class="title" data-proofer-ignore>Julia 1.0 (Simplified Chinese)</a>
+              </h3>
+              <span class="article-date">08 August 2018</span>
+              <p>
+                备受期待的Julia语言的1.0版本积累了富有野心的程序员们的十年心血。 在 JuliaCon2018 发布会上，Julia 社区正式将该版本设置为1.0.0。 …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/08/julia-1.0-spanish/" class="title" data-proofer-ignore>Julia 1.0 (Spanish)</a>
+              </h3>
+              <span class="article-date">08 August 2018</span>
+              <p>
+                La anticipada liberación de la versión 1.0 de Julia es la culminación de casi …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/08/julia-1.0-traditional-chinese/" class="title" data-proofer-ignore>Julia 1.0 (Traditional Chinese)</a>
+              </h3>
+              <span class="article-date">08 August 2018</span>
+              <p>
+                眾所期待的 Julia 語言 1.0 版是近十年的心血結晶。 在 JuliaCon 2018 年會上，Julia …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/08/gsoc-2018-reinforcement-learning-and-generative-models-using-flux/" class="title" data-proofer-ignore>GSoC 2018: Reinforcement Learning and Generative models using Flux</a>
+              </h3>
+              <span class="article-date">06 August 2018</span>
+              <p>
+                Hello, world!
+In this post I&rsquo;m going to briefly summarize about the …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/07/writing-iterators-in-julia-0.7/" class="title" data-proofer-ignore>Writing Iterators in Julia 0.7</a>
+              </h3>
+              <span class="article-date">08 July 2018</span>
+              <p>
+                This post originally appeared on the Invenia blog.
+With the upcoming 0.7 …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/06/first-class-statistical-missing-values-support-in-julia-0.7/" class="title" data-proofer-ignore>First-Class Statistical Missing Values Support in Julia 0.7</a>
+              </h3>
+              <span class="article-date">19 June 2018</span>
+              <p>
+                The 0.7 release of Julia will soon introduce first-class support for statistical …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/05/extensible-broadcast-fusion/" class="title" data-proofer-ignore>Extensible broadcast fusion</a>
+              </h3>
+              <span class="article-date">11 May 2018</span>
+              <p>
+                Julia version 0.7 brings with it an exciting new feature: the ability to …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/04/tetris-coming-to-julia-language-for-v1.0/" class="title" data-proofer-ignore>Tetris coming to Julia language for v1.0</a>
+              </h3>
+              <span class="article-date">01 April 2018</span>
+              <p>
+                Good news, everyone! Starting v1.0, Tetris will be included in the standard …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/03/some-pi-ography/" class="title" data-proofer-ignore>Some &amp;pi;-ography</a>
+              </h3>
+              <span class="article-date">14 March 2018</span>
+              <p>
+                Although we&rsquo;ve known about &ldquo;Archimedes&rsquo; constant&rdquo; for a …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2018/02/julia-joins-numfocus-in-google-summer-of-code-2018/" class="title" data-proofer-ignore>Julia joins NumFOCUS in Google Summer of Code 2018</a>
+              </h3>
+              <span class="article-date">21 February 2018</span>
+              <p>
+                The Julia project has participated in summer of code events since 2014, just two …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/12/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E4%BB%A5%E5%8F%8A%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80traditional-chinese/" class="title" data-proofer-ignore>機器學習以及程式語言(Traditional Chinese)</a>
+              </h3>
+              <span class="article-date">25 December 2017</span>
+              <p>
+                任何足夠複雜的機器學習系統都包含一個特別設置、不符規範、充滿 bug 又緩慢實作的程式語言半成品。1
+ 作者：By Mike Innes (Julia …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-simplified-chinese/" class="title" data-proofer-ignore>机器学习与编程语言 (Simplified Chinese)</a>
+              </h3>
+              <span class="article-date">20 December 2017</span>
+              <p>
+                任何足够复杂的机器学习系统，里面都拼凑了半个不规范，处处错误，且运行缓慢的编程语言。1
+ 作者： Mike Innes (Julia Computing), …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/12/on-machine-learning-and-programming-languages/" class="title" data-proofer-ignore>On Machine Learning and Programming Languages</a>
+              </h3>
+              <span class="article-date">06 December 2017</span>
+              <p>
+                Any sufficiently complicated machine learning system contains an ad-hoc, …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/11/gsoc-2017-native-julia-second-order-ode-and-bvp-solvers/" class="title" data-proofer-ignore>GSoC 2017: Native Julia second order ODE and BVP solvers</a>
+              </h3>
+              <span class="article-date">01 November 2017</span>
+              <p>
+                My original GSoC project was about implementing native Julia solvers for solving …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/10/neuralnetdiffeq.jl-a-neural-network-solver-for-odes/" class="title" data-proofer-ignore>NeuralNetDiffEq.jl: A Neural Network solver for ODEs</a>
+              </h3>
+              <span class="article-date">13 October 2017</span>
+              <p>
+                My GSoC 2017 project was to implement a package for Julia to solve Ordinary …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/10/command-interpolation-for-dummies/" class="title" data-proofer-ignore>Command Interpolation For Dummies</a>
+              </h3>
+              <span class="article-date">05 October 2017</span>
+              <p>
+                I&rsquo;ve never been a big user of the command line. One could even say I …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/09/gsoc-2017-project-hamiltonian-indirect-inference/" class="title" data-proofer-ignore>GSoC 2017 Project: Hamiltonian Indirect Inference</a>
+              </h3>
+              <span class="article-date">19 September 2017</span>
+              <p>
+                Bayesian_Examples.jl This is a writeup of my project for the Google Summer of …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/09/gsoc-2017-parallelism-in-biojulia/" class="title" data-proofer-ignore>GSoC 2017: Parallelism in BioJulia</a>
+              </h3>
+              <span class="article-date">07 September 2017</span>
+              <p>
+                In this summer, I have worked on a project to develop tools that make BioJulia …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/09/gsoc-2017-efficient-discretizations-of-pde-operators/" class="title" data-proofer-ignore>GSoC 2017: Efficient Discretizations of PDE Operators</a>
+              </h3>
+              <span class="article-date">06 September 2017</span>
+              <p>
+                This project is an attempt towards building a PDE solver for JuliaDiffEq using …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/09/gsoc-2017-project-mcmc-with-flexible-numbers-of-parameters/" class="title" data-proofer-ignore>GSoC 2017 Project: MCMC with flexible numbers of parameters</a>
+              </h3>
+              <span class="article-date">03 September 2017</span>
+              <p>
+                My original GSOC proposal was to implement modify Mamba.jl to enable it to fit …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/09/gsoc-2017-a-wrapper-for-the-fenics-finite-element-toolbox/" class="title" data-proofer-ignore>GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox</a>
+              </h3>
+              <span class="article-date">01 September 2017</span>
+              <p>
+                Introduction Throughout this Google Summer of Code project I, along with my …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/08/gsoc-2017-documentation-browser-for-juno/" class="title" data-proofer-ignore>GSoC 2017: Documentation Browser for Juno</a>
+              </h3>
+              <span class="article-date">28 August 2017</span>
+              <p>
+                The aim of this GSoC project is to provide a convenient way to access …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/08/gsoc-2017-implementing-iterative-solvers-for-numerical-linear-algebra/" class="title" data-proofer-ignore>GSoC 2017: Implementing iterative solvers for numerical linear algebra</a>
+              </h3>
+              <span class="article-date">23 August 2017</span>
+              <p>
+                The central part of my GSoC project is about implementing the Jacobi-Davidson …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/08/juliacon-2017-on-the-west-coast/" class="title" data-proofer-ignore>JuliaCon 2017 on the West Coast</a>
+              </h3>
+              <span class="article-date">15 August 2017</span>
+              <p>
+                It’s a year later and I’m back: this time to the West Coast for the next edition …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/08/creating-domain-specific-languages-in-julia-using-macros/" class="title" data-proofer-ignore>Creating domain-specific languages in Julia using macros</a>
+              </h3>
+              <span class="article-date">09 August 2017</span>
+              <p>
+                Since the beginning of Julia, it has been tempting to use macros to write …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/06/julia-0.6-release-announcement/" class="title" data-proofer-ignore>Julia 0.6 Release Announcement</a>
+              </h3>
+              <span class="article-date">27 June 2017</span>
+              <p>
+                The Julia community is thrilled to announce the release of version 0.6.0 of the …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/05/julia-available-in-raspbian-on-the-raspberry-pi/" class="title" data-proofer-ignore>Julia available in Raspbian on the Raspberry Pi</a>
+              </h3>
+              <span class="article-date">03 May 2017</span>
+              <p>
+                Recently, Julia was accepted into the Raspbian distribution for the Raspberry …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/04/upgrades-to-the-repl-in-julia-0.6/" class="title" data-proofer-ignore>Upgrades to the REPL in Julia 0.6</a>
+              </h3>
+              <span class="article-date">25 April 2017</span>
+              <p>
+                Since version 0.3, Julia has come with a command-line interface — a REPL — that …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/04/knowing-where-you-are-custom-array-indices-in-julia/" class="title" data-proofer-ignore>Knowing where you are: custom array indices in Julia</a>
+              </h3>
+              <span class="article-date">18 April 2017</span>
+              <p>
+                Arrays are a crucial component of any programming language, particularly for a …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/03/paper-in-siam-review-julia-a-fresh-approach-to-numerical-computing/" class="title" data-proofer-ignore>Paper in SIAM Review: Julia - A Fresh Approach to Numerical Computing</a>
+              </h3>
+              <span class="article-date">18 March 2017</span>
+              <p>
+                Our paper, Julia: A Fresh Approach to Numerical Computing, was published in the …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/03/some-fun-with-pi-in-julia/" class="title" data-proofer-ignore>Some fun with &amp;pi; in Julia</a>
+              </h3>
+              <span class="article-date">14 March 2017</span>
+              <p>
+                Image courtesy of Cormullion, code here.
+This post is available as a Jupyter …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/03/technical-preview-native-gpu-programming-with-cudanative.jl/" class="title" data-proofer-ignore>Technical preview: Native GPU programming with CUDAnative.jl</a>
+              </h3>
+              <span class="article-date">14 March 2017</span>
+              <p>
+                After 2 years of slow but steady development, we would like to announce the …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2017/01/more-dots-syntactic-loop-fusion-in-julia/" class="title" data-proofer-ignore>More Dots: Syntactic Loop Fusion in Julia</a>
+              </h3>
+              <span class="article-date">21 January 2017</span>
+              <p>
+                After a lengthy design process and preliminary foundations in Julia 0.5, Julia …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/10/julia-0.5-highlights/" class="title" data-proofer-ignore>Julia 0.5 Highlights</a>
+              </h3>
+              <span class="article-date">11 October 2016</span>
+              <p>
+                To follow along with the examples in this blog post and run them live, you can …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/10/julia-0.5-release-announcement/" class="title" data-proofer-ignore>Julia 0.5 Release Announcement</a>
+              </h3>
+              <span class="article-date">10 October 2016</span>
+              <p>
+                After over a year of development, the Julia community is proud to announce the …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/10/structuredqueries.jl-a-generic-data-manipulation-framework/" class="title" data-proofer-ignore>StructuredQueries.jl - A generic data manipulation framework</a>
+              </h3>
+              <span class="article-date">03 October 2016</span>
+              <p>
+                This post describes my work conducted this summer at the Julia Lab to develop …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/09/a-personal-perspective-on-juliacon-2016/" class="title" data-proofer-ignore>A Personal Perspective On JuliaCon 2016</a>
+              </h3>
+              <span class="article-date">21 September 2016</span>
+              <p>
+                The gentle breeze brushed my face and the mild sunshine warmed an otherwise …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/09/biojulia-2016-online-sequence-search-sequence-demultiplexing-new-readers-and-much-more/" class="title" data-proofer-ignore>BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more!</a>
+              </h3>
+              <span class="article-date">10 September 2016</span>
+              <p>
+                We are pleased to announce releasing Bio.jl 0.4, a minor release including …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/08/graft.jl-general-purpose-graph-analytics-for-julia/" class="title" data-proofer-ignore>Graft.jl - General purpose graph analytics for Julia</a>
+              </h3>
+              <span class="article-date">22 August 2016</span>
+              <p>
+                This blog post describes my work on Graft.jl, a general purpose graph analysis …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-convex.jl/" class="title" data-proofer-ignore>Announcing support for complex-domain linear programs in Convex.jl</a>
+              </h3>
+              <span class="article-date">17 August 2016</span>
+              <p>
+                I am pleased to announce the support for complex-domain linear programs (LPs) in …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/05/an-invitation-to-juliacon-2016/" class="title" data-proofer-ignore>An invitation to JuliaCon 2016</a>
+              </h3>
+              <span class="article-date">08 May 2016</span>
+              <p>
+                For the third year in row we are happy to invite you to JuliaCon, the annual …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/04/biojulia-project-in-2016/" class="title" data-proofer-ignore>BioJulia Project in 2016</a>
+              </h3>
+              <span class="article-date">30 April 2016</span>
+              <p>
+                I am pleased to announce that the next phase of BioJulia is starting! In the …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/04/google-summer-of-code-2016/" class="title" data-proofer-ignore>Google Summer of Code 2016</a>
+              </h3>
+              <span class="article-date">14 April 2016</span>
+              <p>
+                We’re pleased to announce that the Julia Language is taking part in this year’s …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/03/generalizing-abstractarrays-opportunities-and-challenges/" class="title" data-proofer-ignore>Generalizing AbstractArrays: opportunities and challenges</a>
+              </h3>
+              <span class="article-date">27 March 2016</span>
+              <p>
+                Introduction: generic algorithms with AbstractArrays Somewhat unusually, this …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/03/an-introduction-to-parallelaccelerator.jl/" class="title" data-proofer-ignore>An introduction to ParallelAccelerator.jl</a>
+              </h3>
+              <span class="article-date">01 March 2016</span>
+              <p>
+                The High Performance Scripting team at Intel Labs recently released …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/02/multidimensional-algorithms-and-iteration/" class="title" data-proofer-ignore>Multidimensional algorithms and iteration</a>
+              </h3>
+              <span class="article-date">01 February 2016</span>
+              <p>
+                Note: updated December 2018 for Julia 1.1
+Julia makes it easy to write elegant …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2016/01/julia-ide-work-in-atom/" class="title" data-proofer-ignore>Julia IDE work in Atom</a>
+              </h3>
+              <span class="article-date">07 January 2016</span>
+              <p>
+                A PL designer used to be able to design some syntax and semantics for their …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2015/10/jsoc-2015-project-datastreams.jl/" class="title" data-proofer-ignore>JSoC 2015 project: DataStreams.jl</a>
+              </h3>
+              <span class="article-date">25 October 2015</span>
+              <p>
+                Data processing got ya down? Good news! The DataStreams.jl package, er, …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2015/10/jsoc-2015-project-automatic-differentiation-in-julia-with-forwarddiff.jl/" class="title" data-proofer-ignore>JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl</a>
+              </h3>
+              <span class="article-date">23 October 2015</span>
+              <p>
+                This summer, I&rsquo;ve had the good fortune to be able to participate in the …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2015/10/jsoc-2015-project-interactive-visualizations-in-julia-with-glvisualize.jl/" class="title" data-proofer-ignore>JSoC 2015 project: Interactive Visualizations in Julia with GLVisualize.jl</a>
+              </h3>
+              <span class="article-date">22 October 2015</span>
+              <p>
+                GLVisualize is an interactive visualization library that supports 2D and 3D …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2015/10/jsoc-2015-project-efficient-data-structures-and-algorithms-for-sequence-analysis-in-biojulia/" class="title" data-proofer-ignore>JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia</a>
+              </h3>
+              <span class="article-date">21 October 2015</span>
+              <p>
+                Participant: Kenta Sato (@bicycle1885) Mentor: Daniel C. Jones (@dcjones) …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2015/10/jsoc-2015-project-interactive-3d-graphics-in-the-browser-with-compose3d/" class="title" data-proofer-ignore>JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D</a>
+              </h3>
+              <span class="article-date">20 October 2015</span>
+              <p>
+                Over the last three months, I&rsquo;ve been working on Compose3D, which is an …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2015/10/jsoc-2015-project-nullablearrays.jl/" class="title" data-proofer-ignore>JSoC 2015 project: NullableArrays.jl</a>
+              </h3>
+              <span class="article-date">16 October 2015</span>
+              <p>
+                My project under the 2015 Julia Summer of Code program has been to develop the …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2015/10/julia-0.4-release-announcement/" class="title" data-proofer-ignore>Julia 0.4 Release Announcement</a>
+              </h3>
+              <span class="article-date">09 October 2015</span>
+              <p>
+                We are pleased to announce the release of Julia 0.4.0. This release contains …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2015/05/juliacon-2015-preview-deep-learning-3d-printing-parallel-computing-and-so-much-more/" class="title" data-proofer-ignore>JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more</a>
+              </h3>
+              <span class="article-date">30 May 2015</span>
+              <p>
+                JuliaCon 2015 is being held at the Massachusetts Institute of Technology from …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2015/05/julia-summer-of-code-2015/" class="title" data-proofer-ignore>Julia Summer of Code 2015</a>
+              </h3>
+              <span class="article-date">23 May 2015</span>
+              <p>
+                Thanks to a generous grant from the Moore Foundation, we are happy to announce …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2014/08/julia-0.3-release-announcement/" class="title" data-proofer-ignore>Julia 0.3 Release Announcement</a>
+              </h3>
+              <span class="article-date">20 August 2014</span>
+              <p>
+                We are pleased to announce the release of Julia 0.3.0. This release contains …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2014/08/juliacon-2014-opening-session-presentations/" class="title" data-proofer-ignore>JuliaCon 2014 Opening Session Presentations</a>
+              </h3>
+              <span class="article-date">09 August 2014</span>
+              <p>
+                Scientific Applications Session 
+Tim Holy — Image Representation and Analysis …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2014/08/juliacon-2014-optimization-presentations/" class="title" data-proofer-ignore>JuliaCon 2014 Optimization Presentations</a>
+              </h3>
+              <span class="article-date">09 August 2014</span>
+              <p>
+                Optimization Session 
+Iain Dunning / Joey Huchette — JuliaOpt - Optimization …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2013/09/fast-numeric-computation-in-julia/" class="title" data-proofer-ignore>Fast Numeric Computation in Julia</a>
+              </h3>
+              <span class="article-date">04 September 2013</span>
+              <p>
+                Working on numerical problems daily, I have always dreamt of a language that …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2013/05/building-guis-with-julia-tk-and-cairo-part-i/" class="title" data-proofer-ignore>Building GUIs with Julia, Tk, and Cairo, Part I</a>
+              </h3>
+              <span class="article-date">23 May 2013</span>
+              <p>
+                This is the first of two blog posts designed to walk users through the process …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2013/05/building-guis-with-julia-tk-and-cairo-part-ii/" class="title" data-proofer-ignore>Building GUIs with Julia, Tk, and Cairo, Part II</a>
+              </h3>
+              <span class="article-date">23 May 2013</span>
+              <p>
+                Drawing, painting, and plotting In this installment, we&rsquo;ll cover both …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2013/05/passing-julia-callback-functions-to-c/" class="title" data-proofer-ignore>Passing Julia Callback Functions to C</a>
+              </h3>
+              <span class="article-date">10 May 2013</span>
+              <p>
+                One of the great strengths of Julia is that it is so easy to call C code …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2013/04/put-this-in-your-pipe/" class="title" data-proofer-ignore>Put This In Your Pipe</a>
+              </h3>
+              <span class="article-date">08 April 2013</span>
+              <p>
+                In a previous post, I talked about why &ldquo;shelling out&rdquo; to spawn a …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2013/04/distributed-numerical-optimization/" class="title" data-proofer-ignore>Distributed Numerical Optimization</a>
+              </h3>
+              <span class="article-date">05 April 2013</span>
+              <p>
+                This post walks through the parallel computing functionality of Julia to …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2013/03/videos-from-the-julia-tutorial-at-mit/" class="title" data-proofer-ignore>Videos from the Julia tutorial at MIT</a>
+              </h3>
+              <span class="article-date">30 March 2013</span>
+              <p>
+                We held a two day Julia tutorial at MIT in January 2013, which included 10 …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2013/03/efficient-aggregates-in-julia/" class="title" data-proofer-ignore>Efficient Aggregates in Julia</a>
+              </h3>
+              <span class="article-date">05 March 2013</span>
+              <p>
+                We recently introduced an exciting feature that has been in planning for some …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2012/08/design-and-implementation-of-julia/" class="title" data-proofer-ignore>Design and implementation of Julia</a>
+              </h3>
+              <span class="article-date">16 August 2012</span>
+              <p>
+                We describe the design and implementation of Julia in our first paper - Julia: A …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2012/04/new-york-open-stats-meetup/" class="title" data-proofer-ignore>New York Open Stats Meetup</a>
+              </h3>
+              <span class="article-date">18 April 2012</span>
+              <p>
+                I&rsquo;ll be giving a talk on Julia at the New York Open Statistical …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2012/03/lang.next-announcement/" class="title" data-proofer-ignore>Lang.NEXT Announcement</a>
+              </h3>
+              <span class="article-date">24 March 2012</span>
+              <p>
+                Jeff and I will be giving a presentation on Julia at the upcoming Lang.NEXT …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2012/03/shelling-out-sucks/" class="title" data-proofer-ignore>Shelling Out Sucks</a>
+              </h3>
+              <span class="article-date">11 March 2012</span>
+              <p>
+                Spawning a pipeline of connected programs via an intermediate shell — a.k.a. …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2012/03/stanford-talk-video/" class="title" data-proofer-ignore>Stanford Talk Video</a>
+              </h3>
+              <span class="article-date">01 March 2012</span>
+              <p>
+                Jeff gave his previously announced, invited talk at Stanford yesterday and the …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2012/02/stanford-talk-announcement/" class="title" data-proofer-ignore>Stanford Talk Announcement</a>
+              </h3>
+              <span class="article-date">27 February 2012</span>
+              <p>
+                I will be speaking about Julia at the Stanford EE Computer Systems Colloquium on …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2012/02/why-we-created-julia/" class="title" data-proofer-ignore>Why We Created Julia</a>
+              </h3>
+              <span class="article-date">14 February 2012</span>
+              <p>
+                In short, because we are greedy.
+We are power Matlab users. Some of us are Lisp …
+              </p>
+            </div>
+          
+            <div class="col-lg-4 col-md-12 blog">
+              <h3>
+                <a href="../blog/2012/02/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E8%A6%81%E5%88%9B%E9%80%A0julia-simplified-chinese/" class="title" data-proofer-ignore>为什么我们要创造Julia (Simplified Chinese)</a>
+              </h3>
+              <span class="article-date">14 February 2012</span>
+              <p>
+                这是一篇重译，参考了2012年的一篇豆瓣（链接在最后）。
+ 简短来讲，是因为我们很贪婪。
+我们之中有些是使用MATLAB的重量级用户，有些是来自Lisp的极客， …
+              </p>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../v2/js/jquery.min.js"></script>
+<script src="../v2/js/bootstrap.min.js"></script>
+<script src="../v2/js/platform.js"></script>
+<script src="../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

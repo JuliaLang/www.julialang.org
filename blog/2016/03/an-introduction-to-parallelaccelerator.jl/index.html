@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>An introduction to ParallelAccelerator.jl</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../../" id="logo">
+      <img src="../../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  active  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br />
+
+  <div class="container">
+
+  <div id="blogpost">
+    <h1>An introduction to ParallelAccelerator.jl</h1>
+
+    <p class="metadata">
+      <span class="timestamp">01 March, 2016</span>
+      
+      &nbsp;|&nbsp;
+      <span class="author">Lindsey Kuper</span>
+      
+    </p>
+
+    
+
+<p>The High Performance Scripting team at Intel Labs recently released
+<a href="https://github.com/IntelLabs/ParallelAccelerator.jl">ParallelAccelerator.jl</a>,
+a Julia package for high-performance, high-level
+<a href="https://en.wikipedia.org/wiki/Array_programming">array-style programming</a>.
+The goal of ParallelAccelerator is to make high-level array-style
+programs run as efficiently as possible in Julia, with a minimum of
+extra effort required from the programmer.  In this post, we&rsquo;ll take a
+look at the ParallelAccelerator package and walk through some examples
+of how to use it to speed up some typical array-style programs in
+Julia.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Ideally, high-level array-style Julia programs should run as
+efficiently as possible on high-performance parallel hardware, with a
+minimum of extra programmer effort required, and with performance
+reasonably close to that of an expert implementation in C or C++.
+There are three main things that ParallelAccelerator does to move us
+toward this goal:</p>
+
+<ul>
+<li>First, we identify <em>implicit parallel patterns</em> in array-style
+code the user writes.  We&rsquo;ll say more about these parallel
+patterns shortly.</li>
+<li>Second, we compile these parallel patterns to explicit parallel
+loops.</li>
+<li>Third, we <em>minimize runtime overheads</em> incurred by things like
+array bounds checks and intermediate array allocations.</li>
+</ul>
+
+<p>The key user-facing feature that the ParallelAccelerator package
+provides is a Julia macro called <code>@acc</code>, which is short for
+&ldquo;accelerate&rdquo;.  Annotating functions or blocks of code with <code>@acc</code> lets
+you designate the parts of your Julia program that you want to compile
+to optimized native code.  Here&rsquo;s a toy example of using <code>@acc</code> to
+annotate a function:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f;font-weight:bold">using</span> ParallelAccelerator<span style="color:#666"></span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@acc</span><span style="color:#666"></span> f<span style="color:#666"></span>(x<span style="color:#666"></span>) <span style="color:#666">=</span> x<span style="color:#666"></span> <span style="color:#666">.+</span> x<span style="color:#666"></span> <span style="color:#666">.*</span> x<span style="color:#666"></span>
+f<span style="color:#666"></span> (generic<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">function</span> with<span style="color:#666"></span> <span style="color:#666">1</span> method<span style="color:#666"></span>)
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> f<span style="color:#666"></span>([<span style="color:#666">1</span>,<span style="color:#666">2</span>,<span style="color:#666">3</span>,<span style="color:#666">4</span>,<span style="color:#666">5</span>])
+<span style="color:#666">5</span><span style="color:#666">-</span>element<span style="color:#666"></span> <span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Int64</span>,<span style="color:#666">1</span>}<span style="color:#666">:</span>
+<span style="color:#666">2</span>
+<span style="color:#666">6</span>
+<span style="color:#666">12</span>
+<span style="color:#666">20</span>
+<span style="color:#666">30</span></code></pre></div>
+
+<p>Under the hood, ParallelAccelerator is essentially a compiler &ndash; itself implemented in Julia &ndash; that
+intercepts the usual Julia JIT compilation process for
+<code>@acc</code>-annotated functions.  It compiles <code>@acc</code>-annotated code to C++
+OpenMP code, which can then be compiled to a native library by an
+external C++ compiler such as GCC or ICC.
+(This intermediate C++ generation step isn&rsquo;t essential to the design
+of ParallelAccelerator, though &ndash; instead, the compiler could target
+Julia&rsquo;s own forthcoming native threading backend. [<a href="#references">1</a>])
+On the
+Julia side, ParallelAccelerator generates a <em>proxy function</em> that
+calls into that native library, and replaces calls to <code>@acc</code>-annotated
+functions, like <code>f</code> in the above example, with calls to the
+appropriate proxy function.</p>
+
+<p>We&rsquo;ll say more shortly about the parallel patterns that
+ParallelAccelerator targets and about how the ParallelAccelerator
+compiler works, but before we do, let&rsquo;s look at some code and some
+performance results.</p>
+
+<h2 id="a-quick-preview-of-results-black-scholes-option-pricing-benchmark">A quick preview of results: Black-Scholes option pricing benchmark</h2>
+
+<p>Let&rsquo;s see how to use ParallelAccelerator to speed up a classic
+high-performance computing benchmark: an implementation of the
+<a href="https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model">Black-Scholes formula</a>
+for option pricing.  The following code is a Julia implementation of
+the Black-Scholes formula.</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> cndf2<span style="color:#666"></span>(<span style="color:#a2f">in</span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>})
+    out<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">0.5</span> <span style="color:#666">.+</span> <span style="color:#666">0.5</span> <span style="color:#666">.*</span> erf<span style="color:#666"></span>(<span style="color:#666">0.707106781</span> <span style="color:#666">.*</span> <span style="color:#a2f">in</span>)
+    <span style="color:#a2f;font-weight:bold">return</span> out<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span>
+
+<span style="color:#a2f;font-weight:bold">function</span> blackscholes<span style="color:#666"></span>(sptprice<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>},
+                      strike<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>},
+                      rate<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>},
+                      volatility<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>},
+                      time<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>})
+    logterm<span style="color:#666"></span> <span style="color:#666">=</span> log10<span style="color:#666"></span>(sptprice<span style="color:#666"></span> <span style="color:#666">./</span> strike<span style="color:#666"></span>)
+    powterm<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">.</span><span style="color:#666">5</span> <span style="color:#666">.*</span> volatility<span style="color:#666"></span> <span style="color:#666">.*</span> volatility<span style="color:#666"></span>
+    den<span style="color:#666"></span> <span style="color:#666">=</span> volatility<span style="color:#666"></span> <span style="color:#666">.*</span> sqrt<span style="color:#666"></span>(time<span style="color:#666"></span>)
+    d1<span style="color:#666"></span> <span style="color:#666">=</span> (((rate<span style="color:#666"></span> <span style="color:#666">.+</span> powterm<span style="color:#666"></span>) <span style="color:#666">.*</span> time<span style="color:#666"></span>) <span style="color:#666">.+</span> logterm<span style="color:#666"></span>) <span style="color:#666">./</span> den<span style="color:#666"></span>
+    d2<span style="color:#666"></span> <span style="color:#666">=</span> d1<span style="color:#666"></span> <span style="color:#666">.-</span> den<span style="color:#666"></span>
+    NofXd1<span style="color:#666"></span> <span style="color:#666">=</span> cndf2<span style="color:#666"></span>(d1<span style="color:#666"></span>)
+    NofXd2<span style="color:#666"></span> <span style="color:#666">=</span> cndf2<span style="color:#666"></span>(d2<span style="color:#666"></span>)
+    futureValue<span style="color:#666"></span> <span style="color:#666">=</span> strike<span style="color:#666"></span> <span style="color:#666">.*</span> exp<span style="color:#666"></span>(<span style="color:#666">-</span> rate<span style="color:#666"></span> <span style="color:#666">.*</span> time<span style="color:#666"></span>)
+    c1<span style="color:#666"></span> <span style="color:#666">=</span> futureValue<span style="color:#666"></span> <span style="color:#666">.*</span> NofXd2<span style="color:#666"></span>
+    call<span style="color:#666"></span> <span style="color:#666">=</span> sptprice<span style="color:#666"></span> <span style="color:#666">.*</span> NofXd1<span style="color:#666"></span> <span style="color:#666">.-</span> c1<span style="color:#666"></span>
+    put<span style="color:#666"></span>  <span style="color:#666">=</span> call<span style="color:#666"></span> <span style="color:#666">.-</span> futureValue<span style="color:#666"></span> <span style="color:#666">.+</span> sptprice<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span>
+
+<span style="color:#a2f;font-weight:bold">function</span> run<span style="color:#666"></span>(iterations<span style="color:#666"></span>)
+    sptprice<span style="color:#666"></span>   <span style="color:#666">=</span> <span style="color:#0b0;font-weight:bold">Float64</span>[ <span style="color:#666">42.0</span> <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span><span style="color:#666">:</span>iterations<span style="color:#666"></span> ]
+    initStrike<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#0b0;font-weight:bold">Float64</span>[ <span style="color:#666">40.0</span> <span style="color:#666">+</span> (i<span style="color:#666"></span> <span style="color:#666">/</span> iterations<span style="color:#666"></span>) <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span><span style="color:#666">:</span>iterations<span style="color:#666"></span> ]
+    rate<span style="color:#666"></span>       <span style="color:#666">=</span> <span style="color:#0b0;font-weight:bold">Float64</span>[ <span style="color:#666">0.5</span> <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span><span style="color:#666">:</span>iterations<span style="color:#666"></span> ]
+    volatility<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#0b0;font-weight:bold">Float64</span>[ <span style="color:#666">0.2</span> <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span><span style="color:#666">:</span>iterations<span style="color:#666"></span> ]
+    time<span style="color:#666"></span>       <span style="color:#666">=</span> <span style="color:#0b0;font-weight:bold">Float64</span>[ <span style="color:#666">0.5</span> <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span><span style="color:#666">:</span>iterations<span style="color:#666"></span> ]
+
+    tic<span style="color:#666"></span>()
+    put<span style="color:#666"></span> <span style="color:#666">=</span> blackscholes<span style="color:#666"></span>(sptprice<span style="color:#666"></span>, initStrike<span style="color:#666"></span>, rate<span style="color:#666"></span>, volatility<span style="color:#666"></span>, time<span style="color:#666"></span>)
+    t<span style="color:#666"></span> <span style="color:#666">=</span> toq<span style="color:#666"></span>()
+    println<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b44">c</span><span style="color:#b44">h</span><span style="color:#b44">e</span><span style="color:#b44">c</span><span style="color:#b44">k</span><span style="color:#b44">s</span><span style="color:#b44">u</span><span style="color:#b44">m</span><span style="color:#b44">:</span><span style="color:#b44"> </span><span style="color:#b44">&#34;</span>, sum<span style="color:#666"></span>(put<span style="color:#666"></span>))
+    <span style="color:#a2f;font-weight:bold">return</span> t<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+
+<p>Here, the <code>blackscholes</code> function takes five arguments, each of which
+is an array of <code>Float64</code>s.  The <code>run</code> function initializes these five
+arrays and passes them to <code>blackscholes</code>, which, along with the
+<code>cndf2</code> (cumulative normal distribution) function that it calls, does
+several computations involving pointwise addition (<code>.+</code>), subtraction
+(<code>.-</code>), multiplication (<code>.*</code>), and division (<code>./</code>) on the arrays.
+It&rsquo;s not necessary to understand the details of the Black-Scholes
+formula; the important thing to notice about the code is that we are
+doing lots of pointwise array arithmetic.  Using Julia 0.4.4-pre on
+a 4-core Ubuntu 14.04 desktop machine with 8 GB of memory, the <code>run</code>
+function takes about 11 seconds to run when called with an argument
+of 40,000,000 (meaning that we are dealing with 40-million-element
+arrays):</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> run<span style="color:#666"></span>(<span style="color:#666">40_000_000</span>)
+checksum<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">8.381928525856283e8</span>
+ <span style="color:#666">12.885293</span> seconds<span style="color:#666"></span> (<span style="color:#666">458.51</span> k<span style="color:#666"></span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">9.855</span> GB<span style="color:#666"></span>, <span style="color:#666">2.95</span><span style="color:#666">%</span> gc<span style="color:#666"></span> time<span style="color:#666"></span>)
+<span style="color:#666">11.297714183</span></code></pre></div>
+
+<p>Here, the <code>11.297714183</code> being returned from <code>run</code> is the number of
+seconds it takes the <code>blackscholes</code> call alone to return.  The
+<code>12.885293</code> seconds reported by <code>@time</code> is a little longer, because
+it&rsquo;s the running time of the entire <code>run</code> call.</p>
+
+<p>The many pointwise array operations in this code make it a great
+candidate for speeding up with ParallelAccelerator (as we&rsquo;ll discuss
+more shortly).  Doing so requires only minor changes to the code: we
+import the ParallelAccelerator library with <code>using
+ParallelAccelerator</code>, then wrap the <code>cndf2</code> and <code>blackscholes</code>
+functions in an <code>@acc</code> block, as follows:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">using</span> ParallelAccelerator<span style="color:#666"></span>
+
+<span style="color:#a2f">@acc</span><span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">begin</span>
+
+<span style="color:#a2f;font-weight:bold">function</span> cndf2<span style="color:#666"></span>(<span style="color:#a2f">in</span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>})
+    out<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">0.5</span> <span style="color:#666">.+</span> <span style="color:#666">0.5</span> <span style="color:#666">.*</span> erf<span style="color:#666"></span>(<span style="color:#666">0.707106781</span> <span style="color:#666">.*</span> <span style="color:#a2f">in</span>)
+    <span style="color:#a2f;font-weight:bold">return</span> out<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span>
+
+<span style="color:#a2f;font-weight:bold">function</span> blackscholes<span style="color:#666"></span>(sptprice<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>},
+                      strike<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>},
+                      rate<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>},
+                      volatility<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>},
+                      time<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float64</span>,<span style="color:#666">1</span>})
+    logterm<span style="color:#666"></span> <span style="color:#666">=</span> log10<span style="color:#666"></span>(sptprice<span style="color:#666"></span> <span style="color:#666">./</span> strike<span style="color:#666"></span>)
+    powterm<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">.</span><span style="color:#666">5</span> <span style="color:#666">.*</span> volatility<span style="color:#666"></span> <span style="color:#666">.*</span> volatility<span style="color:#666"></span>
+    den<span style="color:#666"></span> <span style="color:#666">=</span> volatility<span style="color:#666"></span> <span style="color:#666">.*</span> sqrt<span style="color:#666"></span>(time<span style="color:#666"></span>)
+    d1<span style="color:#666"></span> <span style="color:#666">=</span> (((rate<span style="color:#666"></span> <span style="color:#666">.+</span> powterm<span style="color:#666"></span>) <span style="color:#666">.*</span> time<span style="color:#666"></span>) <span style="color:#666">.+</span> logterm<span style="color:#666"></span>) <span style="color:#666">./</span> den<span style="color:#666"></span>
+    d2<span style="color:#666"></span> <span style="color:#666">=</span> d1<span style="color:#666"></span> <span style="color:#666">.-</span> den<span style="color:#666"></span>
+    NofXd1<span style="color:#666"></span> <span style="color:#666">=</span> cndf2<span style="color:#666"></span>(d1<span style="color:#666"></span>)
+    NofXd2<span style="color:#666"></span> <span style="color:#666">=</span> cndf2<span style="color:#666"></span>(d2<span style="color:#666"></span>)
+    futureValue<span style="color:#666"></span> <span style="color:#666">=</span> strike<span style="color:#666"></span> <span style="color:#666">.*</span> exp<span style="color:#666"></span>(<span style="color:#666">-</span> rate<span style="color:#666"></span> <span style="color:#666">.*</span> time<span style="color:#666"></span>)
+    c1<span style="color:#666"></span> <span style="color:#666">=</span> futureValue<span style="color:#666"></span> <span style="color:#666">.*</span> NofXd2<span style="color:#666"></span>
+    call<span style="color:#666"></span> <span style="color:#666">=</span> sptprice<span style="color:#666"></span> <span style="color:#666">.*</span> NofXd1<span style="color:#666"></span> <span style="color:#666">.-</span> c1<span style="color:#666"></span>
+    put<span style="color:#666"></span>  <span style="color:#666">=</span> call<span style="color:#666"></span> <span style="color:#666">.-</span> futureValue<span style="color:#666"></span> <span style="color:#666">.+</span> sptprice<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span>
+
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+
+<p>The definition of <code>run</code> stays the same.  With the addition of the
+<code>@acc</code> wrapper, we now have much better performance:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> run<span style="color:#666"></span>(<span style="color:#666">40_000_000</span>)
+checksum<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">8.381928525856283e8</span>
+  <span style="color:#666">4.010668</span> seconds<span style="color:#666"></span> (<span style="color:#666">1.90</span> M<span style="color:#666"></span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">1.584</span> GB<span style="color:#666"></span>, <span style="color:#666">2.06</span><span style="color:#666">%</span> gc<span style="color:#666"></span> time<span style="color:#666"></span>)
+<span style="color:#666">3.503281464</span></code></pre></div>
+
+<p>This time, <code>blackscholes</code> returns in about 3.5 seconds, and the entire
+<code>run</code> call finishes in about 4 seconds.  This is already an
+improvement, but on subsequent calls to <code>run</code>, we do even better:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> run<span style="color:#666"></span>(<span style="color:#666">40_000_000</span>)
+checksum<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">8.381928525856283e8</span>
+  <span style="color:#666">1.418709</span> seconds<span style="color:#666"></span> (<span style="color:#666">158</span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">1.490</span> GB<span style="color:#666"></span>, <span style="color:#666">8.98</span><span style="color:#666">%</span> gc<span style="color:#666"></span> time<span style="color:#666"></span>)
+<span style="color:#666">1.007861068</span>
+
+julia<span style="color:#666"></span><span style="color:#666">&gt;</span> <span style="color:#a2f">@time</span><span style="color:#666"></span> run<span style="color:#666"></span>(<span style="color:#666">40_000_000</span>)
+checksum<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">8.381928525856283e8</span>
+  <span style="color:#666">1.410865</span> seconds<span style="color:#666"></span> (<span style="color:#666">154</span> allocations<span style="color:#666"></span><span style="color:#666">:</span> <span style="color:#666">1.490</span> GB<span style="color:#666"></span>, <span style="color:#666">7.93</span><span style="color:#666">%</span> gc<span style="color:#666"></span> time<span style="color:#666"></span>)
+<span style="color:#666">1.012813958</span></code></pre></div>
+
+<p>In subsequent calls, <code>run</code> finishes in about a second, with the entire
+call taking about 1.4 seconds.  The reason for this additional
+improvement is that ParallelAccelerator has already compiled the
+<code>blackscholes</code> and <code>cndf2</code> functions and doesn&rsquo;t need to do so again
+on subsequent runs.</p>
+
+<p>These results were collected on
+an ordinary desktop machine, but we can scale up further.  The
+following figure reports the time it takes <code>blackscholes</code> to run on
+arrays of 100 million elements, this time on a 36-core machine with
+128 GB of RAM [<a href="#references">2</a>]:</p>
+
+<p><img src="../../../../images/blog/parallelaccelerator_figures/black-scholes-2016-01-31-blogpost.png?raw=true" alt="Benchmark results for plain Julia and ParallelAccelerator implementations of the Black-Scholes formula" /></p>
+
+<p>The first three bars of the above figure show performance results for
+ParallelAccelerator using different numbers of threads.  Since
+ParallelAccelerator compiles Julia to OpenMP C++, we can use the
+<code>OMP_NUM_THREADS</code> environment variable to control the number of
+threads that the code runs with.  Here, with <code>OMP_NUM_THREADS</code> set to
+18, <code>blackscholes</code> runs in 0.27 seconds; with 36 threads (matching the
+number of cores on the machine), running time drops to 0.16 seconds.
+The third bar shows results for ParallelAccelerator with
+<code>OMP_NUM_THREADS</code> set to 1, which clocks in at about 3 seconds. For
+comparison, the rightmost bar show results for &ldquo;plain Julia&rdquo;, that is,
+a version of the code without <code>@acc</code>, which runs in about 21 seconds.</p>
+
+<p>Because Julia doesn&rsquo;t (yet) have native multithreading support, the
+plain Julia results shown in the rightmost bar are for one thread.
+But it is interesting to note that the ParallelAccelerator
+implementation of Black-Scholes outperforms plain Julia by a factor of
+about seven, even when running on just one core.  The reason for this
+speedup is that ParallelAccelerator (despite its name!) does more than
+just parallelize code.  The ParallelAccelerator compiler is able to do
+away with much of the runtime overhead incurred by array bounds checks
+and allocation of intermediate arrays.  After that, with the addition
+of parallelism, we&rsquo;re able to do even better, for a total speedup of
+more than 100x over plain Julia.</p>
+
+<p>To see how ParallelAccelerator accomplishes this, we&rsquo;ll discuss the
+parallel patterns that ParallelAccelerator handles in a bit more
+detail, and then we&rsquo;ll take a closer look at the ParallelAccelerator
+compiler pipeline.</p>
+
+<h2 id="parallel-patterns">Parallel patterns</h2>
+
+<p>ParallelAccelerator works by identifying implicit parallel patterns in
+source code and making the parallelism explicit.  These patterns
+include <em>map</em>, <em>reduce</em>, <em>array comprehension</em>, and <em>stencil</em>.</p>
+
+<h3 id="map">Map</h3>
+
+<p>As we saw in the Black-Scholes example above, the <code>.+</code>, <code>.-</code>, <code>.*</code>,
+and <code>./</code> operations in Julia are pointwise array operations that take
+input arrays as arguments and produce an output array.
+ParallelAccelerator translates these pointwise array operations into
+data-parallel <em>map</em> operations.  (See
+<a href="http://parallelacceleratorjl.readthedocs.org/en/latest/advanced.html#map-and-reduce">the ParallelAccelerator documentation</a>
+for a complete list of all the pointwise array operations that it
+knows how to parallelize.)  Furthermore, ParallelAccelerator
+translates array assignments into <em>in-place</em> map operations.  For
+instance, assigning <code>a = a .* b</code> where <code>a</code> and <code>b</code> are arrays would
+map <code>.*</code> over <code>a</code> and <code>b</code> and update <code>a</code> in place with the result.
+For both standard map and in-place map, it is possible for
+ParallelAccelerator to avoid any array bounds checking once we&rsquo;ve
+established that the input arrays and the output arrays are the same
+size.</p>
+
+<h3 id="reduce">Reduce</h3>
+
+<p>Reduce operations take an array argument and produce a scalar result
+by combining all the elements of an array with an associative and
+commutative operation.  ParallelAccelerator translates the Julia
+functions <code>minimum</code>, <code>maximum</code>, <code>sum</code>, <code>prod</code>, <code>any</code>, and <code>all</code> into
+data-parallel reduce operations when they are called on arrays.</p>
+
+<h3 id="array-comprehension">Array comprehension</h3>
+
+<p>Julia supports
+<a href="https://docs.julialang.org/en/v1/manual/arrays/#comprehensions">array comprehensions</a>,
+a convenient and concise way to construct arrays.  For example, the
+expressions that initialize the five input arrays in the Black-Scholes
+example above are all array comprehensions.  As a more sophisticated
+example, the following <code>avg</code> function, taken from
+<a href="https://docs.julialang.org/en/v1/manual/arrays/#comprehensions">the Julia manual</a>,
+takes a one-dimensional input array <code>x</code> of length <em>n</em> and uses an
+array comprehension to construct an output array of length <em>n</em>-2, in
+which each element is a weighted average of the corresponding element
+in the original array and its two neighbors:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">avg<span style="color:#666"></span>(x<span style="color:#666"></span>) <span style="color:#666">=</span> [ <span style="color:#666">0.25</span><span style="color:#666">*</span>x<span style="color:#666"></span>[i<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span>] <span style="color:#666">+</span> <span style="color:#666">0.5</span><span style="color:#666">*</span>x<span style="color:#666"></span>[i<span style="color:#666"></span>] <span style="color:#666">+</span> <span style="color:#666">0.25</span><span style="color:#666">*</span>x<span style="color:#666"></span>[i<span style="color:#666"></span><span style="color:#666">+</span><span style="color:#666">1</span>] <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">2</span><span style="color:#666">:</span>length<span style="color:#666"></span>(x<span style="color:#666"></span>) <span style="color:#666">-</span> <span style="color:#666">1</span> ]</code></pre></div>
+
+<p>Comprehensions like this one can also be parallelized by ParallelAccelerator: in a nutshell, ParallelAccelerator can transform array comprehensions to code that first allocates an output array and then performs an in-place map that can write to each element of the output array in parallel.</p>
+
+<p>Array comprehensions differ from map and reduce operations in that
+they involve explicit array indexing.  But it is still possible to
+parallelize array comprehensions in Julia, as long as there are no
+side effects in the comprehension body (everything before the
+<code>for</code>). [<a href="#references">3</a>] ParallelAccelerator uses a conservative
+static analysis to try to identify and reject side-effecting
+operations in comprehensions.</p>
+
+<h3 id="stencil">Stencil</h3>
+
+<p>In addition to map, reduce, and comprehension, ParallelAccelerator
+targets a fourth parallel pattern:
+<a href="https://en.wikipedia.org/wiki/Stencil_code">stencil computations</a>.  A
+stencil computation updates the elements of an array according to a
+fixed pattern called a stencil.  In fact, the <code>avg</code> comprehension
+example above could also be thought of as a stencil computation,
+because it updates the contents of an array based on each element&rsquo;s
+neighbors.  However, stencil computations differ from the other
+patterns that ParallelAccelerator targets, because there&rsquo;s not a
+built-in, user-facing language feature in Julia that expresses stencil
+computations specifically.  So, ParallelAccelerator introduces a new
+user-facing language construct called <code>runStencil</code> for expressing
+stencil computations in Julia.  Next, we&rsquo;ll look at an example that
+illustrates how <code>runStencil</code> works.</p>
+
+<h2 id="example-blurring-an-image-with-runstencil">Example: Blurring an image with runStencil</h2>
+
+<p>Let&rsquo;s consider a stencil computation that blurs an image using a
+<a href="https://en.wikipedia.org/wiki/Gaussian_blur">Gaussian blur</a>.  The
+image is represented as a two-dimensional array of pixels.  To blur
+the image, we set the value of each output pixel to a particular
+weighted average of the corresponding input pixel&rsquo;s value and the
+values of its neighboring input pixels.  By repeating this process
+multiple times, we can get an increasingly blurred
+image. [<a href="#references">4</a>]</p>
+
+<p>The following code implements a Gaussian blur in Julia.  It operates
+on a 2D array of <code>Float32</code>s: the pixels of the source image.  It&rsquo;s
+easy to obtain such an array using, for instance, the <code>load</code> function
+from the <a href="https://github.com/timholy/Images.jl">Images.jl</a> library,
+followed by a call to
+<a href="https://docs.julialang.org/en/v1/manual/conversion-and-promotion/#conversion"><code>convert</code></a>
+to get an array of type <code>Array{Float32,2}</code>.  (For simplicity, we&rsquo;re
+assuming that the input image is a grayscale image, so each pixel has
+just one value instead of red, green, and blue values.  However, it
+would be straightforward to use the same approach for RGB pixels.)</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> blur<span style="color:#666"></span>(img<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float32</span>,<span style="color:#666">2</span>}, iterations<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int</span>)
+    w<span style="color:#666"></span>, h<span style="color:#666"></span> <span style="color:#666">=</span> size<span style="color:#666"></span>(img<span style="color:#666"></span>)
+    <span style="color:#a2f;font-weight:bold">for</span> i<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">1</span><span style="color:#666">:</span>iterations<span style="color:#666"></span>
+      img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>,<span style="color:#666">3</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>] <span style="color:#666">=</span> 
+           img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">2</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">4</span>,<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">2</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">4</span>] <span style="color:#666">*</span> <span style="color:#666">0.0030</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">3</span>,<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">2</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">4</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>,<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">2</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">4</span>] <span style="color:#666">*</span> <span style="color:#666">0.0219</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">1</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span>,<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">2</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">4</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">2</span><span style="color:#666">:</span>w<span style="color:#666"></span>,<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">2</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">4</span>] <span style="color:#666">*</span> <span style="color:#666">0.0030</span> <span style="color:#666">+</span>
+           img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">2</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">4</span>,<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">3</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">3</span>,<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">3</span>] <span style="color:#666">*</span> <span style="color:#666">0.0596</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>,<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">3</span>] <span style="color:#666">*</span> <span style="color:#666">0.0983</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">1</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span>,<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">3</span>] <span style="color:#666">*</span> <span style="color:#666">0.0596</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">2</span><span style="color:#666">:</span>w<span style="color:#666"></span>,<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">3</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span>
+           img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">2</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">4</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">0</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0219</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">3</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">0</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0983</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">0</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.1621</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">1</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">0</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0983</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">2</span><span style="color:#666">:</span>w<span style="color:#666"></span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">0</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0219</span> <span style="color:#666">+</span>
+           img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">2</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">4</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">1</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">3</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">1</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0596</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">1</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0983</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">1</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">1</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0596</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">2</span><span style="color:#666">:</span>w<span style="color:#666"></span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">1</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span>
+           img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">2</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">4</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">2</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">0</span>] <span style="color:#666">*</span> <span style="color:#666">0.0030</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">-</span><span style="color:#666">1</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">3</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">2</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">0</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">2</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">2</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">0</span>] <span style="color:#666">*</span> <span style="color:#666">0.0219</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">1</span><span style="color:#666">:</span>w<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">2</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">0</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> img<span style="color:#666"></span>[<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">2</span><span style="color:#666">:</span>w<span style="color:#666"></span>,<span style="color:#666">3</span><span style="color:#666">+</span><span style="color:#666">2</span><span style="color:#666">:</span>h<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">0</span>] <span style="color:#666">*</span> <span style="color:#666">0.0030</span>
+    <span style="color:#a2f;font-weight:bold">end</span>
+    <span style="color:#a2f;font-weight:bold">return</span> img<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+
+<p>Here, to compute the value of a pixel in the output image, we use the
+the corresponding input pixel as well as all its neighboring pixels,
+to a depth of two pixels out from the input pixel &ndash; so, twenty-four
+neighbors.  In all, there are twenty-five pixel values to examine.  We
+add all these pixel values together, each multiplied by a weight &ndash; in
+this case <code>0.0030</code> for the cornermost pixels, <code>0.1621</code> for the center
+pixel, and for all the other pixels, something in between &ndash; and the
+total is the value of the output pixel.  At the borders of the image,
+we don&rsquo;t have enough neighboring pixels to compute an output pixel
+value, so we simply skip those pixels and don&rsquo;t assign to
+them. [<a href="#references">5</a>]</p>
+
+<p>Notice that the <code>blur</code> function explicitly loops over the number of
+iterations, that is, times to apply the blur to the the image, but it
+does not explicitly loop over pixels in the image.  Instead, the code
+is written in array style: it performs just one assignment to the
+array <code>img</code>, using the ranges <code>3:w-2</code> and <code>3:h-2</code> to avoid assigning
+to the borders of the image.  On a
+<a href="https://github.com/IntelLabs/ParallelAccelerator.jl/blob/master/examples/example.jpg">large grayscale input image</a>
+of 7095 by 5322 pixels, this code takes about 10 minutes to run for
+100 iterations.</p>
+
+<p>Using ParallelAccelerator, we can get much better performance.  Let&rsquo;s look at a version of <code>blur</code> that uses <code>runStencil</code>:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f">@acc</span><span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">function</span> blur<span style="color:#666"></span>(img<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Array</span>{<span style="color:#0b0;font-weight:bold">Float32</span>,<span style="color:#666">2</span>}, iterations<span style="color:#666"></span><span style="color:#666">:</span><span style="color:#666">:</span><span style="color:#0b0;font-weight:bold">Int</span>)
+    buf<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#0b0;font-weight:bold">Array</span>(<span style="color:#0b0;font-weight:bold">Float32</span>, size<span style="color:#666"></span>(img<span style="color:#666"></span>)<span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>) 
+    runStencil<span style="color:#666"></span>(buf<span style="color:#666"></span>, img<span style="color:#666"></span>, iterations<span style="color:#666"></span>, <span style="color:#666">:</span>oob_skip<span style="color:#666"></span>) <span style="color:#a2f;font-weight:bold">do</span> b<span style="color:#666"></span>, a<span style="color:#666"></span>
+       b<span style="color:#666"></span>[<span style="color:#666">0</span>,<span style="color:#666">0</span>] <span style="color:#666">=</span> 
+            (a<span style="color:#666"></span>[<span style="color:#666">-</span><span style="color:#666">2</span>,<span style="color:#666">-</span><span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.003</span>  <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">-</span><span style="color:#666">1</span>,<span style="color:#666">-</span><span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">0</span>,<span style="color:#666">-</span><span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0219</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">-</span><span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">2</span>,<span style="color:#666">-</span><span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0030</span> <span style="color:#666">+</span>
+             a<span style="color:#666"></span>[<span style="color:#666">-</span><span style="color:#666">2</span>,<span style="color:#666">-</span><span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">-</span><span style="color:#666">1</span>,<span style="color:#666">-</span><span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0596</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">0</span>,<span style="color:#666">-</span><span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0983</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">-</span><span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0596</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">2</span>,<span style="color:#666">-</span><span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span>
+             a<span style="color:#666"></span>[<span style="color:#666">-</span><span style="color:#666">2</span>, <span style="color:#666">0</span>] <span style="color:#666">*</span> <span style="color:#666">0.0219</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">-</span><span style="color:#666">1</span>, <span style="color:#666">0</span>] <span style="color:#666">*</span> <span style="color:#666">0.0983</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">0</span>, <span style="color:#666">0</span>] <span style="color:#666">*</span> <span style="color:#666">0.1621</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">1</span>, <span style="color:#666">0</span>] <span style="color:#666">*</span> <span style="color:#666">0.0983</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">2</span>, <span style="color:#666">0</span>] <span style="color:#666">*</span> <span style="color:#666">0.0219</span> <span style="color:#666">+</span>
+             a<span style="color:#666"></span>[<span style="color:#666">-</span><span style="color:#666">2</span>, <span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">-</span><span style="color:#666">1</span>, <span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0596</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">0</span>, <span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0983</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">1</span>, <span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0596</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">2</span>, <span style="color:#666">1</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span>
+             a<span style="color:#666"></span>[<span style="color:#666">-</span><span style="color:#666">2</span>, <span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.003</span>  <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">-</span><span style="color:#666">1</span>, <span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">0</span>, <span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0219</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">1</span>, <span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0133</span> <span style="color:#666">+</span> a<span style="color:#666"></span>[<span style="color:#666">2</span>, <span style="color:#666">2</span>] <span style="color:#666">*</span> <span style="color:#666">0.0030</span>)
+       <span style="color:#a2f;font-weight:bold">return</span> a<span style="color:#666"></span>, b<span style="color:#666"></span>
+    <span style="color:#a2f;font-weight:bold">end</span>
+    <span style="color:#a2f;font-weight:bold">return</span> img<span style="color:#666"></span>
+<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
+
+<p>Here, we again have a function called <code>blur</code> &ndash; now annotated with
+<code>@acc</code> &ndash; that takes the same arguments as the original code.  This
+version of <code>blur</code> allocates a new 2D array called <code>buf</code> that is the
+same size as the original <code>img</code> array.  The allocation of <code>buf</code> is
+followed by a call to <code>runStencil</code>.  Let&rsquo;s take a closer look at the
+<code>runStencil</code> call.</p>
+
+<p><code>runStencil</code> has the following signature:
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">runStencil<span style="color:#666"></span>(kernel<span style="color:#666"></span> <span style="color:#666">:</span><span style="color:#666">:</span> <span style="color:#0b0;font-weight:bold">Function</span>, buffer1<span style="color:#666"></span>, buffer2<span style="color:#666"></span>, <span style="color:#666">.</span><span style="color:#666">.</span><span style="color:#666">.</span>, iteration<span style="color:#666"></span> <span style="color:#666">:</span><span style="color:#666">:</span> <span style="color:#0b0;font-weight:bold">Int</span>, boundaryHandling<span style="color:#666"></span> <span style="color:#666">:</span><span style="color:#666">:</span> <span style="color:#0b0;font-weight:bold">Symbol</span>)</code></pre></div></p>
+
+<p>In <code>blur</code>, the call to <code>runStencil</code> uses Julia&rsquo;s
+<a href="https://docs.julialang.org/en/v1/manual/functions/#do-block-syntax-for-function-arguments"><code>do</code>-block syntax for function arguments</a>,
+so the <code>do b, a ... end</code> block is actually the first argument to the
+<code>runStencil</code> call.  The <code>do</code> block creates an anonymous function that
+binds the variables <code>b</code> and <code>a</code>.  The arguments <code>buffer1, buffer2,
+...</code> that are passed to <code>runStencil</code> become the arguments to the
+anonymous function.  In this case, we are passing two buffers, <code>buf</code>
+and <code>img</code>, to <code>runStencil</code>, and so the anonymous function takes two
+arguments.</p>
+
+<p>Aside from the anonymous function and the two buffers, <code>runStencil</code>
+takes two other arguments.  The first of these is a number of
+iterations that we want to run the stencil computation for.  In this
+case, we simply pass along the <code>iterations</code> argument that is passed to
+<code>blur</code>.  Finally, the last argument to <code>runStencil</code> is a symbol
+indicating how stencil boundaries are to be handled.  Here, we&rsquo;re
+using the <code>:oob_skip</code> symbol, short for &ldquo;out-of-bounds skip&rdquo;.  It
+means that when input indices are out of bounds &ndash; for instance, in
+the situation where the input pixel is one of those on the two-pixel
+border of the image, and there aren&rsquo;t enough neighbor pixels to
+compute the output pixel value &ndash; then we simply skip writing to the
+output pixel.  This has the same effect as the careful indexing in the
+original version of <code>blur</code>.</p>
+
+<p>Finally, let&rsquo;s look at the body of the <code>do</code> block that we&rsquo;re passing
+to <code>runStencil</code>.  It contains an assignment to <code>b</code>, using values
+computed from <code>a</code>.  As we&rsquo;ve said, <code>b</code> and <code>a</code> here are <code>buf</code> and
+<code>img</code>: our newly-allocated buffer, and the original image.  The code
+here is similar to that of the original implementation of <code>blur</code>, but
+here we&rsquo;re using <em>relative</em> rather than absolute indexing into arrays,
+The index <code>0,0</code> in <code>b[0,0]</code> doesn&rsquo;t refer to any particular element of
+<code>b</code>, but instead to the current position of a cursor that can be
+thought of as traversing all the elements of <code>b</code>.  On the right side
+of the assignment.  <code>a[-2,-1]</code> refers to the element in <code>a</code> that is
+two elements to the left and one element up from the <code>0,0</code> element of
+<code>a</code>.  In this way, we can express a stencil computation more concisely
+than the original version of <code>blur</code> did, and we don&rsquo;t have to worry
+about getting the indices correct for boundary handling as we had to
+do before, because the <code>:oob_skip</code> argument tells <code>runStencil</code>
+everything it needs to no to handle boundaries correctly.</p>
+
+<p>Finally, at the end of the <code>do</code> block, we return <code>a, b</code>.  They were
+bound as <code>b, a</code>, but we return them in the opposite order so that for
+each iteration of the stencil, we&rsquo;ll be using the already-blurred
+buffer as the input for another round of blurring.  This continues for
+however many iterations we&rsquo;ve specified.  There&rsquo;s therefore no need to
+write an explicit <code>for</code> loop for stencil iterations when using
+<code>runStencil</code>; one just passes an argument saying how many iterations
+should occur.</p>
+
+<p>Therefore <code>runStencil</code> enables us to write more concise code than
+plain Julia, as we&rsquo;d expect from a language extension.  But where
+<code>runStencil</code> really shines is in the performance it enables.  The
+following figure compares performance results for plain Julia and
+ParallelAccelerator implementations of <code>blur</code>, each running for 100
+iterations on the aforementioned 7095x5322 source image, run using the
+same machine as for the previous Black-Scholes benchmark.</p>
+
+<p><img src="../../../../images/blog/parallelaccelerator_figures/gaussian-blur-2016-03-02-blogpost.png?raw=true" alt="Benchmark results for plain Julia and ParallelAccelerator implementations of Gaussian blur" /></p>
+
+<p>The rightmost column shows the results for plain Julia, using the
+first implementation of <code>blur</code> shown above.  The three columns to the
+left show results for the ParallelAccelerator version that uses
+<code>runStencil</code>.  As we can see, even when running on just one thread,
+ParallelAccelerator enables a speedup of about 15x: from about 600
+seconds to about 40 seconds.  Running on 36 threads provides a further
+parallel speedup of more than 26x, resulting in a total speedup of
+nearly 400x over plain single-threaded Julia.</p>
+
+<h2 id="an-overview-of-the-parallelaccelerator-compiler-architecture">An overview of the ParallelAccelerator compiler architecture</h2>
+
+<p>Now that we&rsquo;ve talked about the parallel patterns that
+ParallelAccelerator speeds up and seen some code examples, let&rsquo;s take
+a look at how the ParallelAccelerator compiler works.</p>
+
+<p>The standard Julia JIT compiler parses Julia source code into the
+Julia abstract syntax tree (AST) representation.  It performs type
+inference on the AST, then transforms the AST to LLVM IR, and finally
+generates native assembly code.  ParallelAccelerator intercepts this
+process at the level of the AST.  It introduces new AST nodes for the
+parallel patterns we discussed above.  It then does various
+optimizations on the resulting AST.  Finally, it generates C++ code
+that can be compiled by an external C++ compiler.  The following
+figure shows an overview of the ParallelAccelerator compilation
+process:</p>
+
+<p><img src="../../../../images/blog/parallelaccelerator_figures/compiler-pipeline.png?raw=true" alt="The ParallelAccelerator compiler pipeline" /></p>
+
+<p>As many readers of this blog will know, Julia has good support for
+<a href="https://docs.julialang.org/en/v1/devdocs/reflection/">inspecting and manipulating its own ASTs</a>.
+Its built-in <code>code_typed</code> function will return the AST of any function
+after Julia&rsquo;s type inference has taken place.  This is very convenient
+for ParallelAccelerator, which is able to use the output from
+<code>code_typed</code> as the input to the first pass of its compiler, which is
+called &ldquo;Domain Transformations&rdquo;.  The Domain Transformations pass
+produces ParallelAccelerator&rsquo;s <em>Domain AST</em> intermediate
+representation.</p>
+
+<p>Domain AST is similar to Julia&rsquo;s AST, except it introduces new AST
+nodes for parallel patterns that it identifies.  We call these nodes
+&ldquo;domain nodes&rdquo;, collectively.  The Domain Transformations pass
+replaces certain parts of the AST with domain nodes.</p>
+
+<p>The Domain Transformations pass is followed by the Parallel
+Transformations pass, which replaces domain nodes with &ldquo;parfor&rdquo; nodes,
+each of which represents one or more nested parallel <code>for</code> loops.
+Loop fusion also takes place during the Parallel Transformations pass.
+We call the result of Parallel Transformations <em>Parallel
+AST</em>. [<a href="#references">6</a>]</p>
+
+<p>The compiler hands off Parallel AST code to the last pass of the
+compiler, CGen, which generates C++ code and converts parfor nodes
+into OpenMP loops.  Finally, an external C++ compiler creates an
+executable which is linked to OpenMP and to a small array runtime
+component written in C that manages the transfer of arrays back and
+forth between Julia and C++.</p>
+
+<h2 id="caveats">Caveats</h2>
+
+<p>ParallelAccelerator is still a proof of concept at this stage.  Users
+should be aware of two issues that can stand in the way of being able
+to make effective use of ParallelAccelerator.  Those issues are,
+first, package load time, and second, limitations in what Julia
+programs ParallelAccelerator is able to handle.  We discuss each of
+these issues in turn.</p>
+
+<h3 id="package-load-time">Package load time</h3>
+
+<p>Because ParallelAccelerator is a large Julia package (it&rsquo;s a compiler,
+after all), it takes a long time (perhaps 20 or 25 seconds on a 4-core
+desktop machine) for <code>using ParallelAccelerator</code> to run.  This long
+pause is <em>not</em> the time that ParallelAccelerator is taking to compile
+your <code>@acc</code>-annotated code; it&rsquo;s the time that Julia is taking to
+compile ParallelAccelerator itself.  After this initial pause, the
+first call to an <code>@acc</code>-annotated function will incur a brief
+compilation pause (this time from the ParallelAccelerator compiler,
+not Julia itself) of perhaps a couple of seconds.  Subsequent calls to
+the same function won&rsquo;t incur the compilation pause.</p>
+
+<p>Let&rsquo;s see what these compilation pauses look like in practice.  The
+ParallelAccelerator package comes with a collection of
+<a href="https://github.com/IntelLabs/ParallelAccelerator.jl/tree/master/examples">example programs</a>
+that print timing information, including the
+<a href="https://github.com/IntelLabs/ParallelAccelerator.jl/blob/master/examples/black-scholes/black-scholes.jl">Black-Scholes</a>
+and
+<a href="https://github.com/IntelLabs/ParallelAccelerator.jl/blob/master/examples/gaussian-blur/gaussian-blur.jl">Gaussian blur</a>
+examples shown in this post.  All the examples print timing
+information for two calls to an <code>@acc</code>-annotated function: first a
+&ldquo;warm-up&rdquo; call with trivial arguments to measure compilation time, and
+then a more realistic call.  In the output printed by each example,
+timing information for the more realistic call is preceded by the
+string <code>&quot;SELFTIMED&quot;</code>, while timing information for the warm-up call is
+preceded by <code>&quot;SELFPRIMED&quot;</code>.  Let&rsquo;s run the Black-Scholes example and
+time it using the <code>time</code> shell command:</p>
+
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#a2f">time</span> julia ParallelAccelerator/examples/black-scholes/black-scholes.jl 
+<span style="color:#b8860b">iterations</span> <span style="color:#666">=</span> <span style="color:#666">10000000</span>
+SELFPRIMED 1.766323497
+checksum: 2.0954821257116848e8
+<span style="color:#b8860b">rate</span> <span style="color:#666">=</span> 1.9205394841503927e8 opts/sec
+SELFTIMED 0.052068703
+
+real	0m26.454s
+user	0m31.027s
+sys	0m0.874s</code></pre></div>
+
+<p>Here, we&rsquo;re running Black-Scholes for 10,000,000 iterations on our
+4-core desktop machine.  The total wall-clock time of 26.454 seconds
+consists mostly of the time it takes for <code>using ParallelAccelerator</code>
+to run.  Once that&rsquo;s done, Julia reports a <code>SELFPRIMED</code> time of about
+1.8 seconds, which is dominated by the time it takes for
+ParallelAccelerator to compile the <code>@acc</code>-annotated code, and finally
+the <code>SELFTIMED</code> time is about 0.05 seconds for this problem size.</p>
+
+<p>As Julia&rsquo;s compilation speed improves, we expect that
+package load time will be less of a problem for ParallelAccelerator.</p>
+
+<h3 id="compiler-limitations">Compiler limitations</h3>
+
+<p>ParallelAccelerator is able to handle only a limited subset of Julia
+language features, and it only supports a limited subset of Julia&rsquo;s
+<code>Base</code> library functions.  In other words, you cannot yet put an
+<code>@acc</code> annotation on arbitrary Julia code and expect it to go faster out of
+the box.  The examples in this post give an idea of what kinds of
+programs are supported currently; for more, check out the
+<a href="https://github.com/IntelLabs/ParallelAccelerator.jl/tree/master/examples">full collection of ParallelAccelerator examples</a>.
+However, if ParallelAccelerator can&rsquo;t compile some code in an
+<code>@acc</code>-annotated function, it will simply fall back to running the
+function under regular Julia.  So your code will run, regardless of
+whether ParallelAccelerator can speed it up.</p>
+
+<p>One reason why an <code>@acc</code>-annotated function might fail to compile is
+that ParallelAccelerator tries to transitively compile every Julia
+function that is called by the <code>@acc</code>-annotated function.  So, if an
+<code>@acc</code>-annotated function makes several Julia library calls,
+ParallelAccelerator will attempt to compile those functions as well &ndash;
+and every Julia function that <em>they</em> call, and so on.  If any of the
+code in the call chain contains a feature that ParallelAccelerator
+doesn&rsquo;t currently support, ParallelAccelerator will fail to compile
+the original <code>@acc</code>-annotated function.  It is therefore a good idea
+to begin by annotating small (but expensive) computational kernels
+with <code>@acc</code>, rather than wrapping an entire program in an <code>@acc</code>
+block.  The ParallelAccelerator
+<a href="http://parallelacceleratorjl.readthedocs.org/en/latest/limits.html">documentation</a>
+has many more details on which Julia features we don&rsquo;t support and why.</p>
+
+<p>These limitations explain why the kind of performance improvements
+that ParallelAccelerator provides aren&rsquo;t already the default in Julia.
+Supporting all of Julia would be a major undertaking; however, in many
+cases, there&rsquo;s not a fundamental reason why ParallelAccelerator
+couldn&rsquo;t support a particular Julia feature or a function in <code>Base</code>,
+and supporting it is a matter of realizing that it is a problem for
+users and putting in the necessary engineering effort to fix it.  So,
+when you come across code that ParallelAccelerator can&rsquo;t handle,
+please do
+<a href="https://github.com/IntelLabs/ParallelAccelerator.jl/issues">file bugs</a>!</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In this post, we&rsquo;ve introduced
+<a href="https://github.com/IntelLabs/ParallelAccelerator.jl">ParallelAccelerator.jl</a>,
+a package for speeding up array-style Julia programs.  It works by
+identifying implicit parallel patterns in source code and compiling
+them to efficient, explicitly parallel executables, along the way
+getting rid of many of the usual overheads of high-level array-style
+programming.</p>
+
+<p>ParallelAccelerator is an open source project in its early stages, and
+we enthusiastically encourage comments, questions,
+<a href="https://github.com/IntelLabs/ParallelAccelerator.jl/issues">bug reports</a>,
+and contributions from the Julia community.  We welcome everyone&rsquo;s
+participation, and we are especially interested in how
+ParallelAccelerator can be used to speed up real-world Julia programs.</p>
+
+<hr />
+
+<h1 id="references">References</h1>
+
+<p>[1] Starting with Julia 0.5, Julia will have its own
+native threading support, which means that ParallelAccelerator can
+target Julia&rsquo;s own native threads instead of generating C++ OpenMP
+code for parallelism.  We&rsquo;ve begun work on implementing a
+native-threading-based backend for ParallelAccelerator, but we still
+target C++ by default.</p>
+
+<p>[2] Detailed machine and benchmarking
+specifications: We use a machine with two Intel Xeon E5-2699 v3
+processors (2.3 GHz) with 18 physical cores each and 128 GB RAM,
+running the CentOS 6.7 Linux distribution.  We use the Intel C++
+Compiler (ICC) v15.0.2 with &ldquo;-O3&rdquo; for compilation of the generated C++
+code.  The Julia version is 0.4.4-pre+26.  The results shown are the
+average of three runs (we run each version of a benchmark five times
+and discard the first and last runs).</p>
+
+<p>[3] In Julia, it is not possible to index into
+a comprehension&rsquo;s output array in the body of the comprehension.  (The
+<code>avg</code> example indexes only into the input array, not the output
+array.)  Therefore, it&rsquo;s not necessary to do any bounds checking on
+writes to the output array.  However, we still need to bounds-check
+reads from the input array (for instance, in the <code>avg</code> example, if
+we&rsquo;d written <code>0.25*x[i-2]</code>, that would be out of bounds), so we cannot
+avoid all array bounds checking for comprehensions in the way that we
+can for map operations.</p>
+
+<p>[4] In practice, rather than applying
+successive Gaussian blurs to an image, we&rsquo;d probably apply a single,
+larger Gaussian blur, which, as
+<a href="https://en.wikipedia.org/wiki/Gaussian_blur">Wikipedia notes</a>, is at
+least as efficient computationally.  Nevertheless, we&rsquo;ll use it here
+as an example of a stencil computation that can be iterated.</p>
+
+<p>[5] A more sophisticated implementation of
+Gaussian blur might do a fancier form of border handling, using only
+the pixels it has available at the borders.</p>
+
+<p>[6] The names &ldquo;Domain AST&rdquo; and &ldquo;Parallel AST&rdquo;
+are inspired by the Domain IR and Parallel IR of the
+<a href="https://ppl.stanford.edu/papers/pact11-brown.pdf">Delite compiler framework</a>.</p>
+
+
+  </div>
+
+  
+
+  </div>
+  </div>
+  </div>
+
+  <br />
+
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../../v2/js/jquery.min.js"></script>
+<script src="../../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../../v2/js/platform.js"></script>
+<script src="../../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

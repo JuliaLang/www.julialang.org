@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Scientific Projects – Summer of Code</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="../../../v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../v2/css/app.css" />
+<link rel="stylesheet" href="../../../v2/css/fonts.css" />
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script><script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../" id="logo">
+      <img src="../../../v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="//docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="../../../jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br/>
+
+  <div class = "container">
+  
+
+<h1 id="hahahugoshortcode-s0-hbhb">Scientific Projects – Summer of Code</h1>
+
+<h2 id="quantum-computation-simualation-of-noisy-circuits">Quantum Computation: Simualation of Noisy Circuits</h2>
+
+<p><a href="https://arxiv.org/abs/1801.00862">Noisy Intermediate-Scale Quantum (NISQ) technology will be available in the near future.</a> However, it would be much more convenient if we could test our algorithm with noise and simulate our quantum algorithm on noisy circuits to explore their stability, efficiency. To assist the research of NISQ, enhance the quantum circuit simulator in Julia <a href="https://github.com/QuantumBFS/Yao.jl">Yao.jl</a> with noisy circuit simulation would be quite useful. We are planning to implement the algorithm in a recent paper as our SoC project: <a href="https://arxiv.org/pdf/1810.03176.pdf">Efficient classical simulation of noisy quantum computation</a>.</p>
+
+<p><strong>Recommended Skills</strong>: Background knowledge in quantum information and tensor networks and the ability of coding with Julia.</p>
+
+<p><strong>Expected Results</strong>: Provide Yao.jl an extension package that defines different kinds of noise and provide Yao.jl with the ability to simulate certain kind of noisy circuits efficiently.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/Roger-luo/">Roger Luo</a></p>
+
+<h2 id="computational-methods-using-zonotopes">Computational methods using zonotopes</h2>
+
+<p>Zonotopes are representations of extended use in set-based analysis, since linear transformations and Minkowski sums can be computed efficiently. However, they are are not closed under intersections. In the literature there exist different alternatives for overapproximation of zonotope intersections with other set types. The package <a href="https://github.com/JuliaReach/LazySets.jl">LazySets.jl</a> already offers support for zonotopes but lacks some of the state-of-the-art methods.</p>
+
+<p>Zonotopes provide a very good middle ground between hyperrectangular approximations and general polyhedral approximations in terms of performance and accuracy. Applications of this project are the verification of hybrid dynamical systems (see <a href="https://juliareach.github.io/JuliaReach-website/">https://juliareach.github.io/JuliaReach-website/</a>) and in neural network verification (see <a href="https://ieeexplore.ieee.org/document/8418593">AI2</a> and <a href="https://github.com/sisl/NeuralVerification.jl">NeuralVerification.jl</a> project).</p>
+
+<p><strong>Recommended Skills:</strong> Basic knowledge on convex geometry and polyhedral computations is preferred but can be learned along the way. A taste for writing efficient code.</p>
+
+<p><strong>Expected Results:</strong> Some possibilities are: overapproximation of zonotopes with polytopes, zonotope-polytope intersections, order reduction metods, Minkowski difference of zonotopes.</p>
+
+<p><strong>Mentors:</strong> <a href="http://github.com/mforets">Marcelo Forets</a> and <a href="https://github.com/schillic">Christian Schilling</a>.</p>
+
+<p><strong>References:</strong> See <a href="https://juliareach.github.io/Reachability.jl/stable/publications/">Reachability.jl#Publications</a> and references therein, or contact us in the <a href="https://gitter.im/JuliaReach/Lobby">gitter channel</a>.</p>
+
+  </div>
+  <br /><br />
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://numfocus.org/donate-to-julia">Donate</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../v2/js/jquery.min.js"></script>
+<script src="../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../v2/js/platform.js"></script>
+<script src="../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+  <script src="../../../v2/js/jquery.min.js"></script>
+<script src="../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../v2/js/platform.js"></script>
+<script src="../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>
