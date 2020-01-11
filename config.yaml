@@ -1,0 +1,12 @@
+baseURL: julialang.org
+relativeURLs: true
+canonifyURLs: true
+disableKinds:
+  - taxonomy
+  - taxonomyTerm
+permalinks:
+  blog: "blog/:year/:month/:title"
+markup:
+  defaultMarkdownHandler: blackfriday
+  highlight:
+    style: emacs

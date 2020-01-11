@@ -1,0 +1,69 @@
+$if(legacy-header)$
+$legacy-header$
+$else$
+\input texinfo
+@documentencoding utf-8
+$endif$
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+$if(strikeout)$
+@macro textstrikeout{text}
+~~\text\~~
+@end macro
+
+$endif$
+$if(subscript)$
+@macro textsubscript{text}
+@iftex
+@textsubscript{\text\}
+@end iftex
+@ifnottex
+_@{\text\@}
+@end ifnottex
+@end macro
+
+$endif$
+$if(superscript)$
+@macro textsuperscript{text}
+@iftex
+@textsuperscript{\text\}
+@end iftex
+@ifnottex
+^@{\text\@}
+@end ifnottex
+@end macro
+
+$endif$
+@ifnottex
+@paragraphindent 0
+@end ifnottex
+$if(titlepage)$
+@titlepage
+@title $title$
+$for(author)$
+@author $author$
+$endfor$
+$if(date)$
+$date$
+$endif$
+@end titlepage
+
+$endif$
+$for(include-before)$
+$include-before$
+
+$endfor$
+$if(toc)$
+@contents
+
+$endif$
+$body$
+$for(include-after)$
+
+$include-after$
+$endfor$
+@end tex
+@bye
+

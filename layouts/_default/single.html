@@ -1,0 +1,15 @@
+{{ define "main" }}
+  {{ partial "mainmenu.html" . }}
+
+  <br /><br/>
+
+  <div class = "container">
+  {{ .Content }}
+  </div>
+  <br /><br />
+  {{ partial "footermenu.html" . }}
+
+  {{ partial "footer.html" . }}
+
+  {{ partial "scripts.html" . }}
+{{ end }}
