@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Julia Seasons of Contributions on </title>
-    <link>julialang.org/jsoc/</link>
+    <link>https://julialang.org/jsoc/</link>
     <description>Recent content in Julia Seasons of Contributions on </description>
     <generator>Hugo -- gohugo.io</generator>
     
-	<atom:link href="julialang.org/jsoc/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://julialang.org/jsoc/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>julialang.org/jsoc/gsod/projects/</link>
+      <link>https://julialang.org/jsoc/gsod/projects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsod/projects/</guid>
+      <guid>https://julialang.org/jsoc/gsod/projects/</guid>
       <description>Julia&amp;rsquo;s Google Season of Docs Projects Below are the projects which have been proposed for Google Season of Docs.
 Differential Equations DifferentialEquations.jl is a widely used Julia library for solving ordinary, stochastic, delay, any many more types of differential equations. Below are the proposed projects in this area. Technical writers may wish to do a combination of these projects. The mentor for the JuliaDiffEq projects is Chris Rackauckas.
 Updated Documentation and Doc Testing DifferentialEquations.</description>
@@ -22,77 +22,77 @@ Updated Documentation and Doc Testing DifferentialEquations.</description>
     
     <item>
       <title>Application Guidelines</title>
-      <link>julialang.org/jsoc/guidelines/</link>
+      <link>https://julialang.org/jsoc/guidelines/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/guidelines/</guid>
+      <guid>https://julialang.org/jsoc/guidelines/</guid>
       <description>Before the Application Before you apply, it&amp;rsquo;s a good idea to get in touch with the Julia community. Ask questions on Discourse or join the Julia Slack to get connected with potential mentors to help find interesting projects. The Slack channel #jsoc is dedicated to helping students get the help they need. Additionally, you should make use of these connections to start making some small contributions and progress on your project early on.</description>
     </item>
     
     <item>
       <title>Compiler Projects – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/compiler/</link>
+      <link>https://julialang.org/jsoc/gsoc/compiler/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/compiler/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/compiler/</guid>
       <description>Compiler Projects – Summer of Code Thread-safety There are many remaining components that need to be updated to use thread-safe algorithms before Julia&amp;rsquo;s threading will be stable for general usage. Some basic data-structures (such as the TypeMap) are missing correct RCU and memory barriers to ensure race-free answers. IO is also currently unavailable for multi-threaded code. The realloc operation for arrays (i.e. resize!) may be more reliable if it was implemented using RCU malloc (delaying the free until a gc-safepoint has been reached on all threads).</description>
     </item>
     
     <item>
       <title>DiffEq Projects – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/diffeq/</link>
+      <link>https://julialang.org/jsoc/gsoc/diffeq/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/diffeq/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/diffeq/</guid>
       <description>DiffEq Projects – Summer of Code Native Julia ODE, SDE, DAE, DDE, and (S)PDE Solvers The DifferentialEquations.jl ecosystem has an extensive set of state-of-the-art methods for solving differential equations. By mixing native methods and wrapped methods under the same dispatch system, DifferentialEquations.jl serves both as a system to deploy and research the most modern efficient methodologies. While most of the basic methods have been developed and optimized, many newer methods need high performance implementations and real-world tests of their efficiency claims.</description>
     </item>
     
     <item>
       <title>General Projects – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/general/</link>
+      <link>https://julialang.org/jsoc/gsoc/general/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/general/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/general/</guid>
       <description>General Projects – Summer of Code Improving test coverage Code coverage reports very good coverage of all of the Julia Stdlib packages, but it&amp;rsquo;s not complete. Additionally, the coverage tools themselves (&amp;ndash;track-coverage and https://github.com/JuliaCI/Coverage.jl) could be further enhanced, such as to give better accuracy of statement coverage, or more precision. A successful project may combine a bit of both building code and finding faults in others&amp;rsquo; code.
 Another related side-project might be to explore adding Type information to the coverage reports.</description>
     </item>
     
     <item>
       <title>Graphic Projects – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/graphics/</link>
+      <link>https://julialang.org/jsoc/gsoc/graphics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/graphics/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/graphics/</guid>
       <description>Graphic Projects – Summer of Code Makie Improve Documentation + add Examples Makie is a new plotting library in need of tests and documentation.
 One needs to go through all sections of the current documentation, make sure they are understandable and add examples to the documentation where necessary. Depending on how much time is left, there are endless opportunities to create impressive and creative plotting examples for the example database.</description>
     </item>
     
     <item>
       <title>HPC Projects – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/hpc/</link>
+      <link>https://julialang.org/jsoc/gsoc/hpc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/hpc/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/hpc/</guid>
       <description>HPC Projects – Summer of Code Julia is emerging as a serious tool for technical computing and is ideally suited for the ever-growing needs of big data analytics. This set of proposed projects addresses specific areas for improvement in analytics algorithms and distributed data management.
 Simple persistent distributed storage This project proposes to implement a very simple persistent storage mechanism for Julia variables so that data can be saved to and loaded from disk with a consistent interface that is agnostic of the underlying storage layer.</description>
     </item>
     
     <item>
       <title>Julia&#39;s Summer of Code projects</title>
-      <link>julialang.org/jsoc/archive/</link>
+      <link>https://julialang.org/jsoc/archive/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/archive/</guid>
+      <guid>https://julialang.org/jsoc/archive/</guid>
       <description>Summer of Code Archives Julia has greatly benefited from the Google Summer of Code. In the last 6 years, over 70+ students have contributed to Julia and various Julia packages. Many of these students have become regular Julia contributors well beyond their summer projects. Take a look at the Ideas Page and contribute your ideas.
 GSoC 2019 In 2019, we recieved an even larger number of very high quality applications but could only fufill 15 slots through GSoC.</description>
     </item>
     
     <item>
       <title>JuliaGraphs – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/graphs/</link>
+      <link>https://julialang.org/jsoc/gsoc/graphs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/graphs/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/graphs/</guid>
       <description>JuliaGraphs – Summer of Code The JuliaGraphs ecosystem offers a set of abstractions and algorithms for various aspects of graph modeling and analysis. LightGraphs.jl is the central package defining the types and essential algorithms.
 {% include toc.html %}
 Mentorship Inquiries: Drop by #graphs on Slack or file a new issue on Github.
@@ -101,58 +101,58 @@ Parallel graph development The LightGraphs.jl package provides a fast, robust se
     
     <item>
       <title>JuliaImages Projects – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/images/</link>
+      <link>https://julialang.org/jsoc/gsoc/images/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/images/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/images/</guid>
       <description>JuliaImages Projects – Summer of Code JuliaImages (see the documentation) is a framework in Julia for multidimensional arrays, image processing, and computer vision (CV). It has an active development community and offers many features that unify CV and biomedical 3D/4D image processing, support big data, and promote interactive exploration.
 Often the best ideas are the ones that candidate SoC students come up with on their own. We are happy to discuss such ideas and help you refine your proposal.</description>
     </item>
     
     <item>
       <title>Numerical Projects – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/numerics/</link>
+      <link>https://julialang.org/jsoc/gsoc/numerics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/numerics/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/numerics/</guid>
       <description>Numerical Projects – Summer of Code For all of these projects, potential mentors are Steven Johnson.
 Numerical Linear Algebra PETSc integration for scalable technical computing PETSc is a widely used framework of data structures and computational routines suitable for massively scaling scientific computations. Many of these algorithms are also ideally suited for big data applications such as computing principal components of very large sparse matrices and solving complicated forecasting models with distributed methods for solving partial differential equations.</description>
     </item>
     
     <item>
       <title>Scientific Projects – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/science/</link>
+      <link>https://julialang.org/jsoc/gsoc/science/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/science/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/science/</guid>
       <description>Scientific Projects – Summer of Code Quantum Computation: Simualation of Noisy Circuits Noisy Intermediate-Scale Quantum (NISQ) technology will be available in the near future. However, it would be much more convenient if we could test our algorithm with noise and simulate our quantum algorithm on noisy circuits to explore their stability, efficiency. To assist the research of NISQ, enhance the quantum circuit simulator in Julia Yao.jl with noisy circuit simulation would be quite useful.</description>
     </item>
     
     <item>
       <title>Stochastic differential equations and continuous time signal processing – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/kalmanbucy/</link>
+      <link>https://julialang.org/jsoc/gsoc/kalmanbucy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/kalmanbucy/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/kalmanbucy/</guid>
       <description>Stochastic differential equations and continuous time signal processing – Summer of Code Filtering and smoothing large non-linear continuous time systems The student implements a state of the art smoother for large continuous-time systems. The system&amp;rsquo;s dynamics can be described as an ordinary differential equation with locally additive Gaussian random fluctuations. Thus the system is modeled as a high-dimensional stochastic ordinary differential equation.
 Given a series of measurements observed over time, containing statistical noise and other inaccuracies, a filter produces an estimate of the unknown state of the system that led to the current observation taking previous observations into account.</description>
     </item>
     
     <item>
       <title>Tabular Data – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/tables/</link>
+      <link>https://julialang.org/jsoc/gsoc/tables/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/tables/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/tables/</guid>
       <description>Tabular Data – Summer of Code Parquet.jl enhancements and JuliaDB Apache Parquet is a binary data format for tabular data. It has features for compression and memory-mapping of datasets on disk. A decent implementation of Parquet in Julia is likely to be highly performant. It will be useful as a standard format for distributing tabular data in a binary format. JuliaDB (submodule MemPool) currently requires a binary format for efficient storage and data transfer, but right now resorts to a custom but fast implementation.</description>
     </item>
     
     <item>
       <title>Tooling Projects – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/tooling/</link>
+      <link>https://julialang.org/jsoc/gsoc/tooling/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/tooling/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/tooling/</guid>
       <description>Tooling Projects – Summer of Code IDE Tooling Juno is open to general project ideas (from here or not); feel free to get in contact via the forum to discuss!
 Progress Meter Improvements Right now Juno&amp;rsquo;s progress metre works well but is fairly basic. In particular, it could be improved by:
  Automatically reducing its own overhead, to avoid slowing down tight loops significantly, Supporting cancellation so that long-running computations can be safely interrupted, Supporting nested loops like for i = 1:10, j = 1:10, and having a real fallback in the console, rather than simply falling through.</description>
@@ -160,19 +160,19 @@ Progress Meter Improvements Right now Juno&amp;rsquo;s progress metre works well
     
     <item>
       <title>Turing Projects – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/turing/</link>
+      <link>https://julialang.org/jsoc/gsoc/turing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/turing/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/turing/</guid>
       <description>Turing Projects – Summer of Code Turing is a universal probabilistic programming language embedded in Julia. Turing allows the user to write models in standard Julia syntax, and provide a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics and data science etc. Since Turing is implemented in pure Julia code, its compiler and inference methods are amendable for hacking: new model families and inference methods can be easily added.</description>
     </item>
     
     <item>
       <title>Web Platform Projects – Summer of Code</title>
-      <link>julialang.org/jsoc/gsoc/wasm/</link>
+      <link>https://julialang.org/jsoc/gsoc/wasm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/jsoc/gsoc/wasm/</guid>
+      <guid>https://julialang.org/jsoc/gsoc/wasm/</guid>
       <description>Web Platform Projects – Summer of Code Julia has early support for targeting WebAssembly and running in the web browser. Please note that this is a rapidly moving area (see the project repository for a more detailed overview), so if you are interested in this work, please make sure to inform yourself of the current state and talk to us to scope out an appropriate project. The below is intended as a set of possible starting points.</description>
     </item>
     
