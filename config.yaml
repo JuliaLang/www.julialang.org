@@ -1,4 +1,4 @@
-baseURL: julialang.org
+baseURL: https://julialang.org
 relativeURLs: true
 canonifyURLs: true
 googleAnalytics: UA-28835595-1
