@@ -13,4 +13,4 @@ jobs:
       - run: brew install hugo
       - name: switching from HTTPS to SSH
         run: git remote set-url origin ${{ secrets.DeployPAT }}
-      - run: ./publish_to_ghpages.sh
+      - run: ./bin/publish_to_ghpages.sh
