@@ -16,7 +16,7 @@ The Julia organization will be a participant in the 2019 Google Code-in program 
 
 Semi-quarterly NumFOCUS puts out a call for small development grants. The Julia language organization puts out a call for proposals from the community for grant proposals. There are no restrictions on what the funding can be used for. Code development, documentation work, educational, sustainability, and diversity initiatives, or other types of projects are all eligible. Since only one application can be put in for the Julia project, an internal selection process is used to determine to chose which is the proposals will be submitted to NumFOCUS. For examples of grants that were funded in the first round, [previous awards](https://www.numfocus.org/blog/numfocus-awards-development-grants-to-open-source-projects-spring-2018)
 
-Up to $3,000 is available per proposal. The total allocated funding from NumFOCUS was $20,000 in previous cycles, meaning that not every project will be able to receive a grant. This total amount is adjusted depending on the number and quality of proposals this may be adjusted up or down.
+Up to USD 3,000 is available per proposal. The total allocated funding from NumFOCUS was USD 20,000 in previous cycles, meaning that not every project will be able to receive a grant. This total amount is adjusted depending on the number and quality of proposals this may be adjusted up or down.
 
 ## Google Summer of Code (GSoC)
 
