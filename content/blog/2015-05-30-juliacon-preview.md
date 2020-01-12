@@ -31,7 +31,7 @@ Whatever you get up to after the talks end on Thursday, make sure you are up in 
 
 ### Friday's talks
 
-<img src="https://www.juliaopt.org/images/juliaopt.svg" width="20%"><img src="https://camo.githubusercontent.com/12d691a97c0fb8364be856247ceb90c9204c2e01/687474703a2f2f6c6962656c656d656e74616c2e6f72672f5f7374617469632f656c656d656e74616c2e706e67" width="20%">
+<img src="https://www.juliaopt.org/images/juliaopt.svg" width="20%">
 
 If you are interested in learning **how Julia works** from the people who work on it every day, then Friday morning's session is for you. The morning will kick off with newly-minted-PhD and Julia co-founder [Jeff Bezanson (@JeffBezanson)](https://github.com/JeffBezanson), who is still recovering from his defense and will be updating us on the title of his talk soon. We'll be learning more about different stages of the **compilation process** from contributors [Jake Bolewski (@jakebolewski)](https://github.com/jakebolewski) and [Jacob Quinn (@quinnj)](https://github.com/quinnj), and we'll be covering a miscellany of other cutting-edge topics for Julia like tuning LLVM, debugging, and interfaces.
 
