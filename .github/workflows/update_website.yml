@@ -1,6 +1,9 @@
 name: Push Changes To Website
 
-on: push 
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   test:

@@ -20,7 +20,7 @@ Up to $3,000 is available per proposal. The total allocated funding from NumFOCU
 
 ## Google Summer of Code (GSoC)
 
-The Julia organization is a participant in Google Summer of Code. The Julia organization generally fields a large number of students (>20) mentored by open source developers and university professors at leading institutions from all around the world. Students who are accepted into this prestigious program are paid a summer salary to contribute to the open source tooling around Julia and its package ecosystem.
+The Julia organization is a participant in Google Summer of Code. The Julia organization generally fields a large number of students (>20) mentored by open source developers and university professors at leading institutions from all around the world. Students who are accepted into this prestigious program are paid a summer stipend to contribute to the open source tooling around Julia and its package ecosystem.
 
 This page lists a bunch of project ideas, meant to serve as starting points as you develop your own plan. You're free to modify them to your tastes, or propose something totally different in an area you're interested in.
 

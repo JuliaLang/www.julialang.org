@@ -17,7 +17,7 @@ The [first ever JuliaCon](https://juliacon.org/2014/) was held in Chicago last y
 
 ### Thursday's Talks
 
-<img src="https://avatars3.githubusercontent.com/u/6486271" width="20%"><img src="https://juliaastro.github.io/images/logo.svg" width="20%"><img src="https://www.juliabox.org/assets/img/juliacloudlogo.png" width="20%">
+<img src="https://avatars3.githubusercontent.com/u/6486271" width="20%"><img src="https://juliaastro.github.io/images/logo.svg" width="20%"><img src="https://avatars3.githubusercontent.com/u/21245400" width="20%">
 
 After getting everyone settled in, we'll start the conference proper with a session about the use of Julia in a wide variety of **scientific applications**. Many of the talks at the conference focus on Julia package organizations: groupings of similar packages that promote interoperability and focussing of efforts. In the session [Daniel C. Jones (@dcjones)](https://github.com/dcjones), the creator of the visualization package [Gadfly](https://gadflyjl.org), will discuss the advances being made in the [BioJulia](https://github.com/BioJulia) **bioinformatics** organization, and [Kyle Barbary (@kbarbary)](https://github.com/kbarbary) will present [JuliaAstro](https://juliaastro.github.io/), a home for **astronomy and astrophysics** packages. Theres something for everyone: quantitative **economic modeling** ([QuantEcon.jl](https://quantecon.org/)), **quantum statistical simulations**, and how to fit Julia into a pre-existing body of code in other languages.
 
@@ -31,7 +31,7 @@ Whatever you get up to after the talks end on Thursday, make sure you are up in 
 
 ### Friday's talks
 
-<img src="https://www.juliaopt.org/images/juliaopt.svg" width="20%"><img src="https://camo.githubusercontent.com/12d691a97c0fb8364be856247ceb90c9204c2e01/687474703a2f2f6c6962656c656d656e74616c2e6f72672f5f7374617469632f656c656d656e74616c2e706e67" width="20%">
+<img src="https://www.juliaopt.org/images/juliaopt.svg" width="20%">
 
 If you are interested in learning **how Julia works** from the people who work on it every day, then Friday morning's session is for you. The morning will kick off with newly-minted-PhD and Julia co-founder [Jeff Bezanson (@JeffBezanson)](https://github.com/JeffBezanson), who is still recovering from his defense and will be updating us on the title of his talk soon. We'll be learning more about different stages of the **compilation process** from contributors [Jake Bolewski (@jakebolewski)](https://github.com/jakebolewski) and [Jacob Quinn (@quinnj)](https://github.com/quinnj), and we'll be covering a miscellany of other cutting-edge topics for Julia like tuning LLVM, debugging, and interfaces.
 
