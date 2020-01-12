@@ -4,6 +4,7 @@ author: Mike Innes, James Bradbury, Keno Fischer, Dhairya Gandhi, Neethu Mariya 
   Shah, Deniz Yuret
 date: "2018-12-03T00:00:00Z"
 title: Building a Language and Compiler for Machine Learning
+slug: ml-language-compiler
 ---
 
 Since we [originally proposed](https://julialang.org/blog/2017/12/ml&pl) the need for a first-class language, compiler and ecosystem for machine learning (ML), there have been plenty of interesting developments in the field. Not only have the tradeoffs in existing systems, such as TensorFlow and PyTorch, not been resolved, but they are clearer than ever now that both frameworks contain distinct [“static graph”](https://pytorch.org/docs/master/jit.html) and [“eager execution”](https://www.tensorflow.org/guide/eager) interfaces. Meanwhile, the idea of ML models fundamentally being differentiable algorithms – often called [differentiable programming](https://www.facebook.com/yann.lecun/posts/10155003011462143) – has caught on.

@@ -2,6 +2,7 @@
 author: Elliot Saba, Stefan Karpinski, Kristoffer Carlsson
 date: "2019-12-18T00:00:00Z"
 title: 为 Julia 包设计的可靠、可复现的二进制工件系统
+slug: artifacts-zh_cn
 ---
 
 在过去的几个月里，我们在持续迭代和完善一个 Julia 1.3+ 中 `Pkg` 的设计方案，它用来处理不是 Julia 包的二进制对象。这项工作当初的动机是改善用 [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl) 构建的二进制文件的安装体验，不过工件（artifacts）子系统更加通用，适用于所有的 Julia 包。
@@ -72,7 +73,7 @@ iris_hash = artifact_hash("iris", artifacts_toml)
 
 # 如果名称没有找到，或者它绑定的散列值对应的工件不存在，就创建它！
 if iris_hash == nothing || !artifact_exists(iris_hash)
-    # 一旦创建工件完成，create_artifact() 返回工件目录的内容散列值 
+    # 一旦创建工件完成，create_artifact() 返回工件目录的内容散列值
     iris_hash = create_artifact() do artifact_dir
         # 我们简单地通过往新工件目录里下载几个文件来创建工件
         iris_url_base = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris"
@@ -118,7 +119,7 @@ products = [
 ]
 ```
 
-有了这些产物的定义，JLL包就会导出 `data_txt`、`libdataproc` 和 `mungify_exe` 这三个符号。`FileProduct` 导出的变量是字符串，指向这个文件在硬盘上的位置；`LibraryProduct` 变量是对应这个链接库的 `SONAME` 的字符串（链接库会在这个包所在模块的 `__init__()` 方法里被 `dlopen()` 加载，所以可以像平常那样 `ccall()` 调用）；`ExecutableProduct` 变量导出的是函数，调用它就会设置合适的环境变量，比如 `PATH` 和 `LD_LIBRARY_PATH`，这对于嵌套依赖来说很有必要，比如 `ffmpeg` 在视频编码时调用 `x264` 程序。举个例子： 
+有了这些产物的定义，JLL包就会导出 `data_txt`、`libdataproc` 和 `mungify_exe` 这三个符号。`FileProduct` 导出的变量是字符串，指向这个文件在硬盘上的位置；`LibraryProduct` 变量是对应这个链接库的 `SONAME` 的字符串（链接库会在这个包所在模块的 `__init__()` 方法里被 `dlopen()` 加载，所以可以像平常那样 `ccall()` 调用）；`ExecutableProduct` 变量导出的是函数，调用它就会设置合适的环境变量，比如 `PATH` 和 `LD_LIBRARY_PATH`，这对于嵌套依赖来说很有必要，比如 `ffmpeg` 在视频编码时调用 `x264` 程序。举个例子：
 
 ```julia
 using c_simple_jll

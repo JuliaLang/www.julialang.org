@@ -2,9 +2,10 @@
 author: <a href="http://dahua.me">Dahua Lin</a>
 date: "2013-09-04T00:00:00Z"
 title: Fast Numeric Computation in Julia
+slug: fast-numeric
 ---
 
-Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality. 
+Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality.
 With Julia, you can focus on your problem, keep your codes clean, and more importantly, write fast codes without diving into lower level languages such as C or Fortran even when performance is critical.
 
 However, you should not take this potential speed for granted. To get your codes fast, you should keep performance in mind and follow general best practice guidelines. Here, I would like to share with you my experience in writing efficient codes for numerical computation.
@@ -60,7 +61,7 @@ This introduces significant overhead:
 
 Such overhead is significant in practice, often leading to 2x to 3x slow down. To get optimal performance, one should *devectorize* this code like so:
 
-    r = similar(x) 
+    r = similar(x)
     for i = 1:length(x)
         r[i] = exp(-abs(x[i]-y[i]))
     end
@@ -106,7 +107,7 @@ The following example shows how you can compute multiple statistics (e.g. sum, m
 
 ## Write cache-friendly codes
 
-Modern computer systems have a complicated heterogeneous memory structure that combines registers, multiple levels of caches, and RAM. Data are accessed through the cache hierarchy – a smaller and much faster memory that stores copies of frequently used data. 
+Modern computer systems have a complicated heterogeneous memory structure that combines registers, multiple levels of caches, and RAM. Data are accessed through the cache hierarchy – a smaller and much faster memory that stores copies of frequently used data.
 
 Most systems do not provide ways to directly control the cache system. However, you can take steps to make it much easier for the automated cache management system to help you if you write *cache-friendly* codes. In general, you don't have to understand every detail about how a cache system works. It is often sufficient to observe the simple rule below:
 
@@ -114,7 +115,7 @@ Most systems do not provide ways to directly control the cache system. However, 
 
 This is sometimes referred to as the *principle of locality*. For example, if `x` is a contiguous array, then after reading `x[i]`, it is much more likely that `x[i+1]` is already in the cache than it is that `x[i+1000000]` is, in which case it will be *much* faster to access `x[i+1]` than `x[i+1000000]`.
 
-Julia arrays are stored in column-major order, which means that the rows of a column are contiguous, but the columns of a row are generally not. It is therefore generally more efficient to access data column-by-column than row-by-row. 
+Julia arrays are stored in column-major order, which means that the rows of a column are contiguous, but the columns of a row are generally not. It is therefore generally more efficient to access data column-by-column than row-by-row.
 Consider the problem of computing the sum of each row in a matrix. It is natural to implement this as follows:
 
     m, n = size(a)
@@ -140,7 +141,7 @@ This procedure can be made much more cache-friendly by changing the order of com
         r[i] += a[i,j]
     end
 
-Some benchmarking shows that this version can be *5-10 times* faster than the one above for large matrices. 
+Some benchmarking shows that this version can be *5-10 times* faster than the one above for large matrices.
 
 ## Avoid creating arrays in loops
 
@@ -171,7 +172,7 @@ In this implementation of K-means, the arrays `means`, `dists`, and `labels` are
         ...
     end
 
-In this version, the functions invoked in the loop updates pre-allocated arrays in-place. 
+In this version, the functions invoked in the loop updates pre-allocated arrays in-place.
 
 If you are writing a package, it is recommended that you provide two versions for each function that outputs arrays: one that performs the update in-place, and another that returns a new array. The former can usually be implemented as a light-weight wrapper of the latter that copies the input array before modifying it.
 A good example is the [*Distributions.jl*](https://github.com/JuliaStats/Distributions.jl) package, which provides both `logpdf` and `logpdf!`, so that one can write `lp = logpdf(d,x)` when a new array is needed, or `logpdf!(lp,d,x)` when `lp` has been pre-allocated.
@@ -240,7 +241,7 @@ If we evaluate these three terms separately, the computation can be mapped to BL
         r[i] = sqrt(r[i])
     end
 
-This version is over *100 times* faster than our original implementation — the `gemm` function in BLAS has been optimized to the extreme by many talented developers and engineers over the past few decades. 
+This version is over *100 times* faster than our original implementation — the `gemm` function in BLAS has been optimized to the extreme by many talented developers and engineers over the past few decades.
 
 We should mention that you don't have to implement this yourself if you really want to compute pairwise distances: the [*Distance.jl*](https://github.com/lindahua/Distance.jl) package provides optimized implementations of a broad variety of distance metrics, including this one. We presented this optimization trick as an example to illustrate the substantial performance gains that can be achieved by writing code that uses BLAS routines wherever possible.
 

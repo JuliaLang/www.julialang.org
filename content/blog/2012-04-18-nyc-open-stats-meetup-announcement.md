@@ -3,6 +3,7 @@ authors:
 - <a href="http://karpinski.org/">Stefan Karpinski</a>
 date: "2012-04-18T00:00:00Z"
 title: New York Open Stats Meetup
+slug: nyc-open-stats-meetup-announcement
 ---
 
 I'll be giving a talk on Julia at the [New York Open Statistical Programming Meetup on May 1st](http://www.meetup.com/nyhackr/events/60839932/). After my presentation, [John Myles White](http://www.johnmyleswhite.com/) and [Shane Conway](http://www.statalgo.com/) are going to give followup demos of statistical applications using Julia. Then we're going to hang out and grab drinks nearby. Thanks to [Harlan Harris](http://www.harlan.harris.name/) and [Drew Conway](http://www.drewconway.com/) for setting the whole thing up!

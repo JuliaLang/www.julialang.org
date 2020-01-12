@@ -2,6 +2,7 @@
 author: <a href="http://holylab.wustl.edu">Timothy E. Holy</a>
 date: "2013-05-23T00:00:00Z"
 title: Building GUIs with Julia, Tk, and Cairo, Part I
+slug: graphical-user-interfaces-part1
 ---
 
 
@@ -54,7 +55,7 @@ Try it without specifying `pixelspacing`, and you'll see that the image stretche
 (This won't work if you've already defined `"pixelspacing"` for `img`; if necessary, use `delete!(img, "pixelspacing")` to remove that setting.)
 
 Next, click and drag somewhere inside the image.
-You'll see the typical rubberband selection, and once you let go the image display will zoom in on the selected region. 
+You'll see the typical rubberband selection, and once you let go the image display will zoom in on the selected region.
 
 ![photo](/images/blog/GUI_figures/photo4.jpg?raw=true)
 ![photo](/images/blog/GUI_figures/photo5.jpg?raw=true)

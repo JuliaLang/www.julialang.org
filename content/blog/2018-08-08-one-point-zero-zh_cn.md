@@ -2,6 +2,7 @@
 date: "2018-08-08T00:00:00Z"
 snippet: Julia 1.0正式发布
 title: Julia 1.0 (Simplified Chinese)
+slug: one-point-zero-zh_cn
 ---
 
 备受期待的[Julia语言](https://julialang.org)的1.0版本积累了富有野心的程序员们的十年心血。

@@ -2,6 +2,7 @@
 author: Stefan Karpinski (Julia Computing)
 date: "2019-08-28T00:00:00Z"
 title: Julia’s Release Process
+slug: release-process
 ---
 
 People involved in the day-to-day development of a project tend to become so familiar with its rhythm and process that they internalize it and it feels like everyone must just _know_ how each stage unfolds. Of course, from the outside looking in it's not so obvious. So I thought it might be helpful to the broader Julia community—and maybe even for other programming language communities—to actually write down Julia's release process, including the details of:
@@ -143,4 +144,3 @@ Once a release branch has accumulated enough bug fixes and enough time has passe
 Hopefully you've found this overview of Julia's release process and policies illuminating. The very best thing we can hope for is that some of you reading this will find it interesting and want to get involved and that by demystifying things, we've helped make becoming a Julia developer a little more accessible.
 
 ---
-

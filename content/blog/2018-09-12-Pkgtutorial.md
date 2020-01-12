@@ -2,6 +2,7 @@
 author: Jane Herriman
 date: "2018-09-12T00:00:00Z"
 title: How to get started with Julia 1.0's package manager
+slug: Pkgtutorial
 ---
 
 For those of you in the midst of transitioning or preparing to transition to Julia 1.0, I've made a short (less than 6 minutes) tutorial on the basics of the new package manager. This video includes how to interact with the package manager and how to check, install, update, and remove packages.

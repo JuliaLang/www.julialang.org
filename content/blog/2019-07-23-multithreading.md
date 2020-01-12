@@ -3,6 +3,7 @@ author: Jeff Bezanson (Julia Computing), Jameson Nash (Julia Computing), Kiran P
   (Intel)
 date: "2019-07-23T00:00:00Z"
 title: Announcing composable multi-threaded parallelism in Julia
+slug: multithreading
 ---
 
 Software performance depends more and more on exploiting multiple processor cores.

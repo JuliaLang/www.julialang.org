@@ -2,6 +2,7 @@
 author: 罗秀哲，田俊
 date: "2019-09-07T00:00:00Z"
 title: Julia夏季会议@Beijing & 本地化奖
+slug: julia-workshop-beijing-zh_cn
 ---
 
 [JuliaCN](https://github.com/JuliaCN)在8月24日，中国北京举办了自2016以来第五次Julia会议。我们非常感谢Julia社区对本次活动的支持，

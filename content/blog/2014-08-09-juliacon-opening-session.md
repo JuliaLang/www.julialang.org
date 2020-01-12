@@ -2,6 +2,7 @@
 author: <a href="https://github.com/quinnj">Jacob Quinn</a>
 date: "2014-08-09T00:00:00Z"
 title: JuliaCon 2014 Opening Session Presentations
+slug: juliacon-opening-session
 ---
 
 ## Scientific Applications Session

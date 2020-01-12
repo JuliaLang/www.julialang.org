@@ -3,6 +3,7 @@ author: Jeff Bezanson (Julia Computing), Jameson Nash (Julia Computing), Kiran P
   (Intel)
 date: "2019-07-30T00:00:00Z"
 title: Julia将支持可组合的多线程并行机制
+slug: multithreading-zh-cn
 ---
 
 摩尔定律带来的[免费性能提升（free lunch）][free lunch]几近结束，
@@ -13,7 +14,7 @@ Julia社区一直以对计算性能的关注而出名。
 今天，我们很高兴地宣布这一方向的重要进展。
 我们将发布一个全新的Julia线程接口：
 一个受到[Cilk][]，[Intel Threading Building Blocks][] (TBB) 以及 [Go][]等启发的
-通用任务并行（general task parallelism）机制。 
+通用任务并行（general task parallelism）机制。
 任务并行现在已在 v1.3.0-alpha 版本中提供，Julia 1.3.0 的早期预览版预计将在几个月内发布。
 您可以在下载页面上找到具有此功能的二进制文件，或者从源代码[主分支][master branch]构建。
 
@@ -149,7 +150,7 @@ function psort!(v, lo::Int=1, hi::Int=length(v))
 
     half = @spawn psort!(v, lo, mid)  # 排序前半部分的任务将会与
     psort!(v, mid+1, hi)              # 当前排序后半部分的代码并行运行
-                                      # 
+                                      #
     wait(half)                        # 等待前半部分完成
 
     temp = v[lo:mid]                  # 用于合并的空间

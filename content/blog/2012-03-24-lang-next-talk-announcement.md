@@ -3,6 +3,7 @@ authors:
 - <a href="http://karpinski.org/">Stefan Karpinski</a>
 date: "2012-03-24T00:00:00Z"
 title: Lang.NEXT Announcement
+slug: lang-next-talk-announcement
 ---
 
 Jeff and I will be giving a [presentation on Julia](http://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia) at the upcoming [Lang.NEXT conference](http://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012), a gathering of "programming language design experts and enthusiasts" featuring "talks, panels and discussion on leading programming language work from industry and research."

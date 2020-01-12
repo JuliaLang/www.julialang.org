@@ -2,6 +2,7 @@
 author: The JuliaCon organisers
 date: "2016-05-08T00:00:00Z"
 title: An invitation to JuliaCon 2016
+slug: juliacon-invitation
 ---
 
 *For the third year in row we are happy to invite you to [JuliaCon][juliacon],

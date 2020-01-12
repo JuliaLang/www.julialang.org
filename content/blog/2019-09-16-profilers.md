@@ -2,6 +2,7 @@
 author: <a href="http://github.com/vtjnash/">Jameson Nash</a>
 date: "2019-09-16T00:00:00Z"
 title: Profiling tool wins and woes.
+slug: profilers
 ---
 
 Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](http://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.
@@ -277,7 +278,7 @@ index cf339d8a4b..f6e9c08e2c 100644
 -#if defined(_OS_WINDOWS_) || defined(_OS_FREEBSD_)
  #  define JL_DISABLE_FPO
 -#endif
- 
+
  #include <iostream>
  #include <sstream>
 ```

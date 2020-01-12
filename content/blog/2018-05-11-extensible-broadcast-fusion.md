@@ -4,6 +4,7 @@ date: "2018-05-11T00:00:00Z"
 snippet: 'Julia version 0.7 brings with it an exciting new feature: the ability to
   customize broadcast fusion!'
 title: Extensible broadcast fusion
+slug: extensible-broadcast-fusion
 ---
 
 Julia version 0.7 brings with it an exciting new feature: the ability to customize broadcast

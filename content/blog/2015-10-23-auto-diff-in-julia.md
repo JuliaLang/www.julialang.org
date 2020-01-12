@@ -2,6 +2,7 @@
 author: Jarrett Revels
 date: "2015-10-23T00:00:00Z"
 title: 'JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl'
+slug: auto-diff-in-julia
 ---
 
 <script type="text/javascript"

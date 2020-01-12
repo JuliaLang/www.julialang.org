@@ -2,6 +2,7 @@
 author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 date: "2012-03-11T00:00:00Z"
 title: Shelling Out Sucks
+slug: shelling-out-sucks
 ---
 
 [followup post]: /blog/2013/04/put-this-in-your-pipe

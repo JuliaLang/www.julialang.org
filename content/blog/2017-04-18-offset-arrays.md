@@ -2,6 +2,7 @@
 author: <a href="http://holylab.wustl.edu">Tim Holy</a>
 date: "2017-04-18T00:00:00Z"
 title: 'Knowing where you are: custom array indices in Julia'
+slug: offset-arrays
 ---
 
 <script type="text/javascript"

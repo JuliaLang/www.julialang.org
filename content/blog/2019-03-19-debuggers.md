@@ -4,6 +4,7 @@ author: <a href="https://github.com/timholy">Tim Holy</a>, <a href="https://gith
   Fischer</a>
 date: "2019-03-19T00:00:00Z"
 title: A Julia interpreter and debugger
+slug: debuggers
 ---
 
 

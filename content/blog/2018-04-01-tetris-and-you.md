@@ -4,6 +4,7 @@ date: "2018-04-01T00:00:00Z"
 snippet: Good news, everyone! Starting v1.0, Tetris will be included in the standard
   library.
 title: Tetris coming to Julia language for v1.0
+slug: tetris-and-you
 ---
 
 Good news, everyone! Starting v1.0, Tetris will be included in the standard library. This will allow you to play a round of Tetris while your code is busy running.

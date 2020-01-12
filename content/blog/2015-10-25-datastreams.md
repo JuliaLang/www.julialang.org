@@ -2,6 +2,7 @@
 author: <a href="https://github.com/quinnj">Jacob Quinn</a>
 date: "2015-10-25T00:00:00Z"
 title: 'JSoC 2015 project: DataStreams.jl'
+slug: datastreams
 ---
 
 Data processing got ya down? Good news! The [DataStreams.jl](https://github.com/JuliaDB/DataStreams.jl) package, er, framework, has arrived!

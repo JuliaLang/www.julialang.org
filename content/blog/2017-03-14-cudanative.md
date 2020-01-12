@@ -2,6 +2,7 @@
 author: <a href="https://github.com/maleadt">Tim Besard</a>
 date: "2017-03-14T00:00:00Z"
 title: 'Technical preview: Native GPU programming with CUDAnative.jl'
+slug: cudanative
 ---
 
 After 2 years of slow but steady development, we would like to announce the first preview

@@ -2,6 +2,7 @@
 author: <a href="https://github.com/davidagold">David Gold</a>
 date: "2016-10-03T00:00:00Z"
 title: StructuredQueries.jl - A generic data manipulation framework
+slug: StructuredQueries
 ---
 
 This post describes my work conducted this summer at the [Julia Lab](http://julia.mit.edu/) to develop [StructuredQueries.jl](https://github.com/davidagold/StructuredQueries.jl/), a generic data manipulation framework for [Julia](http://julialang.org/).

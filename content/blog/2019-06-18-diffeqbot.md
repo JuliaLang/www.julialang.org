@@ -2,6 +2,7 @@
 author: <a href="http://github.com/kanav99">Kanav Gupta</a>
 date: "2019-06-18T00:00:00Z"
 title: Hello @DiffEqBot
+slug: diffeqbot
 ---
 
 Hi! Today we all got a new member to the DiffEq family. Say hi to our own [DiffEqBot](https://github.com/DiffEqBot) - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a [repository](https://github.com/DiffEqBot/Reports). What's special about this is that it is completely stateless (no databases involved at all, just juggling between repositories!) and it has no exposed public URLs. Even though highly inspired by Nanosoldier, this has a completely unique workflow.
@@ -10,7 +11,7 @@ Hi! Today we all got a new member to the DiffEq family. Say hi to our own [DiffE
 
 So what all you need to do is call `@DiffEqBot runbenchmarks` in a comment in a PR of a JuliaDiffEq repository and it will do all the work for you.  It will benchmark your pull request against the current master and post the link of report when the job gets completed. Found a bug in PR and now you don't need to complete previous job? Just comment `@DiffEqBot abort` and it won't run now. You also need to maintain two folders `diagrams` (For diagrams generation of the report) and `benchmark`(for comparing the results with master) (like `test` folder) in the root of your repository. `benchmark` folder should have `benchmark/runbenchmarks.jl` (it uses the package `PkgBenchmark`) and `diagrams` should have `diagrams/diagrams.jl`. You can store `REQUIRE`/`Project.toml` in the `diagrams` folder to define the dependencies specifically for `diagrams` generation.
 
-For collecting diagrams, all you have to do is to make a dictionary called `DIAGRAMS` and save all the plot references in that dictionary. For eg - 
+For collecting diagrams, all you have to do is to make a dictionary called `DIAGRAMS` and save all the plot references in that dictionary. For eg -
 
 ```julia
 DIAGRAMS = Dict()
@@ -45,7 +46,7 @@ main:
     - julia -e "using Pkg;Pkg.clone(pwd());"
     - cd ..
     - julia some_script_to_run_benchmarks.jl "${repo}" "${pr}" "${commit}"
-    
+
 failed_job:
   script:
     - curl "http://endpoint_to_tell_that_report_failed?repo=${repo}&pr=${pr}&commit=${commit}"
@@ -59,9 +60,9 @@ failed_job:
 
 <div style="text-align:center"><img src="https://i.imgur.com/vYvx4Ta.jpg" /></div>
 
-5. In the `some_script_to_run_becnhmarks.jl` file, we make a request back to DiffEqBot along with the report in JSON format in the end. When this happens, DiffEqBot makes a commit on the Reports repository on GitHub submitting the markdown script. 
+5. In the `some_script_to_run_becnhmarks.jl` file, we make a request back to DiffEqBot along with the report in JSON format in the end. When this happens, DiffEqBot makes a commit on the Reports repository on GitHub submitting the markdown script.
 
-<div style="text-align:center"><img src="https://i.imgur.com/49pIrAe.jpg" /></div>  
+<div style="text-align:center"><img src="https://i.imgur.com/49pIrAe.jpg" /></div>
 
 6. Then it makes a comment on the same PR notifying that the job is complete and report is generated.
 
@@ -82,7 +83,7 @@ All the configuration of DiffEqBot is done through a file `config.json` in the H
   "benchmarkers"        : ["kanav99", "ChrisRackauckas"],
   "bot_name"            : "DiffEqBot",
   "gitlab_runner_secret": "secret_secret_secret",
-  "github_app"          : 
+  "github_app"          :
     {
       "client_id"           : "github-app-client-id",
       "client_secret"       : "github-app-client-secret",
@@ -115,7 +116,7 @@ All the configuration of DiffEqBot is done through a file `config.json` in the H
 
 ## Access Control and Security
 
-We have for now given access to only certain members of the organization. We call these members "Benchmarkers". Basically there is an array called `benchmarkers` in the bot configuration. When you make a comment in repository, the GitHub webhook provides you with the handle of the person which made the comment, so that way you can check if this person is in the `benchmarkers` list. The main reason behind this restriction is that you are allowing code from a non-member to be run on your runner. This can be very bad for your machine. Dockerizing the runner can help in this situation. Also currently, there is no provision to provide repository wise access. This can be done easily and expect this patch soon! Another thing which would be needed is easy access control - you cannot edit the heroku dyno everytime. What all we can do is 
+We have for now given access to only certain members of the organization. We call these members "Benchmarkers". Basically there is an array called `benchmarkers` in the bot configuration. When you make a comment in repository, the GitHub webhook provides you with the handle of the person which made the comment, so that way you can check if this person is in the `benchmarkers` list. The main reason behind this restriction is that you are allowing code from a non-member to be run on your runner. This can be very bad for your machine. Dockerizing the runner can help in this situation. Also currently, there is no provision to provide repository wise access. This can be done easily and expect this patch soon! Another thing which would be needed is easy access control - you cannot edit the heroku dyno everytime. What all we can do is
 1. Make a repository (yet again) for this purpose - maintain a heirarchial access control in its file(s). For requesting access, you make a PR over there and once its approved and merged - you get the permission to run benchmarks.
 2. Add the command `addbenchmarker` to DiffEqBot which would make the specified person a benchmarker. Internally this would need the Bot to make a commit to the access-control repository (remember that the bot is stateless).
 
@@ -123,4 +124,3 @@ We have for now given access to only certain members of the organization. We cal
 ## Shortcomings and Road ahead
 
 I absolutely love this new member of our community. But it still has several shortcomings. As seen above, due to security concerns, we have allowed only certain members of the organization access to run the benchmarks. Also, we have a basic frontend ready for display of reports, but an even more better design is welcome! We might also need more commands for DiffEqBot than just `runbenchmarks` and `abort`. All these extra features would be a cherry on top. I also plan to make it open source and maintain a proper documentation so that other communities can also deploy this for thier uses and maybe help in its development too!
-

@@ -2,6 +2,7 @@
 author: <a href="https://github.com/tejank10">Tejan Karmali</a>
 date: "2018-08-06T00:00:00Z"
 title: 'GSoC 2018: Reinforcement Learning and Generative models using Flux'
+slug: GSoC-Final-Summary
 ---
 
 Hello, world!

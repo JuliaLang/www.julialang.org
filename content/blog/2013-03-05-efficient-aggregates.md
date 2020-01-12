@@ -2,6 +2,7 @@
 author: <a href="https://github.com/JeffBezanson">Jeff Bezanson</a>
 date: "2013-03-05T00:00:00Z"
 title: Efficient Aggregates in Julia
+slug: efficient-aggregates
 ---
 
 We recently introduced an exciting feature that has been in planning for some
