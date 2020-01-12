@@ -12,10 +12,10 @@
     
     <item>
       <title>Yao.jl - Differentiable Quantum Programming In Julia</title>
-      <link>julialang.org/blog/2019/12/yao.jl-differentiable-quantum-programming-in-julia/</link>
+      <link>julialang.org/blog/2019/12/yao-differentiable-quantum-programming/</link>
       <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/12/yao.jl-differentiable-quantum-programming-in-julia/</guid>
+      <guid>julialang.org/blog/2019/12/yao-differentiable-quantum-programming/</guid>
       <description>We introduce Yao (check our latest paper), an open-source Julia package for solving practical problems in quantum computation research. The name Yao comes from the first Chinese character for unitary (幺正).
 The Logo of Yao
  Why we created Yao? To be short, we are as greedy as Julia itself. We want something that is:
@@ -24,10 +24,10 @@ Differentiable Like many other Julia blog posts (as well as the Zygote paper) ha
     
     <item>
       <title>为 Julia 包设计的可靠、可复现的二进制工件系统</title>
-      <link>julialang.org/blog/2019/12/%E4%B8%BA-julia-%E5%8C%85%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8F%AF%E9%9D%A0%E5%8F%AF%E5%A4%8D%E7%8E%B0%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B7%A5%E4%BB%B6%E7%B3%BB%E7%BB%9F/</link>
+      <link>julialang.org/blog/2019/12/artifacts-zh_cn/</link>
       <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/12/%E4%B8%BA-julia-%E5%8C%85%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8F%AF%E9%9D%A0%E5%8F%AF%E5%A4%8D%E7%8E%B0%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B7%A5%E4%BB%B6%E7%B3%BB%E7%BB%9F/</guid>
+      <guid>julialang.org/blog/2019/12/artifacts-zh_cn/</guid>
       <description>在过去的几个月里，我们在持续迭代和完善一个 Julia 1.3+ 中 Pkg 的设计方案，它用来处理不是 Julia 包的二进制对象。这项工作当初的动机是改善用 BinaryBuilder.jl 构建的二进制文件的安装体验，不过工件（artifacts）子系统更加通用，适用于所有的 Julia 包。
 Pkg 工件 工件的大致方案描述在 Pkg.jl#1234，其文档已经写进了 Pkg.jl 的最新文档。它提供了一种把数据容器与 Julia 项目和包关联在一起的便利机制。引用工件的方式是使用它的内容散列值，或者在 Artifacts.toml 内记载的绑定到散列值的名字。Artifacts.toml 的一个例子如下所示：
 [socrates] git-tree-sha1 = &amp;#34;43563e7631a7eafae1f9f8d9d332e3de44ad7239&amp;#34; lazy = true [[socrates.download]] url = &amp;#34;https://github.com/staticfloat/small_bin/raw/master/jsocrates.tar.gz&amp;#34; sha256 = &amp;#34;e65d2f13f2085f2c279830e863292312a72930fee5ba3c792b14c33ce5c5cc58&amp;#34; [[socrates.download]] url = &amp;#34;https://github.com/staticfloat/small_bin/raw/master/jsocrates.tar.bz2&amp;#34; sha256 = &amp;#34;13fc17b97be41763b02cbb80e9d048302cec3bd3d446c2ed6e8210bddcd3ac76&amp;#34; [[c_simple]] arch = &amp;#34;x86_64&amp;#34; git-tree-sha1 = &amp;#34;4bdf4556050cb55b67b211d4e78009aaec378cbc&amp;#34; libc = &amp;#34;musl&amp;#34; os = &amp;#34;linux&amp;#34; [[c_simple.download]] sha256 = &amp;#34;411d6befd49942826ea1e59041bddf7dbb72fb871bb03165bf4e164b13ab5130&amp;#34; url = &amp;#34;https://github.com/JuliaBinaryWrappers/c_simple_jll.jl/releases/download/c_simple+v1.2.3+0/c_simple.v1.2.3.x86_64-linux-musl.tar.gz&amp;#34; [[c_simple]] arch = &amp;#34;x86_64&amp;#34; git-tree-sha1 = &amp;#34;51264dbc770cd38aeb15f93536c29dc38c727e4c&amp;#34; os = &amp;#34;macos&amp;#34; [[c_simple.</description>
@@ -35,49 +35,49 @@ Pkg 工件 工件的大致方案描述在 Pkg.jl#1234，其文档已经写进了
     
     <item>
       <title>Reliable and Reproducible Binary Artifacts for Julia Packages</title>
-      <link>julialang.org/blog/2019/11/reliable-and-reproducible-binary-artifacts-for-julia-packages/</link>
+      <link>julialang.org/blog/2019/11/artifacts/</link>
       <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/11/reliable-and-reproducible-binary-artifacts-for-julia-packages/</guid>
+      <guid>julialang.org/blog/2019/11/artifacts/</guid>
       <description>Over the past few months, we have been iterating on and refining a design for Pkg in Julia 1.3+ to reason about binary objects that are not Julia packages. While the motivating application for this work has been improving the installation experience for binaries built with BinaryBuilder.jl, the artifacts subsystem is much more general and is widely applicable to all Julia packages.
 Pkg Artifacts Artifacts, as outlined in Pkg.jl#1234 and now documented in the latest docs of Pkg.</description>
     </item>
     
     <item>
       <title>The Julia Language participates in Google&#39;s Code-In Contest</title>
-      <link>julialang.org/blog/2019/11/the-julia-language-participates-in-googles-code-in-contest/</link>
+      <link>julialang.org/blog/2019/11/google-code-in/</link>
       <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/11/the-julia-language-participates-in-googles-code-in-contest/</guid>
+      <guid>julialang.org/blog/2019/11/google-code-in/</guid>
       <description>We are pleased to announce that The Julia Language has been accepted to participate in the Google Code-In program. This is a contest for 13-17 year olds, introducing them to the world of open source development.
 The program involves lots of small, bite-sized tasks. During the contest, students will claim and then subsequently complete tasks to win prizes (and learn of course). Tasks can be in the areas of coding, design, QA, documentation or outreach.</description>
     </item>
     
     <item>
       <title>Profiling tool wins and woes.</title>
-      <link>julialang.org/blog/2019/09/profiling-tool-wins-and-woes./</link>
+      <link>julialang.org/blog/2019/09/profilers/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/09/profiling-tool-wins-and-woes./</guid>
+      <guid>julialang.org/blog/2019/09/profilers/</guid>
       <description>Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: brendangregg&amp;rsquo;s often cloned flamegraphs tool was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.</description>
     </item>
     
     <item>
       <title>Julia Workshop@Beijing and the Julia Localization Prize</title>
-      <link>julialang.org/blog/2019/09/julia-workshopbeijing-and-the-julia-localization-prize/</link>
+      <link>julialang.org/blog/2019/09/julia-workshop-beijing/</link>
       <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/09/julia-workshopbeijing-and-the-julia-localization-prize/</guid>
+      <guid>julialang.org/blog/2019/09/julia-workshop-beijing/</guid>
       <description>A Julia workshop in China was hosted by JuliaCN in Beijing on Aug 24, 2019. This is the 5th Julia workshop in China hosted by JuliaCN since 2016. We thank the Julia community and our kind sponsors: Colorful Clouds, Microsoft, Swarma club, and SyncedReview. We received over 100 registrations for this event, and roughly 50 offline participants. The online video stream had 1,600 live viewers.
 These videos have been uploaded to Bilibili.</description>
     </item>
     
     <item>
       <title>Julia夏季会议@Beijing &amp; 本地化奖</title>
-      <link>julialang.org/blog/2019/09/julia%E5%A4%8F%E5%AD%A3%E4%BC%9A%E8%AE%AEbeijing-%E6%9C%AC%E5%9C%B0%E5%8C%96%E5%A5%96/</link>
+      <link>julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/</link>
       <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/09/julia%E5%A4%8F%E5%AD%A3%E4%BC%9A%E8%AE%AEbeijing-%E6%9C%AC%E5%9C%B0%E5%8C%96%E5%A5%96/</guid>
+      <guid>julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/</guid>
       <description>JuliaCN在8月24日，中国北京举办了自2016以来第五次Julia会议。我们非常感谢Julia社区对本次活动的支持， 以及彩云科技, 微软中国, 集智俱乐部, 机器之心对本次活动的大力支持。本次活动有100余人注册，实到50余人。 线上直播在线人数达1600余人。
 本次活动的视频已上传至JuliaCN@B站，相关材料已上传到GitHub：JuliaCN/MeetUpMaterials。
 本地化奖 Jeff Bezanson宣布了Julia本地化奖，获奖人将获得一份有Julia的三个创始人签名的奖状，并且其中四位突出的贡献者将获得1000元的奖金。获奖者如下：
@@ -90,10 +90,10 @@ These videos have been uploaded to Bilibili.</description>
     
     <item>
       <title>Julia的版本发布流程</title>
-      <link>julialang.org/blog/2019/09/julia%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B/</link>
+      <link>julialang.org/blog/2019/09/release-process-zh-cn/</link>
       <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/09/julia%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B/</guid>
+      <guid>julialang.org/blog/2019/09/release-process-zh-cn/</guid>
       <description>从事软件开发的行家里手们对版本发布流程与节奏如此了若指掌，以至于他们将其精髓内化（internalize）并以为人人都懂得这些“浅显的道理”。 可是事实恰好相反，外行一眼望去如同雾里看花。 所以为了整个Julia社区，乃至于其它编程语言社区，我觉得有必要将Julia的开发过程白纸黑字地写下来。 在本文中，我将阐述：
  各种不同的版本 各种版本中允许和不允许的改动 版本发布流程的各阶段 根据风险承受力决定使用哪种版本 发布流程中的各阶段与标志性事件  这些文字材料是从discourse论坛和Slack协作交流群中摘录而来。 所有资料都是现成的，我只是将其归纳在一处。 如果大家觉得这篇文章颇有益处，我们会考虑将其变成一份官方文档。 宏观上来说，Julia遵循SemVer标准制定的“语义化版本”。 但SemVer在微观上提供了许多自由度，供使用者自行解释。 这篇文章正是为填补这些微观细节所作。
 补丁版本（Patch releases）  SemVer的版本号格式为主版本号.次版本号.修订号。 Julia的补丁版本增加版本号的最后位，即修订号。 比方说，从1.2.3到1.2.4标志着补丁版本的发布。
@@ -111,19 +111,19 @@ These videos have been uploaded to Bilibili.</description>
     
     <item>
       <title>Julia’s Release Process</title>
-      <link>julialang.org/blog/2019/08/julias-release-process/</link>
+      <link>julialang.org/blog/2019/08/release-process/</link>
       <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/08/julias-release-process/</guid>
+      <guid>julialang.org/blog/2019/08/release-process/</guid>
       <description>People involved in the day-to-day development of a project tend to become so familiar with its rhythm and process that they internalize it and it feels like everyone must just know how each stage unfolds. Of course, from the outside looking in it&amp;rsquo;s not so obvious. So I thought it might be helpful to the broader Julia community—and maybe even for other programming language communities—to actually write down Julia&amp;rsquo;s release process, including the details of:</description>
     </item>
     
     <item>
       <title>Julia User &amp; Developer Survey 2019</title>
-      <link>julialang.org/blog/2019/08/julia-user-developer-survey-2019/</link>
+      <link>julialang.org/blog/2019/08/2019-julia-survey/</link>
       <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/08/julia-user-developer-survey-2019/</guid>
+      <guid>julialang.org/blog/2019/08/2019-julia-survey/</guid>
       <description>We conducted the first annual Julia User &amp;amp; Developer Survey in June, and the results were presented by Viral Shah at JuliaCon on July 23.
     
 Special thanks to all who participated in the survey!
@@ -134,10 +134,10 @@ Most Popular Features / Biggest Problems</description>
     
     <item>
       <title>Julia将支持可组合的多线程并行机制</title>
-      <link>julialang.org/blog/2019/07/julia%E5%B0%86%E6%94%AF%E6%8C%81%E5%8F%AF%E7%BB%84%E5%90%88%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E6%9C%BA%E5%88%B6/</link>
+      <link>julialang.org/blog/2019/07/multithreading-zh-cn/</link>
       <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/07/julia%E5%B0%86%E6%94%AF%E6%8C%81%E5%8F%AF%E7%BB%84%E5%90%88%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E6%9C%BA%E5%88%B6/</guid>
+      <guid>julialang.org/blog/2019/07/multithreading-zh-cn/</guid>
       <description>摩尔定律带来的免费性能提升（free lunch）几近结束， 软件性能越来越依赖于利用多个处理器核心。 Julia社区一直以对计算性能的关注而出名。 为了追求性能，我们已经为多进程、分布式编程和 GPU 构建了许多功能， 但多年来，我们一直知道我们还需要一个可组合的多线程支持。 今天，我们很高兴地宣布这一方向的重要进展。 我们将发布一个全新的Julia线程接口： 一个受到Cilk，Intel Threading Building Blocks (TBB) 以及 Go等启发的 通用任务并行（general task parallelism）机制。 任务并行现在已在 v1.3.0-alpha 版本中提供，Julia 1.3.0 的早期预览版预计将在几个月内发布。 您可以在下载页面上找到具有此功能的二进制文件，或者从源代码主分支构建。
 在这个例子中，程序的任何部分都可以标记为并行执行， 并将启动一个“任务”在可用线程上自动运行该代码。 动态调度程序会处理所有决策和细节。 下面是一个并行代码示例，现在您可以在 Julia 中如此编写:
 import Base.Threads.@spawn function fib(n::Int) if n  当然，这是斐波那契序列的非常低效的经典树型递归实现。 但，它可以在任意数量的处理器核心上运行！ 这一行 t = @spawn fib(n - 2) 启动一个计算 fib(n - 2) 的任务， 该任务与计算 fib(n - 1) 的代码并行运行。 而 fetch(t) 将等待任务 t 完成并获取其返回值。
@@ -147,37 +147,37 @@ import Base.Threads.@spawn function fib(n::Int) if n  当然，这是斐波那�
     
     <item>
       <title>Announcing composable multi-threaded parallelism in Julia</title>
-      <link>julialang.org/blog/2019/07/announcing-composable-multi-threaded-parallelism-in-julia/</link>
+      <link>julialang.org/blog/2019/07/multithreading/</link>
       <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/07/announcing-composable-multi-threaded-parallelism-in-julia/</guid>
+      <guid>julialang.org/blog/2019/07/multithreading/</guid>
       <description>Software performance depends more and more on exploiting multiple processor cores. The free lunch from Moore&amp;rsquo;s Law is still over. Well, we here in the Julia developer community have something of a reputation for caring about performance. In pursuit of it, we have already built a lot of functionality for multi-process, distributed programming and GPUs, but we&amp;rsquo;ve known for years that we would also need a good story for composable multi-threading.</description>
     </item>
     
     <item>
       <title>Hello @DiffEqBot</title>
-      <link>julialang.org/blog/2019/06/hello-diffeqbot/</link>
+      <link>julialang.org/blog/2019/06/diffeqbot/</link>
       <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/06/hello-diffeqbot/</guid>
+      <guid>julialang.org/blog/2019/06/diffeqbot/</guid>
       <description>Hi! Today we all got a new member to the DiffEq family. Say hi to our own DiffEqBot - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a repository. What&amp;rsquo;s special about this is that it is completely stateless (no databases involved at all, just juggling between repositories!) and it has no exposed public URLs.</description>
     </item>
     
     <item>
       <title>A Summer of Julia 2019</title>
-      <link>julialang.org/blog/2019/05/a-summer-of-julia-2019/</link>
+      <link>julialang.org/blog/2019/05/jsoc19/</link>
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/05/a-summer-of-julia-2019/</guid>
+      <guid>julialang.org/blog/2019/05/jsoc19/</guid>
       <description>Every summer, we welcome a large group of students working on Julia and its packages via the Google Summer of Code program. Last year, we had 22 amazing students, working on diverse topics from machine learning to graphs to differential equations, many of whom continue to be valued contributors to our ecosystem. We are incredibly grateful to Google for the amazing opportunity it provides through GSoC to both the Julia ecosystem as a whole and to the students who are selected.</description>
     </item>
     
     <item>
       <title>Beyond machine learning pipelines with MLJ</title>
-      <link>julialang.org/blog/2019/05/beyond-machine-learning-pipelines-with-mlj/</link>
+      <link>julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/</link>
       <pubDate>Thu, 02 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/05/beyond-machine-learning-pipelines-with-mlj/</guid>
+      <guid>julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/</guid>
       <description>Introduction MLJ is an open-source machine learning toolbox written in pure Julia. It provides a uniform interface for interacting with supervised and unsupervised learning models currently scattered in different Julia packages.
 Building on a earlier proof-of-concept, development began in earnest at The Alan Turing Institute in December 2018. In a short time interest grew and the project is now the Institute&amp;rsquo;s most starred software repository.
 After outlining MLJ&amp;rsquo;s current functionality, this post introduces MLJ learning networks, a super-charged pipelining feature for model composition.</description>
@@ -185,10 +185,10 @@ After outlining MLJ&amp;rsquo;s current functionality, this post introduces MLJ 
     
     <item>
       <title>DiffEqFlux.jl – Julia 的神經微分方程套件</title>
-      <link>julialang.org/blog/2019/04/diffeqflux.jl-julia-%E7%9A%84%E7%A5%9E%E7%B6%93%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%A5%97%E4%BB%B6/</link>
+      <link>julialang.org/blog/2019/04/fluxdiffeq-zh_tw/</link>
       <pubDate>Thu, 04 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/04/diffeqflux.jl-julia-%E7%9A%84%E7%A5%9E%E7%B6%93%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%A5%97%E4%BB%B6/</guid>
+      <guid>julialang.org/blog/2019/04/fluxdiffeq-zh_tw/</guid>
       <description>在這篇文章中，我們將會展示在 Julia 中使用微分方程解算器（DiffEq solver）搭配神經網路有多麼簡單、有效而且穩定。
 Neural Ordinary Differential Equations， 在這篇文章得到 NeurIPS 2018 的最佳論文獎的殊榮之前，其早已成為熱門話題。 這篇論文給出了許多令人讚賞的結果，他結合了兩個不相干的領域，但這只不過是個開始而已： 神經網路與微分方程簡直天生絕配。這篇部落格文章來自 Flux 套件的作者與 DifferentialEquations.jl 套件作者的合作，實作 Neural ODEs 論文, 將會解釋為什麼這個專案會誕生，以及這個專案現在和未來的走向， 也會開始描繪極致的工具會有怎樣的可能性。
 Julia 中運用數值方法來解微分方程的 DifferentialEquations.jl 函式庫 的眾多優勢已經在其他文章中被詳細討論。 除了經典 Fortran 方法的眾多效能評測之外， 它包含了其他新穎的功能，像是 GPU 加速、 分散式（多節點）平行運算 以及精密的事件處理。 最近，這些 Julia 土生土長的微分方程方法已經成功地整合進 Flux 深度學習套件， 並允許在神經網路中使用整套完整測試、優化的 DiffEq 方法。 我們將會使用新套件 DiffEqFlux.jl 展示給讀者， 在神經網路中增加微分方程層有多麼簡單，並可以使用一系列微分方程方法， 包含剛性（stiff）常微分方程、隨機微分方程、延遲微分方程，以及混合（非連續）微分方程。
@@ -198,10 +198,10 @@ Julia 中運用數值方法來解微分方程的 DifferentialEquations.jl 函式
     
     <item>
       <title>A Julia interpreter and debugger</title>
-      <link>julialang.org/blog/2019/03/a-julia-interpreter-and-debugger/</link>
+      <link>julialang.org/blog/2019/03/debuggers/</link>
       <pubDate>Tue, 19 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/03/a-julia-interpreter-and-debugger/</guid>
+      <guid>julialang.org/blog/2019/03/debuggers/</guid>
       <description>The authors are pleased to announce the release of a fully-featured debugger for Julia. You can now easily debug and introspect Julia code in a variety of ways:
  Step into functions and manually walk through your code while inspecting its state
  Set breakpoints and trap errors, allowing you to discover what went wrong at the point of trouble
@@ -210,20 +210,20 @@ Julia 中運用數值方法來解微分方程的 DifferentialEquations.jl 函式
     
     <item>
       <title>The Julia Project and Its Entities</title>
-      <link>julialang.org/blog/2019/02/the-julia-project-and-its-entities/</link>
+      <link>julialang.org/blog/2019/02/julia-entities/</link>
       <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/02/the-julia-project-and-its-entities/</guid>
+      <guid>julialang.org/blog/2019/02/julia-entities/</guid>
       <description>There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. It’s pretty hard to know about these things without being in the thick of it. In this blog post I’ll give an overview of these groups and how they’re related to the project.
 Julia The Julia project was founded by Jeff Bezanson, Alan Edelman, Viral Shah and myself (Stefan Karpinski).</description>
     </item>
     
     <item>
       <title>GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms</title>
-      <link>julialang.org/blog/2019/02/gsoc-2018-parallel-implementations-of-graph-analysis-algorithms/</link>
+      <link>julialang.org/blog/2019/02/light-graphs/</link>
       <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/02/gsoc-2018-parallel-implementations-of-graph-analysis-algorithms/</guid>
+      <guid>julialang.org/blog/2019/02/light-graphs/</guid>
       <description>This blog briefly summarises my GSoC 2018 project (Parallel Graph Development) and the results achieved. For a detailed description, please refer to my GSoC blog.
 The project is spread over the LightGraphs codebase. It involved:
  Producing parallel implementations of crucial graph algorithms. Improving sequential implementation of crucial graph algorithms in LightGraphs. Implementing heuristics to obtain good solutions to crucial NP-Hard graph problems.  The benchmarks were conducted on a 64-bit linux machine using 4 cores.</description>
@@ -231,10 +231,10 @@ The project is spread over the LightGraphs codebase. It involved:
     
     <item>
       <title>DiffEqFlux.jl – A Julia Library for Neural Differential Equations</title>
-      <link>julialang.org/blog/2019/01/diffeqflux.jl-a-julia-library-for-neural-differential-equations/</link>
+      <link>julialang.org/blog/2019/01/fluxdiffeq/</link>
       <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2019/01/diffeqflux.jl-a-julia-library-for-neural-differential-equations/</guid>
+      <guid>julialang.org/blog/2019/01/fluxdiffeq/</guid>
       <description>Translations: Traditional Chinese
 In this blog post we will show you how to easily, efficiently, and robustly use differential equation (DiffEq) solvers with neural networks in Julia.
 The Neural Ordinary Differential Equations paper has attracted significant attention even before it was awarded one of the Best Papers of NeurIPS 2018. The paper already gives many exciting results combining these two disparate fields, but this is only the beginning: neural networks and differential equations were born to be together.</description>
@@ -242,77 +242,77 @@ The Neural Ordinary Differential Equations paper has attracted significant atten
     
     <item>
       <title>Building a Language and Compiler for Machine Learning</title>
-      <link>julialang.org/blog/2018/12/building-a-language-and-compiler-for-machine-learning/</link>
+      <link>julialang.org/blog/2018/12/ml-language-compiler/</link>
       <pubDate>Mon, 03 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/12/building-a-language-and-compiler-for-machine-learning/</guid>
+      <guid>julialang.org/blog/2018/12/ml-language-compiler/</guid>
       <description>Since we originally proposed the need for a first-class language, compiler and ecosystem for machine learning (ML), there have been plenty of interesting developments in the field. Not only have the tradeoffs in existing systems, such as TensorFlow and PyTorch, not been resolved, but they are clearer than ever now that both frameworks contain distinct “static graph” and “eager execution” interfaces. Meanwhile, the idea of ML models fundamentally being differentiable algorithms – often called differentiable programming – has caught on.</description>
     </item>
     
     <item>
       <title>How to get started with Julia 1.0&#39;s package manager</title>
-      <link>julialang.org/blog/2018/09/how-to-get-started-with-julia-1.0s-package-manager/</link>
+      <link>julialang.org/blog/2018/09/pkgtutorial/</link>
       <pubDate>Wed, 12 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/09/how-to-get-started-with-julia-1.0s-package-manager/</guid>
+      <guid>julialang.org/blog/2018/09/pkgtutorial/</guid>
       <description>For those of you in the midst of transitioning or preparing to transition to Julia 1.0, I&amp;rsquo;ve made a short (less than 6 minutes) tutorial on the basics of the new package manager. This video includes how to interact with the package manager and how to check, install, update, and remove packages.
  For more advanced information, check out the documentation and the relevant JuliaCon 2018 talk from Kristoffer Carlson and Stefan Karpinski.</description>
     </item>
     
     <item>
       <title>A portrait of JuliaCon 2018</title>
-      <link>julialang.org/blog/2018/09/a-portrait-of-juliacon-2018/</link>
+      <link>julialang.org/blog/2018/09/juliacon2018/</link>
       <pubDate>Tue, 11 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/09/a-portrait-of-juliacon-2018/</guid>
+      <guid>julialang.org/blog/2018/09/juliacon2018/</guid>
       <description>So much went well! As the venue of the Julia 1.0 release and the largest meeting of the Julia community yet, JuliaCon 2018 was remarkable in multiple ways. It brought together almost 350 attendees representing users and developers of the Julia language who hailed from Africa, Asia, Europe, North America, Australia, and South America.
 With an eye to quality over quantity, we&amp;rsquo;re happy to report that our attendees were overwhelmingly pleased with the conference: Of the attendees who have responded to our post-conference feedback survey, 98.</description>
     </item>
     
     <item>
       <title>The Julia Community Prizes, 2018</title>
-      <link>julialang.org/blog/2018/09/the-julia-community-prizes-2018/</link>
+      <link>julialang.org/blog/2018/09/julia-community-prizes/</link>
       <pubDate>Tue, 04 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/09/the-julia-community-prizes-2018/</guid>
+      <guid>julialang.org/blog/2018/09/julia-community-prizes/</guid>
       <description>The Julia Community Prizes celebrate the amazing set of scientists, developers and designers who have come together build such a strong and diverse ecosystem for numerical computing. Each of the four individuals chosen for the first award in 2018 have made immense contributions to Julia over many years, and all of them have been crucial to Julia&amp;rsquo;s success.
 The prizes were announced at JuliaCon 2018 in London, and each awardee was presented with certificate of accomplishment and a cash prize of $1000.</description>
     </item>
     
     <item>
       <title>GSoC 2018 and Speech Recognition for the Flux Model Zoo: The Conclusion</title>
-      <link>julialang.org/blog/2018/08/gsoc-2018-and-speech-recognition-for-the-flux-model-zoo-the-conclusion/</link>
+      <link>julialang.org/blog/2018/08/gsoc2018-speech-recognition/</link>
       <pubDate>Tue, 14 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/08/gsoc-2018-and-speech-recognition-for-the-flux-model-zoo-the-conclusion/</guid>
+      <guid>julialang.org/blog/2018/08/gsoc2018-speech-recognition/</guid>
       <description>Here we are on the other end of Google Summer of Code 2018. It has been a challenging and educational experience, and I wouldn&amp;rsquo;t have it any other way. I am thankful to the Julia community, and especially my mentor @MikeInnes, for supporting me through this. I&amp;rsquo;ve learned a lot and become even more familiar with neural nets than I was before, and I learned how to do basic GPU programming, which will be incredibly useful for my academic career.</description>
     </item>
     
     <item>
       <title>GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux</title>
-      <link>julialang.org/blog/2018/08/gsoc-2018-adding-newer-features-and-speeding-up-convolutions-in-flux/</link>
+      <link>julialang.org/blog/2018/08/adding-newer-features-and-speeding-up-convolutions-in-flux/</link>
       <pubDate>Mon, 13 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/08/gsoc-2018-adding-newer-features-and-speeding-up-convolutions-in-flux/</guid>
+      <guid>julialang.org/blog/2018/08/adding-newer-features-and-speeding-up-convolutions-in-flux/</guid>
       <description>Over the summer I have been working at improving the Computer Vision capabilities of Flux. My specific line of work was to add newer models to the Flux model-zoo, implement some new features and also improve the speed of the previous layers. Specifically, I achieved a 18-fold speed up for the Convolutions and around 3-fold for BatchNorm.
 A Short Summary of my work during GSoC 2018 I am listing all the essential PRs I had made during this project.</description>
     </item>
     
     <item>
       <title>Union-splitting: what it is, and why you should care</title>
-      <link>julialang.org/blog/2018/08/union-splitting-what-it-is-and-why-you-should-care/</link>
+      <link>julialang.org/blog/2018/08/union-splitting/</link>
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/08/union-splitting-what-it-is-and-why-you-should-care/</guid>
+      <guid>julialang.org/blog/2018/08/union-splitting/</guid>
       <description>Among those who follow Julia&amp;rsquo;s development closely, one of the (many) new features causing great excitement is something called &amp;ldquo;Union-splitting.&amp;rdquo; Here at JuliaCon 2018 I&amp;rsquo;ve found myself explaining this feature repeatedly, so I thought I&amp;rsquo;d write this blog post to help disseminate this important information more widely. Let me start by saying that I&amp;rsquo;m not the expert here&amp;mdash;this is a feature added by Jameson Nash and Jacob Quinn, and enhanced by optimizer improvements by Keno Fisher&amp;mdash;but I am one of the many people truly excited about how this is already changing how I write Julia code.</description>
     </item>
     
     <item>
       <title>Julia 1.0</title>
-      <link>julialang.org/blog/2018/08/julia-1.0/</link>
+      <link>julialang.org/blog/2018/08/one-point-zero/</link>
       <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/08/julia-1.0/</guid>
+      <guid>julialang.org/blog/2018/08/one-point-zero/</guid>
       <description>Translations: Simplified Chinese, Traditional Chinese, Spanish
 The much anticipated 1.0 release of Julia is the culmination of nearly a decade of work to build a language for greedy programmers. JuliaCon2018 celebrated the event with a reception where the community officially set the version to 1.0.0 together.
 Julia was first publicly announced with a number of strong demands on the language:
@@ -321,10 +321,10 @@ Julia was first publicly announced with a number of strong demands on the langua
     
     <item>
       <title>Julia 1.0 (Simplified Chinese)</title>
-      <link>julialang.org/blog/2018/08/julia-1.0-simplified-chinese/</link>
+      <link>julialang.org/blog/2018/08/one-point-zero-zh_cn/</link>
       <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/08/julia-1.0-simplified-chinese/</guid>
+      <guid>julialang.org/blog/2018/08/one-point-zero-zh_cn/</guid>
       <description>备受期待的Julia语言的1.0版本积累了富有野心的程序员们的十年心血。 在 JuliaCon2018 发布会上，Julia 社区正式将该版本设置为1.0.0。
 Julia项目起初是因为这些强烈的需求而公开发起的开源项目：
  我们想要的是一个自由开源的语言，并且它同时拥有C的速度和Ruby的动态性；我们想要一个具有同像性（可以将语言的脚本本身当作数据进行处理）的语言， 它有着真正的和lisp一样的宏，但是却像Matlab一样有着显然的，类似于数学表达式的标记；我们想要一个既可以像Python一样作为通用编程语言的工具， 又可以像R那样适用于统计分析，能像Perl那样自然地处理字符串，能像Matlab那样给力地处理矩阵运算，它还要能像shell一样作为胶水将各种程序粘 合在一起；我们想要一个简单易学的语言，同时它还能让最苛刻的魔法师们（hackers）开心。我们希望它是交互式的，但我们也希望它能被编译。
@@ -333,10 +333,10 @@ Julia项目起初是因为这些强烈的需求而公开发起的开源项目：
     
     <item>
       <title>Julia 1.0 (Spanish)</title>
-      <link>julialang.org/blog/2018/08/julia-1.0-spanish/</link>
+      <link>julialang.org/blog/2018/08/one-point-zero-es/</link>
       <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/08/julia-1.0-spanish/</guid>
+      <guid>julialang.org/blog/2018/08/one-point-zero-es/</guid>
       <description>La anticipada liberación de la versión 1.0 de Julia es la culminación de casi una década de trabajo de construir un lenguaje para programadores ambiciosos. JuliaCon2018 celebró la ocasión con un evento donde la comunidad oficialmente lanzó conjuntamente la versión 1.0.0.
 El primer comunicado público de Julia fue hecho con número de exigencias sobre el lenguaje:
  Queremos un lenguaje que sea de código abierto, con licencia liberal. Queremos la velocidad de C con el dinamismo de Ruby.</description>
@@ -344,10 +344,10 @@ El primer comunicado público de Julia fue hecho con número de exigencias sobre
     
     <item>
       <title>Julia 1.0 (Traditional Chinese)</title>
-      <link>julialang.org/blog/2018/08/julia-1.0-traditional-chinese/</link>
+      <link>julialang.org/blog/2018/08/one-point-zero-zh_tw/</link>
       <pubDate>Wed, 08 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/08/julia-1.0-traditional-chinese/</guid>
+      <guid>julialang.org/blog/2018/08/one-point-zero-zh_tw/</guid>
       <description>眾所期待的 Julia 語言 1.0 版是近十年的心血結晶。 在 JuliaCon 2018 年會上，Julia 社群歡慶並共同正式地將該版本 升級為 1.0.0。
 Julia 語言 第一次公開發佈 並有不少強烈的期待：
  我們想要一個開源的語言，擁有自由的版權。我們想要 C 的速度和 Ruby 的動態。我們想要有一個語法與內在表示有一致性（homoiconic）的語言， 並且像 Lisp 一樣擁有真的 macro，但是擁有像 Matlab 一樣熟悉好懂的數學符號。我們也想要像 Python 一樣好用的泛用型程式語言， 處理統計要和 R 一樣，處理字串要和 Perl 一樣地自然，要有和 Matlab 一樣強大的線性代數功能，串接程式要如同 shell 一樣好用。 要學習的東西極致簡單，同時能讓大多數嚴苛的黑客寫起來開心。我們希望它是互動式的而且也是可編譯的。
@@ -356,10 +356,10 @@ Julia 語言 第一次公開發佈 並有不少強烈的期待：
     
     <item>
       <title>GSoC 2018: Reinforcement Learning and Generative models using Flux</title>
-      <link>julialang.org/blog/2018/08/gsoc-2018-reinforcement-learning-and-generative-models-using-flux/</link>
+      <link>julialang.org/blog/2018/08/gsoc-final-summary/</link>
       <pubDate>Mon, 06 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/08/gsoc-2018-reinforcement-learning-and-generative-models-using-flux/</guid>
+      <guid>julialang.org/blog/2018/08/gsoc-final-summary/</guid>
       <description>Hello, world!
 In this post I&amp;rsquo;m going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of Flux.jl, a machine learning library written in Julia. My project covered Reinforcement Learning and computer vision models.
 The project is spread over these 4 codebases 1. Flux-baselines 2. AlphaGo.jl 3. GAN models 4. DNI model
@@ -368,20 +368,20 @@ In the process, I could achieve most of my targets.</description>
     
     <item>
       <title>Writing Iterators in Julia 0.7</title>
-      <link>julialang.org/blog/2018/07/writing-iterators-in-julia-0.7/</link>
+      <link>julialang.org/blog/2018/07/iterators-in-julia-0.7/</link>
       <pubDate>Sun, 08 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/07/writing-iterators-in-julia-0.7/</guid>
+      <guid>julialang.org/blog/2018/07/iterators-in-julia-0.7/</guid>
       <description>This post originally appeared on the Invenia blog.
 With the upcoming 0.7 release, Julia has simplified its iteration interface. The 0.7-beta release is available for download. This was a huge undertaking which mostly fell to the prolific Keno Fischer, who wrote an entirely new optimizer for the language to accomplish it! As the most active maintainer of the IterTools package, I decided to spend a week rewriting its iterators for the new interface.</description>
     </item>
     
     <item>
       <title>First-Class Statistical Missing Values Support in Julia 0.7</title>
-      <link>julialang.org/blog/2018/06/first-class-statistical-missing-values-support-in-julia-0.7/</link>
+      <link>julialang.org/blog/2018/06/missing/</link>
       <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/06/first-class-statistical-missing-values-support-in-julia-0.7/</guid>
+      <guid>julialang.org/blog/2018/06/missing/</guid>
       <description>The 0.7 release of Julia will soon introduce first-class support for statistical missing values. Being essential for statistical analyses and data management, this feature is common among specialized languages, such as SQL (with the NULL value), R (NA), SAS (., &#39; &#39;, etc.) or Stata (., etc.). It is however quite rare among general-purpose languages, where Nullable or Option types generally do not allow implicit propagation of null values (they require lifting) and do not provide an efficient representation of arrays with missing values1.</description>
     </item>
     
@@ -396,10 +396,10 @@ With the upcoming 0.7 release, Julia has simplified its iteration interface. The
     
     <item>
       <title>Tetris coming to Julia language for v1.0</title>
-      <link>julialang.org/blog/2018/04/tetris-coming-to-julia-language-for-v1.0/</link>
+      <link>julialang.org/blog/2018/04/tetris-and-you/</link>
       <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/04/tetris-coming-to-julia-language-for-v1.0/</guid>
+      <guid>julialang.org/blog/2018/04/tetris-and-you/</guid>
       <description>Good news, everyone! Starting v1.0, Tetris will be included in the standard library. This will allow you to play a round of Tetris while your code is busy running.
 Until Julia v1.0 drops next Wednesday, though, you can play online at:
  JuliaTetris.com  Example footage below.
@@ -408,29 +408,29 @@ Until Julia v1.0 drops next Wednesday, though, you can play online at:
     
     <item>
       <title>Some &amp;pi;-ography</title>
-      <link>julialang.org/blog/2018/03/some-pi-ography/</link>
+      <link>julialang.org/blog/2018/03/pifonts/</link>
       <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/03/some-pi-ography/</guid>
+      <guid>julialang.org/blog/2018/03/pifonts/</guid>
       <description>Although we&amp;rsquo;ve known about &amp;ldquo;Archimedes&amp;rsquo; constant&amp;rdquo; for a few millennia, we&amp;rsquo;ve been referring to it as the Greek letter π only since the 1700s. Patricia Rothman suggested that the following page could contain one of the earliest uses of the Greek character to indicate the concept. It&amp;rsquo;s from a mathematics text book written by William Jones and published in 1706:
 Jones used the Greek letter in various places both to indicate the number and, like some of his predecessors, to refer to the periphery or perimeter (Greek περιφέρεια) of a circle, and to label points in diagrams, as we would use P and Q today.</description>
     </item>
     
     <item>
       <title>Julia joins NumFOCUS in Google Summer of Code 2018</title>
-      <link>julialang.org/blog/2018/02/julia-joins-numfocus-in-google-summer-of-code-2018/</link>
+      <link>julialang.org/blog/2018/02/gsoc2018-numfocus/</link>
       <pubDate>Wed, 21 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2018/02/julia-joins-numfocus-in-google-summer-of-code-2018/</guid>
+      <guid>julialang.org/blog/2018/02/gsoc2018-numfocus/</guid>
       <description>The Julia project has participated in summer of code events since 2014, just two years after the language made its public debut. In 2014, 2016, and 2017, we participated in Google Summer of Code, and in 2015 we held our own summer of code event. This year we&amp;rsquo;re doing things a little differently. As a NumFOCUS sponsored project, we&amp;rsquo;re excited to announce that we&amp;rsquo;re participating in Google Summer of Code 2018 under the NumFOCUS umbrella.</description>
     </item>
     
     <item>
       <title>機器學習以及程式語言(Traditional Chinese)</title>
-      <link>julialang.org/blog/2017/12/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E4%BB%A5%E5%8F%8A%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80traditional-chinese/</link>
+      <link>julialang.org/blog/2017/12/mlpl-zh_tw/</link>
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/12/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E4%BB%A5%E5%8F%8A%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80traditional-chinese/</guid>
+      <guid>julialang.org/blog/2017/12/mlpl-zh_tw/</guid>
       <description>任何足夠複雜的機器學習系統都包含一個特別設置、不符規範、充滿 bug 又緩慢實作的程式語言半成品。1
  作者：By Mike Innes (Julia Computing), David Barber (UCL), Tim Besard (UGent), James Bradbury (Salesforce Research), Valentin Churavy (MIT), Simon Danisch (MIT), Alan Edelman (MIT), Stefan Karpinski (Julia Computing), Jon Malmaud (MIT), Jarrett Revels (MIT), Viral Shah (Julia Computing), Pontus Stenetorp (UCL) and Deniz Yuret (Koç University)，譯者:鄭景文，杜岳華，林峻頤（Iblis Lin）  作為一個設計程式語言（PL）的人，我們抱持莫大的興趣看著機器學習（ML）迅速竄升 - 而且有了它，人們用來建立更複雜的 ML 模型與框架。極致（State-of-the-art）的模型正不斷增加，有了程式的構造元素像是迴圈及遞迴，這為我們的建造工具帶來了很多有趣的議題 - 那也就是，程式語言。
 然而機器學習還沒有一個可靠的語言，許多人正在努力有效地創造隱藏在 Python API 底下的新語言（像是 TensorFlow），也有其他則是再利用 Python 當作一個建模語言（像是 PyTorch）。於是我們想問 —— 一個為機器學習量身定做的新語言是否有其必要的？如果是，為什麼？還有更重要的是，一個理想中未來的機器學習語言會是長什麼樣子？</description>
@@ -438,10 +438,10 @@ Jones used the Greek letter in various places both to indicate the number and, l
     
     <item>
       <title>机器学习与编程语言 (Simplified Chinese)</title>
-      <link>julialang.org/blog/2017/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-simplified-chinese/</link>
+      <link>julialang.org/blog/2017/12/mlpl-cn/</link>
       <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-simplified-chinese/</guid>
+      <guid>julialang.org/blog/2017/12/mlpl-cn/</guid>
       <description>任何足够复杂的机器学习系统，里面都拼凑了半个不规范，处处错误，且运行缓慢的编程语言。1
  作者： Mike Innes (Julia Computing), David Barber (UCL), Tim Besard (UGent), James Bradbury (Salesforce Research), Valentin Churavy (MIT), Simon Danisch (MIT), Alan Edelman (MIT), Stefan Karpinski (Julia Computing), Jon Malmaud (MIT), Jarrett Revels (MIT), Viral Shah (Julia Computing), Pontus Stenetorp (UCL) 和 Deniz Yuret (Koç University) 译者：李治中（港中文），步凡（Duke）  机器学习（ML）已如烈火烹油般火热。身处编程语言（PL）领域，我们饶有兴趣地关注着机器学习模型的复杂度和构造这些模型所用的框架。当今最前沿的模型越来越像*程序*：里面有循环和递归这样的编程结构；这对制造机器学习模型的工具本身，即编程语言，提出了许多有趣的挑战。
 虽然目前还没有一个机器学习专属的语言，但实事求是地说，已有几种新语言（比如 TensorFlow）藏身于 Python 语言接口之后；也有一些（比如 PyTorch）则直接用 Python 作为自己的建模语言。我们要问这样一个问题——需不需要专门为机器学习定制一个全新的语言？如果是，为什么？更重要地，如果将来出现一个理想的机器学习语言，它会长什么样？
@@ -451,29 +451,29 @@ Jones used the Greek letter in various places both to indicate the number and, l
     
     <item>
       <title>On Machine Learning and Programming Languages</title>
-      <link>julialang.org/blog/2017/12/on-machine-learning-and-programming-languages/</link>
+      <link>julialang.org/blog/2017/12/mlpl/</link>
       <pubDate>Wed, 06 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/12/on-machine-learning-and-programming-languages/</guid>
+      <guid>julialang.org/blog/2017/12/mlpl/</guid>
       <description>Any sufficiently complicated machine learning system contains an ad-hoc, informally-specified, bug-ridden, slow implementation of half of a programming language.1
  By Mike Innes (Julia Computing), David Barber (UCL), Tim Besard (UGent), James Bradbury (Salesforce Research), Valentin Churavy (MIT), Simon Danisch (MIT), Alan Edelman (MIT), Stefan Karpinski (Julia Computing), Jon Malmaud (MIT), Jarrett Revels (MIT), Viral Shah (Julia Computing), Pontus Stenetorp (UCL) and Deniz Yuret (Koç University)  As programming languages (PL) people, we have watched with great interest as machine learning (ML) has exploded – and with it, the complexity of ML models and the frameworks people are using to build them.</description>
     </item>
     
     <item>
       <title>GSoC 2017: Native Julia second order ODE and BVP solvers</title>
-      <link>julialang.org/blog/2017/11/gsoc-2017-native-julia-second-order-ode-and-bvp-solvers/</link>
+      <link>julialang.org/blog/2017/11/gsoc-ode/</link>
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/11/gsoc-2017-native-julia-second-order-ode-and-bvp-solvers/</guid>
+      <guid>julialang.org/blog/2017/11/gsoc-ode/</guid>
       <description>My original GSoC project was about implementing native Julia solvers for solving boundary value problems (BVPs) that were determined from second order ordinary differential equations (ODEs). I started down the BVP path, built a shooting method to solve BVPs from initial value problems (IVPs), and then built the beginning of the mono-implicit Runge-Kutta (MIRK) method. Those solvers are in the BoundaryValueDiffEq.jl repository. Instead of trying to jump directly to the end point, and talk about how to do every detail in MIRK, I went to explore how those details naturally arise in second order ODEs.</description>
     </item>
     
     <item>
       <title>NeuralNetDiffEq.jl: A Neural Network solver for ODEs</title>
-      <link>julialang.org/blog/2017/10/neuralnetdiffeq.jl-a-neural-network-solver-for-odes/</link>
+      <link>julialang.org/blog/2017/10/gsoc-neuralnetdiffeq/</link>
       <pubDate>Fri, 13 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/10/neuralnetdiffeq.jl-a-neural-network-solver-for-odes/</guid>
+      <guid>julialang.org/blog/2017/10/gsoc-neuralnetdiffeq/</guid>
       <description>My GSoC 2017 project was to implement a package for Julia to solve Ordinary Differential Equations using Neural Networks. The purpose of the project was to provide an additional DE solver using Neural Networks which has parallelism in time as the key advantage over other solvers which are iterative in nature. The project was based on research paper of Lagaris et al. 1997 which proposed the function approximation capabilities of neural networks (NNs) for solving differential equations.</description>
     </item>
     
@@ -490,105 +490,105 @@ Turns out it was designed by people born in the command line, making it confusin
     
     <item>
       <title>GSoC 2017 Project: Hamiltonian Indirect Inference</title>
-      <link>julialang.org/blog/2017/09/gsoc-2017-project-hamiltonian-indirect-inference/</link>
+      <link>julialang.org/blog/2017/09/hamiltonian-indirect-inference/</link>
       <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/09/gsoc-2017-project-hamiltonian-indirect-inference/</guid>
+      <guid>julialang.org/blog/2017/09/hamiltonian-indirect-inference/</guid>
       <description>Bayesian_Examples.jl This is a writeup of my project for the Google Summer of Code 2017. The associated repository contains examples of estimating various models. In addition to this repository, I have collaborated in HamiltonianABC and its branches as part of the GSOC 2017.
 GSOC 2017 project: Hamiltonian Monte Carlo and pseudo-Bayesian Indirect Likelihood This summer I have had the opportunity to participate in the Google Summer of Code program. My project was in the Julia language and the main goal was to implement Indirect Inference (A.</description>
     </item>
     
     <item>
       <title>GSoC 2017: Parallelism in BioJulia</title>
-      <link>julialang.org/blog/2017/09/gsoc-2017-parallelism-in-biojulia/</link>
+      <link>julialang.org/blog/2017/09/bio-parallel/</link>
       <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/09/gsoc-2017-parallelism-in-biojulia/</guid>
+      <guid>julialang.org/blog/2017/09/bio-parallel/</guid>
       <description>In this summer, I have worked on a project to develop tools that make BioJulia run faster. As an outcome, Automa.jl now generates more efficient code to parse text files, ConcurrentCalls.jl runs multiple tasks in parallel, and simple and efficient interfaces to various compression formats are provided in TranscodingStreams.jl.
 Instruction-level parallelism Instruction-level parallelism is a technique to run multiple instructions simultaneously on a CPU core. This may sound odd but actually it is possible because CPU instructions are executed in multiple stages such as fetch, decode, execute, and so on.</description>
     </item>
     
     <item>
       <title>GSoC 2017: Efficient Discretizations of PDE Operators</title>
-      <link>julialang.org/blog/2017/09/gsoc-2017-efficient-discretizations-of-pde-operators/</link>
+      <link>julialang.org/blog/2017/09/gsoc-derivative_operators/</link>
       <pubDate>Wed, 06 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/09/gsoc-2017-efficient-discretizations-of-pde-operators/</guid>
+      <guid>julialang.org/blog/2017/09/gsoc-derivative_operators/</guid>
       <description>This project is an attempt towards building a PDE solver for JuliaDiffEq using the Finite Difference Method(FDM) approach. We take up the FDM approach instead of FEM and FVM as there are many toolboxes which already exist for FEM and FVM but not for FDM. Also, there are many use cases where the geometry of the problem is simple enough to be solved by FDM methods which are much faster due to their being able to avoid the bottleneck step of matrix multiplication by using Linear transformations to mimic the effect of a matrix multiplication.</description>
     </item>
     
     <item>
       <title>GSoC 2017 Project: MCMC with flexible numbers of parameters</title>
-      <link>julialang.org/blog/2017/09/gsoc-2017-project-mcmc-with-flexible-numbers-of-parameters/</link>
+      <link>julialang.org/blog/2017/09/gsoc-mcmc-with-flexible-numbers-of-parameters/</link>
       <pubDate>Sun, 03 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/09/gsoc-2017-project-mcmc-with-flexible-numbers-of-parameters/</guid>
+      <guid>julialang.org/blog/2017/09/gsoc-mcmc-with-flexible-numbers-of-parameters/</guid>
       <description>My original GSOC proposal was to implement modify Mamba.jl to enable it to fit Crosscat, a general-purpose Bayesian model which fits tabular data using row-wise Dirichlet cluster models nested inside a column-wise Dirichlet cluster. This model is in itself broadly useful, but the real reason I chose this project was to work on something even more general: improving the tools for doing MCMC on models with a mix of discrete and continuous parameters.</description>
     </item>
     
     <item>
       <title>GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox</title>
-      <link>julialang.org/blog/2017/09/gsoc-2017-a-wrapper-for-the-fenics-finite-element-toolbox/</link>
+      <link>julialang.org/blog/2017/09/gsoc-fenics/</link>
       <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/09/gsoc-2017-a-wrapper-for-the-fenics-finite-element-toolbox/</guid>
+      <guid>julialang.org/blog/2017/09/gsoc-fenics/</guid>
       <description>Introduction Throughout this Google Summer of Code project I, along with my mentors, aimed to create a Wrapper for the FEniCS Finite Element Toolbox in the Julia Language. Our work done can be found at FEniCS.jl . This would allow users to perform FEM calculations directly in Julia, utilizing our PyCall.jl wrapping functionality. We currently have wrapped the main functionality, along with providing the necessary instructions to add further components when they are deemed necessary.</description>
     </item>
     
     <item>
       <title>GSoC 2017: Documentation Browser for Juno</title>
-      <link>julialang.org/blog/2017/08/gsoc-2017-documentation-browser-for-juno/</link>
+      <link>julialang.org/blog/2017/08/gsoc-docs-in-juno/</link>
       <pubDate>Mon, 28 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/08/gsoc-2017-documentation-browser-for-juno/</guid>
+      <guid>julialang.org/blog/2017/08/gsoc-docs-in-juno/</guid>
       <description>The aim of this GSoC project is to provide a convenient way to access documentation in the Juno IDE. Any work on this has to be on the Julia side (for getting the necessary information by introspection) and on the Atom side (for presenting said information).
 Most of the work on the Julia side went into a new package, DocSeeker.jl, which implements all of the introspection necessary to get docstrings from installed packages; a small shim in Atom.</description>
     </item>
     
     <item>
       <title>GSoC 2017: Implementing iterative solvers for numerical linear algebra</title>
-      <link>julialang.org/blog/2017/08/gsoc-2017-implementing-iterative-solvers-for-numerical-linear-algebra/</link>
+      <link>julialang.org/blog/2017/08/native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/</link>
       <pubDate>Wed, 23 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/08/gsoc-2017-implementing-iterative-solvers-for-numerical-linear-algebra/</guid>
+      <guid>julialang.org/blog/2017/08/native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/</guid>
       <description>The central part of my GSoC project is about implementing the Jacobi-Davidson method natively in Julia, available in JacobiDavidson.jl. This method computes a few approximate solutions of the eigenvalue problem $Ax = \lambda Bx$ for large and sparse matrices $A$ and $B$. As it uses iterative solvers internally, much time has gone into improving IterativeSolvers.jl in general. Lastly, as iterative solvers are typically used with preconditioners, I have implemented the incomplete LU factorization for sparse matrices as well in ILU.</description>
     </item>
     
     <item>
       <title>JuliaCon 2017 on the West Coast</title>
-      <link>julialang.org/blog/2017/08/juliacon-2017-on-the-west-coast/</link>
+      <link>julialang.org/blog/2017/08/juliacon/</link>
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/08/juliacon-2017-on-the-west-coast/</guid>
+      <guid>julialang.org/blog/2017/08/juliacon/</guid>
       <description>It’s a year later and I’m back: this time to the West Coast for the next edition of JuliaCon. The latest edition promised more talks, workshops, and wider community attendance. As usual, the conference began with a day dedicated to workshops. The first workshop was on the DifferentialEquations ecosystem, championed by Chris Rackauckas, who spoke about his vision to make the ecosystem the scientist’s one stop shop for simulations. It certainly looked to be shaping up into a robust ecosystem.</description>
     </item>
     
     <item>
       <title>Creating domain-specific languages in Julia using macros</title>
-      <link>julialang.org/blog/2017/08/creating-domain-specific-languages-in-julia-using-macros/</link>
+      <link>julialang.org/blog/2017/08/dsl/</link>
       <pubDate>Wed, 09 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/08/creating-domain-specific-languages-in-julia-using-macros/</guid>
+      <guid>julialang.org/blog/2017/08/dsl/</guid>
       <description>Since the beginning of Julia, it has been tempting to use macros to write domain-specific languages (DSLs), i.e. to extend Julia syntax to provide a simpler interface to create Julia objects with complicated behaviour. The first, and still most extensive, example is JuMP.
 Since the fix for the infamous early Julia issue #265, which was incorporated in Julia 0.6, some previous methods for creating DSLs in Julia, mainly involving eval, ceased to work.</description>
     </item>
     
     <item>
       <title>Julia 0.6 Release Announcement</title>
-      <link>julialang.org/blog/2017/06/julia-0.6-release-announcement/</link>
+      <link>julialang.org/blog/2017/06/julia-0.6-release/</link>
       <pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/06/julia-0.6-release-announcement/</guid>
+      <guid>julialang.org/blog/2017/06/julia-0.6-release/</guid>
       <description>The Julia community is thrilled to announce the release of version 0.6.0 of the Julia language. With a sweeping overhaul of the type system and numerous improvements to syntax and to the standard library, 0.6.0 is the most transformative release yet. A comprehensive list of changes in this release is available in the main Julia repository in the NEWS log.
 The 0.6 release line is now considered the stable line of releases and is recommended for most users, as it provides both language and API stability.</description>
     </item>
     
     <item>
       <title>Julia available in Raspbian on the Raspberry Pi</title>
-      <link>julialang.org/blog/2017/05/julia-available-in-raspbian-on-the-raspberry-pi/</link>
+      <link>julialang.org/blog/2017/05/raspberry-pi-julia/</link>
       <pubDate>Wed, 03 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/05/julia-available-in-raspbian-on-the-raspberry-pi/</guid>
+      <guid>julialang.org/blog/2017/05/raspberry-pi-julia/</guid>
       <description>Recently, Julia was accepted into the Raspbian distribution for the Raspberry Pi. If you are running the latest Raspbian, all you need to do is apt-get install julia. Most of the common packages can be installed with Pkg, and Jupyter can be installed using the usual IJulia.jl instructions.
 While Julia works on all the Pi variants, we recommend using the Pi 3.
 The scripts to create the julia package for Raspbian are in the julia-raspbian repo in the JuliaBerry organization on GitHub.</description>
@@ -596,38 +596,38 @@ The scripts to create the julia package for Raspbian are in the julia-raspbian r
     
     <item>
       <title>Upgrades to the REPL in Julia 0.6</title>
-      <link>julialang.org/blog/2017/04/upgrades-to-the-repl-in-julia-0.6/</link>
+      <link>julialang.org/blog/2017/04/repl-0.6-highlights/</link>
       <pubDate>Tue, 25 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/04/upgrades-to-the-repl-in-julia-0.6/</guid>
+      <guid>julialang.org/blog/2017/04/repl-0.6-highlights/</guid>
       <description>Since version 0.3, Julia has come with a command-line interface — a REPL — that is completely written in Julia (PR #6270). Among other features, the REPL provides code completion, history with reverse search, and a rich set of customizable key bindings. (See the Interacting with Julia part of the manual for the REPL documentation.) Even so, the REPL in Julia 0.6 includes quite a few new visual tweaks and features.</description>
     </item>
     
     <item>
       <title>Knowing where you are: custom array indices in Julia</title>
-      <link>julialang.org/blog/2017/04/knowing-where-you-are-custom-array-indices-in-julia/</link>
+      <link>julialang.org/blog/2017/04/offset-arrays/</link>
       <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/04/knowing-where-you-are-custom-array-indices-in-julia/</guid>
+      <guid>julialang.org/blog/2017/04/offset-arrays/</guid>
       <description>Arrays are a crucial component of any programming language, particularly for a data-oriented language like Julia. Arrays store values according to their location: in Julia, given a two-dimensional array A, the expression A[1,3] returns the value stored at a location known as (1,3). If, for example, A stores Float64 numbers, the value returned by this expression will be a single Float64 number.
 Julia&amp;rsquo;s arrays conventionally start numbering their axes with 1, meaning that the first element of a one-dimensional array a is a[1].</description>
     </item>
     
     <item>
       <title>Paper in SIAM Review: Julia - A Fresh Approach to Numerical Computing</title>
-      <link>julialang.org/blog/2017/03/paper-in-siam-review-julia-a-fresh-approach-to-numerical-computing/</link>
+      <link>julialang.org/blog/2017/03/julia-fresh-paper/</link>
       <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/03/paper-in-siam-review-julia-a-fresh-approach-to-numerical-computing/</guid>
+      <guid>julialang.org/blog/2017/03/julia-fresh-paper/</guid>
       <description>Our paper, Julia: A Fresh Approach to Numerical Computing, was published in the prestigious SIAM Review in February 2017. While drafts of this paper have always been available on Arxiv, we are excited that the paper is finally published. We make an attempt to explain why Julia is fast while retaining ease of use and simultaneously also offer a tutorial for the reader to get a feel for the language.</description>
     </item>
     
     <item>
       <title>Some fun with &amp;pi; in Julia</title>
-      <link>julialang.org/blog/2017/03/some-fun-with-pi-in-julia/</link>
+      <link>julialang.org/blog/2017/03/piday/</link>
       <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/03/some-fun-with-pi-in-julia/</guid>
+      <guid>julialang.org/blog/2017/03/piday/</guid>
       <description>Image courtesy of Cormullion, code here.
 This post is available as a Jupyter notebook here
 &amp;pi; in Julia (Simon Byrne)
@@ -637,20 +637,20 @@ piπ = 3.1415926535897... It can also be accessed via the unicode symbol (you ca
     
     <item>
       <title>Technical preview: Native GPU programming with CUDAnative.jl</title>
-      <link>julialang.org/blog/2017/03/technical-preview-native-gpu-programming-with-cudanative.jl/</link>
+      <link>julialang.org/blog/2017/03/cudanative/</link>
       <pubDate>Tue, 14 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/03/technical-preview-native-gpu-programming-with-cudanative.jl/</guid>
+      <guid>julialang.org/blog/2017/03/cudanative/</guid>
       <description>After 2 years of slow but steady development, we would like to announce the first preview release of native GPU programming capabilities for Julia. You can now write your CUDA kernels in Julia, albeit with some restrictions, making it possible to use Julia&amp;rsquo;s high-level language features to write high-performance GPU code.
 The programming support we&amp;rsquo;re demonstrating here today consists of the low-level building blocks, sitting at the same abstraction level of CUDA C.</description>
     </item>
     
     <item>
       <title>More Dots: Syntactic Loop Fusion in Julia</title>
-      <link>julialang.org/blog/2017/01/more-dots-syntactic-loop-fusion-in-julia/</link>
+      <link>julialang.org/blog/2017/01/moredots/</link>
       <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2017/01/more-dots-syntactic-loop-fusion-in-julia/</guid>
+      <guid>julialang.org/blog/2017/01/moredots/</guid>
       <description>After a lengthy design process and preliminary foundations in Julia 0.5, Julia 0.6 includes new facilities for writing code in the &amp;ldquo;vectorized&amp;rdquo; style (familiar from Matlab, Numpy, R, etcetera) while avoiding the overhead that this style of programming usually imposes: multiple vectorized operations can now be &amp;ldquo;fused&amp;rdquo; into a single loop, without allocating any extraneous temporary arrays.
 This is best illustrated with an example (in which we get order-of-magnitude savings in memory and time, as demonstrated below).</description>
     </item>
@@ -667,38 +667,38 @@ Julia 0.5 is a pivotal release. It introduces more transformative features than 
     
     <item>
       <title>Julia 0.5 Release Announcement</title>
-      <link>julialang.org/blog/2016/10/julia-0.5-release-announcement/</link>
+      <link>julialang.org/blog/2016/10/julia-0.5-release/</link>
       <pubDate>Mon, 10 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/10/julia-0.5-release-announcement/</guid>
+      <guid>julialang.org/blog/2016/10/julia-0.5-release/</guid>
       <description>After over a year of development, the Julia community is proud to announce the release of version 0.5 of the Julia language and standard library. This release contains major language refinements and numerous standard library improvements. A long list of changes is available in the NEWS log found in our main repository, with a summary reproduced below. A separate blog post detailing some of the highlights of the new release has also been posted.</description>
     </item>
     
     <item>
       <title>StructuredQueries.jl - A generic data manipulation framework</title>
-      <link>julialang.org/blog/2016/10/structuredqueries.jl-a-generic-data-manipulation-framework/</link>
+      <link>julialang.org/blog/2016/10/structuredqueries/</link>
       <pubDate>Mon, 03 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/10/structuredqueries.jl-a-generic-data-manipulation-framework/</guid>
+      <guid>julialang.org/blog/2016/10/structuredqueries/</guid>
       <description>This post describes my work conducted this summer at the Julia Lab to develop StructuredQueries.jl, a generic data manipulation framework for Julia.
 Our initial vision for this work was much inspired by Hadley Wickham&amp;rsquo;s dplyr R package, which provides data manipulation verbs that are generic over in-memory R tabular data structures and SQL databases, and DataFramesMeta (begun by Tom Short), which provides metaprogramming facilities for working with Julia DataFrames.</description>
     </item>
     
     <item>
       <title>A Personal Perspective On JuliaCon 2016</title>
-      <link>julialang.org/blog/2016/09/a-personal-perspective-on-juliacon-2016/</link>
+      <link>julialang.org/blog/2016/09/juliacon2016/</link>
       <pubDate>Wed, 21 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/09/a-personal-perspective-on-juliacon-2016/</guid>
+      <guid>julialang.org/blog/2016/09/juliacon2016/</guid>
       <description>The gentle breeze brushed my face and the mild sunshine warmed an otherwise chilly morning. I was standing in front of a large building that can only be described as unique: a series of metal plates jutting out at odd angles, whose dull resplendence cast an instant impression. It was the Ray and Maria Stata Centre, a towering monolith and the venue for an event that people from all over the world came to attend and participate in.</description>
     </item>
     
     <item>
       <title>BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more!</title>
-      <link>julialang.org/blog/2016/09/biojulia-2016-online-sequence-search-sequence-demultiplexing-new-readers-and-much-more/</link>
+      <link>julialang.org/blog/2016/09/biojulia2016-mid/</link>
       <pubDate>Sat, 10 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/09/biojulia-2016-online-sequence-search-sequence-demultiplexing-new-readers-and-much-more/</guid>
+      <guid>julialang.org/blog/2016/09/biojulia2016-mid/</guid>
       <description>We are pleased to announce releasing Bio.jl 0.4, a minor release including significant functionality improvements as I promised in the previous blog post.
 The following features are added since the post:
  Online sequence search algorithms. Sequence data structure for reference genomes. Data reader and writer for the .2bit file format. Data reader and writer for the SAM and BAM file formats. Sequence demultiplexing tool. Package to handle BGZF files.</description>
@@ -706,10 +706,10 @@ The following features are added since the post:
     
     <item>
       <title>Graft.jl - General purpose graph analytics for Julia</title>
-      <link>julialang.org/blog/2016/08/graft.jl-general-purpose-graph-analytics-for-julia/</link>
+      <link>julialang.org/blog/2016/08/gsoc2016-graft/</link>
       <pubDate>Mon, 22 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/08/graft.jl-general-purpose-graph-analytics-for-julia/</guid>
+      <guid>julialang.org/blog/2016/08/gsoc2016-graft/</guid>
       <description>This blog post describes my work on Graft.jl, a general purpose graph analysis package for Julia. For those unfamiliar with graph algorithms, a quick introduction might help.
 Proposal My proposal, titled ParallelGraphs, was to develop a parallelized/distributed graph algorithms library. However, in the first month or so, we decided to work towards a more general framework that supports data analysis on networks (graphs with attributes defined on vertices and edges).</description>
     </item>
@@ -725,56 +725,56 @@ Proposal My proposal, titled ParallelGraphs, was to develop a parallelized/distr
     
     <item>
       <title>An invitation to JuliaCon 2016</title>
-      <link>julialang.org/blog/2016/05/an-invitation-to-juliacon-2016/</link>
+      <link>julialang.org/blog/2016/05/juliacon-invitation/</link>
       <pubDate>Sun, 08 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/05/an-invitation-to-juliacon-2016/</guid>
+      <guid>julialang.org/blog/2016/05/juliacon-invitation/</guid>
       <description>For the third year in row we are happy to invite you to JuliaCon, the annual meeting of the Julia programming language community. JuliaCon 2016 will be held at the Massachusetts Institute of Technology from June 21st to 25th and as a first, this year we will have several high-profile keynote speakers, as well as the top-notch tutorials and talks you have come to expect over the years. Please purchase your tickets before May 13th to take advantage of the early-bird pricing and we look forward to seeing you in June!</description>
     </item>
     
     <item>
       <title>BioJulia Project in 2016</title>
-      <link>julialang.org/blog/2016/04/biojulia-project-in-2016/</link>
+      <link>julialang.org/blog/2016/04/biojulia2016/</link>
       <pubDate>Sat, 30 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/04/biojulia-project-in-2016/</guid>
+      <guid>julialang.org/blog/2016/04/biojulia2016/</guid>
       <description>I am pleased to announce that the next phase of BioJulia is starting! In the next several months, I&amp;rsquo;m going to implement many crucial features for bioinformatics that will motivate you to use Julia and BioJulia libraries in your work. But before going to the details of the project, let me briefly introduce you what the BioJulia project is. This project is supported by the Moore Foundation and the Julia project.</description>
     </item>
     
     <item>
       <title>Google Summer of Code 2016</title>
-      <link>julialang.org/blog/2016/04/google-summer-of-code-2016/</link>
+      <link>julialang.org/blog/2016/04/gsoc/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/04/google-summer-of-code-2016/</guid>
+      <guid>julialang.org/blog/2016/04/gsoc/</guid>
       <description>We’re pleased to announce that the Julia Language is taking part in this year’s Google Summer of Code. This means that interested students will have the opportunity to spend their summers getting paid to write code on a project of their choice.
 Student applications are open from March 14th – 25th on the SoC website, but there’s no reason not to get going right away! To get you started thinking about what you’d like to work on, there are a bunch of interesting projects on our ideas page.</description>
     </item>
     
     <item>
       <title>Generalizing AbstractArrays: opportunities and challenges</title>
-      <link>julialang.org/blog/2016/03/generalizing-abstractarrays-opportunities-and-challenges/</link>
+      <link>julialang.org/blog/2016/03/arrays-iteration/</link>
       <pubDate>Sun, 27 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/03/generalizing-abstractarrays-opportunities-and-challenges/</guid>
+      <guid>julialang.org/blog/2016/03/arrays-iteration/</guid>
       <description>Introduction: generic algorithms with AbstractArrays Somewhat unusually, this blog post is future-looking: it mostly focuses on things that don&amp;rsquo;t yet exist. Its purpose is to lay out the background for community discussion about possible changes to the core API for AbstractArrays, and serves as background reading and reference material for a more focused &amp;ldquo;julep&amp;rdquo; (a julia enhancement proposal). Here, often I&amp;rsquo;ll use the shorthand &amp;ldquo;array&amp;rdquo; to mean AbstractArray, and use Array if I explicitly mean julia&amp;rsquo;s concrete Array type.</description>
     </item>
     
     <item>
       <title>An introduction to ParallelAccelerator.jl</title>
-      <link>julialang.org/blog/2016/03/an-introduction-to-parallelaccelerator.jl/</link>
+      <link>julialang.org/blog/2016/03/parallelaccelerator/</link>
       <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/03/an-introduction-to-parallelaccelerator.jl/</guid>
+      <guid>julialang.org/blog/2016/03/parallelaccelerator/</guid>
       <description>The High Performance Scripting team at Intel Labs recently released ParallelAccelerator.jl, a Julia package for high-performance, high-level array-style programming. The goal of ParallelAccelerator is to make high-level array-style programs run as efficiently as possible in Julia, with a minimum of extra effort required from the programmer. In this post, we&amp;rsquo;ll take a look at the ParallelAccelerator package and walk through some examples of how to use it to speed up some typical array-style programs in Julia.</description>
     </item>
     
     <item>
       <title>Multidimensional algorithms and iteration</title>
-      <link>julialang.org/blog/2016/02/multidimensional-algorithms-and-iteration/</link>
+      <link>julialang.org/blog/2016/02/iteration/</link>
       <pubDate>Mon, 01 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/02/multidimensional-algorithms-and-iteration/</guid>
+      <guid>julialang.org/blog/2016/02/iteration/</guid>
       <description>Note: updated December 2018 for Julia 1.1
 Julia makes it easy to write elegant and efficient multidimensional algorithms. The new capabilities rest on two foundations: an iterator called CartesianIndices, and sophisticated array indexing mechanisms. Before I explain, let me emphasize that developing these capabilities was a collaborative effort, with the bulk of the work done by Matt Bauman (@mbauman), Jutho Haegeman (@Jutho), and myself (@timholy).
 These iterators are deceptively simple, so much so that I&amp;rsquo;ve never been entirely convinced that this blog post is necessary: once you learn a few principles, there&amp;rsquo;s almost nothing to it.</description>
@@ -782,108 +782,108 @@ These iterators are deceptively simple, so much so that I&amp;rsquo;ve never bee
     
     <item>
       <title>Julia IDE work in Atom</title>
-      <link>julialang.org/blog/2016/01/julia-ide-work-in-atom/</link>
+      <link>julialang.org/blog/2016/01/atom-work/</link>
       <pubDate>Thu, 07 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2016/01/julia-ide-work-in-atom/</guid>
+      <guid>julialang.org/blog/2016/01/atom-work/</guid>
       <description>A PL designer used to be able to design some syntax and semantics for their language, implement a compiler, and then call it a day. – Sean McDirmid
  In the few years since its initial release, the Julia language has made wonderful progress. Over four hundred contributors – and counting – have donated their time developing exciting and modern language features like channels for concurrency, a native documentation system, staged functions, compiled packages, threading, and tons more.</description>
     </item>
     
     <item>
       <title>JSoC 2015 project: DataStreams.jl</title>
-      <link>julialang.org/blog/2015/10/jsoc-2015-project-datastreams.jl/</link>
+      <link>julialang.org/blog/2015/10/datastreams/</link>
       <pubDate>Sun, 25 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2015/10/jsoc-2015-project-datastreams.jl/</guid>
+      <guid>julialang.org/blog/2015/10/datastreams/</guid>
       <description>Data processing got ya down? Good news! The DataStreams.jl package, er, framework, has arrived!
 The DataStreams processing framework provides a consistent interface for working with data, from source to sink and eventually every step in-between. It&amp;rsquo;s really about putting forth an interface (specific types and methods) to go about ingesting and transferring data sources that hopefully makes for a consistent experience for users, no matter what kind of data they&amp;rsquo;re working with.</description>
     </item>
     
     <item>
       <title>JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl</title>
-      <link>julialang.org/blog/2015/10/jsoc-2015-project-automatic-differentiation-in-julia-with-forwarddiff.jl/</link>
+      <link>julialang.org/blog/2015/10/auto-diff-in-julia/</link>
       <pubDate>Fri, 23 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2015/10/jsoc-2015-project-automatic-differentiation-in-julia-with-forwarddiff.jl/</guid>
+      <guid>julialang.org/blog/2015/10/auto-diff-in-julia/</guid>
       <description>This summer, I&amp;rsquo;ve had the good fortune to be able to participate in the first ever Julia Summer of Code (JSoC), generously sponsored by the Gordon and Betty Moore Foundation. My JSoC project was to explore the use of Julia for automatic differentiation (AD), a topic with a wide array of applications in the field of optimization.
 Under the mentorship of Miles Lubin and Theodore Papamarkou, I completed a major overhaul of ForwardDiff.</description>
     </item>
     
     <item>
       <title>JSoC 2015 project: Interactive Visualizations in Julia with GLVisualize.jl</title>
-      <link>julialang.org/blog/2015/10/jsoc-2015-project-interactive-visualizations-in-julia-with-glvisualize.jl/</link>
+      <link>julialang.org/blog/2015/10/glvisualize/</link>
       <pubDate>Thu, 22 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2015/10/jsoc-2015-project-interactive-visualizations-in-julia-with-glvisualize.jl/</guid>
+      <guid>julialang.org/blog/2015/10/glvisualize/</guid>
       <description>GLVisualize is an interactive visualization library that supports 2D and 3D rendering as well as building of basic GUIs. It&amp;rsquo;s written entirely in Julia and OpenGL. I&amp;rsquo;m really glad that I could continue working on this project with the support of Julia Summer of Code.
 During JSoC, my main focus was on advancing GLVisualize, but also improving the surrounding infrastructure like GeometryTypes, FileIO, ImageMagick, MeshIO and FixedSizeArrays. All recorded gifs in this blog post suffer from lossy compression.</description>
     </item>
     
     <item>
       <title>JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia</title>
-      <link>julialang.org/blog/2015/10/jsoc-2015-project-efficient-data-structures-and-algorithms-for-sequence-analysis-in-biojulia/</link>
+      <link>julialang.org/blog/2015/10/biojulia-sequence-analysis/</link>
       <pubDate>Wed, 21 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2015/10/jsoc-2015-project-efficient-data-structures-and-algorithms-for-sequence-analysis-in-biojulia/</guid>
+      <guid>julialang.org/blog/2015/10/biojulia-sequence-analysis/</guid>
       <description>Participant: Kenta Sato (@bicycle1885) Mentor: Daniel C. Jones (@dcjones)  Thanks to a grant from the Gordon and Betty Moore Foundation, I&amp;rsquo;ve enjoyed the Julia Summer of Code 2015 program administered by the NumFOCUS and a travel to the JuliaCon 2015 at Boston. During this program, I have created several packages about data structures and algorithms for sequence analysis, mainly targeted for bioinformatics. Even though Julia had lots of practical packages for numerical computing on floating-point numbers, it lacked efficient and compact data structures that are fundamental in bioinformatics.</description>
     </item>
     
     <item>
       <title>JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D</title>
-      <link>julialang.org/blog/2015/10/jsoc-2015-project-interactive-3d-graphics-in-the-browser-with-compose3d/</link>
+      <link>julialang.org/blog/2015/10/compose3d-threejs/</link>
       <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2015/10/jsoc-2015-project-interactive-3d-graphics-in-the-browser-with-compose3d/</guid>
+      <guid>julialang.org/blog/2015/10/compose3d-threejs/</guid>
       <description>Over the last three months, I&amp;rsquo;ve been working on Compose3D, which is an extension of the amazing Compose package to 3D. My work on Compose3D began as a project for my Computer Graphics course along with Pranav T Bhat, and by the end of the course, we had a working prototype for Compose3D with support for contexts and geometries and a very basic WebGL backend.
 It has been my pleasure to have been able to continue this work under the guidance of Shashi Gowda and Simon Danisch as a part of the first ever Julia Summer of Code, generously sponsored by the Gordon and Betty Moore Foundation.</description>
     </item>
     
     <item>
       <title>JSoC 2015 project: NullableArrays.jl</title>
-      <link>julialang.org/blog/2015/10/jsoc-2015-project-nullablearrays.jl/</link>
+      <link>julialang.org/blog/2015/10/nullablearrays/</link>
       <pubDate>Fri, 16 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2015/10/jsoc-2015-project-nullablearrays.jl/</guid>
+      <guid>julialang.org/blog/2015/10/nullablearrays/</guid>
       <description>My project under the 2015 Julia Summer of Code program has been to develop the NullableArrays package, which provides the NullableArray data type and its respective interface. I first encountered Julia earlier this year as a suggestion for which language I ought to learn as a matriculating PhD student in statistics. This summer has been an incredible opportunity for me both to develop as a young programmer and to contribute to an open-source community as full of possibility as Julia&amp;rsquo;s.</description>
     </item>
     
     <item>
       <title>Julia 0.4 Release Announcement</title>
-      <link>julialang.org/blog/2015/10/julia-0.4-release-announcement/</link>
+      <link>julialang.org/blog/2015/10/julia-0.4-release/</link>
       <pubDate>Fri, 09 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2015/10/julia-0.4-release-announcement/</guid>
+      <guid>julialang.org/blog/2015/10/julia-0.4-release/</guid>
       <description>We are pleased to announce the release of Julia 0.4.0. This release contains major language refinements and numerous standard library improvements. A summary of changes is available in the NEWS log found in our main repository. We will be making regular 0.4.x bugfix releases from the release-0.4 branch of the codebase, and we recommend the 0.4.x line for users requiring a more stable Julia environment.
 The Julia ecosystem continues to grow, and there are now over 700 registered packages!</description>
     </item>
     
     <item>
       <title>JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more</title>
-      <link>julialang.org/blog/2015/05/juliacon-2015-preview-deep-learning-3d-printing-parallel-computing-and-so-much-more/</link>
+      <link>julialang.org/blog/2015/05/juliacon-preview/</link>
       <pubDate>Sat, 30 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2015/05/juliacon-2015-preview-deep-learning-3d-printing-parallel-computing-and-so-much-more/</guid>
+      <guid>julialang.org/blog/2015/05/juliacon-preview/</guid>
       <description>JuliaCon 2015 is being held at the Massachusetts Institute of Technology from June 24th to the 28th. Get your tickets and book your hotel before June 4th to take advantage of early bird pricing.
 The first ever JuliaCon was held in Chicago last year and was a great success. JuliaCon is back for 2015, this time in Cambridge, Massachusetts at MIT&amp;rsquo;s architecturally-delightful Stata Center, the home of computer science at MIT.</description>
     </item>
     
     <item>
       <title>Julia Summer of Code 2015</title>
-      <link>julialang.org/blog/2015/05/julia-summer-of-code-2015/</link>
+      <link>julialang.org/blog/2015/05/jsoc-cfp/</link>
       <pubDate>Sat, 23 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2015/05/julia-summer-of-code-2015/</guid>
+      <guid>julialang.org/blog/2015/05/jsoc-cfp/</guid>
       <description>Thanks to a generous grant from the Moore Foundation, we are happy to announce the 2015 Julia Summer of Code (JSoC) administered by NumFocus. We realize that this announcement comes quite late in the summer internship process, but we are hoping to fund six projects. The duration of JSoC 2015 will be June 15-September 15. Last date for submitting applications is June 1.
 Stipends will match those of the Google Summer of Code (GSoC) at $5500 for the summer plus travel support to attend this year&amp;rsquo;s JuliaCon at MIT.</description>
     </item>
     
     <item>
       <title>Julia 0.3 Release Announcement</title>
-      <link>julialang.org/blog/2014/08/julia-0.3-release-announcement/</link>
+      <link>julialang.org/blog/2014/08/julia-0.3-release/</link>
       <pubDate>Wed, 20 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2014/08/julia-0.3-release-announcement/</guid>
+      <guid>julialang.org/blog/2014/08/julia-0.3-release/</guid>
       <description>We are pleased to announce the release of Julia 0.3.0. This release contains numerous improvements across the board from standard library changes to pure performance enhancements as well as an expanded ecosystem of packages as compared to the 0.2 releases. A summary of changes is available in NEWS.md found in our main repository, and binaries are now available on our main download page.
 A few notable changes:
  System image caching for fast startup.</description>
@@ -891,10 +891,10 @@ A few notable changes:
     
     <item>
       <title>JuliaCon 2014 Opening Session Presentations</title>
-      <link>julialang.org/blog/2014/08/juliacon-2014-opening-session-presentations/</link>
+      <link>julialang.org/blog/2014/08/juliacon-opening-session/</link>
       <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2014/08/juliacon-2014-opening-session-presentations/</guid>
+      <guid>julialang.org/blog/2014/08/juliacon-opening-session/</guid>
       <description>Scientific Applications Session 
 Tim Holy — Image Representation and Analysis Tim Holy is a Professor in the Department of Anatomy and Neurobiology at Washington University in St. Louis. He’s been involved with Julia development for over 2 years. In this presentation, Tim describes how Images.jl can be used for rapid inquiry and dissection of biomedical imaging data.
  Video: http://youtu.be/FA-1B_amwt8 Slides: https://github.com/JuliaCon/presentations/tree/master/Images GitHub: https://github.com/timholy</description>
@@ -902,48 +902,48 @@ Tim Holy — Image Representation and Analysis Tim Holy is a Professor in the De
     
     <item>
       <title>JuliaCon 2014 Optimization Presentations</title>
-      <link>julialang.org/blog/2014/08/juliacon-2014-optimization-presentations/</link>
+      <link>julialang.org/blog/2014/08/juliacon-opt-session/</link>
       <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2014/08/juliacon-2014-optimization-presentations/</guid>
+      <guid>julialang.org/blog/2014/08/juliacon-opt-session/</guid>
       <description>Optimization Session 
 Iain Dunning / Joey Huchette — JuliaOpt - Optimization Packages for Julia Iain Dunning and Joey Huchette are both doctoral students in the Massachusetts Institute of Technology Operations Research Center, where they study constrained continuous and combinatorial numerical optimization methods and theory. In this session they present the JuliaOpt suite of optimization packages and how they interoperate. They also discuss how various Julia features enable exciting functionality in these packages.</description>
     </item>
     
     <item>
       <title>Fast Numeric Computation in Julia</title>
-      <link>julialang.org/blog/2013/09/fast-numeric-computation-in-julia/</link>
+      <link>julialang.org/blog/2013/09/fast-numeric/</link>
       <pubDate>Wed, 04 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2013/09/fast-numeric-computation-in-julia/</guid>
+      <guid>julialang.org/blog/2013/09/fast-numeric/</guid>
       <description>Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality. With Julia, you can focus on your problem, keep your codes clean, and more importantly, write fast codes without diving into lower level languages such as C or Fortran even when performance is critical.</description>
     </item>
     
     <item>
       <title>Building GUIs with Julia, Tk, and Cairo, Part I</title>
-      <link>julialang.org/blog/2013/05/building-guis-with-julia-tk-and-cairo-part-i/</link>
+      <link>julialang.org/blog/2013/05/graphical-user-interfaces-part1/</link>
       <pubDate>Thu, 23 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2013/05/building-guis-with-julia-tk-and-cairo-part-i/</guid>
+      <guid>julialang.org/blog/2013/05/graphical-user-interfaces-part1/</guid>
       <description>This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia. Those following Julia development will know that plotting in Julia is still evolving, and one could therefore expect that it might be premature to build GUIs with Julia. My own recent experience has taught me that this expectation is wrong: compared with building GUIs in Matlab (my only previous GUI-writing experience), Julia already offers a number of quite compelling advantages.</description>
     </item>
     
     <item>
       <title>Building GUIs with Julia, Tk, and Cairo, Part II</title>
-      <link>julialang.org/blog/2013/05/building-guis-with-julia-tk-and-cairo-part-ii/</link>
+      <link>julialang.org/blog/2013/05/graphical-user-interfaces-part2/</link>
       <pubDate>Thu, 23 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2013/05/building-guis-with-julia-tk-and-cairo-part-ii/</guid>
+      <guid>julialang.org/blog/2013/05/graphical-user-interfaces-part2/</guid>
       <description>Drawing, painting, and plotting In this installment, we&amp;rsquo;ll cover both low-level graphics (using Cairo) and plotting graphs inside GUIs (using Winston). Here again we&amp;rsquo;re relying on infrastructure built by many people, including Jeff Bezanson, Mike Nolta, and Keno Fisher.
 Cairo The basics The display of the image is handled by Cairo, a C library for two-dimensional drawing. Julia&amp;rsquo;s Cairo wrapper isn&amp;rsquo;t currently documented, so let&amp;rsquo;s walk through a couple of basics first.</description>
     </item>
     
     <item>
       <title>Passing Julia Callback Functions to C</title>
-      <link>julialang.org/blog/2013/05/passing-julia-callback-functions-to-c/</link>
+      <link>julialang.org/blog/2013/05/callback/</link>
       <pubDate>Fri, 10 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2013/05/passing-julia-callback-functions-to-c/</guid>
+      <guid>julialang.org/blog/2013/05/callback/</guid>
       <description>One of the great strengths of Julia is that it is so easy to call C code natively, with no special &amp;ldquo;glue&amp;rdquo; routines or overhead to marshal arguments and convert return values. For example, if you want to call GNU GSL to compute a special function like a Debye integral, it is as easy as:
 debye_1(x) = ccall((:gsl_sf_debye_1,:libgsl), Cdouble, (Cdouble,), x) at which point you can compute debye_1(2), debye_1(3.7), and so on.</description>
     </item>
@@ -968,20 +968,20 @@ debye_1(x) = ccall((:gsl_sf_debye_1,:libgsl), Cdouble, (Cdouble,), x) at which p
     
     <item>
       <title>Videos from the Julia tutorial at MIT</title>
-      <link>julialang.org/blog/2013/03/videos-from-the-julia-tutorial-at-mit/</link>
+      <link>julialang.org/blog/2013/03/julia-tutorial-mit/</link>
       <pubDate>Sat, 30 Mar 2013 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2013/03/videos-from-the-julia-tutorial-at-mit/</guid>
+      <guid>julialang.org/blog/2013/03/julia-tutorial-mit/</guid>
       <description>We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. MIT Open Courseware and MIT-X graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.
 Julia Lightning Round (slides) This session is a rapid introduction to julia, using a number of lightning rounds. It uses a number of short examples to demonstrate syntax and features, and gives a quick feel for the language.</description>
     </item>
     
     <item>
       <title>Efficient Aggregates in Julia</title>
-      <link>julialang.org/blog/2013/03/efficient-aggregates-in-julia/</link>
+      <link>julialang.org/blog/2013/03/efficient-aggregates/</link>
       <pubDate>Tue, 05 Mar 2013 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2013/03/efficient-aggregates-in-julia/</guid>
+      <guid>julialang.org/blog/2013/03/efficient-aggregates/</guid>
       <description>We recently introduced an exciting feature that has been in planning for some time: immutable aggregate types. In fact, we have been planning to do this for so long that this feature is the subject of our issue #13 on GitHub, out of more than 2400 total issues so far.
 Essentially, this feature drastically reduces the overhead of user-defined types that represent small number-like values, or that wrap a small number of other objects.</description>
     </item>
@@ -997,10 +997,10 @@ Essentially, this feature drastically reduces the overhead of user-defined types
     
     <item>
       <title>New York Open Stats Meetup</title>
-      <link>julialang.org/blog/2012/04/new-york-open-stats-meetup/</link>
+      <link>julialang.org/blog/2012/04/nyc-open-stats-meetup-announcement/</link>
       <pubDate>Wed, 18 Apr 2012 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2012/04/new-york-open-stats-meetup/</guid>
+      <guid>julialang.org/blog/2012/04/nyc-open-stats-meetup-announcement/</guid>
       <description>I&amp;rsquo;ll be giving a talk on Julia at the New York Open Statistical Programming Meetup on May 1st. After my presentation, John Myles White and Shane Conway are going to give followup demos of statistical applications using Julia. Then we&amp;rsquo;re going to hang out and grab drinks nearby. Thanks to Harlan Harris and Drew Conway for setting the whole thing up!
 Announcement:
 After a brief hiatus, we are very excited to announce our May meetup will feature one of the hottest new languages in statistical computing: Julia.</description>
@@ -1008,10 +1008,10 @@ After a brief hiatus, we are very excited to announce our May meetup will featur
     
     <item>
       <title>Lang.NEXT Announcement</title>
-      <link>julialang.org/blog/2012/03/lang.next-announcement/</link>
+      <link>julialang.org/blog/2012/03/lang-next-talk-announcement/</link>
       <pubDate>Sat, 24 Mar 2012 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2012/03/lang.next-announcement/</guid>
+      <guid>julialang.org/blog/2012/03/lang-next-talk-announcement/</guid>
       <description>Jeff and I will be giving a presentation on Julia at the upcoming Lang.NEXT conference, a gathering of &amp;ldquo;programming language design experts and enthusiasts&amp;rdquo; featuring &amp;ldquo;talks, panels and discussion on leading programming language work from industry and research.&amp;rdquo; We are honored and excited to have been invited to speak at an event alongside so many programming language luminaries.
 Abstract:
 Julia is a dynamic language in the tradition of Lisp, Perl, Python and Ruby.</description>
@@ -1037,10 +1037,10 @@ Julia is a dynamic language in the tradition of Lisp, Perl, Python and Ruby.</de
     
     <item>
       <title>Stanford Talk Announcement</title>
-      <link>julialang.org/blog/2012/02/stanford-talk-announcement/</link>
+      <link>julialang.org/blog/2012/02/talk-announcement/</link>
       <pubDate>Mon, 27 Feb 2012 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2012/02/stanford-talk-announcement/</guid>
+      <guid>julialang.org/blog/2012/02/talk-announcement/</guid>
       <description>I will be speaking about Julia at the Stanford EE Computer Systems Colloquium on Wednesday, February 29 at 4:15PM PST. The title of the talk is Julia: A Fast Dynamic Language For Technical Computing.
 Abstract:
  Julia is a general-purpose, high-level, dynamic language, designed from the start to take advantage of techniques for executing dynamic languages at statically-compiled language speeds. As a result the language has a more powerful type system, and generally provides better type information to the compiler.</description>
@@ -1059,10 +1059,10 @@ We love all of these languages; they are wonderful and powerful.</description>
     
     <item>
       <title>为什么我们要创造Julia (Simplified Chinese)</title>
-      <link>julialang.org/blog/2012/02/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E8%A6%81%E5%88%9B%E9%80%A0julia-simplified-chinese/</link>
+      <link>julialang.org/blog/2012/02/why-we-created-julia-zh_cn/</link>
       <pubDate>Tue, 14 Feb 2012 00:00:00 +0000</pubDate>
       
-      <guid>julialang.org/blog/2012/02/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E8%A6%81%E5%88%9B%E9%80%A0julia-simplified-chinese/</guid>
+      <guid>julialang.org/blog/2012/02/why-we-created-julia-zh_cn/</guid>
       <description>这是一篇重译，参考了2012年的一篇豆瓣（链接在最后）。
  简短来讲，是因为我们很贪婪。
 我们之中有些是使用MATLAB的重量级用户，有些是来自Lisp的极客，还有一些是来自Python和Ruby的魔法师，甚至还有来自Perl社区的大魔法师。我们之中还有从胡子都没长齐时就开始使用Mathematica的。其中的有些人现在都没长胡子喱！我们像是疯了一样用R画了越来越多的图，而C是我们的硬核摇滚（也有大杀器之意）。

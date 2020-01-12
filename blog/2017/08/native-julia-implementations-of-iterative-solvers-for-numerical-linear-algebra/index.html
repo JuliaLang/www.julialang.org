@@ -184,7 +184,7 @@ B<span style="color:#666"></span> <span style="color:#666">=</span> LinearMap<sp
 target<span style="color:#666"></span> <span style="color:#666">=</span> Near<span style="color:#666"></span>(τ<span style="color:#666"></span>)
 P<span style="color:#666"></span> <span style="color:#666">=</span> SuperPreconditioner<span style="color:#666"></span>(τ<span style="color:#666"></span>)
 
-schur<span style="color:#666"></span>, residuals<span style="color:#666"></span> <span style="color:#666">=</span> jdqz<span style="color:#666"></span>(A<span style="color:#666"></span>, B<span style="color:#666"></span>, 
+schur<span style="color:#666"></span>, residuals<span style="color:#666"></span> <span style="color:#666">=</span> jdqz<span style="color:#666"></span>(A<span style="color:#666"></span>, B<span style="color:#666"></span>,
     gmres_solver<span style="color:#666"></span>(n<span style="color:#666"></span>, iterations<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">10</span>),
     preconditioner<span style="color:#666"></span> <span style="color:#666">=</span> P<span style="color:#666"></span>,
     target<span style="color:#666"></span> <span style="color:#666">=</span> target<span style="color:#666"></span>,

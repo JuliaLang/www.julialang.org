@@ -152,7 +152,7 @@ DIAGRAMS<span style="color:#666"></span>[<span style="color:#b44">&#34;</span><s
 </span><span style="color:#bbb"></span>-<span style="color:#bbb"> </span>julia<span style="color:#bbb"> </span>-e<span style="color:#bbb"> </span><span style="color:#b44">&#34;using Pkg;Pkg.clone(pwd());&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb"></span>-<span style="color:#bbb"> </span>cd<span style="color:#bbb"> </span>..<span style="color:#bbb">
 </span><span style="color:#bbb"></span>-<span style="color:#bbb"> </span>julia<span style="color:#bbb"> </span>some_script_to_run_benchmarks.jl<span style="color:#bbb"> </span><span style="color:#b44">&#34;${repo}&#34;</span><span style="color:#bbb"> </span><span style="color:#b44">&#34;${pr}&#34;</span><span style="color:#bbb"> </span><span style="color:#b44">&#34;${commit}&#34;</span><span style="color:#bbb">
-</span><span style="color:#bbb">    
+</span><span style="color:#bbb">
 </span><span style="color:#bbb"></span>failed_job:<span style="color:#bbb">
 </span><span style="color:#bbb"></span>script:<span style="color:#bbb">
 </span><span style="color:#bbb"></span>-<span style="color:#bbb"> </span>curl<span style="color:#bbb"> </span><span style="color:#b44">&#34;http://endpoint_to_tell_that_report_failed?repo=${repo}&amp;pr=${pr}&amp;commit=${commit}&#34;</span><span style="color:#bbb">
@@ -171,7 +171,7 @@ DIAGRAMS<span style="color:#666"></span>[<span style="color:#b44">&#34;</span><s
 <li>In the <code>some_script_to_run_becnhmarks.jl</code> file, we make a request back to DiffEqBot along with the report in JSON format in the end. When this happens, DiffEqBot makes a commit on the Reports repository on GitHub submitting the markdown script.</li>
 </ol>
 
-<div style="text-align:center"><img src="https://i.imgur.com/49pIrAe.jpg" /></div>  
+<div style="text-align:center"><img src="https://i.imgur.com/49pIrAe.jpg" /></div>
 
 <ol>
 <li>Then it makes a comment on the same PR notifying that the job is complete and report is generated.</li>
@@ -192,7 +192,7 @@ DIAGRAMS<span style="color:#666"></span>[<span style="color:#b44">&#34;</span><s
   <span style="color:#008000;font-weight:bold">&#34;benchmarkers&#34;</span>        : [<span style="color:#b44">&#34;kanav99&#34;</span>, <span style="color:#b44">&#34;ChrisRackauckas&#34;</span>],
   <span style="color:#008000;font-weight:bold">&#34;bot_name&#34;</span>            : <span style="color:#b44">&#34;DiffEqBot&#34;</span>,
   <span style="color:#008000;font-weight:bold">&#34;gitlab_runner_secret&#34;</span>: <span style="color:#b44">&#34;secret_secret_secret&#34;</span>,
-  <span style="color:#008000;font-weight:bold">&#34;github_app&#34;</span>          : 
+  <span style="color:#008000;font-weight:bold">&#34;github_app&#34;</span>          :
     {
       <span style="color:#008000;font-weight:bold">&#34;client_id&#34;</span>           : <span style="color:#b44">&#34;github-app-client-id&#34;</span>,
       <span style="color:#008000;font-weight:bold">&#34;client_secret&#34;</span>       : <span style="color:#b44">&#34;github-app-client-secret&#34;</span>,

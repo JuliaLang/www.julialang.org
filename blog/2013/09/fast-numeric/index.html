@@ -166,7 +166,7 @@ This introduces significant overhead:</p>
 </ul>
 
 <p>Such overhead is significant in practice, often leading to 2x to 3x slow down. To get optimal performance, one should <em>devectorize</em> this code like so:</p>
-<pre><code>r = similar(x) 
+<pre><code>r = similar(x)
 for i = 1:length(x)
     r[i] = exp(-abs(x[i]-y[i]))
 end</code></pre>

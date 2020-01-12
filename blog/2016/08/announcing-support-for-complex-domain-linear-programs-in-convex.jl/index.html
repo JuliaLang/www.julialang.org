@@ -135,11 +135,11 @@ n = 10 # variable dimension (parameter)
 m = 5 # number of constraints (parameter)
 xo = rand(n)
 A = randn(m,n) + im*randn(m,n)
-b = A * xo 
+b = A * xo
 # Declare a real variable
 x = Variable(n)
-p1 = minimize(sum(x), A*x == b, x>=0) 
-# Notice A*x==b is complex equality constraint 
+p1 = minimize(sum(x), A*x == b, x>=0)
+# Notice A*x==b is complex equality constraint
 solve!(p1)
 x1 = x.value
 

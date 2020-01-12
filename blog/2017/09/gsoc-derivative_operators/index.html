@@ -120,9 +120,9 @@
 <h2 id="motivation">MOTIVATION</h2>
 
 <p>The general idea of finite difference methods is to generate finite difference weights corresponding to a differential operator allowing a certain level of approximation. The time and space variable are divided to form a grid where
-$h = \Delta x = \frac{1}{N+1}$ and $x_i = ih$ for $i = 0, 1,...,N+1$ and 
+$h = \Delta x = \frac{1}{N+1}$ and $x_i = ih$ for $i = 0, 1,...,N+1$ and
 $k = \Delta t = \frac{T}{M+1}$ and $t_j = jk$ for $j = 0, 1,...,M+1$.
- \
+ <br />
 The discrete unknowns are scalars $u_i^j$
  for the above values of i and j, and it is hoped that $u_i^j$
  will be an approximation of $u(x_i, t_j)$
@@ -131,7 +131,7 @@ The discrete unknowns are scalars $u_i^j$
 
 <p>
 $$ U^{j} = \begin{pmatrix}
-u_1^j\\ 
+u_1^j\\
 u_2^j \\
 \vdots \\
 u_N^j
@@ -174,10 +174,10 @@ $\frac{U^{j+1} - U^j}{k} + A_h U^j = F^j \textit{ for } j = 1,...,M$
 
 
 $$ A_h = \begin{pmatrix}
-2 & -1 & 0 &  \cdots  & 0\\ 
--1 & 2 & -1 &  \cdots  & 0\\ 
-\vdots & \ddots & \ddots & \ddots & \vdots \\ 
-0 & \cdots & -1 & 2  & -1 \\ 
+2 & -1 & 0 &  \cdots  & 0\\
+-1 & 2 & -1 &  \cdots  & 0\\
+\vdots & \ddots & \ddots & \ddots & \vdots \\
+0 & \cdots & -1 & 2  & -1 \\
 0 & \cdots & 0 & -1 & 2 \\
 \end{pmatrix}
 \textit{such that }
@@ -212,24 +212,24 @@ julia> A = DerivativeOperator{Float64}(4,2,1.0,10,:Dirichlet0,:Dirichlet0)
 julia> A.stencil_coefs
 7-element SVector{7,Float64}:
   -0.166667
-   2.0     
-  -6.5     
-   9.33333 
-  -6.5     
-   2.0     
+   2.0
+  -6.5
+   9.33333
+  -6.5
+   2.0
   -0.166667</code></pre>
 <p>If we want to apply the operator as a matrix multiplication (sparse or dense) we can easily do so by extracting the <em>matrix of transformation</em> of the linear operator which looks like:-</p>
 <pre><code>julia> full(A)
 10×10 Array{Float64,2}:
- 9.33333   -6.5        2.0       …   0.0        0.0        0.0     
--6.5        9.33333   -6.5           0.0        0.0        0.0     
- 2.0       -6.5        9.33333       0.0        0.0        0.0     
--0.166667   2.0       -6.5           0.0        0.0        0.0     
- 0.0       -0.166667   2.0          -0.166667   0.0        0.0     
- 0.0        0.0       -0.166667  …   2.0       -0.166667   0.0     
+ 9.33333   -6.5        2.0       …   0.0        0.0        0.0
+-6.5        9.33333   -6.5           0.0        0.0        0.0
+ 2.0       -6.5        9.33333       0.0        0.0        0.0
+-0.166667   2.0       -6.5           0.0        0.0        0.0
+ 0.0       -0.166667   2.0          -0.166667   0.0        0.0
+ 0.0        0.0       -0.166667  …   2.0       -0.166667   0.0
  0.0        0.0        0.0          -6.5        2.0       -0.166667
- 0.0        0.0        0.0           9.33333   -6.5        2.0     
- 0.0        0.0        0.0          -6.5        9.33333   -6.5     
+ 0.0        0.0        0.0           9.33333   -6.5        2.0
+ 0.0        0.0        0.0          -6.5        9.33333   -6.5
  0.0        0.0        0.0           2.0       -6.5        9.33333
 
  julia> sparse(A)

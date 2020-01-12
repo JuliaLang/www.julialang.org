@@ -239,7 +239,7 @@ function psort!(v, lo::Int=1, hi::Int=length(v))
 
     half = @spawn psort!(v, lo, mid)  # 排序前半部分的任务将会与
     psort!(v, mid+1, hi)              # 当前排序后半部分的代码并行运行
-                                      # 
+                                      #
     wait(half)                        # 等待前半部分完成
 
     temp = v[lo:mid]                  # 用于合并的空间
