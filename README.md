@@ -1,6 +1,6 @@
 This is the GitHub repository for the Julia Programming Language's main website, [julialang.org](http://julialang.org/). The repository for the source code of the language itself can be found at [github.com/JuliaLang/julia](https://github.com/JuliaLang/julia).
 
-The Julia website is generated using GitHub pages and Hugo, as [explained here](https://gohugo.io/hosting-and-deployment/hosting-on-github/).
+The Julia website is generated using GitHub pages and Hugo, as [explained here](https://gohugo.io/hosting-and-deployment/hosting-on-github/#github-project-pages).
 
 # Installing locally
 
