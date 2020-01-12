@@ -1,4 +1,0 @@
-/* /404.html 404
-
-# Redirect default Netlify subdomain to primary domain
-http://inspiring-hawking-028195.netlify.com/* http://julialang.io/:splat 301!
