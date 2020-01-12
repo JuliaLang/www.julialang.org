@@ -86,7 +86,7 @@ Julia is ready for the classroom. We encourage instructors to participate in the
 ## MOOCs teaching Julia
 
 *   Coursera, University of Cape Town
-    *   [Julia Scientific Programming](https://www.coursera.org/learn/julia-programming) online course, (Dr. Juan H Klopper, Dr. Henri Laurie) a
+    *   [Julia Scientific Programming](https://www.coursera.org/learn/julia-programming) online course, (Dr. Juan H Klopper, Dr. Henri Laurie)
 *   edX MITx
     *   [15.053x](https://www.edx.org/course/optimization-methods-business-analytics-mitx-15-053x), Optimization Methods in Business Analytics MOOC (massive online open course), (Prof. [James Orlin](https://www.edx.org/bio/james-orlin))
 
