@@ -2007,16 +2007,6 @@ Windows Julia is available for Windows 7 and later, both 32 bit and 64 bit.
     </item>
     
     <item>
-      <title>Plotting in Julia</title>
-      <link>julialang.org/downloads/plotting/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>julialang.org/downloads/plotting/</guid>
-      <description>{% include mainmenu.html %} Plotting in Julia Plotting in Julia is available through external packages.
-Plots  Plots.jl is a plotting metapackage which brings many different plotting packages under a single API, making it easy to swap between plotting &#34;backends&#34;. Installation and example usage is as follows:  using Pkg Pkg.add(&#34;Plots&#34;) using Plots plotly() # Choose the Plotly.jl backend for web interactivity plot(rand(5,5),linewidth=2,title=&#34;My Plot&#34;) Pkg.add(&#34;PyPlot&#34;) # Install a different backend pyplot() # Switch to using the PyPlot.</description>
-    </item>
-    
-    <item>
       <title>POMDPs.jl: A Framework for Sequential Decision Making under Uncertainty</title>
       <link>julialang.org/research/esbwgk17/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
