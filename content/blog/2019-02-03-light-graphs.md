@@ -2,6 +2,7 @@
 author: <a href="https://github.com/SohamTamba">Soham Tamba</a>
 date: "2019-02-03T00:00:00Z"
 title: GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms
+slug: light-graphs
 ---
 
 This blog briefly summarises my GSoC 2018 project ([Parallel Graph Development](https://summerofcode.withgoogle.com/archive/2018/projects/5193483178475520/)) and the results achieved. For a detailed description, please refer to my [GSoC blog](https://sohamtamba.github.io/GSoC).
@@ -133,4 +134,3 @@ The following branches have not been merged into LightGraphs as the parallel imp
 # Acknowledgements
 
 I would like to thank my mentor, [Divyansh Srivastava](https://github.com/somil55) and LightGraphs co-owner, [Seth Bromberger](https://github.com/sbromberger) for reviewing my code and providing valuable advice during the summer. I would also like to thank [The Julia Project](https://julialang.org/project) and [NUMFocus](https://numfocus.org) for sponsoring my attendance to [JuliaCon 2018](https://juliacon.org/2018/).
-

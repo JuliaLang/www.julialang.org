@@ -5,7 +5,7 @@ disableKinds:
   - taxonomy
   - taxonomyTerm
 permalinks:
-  blog: "blog/:year/:month/:title"
+  blog: "blog/:year/:month/:slug"
 markup:
   defaultMarkdownHandler: blackfriday
   highlight:

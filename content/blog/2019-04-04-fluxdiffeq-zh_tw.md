@@ -3,6 +3,7 @@ author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White
   Vaibhav Dixit, 譯者：杜岳華（Yueh-Hua Tu）Dboy Liao (Yin-Chen Liao)
 date: "2019-04-04T00:00:00Z"
 title: DiffEqFlux.jl – Julia 的神經微分方程套件
+slug: fluxdiffeq-zh_tw
 ---
 
 在這篇文章中，我們將會展示在 Julia 中使用微分方程解算器（DiffEq solver）搭配神經網路有多麼簡單、有效而且穩定。

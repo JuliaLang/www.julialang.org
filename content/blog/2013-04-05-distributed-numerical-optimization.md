@@ -3,6 +3,7 @@ authors:
 - Miles Lubin
 date: "2013-04-05T00:00:00Z"
 title: Distributed Numerical Optimization
+slug: distributed-numerical-optimization
 ---
 <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'>
 </script>

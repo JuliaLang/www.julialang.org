@@ -2,6 +2,7 @@
 author: <a href="http://holylab.wustl.edu">Tim Holy</a>
 date: "2016-02-01T00:00:00Z"
 title: Multidimensional algorithms and iteration
+slug: iteration
 ---
 
 **Note: updated December 2018 for Julia 1.1**

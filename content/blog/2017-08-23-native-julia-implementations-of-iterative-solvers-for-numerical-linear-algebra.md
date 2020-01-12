@@ -2,6 +2,7 @@
 author: Harmen Stoppels, Andreas Noack
 date: "2017-08-23T00:00:00Z"
 title: 'GSoC 2017: Implementing iterative solvers for numerical linear algebra'
+slug: native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra
 ---
 
 The central part of my GSoC project is about implementing the Jacobi-Davidson method natively in Julia, available in [JacobiDavidson.jl](https://github.com/haampie/JacobiDavidson.jl). This method computes a few approximate solutions of the eigenvalue problem $Ax = \lambda Bx$ for large and sparse matrices $A$ and $B$. As it uses iterative solvers internally, much time has gone into improving [IterativeSolvers.jl](https://github.com/JuliaMath/IterativeSolvers.jl) in general. Lastly, as iterative solvers are typically used with preconditioners, I have implemented the incomplete LU factorization for sparse matrices as well in [ILU.jl](https://github.com/haampie/ILU.jl).
@@ -80,7 +81,7 @@ using JacobiDavidson
 target = Near(τ)
 P = SuperPreconditioner(τ)
 
-schur, residuals = jdqz(A, B, 
+schur, residuals = jdqz(A, B,
     gmres_solver(n, iterations = 10),
     preconditioner = P,
     target = target,
@@ -123,7 +124,7 @@ x = ones(N)
 b = A * x
 ```
 
-The matrix $A$ has size $64^3 \times 64^3$. We want to solve the problem $Ax = b$ using for instance BiCGStab(2), but it turns out that convergence can get slow when the size of the problem grows. A quick benchmark shows it takes about 2.0 seconds to solve the problem to a reasonable tolerance: 
+The matrix $A$ has size $64^3 \times 64^3$. We want to solve the problem $Ax = b$ using for instance BiCGStab(2), but it turns out that convergence can get slow when the size of the problem grows. A quick benchmark shows it takes about 2.0 seconds to solve the problem to a reasonable tolerance:
 
 ```julia
 > using BenchmarkTools, IterativeSolvers

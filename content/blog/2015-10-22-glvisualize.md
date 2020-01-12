@@ -2,6 +2,7 @@
 author: <a href="https://github.com/SimonDanisch">Simon Danisch</a>
 date: "2015-10-22T00:00:00Z"
 title: 'JSoC 2015 project: Interactive Visualizations in Julia with GLVisualize.jl'
+slug: glvisualize
 ---
 
 GLVisualize is an interactive visualization library that supports 2D and 3D rendering as well as building of basic GUIs. It's written entirely in Julia and OpenGL.

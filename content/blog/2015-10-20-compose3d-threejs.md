@@ -2,6 +2,7 @@
 author: <a href="https://github.com/rohitvarkey">Rohit Varkey Thankachan</a>
 date: "2015-10-20T00:00:00Z"
 title: 'JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D'
+slug: compose3d-threejs
 ---
 
 Over the last three months, I've been working on [Compose3D](https://github.com/rohitvarkey/Compose3D.jl),

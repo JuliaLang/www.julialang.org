@@ -2,6 +2,7 @@
 author: <a href="http://holylab.wustl.edu">Tim Holy</a>
 date: "2016-03-27T00:00:00Z"
 title: 'Generalizing AbstractArrays: opportunities and challenges'
+slug: arrays-iteration
 ---
 
 # Introduction: generic algorithms with AbstractArrays

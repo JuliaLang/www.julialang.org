@@ -2,6 +2,7 @@
 author: <a href="http://github.com/avik-pal/">Avik Pal</a>
 date: "2018-08-13T00:00:00Z"
 title: 'GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux'
+slug: adding-newer-features-and-speeding-up-convolutions-in-flux
 ---
 
 Over the summer I have been working at improving the Computer Vision capabilities of Flux. My specific line of work was to __add newer models to the Flux model-zoo__, __implement some new features__ and also __improve the speed of the previous layers__. Specifically, I achieved a __18-fold__ speed up for the __Convolutions__ and around __3-fold__ for __BatchNorm__.

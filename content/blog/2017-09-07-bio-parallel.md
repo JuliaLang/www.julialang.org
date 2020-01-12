@@ -2,6 +2,7 @@
 author: Kenta Sato
 date: "2017-09-07T00:00:00Z"
 title: 'GSoC 2017: Parallelism in BioJulia'
+slug: bio-parallel
 ---
 
 In this summer, I have worked on a project to develop tools that make BioJulia

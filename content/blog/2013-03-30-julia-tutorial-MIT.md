@@ -3,13 +3,14 @@ authors:
 - <a href="http://github.com/ViralBShah/">Viral B. Shah</a>
 date: "2013-03-30T00:00:00Z"
 title: Videos from the Julia tutorial at MIT
+slug: julia-tutorial-MIT
 ---
 
 We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. [MIT Open Courseware](http://ocw.mit.edu/) and [MIT-X](http://www.mitx.org/) graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.
 
 ## Julia Lightning Round ([slides](https://raw.github.com/JuliaLang/julia-tutorial/master/LightningRound/IAP_2013_Lightning.pdf))
 
-This session is a rapid introduction to julia, using a number of lightning rounds. It uses a number of short examples to demonstrate syntax and features, and gives a quick feel for the language. 
+This session is a rapid introduction to julia, using a number of lightning rounds. It uses a number of short examples to demonstrate syntax and features, and gives a quick feel for the language.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/37L1OMk_3FU" frameborder="0" allowfullscreen></iframe>
 
@@ -55,7 +56,7 @@ Julia is homoiconic: it represents its own code as a data structure of the langu
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/JoRn4ryMclc" frameborder="0" allowfullscreen></iframe>
 
-## Networking 
+## Networking
 
 Julia provides asynchronous networking I/O using the [libuv](https://github.com/joyent/libuv) library. Libuv is a portable networking library created as part of the [Node.js](http://www.nodejs.org/) project.
 

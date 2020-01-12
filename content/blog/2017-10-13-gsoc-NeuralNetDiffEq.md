@@ -2,6 +2,7 @@
 author: Akshay Sharma
 date: "2017-10-13T00:00:00Z"
 title: 'NeuralNetDiffEq.jl: A Neural Network solver for ODEs'
+slug: gsoc-NeuralNetDiffEq
 ---
 
 My GSoC 2017 [project](https://summerofcode.withgoogle.com/projects/#5850956641075200) was to implement a package for Julia to solve Ordinary Differential Equations using Neural Networks.
@@ -22,7 +23,7 @@ Making the NNs converge for systems of ODEs is not as easy as it seems and took 
 
 ## Implementation and Work
 The implementation involved integration of mathematical and machine learning aspects to build a neural net solver for ODEs. The [DiffEqBase library](https://github.com/JuliaDiffEq/DiffEqBase.jl) is used as a base to extend the algorithm and solver interface while the neural network was developed using the [Knet.jl library](https://github.com/denizyuret/Knet.jl). The work done till now can be seen on the [NeuralNetDiffEq.jl github repository](https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl), primarily in [this branch](https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl/tree/SingleNN_Approach).
-This work involves implementing a Neural Network solver for ODEs with customized interpolation based on NN prediction. 
+This work involves implementing a Neural Network solver for ODEs with customized interpolation based on NN prediction.
 
 ### How does it work?
 We construct a trial solution for our differential equation in terms of the NN output which should also satisfy the DE boundary conditions. We define a loss function for the neural net which is the difference between the derivative of the neural net solution with regards to its input and the true derivative defined by the ODE. This is an unusual loss function, in that in includes the gradient of the network itself. It is almost unseen elsewhere in other ML applications This loss function is minimized (by equating the derivative difference to zero) using the NN (closer to 0 better convergence) with the trial solution substituted in it in place of the original function (or the solution to the DE). The neural network tunes its weights using the Adam optimization algorithm on the backpropagated gradients from that loss function.

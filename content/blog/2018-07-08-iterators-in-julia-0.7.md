@@ -3,6 +3,7 @@ author: <a href="https://github.com/iamed2">Eric Davies</a>
 date: "2018-07-08T00:00:00Z"
 snippet: With the upcoming 0.7 release, Julia has simplified its iteration interface.
 title: Writing Iterators in Julia 0.7
+slug: iterators-in-julia-0.7
 ---
 
 This post originally appeared on the [Invenia blog](https://invenia.github.io/blog/2018/07/06/iteratorsinjulia07/).
@@ -410,4 +411,3 @@ IterTools will definitely accept pull requests, and I'm interested in feedback o
 [^slurpsplat]: Slurping refers to  how using `args...` in a function definition "slurps" up the trailing arguments, and splatting is the inverse operation. The [Julia docs](https://docs.julialang.org/en/latest/manual/functions/#Varargs-Functions-1) say more on this.
 [^respell]: All other changes here are renaming or respelling something that appears in the original, for clarity's sake.
 [^cantorwont]: We _could_, but we'd need to do something different depending on the length of the tuple, which would add another conditional check in addition to the splatting.
-

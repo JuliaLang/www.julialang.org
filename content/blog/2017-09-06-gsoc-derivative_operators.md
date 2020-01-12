@@ -2,6 +2,7 @@
 author: Shivin Srivastava, Christopher Rackauckas
 date: "2017-09-06T00:00:00Z"
 title: 'GSoC 2017: Efficient Discretizations of PDE Operators'
+slug: gsoc-derivative_operators
 ---
 
 This project is an attempt towards building a PDE solver for JuliaDiffEq using the [Finite Difference Method](https://en.wikipedia.org/wiki/Finite_difference_method)(FDM) approach. We take up the FDM approach instead of [FEM](https://en.wikipedia.org/wiki/Finite_element_method) and [FVM](https://en.wikipedia.org/wiki/Finite_volume_method) as there are many toolboxes which already exist for FEM and FVM but not for FDM. Also, there are many use cases where the geometry of the problem is simple enough to be solved by FDM methods which are much faster due to their being able to avoid the bottleneck step of matrix multiplication by using Linear transformations to mimic the effect of a matrix multiplication. Since matrix multiplication basically transforms a vector element to a weighted sum of the neighbouring elements, this can be easily acheived using a special function which acts on the vector in optimal $\mathcal{O}(n)$ time.
@@ -9,14 +10,14 @@ This project is an attempt towards building a PDE solver for JuliaDiffEq using t
 The result is a new package called [DiffEqOperators.jl](https://github.com/JuliaDiffEq/DiffEqOperators.jl) which creates efficient discretizations of partial differential operators thereby converting PDEs to ODEs which can be solved efficiently by existing ODE solvers. The `DerivativeOperator` is based on central differencing schemes of approximating derivatives at a point whereas the `UpwindOperators` are based on one-sided differencing schemes where the solution is typically a wave moving in a particular direction. The package also supports a variety of boundary conditions like [Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_boundary_condition), [Neumann](https://en.wikipedia.org/wiki/Neumann_boundary_condition), [Periodic](https://en.wikipedia.org/wiki/Periodic_boundary_conditions) and the [Robin](https://en.wikipedia.org/wiki/Robin_boundary_condition) [boundary condition](https://en.wikipedia.org/wiki/Boundary_value_problem).
 
 ## MOTIVATION
-The general idea of finite difference methods is to generate finite difference weights corresponding to a differential operator allowing a certain level of approximation. The time and space variable are divided to form a grid where 
-{{< formula >}}$h = \Delta x = \frac{1}{N+1}$ and $x_i = ih$ for $i = 0, 1,...,N+1$ and 
-$k = \Delta t = \frac{T}{M+1}$ and $t_j = jk$ for $j = 0, 1,...,M+1$.{{< /formula >}} \\ 
+The general idea of finite difference methods is to generate finite difference weights corresponding to a differential operator allowing a certain level of approximation. The time and space variable are divided to form a grid where
+{{< formula >}}$h = \Delta x = \frac{1}{N+1}$ and $x_i = ih$ for $i = 0, 1,...,N+1$ and
+$k = \Delta t = \frac{T}{M+1}$ and $t_j = jk$ for $j = 0, 1,...,M+1$.{{< /formula >}} \\
 The discrete unknowns are scalars {{< formula >}}$u_i^j${{< /formula >}} for the above values of i and j, and it is hoped that {{< formula >}}$u_i^j${{< /formula >}} will be an approximation of {{< formula >}}$u(x_i, t_j)${{< /formula >}}. The right-hand side of the equation is discretized by setting {{< formula >}}$f_i^j = f(x_i, t_j)${{< /formula >}}. We also use the notation
 
 {{< formula >}}
 $$ U^{j} = \begin{pmatrix}
-u_1^j\\ 
+u_1^j\\
 u_2^j \\
 \vdots \\
 u_N^j
@@ -54,10 +55,10 @@ When we want to apply this operator on the vector $U$, the weight vector turns i
 
 {{< formula >}}
 $$ A_h = \begin{pmatrix}
-2 & -1 & 0 &  \cdots  & 0\\ 
--1 & 2 & -1 &  \cdots  & 0\\ 
-\vdots & \ddots & \ddots & \ddots & \vdots \\ 
-0 & \cdots & -1 & 2  & -1 \\ 
+2 & -1 & 0 &  \cdots  & 0\\
+-1 & 2 & -1 &  \cdots  & 0\\
+\vdots & \ddots & \ddots & \ddots & \vdots \\
+0 & \cdots & -1 & 2  & -1 \\
 0 & \cdots & 0 & -1 & 2 \\
 \end{pmatrix}
 \textit{such that }
@@ -93,26 +94,26 @@ In **DiffEqOperators.jl** we can easily extract stencils of any derivative and a
     julia> A.stencil_coefs
     7-element SVector{7,Float64}:
       -0.166667
-       2.0     
-      -6.5     
-       9.33333 
-      -6.5     
-       2.0     
+       2.0
+      -6.5
+       9.33333
+      -6.5
+       2.0
       -0.166667
 
 If we want to apply the operator as a matrix multiplication (sparse or dense) we can easily do so by extracting the *matrix of transformation* of the linear operator which looks like:-
 
     julia> full(A)
     10×10 Array{Float64,2}:
-     9.33333   -6.5        2.0       …   0.0        0.0        0.0     
-    -6.5        9.33333   -6.5           0.0        0.0        0.0     
-     2.0       -6.5        9.33333       0.0        0.0        0.0     
-    -0.166667   2.0       -6.5           0.0        0.0        0.0     
-     0.0       -0.166667   2.0          -0.166667   0.0        0.0     
-     0.0        0.0       -0.166667  …   2.0       -0.166667   0.0     
+     9.33333   -6.5        2.0       …   0.0        0.0        0.0
+    -6.5        9.33333   -6.5           0.0        0.0        0.0
+     2.0       -6.5        9.33333       0.0        0.0        0.0
+    -0.166667   2.0       -6.5           0.0        0.0        0.0
+     0.0       -0.166667   2.0          -0.166667   0.0        0.0
+     0.0        0.0       -0.166667  …   2.0       -0.166667   0.0
      0.0        0.0        0.0          -6.5        2.0       -0.166667
-     0.0        0.0        0.0           9.33333   -6.5        2.0     
-     0.0        0.0        0.0          -6.5        9.33333   -6.5     
+     0.0        0.0        0.0           9.33333   -6.5        2.0
+     0.0        0.0        0.0          -6.5        9.33333   -6.5
      0.0        0.0        0.0           2.0       -6.5        9.33333
 
      julia> sparse(A)
@@ -157,7 +158,7 @@ This is the code to set-up the problem. First we define the domain which is just
 Finally we initialize the `DerivativeOperator` of 2nd derivative order and 2nd approximation order. We tell the grid step value, total length of the domain and the boundary conditions at both the ends. Notice that since we are applying the Dirichlet boundary condition here, we need to tell the value at boundaries which is given in the form of a tuple as the last parameter.
 
 Now solving equation as an ODE we have:-
-    
+
         julia> prob1 = ODEProblem(A, u0, (0.,10.));
         julia> sol1 = solve(prob1, dense=false, tstops=0:0.01:10);
         # try to plot the solution at different time points using
@@ -204,8 +205,8 @@ Although vanilla `DerivativeOperators` and the `UpwindOperators` form the major 
 
 We are also working on the Robin boundary conditions for `DerivativeOperators` which are currently not as accurate as they [should](https://gist.github.com/shivin9/124ed1e5ea96792fc8666e0caf32715c) be.
 
-Another avenue for work is the lazy implementations of `expm` and  `expmv` for `DerivativeOperators`.   
+Another avenue for work is the lazy implementations of `expm` and  `expmv` for `DerivativeOperators`.
 
-## Acknowledgments 
+## Acknowledgments
 
 I would like to thank my mentors Christopher Rackauckas and [@dextorious](https://github.com/dextorious) for their immense support before and throughout the project.

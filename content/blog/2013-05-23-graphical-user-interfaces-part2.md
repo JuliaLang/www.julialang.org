@@ -2,6 +2,7 @@
 author: <a href="http://holylab.wustl.edu">Timothy E. Holy</a>
 date: "2013-05-23T00:00:00Z"
 title: Building GUIs with Julia, Tk, and Cairo, Part II
+slug: graphical-user-interfaces-part2
 ---
 
 # Drawing, painting, and plotting
@@ -36,7 +37,7 @@ We've created a window 400 pixels wide and 200 pixels high.
 `c` is our Canvas, a type defined in the `Tk` package.
 Later we'll dig into the internals a bit, but for now suffice it to say that a Canvas is a multi-component object that you can often treat as a black box.
 The initial call creating the canvas leaves a lot of its fields undefined, because you don't yet know crucial details like the size of the canvas.
-The call to `pack` specifies that this canvas fills the entire window, and simultaneously fills in the missing information in the Canvas object itself. 
+The call to `pack` specifies that this canvas fills the entire window, and simultaneously fills in the missing information in the Canvas object itself.
 
 Note that the window is currently blank, because we haven't drawn anything to it yet, so you can see whatever was lying underneath.
 In my case it captured a small region of my desktop:
@@ -169,7 +170,7 @@ and then define
     end
 
 Here you can see that we're aiming to be a bit more polished, and want to avoid seeing bits of the desktop around the borders of our drawing region.
-So we fill the window with a solid color (but choose a garish red, to make sure we notice it) before displaying the image. 
+So we fill the window with a solid color (but choose a garish red, to make sure we notice it) before displaying the image.
 We also have to re-create our coordinate system, because that too was destroyed, and in this case we dynamically adjust the coordinates to the size of the canvas.
 Finally, we redraw the image.
 Note we didn't have to go through the process of converting to `Uint32`-based color again.
@@ -231,7 +232,7 @@ Let's finally look at the Tk `Canvas` object:
         backcc::CairoContext
         mouse::MouseHandler
         redraw
-        
+
         function ...
 
 Here we can explicitly see the two buffers, used in double-buffering, and their associated contexts.

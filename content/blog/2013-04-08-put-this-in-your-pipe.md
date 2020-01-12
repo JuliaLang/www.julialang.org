@@ -3,6 +3,7 @@ author: <a href="http://karpinski.org/">Stefan Karpinski</a>
 date: "2013-04-08T00:00:00Z"
 manurl: https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages
 title: Put This In Your Pipe
+slug: put-this-in-your-pipe
 ---
 
 [previous post]: /blog/2012/03/shelling-out-sucks/

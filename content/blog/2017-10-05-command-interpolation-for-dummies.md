@@ -1,6 +1,7 @@
 ---
 title: Command Interpolation For Dummies
 date: "2017-10-05T00:00:00Z"
+slug: command-interpolation-for-dummies
 ---
 
 I've never been a big user of the command line. One could even say I actively avoided it!

@@ -2,6 +2,7 @@
 author: <a href="https://github.com/JeffBezanson">Jeff Bezanson</a>
 date: "2012-02-27T00:00:00Z"
 title: Stanford Talk Announcement
+slug: talk-announcement
 ---
 
 I will be speaking about Julia at the

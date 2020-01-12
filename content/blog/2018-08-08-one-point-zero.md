@@ -2,6 +2,7 @@
 date: "2018-08-08T00:00:00Z"
 snippet: Announcing the release of Julia 1.0
 title: Julia 1.0
+slug: one-point-zero
 ---
 
 Translations:  <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-es">Spanish</a>

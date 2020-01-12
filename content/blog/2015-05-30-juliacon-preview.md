@@ -3,6 +3,7 @@ author: The JuliaCon Committee
 date: "2015-05-30T00:00:00Z"
 title: JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and
   so much more
+slug: juliacon-preview
 ---
 
 *[JuliaCon 2015](https://juliacon.org) is being held at the Massachusetts Institute of Technology from June 24th to the 28th. [Get your tickets](https://www.eventbrite.com/e/juliacon-2015-tickets-16517619645) and [book your hotel](https://juliacon.org/#accom) before June 4th to take advantage of early bird pricing.*
@@ -41,7 +42,7 @@ The **numerical computing** track kicks of with Stanford's Prof. [Jack Poulson (
 
 We'll see out the day with two sessions that hit some topics of interest to people deploying Julia into larger systems: **data** and **parallel computing**. In the data session we'll learn how about the nuts and bolts of **sharing and storing data** in Julia and hear more about plans for the future by the contributors working in these areas. Make sure to check out the talk by [Avik Sengupta (@aviks)](https://github.com/aviks) about his real-world industry experiences about putting Julia code behind a **web-accessible API**.
 
-The parallel computing session will tackle parallelism at all levels. Contributor [Amit Murthy (@amitmurthy)](https://github.com/amitmurthy/) will open the session with a discussion of his recent work and plans for managing Julia in a cluster. We'll also hear about work being done to **make Julia multithreaded** at Intel, and about running Julia on a **Cray supercomputer**. 
+The parallel computing session will tackle parallelism at all levels. Contributor [Amit Murthy (@amitmurthy)](https://github.com/amitmurthy/) will open the session with a discussion of his recent work and plans for managing Julia in a cluster. We'll also hear about work being done to **make Julia multithreaded** at Intel, and about running Julia on a **Cray supercomputer**.
 
 After all that you will surely be inspired to hack on Julia projects all night, but make sure to wake up for a full day of **workshops** on Saturday!
 

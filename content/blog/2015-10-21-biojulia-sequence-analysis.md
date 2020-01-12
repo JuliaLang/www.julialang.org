@@ -3,6 +3,7 @@ author: Kenta Sato
 date: "2015-10-21T00:00:00Z"
 title: 'JSoC 2015 project: Efficient data structures and algorithms for sequence analysis
   in BioJulia'
+slug: biojulia-sequence-analysis
 ---
 
 * Participant: Kenta Sato ([@bicycle1885](https://github.com/bicycle1885))

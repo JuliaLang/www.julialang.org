@@ -2,6 +2,7 @@
 date: "2018-08-08T00:00:00Z"
 snippet: Anunciando el release de Julia 1.0
 title: Julia 1.0 (Spanish)
+slug: one-point-zero-es
 ---
 
 La anticipada liberación de la versión 1.0 de [Julia](https://julialang.org) es la culminación

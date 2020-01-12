@@ -7,6 +7,7 @@ authors:
 - Sebastian Vollmer
 date: "2019-05-02T00:00:00Z"
 title: Beyond machine learning pipelines with MLJ
+slug: beyond-ml-pipelines-with-mlj
 ---
 
 <!---

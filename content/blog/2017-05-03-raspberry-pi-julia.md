@@ -2,6 +2,7 @@
 author: Viral B. Shah, Avik Sengupta, Simon Byrne
 date: "2017-05-03T00:00:00Z"
 title: Julia available in Raspbian on the Raspberry Pi
+slug: raspberry-pi-julia
 ---
 
 Recently, Julia was accepted into the [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) distribution for the [Raspberry Pi](https://raspberrypi.org). If you are running the latest Raspbian, all you need to do is `apt-get install julia`. Most of the common packages can be installed with Pkg, and [Jupyter](http://jupyter.org) can be installed using the usual [IJulia.jl](https://github.com/JuliaLang/IJulia.jl) instructions.

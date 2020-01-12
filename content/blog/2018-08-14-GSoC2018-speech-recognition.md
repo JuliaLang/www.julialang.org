@@ -2,6 +2,7 @@
 author: <a href="https://github.com/maetshju">Matthew C. Kelley</a>
 date: "2018-08-14T00:00:00Z"
 title: 'GSoC 2018 and Speech Recognition for the Flux Model Zoo: The Conclusion'
+slug: GSoC2018-speech-recognition
 ---
 
 Here we are on the other end of Google Summer of Code 2018. It has been a challenging and educational experience, and I wouldn't have it any other way. I am thankful to the Julia community, and especially my mentor [@MikeInnes](https://github.com/mikeinnes), for supporting me through this. I've learned a lot and become even more familiar with neural nets than I was before, and I learned how to do basic GPU programming, which will be incredibly useful for my academic career.
@@ -44,7 +45,7 @@ And this is where the speech recognition system is sitting right now. The networ
 
 **Target sequence of phones**
 
-> h# dh ix r iy z ax n z f axr dh ih s dcl d ay v s iy m dcl d f uw l ix sh epi n aw h# 
+> h# dh ix r iy z ax n z f axr dh ih s dcl d ay v s iy m dcl d f uw l ix sh epi n aw h#
 
 **Predicted sequence of phones**
 
@@ -96,7 +97,7 @@ Now, to train the network, run the `01-speech-blstm.jl` script. Make sure you've
 
 > $ julia 01-speech-blstm.jl
 
-This network trains reasonably fast on the CPU, so GPU functionality was not implemented. 
+This network trains reasonably fast on the CPU, so GPU functionality was not implemented.
 
 # Get the code
 

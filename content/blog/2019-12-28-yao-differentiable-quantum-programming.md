@@ -4,6 +4,7 @@ authors:
 - <a href="https://github.com/GiggleLiu">Jin-Guo Liu</a>
 date: "2019-12-28T00:00:00Z"
 title: Yao.jl - Differentiable Quantum Programming In Julia
+slug: yao-differentiable-quantum-programming
 ---
 
 We introduce [**Yao**](https://yaoquantum.org/) ([check our latest paper](https://arxiv.org/abs/1912.10877)), an open-source Julia package for solving practical problems in quantum computation research. The name Yao comes from the first Chinese character for unitary (幺正).

@@ -3,6 +3,7 @@ author: Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White
   Vaibhav Dixit
 date: "2019-01-18T00:00:00Z"
 title: DiffEqFlux.jl – A Julia Library for Neural Differential Equations
+slug: fluxdiffeq
 ---
 
 Translations:  <a href="https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw">Traditional Chinese</a>

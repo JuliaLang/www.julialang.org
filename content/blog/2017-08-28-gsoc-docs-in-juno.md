@@ -2,6 +2,7 @@
 author: Sebastian Pfitzner
 date: "2017-08-28T00:00:00Z"
 title: 'GSoC 2017: Documentation Browser for Juno'
+slug: gsoc-docs-in-juno
 ---
 
 The aim of this GSoC project is to provide a convenient way to access documentation in the

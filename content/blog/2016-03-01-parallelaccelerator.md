@@ -2,6 +2,7 @@
 author: Lindsey Kuper
 date: "2016-03-01T00:00:00Z"
 title: An introduction to ParallelAccelerator.jl
+slug: parallelaccelerator
 ---
 
 The High Performance Scripting team at Intel Labs recently released
@@ -357,7 +358,7 @@ would be straightforward to use the same approach for RGB pixels.)
 function blur(img::Array{Float32,2}, iterations::Int)
     w, h = size(img)
     for i = 1:iterations
-      img[3:w-2,3:h-2] = 
+      img[3:w-2,3:h-2] =
            img[3-2:w-4,3-2:h-4] * 0.0030 + img[3-1:w-3,3-2:h-4] * 0.0133 + img[3:w-2,3-2:h-4] * 0.0219 + img[3+1:w-1,3-2:h-4] * 0.0133 + img[3+2:w,3-2:h-4] * 0.0030 +
            img[3-2:w-4,3-1:h-3] * 0.0133 + img[3-1:w-3,3-1:h-3] * 0.0596 + img[3:w-2,3-1:h-3] * 0.0983 + img[3+1:w-1,3-1:h-3] * 0.0596 + img[3+2:w,3-1:h-3] * 0.0133 +
            img[3-2:w-4,3+0:h-2] * 0.0219 + img[3-1:w-3,3+0:h-2] * 0.0983 + img[3:w-2,3+0:h-2] * 0.1621 + img[3+1:w-1,3+0:h-2] * 0.0983 + img[3+2:w,3+0:h-2] * 0.0219 +
@@ -394,9 +395,9 @@ Using ParallelAccelerator, we can get much better performance.  Let's look at a 
 
 {{< highlight julia >}}
 @acc function blur(img::Array{Float32,2}, iterations::Int)
-    buf = Array(Float32, size(img)...) 
+    buf = Array(Float32, size(img)...)
     runStencil(buf, img, iterations, :oob_skip) do b, a
-       b[0,0] = 
+       b[0,0] =
             (a[-2,-2] * 0.003  + a[-1,-2] * 0.0133 + a[0,-2] * 0.0219 + a[1,-2] * 0.0133 + a[2,-2] * 0.0030 +
              a[-2,-1] * 0.0133 + a[-1,-1] * 0.0596 + a[0,-1] * 0.0983 + a[1,-1] * 0.0596 + a[2,-1] * 0.0133 +
              a[-2, 0] * 0.0219 + a[-1, 0] * 0.0983 + a[0, 0] * 0.1621 + a[1, 0] * 0.0983 + a[2, 0] * 0.0219 +
@@ -576,7 +577,7 @@ preceded by `"SELFPRIMED"`.  Let's run the Black-Scholes example and
 time it using the `time` shell command:
 
 {{< highlight bash >}}
-$ time julia ParallelAccelerator/examples/black-scholes/black-scholes.jl 
+$ time julia ParallelAccelerator/examples/black-scholes/black-scholes.jl
 iterations = 10000000
 SELFPRIMED 1.766323497
 checksum: 2.0954821257116848e8

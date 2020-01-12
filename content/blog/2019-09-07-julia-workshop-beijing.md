@@ -2,6 +2,7 @@
 author: Roger Luo, Jun Tian
 date: "2019-09-07T00:00:00Z"
 title: Julia Workshop@Beijing and the Julia Localization Prize
+slug: julia-workshop-beijing
 ---
 
 A Julia workshop in China was hosted by [JuliaCN](https://github.com/JuliaCN) in Beijing on Aug 24, 2019.

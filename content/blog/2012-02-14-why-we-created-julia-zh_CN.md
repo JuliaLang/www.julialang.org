@@ -6,6 +6,7 @@ authors:
 - <a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>
 date: "2012-02-14T00:00:00Z"
 title: 为什么我们要创造Julia (Simplified Chinese)
+slug: why-we-created-julia-zh_CN
 trackbacks:
 - Reddit: http://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/
 - Hacker News: http://news.ycombinator.com/item?id=3606380

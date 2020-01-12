@@ -2,6 +2,7 @@
 author: <a href="https://github.com/timholy">Tim Holy</a>
 date: "2018-08-09T00:00:00Z"
 title: 'Union-splitting: what it is, and why you should care'
+slug: union-splitting
 ---
 
 Among those who follow Julia's development closely, one of the (many) new features causing great excitement is something called "Union-splitting."

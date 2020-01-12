@@ -2,6 +2,7 @@
 author: Elliot Saba, Stefan Karpinski, Kristoffer Carlsson
 date: "2019-11-19T00:00:00Z"
 title: Reliable and Reproducible Binary Artifacts for Julia Packages
+slug: artifacts
 ---
 
 Over the past few months, we have been iterating on and refining a design for `Pkg` in Julia 1.3+ to reason about binary objects that are not Julia packages.  While the motivating application for this work has been improving the installation experience for binaries built with [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl), the artifacts subsystem is much more general and is widely applicable to all Julia packages.
@@ -198,7 +199,7 @@ mutable_artifacts_toml = joinpath(dirname(@__DIR__), "MutableArtifacts.toml")
 loaders_cache_name = "gdk-pixbuf-loaders-cache"
 loaders_cache_hash = artifact_hash(loaders_cache_name, mutable_artifacts_toml)
 if loaders_cache_hash === nothing
-    # Run gdk-pixbuf-query-loaders, capture output, 
+    # Run gdk-pixbuf-query-loaders, capture output,
     loader_cache_contents = gdk_pixbuf_query_loaders() do gpql
         withenv("GDK_PIXBUF_MODULEDIR" => gdk_pixbuf_loaders_dir) do
             return String(read(`$gpql`))

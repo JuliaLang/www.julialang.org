@@ -2,6 +2,7 @@
 author: Dorisz Albrecht
 date: "2017-09-19T00:00:00Z"
 title: 'GSoC 2017 Project: Hamiltonian Indirect Inference'
+slug: Hamiltonian-Indirect-Inference
 ---
 
 # Bayesian_Examples.jl
