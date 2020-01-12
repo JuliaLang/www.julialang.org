@@ -1,6 +1,7 @@
 baseURL: julialang.org
 relativeURLs: true
 canonifyURLs: true
+googleAnalytics: UA-28835595-1
 disableKinds:
   - taxonomy
   - taxonomyTerm
