@@ -1,5 +1,3 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/350cdda6-b209-4f87-be6a-6a24e417c183/deploy-status)](https://app.netlify.com/sites/inspiring-hawking-028195/deploys)
-
 This is the GitHub repository for the Julia Programming Language's main website, [julialang.org](http://julialang.org/). The repository for the source code of the language itself can be found at [github.com/JuliaLang/julia](https://github.com/JuliaLang/julia).
 
 The Julia website is generated using GitHub pages and Hugo, as [explained here](https://gohugo.io/hosting-and-deployment/hosting-on-github/#github-project-pages).
