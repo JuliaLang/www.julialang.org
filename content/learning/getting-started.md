@@ -19,7 +19,7 @@ The first thing to do is [download Julia](https://julialang.org/downloads/). Pre
 
 Once you download Julia, and run the installer (Windows/Mac -- on linux you just unzip the downloaded file), you will get a `julia` binary in the _bin_ directory where your install lives. Running that program will leave you in a textual prompt, which is usually called a REPL - Read-Eval-Print-Loop.
 
-![Julia REPL](/static/images/julia-repl.png)
+![Julia REPL](/images/julia-repl.png)
 
 You can develop your Julia programs by typing directly in the REPL. Note that the history of everything you type in the REPL is stored, even across restarts. You can access this history using the up-arrow key, or by using ctrl-r for searching.
 
