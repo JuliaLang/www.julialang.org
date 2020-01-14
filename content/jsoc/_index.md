@@ -11,7 +11,7 @@ The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding 
 
 The Julia organization will be a participant in the 2019 Google Code-in program which  runs from December 2019 to January 2020. Participants in this program are high school students aged 13-17, many of whom are new to programming, or to open source. The program consists of small, guided tasks, with help and mentorship available to complete them. Please visit the [Julia project page](https://codein.withgoogle.com/organizations/the-julia-programming-language/) on the Code-in site for more information.
 
-Those participating in the program can check out [the getting started page](learning/getting-started/).
+Those participating in the program can check out [the getting started page](./learning/getting-started/).
 
 ## NumFOCUS Small Development Grants
 
