@@ -498,30 +498,30 @@ t<span style="color:#666"></span> <span style="color:#666">=</span> <span style=
 scatter!<span style="color:#666"></span>(t<span style="color:#666"></span>,A<span style="color:#666"></span>)</code></pre></div>
 <p><img src="https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png" alt="Data points plot" /></p>
 
-<p>最基礎的微分方程層是 <code>diffeq_rd</code>，它會做相同的事，只有一點語法上的改變。
-<code>diffeq_rd</code> 會接受被積函數的參數 <code>p</code>，並且把它放進由 <code>prob</code> 定義好的微分方程中，
+<p>最基礎的微分方程層是 <code>concrete_solve</code>，它會做相同的事，只有一點語法上的改變。
+<code>concrete_solve</code> 會接受被積函數的參數 <code>p</code>，並且把它放進由 <code>prob</code> 定義好的微分方程中，
 然後根據挑選好的程式參數（解算器、容忍度&hellip;等等）解方程式。
 範例如下：</p>
 
-<!-- The most basic differential equation layer is `diffeq_rd`, which does the same
-thing with a slightly altered syntax. `diffeq_rd` takes in parameters `p` for
+<!-- The most basic differential equation layer is `concrete_solve`, which does the same
+thing with a slightly altered syntax. `concrete_solve` takes in parameters `p` for
 the integrand, puts it in the differential equation defined by `prob`, and
 solves it with the chosen arguments (solver, tolerance, etc). For example: -->
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">using</span> Flux<span style="color:#666"></span>, DiffEqFlux<span style="color:#666"></span>
-diffeq_rd<span style="color:#666"></span>(p<span style="color:#666"></span>,prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)</code></pre></div>
-<p>在 <code>diffeq_rd</code> 中的一個好的設計是，它會處理型別的相容性，讓它可以相容於神經網路框架（Flux）。
+concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),u0<span style="color:#666"></span>,p<span style="color:#666"></span>,saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)</code></pre></div>
+<p>在 <code>concrete_solve</code> 中的一個好的設計是，它會處理型別的相容性，讓它可以相容於神經網路框架（Flux）。
 要證明這個，我們來用函數定義一層神經網路，然後還有一個損失函數，是輸出值相對 <code>1</code> 距離的平方。
 在 Flux 中，他看起來像這樣：</p>
 
-<!-- The nice thing about `diffeq_rd` is that it takes care of the type handling
+<!-- The nice thing about `concrete_solve` is that it takes care of the type handling
 necessary to make it compatible with the neural network framework (here Flux). To show this,
 let's define a neural network with the function as our single layer, and then a loss
 function that is the squared distance of the output values from `1`. In Flux, this looks like: -->
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">p<span style="color:#666"></span> <span style="color:#666">=</span> param<span style="color:#666"></span>([<span style="color:#666">2.2</span>, <span style="color:#666">1.0</span>, <span style="color:#666">2.0</span>, <span style="color:#666">0.4</span>]) <span style="color:#080;font-style:italic"># 初始參數向量</span>
-params<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>Params<span style="color:#666"></span>([p<span style="color:#666"></span>])
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">p<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">2.2</span>, <span style="color:#666">1.0</span>, <span style="color:#666">2.0</span>, <span style="color:#666">0.4</span>] <span style="color:#080;font-style:italic"># 初始參數向量</span>
+params<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>params<span style="color:#666"></span>(p<span style="color:#666"></span>)
 
 <span style="color:#a2f;font-weight:bold">function</span> predict_rd<span style="color:#666"></span>() <span style="color:#080;font-style:italic"># 我們的單層神經網路</span>
-  diffeq_rd<span style="color:#666"></span>(p<span style="color:#666"></span>,prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>]
+  concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),u0<span style="color:#666"></span>,p<span style="color:#666"></span>,saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>]
 <span style="color:#a2f;font-weight:bold">end</span>
 
 loss_rd<span style="color:#666"></span>() <span style="color:#666">=</span> sum<span style="color:#666"></span>(abs2<span style="color:#666"></span>,x<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span> <span style="color:#a2f;font-weight:bold">for</span> x<span style="color:#666"></span> <span style="color:#a2f">in</span> predict_rd<span style="color:#666"></span>()) <span style="color:#080;font-style:italic"># 損失函數</span></code></pre></div>
@@ -535,7 +535,7 @@ opt<span style="color:#666"></span> <span style="color:#666">=</span> ADAM<span 
 cb<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">function</span> () <span style="color:#080;font-style:italic"># 用 callback function 來觀察訓練情況</span>
   display<span style="color:#666"></span>(loss_rd<span style="color:#666"></span>())
   <span style="color:#080;font-style:italic"># 利用 `remake` 來再造我們的 `prob` 並放入目前的參數 `p`</span>
-  display<span style="color:#666"></span>(plot<span style="color:#666"></span>(solve<span style="color:#666"></span>(remake<span style="color:#666"></span>(prob<span style="color:#666"></span>,p<span style="color:#666"></span><span style="color:#666">=</span>Flux<span style="color:#666"></span><span style="color:#666">.</span>data<span style="color:#666"></span>(p<span style="color:#666"></span>)),Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>),ylim<span style="color:#666"></span><span style="color:#666">=</span>(<span style="color:#666">0</span>,<span style="color:#666">6</span>)))
+  display<span style="color:#666"></span>(plot<span style="color:#666"></span>(solve<span style="color:#666"></span>(remake<span style="color:#666"></span>(prob<span style="color:#666"></span>,p<span style="color:#666"></span><span style="color:#666">=</span>p<span style="color:#666"></span>),Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>),ylim<span style="color:#666"></span><span style="color:#666">=</span>(<span style="color:#666">0</span>,<span style="color:#666">6</span>)))
 <span style="color:#a2f;font-weight:bold">end</span>
 
 <span style="color:#080;font-style:italic"># 顯示初始參數的微分方程</span>
@@ -576,7 +576,7 @@ we can stick it right in there: --></p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">m<span style="color:#666"></span> <span style="color:#666">=</span> Chain<span style="color:#666"></span>(
   Dense<span style="color:#666"></span>(<span style="color:#666">28</span><span style="color:#666">^</span><span style="color:#666">2</span>, <span style="color:#666">32</span>, relu<span style="color:#666"></span>),
   <span style="color:#080;font-style:italic"># this would require an ODE of 32 parameters</span>
-  p<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> diffeq_rd<span style="color:#666"></span>(p<span style="color:#666"></span>,prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>],
+  p<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),u0<span style="color:#666"></span>,p<span style="color:#666"></span>,saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>],
   Dense<span style="color:#666"></span>(<span style="color:#666">32</span>, <span style="color:#666">10</span>),
   softmax<span style="color:#666"></span>)</code></pre></div>
 <p>抑或是，我們也可以把它代入到卷積神經網路中，使用前一層卷積層的輸出當作 ODE 的初始條件使用：
@@ -588,7 +588,7 @@ layers define the initial condition for the ODE: --></p>
   Conv<span style="color:#666"></span>((<span style="color:#666">2</span>,<span style="color:#666">2</span>), <span style="color:#666">16</span><span style="color:#666">=</span><span style="color:#666">&gt;</span><span style="color:#666">8</span>, relu<span style="color:#666"></span>),
   x<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> maxpool<span style="color:#666"></span>(x<span style="color:#666"></span>, (<span style="color:#666">2</span>,<span style="color:#666">2</span>)),
   x<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> reshape<span style="color:#666"></span>(x<span style="color:#666"></span>, <span style="color:#666">:</span>, size<span style="color:#666"></span>(x<span style="color:#666"></span>, <span style="color:#666">4</span>)),
-  x<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> diffeq_rd<span style="color:#666"></span>(p<span style="color:#666"></span>,prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>,u0<span style="color:#666"></span><span style="color:#666">=</span>x<span style="color:#666"></span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>],
+  x<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),x<span style="color:#666"></span>,p<span style="color:#666"></span>,saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>],
   Dense<span style="color:#666"></span>(<span style="color:#666">288</span>, <span style="color:#666">10</span>), softmax<span style="color:#666"></span>) <span style="color:#666">|&gt;</span> gpu<span style="color:#666"></span></code></pre></div>
 <p>只要你可以寫下 forward pass，我們就可以處理任何參數化可微分的程序並優化它。一個新世界即為你的囊中之物啊。
 <!-- As long as you can write down the forward pass, we can take any parameterised,
@@ -688,12 +688,13 @@ Flux as well. Here's an example: --></p>
   du<span style="color:#666"></span>[<span style="color:#666">2</span>] <span style="color:#666">=</span> dy<span style="color:#666"></span> <span style="color:#666">=</span> (δ<span style="color:#666"></span><span style="color:#666">*</span>x<span style="color:#666"></span> <span style="color:#666">-</span> <span style="color:#a2f">γ</span>)<span style="color:#666">*</span>y<span style="color:#666"></span>
 <span style="color:#a2f;font-weight:bold">end</span>
 h<span style="color:#666"></span>(p<span style="color:#666"></span>,t<span style="color:#666"></span>) <span style="color:#666">=</span> ones<span style="color:#666"></span>(eltype<span style="color:#666"></span>(p<span style="color:#666"></span>),<span style="color:#666">2</span>)
-prob<span style="color:#666"></span> <span style="color:#666">=</span> DDEProblem<span style="color:#666"></span>(delay_lotka_volterra<span style="color:#666"></span>,[<span style="color:#666">1.0</span>,<span style="color:#666">1.0</span>],h<span style="color:#666"></span>,(<span style="color:#666">0.0</span>,<span style="color:#666">10.0</span>),constant_lags<span style="color:#666"></span><span style="color:#666">=</span>[<span style="color:#666">0.1</span>])
+u0<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">1.0</span>,<span style="color:#666">1.0</span>]
+prob<span style="color:#666"></span> <span style="color:#666">=</span> DDEProblem<span style="color:#666"></span>(delay_lotka_volterra<span style="color:#666"></span>,u0<span style="color:#666"></span>,h<span style="color:#666"></span>,(<span style="color:#666">0.0</span>,<span style="color:#666">10.0</span>),constant_lags<span style="color:#666"></span><span style="color:#666">=</span>[<span style="color:#666">0.1</span>])
 
-p<span style="color:#666"></span> <span style="color:#666">=</span> param<span style="color:#666"></span>([<span style="color:#666">2.2</span>, <span style="color:#666">1.0</span>, <span style="color:#666">2.0</span>, <span style="color:#666">0.4</span>])
-params<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>Params<span style="color:#666"></span>([p<span style="color:#666"></span>])
+p<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">2.2</span>, <span style="color:#666">1.0</span>, <span style="color:#666">2.0</span>, <span style="color:#666">0.4</span>]
+params<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>params<span style="color:#666"></span>(p<span style="color:#666"></span>)
 <span style="color:#a2f;font-weight:bold">function</span> predict_rd_dde<span style="color:#666"></span>()
-  diffeq_rd<span style="color:#666"></span>(p<span style="color:#666"></span>,prob<span style="color:#666"></span>,MethodOfSteps<span style="color:#666"></span>(Tsit5<span style="color:#666"></span>()),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>]
+  concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,MethodOfSteps<span style="color:#666"></span>(Tsit5<span style="color:#666"></span>()),u0<span style="color:#666"></span>,p<span style="color:#666"></span>,saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>,sensealg<span style="color:#666"></span><span style="color:#666">=</span>TrackerAdjoint<span style="color:#666"></span>())[<span style="color:#666">1</span>,<span style="color:#666">:</span>]
 <span style="color:#a2f;font-weight:bold">end</span>
 loss_rd_dde<span style="color:#666"></span>() <span style="color:#666">=</span> sum<span style="color:#666"></span>(abs2<span style="color:#666"></span>,x<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span> <span style="color:#a2f;font-weight:bold">for</span> x<span style="color:#666"></span> <span style="color:#a2f">in</span> predict_rd_dde<span style="color:#666"></span>())
 loss_rd_dde<span style="color:#666"></span>()</code></pre></div>
@@ -721,9 +722,9 @@ with an SDE: --></p>
 prob<span style="color:#666"></span> <span style="color:#666">=</span> SDEProblem<span style="color:#666"></span>(lotka_volterra<span style="color:#666"></span>,lotka_volterra_noise<span style="color:#666"></span>,[<span style="color:#666">1.0</span>,<span style="color:#666">1.0</span>],(<span style="color:#666">0.0</span>,<span style="color:#666">10.0</span>))
 
 p<span style="color:#666"></span> <span style="color:#666">=</span> param<span style="color:#666"></span>([<span style="color:#666">2.2</span>, <span style="color:#666">1.0</span>, <span style="color:#666">2.0</span>, <span style="color:#666">0.4</span>])
-params<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>Params<span style="color:#666"></span>([p<span style="color:#666"></span>])
+params<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>params<span style="color:#666"></span>(p<span style="color:#666"></span>)
 <span style="color:#a2f;font-weight:bold">function</span> predict_fd_sde<span style="color:#666"></span>()
-  diffeq_fd<span style="color:#666"></span>(p<span style="color:#666"></span>,sol<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">&gt;</span>sol<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>],<span style="color:#666">101</span>,prob<span style="color:#666"></span>,SOSRI<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)
+  concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,SOSRI<span style="color:#666"></span>(),u0<span style="color:#666"></span>,p<span style="color:#666"></span>,saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>,sensealg<span style="color:#666"></span><span style="color:#666">=</span>TrackerAdjoint<span style="color:#666"></span>())[<span style="color:#666">1</span>,<span style="color:#666">:</span>]
 <span style="color:#a2f;font-weight:bold">end</span>
 loss_fd_sde<span style="color:#666"></span>() <span style="color:#666">=</span> sum<span style="color:#666"></span>(abs2<span style="color:#666"></span>,x<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span> <span style="color:#a2f;font-weight:bold">for</span> x<span style="color:#666"></span> <span style="color:#a2f">in</span> predict_fd_sde<span style="color:#666"></span>())
 loss_fd_sde<span style="color:#666"></span>()</code></pre></div>
@@ -734,7 +735,7 @@ the amount of bunnies close to constant: --></p>
 opt<span style="color:#666"></span> <span style="color:#666">=</span> ADAM<span style="color:#666"></span>(<span style="color:#666">0.1</span>)
 cb<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">function</span> ()
   display<span style="color:#666"></span>(loss_fd_sde<span style="color:#666"></span>())
-  display<span style="color:#666"></span>(plot<span style="color:#666"></span>(solve<span style="color:#666"></span>(remake<span style="color:#666"></span>(prob<span style="color:#666"></span>,p<span style="color:#666"></span><span style="color:#666">=</span>Flux<span style="color:#666"></span><span style="color:#666">.</span>data<span style="color:#666"></span>(p<span style="color:#666"></span>)),SOSRI<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>),ylim<span style="color:#666"></span><span style="color:#666">=</span>(<span style="color:#666">0</span>,<span style="color:#666">6</span>)))
+  display<span style="color:#666"></span>(plot<span style="color:#666"></span>(solve<span style="color:#666"></span>(remake<span style="color:#666"></span>(prob<span style="color:#666"></span>,p<span style="color:#666"></span><span style="color:#666">=</span>p<span style="color:#666"></span>),SOSRI<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>),ylim<span style="color:#666"></span><span style="color:#666">=</span>(<span style="color:#666">0</span>,<span style="color:#666">6</span>)))
 <span style="color:#a2f;font-weight:bold">end</span>
 
 <span style="color:#080;font-style:italic"># 畫出當下參數的 ODE</span>
@@ -764,17 +765,17 @@ is defined by a neural network itself. To do this, let&rsquo;s first define the
 neural net for the derivative. In Flux, we can define a multilayer perceptron
 with 1 hidden layer and a <code>tanh</code> activation function like: &ndash;&gt;</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">dudt<span style="color:#666"></span> <span style="color:#666">=</span> Chain<span style="color:#666"></span>(Dense<span style="color:#666"></span>(<span style="color:#666">2</span>,<span style="color:#666">50</span>,tanh<span style="color:#666"></span>),Dense<span style="color:#666"></span>(<span style="color:#666">50</span>,<span style="color:#666">2</span>))</code></pre></div>
-<p>為了定義一個 <code>neural_ode</code>，我們接著定義一個時間跨度並使用 <code>neural_ode</code> 函數如下：
-<!-- To define a `neural_ode` layer, we then just need to give
-it a timespan and use the `neural_ode` function: --></p>
+<p>為了定義一個 <code>NeuralODE</code>，我們接著定義一個時間跨度並使用 <code>NeuralODE</code> 函數如下：
+<!-- To define a `NeuralODE` layer, we then just need to give
+it a timespan and use the `NeuralODE` function: --></p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">tspan<span style="color:#666"></span> <span style="color:#666">=</span> (<span style="color:#666">0.0f0</span>,<span style="color:#666">25.0f0</span>)
-x<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">&gt;</span>neural_ode<span style="color:#666"></span>(dudt<span style="color:#666"></span>,x<span style="color:#666"></span>,tspan<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)</code></pre></div>
+NeuralODE<span style="color:#666"></span>(dudt<span style="color:#666"></span>,tspan<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)</code></pre></div>
 <p>順帶一提，如果想要在 GPU 上運算這個神經網路，只需讓起始條件與神經網路架設於 GPU 上即可。在整合 GPU 的階段，這會使得微分方程解算器內部運算直接在 GPU 上執行，無需額外的資料傳輸。這寫起來會像是[^gpu]：
 <!-- As a side note, to run this on the GPU, it is sufficient to make the initial
 condition and neural network be on the GPU. This will cause the entire ODE
 solver's internal operations to take place on the GPU without extra data
 transfers in the integration scheme. This looks like[^gpu]: --></p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">x<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">&gt;</span>neural_ode<span style="color:#666"></span>(gpu<span style="color:#666"></span>(dudt<span style="color:#666"></span>),gpu<span style="color:#666"></span>(x<span style="color:#666"></span>),tspan<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)</code></pre></div>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">NeuralODE<span style="color:#666"></span>(gpu<span style="color:#666"></span>(dudt<span style="color:#666"></span>),tspan<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)</code></pre></div>
 <h2 id="用範例理解常微分神經網路的行為">用範例理解常微分神經網路的行為</h2>
 
 <!-- ## Understanding the Neural ODE layer behavior by example -->
@@ -803,7 +804,7 @@ better animation!): --></p>
              Dense<span style="color:#666"></span>(<span style="color:#666">2</span>,<span style="color:#666">50</span>,tanh<span style="color:#666"></span>),
              Dense<span style="color:#666"></span>(<span style="color:#666">50</span>,<span style="color:#666">2</span>))
 ps<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>params<span style="color:#666"></span>(dudt<span style="color:#666"></span>)
-n_ode<span style="color:#666"></span> <span style="color:#666">=</span> x<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">&gt;</span>neural_ode<span style="color:#666"></span>(dudt<span style="color:#666"></span>,x<span style="color:#666"></span>,tspan<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span>t<span style="color:#666"></span>,reltol<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1e-7</span>,abstol<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1e-9</span>)</code></pre></div>
+n_ode<span style="color:#666"></span> <span style="color:#666">=</span> NeuralODE<span style="color:#666"></span>(dudt<span style="color:#666"></span>,tspan<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span>t<span style="color:#666"></span>,reltol<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1e-7</span>,abstol<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1e-9</span>)</code></pre></div>
 <p>注意到，<code>neural_ode</code> 中使用和產生資料的常微分方程解相同的時間跨度與 <code>saveat</code>，所以它會在每個時間點針對神經網路預測的動態系統狀態來產生一個預測值。讓我們來看看最初這個神經網路會給出怎樣的時間序列。由於這個常微分方程有兩個應變數，為了簡化畫圖的作業，我們只畫出第一個應變數。程式碼如下：
 <!-- Notice that the `neural_ode` has the same timespan and `saveat` as the solution
 that generated the data. This means that given an `x` (and initial value), it
@@ -814,7 +815,7 @@ has two-dependent variables, we will simplify the plot by only showing the first
 The code for the plot is: --></p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">pred<span style="color:#666"></span> <span style="color:#666">=</span> n_ode<span style="color:#666"></span>(u0<span style="color:#666"></span>) <span style="color:#080;font-style:italic"># 使用真實的初始值來產生預測值</span>
 scatter<span style="color:#666"></span>(t<span style="color:#666"></span>,ode_data<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>],label<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b44">d</span><span style="color:#b44">a</span><span style="color:#b44">t</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span>)
-scatter!<span style="color:#666"></span>(t<span style="color:#666"></span>,Flux<span style="color:#666"></span><span style="color:#666">.</span>data<span style="color:#666"></span>(pred<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>]),label<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b44">p</span><span style="color:#b44">r</span><span style="color:#b44">e</span><span style="color:#b44">d</span><span style="color:#b44">i</span><span style="color:#b44">c</span><span style="color:#b44">t</span><span style="color:#b44">i</span><span style="color:#b44">o</span><span style="color:#b44">n</span><span style="color:#b44">&#34;</span>)</code></pre></div>
+scatter!<span style="color:#666"></span>(t<span style="color:#666"></span>,pred<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>],label<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b44">p</span><span style="color:#b44">r</span><span style="color:#b44">e</span><span style="color:#b44">d</span><span style="color:#b44">i</span><span style="color:#b44">c</span><span style="color:#b44">t</span><span style="color:#b44">i</span><span style="color:#b44">o</span><span style="color:#b44">n</span><span style="color:#b44">&#34;</span>)</code></pre></div>
 <p><img src="https://user-images.githubusercontent.com/1814174/51585822-d9449400-1ea8-11e9-8665-956a16e95207.png" alt="Neural ODE Start" /></p>
 
 <p>現在讓我們來訓練我們的神經網路吧！為此，這裡如同前文一般定義了一個預測函數、一個 loss 函數來評估我們的預測值與資料：
@@ -832,7 +833,7 @@ opt<span style="color:#666"></span> <span style="color:#666">=</span> ADAM<span 
 cb<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">function</span> () <span style="color:#080;font-style:italic"># 觀察資料用的 callback 函數</span>
   display<span style="color:#666"></span>(loss_n_ode<span style="color:#666"></span>())
   <span style="color:#080;font-style:italic"># 畫出當下預測和資料</span>
-  cur_pred<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>data<span style="color:#666"></span>(predict_n_ode<span style="color:#666"></span>())
+  cur_pred<span style="color:#666"></span> <span style="color:#666">=</span> predict_n_ode<span style="color:#666"></span>()
   pl<span style="color:#666"></span> <span style="color:#666">=</span> scatter<span style="color:#666"></span>(t<span style="color:#666"></span>,ode_data<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>],label<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b44">d</span><span style="color:#b44">a</span><span style="color:#b44">t</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span>)
   scatter!<span style="color:#666"></span>(pl<span style="color:#666"></span>,t<span style="color:#666"></span>,cur_pred<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>],label<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b44">p</span><span style="color:#b44">r</span><span style="color:#b44">e</span><span style="color:#b44">d</span><span style="color:#b44">i</span><span style="color:#b44">c</span><span style="color:#b44">t</span><span style="color:#b44">i</span><span style="color:#b44">o</span><span style="color:#b44">n</span><span style="color:#b44">&#34;</span>)
   display<span style="color:#666"></span>(plot<span style="color:#666"></span>(pl<span style="color:#666"></span>))
@@ -982,25 +983,25 @@ large numbers of parameters. -->
 
 <p>總的來說，為了達成擴充性、最佳的、可維護的微分方程及神經網路整合框架，
 可以切換不同的梯度方法，而不會改變其餘的程式碼，是一件極其重要的事。
-而這正是 FluxDiffEq.jl 要帶給使用者的。當中有三個相似的 API 函式：</p>
+而這正是 DiffEqFlux.jl 要帶給使用者的。當中有三個相似的 API 函式：</p>
 
 <!-- Altogether, being able to switch between different gradient methods without changing
 the rest of your code is crucial for having a scalable, optimized, and
 maintainable framework for integrating differential equations and neural networks.
-And this is precisely what FluxDiffEq.jl gives the user direct access to. There
+And this is precisely what DiffEqFlux.jl gives the user direct access to. There
 are three functions with a similar API: -->
 
 <ul>
-<li><code>diffeq_rd</code> 使用了 Flux 的 reverse-mode AD 求解。</li>
-<li><code>diffeq_fd</code> 使用了 ForwardDiff.jl 的 forward-mode AD 求解。</li>
-<li><code>diffeq_adjoint</code> 使用了伴隨敏感性分析來「反向傳遞」求解。</li>
+<li><code>sensealg=TrackerAdjoint()</code> 使用了 Flux 的 reverse-mode AD 求解。</li>
+<li><code>sensealg=ForwardDiffSensitivity()</code> 使用了 ForwardDiff.jl 的 forward-mode AD 求解。</li>
+<li><code>sensealg=InterpolatingAdjoint()</code> 使用了伴隨敏感性分析來「反向傳遞」求解。</li>
 </ul>
 
-<!-- - `diffeq_rd` uses Flux's reverse-mode AD through the differential equation
+<!-- - `sensealg=TrackerAdjoint()` uses Flux's reverse-mode AD through the differential equation
   solver.
-- `diffeq_fd` uses ForwardDiff.jl's forward-mode AD through the differential
+- `sensealg=ForwardDiffSensitivity()` uses ForwardDiff.jl's forward-mode AD through the differential
   equation solver.
-- `diffeq_adjoint` uses adjoint sensitivity analysis to "backprop the ODE solver" -->
+- `sensealg=InterpolatingAdjoint()` uses adjoint sensitivity analysis to "backprop the ODE solver" -->
 
 <p>然而，要把自動微分的反向模式層切換到前向模式層，只需要改變一個字元即可。
 由於基於 Julia 的自動微分可以作用在 Julia 程式碼上，
@@ -1019,7 +1020,7 @@ solvers will continue to benefit from advances in this field. -->
 在 Julia 的生態中，我們以一種嶄新而獨立的套件整合了微分方程以及深度學習套件，
 讓這兩個領域可以直接結合在一起。
 由軟體開啟這樣的可能性，目前僅僅是個開端。我們希望未來的部落格文章可以混合兩個領域，
-在深度學習框架中能有更深入而酷炫的應用，像是整合我們即將上線的計量藥物（pharmacometric）模擬引擎 <a href="https://doi.org/10.1007/s10928-018-9606-9">PuMaS.jl</a>。
+在深度學習框架中能有更深入而酷炫的應用，像是整合我們即將上線的計量藥物（pharmacometric）模擬引擎 <a href="https://doi.org/10.1007/s10928-018-9606-9">Pumas.jl</a>。
 在全方位的微分方程求解器支援 ODEs、SDEs、DAEs、DDEs、PDEs、離散隨機方程等多樣微分方程式下，
 我們期待你們將會用 Julia 建構怎樣的次世代的神經網路。</p>
 
@@ -1030,7 +1031,7 @@ way that new independent developments in the two domains can directly be used to
 We are only beginning to understand the possibilities that have opened up with
 this software. We hope that future blog posts will detail some of the cool
 applications which mix the two disciplines, such as embedding our coming
-pharmacometric simulation engine [PuMaS.jl](https://doi.org/10.1007/s10928-018-9606-9)
+pharmacometric simulation engine [Pumas.jl](https://doi.org/10.1007/s10928-018-9606-9)
 into the deep learning framework. With access to the full range of solvers for ODEs,
 SDEs, DAEs, DDEs, PDEs, discrete stochastic equations, and more, we are
 interested to see what kinds of next generation neural networks you will build with Julia. -->
