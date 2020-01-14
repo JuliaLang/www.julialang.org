@@ -9,5 +9,14 @@
 	<atom:link href="https://julialang.org/learning/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Getting Started with Julia</title>
+      <link>https://julialang.org/learning/getting-started/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/learning/getting-started/</guid>
+      <description>Getting Started with Julia What is Julia? Welcome to the Julia language project! We’re excited that you’re interested in learning Julia and contributing to our project and community. Julia is a new programming language. It is also a general purpose language, which means that you can find a way to build basically any software in it that you could with another language. However, no programming language is the best tool for every problem.</description>
+    </item>
+    
   </channel>
 </rss>
