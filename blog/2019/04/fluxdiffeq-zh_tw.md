@@ -412,36 +412,36 @@ scatter!(t,A)
 
 ![Data points plot](https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png)
 
-最基礎的微分方程層是 `diffeq_rd`，它會做相同的事，只有一點語法上的改變。
-`diffeq_rd` 會接受被積函數的參數 `p`，並且把它放進由 `prob` 定義好的微分方程中，
+最基礎的微分方程層是 `concrete_solve`，它會做相同的事，只有一點語法上的改變。
+`concrete_solve` 會接受被積函數的參數 `p`，並且把它放進由 `prob` 定義好的微分方程中，
 然後根據挑選好的程式參數（解算器、容忍度...等等）解方程式。
 範例如下：
 
-<!-- The most basic differential equation layer is `diffeq_rd`, which does the same
-thing with a slightly altered syntax. `diffeq_rd` takes in parameters `p` for
+<!-- The most basic differential equation layer is `concrete_solve`, which does the same
+thing with a slightly altered syntax. `concrete_solve` takes in parameters `p` for
 the integrand, puts it in the differential equation defined by `prob`, and
 solves it with the chosen arguments (solver, tolerance, etc). For example: -->
 
 ```julia
 using Flux, DiffEqFlux
-diffeq_rd(p,prob,Tsit5(),saveat=0.1)
+concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)
 ```
 
-在 `diffeq_rd` 中的一個好的設計是，它會處理型別的相容性，讓它可以相容於神經網路框架（Flux）。
+在 `concrete_solve` 中的一個好的設計是，它會處理型別的相容性，讓它可以相容於神經網路框架（Flux）。
 要證明這個，我們來用函數定義一層神經網路，然後還有一個損失函數，是輸出值相對 `1` 距離的平方。
 在 Flux 中，他看起來像這樣：
 
-<!-- The nice thing about `diffeq_rd` is that it takes care of the type handling
+<!-- The nice thing about `concrete_solve` is that it takes care of the type handling
 necessary to make it compatible with the neural network framework (here Flux). To show this,
 let's define a neural network with the function as our single layer, and then a loss
 function that is the squared distance of the output values from `1`. In Flux, this looks like: -->
 
 ```julia
-p = param([2.2, 1.0, 2.0, 0.4]) # 初始參數向量
-params = Flux.Params([p])
+p = [2.2, 1.0, 2.0, 0.4] # 初始參數向量
+params = Flux.params(p)
 
 function predict_rd() # 我們的單層神經網路
-  diffeq_rd(p,prob,Tsit5(),saveat=0.1)[1,:]
+  concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)[1,:]
 end
 
 loss_rd() = sum(abs2,x-1 for x in predict_rd()) # 損失函數
@@ -459,7 +459,7 @@ opt = ADAM(0.1)
 cb = function () # 用 callback function 來觀察訓練情況
   display(loss_rd())
   # 利用 `remake` 來再造我們的 `prob` 並放入目前的參數 `p`
-  display(plot(solve(remake(prob,p=Flux.data(p)),Tsit5(),saveat=0.1),ylim=(0,6)))
+  display(plot(solve(remake(prob,p=p),Tsit5(),saveat=0.1),ylim=(0,6)))
 end
 
 # 顯示初始參數的微分方程
@@ -508,7 +508,7 @@ we can stick it right in there: -->
 m = Chain(
   Dense(28^2, 32, relu),
   # this would require an ODE of 32 parameters
-  p -> diffeq_rd(p,prob,Tsit5(),saveat=0.1)[1,:],
+  p -> concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)[1,:],
   Dense(32, 10),
   softmax)
 ```
@@ -524,7 +524,7 @@ m = Chain(
   Conv((2,2), 16=>8, relu),
   x -> maxpool(x, (2,2)),
   x -> reshape(x, :, size(x, 4)),
-  x -> diffeq_rd(p,prob,Tsit5(),saveat=0.1,u0=x)[1,:],
+  x -> concrete_solve(prob,Tsit5(),x,p,saveat=0.1)[1,:],
   Dense(288, 10), softmax) |> gpu
 ```
 
@@ -633,12 +633,13 @@ function delay_lotka_volterra(du,u,h,p,t)
   du[2] = dy = (δ*x - γ)*y
 end
 h(p,t) = ones(eltype(p),2)
-prob = DDEProblem(delay_lotka_volterra,[1.0,1.0],h,(0.0,10.0),constant_lags=[0.1])
+u0 = [1.0,1.0]
+prob = DDEProblem(delay_lotka_volterra,u0,h,(0.0,10.0),constant_lags=[0.1])
 
-p = param([2.2, 1.0, 2.0, 0.4])
-params = Flux.Params([p])
+p = [2.2, 1.0, 2.0, 0.4]
+params = Flux.params(p)
 function predict_rd_dde()
-  diffeq_rd(p,prob,MethodOfSteps(Tsit5()),saveat=0.1)[1,:]
+  concrete_solve(prob,MethodOfSteps(Tsit5()),u0,p,saveat=0.1,sensealg=TrackerAdjoint())[1,:]
 end
 loss_rd_dde() = sum(abs2,x-1 for x in predict_rd_dde())
 loss_rd_dde()
@@ -670,9 +671,9 @@ end
 prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[1.0,1.0],(0.0,10.0))
 
 p = param([2.2, 1.0, 2.0, 0.4])
-params = Flux.Params([p])
+params = Flux.params(p)
 function predict_fd_sde()
-  diffeq_fd(p,sol->sol[1,:],101,prob,SOSRI(),saveat=0.1)
+  concrete_solve(prob,SOSRI(),u0,p,saveat=0.1,sensealg=TrackerAdjoint())[1,:]
 end
 loss_fd_sde() = sum(abs2,x-1 for x in predict_fd_sde())
 loss_fd_sde()
@@ -687,7 +688,7 @@ data = Iterators.repeated((), 100)
 opt = ADAM(0.1)
 cb = function ()
   display(loss_fd_sde())
-  display(plot(solve(remake(prob,p=Flux.data(p)),SOSRI(),saveat=0.1),ylim=(0,6)))
+  display(plot(solve(remake(prob,p=p),SOSRI(),saveat=0.1),ylim=(0,6)))
 end
 
 # 畫出當下參數的 ODE
@@ -723,13 +724,13 @@ with 1 hidden layer and a `tanh` activation function like: -->
 dudt = Chain(Dense(2,50,tanh),Dense(50,2))
 ```
 
-為了定義一個 `neural_ode`，我們接著定義一個時間跨度並使用 `neural_ode` 函數如下：
-<!-- To define a `neural_ode` layer, we then just need to give
-it a timespan and use the `neural_ode` function: -->
+為了定義一個 `NeuralODE`，我們接著定義一個時間跨度並使用 `NeuralODE` 函數如下：
+<!-- To define a `NeuralODE` layer, we then just need to give
+it a timespan and use the `NeuralODE` function: -->
 
 ```julia
 tspan = (0.0f0,25.0f0)
-x->neural_ode(dudt,x,tspan,Tsit5(),saveat=0.1)
+NeuralODE(dudt,tspan,Tsit5(),saveat=0.1)
 ```
 
 順帶一提，如果想要在 GPU 上運算這個神經網路，只需讓起始條件與神經網路架設於 GPU 上即可。在整合 GPU 的階段，這會使得微分方程解算器內部運算直接在 GPU 上執行，無需額外的資料傳輸。這寫起來會像是[^gpu]：
@@ -739,7 +740,7 @@ solver's internal operations to take place on the GPU without extra data
 transfers in the integration scheme. This looks like[^gpu]: -->
 
 ```julia
-x->neural_ode(gpu(dudt),gpu(x),tspan,Tsit5(),saveat=0.1)
+NeuralODE(gpu(dudt),tspan,Tsit5(),saveat=0.1)
 ```
 
 ## 用範例理解常微分神經網路的行為
@@ -775,7 +776,7 @@ dudt = Chain(x -> x.^3,
              Dense(2,50,tanh),
              Dense(50,2))
 ps = Flux.params(dudt)
-n_ode = x->neural_ode(dudt,x,tspan,Tsit5(),saveat=t,reltol=1e-7,abstol=1e-9)
+n_ode = NeuralODE(dudt,tspan,Tsit5(),saveat=t,reltol=1e-7,abstol=1e-9)
 ```
 
 注意到，`neural_ode` 中使用和產生資料的常微分方程解相同的時間跨度與 `saveat`，所以它會在每個時間點針對神經網路預測的動態系統狀態來產生一個預測值。讓我們來看看最初這個神經網路會給出怎樣的時間序列。由於這個常微分方程有兩個應變數，為了簡化畫圖的作業，我們只畫出第一個應變數。程式碼如下：
@@ -790,7 +791,7 @@ The code for the plot is: -->
 ```julia
 pred = n_ode(u0) # 使用真實的初始值來產生預測值
 scatter(t,ode_data[1,:],label="data")
-scatter!(t,Flux.data(pred[1,:]),label="prediction")
+scatter!(t,pred[1,:],label="prediction")
 ```
 
 ![Neural ODE Start](https://user-images.githubusercontent.com/1814174/51585822-d9449400-1ea8-11e9-8665-956a16e95207.png)
@@ -816,7 +817,7 @@ opt = ADAM(0.1)
 cb = function () # 觀察資料用的 callback 函數
   display(loss_n_ode())
   # 畫出當下預測和資料
-  cur_pred = Flux.data(predict_n_ode())
+  cur_pred = predict_n_ode()
   pl = scatter(t,ode_data[1,:],label="data")
   scatter!(pl,t,cur_pred[1,:],label="prediction")
   display(plot(pl))
@@ -971,23 +972,23 @@ large numbers of parameters. -->
 
 總的來說，為了達成擴充性、最佳的、可維護的微分方程及神經網路整合框架，
 可以切換不同的梯度方法，而不會改變其餘的程式碼，是一件極其重要的事。
-而這正是 FluxDiffEq.jl 要帶給使用者的。當中有三個相似的 API 函式：
+而這正是 DiffEqFlux.jl 要帶給使用者的。當中有三個相似的 API 函式：
 
 <!-- Altogether, being able to switch between different gradient methods without changing
 the rest of your code is crucial for having a scalable, optimized, and
 maintainable framework for integrating differential equations and neural networks.
-And this is precisely what FluxDiffEq.jl gives the user direct access to. There
+And this is precisely what DiffEqFlux.jl gives the user direct access to. There
 are three functions with a similar API: -->
 
-- `diffeq_rd` 使用了 Flux 的 reverse-mode AD 求解。
-- `diffeq_fd` 使用了 ForwardDiff.jl 的 forward-mode AD 求解。
-- `diffeq_adjoint` 使用了伴隨敏感性分析來「反向傳遞」求解。
+- `sensealg=TrackerAdjoint()` 使用了 Flux 的 reverse-mode AD 求解。
+- `sensealg=ForwardDiffSensitivity()` 使用了 ForwardDiff.jl 的 forward-mode AD 求解。
+- `sensealg=InterpolatingAdjoint()` 使用了伴隨敏感性分析來「反向傳遞」求解。
 
-<!-- - `diffeq_rd` uses Flux's reverse-mode AD through the differential equation
+<!-- - `sensealg=TrackerAdjoint()` uses Flux's reverse-mode AD through the differential equation
   solver.
-- `diffeq_fd` uses ForwardDiff.jl's forward-mode AD through the differential
+- `sensealg=ForwardDiffSensitivity()` uses ForwardDiff.jl's forward-mode AD through the differential
   equation solver.
-- `diffeq_adjoint` uses adjoint sensitivity analysis to "backprop the ODE solver" -->
+- `sensealg=InterpolatingAdjoint()` uses adjoint sensitivity analysis to "backprop the ODE solver" -->
 
 然而，要把自動微分的反向模式層切換到前向模式層，只需要改變一個字元即可。
 由於基於 Julia 的自動微分可以作用在 Julia 程式碼上，
@@ -1006,7 +1007,7 @@ solvers will continue to benefit from advances in this field. -->
 在 Julia 的生態中，我們以一種嶄新而獨立的套件整合了微分方程以及深度學習套件，
 讓這兩個領域可以直接結合在一起。
 由軟體開啟這樣的可能性，目前僅僅是個開端。我們希望未來的部落格文章可以混合兩個領域，
-在深度學習框架中能有更深入而酷炫的應用，像是整合我們即將上線的計量藥物（pharmacometric）模擬引擎 [PuMaS.jl](https://doi.org/10.1007/s10928-018-9606-9)。
+在深度學習框架中能有更深入而酷炫的應用，像是整合我們即將上線的計量藥物（pharmacometric）模擬引擎 [Pumas.jl](https://doi.org/10.1007/s10928-018-9606-9)。
 在全方位的微分方程求解器支援 ODEs、SDEs、DAEs、DDEs、PDEs、離散隨機方程等多樣微分方程式下，
 我們期待你們將會用 Julia 建構怎樣的次世代的神經網路。
 
@@ -1017,7 +1018,7 @@ way that new independent developments in the two domains can directly be used to
 We are only beginning to understand the possibilities that have opened up with
 this software. We hope that future blog posts will detail some of the cool
 applications which mix the two disciplines, such as embedding our coming
-pharmacometric simulation engine [PuMaS.jl](https://doi.org/10.1007/s10928-018-9606-9)
+pharmacometric simulation engine [Pumas.jl](https://doi.org/10.1007/s10928-018-9606-9)
 into the deep learning framework. With access to the full range of solvers for ODEs,
 SDEs, DAEs, DDEs, PDEs, discrete stochastic equations, and more, we are
 interested to see what kinds of next generation neural networks you will build with Julia. -->
