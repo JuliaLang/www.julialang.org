@@ -79,7 +79,7 @@ It is strongly recommended that the official generic binaries from the downloads
 
 The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the `julia` executable.
 
-First, download the `.tar.gz` file from the [downloads page](downloads/). You need to extract this file to a suitable location. To extract the file, you can use the following command:
+First, download the `.tar.gz` file from the [downloads page](https://julialang.org/downloads/). You need to extract this file to a suitable location. To extract the file, you can use the following command:
 
 tar -xvzf julia-x.y.z-linux-x86\_64.tar.gz
 
