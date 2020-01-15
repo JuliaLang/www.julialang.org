@@ -6,7 +6,7 @@ title: DiffEqFlux.jl – A Julia Library for Neural Differential Equations
 slug: fluxdiffeq
 ---
 
-Translations:  <a href="https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw">Traditional Chinese</a>
+Translations: [Traditional Chinese](/blog/2019/04/fluxdiffeq-zh_tw)
 
 In this blog post we will show you how to easily, efficiently, and
 robustly use differential equation (DiffEq) solvers with neural networks in Julia.
@@ -71,21 +71,26 @@ However, in many cases, such exact relations are not known *a priori*.
 So how do you do nonlinear modeling if you don't know the nonlinearity?
 
 One way to address this is to use machine
-learning. In a typical machine learning problem, you are given some input [[x]] and
-you want to predict an output [[y]]. This generation of a prediction [[y]] from [[x]]
-is a machine learning model (let's call it [[ML]]).  During training, we attempt to
-adjust the parameters of [[ML]] so that it generates accurate predictions.  We
-can then use [[ML]] for inference (i.e., produce [[y]]s for novel inputs [[x]]).
-This is just a nonlinear transformation [[y=ML(x)]].
-The reason [[ML]] is interesting is because its form is basic but adapts to the
+learning. In a typical machine learning problem, you are given some input $x$ and
+you want to predict an output $y$. This generation of a prediction $y$ from $x$
+is a machine learning model (let's call it $ML$).  During training, we attempt to
+adjust the parameters of $ML$ so that it generates accurate predictions.  We
+can then use $ML$ for inference (i.e., produce $y$s for novel inputs $x$).
+This is just a nonlinear transformation $y=ML(x)$.
+The reason $ML$ is interesting is because its form is basic but adapts to the
 data itself. For example, a simple neural network (in design matrix form) with
 sigmoid activation functions is simply matrix multiplications followed
-by application of sigmoid functions. Specifically,  {{< formula >}} $$ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))$$ {{< formula >}} is a three-layer deep
-neural network, where [[W=(W_1,W_2,W_3)]] are learnable parameters.
-You then choose [[W]] such that [[ML(x)=y]] reasonably fits the function you wanted it to fit.
+by application of sigmoid functions. Specifically,
+{{< formula >}}
+$$ ML(x) = \sigma(W_{3} \cdot \sigma(W_{2} \cdot \sigma(W_{1} \cdot x))) $$
+{{< /formula >}}
+is a three-layer deep
+neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters.
+You then choose $W$ such that $ML(x)=y$ reasonably fits the function you wanted it to fit.
 The theory and practice of machine learning confirms that this is a good way to learn nonlinearities.
+
 For example, the Universal Approximation Theorem states that, for
-enough layers or enough parameters (i.e. sufficiently large [[W_{i}]] matrices), [[ML(x)]]
+enough layers or enough parameters (i.e. sufficiently large $W_{i}$ matrices), $ML(x)$
 can approximate any nonlinear function sufficiently close (subject to common constraints).
 
 So great, this always works! But it has some caveats, the main being
@@ -96,7 +101,9 @@ and we might know that their rate of births is dependent on the current populati
 Thus instead of starting from nothing, we may want to use this known _a priori_ relation and a set of parameters that defines it.
 For the rabbits, let's say that we want to learn
 
-$[[\text{rabbits tomorrow} = \text{Model}(\text{rabbits today}).]]
+{{< formula >}}
+$$\text{rabbits tomorrow} = \text{Model}(\text{rabbits today}).$$
+{{< /formula >}}
 
 In this case, we have prior knowledge of the rate of births being dependent on
 the current population. The way to mathematically state this
@@ -104,11 +111,13 @@ structural assumption is via a differential equation. Here, what we are saying
 is that the birth rate of the rabbit population at a given time point increases
 when we have more rabbits. The simplest way of encoding that is
 
-$[[\text{rabbits}'(t) = \alpha\cdot \text{rabbits}(t)]]
+{{< formula >}}
+$$\text{rabbits}'(t) = \alpha\cdot \text{rabbits}(t)$$
+{{< /formula >}}
 
-where [[\alpha]] is some learnable constant. If you know your calculus, the solution
-here is exponential growth from the starting point with a growth rate [[\alpha]]:
-[[\text{rabbits}(t_\text{start})e^{(\alpha t)}]]. But notice that we didn't need to know the
+where $\alpha$ is some learnable constant. If you know your calculus, the solution
+here is exponential growth from the starting point with a growth rate $\alpha$:
+$\text{rabbits}(t_\text{start})e^{(\alpha t)}$. But notice that we didn't need to know the
 solution to the differential equation to validate the idea: we encoded the
 structure of the model and mathematics itself then outputs what the solution
 should be. Because of this, differential equations have been the tool of choice
@@ -135,16 +144,20 @@ together in new and exciting ways!
 The neural ordinary differential equation is one of many ways to put these two
 subjects together. The simplest way of explaining it is that, instead of
 learning the nonlinear transformation directly, we wish to learn the structures
-of the nonlinear transformation. Thus instead of doing $[[y=ML(x)]], we put the
-machine learning model on the derivative, $[[y'(x) = ML(x)]], and now solve the ODE.
+of the nonlinear transformation. Thus instead of doing $y=ML(x)$, we put the
+machine learning model on the derivative, $y'(x) = ML(x)$, and now solve the ODE.
 Why would you ever do this? Well, one motivation is that defining the model in this way
 and then solving the ODE using the simplest and most error prone method, the
 Euler method, what you get is equivalent to a [residual neural network](https://arxiv.org/abs/1512.03385).
-The way the Euler method works is based on the fact that $[[y'(x) = \frac{dy}{dx}]], thus
+The way the Euler method works is based on the fact that $y'(x) = \frac{dy}{dx}$, thus
 
-$[[\Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x)]]
+{{< formula >}}
+$$ \Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x)$$
+{{< /formula >}}
 which implies that
-$[[y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).]]
+{{< formula >}}
+$$ y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).$$
+{{< /formula >}}
 
 This looks similar in structure to a ResNet, one of the most successful image
 processing models. The insight of the the Neural ODEs paper was that
@@ -153,7 +166,7 @@ of "infinitely deep" model as each layer tends to zero. Rather than adding more
 layers, we can just model the differential equation directly and then solve it
 using a purpose-built ODE solver. Numerical ODE solvers are a science that goes
 all the way back to the first computers, and modern ones can adaptively choose
-step sizes [[\Delta x]] and use high order approximations to dratically reduce the
+step sizes $\Delta x$ and use high order approximations to dratically reduce the
 number of actual steps required. And as it turns out, this works well in
 practice, too.
 
@@ -171,13 +184,17 @@ specify the parameters `p`.
 For example, the
 [Lotka-Volterra equations describe the dynamics of the population of rabbits and wolves](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations).
 They can be written as:
-
-$[[x^\prime = \alpha x + \beta x y]]
-$[[y^\prime = -\delta y + \gamma x y]]
-
+{{< formula >}}
+$$
+\begin{align*}
+x^\prime &= \alpha x + \beta x y \\
+y^\prime &= -\delta y + \gamma x y
+\end{align*}
+$$
+{{< / formula >}}
 and encoded in Julia like:
 
-```julia
+{{< highlight julia >}}
 using DifferentialEquations
 function lotka_volterra(du,u,p,t)
   x, y = u
@@ -189,28 +206,28 @@ u0 = [1.0,1.0]
 tspan = (0.0,10.0)
 p = [1.5,1.0,3.0,1.0]
 prob = ODEProblem(lotka_volterra,u0,tspan,p)
-```
+{{< / highlight >}}
 
 Then to solve the differential equations, you can simply call `solve` on the
 `prob`:
 
-```julia
+{{< highlight julia >}}
 sol = solve(prob)
 using Plots
 plot(sol)
-```
+{{< / highlight >}}
 
 ![LV Solution Plot](https://user-images.githubusercontent.com/1814174/51388169-9a07f300-1af6-11e9-8c6c-83c41e81d11c.png)
 
 One last thing to note is that we can make our initial condition (`u0`) and time spans (`tspans`)
 to be functions of the parameters (the elements of `p`). For example, we can define the `ODEProblem`:
 
-```julia
+{{< highlight julia >}}
 u0_f(p,t0) = [p[2],p[4]]
 tspan_f(p) = (0.0,10*p[4])
 p = [1.5,1.0,3.0,1.0]
 prob = ODEProblem(lotka_volterra,u0_f,tspan_f,p)
-```
+{{< / highlight >}}
 
 In this form, everything about the problem is determined by the parameter vector (`p`, referred to
 as `θ` in associated literature). The utility of this will be seen later.
@@ -227,7 +244,7 @@ neural network layer actually is. A layer is really just a *differentiable
 function* which takes in a vector of size `n` and spits out a new vector of size
 `m`. That's it! Layers have traditionally been simple functions like matrix
 multiply, but in the spirit of [differentiable
-programming](https://julialang.org/blog/2018/12/ml-language-compiler) people are
+programming](/blog/2018/12/ml-language-compiler) people are
 increasingly experimenting with much more complex functions, such as ray tracers and
 physics engines.
 
@@ -241,20 +258,20 @@ using standard optimisation techniques like ADAM to optimise their weights.
 DiffEqFlux.jl makes it convenient to do just this; let's take it for a spin.
 We'll start by solving an equation as before, without gradients.
 
-```julia
+{{< highlight julia >}}
 p = [1.5,1.0,3.0,1.0]
 prob = ODEProblem(lotka_volterra,u0,tspan,p)
 sol = solve(prob,Tsit5(),saveat=0.1)
 A = sol[1,:] # length 101 vector
-```
+{{< / highlight >}}
 
 Let's plot `(t,A)` over the ODE's solution to see what we got:
 
-```julia
+{{< highlight julia >}}
 plot(sol)
 t = 0:0.1:10.0
 scatter!(t,A)
-```
+{{< / highlight >}}
 
 ![Data points plot](https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png)
 
@@ -263,17 +280,17 @@ thing with a slightly altered syntax. `concrete_solve` takes in the initial cond
 `u0`, the parameters `p` for the integrand, puts these in the differential equation defined 
 by `prob`, and solves it with the chosen arguments (solver, tolerance, etc). For example:
 
-```julia
+{{< highlight julia >}}
 using Flux, DiffEqFlux
 concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)
-```
+{{< / highlight >}}
 
 The nice thing about `concrete_solve` is that it takes care of the type handling
 necessary to make it compatible with the neural network framework (here Flux). To show this,
 let's define a neural network with the function as our single layer, and then a loss
 function that is the squared distance of the output values from `1`. In Flux, this looks like:
 
-```julia
+{{< highlight julia >}}
 p = [2.2, 1.0, 2.0, 0.4] # Initial Parameter Vector
 params = Flux.params(p)
 
@@ -282,12 +299,12 @@ function predict_rd() # Our 1-layer neural network
 end
 
 loss_rd() = sum(abs2,x-1 for x in predict_rd()) # loss function
-```
+{{< / highlight >}}
 
 Now we tell Flux to train the neural network by running a 100 epoch
 to minimise our loss function (`loss_rd()`) and thus obtain the optimized parameters:
 
-```julia
+{{< highlight julia >}}
 data = Iterators.repeated((), 100)
 opt = ADAM(0.1)
 cb = function () #callback function to observe training
@@ -300,7 +317,7 @@ end
 cb()
 
 Flux.train!(loss_rd, params, data, opt, cb = cb)
-```
+{{< / highlight >}}
 
 The result of this is the animation shown at the top.
 [This code can be found in the model-zoo](https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/ode.jl)
@@ -315,29 +332,29 @@ of rabbits and wolves are both constant 1.
 Now that we have solving ODEs as just a layer, we can add it anywhere. For example,
 the multilayer perceptron is written in Flux as
 
-```julia
+{{< highlight julia >}}
 m = Chain(
   Dense(28^2, 32, relu),
   Dense(32, 10),
   softmax)
-```
+{{< / highlight >}}
 
 and if we had an appropriate ODE which took a parameter vector of the right size,
 we can stick it right in there:
 
-```julia
+{{< highlight julia >}}
 m = Chain(
   Dense(28^2, 32, relu),
   # this would require an ODE of 32 parameters
   p -> concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)[1,:],
   Dense(32, 10),
   softmax)
-```
+{{< / highlight >}}
 
 or we can stick it into a convolutional neural network, where the previous
 layers define the initial condition for the ODE:
 
-```julia
+{{< highlight julia >}}
 m = Chain(
   Conv((2,2), 1=>16, relu),
   x -> maxpool(x, (2,2)),
@@ -346,7 +363,7 @@ m = Chain(
   x -> reshape(x, :, size(x, 4)),
   x -> concrete_solve(prob,Tsit5(),x,p,saveat=0.1)[1,:],
   Dense(288, 10), softmax) |> gpu
-```
+{{< / highlight >}}
 
 As long as you can write down the forward pass, we can take any parameterised,
 differentiable program and optimise it. The world is your oyster.
@@ -369,7 +386,7 @@ SUNDIALS](https://computation.llnl.gov/projects/sundials) (a derivative of the
 classic LSODE). Let's use DifferentialEquations.jl to call CVODE with its Adams
 method and have it solve the ODE for us:
 
-```julia
+{{< highlight julia >}}
 rober = @ode_def Rober begin
   dy₁ = -k₁*y₁+k₃*y₂*y₃
   dy₂ =  k₁*y₁-k₂*y₂^2-k₃*y₂*y₃
@@ -377,7 +394,7 @@ rober = @ode_def Rober begin
 end k₁ k₂ k₃
 prob = ODEProblem(rober,[1.0;0.0;0.0],(0.0,1e11),(0.04,3e7,1e4))
 solve(prob,CVODE_Adams())
-```
+{{< / highlight >}}
 
 (For those familiar with solving ODEs in MATLAB, this is similar to `ode113`)
 
@@ -390,11 +407,11 @@ details, I suggest reading Hairer's Solving Ordinary Differential Equations II).
 On the other hand `KenCarp4()` to this problem, the equation is solved in a
 blink of an eye:
 
-```julia
+{{< highlight julia >}}
 sol = solve(prob,KenCarp4())
 using Plots
 plot(sol,xscale=:log10,tspan=(0.1,1e11))
-```
+{{< / highlight >}}
 
 ![ROBER Plot](https://user-images.githubusercontent.com/1814174/51388944-eb18e680-1af8-11e9-874f-09478759596e.png)
 
@@ -430,7 +447,7 @@ differential equation (DDE). Since
 through the same interface as ODEs, it can be used as a layer in
 Flux as well. Here's an example:
 
-```julia
+{{< highlight julia >}}
 function delay_lotka_volterra(du,u,h,p,t)
   x, y = u
   α, β, δ, γ = p
@@ -447,7 +464,7 @@ function predict_rd_dde()
 end
 loss_rd_dde() = sum(abs2,x-1 for x in predict_rd_dde())
 loss_rd_dde()
-```
+{{< / highlight >}}
 
 The full code for this example, including generating an
 animation,
@@ -461,7 +478,7 @@ Since [DifferentialEquations.jl handles SDEs](https://docs.juliadiffeq.org/stabl
 these can be handled as a layer in Flux similarly. Here's a neural net layer
 with an SDE:
 
-```julia
+{{< highlight julia >}}
 function lotka_volterra_noise(du,u,p,t)
   du[1] = 0.1u[1]
   du[2] = 0.1u[2]
@@ -475,12 +492,12 @@ function predict_rd_sde()
 end
 loss_rd_sde() = sum(abs2,x-1 for x in predict_fd_sde())
 loss_rd_sde()
-```
+{{< / highlight >}}
 
 And we can train the neural net to watch it in action and find parameters to make
 the amount of bunnies close to constant:
 
-```julia
+{{< highlight julia >}}
 data = Iterators.repeated((), 100)
 opt = ADAM(0.1)
 cb = function ()
@@ -492,7 +509,7 @@ end
 cb()
 
 Flux.train!(loss_rd_sde, params, data, opt, cb = cb)
-```
+{{< / highlight >}}
 
 ![SDE NN Animation](https://user-images.githubusercontent.com/1814174/51399524-2c6abf80-1b14-11e9-96ae-0192f7debd03.gif)
 
@@ -513,26 +530,26 @@ is defined by a neural network itself. To do this, let's first define the
 neural net for the derivative. In Flux, we can define a multilayer perceptron
 with 1 hidden layer and a `tanh` activation function like:
 
-```julia
+{{< highlight julia >}}
 dudt = Chain(Dense(2,50,tanh),Dense(50,2))
-```
+{{< / highlight >}}
 
 To define a `NeuralODE` layer, we then just need to give
 it a timespan and use the `NeuralODE` function:
 
-```julia
+{{< highlight julia >}}
 tspan = (0.0f0,25.0f0)
 node = NeuralODE(dudt,tspan,Tsit5(),saveat=0.1)
-```
+{{< / highlight >}}
 
 As a side note, to run this on the GPU, it is sufficient to make the initial
 condition and neural network be on the GPU. This will cause the entire ODE
 solver's internal operations to take place on the GPU without extra data
 transfers in the integration scheme. This looks like:
 
-```julia
+{{< highlight julia >}}
 node = NeuralODE(gpu(dudt),tspan,Tsit5(),saveat=0.1)
-```
+{{< / highlight >}}
 
 ## Understanding the Neural ODE layer behavior by example
 
@@ -540,7 +557,7 @@ Now let's use the neural ODE layer in an example to find out what it means.
 First, let's generate a time series of an ODE at evenly spaced time points.
 We'll use the test equation from the Neural ODE paper.
 
-```julia
+{{< highlight julia >}}
 u0 = Float32[2.; 0.]
 datasize = 30
 tspan = (0.0f0,1.5f0)
@@ -552,20 +569,20 @@ end
 t = range(tspan[1],tspan[2],length=datasize)
 prob = ODEProblem(trueODEfunc,u0,tspan)
 ode_data = Array(solve(prob,Tsit5(),saveat=t))
-```
+{{< / highlight >}}
 
 Now let's pit a neural ODE against this data. To do so, we
 will define a single layer neural network which just has the same neural ODE
 as before (but lower the tolerances to help it converge closer, makes for a
 better animation!):
 
-```julia
+{{< highlight julia >}}
 dudt = Chain(x -> x.^3,
              Dense(2,50,tanh),
              Dense(50,2))
 ps = Flux.params(dudt)
 n_ode = NeuralODE(dudt,tspan,Tsit5(),saveat=t,reltol=1e-7,abstol=1e-9)
-```
+{{< / highlight >}}
 
 Notice that the `neural_ode` has the same timespan and `saveat` as the solution
 that generated the data. This means that given an `x` (and initial value), it
@@ -575,28 +592,28 @@ what time series it gives before we train the network. Since the ODE
 has two-dependent variables, we will simplify the plot by only showing the first.
 The code for the plot is:
 
-```julia
+{{< highlight julia >}}
 pred = n_ode(u0) # Get the prediction using the correct initial condition
 scatter(t,ode_data[1,:],label="data")
 scatter!(t,Flux.data(pred[1,:]),label="prediction")
-```
+{{< / highlight >}}
 
 ![Neural ODE Start](https://user-images.githubusercontent.com/1814174/51585822-d9449400-1ea8-11e9-8665-956a16e95207.png)
 
 But now let's train our neural network. To do so, define a prediction function like before, and then
 define a loss between our prediction and data:
 
-```julia
+{{< highlight julia >}}
 function predict_n_ode()
   n_ode(u0)
 end
 loss_n_ode() = sum(abs2,ode_data .- predict_n_ode())
-```
+{{< / highlight >}}
 
 And now we train the neural network and watch as it learns how to
 predict our time series:
 
-```julia
+{{< highlight julia >}}
 data = Iterators.repeated((), 1000)
 opt = ADAM(0.1)
 cb = function () #callback function to observe training
@@ -612,7 +629,7 @@ end
 cb()
 
 Flux.train!(loss_n_ode, ps, data, opt, cb = cb)
-```
+{{< / highlight >}}
 
 ![Neural ODE Train](https://user-images.githubusercontent.com/1814174/51585825-dc3f8480-1ea8-11e9-8498-18cf55fba3e6.gif)
 
@@ -667,7 +684,7 @@ with no ODE solver method is this guaranteed to work. For example, here's a quic
 equation where a backwards solution to the ODE using the Adams method from the
 paper has >1700% error in its final point, even with solver tolerances of 1e-12:
 
-```julia
+{{< highlight julia >}}
 using Sundials, DiffEqBase
 function lorenz(du,u,p,t)
  du[1] = 10.0*(u[2]-u[1])
@@ -681,7 +698,7 @@ sol = solve(prob,CVODE_Adams(),reltol=1e-12,abstol=1e-12)
 prob2 = ODEProblem(lorenz,sol[end],(100.0,0.0))
 sol = solve(prob,CVODE_Adams(),reltol=1e-12,abstol=1e-12)
 @show sol[end]-u0 #[-17.5445, -14.7706, 39.7985]
-```
+{{< / highlight >}}
 
 (Here we once again use the CVODE C++ solvers from SUNDIALS since they are a close
 match to the SciPy integrators used in the neural ODE paper.)
@@ -707,7 +724,7 @@ there are less than 100 parameters in the differential
 equations, and that for >100 number of parameters adjoint
 sensitivity analysis is the most efficient. Even
 then, we have good reason to believe that
-[the next generation reverse-mode automatic differentiation via source-to-source AD, Zygote.jl](https://julialang.org/blog/2018/12/ml-language-compiler),
+[the next generation reverse-mode automatic differentiation via source-to-source AD, Zygote.jl](/blog/2018/12/ml-language-compiler),
 will be more efficient than all of the adjoint sensitivity implementations for
 large numbers of parameters.
 
