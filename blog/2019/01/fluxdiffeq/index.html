@@ -371,27 +371,27 @@ scatter!(t,A)
 
 ![Data points plot](https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png)
 
-The most basic differential equation layer is `diffeq_rd`, which does the same
-thing with a slightly altered syntax. `diffeq_rd` takes in parameters `p` for
-the integrand, puts it in the differential equation defined by `prob`, and
-solves it with the chosen arguments (solver, tolerance, etc). For example:
+The most basic differential equation layer is `concrete_solve`, which does the same
+thing with a slightly altered syntax. `concrete_solve` takes in the initial condition
+`u0`, the parameters `p` for the integrand, puts these in the differential equation defined 
+by `prob`, and solves it with the chosen arguments (solver, tolerance, etc). For example:
 
 ```julia
 using Flux, DiffEqFlux
-diffeq_rd(p,prob,Tsit5(),saveat=0.1)
+concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)
 ```
 
-The nice thing about `diffeq_rd` is that it takes care of the type handling
+The nice thing about `concrete_solve` is that it takes care of the type handling
 necessary to make it compatible with the neural network framework (here Flux). To show this,
 let's define a neural network with the function as our single layer, and then a loss
 function that is the squared distance of the output values from `1`. In Flux, this looks like:
 
 ```julia
-p = param([2.2, 1.0, 2.0, 0.4]) # Initial Parameter Vector
-params = Flux.Params([p])
+p = [2.2, 1.0, 2.0, 0.4] # Initial Parameter Vector
+params = Flux.params(p)
 
 function predict_rd() # Our 1-layer neural network
-  diffeq_rd(p,prob,Tsit5(),saveat=0.1)[1,:]
+  concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)[1,:]
 end
 
 loss_rd() = sum(abs2,x-1 for x in predict_rd()) # loss function
@@ -406,7 +406,7 @@ opt = ADAM(0.1)
 cb = function () #callback function to observe training
   display(loss_rd())
   # using `remake` to re-create our `prob` with current parameters `p`
-  display(plot(solve(remake(prob,p=Flux.data(p)),Tsit5(),saveat=0.1),ylim=(0,6)))
+  display(plot(solve(remake(prob,p=p),Tsit5(),saveat=0.1),ylim=(0,6)))
 end
 
 # Display the ODE with the initial parameter values.
@@ -442,7 +442,7 @@ we can stick it right in there:
 m = Chain(
   Dense(28^2, 32, relu),
   # this would require an ODE of 32 parameters
-  p -> diffeq_rd(p,prob,Tsit5(),saveat=0.1)[1,:],
+  p -> concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)[1,:],
   Dense(32, 10),
   softmax)
 ```
@@ -457,7 +457,7 @@ m = Chain(
   Conv((2,2), 16=>8, relu),
   x -> maxpool(x, (2,2)),
   x -> reshape(x, :, size(x, 4)),
-  x -> diffeq_rd(p,prob,Tsit5(),saveat=0.1,u0=x)[1,:],
+  x -> concrete_solve(prob,Tsit5(),x,p,saveat=0.1)[1,:],
   Dense(288, 10), softmax) |> gpu
 ```
 
@@ -553,10 +553,10 @@ end
 h(p,t) = ones(eltype(p),2)
 prob = DDEProblem(delay_lotka_volterra,[1.0,1.0],h,(0.0,10.0),constant_lags=[0.1])
 
-p = param([2.2, 1.0, 2.0, 0.4])
-params = Flux.Params([p])
+p = [2.2, 1.0, 2.0, 0.4]
+params = Flux.params(p)
 function predict_rd_dde()
-  diffeq_rd(p,prob,MethodOfSteps(Tsit5()),saveat=0.1)[1,:]
+  concrete_solve(prob,MethodOfSteps(Tsit5()),u0,p,sensealg=TrackerAdjoint(),saveat=0.1)[1,:]
 end
 loss_rd_dde() = sum(abs2,x-1 for x in predict_rd_dde())
 loss_rd_dde()
@@ -581,13 +581,13 @@ function lotka_volterra_noise(du,u,p,t)
 end
 prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[1.0,1.0],(0.0,10.0))
 
-p = param([2.2, 1.0, 2.0, 0.4])
-params = Flux.Params([p])
-function predict_fd_sde()
-  diffeq_fd(p,sol->sol[1,:],101,prob,SOSRI(),saveat=0.1)
+p = [2.2, 1.0, 2.0, 0.4]
+params = Flux.params(p)
+function predict_rd_sde()
+  concrete_solve(prob,SOSRI(),u0,p,saveat=0.1)[1,:]
 end
-loss_fd_sde() = sum(abs2,x-1 for x in predict_fd_sde())
-loss_fd_sde()
+loss_rd_sde() = sum(abs2,x-1 for x in predict_fd_sde())
+loss_rd_sde()
 ```
 
 And we can train the neural net to watch it in action and find parameters to make
@@ -597,14 +597,14 @@ the amount of bunnies close to constant:
 data = Iterators.repeated((), 100)
 opt = ADAM(0.1)
 cb = function ()
-  display(loss_fd_sde())
-  display(plot(solve(remake(prob,p=Flux.data(p)),SOSRI(),saveat=0.1),ylim=(0,6)))
+  display(loss_rd_sde())
+  display(plot(solve(remake(prob,p=p),SOSRI(),saveat=0.1),ylim=(0,6)))
 end
 
 # Display the ODE with the current parameter values.
 cb()
 
-Flux.train!(loss_fd_sde, params, data, opt, cb = cb)
+Flux.train!(loss_rd_sde, params, data, opt, cb = cb)
 ```
 
 ![SDE NN Animation](https://user-images.githubusercontent.com/1814174/51399524-2c6abf80-1b14-11e9-96ae-0192f7debd03.gif)
@@ -630,12 +630,12 @@ with 1 hidden layer and a `tanh` activation function like:
 dudt = Chain(Dense(2,50,tanh),Dense(50,2))
 ```
 
-To define a `neural_ode` layer, we then just need to give
-it a timespan and use the `neural_ode` function:
+To define a `NeuralODE` layer, we then just need to give
+it a timespan and use the `NeuralODE` function:
 
 ```julia
 tspan = (0.0f0,25.0f0)
-x->neural_ode(dudt,x,tspan,Tsit5(),saveat=0.1)
+node = NeuralODE(dudt,tspan,Tsit5(),saveat=0.1)
 ```
 
 As a side note, to run this on the GPU, it is sufficient to make the initial
@@ -644,7 +644,7 @@ solver's internal operations to take place on the GPU without extra data
 transfers in the integration scheme. This looks like:
 
 ```julia
-x->neural_ode(gpu(dudt),gpu(x),tspan,Tsit5(),saveat=0.1)
+node = NeuralODE(gpu(dudt),tspan,Tsit5(),saveat=0.1)
 ```
 
 ## Understanding the Neural ODE layer behavior by example
@@ -677,7 +677,7 @@ dudt = Chain(x -> x.^3,
              Dense(2,50,tanh),
              Dense(50,2))
 ps = Flux.params(dudt)
-n_ode = x->neural_ode(dudt,x,tspan,Tsit5(),saveat=t,reltol=1e-7,abstol=1e-9)
+n_ode = NeuralODE(dudt,tspan,Tsit5(),saveat=t,reltol=1e-7,abstol=1e-9)
 ```
 
 Notice that the `neural_ode` has the same timespan and `saveat` as the solution
@@ -715,7 +715,7 @@ opt = ADAM(0.1)
 cb = function () #callback function to observe training
   display(loss_n_ode())
   # plot current prediction against data
-  cur_pred = Flux.data(predict_n_ode())
+  cur_pred = predict_n_ode()
   pl = scatter(t,ode_data[1,:],label="data")
   scatter!(pl,t,cur_pred[1,:],label="prediction")
   display(plot(pl))
