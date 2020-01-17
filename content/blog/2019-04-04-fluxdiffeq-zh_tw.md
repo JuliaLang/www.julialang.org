@@ -114,37 +114,41 @@ if you know the exact functional form that relates the input to the output.
 However, in many cases, such exact relations are not known *a priori*.
 So how do you do nonlinear modeling if you don't know the nonlinearity? -->
 
-其中一種解決方法是使用機器學習演算法。典型的機器學習處理的問題裡，會給定一些輸入資料 [[x]] 和你想預測的輸出 [[y]]。
-而由給定 [[x]] 產生預測值 [[y]] 就是一個機器學習模型（以下稱作 [[ML]]）。
-在訓練階段，我們想辦法調整 [[ML]] 的參數讓它得以產生更正確的預測值。
-接下來，我們即可用 [[ML]] 進行推論 (即針對事前沒見過的 [[x]] 值去產生相對應的 [[y]])。
-同時，這也不過是一個非線性轉換而已 [[y=ML(x)]]。
-但是 [[ML]] 有趣的地方在於他本身數學模型的形式可以非常基本但卻可以調整適應至各種資料。
+其中一種解決方法是使用機器學習演算法。典型的機器學習處理的問題裡，會給定一些輸入資料 $x$ 和你想預測的輸出 $y$。
+而由給定 $x$ 產生預測值 $y$ 就是一個機器學習模型（以下稱作 $ML$）。
+在訓練階段，我們想辦法調整 $ML$ 的參數讓它得以產生更正確的預測值。
+接下來，我們即可用 $ML$ 進行推論 (即針對事前沒見過的 $x$ 值去產生相對應的 $y$)。
+同時，這也不過是一個非線性轉換而已 $y=ML(x)$。
+但是 $ML$ 有趣的地方在於他本身數學模型的形式可以非常基本但卻可以調整適應至各種資料。
 舉例來說，一個簡單的以 sigmoid 函數作為激活函數的神經網路模型（以設計矩陣的形式，design matrix），
 本質上來說就是簡單的矩陣運算複合帶入 sigmoid 函數裡。
-舉例來說，[[ML(x)=σ(W3⋅σ(W2⋅σ(W1⋅x)))]] 即是一個簡單的三層神經網路模型，
-其中 [[W=(W1, W2, W3)]] 為可以被調整的模型參數。
-接下來即是選擇適當的 [[W]] 使得 [[ML(x)=y]] 可以合理的逼近收集到的資料。
+舉例來說，$ML(x)=σ(W3⋅σ(W2⋅σ(W1⋅x)))$ 即是一個簡單的三層神經網路模型，
+其中 $W=(W1, W2, W3)$ 為可以被調整的模型參數。
+接下來即是選擇適當的 $W$ 使得 $ML(x)=y$ 可以合理的逼近收集到的資料。
 相關機器學習理論已經保證了這是一個估計非線性系統的一個好方法。
-舉例來說，Universal Approximation Theorem 說明了只要有足夠的層數或參數（即夠大的 [[W]] 矩陣），
-[[ML(x)]] 可以逼近任何非線性函數 (在常見的限制條件下)。
+舉例來說，Universal Approximation Theorem 說明了只要有足夠的層數或參數（即夠大的 $W$ 矩陣），
+$ML(x)$ 可以逼近任何非線性函數 (在常見的限制條件下)。
 
 <!-- One way to address this is to use machine
-learning. In a typical machine learning problem, you are given some input [[x]] and
-you want to predict an output [[y]]. This generation of a prediction [[y]] from [[x]]
-is a machine learning model (let's call it [[ML]]).  During training, we attempt to
-adjust the parameters of [[ML]] so that it generates accurate predictions.  We
-can then use [[ML]] for inference (i.e., produce [[y]]s for novel inputs [[x]]).
-This is just a nonlinear transformation [[y=ML(x)]].
-The reason [[ML]] is interesting is because its form is basic but adapts to the
+learning. In a typical machine learning problem, you are given some input $x$ and
+you want to predict an output $y$. This generation of a prediction $y$ from $x$
+is a machine learning model (let's call it $ML$).  During training, we attempt to
+adjust the parameters of $ML$ so that it generates accurate predictions.  We
+can then use $ML$ for inference (i.e., produce $y$s for novel inputs $x$).
+This is just a nonlinear transformation $y=ML(x)$.
+The reason $ML$ is interesting is because its form is basic but adapts to the
 data itself. For example, a simple neural network (in design matrix form) with
 sigmoid activation functions is simply matrix multiplications followed
-by application of sigmoid functions. Specifically,  [[ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))]] is a three-layer deep
-neural network, where [[W=(W_1,W_2,W_3)]] are learnable parameters.
-You then choose [[W]] such that [[ML(x)=y]] reasonably fits the function you wanted it to fit.
+by application of sigmoid functions. Specifically,
+{{< formula >}}
+$$ ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x))) $$
+{{< /formula >}}
+is a three-layer deep
+neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters.
+You then choose $W$ such that $ML(x)=y$ reasonably fits the function you wanted it to fit.
 The theory and practice of machine learning confirms that this is a good way to learn nonlinearities.
 For example, the Universal Approximation Theorem states that, for
-enough layers or enough parameters (i.e. sufficiently large [[W_{i}]] matrices), [[ML(x)]]
+enough layers or enough parameters (i.e. sufficiently large $W_{i}$ matrices), $ML(x)$
 can approximate any nonlinear function sufficiently close (subject to common constraints). -->
 
 這太好了，它總是有解！然而有幾個必須注意的地方，主要在於這模型需直接從資料裡學習非線性轉換。
@@ -161,7 +165,9 @@ and we might know that their rate of births is dependent on the current populati
 Thus instead of starting from nothing, we may want to use this known _a priori_ relation and a set of parameters that defines it.
 For the rabbits, let's say that we want to learn -->
 
-$[[\text{rabbits(明日)} = \text{Model}(\text{rabbits(今日)}).]]
+{{< formula >}}
+$$ \text{rabbits(明日)} = \text{Model}(\text{rabbits(今日)}). $$
+{{< /formula >}}
 
 在這個例子裡，我們得知群體出生率正比於群體數量這個先驗知識。
 而如果用數學的方式去描述這個關於兔子群體大小結構的假設，即是微分方程。
@@ -174,17 +180,19 @@ structural assumption is via a differential equation. Here, what we are saying
 is that the birth rate of the rabbit population at a given time point increases
 when we have more rabbits. The simplest way of encoding that is -->
 
-$[[\text{rabbits}'(t) = \alpha\cdot \text{rabbits}(t)]]
+{{< formula >}}
+$$ \text{rabbits}'(t) = \alpha\cdot \text{rabbits}(t) $$
+{{< /formula >}}
 
-其中，[[α]] 是可以學習調整的參數。如果你還記得以前學過的微積分，
-這個方程的解即為成長率為 [[\alpha]] 的指數成長函數:
+其中，$α$ 是可以學習調整的參數。如果你還記得以前學過的微積分，
+這個方程的解即為成長率為 $\alpha$ 的指數成長函數:
 
-<!-- where [[\alpha]] is some learnable constant. If you know your calculus, the solution
-here is exponential growth from the starting point with a growth rate [[\alpha]]: -->
+<!-- where $\alpha$ is some learnable constant. If you know your calculus, the solution
+here is exponential growth from the starting point with a growth rate $\alpha$: -->
 
-[[\text{rabbits}(t_\text{start})e^{(\alpha t)}]]
+$ \text{rabbits}(t_\text{start})e^{(\alpha t)} $
 
-其中 [[rabbits(start)]] 為初始的兔子數量。但值得注意的是，其實我們並不需要知道這個微分方程的解
+其中 $rabbits(start)$ 為初始的兔子數量。但值得注意的是，其實我們並不需要知道這個微分方程的解
 才能驗證以下想法：我們只需描寫模型的結構條件，數學即可幫助我們求解出這個解應該有的樣子。
 基於這個理由，使得微分方程成為許多科學領域的工具。例如物理學的基本定律明述了電荷的作用力 ([馬克士威方程組](https://en.wikipedia.org/wiki/Maxwell%27s_equations))。
 這些方程組對於物體如何改變是重要的方程組，因此這些方程組的解即是物體*將會*在哪裡的預測結果。
@@ -221,34 +229,38 @@ PK/PD modelling in systems pharmacology. -->
 
 神經微分方程只是眾多結合這兩個領域的方法之一。
 最簡單的解釋方法就是，並不是直接去學非線性轉換，我們希望去學到非線性轉換的結構。
-如此一來，不用去計算 $[[y=ML(x)]]，我們將機器學習模型放在導數項上 $[[y'(x) = ML(x)]]，然後我們解微分方程。
+如此一來，不用去計算 $y=ML(x)$，我們將機器學習模型放在導數項上 $y'(x) = ML(x)$，然後我們解微分方程。
 為什麼要這麼做？這是因為，一個動機就是這樣定義的模型，然後用最簡單、最容易出錯的方式，尤拉法（Euler method），
 解微分方程，你會得到跟[殘差神經網路（residual neural network）](https://arxiv.org/abs/1512.03385)等價的結果。
-尤拉法的工作原理是基於 $[[y'(x) = \frac{dy}{dx}]] 這個事實，因此，
+尤拉法的工作原理是基於 $y'(x) = \frac{dy}{dx}$ 這個事實，因此，
 
 <!-- The neural ordinary differential equation is one of many ways to put these two
 subjects together. The simplest way of explaining it is that, instead of
 learning the nonlinear transformation directly, we wish to learn the structures
-of the nonlinear transformation. Thus instead of doing $[[y=ML(x)]], we put the
-machine learning model on the derivative, $[[y'(x) = ML(x)]], and now solve the ODE.
+of the nonlinear transformation. Thus instead of doing $y=ML(x)$, we put the
+machine learning model on the derivative, $y'(x) = ML(x)$, and now solve the ODE.
 Why would you ever do this? Well, one motivation is that defining the model in this way
 and then solving the ODE using the simplest and most error prone method, the
 Euler method, what you get is equivalent to a [residual neural network](https://arxiv.org/abs/1512.03385).
-The way the Euler method works is based on the fact that $[[y'(x) = \frac{dy}{dx}]], thus -->
+The way the Euler method works is based on the fact that $y'(x) = \frac{dy}{dx}$, thus -->
 
-$[[\Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x)]]，
+{{< formula >}}
+$$ \Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x) \; ，$$
+{{< /formula >}}
 則會導出
-$[[y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i})]]。
+{{< formula >}}
+$$ y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}) \; 。$$
+{{< /formula >}}
 
-<!-- $[[\Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x)]]
+<!-- $$ \Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x) $$
 which implies that
-$[[y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).]] -->
+$$ y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}). $$ -->
 
 這在結構上相似於 ResNet，最為成功的影像處理模型之一。
 Neural ODEs 論文的洞見就是，更加深、更加強大的類 ResNet 的模型可以有效地逼近類似於「無限深」，
 如同每一層趨近於零的模型。
 我們可以直接建構微分方程，不透過增加層數這種手段，隨後用特製的微分方程方法求解。
-數值微分方程方法是門可以追溯到第一台電腦出現時期的科學，而現代方法可以動態調整 step sizes [[\Delta x]]，
+數值微分方程方法是門可以追溯到第一台電腦出現時期的科學，而現代方法可以動態調整 step sizes $\Delta x$，
 以及使用高階逼近的方法來大幅減少實際需要的步數。並且事實證明，它實務上也運作得很好。
 
 <!-- This looks similar in structure to a ResNet, one of the most successful image
@@ -258,7 +270,7 @@ of "infinitely deep" model as each layer tends to zero. Rather than adding more
 layers, we can just model the differential equation directly and then solve it
 using a purpose-built ODE solver. Numerical ODE solvers are a science that goes
 all the way back to the first computers, and modern ones can adaptively choose
-step sizes [[\Delta x]] and use high order approximations to dratically reduce the
+step sizes $\Delta x$ and use high order approximations to dratically reduce the
 number of actual steps required. And as it turns out, this works well in
 practice, too. -->
 
@@ -288,14 +300,20 @@ specify the parameters `p`. -->
 [Lotka-Volterra equations describe the dynamics of the population of rabbits and wolves](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations).
 They can be written as: -->
 
-$[[x^\prime = \alpha x + \beta x y]]
-$[[y^\prime = -\gamma y + \gamma x y]]
+{{< formula >}}                                                                                 
+$$                                                                                              
+\begin{align*}                                                                                  
+x^\prime &= \alpha x + \beta x y \\                                                             
+y^\prime &= -\delta y + \gamma x y                                                              
+\end{align*}                                                                                    
+$$                                                                                              
+{{< / formula >}}
 
 進一步轉成 Julia 會像：
 
 <!-- and encoded in Julia like: -->
 
-```julia
+{{< highlight julia >}}
 using DifferentialEquations
 function lotka_volterra(du,u,p,t)
   x, y = u
@@ -307,18 +325,18 @@ u0 = [1.0,1.0]
 tspan = (0.0,10.0)
 p = [1.5,1.0,3.0,1.0]
 prob = ODEProblem(lotka_volterra,u0,tspan,p)
-```
+{{< / highlight >}}
 
 然後要解微分方程，你可以簡單地呼叫 `solve` 來處理 `prob`：
 
 <!-- Then to solve the differential equations, you can simply call `solve` on the
 `prob`: -->
 
-```julia
+{{< highlight julia >}}
 sol = solve(prob)
 using Plots
 plot(sol)
-```
+{{< / highlight >}}
 
 ![LV Solution Plot](https://user-images.githubusercontent.com/1814174/51388169-9a07f300-1af6-11e9-8c6c-83c41e81d11c.png)
 
@@ -328,12 +346,12 @@ plot(sol)
 <!-- One last thing to note is that we can make our initial condition (`u0`) and time spans (`tspans`)
 to be functions of the parameters (the elements of `p`). For example, we can define the `ODEProblem`: -->
 
-```julia
+{{< highlight julia >}}
 u0_f(p,t0) = [p[2],p[4]]
 tspan_f(p) = (0.0,10*p[4])
 p = [1.5,1.0,3.0,1.0]
 prob = ODEProblem(lotka_volterra,u0_f,tspan_f,p)
-```
+{{< / highlight >}}
 
 如此一來，關於這個問題的所有東西都由參數向量決定（`p`，或是文獻中的 `θ`）。
 這東西的用途會在後續彰顯出來。
@@ -365,7 +383,7 @@ neural network layer actually is. A layer is really just a *differentiable
 function* which takes in a vector of size `n` and spits out a new vector of size
 `m`. That's it! Layers have traditionally been simple functions like matrix
 multiply, but in the spirit of [differentiable
-programming](https://julialang.org/blog/2018/12/ml-language-compiler) people are
+programming](/blog/2018/12/ml-language-compiler) people are
 increasingly experimenting with much more complex functions, such as ray tracers and
 physics engines. -->
 
@@ -388,22 +406,22 @@ DiffEqFlux.jl 讓這件事做起來很簡單；我們一起動手做！
 <!-- DiffEqFlux.jl makes it convenient to do just this; let's take it for a spin.
 We'll start by solving an equation as before, without gradients. -->
 
-```julia
+{{< highlight julia >}}
 p = [1.5,1.0,3.0,1.0]
 prob = ODEProblem(lotka_volterra,u0,tspan,p)
 sol = solve(prob,Tsit5(),saveat=0.1)
 A = sol[1,:] # length 101 vector
-```
+{{< / highlight >}}
 
 我們一起將微分方程的解畫在 `(t,A)` 座標軸上，一起看看我們得到什麼：
 
 <!-- Let's plot `(t,A)` over the ODE's solution to see what we got: -->
 
-```julia
+{{< highlight julia >}}
 plot(sol)
 t = 0:0.1:10.0
 scatter!(t,A)
-```
+{{< / highlight >}}
 
 ![Data points plot](https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png)
 
@@ -417,10 +435,10 @@ thing with a slightly altered syntax. `concrete_solve` takes in parameters `p` f
 the integrand, puts it in the differential equation defined by `prob`, and
 solves it with the chosen arguments (solver, tolerance, etc). For example: -->
 
-```julia
+{{< highlight julia >}}
 using Flux, DiffEqFlux
 concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)
-```
+{{< / highlight >}}
 
 在 `concrete_solve` 中的一個好的設計是，它會處理型別的相容性，讓它可以相容於神經網路框架（Flux）。
 要證明這個，我們來用函數定義一層神經網路，然後還有一個損失函數，是輸出值相對 `1` 距離的平方。
@@ -431,7 +449,7 @@ necessary to make it compatible with the neural network framework (here Flux). T
 let's define a neural network with the function as our single layer, and then a loss
 function that is the squared distance of the output values from `1`. In Flux, this looks like: -->
 
-```julia
+{{< highlight julia >}}
 p = [2.2, 1.0, 2.0, 0.4] # 初始參數向量
 params = Flux.params(p)
 
@@ -440,7 +458,7 @@ function predict_rd() # 我們的單層神經網路
 end
 
 loss_rd() = sum(abs2,x-1 for x in predict_rd()) # 損失函數
-```
+{{< / highlight >}}
 
 現在我們會叫 Flux 來訓練神經網路，藉由跑 100 epoch 來最小化我們的損失函數（`loss_rd()`），
 因此，可以得到最佳化的參數：
@@ -448,7 +466,7 @@ loss_rd() = sum(abs2,x-1 for x in predict_rd()) # 損失函數
 <!-- Now we tell Flux to train the neural network by running a 100 epoch
 to minimise our loss function (`loss_rd()`) and thus obtain the optimized parameters: -->
 
-```julia
+{{< highlight julia >}}
 data = Iterators.repeated((), 100)
 opt = ADAM(0.1)
 cb = function () # 用 callback function 來觀察訓練情況
@@ -461,7 +479,7 @@ end
 cb()
 
 Flux.train!(loss_rd, params, data, opt, cb = cb)
-```
+{{< / highlight >}}
 
 結果會以動畫顯示在上面。
 [這些程式碼會被放在 model-zoo](https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/ode.jl)
@@ -487,32 +505,32 @@ of rabbits and wolves are both constant 1. -->
 <!-- Now that we have solving ODEs as just a layer, we can add it anywhere. For example,
 the multilayer perceptron is written in Flux as -->
 
-```julia
+{{< highlight julia >}}
 m = Chain(
   Dense(28^2, 32, relu),
   Dense(32, 10),
   softmax)
-```
+{{< / highlight >}}
 
 而且，假如我們有個帶有合適大小的參數向量的 ODE ，我們可以像這樣把它代入我們的模型中：
 <!--
 and if we had an appropriate ODE which took a parameter vector of the right size,
 we can stick it right in there: -->
 
-```julia
+{{< highlight julia >}}
 m = Chain(
   Dense(28^2, 32, relu),
   # this would require an ODE of 32 parameters
   p -> concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)[1,:],
   Dense(32, 10),
   softmax)
-```
+{{< / highlight >}}
 
 抑或是，我們也可以把它代入到卷積神經網路中，使用前一層卷積層的輸出當作 ODE 的初始條件使用：
 <!-- or we can stick it into a convolutional neural network, where the previous
 layers define the initial condition for the ODE: -->
 
-```julia
+{{< highlight julia >}}
 m = Chain(
   Conv((2,2), 1=>16, relu),
   x -> maxpool(x, (2,2)),
@@ -521,7 +539,7 @@ m = Chain(
   x -> reshape(x, :, size(x, 4)),
   x -> concrete_solve(prob,Tsit5(),x,p,saveat=0.1)[1,:],
   Dense(288, 10), softmax) |> gpu
-```
+{{< / highlight >}}
 
 只要你可以寫下 forward pass，我們就可以處理任何參數化可微分的程序並優化它。一個新世界即為你的囊中之物啊。
 <!-- As long as you can write down the forward pass, we can take any parameterised,
@@ -549,7 +567,7 @@ SUNDIALS](https://computation.llnl.gov/projects/sundials) (a derivative of the
 classic LSODE). Let's use DifferentialEquations.jl to call CVODE with its Adams
 method and have it solve the ODE for us: -->
 
-```julia
+{{< highlight julia >}}
 rober = @ode_def Rober begin
   dy₁ = -k₁*y₁+k₃*y₂*y₃
   dy₂ =  k₁*y₁-k₂*y₂^2-k₃*y₂*y₃
@@ -557,7 +575,7 @@ rober = @ode_def Rober begin
 end k₁ k₂ k₃
 prob = ODEProblem(rober,[1.0;0.0;0.0],(0.0,1e11),(0.04,3e7,1e4))
 solve(prob,CVODE_Adams())
-```
+{{< / highlight >}}
 
 （熟悉使用 MATLAB 解 ODE 的讀者來說，這與 `ode113` 類似）
 <!-- (For those familiar with solving ODEs in MATLAB, this is similar to `ode113`) -->
@@ -574,11 +592,11 @@ details, I suggest reading Hairer's Solving Ordinary Differential Equations II).
 On the other hand `KenCarp4()` to this problem, the equation is solved in a
 blink of an eye: -->
 
-```julia
+{{< highlight julia >}}
 sol = solve(prob,KenCarp4())
 using Plots
 plot(sol,xscale=:log10,tspan=(0.1,1e11))
-```
+{{< / highlight >}}
 
 ![ROBER Plot](https://user-images.githubusercontent.com/1814174/51388944-eb18e680-1af8-11e9-874f-09478759596e.png)
 
@@ -620,7 +638,7 @@ differential equation (DDE). Since
 through the same interface as ODEs, it can be used as a layer in
 Flux as well. Here's an example: -->
 
-```julia
+{{< highlight julia >}}
 function delay_lotka_volterra(du,u,h,p,t)
   x, y = u
   α, β, δ, γ = p
@@ -638,7 +656,7 @@ function predict_rd_dde()
 end
 loss_rd_dde() = sum(abs2,x-1 for x in predict_rd_dde())
 loss_rd_dde()
-```
+{{< / highlight >}}
 
 這個範例的完整程式碼，包含產生動畫在內，可以在 [model-zoo](https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/dde.jl) 裡找到。
 <!-- The full code for this example, including generating an
@@ -658,7 +676,7 @@ Since [DifferentialEquations.jl handles SDEs](https://docs.juliadiffeq.org/stabl
 these can be handled as a layer in Flux similarly. Here's a neural net layer
 with an SDE: -->
 
-```julia
+{{< highlight julia >}}
 function lotka_volterra_noise(du,u,p,t)
   du[1] = 0.1u[1]
   du[2] = 0.1u[2]
@@ -672,13 +690,13 @@ function predict_fd_sde()
 end
 loss_fd_sde() = sum(abs2,x-1 for x in predict_fd_sde())
 loss_fd_sde()
-```
+{{< / highlight >}}
 
 接著我們可以訓練這個神經網路去找出一組參數使得兔子數量成一個定值並觀察中間變化的過程：
 <!-- And we can train the neural net to watch it in action and find parameters to make
 the amount of bunnies close to constant: -->
 
-```julia
+{{< highlight julia >}}
 data = Iterators.repeated((), 100)
 opt = ADAM(0.1)
 cb = function ()
@@ -690,7 +708,7 @@ end
 cb()
 
 Flux.train!(loss_fd_sde, params, data, opt, cb = cb)
-```
+{{< / highlight >}}
 
 ![SDE NN Animation](https://user-images.githubusercontent.com/1814174/51399524-2c6abf80-1b14-11e9-96ae-0192f7debd03.gif)
 
@@ -715,18 +733,18 @@ is defined by a neural network itself. To do this, let's first define the
 neural net for the derivative. In Flux, we can define a multilayer perceptron
 with 1 hidden layer and a `tanh` activation function like: -->
 
-```julia
+{{< highlight julia >}}
 dudt = Chain(Dense(2,50,tanh),Dense(50,2))
-```
+{{< / highlight >}}
 
 為了定義一個 `NeuralODE`，我們接著定義一個時間跨度並使用 `NeuralODE` 函數如下：
 <!-- To define a `NeuralODE` layer, we then just need to give
 it a timespan and use the `NeuralODE` function: -->
 
-```julia
+{{< highlight julia >}}
 tspan = (0.0f0,25.0f0)
 NeuralODE(dudt,tspan,Tsit5(),saveat=0.1)
-```
+{{< / highlight >}}
 
 順帶一提，如果想要在 GPU 上運算這個神經網路，只需讓起始條件與神經網路架設於 GPU 上即可。在整合 GPU 的階段，這會使得微分方程解算器內部運算直接在 GPU 上執行，無需額外的資料傳輸。這寫起來會像是[^gpu]：
 <!-- As a side note, to run this on the GPU, it is sufficient to make the initial
@@ -734,9 +752,9 @@ condition and neural network be on the GPU. This will cause the entire ODE
 solver's internal operations to take place on the GPU without extra data
 transfers in the integration scheme. This looks like[^gpu]: -->
 
-```julia
+{{< highlight julia >}}
 NeuralODE(gpu(dudt),tspan,Tsit5(),saveat=0.1)
-```
+{{< / highlight >}}
 
 ## 用範例理解常微分神經網路的行為
 <!-- ## Understanding the Neural ODE layer behavior by example -->
@@ -746,7 +764,7 @@ NeuralODE(gpu(dudt),tspan,Tsit5(),saveat=0.1)
 First, let's generate a time series of an ODE at evenly spaced time points.
 We'll use the test equation from the Neural ODE paper. -->
 
-```julia
+{{< highlight julia >}}
 u0 = Float32[2.; 0.]
 datasize = 30
 tspan = (0.0f0,1.5f0)
@@ -758,7 +776,7 @@ end
 t = range(tspan[1],tspan[2],length=datasize)
 prob = ODEProblem(trueODEfunc,u0,tspan)
 ode_data = Array(solve(prob,Tsit5(),saveat=t))
-```
+{{< / highlight >}}
 
 現在，我們可以用一個常微分神經網路去配適這個資料。為此，我們會定義一個如同上文提及的單層神經網絡（但在這裡我們降低了誤差容忍值來讓模型近似得更接近資料，得以產生較好的動畫）：
 <!-- Now let's pit a neural ODE against this data. To do so, we
@@ -766,13 +784,13 @@ will define a single layer neural network which just has the same neural ODE
 as before (but lower the tolerances to help it converge closer, makes for a
 better animation!): -->
 
-```julia
+{{< highlight julia >}}
 dudt = Chain(x -> x.^3,
              Dense(2,50,tanh),
              Dense(50,2))
 ps = Flux.params(dudt)
 n_ode = NeuralODE(dudt,tspan,Tsit5(),saveat=t,reltol=1e-7,abstol=1e-9)
-```
+{{< / highlight >}}
 
 注意到，`neural_ode` 中使用和產生資料的常微分方程解相同的時間跨度與 `saveat`，所以它會在每個時間點針對神經網路預測的動態系統狀態來產生一個預測值。讓我們來看看最初這個神經網路會給出怎樣的時間序列。由於這個常微分方程有兩個應變數，為了簡化畫圖的作業，我們只畫出第一個應變數。程式碼如下：
 <!-- Notice that the `neural_ode` has the same timespan and `saveat` as the solution
@@ -783,11 +801,11 @@ what time series it gives before we train the network. Since the ODE
 has two-dependent variables, we will simplify the plot by only showing the first.
 The code for the plot is: -->
 
-```julia
+{{< highlight julia >}}
 pred = n_ode(u0) # 使用真實的初始值來產生預測值
 scatter(t,ode_data[1,:],label="data")
 scatter!(t,pred[1,:],label="prediction")
-```
+{{< / highlight >}}
 
 ![Neural ODE Start](https://user-images.githubusercontent.com/1814174/51585822-d9449400-1ea8-11e9-8665-956a16e95207.png)
 
@@ -795,18 +813,18 @@ scatter!(t,pred[1,:],label="prediction")
 <!-- But now let's train our neural network. To do so, define a prediction function like before, and then
 define a loss between our prediction and data: -->
 
-```julia
+{{< highlight julia >}}
 function predict_n_ode()
   n_ode(u0)
 end
 loss_n_ode() = sum(abs2,ode_data .- predict_n_ode())
-```
+{{< / highlight >}}
 
 接者，我們訓練神經網路，並觀察它如何學習預測我們的時間序列的過程：
 <!-- And now we train the neural network and watch as it learns how to
 predict our time series: -->
 
-```julia
+{{< highlight julia >}}
 data = Iterators.repeated((), 1000)
 opt = ADAM(0.1)
 cb = function () # 觀察資料用的 callback 函數
@@ -822,7 +840,7 @@ end
 cb()
 
 Flux.train!(loss_n_ode, ps, data, opt, cb = cb)
-```
+{{< / highlight >}}
 
 ![Neural ODE Train](https://user-images.githubusercontent.com/1814174/51585825-dc3f8480-1ea8-11e9-8498-18cf55fba3e6.gif)
 
@@ -901,7 +919,7 @@ with no ODE solver method is this guaranteed to work. For example, here's a quic
 equation where a backwards solution to the ODE using the Adams method from the
 paper has >1700% error in its final point, even with solver tolerances of 1e-12: -->
 
-```julia
+{{< highlight julia >}}
 using Sundials, DiffEqBase
 function lorenz(du,u,p,t)
  du[1] = 10.0*(u[2]-u[1])
@@ -915,7 +933,7 @@ sol = solve(prob,CVODE_Adams(),reltol=1e-12,abstol=1e-12)
 prob2 = ODEProblem(lorenz,sol[end],(100.0,0.0))
 sol = solve(prob,CVODE_Adams(),reltol=1e-12,abstol=1e-12)
 @show sol[end]-u0 #[-17.5445, -14.7706, 39.7985]
-```
+{{< / highlight >}}
 
 （這邊我們再一次地使用了 SUNDIALS 的 CVODE C++ 求解器，
 由於它們最接近於論文中所用的 SciPy 的積分器。）
@@ -945,7 +963,7 @@ Julia 的 ForwardDiff.jl、Flux，以及 ReverseDiff.jl 套件可以直接將自
 用在原生的 Julia 微分方程求解器上，而即使增加新功能也可以提升效率。
 我們也證實前向模式自動微分在微分方程少於 100 個參數是最快的，
 而對於多於 100 個參數伴隨敏感性分析是最有效率的。
-即便如此，我們有好的理由相信[次世代反向模式 source-to-source 自動微分，Zygote.jl](https://julialang.org/blog/2018/12/ml-language-compiler)，
+即便如此，我們有好的理由相信[次世代反向模式 source-to-source 自動微分，Zygote.jl](/blog/2018/12/ml-language-compiler)，
 將會是在大量參數下比所有伴隨敏感性分析更為有效率的方式。
 
 <!-- In DifferentialEquations.jl have implemented many different methods for
@@ -961,7 +979,7 @@ there are less than 100 parameters in the differential
 equations, and that for >100 number of parameters adjoint
 sensitivity analysis is the most efficient. Even
 then, we have good reason to believe that
-[the next generation reverse-mode automatic differentiation via source-to-source AD, Zygote.jl](https://julialang.org/blog/2018/12/ml-language-compiler),
+[the next generation reverse-mode automatic differentiation via source-to-source AD, Zygote.jl](/blog/2018/12/ml-language-compiler),
 will be more efficient than all of the adjoint sensitivity implementations for
 large numbers of parameters. -->
 
