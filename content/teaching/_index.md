@@ -71,7 +71,7 @@ Julia is now being used in several universities and online courses. If you know 
 
 - Federal University of Uberlândia, Institute of Physics <!---18.918506,-48.25817-->
   * [GFM050](http://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
-
+- Federal University of Mato Grosso, Barra do Garças, Brazil (http://araguaia.ufmt.br), Computational Numerical Calculation (prof. CAMBarbosa), tutorial Numerical Methods with Julia (http://www.camb.eng.br/nmj), 2019s1
 - Hadsel High School, Stokmarknes, Nordland, Norway
   * [REA3034](http://www.hadsel.vgs.no/AnsattOversikt.aspx?MId1=15925&PersonId=16964) Programming and modeling with Julia and Snap, 2018/19 (High school lektor Olav A Marschall, M.sc. Computer Science)
 
