@@ -126,7 +126,7 @@ Julia is now being used in several universities and online courses. If you know 
     *   [GFM050](http://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
 *   Hadsel High School, Stokmarknes, Nordland, Norway
 
-*   [AnsattOversikt](http://www.hadsel.vgs.no/AnsattOversikt.aspx?personid=16964&mid1=15925), \[REA3034\] Programmering og modellering (Programming and modeling with Julia and Snap), 2018/19 (High school lecturer Olav A Marschall, M.sc. Computer Science)
+*   [AnsattOversikt](http://www.hadsel.vgs.no/AnsattOversikt.aspx?personid=16964&mid1=15925), \[REA3034\] Programmering og modellering (Programming and modeling with Julia and Snap), 2018 / 19 (High school lecturer Olav A Marschall, M.sc. Computer Science)
 
 *   IIT Indore
     *   [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://marjan.fesb.hr/~slap/)), June 2016
@@ -138,16 +138,16 @@ Julia is now being used in several universities and online courses. If you know 
     *   [Julia for Scientific Computing](http://www.control.lth.se/education/doctorate-program/julia-course/julia-course-2019/)
     *   [Optimization for Learning](http://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)
 *   Massachusetts Institute of Technology (MIT)
-    *   [6.251/15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas), Fall 2015
+    *   [6.251 / 15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas), Fall 2015
     *   [18.06](http://web.mit.edu/18.06/www/), Linear Algebra: Fall 2015, Dr. [Alex Townsend](https://github.com/ajt60gaibb); Fall 2014, Prof. Alexander Postnikov; Fall [2013](http://stellar.mit.edu/S/course/18/fa13/18.06), Prof. Alan Edelman
     *   [18.303](http://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj)), Fall 2013–2016.
-    *   [18.337/6.338](http://beowulf.csail.mit.edu/18.337), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). [Fall 2015](http://courses.csail.mit.edu/18.337/2015) ([IJulia notebooks](https://github.com/alanedelman/18.337_2015)). Fall 2013–
-    *   [18.085/0851](http://math.mit.edu/classes/18.085/2015FA/index.html), Computational Science And Engineering I (Prof. Pedro J. Sáenz)
+    *   [18.337 / 6.338](http://beowulf.csail.mit.edu/18.337), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). [Fall 2015](http://courses.csail.mit.edu/18.337/2015) ([IJulia notebooks](https://github.com/alanedelman/18.337_2015)). Fall 2013–
+    *   [18.085 / 0851](http://math.mit.edu/classes/18.085/2015FA/index.html), Computational Science And Engineering I (Prof. Pedro J. Sáenz)
     *   [18.330](http://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid), Spring 2013–2015
     *   [18.335](http://math.mit.edu/~stevenj/18.335/), Introduction to Numerical Methods (Prof. Steven G. Johnson), Fall 2013, Spring 2015
     *   [18.338](http://web.mit.edu/18.338/www/), Eigenvalues Of Random Matrices (Prof. Alan Edelman), Spring 2015
     *   [18.S096](https://math.mit.edu/classes/18.S096/iap17/), Performance Computing in a High Level Language (Steven G. Johnson, Alan Edelman, David Sanders, Jeff Bezanson), January 2017.
-    *   15.093/6.255, Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos), Fall 2014
+    *   15.093 / 6.255, Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos), Fall 2014
     *   [15.S60](https://github.com/IainNZ/ORSoftwareTools2014), Software Tools for Operations Research (Iain Dunning), Spring 2014
     *   [15.083](https://stellar.mit.edu/S/course/15/sp14/15.083/), Integer Programming and Combinatorial Optimization (Prof. Juan Pablo Vielma), Spring 2014
 *   Northeastern University, Fall 2016
