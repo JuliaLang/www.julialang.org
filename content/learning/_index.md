@@ -196,6 +196,8 @@ Julia is now being used in several universities and online courses. If you know 
     *   [Métodos computacionales para la física estadística](https://github.com/dpsanders/metodos-monte-carlo) (Prof. David P. Sanders), Spring 2015
 *   Universidad Nacional Pedro Ruiz Gallo, Lambayeque, Perú
     *   Julia: el lenguaje del futuro, [Semana de Integración de Ingeniería Electrónica](http://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro), (Oscar William Neciosup Vera), Spring 2015
+*   Universidad Veracruzana, México
+    *   [Algoritmos Evolutivos y de Inteligencia Colectiva](https://github.com/jmejia8/julia-python) (Jesús A. Mejía-de-Dios), Fall 2019
 *   University at Buffalo
     *   [IE 572](https://www.chkwon.net/teaching/#ie-572-linear-programming/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
 *   University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016
