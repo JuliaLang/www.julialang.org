@@ -48,3 +48,5 @@ We have our project ideas organized roughly into the skillsets required:
 * [Continuous time signal processing](gsoc/kalmanbucy/)
 
 You can see previous Summer of Code projects at the [Archive page](archive/).
+
+Are you interested in Julia but not super familiar with the language? Head over to [JuliaAcademy](JuliaAcademy.com) to take some free online Julia classes. 
