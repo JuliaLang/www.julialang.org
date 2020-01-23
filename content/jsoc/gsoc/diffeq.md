@@ -136,7 +136,7 @@ to solve equations.
 **Expected Results**: Efficient functions for performing global sensitivity
 analysis.
 
-**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas), [Vaibhav Dixit](https://github.com/Vaibhavdixit02)
 
 ## Parameter identifiability analysis
 
@@ -148,12 +148,12 @@ solution of the ODE directly to other parameters, showcasing that it is
 impossible to distinguish between parameter A being higher and parameter B
 being lower, or the vice versa situation, given only data about the solution
 because of how the two interact. This could be done directly on the symbolic
-form of the equation as part of 
+form of the equation as part of
 [ModelingToolkit.jl](https://github.com/JuliaDiffEq/ModelingToolkit.jl).
 Meanwhile, practical identifiability analysis looks as to whether the parameters
 are non-identifiable in a practical sense, for example if two parameters are
 numerically indistinguishable (given possibly noisy data). In this case, numerical
-techniques being built in DiffEqSensitivity.jl, such as a 
+techniques being built in DiffEqSensitivity.jl, such as a
 [nonlinear likelihood profiler](https://github.com/JuliaDiffEq/DiffEqSensitivity.jl/issues/109)
 or an
 [information sensitivity measure](https://github.com/JuliaDiffEq/DiffEqSensitivity.jl/issues/108)
@@ -212,12 +212,12 @@ Scientific machine learning requires mixing scientific computing libraries with 
 [This blog post highlights how the tooling of Julia is fairly advanced in this field](https://www.stochasticlifestyle.com/the-essential-tools-of-scientific-machine-learning-scientific-ml/) compared to alternatives such as Python,
 but one area that has not been completely worked out is integration of automatic differentiation
 with partial differential equations.
-[FEniCS.jl](https://github.com/JuliaDiffEq/FEniCS.jl) is a wrapper to the 
-[FEniCS](https://fenicsproject.org/) project for finite element solutions of partial differential 
+[FEniCS.jl](https://github.com/JuliaDiffEq/FEniCS.jl) is a wrapper to the
+[FEniCS](https://fenicsproject.org/) project for finite element solutions of partial differential
 equations. We would like to augment the Julia wrappers to allow for integration with Julia's
 automatic differentiation libraries like [Zygote.jl](https://github.com/FluxML/Zygote.jl) by
 using [dolfin-adjoint](http://www.dolfin-adjoint.org/en/release/). This would require setting up
-this library for automatic installation for Julia users and writing adjoint passes which utilize 
+this library for automatic installation for Julia users and writing adjoint passes which utilize
 this adjoint builder library. It would result in the first total integration between PDEs and
 neural networks.
 
