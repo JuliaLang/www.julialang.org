@@ -28,27 +28,14 @@ Furthermore, the current reports are very primitive and can only do a basic pair
 while graphs and other interactive tooling would be more valuable.
 Thus, there would be many great projects for a summer student to tackle here!
 
-**Contact:** [Jameson Nash](https://github.com/vtjnash), [Jarrett Revels](https://github.com/jrevels)
+**Contact:** [Jameson Nash](https://github.com/vtjnash), [Tim Besard](https://github.com/maleadt)
 
 
-## Liquid Templating Library
+## Extend RegEx support for invalid UTF-8
 
-[Liquid](http://shopify.github.io/liquid/) is a popular templating library, used primarily from Ruby. A pure Julia implementation
-of Liquid would be useful for web application authors in Julia.
+Currently, encountering invalid unicode encodings can cause undefined behavior in PCRE2. However, verifying the content is valid is expensive. It'd be faster to simply give it some defined behavior. For the standard codee-path, this is pretty simple. For the JIT compiler, this is nearly undocumented and requires more knowledge thus of working with code transilers (aka compilers). There's two possible avenues here to investigate:
 
-**Expected Results**: A pure Julia package that can compile a liquid template to Julia code.
+ - Implement a series of patches to make PCRE2 moe robust to "invalid" input. Together, we'll work with upstream to identify how to contribute these back.
+ - Switch away from PCRE2 to another regex library as the default. This may possibly also imply patching the alternate library. You'd be expected to present the comparison between the possible options and explain why the switch is warrented.
 
-**Recommended skills**: Basic Julia programming skills. Familiarity with parsing techniques.
-
-**Mentors**: [Avik Sengupta](https://github.com/aviks/)
-
-
-## Enhanced clipboard
-
-Julia's functions for getting and setting the clipboard are currently limited to text; it would be useful to extend them to allow the transfer of other data (for example, spreadsheet data or images).
-
-**Expected Results**: Extensible `clipboard()` and `clipboard(x)` functions to get and set the richest possible representation of the system clipboard data, as well as methods for specific types.
-
-**Recommended skills**: Interfacing with C from Julia, clipboard APIs for different platforms. Familiarity with FileIO.jl.
-
-**Mentors**: [Stefan Karpinski](https://github.com/StefanKarpinski)
+**Contact:** [Jameson Nash](https://github.com/vtjnash)
