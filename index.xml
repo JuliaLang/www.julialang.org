@@ -1148,6 +1148,15 @@ The following fields are required: - title: the name of the paper - authors: the
     </item>
     
     <item>
+      <title>A highly accurate pixel-based FRAP model based on spectral-domain numerical methods</title>
+      <link>https://julialang.org/research/rlkgl19/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/research/rlkgl19/</guid>
+      <description>We introduce a new, to our knowledge, numerical model based on spectral methods for analysis of fluorescence recovery after photobleaching data. The model covers pure diffusion and diffusion and binding (reaction-diffusion) with immobile binding sites, as well as arbitrary bleach region shapes. Fitting of the model is supported using both conventional recovery-curve-based estimation and pixel-based estimation, in which all individual pixels in the data are utilized. The model explicitly accounts for multiple bleach frames, diffusion (and binding) during bleaching, and bleaching during imaging.</description>
+    </item>
+    
+    <item>
       <title>A method to reduce the rejection rate in Monte Carlo Markov chains</title>
       <link>https://julialang.org/research/b17/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1434,6 +1443,15 @@ By implementing a case study algorithm in multiple programming languages, we com
       
       <guid>https://julialang.org/research/ld13/</guid>
       <description>The state of numerical computing is currently characterized by a divide between highly efficient yet typically cumbersome low-level languages such as C, C++, and Fortran and highly expressive yet typically slow high-level languages such as Python and MATLAB. This paper explores how Julia, a modern programming language for numerical computing which claims to bridge this divide by incorporating recent advances in language and compiler design (such as just-in-time compilation), can be used for implementing software and algorithms fundamental to the field of operations research, with a focus on mathematical optimization.</description>
+    </item>
+    
+    <item>
+      <title>Construction of quasipotentials for stochastic dynamical systems: An optimization approach</title>
+      <link>https://julialang.org/research/rdb18/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/research/rdb18/</guid>
+      <description>The construction of effective and informative landscapes for stochastic dynamical systems has proven a long-standing and complex problem. In many situations, the dynamics may be described by a Langevin equation while constructing a landscape comes down to obtaining the quasipotential, a scalar function that quantifies the likelihood of reaching each point in the state space. In this work we provide a novel method for constructing such landscapes by extending a tool from control theory: the sum-of-squares method for generating Lyapunov functions.</description>
     </item>
     
     <item>
@@ -2121,6 +2139,15 @@ Windows Julia is available for Windows 7 and later, both 32 bit and 64 bit.
       
       <guid>https://julialang.org/research/sog16/</guid>
       <description>Switching time optimization arises in finite-horizon optimal control for switched systems where, given a sequence of continuous dynamics, one minimizes a cost function with respect to the switching times. We propose an efficient method for computing the optimal switching times for switched linear and nonlinear systems. A novel second-order optimization algorithm is introduced where, at each iteration, the dynamics are linearized over an underlying time grid to compute the cost function, the gradient and the Hessian efficiently.</description>
+    </item>
+    
+    <item>
+      <title>Self-induced temperature gradients in Brownian dynamics</title>
+      <link>https://julialang.org/research/jdmj2017/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/research/jdmj2017/</guid>
+      <description>Brownian systems often surmount energy barriers by absorbing and emitting heat to and from their local environment. Usually, the temperature gradients created by this heat exchange are assumed to dissipate instantaneously. Here we relax this assumption to consider the case where Brownian dynamics on a time- independent potential can lead to self-induced temperature gradients. In the same way that externally imposed temperature gradients can cause directed motion, these self-induced gradients affect the dynamics of the Brownian system.</description>
     </item>
     
     <item>
