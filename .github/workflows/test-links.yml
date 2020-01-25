@@ -22,4 +22,3 @@ jobs:
 
     - name: test-links
       run: ./bin/htmltest_mod public -c .github/.htmltest.yml
-
