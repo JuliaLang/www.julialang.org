@@ -1,6 +1,9 @@
 ---
 layout: single
 title:  Julia Seasons of Contributions
+aliases:
+  - /soc/ideas-page
+  - /soc/ideas-page.html
 ---
 
 # Julia Seasons of Contributions
