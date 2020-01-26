@@ -9,7 +9,7 @@ journal: Journal of Geophysical Research (Earth Surface)
 publisher: American Geophysical Union (AGU)
 issn: 2169-9011
 doi: 10.1029/2019JF005245
-year: 2019
+year: "2019"
 month: Nov
 packages:
   ImageQuilting.jl: https://github.com/juliohm/ImageQuilting.jl

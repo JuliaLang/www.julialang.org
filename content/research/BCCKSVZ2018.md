@@ -8,7 +8,7 @@ authors:
  - Viral B. Shah
  - Jan Vitek
  - Lionel Zoubritzky
-year: 2018
+year: "2018"
 volume: 2
 issue: OOPSLA
 pages: "Article No. 120 "

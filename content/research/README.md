@@ -5,7 +5,7 @@ The frontmatter is sort of a YAML version of bibtex (but using unicode instead o
 The following fields are required:
 - title: the name of the paper
 - authors: the list of the authors. Note that this should be a YAML list, not "and" separated like bibtex
-- year
+- year: the year should be quoted ("YYYY")
 
 The format will also make use of the following fields:
 - journal

@@ -7,7 +7,7 @@ authors:
  - Benjamin Chung
  - Jeff Bezanson
  - Jan Vitek
-year: 2018
+year: "2018"
 volume: 2
 issue: OOPSLA
 pages: "Article No. 113 "
