@@ -62,16 +62,6 @@ The focus of this project will be to improve this functionality. Potential tasks
 
 **Mentors**: ???
 
-## Trace estimation of the inverse
-
-Getting a good estimate of the trace of a function of a (sparse) matrix purely from the matrix itself has various [applications](https://www-users.cs.umn.edu/~saad/PDF/ys-2017-04.pdf). This is a well-defined mathematical problem with known algorithms in literature, but none of them is implemented in Julia yet. In this project, the focus will be on the `inv` function, where an estimate of `tr(inv(A))` is computed purely from the matrix `A`. In this project, the student will be expected to write an efficient and well-tested Julia package that implements one or more algorithms for the trace estimation of the inverse of a matrix.
-
-**Recommended Skills**: An aptitude for linear algebra and the ability to translate algorithms from papers to code.
-
-**Expected results**: Routine(s) for trace estimation of the inverse of a matrix, corresponding tests and an accuracy analysis.
-
-**Mentors**: [Mohamed Tarek](https://github.com/mohamed82008)
-
 ## Special functions
 
 As a technical computing language, Julia provides a huge number of
