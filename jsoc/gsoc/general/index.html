@@ -131,28 +131,18 @@ Furthermore, the current reports are very primitive and can only do a basic pair
 while graphs and other interactive tooling would be more valuable.
 Thus, there would be many great projects for a summer student to tackle here!</p>
 
-<p><strong>Contact:</strong> <a href="https://github.com/vtjnash">Jameson Nash</a>, <a href="https://github.com/jrevels">Jarrett Revels</a></p>
+<p><strong>Contact:</strong> <a href="https://github.com/vtjnash">Jameson Nash</a>, <a href="https://github.com/maleadt">Tim Besard</a></p>
 
-<h2 id="liquid-templating-library">Liquid Templating Library</h2>
+<h2 id="extend-regex-support-for-invalid-utf-8">Extend RegEx support for invalid UTF-8</h2>
 
-<p><a href="http://shopify.github.io/liquid/">Liquid</a> is a popular templating library, used primarily from Ruby. A pure Julia implementation
-of Liquid would be useful for web application authors in Julia.</p>
+<p>Currently, encountering invalid unicode encodings can cause undefined behavior in PCRE2. However, verifying the content is valid is expensive. It&rsquo;d be faster to simply give it some defined behavior. For the standard codee-path, this is pretty simple. For the JIT compiler, this is nearly undocumented and requires more knowledge thus of working with code transilers (aka compilers). There&rsquo;s two possible avenues here to investigate:</p>
 
-<p><strong>Expected Results</strong>: A pure Julia package that can compile a liquid template to Julia code.</p>
+<ul>
+<li>Implement a series of patches to make PCRE2 moe robust to &ldquo;invalid&rdquo; input. Together, we&rsquo;ll work with upstream to identify how to contribute these back.</li>
+<li>Switch away from PCRE2 to another regex library as the default. This may possibly also imply patching the alternate library. You&rsquo;d be expected to present the comparison between the possible options and explain why the switch is warrented.</li>
+</ul>
 
-<p><strong>Recommended skills</strong>: Basic Julia programming skills. Familiarity with parsing techniques.</p>
-
-<p><strong>Mentors</strong>: <a href="https://github.com/aviks/">Avik Sengupta</a></p>
-
-<h2 id="enhanced-clipboard">Enhanced clipboard</h2>
-
-<p>Julia&rsquo;s functions for getting and setting the clipboard are currently limited to text; it would be useful to extend them to allow the transfer of other data (for example, spreadsheet data or images).</p>
-
-<p><strong>Expected Results</strong>: Extensible <code>clipboard()</code> and <code>clipboard(x)</code> functions to get and set the richest possible representation of the system clipboard data, as well as methods for specific types.</p>
-
-<p><strong>Recommended skills</strong>: Interfacing with C from Julia, clipboard APIs for different platforms. Familiarity with FileIO.jl.</p>
-
-<p><strong>Mentors</strong>: <a href="https://github.com/StefanKarpinski">Stefan Karpinski</a></p>
+<p><strong>Contact:</strong> <a href="https://github.com/vtjnash">Jameson Nash</a></p>
 
   </div>
   <br /><br />

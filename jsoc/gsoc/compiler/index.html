@@ -111,7 +111,7 @@ if (!doNotTrack) {
 
 <h2 id="thread-safety">Thread-safety</h2>
 
-<p>There are many remaining components that need to be updated to use thread-safe algorithms before Julia&rsquo;s threading will be stable for general usage. Some basic data-structures (such as the TypeMap) are missing correct RCU and memory barriers to ensure race-free answers. IO is also currently unavailable for multi-threaded code. The <code>realloc</code> operation for arrays (i.e. <code>resize!</code>) may be more reliable if it was implemented using RCU <code>malloc</code> (delaying the free until a gc-safepoint has been reached on all threads).</p>
+<p>There are many remaining components that need to be updated to use thread-safe algorithms before Julia&rsquo;s threading will be stable for general usage. Some basic data-structures (such as the TypeMap) are missing correct RCU and memory barriers to ensure race-free answers. The <code>realloc</code> operation for arrays (i.e. <code>resize!</code>) may be more reliable if it was implemented using RCU <code>malloc</code> (delaying the free until a gc-safepoint has been reached on all threads).</p>
 
 <p><strong>Expected Results</strong>: Demonstrate that a program that fails at the beginning of the summer can now run to completion, or show what remains to be fixed to get it working. Start a test framework to help find bugs and race conditions in the current implementation, and to detect future regressions in multi-threading behavior.</p>
 
@@ -126,11 +126,10 @@ However, there are a range of projects that could be done to improve the quality
 Some ideas include:</p>
 
 <ul>
-<li>Changing Base.Dict to an ordered dict representation <a href="https://juliacollections.github.io/DataStructures.jl/latest/ordered_containers/">https://juliacollections.github.io/DataStructures.jl/latest/ordered_containers/</a>, [<a href="https://github.com/JuliaLang/julia/pull/10116]https://github.com/JuliaLang/julia/pull/10116)">https://github.com/JuliaLang/julia/pull/10116]https://github.com/JuliaLang/julia/pull/10116)</a></li>
-<li>Experiment with using alternative Dict hash structures (such as Robin Hood Hashing, used by <a href="https://doc.rust-lang.org/beta/std/collections/struct.HashMap.html">Rust</a>)</li>
-<li>Implementation and tests for assorted asynchronous, threaded storage primitives and data channels</li>
-<li>Array growth-rate parameter</li>
-<li>Using immutable collections <a href="https://github.com/JuliaCollections/FunctionalCollections.jl">https://github.com/JuliaCollections/FunctionalCollections.jl</a> to accelerate computational problems in the compiler</li>
+<li>Changing Base.Dict to an ordered dict representation. This has been started, but some work remains to be done to push this change forward. (<a href="http://juliacollections.github.io/DataStructures.jl/latest/ordered_containers.html">https://juliacollections.github.io/DataStructures.jl/latest/ordered_containers/</a>, <a href="https://github.com/JuliaLang/julia/pull/10116">https://github.com/JuliaLang/julia/pull/10116</a>)</li>
+<li>Implementation and tests for assorted asynchronous, threaded storage primitives and data channels. Thread-safe versions of many basic data-structures would be of great usefulness for pushing the language forward and enabling new frontiers of development and usage.</li>
+<li>Performance-tune the array growth-rate parameter: what should this parameter value be?</li>
+<li>Using immutable collections (<a href="https://github.com/JuliaCollections/FunctionalCollections.jl">https://github.com/JuliaCollections/FunctionalCollections.jl</a>) to accelerate computational problems in the compiler.</li>
 </ul>
 
 <p>But this just a sample list, and is far more than one summer of work. So what do you want to work on?</p>
@@ -141,7 +140,7 @@ Some ideas include:</p>
 
 <h2 id="calling-julia-from-python">Calling Julia from Python</h2>
 
-<p>Julia could be a great replacement for C in Python projects, where it can be used to speed up bottlenecks without sacrificing ease of use. However, while the basic functionality for communicating with Julia exists in <a href="https://github.com/JuliaPy/PyCall.jl">PyCall.jl</a> and <a href="https://github.com/jakebolewski/pyjulia">pyjulia</a>, it needs to be separated out and maintained as a real Python package.</p>
+<p>Julia is a great replacement for C in Python projects, where it can be used to speed up bottlenecks without sacrificing ease of use. However, while the basic functionality for communicating with Julia exists in <a href="https://github.com/JuliaPy/PyCall.jl">PyCall.jl</a> and <a href="https://github.com/jakebolewski/pyjulia">pyjulia</a>, it could be better separated out and maintained as a real Python package.</p>
 
 <p><strong>Expected Results</strong>: An easy-to-use Python package which allows Julia functions to be imported and called, with transparent conversion of data.</p>
 
@@ -165,6 +164,21 @@ to convert a Python object to the correct Julia object.</p>
 <strong>Expected Results</strong>: An easy way to call into static julia libraries without JIT overhead and with automatic type conversions.</p>
 
 <p><strong>Mentors</strong>: <a href="https://github.com/SimonDanisch/">Simon Danisch</a></p>
+
+<h2 id="compiler-projects">Compiler projects</h2>
+
+<p>I have a number of other compiler projects I&rsquo;m currently working on. Please contact me for additional details and let me know what specifically interests you about this area of contribution:</p>
+
+<ul>
+<li>Escape analysis</li>
+<li>Enabling OrcJIT v2 and investigating improvements enabled by it.</li>
+<li>Improving codegen quality / isolation.</li>
+<li>Parser error messages (and other parts)</li>
+<li>Macro hygiene re-implementation to eliminate incorrect predictions inherent in current approach</li>
+<li>Better debug information output for variables</li>
+</ul>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/vtjnash">Jameson Nash</a></p>
 
   </div>
   <br /><br />

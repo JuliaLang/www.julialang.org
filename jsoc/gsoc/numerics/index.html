@@ -260,25 +260,23 @@ write a Taylor integrator for ordinary differential equations (ODEs) that gives 
 
 <p><strong>Mentors:</strong> <a href="https://github.com/dpsanders">David P. Sanders</a>, <a href="https://github.com/lbenet">Luis Benet</a>, <a href="https://github.com/mforets">Marcelo Forets</a></p>
 
-<h1 id="native-bignums">Native Bignums</h1>
+<h1 id="better-bignums-integration">Better Bignums Integration</h1>
 
-<p>Julia currently supports big integers, rationals and floats, making use of the GMP and MPFR libraries. However, the current implementation is very basic, performance is far from optimal compared to hand-written GMP code, and the GMP license is GPL 3.</p>
+<p>Julia currently supports big integers, rationals and floats, making use of the GMP and MPFR libraries. However, GMP currently doesn&rsquo;t permit good integration with a garbage collector.</p>
 
 <p>This project therefore involves exploring ways to improve bignums, possibly including:</p>
 
 <ul>
-<li>Reimplementation of BigInt in Julia</li>
-<li>Pooling bignum objects to avoid setup / teardown cost</li>
-<li>Exposing a mutating API for library consumers</li>
+<li>Modifying GMP to support high-performance garbage-collection</li>
+<li>Reimplementation of aspects of BigInt in Julia</li>
 <li>Lazy graph style APIs which can rewrite terms or apply optimisations</li>
-<li>Modifying GMP itself to support high-performance garbage-collection</li>
 </ul>
 
 <p>This experimentation could be carried out as a package with a new implementation, or as patches over the existing implementation in Base.</p>
 
 <p><strong>Expected Results</strong>: An implementation of BigNums in Julia with increased performance over the current one.</p>
 
-<p><strong>Require Skills</strong>: Familiarity with extended precision numerics and performance considerations. Familiarity either with Julia or GMP.</p>
+<p><strong>Require Skills</strong>: Familiarity with extended precision numerics OR performance considerations. Familiarity either with Julia or GMP.</p>
 
 <p><strong>Mentors</strong>: <a href="https://github.com/vtjnash">Jameson Nash</a></p>
 
