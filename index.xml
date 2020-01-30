@@ -1127,7 +1127,7 @@ julia&amp;gt; function mandelbrot(a) z = 0 for i=1:50 z = z^2 + a end return z e
       <guid>https://julialang.org/research/readme/</guid>
       <description>To add a publication to the website, create a markdown file with YAML frontmatter in this directory. By convention, the file is named according to the author initials + year, e.g. _publications/ABC17.md.
 The frontmatter is sort of a YAML version of bibtex (but using unicode instead of TeX).
-The following fields are required: - title: the name of the paper - authors: the list of the authors. Note that this should be a YAML list, not &amp;ldquo;and&amp;rdquo; separated like bibtex - year</description>
+The following fields are required: - title: the name of the paper - authors: the list of the authors. Note that this should be a YAML list, not &amp;ldquo;and&amp;rdquo; separated like bibtex - year: the year should be quoted (&amp;ldquo;YYYY&amp;rdquo;)</description>
     </item>
     
     <item>
