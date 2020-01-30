@@ -12,7 +12,7 @@ authors:
  - Jon McAuliffe
  - Rollin Thomas
  - Prabhat
-year: 2018
+year: "2018"
 title: Cataloging the visible universe through Bayesian inference at petascale
 booktitle: International Parallel and Distributed Processing Symposium (IPDPS)
 arxiv: 1801.10277

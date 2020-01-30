@@ -5,7 +5,7 @@ authors:
  - Alexander Liniger
  - Atsushi Sakai
  - Francesco Borrelli
-year: 2018
+year: "2018"
 booktitle: "2018 IEEE Conference on Decision and Control (CDC)"
 publisher: "IEEE"
 doi: "10.1109/CDC.2018.8619433"

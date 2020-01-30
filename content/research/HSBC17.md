@@ -12,7 +12,7 @@ volume: 106
 pages: 18--32
 issn: 0098-3004
 doi: 10.1016/j.cageo.2017.05.012
-year: 2017
+year: "2017"
 month: May
 packages:
   ImageQuilting.jl: https://github.com/juliohm/ImageQuilting.jl
