@@ -158,20 +158,13 @@ if (!doNotTrack) {
 
 <p>On macOS, a <code>Julia-&lt;version&gt;.dmg</code> file is provided, which contains <code>Julia-&lt;version&gt;.app</code>. Installation is the same as any other Mac software. Drag the <code>Julia-&lt;version&gt;.app</code> to Applications Folder&rsquo;s Shortcut. You can also run Julia from the disk image by opening the app. Julia runs on macOS 10.8 and later releases.</p>
 
-<p>To start running Julia from the Terminal, you can add <code>julia</code> to the PATH. First, open up the Terminal and determine whether you are using <code>zsh</code> or <code>bash</code> as your Terminal shell.</p>
+<p>To start running Julia from the Terminal, you can do the following:</p>
 
-<p>If you are using <code>zsh</code>, type the following in the Terminal:</p>
+<p>Navivate to <code>/usr/local/bin</code> and remove the <code>julia</code> file. Then type the following command:</p>
 
-<p>open -a TextEdit ~/.zshrc</p>
+<p><code>ln -s /Applications/Julia-&lt;version&gt;.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia</code></p>
 
-<p>If you are using <code>bash</code>, type the following in the Terminal:</p>
-
-<p>open -a TextEdit ~/.bash_profile</p>
-
-<p>The commands above should open up a shell profile page in a GUI text editor.<br />
-Now, for both <code>zsh</code> and <code>bash</code> users, you can add the following to the bottom of the profile page:</p>
-
-<p>export PATH=&ldquo;/Applications/Julia-<version>.app/Contents/Resources/julia/bin:${PATH}&rdquo;</p>
+<p>which creates a symlink to the Julia version of your choosing.</p>
 
 <p>Remember to replace the version of <code>Julia-&lt;version&gt;.app</code> above with the version of your Julia app. Once that is done, you can close the shell profile page and quit Terminal. Now, just simply open Terminal again, type in <code>julia</code> in it, and it should run your version of Julia!</p>
 
