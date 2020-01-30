@@ -50,20 +50,13 @@ Uninstallation is performed by using the Windows uninstaller (or deleting the ex
 
 On macOS, a `Julia-<version>.dmg` file is provided, which contains `Julia-<version>.app`. Installation is the same as any other Mac software. Drag the `Julia-<version>.app` to Applications Folder's Shortcut. You can also run Julia from the disk image by opening the app. Julia runs on macOS 10.8 and later releases.
 
-To start running Julia from the Terminal, you can add `julia` to the PATH. First, open up the Terminal and determine whether you are using `zsh` or `bash` as your Terminal shell.
+To start running Julia from the Terminal, you can do the following:
 
-If you are using `zsh`, type the following in the Terminal:
+Navivate to `/usr/local/bin` and remove the `julia` file. Then type the following command: 
 
-open -a TextEdit ~/.zshrc
+`ln -s /Applications/Julia-<version>.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia`
 
-If you are using `bash`, type the following in the Terminal:
-
-open -a TextEdit ~/.bash\_profile
-
-The commands above should open up a shell profile page in a GUI text editor.  
-Now, for both `zsh` and `bash` users, you can add the following to the bottom of the profile page:  
-
-export PATH="/Applications/Julia-<version>.app/Contents/Resources/julia/bin:${PATH}"
+which creates a symlink to the Julia version of your choosing.
 
 Remember to replace the version of `Julia-<version>.app` above with the version of your Julia app. Once that is done, you can close the shell profile page and quit Terminal. Now, just simply open Terminal again, type in `julia` in it, and it should run your version of Julia!
 
