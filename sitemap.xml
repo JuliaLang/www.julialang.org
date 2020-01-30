@@ -537,6 +537,11 @@
   </url>
   
   <url>
+    <loc>https://julialang.org/learning/code-examples/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://julialang.org/license/</loc>
   </url>
   
