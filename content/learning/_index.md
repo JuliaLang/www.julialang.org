@@ -39,6 +39,7 @@ Get jupyter notebooks for the following youtube tutorials over [JuliaBoxTutorial
 
 # Books
 
+*   Tom Kwong. [Hands-on Design Patterns and Best Practices with Julia](https://www.packtpub.com/application-development/hands-design-patterns-julia-10).  Packt Publishing, January 2020.
 *   Tanmay Bakshi. [Tanmay Teaches Julia for Beginners: A Springboard to Machine Learning for All Ages](https://www.mheducation.co.uk/tanmay-teaches-julia-for-beginners-a-springboard-to-machine-learning-for-all-ages-9781260456639-emea). McGraw Hill, November 2019.
 *   Malcolm Sherrington. [Mastering Julia 1.0](https://www.packtpub.com/application-development/mastering-julia-10). Packt Publishing, November 2019.
 *   Antonello Lobianco. [Julia Quick Syntax Reference](https://www.apress.com/gp/book/9781484251898). Apress, November 2019.
