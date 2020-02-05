@@ -5,7 +5,7 @@ title:  Learning Julia
 
 # Online Trainings
 
-*   [JuliaAcademy](https://juliaacademy.com) (Prof. Alan Edelman, Matt Bauman and other core developers)
+*   [JuliaAcademy](https://juliaacademy.com) (Prepared by core Julia developers in collaboration with Julia Computing.)
 *   [Julia Scientific Programming](https://www.coursera.org/learn/julia-programming) online course, (Dr. Juan H Klopper, Dr. Henri Laurie)
 *   [Exercism Julia Track - Exercises and feedback from a team of welcoming mentors](https://exercism.io/tracks/julia)
 
