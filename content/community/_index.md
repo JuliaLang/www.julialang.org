@@ -9,7 +9,7 @@ Please take a moment to read the [Julia Community Standards](standards/). We exp
 
 ## Diversity and Inclusion
 
-The Julia Community is committed to continuing to foster an inclusive and diverse culture. Read more about how we are doing this on our [diversity page](/diversity). 
+The Julia Community is committed to continuing to foster an inclusive and diverse culture. Read more about how we are doing this on our [diversity page](/community/diversity). 
 
 ## 2019 Julia User and Developer Survey
 
