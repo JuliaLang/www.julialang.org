@@ -12,9 +12,9 @@ We believe that having diversity and inclusion in our communtiy is the only way 
 
 Below you will find a breakdown of our past and current diversity and inclusion initatives. If you have any ideas, feedback, or the like, feel free to send and email to diveristy@julialang.org or drop by the #diversity channel on Slack.
 
-| When                   | What                        |Link                          | 
-| -----------------------|:---------------------------:| :---------------------------:| 
-|January 2020 | JuliaAcademy Overhall | https://juliaacademy.com  |
-|January 2020 | JuliaCon 2020 Financial Assistance | https://docs.google.com/forms/d/e/1FAIpQLSeb0gjPEGbSa6twHIImSfE-xtxoAlO9P0k_WgOv_wrG1eWgUQ/viewform |
-| November 2018 | Julia Computing Awards Diversity and Inclusion Grants | https://juliacomputing.com/blog/2018/11/30/DandI-grant-awards.html |                   |
-|                |                   |                   |
+ When                   | What                        | Link                          
+ -----------------------| --------------------------- | ---------------------------  
+ January 2020 | JuliaAcademy Overhall | https://juliaacademy.com  
+ January 2020 | JuliaCon 2020 Financial Assistance | https://docs.google.com/forms/d/e/1FAIpQLSeb0gjPEGbSa6twHIImSfE-xtxoAlO9P0k_WgOv_wrG1eWgUQ/viewform 
+ November 2018 | Julia Computing Awards Diversity and Inclusion Grants | https://juliacomputing.com/blog/2018/11/30/DandI-grant-awards.html                    
+                |                   |                   
