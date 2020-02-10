@@ -528,6 +528,11 @@
   </url>
   
   <url>
+    <loc>https://julialang.org/diversity/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://julialang.org/download/</loc>
   </url>
   
