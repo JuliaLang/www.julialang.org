@@ -3,13 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://julialang.org/blog/2020/02/gci-summary/</loc>
+    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://julialang.org/blog/</loc>
-    <lastmod>2019-12-28T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://julialang.org/</loc>
-    <lastmod>2019-12-28T00:00:00+00:00</lastmod>
+    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>

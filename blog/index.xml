@@ -5,10 +5,19 @@
     <link>https://julialang.org/blog/</link>
     <description>Recent content in The Julia Blog on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 28 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://julialang.org/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Google&#39;s Code-In Contest Wrap up</title>
+      <link>https://julialang.org/blog/2020/02/gci-summary/</link>
+      <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/blog/2020/02/gci-summary/</guid>
+      <description>Over the last couple of months, 212 young people have completed over 690 tasks using Julia as part of the Google Code-In program. You may have seen PR’s to your projects or blog posts around the internet. With this being the first year that we’ve participated in the program, we were jumping into the void. It turned out to be a lot of effort, and so we must thank our amazing set of mentors who stepped up to help and guide the students.</description>
+    </item>
     
     <item>
       <title>Yao.jl - Differentiable Quantum Programming In Julia</title>
