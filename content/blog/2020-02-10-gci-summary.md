@@ -10,7 +10,7 @@ With this being the first year that we’ve participated in the program, we were
 
 And finally, a huge thank you and congratulations to all the students who completed tasks in Julia. I do hope they learned a lot, about technology and community, and had fun at the same time. Some of them have continued contributing beyond the set tasks within the program. We hope some of them will come back to GCI and GSoC in future years.
 
-The rules of the program dictate that we had to choose a set of winners. We have seen great submissions from almost all of the students. The following six students stand out in the quality of their code, their commitment to the community, and their work ethic. Without further ado, here are the six winners for the Julia project in GCI 2019. 		
+The rules of the program dictate that we had to choose a set of winners. We have seen great submissions from almost all of the students. The following six students stand out in the quality of their code, their commitment to the community, and their work ethic. [Without further ado, here are the six winners for the Julia project in GCI 2019](https://codein.withgoogle.com/#winners). 		
 			
 __Winners:__
 
