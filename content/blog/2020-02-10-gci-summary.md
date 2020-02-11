@@ -24,6 +24,7 @@ __Finalists:__
 - Soumitra Shewale 				
 - TheComputerM 				
 
+
 During the program, the participants worked on a variety of tasks across a range of Julia packages. Some of the tasks asked our students to create blog posts explaining a certain facet of the technology. Here is a sample of such posts, the ones we think are among the most interesting. Enjoy!
 
 - [Solving Differential Equations with Transformers: Deep Learning for Symbolic Mathematics](https://medium.com/analytics-vidhya/solving-differential-equations-with-transformers-21648d3a1695)
