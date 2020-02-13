@@ -3,7 +3,7 @@ layout: page
 title: SciML
 ---
 
-# Science in Machine Learning 
+# Scientific Machine Learning
 
 ### Model Zoo on TPU
 
