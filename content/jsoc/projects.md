@@ -10,7 +10,7 @@ This page lists a bunch of project ideas, meant to serve as starting points as y
 We have our project ideas organized roughly into the skillsets required:
 
 * [Turing projects](gsoc/turing/) for probabilistic modelling and probabilistic programming.
-* [Flux projects](https://fluxml.ai/gsoc) for machine learning.
+* [Flux projects](gsoc/flux/) for machine learning.
 * [Compiler](gsoc/compiler/) – work on the Julia compiler's internals to make things better for everyone.
 * [Web Platform](gsoc/wasm/) – work on the Julia wasm backend or other aspects of julia in the browser.
 * [HPC](gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
