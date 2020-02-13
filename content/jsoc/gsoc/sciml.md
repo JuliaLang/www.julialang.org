@@ -1,6 +1,6 @@
 ---
 layout: page
-title: SciML
+title: Scientific Machine Learning
 ---
 
 # Scientific Machine Learning
