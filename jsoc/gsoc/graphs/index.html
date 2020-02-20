@@ -110,54 +110,39 @@ if (!doNotTrack) {
 
 <h1 id="hahahugoshortcode-s0-hbhb">JuliaGraphs – Summer of Code</h1>
 
+<p>Thank you for your interest in supporting JuliaGraphs in the upcoming Summer of Code!</p>
+
 <p>The JuliaGraphs ecosystem offers a set of abstractions and algorithms for various aspects of graph modeling and analysis.
-<a href="https://github.com/JuliaGraphs/LightGraphs.jl">LightGraphs.jl</a> is the central
-package defining the types and essential algorithms.</p>
+<a href="https://github.com/JuliaGraphs/LightGraphs.jl">LightGraphs.jl</a> is the central package defining the types and essential
+algorithms.</p>
 
 <p>{% include toc.html %}</p>
 
 <p><strong>Mentorship Inquiries</strong>: Drop by #graphs on Slack or <a href="https://github.com/JuliaGraphs/LightGraphs.jl/issues/new">file a new issue on Github</a>.</p>
 
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>Prospective candidates should be familiar with most of the following concepts:
+- graph algorithms
+- Julia programming and idiomatic code
+- LightGraphs.jl and associated packages</p>
+
+<p>In addition, strong candidates will have a history of open source contributions. Candidates with a history of contributions to Julia and JuliaGraphs in particular will be afforded special consideration.</p>
+
 <h2 id="parallel-graph-development">Parallel graph development</h2>
 
-<p>The <a href="https://github.com/JuliaGraphs/LightGraphs.jl">LightGraphs.jl</a> package provides a fast, robust set of graph analysis tools. This project would implement additions to LightGraphs to support parallel computation for a subset of graph algorithms. Examples of algorithms that would benefit from adaptation to parallelism would include centrality measures and traversals.</p>
+<p>The <a href="https://github.com/JuliaGraphs/LightGraphs.jl">LightGraphs.jl</a> package provides a fast, robust set of graph analysis tools. This project would implement additions to LightGraphs to further support parallel computation for a subset of graph algorithms. Examples of algorithms that would benefit from adaptation to parallelism would include centrality measures, decomposition, and traversals. Current work may be found in the <code>Experimental/Parallel</code> section of the codebase; prospective candidates are expected to have reviewed the existing code and should be prepared to offer improvements to this code as well as contribution of new code.</p>
 
-<p><strong>Expected Results</strong>: creation of LightGraphs-based data structures and algorithms that take advantage of large-scale parallel computing environments.</p>
-
-<h2 id="planarity-algorithms-for-lightgraphs-jl">Planarity algorithms for LightGraphs.jl</h2>
-
-<p>At the moment, LightGraphs.jl lacks algorithms that deal with graph planarity and familiar concepts. A candidate should study the literature and implement some algorithms that deal with planarity. Potential things that could be done:
-* Implementation of tests for planarity and outer planarity
-* Calculating a planar embedding of a graph
-* There are some graph problems that have a much faster solution when a graph is planar.</p>
-
-<h2 id="graphblas-implementation">GraphBLAS Implementation</h2>
-
-<p><a href="http://graphblas.org/index.php?title=Graph_BLAS_Forum">GraphBLAS</a> is a standard similar to BLAS for dealing with graphs. There also exists a reference implementation called <a href="http://faculty.cse.tamu.edu/davis/suitesparse.html">SuiteSparse:GraphBLAS</a>. It would be interesting to have a bridge from LightGraphs.jl to GraphBLAS, so we can compare the performance. A candidate should do the following:
-* Get the GraphBLAS C API working from Julia and connect it to a GraphBLAS implementation.
-* Implement the LightGraphs.jl interface using the GraphBLAS primitives.
-* Overwrite LightGraphs methods with ones using GraphBLAS.
-* Write benchmarks for comparing the GraphBlas and LightGraphs algorithms.</p>
-
-<h2 id="improvements-for-graphplots-jl">Improvements for GraphPlots.jl</h2>
-
-<p>The <a href="https://github.com/JuliaPlots/Plots.jl">GraphPlots.jl</a> package could use some improvements:
-* The current layout algorithms are fairly standard, there might be some newer improvements in the literature.
-* There are layout algorithms for special graphs, such as directed acyclic graphs and trees.
-* Some graph algorithms are embarrassingly parallel, we should make use of that.
-* Make the interface easier to use; this could also simply mean improving the documentation.</p>
-
-<h2 id="julia-implementation-of-the-blossomv-algorithm">Julia implementation of the BlossomV algorithm</h2>
-
-<p><a href="https://github.com/JuliaGraphs/LightGraphsMatching.jl">LightGraphsMatching.jl</a> currently depends on the external software <a href="http://pub.ist.ac.at/~vnk/software.html">BlossomV</a>. In the past we had some problems calling that software from Julia and in addition it has a problematic license. Therefore it would be useful if we had a native Julia implementation of this algorithm.
-This is a rather advanced project. In addition to standard graph theory, a candidate should probably have some minor knowledge of linear programming and duality of linear programs.</p>
+<p><strong>Expected Results</strong>: creation of LightGraphs-based data structures and algorithms that take advantage of large-scale parallel computing environments, using the new Julia threading model and/or existing multi-node computation functionality.</p>
 
 <h2 id="development-of-a-benchmark-suite-for-lightgraphs-jl">Development of a benchmark suite for LightGraphs.jl</h2>
 
-<p>LightGraphs.jl could use a set of benchmarks for measuring the performance of our algorithms and for spotting performance regressions in further updates. A candidate should do the following
-* Create a set of benchmark algorithms that measure different aspects of LightGraphs.jl and cover different use cases.
-* Find different graph classes for performing benchmarks, for example sparse/dense graphs and find some graphs that are a good approximation of the graphs that arise in typical datasets.
-* Figure out how we could automatically run regression tests with these benchmarks when someone pushes a new PR to GitHub.</p>
+<p>Contributors to core LightGraphs.jl code must demonstrate that their proposed changes do not impact the (memory/time) performance of existing algorithms. Typically, output from the BenchmarkTools.jl package is included as part of the pull request. An automated benchmarking suite would be preferable; this would allow us to evaluate performance as part of the automatic testing criteria such that performance regressions would result in an automatic failure of the test suite. Prospective candidates should be prepared to address the following aspects of a proposed benchmarking suite:
+* Creation of a set of benchmark algorithms that measure different aspects of LightGraphs.jl and cover different use cases
+* Application of the suite to different graph classes for performing benchmarks (for example, graphs of various sizes and densities and graphs that are good approximations those that arise in typical datasets)
+* Development of an approach to integrate automatic regression tests into the existing GitHub PR process</p>
+
+<p><strong>Expected Results</strong>: creation of a benchmark suite and automatic regression testing system as described above.</p>
 
   </div>
   <br /><br />

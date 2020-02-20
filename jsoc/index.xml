@@ -93,10 +93,11 @@ GSoC 2019 In 2019, we recieved an even larger number of very high quality applic
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://julialang.org/jsoc/gsoc/graphs/</guid>
-      <description>JuliaGraphs – Summer of Code The JuliaGraphs ecosystem offers a set of abstractions and algorithms for various aspects of graph modeling and analysis. LightGraphs.jl is the central package defining the types and essential algorithms.
+      <description>JuliaGraphs – Summer of Code Thank you for your interest in supporting JuliaGraphs in the upcoming Summer of Code!
+The JuliaGraphs ecosystem offers a set of abstractions and algorithms for various aspects of graph modeling and analysis. LightGraphs.jl is the central package defining the types and essential algorithms.
 {% include toc.html %}
 Mentorship Inquiries: Drop by #graphs on Slack or file a new issue on Github.
-Parallel graph development The LightGraphs.jl package provides a fast, robust set of graph analysis tools. This project would implement additions to LightGraphs to support parallel computation for a subset of graph algorithms.</description>
+Prerequisites Prospective candidates should be familiar with most of the following concepts: - graph algorithms - Julia programming and idiomatic code - LightGraphs.</description>
     </item>
     
     <item>
