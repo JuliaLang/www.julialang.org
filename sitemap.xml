@@ -781,6 +781,10 @@
   </url>
   
   <url>
+    <loc>https://julialang.org/jsoc/gsoc/flux/</loc>
+  </url>
+  
+  <url>
     <loc>https://julialang.org/research/js15/</loc>
   </url>
   
@@ -1033,6 +1037,10 @@
   </url>
   
   <url>
+    <loc>https://julialang.org/jsoc/projects/</loc>
+  </url>
+  
+  <url>
     <loc>https://julialang.org/research/bffvps18/</loc>
   </url>
   
@@ -1054,6 +1062,10 @@
   
   <url>
     <loc>https://julialang.org/research/ont14/</loc>
+  </url>
+  
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/sciml/</loc>
   </url>
   
   <url>

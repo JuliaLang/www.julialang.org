@@ -1602,6 +1602,16 @@ By implementing a case study algorithm in multiple programming languages, we com
     </item>
     
     <item>
+      <title>Flux</title>
+      <link>https://julialang.org/jsoc/gsoc/flux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/jsoc/gsoc/flux/</guid>
+      <description>Google Summer of Code Projects Flux usually takes part in Google Summer of Code, as part of the wider Julia organisation. We follow the same rules and application guidelines as Julia, so please check there for more information on applying. Below are a set of ideas for potential projects (though you are welcome to explore anything you are interested in).
+Flux projects are typically very competitive; we encourage you to get started early, as successful students typically have early PRs or working prototypes as part of the application.</description>
+    </item>
+    
+    <item>
       <title>Forward stable computation of roots of real polynomials with only real distinct roots</title>
       <link>https://julialang.org/research/js15/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -2101,6 +2111,17 @@ Windows Julia is available for Windows 7 and later, both 32 bit and 64 bit.
     </item>
     
     <item>
+      <title>Projects</title>
+      <link>https://julialang.org/jsoc/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/jsoc/projects/</guid>
+      <description>Projects This page lists a bunch of project ideas, meant to serve as starting points as you develop your own plan. You&amp;rsquo;re free to modify them to your tastes, or propose something totally different in an area you&amp;rsquo;re interested in.
+We have our project ideas organized roughly into the skillsets required:
+ Turing projects for probabilistic modelling and probabilistic programming. Flux projects for machine learning. Scientific Machine Learning Projects Compiler – work on the Julia compiler&amp;rsquo;s internals to make things better for everyone.</description>
+    </item>
+    
+    <item>
       <title>Reach Set Approximation through Decomposition with Low-dimensional Sets and High-dimensional Matrices</title>
       <link>https://julialang.org/research/bffvps18/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -2152,6 +2173,15 @@ Windows Julia is available for Windows 7 and later, both 32 bit and 64 bit.
       
       <guid>https://julialang.org/research/ont14/</guid>
       <description>We develop an algorithm for sampling from the unitary invariant random matrix ensembles. The algorithm is based on the representation of their eigenvalues as a determinantal point process whose kernel is given in terms of orthogonal polynomials. Using this algorithm, statistics beyond those known through analysis are calculable through Monte Carlo simulation. Unexpected phenomena are observed in the simulations.</description>
+    </item>
+    
+    <item>
+      <title>Scientific Machine Learning</title>
+      <link>https://julialang.org/jsoc/gsoc/sciml/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/jsoc/gsoc/sciml/</guid>
+      <description>Scientific Machine Learning Model Zoo on TPU Julia has experimental support for executing code on TPUs (https://github.com/JuliaTPU/XLA.jl) TPUs enable training cutting edge machine larning models written using Flux. However, TPUs are not able to execute arbitrary code and thus often require individual attention to fix new patterns in XLA.jl or other packages. Additionally, the performance characteristics of the TPU hardware are quite unlike that of CPU or even GPU and models may thus require TPU-specific adjustments to achieve peak performance.</description>
     </item>
     
     <item>

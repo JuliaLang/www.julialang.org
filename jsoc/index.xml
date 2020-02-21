@@ -48,6 +48,16 @@ Updated Documentation and Doc Testing DifferentialEquations.</description>
     </item>
     
     <item>
+      <title>Flux</title>
+      <link>https://julialang.org/jsoc/gsoc/flux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/jsoc/gsoc/flux/</guid>
+      <description>Google Summer of Code Projects Flux usually takes part in Google Summer of Code, as part of the wider Julia organisation. We follow the same rules and application guidelines as Julia, so please check there for more information on applying. Below are a set of ideas for potential projects (though you are welcome to explore anything you are interested in).
+Flux projects are typically very competitive; we encourage you to get started early, as successful students typically have early PRs or working prototypes as part of the application.</description>
+    </item>
+    
+    <item>
       <title>General Projects – Summer of Code</title>
       <link>https://julialang.org/jsoc/gsoc/general/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -118,6 +128,26 @@ Often the best ideas are the ones that candidate SoC students come up with on th
       <guid>https://julialang.org/jsoc/gsoc/numerics/</guid>
       <description>Numerical Projects – Summer of Code For all of these projects, potential mentors are Steven Johnson.
 Numerical Linear Algebra PETSc integration for scalable technical computing PETSc is a widely used framework of data structures and computational routines suitable for massively scaling scientific computations. Many of these algorithms are also ideally suited for big data applications such as computing principal components of very large sparse matrices and solving complicated forecasting models with distributed methods for solving partial differential equations.</description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>https://julialang.org/jsoc/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/jsoc/projects/</guid>
+      <description>Projects This page lists a bunch of project ideas, meant to serve as starting points as you develop your own plan. You&amp;rsquo;re free to modify them to your tastes, or propose something totally different in an area you&amp;rsquo;re interested in.
+We have our project ideas organized roughly into the skillsets required:
+ Turing projects for probabilistic modelling and probabilistic programming. Flux projects for machine learning. Scientific Machine Learning Projects Compiler – work on the Julia compiler&amp;rsquo;s internals to make things better for everyone.</description>
+    </item>
+    
+    <item>
+      <title>Scientific Machine Learning</title>
+      <link>https://julialang.org/jsoc/gsoc/sciml/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/jsoc/gsoc/sciml/</guid>
+      <description>Scientific Machine Learning Model Zoo on TPU Julia has experimental support for executing code on TPUs (https://github.com/JuliaTPU/XLA.jl) TPUs enable training cutting edge machine larning models written using Flux. However, TPUs are not able to execute arbitrary code and thus often require individual attention to fix new patterns in XLA.jl or other packages. Additionally, the performance characteristics of the TPU hardware are quite unlike that of CPU or even GPU and models may thus require TPU-specific adjustments to achieve peak performance.</description>
     </item>
     
     <item>

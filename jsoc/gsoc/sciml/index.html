@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Scientific Machine Learning</title>
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+
+<meta property="og:title" content="The Julia Language"/>
+<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
+<meta property="og:description" content="Official website for the Julia programming language"/>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link rel="stylesheet" href="https://julialang.org/v2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://julialang.org/v2/css/app.css" />
+<link rel="stylesheet" href="https://julialang.org/v2/css/fonts.css" />
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-28835595-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+  
+
+  
+</head>
+
+<body>
+  
+  
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+
+    <a class="navbar-brand" href="../../../" id="logo">
+      <img src="https://julialang.org/v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="https://julialang.org/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="https://julialang.org/blog/">Blog</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="https://julialang.org/community/">Community</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="https://julialang.org/learning/">Learning</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="https://julialang.org/research/">Research</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="https://julialang.org/jsoc/">JSoC</a>
+        </li>
+        <li class="nav-item donate flex-md-fill text-md-center">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</div>
+
+
+
+  <br /><br/>
+
+  <div class = "container">
+  
+
+<h1 id="scientific-machine-learning">Scientific Machine Learning</h1>
+
+<h3 id="model-zoo-on-tpu">Model Zoo on TPU</h3>
+
+<p>Julia has experimental support for executing code on TPUs (<a href="https://github.com/JuliaTPU/XLA.jl">https://github.com/JuliaTPU/XLA.jl</a>) TPUs enable training cutting edge machine larning models written using Flux. However, TPUs are not able to execute arbitrary code and thus often require individual attention to fix new patterns in XLA.jl or other packages. Additionally, the performance characteristics of the TPU hardware are quite unlike that of CPU or even GPU and models may thus require TPU-specific adjustments to achieve peak performance. Lastly, the speed of TPUs presents signficant challenges to data input pipelines even at single-TPU levels of performance. Having a wide set of models available that are tuned for TPU will aid in finding common abstractions for models independent of hardware.</p>
+
+<p>Mentors: <a href="https://github.com/Keno">Keno Fischer</a></p>
+
+<h3 id="benchmarks">Benchmarks</h3>
+
+<p>A benchmark suite would help us to keep Julia&rsquo;s performance for ML models in shape, as well as revealing opportunities for improvement. Like the model-zoo project, this would involve contributing standard models that exercise common ML use case (images, text etc) and profiling them. The project could extend to include improving performance where possible, or creating a &ldquo;benchmarking CI&rdquo; like Julia&rsquo;s own <a href="https://github.com/JuliaCI/Nanosoldier.jl">nanosoldier</a>.</p>
+
+<p>Mentors: <a href="https://github.com/dhairyagandhi96/">Dhairya Gandhi</a>, <a href="https://github.com/staticfloat">Elliot Saba</a>.</p>
+
+<h3 id="multi-gpu-training">Multi-GPU training</h3>
+
+<p>Implement and demonstrate multi-GPU parallelism. One route is to expose communication primitives from NVIDIA&rsquo;s <a href="https://developer.nvidia.com/nccl">NCCL</a> library and use these to build tooling for model parallelism and distributed training. The project should demonstrate parallel training of a Flux model with benchmarks.</p>
+
+<p>Mentors: <a href="https://github.com/vchuravy">Valentin Churavy</a>, <a href="https://github.com/maleadt">Tim Besard</a></p>
+
+<h3 id="distributed-training">Distributed Training</h3>
+
+<p>Add a distributed training API to Flux, possibly inspired by PyTorch&rsquo;s equivalent. Any distributed training algorithm could be used (ideally the foundations make it easy to experiment with different setups), though the easiest is likely to implement an MXNet-like parameter server. It should demonstrate training a Flux model with data distributed over multiple nodes, with benchmarks.</p>
+
+<p>Mentors: <a href="https://github.com/vchuravy">Valentin Churavy</a>, <a href="https://github.com/maleadt">Tim Besard</a></p>
+
+<h3 id="sparse-gpu-and-ml-support">Sparse GPU and ML support</h3>
+
+<p>While Julia supports dense GPU arrays well via <a href="https://github.com/JuliaGPU/CUSPARSE.jl">CuArrays</a>, we lack up-to-date wrappers for sparse operations. This project would involve wrapping CUDA&rsquo;s sparse support, with <a href="https://github.com/JuliaGPU/CUSPARSE.jl">CUSPARSE.jl</a> as a starting point, adding them to CuArrays.jl, and perhaps demonstrating their use via a sparse machine learning model.</p>
+
+<h3 id="nlp-tools-and-models">NLP Tools and Models</h3>
+
+<p>Build deep learning models for Natural Language Processing in Julia. <a href="https://github.com/juliatext/TextAnalysis.jl">TextAnalysis</a>  and <a href="https://github.com/JuliaText/WordTokenizers.jl">WordTokenizers</a> contains the basic algorithms and data structures to work with textual data in Julia. On top of that base, we want to build modern deep learning models based on recent research. The following tasks can span multiple students and projects.</p>
+
+<p>It is important to note that we want practical, usable solutions to be created, not just research models. This implies that a large part of the effort will need to be in finding and using training data, and testing the models over a wide variety of domains. Pre-trained models must be available to users, who should be able to start using these without supplying their own training data.</p>
+
+<ul>
+<li>Implement <a href="https://allennlp.org/elmo">ELMo</a> in Julia</li>
+<li>Implement <a href="https://ai.googleblog.com/2019/12/albert-lite-bert-for-self-supervised.html">ALBERT</a> in Julia</li>
+<li>Implement GPT/GPT-2 in Julia</li>
+<li>Implement <a href="https://arxiv.org/abs/1909.03186">extractive summarisation based on Transformers</a></li>
+<li>Implement practical models for
+
+<ul>
+<li>Dependency Tree Parsing<br /></li>
+<li>Morphological extractions<br /></li>
+<li>Translations (using Transformers)<br /></li>
+</ul></li>
+<li>Indic language support &ndash; validate and test all models for Indic languages
+
+<ul>
+<li>ULMFiT models for Indic languages</li>
+</ul></li>
+<li>Chinese tokenisation and parsing</li>
+</ul>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/aviks/">Avik Sengupta</a></p>
+
+<h3 id="automated-music-generation">Automated music generation</h3>
+
+<p>Neural network based models can be used for music analysis and music generation (composition). A suite
+of tools in Julia to enable research in this area would be useful. This is a large, complex project that
+is suited for someone with an interest in music and machine learning. This project will need a mechanism
+to read music files (primarily MIDI), a way to synthesise sounds, and finally a model to learn composition.
+All of this is admittedly a lot of work, so the exact boundaries of the project can be flexible, but this can be an
+exciting project if you are interested in both music and machine learning.</p>
+
+<p><strong>Recommended Skills</strong>: Music notation, some basic music theory, MIDI format, Transformer and LSTM architectures</p>
+
+<p><strong>Resources</strong>: <a href="https://magenta.tensorflow.org/music-transformer">Music Transformer</a>, <a href="https://magenta.tensorflow.org/maestro-wave2midi2wave">Wave2MIDI2Wave</a></p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/aviks/">Avik Sengupta</a></p>
+
+<h3 id="neural-networks-for-solving-differential-equations">Neural networks for solving differential equations</h3>
+
+<p>Neural networks can be used as a method for efficiently solving difficult partial
+differential equations. Efficient implementations from recent papers are being
+explored as part of the <a href="https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl">NeuralNetDiffEq.jl</a>
+package. The <a href="https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl/issues">issue tracker</a>
+contains links to papers which would be interesting new neural network based methods to
+implement and benchmark against classical techniques.</p>
+
+<p><strong>Recommended Skills</strong>: Background knowledge in numerical analysis and machine learning.</p>
+
+<p><strong>Expected Results</strong>: New neural network based solver methods.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+<h3 id="accelerating-optimization-via-machine-learning-with-surrogate-models">Accelerating optimization via machine learning with surrogate models</h3>
+
+<p>In many cases, when attempting to optimize a function <code>f(p)</code> each calculation
+of <code>f</code> is very expensive. For example, evaluating <code>f</code> may require solving a
+PDE or other applications of complex linear algebra. Thus, instead of always
+directly evaluating <code>f</code>, one can develop a surrogate model <code>g</code> which is
+approximately <code>f</code> by training on previous data collected from <code>f</code> evaluations.
+This technique of using a trained surrogate in place of the real function
+is called surrogate optimization and mixes techniques from machine learning
+to accelerate optimization.</p>
+
+<p>Advanced techniques <a href="https://www.cambridge.org/core/journals/acta-numerica/article/kernel-techniques-from-machine-learning-to-meshless-methods/00686923110F799A1537C4F02BBAAE8E">utilize radial basis functions</a> and Gaussian
+processes in order to interpolate to new parameters to estimate <code>f</code> in areas
+which have not been sampled. <a href="http://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/9c8e3fd4d8874d60c1257052003eced6/e7dc33e4da12c5a9c12576d8002e442b/$FILE/Jones01.pdf">Adaptive training techniques</a> explore how to pick new areas
+to evaluate <code>f</code> to better hone in on global optima. The purpose of this project
+is to explore these techniques and build a package which performs surrogate
+optimizations.</p>
+
+<p><strong>Recommended Skills</strong>: Background knowledge of standard machine learning,
+statistical, or optimization techniques. Strong knowledge of numerical analysis
+is helpful but not required.</p>
+
+<p><strong>Expected Results</strong>: Library functions for performing surrogate optimization
+with tests on differential equation models.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+<h3 id="parameter-estimation-for-nonlinear-dynamical-models">Parameter estimation for nonlinear dynamical models</h3>
+
+<p>Machine learning has become a popular tool for understanding data, but scientists
+typically understand the world through the lens of physical laws and their
+resulting dynamical models. These models are generally differential equations
+given by physical first principles, where the constants in the equations such
+as chemical reaction rates and planetary masses determine the overall dynamics.
+The inverse problem to simulation, known as parameter estimation, is the process
+of utilizing data to determine these model parameters.</p>
+
+<p>The purpose of this project is to utilize the growing array of statistical,
+optimization, and machine learning tools in the Julia ecosystem to build
+library functions that make it easy for scientists to perform this parameter
+estimation with the most high-powered and robust methodologies. Possible projects
+include improving methods for Bayesian estimation of parameters via Stan.jl
+and Julia-based libraries like Turing.jl, or global optimization-based approaches.
+Novel techniques like classifying model outcomes via support vector machines
+and deep neural networks is can also be considered. Research and benchmarking
+to attempt to find the most robust methods will take place in this project.
+Additionally, the implementation of methods for estimating structure, such
+as <a href="http://www.pnas.org/content/111/52/18507">topological sensitivity analysis</a>
+along with performance enhancements to existing methods will be considered.</p>
+
+<p>Some work in this area can be found in
+<a href="https://github.com/JuliaDiffEq/DiffEqParamEstim.jl">DiffEqParamEstim.jl</a>
+and <a href="https://github.com/JuliaDiffEq/DiffEqBayes.jl">DiffEqBayes.jl</a>. Examples
+can be found <a href="http://docs.juliadiffeq.org/latest/analysis/parameter_estimation.html">in the DifferentialEquations.jl documentation</a>.</p>
+
+<p><strong>Recommended Skills</strong>: Background knowledge of standard machine learning,
+statistical, or optimization techniques. It&rsquo;s recommended but not required that
+one has basic knowledge of differential equations and DifferentialEquations.jl.
+Using the differential equation solver to get outputs from parameters can
+be learned on the job, but you should already be familiar (but not necessarily
+an expert) with the estimation techniques you are looking to employ.</p>
+
+<p><strong>Expected Results</strong>: Library functions for performing parameter estimation
+and inferring properties of differential equation solutions from parameters.
+Notebooks containing benchmarks determining the effectiveness of various methods
+and classifying when specific approaches are appropriate will be developed
+simultaneously.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a>, <a href="https://github.com/Vaibhavdixit02">Vaibhav Dixit</a></p>
+
+<h2 id="integration-of-fenics-jl-with-dolfin-adjoint-zygote-jl-for-scientific-machine-learning">Integration of FEniCS.jl with dolfin-adjoint + Zygote.jl for Scientific Machine Learning</h2>
+
+<p>Scientific machine learning requires mixing scientific computing libraries with machine learning.
+<a href="https://www.stochasticlifestyle.com/the-essential-tools-of-scientific-machine-learning-scientific-ml/">This blog post highlights how the tooling of Julia is fairly advanced in this field</a> compared to alternatives such as Python,
+but one area that has not been completely worked out is integration of automatic differentiation
+with partial differential equations.
+<a href="https://github.com/JuliaDiffEq/FEniCS.jl">FEniCS.jl</a> is a wrapper to the
+<a href="https://fenicsproject.org/">FEniCS</a> project for finite element solutions of partial differential
+equations. We would like to augment the Julia wrappers to allow for integration with Julia&rsquo;s
+automatic differentiation libraries like <a href="https://github.com/FluxML/Zygote.jl">Zygote.jl</a> by
+using <a href="http://www.dolfin-adjoint.org/en/release/">dolfin-adjoint</a>. This would require setting up
+this library for automatic installation for Julia users and writing adjoint passes which utilize
+this adjoint builder library. It would result in the first total integration between PDEs and
+neural networks.</p>
+
+<p><strong>Recommended Skills</strong>: A basic background in differential equations and Python. Having previous
+Julia knowledge is preferred but not strictly required.</p>
+
+<p><strong>Expected Results</strong>: Efficient and high-quality implementations of adjoints for Zygote.jl over FEniCS.jl functions.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+  </div>
+  <br /><br />
+  
+
+
+  <head>
+  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
+</head>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
+          </p>
+          <p>
+            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <script src="../../../v2/js/jquery.min.js"></script>
+<script src="../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../v2/js/platform.js"></script>
+<script src="../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+  <script src="../../../v2/js/jquery.min.js"></script>
+<script src="../../../v2/js/bootstrap.min.js"></script>
+<script src="../../../v2/js/platform.js"></script>
+<script src="../../../v2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>
