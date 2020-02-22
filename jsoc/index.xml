@@ -195,7 +195,7 @@ Progress Meter Improvements Right now Juno&amp;rsquo;s progress metre works well
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://julialang.org/jsoc/gsoc/turing/</guid>
-      <description>Turing Projects – Summer of Code Turing is a universal probabilistic programming language embedded in Julia. Turing allows the user to write models in standard Julia syntax, and provide a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics and data science etc. Since Turing is implemented in pure Julia code, its compiler and inference methods are amendable for hacking: new model families and inference methods can be easily added.</description>
+      <description>Turing Projects – Summer of Code Turing is a universal probabilistic programming language embedded in Julia. Turing allows the user to write models in standard Julia syntax, and provide a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics and data science etc. Since Turing is implemented in pure Julia code, its compiler and inference methods are amenable to hacking: new model families and inference methods can be easily added.</description>
     </item>
     
     <item>

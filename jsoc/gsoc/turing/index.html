@@ -110,28 +110,65 @@ if (!doNotTrack) {
 
 <h1 id="hahahugoshortcode-s0-hbhb">Turing Projects – Summer of Code</h1>
 
-<p><a href="http://turing.ml/">Turing</a> is a universal probabilistic programming language embedded in Julia. Turing allows the user to write models in standard Julia syntax, and provide a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics and data science etc. Since Turing is implemented in pure Julia code, its compiler and inference methods are amendable for hacking: new model families and inference methods can be easily added. Below is a list of ideas for potential projects, though you are welcome to propose your own to the Turing team.</p>
+<p><a href="http://turing.ml/">Turing</a> is a universal probabilistic programming language embedded in Julia. Turing allows the user to write models in standard Julia syntax, and provide a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics and data science etc. Since Turing is implemented in pure Julia code, its compiler and inference methods are amenable to hacking: new model families and inference methods can be easily added. Below is a list of ideas for potential projects, though you are welcome to propose your own to the Turing team.</p>
 
 <p>Project mentors are <a href="https://github.com/yebai">Hong Ge</a>, <a href="https://github.com/cpfiffer">Cameron Pfiffer</a>, <a href="https://github.com/trappmartin">Martin Trapp</a>, <a href="https://github.com/willtebbutt">Will Tebbutt</a>, <a href="https://github.com/mohamed82008">Mohamed Tarek</a> and <a href="https://github.com/xukai92">Kai Xu</a>.</p>
 
-<h2 id="probabilistic-modelling-model-zoo-data-science-workflow-with-turing-jl">Probabilistic modelling: model zoo &amp; data science workflow with Turing.jl</h2>
+<h2 id="benchmarking">Benchmarking</h2>
 
-<p>This project would involve implementing a model zoo for Turing, either by porting examples from another probabilistic programming language (like Stan, PyMC3) or implementing new models devised by students together with his/her mentor. We suggest that student starts with porting existing models from other PPLs and then implement more complicated models they are particularly interested in.
-Students are encouraged to write models in the format of <a href="https://github.com/TuringLang/TuringTutorials">tutorials</a>, which would illustrate data pre-processing, designing models, performing inference, and visualising results using Turing.jl.</p>
+<p>Turing&rsquo;s performance has been sporadically benchmarked against various other probabilistic programming languages (e.g. Turing, Stan, PyMC3, TensorFlow Prob), but a systemic approach to studying where Turing excels and where it falls short would be useful. A GSoC student would implement identical models in many PPLs and build tools to benchmark all PPLs against one another.</p>
 
-<p><strong>Recommended Skills</strong>: A basic understanding of probabilistic machine learning and Julia.</p>
+<p><strong>Recommended skills:</strong> An interest in Julia and Turing, as well as experience or desire to learn about various other PPLs. Some experience with automated tasks useful, but not necessary at the outset.</p>
 
-<p><strong>Expected Outcomes</strong>: A model zoo for Turing.</p>
+<p><strong>Expected output:</strong> A suite of auto-updating bechmarks that track Turing&rsquo;s performance on models implemented in various languages.</p>
 
-<h2 id="probabilistic-programming-gaussian-process-gp-integration-between-turing-jl-and-stheno-jl">Probabilistic programming: Gaussian process (GP) integration between Turing.jl and Stheno.jl</h2>
+<h2 id="nested-sampling-integration">Nested sampling integration</h2>
 
-<p>GPs are flexible Bayesian models for functions. They can be used to solve nonlinear regression and classification tasks and, more generally, can be used as useful building blocks in any probabilistic models. They are special / unusual in that they have particularly nice computational properties which makes inference easy.
-<a href="https://github.com/willtebbutt/Stheno.jl">Stheno.jl</a> is a probabilistic programming framework specialised to Gaussian Processes (GPs) which is designed to make it completely straightforward to construct complicated GP models, perform inference and learning in them and their parameters, and to make their interpretation straightforward.
-While Stheno has been designed with Turing compatibility in mind, some work is required to make embedding Stheno models inside Turing models completely seamless.</p>
+<p>Turing focuses on modularity in inference methods, and the development team would like to see more inference methods, particularly the popular nested sampling method. A Julia package (<a href="https://github.com/mileslucas/NestedSamplers.jl">NestedSamplers.jl</a>) but it is not hooked up to Turing and does not currently have a stable API. A GSoC student would either integrate that package or construct their own nested sampling method and build it into Turing.</p>
 
-<p><strong>Recommended Skills</strong>: A basic understanding of probabilistic machine learning and Julia. Some knowledge of Gaussian processes would be helpful, but can be learned over the course of the project.</p>
+<p><strong>Recommended skills:</strong> Understanding of inference methods and general probability theory. Nested sampler knowledge useful but not required.</p>
 
-<p><strong>Expected Outcomes</strong>: Integration of <a href="http://turing.ml/">Turing.jl</a> and <a href="https://github.com/willtebbutt/Stheno.jl">Stheno.jl</a> with a collection of example models and notebooks in Turing&rsquo;s model zoo and tutorials.</p>
+<p><strong>Expected output:</strong> A nested sampler that can be used with Turing models.</p>
+
+<h2 id="automated-function-memoization-by-model-annotation">Automated function memoization by model annotation</h2>
+
+<p>Function memoization is a way to reduce costly function evaluation by caching the output when the same inputs are given. Turing&rsquo;s Gibbs sampler often ends up <a href="https://turing.ml/dev/docs/using-turing/performancetips#reuse-computations-in-gibbs-sampling">rerunning expensive functions</a> multiple times, and it would be a significant performance improvement to allow Turing&rsquo;s model compiler to automatically memoize functions where appropriate. A student working on this project would become intimately familiar with Turing&rsquo;s model compiler and build in various automated improvements.</p>
+
+<p><strong>Recommended skills:</strong> General programming skills, hopefully with an understanding of what makes code perform efficiently.</p>
+
+<p><strong>Expected output:</strong> Additions to the Turing compiler that automatically memoize functions where appropriate.</p>
+
+<h2 id="making-distributions-gpu-compatible">Making Distributions GPU compatible</h2>
+
+<p>Julia&rsquo;s GPU tooling is generally quite good, but currently Turing is not able to reliably use GPUs while sampling because <a href="https://github.com/JuliaStats/Distributions.jl">Distributions.jl</a> is not GPU compatible. A student on this project would work with the Turing developers and the Distributions developers to allow the use of GPU parallelism where possible in Turing.</p>
+
+<p><strong>Recommended skills:</strong> GPU computing. Understanding of various statistical distributions useful but not required.</p>
+
+<p><strong>Expected output:</strong> A set of Distributions.jl objects where <code>logpdf</code> calls can be easily run through a GPU.</p>
+
+<h2 id="gpnet-extensions">GPnet extensions</h2>
+
+<p>One of Turing&rsquo;s sattelite packages, <a href="https://github.com/TuringLang/GPnet.jl">GPnet</a>, is designed to provide a comprehensive suite of Gaussian process tools. See <a href="https://github.com/TuringLang/GPnet.jl/issues/2">this issue</a> for potential tasks &ndash; there&rsquo;s a lot of interesting stuff going on with GPs, and this task in particular may have some creative freedom to it.</p>
+
+<p><strong>Recommended skills:</strong> Gaussian processes. Some Python required, as GPnet uses PyCall.</p>
+
+<p><strong>Expected output:</strong> Improved GP support. The output is variable depending on the student.</p>
+
+<h2 id="model-comparison-tools">Model comparison tools</h2>
+
+<p>Turing and its sattelite packages do not currently provide a comprehensive suite of model comparison tools, a critical tool for the applied statistician. A student who worked on this project would implement various model comparison tools like <a href="https://mc-stan.org/loo/">LOO and WAIC</a>, among others.</p>
+
+<p><strong>Recommended skills:</strong> General statistics. Bayesian inference and model comparison. Some Julia programming.</p>
+
+<p><strong>Expected output:</strong> An easy-to-use set of model comparison tools that allows Turing users to effortlessly compare multiple models on a variety of metrics.</p>
+
+<h2 id="mle-map-tools">MLE/MAP tools</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">Maximum likelihood estimates</a> (MLE) and <a href="https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation">maximum a posteriori</a> (MAP) estimates can currently only be done by users through a <a href="https://turing.ml/dev/docs/using-turing/advanced#maximum-a-posteriori-estimation">clunky set of workarounds</a>. A streamlined function like <code>mle(model)</code> or <code>map(model)</code> would be very useful for many of Turing&rsquo;s users who want to see what the MLE or MAP estimates look like, and it may be valuable to allow for functionality that allows MCMC sampling to begin from the MLE or MAP estimates. Students working on this project will work with optimization packages such as <a href="https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a> to make MLE and MAP estimation straightforward for Turing models.</p>
+
+<p><strong>Recommended skills:</strong> Optimization, familiarity with maximum likelihood or MAP.</p>
+
+<p><strong>Expected output:</strong> <code>map</code> and <code>mle</code> (names pending) functions for Turing that yield maximum likelihood and maximum a posteriori estimates of a model, and potentially statistics about the estimate such as the standard errors.</p>
 
   </div>
   <br /><br />
