@@ -62,3 +62,11 @@ Turing and its sattelite packages do not currently provide a comprehensive suite
 **Recommended skills:** Optimization, familiarity with maximum likelihood or MAP.
 
 **Expected output:** `map` and `mle` (names pending) functions for Turing that yield maximum likelihood and maximum a posteriori estimates of a model, and potentially statistics about the estimate such as the standard errors.
+
+## Static distributions
+
+Small, fixed-size vectors and matrices are fairly common in Turing models. This means that sampling in Turing can probably benefit from using statically sized vectors and matrices from StaticArrays.jl instead of normal, dynamic Julia arrays. Beside the often superior performance of small static vectors and matrices, static arrays are also automatically compatible with the GPU stack in Julia. Currently, the main obstacle to using StaticArrays.jl is that distributions in Distributions.jl are not compatible with StaticArrays. A GSoC student would adapt the multivariate and matrix-variate distributions as well as the univariate distribution with vector parameters in Distributions.jl to make a spin-off package called StaticDistributions.jl. The student would then benchmark StaticDistributions.jl against Distributions.jl and showcase an example of using StaticDistributions.jl together with CuArrays.jl and/or CUDAnative.jl for GPU-acceleration.
+
+**Recommended skills:** An understanding of generated functions in Julia. Some knowledge of random number generators and probablity distributions. An interest in performance optimization and micro-optimization as well as general-purpose GPU programming.
+
+**Expected output:** A package StaticDistributions.jl containing implementations of non-allocating multivariate and matrix-variate distributions with vectorized logpdf support, a benchmarking of StaticDistributions.jl against Distributions.jl, and tutorials on how to use StaticDistributions together with CuArrays and the Julia GPU stack.
