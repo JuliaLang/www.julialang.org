@@ -15,6 +15,8 @@ progress on your project early on. While PRs before the applications are not
 required, the Julia Language organization programs are extremely competitive,
 so the more ways you have to show your commitment, the better.
 
+If you have accessibility needs with respect to submitting your application, please email logan@julialang.org to get further assistance with your application. We are committed to making this application process accommodating for everyone.
+
 # Application Instructions
 
 - GSoD applications must be submitted to https://developers.google.com/season-of-docs/.
