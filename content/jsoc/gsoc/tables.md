@@ -24,33 +24,27 @@ JuliaDB is a distributed analytical database. It uses Julia’s multi-processing
 
 **Mentors**: [Shashi Gowda](https://shashi.github.io), [Mike Innes](http://mikeinnes.github.io/)
 
-## A SQL backend for Query.jl
+## A columnar query processing and optimization backend for Query.jl
 
-[Query.jl](https://github.com/davidanthoff/Query.jl) is designed to work
-with multiple backends. This project would add a SQL backend, so that queries
-that are formulated with the query commands in [Query.jl](https://github.com/davidanthoff/Query.jl)
-get translated into an equivalent SQL query that can be run within a
-SQL database engine. Both LINQ and dplyr support a similar feature set,
-and this project would enable the same scenario for julia. There is also
-a small academic literature on this topic that we need to understand and
-incorporate.
+[Query.jl](https://github.com/queryverse/Query.jl) is designed to work
+with multiple backends. This project would add a backend for columnar sources
+that implements many of the optimizations that the database literature
+on column oriented query processing has identified.
 
-**Recommended Skills**: Very strong database and SQL skills, previous
-experience with compilers (this project is essentially a compiler that
-translates a query AST into SQL) and a strong familiarity with the julia
-data stack.
+**Recommended Skills**: Very strong database design knowledge, familiarity
+with the Julia data stack and excellent Julia knowledge.
 
-**Expected Results**: A new version of [Query.jl](https://github.com/davidanthoff/Query.jl)
-that runs queries as SQL in a database.
+**Expected Results**: A new backend for [Query.jl](https://github.com/queryverse/Query.jl)
+that runs queries against columnar stores in an optimized way.
 
 **Mentors**: [David Anthoff](https://github.com/davidanthoff)
 
 ## Tabular file IO
 
-The Queryverse has a large number of file IO packages: [CSVFiles.jl](https://github.com/davidanthoff/CSVFiles.jl),
-[ExcelFiles.jl](https://github.com/davidanthoff/ExcelFiles.jl), [FeatherFiles.jl](https://github.com/davidanthoff/FeatherFiles.jl),
-[StatFiles.jl](https://github.com/davidanthoff/StatFiles.jl), [ParquetFiles](https://github.com/davidanthoff/ParquetFiles.jl)
-and [FstFiles.jl](https://github.com/davidanthoff/FstFiles.jl). This project
+The Queryverse has a large number of file IO packages: [CSVFiles.jl](https://github.com/queryverse/CSVFiles.jl),
+[ExcelFiles.jl](https://github.com/queryverse/ExcelFiles.jl), [FeatherFiles.jl](https://github.com/queryverse/FeatherFiles.jl),
+[StatFiles.jl](https://github.com/queryverse/StatFiles.jl), [ParquetFiles](https://github.com/queryverse/ParquetFiles.jl)
+and [FstFiles.jl](https://github.com/queryverse/FstFiles.jl). This project
 will a) do serious performance work across all of the existing packages and
 b) add write capabilities  to a number of them.
 
