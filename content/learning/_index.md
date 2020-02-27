@@ -221,6 +221,8 @@ Julia is now being used in several universities and online courses. If you know 
     *   Spring 2016, [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](http://www.maths.ed.ac.uk/~prichtar/index.html))
 *   University of Glasgow, School of Mathematics and Statistics
     *   An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](https://www.gla.ac.uk/postgraduate/taught/dataanalytics/)), September 2017
+*   University of Oulu
+    *   Invited [Advanced Julia Workshop](https://github.com/crstnbr/JuliaOulu20) (MSc. Carsten Bauer, University of Cologne), Spring 2020
 *   University of South Florida
     *   [ESI 6491](http://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon), Fall 2015
     *   [EIN 6945](http://www.chkwon.net/teaching/ein-6935/), Nonlinear Optimization and Game Theory (Prof. [Changhyun Kwon](http://www.chkwon.net/)), Spring 2016
