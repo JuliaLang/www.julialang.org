@@ -191,6 +191,7 @@ Julia is now being used in several universities and online courses. If you know 
 
 - University of California, Los Angeles (UCLA) <!--34.068921,-118.445181-->
   * [Stat M230/Biomath 280/Biostat M280](http://hua-zhou.github.io/teaching/biostatm280-2018spring/), Statistical Computing, Spring 2018 (Prof. [Hua Zhou](https://github.com/Hua-Zhou))
+  * [Stat M230/Biomath 280/Biostat M280](http://hua-zhou.github.io/teaching/biostatm280-2019spring/), Statistical Computing, Spring 2019 (Prof. [Hua Zhou](https://github.com/Hua-Zhou))
 
 - University of Cologne, Institute for Theoretical Physics <!--50.928162,6.928819-->
   * [Computational Physics](http://www.thp.uni-koeln.de/trebst/Lectures/2016-CompPhys.shtml) (Prof. Simon Trebst), Summer 2016
