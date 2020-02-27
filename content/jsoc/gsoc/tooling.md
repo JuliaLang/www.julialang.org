@@ -64,23 +64,10 @@ While static analysis has long been used as a tool for understanding and finding
 
 **Mentors**: [Sebastian Pfitzner](https://github.com/pfitzseb)
 
-## Live editing for Weave files in VS Code
-
-This project would add an interactive UI for [Weave.jl](https://github.com/mpastell/Weave.jl)
-documents to the [julia VS Code extension](https://github.com/JuliaEditorSupport/julia-vscode).
-
-**Required Skills**: Good understanding of TypeScript, web UI development,
-strong general julia skills.
-
-**Expected Results**: A highly interactive UI for julia markdown files in
-VS Code.
-
-**Mentors**: [David Anthoff](https://github.com/davidanthoff)
-
 ## VS Code extension
 
-We are generally looking for folks that want to help with the [julia VS Code extension](https://github.com/JuliaEditorSupport/julia-vscode).
-We have a long list of open issues, and some of them amount to significant projects. One particularly rewarding project would be adding debugger functionality to the VS Code extension.
+We are generally looking for folks that want to help with the [Julia VS Code extension](https://www.julia-vscode.org/).
+We have a long list of open issues, and some of them amount to significant projects.
 
 **Required Skills**: TypeScript, julia, web development.
 
