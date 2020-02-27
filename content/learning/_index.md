@@ -36,6 +36,7 @@ Get jupyter notebooks for the following youtube tutorials over [JuliaBoxTutorial
 *   [Introducing Julia wikibook](https://en.wikibooks.org/wiki/Introducing_Julia)
 *   [A Comprehensive Tutorial to Learn Data Science with Julia from Scratch](https://www.analyticsvidhya.com/blog/2017/10/comprehensive-tutorial-learn-data-science-julia-from-scratch/) by [Mohd Sanad Zaki Rizvi](https://www.analyticsvidhya.com/blog/author/mohdsanadzakirizvigmail-com/)
 *   [Julia language: a concise tutorial](https://syl1.gitbook.io/julia-language-a-concise-tutorial/) by Antonello Lobianco. A basic introduction that includes the main packages.
+*   [Julia Workshop for Physicists](https://github.com/crstnbr/JuliaOulu20) by [Carsten Bauer](https://github.com/crstnbr) (see also [JuliaWorkshop19](https://github.com/crstnbr/JuliaWorkshop19)).
 
 # Books
 
