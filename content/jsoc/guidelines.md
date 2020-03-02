@@ -28,7 +28,7 @@ Applications are free-form, so you can discuss your project in whatever way you
 feel is best. Our organization does not have page or formatting requirements, but we recommend
 building a formal PDF document of less than 10 pages which is formatted using
 Word or LaTeX. If you have any questions, contact the Julia Language student
-programs administrators at studentprograms@julialang.org. We
+programs administrators at jsoc@julialang.org. We
 recommend having a mentor to help you with the application process. Please feel
 free to share your draft applications in the `#jsoc` channel of the Slack to
 receive feedback.
