@@ -121,6 +121,17 @@ Often the best ideas are the ones that candidate SoC students come up with on th
     </item>
     
     <item>
+      <title>MLJ Projects – Summer of Code</title>
+      <link>https://julialang.org/jsoc/gsoc/mlj/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/jsoc/gsoc/mlj/</guid>
+      <description>MLJ Projects – Summer of Code MLJ is a machine learning framework for Julia aiming to provide a convenient way to use and combine a multitude of tools and models available in the Julia ML/Stats ecosystem. MLJ is released under the MIT licensed and sponsored by the Alan Turing Institute.
+Project mentors are Anthony, Sebastian Vollmer,
+FairML granting parole to accepting credit applications decision support tools guide human decision making with the aim to improve outcomes.</description>
+    </item>
+    
+    <item>
       <title>Numerical Projects – Summer of Code</title>
       <link>https://julialang.org/jsoc/gsoc/numerics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
