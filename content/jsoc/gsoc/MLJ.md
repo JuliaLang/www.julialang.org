@@ -24,7 +24,6 @@ https://arxiv.org/abs/1811.05577
 https://github.com/dssg/aequitas 
 https://arxiv.org/abs/2001.09233 
 
-
 ## Parallel computing and MLJ Test
 Project idea: Parallel computing and MLJ Test, benchmark and experiment with MLJ's parallelization features. MLJ offers Distributed processing and multithreading for: individual model training, model performance evaluation (eg, by cross-validation), when creating homogenous model ensembles, and when optimising model hyper parameters (model tuning). Tuning->(ensembling)->evaluating->fitting are operations that are typically composed leading to multiple levels of parallelisation. There is considerable scope for testing and experimentation with parallelisation at the different levels. There is also scope for suggesting and implementing improvements.
 
@@ -68,6 +67,3 @@ A good starting point that combines all of the above implementations may be [tim
 
 ## Bring MLJ to Kaggle! 
 Project idea: Bring MLJ to Kaggle! See if MLJ and your data science skills are up to the challenge of matching the Kaggle tutorial results of other ML frameworks using Julia. Many Kaggle competitions rely on comparing and combining the predictions of numerous models, and with over 120 models and a maturing selection of meta-modelling tools, MLJ is poised to enter the fray. Help us lure more data scientists to Julia, and help us identity MLJ shortcomings, by developing end-to-end applications of MLJ tools and models to Kaggle tutorials.
-
-
-
