@@ -131,10 +131,6 @@ High-level overview: <a href="https://towardsdatascience.com/a-tu">https://towar
 <a href="https://github.com/dssg/aequitas">https://github.com/dssg/aequitas</a>
 <a href="https://arxiv.org/abs/2001.09233">https://arxiv.org/abs/2001.09233</a></p>
 
-<h2 id="bring-mlj-to-kaggle">Bring MLJ to Kaggle!</h2>
-
-<p>Project idea: Bring MLJ to Kaggle! See if MLJ and your data science skills are up to the challenge of matching the Kaggle tutorial results of other ML frameworks using Julia. Many Kaggle competitions rely on comparing and combining the predictions of numerous models, and with over 120 models and a maturing selection of meta-modelling tools, MLJ is poised to enter the fray. Help us lure more data scientists to Julia, and help us identity MLJ shortcomings, by developing end-to-end applications of MLJ tools and models to Kaggle tutorials.</p>
-
 <h2 id="parallel-computing-and-mlj-test">Parallel computing and MLJ Test</h2>
 
 <p>Project idea: Parallel computing and MLJ Test, benchmark and experiment with MLJ&rsquo;s parallelization features. MLJ offers Distributed processing and multithreading for: individual model training, model performance evaluation (eg, by cross-validation), when creating homogenous model ensembles, and when optimising model hyper parameters (model tuning). Tuning-&gt;(ensembling)-&gt;evaluating-&gt;fitting are operations that are typically composed leading to multiple levels of parallelisation. There is considerable scope for testing and experimentation with parallelisation at the different levels. There is also scope for suggesting and implementing improvements.</p>
@@ -154,6 +150,42 @@ we must be careful not to prematurely terminate training for Model A.</p>
 <a href="https://arxiv.org/pdf/1603.06560">https://arxiv.org/pdf/1603.06560</a>
 <a href="https://arxiv.org/abs/1406.3896">https://arxiv.org/abs/1406.3896</a>
 <a href="https://openreview.net/forum?id=SknC0bW0-">https://openreview.net/forum?id=SknC0bW0-</a></p>
+
+<h2 id="add-time-series-support">Add time series support</h2>
+
+<p>MLJ is so far focused on tabular data. This project is to add support for time series data in a modular, composable way.</p>
+
+<p>Time series are everywhere in real-world applications and there has been an increase in interest in time series toolboxes recently (see e.g. <a href="https://github.com/alan-turing-institute/sktime">sktime</a>, <a href="https://github.com/rtavenar/tslearn">tslearn</a>, <a href="https://github.com/uea-machine-learning/tsml/">tsml</a>).</p>
+
+<p>But there are still very few principled time-series libraries out there, so you would be working on something that could be very useful for a large number of people. To find out more, check out this <a href="http://learningsys.org/neurips19/assets/papers/sktime_ml_systems_neurips2019.pdf">paper</a> on sktime.</p>
+
+<p>The main goal of the project is to port capability from sktime to MLJ.</p>
+
+<h3 id="mentors">Mentors</h3>
+
+<ul>
+<li><a href="https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer">Sebastian Vollmer</a>
+
+<ul>
+<li><a href="https://github.com/mloning">Markus Löning</a> (sktime developer)</li>
+</ul></li>
+</ul>
+
+<h3 id="details">Details</h3>
+
+<ul>
+<li>Extend existing MLJ data container to handle time series data,<br /></li>
+<li>Implement time series data specific transformers that work on new data container (e.g. Fourier transform, auto-correlation, etc.),</li>
+<li>Implement time-series classification algorithms (for a good overview of algorithms, see e.g. this <a href="https://arxiv.org/abs/1602.01711">paper</a>; for Python implementations see e.g. <a href="https://github.com/alan-turing-institute/sktime">sktime</a>; for Java implementations, see e.g. <a href="http://www.timeseriesclassification.com/code.php">this code repository</a>),</li>
+</ul>
+
+<h3 id="where-to-get-started">Where to get started?</h3>
+
+<p>A good starting point that combines all of the above implementations may be <a href="https://www.sciencedirect.com/science/article/pii/S0020025513001473">time series forest</a>, a generalisation of random forest in which each tree of the ensemble extracts features from random intervals of the time series before fitting a decision tree on the extracted features, so that each tree is no longer a single estimator but rather a pipeline chaining prior transformations with a final estimator.</p>
+
+<h2 id="bring-mlj-to-kaggle">Bring MLJ to Kaggle!</h2>
+
+<p>Project idea: Bring MLJ to Kaggle! See if MLJ and your data science skills are up to the challenge of matching the Kaggle tutorial results of other ML frameworks using Julia. Many Kaggle competitions rely on comparing and combining the predictions of numerous models, and with over 120 models and a maturing selection of meta-modelling tools, MLJ is poised to enter the fray. Help us lure more data scientists to Julia, and help us identity MLJ shortcomings, by developing end-to-end applications of MLJ tools and models to Kaggle tutorials.</p>
 
   </div>
   <br /><br />
