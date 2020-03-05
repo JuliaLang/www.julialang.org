@@ -123,3 +123,21 @@ Julia knowledge is preferred but not strictly required.
 **Expected Results**: Efficient and high-quality implementations of adjoints for Zygote.jl over FEniCS.jl functions.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+
+## Multi-Start Optimization Methods
+
+While standard machine learning can be shown to be "safe" for local optimization,
+scientific machine learning can sometimes require the use of globalizing techniques
+to improve the optimization process. Hybrid methods, known as multistart optimization
+methods, glue together a local optimization technique together with a parameter
+search over a large space of possible initial points. The purpose of this project
+would be to take a [MultistartOptimization.jl](https://github.com/tpapp/MultistartOptimization.jl)
+as a starting point and create a fully featured set of multistart optimization
+tools for use with [Optim.jl](https://github.com/JuliaNLSolvers/Optim.jl)
+
+**Recommended Skills**: A basic background in optimization. Having previous
+Julia knowledge is preferred but not strictly required.
+
+**Expected Results**: Efficient and high-quality implementations of multistart optimization methods.
+
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas) and [Patrick Kofod Mogensen](https://github.com/pkofod)
