@@ -5,11 +5,11 @@ Please take a moment to read the [Julia Community Standards](/community/standard
 
 ## Diversity and Inclusion
 
-The Julia Community is committed to continuing to foster an inclusive and diverse culture. Read more about how we are doing this on our [diversity page](https://julialang.org/diversity).
+The Julia Community is committed to continuing to foster an inclusive and diverse culture. Read more about how we are doing this on our [diversity page](/diversity/).
 
 ## 2019 Julia User and Developer Survey
 
-We conducted the first annual Julia User & Developer Survey in June 2019, and [presented the results at JuliaCon](https://www.youtube.com/watch?v=yx6lBSHqGfc). Download the [survey findings](https://julialang.org/images/2019-julia-user-developer-survey.pdf).
+We conducted the first annual Julia User & Developer Survey in June 2019, and [presented the results at JuliaCon](https://www.youtube.com/watch?v=yx6lBSHqGfc). Download the [survey findings](/assets/2019-julia-user-developer-survey.pdf).
 
 ## Official Channels
 

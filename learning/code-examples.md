@@ -2,7 +2,7 @@
 
 # Code examples
 
-[Check out the benchmark page to learn more about Julia's performance versus other languages](https://julialang.org/benchmarks/)
+[Check out the benchmark page to learn more about Julia's performance versus other languages](/benchmarks/)
 
 ```julia:ex
 function mandelbrot(a)

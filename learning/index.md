@@ -87,9 +87,9 @@ _Julia 1.0 was released on 8 August 2018_
 
 ## Julia in the classroom
 
-Julia is ready for the classroom. We encourage instructors to participate in the [Julia community resources](http://julialang.org/community) for questions about Julia or specific packages.
+Julia is ready for the classroom. We encourage instructors to participate in the [Julia community resources](/community/) for questions about Julia or specific packages.
 This page puts together various resources that instructors may find useful.
-Tutorials and other learning materials are in the [learning section](http://julialang.org/learning) of the website.
+Tutorials and other learning materials are in the [learning section](/learning/) of the website.
 
 ### MOOCs teaching Julia
 

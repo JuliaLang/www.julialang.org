@@ -4,7 +4,7 @@
 Research on Julia is carried out at the Julia Lab at MIT and at many universities worldwide.
 If you use Julia in your research, we request citing the following paper:
 
-Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah. (2017) SIAM Review, 59: 65–98. doi: [10.1137/141000671](http://dx.doi.org/10.1137/141000671). url: [https://julialang.org/research/julia-fresh-approach-BEKS.pdf](https://julialang.org/research/julia-fresh-approach-BEKS.pdf).
+Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah. (2017) SIAM Review, 59: 65–98. doi: [10.1137/141000671](http://dx.doi.org/10.1137/141000671). url: [/research/julia-fresh-approach-BEKS.pdf](/assets/research/julia-fresh-approach-BEKS.pdf).
 
 <!-- LAZY COPY PASTE -->
 
@@ -18,7 +18,7 @@ Researchers contributing to Julia have been awarded various prizes:
 * [2019 Julia Community Prizes](https://juliacon.org/2019/prize.html): Jane Herriman, Mike Innes, and Jacob Quinn (2019)
 * [James H. Wilkinson Prize for Numerical Software](https://sinews.siam.org/Details-Page/january-prize-spotlight-jeff-bezanson-steven-l-brunton-jack-dongarra-stefan-karpinski-and-viral-b-shah): Jeff Bezanson, Stefan Karpinski, and Viral Shah for Julia (2019)
 * [Forbes 30 under 30 in Enterprise Technology](https://www.forbes.com/profile/keno-fischer/?list=30under30-enterprise-technology#2388dab7190f): Keno Fischer for Julia (2019)
-* [2018 Julia Community Prizes](https://julialang.org/blog/2018/09/the-julia-community-prizes-2018/): Tim Besard, Katharine Hyatt, Chris Rackauckas, and Elliot Saba (2018)
+* [2018 Julia Community Prizes](/blog/2018-09-04-the-julia-community-prizes-2018/): Tim Besard, Katharine Hyatt, Chris Rackauckas, and Elliot Saba (2018)
 * [DSWeb 2018 Software Contest](https://dsweb.siam.org/The-Magazine/Article/winners-of-the-dsweb-2018-software-contest): George Datseris for DynamicalSystems.jl (2018)
 * [Best of Open Source Software (Bossie) Award](https://globenewswire.com/news-release/2018/09/26/1576496/0/en/InfoWorld-Recognizes-Open-Source-Software-Technologies-Driving-Business-Innovation.html): The Julia project (2018)
 * [INFORMS Computing Society Prize](https://connect.informs.org/computing/awards/ics-prize): Miles Lubin, Iain Dunning, and Joey Huchette for JuMP.jl (2016)
@@ -115,7 +115,7 @@ We welcome additions to this list in the form of [pull requests](https://github.
 * **Effective Extensible Programming: Unleashing Julia on GPUs**. Tim Besard, Christophe Foket, Bjorn De Sutter. (2017): 1&ndash;14. doi: [10.1109/TPDS.2018.2872064](http://dx.doi.org/10.1109/TPDS.2018.2872064). arXiv: [1712.03112](https://arxiv.org/abs/1712.03112). Packages: [cudadrv.jl](https://github.com/JuliaGPU/CUDAdrv.jl), [cudanative.jl](https://github.com/JuliaGPU/CUDAnative.jl), [llvm.jl](https://github.com/maleadt/LLVM.jl).
 * **Functional regression-based fluid permeability prediction in monodisperse sphere packings from isotropic two-point correlation functions**. Röding, Magnus, Svensson, Peter, Lorén, Niklas. (2017) _Computational Materials Science_, 134: 126&ndash;131. doi: [10.1016/j.commatsci.2017.03.042](http://dx.doi.org/10.1016/j.commatsci.2017.03.042).
 * **Hopf bifurcation in a nonlocal nonlinear transport equation stemming from stochastic neural dynamics**. Drogoul Audric,, Veltz Romain. (2017) _ Chaos_, 2017. doi: [10.1063/1.4976510](http://dx.doi.org/10.1063/1.4976510).
-* **Julia: A Fresh Approach to Numerical Computing**. Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah. (2017) _SIAM Review_, 59: 65&ndash;98. doi: [10.1137/141000671](http://dx.doi.org/10.1137/141000671). url: [https://julialang.org/research/julia-fresh-approach-BEKS.pdf](https://julialang.org/research/julia-fresh-approach-BEKS.pdf).
+* **Julia: A Fresh Approach to Numerical Computing**. Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah. (2017) _SIAM Review_, 59: 65&ndash;98. doi: [10.1137/141000671](http://dx.doi.org/10.1137/141000671). url: [/research/julia-fresh-approach-BEKS.pdf](/research/julia-fresh-approach-BEKS.pdf).
 * **JuliaFEM - open source solver for both industrial and academia usage**. Tero Frondelius, Jukka Aho. (2017) _Rakenteiden Mekaniikka_, 50(3): 229&ndash;233. doi: [10.23998/rm.64224](http://dx.doi.org/10.23998/rm.64224). Packages: [juliafem.jl](https://github.com/JuliaFEM/JuliaFEM.jl).
 * **JuMP: A Modeling Language for Mathematical Optimization**. Iain Dunning, Joey Huchette, Miles Lubin. (2017) _SIAM Review_, 2017(2): 295&ndash;320. doi: [10.1137/15M1020575](http://dx.doi.org/10.1137/15M1020575). arXiv: [1508.01982](https://arxiv.org/abs/1508.01982). url: [https://mlubin.github.io/pdf/jump-sirev.pdf](https://mlubin.github.io/pdf/jump-sirev.pdf). Packages: [jump.jl](https://github.com/JuliaOpt/JuMP.jl).
 * **Microenvironmental cooperation promotes early spread and bistability of a Warburg-like phenotype**. J. Fernandez-de-Cossio-Diaz, A. De Martino, R. Mulet. (2017) _Scientific Reports_. doi: [10.1038/s41598-017-03342-3](http://dx.doi.org/10.1038/s41598-017-03342-3).

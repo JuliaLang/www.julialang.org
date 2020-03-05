@@ -2,7 +2,7 @@
 
 # Download Julia
 
-If you like Julia, please consider starring us [on GitHub](https://github.com/JuliaLang/julia) and spreading the word! \\
+If you like Julia, please consider starring us [on GitHub](https://github.com/JuliaLang/julia) and spreading the word!
 
 ~~~
 <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
@@ -15,9 +15,9 @@ We provide several ways for you to run Julia:
 * Using [Docker](https://docs.docker.com/) images from [Docker Hub](https://hub.docker.com/_/julia) maintained by the [Docker Community](https://github.com/docker-library/julia).
 * [JuliaPro](http://juliacomputing.com/products/juliapro.html) by [Julia Computing](http://juliacomputing.com/) includes Julia and the [Juno IDE](http://junolab.org/), along with access to a curated set of packages for plotting, optimization, machine learning, databases and much more (requires registration).
 
-Please see [platform specific instructions](https://julialang.org/downloads/platform/) for further installation instructions and if you have trouble installing Julia.
+Please see [platform specific instructions](/downloads/platform/) for further installation instructions and if you have trouble installing Julia.
 If the provided download files do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
-Different OSes and architectures have varying [tiers of support](https://julialang.org/downloads/#support-tiers), and are listed at the bottom of this page.
+Different OSes and architectures have varying [tiers of support](/downloads/#support-tiers), and are listed at the bottom of this page.
 @@
 
 
@@ -79,7 +79,7 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
 ~~~
 @@ @@
 
-\\
+
 
 ## Long-term support (LTS) release: v1.0.5 (Sep 9, 2019)
 
@@ -139,7 +139,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 ~~~
 @@ @@
 
-\\
+
 
 ## Upcoming release: v1.4.0-rc1 (Jan 23, 2020)
 
@@ -201,25 +201,25 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 ~~~
 @@ @@
 
-\\
+
 
 ## Older Releases
 
-Older releases of Julia for all platforms are available on the [Older releases page](https://julialang.org/downloads/oldreleases). Only the LTS and Stable releases are maintained.
+Older releases of Julia for all platforms are available on the [Older releases page](/downloads/oldreleases/). Only the LTS and Stable releases are maintained.
 
-\\
+
 
 ## Nightly builds
 
-Nightly builds of the current unstable development version of Julia are available on the [nightlies page](https://julialang.org/downloads/nightlies). These are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current release version of Julia, above.
+Nightly builds of the current unstable development version of Julia are available on the [nightlies page](/downloads/nightlies/). These are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current release version of Julia, above.
 
-\\
+
 
 ## Download verification
 
-All Julia binary releases are cryptographically secured using the traditional methods on each platform. macOS and Windows releases are codesigned with certificates that are verified by the operating system during installation. Linux and source tarballs are signed with GPG using [this key](https://julialang.org/juliareleases.asc).
+All Julia binary releases are cryptographically secured using the traditional methods on each platform. macOS and Windows releases are codesigned with certificates that are verified by the operating system during installation. Linux and source tarballs are signed with GPG using [this key](/assets/juliareleases.asc).
 
-\\
+
 
 ## Currently supported platforms
 
