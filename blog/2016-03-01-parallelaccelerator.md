@@ -5,8 +5,6 @@
 @def authors = """<a href="https://www.cs.indiana.edu/~lkuper/">Lindsey Kuper</a>"""  
 @def hascode = true
 
-# An introduction to ParallelAccelerator.jl
-
 The High Performance Scripting team at Intel Labs recently released
 [ParallelAccelerator.jl](https://github.com/IntelLabs/ParallelAccelerator.jl),
 a Julia package for high-performance, high-level

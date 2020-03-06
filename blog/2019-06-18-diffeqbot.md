@@ -5,8 +5,6 @@
 @def authors = """<a href="http://github.com/kanav99">Kanav Gupta</a>"""  
 @def hascode = true
 
-# Hello @DiffEqBot
-
 Hi! Today we all got a new member to the DiffEq family. Say hi to our own [DiffEqBot](https://github.com/DiffEqBot) - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a [repository](https://github.com/DiffEqBot/Reports). What's special about this is that it is completely stateless (no databases involved at all, just juggling between repositories!) and it has no exposed public URLs. Even though highly inspired by Nanosoldier, this has a completely unique workflow.
 
 \toc

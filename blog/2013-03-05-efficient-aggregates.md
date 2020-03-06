@@ -5,7 +5,6 @@
 @def authors = """<a href="https://github.com/JeffBezanson">Jeff Bezanson</a>"""  
 @def hascode = true
 
-# Efficient Aggregates in Julia
 
 We recently introduced an exciting feature that has been in planning for some
 time: immutable aggregate types. In fact, we have been planning to do this

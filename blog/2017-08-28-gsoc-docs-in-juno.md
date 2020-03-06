@@ -6,7 +6,6 @@
 @def hasmath = true
 @def hascode = true
 
-# GSoC 2017: Documentation Browser for Juno
 
 The aim of this GSoC project is to provide a convenient way to access documentation in the
 Juno IDE. Any work on this has to be on the Julia side (for getting the necessary

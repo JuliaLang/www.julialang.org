@@ -5,8 +5,6 @@
 @def authors = """<a href="http://github.com/vtjnash/">Jameson Nash</a>"""  
 @def hascode=true
 
-# Profiling tool wins and woes
-
 Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](http://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.
 
 ## Learn more!

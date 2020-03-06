@@ -4,7 +4,6 @@
 @def title = "Paper in SIAM Review: Julia - A Fresh Approach to Numerical Computing"
 @def authors = "Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah"  
 
-# Paper in SIAM Review: Julia - A Fresh Approach to Numerical Computing
 
 Our paper, [Julia: A Fresh Approach to Numerical Computing](/assets/research/julia-fresh-approach-BEKS.pdf), was published in the prestigious [SIAM Review](http://dx.doi.org/10.1137/141000671) in February 2017. While drafts of this paper have always been available on [Arxiv](http://arxiv.org/abs/1411.1607), we are excited that the paper is finally published. We make an attempt to explain why Julia is fast while retaining ease of use and simultaneously also offer a tutorial for the reader to get a feel for the language.
 

@@ -4,8 +4,6 @@
 @def title = "Julia的版本发布流程"
 @def authors = "Stefan Karpinski (Julia Computing)"  
 
-# Julia的版本发布流程
-
 从事软件开发的行家里手们对版本发布流程与节奏如此了若指掌，以至于他们将其精髓**内化**（internalize）并以为人人都懂得这些“浅显的道理”。
 可是事实恰好相反，外行一眼望去如同雾里看花。
 所以为了整个Julia社区，乃至于其它编程语言社区，我觉得有必要将Julia的开发过程白纸黑字地写下来。

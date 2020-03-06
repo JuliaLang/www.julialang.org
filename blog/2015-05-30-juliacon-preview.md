@@ -4,7 +4,6 @@
 @def title = "JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more"
 @def authors = "The JuliaCon Committee"  
 
-# JuliaCon 2015 Preview - Deep Learning, 3D Printing, Parallel Computing, and so much more
 
 *[JuliaCon 2015](http://juliacon.org) is being held at the Massachusetts Institute of Technology from June 24th to the 28th. [Get your tickets](http://www.eventbrite.com/e/juliacon-2015-tickets-16517619645) and [book your hotel](http://juliacon.org/#accom) before June 4th to take advantage of early bird pricing.*
 

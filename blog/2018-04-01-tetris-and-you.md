@@ -5,8 +5,6 @@
 @def title = "Tetris coming to Julia language for v1.0"
 @def authors = """<a href="https://github.com/djsegal">Dan Segal</a>"""
 
-# Tetris coming to Julia language for v1.0
-
 Good news, everyone! Starting v1.0, Tetris will be included in the standard library. This will allow you to play a round of Tetris while your code is busy running.
 
 Until Julia v1.0 drops next Wednesday, though, you can play online at:

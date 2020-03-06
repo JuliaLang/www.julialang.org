@@ -26,5 +26,18 @@
 
 <br><br>
 
+{{ispage /blog/*}}
+<div class="container blog-title">
+	{{isdef title}}<h1>{{fill title}}</h1>{{end}}
+  <h3>
+  {{isdef published}} <span style="font-weight: lighter;"> {{fill published}} </span>
+	|
+	{{end}}
+	{{isdef author}} <span style="font-weight: bold;">{{fill author}}</span> {{end}}
+  <!-- assumption that only one of the two is defined -->
+  {{isdef authors}} <span style="font-weight: bold;">{{fill authors}} </span> {{end}}
+  </h3>
+</div>
+{{end}}
 
 <!-- Content appended here -->

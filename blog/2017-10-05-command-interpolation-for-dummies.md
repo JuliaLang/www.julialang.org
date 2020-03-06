@@ -5,7 +5,6 @@
 @def authors = " 😄"  
 @def hascode = true
 
-# Command interpolation for dummies
 
 I've never been a big user of the command line. One could even say I actively avoided it!
 Heck, I haven't even written a program using command line arguments, since it always felt a bit like resurrecting a dinosaur - and we all know how that ends.

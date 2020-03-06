@@ -4,8 +4,6 @@
 @def title = "Why We Created Julia"
 @def authors = "Jeff Bezanson Stefan Karpinski Viral B. Shah Alan Edelman"  
 
-# Why We Created Julia
-
 ~~~<a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
 <a href="http://karpinski.org/">Stefan Karpinski</a>
 <a href="http://github.com/ViralBShah/">Viral B. Shah</a>

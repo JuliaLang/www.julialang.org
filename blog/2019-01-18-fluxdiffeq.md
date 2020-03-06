@@ -6,8 +6,6 @@
 @def hascode = true
 @def hasmath = true
 
-# DiffEqFlux.jl – A Julia Library for Neural Differential Equations
-
 Translations: [Traditional Chinese](/blog/2019-04-04-fluxdiffeq-zh_tw/]Traditional Chinese)
 
 In this blog post we will show you how to easily, efficiently, and

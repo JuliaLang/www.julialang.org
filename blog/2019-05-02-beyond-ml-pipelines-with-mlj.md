@@ -5,8 +5,6 @@
 @def authors = "Anthony Blaom, Diego Arenas, Franz Kiraly, Yiannis Simillides, Sebastian Vollmer"  
 @def hascode = true
 
-# Beyond machine learning pipelines with MLJ
-
 <!--
 - learning curves (from `examples/random_forest.jl`)
 - tuning plots (from `examples/two_parameter_plot.jl`)

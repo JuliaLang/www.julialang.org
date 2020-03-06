@@ -5,8 +5,6 @@
 @def authors = """<a href="https://github.com/timholy">Tim Holy</a>"""  
 @def hascode = true
 
-# Union-splitting: what it is, and why you should care
-
 Among those who follow Julia's development closely, one of the (many) new features causing great excitement is something called "Union-splitting."
 Here at JuliaCon 2018 I've found myself explaining this feature repeatedly, so I thought I'd write this blog post to help disseminate this important information more widely.
 Let me start by saying that I'm not the expert here—this is a feature added by Jameson Nash and Jacob Quinn, and enhanced by optimizer improvements by Keno Fisher—but I am one of the many people truly excited about how this is already changing how I write Julia code.

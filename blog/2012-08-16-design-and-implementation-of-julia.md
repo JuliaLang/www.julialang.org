@@ -4,7 +4,6 @@
 @def title = "Design and implementation of Julia"
 @def authors = "Jeff Bezanson Stefan Karpinski Viral B. Shah Alan Edelman"  
 
-# Design and implementation of Julia
 
 ~~~<a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
 <a href="http://karpinski.org/">Stefan Karpinski</a>

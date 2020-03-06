@@ -4,8 +4,6 @@
 @def title = "GSoC 2018: Reinforcement Learning and Generative models using Flux"
 @def authors = """ <a href="https://github.com/tejank10">Tejan Karmali</a>"""  
 
-# GSoC 2018: Reinforcement Learning and Generative models using Flux
-
 Hello, world!
 
 In this post I'm going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of [Flux.jl](https://github.com/FluxML), a machine learning library written in [Julia](https://github.com/julia/julialang). My project covered Reinforcement Learning and computer vision models.

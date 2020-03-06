@@ -5,8 +5,6 @@
 @def authors = """ <a href="http://holylab.wustl.edu">Timothy E. Holy</a>"""  
 @def hascode = true
 
-# Building GUIs with Julia, Tk, and Cairo, Part I
-
 This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia.
 Those following Julia development will know that plotting in Julia is still evolving, and one could therefore expect that it might be premature to build GUIs with Julia.
 My own recent experience has taught me that this expectation is wrong: compared with building GUIs in Matlab (my only previous GUI-writing experience), Julia already offers a number of quite compelling advantages.

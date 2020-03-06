@@ -4,7 +4,7 @@
 @def title = "JuliaCon 2014 Optimization Presentations"
 @def authors = """ <a href="https://github.com/quinnj">Jacob Quinn</a>"""  
 
-# JuliaCon 2014 Optimization Presentations
+
 
 ## Optimization Session
 

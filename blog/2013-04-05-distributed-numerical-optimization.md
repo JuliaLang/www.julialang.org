@@ -6,7 +6,6 @@
 @def hascode = true
 @def hasmath = true
 
-# Distributed Numerical Optimization
 
 This post walks through the parallel computing functionality of Julia
 to implement an asynchronous parallel version of the classical

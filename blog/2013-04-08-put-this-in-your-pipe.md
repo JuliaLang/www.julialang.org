@@ -5,8 +5,6 @@
 @def authors = """<a href="http://karpinski.org/">Stefan Karpinski</a>"""  
 @def hascode = true
 
-# Put This In Your Pipe
-
 In a [previous post](/blog/2012-03-11-shelling-out-sucks/), I talked about why "shelling out" to spawn a pipeline of external programs via an intermediate shell is a common cause of bugs, security holes, unnecessary overhead, and silent failures.
 But it's so convenient!
 Why can't running pipelines of external programs be convenient *and* safe?

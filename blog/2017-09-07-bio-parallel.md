@@ -5,7 +5,6 @@
 @def authors = "Kenta Sato"  
 @def hascode = true
 
-# GSoC 2017: Parallelism in BioJulia
 
 In this summer, I have worked on a project to develop tools that make BioJulia
 run faster. As an outcome, Automa.jl now generates more efficient code to parse

@@ -5,21 +5,16 @@
 @def authors = """<a href="https://github.com/timholy">Tim Holy</a>, <a href="https://github.com/KristofferC">Kristoffer Carlsson</a>, <a href="https://github.com/pfitzseb">Sebastian Pfitzner</a>, <a href="https://github.com/Keno">Keno Fischer</a>"""
 @def hascode = true
 
-# A Julia interpreter and debugger
-
 
 The authors are pleased to announce the release of a fully-featured
 debugger for Julia. You can now easily debug and introspect Julia code
 in a variety of ways:
 
 * Step into functions and manually walk through your code while inspecting its state
-
 * Set breakpoints and trap errors, allowing you to discover what went
   wrong at the point of trouble
-
 * Interactively update and replace existing code to rapidly fix bugs
   in place without restarting
-
 * Use the full-featured IDE in [Juno][] to bundle all these
   features together in an easy to use graphical interface
 

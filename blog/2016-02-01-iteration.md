@@ -5,8 +5,6 @@
 @def authors = """ <a href="http://holylab.wustl.edu">Tim Holy</a>"""  
 @def hascode = true
 
-# Multidimensional algorithms and iteration
-
 **Note: updated December 2018 for Julia 1.1**
 
 Julia makes it easy to write elegant and

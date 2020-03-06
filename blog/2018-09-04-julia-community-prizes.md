@@ -5,8 +5,6 @@
 @def authors = "Avik Sengupta"  
 
 
-# The Julia Community Prizes, 2018
-
 ## Congratulations to Tim Besard, Katharine Hyatt, Chris Rackauckas and Elliot Saba
 
 The Julia Community Prizes celebrate the amazing set of scientists, developers and designers who have come together build such a strong and diverse ecosystem for numerical computing. Each of the four individuals chosen for the first award in 2018 have made immense contributions to Julia over many years, and all of them have been crucial to Julia's success.

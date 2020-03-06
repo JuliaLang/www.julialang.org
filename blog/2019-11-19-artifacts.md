@@ -5,11 +5,9 @@
 @def authors = """Elliot Saba, Stefan Karpinski, Kristoffer Carlsson"""  
 @def hascode=true
 
-# Pkg + BinaryBuilder -- The Next Generation
-
 Over the past few months, we have been iterating on and refining a design for `Pkg` in Julia 1.3+ to reason about binary objects that are not Julia packages.  While the motivating application for this work has been improving the installation experience for binaries built with [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl), the artifacts subsystem is much more general and is widely applicable to all Julia packages.
 
-# Pkg Artifacts
+## Pkg Artifacts
 
 Artifacts, as outlined in [`Pkg.jl#1234`](https://github.com/JuliaLang/Pkg.jl/issues/1234) and now documented in [the latest docs of Pkg.jl](https://julialang.github.io/Pkg.jl/dev/artifacts/), provide a convenient way to associate containers of data with Julia projects and packages.  Artifacts are referred to by content-hash, or optionally by a name that is bound to a hash through an `Artifacts.toml` file.  An example `Artifacts.toml` file is shown here as an example:
 

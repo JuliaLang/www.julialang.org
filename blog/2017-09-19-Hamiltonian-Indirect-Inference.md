@@ -6,7 +6,6 @@
 @def hasmath = true
 @def hascode = true
 
-# GSoC 2017 Project: Hamiltonian Indirect Inference
 
 This is a writeup of my project for the Google Summer of Code 2017. The
 associated repository contains examples of estimating various models. In

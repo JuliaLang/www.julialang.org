@@ -4,7 +4,6 @@
 @def title = "Videos from the Julia tutorial at MIT"
 @def authors = """<a href="http://github.com/ViralBShah/">Viral B. Shah</a>"""  
 
-# Videos from the Julia tutorial at MIT
 
 We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. [MIT Open Courseware](http://ocw.mit.edu/) and [MIT-X](http://www.mitx.org/) graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.
 

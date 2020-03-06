@@ -5,11 +5,9 @@
 @def authors = """Elliot Saba, Stefan Karpinski, Kristoffer Carlsson"""  
 @def hascode = true
 
-# 为 Julia 包设计的可靠、可复现的二进制工件系统
-
 在过去的几个月里，我们在持续迭代和完善一个 Julia 1.3+ 中 `Pkg` 的设计方案，它用来处理不是 Julia 包的二进制对象。这项工作当初的动机是改善用 [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl) 构建的二进制文件的安装体验，不过工件（artifacts）子系统更加通用，适用于所有的 Julia 包。
 
-# Pkg 工件
+## Pkg 工件
 
 工件的大致方案描述在 [`Pkg.jl#1234`](https://github.com/JuliaLang/Pkg.jl/issues/1234)，其文档已经写进了 [Pkg.jl 的最新文档](https://julialang.github.io/Pkg.jl/dev/artifacts/)。它提供了一种把数据容器与 Julia 项目和包关联在一起的便利机制。引用工件的方式是使用它的内容散列值，或者在 `Artifacts.toml` 内记载的绑定到散列值的名字。`Artifacts.toml` 的一个例子如下所示：
 

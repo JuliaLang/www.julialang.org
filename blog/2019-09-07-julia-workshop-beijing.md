@@ -4,8 +4,6 @@
 @def title = "Julia Workshop@Beijing and the Julia Localization Prize"
 @def authors = "Roger Luo, Jun Tian"  
 
-# Julia Workshop@Beijing and the Julia Localization Prize
-
 A Julia workshop in China was hosted by [JuliaCN](https://github.com/JuliaCN) in Beijing on Aug 24, 2019.
 This is the 5th Julia workshop in China hosted by [JuliaCN](https://github.com/JuliaCN) since 2016. We thank the Julia community and
 our kind sponsors: [Colorful Clouds](https://caiyunapp.com/), [Microsoft](https://microsoft.com/),

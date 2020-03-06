@@ -4,8 +4,6 @@
 @def title = "Julia夏季会议@Beijing & 本地化奖"
 @def authors = "罗秀哲，田俊"  
 
-# Julia夏季会议@Beijing & 本地化奖
-
 [JuliaCN](https://github.com/JuliaCN)在8月24日，中国北京举办了自2016以来第五次Julia会议。我们非常感谢Julia社区对本次活动的支持，
 以及[彩云科技](https://caiyunapp.com/), [微软中国](https://microsoft.com/),
 [集智俱乐部](https://swarma.org), [机器之心](https://syncedreview.com/)对本次活动的大力支持。本次活动有100余人注册，实到50余人。

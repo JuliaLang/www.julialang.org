@@ -5,8 +5,6 @@
 @def author = "Jeff Bezanson (Julia Computing), Jameson Nash (Julia Computing), Kiran Pamnany (Intel)"
 @def hascode = true
 
-# Julia将支持可组合的多线程并行机制
-
 摩尔定律带来的[免费性能提升（free lunch）][free lunch]几近结束，
 软件性能越来越依赖于利用多个处理器核心。
 Julia社区一直以对计算性能的关注而出名。

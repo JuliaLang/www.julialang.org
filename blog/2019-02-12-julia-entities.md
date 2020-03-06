@@ -4,8 +4,6 @@
 @def title = "The Julia Project and Its Entities"
 @def authors = """<a href="https://github.com/StefanKarpinski">Stefan Karpinski</a>"""  
 
-# The Julia Project and Its Entities
-
 There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. It’s pretty hard to know about these things without being in the thick of it. In this blog post I’ll give an overview of these groups and how they’re related to the project.
 
 \toc

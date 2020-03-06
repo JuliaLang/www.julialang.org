@@ -4,8 +4,6 @@
 @def title = "Stanford Talk Announcement"
 @def authors = """<a href="https://github.com/JeffBezanson">Jeff Bezanson</a>"""  
 
-# Stanford Talk Announcement
-
 I will be speaking about Julia at the
 ~~~<a href="http://www.stanford.edu/class/ee380/">Stanford EE Computer Systems Colloquium</a>~~~ on Wednesday, February 29 at 4:15PM PST.
 

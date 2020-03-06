@@ -5,7 +5,6 @@
 @def authors = """<a href="https://github.com/maleadt">Tim Besard</a>"""  
 @def hascode = true
 
-# Technical preview: Native GPU programming with CUDAnative.jl
 
 <!--
 could use Franklin's commands to allow this as variable?

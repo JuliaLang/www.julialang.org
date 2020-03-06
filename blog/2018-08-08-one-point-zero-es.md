@@ -4,8 +4,6 @@
 @def title = "Julia 1.0 Anunciando el release de Julia 1.0 (Spanish)"
 @def authors = "the Julia developers"  
 
-# Julia 1.0 Anunciando el release de Julia 1.0 (Spanish)
-
 ~~~
 Translations:  <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-es">Spanish</a>
 ~~~

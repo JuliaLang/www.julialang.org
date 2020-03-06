@@ -5,8 +5,6 @@
 @def authors = """<a href="https://rogerluo.me/">Xiu-Zhe (Roger) Luo</a> and <a href="https://github.com/GiggleLiu">Jin-Guo Liu</a>"""  
 @def hascode = true
 
-# Yao.jl - Differentiable Quantum Programming In Julia
-
 We introduce [**Yao**](https://yaoquantum.org/) ([check our latest paper](https://arxiv.org/abs/1912.10877)), an open-source Julia package for solving practical problems in quantum computation research. The name Yao comes from the first Chinese character for unitary (幺正).
 
 ~~~

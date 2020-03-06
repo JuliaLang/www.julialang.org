@@ -4,7 +4,6 @@
 @def title = "Julia 1.0 正式發佈 (Simplified Chinese)"
 @def authors = "the Julia developers"
 
-# Julia 1.0 正式發佈 (Simplified Chinese)
 
 备受期待的[Julia语言](https://julialang.org)的1.0版本积累了富有野心的程序员们的十年心血。
 在 JuliaCon2018 发布会上，Julia 社区正式将该版本[设置为1.0.0](https://www.youtube.com/watch?v=1jN5wKvN-Uk#t=3850)。

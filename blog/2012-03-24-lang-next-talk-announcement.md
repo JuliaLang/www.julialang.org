@@ -4,8 +4,6 @@
 @def title = "Lang.NEXT Announcement"
 @def authors = """<a href="http://karpinski.org/">Stefan Karpinski</a>"""  
 
-# Lang.NEXT Announcement
-
 Jeff and I will be giving a [presentation on Julia](http://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia) at the upcoming [Lang.NEXT conference](http://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012), a gathering of "programming language design experts and enthusiasts" featuring "talks, panels and discussion on leading programming language work from industry and research."
 We are honored and excited to have been invited to speak at an event alongside so many programming language luminaries.
 

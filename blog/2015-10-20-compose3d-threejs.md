@@ -5,8 +5,6 @@
 @def authors = """<a href="https://github.com/rohitvarkey">Rohit Varkey Thankachan</a>"""  
 @def hascode = true
 
-# JSoC 2015 project: Interactive 3D Graphics in the Browser with Compose3D
-
 
 Over the last three months, I've been working on [Compose3D](https://github.com/rohitvarkey/Compose3D.jl),
 which is an extension of the amazing [Compose](https://github.com/dcjones/Compose.jl) package to 3D. My work on

@@ -1,5 +1,5 @@
-
-# The Julia Language Blog
+@def title = "The Julia Language Blog"
+@def author = ""
 
 The Julia blog discusses issues of numerical, technical, distributed and parallel computing, as well as programming language design, and how these issues touch upon the design and implementation of the Julia programming language.
 Also see the [Julia Computing blog](http://juliacomputing.com/blog/) for another source of information regarding ongoing Julia development.
@@ -33,6 +33,8 @@ Blogs from the broader Julia community can be found at [Julia Bloggers](http://w
 </style>
 <div class="grid">
 ~~~
+
+[Google's Code-In Contest Wrap up](/blog/2020-02-10-gci-summary/) 2020-02-10
 
 [Yao.jl - Differentiable Quantum Programming In Julia](/blog/2019-12-28-yao-differentiable-quantum-programming/) 2019-12-28
 

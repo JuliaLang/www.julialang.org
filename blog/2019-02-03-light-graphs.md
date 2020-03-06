@@ -4,8 +4,6 @@
 @def title = "GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms"
 @def authors = """<a href="https://github.com/SohamTamba">Soham Tamba</a>"""  
 
-# GSoC 2018 - Parallel Implementations of Graph Analysis Algorithms
-
 This blog briefly summarises my GSoC 2018 project ([Parallel Graph Development](https://summerofcode.withgoogle.com/archive/2018/projects/5193483178475520/)) and the results achieved. For a detailed description, please refer to my [GSoC blog](https://sohamtamba.github.io/GSoC).
 
 The project is spread over the [LightGraphs](https://github.com/JuliaGraphs/LightGraphs.jl) codebase. It involved:

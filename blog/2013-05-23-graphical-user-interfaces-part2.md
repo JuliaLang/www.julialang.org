@@ -5,7 +5,7 @@
 @def authors = """<a href="http://holylab.wustl.edu">Timothy E. Holy</a>"""  
 @def hascode = true
 
-# Building GUIs with Julia, Tk, and Cairo, Part II
+
 
 In this installment, we'll cover both low-level graphics (using Cairo) and plotting graphs inside GUIs (using Winston).
 Here again we're relying on infrastructure built by many people, including Jeff Bezanson, Mike Nolta, and Keno Fisher.

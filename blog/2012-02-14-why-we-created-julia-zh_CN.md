@@ -4,8 +4,6 @@
 @def title = "为什么我们要创造Julia (Simplified Chinese)"
 @def authors = "Jeff Bezanson Stefan Karpinski Viral B. Shah Alan Edelman"  
 
-# 为什么我们要创造Julia (Simplified Chinese)
-
 ~~~<a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
 <a href="http://karpinski.org/">Stefan Karpinski</a>
 <a href="http://github.com/ViralBShah/">Viral B. Shah</a>

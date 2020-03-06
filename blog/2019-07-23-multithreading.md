@@ -6,8 +6,6 @@
 @def hascode = true
 @def mintoclevel = 2
 
-# Announcing composable multi-threaded parallelism in Julia
-
 Software performance depends more and more on exploiting multiple processor cores.
 The [free lunch][] from Moore's Law is still over.
 Well, we here in the Julia developer community have something of a reputation for caring about performance.

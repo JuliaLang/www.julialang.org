@@ -4,7 +4,6 @@
 @def title = "An invitation to JuliaCon 2016"
 @def authors = "The JuliaCon organisers"  
 
-# An invitation to JuliaCon 2016
 
 *For the third year in row we are happy to invite you to [JuliaCon][juliacon],
 the annual meeting of the Julia programming language community.

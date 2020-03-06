@@ -5,8 +5,6 @@
 @def authors = """ <a href="https://github.com/quinnj">Jacob Quinn</a>"""  
 @def hascode = true
 
-# JSoC 2015 project: DataStreams.jl
-
 Data processing got ya down? Good news! The [DataStreams.jl](https://github.com/JuliaDB/DataStreams.jl) package, er, framework, has arrived!
 
 The DataStreams processing framework provides a consistent interface for working with data, from source to sink and eventually every step in-between. It's really about putting forth an interface (specific types and methods) to go about ingesting and transferring data sources that hopefully makes for a consistent experience for users, no matter what kind of data they're working with.

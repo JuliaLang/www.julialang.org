@@ -6,7 +6,6 @@
 @def hasmath = true
 @def hascode = true
 
-# Knowing where you are: custom array indices in Julia
 
 Arrays are a crucial component of any programming language,
 particularly for a data-oriented language like Julia.  Arrays store

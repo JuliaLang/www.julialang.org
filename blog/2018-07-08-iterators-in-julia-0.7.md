@@ -5,8 +5,6 @@
 @def authors = """ <a href="https://github.com/iamed2">Eric Davies</a>"""  
 @def hascode = true
 
-# Writing Iterators in Julia 0.7
-
 ### With the upcoming 0.7 release, Julia has simplified its iteration interface.
 
 This post originally appeared on the [Invenia blog](https://invenia.github.io/blog/2018/07/06/iteratorsinjulia07/).
