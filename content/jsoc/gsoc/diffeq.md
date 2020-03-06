@@ -38,6 +38,10 @@ Many of these methods are the basis of high-efficiency partial differential
 equation (PDE) solvers and are thus important to many communities like
 computational fluid dynamics, mathematical biology, and quantum mechanics.
 
+This project is good for both software engineers interested in the field of
+numerical analysis and those students who are interested in perusing graduate
+research in the field.
+
 **Recommended Skills**: Background knowledge in numerical analysis, numerical
 linear algebra, and the ability (or eagerness to learn) to write fast code.
 

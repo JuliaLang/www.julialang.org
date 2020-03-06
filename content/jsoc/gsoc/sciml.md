@@ -32,6 +32,36 @@ graduate research in the field.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
+### Improvements to Neural and Universal Differential Equations
+
+[Neural ordinary differential equations](https://arxiv.org/abs/1806.07366) have
+been shown to be a way to use machine learning to learn differential equation
+models. Further improvements to the methodology, like
+[universal differential equations](https://arxiv.org/abs/2001.04385) have incorporated
+physical and biological knowledge into the system in order to make it a data and
+compute efficient learning method. However, there are many computational aspects
+left to explore. The purpose of this project is to enhance the universal
+differential equation approximation abilities of [DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl),
+adding features like:
+
+- Improved adjoints for DAEs and SDEs
+- [Non-neural network universal approximators](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/173)
+- Various [improvements to](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/133) [minibatching](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/118)
+- Support for [second order ODEs (i.e. symplectic integrators)](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/48)
+- [Continuous normalizing flows](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/46) and [FFJORD](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/47)
+
+See the [DiffEqFlux.jl issue tracker](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues)
+for full details.
+
+This project is good for both software engineers interested in the field of
+scientific machine learning and those students who are interested in perusing
+graduate research in the field.
+
+**Recommended Skills**: Background knowledge in numerical analysis and machine learning.
+
+**Expected Results**: New and improved methods for neural and universal
+differential equations.
+
 ### Accelerating optimization via machine learning with surrogate models
 
 In many cases, when attempting to optimize a function `f(p)` each calculation
