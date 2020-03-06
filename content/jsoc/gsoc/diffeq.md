@@ -1,10 +1,9 @@
 ---
 layout: single
-title:  DiffEq Projects – Summer of Code
+title:  Numerical Differential Equations Projects – Summer of Code
 ---
 
 # {{< get_param title >}}
-
 
 ## Native Julia ODE, SDE, DAE, DDE, and (S)PDE Solvers
 
@@ -203,27 +202,5 @@ numerical ODE solver libraries. Background in the numerical analysis of differen
 solvers is not required.
 
 **Expected Results**: Efficient and high-quality implementations of model transformation methods.
-
-**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
-
-## Integration of FEniCS.jl with dolfin-adjoint + Zygote.jl for Scientific Machine Learning
-
-Scientific machine learning requires mixing scientific computing libraries with machine learning.
-[This blog post highlights how the tooling of Julia is fairly advanced in this field](https://www.stochasticlifestyle.com/the-essential-tools-of-scientific-machine-learning-scientific-ml/) compared to alternatives such as Python,
-but one area that has not been completely worked out is integration of automatic differentiation
-with partial differential equations.
-[FEniCS.jl](https://github.com/JuliaDiffEq/FEniCS.jl) is a wrapper to the
-[FEniCS](https://fenicsproject.org/) project for finite element solutions of partial differential
-equations. We would like to augment the Julia wrappers to allow for integration with Julia's
-automatic differentiation libraries like [Zygote.jl](https://github.com/FluxML/Zygote.jl) by
-using [dolfin-adjoint](http://www.dolfin-adjoint.org/en/release/). This would require setting up
-this library for automatic installation for Julia users and writing adjoint passes which utilize
-this adjoint builder library. It would result in the first total integration between PDEs and
-neural networks.
-
-**Recommended Skills**: A basic background in differential equations and Python. Having previous
-Julia knowledge is preferred but not strictly required.
-
-**Expected Results**: Efficient and high-quality implementations of adjoints for Zygote.jl over FEniCS.jl functions.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
