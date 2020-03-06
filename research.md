@@ -18,7 +18,7 @@ Researchers contributing to Julia have been awarded various prizes:
 * [2019 Julia Community Prizes](https://juliacon.org/2019/prize.html): Jane Herriman, Mike Innes, and Jacob Quinn (2019)
 * [James H. Wilkinson Prize for Numerical Software](https://sinews.siam.org/Details-Page/january-prize-spotlight-jeff-bezanson-steven-l-brunton-jack-dongarra-stefan-karpinski-and-viral-b-shah): Jeff Bezanson, Stefan Karpinski, and Viral Shah for Julia (2019)
 * [Forbes 30 under 30 in Enterprise Technology](https://www.forbes.com/profile/keno-fischer/?list=30under30-enterprise-technology#2388dab7190f): Keno Fischer for Julia (2019)
-* [2018 Julia Community Prizes](/blog/2018-09-04-the-julia-community-prizes-2018/): Tim Besard, Katharine Hyatt, Chris Rackauckas, and Elliot Saba (2018)
+* [2018 Julia Community Prizes](/blog/2018/09/the-julia-community-prizes-2018/): Tim Besard, Katharine Hyatt, Chris Rackauckas, and Elliot Saba (2018)
 * [DSWeb 2018 Software Contest](https://dsweb.siam.org/The-Magazine/Article/winners-of-the-dsweb-2018-software-contest): George Datseris for DynamicalSystems.jl (2018)
 * [Best of Open Source Software (Bossie) Award](https://globenewswire.com/news-release/2018/09/26/1576496/0/en/InfoWorld-Recognizes-Open-Source-Software-Technologies-Driving-Business-Innovation.html): The Julia project (2018)
 * [INFORMS Computing Society Prize](https://connect.informs.org/computing/awards/ics-prize): Miles Lubin, Iain Dunning, and Joey Huchette for JuMP.jl (2016)
