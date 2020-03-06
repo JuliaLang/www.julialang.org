@@ -51,7 +51,7 @@ On Twitter, tweet with the [#julialang](https://twitter.com/search?q=%23julialan
 
 Julia also has a presence on Stack Overflow under the [julia](https://stackoverflow.com/tags/julia) tag, and on Stack Overflow en Español under [julia](http://es.stackoverflow.com/questions/tagged/julia).
 
-For those who prefer IRC to our official forums, there is a [#julia channel](http://webchat.freenode.net/?channels=julia) on Freenode. We also have an unofficial [Gitter](https://gitter.im/JuliaLang/julia) channel. There is a small [Julia subreddit](https://www.reddit.com/r/Julia/) for casual discussion.
+For those who prefer IRC to our official forums, there is a [#julia channel](http://webchat.freenode.net/?channels=julia) on Freenode. We also have an unofficial [Gitter](https://gitter.im/JuliaLang/julia) channel. There is a small [Julia subreddit](https://www.reddit.com/r/Julia/) for casual discussion. As an open source alternative to Slack, we have a [Julia Zulip organization](https://julialang.zulipchat.com/) which you can get an automated invite to [at this link.](https://julialang.zulipchat.com/join/ljh03tjbc5jtdadh0lwkhp0h/)
 
 ## International Community
 
