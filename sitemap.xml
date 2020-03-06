@@ -733,10 +733,6 @@
   </url>
   
   <url>
-    <loc>https://julialang.org/jsoc/gsoc/diffeq/</loc>
-  </url>
-  
-  <url>
     <loc>https://julialang.org/research/rn217/</loc>
   </url>
   
@@ -781,10 +777,6 @@
   </url>
   
   <url>
-    <loc>https://julialang.org/jsoc/gsoc/flux/</loc>
-  </url>
-  
-  <url>
     <loc>https://julialang.org/research/js15/</loc>
   </url>
   
@@ -817,6 +809,10 @@
   </url>
   
   <url>
+    <loc>https://julialang.org/jsoc/gsoc/hpc/</loc>
+  </url>
+  
+  <url>
     <loc>https://julialang.org/research/bvd2016/</loc>
   </url>
   
@@ -826,10 +822,6 @@
   
   <url>
     <loc>https://julialang.org/research/dv17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/gsoc/hpc/</loc>
   </url>
   
   <url>
@@ -937,6 +929,10 @@
   </url>
   
   <url>
+    <loc>https://julialang.org/jsoc/gsoc/flux/</loc>
+  </url>
+  
+  <url>
     <loc>https://julialang.org/research/rb18/</loc>
   </url>
   
@@ -986,6 +982,10 @@
   
   <url>
     <loc>https://julialang.org/research/sekbk13/</loc>
+  </url>
+  
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/diffeq/</loc>
   </url>
   
   <url>

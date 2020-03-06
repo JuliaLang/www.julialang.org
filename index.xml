@@ -1494,15 +1494,6 @@ By implementing a case study algorithm in multiple programming languages, we com
     </item>
     
     <item>
-      <title>DiffEq Projects – Summer of Code</title>
-      <link>https://julialang.org/jsoc/gsoc/diffeq/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://julialang.org/jsoc/gsoc/diffeq/</guid>
-      <description>DiffEq Projects – Summer of Code Native Julia ODE, SDE, DAE, DDE, and (S)PDE Solvers The DifferentialEquations.jl ecosystem has an extensive set of state-of-the-art methods for solving differential equations. By mixing native methods and wrapped methods under the same dispatch system, DifferentialEquations.jl serves both as a system to deploy and research the most modern efficient methodologies. While most of the basic methods have been developed and optimized, many newer methods need high performance implementations and real-world tests of their efficiency claims.</description>
-    </item>
-    
-    <item>
       <title>DifferentialEquations.jl – A Performant and Feature-Rich Ecosystem for Solving Differential Equations in Julia</title>
       <link>https://julialang.org/research/rn217/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1602,16 +1593,6 @@ By implementing a case study algorithm in multiple programming languages, we com
     </item>
     
     <item>
-      <title>Flux</title>
-      <link>https://julialang.org/jsoc/gsoc/flux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://julialang.org/jsoc/gsoc/flux/</guid>
-      <description>Google Summer of Code Projects Flux usually takes part in Google Summer of Code, as part of the wider Julia organisation. We follow the same rules and application guidelines as Julia, so please check there for more information on applying. Below are a set of ideas for potential projects (though you are welcome to explore anything you are interested in).
-Flux projects are typically very competitive; we encourage you to get started early, as successful students typically have early PRs or working prototypes as part of the application.</description>
-    </item>
-    
-    <item>
       <title>Forward stable computation of roots of real polynomials with only real distinct roots</title>
       <link>https://julialang.org/research/js15/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1686,6 +1667,16 @@ One needs to go through all sections of the current documentation, make sure the
     </item>
     
     <item>
+      <title>High Performance and Parallel Computing Projects – Summer of Code</title>
+      <link>https://julialang.org/jsoc/gsoc/hpc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/jsoc/gsoc/hpc/</guid>
+      <description>High Performance and Parallel Computing Projects – Summer of Code Julia is emerging as a serious tool for technical computing and is ideally suited for the ever-growing needs of big data analytics. This set of proposed projects addresses specific areas for improvement in analytics algorithms and distributed data management.
+Simple persistent distributed storage This project proposes to implement a very simple persistent storage mechanism for Julia variables so that data can be saved to and loaded from disk with a consistent interface that is agnostic of the underlying storage layer.</description>
+    </item>
+    
+    <item>
       <title>High-level GPU programming in Julia</title>
       <link>https://julialang.org/research/bvd2016/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1710,16 +1701,6 @@ One needs to go through all sections of the current documentation, make sure the
       
       <guid>https://julialang.org/research/dv17/</guid>
       <description>In this work, we provide three different numerical evidences for the occurrence of a Hopf bifurcation in a recently derived [De Masi et al., J. Stat. Phys. 158, 866–902 (2015) and Fournier and Löcherbach, Ann. Inst. H. Poincaré Probab. Stat. 52, 1844–1876 (2016)] mean field limit of a stochastic network of excitatory spiking neurons. The mean field limit is a challenging nonlocal nonlinear transport equation with boundary conditions. The first evidence relies on the computation of the spectrum of the linearized equation.</description>
-    </item>
-    
-    <item>
-      <title>HPC Projects – Summer of Code</title>
-      <link>https://julialang.org/jsoc/gsoc/hpc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://julialang.org/jsoc/gsoc/hpc/</guid>
-      <description>HPC Projects – Summer of Code Julia is emerging as a serious tool for technical computing and is ideally suited for the ever-growing needs of big data analytics. This set of proposed projects addresses specific areas for improvement in analytics algorithms and distributed data management.
-Simple persistent distributed storage This project proposes to implement a very simple persistent storage mechanism for Julia variables so that data can be saved to and loaded from disk with a consistent interface that is agnostic of the underlying storage layer.</description>
     </item>
     
     <item>
@@ -1882,6 +1863,17 @@ Often the best ideas are the ones that candidate SoC students come up with on th
     </item>
     
     <item>
+      <title>Machine Learning Projects - Summer of Code</title>
+      <link>https://julialang.org/jsoc/gsoc/flux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/jsoc/gsoc/flux/</guid>
+      <description>Machine Learning Projects - Summer of Code CUDA Hacking Are you a performance nut? Help us implement cutting-edge CUDA kernels in Julia for operations important across deep learning, scientific computing and more. We also need help developing our wrappers for machine learning, sparse matrices and more, as well as CI and infrastructure. Contact us to develop a project plan.
+Mentors: Tim Besard, Mike Innes.
+Reinforcement Learning Environments Develop a series of reinforcement learning environments, in the spirit of the OpenAI Gym.</description>
+    </item>
+    
+    <item>
       <title>Massively parallel approximate Bayesian computation for estimating nanoparticle diffusion coefficients, sizes and concentrations using confocal laser scanning microscopy</title>
       <link>https://julialang.org/research/rb18/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1998,6 +1990,15 @@ FairML granting parole to accepting credit applications decision support tools g
       
       <guid>https://julialang.org/research/sekbk13/</guid>
       <description>A linear algebraic approach to graph algorithms that exploits the sparse adjacency matrix representation of graphs can provide a variety of benefits. These benefits include syntactic simplicity, easier implementation, and higher performance. One way to employ linear algebra techniques for graph algorithms is to use a broader definition of matrix and vector multiplication. We demonstrate through the use of the Julia language system how easy it is to explore semirings using linear algebraic methodologies.</description>
+    </item>
+    
+    <item>
+      <title>Numerical Differential Equations Projects – Summer of Code</title>
+      <link>https://julialang.org/jsoc/gsoc/diffeq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://julialang.org/jsoc/gsoc/diffeq/</guid>
+      <description>Numerical Differential Equations Projects – Summer of Code Native Julia ODE, SDE, DAE, DDE, and (S)PDE Solvers The DifferentialEquations.jl ecosystem has an extensive set of state-of-the-art methods for solving differential equations. By mixing native methods and wrapped methods under the same dispatch system, DifferentialEquations.jl serves both as a system to deploy and research the most modern efficient methodologies. While most of the basic methods have been developed and optimized, many newer methods need high performance implementations and real-world tests of their efficiency claims.</description>
     </item>
     
     <item>
@@ -2129,7 +2130,7 @@ Windows Julia is available for Windows 7 and later, both 32 bit and 64 bit.
       <guid>https://julialang.org/jsoc/projects/</guid>
       <description>Projects This page lists a bunch of project ideas, meant to serve as starting points as you develop your own plan. You&amp;rsquo;re free to modify them to your tastes, or propose something totally different in an area you&amp;rsquo;re interested in.
 We have our project ideas organized roughly into the skillsets required:
- Turing projects for probabilistic modelling and probabilistic programming. Flux projects for machine learning. Scientific Machine Learning Projects Compiler – work on the Julia compiler&amp;rsquo;s internals to make things better for everyone.</description>
+ Turing projects for probabilistic modelling and probabilistic programming. Machine Learning for machine learning. Scientific Machine Learning Compiler – work on the Julia compiler&amp;rsquo;s internals to make things better for everyone.</description>
     </item>
     
     <item>
@@ -2187,12 +2188,12 @@ We have our project ideas organized roughly into the skillsets required:
     </item>
     
     <item>
-      <title>Scientific Machine Learning</title>
+      <title>Scientific Machine Learning Projects - Summer of Code</title>
       <link>https://julialang.org/jsoc/gsoc/sciml/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://julialang.org/jsoc/gsoc/sciml/</guid>
-      <description>Scientific Machine Learning Model Zoo on TPU Julia has experimental support for executing code on TPUs (https://github.com/JuliaTPU/XLA.jl) TPUs enable training cutting edge machine larning models written using Flux. However, TPUs are not able to execute arbitrary code and thus often require individual attention to fix new patterns in XLA.jl or other packages. Additionally, the performance characteristics of the TPU hardware are quite unlike that of CPU or even GPU and models may thus require TPU-specific adjustments to achieve peak performance.</description>
+      <description>Scientific Machine Learning Projects - Summer of Code Physics-Informed Neural Networks (PINNs) and Solving Differential Equations with Deep Learning Neural networks can be used as a method for efficiently solving difficult partial differential equations. Recently this strategy has been dubbed physics-informed neural networks and has seen a resurgence because of its efficiency advantages over classical deep learning. Efficient implementations from recent papers are being explored as part of the NeuralNetDiffEq.</description>
     </item>
     
     <item>

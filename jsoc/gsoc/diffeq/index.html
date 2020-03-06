@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>DiffEq Projects – Summer of Code</title>
+<title>Numerical Differential Equations Projects – Summer of Code</title>
 <meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
@@ -108,7 +108,7 @@ if (!doNotTrack) {
   <div class = "container">
   
 
-<h1 id="hahahugoshortcode-s0-hbhb">DiffEq Projects – Summer of Code</h1>
+<h1 id="hahahugoshortcode-s0-hbhb">Numerical Differential Equations Projects – Summer of Code</h1>
 
 <h2 id="native-julia-ode-sde-dae-dde-and-s-pde-solvers">Native Julia ODE, SDE, DAE, DDE, and (S)PDE Solvers</h2>
 
@@ -315,28 +315,6 @@ numerical ODE solver libraries. Background in the numerical analysis of differen
 solvers is not required.</p>
 
 <p><strong>Expected Results</strong>: Efficient and high-quality implementations of model transformation methods.</p>
-
-<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
-
-<h2 id="integration-of-fenics-jl-with-dolfin-adjoint-zygote-jl-for-scientific-machine-learning">Integration of FEniCS.jl with dolfin-adjoint + Zygote.jl for Scientific Machine Learning</h2>
-
-<p>Scientific machine learning requires mixing scientific computing libraries with machine learning.
-<a href="https://www.stochasticlifestyle.com/the-essential-tools-of-scientific-machine-learning-scientific-ml/">This blog post highlights how the tooling of Julia is fairly advanced in this field</a> compared to alternatives such as Python,
-but one area that has not been completely worked out is integration of automatic differentiation
-with partial differential equations.
-<a href="https://github.com/JuliaDiffEq/FEniCS.jl">FEniCS.jl</a> is a wrapper to the
-<a href="https://fenicsproject.org/">FEniCS</a> project for finite element solutions of partial differential
-equations. We would like to augment the Julia wrappers to allow for integration with Julia&rsquo;s
-automatic differentiation libraries like <a href="https://github.com/FluxML/Zygote.jl">Zygote.jl</a> by
-using <a href="http://www.dolfin-adjoint.org/en/release/">dolfin-adjoint</a>. This would require setting up
-this library for automatic installation for Julia users and writing adjoint passes which utilize
-this adjoint builder library. It would result in the first total integration between PDEs and
-neural networks.</p>
-
-<p><strong>Recommended Skills</strong>: A basic background in differential equations and Python. Having previous
-Julia knowledge is preferred but not strictly required.</p>
-
-<p><strong>Expected Results</strong>: Efficient and high-quality implementations of adjoints for Zygote.jl over FEniCS.jl functions.</p>
 
 <p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
 

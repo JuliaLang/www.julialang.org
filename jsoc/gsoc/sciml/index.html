@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Scientific Machine Learning</title>
+<title>Scientific Machine Learning Projects - Summer of Code</title>
 <meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
@@ -108,87 +108,30 @@ if (!doNotTrack) {
   <div class = "container">
   
 
-<h1 id="scientific-machine-learning">Scientific Machine Learning</h1>
+<h1 id="hahahugoshortcode-s0-hbhb">Scientific Machine Learning Projects - Summer of Code</h1>
 
-<h3 id="model-zoo-on-tpu">Model Zoo on TPU</h3>
-
-<p>Julia has experimental support for executing code on TPUs (<a href="https://github.com/JuliaTPU/XLA.jl">https://github.com/JuliaTPU/XLA.jl</a>) TPUs enable training cutting edge machine larning models written using Flux. However, TPUs are not able to execute arbitrary code and thus often require individual attention to fix new patterns in XLA.jl or other packages. Additionally, the performance characteristics of the TPU hardware are quite unlike that of CPU or even GPU and models may thus require TPU-specific adjustments to achieve peak performance. Lastly, the speed of TPUs presents signficant challenges to data input pipelines even at single-TPU levels of performance. Having a wide set of models available that are tuned for TPU will aid in finding common abstractions for models independent of hardware.</p>
-
-<p>Mentors: <a href="https://github.com/Keno">Keno Fischer</a></p>
-
-<h3 id="benchmarks">Benchmarks</h3>
-
-<p>A benchmark suite would help us to keep Julia&rsquo;s performance for ML models in shape, as well as revealing opportunities for improvement. Like the model-zoo project, this would involve contributing standard models that exercise common ML use case (images, text etc) and profiling them. The project could extend to include improving performance where possible, or creating a &ldquo;benchmarking CI&rdquo; like Julia&rsquo;s own <a href="https://github.com/JuliaCI/Nanosoldier.jl">nanosoldier</a>.</p>
-
-<p>Mentors: <a href="https://github.com/dhairyagandhi96/">Dhairya Gandhi</a>, <a href="https://github.com/staticfloat">Elliot Saba</a>.</p>
-
-<h3 id="multi-gpu-training">Multi-GPU training</h3>
-
-<p>Implement and demonstrate multi-GPU parallelism. One route is to expose communication primitives from NVIDIA&rsquo;s <a href="https://developer.nvidia.com/nccl">NCCL</a> library and use these to build tooling for model parallelism and distributed training. The project should demonstrate parallel training of a Flux model with benchmarks.</p>
-
-<p>Mentors: <a href="https://github.com/vchuravy">Valentin Churavy</a>, <a href="https://github.com/maleadt">Tim Besard</a></p>
-
-<h3 id="distributed-training">Distributed Training</h3>
-
-<p>Add a distributed training API to Flux, possibly inspired by PyTorch&rsquo;s equivalent. Any distributed training algorithm could be used (ideally the foundations make it easy to experiment with different setups), though the easiest is likely to implement an MXNet-like parameter server. It should demonstrate training a Flux model with data distributed over multiple nodes, with benchmarks.</p>
-
-<p>Mentors: <a href="https://github.com/vchuravy">Valentin Churavy</a>, <a href="https://github.com/maleadt">Tim Besard</a></p>
-
-<h3 id="sparse-gpu-and-ml-support">Sparse GPU and ML support</h3>
-
-<p>While Julia supports dense GPU arrays well via <a href="https://github.com/JuliaGPU/CUSPARSE.jl">CuArrays</a>, we lack up-to-date wrappers for sparse operations. This project would involve wrapping CUDA&rsquo;s sparse support, with <a href="https://github.com/JuliaGPU/CUSPARSE.jl">CUSPARSE.jl</a> as a starting point, adding them to CuArrays.jl, and perhaps demonstrating their use via a sparse machine learning model.</p>
-
-<h3 id="nlp-tools-and-models">NLP Tools and Models</h3>
-
-<p>Build deep learning models for Natural Language Processing in Julia. <a href="https://github.com/juliatext/TextAnalysis.jl">TextAnalysis</a>  and <a href="https://github.com/JuliaText/WordTokenizers.jl">WordTokenizers</a> contains the basic algorithms and data structures to work with textual data in Julia. On top of that base, we want to build modern deep learning models based on recent research. The following tasks can span multiple students and projects.</p>
-
-<p>It is important to note that we want practical, usable solutions to be created, not just research models. This implies that a large part of the effort will need to be in finding and using training data, and testing the models over a wide variety of domains. Pre-trained models must be available to users, who should be able to start using these without supplying their own training data.</p>
-
-<ul>
-<li>Implement <a href="https://allennlp.org/elmo">ELMo</a> in Julia</li>
-<li>Implement <a href="https://ai.googleblog.com/2019/12/albert-lite-bert-for-self-supervised.html">ALBERT</a> in Julia</li>
-<li>Implement GPT/GPT-2 in Julia</li>
-<li>Implement <a href="https://arxiv.org/abs/1909.03186">extractive summarisation based on Transformers</a></li>
-<li>Implement practical models for
-
-<ul>
-<li>Dependency Tree Parsing<br /></li>
-<li>Morphological extractions<br /></li>
-<li>Translations (using Transformers)<br /></li>
-</ul></li>
-<li>Indic language support &ndash; validate and test all models for Indic languages
-
-<ul>
-<li>ULMFiT models for Indic languages</li>
-</ul></li>
-<li>Chinese tokenisation and parsing</li>
-</ul>
-
-<p><strong>Mentors</strong>: <a href="https://github.com/aviks/">Avik Sengupta</a></p>
-
-<h3 id="automated-music-generation">Automated music generation</h3>
-
-<p>Neural network based models can be used for music analysis and music generation (composition). A suite
-of tools in Julia to enable research in this area would be useful. This is a large, complex project that
-is suited for someone with an interest in music and machine learning. This project will need a mechanism
-to read music files (primarily MIDI), a way to synthesise sounds, and finally a model to learn composition.
-All of this is admittedly a lot of work, so the exact boundaries of the project can be flexible, but this can be an
-exciting project if you are interested in both music and machine learning.</p>
-
-<p><strong>Recommended Skills</strong>: Music notation, some basic music theory, MIDI format, Transformer and LSTM architectures</p>
-
-<p><strong>Resources</strong>: <a href="https://magenta.tensorflow.org/music-transformer">Music Transformer</a>, <a href="https://magenta.tensorflow.org/maestro-wave2midi2wave">Wave2MIDI2Wave</a></p>
-
-<p><strong>Mentors</strong>: <a href="https://github.com/aviks/">Avik Sengupta</a></p>
-
-<h3 id="neural-networks-for-solving-differential-equations">Neural networks for solving differential equations</h3>
+<h3 id="physics-informed-neural-networks-pinns-and-solving-differential-equations-with-deep-learning">Physics-Informed Neural Networks (PINNs) and Solving Differential Equations with Deep Learning</h3>
 
 <p>Neural networks can be used as a method for efficiently solving difficult partial
-differential equations. Efficient implementations from recent papers are being
+differential equations. Recently this strategy has been dubbed <a href="https://www.sciencedirect.com/science/article/pii/S0021999118307125">physics-informed neural networks</a>
+and has seen a resurgence because of its efficiency advantages over classical
+deep learning. Efficient implementations from recent papers are being
 explored as part of the <a href="https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl">NeuralNetDiffEq.jl</a>
 package. The <a href="https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl/issues">issue tracker</a>
 contains links to papers which would be interesting new neural network based methods to
-implement and benchmark against classical techniques.</p>
+implement and benchmark against classical techniques. Project work in this area
+includes:</p>
+
+<ul>
+<li><a href="https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl/issues/71">Improved training strategies</a> for PINNs.</li>
+<li>Implementing new neural architectures that impose physical constraints like <a href="https://arxiv.org/pdf/2002.00021.pdf">divergence-free criteria</a>.</li>
+<li>Demonstrating large-scale problems solved by PINN training.</li>
+<li>Improving the speed and parallelization of PINN training routines.</li>
+</ul>
+
+<p>This project is good for both software engineers interested in the field of
+scientific machine learning and those students who are interested in perusing
+graduate research in the field.</p>
 
 <p><strong>Recommended Skills</strong>: Background knowledge in numerical analysis and machine learning.</p>
 
@@ -287,6 +230,24 @@ Julia knowledge is preferred but not strictly required.</p>
 <p><strong>Expected Results</strong>: Efficient and high-quality implementations of adjoints for Zygote.jl over FEniCS.jl functions.</p>
 
 <p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a></p>
+
+<h2 id="multi-start-optimization-methods">Multi-Start Optimization Methods</h2>
+
+<p>While standard machine learning can be shown to be &ldquo;safe&rdquo; for local optimization,
+scientific machine learning can sometimes require the use of globalizing techniques
+to improve the optimization process. Hybrid methods, known as multistart optimization
+methods, glue together a local optimization technique together with a parameter
+search over a large space of possible initial points. The purpose of this project
+would be to take a <a href="https://github.com/tpapp/MultistartOptimization.jl">MultistartOptimization.jl</a>
+as a starting point and create a fully featured set of multistart optimization
+tools for use with <a href="https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a></p>
+
+<p><strong>Recommended Skills</strong>: A basic background in optimization. Having previous
+Julia knowledge is preferred but not strictly required.</p>
+
+<p><strong>Expected Results</strong>: Efficient and high-quality implementations of multistart optimization methods.</p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/ChrisRackauckas">Chris Rackauckas</a> and <a href="https://github.com/pkofod">Patrick Kofod Mogensen</a></p>
 
   </div>
   <br /><br />

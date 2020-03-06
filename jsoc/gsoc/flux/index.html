@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Flux</title>
+<title>Machine Learning Projects - Summer of Code</title>
 <meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
@@ -108,11 +108,7 @@ if (!doNotTrack) {
   <div class = "container">
   
 
-<h1 id="google-summer-of-code-projects">Google Summer of Code Projects</h1>
-
-<p>Flux usually takes part in <a href="https://summerofcode.withgoogle.com">Google Summer of Code</a>, as part of the wider Julia organisation. We follow the same <a href="https://julialang.org/soc/ideas-page">rules and application guidelines</a> as Julia, so please check there for more information on applying. Below are a set of ideas for potential projects (though you are welcome to explore anything you are interested in).</p>
-
-<p>Flux projects are typically very competitive; we encourage you to get started early, as successful students typically have early PRs or working prototypes as part of the application. It is a good idea to simply start contributing via issue discussion and PRs and let a project grow from there; you can take a look at <a href="https://github.com/issues?utf8=✓&amp;q=is%3Aopen+archived%3Afalse+user%3AFluxML+label%3A%22help+wanted%22">this list of issues</a> for some starter contributions.</p>
+<h1 id="hahahugoshortcode-s0-hbhb">Machine Learning Projects - Summer of Code</h1>
 
 <h3 id="cuda-hacking">CUDA Hacking</h3>
 
@@ -125,6 +121,55 @@ if (!doNotTrack) {
 <p>Develop a series of reinforcement learning environments, in the spirit of the <a href="https://gym.openai.com">OpenAI Gym</a>. Although we have wrappers for the gym available, it is hard to install (due to the Python dependency) and, since it&rsquo;s written in Python and C code, we can&rsquo;t do more interesting things with it (such as differentiate through the environments). A pure-Julia version that supports a similar API and visualisation options would be valuable to anyone doing RL with Flux.</p>
 
 <p>Mentors: <a href="https://github.com/dhairyagandhi96/">Dhairya Gandhi</a>.</p>
+
+<h3 id="nlp-tools-and-models">NLP Tools and Models</h3>
+
+<p>Build deep learning models for Natural Language Processing in Julia. <a href="https://github.com/juliatext/TextAnalysis.jl">TextAnalysis</a>  and <a href="https://github.com/JuliaText/WordTokenizers.jl">WordTokenizers</a> contains the basic algorithms and data structures to work with textual data in Julia. On top of that base, we want to build modern deep learning models based on recent research. The following tasks can span multiple students and projects.</p>
+
+<p>It is important to note that we want practical, usable solutions to be created, not just research models. This implies that a large part of the effort will need to be in finding and using training data, and testing the models over a wide variety of domains. Pre-trained models must be available to users, who should be able to start using these without supplying their own training data.</p>
+
+<ul>
+<li>Implement <a href="https://allennlp.org/elmo">ELMo</a> in Julia</li>
+<li>Implement <a href="https://ai.googleblog.com/2019/12/albert-lite-bert-for-self-supervised.html">ALBERT</a> in Julia</li>
+<li>Implement GPT/GPT-2 in Julia</li>
+<li>Implement <a href="https://arxiv.org/abs/1909.03186">extractive summarisation based on Transformers</a></li>
+<li>Implement practical models for
+
+<ul>
+<li>Dependency Tree Parsing<br /></li>
+<li>Morphological extractions<br /></li>
+<li>Translations (using Transformers)<br /></li>
+</ul></li>
+<li>Indic language support &ndash; validate and test all models for Indic languages
+
+<ul>
+<li>ULMFiT models for Indic languages</li>
+</ul></li>
+<li>Chinese tokenisation and parsing</li>
+</ul>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/aviks/">Avik Sengupta</a></p>
+
+<h3 id="automated-music-generation">Automated music generation</h3>
+
+<p>Neural network based models can be used for music analysis and music generation (composition). A suite
+of tools in Julia to enable research in this area would be useful. This is a large, complex project that
+is suited for someone with an interest in music and machine learning. This project will need a mechanism
+to read music files (primarily MIDI), a way to synthesise sounds, and finally a model to learn composition.
+All of this is admittedly a lot of work, so the exact boundaries of the project can be flexible, but this can be an
+exciting project if you are interested in both music and machine learning.</p>
+
+<p><strong>Recommended Skills</strong>: Music notation, some basic music theory, MIDI format, Transformer and LSTM architectures</p>
+
+<p><strong>Resources</strong>: <a href="https://magenta.tensorflow.org/music-transformer">Music Transformer</a>, <a href="https://magenta.tensorflow.org/maestro-wave2midi2wave">Wave2MIDI2Wave</a></p>
+
+<p><strong>Mentors</strong>: <a href="https://github.com/aviks/">Avik Sengupta</a></p>
+
+<h2 id="flux-jl">Flux.jl</h2>
+
+<p>Flux usually takes part in <a href="https://summerofcode.withgoogle.com">Google Summer of Code</a>, as part of the wider Julia organisation. We follow the same <a href="https://julialang.org/soc/ideas-page">rules and application guidelines</a> as Julia, so please check there for more information on applying. Below are a set of ideas for potential projects (though you are welcome to explore anything you are interested in).</p>
+
+<p>Flux projects are typically very competitive; we encourage you to get started early, as successful students typically have early PRs or working prototypes as part of the application. It is a good idea to simply start contributing via issue discussion and PRs and let a project grow from there; you can take a look at <a href="https://github.com/issues?utf8=✓&amp;q=is%3Aopen+archived%3Afalse+user%3AFluxML+label%3A%22help+wanted%22">this list of issues</a> for some starter contributions.</p>
 
 <h3 id="port-ml-tutorials">Port ML Tutorials</h3>
 
