@@ -67,3 +67,10 @@ A good starting point that combines all of the above implementations may be [tim
 
 ## Bring MLJ to Kaggle! 
 Project idea: Bring MLJ to Kaggle! See if MLJ and your data science skills are up to the challenge of matching the Kaggle tutorial results of other ML frameworks using Julia. Many Kaggle competitions rely on comparing and combining the predictions of numerous models, and with over 120 models and a maturing selection of meta-modelling tools, MLJ is poised to enter the fray. Help us lure more data scientists to Julia, and help us identity MLJ shortcomings, by developing end-to-end applications of MLJ tools and models to Kaggle tutorials.
+
+## MLJ and MLFlow integration
+Implement MLJ with [MLFlow](https://mlflow.org). MLFlow is a flexible model management tool. The project consists of writing the necessary functions to integrate MLJ with [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html) so models built using MLJ can keep track of its runs, evaluation metrics, parameters, and can be registered and monitored using MLFlow.
+
+### Mentors
+* [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
+ * [Diego Arenas](https://github.com/darenasc)
