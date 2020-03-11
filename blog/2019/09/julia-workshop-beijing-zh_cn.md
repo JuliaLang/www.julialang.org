@@ -11,7 +11,7 @@
 
 本次活动的视频已上传至[JuliaCN@B站](https://www.bilibili.com/video/av65371788)，相关材料已上传到GitHub：[JuliaCN/MeetUpMaterials](https://github.com/JuliaCN/MeetUpMaterials)。
 
-![people](/assets/images/blog/2019/08/julia-beijing-2019/people.jpg)
+![people](/assets/images/blog/2019-08-31-julia-beijing-2019/people.jpg)
 
 ## 本地化奖
 
@@ -34,7 +34,7 @@ Jeff Bezanson宣布了**Julia本地化奖**，获奖人将获得一份有Julia�
 获奖证书已寄送至获奖人，如果你没有收到获奖证书请和[@Roger-luo](mailto:rogerluo.rl18@gmail.com)或者[@Jun](mailto:tianjun.cpp@gmail.com)
 联系！
 
-![certification](/assets/images/blog/2019/08/julia-beijing-2019/certification.jpeg)
+![certification](/assets/images/blog/2019-08-31-julia-beijing-2019/certification.jpeg)
 
 ## 会议报告
 

@@ -29,7 +29,7 @@ is implemented in many bioinformatics tools, most notably
 [BWA](http://bio-bwa.sourceforge.net/), whose papers are cited thousands of
 times.
 
-![Mapping](/assets/images/blog/2015/10/sequence-analysis/mapping.png)
+![Mapping](/assets/images/blog/2015-10-03-sequence-analysis/mapping.png)
 
 The main focus of my project was creating a full-text search index in Julia
 that is easy to use and efficient in practical applications.  In the course
@@ -209,7 +209,7 @@ immutable Block
 end
 ```
 
-![Block](/assets/images/blog/2015/10/sequence-analysis/sucvector.png)
+![Block](/assets/images/blog/2015-10-03-sequence-analysis/sucvector.png)
 
 
 Since the bit count of the first small block is always zero, we can exploit

@@ -43,7 +43,7 @@ TensorFlow 及类似的工具以“我仅仅是个库”的姿态出现。然而
 话虽如此，有一个小问题不能忽略。卓有成效的优化依赖于能够简化问题的假设（机器学习模型里不会出现递归，也不需要自定义梯度，对吧？）。正是这些假设使得模型的优化更简单，也更易于部署到小型设备上。可惜研究员们沉醉于破坏这些假设的乐趣中，工程师们面对的模型也越来越复杂。一个模型现在会用到条件分支（不算什么，小菜一碟），循环（不怎么容易，但应该可以搞定），甚至[树的递归](https://arxiv.org/pdf/1503.00075.pdf)（好吧，基本上做不到）。 在机器学习的很多分支中，包括[神经网络](https://blog.keras.io/the-future-of-deep-learning.html)和[概率编程](https://eng.uber.com/pyro/)，模型越来越像程序：有些模型可以推导*其它*程序（例如[程序生成器](https://arxiv.org/pdf/1705.03633.pdf)和[解释器](https://arxiv.org/abs/1605.06640)）；有些则包括像蒙特卡罗树搜索这样的不可导组件。在保证最高性能的同时提供充分的灵活性，这对运行时的构建提出了极高的挑战，然而两者的兼顾却是最强大的模型和突破性的成果所越来越倚重的。
 
 ~~~
-<img src="/assets/images/blog/images/sentiment-treebank.png"/>
+<img src="/assets/images/blog/sentiment-treebank.png"/>
 <div class="desc">
   用机器学习处理复杂的树结构数据，如<a href="https://nlp.stanford.edu/sentiment/treebank.html">斯坦福情绪树库</a>，用到了可微的，递归的算法。
 </div>

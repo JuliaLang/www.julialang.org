@@ -23,7 +23,7 @@ So, what will be added in it? Here is the summary of my plan:
 
 These things are of crucial importance for writing analysis programs because they connects software components (e.g. programs, archives, databases, viewers, etc.); data analysis softwares in bioinformatics usually read/write formatted data from/to each other. The figure below shows common workflow of detecting genetic variants; underlined deliverables will connect softwares, archives and databases so that you can write your analysis software in the Julia language.
 
-![schema](/assets/images/blog/2016/04/biojulia/schema.png)
+![schema](/assets/images/blog/2016-04-30-biojulia/schema.png)
 
 
 ## Sequence Analysis

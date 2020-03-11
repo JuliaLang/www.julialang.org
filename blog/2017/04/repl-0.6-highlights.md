@@ -52,12 +52,12 @@ In earlier Julia versions, stack traces were printed without much structure.
 Everything was printed in bold red which made it a bit difficult to find the information one was looking for.
 As an example, here is a screenshot from an error thrown on 0.5:
 
-![Stacktrace in 0.5](/assets/images/blog/2017/02/repl0.6/0.5stacktrace.png)
+![Stacktrace in 0.5](/assets/images/blog/2017-02-24-repl0.6/0.5stacktrace.png)
 
 Finding the relevant information can be quite difficult, especially the file name and line numbers since they are not aligned in any way.
 In 0.6, this is what is currently shown for the same error:
 
-![Stacktrace in 0.6](/assets/images/blog/2017/02/repl0.6/0.6stacktrace.png)
+![Stacktrace in 0.6](/assets/images/blog/2017-02-24-repl0.6/0.6stacktrace.png)
 
 Stack trace presentation has improved significantly: Stack traces no longer print in red, while associated error messages continue to print in red.
 Stack traces also no longer print entirely in bold; only function names and line information now appear in bold.
@@ -76,7 +76,7 @@ julia> ENV["JULIA_STACKFRAME_FUNCTION_COLOR"] = :yellow;
 
 and rerunning the example above yields
 
-![Stacktrace in 0.6 with configured colors](/assets/images/blog/2017/02/repl0.6/0.6stacktrace_conf.png)
+![Stacktrace in 0.6 with configured colors](/assets/images/blog/2017-02-24-repl0.6/0.6stacktrace_conf.png)
 
 In addition to the visual changes to the stack trace, there is also a new interactive feature, possible now that we can refer to stack frames by number.
 After a stack trace has been printed, you can simply enter the number of one of the stack frames in the REPL, press `CTRL + Q` and the file will be opened in
@@ -96,14 +96,14 @@ Another change is that, by default, the function `print_with_color` no longer pr
 
 Some examples of this functionality are given in the figure below:
 
-![Colors in 0.6](/assets/images/blog/2017/02/repl0.6/0.6colors.png)
+![Colors in 0.6](/assets/images/blog/2017-02-24-repl0.6/0.6colors.png)
 
 ## Default style of input/output text
 
 Previously, the default style of entered code and shown objects in the REPL was bold; this was changed in 0.6 to instead use standard "light" text.
 However, as the example below shows, it is possible to change this back to bold, or to any other color:
 
-![Input/output text colors in 0.6](/assets/images/blog/2017/02/repl0.6/0.6input_output_conf.png)
+![Input/output text colors in 0.6](/assets/images/blog/2017-02-24-repl0.6/0.6input_output_conf.png)
 
 ## Taking REPL-customization even further
 

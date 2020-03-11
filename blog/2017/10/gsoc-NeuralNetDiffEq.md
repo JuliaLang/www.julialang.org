@@ -54,7 +54,7 @@ sol = solve(prob,nnode(10),dt=1/10,iterations=10)
 plot(sol,plot_analytic=true)
 ```
 
-![Plot_ode1](/assets/images/blog/2017/09/gsoc-NeuralNetDiffEq/plot_ode1.png)
+![Plot_ode1](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode1.png)
 
 ```julia
 sol(0.232)
@@ -72,7 +72,7 @@ prob2 = ODEProblem(f,1.0,(0.0,1.0))
 sol2 = solve(prob2,nnode(10),dt=0.1,iterations=200)
  plot(sol,plot_analytic=true)
 ```
-![Plot_ode2](/assets/images/blog/2017/09/gsoc-NeuralNetDiffEq/plot_ode2.png)
+![Plot_ode2](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode2.png)
 
 ```julia
 sol(0.47)
@@ -91,7 +91,7 @@ sol3 = solve(prob3,nnode(10),dt=0.2,iterations=1000)
  plot(sol,plot_analytic=true)
 ```
 
-![Plot_ode3](/assets/images/blog/2017/09/gsoc-NeuralNetDiffEq/plot_ode3.png)
+![Plot_ode3](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode3.png)
 
 ```julia
   sol3([0.721])
@@ -125,7 +125,7 @@ sol1 = solve(prob_ode_2Dlinear,nnode([10,50]),dt=0.1,iterations=100)
 plot(sol1,plot_analytic=true)
 ```
 
-![Plot_sode1](/assets/images/blog/2017/09/gsoc-NeuralNetDiffEq/plot_ode1.png)
+![Plot_sode1](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode1.png)
 
 #### Example 2 Lotka Volterra
 
@@ -160,7 +160,7 @@ sol2 = solve(prob_ode_lotkavoltera,nnode([10,50]),dt=0.2,iterations=1000)
 plot(sol2)
 ```
 
-![Plot_sode2](/assets/images/blog/2017/09/gsoc-NeuralNetDiffEq/plot_sode2.png)
+![Plot_sode2](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_sode2.png)
 
 To show that the solver with current settings and hyper-parameters does not work for a larger domain (Eg 0-10) `lotka_volterra` here is a graph:
 
@@ -169,7 +169,7 @@ prob_ode_lotkavoltera = ODEProblem(lotka_volterra,Float32[1.0,1.0],(Float32(0.0)
 sol3 = solve(prob_ode_lotkavoltera,nnode([10,50]),dt=0.2,iterations=1000)
 plot(sol3)
 ```
-![Plot_sode3](/assets/images/blog/2017/09/gsoc-NeuralNetDiffEq/plot_sode3.png)
+![Plot_sode3](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_sode3.png)
 
 However, the [true solution should be oscillatory, indicating that the NN did not properly converge](http://app.juliadiffeq.org/ode;settings=eyJkaWZmRXFUZXh0IjoiZHggPSBhKnggLSBiKngqeVxuZHkgPSAtYyp5ICsgZCp4KnkiLCJwYXJhbWV0ZXJzIjoiYT0xLjUsIGI9MSwgYz0zLCBkPTEiLCJ0aW1lU3BhbiI6WzAsMTBdLCJpbml0aWFsQ29uZGl0aW9ucyI6IjEuMCwgMS4wIiwic29sdmVyIjoiVHNpdDUiLCJ2YXJzIjoiWzp4LCA6eV0iLCJ0aXRsZSI6IlRoZSBMb3RrYS1Wb2x0ZXJyYSBFcXVhdGlvbnM6IE1vZGVsIG9mIFJhYmJpdHMgYW5kIFdvbHZlcyJ9).
 To see more examples and experiment results you can check out my Jupyter notebooks [here](http://nbviewer.jupyter.org/gist/akaysh/43c9db281b0bd3224114084c44263c13).

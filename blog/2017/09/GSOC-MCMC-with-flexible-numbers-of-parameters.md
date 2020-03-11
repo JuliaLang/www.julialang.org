@@ -63,7 +63,7 @@ $\theta=\phi=.1$
 
 Here are some results for 45 simulated data points in two clusters with SD 3 and mean ±5:
 
-![mean traceplot](/assets/images/blog/2017/08/GSOC-MCMC-with-flexible-numbers-of-parameters/mu_results.svg)
+![mean traceplot](/assets/images/blog/2017-08-28-GSOC-MCMC-with-flexible-numbers-of-parameters/mu_results.svg)
 
 As you can see, both chains spend most time with at least one cluster each around the "correct" values, but occasionally they go wrong.
 

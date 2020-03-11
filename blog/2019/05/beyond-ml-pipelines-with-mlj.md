@@ -12,13 +12,13 @@
 
 ~~~
 <p float="left" align="middle">
-  <img style="width:40%;padding:0;" src="/assets/images/blog/2019/05/MLJ/learningcurves.png"/>
-  <img style="width:40%;padding-left:15px;" src="/assets/images/blog/2019/05/MLJ/heatmap.png"/>
+  <img style="width:40%;padding:0;" src="/assets/images/blog/2019-05-02-MLJ/learningcurves.png"/>
+  <img style="width:40%;padding-left:15px;" src="/assets/images/blog/2019-05-02-MLJ/heatmap.png"/>
 </p>
 
 <p float="left" align="middle">
-  <img style="width:40%;padding:0;" src="/assets/images/blog/2019/05/MLJ/wrapped_ridge.png"/>
-  <img style="width:40%;padding-left:15px;" src="/assets/images/blog/2019/05/MLJ/MLPackages.png"/>
+  <img style="width:40%;padding:0;" src="/assets/images/blog/2019-05-02-MLJ/wrapped_ridge.png"/>
+  <img style="width:40%;padding-left:15px;" src="/assets/images/blog/2019-05-02-MLJ/MLPackages.png"/>
 </p>
 ~~~
 
@@ -121,7 +121,7 @@ in prediction and training modes is different. This can be seen from
 the following schematic of a simple two-model stack, viewed as a
 network:
 
-![](/assets/images/blog/2019/05/MLJ/two_model_stack.png)
+![](/assets/images/blog/2019-05-02-MLJ/two_model_stack.png)
 
 ## Building a simple network
 

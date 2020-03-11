@@ -48,7 +48,7 @@ TensorFlow 以及其他相似的工具表示他們只是套件而已，但是他
 
 ~~~
 
-<img src="/assets/images/blog/images/sentiment-treebank.png"/>
+<img src="/assets/images/blog/sentiment-treebank.png"/>
 <div class="desc">
 使用 ML 在複雜的樹狀結構資料上（像是 <a href="https://nlp.stanford.edu/sentiment/treebank.html">Stanford Sentiment Treebank</a>）需要可微分的遞迴演算法。
 </div>

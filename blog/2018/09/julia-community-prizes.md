@@ -13,19 +13,19 @@ The prizes were announced at JuliaCon 2018 in London, and each awardee was prese
 
 ## Tim Besard
 For extending Julia natively to the GPU
-![Tim Besard](/assets/images/blog/2018/09/julia-community-prizes/tim-besard.jpg)
+![Tim Besard](/assets/images/blog/2018-09-04-julia-community-prizes/tim-besard.jpg)
 
 ## Katharine Hyatt
 For her enhancements of Julia's test suite and documentation
-![Katharine Hyatt](/assets/images/blog/2018/09/julia-community-prizes/katie-hyatt.jpg)
+![Katharine Hyatt](/assets/images/blog/2018-09-04-julia-community-prizes/katie-hyatt.jpg)
 
 ## Chris Rackauckas
 For his development of JuliaDiffEq and his community engagement
-![Chris Rackauckas](/assets/images/blog/2018/09/julia-community-prizes/chris-rackauckas.jpg)
+![Chris Rackauckas](/assets/images/blog/2018-09-04-julia-community-prizes/chris-rackauckas.jpg)
 
 ## Elliott Saba
 For his design and stewardship of Julia's community infrastructure
-![Elliot Saba](/assets/images/blog/2018/09/julia-community-prizes/elliot-saba.jpg)
+![Elliot Saba](/assets/images/blog/2018-09-04-julia-community-prizes/elliot-saba.jpg)
 
 Please join us in congratulating the winners, and thanking the awards committee.
 

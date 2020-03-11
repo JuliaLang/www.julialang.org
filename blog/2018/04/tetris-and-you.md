@@ -48,7 +48,7 @@ Example footage below.
 
 <div class="cs-tetris-div">
   <a href="http://www.juliatetris.com">
-    <img src="/assets/images/blog/2018/04/tetris-and-you/green_tetris.gif" alt="tetris game">
+    <img src="/assets/images/blog/2018-04-01-tetris-and-you/green_tetris.gif" alt="tetris game">
   </a>
 </div>
 ~~~

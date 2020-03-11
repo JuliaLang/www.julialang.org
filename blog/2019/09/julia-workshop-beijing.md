@@ -13,7 +13,7 @@ for this event, and roughly 50 offline participants. The online video stream had
 These videos have been uploaded to [Bilibili.com](https://www.bilibili.com/video/av65371788), and the related materials
 are uploaded to [JuliaCN/MeetUpMaterials](https://github.com/JuliaCN/MeetUpMaterials).
 
-![people](/assets/images/blog/2019/08/julia-beijing-2019/people.jpg)
+![people](/assets/images/blog/2019-08-31-julia-beijing-2019/people.jpg)
 
 ## Localization Prize
 
@@ -35,7 +35,7 @@ Contributors to the documentation who received the certificate of accomplishment
 
 The certificates have been mailed to the awardees. Please contact [@Roger-luo](mailto:rogerluo.rl18@gmail.com) if we missed you!
 
-![certification](/assets/images/blog/2019/08/julia-beijing-2019/certification.jpeg)
+![certification](/assets/images/blog/2019-08-31-julia-beijing-2019/certification.jpeg)
 
 ## Talks
 

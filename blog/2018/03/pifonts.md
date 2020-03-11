@@ -8,7 +8,7 @@
 
 Although we've known about "Archimedes' constant" for a few millennia, we've been referring to it as the Greek letter π only since the 1700s. Patricia Rothman [suggested](https://www.historytoday.com/patricia-rothman/william-jones-and-his-circle-man-who-invented-pi) that the following page *could* contain one of the earliest uses of the Greek character to indicate the concept. It's from a mathematics text book written by William Jones and published in 1706:
 
-![William Jones 1706](/assets/images/blog/2018/04/pifonts/jones.png)
+![William Jones 1706](/assets/images/blog/2018-04-13-pifonts/jones.png)
 
 Jones used the Greek letter in various places both to indicate the number and, like some of his predecessors, to refer to the periphery or perimeter (Greek περιφέρεια) of a circle, and to label points in diagrams, as we would use `P` and `Q` today. Jones also refers to it as *Van Ceulen's Number*, after the Dutch mathematician Ludolph van Ceulen, who spent a major part of his life calculating the value. (He managed 35 decimal places, and asked for it to be engraved on his tombstone.)
 
@@ -16,7 +16,7 @@ Jones, like all mathematicians, used a lot of symbols. His *Synopsis Palmariorum
 
 But although Jones was one of the first, he wasn't influential enough to inspire many followers, and it was the more famous Leonhard Euler and his use of the π symbol later in the century that did more to establish the Greek letter's primary mathematical meaning for posterity:
 
-![Euler 1746](/assets/images/blog/2018/04/pifonts/euler.png)
+![Euler 1746](/assets/images/blog/2018-04-13-pifonts/euler.png)
 
 (Original online [here](https://archive.org/details/euler-e059).)
 
@@ -63,7 +63,7 @@ The two tab completions commented as `v0.7` have been added for Julia version 0.
 
 The output you see will depend a lot on your computer, operating system, and various other settings. This is a good introduction to the adventure game that is the Wonderful World of Fonts. Here, for example, is what I see if I evaluate this snippet in my Julia REPL today (version 0.6.2), using the Terminal app on macOS:
 
-![Terminal app before](/assets/images/blog/2018/04/pifonts/terminal-1.png)
+![Terminal app before](/assets/images/blog/2018-04-13-pifonts/terminal-1.png)
 
 As you can see, not all the π symbols were rendered. The OS looks in the current font (I'm trying out [Fira Code](https://github.com/tonsky/FiraCode)) for the Unicode characters `U+3c0`, `U+213c`, `U+1d6d1`, `U+1d70b`, `U+1d745`, `U+1d77f`, and `U+1d7b9`. For each one it fails to find, it searches through other activated fonts looking for one that has a symbol at that code point. The OS doesn't check to see whether the symbol it finds is suitable.
 
@@ -71,11 +71,11 @@ In the example above, the Greek π at `U+3c0` was already available in Fira Code
 
 Now, if I activate a font such as [Asana-Math](https://en.wikipedia.org/wiki/Asana-Math), [Everson Mono](http://evertype.com/emono/), or [STIX](http://stixfonts.org/), or some other mathematically-endowed font, the OS will immediately start to find matches and update the display, constantly switching between fonts as necessary to satisfy demands for Unicode code points:
 
-![Terminal app after](/assets/images/blog/2018/04/pifonts/terminal-2.png)
+![Terminal app after](/assets/images/blog/2018-04-13-pifonts/terminal-2.png)
 
 With Asana Math installed, all the other πs can be found, and now the double-struck small π looks more like the blackboard-written character it's supposed to resemble, although it's difficult to see at small point sizes. And I think there are better designs:
 
-![double-struck pi](/assets/images/blog/2018/04/pifonts/double-struck.png)
+![double-struck pi](/assets/images/blog/2018-04-13-pifonts/double-struck.png)
 
 Some tedious experimentation suggests that the search is to some extent alphabetic, because if Asana Math is unavailable, the OS moves on and tries Code2000, then Deja Vu, then Everson, then FreeSans, and so on. This at least is what I *think* happens on the current macOS with my particular setup. I suspect that it would be different on yours. And similar (but different) things will happen in your browser.
 
@@ -138,15 +138,15 @@ Can we use Julia to find all the different designs of π? My first attempt at th
 
 You probably won't have to manually remove oddments like Bodoni Ornaments or Topaz from the font list as I had to...
 
-<!-- ![tabulating pi - PNG fallback](/assets/images/blog/2018/04/pifonts/tabulate-pi.png) -->
+<!-- ![tabulating pi - PNG fallback](/assets/images/blog/2018-04-13-pifonts/tabulate-pi.png) -->
 
-![tabulating pi - SVG image](/assets/images/blog/2018/04/pifonts/tabulate-pi.svg)
+![tabulating pi - SVG image](/assets/images/blog/2018-04-13-pifonts/tabulate-pi.svg)
 
 It would be better if I manually curated the candidates rather than used this automatically-generated font list: there are way too many "default" designs from various system and language-specific fonts that simply fill the slot with a basic design, rather than interpret the shape according to the font's theme. And the font list produced by `fontconfig` doesn't look in all the font libraries, so it's an incomplete list.
 
 Here are a few of the more interesting designs: the portly Cooper Black and Tiffany Heavy, the minimalist Verdana and Tahoma (looking almost like "n"s?), the eccentric Gill "Kayo" Sans, and the silly Chalkduster.
 
-![piversity](/assets/images/blog/2018/04/pifonts/piversity.png)
+![piversity](/assets/images/blog/2018-04-13-pifonts/piversity.png)
 
 I like the small version from Dalliance; it's nicely old-school, where "old-school" here means based on an original from 1799, not long after Euler's death.
 
@@ -184,7 +184,7 @@ It occurred to me to ask "what is the average of π?", or "what would it look li
     end
     accumulatepi()
 
-![accumulating pi](/assets/images/blog/2018/04/pifonts/accumulate-pi.png)
+![accumulating pi](/assets/images/blog/2018-04-13-pifonts/accumulate-pi.png)
 
 For a complete font based on the average shapes of many other fonts, have a look at [Averia](http://www.iotic.com/averia/).
 

@@ -9,7 +9,7 @@ The Julia Community is committed to continuing to foster an inclusive and divers
 
 ## 2019 Julia User and Developer Survey
 
-We conducted the first annual Julia User & Developer Survey in June 2019, and [presented the results at JuliaCon](https://www.youtube.com/watch?v=yx6lBSHqGfc). Download the [survey findings](https://julialang.org/images/2019-julia-user-developer-survey.pdf).
+We conducted the first annual Julia User & Developer Survey in June 2019, and [presented the results at JuliaCon](https://www.youtube.com/watch?v=yx6lBSHqGfc). Download the [survey findings](/assets/images/2019-julia-user-developer-survey.pdf).
 
 ## Official Channels
 

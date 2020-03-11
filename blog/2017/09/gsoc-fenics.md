@@ -19,8 +19,8 @@ Throughout this Google Summer of Code project I, along with my mentors, aimed to
 
 The finite element method is a numerical method that solves partial differential equations by solving the weak form of a Galerkin approximation of the function into some sparse basis. This is done by discretizing the domain (breaking it up into small pieces, generally triangles called finite elements), representing the function via the values at the nodes of the triangles. This results in a system of equations which are an interpretation of the initial partial different equations in terms of the basis of these triangles. This is nearly impossible to do by hand, so computer software is required to aid in solving it. Our wrapper provides calls to the meshing functionality, the assembly of the stiffness matrices and the solution of the variational problems. It also provides access to various *helper* functions, that make usage easier. Some example meshes can be demonstrated below :
 
-![dolphin mesh](/assets/images/blog/2017/09/gsoc-fenics/dolfinmesh.png)
-![circle mesh](/assets/images/blog/2017/09/gsoc-fenics/circle_mesh.png)
+![dolphin mesh](/assets/images/blog/2017-09-01-gsoc-fenics/dolfinmesh.png)
+![circle mesh](/assets/images/blog/2017-09-01-gsoc-fenics/circle_mesh.png)
 
 ## And, internally?
 
@@ -75,9 +75,9 @@ FEniCS.Plot(U)
 
 ```
 
-![Square Mesh](/assets/images/blog/2017/09/gsoc-fenics/mesh.png)
+![Square Mesh](/assets/images/blog/2017-09-01-gsoc-fenics/mesh.png)
 
-![Solution](/assets/images/blog/2017/09/gsoc-fenics/result.png)
+![Solution](/assets/images/blog/2017-09-01-gsoc-fenics/result.png)
 
 
 ## Challenges
@@ -98,7 +98,7 @@ I hope to be able to maintain and improve the package, using it where possibly t
 
 Apart from coding, which was very enjoyable and provided a unique learning experience, undertaking this summer project introduced me to a wonderful community. In the brief time working alongside Julia, I had the opportunity to visit the Julia Computing offices in London. Right after, I was provided funding by **[Julia Computing](https://juliacomputing.com/)** and **[NumFOCUS](https://www.numfocus.org/)** to attend **[JuliaCon2017](http://juliacon.org/2017/)** and present a poster. Apart from the excellent talks, there I had the opportunity to share a flat with other GSoC students, and have lunch and drinks with pre-eminent members of the Julia Community. I truly believe this is one of the wonderful things about the open - source community. People devoting their time and effort, to help other people, and to propagate scientific discoveries open to everyone.
 
-![JuliaCon](/assets/images/blog/2017/09/gsoc-fenics//juliacon.jpg)
+![JuliaCon](/assets/images/blog/2017-09-01-gsoc-fenics//juliacon.jpg)
 
 JuliaCon 2017 attendees
 

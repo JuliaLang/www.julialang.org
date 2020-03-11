@@ -45,7 +45,7 @@ file formats to store biological sequences. I benchmarked parsing throughput in
 these two formats. The throughput improved as the loop unrolling factor was
 increased and saturated around factor = 10.
 
-![FASTA-FASTQ benchmarks](/assets/images/blog/2017/09/bio-parallel/fasta-fastq-benchmarks.png)
+![FASTA-FASTQ benchmarks](/assets/images/blog/2017-09-07-bio-parallel/fasta-fastq-benchmarks.png)
 
 Unrolled parsing achieved about 1.3 times speedup in both cases.  This benchmark
 does not include I/O operations but other operations that are required to

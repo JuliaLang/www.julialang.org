@@ -218,7 +218,7 @@ constant overhead (note the logarithmic scale) is due to a deficiency in argumen
 and will be fixed.
 
 ![Performance comparison of parallel reduction
-implementations.](/assets/images/blog/2017/03/cudanative/performance.png)
+implementations.](/assets/images/blog/2017-03-14-cudanative/performance.png)
 
 [^2]: The measurements include memory transfer time, which is why a CPU implementation was not included (realistically, data would be kept on the GPU as long as possible, making it an unfair comparison).
 

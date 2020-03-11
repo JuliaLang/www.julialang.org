@@ -63,7 +63,7 @@ When benchmarking the Flux Convolution Code, we figured out some of the major bo
 
 ~~~
 <p align = "center">
-    <img src = "/assets/images/blog/2018/08/GSoC-Flux-Computer-Vision/flux_internal_benchmarks.png" width="750">
+    <img src = "/assets/images/blog/2018-08-13-GSoC-Flux-Computer-Vision/flux_internal_benchmarks.png" width="750">
 </p>
 ~~~
 
@@ -95,7 +95,7 @@ This package provides a simple API to generate [dreams](https://en.wikipedia.org
 
 ~~~
 <p align = "center">
-    <img src = "/assets/images/blog/2018/08/GSoC-Flux-Computer-Vision/deepdream.jpg" width="750" height="750">
+    <img src = "/assets/images/blog/2018-08-13-GSoC-Flux-Computer-Vision/deepdream.jpg" width="750" height="750">
 </p>
 ~~~
 
@@ -119,7 +119,7 @@ Below is a small example of style transfer on MonaLisa
 
 ~~~
 <p align = "center">
-    <img src = "/assets/images/blog/2018/08/GSoC-Flux-Computer-Vision/styletransfer.jpg" width="750">
+    <img src = "/assets/images/blog/2018-08-13-GSoC-Flux-Computer-Vision/styletransfer.jpg" width="750">
 </p>
 ~~~
 
@@ -154,6 +154,6 @@ Firstly, I should thank __Google__ for organizing Google Summer of Code which ga
 
 ~~~
 <p align = "center">
-    <img src = "/assets/images/blog/2018/08/GSoC-Flux-Computer-Vision/gsoc_logo.png" width="700">
+    <img src = "/assets/images/blog/2018-08-13-GSoC-Flux-Computer-Vision/gsoc_logo.png" width="700">
 </p>
 ~~~

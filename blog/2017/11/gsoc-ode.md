@@ -46,7 +46,7 @@ sol = solve(prob, Ruth3(), dt=1//50);
 
 Finally, we analyze the solution by computing the first integrals and plotting them.
 
-![first integrals](/assets/images/blog/2017/11/gsoc-ode/symplectic_ruth3.svg)
+![first integrals](/assets/images/blog/2017-11-01-gsoc-ode/symplectic_ruth3.svg)
 
 Note that symplectic integrator doesn't mean that it has exact conservation. The solutions of a symplectic integrator are on a symplectic manifold, but don't necessarily conserve the Hamiltonian (energy). The energy can have fluctuations in a (quasi-)periodic manner, so that the first integrals have small variations. In the above case, the energy varies at most `6e-6`, and it tends to come back. The variations also decrease as `dt` is smaller. The angular momentum is conserved perfectly. More details are in this [notebook](http://nbviewer.jupyter.org/github/JuliaDiffEq/DiffEqTutorials.jl/blob/master/PhysicalModels/KeplerProblem.ipynb).
 
@@ -81,7 +81,7 @@ draw_duffing(8, 1, 5, 0.02, 0.5)
 
 Then, we need to get the solution at $\omega t \mod 2\pi=0$ to plot the Poincaré section, and we can achieve this by using [`saveat`](http://docs.juliadiffeq.org/latest/basics/common_solver_opts.html#Output-Control-1).
 
-![duffing Poincaré section](/assets/images/blog/2017/11/gsoc-ode/duffing_poincare_0.svg)
+![duffing Poincaré section](/assets/images/blog/2017-11-01-gsoc-ode/duffing_poincare_0.svg)
 
 #### Driven pendulum
 
@@ -108,7 +108,7 @@ end
 draw_driven_pendulum(1.12456789, 0.23456789, 0.7425755501794571)
 ```
 
-![driven pendulum Poincaré section](/assets/images/blog/2017/11/gsoc-ode/driven_poincare_0.svg)
+![driven pendulum Poincaré section](/assets/images/blog/2017-11-01-gsoc-ode/driven_poincare_0.svg)
 
 ## Boundary Value Problem
 
@@ -137,7 +137,7 @@ bvp1 = BVProblem(simplependulum, bc1, [pi/2,pi/2], tspan)
 sol1 = solve(bvp1, GeneralMIRK4(), dt=0.05)
 ```
 
-![bvp](/assets/images/blog/2017/11/gsoc-ode/bvp.svg)
+![bvp](/assets/images/blog/2017-11-01-gsoc-ode/bvp.svg)
 
 More details can be found in [here](http://docs.juliadiffeq.org/latest/tutorials/bvp_example.html).
 

@@ -39,7 +39,7 @@ As a simple example, consider the process of rotating an image:
 
 | img | img_rotated |
 |:-:|:-----:|
-| ![cameraman](/assets/images/blog/2017/04/offset-arrays/cameraman.png) | ![cameraman_rot](/assets/images/blog/2017/04/offset-arrays/cameraman_rotated.png) |
+| ![cameraman](/assets/images/blog/2017-04-18-offset-arrays/cameraman.png) | ![cameraman_rot](/assets/images/blog/2017-04-18-offset-arrays/cameraman_rotated.png) |
 
 Many languages provide functions for rotating an image; in Julia, you
 can do this with the `warp` function defined in
@@ -171,7 +171,7 @@ julia> imgri = img_rotated[inds...];
 
 so that `colorview(RGB, imgi, imgri, imgi)` displays as
 
-![cameraman_interior](/assets/images/blog/2017/04/offset-arrays/cameraman_overlay_interior.png)
+![cameraman_interior](/assets/images/blog/2017-04-18-offset-arrays/cameraman_overlay_interior.png)
 
 Since the indices of the pixels encode absolute spatial location, it's
 trivial to keep track of how different pixels align: pixel `i,j` in
@@ -423,7 +423,7 @@ julia> imfilter(1:8, kern3, Fill(0))
 
 These are all illustrated in the following figure:
 
-![deltafunctions](/assets/images/blog/2017/04/offset-arrays/filtering.png)
+![deltafunctions](/assets/images/blog/2017-04-18-offset-arrays/filtering.png)
 
 In this figure, we plotted the kernel as if it were at the location
 corresponding to convolution rather than correlation.
