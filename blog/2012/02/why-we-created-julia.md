@@ -4,10 +4,12 @@
 @def title = "Why We Created Julia"
 @def authors = "Jeff Bezanson Stefan Karpinski Viral B. Shah Alan Edelman"  
 
-~~~<a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
+~~~
+<a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
 <a href="http://karpinski.org/">Stefan Karpinski</a>
 <a href="http://github.com/ViralBShah/">Viral B. Shah</a>
-<a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>~~~
+<a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>
+~~~
 
 In short, because we are greedy.
 
@@ -59,21 +61,21 @@ It already delivers on 90% of our ungracious demands, and now it needs the ungra
 So, if you are also a greedy, unreasonable, demanding programmer, we want you to give it a try.
 
 trackbacks:
-- Reddit: [http://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/]()
-- Hacker News: [http://news.ycombinator.com/item?id=3606380]()
-- Lambda-the-Ultimate: [http://lambda-the-ultimate.org/node/4452]()
-- Phoronix: [http://www.phoronix.com/scan.php?page=news_item&px=MTA2ODg]()
-- The Endeavor (John D. Cook): [http://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/]()
-- Walking Randomly: [http://www.walkingrandomly.com/?p=87]()
-- Miguel Bazdresch: [http://2pif.info/op/julia.html]()
-- Douglas Bates: [http://dmbates.blogspot.in/2012/03/julia-version-of-multinomial-sampler_12.html]()
-- Vince Buffalo: [http://vincebuffalo.org/2012/03/07/thoughts-on-julia.html]()
-- John Myles White: [http://www.johnmyleswhite.com/notebook/2012/03/31/julia-i-love-you/]()
-- Shane Conway: [http://www.statalgo.com/2012/03/24/statistics-with-julia/]()
-- Tim Salimans: [http://timsalimans.com/gibbs-sampling-with-julia/]()
-- Twitter trackbacks: [http://topsy.com/julialang.org/]()
-- Russian translation: [http://habrahabr.ru/blogs/programming/138577/]()
-- Linux.org.ru blog post (Russian): [http://www.linux.org.ru/news/opensource/7440863]()
-- Simplified Chinese translation: [/blog/2012-02-why-we-created-julia-zh_CN]()
-- Traditional Chinese translation: [http://www.hellogcc.org/archives/666]()
-- Linuxfr.org blog post (French): [http://linuxfr.org/news/version-1-0-de-julia]()
+- [Reddit](http://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/)
+- [Hacker News](http://news.ycombinator.com/item?id=3606380)
+- [Lambda-the-Ultimate](http://lambda-the-ultimate.org/node/4452)
+- [Phoronix](http://www.phoronix.com/scan.php?page=news_item&px=MTA2ODg)
+- [The Endeavor (John D. Cook)](http://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/)
+- [Walking Randomly](http://www.walkingrandomly.com/?p=87)
+- [Miguel Bazdresch](http://2pif.info/op/julia.html)
+- [Douglas Bates](http://dmbates.blogspot.in/2012/03/julia-version-of-multinomial-sampler_12.html)
+- [Vince Buffalo](http://vincebuffalo.org/2012/03/07/thoughts-on-julia.html)
+- [John Myles White](http://www.johnmyleswhite.com/notebook/2012/03/31/julia-i-love-you/)
+- [Shane Conway](http://www.statalgo.com/2012/03/24/statistics-with-julia/)
+- [Tim Salimans](http://timsalimans.com/gibbs-sampling-with-julia/)
+- [Twitter trackbacks](http://topsy.com/julialang.org/)
+- [Russian translation](http://habrahabr.ru/blogs/programming/138577/)
+- [Linux.org.ru blog post (Russian)](http://www.linux.org.ru/news/opensource/7440863)
+- [Simplified Chinese translation](http://sd.csdn.net/a/20120223/312315.html)
+- [Traditional Chinese translation](http://www.hellogcc.org/archives/666)
+- [Linuxfr.org blog post (French)](http://linuxfr.org/news/version-1-0-de-julia)

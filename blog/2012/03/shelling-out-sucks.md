@@ -5,7 +5,7 @@
 @def authors = """ <a href="http://karpinski.org/">Stefan Karpinski</a>"""  
 @def hascode = true
 
-[followup post](/blog/2013/04/put-this-in-your-pipe/)
+[followup post]: /blog/2013/04/put-this-in-your-pipe/
 
 [Perl]:     http://www.perl.org/
 [Python]:   http://python.org/
@@ -24,7 +24,7 @@ Here are the three reasons why shelling out is problematic:
 3. *[Silent failures by default.](#silent_failures_by_default)* Errors in shelled out commands don't automatically become exceptions in most languages. This default leniency leads to code that fails silently when shelled out commands don't work. Worse still, because of the indirection problem, there are many cases where the failure of a process in a spawned pipeline *cannot* be detected by the parent process, even if errors are fastidiously checked for.
 
 In the rest of this post, I'll go over examples demonstrating each of these problems.
-At [the end](#Summary+and+Remedy), I'll talk about better alternatives to shelling out, and in a [followup post](/blog/2013/04/put-this-in-your-pipe/). I'll demonstrate how Julia makes these better alternatives dead simple to use.
+At [the end](#Summary+and+Remedy), I'll talk about better alternatives to shelling out, and in a [followup post]. I'll demonstrate how Julia makes these better alternatives dead simple to use.
 Examples below are given in Ruby which shells out to [Bash], but the same problems exist no matter what language one shells out from:
 it's the technique of using an intermediate shell process to spawn external commands that's at fault, not the language.
 

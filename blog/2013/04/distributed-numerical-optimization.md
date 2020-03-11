@@ -22,20 +22,20 @@ The cutting-plane algorithm is a method for solving the optimization problem
 
 $$\min_{x \in \mathbb R^d} \sum_{i=1}^n f_i(x)$$
 
-where the functions $( f_i $) are convex but not necessarily differentiable.
-The absolute value function $( |x| $) and the 1-norm $( ||x|| _ 1 $) are
+where the functions $f_i $ are convex but not necessarily differentiable.
+The absolute value function $|x| $ and the 1-norm $ ||x|| _ 1 $ are
 typical examples. Important applications also arise from [Lagrangian
-relaxation](http://en.wikipedia.org/wiki/Lagrangian_relaxation). The idea of the algorithm is to approximate the functions $(f_i $) with piecewise linear models $( m_i $) which are built up from information obtained by evaluating $( f_i $) at different points. We
+relaxation](http://en.wikipedia.org/wiki/Lagrangian_relaxation). The idea of the algorithm is to approximate the functions $f_i $ with piecewise linear models $ m_i $ which are built up from information obtained by evaluating $ f_i $ at different points. We
 iteratively minimize over the models to generate candidate solution points.
 
 We can state the algorithm as
 
-1. Choose starting point $( x $).
-2. For $(i = 1,\ldots,n$), evaluate $(f_i(x) $) and update corresponding model $( m_i $).
-3. Let the next candidate $( x $) be the minimizer of $( \sum_{i=1}^n m_i(x) $).
+1. Choose starting point $ x $.
+2. For $i = 1,\ldots,n$, evaluate $f_i(x) $ and update corresponding model $ m_i $.
+3. Let the next candidate $ x $ be the minimizer of $ \sum_{i=1}^n m_i(x) $.
 4. If not converged, goto step 2.
 
-If it is costly to evaluate $( f_i(x) $), then the algorithm is naturally
+If it is costly to evaluate $ f_i(x) $, then the algorithm is naturally
 parallelizable at step 2. The minimization in step 3 can be computed by solving
 a linear optimization problem, which is usually very fast. (Let me point out
 here that Julia has interfaces to linear programming and other
@@ -52,8 +52,8 @@ while !isconverged(state)
 end
 ```
 
-The function ``solvesubproblem`` corresponds to evaluating $(f_i(x)$) for a
-given $( i $) and $( x $) (the elements of ``subproblems`` could be tuples
+The function ``solvesubproblem`` corresponds to evaluating $f_i(x)$ for a
+given $ i $ and $ x $ (the elements of ``subproblems`` could be tuples
 ``(i,x)``). The function ``process`` corresponds to minimizing the model in step
 3, and it produces a new state and a new set of subproblems to solve.
 
@@ -73,7 +73,7 @@ often the case with cloud computing.
 We can consider a new variant of the cutting-plane algorithm to address this
 issue. The key point is
 
-- When proportion $(0 < \alpha \le 1 $) of subproblems for a given candidate
+- When proportion $0 < \alpha \le 1 $ of subproblems for a given candidate
   have been solved, generate a new candidate and corresponding set of
   subproblems by using whatever information is presently available.
 
@@ -225,10 +225,10 @@ usage is
 julia runals.jl [data source] [num subproblems] [async param] [block size]
 ```
 
-where `[num subproblems]` is the $(n$) as above and `[async param]` is
-the proportion $(\alpha$). By setting $(\alpha = 1$) we obtain the
-synchronous algorithm. For the asynchronous version we will take $(\alpha =
-0.6$). The `[block size]` parameter controls how many subproblems are sent to
+where `[num subproblems]` is the $n$ as above and `[async param]` is
+the proportion $\alpha$. By setting $\alpha = 1$ we obtain the
+synchronous algorithm. For the asynchronous version we will take $\alpha =
+0.6$. The `[block size]` parameter controls how many subproblems are sent to
 a worker at once (in the previous code, this value was always 1). We will use
 4000 subproblems in our experiments.
 

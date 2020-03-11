@@ -98,7 +98,7 @@ with information about the environment in which the function was
 defined; we will talk more about this below.  In any case, it is a
 very different object than a simple pointer to machine code for one
 set of argument types.  Fortunately, we can get the latter simply by
-calling a [built-in Julia function](https://docs.julialang.org/en/stable/manual/calling-c-and-fortran-code/#Closure-cfunctions-1) called `cfunction`:
+calling a [built-in Julia function](https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#Closure-cfunctions-1) called `cfunction`:
 
 ```julia
 const mycompare_c = cfunction(mycompare, Cint, (Ptr{Cdouble}, Ptr{Cdouble}))

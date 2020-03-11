@@ -17,17 +17,17 @@ Iain Dunning and Joey Huchette are both doctoral students in the Massachusetts I
 - **GitHub:** <https://github.com/IainNZ> <https://github.com/joehuchette> <https://github.com/mlubin>
 
 ~~~
-<div style="text-align: center"><iframe width="560" height="315" src="//www.youtube.com/embed/VwZvUvXX-vY?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
+<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/VwZvUvXX-vY?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
 ~~~
 
 ### Madeleine Udell — Convex Optimization in Julia
 
 Madeleine Udell is a PhD candidate in Computational & Mathematical Engineering at Stanford University, where she works with Professor Stephen Boyd. Madeleine's work focuses on modeling and solving large-scale optimization problems and in finding and exploiting structure in high dimensional data. She is the lead developer of the CVX.jl package.
 
-- **Video:** <http://youtu.be/SoI0lEaUvTs>
-- **Slides:** <http://goo.gl/Nfy14D>
-- **Website:** <http://web.stanford.edu/~udell/>
+- **Video:** [http://youtu.be/SoI0lEaUvTs](http://youtu.be/SoI0lEaUvTs)
+- **Slides:** [http://goo.gl/Nfy14D](http://goo.gl/Nfy14D)
+- **Website:** [http://web.stanford.edu/~udell/](http://web.stanford.edu/~udell/)
 
 ~~~
-<div style="text-align: center"><iframe width="560" height="315" src="//www.youtube.com/embed/SoI0lEaUvTs?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
+<div style="text-align: center"><iframe width="560" height="315" src="https://www.youtube.com/embed/SoI0lEaUvTs?list=PLP8iPy9hna6TSRouJfvobfxkZFYiPSvPd" frameborder="0" allowfullscreen></iframe></div>
 ~~~

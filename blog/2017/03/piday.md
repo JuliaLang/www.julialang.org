@@ -6,9 +6,11 @@
 @def hasmath = true
 @def hascode = true
 
-![pi](/assets/images/blog/2017/03/piday/pi.png) [^credit]
+![pi](/assets/images/pi.png)
 
-*This post is available as a Jupyter notebook [here](https://github.com/simonbyrne/Pi.jl/blob/master/pi.ipynb)*
+> Image courtesy of [Cormullion](https://github.com/cormullion), code [here](https://gist.github.com/cormullion/e979d819e478da73280faaeb67490888).
+> \\
+> This post is available as a Jupyter notebook [here](https://github.com/simonbyrne/Pi.jl/blob/master/pi.ipynb).
 
 \toc
 
@@ -1179,5 +1181,3 @@ N 	 area interval 	 	 diameter
 950 	 [3.1394, 3.1437] 	 0.004210526316076102
 1000 	 [3.1395, 3.1436] 	 0.004000000000294435
 ```
-
-[credit] Image courtesy of [Cormullion](https://github.com/cormullion), code [here](https://gist.github.com/cormullion/e979d819e478da73280faaeb67490888).

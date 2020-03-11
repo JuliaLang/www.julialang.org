@@ -4,10 +4,12 @@
 @def title = "为什么我们要创造Julia (Simplified Chinese)"
 @def authors = "Jeff Bezanson Stefan Karpinski Viral B. Shah Alan Edelman"  
 
-~~~<a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
+~~~
+<a href="http://github.com/JeffBezanson/">Jeff Bezanson</a>
 <a href="http://karpinski.org/">Stefan Karpinski</a>
 <a href="http://github.com/ViralBShah/">Viral B. Shah</a>
-<a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>~~~
+<a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>
+~~~
 
 
 > 这是一篇重译，参考了2012年的一篇豆瓣（链接在最后）。
@@ -22,7 +24,7 @@
 
 我们想要的是一个自由开源的语言，并且它同时拥有C的速度和Ruby的动态性；我们想要一个具有[同像性]()（可以将语言的脚本本身当作数据进行处理）的语言，它有着真正的和lisp一样的宏，但是却像Matlab一样有着显然的，类似于数学表达式的标记；我们想要一个既可以像Python一样作为通用编程语言的工具，又可以像R那样适用于统计分析，能像Perl那样自然地处理字符串，能像Matlab那样给力地处理矩阵运算，它还要能像shell一样作为胶水将各种程序粘合在一起；我们想要一个简单易学的语言，同时它还能让最苛刻的魔法师们（hackers）开心。我们希望它是交互式的，但我们也希望它能被编译。
 
-（我们刚刚有提它要和C一样快嘛？！）
+我们刚刚有提它要和C一样快嘛？！）
 
 当我们在构思这些需求的时候，我们发现它还得有Hadoop这样强大的分布式能力，却不想要Hadoop里面那些冗长Jave和XML模板，更不想被被迫在几个GB的日志文件和几百台机器里找bug。我们不想要那些令人费解的层次结构。我们想让简单的标量循环能被编译成仅用寄存器和一块CPU的干净的机器码。我们希望简单地写下`A*B`就能够在成千上万的机器上用成千上万地运算来计算这个庞大的矩阵乘法。
 
@@ -32,6 +34,7 @@
 
 尽管我们意识到了自己有多贪心，我们还是想要拥有这些功能。大概在两年半之前，我们开始创造这种能满足我们贪念的语言。它还没有完工——但是已经可以发布一个1.0版本了（其实等了6年才要发布）——我们创造的这个语言叫做Julia。它已经实现了我们这次乱七八糟需求的90%，而现在她需要来自更多人的乱七八糟的需求，来让她走得更远。如果你也是一位贪心不足，不可理喻，需索无度的码场二逼青年，希望你能来试试这个东东。
 
+~~~
 <p>
 作者：Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman
 </br>
@@ -41,23 +44,24 @@
 </br>
 参考自：<a href="https://www.douban.com/note/203945680/">豆瓣：为什么我们要创造Julia</a>
 </p>
+~~~
 
 trackbacks:
-    - Reddit: "http://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/"
-    - Hacker News: "http://news.ycombinator.com/item?id=3606380"
-    - Lambda-the-Ultimate: "http://lambda-the-ultimate.org/node/4452"
-    - Phoronix: "http://www.phoronix.com/scan.php?page=news_item&px=MTA2ODg"
-    - The Endeavor (John D. Cook): "http://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/"
-    - Walking Randomly: "http://www.walkingrandomly.com/?p=87"
-    - Miguel Bazdresch: "http://2pif.info/op/julia.html"
-    - Douglas Bates: "http://dmbates.blogspot.in/2012/03/julia-version-of-multinomial-sampler_12.html"
-    - Vince Buffalo: "http://vincebuffalo.org/2012/03/07/thoughts-on-julia.html"
-    - John Myles White: "http://www.johnmyleswhite.com/notebook/2012/03/31/julia-i-love-you/"
-    - Shane Conway: "http://www.statalgo.com/2012/03/24/statistics-with-julia/"
-    - Tim Salimans: "http://timsalimans.com/gibbs-sampling-with-julia/"
-    - Twitter trackbacks: "http://topsy.com/julialang.org/"
-    - Russian translation: "http://habrahabr.ru/blogs/programming/138577/"
-    - Linux.org.ru blog post (Russian): "http://www.linux.org.ru/news/opensource/7440863"
-    - Simplified Chinese translation: "http://sd.csdn.net/a/20120223/312315.html"
-    - Traditional Chinese translation: "http://www.hellogcc.org/archives/666"
-    - Linuxfr.org blog post (French): "http://linuxfr.org/news/version-1-0-de-julia"
+- [Reddit](http://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/)
+- [Hacker News](http://news.ycombinator.com/item?id=3606380)
+- [Lambda-the-Ultimate](http://lambda-the-ultimate.org/node/4452)
+- [Phoronix](http://www.phoronix.com/scan.php?page=news_item&px=MTA2ODg)
+- [The Endeavor (John D. Cook)](http://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/)
+- [Walking Randomly](http://www.walkingrandomly.com/?p=87)
+- [Miguel Bazdresch](http://2pif.info/op/julia.html)
+- [Douglas Bates](http://dmbates.blogspot.in/2012/03/julia-version-of-multinomial-sampler_12.html)
+- [Vince Buffalo](http://vincebuffalo.org/2012/03/07/thoughts-on-julia.html)
+- [John Myles White](http://www.johnmyleswhite.com/notebook/2012/03/31/julia-i-love-you/)
+- [Shane Conway](http://www.statalgo.com/2012/03/24/statistics-with-julia/)
+- [Tim Salimans](http://timsalimans.com/gibbs-sampling-with-julia/)
+- [Twitter trackbacks](http://topsy.com/julialang.org/)
+- [Russian translation](http://habrahabr.ru/blogs/programming/138577/)
+- [Linux.org.ru blog post (Russian)](http://www.linux.org.ru/news/opensource/7440863)
+- [Simplified Chinese translation](http://sd.csdn.net/a/20120223/312315.html)
+- [Traditional Chinese translation](http://www.hellogcc.org/archives/666)
+- [Linuxfr.org blog post (French)](http://linuxfr.org/news/version-1-0-de-julia)

@@ -43,7 +43,7 @@ The core reason for building new languages is simple: ML research has extremely 
 There’s a snag, though. These impressive optimisations rely on simplifying assumptions (ML models won’t be recursive, or need custom gradients, right?), which make it easier to apply optimisations or deploy to small devices. Unfortunately for engineers, model complexity has increased and researchers thoroughly enjoy violating these assumptions. Models now demand conditional branching (ok, easy enough to hack in), loops for recurrence (less easy but possible), and even [recursion over trees](https://arxiv.org/pdf/1503.00075.pdf) (virtually impossible to deal with). In many areas of ML, including [neural networks](https://blog.keras.io/the-future-of-deep-learning.html) and [probabilistic programming](https://eng.uber.com/pyro/), models are becoming increasingly like programs, including ones that reason about *other* programs (e.g. [program generators](https://arxiv.org/pdf/1705.03633.pdf) and [interpreters](https://arxiv.org/abs/1605.06640)), and with non-differentiable components like Monte Carlo Tree Search. It's enormously challenging to build runtimes that provide complete flexibility while achieving top performance, but increasingly the most powerful models and groundbreaking results need both.
 
 ~~~
-<img src="/assets/images/blog/sentiment-treebank.png"/>
+<img src="/assets/images/sentiment-treebank.png"/>
 <div class="desc">
   Using ML with complex tree-structured data, like the <a href="https://nlp.stanford.edu/sentiment/treebank.html">Stanford Sentiment Treebank</a>, requires differentiable, recursive algorithms.
 </div>

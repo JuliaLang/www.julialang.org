@@ -152,7 +152,7 @@ channels respectively.  If we visualize `cv`, we see the following:
 
 | around image center | around head (cv) |
 |:-------:|:------:|
-| ![cameraman](/assets/images/blog/2017/04/offset-arrays/cameraman_overlay_center.png) | ![cameraman_rot](/assets/images/blog/2017/04/offset-arrays/cameraman_overlay.png) |
+| ![cameraman](/assets/images/blog/2017-04-18-offset-arrays/cameraman_overlay_center.png) | ![cameraman_rot](/assets/images/blog/2017-04-18-offset-arrays/cameraman_overlay.png) |
 
 The image on the left is for reference, showing what a rotation around
 the image center would look like when properly aligned. The image on

@@ -604,4 +604,4 @@ Sometimes, of course, their behavior coincides, e.g. `map(sqrt, [1,2,3])` and
 nor `broadcast` generalizes the other — each has things they can do that
 the other cannot.
 
-[notebook]: https://github.com/JuliaLang/www.julialang.org/blob/master/blog/_posts/moredots/More-Dots.ipynb
+[notebook]: /assets/images/blog//moredots/More-Dots.ipynb
