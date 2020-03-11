@@ -1,4 +1,4 @@
-@def prepath = "www.julialang.org" <!-- remove when publish -->
+<!-- @def prepath = "www.julialang.org" -->
 
 <!-- NOTE: don't change what's below -->
 @def generate_rss = false
