@@ -48,7 +48,7 @@ Finally, we analyze the solution by computing the first integrals and plotting t
 
 ![first integrals](/assets/images/blog/2017-11-01-gsoc-ode/symplectic_ruth3.svg)
 
-Note that symplectic integrator doesn't mean that it has exact conservation. The solutions of a symplectic integrator are on a symplectic manifold, but don't necessarily conserve the Hamiltonian (energy). The energy can have fluctuations in a (quasi-)periodic manner, so that the first integrals have small variations. In the above case, the energy varies at most `6e-6`, and it tends to come back. The variations also decrease as `dt` is smaller. The angular momentum is conserved perfectly. More details are in this [notebook](http://nbviewer.jupyter.org/github/JuliaDiffEq/DiffEqTutorials.jl/blob/master/PhysicalModels/KeplerProblem.ipynb).
+Note that symplectic integrator doesn't mean that it has exact conservation. The solutions of a symplectic integrator are on a symplectic manifold, but don't necessarily conserve the Hamiltonian (energy). The energy can have fluctuations in a (quasi-)periodic manner, so that the first integrals have small variations. In the above case, the energy varies at most `6e-6`, and it tends to come back. The variations also decrease as `dt` is smaller. The angular momentum is conserved perfectly. More details are in this [notebook](https://tutorials.juliadiffeq.org/html/models/05-kepler_problem.html).
 
 ## Adaptivity and Dense Output
 
