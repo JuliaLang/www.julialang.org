@@ -212,13 +212,11 @@ the argument types.
 
 
 So how does it perform? Turns out, pretty good! The chart below compares the performance of
-both the CUDAnative.jl and CUDA C implementations[^2], using BenchmarkTools.jl to [measure
-the execution time]({{page.cudanative_tree}}/examples/reduce/benchmark.jl). The small
+both the CUDAnative.jl and CUDA C implementations[^2], using BenchmarkTools.jl to [measure the execution time](https://github.com/JuliaGPU/CUDAnative.jl/blob/0721783db9ac4cc2c2948cbf8cbff4aa5f7c4271/examples/reduce/benchmark.jl). The small
 constant overhead (note the logarithmic scale) is due to a deficiency in argument passing,
 and will be fixed.
 
-![Performance comparison of parallel reduction
-implementations.](/assets/images/blog/2017-03-14-cudanative/performance.png)
+![Performance comparison of parallel reduction implementations.](/assets/images/blog/2017-03-14-cudanative/performance.png)
 
 [^2]: The measurements include memory transfer time, which is why a CPU implementation was not included (realistically, data would be kept on the GPU as long as possible, making it an unfair comparison).
 
