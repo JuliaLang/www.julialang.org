@@ -5,11 +5,11 @@ Please take a moment to read the [Julia Community Standards](/community/standard
 
 ## Diversity and Inclusion
 
-The Julia Community is committed to continuing to foster an inclusive and diverse culture. Read more about how we are doing this on our [diversity page](/diversity/).
+The Julia Community is committed to continuing to foster an inclusive and diverse culture. Read more about how we are doing this on our [diversity page](https://julialang.org/diversity).
 
 ## 2019 Julia User and Developer Survey
 
-We conducted the first annual Julia User & Developer Survey in June 2019, and [presented the results at JuliaCon](https://www.youtube.com/watch?v=yx6lBSHqGfc). Download the [survey findings](/assets/2019-julia-user-developer-survey.pdf).
+We conducted the first annual Julia User & Developer Survey in June 2019, and [presented the results at JuliaCon](https://www.youtube.com/watch?v=yx6lBSHqGfc). Download the [survey findings](https://julialang.org/images/2019-julia-user-developer-survey.pdf).
 
 ## Official Channels
 
@@ -49,7 +49,7 @@ On Twitter, tweet with the [#julialang](https://twitter.com/search?q=%23julialan
 
 Julia also has a presence on Stack Overflow under the [julia](https://stackoverflow.com/tags/julia) tag, and on Stack Overflow en Español under [julia](http://es.stackoverflow.com/questions/tagged/julia).
 
-For those who prefer IRC to our official forums, there is a [#julia channel](http://webchat.freenode.net/?channels=julia) on Freenode. We also have an unofficial [Gitter](https://gitter.im/JuliaLang/julia) channel. There is a small [Julia subreddit](https://www.reddit.com/r/Julia/) for casual discussion.
+For those who prefer IRC to our official forums, there is a [#julia channel](http://webchat.freenode.net/?channels=julia) on Freenode. We also have an unofficial [Gitter](https://gitter.im/JuliaLang/julia) channel. There is a small [Julia subreddit](https://www.reddit.com/r/Julia/) for casual discussion. As an open source alternative to Slack, we have a [Julia Zulip organization](https://julialang.zulipchat.com/) which you can get an automated invite to [at this link.](https://julialang.zulipchat.com/join/ljh03tjbc5jtdadh0lwkhp0h/)
 
 ## International Community
 
