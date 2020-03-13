@@ -75,7 +75,7 @@ The main goal of the project is to port capability from sktime to MLJ.
 ### Details
 
 @@tight-list
-* Extend existing MLJ data container to handle time series data,  
+* Extend existing MLJ data container to handle time series data,
 * Implement time series data specific transformers that work on new data container (e.g. Fourier transform, auto-correlation, etc.),
 * Implement time-series classification algorithms (for a good overview of algorithms, see e.g. this [paper](https://arxiv.org/abs/1602.01711); for Python implementations see e.g. [sktime](https://github.com/alan-turing-institute/sktime); for Java implementations, see e.g. [this code repository](https://www.timeseriesclassification.com/code.php)),
 @@
@@ -83,6 +83,13 @@ The main goal of the project is to port capability from sktime to MLJ.
 ### Where to get started?
 
 A good starting point that combines all of the above implementations may be [time series forest](https://www.sciencedirect.com/science/article/pii/S0020025513001473), a generalisation of random forest in which each tree of the ensemble extracts features from random intervals of the time series before fitting a decision tree on the extracted features, so that each tree is no longer a single estimator but rather a pipeline chaining prior transformations with a final estimator.
+
+## MLJ and MLFlow integration
+Implement MLJ with [MLFlow](https://mlflow.org). MLFlow is a flexible model management tool. The project consists of writing the necessary functions to integrate MLJ with [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html) so models built using MLJ can keep track of its runs, evaluation metrics, parameters, and can be registered and monitored using MLFlow.
+
+### Mentors
+* [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
+ * [Diego Arenas](https://github.com/darenasc)
 
 ## Bring MLJ to Kaggle!
 
