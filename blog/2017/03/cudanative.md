@@ -264,9 +264,6 @@ to cover and explain what has already been implemented.
 
 ## Thanks
 
-This work would not have been possible without Viral Shah and Alan Edelman arranging my stay
-at MIT. I'd like to thank everybody at Julia Central and around, it has been a blast! I'm
-also grateful to Bjorn De Sutter, and IWT Vlaanderen, for supporting my time at Ghent
-University.
+This work would not have been possible without Viral Shah and Alan Edelman arranging my stay at MIT. I'd like to thank everybody at Julia Central and around, it has been a blast! I'm also grateful to Bjorn De Sutter, and IWT Vlaanderen, for supporting my time at Ghent University.
 
-[^1]: See the [README]({{page.cudanative_tree}}/README.md#object-arguments) for a note on how expensive this currently is.
+[^1]: See the [README](https://github.com/JuliaGPU/CUDAnative.jl/blob/5f6f53c58c909d00719191fbaf5a3a88cbea4ac9/test/perf/launch_overhead/README.md) for a note on how expensive this currently is.

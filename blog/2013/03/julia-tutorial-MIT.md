@@ -33,7 +33,7 @@ This session demonstrates Julia's statistics capabilities, which are provided by
 
 ## Fast Fourier Transforms
 
-Julia provides a built-in interface to the [FFTW](http://www.fftw.org/) library. This session demonstrates the Julia's [signal processing](http://docs.julialang.org/en/release-0.1/stdlib/base/#signal-processing) capabilities, such as FFTs and DCTs. Also see the [Hadamard](https://github.com/stevengj/Hadamard.jl) package.
+Julia provides a built-in interface to the [FFTW](http://www.fftw.org/) library. This session demonstrates the Julia's [signal processing](http://docs.julialang.org/en/release-0.1/stdlib/base/#signal_processing) capabilities, such as FFTs and DCTs. Also see the [Hadamard](https://github.com/stevengj/Hadamard.jl) package.
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/1iBLaHGL1AM" frameborder="0" allowfullscreen></iframe>~~~
 

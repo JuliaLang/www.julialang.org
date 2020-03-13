@@ -22,7 +22,7 @@ nor maintained anymore.
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.2/julia-1.2.0-mac64.dmg">64-bit</a> </td>
     </tr>
     <tr>
-      <th> Generic Linux Binaries for x86 <a href="/downloads/platform/#linux-and-freebsd">[help]</a></th>
+      <th> Generic Linux Binaries for x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.2/julia-1.2.0-linux-i686.tar.gz">32-bit</a>
         (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.2/julia-1.2.0-linux-i686.tar.gz.asc">GPG</a>)
       </td>
@@ -31,7 +31,7 @@ nor maintained anymore.
       </td>
     </tr>
     <tr>
-      <th> Generic Linux Binaries for ARM <a href="/downloads/platform/#linux-and-freebsd">[help]</a></th>
+      <th> Generic Linux Binaries for ARM <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.2/julia-1.2.0-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
           (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.2/julia-1.2.0-linux-armv7l.tar.gz.asc">GPG</a>)
       </td>
@@ -40,7 +40,7 @@ nor maintained anymore.
       </td>
     </tr>
     <tr>
-      <th> Generic FreeBSD Binaries for x86 <a href="/downloads/platform/#linux-and-freebsd">[help]</a></th>
+      <th> Generic FreeBSD Binaries for x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3"> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.2/julia-1.2.0-freebsd-x86_64.tar.gz">64-bit</a>
           (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.2/julia-1.2.0-freebsd-x86_64.tar.gz.asc">GPG</a>)
@@ -76,7 +76,7 @@ nor maintained anymore.
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.1/julia-1.1.1-mac64.dmg">64-bit</a> </td>
     </tr>
     <tr>
-      <th> Generic Linux Binaries for x86 <a href="/downloads/platform/#linux-and-freebsd">[help]</a></th>
+      <th> Generic Linux Binaries for x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.1/julia-1.1.1-linux-i686.tar.gz">32-bit</a>
         (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.1/julia-1.1.1-linux-i686.tar.gz.asc">GPG</a>)
       </td>
@@ -85,7 +85,7 @@ nor maintained anymore.
       </td>
     </tr>
     <tr>
-      <th> Generic Linux Binaries for ARM <a href="/downloads/platform/#linux-and-freebsd">[help]</a></th>
+      <th> Generic Linux Binaries for ARM <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3"> <!--<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.1/julia-1.1.1-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
           (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.1/julia-1.1.1-linux-armv7l.tar.gz.asc">GPG</a>)-->
       </td>
@@ -94,7 +94,7 @@ nor maintained anymore.
       </td>
     </tr>
     <tr>
-      <th> Generic FreeBSD Binaries for x86 <a href="/downloads/platform/#linux-and-freebsd">[help]</a></th>
+      <th> Generic FreeBSD Binaries for x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3"> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.1/julia-1.1.1-freebsd-x86_64.tar.gz">64-bit</a>
           (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.1/julia-1.1.1-freebsd-x86_64.tar.gz.asc">GPG</a>)
@@ -133,7 +133,7 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
     </tr>
     </tr>
     <tr>
-      <th> Generic Linux Binaries for x86 <a href="/downloads/platform/#linux-and-freebsd">[help]</a></th>
+      <th> Generic Linux Binaries for x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/0.7/julia-0.7.0-linux-i686.tar.gz">32-bit</a>
         (<a href="https://julialang-s3.julialang.org/bin/linux/x86/0.7/julia-0.7.0-linux-i686.tar.gz.asc">GPG</a>)
       </td>
@@ -142,7 +142,7 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
       </td>
     </tr>
     <tr>
-      <th> Generic FreeBSD Binaries for x86 <a href="/downloads/platform/#linux-and-freebsd">[help]</a></th>
+      <th> Generic FreeBSD Binaries for x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3"> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/0.7/julia-0.7.0-freebsd-x86_64.tar.gz">64-bit</a>
           (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/0.7/julia-0.7.0-freebsd-x86_64.tar.gz.asc">GPG</a>)
@@ -178,7 +178,7 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
     <td colspan="6"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.6/julia-0.6.4-mac64.dmg">10.8+ 64-bit</a> </td>
   </tr>
   <tr>
-    <th> Generic Linux Binaries for x86 <a href="/downloads/platform/#linux-and-freebsd">[help]</a></th>
+    <th> Generic Linux Binaries for x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
     <td colspan="3">
       <a href="https://julialang-s3.julialang.org/bin/linux/x86/0.6/julia-0.6.4-linux-i686.tar.gz">32-bit</a>
       (<a href="https://julialang-s3.julialang.org/bin/linux/x86/0.6/julia-0.6.4-linux-i686.tar.gz.asc">GPG</a>)

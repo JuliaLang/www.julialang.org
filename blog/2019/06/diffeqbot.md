@@ -105,7 +105,7 @@ All the configuration of DiffEqBot is done through a file `config.json` in the H
 * `homepage_url` - This is the URL of the heroku app of bot. It's named like this because we may host this as the homepage of the frontend of the bot.
 * `org` - Organization which deployed the bot
 * `registered_repos` - These are the repositories that will work with DiffEqBot. You can `runbenchmarks` from these repositories only.
-* `benchmarkers` - An array of GitHub handles of members who can run benchmarks (see [the next section](#Access-Control-and-Security) for more information)
+* `benchmarkers` - An array of GitHub handles of members who can run benchmarks (see [the next section](#access_control_and_security) for more information)
 * `bot_name` - Handle of the bot on GitHub and Gitlab
 * `gitlab_runner_secret` - This is the token to be attached by the Gitlab Runner for every request it makes to the bot. If this token is not right, Bot rejects any request made by the runner.
 * `github_app.client_id`/`github_app.client_secret` - You have to make an instance of a Github App for the bot, these are the client ID and client secret of the same app.

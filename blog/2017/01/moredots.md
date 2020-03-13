@@ -1,12 +1,12 @@
 @def rss_pubdate = Date(2017, 1, 21)
-@def rss = """ More Dots: Syntactic Loop Fusion in Julia | After a lengthy design process (https://github.com/JuliaLang/julia/issues/8450) and preliminary foundations in Julia 0.5 (/blog/2016-10-11-julia-0.5-highlights#vectorized-function-calls), Julia 0.6 includes new facilities for writing code in the "vectorized"... """
+@def rss = """ More Dots: Syntactic Loop Fusion in Julia | After a lengthy design process (https://github.com/JuliaLang/julia/issues/8450) and preliminary foundations in Julia 0.5 (/blog/2016-10-11-julia-0.5-highlights#vectorized_function_calls), Julia 0.6 includes new facilities for writing code in the "vectorized"... """
 @def published = "21 January 2017"
 @def title = "More Dots: Syntactic Loop Fusion in Julia"
 @def authors = """ <a href="http://math.mit.edu/~stevenj">Steven G. Johnson</a>"""  
 @def hascode = true
 
 
-After a [lengthy design process](https://github.com/JuliaLang/julia/issues/8450) and [preliminary foundations in Julia 0.5](/blog/2016/10/julia-0.5-highlights/#vectorized-function-calls), Julia 0.6 includes new facilities for writing code in the "vectorized"
+After a [lengthy design process](https://github.com/JuliaLang/julia/issues/8450) and [preliminary foundations in Julia 0.5](/blog/2016/10/julia-0.5-highlights/#vectorized_function_calls), Julia 0.6 includes new facilities for writing code in the "vectorized"
 style (familiar from Matlab, Numpy, R, etcetera) while avoiding the
 overhead that this style of programming usually imposes: multiple
 vectorized operations can now be "fused" into a single loop, without
@@ -409,8 +409,7 @@ Also, the ability of `broadcast` to combine arrays and scalars or
 arrays of different shapes (see below) turns out to be subtle to
 implement efficiently without losing generality. The current
 implementation relies on a metaprogramming feature that Julia provides
-called [generated
-functions](https://docs.julialang.org/en/v1/manual/metaprogramming/#Generated-functions-1)
+called [generated functions](https://docs.julialang.org/en/v1/manual/metaprogramming/#Generated-functions-1)
 in order to get compile-time specialization on the number and types of
 the arguments.  An alternative solution to the inlining and
 specialization issues would be to build the `broadcast` function into
