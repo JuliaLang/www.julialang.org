@@ -28,6 +28,7 @@ Get jupyter notebooks for the following youtube tutorials over [JuliaBoxTutorial
 ## Text
 
 @@tight-list
+*   [Julia Workshop for Physicists](https://github.com/crstnbr/JuliaOulu20) by [Carsten Bauer](https://github.com/crstnbr) (see also [JuliaWorkshop19](https://github.com/crstnbr/JuliaWorkshop19)).
 * [ThinkJulia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html)
 * [A Deep Introduction to Julia for Data Science and Scientific Computing](https://ucidatascienceinitiative.github.io/IntroToJulia/) by [Chris Rackauckas](https://chrisrackauckas.com/)
 * [The Julia Express](https://github.com/bkamins/The-Julia-Express) (featuring Julia 1.0) by [Bogumił Kamiński](https://bogumilkaminski.pl)
@@ -227,6 +228,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * Spring 2016, [MATH11146](https://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/index.html))
 * University of Glasgow, School of Mathematics and Statistics
     * An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](https://www.gla.ac.uk/postgraduate/taught/dataanalytics/)), September 2017
+*   University of Oulu
+    *   Invited [Advanced Julia Workshop](https://github.com/crstnbr/JuliaOulu20) (MSc. Carsten Bauer, University of Cologne), Spring 2020
 * University of South Florida
     * [ESI 6491](https://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon), Fall 2015
     * [EIN 6945](https://www.chkwon.net/teaching/ein-6935/), Nonlinear Optimization and Game Theory (Prof. [Changhyun Kwon](https://www.chkwon.net/)), Spring 2016
