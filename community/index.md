@@ -5,7 +5,7 @@ Please take a moment to read the [Julia Community Standards](/community/standard
 
 ## Diversity and Inclusion
 
-The Julia Community is committed to continuing to foster an inclusive and diverse culture. Read more about how we are doing this on our [diversity page](https://julialang.org/diversity).
+The Julia Community is committed to continuing to foster an inclusive and diverse culture. Read more about how we are doing this on our [diversity page](/diversity/).
 
 ## 2019 Julia User and Developer Survey
 
@@ -41,15 +41,15 @@ The JuliaCN community has a QQ group: 316628299
 
 ### YouTube
 
-All the [JuliaCon](http://juliacon.org/) videos and other videos of general interest in the community are uploaded to the [Julia Language YouTube channel](https://www.youtube.com/user/JuliaLanguage).
+All the [JuliaCon](https://juliacon.org/) videos and other videos of general interest in the community are uploaded to the [Julia Language YouTube channel](https://www.youtube.com/user/JuliaLanguage).
 
 ## Other channels
 
 On Twitter, tweet with the [#julialang](https://twitter.com/search?q=%23julialang) hashtag.
 
-Julia also has a presence on Stack Overflow under the [julia](https://stackoverflow.com/tags/julia) tag, and on Stack Overflow en Español under [julia](http://es.stackoverflow.com/questions/tagged/julia).
+Julia also has a presence on Stack Overflow under the [julia](https://stackoverflow.com/tags/julia) tag, and on Stack Overflow en Español under [julia](https://es.stackoverflow.com/questions/tagged/julia).
 
-For those who prefer IRC to our official forums, there is a [#julia channel](http://webchat.freenode.net/?channels=julia) on Freenode. We also have an unofficial [Gitter](https://gitter.im/JuliaLang/julia) channel. There is a small [Julia subreddit](https://www.reddit.com/r/Julia/) for casual discussion. As an open source alternative to Slack, we have a [Julia Zulip organization](https://julialang.zulipchat.com/) which you can get an automated invite to [at this link.](https://julialang.zulipchat.com/join/ljh03tjbc5jtdadh0lwkhp0h/)
+For those who prefer IRC to our official forums, there is a [#julia channel](https://webchat.freenode.net/?channels=julia) on Freenode. We also have an unofficial [Gitter](https://gitter.im/JuliaLang/julia) channel. There is a small [Julia subreddit](https://www.reddit.com/r/Julia/) for casual discussion. As an open source alternative to Slack, we have a [Julia Zulip organization](https://julialang.zulipchat.com/) which you can get an automated invite to [at this link.](https://julialang.zulipchat.com/join/ljh03tjbc5jtdadh0lwkhp0h/)
 
 ## International Community
 
@@ -60,24 +60,24 @@ The Julia community is global, with meetups all over the world and resources in 
 Julia’s official documentation is in English, but many groups work to translate and localize documentation and other resources. A few such groups that are leading these efforts include:
 
 @@tight-list
-* [JuliaTokyo](http://julia.tokyo/) (Japanese)
-* [JuliaCN](http://cn.julialang.org/) (Chinese)
+* [JuliaTokyo](https://julia.tokyo/) (Japanese)
+* [JuliaCN](https://cn.julialang.org/) (Chinese)
 * [JuliaLangEs](https://github.com/JuliaLangEs) (Spanish)
 * [JuliaLangPt](https://github.com/JuliaLangPt) (Portuguese)
 * [JuliaKorea](https://juliakorea.github.io/ko/) (Korean)
 * [JuliaGerman](https://github.com/JuliaLangGerman) (German)
-* [Julia Francophonie](http://juliafran.org/) (French)
+* [Julia Francophonie](https://juliafran.org/) (French)
 @@
 
 Please let us know if you have another organization dedicated to these efforts.
 User groups and meetups
 
-Julia has [local user groups around the world](https://julia.meetup.com/), including:
+Julia has local user groups around the world, including:
 
 #### Asia
 
 @@tight-list
-* [Julia China](http://www.juliacn.com/meetups/)
+* [Julia China](https://www.juliacn.com/meetups/)
 * [Bangalore Julia User Group](https://www.meetup.com/Bangalore-Julia-User-Group/)
 * [Julia Delhi](https://www.meetup.com/Juliadelhi/)
 * [Singapore Julia User Group](https://www.meetup.com/Singapore-Julia-User-Group/)
@@ -167,13 +167,13 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 ### Mathematics
 
 @@tight-list
-* [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](http://www.juliadiff.org/)
+* [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](https://www.juliadiff.org/)
 * [JuliaDiffEq](https://github.com/JuliaDiffEq) – [Differential equation solving and analysis](https://juliadiffeq.github.io/) ([Gitter](https://gitter.im/JuliaDiffEq/Lobby))
 * [JuliaGeometry](https://github.com/JuliaGeometry) – Computational Geometry
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaIntervals](https://github.com/JuliaIntervals) - Rigorous numerics with interval arithmetic & applications
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
-* [JuliaOpt](https://github.com/JuliaOpt) – [Optimization](http://www.juliaopt.org/) ([Gitter](https://gitter.im/JuliaOpt/home))
+* [JuliaOpt](https://github.com/JuliaOpt) – [Optimization](https://www.juliaopt.org/) ([Gitter](https://gitter.im/JuliaOpt/home))
 * [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
 @@
@@ -197,7 +197,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 
 @@tight-list
 * [JuliaML](https://github.com/JuliaML) – [Machine Learning](https://juliaml.github.io/) ([Gitter](https://gitter.im/JuliaML/chat))
-* [JuliaStats](https://github.com/JuliaStats) – [Statistics](http://juliastats.github.io/)
+* [JuliaStats](https://github.com/JuliaStats) – [Statistics](https://juliastats.github.io/)
 * [JuliaImages](https://github.com/JuliaImages) – Image Processing
 * [JuliaText](https://github.com/JuliaText) – Natural Language Processing (NLP), Computational Linguistics and (textual) Information Retrieval
 * [JuliaDatabases](https://github.com/JuliaDatabases) – Various database drivers for Julia

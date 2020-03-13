@@ -226,7 +226,7 @@ array in an expression like `sum(X.^2 .+ Y.^2)`.
 
 [Broadcasting]: https://docs.julialang.org/en/latest/manual/arrays/#Broadcasting-1
 
-["fusing"]: https://julialang.org/blog/2017/01/moredots
+["fusing"]: /blog/2017/01/moredots
 
 [hacks]: https://github.com/MikeInnes/TakingBroadcastSeriously.jl
 

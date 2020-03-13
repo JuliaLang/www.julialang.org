@@ -75,7 +75,7 @@ compared to the time necessary for retrieving the docstrings.
 ## Frontend
 Now that DocSeeker.jl has found the results we asked for, it's time to display them in an
 appealing manner:
-![search](/assets/images/blog/2017-08-28-gsoc-docs-in-juno/search.png)
+![search](/assets/blog/2017-08-28-gsoc-docs-in-juno/search.png)
 
 If you've used Juno before you may notice the much improved markdown rendering (which is of
 course available all throughout Juno): There's syntax highlighting, LaTeX rendering and lots

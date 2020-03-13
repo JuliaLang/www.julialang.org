@@ -1,7 +1,7 @@
 
 # Turing Projects – Summer of Code
 
-[Turing](http://turing.ml/) is a universal probabilistic programming language embedded in Julia. Turing allows the user to write models in standard Julia syntax, and provide a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics and data science etc. Since Turing is implemented in pure Julia code, its compiler and inference methods are amenable to hacking: new model families and inference methods can be easily added. Below is a list of ideas for potential projects, though you are welcome to propose your own to the Turing team.
+[Turing](https://turing.ml/) is a universal probabilistic programming language embedded in Julia. Turing allows the user to write models in standard Julia syntax, and provide a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics and data science etc. Since Turing is implemented in pure Julia code, its compiler and inference methods are amenable to hacking: new model families and inference methods can be easily added. Below is a list of ideas for potential projects, though you are welcome to propose your own to the Turing team.
 
 Project mentors are [Hong Ge](https://github.com/yebai), [Cameron Pfiffer](https://github.com/cpfiffer), [Martin Trapp](https://github.com/trappmartin), [Will Tebbutt](https://github.com/willtebbutt), [Mohamed Tarek](https://github.com/mohamed82008) and [Kai Xu](https://github.com/xukai92).
 

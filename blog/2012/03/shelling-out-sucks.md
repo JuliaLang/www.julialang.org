@@ -2,18 +2,18 @@
 @def rss = """ Shelling Out Sucks | Spawning a pipeline of connected programs via an intermediate shell — a.k.a. "shelling out" — is a really convenient and effective way to get things done.... """
 @def published = "11 March 2012"
 @def title = "Shelling Out Sucks"
-@def authors = """ <a href="http://karpinski.org/">Stefan Karpinski</a>"""  
+@def authors = """ <a href="https://karpinski.org/">Stefan Karpinski</a>"""  
 @def hascode = true
 
 [followup post]: /blog/2013/04/put-this-in-your-pipe/
 
-[Perl]:     http://www.perl.org/
-[Python]:   http://python.org/
-[Ruby]:     http://www.ruby-lang.org/
-[Bash]:     http://www.gnu.org/software/bash/
+[Perl]:     https://www.perl.org/
+[Python]:   https://python.org/
+[Ruby]:     https://www.ruby-lang.org/
+[Bash]:     https://www.gnu.org/software/bash/
 
 Spawning a pipeline of connected programs via an intermediate shell — a.k.a. "shelling out" — is a really convenient and effective way to get things done.
-It's so handy that some "[glue languages](http://en.wikipedia.org/wiki/Glue_language)," like [Perl] and [Ruby], even have special syntax for it (backticks).
+It's so handy that some "[glue languages](https://en.wikipedia.org/wiki/Glue_language)," like [Perl] and [Ruby], even have special syntax for it (backticks).
 However, shelling out is also a common source of bugs, security holes, unnecessary overhead, and silent failures.
 Here are the three reasons why shelling out is problematic:
 
@@ -41,7 +41,7 @@ The most natural and convenient thing to do in Ruby is to shell out, using backt
 ```
 
 This expression interpolates the `dir` variable into a command, spawns a Bash shell to execute the resulting command, captures the output into a string, and then converts that string to an integer.
-The command uses the `-print0` and `-0` options to correctly handle strange characters in file names piped from `find` to `xargs` (these options cause file names to be delimited by [NULs](http://en.wikipedia.org/wiki/Null_character) instead of whitespace).
+The command uses the `-print0` and `-0` options to correctly handle strange characters in file names piped from `find` to `xargs` (these options cause file names to be delimited by [NULs](https://en.wikipedia.org/wiki/Null_character) instead of whitespace).
 Even with extra-careful options, this code for shelling out is simple and clear.
 Here it is in action:
 
@@ -291,6 +291,6 @@ As is so often the case, the root of all of these problems is relying on a middl
 If a program constructs and executes pipelines itself, it remains in control of all the subprocesses, can determine their individual exit conditions, automatically handle errors appropriately, and give accurate, comprehensive diagnostic messages when things go wrong.
 Moreover, without a shell to interpret commands, there is also no shell to treat metacharacters specially, and therefore no danger of metacharacter brittleness.
 [Python] gets this right:
-using [`os.popen`](http://docs.python.org/library/os.html#os.popen) to shell out is officially deprecated, and the recommended way to call external programs is to use the [`subprocess`](http://docs.python.org/library/subprocess.html) module, which spawns external programs without using a shell.
-Constructing pipelines using `subprocess` [can be a little verbose](http://docs.python.org/library/subprocess.html#replacing-shell-pipeline), but it is safe and avoids all the problems that shelling out is prone to.
+using [`os.popen`](https://docs.python.org/library/os.html#os.popen) to shell out is officially deprecated, and the recommended way to call external programs is to use the [`subprocess`](https://docs.python.org/library/subprocess.html) module, which spawns external programs without using a shell.
+Constructing pipelines using `subprocess` [can be a little verbose](https://docs.python.org/library/subprocess.html#replacing-shell-pipeline), but it is safe and avoids all the problems that shelling out is prone to.
 In my [followup post], I will describe how Julia makes constructing and executing pipelines of external commands as safe as Python's `subprocess` and as convenient as shelling out.

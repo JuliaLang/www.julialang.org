@@ -2,7 +2,7 @@
 @def rss = """ Multidimensional algorithms and iteration | Julia makes it easy to write elegant and... """
 @def published = "1 February 2016"
 @def title = "Multidimensional algorithms and iteration"
-@def authors = """ <a href="http://holylab.wustl.edu">Tim Holy</a>"""  
+@def authors = """ <a href="https://holylab.wustl.edu">Tim Holy</a>"""  
 @def hascode = true
 
 **Note: updated December 2018 for Julia 1.1**
@@ -28,7 +28,7 @@ capabilities represent a vastly simplified approach.
 
 Let's introduce these iterators with an extension of an example taken
 from the
-[manual](http://docs.julialang.org/en/latest/manual/arrays/#Iteration-1).
+[manual](https://docs.julialang.org/en/latest/manual/arrays/#Iteration-1).
 
 # eachindex, CartesianIndex, and CartesianIndices
 
@@ -124,7 +124,7 @@ is that some `AbstractArray`s cannot be indexed efficiently with a
 linear index; in contrast, a much wider class of objects can be
 efficiently indexed with a multidimensional iterator.  (SubArrays are,
 generally speaking, [a prime
-example](http://docs.julialang.org/en/latest/devdocs/subarrays).)
+example](https://docs.julialang.org/en/latest/devdocs/subarrays).)
 `eachindex` is designed to pick the most efficient iterator for the
 given array type.  You can even use
 
@@ -136,7 +136,7 @@ for i in eachindex(A, B)
 to increase the likelihood that `i` will be efficient for accessing
 both `A` and `B`.  (A second reason to use `eachindex` is that some arrays
 don't starting indexing at 1, but that's a topic for a separate
-[blog post](https://julialang.org/blog/2017/04/offset-arrays).)
+[blog post](/blog/2017/04/offset-arrays).)
 
 As we'll see below, these iterators have another purpose: independent
 of whether the underlying arrays have efficient linear indexing,
@@ -325,7 +325,7 @@ However, here we want to emphasize that this design — having a separate
 `sumalongdims!` from `sumalongdims` — often mitigates the worst aspects
 of inference problems. This trick, using a [function-call to separate a
 performance-critical step from a potentially type-unstable
-precursor](http://docs.julialang.org/en/latest/manual/performance-tips/#kernel-functions-1),
+precursor](https://docs.julialang.org/en/latest/manual/performance-tips/#kernel-functions-1),
 is sometimes referred to as introducing a *function barrier*.
 It allows Julia's compiler to generate a well-optimized version of
 `sumalongdims!` even if the intermediate type of `B` is not known.

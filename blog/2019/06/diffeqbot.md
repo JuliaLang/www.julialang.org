@@ -2,7 +2,7 @@
 @def rss = """ Hello @DiffEqBot | Hi! Today we all got a new member to the DiffEq family. Say hi to our own DiffEqBot (https://github.com/DiffEqBot) - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a repository (https://github.com/DiffE... """
 @def published = "18 June 2019"
 @def title = "Hello @DiffEqBot"
-@def authors = """<a href="http://github.com/kanav99">Kanav Gupta</a>"""  
+@def authors = """<a href="https://github.com/kanav99">Kanav Gupta</a>"""  
 @def hascode = true
 
 Hi! Today we all got a new member to the DiffEq family. Say hi to our own [DiffEqBot](https://github.com/DiffEqBot) - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a [repository](https://github.com/DiffEqBot/Reports). What's special about this is that it is completely stateless (no databases involved at all, just juggling between repositories!) and it has no exposed public URLs. Even though highly inspired by Nanosoldier, this has a completely unique workflow.
@@ -50,7 +50,7 @@ main:
 
 failed_job:
   script:
-    - curl "http://endpoint_to_tell_that_report_failed?repo=${repo}&pr=${pr}&commit=${commit}"
+    - curl "https://endpoint_to_tell_that_report_failed?repo=${repo}&pr=${pr}&commit=${commit}"
   when: on_failure
 ```
 
@@ -77,7 +77,7 @@ All the configuration of DiffEqBot is done through a file `config.json` in the H
 ```json
 {
   "admin"               : "kanav99",
-  "homepage_url"        : "http://appnameffeqbot.herokuapp.com",
+  "homepage_url"        : "https://appnameffeqbot.herokuapp.com",
   "org"                 : "JuliaDiffEq",
   "registered_repos"    : ["OrdinaryDiffEq.jl"],
   "benchmarkers"        : ["kanav99", "ChrisRackauckas"],

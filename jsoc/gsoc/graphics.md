@@ -36,7 +36,7 @@ gaps and making sure all tests pass for the new backend.
 
 ### Port Recipes
 
-[Plots.jl](https://github.com/tbreloff/Plots.jl) offers a lot of [recipes](http://docs.juliaplots.org/latest/recipes/).
+[Plots.jl](https://github.com/tbreloff/Plots.jl) offers a lot of [recipes](https://docs.juliaplots.org/latest/recipes/).
 In Makie, we will need to make sure that they are available and work correctly.
 This project will involve writing a compatibility layer for [PlotRecipes.jl](https://github.com/JuliaPlots/PlotRecipes.jl) and then making sure
 that all the recipes that are spread around the Julia plotting community work!
@@ -87,7 +87,7 @@ This will enable us to generate webgl shaders and opengl shaders from the same J
 
 ## QML.jl Improvements
 
-The [QML.jl](https://github.com/barche/QML.jl) package provides Julia bindings for [Qt QML](http://doc.qt.io/qt-5/qtqml-index.html) on Windows, OS X and Linux. In the current state, basic functionality is available, but there is room for improvement regarding integration with [GLVisualize](https://github.com/JuliaGL/GLVisualize.jl) and plotting packages such as [GR](https://github.com/jheinen/GR.jl) (see also [issue 23](https://github.com/barche/QML.jl/issues/23)) or [Plots](https://github.com/JuliaPlots/Plots.jl). Another area of work is supporting more elaborate data models.
+The [QML.jl](https://github.com/barche/QML.jl) package provides Julia bindings for [Qt QML](https://doc.qt.io/qt-5/qtqml-index.html) on Windows, OS X and Linux. In the current state, basic functionality is available, but there is room for improvement regarding integration with [GLVisualize](https://github.com/JuliaGL/GLVisualize.jl) and plotting packages such as [GR](https://github.com/jheinen/GR.jl) (see also [issue 23](https://github.com/barche/QML.jl/issues/23)) or [Plots](https://github.com/JuliaPlots/Plots.jl). Another area of work is supporting more elaborate data models.
 
 **Expected Results**: Improvements to the QML.jl package along one of these lines.
 

@@ -19,8 +19,7 @@ As with previous versions, we will continue to update 0.6 with bugfixes, releasi
 Only critical bug fixes will be ported to 0.5 and releases older than 0.5 are now unmaintained.
 Work on new features is now taking place on the `master` branch for the 0.7 development cycle.
 
-Binaries are available for Linux, macOS, and Windows on the [main downloads
-page](https://julialang.org/downloads/).
+Binaries are available for Linux, macOS, and Windows on the [main downloads page](/downloads/).
 We encourage everyone to try it out.
 
 Happy coding!

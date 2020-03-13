@@ -110,7 +110,7 @@ It converges to the eigenvalues 49999, 50000, 50001, 50002 and 50004:
 
 It does not yet detect 50003, but that might happen when `pairs` is increased a bit. As a result of our preconditioner, Jacobi-Davidson converges very quickly:
 
-![Residual norm](/assets/images/blog/2017-08-23-native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/resnorm.svg)
+![Residual norm](/assets/blog/2017-08-23-native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/resnorm.svg)
 
 It's not easy to construct a preconditioner this good for any given problem, but usually people tend to know what works well in specific classes of problems. If no specific preconditioner is availabe, you can always try a general one such as ILU. The next section illustrates that.
 

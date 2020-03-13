@@ -2,7 +2,7 @@
 @def rss = """ More Dots: Syntactic Loop Fusion in Julia | After a lengthy design process (https://github.com/JuliaLang/julia/issues/8450) and preliminary foundations in Julia 0.5 (/blog/2016-10-11-julia-0.5-highlights#vectorized_function_calls), Julia 0.6 includes new facilities for writing code in the "vectorized"... """
 @def published = "21 January 2017"
 @def title = "More Dots: Syntactic Loop Fusion in Julia"
-@def authors = """ <a href="http://math.mit.edu/~stevenj">Steven G. Johnson</a>"""  
+@def authors = """ <a href="https://math.mit.edu/~stevenj">Steven G. Johnson</a>"""  
 @def hascode = true
 
 
@@ -57,7 +57,7 @@ The short answers are:
 <!-- These numbered paragraphs must be soft-wrapped, without CRs  -->
 
 @@tight-list
-1. [Ordinary vectorized code is fast, but not as fast as a hand-written loop](http://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code/) (assuming loops are efficiently compiled, as in Julia) because each vectorized operation generates a new temporary array and executes a separate loop, leading to a lot of overhead when multiple vectorized operations are combined.
+1. [Ordinary vectorized code is fast, but not as fast as a hand-written loop](https://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code/) (assuming loops are efficiently compiled, as in Julia) because each vectorized operation generates a new temporary array and executes a separate loop, leading to a lot of overhead when multiple vectorized operations are combined.
 2. The dots allow Julia to recognize the "vectorized" nature of the operations at a *syntactic* level (before e.g. the type of `x` is known), and hence the loop fusion is a *syntactic guarantee*, not a compiler optimization that may or may not occur for carefully written code.  They also allow the *caller* to "vectorize" *any* function, rather than relying on the function author.  (The `@.` macro lets you add dots to every operation in an expression, improving readability for expressions with lots of dots.)
 3. Other languages have implemented loop fusion for vectorized operations, but typically for only a small set of types and operations/functions that are known to the compiler or vectorization library.  Julia's ability to do it generically, even for *user-defined* array types and functions/operators, is unusual and relies in part on the syntax choices above and on its ability to efficiently compile higher-order functions.
 @@
@@ -71,7 +71,7 @@ tasks (e.g. string processing).
 ## Isn't vectorized code already fast?
 
 To explore this question (also discussed
-[in this blog post](http://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code/)), let's begin by rewriting the code above in a more traditional vectorized style, without
+[in this blog post](https://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code/)), let's begin by rewriting the code above in a more traditional vectorized style, without
 so many dots, such as you might use in Julia 0.4 or in other languages
 (most famously Matlab, Python/Numpy, or R).   
 
@@ -109,7 +109,7 @@ One possible solution is to vectorize *every function automatically*.   The
 language [Chapel](https://en.wikipedia.org/wiki/Chapel_%28programming_language%29)
 does this: every function `f(x...)` implicitly
 defines a function `f(x::Array...)` that evaluates `map(f, x...)`
-[(Chamberlain et al, 2011)](http://pgas11.rice.edu/papers/ChamberlainEtAl-Chapel-Iterators-PGAS11.pdf).
+[(Chamberlain et al, 2011)](https://pgas11.rice.edu/papers/ChamberlainEtAl-Chapel-Iterators-PGAS11.pdf).
 This could be implemented in Julia as well via
 function-call overloading [(Bezanson, 2015: chapter 4)](https://github.com/JeffBezanson/phdthesis/blob/master/main.pdf),
 but we chose to go in a different direction.
@@ -266,22 +266,22 @@ term **syntactic loop fusion**, described in more detail below.
 ### A halfway solution: Loop fusion for a few operations/types
 
 One approach that may occur to you, and which has been implemented in a
-variety of languages (e.g. [Kennedy & McKinley, 1993](http://dl.acm.org/citation.cfm?id=665526);
-[Lewis et al., 1998](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.46.6627);
-[Chakravarty & Keller, 2001](http://dl.acm.org/citation.cfm?id=507661);
-[Manjikian & Abdelrahman, 2002](http://ieeexplore.ieee.org.libproxy.mit.edu/document/577265/);
-[Sarkar, 2010](http://ieeexplore.ieee.org/document/5389392/);
-[Prasad et al., 2011](http://dl.acm.org/citation.cfm?id=1993517);
-[Wu et al., 2012](http://dl.acm.org/citation.cfm?id=2457490)), is to only
+variety of languages (e.g. [Kennedy & McKinley, 1993](https://dl.acm.org/citation.cfm?id=665526);
+[Lewis et al., 1998](https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.46.6627);
+[Chakravarty & Keller, 2001](https://dl.acm.org/citation.cfm?id=507661);
+[Manjikian & Abdelrahman, 2002](https://ieeexplore.ieee.org.libproxy.mit.edu/document/577265/);
+[Sarkar, 2010](https://ieeexplore.ieee.org/document/5389392/);
+[Prasad et al., 2011](https://dl.acm.org/citation.cfm?id=1993517);
+[Wu et al., 2012](https://dl.acm.org/citation.cfm?id=2457490)), is to only
 perform loop fusion for *a few "built-in" types and operations* that the
 compiler can be designed to recognize.   The same idea has also been
 implemented as libraries (e.g. template libraries in C++:
-[Veldhuizen, 1995](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.43.248)) or
+[Veldhuizen, 1995](https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.43.248)) or
 [domain-specific
 languages (DSLs)](https://en.wikipedia.org/wiki/Domain-specific_language)
 as extensions of existing languages; in Python, for example, loop fusion for a small
 set of vector operations and array/scalar types can be found in the
-[Theano](http://deeplearning.net/software/theano/introduction.html),
+[Theano](https://deeplearning.net/software/theano/introduction.html),
 [PyOP2](https://op2.github.io/PyOP2/), and [Numba](https://github.com/numba/numba/pull/1110)
 software. Likewise, in Julia we could
 potentially build the compiler to recognize that it can fuse
@@ -377,7 +377,7 @@ like `x += y` to be equivalent to calls to a special function,
 like `x = plusequals!(x, y)`, that can be defined as an in-place operation, rather
 than `x += y` being a synonym for `x = x + y` as in Julia today.
 ([NumPy does this](https://docs.python.org/3.3/reference/datamodel.html#object.__iadd__).)
-By itself, this can be used to [avoid temporary arrays in some simple cases](http://blog.svenbrauch.de/2016/04/13/processing-scientific-data-in-python-and-numpy-but-doing-it-fast/) by breaking them into a sequence of in-place updates, but
+By itself, this can be used to [avoid temporary arrays in some simple cases](https://blog.svenbrauch.de/2016/04/13/processing-scientific-data-in-python-and-numpy-but-doing-it-fast/) by breaking them into a sequence of in-place updates, but
 it doesn't handle more complex expressions, is limited to a few
 operations like `+`, and doesn't address the cache inefficiency of
 multiple loops.   (In Julia 0.6, you can do `x .+= y` and it is
@@ -463,7 +463,7 @@ being passed, the Julia compiler is free to [inline](https://en.wikipedia.org/wi
 if it wants to, and all of the function-call overhead can disappear.
 
 Julia is neither the first nor the only language that can inline
-higher-order functions; e.g. it is reportedly [possible in Haskell](http://stackoverflow.com/questions/25566517/can-haskell-inline-functions-passed-as-an-argument) and in
+higher-order functions; e.g. it is reportedly [possible in Haskell](https://stackoverflow.com/questions/25566517/can-haskell-inline-functions-passed-as-an-argument) and in
 the [Kotlin](https://kotlinlang.org/docs/reference/inline-functions.html) language.
 Nevertheless, it seems to be a rare feature, especially in [imperative languages](https://en.wikipedia.org/wiki/Imperative_programming). Fast
 higher-order functions are a key ingredient of Julia that allows
@@ -534,7 +534,7 @@ julia> s .= replace.(lowercase.(s), r"\s+", "-")
 ```
 
 Here, we take an array `s` of strings, we convert each string to
-lower case, and then we replace any sequence of whitespace (the [regular expression](http://docs.julialang.org/en/latest/manual/strings.html#Regular-Expressions-1)
+lower case, and then we replace any sequence of whitespace (the [regular expression](https://docs.julialang.org/en/latest/manual/strings.html#Regular-Expressions-1)
 `r"\s+"`) with a hyphen `"-"`.  Since these two dot calls are nested,
 they are fused into a single loop over `s` and are written in-place in `s`
 thanks to the `s .= ...` (temporary *strings* are allocated in this process,
@@ -603,4 +603,4 @@ Sometimes, of course, their behavior coincides, e.g. `map(sqrt, [1,2,3])` and
 nor `broadcast` generalizes the other — each has things they can do that
 the other cannot.
 
-[notebook]: /assets/images/blog//moredots/More-Dots.ipynb
+[notebook]: /assets/blog/moredots/More-Dots.ipynb

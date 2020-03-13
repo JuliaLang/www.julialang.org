@@ -23,4 +23,4 @@ end
 
 \output{ex}
 
-Taken from: [http://rosettacode.org/wiki/Mandelbrot_set#Julia](http://rosettacode.org/wiki/Mandelbrot_set#Julia)
+Taken from: [https://rosettacode.org/wiki/Mandelbrot_set#Julia](https://rosettacode.org/wiki/Mandelbrot_set#Julia)

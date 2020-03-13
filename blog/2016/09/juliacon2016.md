@@ -17,7 +17,7 @@ the annual Julia Conference at MIT.
 On the eve of JuliaCon, a series of workshops were organised on some important
 areas people use Julia for. I was conducting the
 [Parallel Computing workshop](https://www.youtube.com/watch?v=euZkvgx0fG8)
-along with some other members of the [JuliaLab](http://julia.mit.edu/). The key idea in our workshop was
+along with some other members of the [JuliaLab](https://julia.mit.edu/). The key idea in our workshop was
 to show users the many different ways of writing and executing parallel code in Julia.
 I was talking about easy GPU computing using my package called ArrayFire and achieving
 acceleration using Julia’s multi-threading.
@@ -40,7 +40,7 @@ package development experience.
 The next session was all about data science. Simon Byrne
 [spoke](https://www.youtube.com/watch?v=ScCY_nE0hlU) about the data science ecosystem
 in Julia and future plans. He touched on the
-[famous problem](http://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/)
+[famous problem](https://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/)
 with DataFrames, and then laid out a roadmap for the ecosystem. The rest of the
 session featured an interesting demo in
 [music processing](https://www.youtube.com/watch?v=IOVrVOacLP8),

@@ -1,12 +1,12 @@
 @def rss_pubdate = Date(2016, 10, 3)
-@def rss = """ StructuredQueries.jl - A generic data manipulation framework | This post describes my work conducted this summer at the Julia Lab (http://julia.mit.edu/) to develop StructuredQueries.jl (https://github.com/davidagold/StructuredQueries.jl/), a generic data manipulation framework for Julia (http://julialang.org/).... """
+@def rss = """ StructuredQueries.jl - A generic data manipulation framework | This post describes my work conducted this summer at the Julia Lab (https://julia.mit.edu/) to develop StructuredQueries.jl (https://github.com/davidagold/StructuredQueries.jl/), a generic data manipulation framework for Julia.... """
 @def published = "3 October 2016"
 @def title = "StructuredQueries.jl - A generic data manipulation framework"
 @def authors = """<a href="https://github.com/davidagold">David Gold</a>"""  
 @def  hascode = true
 
 
-This post describes my work conducted this summer at the [Julia Lab](http://julia.mit.edu/) to develop [StructuredQueries.jl](https://github.com/davidagold/StructuredQueries.jl/), a generic data manipulation framework for [Julia](/).
+This post describes my work conducted this summer at the [Julia Lab](https://julia.mit.edu/) to develop [StructuredQueries.jl](https://github.com/davidagold/StructuredQueries.jl/), a generic data manipulation framework for [Julia](/).
 
 Our initial vision for this work was much inspired by Hadley Wickham's [dplyr](https://github.com/hadley/dplyr) R package, which provides data manipulation verbs that are generic over in-memory R tabular data structures and SQL databases, and [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl) (begun by [Tom Short](https://github.com/tshort)), which provides metaprogramming facilities for working with Julia `DataFrame`s.
 
@@ -19,7 +19,7 @@ Recall that the primary shortcoming of [DataArrays.jl](https://travis-ci.org/Jul
 
 [NullableArrays.jl](https://github.com/JuliaStats/NullableArrays.jl) [remedied](/blog/2015/10/nullablearrays/) this shortcoming by representing both missing and present values of type `T` as objects of type `Nullable{T}`. However, this solution has limitations in other respects. First, use of `NullableArray`s does nothing to support type inference in column-indexing of `DataFrame`s. That is, the return type of `Base.getindex(df::DataFrame, field::Symbol)` is not straightforwardly inferable, even if `DataFrame`s are built over `NullableArray`s. Call this first problem the *column-indexing problem*. Second, NullableArrays introduces certain difficulties centered around the `Nullable` type. Call this second problem the *nullable semantics problem*.
 
-The column-indexing problem is [well-documented](http://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/). To see the difficulty, consider the following function
+The column-indexing problem is [well-documented](https://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/). To see the difficulty, consider the following function
 
 ```julia
 function f(df::DataFrame)

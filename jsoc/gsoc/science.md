@@ -22,6 +22,6 @@ Zonotopes provide a very good middle ground between hyperrectangular approximati
 
 **Expected Results:** Some possibilities are: overapproximation of zonotopes with polytopes, zonotope-polytope intersections, order reduction metods, Minkowski difference of zonotopes.
 
-**Mentors:** [Marcelo Forets](http://github.com/mforets) and [Christian Schilling](https://github.com/schillic).
+**Mentors:** [Marcelo Forets](https://github.com/mforets) and [Christian Schilling](https://github.com/schillic).
 
 **References:** See [Reachability.jl#Publications](https://juliareach.github.io/Reachability.jl/stable/publications/) and references therein, or contact us in the [gitter channel](https://gitter.im/JuliaReach/Lobby).

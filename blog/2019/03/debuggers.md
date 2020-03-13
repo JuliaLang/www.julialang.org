@@ -43,7 +43,7 @@ code. The debugger REPL can execute arbitrary code in a local context
 and the Workspace allows you to inspect local variables. The screenshot
 below shows a small debugging session for `gcd`:
 
-![Juno](/assets/images/blog/2019-03-19-debuggers/juno.png)
+![Juno](/assets/blog/2019-03-19-debuggers/juno.png)
 
 The `Juno.@run` macro interprets your code and drops you in a
 debugging session if it hits a breakpoint, while `Juno.@enter` allows
@@ -63,7 +63,7 @@ etc.), so it should be your go-to choice for particularly difficult cases.
 Below is a screenshot of a short session using Debugger.jl, showing some
 of its features:
 
-![Debugger.jl](/assets/images/blog/2019-03-19-debuggers/debugger_jl_screenshot.png)
+![Debugger.jl](/assets/blog/2019-03-19-debuggers/debugger_jl_screenshot.png)
 
 In the screenshot, the function `closestpair` is debugged by prepending the call
 with the `@enter` macro. Execution is then suspended on the first line of the function (line 4)
@@ -79,7 +79,7 @@ and *without hitting enter* type Meta-i (Esc-i, Alt-i, or option-i).
 After a short pause the display should update; type `?` to see the
 possible actions:
 
-![Rebugger](/assets/images/blog/2019-03-19-debuggers/rebugger_interpret.png)
+![Rebugger](/assets/blog/2019-03-19-debuggers/rebugger_interpret.png)
 
 Rebugger also features an "edit" interface. For more information, see
 [Rebugger's documentation](https://timholy.github.io/Rebugger.jl/dev/).
@@ -265,4 +265,4 @@ and make it that much more fun of a language to use.
 [LCU]: https://github.com/JuliaDebug/LoweredCodeUtils.jl
 [RB]: https://github.com/timholy/Rebugger.jl
 [RV]: https://github.com/timholy/Revise.jl
-[Juno]: http://junolab.org/
+[Juno]: https://junolab.org/

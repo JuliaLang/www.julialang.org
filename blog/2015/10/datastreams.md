@@ -56,7 +56,7 @@ Well, a lot actually. Even though the DataStreams framework is currently simple 
 Quick rundown of each package:
 
 * CSV: provides types and methods for working with CSV and other delimited files. Aims to be (and currently is) the fastest and most flexible CSV reader in Julia.
-* SQLite: an interface to the popular [SQLite](http://sqlite.org/) local-machine database. Provides methods for creating/managing database files, along with executing SQL statements and viewing the results of such.
+* SQLite: an interface to the popular [SQLite](https://sqlite.org/) local-machine database. Provides methods for creating/managing database files, along with executing SQL statements and viewing the results of such.
 
 ### So What's Next?
 * [ODBC.jl](https://github.com/JuliaDB/ODBC.jl): the next package to get the DataStreams makeover is ODBC. I've already started work on this and hopefully should be ready soon.

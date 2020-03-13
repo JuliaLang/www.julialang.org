@@ -187,7 +187,7 @@ ERROR: error compiling nope: emit_builtin_call for REPL[1]:1 requires the runtim
 
 Another big gap is documentation. Most of CUDAnative.jl mimics or copies [CUDA
 C](https://docs.nvidia.com/cuda/cuda-c-programming-guide/), while CUDAdrv.jl wraps the [CUDA
-driver API](http://docs.nvidia.com/cuda/cuda-driver-api/). But we haven't documented what
+driver API](https://docs.nvidia.com/cuda/cuda-driver-api/). But we haven't documented what
 parts of those APIs are covered, or how the abstractions behave, so you'll need to refer to
 the examples and tests in the CUDAnative and CUDAdrv repositories.
 
@@ -216,7 +216,7 @@ both the CUDAnative.jl and CUDA C implementations[^2], using BenchmarkTools.jl t
 constant overhead (note the logarithmic scale) is due to a deficiency in argument passing,
 and will be fixed.
 
-![Performance comparison of parallel reduction implementations.](/assets/images/blog/2017-03-14-cudanative/performance.png)
+![Performance comparison of parallel reduction implementations.](/assets/blog/2017-03-14-cudanative/performance.png)
 
 [^2]: The measurements include memory transfer time, which is why a CPU implementation was not included (realistically, data would be kept on the GPU as long as possible, making it an unfair comparison).
 

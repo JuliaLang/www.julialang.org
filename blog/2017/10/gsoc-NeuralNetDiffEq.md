@@ -12,7 +12,7 @@ The purpose of the project was to provide an additional DE solver using Neural N
 I chose to work on this project as I have interest in mathematics and machine learning and it involved concepts of both the fields. The package uses [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl) for the solver interface and [KNet.jl](https://github.com/denizyuret/Knet.jl) for NN solver implementation.
 
 ## How to use Neural Network for solving Differential Equations?
-The concept of this solver is based on the UAT (Universal Approximation Theorem) which says that a NN with at least one hidden layer can approximate any continuous function. The neural network is made to minimize a loss function, defined as the difference between the NN's derivative and the derivative of the differential equation, which then results in the convergence of our trial solution towards the actual (analytical) solution of the differential equation. To know more about UAT [click here](http://neuralnetworksanddeeplearning.com/chap4.html).
+The concept of this solver is based on the UAT (Universal Approximation Theorem) which says that a NN with at least one hidden layer can approximate any continuous function. The neural network is made to minimize a loss function, defined as the difference between the NN's derivative and the derivative of the differential equation, which then results in the convergence of our trial solution towards the actual (analytical) solution of the differential equation. To know more about UAT [click here](https://neuralnetworksanddeeplearning.com/chap4.html).
 
 ## Research aspect of the project and the challenge
 The research paper we referred to on the topic is quite old and understanding the examples as well as explanations was quite challenging. Not much research has been done on using NNs for this purpose and thus we were not able to get much help from the research papers related to the topic.
@@ -54,7 +54,7 @@ sol = solve(prob,nnode(10),dt=1/10,iterations=10)
 plot(sol,plot_analytic=true)
 ```
 
-![Plot_ode1](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode1.png)
+![Plot_ode1](/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode1.png)
 
 ```julia
 sol(0.232)
@@ -72,7 +72,7 @@ prob2 = ODEProblem(f,1.0,(0.0,1.0))
 sol2 = solve(prob2,nnode(10),dt=0.1,iterations=200)
  plot(sol,plot_analytic=true)
 ```
-![Plot_ode2](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode2.png)
+![Plot_ode2](/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode2.png)
 
 ```julia
 sol(0.47)
@@ -91,7 +91,7 @@ sol3 = solve(prob3,nnode(10),dt=0.2,iterations=1000)
  plot(sol,plot_analytic=true)
 ```
 
-![Plot_ode3](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode3.png)
+![Plot_ode3](/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode3.png)
 
 ```julia
   sol3([0.721])
@@ -125,7 +125,7 @@ sol1 = solve(prob_ode_2Dlinear,nnode([10,50]),dt=0.1,iterations=100)
 plot(sol1,plot_analytic=true)
 ```
 
-![Plot_sode1](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode1.png)
+![Plot_sode1](/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_ode1.png)
 
 #### Example 2 Lotka Volterra
 
@@ -160,7 +160,7 @@ sol2 = solve(prob_ode_lotkavoltera,nnode([10,50]),dt=0.2,iterations=1000)
 plot(sol2)
 ```
 
-![Plot_sode2](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_sode2.png)
+![Plot_sode2](/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_sode2.png)
 
 To show that the solver with current settings and hyper-parameters does not work for a larger domain (Eg 0-10) `lotka_volterra` here is a graph:
 
@@ -169,10 +169,10 @@ prob_ode_lotkavoltera = ODEProblem(lotka_volterra,Float32[1.0,1.0],(Float32(0.0)
 sol3 = solve(prob_ode_lotkavoltera,nnode([10,50]),dt=0.2,iterations=1000)
 plot(sol3)
 ```
-![Plot_sode3](/assets/images/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_sode3.png)
+![Plot_sode3](/assets/blog/2017-09-04-gsoc-NeuralNetDiffEq/plot_sode3.png)
 
-However, the [true solution should be oscillatory, indicating that the NN did not properly converge](http://app.juliadiffeq.org/ode;settings=eyJkaWZmRXFUZXh0IjoiZHggPSBhKnggLSBiKngqeVxuZHkgPSAtYyp5ICsgZCp4KnkiLCJwYXJhbWV0ZXJzIjoiYT0xLjUsIGI9MSwgYz0zLCBkPTEiLCJ0aW1lU3BhbiI6WzAsMTBdLCJpbml0aWFsQ29uZGl0aW9ucyI6IjEuMCwgMS4wIiwic29sdmVyIjoiVHNpdDUiLCJ2YXJzIjoiWzp4LCA6eV0iLCJ0aXRsZSI6IlRoZSBMb3RrYS1Wb2x0ZXJyYSBFcXVhdGlvbnM6IE1vZGVsIG9mIFJhYmJpdHMgYW5kIFdvbHZlcyJ9).
-To see more examples and experiment results you can check out my Jupyter notebooks [here](http://nbviewer.jupyter.org/gist/akaysh/43c9db281b0bd3224114084c44263c13).
+However, the [true solution should be oscillatory, indicating that the NN did not properly converge](https://app.juliadiffeq.org/ode;settings=eyJkaWZmRXFUZXh0IjoiZHggPSBhKnggLSBiKngqeVxuZHkgPSAtYyp5ICsgZCp4KnkiLCJwYXJhbWV0ZXJzIjoiYT0xLjUsIGI9MSwgYz0zLCBkPTEiLCJ0aW1lU3BhbiI6WzAsMTBdLCJpbml0aWFsQ29uZGl0aW9ucyI6IjEuMCwgMS4wIiwic29sdmVyIjoiVHNpdDUiLCJ2YXJzIjoiWzp4LCA6eV0iLCJ0aXRsZSI6IlRoZSBMb3RrYS1Wb2x0ZXJyYSBFcXVhdGlvbnM6IE1vZGVsIG9mIFJhYmJpdHMgYW5kIFdvbHZlcyJ9).
+To see more examples and experiment results you can check out my Jupyter notebooks [here](https://nbviewer.jupyter.org/gist/akaysh/43c9db281b0bd3224114084c44263c13).
 
 ## Future Work
 More of research on how to optimize the NN for speed and better convergence is required. For systems of ODEs with larger domains the current Neural Network fails to converge. An optimization algorithm can be used for one time NN hyperparameter optimization so that it can work better for systems of ODEs. We tried many approaches like biasing the cost function to prioritize earlier timepoints but this failed as well. Similar problems were found in an [alternative implementation using TensorFlow (TensorFlowDiffEq.jl)](https://github.com/JuliaDiffEq/TensorFlowDiffEq.jl), which suggests this may just be a problem with the solving method.

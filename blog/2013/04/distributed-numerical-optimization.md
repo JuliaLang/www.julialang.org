@@ -2,7 +2,7 @@
 @def rss = """ Distributed Numerical Optimization | This post walks through the parallel computing functionality of Julia... """
 @def published = "5 April 2013"
 @def title = "Distributed Numerical Optimization"
-@def authors = """<a href="http://www.mit.edu/~mlubin/">Miles Lubin</a>"""  
+@def authors = """<a href="https://www.mit.edu/~mlubin/">Miles Lubin</a>"""  
 @def hascode = true
 @def hasmath = true
 
@@ -25,7 +25,7 @@ $$\min_{x \in \mathbb R^d} \sum_{i=1}^n f_i(x)$$
 where the functions $f_i $ are convex but not necessarily differentiable.
 The absolute value function $|x| $ and the 1-norm $ ||x|| _ 1 $ are
 typical examples. Important applications also arise from [Lagrangian
-relaxation](http://en.wikipedia.org/wiki/Lagrangian_relaxation). The idea of the algorithm is to approximate the functions $f_i $ with piecewise linear models $ m_i $ which are built up from information obtained by evaluating $ f_i $ at different points. We
+relaxation](https://en.wikipedia.org/wiki/Lagrangian_relaxation). The idea of the algorithm is to approximate the functions $f_i $ with piecewise linear models $ m_i $ which are built up from information obtained by evaluating $ f_i $ at different points. We
 iteratively minimize over the models to generate candidate solution points.
 
 We can state the algorithm as
@@ -39,7 +39,7 @@ If it is costly to evaluate $ f_i(x) $, then the algorithm is naturally
 parallelizable at step 2. The minimization in step 3 can be computed by solving
 a linear optimization problem, which is usually very fast. (Let me point out
 here that Julia has interfaces to linear programming and other
-optimization solvers under [JuliaOpt](http://juliaopt.org/).
+optimization solvers under [JuliaOpt](https://juliaopt.org/).
 
 Abstracting the math, we can write the algorithm using the following Julia code.
 
@@ -80,7 +80,7 @@ issue. The key point is
 In other words, we generate new tasks to feed to workers without needing to wait
 for all current tasks to complete, making the algorithm asynchronous. The
 algorithm remains convergent, although the total number of iterations may
-increase. For more details, see [this paper](http://dx.doi.org/10.1023/A:1021858008222) by Jeff Linderoth and Stephen Wright.
+increase. For more details, see [this paper](https://dx.doi.org/10.1023/A:1021858008222) by Jeff Linderoth and Stephen Wright.
 
 By introducing asynchronicity we can no longer use a nice black-box `pmap`
 function and have to dig deeper into the parallel implementation. Fortunately,
@@ -96,7 +96,7 @@ functionality.  This model of parallelism is very different from the typical
 SIMD style of MPI. Both approaches are useful in different contexts, and I
 expect an MPI wrapper for Julia will appear in the future (see also [here](https://github.com/lcw/julia-mpi)).
 
-Reading the [manual](http://docs.julialang.org/en/release-0.1/manual/parallel-computing/) on parallel computing is highly recommended, and I won't try to reproduce it in
+Reading the [manual](https://docs.julialang.org/en/release-0.1/manual/parallel-computing/) on parallel computing is highly recommended, and I won't try to reproduce it in
 this post. Instead, we'll dig into and extend one of the examples it presents.
 
 The implementation of `pmap` in Julia is
@@ -130,7 +130,7 @@ end
 ```
 
 On first sight, this code is not particularly intuitive. The `@spawnlocal`
-macro creates a [task](http://docs.julialang.org/en/latest/manual/control-flow/#man-tasks)
+macro creates a [task](https://docs.julialang.org/en/latest/manual/control-flow/#man-tasks)
 on the *master process* (e.g. process 1). Each task feeds work to a
 corresponding worker; the call `remotecall_fetch(p, f, lst[idx])` function
 calls `f` on process `p` and returns the result when finished. Tasks are
@@ -211,11 +211,11 @@ particularly straightforward to make modifications like this.
 Now for the fun part. The complete cutting-plane algorithm (along with
 additional variants) is implemented in [JuliaBenders](https://github.com/mlubin/JuliaBenders). The code is
 specialized for [stochastic
-programming](http://en.wikipedia.org/wiki/Stochastic_programming) where the cutting-plane algorithm is known as the [L-shaped
-method](http://www.springerreference.com/docs/html/chapterdbid/72429.html) or Benders decomposition and is used to decompose the solution of
+programming](https://en.wikipedia.org/wiki/Stochastic_programming) where the cutting-plane algorithm is known as the [L-shaped
+method](https://www.springerreference.com/docs/html/chapterdbid/72429.html) or Benders decomposition and is used to decompose the solution of
 large linear optimization problems. Here, `solvesubproblem` entails solving a
 relatively small linear optimization problem. Test instances are taken from [the
-previously mentioned paper](http://dx.doi.org/10.1023/A:1021858008222).
+previously mentioned paper](https://dx.doi.org/10.1023/A:1021858008222).
 
 We'll first run on a large multicore server. The
 `runals.jl` (asynchronous L-shaped) file contains the algorithm we'll use. Its
@@ -377,5 +377,5 @@ architecture. Anyway, with Julia we can easily experiment on both.
 
 A more detailed [tutorial](https://github.com/JuliaLang/julia-tutorial/blob/master/NumericalOptimization/tutorial.pdf?raw=true) was prepared for the Julia [IAP session](https://github.com/JuliaLang/julia-tutorial) at MIT in January 2013.
 
-~~~<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="padding-left:0;width:10%;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Distributed Numerical Optimization</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Miles Lubin</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+~~~<a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="padding-left:0;width:10%;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="https://purl.org/dc/terms/" property="dct:title">Distributed Numerical Optimization</span> by <span xmlns:cc="https://creativecommons.org/ns#" property="cc:attributionName">Miles Lubin</span> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 ~~~

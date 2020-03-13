@@ -86,7 +86,7 @@ NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN…NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 binary counterpart of [FASTA](https://en.wikipedia.org/wiki/FASTA_format) but
 specialized for DNA reference sequences to enable smaller file size and faster
 loading. Reference sequences of various organisms are distributed from [the
-download page of UCSC](http://hgdownload.soe.ucsc.edu/downloads.html) in this
+download page of UCSC](https://hgdownload.soe.ucsc.edu/downloads.html) in this
 file format. An important advantage of 2bit is that sequences are indexed by its
 name and can be accessed immediately.
 
@@ -110,7 +110,7 @@ with UNIX command line tools. BAM is a compressed binary version of SAM and
 suitable for storing data in disks and processing with purpose-built softwares
 like [samtools](https://samtools.github.io/). The BAM data reader is carefully
 tuned so that users can use it in real analysis with large files. It is also
-feasible to read a [CRAM](http://www.ebi.ac.uk/ena/software/cram-toolkit) file
+feasible to read a [CRAM](https://www.ebi.ac.uk/ena/software/cram-toolkit) file
 combining the BAM reader and `samtools view` command.
 
 An experimental feature is parallel processing using multiple threads.
@@ -181,7 +181,7 @@ julia> readstring(stream)
 Sequence demultiplexing is a technique to distinguish the origin of a sequence
 using its artificially-attached "barcode" sequence. This is often used at a
 preprocessing phase after [multiplexed
-sequencing](http://www.illumina.com/technology/next-generation-sequencing/multiplexing-sequencing-assay.html),
+sequencing](https://www.illumina.com/technology/next-generation-sequencing/multiplexing-sequencing-assay.html),
 a common technique to sequence multiple samples simultaneously.  A barcode
 sequence, however, may be corrupted due to sequencing error, and we need to find
 the best matching barcode from a barcode set.  The demultiplexer algorithm

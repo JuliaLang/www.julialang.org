@@ -27,7 +27,7 @@ I implemented automatic loop unrolling in
 generate finite state machine (FSM) from regular expressions. We use it to
 generate high-performance parsers for various file formats used in
 bioinformatics.  The loop unrolling factor can be specified as an argument of
-[`Automa.CodeGenContext`](http://biojulia.net/Automa.jl/latest/references.html#Automa.CodeGenContext).
+[`Automa.CodeGenContext`](https://biojulia.net/Automa.jl/latest/references.html#Automa.CodeGenContext).
 For example, you can specify the value 8 in this way: `context =
 Automa.CodeGenContext(loopunroll=8)` and that is all. The code generator of
 Automa.jl will automatically unroll loops found in an FSM.
@@ -45,7 +45,7 @@ file formats to store biological sequences. I benchmarked parsing throughput in
 these two formats. The throughput improved as the loop unrolling factor was
 increased and saturated around factor = 10.
 
-![FASTA-FASTQ benchmarks](/assets/images/blog/2017-09-07-bio-parallel/fasta-fastq-benchmarks.png)
+![FASTA-FASTQ benchmarks](/assets/blog/2017-09-07-bio-parallel/fasta-fastq-benchmarks.png)
 
 Unrolled parsing achieved about 1.3 times speedup in both cases.  This benchmark
 does not include I/O operations but other operations that are required to
@@ -142,7 +142,7 @@ for example) can support parallel decompression and chunking but gzip is still
 slow.
 
 A recent compression algorithm known as
-[Zstandard](http://facebook.github.io/zstd/) (or Zstd) is much faster than gzip
+[Zstandard](https://facebook.github.io/zstd/) (or Zstd) is much faster than gzip
 while keeping the compression ratio at the same level of gzip. Moreover, it
 started to implement an experimental support of [seekable compression
 format](https://github.com/facebook/zstd/blob/dev/contrib/seekable_format/zstd_seekable_compression_format.md),

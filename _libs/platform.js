@@ -33,7 +33,7 @@
 
   /**
    * Used as the maximum length of an array-like object.
-   * See the [ES6 spec](http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength)
+   * See the [ES6 spec](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength)
    * for more details.
    */
   var maxSafeInteger = Math.pow(2, 53) - 1;
@@ -77,8 +77,8 @@
    */
   function cleanupOS(os, pattern, label) {
     // Platform tokens are defined at:
-    // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
-    // http://web.archive.org/web/20081122053950/http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
+    // https://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
+    // https://web.archive.org/web/20081122053950/https://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
     var data = {
       '10.0': '10',
       '6.4':  '10 Technical Preview',
@@ -304,8 +304,8 @@
 
     /**
      * Detect Opera browser (Presto-based).
-     * http://www.howtocreate.co.uk/operaStuff/operaObject.html
-     * http://dev.opera.com/articles/view/opera-mini-web-content-authoring-guidelines/#operamini
+     * https://www.howtocreate.co.uk/operaStuff/operaObject.html
+     * https://dev.opera.com/articles/view/opera-mini-web-content-authoring-guidelines/#operamini
      */
     var opera = context.operamini || context.opera;
 
@@ -855,7 +855,7 @@
       }
     }
     // Detect BlackBerry OS version.
-    // http://docs.blackberry.com/en/developers/deliverables/18169/HTTP_headers_sent_by_BB_Browser_1234911_11.jsp
+    // https://docs.blackberry.com/en/developers/deliverables/18169/HTTP_headers_sent_by_BB_Browser_1234911_11.jsp
     else if ((/\bBlackBerry\b/.test(product) || /\bBB10\b/.test(ua)) && (data =
           (RegExp(product.replace(/ +/g, ' *') + '/([.\\d]+)', 'i').exec(ua) || 0)[1] ||
           version
@@ -865,7 +865,7 @@
       version = null;
     }
     // Detect Opera identifying/masking itself as another browser.
-    // http://www.opera.com/support/kb/view/843/
+    // https://www.opera.com/support/kb/view/843/
     else if (this != forOwn && product != 'Wii' && (
           (useFeatures && opera) ||
           (/Opera/.test(name) && /\b(?:MSIE|Firefox)\b/i.test(ua)) ||
@@ -925,7 +925,7 @@
         layout = ['Blink'];
       }
       // Detect JavaScriptCore.
-      // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
+      // https://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
       if (!useFeatures || (!likeChrome && !data[1])) {
         layout && (layout[1] = 'like Safari');
         data = (data = data[0], data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : data < 534 ? '4+' : data < 535 ? 5 : data < 537 ? 6 : data < 538 ? 7 : data < 601 ? 8 : '8');
@@ -1195,7 +1195,7 @@
   if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
     // Expose platform on the global object to prevent errors when platform is
     // loaded by a script tag in the presence of an AMD loader.
-    // See http://requirejs.org/docs/errors.html#mismatch for more details.
+    // See https://requirejs.org/docs/errors.html#mismatch for more details.
     root.platform = platform;
 
     // Define as an anonymous module so platform can be aliased through path mapping.

@@ -16,10 +16,10 @@ nearly a decade of work to build a language for greedy programmers. JuliaCon2018
 celebrated the event with a reception where the community officially [set the version to
 1.0.0 together](https://www.youtube.com/watch?v=1jN5wKvN-Uk#t=3850). -->
 
-Julia 語言 [第一次公開發佈](https://julialang.org/blog/2012/02/why-we-created-julia) 並有不少強烈的期待：
+Julia 語言 [第一次公開發佈](/blog/2012/02/why-we-created-julia) 並有不少強烈的期待：
 
 <!-- Julia was [first publicly
-announced](https://julialang.org/blog/2012/02/why-we-created-julia) with a number of strong
+announced](/blog/2012/02/why-we-created-julia) with a number of strong
 demands on the language: -->
 
 > 我們想要一個開源的語言，擁有自由的版權。我們想要 C 的速度和 Ruby 的動態。我們想要有一個語法與內在表示有一致性（homoiconic）的語言，
@@ -108,13 +108,13 @@ innovative language features. Some of the new features since version 0.6 include
   JuliaCon](https://www.youtube.com/watch?v=GBi__3nF-rM) provides a good overview of the new
   design and behavior. -->
 
-* Julia 具有新的 [遺失值（missing value）的正式表示法](https://julialang.org/blog/2018/06/missing)。能表示及處理遺失值是統計學和資料科學一項基本能力。
+* Julia 具有新的 [遺失值（missing value）的正式表示法](/blog/2018/06/missing)。能表示及處理遺失值是統計學和資料科學一項基本能力。
 在典型的 Julia 寫法（Julian fashion）裡，新的解決方案是具有廣義性、組合性，也是高效能的。任何一般的集合型別（collection type）都可以簡單地使用
 預先定義好的 `missing` 變數來有效支援遺失值。而這種集合型別的效能在過去的 Julia 版本里可能會很慢，但是現在編譯器已經
 可以使得 Julia 在遺失值的表示上達到類似 C 或者 C++ 的速度，然而遠比 C 或者 C++ 更廣義和靈活。
 
 <!-- * Julia has a new [canonical representation for missing
-  values](https://julialang.org/blog/2018/06/missing). Being able to represent and work with
+  values](/blog/2018/06/missing). Being able to represent and work with
   missing data is fundamental to statistics and data science. In typical Julian fashion, the
   new solution is general, composable and high-performance. Any generic collection type can
   efficiently support missing values simply by allowing elements to include the pre-defined
@@ -133,12 +133,12 @@ innovative language features. Some of the new features since version 0.6 include
   inevitable imperfections. -->
 
 * Broadcasting 已經成為語言的核心特性，並且有著方便的語法支援，現在，它將比過去更加強大。在 Julia 1.0 裡，
-[賦予自定義型別 broadcasting 特性](https://julialang.org/blog/2018/05/extensible-broadcast-fusion) 和在 GPU 和向量化硬體上實作最佳的運算都更加容易，
+[賦予自定義型別 broadcasting 特性](/blog/2018/05/extensible-broadcast-fusion) 和在 GPU 和向量化硬體上實作最佳的運算都更加容易，
 這是為未來更多的效能提升鋪路。
 
 <!-- * Broadcasting is already a core language feature with convenient syntax—and it’s now more
   powerful than ever. In Julia 1.0 it’s simple to [extend broadcasting to custom
-  types](https://julialang.org/blog/2018/05/extensible-broadcast-fusion) and implement
+  types](/blog/2018/05/extensible-broadcast-fusion) and implement
   efficient optimized computations on GPUs and other vectorized hardware, paving the way for
   even greater performance gains in the future. -->
 
@@ -241,12 +241,12 @@ innovative language features. Some of the new features since version 0.6 include
       package, and a port to Google TPUs is in the works. -->
 
 還有無數個大大小小的改善。你可以查看 [0.7 NEWS 文件](https://github.com/JuliaLang/julia/blob/release-0.7/NEWS.md) 當中的完整的更新。
-在我們 2012 年的 ["為什麼我們創造 Julia" 文章](https://julialang.org/blog/2012/02/why-we-created-julia) 裡，我們寫到：
+在我們 2012 年的 ["為什麼我們創造 Julia" 文章](/blog/2012/02/why-we-created-julia) 裡，我們寫到：
 
 <!-- There are countless other improvements, both large and small. For a complete list of
 changes, see the [0.7 NEWS file](https://docs.julialang.org/en/release-0.7/NEWS/). In our
 original [“Why We Created Julia” blog
-post](https://julialang.org/blog/2012/02/why-we-created-julia) in 2012, we wrote -->
+post](/blog/2012/02/why-we-created-julia) in 2012, we wrote -->
 
 > 它還沒有完工，但是是時候發布一個 1.0 版本了（其實歷時 6 年才發布）—— 我們創造了一個語言叫做 Julia。
 

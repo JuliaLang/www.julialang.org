@@ -2,7 +2,7 @@
 @def rss = """ Fast Numeric Computation in Julia | Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality.... """
 @def published = "4 September 2013"
 @def title = "Fast Numeric Computation in Julia"
-@def authors = """<a href="http://dahua.me">Dahua Lin</a>"""  
+@def authors = """<a href="https://dahua.me">Dahua Lin</a>"""  
 @def hascode = true
 
 
@@ -203,7 +203,7 @@ A good example is the [*Distributions.jl*](https://github.com/JuliaStats/Distrib
 
 ## Identify opportunities to use BLAS
 
-Julia wraps a large number of [BLAS](http://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms) routines for linear algebraic computation. These routines are the result of decades of research and optimization by many of the world's top experts in fast numerical computation. As a result, using them where possible can provide performance boosts that seem almost magical – BLAS routines are often orders of magnitude faster than the simple loop implementations they replace.
+Julia wraps a large number of [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms) routines for linear algebraic computation. These routines are the result of decades of research and optimization by many of the world's top experts in fast numerical computation. As a result, using them where possible can provide performance boosts that seem almost magical – BLAS routines are often orders of magnitude faster than the simple loop implementations they replace.
 
 For example, consider accumulating weighted versions of vectors as follows:
 
@@ -291,4 +291,4 @@ Here are a couple of packages that might be useful for those interested in high 
 
 * [Devectorize.jl](https://github.com/lindahua/Devectorize.jl) – macros and functions to de-vectorize vector expressions. With this package, users can write computations in high-level vectorized way while enjoying the high run-time performance of hand-coded de-vectorized loops.
 
-Check out the [Julia package list](http://pkg.julialang.org/) for many more packages. Julia also ships with a [sampling profiler](https://docs.julialang.org/en/v1/manual/profile/#Profiling-1) to measure where your code is spending most of its time. When in doubt, measure don't guess!
+Check out the [Julia package list](https://pkg.julialang.org/) for many more packages. Julia also ships with a [sampling profiler](https://docs.julialang.org/en/v1/manual/profile/#Profiling-1) to measure where your code is spending most of its time. When in doubt, measure don't guess!

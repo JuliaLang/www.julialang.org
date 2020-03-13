@@ -73,7 +73,7 @@ The main task for the framewise network was to find how to efficiently train the
 
 **For the CTC network, there needs to be an investigation as to why it is not learning to perform to the degree Zhang et al. report.** The following figure is a plot of the training and validation loss over time from the first time running the network with the corrected loss function mentioned above. The optimizer was AMSGrad with a learning rate of $10^{-4}$. It is characteristic of the behavior I've seen with other optimizers and training configurations, whether they are fresh starts or continuing previous training.
 
-![CTC loss over time. Note that the y-axis is presented in logarithmic scale.](/assets/images/blog/2018-08-14-GSoC2018-speech-recognition/ctcloss.png)
+![CTC loss over time. Note that the y-axis is presented in logarithmic scale.](/assets/blog/2018-08-14-GSoC2018-speech-recognition/ctcloss.png)
 
 The validation loss is settling at a suboptimal level, even though the training loss continues to decrease. I am unsure at this juncture what the cause of this behavior may be, since I have endeavored to hew as closely as possible to the implementation details given by Zhang et al. I don't believe it is in the CTC function since I have tested the CTC loss function several times against hand-worked solutions and seen it produce correct results; similarly, the gradients it provided allowed the network to fit one training example to a near-zero level of loss, so it would seem the function is providing a loss signal reliable enough to minimize the loss. It is possible that how I called the backpropagation needs to be investigated to see if the loss values from within a batch were being composed properly.
 

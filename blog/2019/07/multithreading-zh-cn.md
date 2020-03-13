@@ -429,20 +429,20 @@ Windows 具有与任务密切相关的纤程，并且 Unix 系列系统也有多
 如果您在使用 Julia 中的线程时遇到任何问题，请在[GitHub][]或我们的[论坛][Discourse]中告知我们!
 
 
-[free lunch]: http://www.gotw.ca/publications/concurrency-ddj.htm
-[Cilk]: http://cilk.mit.edu/
+[free lunch]: https://www.gotw.ca/publications/concurrency-ddj.htm
+[Cilk]: https://cilk.mit.edu/
 [Intel Threading Building Blocks]: https://software.intel.com/en-us/intel-tbb/
 [Go]: https://tour.golang.org/concurrency/1
 [partr]: https://github.com/kpamnany/partr
 [Juno IDE]: https://junolab.org/
 [flipping a single bit]: https://github.com/JuliaLang/libuv/commit/26dbe5672c33fc885462c509fe2a9b36f35866fd
 [missing exception handling personality]: https://github.com/JuliaLang/julia/pull/32570
-[TAPIR]: http://cilk.mit.edu/tapir/
+[TAPIR]: https://cilk.mit.edu/tapir/
 [here]: https://github.com/JuliaLang/julia/pull/31086
 [TBB]: https://software.intel.com/en-us/node/506304
 [Intel]: https://www.intel.com/
-[relationalAI]: http://relational.ai/
+[relationalAI]: https://relational.ai/
 [GitHub]: https://github.com/JuliaLang/julia/issues
 [Discourse]: https://discourse.julialang.org/
-[downloads page]: https://julialang.org/downloads/
+[downloads page]: /downloads/
 [master branch]: https://github.com/JuliaLang/julia

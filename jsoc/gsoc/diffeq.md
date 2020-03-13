@@ -109,7 +109,7 @@ to learn and a strong understanding of calculus and linear algebra.
 ## Tools for global sensitivity analysis
 
 Global Sensitivity Analysis is a popular tool to assess the affect that parameters
-have on a differential equation model. A good introduction [can be found in this thesis](http://discovery.ucl.ac.uk/19896/). Global Sensitivity Analysis tools can be
+have on a differential equation model. A good introduction [can be found in this thesis](https://discovery.ucl.ac.uk/19896/). Global Sensitivity Analysis tools can be
 much more efficient than Local Sensitivity Analysis tools, and give a better
 view of how parameters affect the model in a more general sense.
 The goal of this project would be to implement more global

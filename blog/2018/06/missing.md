@@ -2,7 +2,7 @@
 @def rss = """ First-Class Statistical Missing Values Support in Julia 0.7 | The 0.7 release of Julia will soon introduce first-class support for statistical... """
 @def published = "19 June 2018"
 @def title = "First-Class Statistical Missing Values Support in Julia 0.7"
-@def authors = """ <a href="http://bouchet-valat.site.ined.fr">Milan Bouchet-Valat</a>"""  
+@def authors = """ <a href="https://bouchet-valat.site.ined.fr">Milan Bouchet-Valat</a>"""  
 @def hascode = true
 
 The 0.7 release of Julia will soon introduce first-class support for statistical
@@ -471,7 +471,7 @@ Despite these limitations, we believe that missing values support in Julia 0.7 w
 of the most complete even among specialized statistical languages, both in terms of features
 and in terms of performance.
 
-**Author**: [Milan Bouchet-Valat](http://bouchet-valat.site.ined.fr), Sociologist,
+**Author**: [Milan Bouchet-Valat](https://bouchet-valat.site.ined.fr), Sociologist,
 Research scientist at the French Institute for Demographic Studies (Ined), Paris.
 
 **Acknowledgements**: This framework is the result of collective efforts over several
@@ -520,7 +520,7 @@ See for example Olivier Godechot's
 ["Can We Use Alsace-Moselle for Estimating the Employment Effects of the 35-Hour Workweek Regulation in France?"](/assets/blog/chemin-wasmer-09.pdf).
 
 [^jmw]:
-In [a 2014 blog post](http://www.johnmyleswhite.com/notebook/2014/11/29/whats-wrong-with-statistics-in-julia/),
+In [a 2014 blog post](https://www.johnmyleswhite.com/notebook/2014/11/29/whats-wrong-with-statistics-in-julia/),
 John Myles White advocated the use of `Nullable` due to its much higher performance
 compared with`Union{T,NA}`. This performance gap no longer exists thanks to compiler
 improvements which have been a game-changer for missing values support.

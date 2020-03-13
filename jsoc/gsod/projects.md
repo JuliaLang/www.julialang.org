@@ -33,12 +33,12 @@ Some step-by-step examples and motivation for the use of each feature can be add
 
 ## Statistics
 
-The [JuliaStats](https://github.com/juliastats) organization hosts packages solving various problems in data analysis and statistics, from computing [distances](https://github.com/JuliaStats/Distances.jl/) to [grouping data points together](http://juliastats.github.io/Clustering.jl/stable).
+The [JuliaStats](https://github.com/juliastats) organization hosts packages solving various problems in data analysis and statistics, from computing [distances](https://github.com/JuliaStats/Distances.jl/) to [grouping data points together](https://juliastats.github.io/Clustering.jl/stable).
 This breadth of scope makes it challenging to keep track of which task is performed in each package.
 
 ### JuliaStats website
 
-The [main website](http://juliastats.github.io) is at the moment displaying a brief list of packages from the ecosystem. We could use this central place to map the features to the different packages, and how to use them in different situations.
+The [main website](https://juliastats.github.io) is at the moment displaying a brief list of packages from the ecosystem. We could use this central place to map the features to the different packages, and how to use them in different situations.
 
 ### Problem-oriented documentation
 

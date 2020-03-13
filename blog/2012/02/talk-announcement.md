@@ -5,7 +5,7 @@
 @def authors = """<a href="https://github.com/JeffBezanson">Jeff Bezanson</a>"""  
 
 I will be speaking about Julia at the
-~~~<a href="http://www.stanford.edu/class/ee380/">Stanford EE Computer Systems Colloquium</a>~~~ on Wednesday, February 29 at 4:15PM PST.
+~~~<a href="https://www.stanford.edu/class/ee380/">Stanford EE Computer Systems Colloquium</a>~~~ on Wednesday, February 29 at 4:15PM PST.
 
 The title of the talk is *Julia: A Fast Dynamic Language For Technical Computing*.
 
@@ -21,4 +21,4 @@ The title of the talk is *Julia: A Fast Dynamic Language For Technical Computing
 
 The talk will be webcast live.
 
-**Edit:** the video of the talk can be [found here](http://ee380.stanford.edu/cgi-bin/videologger.php?target=120229-ee380-300.asx).
+**Edit:** the video of the talk can be [found here](https://ee380.stanford.edu/cgi-bin/videologger.php?target=120229-ee380-300.asx).

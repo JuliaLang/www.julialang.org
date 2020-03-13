@@ -36,9 +36,9 @@ Happy coding.
 
 **News**
 
-[JuliaBloggers](http://www.juliabloggers.com/) and the [searchable package listing](http://pkg.julialang.org/) were recently introduced.
+[JuliaBloggers](https://www.juliabloggers.com/) and the [searchable package listing](https://pkg.julialang.org/) were recently introduced.
 
-The first ever [JuliaCon](http://www.juliacon.org) was held in Chicago in June, 2014. Several session recordings are available, and the others will be released soon:
+The first ever [JuliaCon](https://www.juliacon.org) was held in Chicago in June, 2014. Several session recordings are available, and the others will be released soon:
 
 - [Opening session](/blog/2014/08/juliacon-opening-session/)
 - [Optimization session](/blog/2014/08/juliacon-opt-session/)
@@ -46,21 +46,21 @@ The first ever [JuliaCon](http://www.juliacon.org) was held in Chicago in June, 
 The Julia community participated in Google Summer of Code 2014. Wrap-up blog posts will be coming soon from the participants:
 
 - [Simon Danisch](https://github.com/SimonDanisch) ([3D visualization](https://randomphantasies.wordpress.com/))
-- [Shashi Gowda](https://github.com/shashi) ([Interactive Widgets for IJulia](https://github.com/shashi/Interact.jl) and [React.jl](http://shashi.github.io/React.jl))
+- [Shashi Gowda](https://github.com/shashi) ([Interactive Widgets for IJulia](https://github.com/shashi/Interact.jl) and [React.jl](https://shashi.github.io/React.jl))
 - [Mike Innes](https://github.com/one-more-minute) ([Julia + LightTable](https://github.com/one-more-minute/Juno-LT))
 
 **Topical highlights**
 
- "[The colors of chemistry](http://jiahao.github.io/julia-blog/2014/06/09/the-colors-of-chemistry.html)" notebook by [Jiahao Chen](http://github.com/jiahao) demonstrating IJulia, Gadfly, dimensional computation with SIUnits, and more.
+ "[The colors of chemistry](https://jiahao.github.io/julia-blog/2014/06/09/the-colors-of-chemistry.html)" notebook by [Jiahao Chen](https://github.com/jiahao) demonstrating IJulia, Gadfly, dimensional computation with SIUnits, and more.
 
-[JuliaStats](http://juliastats.github.io/) - statistical and machine learning community.
+[JuliaStats](https://juliastats.github.io/) - statistical and machine learning community.
 
-[JuliaOpt](http://www.juliaopt.org/) - optimization community.
+[JuliaOpt](https://www.juliaopt.org/) - optimization community.
 
 [IJulia](https://github.com/JuliaLang/IJulia.jl) - notebook interface built on IPython.
 
 [Images](https://github.com/timholy/Images.jl) - image processing and i/o library.
 
-[Gadfly](http://gadflyjl.org/) - Grammar of Graphics-inspired statistical plotting.
+[Gadfly](https://gadflyjl.org/) - Grammar of Graphics-inspired statistical plotting.
 
 [Winston](https://github.com/nolta/Winston.jl) - 2D plotting.

@@ -1,13 +1,13 @@
 
 # JuliaImages Projects – Summer of Code
 
-[JuliaImages](https://github.com/JuliaImages) (see the [documentation](http://juliaimages.github.io/latest/)) is a framework in Julia for multidimensional arrays, image processing, and computer vision (CV). It has an active development community and offers many features that unify CV and biomedical 3D/4D image processing, support big data, and promote interactive exploration.
+[JuliaImages](https://github.com/JuliaImages) (see the [documentation](https://juliaimages.github.io/latest/)) is a framework in Julia for multidimensional arrays, image processing, and computer vision (CV). It has an active development community and offers many features that unify CV and biomedical 3D/4D image processing, support big data, and promote interactive exploration.
 
 Often the best ideas are the ones that candidate SoC students come up with on their own. We are happy to [discuss such ideas](https://github.com/JuliaImages/Images.jl/issues/new) and help you refine your proposal.  Below are some potential project ideas that might help spur some thoughts.
 
 ## Wide-ranging demos
 
-For new or occasional users, JuliaImages would benefit from a large collection of complete worked examples organized by topic. While the current documentation contains many "mini-demos," they are scattered; an organized page would help users quickly find what they need. We have [set up a landing page](https://juliaimages.org/latest/democards/examples/), but many more demos are needed. [Scikit-image](http://scikit-image.org/docs/stable/auto_examples/) is one potential model.
+For new or occasional users, JuliaImages would benefit from a large collection of complete worked examples organized by topic. While the current documentation contains many "mini-demos," they are scattered; an organized page would help users quickly find what they need. We have [set up a landing page](https://juliaimages.org/latest/democards/examples/), but many more demos are needed. [Scikit-image](https://scikit-image.org/docs/stable/auto_examples/) is one potential model.
 
 This "project" might also be split among multiple students who contribute demos as part of their work in a focused area of JuliaImages.
 

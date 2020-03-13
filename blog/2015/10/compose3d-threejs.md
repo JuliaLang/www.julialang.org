@@ -36,7 +36,7 @@ there were several flaws with this approach.
 - Nor did it work with Interact to provide interactivity.
 
 So Shashi suggested implementing a [Polymer](https://www.polymer-project.org/1.0/) wrapper around the excellent
-[three.js](http://threejs.org/) library, to create threejs web components. The Polymer team had done some work on
+[three.js](https://threejs.org/) library, to create threejs web components. The Polymer team had done some work on
 creating threejs components and had a basic implementation of the same ready, which I promptly [forked](https://github.com/rohitvarkey/three-js)
 and tweaked to add functionality I needed. It's quite safe to say that I've spent more time writing JavaScript than
 Julia during JSoC!

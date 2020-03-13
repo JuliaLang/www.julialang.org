@@ -6,7 +6,7 @@
 @def hascode = true
 
 
-*To follow along with the examples in this blog post and run them live, you can go to [JuliaBox](https://juliabox.com/), create a free login, and open the "Julia 0.5 Highlights" notebook under "What's New in 0.5". The notebook can also be downloaded from [here](https://raw.githubusercontent.com/JuliaLang/www.julialang.org/master/blog/_posts/Julia-0.5-highlights-notebook/Julia%200.5%20Highlights.ipynb).*
+*To follow along with the examples in this blog post and run them live, you can go to [JuliaBox](https://juliabox.com/), create a free login, and open the "Julia 0.5 Highlights" notebook under "What's New in 0.5". The notebook can also be downloaded from [here](/assets/blog/Julia-0.5-highlights-notebook/Julia%200.5%20Highlights.ipynb).*
 
 [Julia 0.5](/blog/2016/01/julia-0.5-release/) is a pivotal release.
 It introduces more transformative features than any release since the first official version.
@@ -142,7 +142,7 @@ function clip{T<:Real}(x::T, lo::Real, hi::Real)::T
 end
 ```
 
-This function is similar to the built-in [`clamp`](http://docs.julialang.org/en/release-0.5/stdlib/math/#Base.clamp) function, but let's consider this definition for the sake of example.
+This function is similar to the built-in [`clamp`](https://docs.julialang.org/en/release-0.5/stdlib/math/#Base.clamp) function, but let's consider this definition for the sake of example.
 The return annotation on `clip` has the effect of inserting implicit calls to `x->convert(T, x)` at each return point of the method.
 It has no effect on any other method of `clip`, only the one where the annotation occurs.
 In this case, the annotation ensures that this method always returns a value of the same type as `x`, regardless of the types of `lo` and `hi`:

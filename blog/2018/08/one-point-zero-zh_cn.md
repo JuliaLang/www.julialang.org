@@ -13,10 +13,10 @@ nearly a decade of work to build a language for greedy programmers. JuliaCon2018
 celebrated the event with a reception where the community officially [set the version to
 1.0.0 together](https://www.youtube.com/watch?v=1jN5wKvN-Uk#t=3850). -->
 
-Julia项目[起初](https://julialang.org/blog/2012/02/why-we-created-julia)是因为这些强烈的需求而公开发起的开源项目：
+Julia项目[起初](/blog/2012/02/why-we-created-julia)是因为这些强烈的需求而公开发起的开源项目：
 
 <!-- Julia was [first publicly
-announced](https://julialang.org/blog/2012/02/why-we-created-julia) with a number of strong
+announced](/blog/2012/02/why-we-created-julia) with a number of strong
 demands on the language: -->
 
 > 我们想要的是一个自由开源的语言，并且它同时拥有C的速度和Ruby的动态性；我们想要一个具有同像性（可以将语言的脚本本身当作数据进行处理）的语言，
@@ -63,14 +63,14 @@ open source Julia packages. All told, we have built a language that is: -->
   quantities, or data table columns of currencies and colors, just work — and with good
   performance. -->
 
-现在可以通过[下载Julia 1.0版本](https://julialang.org/downloads/)来尝试Julia。
+现在可以通过[下载Julia 1.0版本](/downloads/)来尝试Julia。
 如果你现在从Julia 0.6或者更早的版本开始升级代码，我们建议你先使用过渡性的0.7版本，
 其中包括了弃用警告（deprecation warning）来指导你的升级过程。一旦你的代码无警告通过，
 那么你可以在没有任何功能变化的情况下将代码更改为1.0版本。
 已注册过的包可以利用这个来过渡并发布与1.0版本兼容的更新。
 
 
-<!-- Try Julia by [downloading version 1.0 now](https://julialang.org/downloads/). If you’re
+<!-- Try Julia by [downloading version 1.0 now](/downloads/). If you’re
 upgrading code from Julia 0.6 or earlier, we encourage you to first use the transitional 0.7
 release, which includes deprecation warnings to help guide you through the upgrade process.
 Once your code is warning-free, you can change to 1.0 without any functional changes. The
@@ -107,13 +107,13 @@ innovative language features. Some of the new features since version 0.6 include
   JuliaCon](https://www.youtube.com/watch?v=GBi__3nF-rM) provides a good overview of the new
   design and behavior. -->
 
-* Julia具有新的 [对于缺失值（missing value）的正则表达](https://julialang.org/blog/2018/06/missing)。处理缺失值的能力对于统计学和数据科学是一项基本能力。
+* Julia具有新的 [对于缺失值（missing value）的正则表达](/blog/2018/06/missing)。处理缺失值的能力对于统计学和数据科学是一项基本能力。
 在典型的Julia写法里，这个解决方案是一般性的，可扩展的也是高性能的。任何一般的集合类型（collection type）都可以简单地通过使用
 预先定义好的 `missing` 变量来有效支持缺失值。而这样的集合类型的性能在过去的Julia版本里可能会很慢，但是现在编译器已经
 可以使得Julia在缺失值的表示上达到类似 C 或者 C++ 的速度，而远比 C 或者 C++ 一般和灵活。
 
 <!-- * Julia has a new [canonical representation for missing
-  values](https://julialang.org/blog/2018/06/missing). Being able to represent and work with
+  values](/blog/2018/06/missing). Being able to represent and work with
   missing data is fundamental to statistics and data science. In typical Julian fashion, the
   new solution is general, composable and high-performance. Any generic collection type can
   efficiently support missing values simply by allowing elements to include the pre-defined
@@ -131,13 +131,12 @@ innovative language features. Some of the new features since version 0.6 include
   applications to safely and conveniently work with real world data with all of its
   inevitable imperfections. -->
 
-* 尽管广播早已成为一项语言的核心特性并且有着方便的语法支持，而现在它将比过去更加强大。在Julia 1.0里[为自定义类型扩展
-广播](https://julialang.org/blog/2018/05/extensible-broadcast-fusion)和实现高效的GPU和向量化硬件上的扩展都
+* 尽管广播早已成为一项语言的核心特性并且有着方便的语法支持，而现在它将比过去更加强大。在Julia 1.0里[为自定义类型扩展广播](/blog/2018/05/extensible-broadcast-fusion)和实现高效的GPU和向量化硬件上的扩展都
 更加容易，为未来实现更高的性能铺平了道路。
 
 <!-- * Broadcasting is already a core language feature with convenient syntax—and it’s now more
   powerful than ever. In Julia 1.0 it’s simple to [extend broadcasting to custom
-  types](https://julialang.org/blog/2018/05/extensible-broadcast-fusion) and implement
+  types](/blog/2018/05/extensible-broadcast-fusion) and implement
   efficient optimized computations on GPUs and other vectorized hardware, paving the way for
   even greater performance gains in the future. -->
 
@@ -249,14 +248,14 @@ innovative language features. Some of the new features since version 0.6 include
       package, and a port to Google TPUs is in the works. -->
 
 还有很多没有被列举的大大小小的提高。你可以通过 [0.7 NEWS 文件](https://github.com/JuliaLang/julia/blob/release-0.7/NEWS.md)查看
-完整的更新。在我们2012年的 ["为什么我们创造来Julia"博文](https://julialang.org/blog/2012/02/why-we-created-julia)里，我们写到：
+完整的更新。在我们2012年的 ["为什么我们创造来Julia"博文](/blog/2012/02/why-we-created-julia)里，我们写到：
 
 > 它还没有完工——但是已经可以发布一个1.0版本了（其实等了6年才要发布）——我们创造的这个语言叫做Julia。
 
 <!-- There are countless other improvements, both large and small. For a complete list of
 changes, see the [0.7 NEWS file](https://docs.julialang.org/en/release-0.7/NEWS/). In our
 original [“Why We Created Julia” blog
-post](https://julialang.org/blog/2012/02/why-we-created-julia) in 2012, we wrote
+post](/blog/2012/02/why-we-created-julia) in 2012, we wrote
 
 > It’s not complete, but it’s time for a 1.0 release—the language we’ve created is called
 > [Julia](https://julialang.org). -->

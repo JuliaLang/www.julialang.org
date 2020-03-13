@@ -1,11 +1,11 @@
 @def rss_pubdate = Date(2019, 9, 16)
-@def rss = """ Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](http://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports. ![Instruments.app bad result](/assets/images/blog/2019-09-16-profilers/profile-instruments-bad.png)"""
+@def rss = """ Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](https://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports. ![Instruments.app bad result](/assets/blog/2019-09-16-profilers/profile-instruments-bad.png)"""
 @def published = "16 September 2019"
 @def title = "Profiling tool wins and woes"
-@def authors = """<a href="http://github.com/vtjnash/">Jameson Nash</a>"""  
+@def authors = """<a href="https://github.com/vtjnash/">Jameson Nash</a>"""  
 @def hascode=true
 
-Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](http://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.
+Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](https://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.
 
 ## Learn more!
 
@@ -13,8 +13,8 @@ If you want to learn how they are supposed to work, I suggest looking at other r
 
  - Julia Evans on learning to be a wizard: <https://wizardzines.com/zines/perf/>
  - Julia Evans taking a sabbatical to write a profiler tool: <https://jvns.ca/categories/ruby-profiler/>
- - Brendan Gregg on perf: <http://www.brendangregg.com/perf.html>
- - Brendan Gregg on flamegraphs: <http://www.brendangregg.com/flamegraphs.html>
+ - Brendan Gregg on perf: <https://www.brendangregg.com/perf.html>
+ - Brendan Gregg on flamegraphs: <https://www.brendangregg.com/flamegraphs.html>
 
 Then come back here to dive deeper!
 
@@ -70,13 +70,13 @@ $ open instrumentscli0.trace
 
 In `Instruments.app`, this does quite well, except for one peculiar combination of options.
 
-![Instruments.app bad result](/assets/images/blog/2019-09-16-profilers/profile-instruments-bad.png)
+![Instruments.app bad result](/assets/blog/2019-09-16-profilers/profile-instruments-bad.png)
 
 I don't know how it computed those numbers, but note that the total runtime was 738 ms, so all those numbers that are some multiple of that (1.47 s, 1.15 s, 230 ms) are wrong.
 
 But in any other mode, we can see that it's on the right track:
 
-![Instruments.app good result](/assets/images/blog/2019-09-16-profilers/profile-instruments-good.png)
+![Instruments.app good result](/assets/blog/2019-09-16-profilers/profile-instruments-good.png)
 
 The only problem I can identify here is that all of the self-weights are zero in this view. In the source code view, the lines are properly annotated with counts.
 
@@ -318,7 +318,7 @@ First, the Instruments.app tool we've looked at above has an option to collapse 
 
 There's another visualization-only tool called Speedscope which has [an option to do this](https://github.com/jlfwong/speedscope/pull/68). It imports profile files created by many other tools and languages, so we'll import the earlier `perf` file and see how it does against our lineup:
 
-![Speedscope bad result](/assets/images/blog/2019-09-16-profilers/profile-speedscope.png)
+![Speedscope bad result](/assets/blog/2019-09-16-profilers/profile-speedscope.png)
 
 Looks about right! Only one silly nit: it claims the sum of all frames identical to the highlighted frame (just itself) took 367.38 ms (good), but that the highlighted frame alone took 1.05 s (oops, the tool must be computing the count of the wrong summary information). But otherwise, this seems to show about the right information we've come to expect.
 
@@ -326,7 +326,7 @@ Let's look closer at what it's doing using their [stackcollapse recursion sample
 
 When I showed this post to my friend, he suggested I also include his [PProf.jl](https://github.com/vchuravy/PProf.jl) package here (a JuliaLang front end for the [pprof](https://github.com/google/pprof) visualization tool). This was a good suggestion, as it provides several alternative graphical representations. First, it can produce a callgrind format graphic:
 
-![PProf](/assets/images/blog/2019-09-16-profilers/profile-pprof.png)
+![PProf](/assets/blog/2019-09-16-profilers/profile-pprof.png)
 
 This is nice! We get to visualize the static functions call tree simultaneously with the weight each function contributes to the time. However, this format can be a bit limited on the total quantity of information it can fit, so it might not always help. The `pprof` tool automatically filters out smaller frames to aid the user in seeing the important ones, and provides several options for adding and removing functions from the view.
 

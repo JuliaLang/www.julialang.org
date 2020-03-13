@@ -12,13 +12,13 @@
 
 ~~~
 <p float="left" align="middle">
-  <img style="width:40%;padding:0;" src="/assets/images/blog/2019-05-02-MLJ/learningcurves.png"/>
-  <img style="width:40%;padding-left:15px;" src="/assets/images/blog/2019-05-02-MLJ/heatmap.png"/>
+  <img style="width:40%;padding:0;" src="/assets/blog/2019-05-02-MLJ/learningcurves.png"/>
+  <img style="width:40%;padding-left:15px;" src="/assets/blog/2019-05-02-MLJ/heatmap.png"/>
 </p>
 
 <p float="left" align="middle">
-  <img style="width:40%;padding:0;" src="/assets/images/blog/2019-05-02-MLJ/wrapped_ridge.png"/>
-  <img style="width:40%;padding-left:15px;" src="/assets/images/blog/2019-05-02-MLJ/MLPackages.png"/>
+  <img style="width:40%;padding:0;" src="/assets/blog/2019-05-02-MLJ/wrapped_ridge.png"/>
+  <img style="width:40%;padding-left:15px;" src="/assets/blog/2019-05-02-MLJ/MLPackages.png"/>
 </p>
 ~~~
 
@@ -62,7 +62,7 @@ composition.
 
 &#9758; How to [contribute](https://github.com/alan-turing-institute/MLJ.jl/blob/master/CONTRIBUTE.md)
 
-&#9758; Julia [Slack](http://julialang.slack.com) channel: \#mlj.
+&#9758; Julia [Slack](https://julialang.slack.com) channel: \#mlj.
 
 &#9758; Star'ing us to show support for [MLJ](https://github.com/alan-turing-institute/MLJ.jl) would be greatly appreciated!
 
@@ -121,7 +121,7 @@ in prediction and training modes is different. This can be seen from
 the following schematic of a simple two-model stack, viewed as a
 network:
 
-![](/assets/images/blog/2019-05-02-MLJ/two_model_stack.png)
+![](/assets/blog/2019-05-02-MLJ/two_model_stack.png)
 
 ## Building a simple network
 
@@ -237,7 +237,7 @@ you would normally apply to data (arithmetic, row selection, column
 concatenation, etc) can be overloaded to work with nodes. In this way,
 MLJ's network-building syntax is economical, intuitive and easy to
 read. In this respect we have been inspired by [On Machine Learning
-and Programming Languages](https://julialang.org/blog/2017/12/ml&pl).
+and Programming Languages](/blog/2017/12/ml&pl).
 
 ## Invitation to the community
 We now invite the community to try out our newly registered [MLJ](https://github.com/alan-turing-institute/MLJ.jl) package and provide any feedback or suggestions you may have going forward. We are also particularly interested in hearing how you would use our package, and what features it may be lacking.

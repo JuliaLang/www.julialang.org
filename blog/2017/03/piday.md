@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2017, 3, 14)
-@def rss = """ Some fun with &pi; in Julia | !pi (/assets/images/blog/2017-03-14-piday/pi.png) ^credit ... """
+@def rss = """ Some fun with &pi; in Julia | !pi (/assets/blog/2017-03-14-piday/pi.png) ^credit ... """
 @def published = "14 March 2017"
 @def title = "Some fun with &#928; in Julia"
 @def authors = "Simon Byrne, Luis Benet and David Sanders"  
@@ -74,7 +74,7 @@ BigFloat(1) + Float64(pi)
 
 ```
 
-In fact `BigFloat` (which uses the [MPFR](http://www.mpfr.org) library) will compute &pi; on demand to the current precision, which is set via `setprecision`. This provides an easy way to get its digits:
+In fact `BigFloat` (which uses the [MPFR](https://www.mpfr.org) library) will compute &pi; on demand to the current precision, which is set via `setprecision`. This provides an easy way to get its digits:
 
 ```julia
 # to 1024 bits
@@ -100,7 +100,7 @@ true
 
 by [Simon Byrne](https://github.com/simonbyrne)
 
-Julia provides a very low-level `llvmcall` interface, which allows the user to directly write [LLVM intermediate representation](http://llvm.org/docs/LangRef.html), including the use of inline assembly. The following snippet calls the `fldpi` instruction ("**f**loating point **l**oa**d** **pi**") which loads the constant &pi; onto the floating point register stack (this works only on x86 and x86_64 architectures)
+Julia provides a very low-level `llvmcall` interface, which allows the user to directly write [LLVM intermediate representation](https://llvm.org/docs/LangRef.html), including the use of inline assembly. The following snippet calls the `fldpi` instruction ("**f**loating point **l**oa**d** **pi**") which loads the constant &pi; onto the floating point register stack (this works only on x86 and x86_64 architectures)
 
 ```julia
 function asm_pi()
@@ -239,19 +239,19 @@ abs(pi - pi_approx3)
 
 ## Finding guaranteed bounds on &pi;
 
-by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/),  Department of Physics, Faculty of Sciences, National University of Mexico (UNAM)
+by [David P. Sanders](https://sistemas.fciencias.unam.mx/~dsanders/),  Department of Physics, Faculty of Sciences, National University of Mexico (UNAM)
 
 ### Using standard floating-point arithmetic
 
 We will calculate *guaranteed* (i.e., *validated*, or mathematically rigorous) bounds on $\pi$ using just floating-point arithmetic. This requires "directed rounding", i.e. the ability to control in which direction floating-point operations are rounded.
 
-This is based on the book [*Validated Numerics*](http://press.princeton.edu/titles/9488.html) (Princeton, 2011) by [Warwick Tucker](http://www2.math.uu.se/~warwick/CAPA/warwick/warwick.html).
+This is based on the book [*Validated Numerics*](https://press.princeton.edu/titles/9488.html) (Princeton, 2011) by [Warwick Tucker](https://www2.math.uu.se/~warwick/CAPA/warwick/warwick.html).
 
 Consider the infinite series
 
 $$ S := \sum_{n=1}^\infty \frac{1}{n^2},$$
 
-whose exact value is [known](http://en.wikipedia.org/wiki/Basel_problem) to be $S = \frac{\pi^2}{6}$.
+whose exact value is [known](https://en.wikipedia.org/wiki/Basel_problem) to be $S = \frac{\pi^2}{6}$.
 Thus, if finding guaranteed bounds on $S$ will give guaranteed bounds on $\pi$.
 
 The idea is to split $S$ up into two parts, $S = S_N + T_N$, where
@@ -466,7 +466,7 @@ plot(f, 0, 2, aspect_ratio=:equal, fill=(0, :orange), alpha=0.2, label="")
 
 ~~~
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 600 400">
+<svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 600 400">
 <defs>
   <clipPath id="clip00">
     <rect x="0" y="0" width="600" height="400"/>
@@ -636,7 +636,7 @@ p
 
 ~~~
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 600 400">
+<svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 600 400">
 <defs>
   <clipPath id="clip00">
     <rect x="0" y="0" width="600" height="400"/>

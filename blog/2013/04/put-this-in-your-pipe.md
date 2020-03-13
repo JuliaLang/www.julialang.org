@@ -2,7 +2,7 @@
 @def rss = """ Put This In Your Pipe | In a [previous post](/blog/2012/03/shelling-out-sucks/), I talked about why "shelling out" to spawn a pipeline of external programs via an intermediate shell is a common cause of bugs, security holes, unnecessary overhead, and silent failures.... """
 @def published = "8 April 2013"
 @def title = "Put This In Your Pipe"
-@def authors = """<a href="http://karpinski.org/">Stefan Karpinski</a>"""  
+@def authors = """<a href="https://karpinski.org/">Stefan Karpinski</a>"""  
 @def hascode = true
 
 In a [previous post](/blog/2012/03/shelling-out-sucks/), I talked about why "shelling out" to spawn a pipeline of external programs via an intermediate shell is a common cause of bugs, security holes, unnecessary overhead, and silent failures.

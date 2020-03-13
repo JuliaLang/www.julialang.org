@@ -20,7 +20,7 @@ JuliaDB is a distributed analytical database. It uses Julia’s multi-processing
 - `join` kernel on GPU (stretch goal)
 @@
 
-**Mentors**: [Shashi Gowda](https://shashi.github.io), [Mike Innes](http://mikeinnes.github.io/)
+**Mentors**: [Shashi Gowda](https://shashi.github.io), [Mike Innes](https://mikeinnes.github.io/)
 
 ## A columnar query processing and optimization backend for Query.jl
 

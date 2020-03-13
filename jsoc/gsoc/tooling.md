@@ -4,7 +4,7 @@
 
 ## IDE Tooling
 
-[Juno](http://junolab.org) is open to general project ideas (from here or not); feel free to get in contact via the [forum](http://discourse.julialang.org/) to discuss!
+[Juno](https://junolab.org) is open to general project ideas (from here or not); feel free to get in contact via the [forum](https://discourse.julialang.org/) to discuss!
 
 ## Progress Meter Improvements
 
@@ -29,7 +29,7 @@ These issues prevent package authors from using `@progress` over loops without m
 
 Juno could provide a simple way to browse available packages and view what's installed on their system. To start with, this project could simply provide a GUI that reads in package data from `~/.julia`, including available packages and installed versions, and buttons which call the relevant `Pkg.*` methods.
 
-This could also be extended by having metadata about the package, such as a readme, github stars, activity and so on. To support this we probably need a [pkg.julialang.org](http://pkg.julialang.org) style API which provides the info in JSON format.
+This could also be extended by having metadata about the package, such as a readme, github stars, activity and so on. To support this we probably need a [pkg.julialang.org](https://pkg.julialang.org) style API which provides the info in JSON format.
 
 **Expected Results**: A UI in Juno for package operations.
 
@@ -86,7 +86,7 @@ We have a long list of open issues, and some of them amount to significant proje
 - Reliability/Testing - (tools to) enable browser based automated tests for WebIO, InteractNext, and other projects built on WebIO
 @@
 
-We're open to your project ideas. Join us on the [#gizmos slack channel](https://julialang.slack.com/messages/gizmos/) to discuss or ping `@shashi` or `@JobJob` in a [discourse post](http://discourse.julialang.org/).
+We're open to your project ideas. Join us on the [#gizmos slack channel](https://julialang.slack.com/messages/gizmos/) to discuss or ping `@shashi` or `@JobJob` in a [discourse post](https://discourse.julialang.org/).
 
 **Required Skills**: Experience with JavaScript front-end development, some familiarity with Julia
 

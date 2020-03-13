@@ -9,7 +9,7 @@
 
 This post originally appeared on the [Invenia blog](https://invenia.github.io/blog/2018/07/06/iteratorsinjulia07/).
 
-With the upcoming 0.7 release, Julia has simplified its iteration interface. The [0.7-beta](http://julialang.org/downloads) release is available for download.
+With the upcoming 0.7 release, Julia has simplified its iteration interface. The [0.7-beta](/downloads/) release is available for download.
 This was a [huge undertaking](https://github.com/JuliaLang/julia/pull/25261) which mostly fell to the prolific [Keno Fischer](https://github.com/Keno), who wrote an entirely new optimizer for the language to accomplish it!
 As the most active maintainer of the [IterTools](https://github.com/JuliaCollections/IterTools.jl) package, I decided to spend a week rewriting its iterators for the new interface.
 I'd like to share that experience with you to introduce the new interface and assist in transitioning to Julia 0.7.

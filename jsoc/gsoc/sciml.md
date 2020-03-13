@@ -106,13 +106,13 @@ Novel techniques like classifying model outcomes via support vector machines
 and deep neural networks is can also be considered. Research and benchmarking
 to attempt to find the most robust methods will take place in this project.
 Additionally, the implementation of methods for estimating structure, such
-as [topological sensitivity analysis](http://www.pnas.org/content/111/52/18507)
+as [topological sensitivity analysis](https://www.pnas.org/content/111/52/18507)
 along with performance enhancements to existing methods will be considered.
 
 Some work in this area can be found in
 [DiffEqParamEstim.jl](https://github.com/JuliaDiffEq/DiffEqParamEstim.jl)
 and [DiffEqBayes.jl](https://github.com/JuliaDiffEq/DiffEqBayes.jl). Examples
-can be found [in the DifferentialEquations.jl documentation](http://docs.juliadiffeq.org/latest/analysis/parameter_estimation.html).
+can be found [in the DifferentialEquations.jl documentation](https://docs.juliadiffeq.org/latest/analysis/parameter_estimation.html).
 
 **Recommended Skills**: Background knowledge of standard machine learning,
 statistical, or optimization techniques. It's recommended but not required that
@@ -139,7 +139,7 @@ with partial differential equations.
 [FEniCS](https://fenicsproject.org/) project for finite element solutions of partial differential
 equations. We would like to augment the Julia wrappers to allow for integration with Julia's
 automatic differentiation libraries like [Zygote.jl](https://github.com/FluxML/Zygote.jl) by
-using [dolfin-adjoint](http://www.dolfin-adjoint.org/en/release/). This would require setting up
+using [dolfin-adjoint](https://www.dolfin-adjoint.org/en/release/). This would require setting up
 this library for automatic installation for Julia users and writing adjoint passes which utilize
 this adjoint builder library. It would result in the first total integration between PDEs and
 neural networks.

@@ -1,19 +1,17 @@
 @def rss_pubdate = Date(2018, 8, 8)
-@def rss = """ Julia 1.0 Anunciando el release de Julia 1.0 (Spanish) | Translations:  <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-es">Spanish</a>... """
+@def rss = """La anticipada liberación de la versión 1.0 de..."""
 @def published = "8 August 2018"
 @def title = "Julia 1.0 Anunciando el release de Julia 1.0 (Spanish)"
 @def authors = "the Julia developers"  
 
 ~~~
-Translations:  <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-es">Spanish</a>
+Translations:  <a href="/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="/blog/2018/08/one-point-zero-es">Spanish</a>
 ~~~
 
-La anticipada liberación de la versión 1.0 de [Julia](https://julialang.org) es la culminación
-de casi una década de trabajo de construir un lenguaje para programadores ambiciosos. JuliaCon2018
-celebró la ocasión con un evento donde la comunidad oficialmente [lanzó conjuntamente la versión
+La anticipada liberación de la versión 1.0 de [Julia](https://julialang.org) es la culminación de casi una década de trabajo de construir un lenguaje para programadores ambiciosos. JuliaCon2018 celebró la ocasión con un evento donde la comunidad oficialmente [lanzó conjuntamente la versión
 1.0.0.](https://www.youtube.com/watch?v=1jN5wKvN-Uk#t=3850)
 
-El primer comunicado [público](https://julialang.org/blog/2012/02/why-we-created-julia) de Julia fue hecho con
+El primer comunicado [público](/blog/2012/02/why-we-created-julia) de Julia fue hecho con
 número de exigencias sobre el lenguaje:
 
 > Queremos un lenguaje que sea de código abierto, con licencia liberal. Queremos la velocidad de C
@@ -62,7 +60,7 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
   privadas con las mismas herramientas que el ecosistema de paquetería abierta. La [presentación de
   JuliaCon](https://www.youtube.com/watch?v=GBi__3nF-rM) resume el nuevo diseño y capacidades.
 
-* Julia tiene una nueva [representación canónica para valores faltantes](https://julialang.org/blog/2018/06/missing).
+* Julia tiene una nueva [representación canónica para valores faltantes](/blog/2018/06/missing).
   Poder representar y trabajar con datos faltantes es fundamental para estadísticas y ciencias de datos. En estilo Juliano,
   la nueva solución es general, componible y rápida. Cualquier colección general puede eficientemente
   soportar valores faltantes simplemente al permitir que elementos incluyan el valor predefinido `missing`.
@@ -76,7 +74,7 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
   inevitables complicaciones.
 
 * "Broadcasting" ya es una ventaja clave con sintaxis conveniente -- y ahora es más poderosa que nunca. En
-  Julia 1.0 es fácil [extender broadcasting a tipos del usuario](https://julialang.org/blog/2018/05/extensible-broadcast-fusion) e implementarlo
+  Julia 1.0 es fácil [extender broadcasting a tipos del usuario](/blog/2018/05/extensible-broadcast-fusion) e implementarlo
   en cálculos optimizados para GPUs y hardware vectorizado, pavimentando el camino para aún más mejoras en el futuro.
 
 * Las tuplas con nombre son rasgo nuevo que permite representar y accesar datos por nombre y de manera eficiente. Puedes, por ejemplo,
@@ -131,8 +129,7 @@ Algunas de estas novedades desde la versión 0.6 incluyen:
     * Se ha incrementado enormemente el soporte para arquitecturas heterogéneas y se ha desacoplado aún más del funcionamiento interno del compilador. Los Intel KNLs funcionan en Julia. Los GPUs de Nvidia son programados usando [CUDANative.jl](https://github.com/JuliaGPU/CUDAnative.jl) y un port para los TPUs de Google está siendo desarrollado.
 
 Éstas son solo algunas de las mejoras. Para una lista completa de los cambios, lee el archivo [0.7 NEWS](https://docs.julialang.org/en/release-0.7/NEWS/). En el post
-original [“Why We Created Julia” blog
-post](https://julialang.org/blog/2012/02/why-we-created-julia) en 2012, escribimos
+original [“Why We Created Julia” blog post](/blog/2012/02/why-we-created-julia) en 2012, escribimos
 
 > No está completo, pero es tiempo de liberar la versión 1.0 del lenguaje que creamos llamado
 > [Julia](https://julialang.org).

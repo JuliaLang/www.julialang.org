@@ -338,8 +338,8 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
   <tbody>
   <tr>
       <th> Windows Self-Extracting Archive (.exe) </th>
-      <td> <a href="http://julialang-s3.julialang.org/bin/winnt/x86/0.2/julia-0.2.1-win32.exe">32-bit</a> </td>
-      <td> <a href="http://julialang-s3.julialang.org/bin/winnt/x64/0.2/julia-0.2.1-win64.exe">64-bit</a> </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.2/julia-0.2.1-win32.exe">32-bit</a> </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/0.2/julia-0.2.1-win64.exe">64-bit</a> </td>
   </tr>
   <tr>
       <th> macOS Package (.dmg) </th>
@@ -365,7 +365,7 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
   <tbody>
   <tr>
       <th> Windows Archive (.zip) </th>
-      <td> <a href="http://julialang-s3.julialang.org/bin/winnt/x86/0.1/julia0.1.2-WINNT-i686+Git.zip">32-bit</a> </td>
+      <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.1/julia0.1.2-WINNT-i686+Git.zip">32-bit</a> </td>
       <td> 64-bit (Unavailable) </td>
   </tr>
   <tr>

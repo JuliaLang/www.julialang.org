@@ -9,7 +9,7 @@ We introduce [**Yao**](https://yaoquantum.org/) ([check our latest paper](https:
 
 ~~~
 <div align="center"> <img
-src="https://yaoquantum.org/assets/images/logo.png"
+src="/assets/images/logo_yao.png"
 alt="Yao Logo" width="210">
 <p>The Logo of Yao</p>
 </div>

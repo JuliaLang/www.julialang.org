@@ -46,13 +46,13 @@ So we are excited to see what our impressive set of students achieve this summer
 |26|Manjunath Bhat|Enriching Model Zoo with Deep Learning Models|[✔️](https://medium.com/@manjunathbhat9920)|
 |27|Abhinav Mehndiratta|GraphBLAS Implementation|[✔️](https://abhinavmehndiratta.github.io/)|
 |28|Kanav Gupta|Performance Enhancements and General Fixes|[✔️](https://nextjournal.com/kanav)|
-|29|Tor Fjelde|Variational Inference for Turing.jl|[✔️](http://retiredparkingguard.com/posts/index.html)|
+|29|Tor Fjelde|Variational Inference for Turing.jl|[✔️](https://retiredparkingguard.com/posts/index.html)|
 |30|Brandon Taylor|Query.jl to SQL translation||
 |31|Raghvendra Gupta|Sparsifying Neural Networks using Sensitivity driven Regularization|[✔️](https://medium.com/@raghav090897)|
 |32|Avik Pal|Differentiable Ray Tracer in Julia|[✔️](https://nextjournal.com/avikpal)|
 |33|Ayush Kaushal|Practical Models for Named Entity Recognition and Part-of-Speech Tagging|[✔️](https://ayushk4.github.io/)|
 |34|Shreyas Kowshik|Addition Of Baseline Models To Model Zoo|[✔️](https://shreyas-kowshik.github.io/)|
 |35|Deepesh Thakur|Native Julia ODE, SDE, DAE, DDE, and (S)PDE Solvers|[✔️](https://deeepeshthakur.github.io/gsocblog/)|
-|36|Tejan Karmali|Differentiable Duckietown|[✔️](http://tejank10.github.io)|
-|37|Morten Piibeleht|Rejuvenating Documenter|[✔️](http://mortenpi.eu/gsoc2019/latest/)|
+|36|Tejan Karmali|Differentiable Duckietown|[✔️](https://tejank10.github.io)|
+|37|Morten Piibeleht|Rejuvenating Documenter|[✔️](https://mortenpi.eu/gsoc2019/latest/)|
 |38|Johnny Chen|Towards Better Images.jl Ecosystem|[✔️](https://nextjournal.com/johnnychen94)|

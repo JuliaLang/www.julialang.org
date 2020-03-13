@@ -28,7 +28,7 @@ But before this project, Mamba was limited to models with fixed numbers of param
 
 ## Hurdles
 
-I faced several unexpected hurdles in carrying out this project. Firstly, there's [this](http://i.imgur.com/VWb3OYB.jpg) (warning, blood). That's me making a silly face in the emergency room after my broken arm; it was 3 days before I got out of the hospital and another week before I was off the pain meds and could type again. All-told, that accident (the classic fool-opening-a-car-door-while-I-was-passing-on-my-bike, with a side of rainstorm) probably cost me 2 weeks of work.
+I faced several unexpected hurdles in carrying out this project. Firstly, there's [this](https://i.imgur.com/VWb3OYB.jpg) (warning, blood). That's me making a silly face in the emergency room after my broken arm; it was 3 days before I got out of the hospital and another week before I was off the pain meds and could type again. All-told, that accident (the classic fool-opening-a-car-door-while-I-was-passing-on-my-bike, with a side of rainstorm) probably cost me 2 weeks of work.
 
 Also, refactoring Mamba proved to be tougher than I'd expected. My plan was to add parameters to many of the basic Mamba types, to be able to switch between storing parameters in the existing fixed-sized array structures or in my newly-designed flexible-size structures. While I was at it, I also added type parameters to loosen up the hard-coded dependence on Float64 model parameters, so as to be able to use autodifferentiation numbers for HMC. This was pretty advanced for my starting level of expertise on both Julia in general and the Mamba package in particular; it took me a lot of error messages to really get my head around some stuff. (Of course, now that I do understand it, it seems trivial; but it was a struggle, because of course the issues did not show up as cleanly as I present them below.)
 
@@ -63,7 +63,7 @@ $\theta=\phi=.1$
 
 Here are some results for 45 simulated data points in two clusters with SD 3 and mean ±5:
 
-![mean traceplot](/assets/images/blog/2017-08-28-GSOC-MCMC-with-flexible-numbers-of-parameters/mu_results.svg)
+![mean traceplot](/assets/blog/2017-08-28-GSOC-MCMC-with-flexible-numbers-of-parameters/mu_results.svg)
 
 As you can see, both chains spend most time with at least one cluster each around the "correct" values, but occasionally they go wrong.
 

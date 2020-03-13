@@ -13,8 +13,8 @@ A separate blog post detailing some of the [highlights of the new release](/blog
 We'll be releasing regular bugfix backports from the 0.5.x line, which is recommended for users requiring a stable language and API.
 Major feature work is ongoing on master for 0.6-dev.
 
-The Julia ecosystem continues to grow, and there are now [over one thousand](http://pkg.julialang.org/pulse.html) registered packages!
-The third annual [JuliaCon](http://juliacon.org/) took place in Cambridge, MA in the [summer of 2016](/blog/2016/09/juliacon2016/), with an exciting line up of talks and keynotes.
+The Julia ecosystem continues to grow, and there are now [over one thousand](https://pkg.julialang.org/pulse.html) registered packages!
+The third annual [JuliaCon](https://juliacon.org/) took place in Cambridge, MA in the [summer of 2016](/blog/2016/09/juliacon2016/), with an exciting line up of talks and keynotes.
 Most of them are [available to view](https://www.youtube.com/playlist?list=PLP8iPy9hna6SQPwZUDtAM59-wPzCPyD_S).
 
 Binaries are available from the [main download page](/downloads/) or visit [JuliaBox](https://juliabox.com/) to try this release from the comfort of your browser. Happy Coding!
@@ -25,7 +25,7 @@ Binaries are available from the [main download page](/downloads/) or visit [Juli
   This has been achieved via each function and closure now being its own type, and the captured variables of a closure are fields of its type.
   All functions, including anonymous functions, are now generic and support all features.
 
-- Experimental support for [multi threading](http://docs.julialang.org/en/latest/manual/parallel-computing/#multi-threading-experimental).
+- Experimental support for [multi threading](https://docs.julialang.org/en/latest/manual/parallel-computing/#multi-threading-experimental).
 
 - All dimensions indexed by [scalars are now dropped](https://github.com/JuliaLang/julia/issues/13612), whereas previously only trailing scalar dimensions would be omitted from the result.
   This is a major breaking changes, but has been made to make the indexing rules much more consistent.
@@ -46,4 +46,4 @@ Julia now runs on the ARM and Power architectures, making it possible to use it 
 
 ### Developing with Julia
 
-The Julia debugger, [Gallium](https://github.com/Keno/Gallium.jl), is now ready to use. It allows for a full, multi language debug experience, debugging Julia and C code with ease. The debugger is also integrated with [Juno](http://junolab.org), the Julia IDE that is now fully featured and ready to use.
+The Julia debugger, [Gallium](https://github.com/Keno/Gallium.jl), is now ready to use. It allows for a full, multi language debug experience, debugging Julia and C code with ease. The debugger is also integrated with [Juno](https://junolab.org), the Julia IDE that is now fully featured and ready to use.

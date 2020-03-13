@@ -4,7 +4,7 @@
 @def title = "Announcing the release of Julia 1.0"
 @def authors = "the Julia developers"  
 
-~~~Translations:  <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-es">Spanish</a>
+~~~Translations:  <a href="/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-es">Spanish</a>
 ~~~
 
 The much anticipated 1.0 release of [Julia](https://julialang.org) is the culmination of
@@ -13,7 +13,7 @@ celebrated the event with a reception where the community officially [set the ve
 1.0.0 together](https://www.youtube.com/watch?v=1jN5wKvN-Uk#t=3850).
 
 Julia was [first publicly
-announced](https://julialang.org/blog/2012/02/why-we-created-julia) with a number of strong
+announced](/blog/2012/02/why-we-created-julia) with a number of strong
 demands on the language:
 
 > We want a language that’s open source, with a liberal license. We want the speed of C with
@@ -45,7 +45,7 @@ open source Julia packages. All told, we have built a language that is:
   quantities, or data table columns of currencies and colors, just work — and with good
   performance.
 
-Try Julia by [downloading version 1.0 now](https://julialang.org/downloads/). If you’re
+Try Julia by [downloading version 1.0 now](/downloads/). If you’re
 upgrading code from Julia 0.6 or earlier, we encourage you to first use the transitional 0.7
 release, which includes deprecation warnings to help guide you through the upgrade process.
 Once your code is warning-free, you can change to 1.0 without any functional changes. The
@@ -71,7 +71,7 @@ innovative language features. Some of the new features since version 0.6 include
   design and behavior.
 
 * Julia has a new [canonical representation for missing
-  values](https://julialang.org/blog/2018/06/missing). Being able to represent and work with
+  values](/blog/2018/06/missing). Being able to represent and work with
   missing data is fundamental to statistics and data science. In typical Julian fashion, the
   new solution is general, composable and high-performance. Any generic collection type can
   efficiently support missing values simply by allowing elements to include the pre-defined
@@ -88,7 +88,7 @@ innovative language features. Some of the new features since version 0.6 include
 
 * Broadcasting is already a core language feature with convenient syntax—and it’s now more
   powerful than ever. In Julia 1.0 it’s simple to [extend broadcasting to custom
-  types](https://julialang.org/blog/2018/05/extensible-broadcast-fusion) and implement
+  types](/blog/2018/05/extensible-broadcast-fusion) and implement
   efficient optimized computations on GPUs and other vectorized hardware, paving the way for
   even greater performance gains in the future.
 
@@ -154,7 +154,7 @@ innovative language features. Some of the new features since version 0.6 include
 There are countless other improvements, both large and small. For a complete list of
 changes, see the [0.7 NEWS file](https://github.com/JuliaLang/julia/blob/release-0.7/NEWS.md). In our
 original [“Why We Created Julia” blog
-post](https://julialang.org/blog/2012/02/why-we-created-julia) in 2012, we wrote
+post](/blog/2012/02/why-we-created-julia) in 2012, we wrote
 
 > It’s not complete, but it’s time for a 1.0 release—the language we’ve created is called
 > [Julia](https://julialang.org).

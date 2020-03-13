@@ -2,7 +2,7 @@
 @def rss = """ GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux | Over the summer I have been working at improving the Computer Vision capabilities of Flux. My specific line of work was to __add newer models to the Flux model-zoo__, __implement some new features__ and also __improve the speed of the previous layers__. Specifically, I achieved a __18-fold__ speed up... """
 @def published = "13 August 2018"
 @def title = "GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux"
-@def authors = """<a href="http://github.com/avik-pal/">Avik Pal</a>"""  
+@def authors = """<a href="https://github.com/avik-pal/">Avik Pal</a>"""  
 @def hascode = true
 
 Over the summer I have been working at improving the Computer Vision capabilities of Flux. My specific line of work was to __add newer models to the Flux model-zoo__, __implement some new features__ and also __improve the speed of the previous layers__. Specifically, I achieved a __18-fold__ speed up for the __Convolutions__ and around __3-fold__ for __BatchNorm__.
@@ -63,7 +63,7 @@ When benchmarking the Flux Convolution Code, we figured out some of the major bo
 
 ~~~
 <p align = "center">
-    <img src = "/assets/images/blog/2018-08-13-GSoC-Flux-Computer-Vision/flux_internal_benchmarks.png" width="750">
+    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/flux_internal_benchmarks.png" width="750">
 </p>
 ~~~
 
@@ -95,7 +95,7 @@ This package provides a simple API to generate [dreams](https://en.wikipedia.org
 
 ~~~
 <p align = "center">
-    <img src = "/assets/images/blog/2018-08-13-GSoC-Flux-Computer-Vision/deepdream.jpg" width="750" height="750">
+    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/deepdream.jpg" width="750" height="750">
 </p>
 ~~~
 
@@ -119,7 +119,7 @@ Below is a small example of style transfer on MonaLisa
 
 ~~~
 <p align = "center">
-    <img src = "/assets/images/blog/2018-08-13-GSoC-Flux-Computer-Vision/styletransfer.jpg" width="750">
+    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/styletransfer.jpg" width="750">
 </p>
 ~~~
 
@@ -131,11 +131,11 @@ Next up was to perform benchmarks for the current implementations in Flux and so
 
 # Experience at JuliaCON
 
-I was able to attend JuliaCon 2018 in London. Thanks to __The Julia Project__ and __NumFOCUS__ for funding this trip. I got the opportunity to present a [poster](http://home.iitk.ac.in/~avikpal/JuliaCon%20Poster.pdf) on the work I had done during my GSoC. It was the first conference I was attending, so it was indeed quite a unique experience. I was able to share my work with other people and even got some valuable advice regarding it. Also, I discovered some new cool open-sourced projects that I would like to contribute to in the future. Finally, it's always a pleasure to meet the people I have been interacting with in Slack.
+I was able to attend JuliaCon 2018 in London. Thanks to __The Julia Project__ and __NumFOCUS__ for funding this trip. I got the opportunity to present a [poster](https://home.iitk.ac.in/~avikpal/JuliaCon%20Poster.pdf) on the work I had done during my GSoC. It was the first conference I was attending, so it was indeed quite a unique experience. I was able to share my work with other people and even got some valuable advice regarding it. Also, I discovered some new cool open-sourced projects that I would like to contribute to in the future. Finally, it's always a pleasure to meet the people I have been interacting with in Slack.
 
 # Why use Julia and Flux for Deep Learning?
 
-There is a [brilliant post](https://julialang.org/blog/2017/12/ml&pl) on how Julia can play its part as a Language for Machine Learning. That post summarizes the reasons from the viewpoint of people highly experienced in the field of Machine Learning. Here I shall be presenting the reasons from a layman's point of view.
+There is a [brilliant post](/blog/2017/12/ml&pl) on how Julia can play its part as a Language for Machine Learning. That post summarizes the reasons from the viewpoint of people highly experienced in the field of Machine Learning. Here I shall be presenting the reasons from a layman's point of view.
 
 Just think about implementing a standard Computer Vision model in one of the popular frameworks, like Pytorch or Tensorflow. It's pretty simple, right? Just call the necessary layers using their API, and you're done. Now imagine having to define something that is not present in their standard library. You need to first write your custom layer (both forward and backward passes, in case you are wondering) in C++ and if that was not hard enough you go about to define the GPU Kernel for that code in CUDA C. Now you integrate this layer (obviously in Python) with Pytorch or Tensorflow as per their particular API. And good luck debugging the SegFaults that you get.
 
@@ -154,6 +154,6 @@ Firstly, I should thank __Google__ for organizing Google Summer of Code which ga
 
 ~~~
 <p align = "center">
-    <img src = "/assets/images/blog/2018-08-13-GSoC-Flux-Computer-Vision/gsoc_logo.png" width="700">
+    <img src = "/assets/blog/2018-08-13-GSoC-Flux-Computer-Vision/gsoc_logo.png" width="700">
 </p>
 ~~~

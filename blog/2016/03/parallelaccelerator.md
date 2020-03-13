@@ -223,7 +223,7 @@ following figure reports the time it takes `blackscholes` to run on
 arrays of 100 million elements, this time on a 36-core machine with
 128 GB of RAM [[2](#footnote2)]:
 
-![Benchmark results for plain Julia and ParallelAccelerator implementations of the Black-Scholes formula](/assets/images/blog//parallelaccelerator_figures/black-scholes-2016-01-31-blogpost.png?raw=true)
+![Benchmark results for plain Julia and ParallelAccelerator implementations of the Black-Scholes formula](/assets/blog/parallelaccelerator_figures/black-scholes-2016-01-31-blogpost.png?raw=true)
 
 The first three bars of the above figure show performance results for
 ParallelAccelerator using different numbers of threads.  Since
@@ -267,7 +267,7 @@ and `./` operations in Julia are pointwise array operations that take
 input arrays as arguments and produce an output array.
 ParallelAccelerator translates these pointwise array operations into
 data-parallel *map* operations.  (See
-[the ParallelAccelerator documentation](http://parallelacceleratorjl.readthedocs.org/en/latest/advanced.html#map-and-reduce)
+[the ParallelAccelerator documentation](https://parallelacceleratorjl.readthedocs.org/en/latest/advanced.html#map-and-reduce)
 for a complete list of all the pointwise array operations that it
 knows how to parallelize.)  Furthermore, ParallelAccelerator
 translates array assignments into *in-place* map operations.  For
@@ -289,12 +289,12 @@ data-parallel reduce operations when they are called on arrays.
 ### Array comprehension
 
 Julia supports
-[array comprehensions](http://docs.julialang.org/en/release-0.4/manual/arrays/#comprehensions),
+[array comprehensions](https://docs.julialang.org/en/release-0.4/manual/arrays/#comprehensions),
 a convenient and concise way to construct arrays.  For example, the
 expressions that initialize the five input arrays in the Black-Scholes
 example above are all array comprehensions.  As a more sophisticated
 example, the following `avg` function, taken from
-[the Julia manual](http://docs.julialang.org/en/release-0.4/manual/arrays/#comprehensions),
+[the Julia manual](https://docs.julialang.org/en/release-0.4/manual/arrays/#comprehensions),
 takes a one-dimensional input array `x` of length *n* and uses an
 array comprehension to construct an output array of length *n*-2, in
 which each element is a weighted average of the corresponding element
@@ -347,7 +347,7 @@ on a 2D array of `Float32`s: the pixels of the source image.  It's
 easy to obtain such an array using, for instance, the `load` function
 from the [Images.jl](https://github.com/timholy/Images.jl) library,
 followed by a call to
-[`convert`](http://docs.julialang.org/en/release-0.4/manual/conversion-and-promotion/#conversion)
+[`convert`](https://docs.julialang.org/en/release-0.4/manual/conversion-and-promotion/#conversion)
 to get an array of type `Array{Float32,2}`.  (For simplicity, we're
 assuming that the input image is a grayscale image, so each pixel has
 just one value instead of red, green, and blue values.  However, it
@@ -422,7 +422,7 @@ runStencil(kernel :: Function, buffer1, buffer2, ..., iteration :: Int, boundary
 ```
 
 In `blur`, the call to `runStencil` uses Julia's
-[`do`-block syntax for function arguments](http://docs.julialang.org/en/release-0.4/manual/functions/#do-block-syntax-for-function-arguments),
+[`do`-block syntax for function arguments](https://docs.julialang.org/en/release-0.4/manual/functions/#do-block-syntax-for-function-arguments),
 so the `do b, a ... end` block is actually the first argument to the
 `runStencil` call.  The `do` block creates an anonymous function that
 binds the variables `b` and `a`.  The arguments `buffer1, buffer2,
@@ -479,7 +479,7 @@ ParallelAccelerator implementations of `blur`, each running for 100
 iterations on the aforementioned 7095x5322 source image, run using the
 same machine as for the previous Black-Scholes benchmark.
 
-![Benchmark results for plain Julia and ParallelAccelerator implementations of Gaussian blur](/assets/images/blog//parallelaccelerator_figures/gaussian-blur-2016-03-02-blogpost.png?raw=true)
+![Benchmark results for plain Julia and ParallelAccelerator implementations of Gaussian blur](/assets/blog/parallelaccelerator_figures/gaussian-blur-2016-03-02-blogpost.png?raw=true)
 
 The rightmost column shows the results for plain Julia, using the
 first implementation of `blur` shown above.  The three columns to the
@@ -507,10 +507,10 @@ that can be compiled by an external C++ compiler.  The following
 figure shows an overview of the ParallelAccelerator compilation
 process:
 
-![The ParallelAccelerator compiler pipeline](/assets/images/blog//parallelaccelerator_figures/compiler-pipeline.png?raw=true)
+![The ParallelAccelerator compiler pipeline](/assets/blog/parallelaccelerator_figures/compiler-pipeline.png?raw=true)
 
 As many readers of this blog will know, Julia has good support for
-[inspecting and manipulating its own ASTs](http://docs.julialang.org/en/release-0.4/devdocs/reflection/).
+[inspecting and manipulating its own ASTs](https://docs.julialang.org/en/release-0.4/devdocs/reflection/).
 Its built-in `code_typed` function will return the AST of any function
 after Julia's type inference has taken place.  This is very convenient
 for ParallelAccelerator, which is able to use the output from
@@ -626,7 +626,7 @@ the original `@acc`-annotated function.  It is therefore a good idea
 to begin by annotating small (but expensive) computational kernels
 with `@acc`, rather than wrapping an entire program in an `@acc`
 block.  The ParallelAccelerator
-[documentation](http://parallelacceleratorjl.readthedocs.org/en/latest/limits.html)
+[documentation](https://parallelacceleratorjl.readthedocs.org/en/latest/limits.html)
 has many more details on which Julia features we don't support and why.
 
 These limitations explain why the kind of performance improvements

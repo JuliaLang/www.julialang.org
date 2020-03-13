@@ -122,4 +122,4 @@ The following branches have not been merged into LightGraphs as the parallel imp
 
 # Acknowledgements
 
-I would like to thank my mentor, [Divyansh Srivastava](https://github.com/somil55) and LightGraphs co-owner, [Seth Bromberger](https://github.com/sbromberger) for reviewing my code and providing valuable advice during the summer. I would also like to thank [The Julia Project](https://julialang.org/project) and [NUMFocus](https://numfocus.org) for sponsoring my attendance to [JuliaCon 2018](https://juliacon.org/2018/).
+I would like to thank my mentor, [Divyansh Srivastava](https://github.com/somil55) and LightGraphs co-owner, [Seth Bromberger](https://github.com/sbromberger) for reviewing my code and providing valuable advice during the summer. I would also like to thank [The Julia Project](/project/) and [NUMFocus](https://numfocus.org) for sponsoring my attendance to [JuliaCon 2018](https://juliacon.org/2018/).

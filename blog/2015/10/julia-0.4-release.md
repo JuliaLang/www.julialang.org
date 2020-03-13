@@ -14,8 +14,8 @@ the release-0.4 branch of the codebase, and we recommend the 0.4.x line for user
 requiring a more stable Julia environment.
 
 The Julia ecosystem continues to grow, and there are now
-[over 700](http://pkg.julialang.org/pulse.html) registered packages! (highlights below).
-JuliaCon 2015 was held in June, and >60 talks are [available to view](https://www.youtube.com/playlist?list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM). [JuliaCon India](http://www.juliacon.in/2015) will be held in Bangalore on 9 and 10 October.
+[over 700](https://pkg.julialang.org/pulse.html) registered packages! (highlights below).
+JuliaCon 2015 was held in June, and >60 talks are [available to view](https://www.youtube.com/playlist?list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM). [JuliaCon India](https://www.juliacon.in/2015) will be held in Bangalore on 9 and 10 October.
 
 We welcome bug reports on our GitHub tracker, and general usage questions on the
 users mailing list, StackOverflow, and several [community forums](/community/).
@@ -29,14 +29,14 @@ to try 0.4 from the comfort of your browser. Happy Coding!
 **Notable compiler and language news:**
 
 - [Incremental code caching for packages](https://github.com/JuliaLang/julia/issues/8745),
-  resulting in a major reduction in loading time for [Gadfly](http://gadflyjl.org/) and other large,
+  resulting in a major reduction in loading time for [Gadfly](https://gadflyjl.org/) and other large,
   inter-dependent packages.
 - [Generational garbage collector](https://github.com/JuliaLang/julia/issues/5227) which greatly
   reduces GC overhead for many common workloads.
 - [Function call overloading for arbitrary objects](https://github.com/JuliaLang/julia/pull/8712)
 - [Generated functions](https://github.com/JuliaLang/julia/issues/7311) (sometimes known as "staged functions") introduce finer control
   over compile-time specialization.
-  [Docs](http://docs.julialang.org/en/release-0.4/manual/metaprogramming/#generated-functions)
+  [Docs](https://docs.julialang.org/en/release-0.4/manual/metaprogramming/#generated-functions)
   and related [JuliaCon talk](https://www.youtube.com/watch?v=KAN8zbM659o&list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM&index=55).
 - [Support for documenting user functions and other objects](https://github.com/JuliaLang/julia/pull/8791)
   and retrieving the documentation via the help system.
@@ -67,22 +67,22 @@ Nightly builds will use the versioning scheme 0.5.0-dev.
 **Community News**
 
 The Julia ecosystem continues to grow, and there are now
-[over 700](http://pkg.julialang.org/pulse.html) registered packages! (highlights below)
+[over 700](https://pkg.julialang.org/pulse.html) registered packages! (highlights below)
 
-The second [JuliaCon](http://www.juliacon.org) was held in Cambridge (USA) in June, 2015.
+The second [JuliaCon](https://www.juliacon.org) was held in Cambridge (USA) in June, 2015.
 Over 60 talks were recorded and
 [are available for viewing](https://www.youtube.com/playlist?list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM).
 
-[JuliaCon India](http://www.juliacon.in/2015) will be held in Bangalore on 9 and 10 October.
+[JuliaCon India](https://www.juliacon.in/2015) will be held in Bangalore on 9 and 10 October.
 
-[JuliaBloggers](http://www.juliabloggers.com/) is going strong! A notable recent feature is
+[JuliaBloggers](https://www.juliabloggers.com/) is going strong! A notable recent feature is
 the #MonthOfJulia series exploring the core language and a number of packages.
 
 **Topical Highlights**
 
-[JuliaStats](http://juliastats.github.io/) - statistical and machine learning community.
+[JuliaStats](https://juliastats.github.io/) - statistical and machine learning community.
 
-[JuliaOpt](http://www.juliaopt.org/) - optimization community.
+[JuliaOpt](https://www.juliaopt.org/) - optimization community.
 
 [JuliaQuantum](https://juliaquantum.github.io/) - Julia libraries for quantum-science and technology.
 
@@ -92,8 +92,8 @@ the #MonthOfJulia series exploring the core language and a number of packages.
 
 [Images](https://github.com/timholy/Images.jl) - image processing and i/o library.
 
-[Gadfly](http://gadflyjl.org/) - Grammar of Graphics-inspired statistical plotting.
+[Gadfly](https://gadflyjl.org/) - Grammar of Graphics-inspired statistical plotting.
 
 [Winston](https://github.com/nolta/Winston.jl) - 2D plotting.
 
-[JunoLab](http://junolab.org/) - LightTable-based interactive environment.
+[JunoLab](https://junolab.org/) - LightTable-based interactive environment.

@@ -1,10 +1,10 @@
 @def rss_pubdate = Date(2012, 3, 24)
-@def rss = """ Lang.NEXT Announcement | Jeff and I will be giving a [presentation on Julia](http://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia) at the upcoming [Lang.NEXT conference](http://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012), a gathering of "programming language design experts and enthusiasts" featuring "talks, ... """
+@def rss = """ Lang.NEXT Announcement | Jeff and I will be giving a [presentation on Julia](https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia) at the upcoming [Lang.NEXT conference](https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012), a gathering of "programming language design experts and enthusiasts" featuring "talks, ... """
 @def published = "24 March 2012"
 @def title = "Lang.NEXT Announcement"
-@def authors = """<a href="http://karpinski.org/">Stefan Karpinski</a>"""  
+@def authors = """<a href="https://karpinski.org/">Stefan Karpinski</a>"""  
 
-Jeff and I will be giving a [presentation on Julia](http://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia) at the upcoming [Lang.NEXT conference](http://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012), a gathering of "programming language design experts and enthusiasts" featuring "talks, panels and discussion on leading programming language work from industry and research."
+Jeff and I will be giving a [presentation on Julia](https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia) at the upcoming [Lang.NEXT conference](https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012), a gathering of "programming language design experts and enthusiasts" featuring "talks, panels and discussion on leading programming language work from industry and research."
 We are honored and excited to have been invited to speak at an event alongside so many programming language luminaries.
 
 **Abstract:**
@@ -20,4 +20,4 @@ Most high-performance dynamic language implementations have taken an existing in
 
 Julia feels light and natural for data exploration and algorithm prototyping, but has performance that lets you deploy your prototypes.
 
-**Update:** You can see the slides for our talk [here](/assets/images/lang.next.pdf). Video of the presentation is available [here](http://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia).
+**Update:** You can see the slides for our talk [here](/assets/images/lang.next.pdf). Video of the presentation is available [here](https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2012/Julia).

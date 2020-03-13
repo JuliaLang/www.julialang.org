@@ -46,17 +46,17 @@ sol = solve(prob, Ruth3(), dt=1//50);
 
 Finally, we analyze the solution by computing the first integrals and plotting them.
 
-![first integrals](/assets/images/blog/2017-11-01-gsoc-ode/symplectic_ruth3.svg)
+![first integrals](/assets/blog/2017-11-01-gsoc-ode/symplectic_ruth3.svg)
 
 Note that symplectic integrator doesn't mean that it has exact conservation. The solutions of a symplectic integrator are on a symplectic manifold, but don't necessarily conserve the Hamiltonian (energy). The energy can have fluctuations in a (quasi-)periodic manner, so that the first integrals have small variations. In the above case, the energy varies at most `6e-6`, and it tends to come back. The variations also decrease as `dt` is smaller. The angular momentum is conserved perfectly. More details are in this [notebook](https://tutorials.juliadiffeq.org/html/models/05-kepler_problem.html).
 
 ## Adaptivity and Dense Output
 
-Again, I explored adaptivity and dense output in the IVP world. I implemented several adaptive Runge-Kutta-Nyström (RKN) solvers. The MIRK adaptivity and RKN adaptivity share one common theme, which is error estimation, and MIRK does it by using dense output. Calculating Poincaré section is an example of a practical usage of the dense output. When plotting the Poincaré section, we usually need to use [`saveat`](http://docs.juliadiffeq.org/latest/basics/common_solver_opts.html#Output-Control-1) or [`ContinuousCallback`](http://docs.juliadiffeq.org/latest/features/callback_functions.html#ContinuousCallbacks-1), and both of them need dense output in order to do well. Dense output is essentially a continuous solution of a ODE. `saveat` uses dense output to evaluate values at the specified time, so the ODE integration can still be adaptive (the integrator doesn't need to hit the exact `saveat` point). `ContinuousCallback` performs root-finding on the dense output to find when does an event occur. Thus, high order dense output is important for calculating accurate `saveat` and `ContinuousCallback`. Here are two examples of plotting Poincaré section.
+Again, I explored adaptivity and dense output in the IVP world. I implemented several adaptive Runge-Kutta-Nyström (RKN) solvers. The MIRK adaptivity and RKN adaptivity share one common theme, which is error estimation, and MIRK does it by using dense output. Calculating Poincaré section is an example of a practical usage of the dense output. When plotting the Poincaré section, we usually need to use [`saveat`](https://docs.juliadiffeq.org/latest/basics/common_solver_opts.html#Output-Control-1) or [`ContinuousCallback`](https://docs.juliadiffeq.org/latest/features/callback_functions.html#ContinuousCallbacks-1), and both of them need dense output in order to do well. Dense output is essentially a continuous solution of a ODE. `saveat` uses dense output to evaluate values at the specified time, so the ODE integration can still be adaptive (the integrator doesn't need to hit the exact `saveat` point). `ContinuousCallback` performs root-finding on the dense output to find when does an event occur. Thus, high order dense output is important for calculating accurate `saveat` and `ContinuousCallback`. Here are two examples of plotting Poincaré section.
 
 #### Duffing oscillator
 
-[Duffing oscillator](http://www.scholarpedia.org/article/Duffing_oscillator) is a forced oscillator that has nonlinear elasticity, which has the form
+[Duffing oscillator](https://www.scholarpedia.org/article/Duffing_oscillator) is a forced oscillator that has nonlinear elasticity, which has the form
 
 $$
 \ddot{x} + \delta \dot{x} + \beta x + \alpha x^3 = \gamma \cos(\omega t).
@@ -79,9 +79,9 @@ end
 draw_duffing(8, 1, 5, 0.02, 0.5)
 ```
 
-Then, we need to get the solution at $\omega t \mod 2\pi=0$ to plot the Poincaré section, and we can achieve this by using [`saveat`](http://docs.juliadiffeq.org/latest/basics/common_solver_opts.html#Output-Control-1).
+Then, we need to get the solution at $\omega t \mod 2\pi=0$ to plot the Poincaré section, and we can achieve this by using [`saveat`](https://docs.juliadiffeq.org/latest/basics/common_solver_opts.html#Output-Control-1).
 
-![duffing Poincaré section](/assets/images/blog/2017-11-01-gsoc-ode/duffing_poincare_0.svg)
+![duffing Poincaré section](/assets/blog/2017-11-01-gsoc-ode/duffing_poincare_0.svg)
 
 #### Driven pendulum
 
@@ -108,7 +108,7 @@ end
 draw_driven_pendulum(1.12456789, 0.23456789, 0.7425755501794571)
 ```
 
-![driven pendulum Poincaré section](/assets/images/blog/2017-11-01-gsoc-ode/driven_poincare_0.svg)
+![driven pendulum Poincaré section](/assets/blog/2017-11-01-gsoc-ode/driven_poincare_0.svg)
 
 ## Boundary Value Problem
 
@@ -137,9 +137,9 @@ bvp1 = BVProblem(simplependulum, bc1, [pi/2,pi/2], tspan)
 sol1 = solve(bvp1, GeneralMIRK4(), dt=0.05)
 ```
 
-![bvp](/assets/images/blog/2017-11-01-gsoc-ode/bvp.svg)
+![bvp](/assets/blog/2017-11-01-gsoc-ode/bvp.svg)
 
-More details can be found in [here](http://docs.juliadiffeq.org/latest/tutorials/bvp_example.html).
+More details can be found in [here](https://docs.juliadiffeq.org/latest/tutorials/bvp_example.html).
 
 ## Acknowledgements
 

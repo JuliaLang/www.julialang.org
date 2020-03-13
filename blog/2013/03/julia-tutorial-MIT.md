@@ -1,13 +1,13 @@
 @def rss_pubdate = Date(2013, 3, 30)
-@def rss = """ Videos from the Julia tutorial at MIT | We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. [MIT Open Courseware](http://ocw.mit.edu/) and MIT-X (http://www.mitx.org/) graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.... """
+@def rss = """ Videos from the Julia tutorial at MIT | We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. [MIT Open Courseware](https://ocw.mit.edu/) and MIT-X (https://www.mitx.org/) graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.... """
 @def published = "30 March 2013"
 @def title = "Videos from the Julia tutorial at MIT"
-@def authors = """<a href="http://github.com/ViralBShah/">Viral B. Shah</a>"""  
+@def authors = """<a href="https://github.com/ViralBShah/">Viral B. Shah</a>"""  
 
 
-We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. [MIT Open Courseware](http://ocw.mit.edu/) and [MIT-X](http://www.mitx.org/) graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.
+We held a two day Julia tutorial at MIT in January 2013, which included 10 sessions. [MIT Open Courseware](https://ocw.mit.edu/) and [MIT-X](https://www.mitx.org/) graciously provided support for recording of these lectures, so that the wider Julia community can benefit from these sessions.
 
-## Julia Lightning Round ([slides](https://raw.github.com/JuliaLang/julia-tutorial/master/LightningRound/IAP_2013_Lightning.pdf))
+## Julia Lightning Round ([slides](/assets/blog/IAP_2013_Lightning.pdf))
 
 This session is a rapid introduction to julia, using a number of lightning rounds. It uses a number of short examples to demonstrate syntax and features, and gives a quick feel for the language.
 
@@ -33,31 +33,31 @@ This session demonstrates Julia's statistics capabilities, which are provided by
 
 ## Fast Fourier Transforms
 
-Julia provides a built-in interface to the [FFTW](http://www.fftw.org/) library. This session demonstrates the Julia's [signal processing](http://docs.julialang.org/en/release-0.1/stdlib/base/#signal_processing) capabilities, such as FFTs and DCTs. Also see the [Hadamard](https://github.com/stevengj/Hadamard.jl) package.
+Julia provides a built-in interface to the [FFTW](https://www.fftw.org/) library. This session demonstrates the Julia's [signal processing](https://docs.julialang.org/en/release-0.1/stdlib/base/#signal_processing) capabilities, such as FFTs and DCTs. Also see the [Hadamard](https://github.com/stevengj/Hadamard.jl) package.
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/1iBLaHGL1AM" frameborder="0" allowfullscreen></iframe>~~~
 
 ## Optimization ([slides](https://github.com/JuliaLang/julia-tutorial/raw/master/NumericalOptimization/presentation.pdf))
 
-This session focuses largely on using Julia for solving linear programming problems. The algebraic modeling language discussed was later released as [JuMP](https://github.com/IainNZ/JuMP.jl). Benchmarks are shown evaluating the performance of Julia for implementing low-level optimization code. Optimization software in Julia has been grouped under the [JuliaOpt](http://juliaopt.org/) project.
+This session focuses largely on using Julia for solving linear programming problems. The algebraic modeling language discussed was later released as [JuMP](https://github.com/IainNZ/JuMP.jl). Benchmarks are shown evaluating the performance of Julia for implementing low-level optimization code. Optimization software in Julia has been grouped under the [JuliaOpt](https://juliaopt.org/) project.
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/O1icUP6sajU" frameborder="0" allowfullscreen></iframe>~~~
 
 ## Metaprogramming and Macros
 
-Julia is homoiconic: it represents its own code as a data structure of the language itself. Since code is represented by objects that can be created and manipulated from within the language, it is possible for a program to transform and generate its own code. [Metaprogramming](http://docs.julialang.org/en/release-0.1/manual/metaprogramming/) is described in detail in the Julia manual.
+Julia is homoiconic: it represents its own code as a data structure of the language itself. Since code is represented by objects that can be created and manipulated from within the language, it is possible for a program to transform and generate its own code. [Metaprogramming](https://docs.julialang.org/en/release-0.1/manual/metaprogramming/) is described in detail in the Julia manual.
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/EpNeNCGmyZE" frameborder="0" allowfullscreen></iframe>~~~
 
 ## Parallel and Distributed Computing ([Lab](https://github.com/JuliaLang/julia-tutorial/raw/master/NumericalOptimization/tutorial.pdf), [Solution](https://github.com/JuliaLang/julia-tutorial/blob/master/NumericalOptimization/Tutorial.jl))
 
-[Parallel and distributed computing](http://docs.julialang.org/en/release-0.1/manual/parallel-computing/) have been an integral part of Julia's capabilities from an early stage. This session describes existing basic capabilities, which can be used as building blocks for higher level parallel libraries.
+[Parallel and distributed computing](https://docs.julialang.org/en/release-0.1/manual/parallel-computing/) have been an integral part of Julia's capabilities from an early stage. This session describes existing basic capabilities, which can be used as building blocks for higher level parallel libraries.
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/JoRn4ryMclc" frameborder="0" allowfullscreen></iframe>~~~
 
 ## Networking
 
-Julia provides asynchronous networking I/O using the [libuv](https://github.com/joyent/libuv) library. Libuv is a portable networking library created as part of the [Node.js](http://www.nodejs.org/) project.
+Julia provides asynchronous networking I/O using the [libuv](https://github.com/joyent/libuv) library. Libuv is a portable networking library created as part of the [Node.js](https://www.nodejs.org/) project.
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/qYjHYTn7r2w" frameborder="0" allowfullscreen></iframe>~~~
 

@@ -61,7 +61,7 @@ MLJ is so far focused on tabular data. This project is to add support for time s
 
 Time series are everywhere in real-world applications and there has been an increase in interest in time series toolboxes recently (see e.g. [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
 
-But there are still very few principled time-series libraries out there, so you would be working on something that could be very useful for a large number of people. To find out more, check out this [paper](http://learningsys.org/neurips19/assets/papers/sktime_ml_systems_neurips2019.pdf) on sktime.
+But there are still very few principled time-series libraries out there, so you would be working on something that could be very useful for a large number of people. To find out more, check out this [paper](https://learningsys.org/neurips19/assets/papers/sktime_ml_systems_neurips2019.pdf) on sktime.
 
 The main goal of the project is to port capability from sktime to MLJ.
 
@@ -77,7 +77,7 @@ The main goal of the project is to port capability from sktime to MLJ.
 @@tight-list
 * Extend existing MLJ data container to handle time series data,  
 * Implement time series data specific transformers that work on new data container (e.g. Fourier transform, auto-correlation, etc.),
-* Implement time-series classification algorithms (for a good overview of algorithms, see e.g. this [paper](https://arxiv.org/abs/1602.01711); for Python implementations see e.g. [sktime](https://github.com/alan-turing-institute/sktime); for Java implementations, see e.g. [this code repository](http://www.timeseriesclassification.com/code.php)),
+* Implement time-series classification algorithms (for a good overview of algorithms, see e.g. this [paper](https://arxiv.org/abs/1602.01711); for Python implementations see e.g. [sktime](https://github.com/alan-turing-institute/sktime); for Java implementations, see e.g. [this code repository](https://www.timeseriesclassification.com/code.php)),
 @@
 
 ### Where to get started?

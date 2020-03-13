@@ -1,13 +1,13 @@
 @def rss_pubdate = Date(2017, 8, 15)
-@def rss = """ JuliaCon 2017 on the West Coast | ! (/assets/images/blog/2017-08-15-juliacon/juliacon.jpg)... """
+@def rss = """ JuliaCon 2017 on the West Coast | ! (/assets/blog/2017-08-15-juliacon/juliacon.jpg)... """
 @def published = "15 August 2017"
 @def title = "JuliaCon 2017 on the West Coast"
 @def authors = "Ranjan Anantharaman"  
 
 
-![](/assets/images/blog/2017-08-15-juliacon/juliacon.jpg)
+![](/assets/blog/2017-08-15-juliacon/juliacon.jpg)
 
-It’s [a year later](https://julialang.org/blog/2016/09/juliacon2016)
+It’s [a year later](/blog/2016/09/juliacon2016)
 and I’m back: this time to the West Coast for the next edition of
 JuliaCon. The [latest
 edition](https://www.youtube.com/playlist?list=PLP8iPy9hna6QpP6vqZs408etJVECPKIev)

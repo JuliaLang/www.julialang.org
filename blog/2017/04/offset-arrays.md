@@ -2,7 +2,7 @@
 @def rss = """ Knowing where you are: custom array indices in Julia | Arrays are a crucial component of any programming language,... """
 @def published = "18 April 2017"
 @def title = "Knowing where you are: custom array indices in Julia"
-@def authors = """<a href="http://holylab.wustl.edu">Tim Holy</a>"""  
+@def authors = """<a href="https://holylab.wustl.edu">Tim Holy</a>"""  
 @def hasmath = true
 @def hascode = true
 
@@ -25,7 +25,7 @@ interesting.  This is really a "user-oriented" blog post, hinting at
 some of the ways this new feature can make your life simpler.  For
 developers who want to write code that supports arrays with arbitrary
 indices, see
-[this documentation page](http://docs.julialang.org/en/latest/devdocs/offset-arrays).
+[this documentation page](https://docs.julialang.org/en/latest/devdocs/offset-arrays).
 
 ## Why should we care which indices an array has? A first example
 
@@ -39,7 +39,7 @@ As a simple example, consider the process of rotating an image:
 
 | img | img_rotated |
 |:-:|:-----:|
-| ![cameraman](/assets/images/blog/2017-04-18-offset-arrays/cameraman.png) | ![cameraman_rot](/assets/images/blog/2017-04-18-offset-arrays/cameraman_rotated.png) |
+| ![cameraman](/assets/blog/2017-04-18-offset-arrays/cameraman.png) | ![cameraman_rot](/assets/blog/2017-04-18-offset-arrays/cameraman_rotated.png) |
 
 Many languages provide functions for rotating an image; in Julia, you
 can do this with the `warp` function defined in
@@ -152,7 +152,7 @@ channels respectively.  If we visualize `cv`, we see the following:
 
 | around image center | around head (cv) |
 |:-------:|:------:|
-| ![cameraman](/assets/images/blog/2017-04-18-offset-arrays/cameraman_overlay_center.png) | ![cameraman_rot](/assets/images/blog/2017-04-18-offset-arrays/cameraman_overlay.png) |
+| ![cameraman](/assets/blog/2017-04-18-offset-arrays/cameraman_overlay_center.png) | ![cameraman_rot](/assets/blog/2017-04-18-offset-arrays/cameraman_overlay.png) |
 
 The image on the left is for reference, showing what a rotation around
 the image center would look like when properly aligned. The image on
@@ -171,7 +171,7 @@ julia> imgri = img_rotated[inds...];
 
 so that `colorview(RGB, imgi, imgri, imgi)` displays as
 
-![cameraman_interior](/assets/images/blog/2017-04-18-offset-arrays/cameraman_overlay_interior.png)
+![cameraman_interior](/assets/blog/2017-04-18-offset-arrays/cameraman_overlay_interior.png)
 
 Since the indices of the pixels encode absolute spatial location, it's
 trivial to keep track of how different pixels align: pixel `i,j` in
@@ -423,7 +423,7 @@ julia> imfilter(1:8, kern3, Fill(0))
 
 These are all illustrated in the following figure:
 
-![deltafunctions](/assets/images/blog/2017-04-18-offset-arrays/filtering.png)
+![deltafunctions](/assets/blog/2017-04-18-offset-arrays/filtering.png)
 
 In this figure, we plotted the kernel as if it were at the location
 corresponding to convolution rather than correlation.
@@ -627,5 +627,5 @@ the following tendencies:
   implicitly assume indexing starts at 1.
 
 Developers are referred to
-[Julia's documentation](http://docs.julialang.org/en/latest/devdocs/offset-arrays)
+[Julia's documentation](https://docs.julialang.org/en/latest/devdocs/offset-arrays)
 for further guidance.

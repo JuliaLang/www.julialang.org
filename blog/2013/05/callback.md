@@ -2,15 +2,15 @@
 @def rss = """ Passing Julia Callback Functions to C | One of the great strengths of Julia is that it is so easy to call C... """
 @def published = "10 May 2013"
 @def title = "Passing Julia Callback Functions to C"
-@def authors = """<a href="http://math.mit.edu/~stevenj">Steven G. Johnson</a>"""  
+@def authors = """<a href="https://math.mit.edu/~stevenj">Steven G. Johnson</a>"""  
 @def hascode = true
 
 
 One of the great strengths of Julia is that it is so easy to [call C
-code](http://docs.julialang.org/en/latest/manual/calling-c-and-fortran-code.html) natively, with no special "glue" routines or overhead to marshal
+code](https://docs.julialang.org/en/latest/manual/calling-c-and-fortran-code.html) natively, with no special "glue" routines or overhead to marshal
 arguments and convert return values.  For example, if you want to call
-[GNU GSL](http://www.gnu.org/software/gsl/) to compute a special function
-like a [Debye integral](http://linux.math.tifr.res.in/manuals/html/gsl-ref-html/gsl-ref_7.html), it is as easy as:
+[GNU GSL](https://www.gnu.org/software/gsl/) to compute a special function
+like a [Debye integral](https://linux.math.tifr.res.in/manuals/html/gsl-ref-html/gsl-ref_7.html), it is as easy as:
 
 ```
 debye_1(x) = ccall((:gsl_sf_debye_1,:libgsl), Cdouble, (Cdouble,), x)
@@ -44,7 +44,7 @@ thereof); the key features needed for callback functions (especially
 
 Perhaps the most well-known example of a callback parameter is
 provided by the
-[qsort](http://pubs.opengroup.org/onlinepubs/009695399/functions/qsort.html)
+[qsort](https://pubs.opengroup.org/onlinepubs/009695399/functions/qsort.html)
 function, part of the ANSI C standard library and declared in C as:
 
 ```julia
@@ -83,7 +83,7 @@ Now, how do we pass this to C?  A function pointer in C is essentially
 just a pointer to the memory location of the machine code implementing
 that function, whereas a function value `mycompare` (of type
 `Function`) in Julia is quite different.  Thanks to Julia's [JIT
-compilation](http://en.wikipedia.org/wiki/Just-in-time_compilation)
+compilation](https://en.wikipedia.org/wiki/Just-in-time_compilation)
 approach,a Julia function may not even be *compiled* until the first
 time it is called, and in general the *same* Julia function may be
 compiled into *multiple* machine-code instantiations, which are
@@ -93,7 +93,7 @@ point to a rather complicated data structure (a `jl_function_t` in
 `julia.h`, if you are interested), which holds information about the
 argument types, the compiled versions (if any), and so on.  In
 general, it must store a
-[closure](http://en.wikipedia.org/wiki/Closure_%28computer_science%29)
+[closure](https://en.wikipedia.org/wiki/Closure_%28computer_science%29)
 with information about the environment in which the function was
 defined; we will talk more about this below.  In any case, it is a
 very different object than a simple pointer to machine code for one
@@ -145,7 +145,7 @@ functions defined in the top-level (global or module) scope, but *not*
 anonymous (`args -> value`) functions and not functions defined within
 other functions ("nested" functions).  The reason for this stems from
 one important concept in computer science: a
-[closure](http://en.wikipedia.org/wiki/Closure_%28computer_science%29).
+[closure](https://en.wikipedia.org/wiki/Closure_%28computer_science%29).
 
 To understand the need for closures, and the difficulty they pose for
 callback functions, suppose that we wanted to provide a nicer interface
@@ -177,10 +177,10 @@ surrounding scope.  This is a common pattern for nested functions and
 anonymous functions: often, they are parameterized by local variables
 in the environment where the function is defined.  Technically, the
 ability to have this kind of dependency is provided by [lexical
-scoping](http://en.wikipedia.org/wiki/Scope_%28computer_science%29) in
+scoping](https://en.wikipedia.org/wiki/Scope_%28computer_science%29) in
 a programming language like Julia, and is typical of any language in
 which functions are
-"[first-class](http://en.wikipedia.org/wiki/First-class_function)"
+"[first-class](https://en.wikipedia.org/wiki/First-class_function)"
 objects.  In order to support lexical scoping, a Julia `Function`
 object needs to internally carry around a pointer to the variables in
 the enclosing environment, and this encapsulation is called a
@@ -191,14 +191,14 @@ enclose a pointer to the environment in which the function was
 defined, or anything else for that matter; it is just the address of a
 stream of instructions.  This makes it hard, in C, to write functions
 to transform other functions ([higher-order
-functions](http://en.wikipedia.org/wiki/Higher-order_function)) or to
+functions](https://en.wikipedia.org/wiki/Higher-order_function)) or to
 parameterize functions by local variables.  This apparently leaves us
 with two options, neither of which is especially attractive:
 
 * We could store `lessthan` in a global variable, and reference that
   from a top-level `mycompare` function.  (This is the traditional solution
   for C programmers calling `qsort` with parameterized comparison functions.)
-  The problem with this strategy is that it is not [re-entrant](http://en.wikipedia.org/wiki/Reentrancy_%28computing%29): it prevents us from calling `qsort!`
+  The problem with this strategy is that it is not [re-entrant](https://en.wikipedia.org/wiki/Reentrancy_%28computing%29): it prevents us from calling `qsort!`
   recursively (e.g. if the comparison function itself needs to do a sort, for
   some complicated datastructure), or from calling `qsort!` from multiple
   threads (when a future Julia version supports shared-memory parallelism).
@@ -208,8 +208,8 @@ with two options, neither of which is especially attractive:
   of `mycompare`, which hard-codes the reference to the `lessthan`
   argument passed on that call.  This is technically possible and has
   been implemented in some languages (e.g. reportedly [GNU
-  Guile](http://www.gnu.org/software/guile/manual/html_node/Dynamic-FFI.html)
-  and [Lua](http://luajit.org/ext_ffi_semantics.html)
+  Guile](https://www.gnu.org/software/guile/manual/html_node/Dynamic-FFI.html)
+  and [Lua](https://luajit.org/ext_ffi_semantics.html)
   do something like this).  However, this strategy
   comes at a price: it requires that callbacks be recompiled every time
   a parameter in them changes, which is not true of the global-variable
@@ -290,13 +290,13 @@ The example above has one major problem that has nothing to do with
 Julia: the `qsort_r` function is not portable.  The above example
 won't work on Windows, since the Windows C library doesn't define
 `qsort_r` (instead, it has a function called
-[qsort_s](http://msdn.microsoft.com/en-us/library/4xc60xas%28VS.80%29.aspx),
+[qsort_s](https://msdn.microsoft.com/en-us/library/4xc60xas%28VS.80%29.aspx),
 which of course uses an argument order incompatible with *both* the
 BSD and GNU `qsort_r` functions).  Worse, it will crash on GNU/Linux
 systems, which *do* provide `qsort_r` but with an
-[incompatible](http://www.memoryhole.net/kyle/2009/11/qsort_r.html)
+[incompatible](https://www.memoryhole.net/kyle/2009/11/qsort_r.html)
 [calling
-convention](http://www.cygwin.com/ml/libc-alpha/2008-12/msg00008.html). And
+convention](https://www.cygwin.com/ml/libc-alpha/2008-12/msg00008.html). And
 as a result it is difficult to use `qsort_r` in a way that does not
 crash either on GNU/Linux or BSD (e.g. MacOS) systems.  This is how
 glibc's `qsort_r` is defined:
@@ -338,7 +338,7 @@ perfectly adequate `sort` and `sort!` routines.
 As another example that is oriented more towards numerical
 computations, we'll examine how we might call the numerical integration
 routines in the [GNU Scientific Library
-(GSL)](http://www.gnu.org/software/gsl/).  There is already a [GSL
+(GSL)](https://www.gnu.org/software/gsl/).  There is already a [GSL
 package](https://github.com/jiahao/GSL.jl) that handles the wrapper
 work below for you, but it is instructive to look at how this is
 implemented because GSL simulates closures in a slightly different
@@ -388,7 +388,7 @@ know the return type of `f(x)`.
 
 Given the above definitions, it is a simple matter to pass this to the
 [GSL
-adaptive-integration](http://www.gnu.org/software/gsl/manual/html_node/QAG-adaptive-integration.html)
+adaptive-integration](https://www.gnu.org/software/gsl/manual/html_node/QAG-adaptive-integration.html)
 routines in a wrapper function `gsl_integration_qag`:
 
 ```julia
@@ -436,7 +436,7 @@ In that case, you are responsible for ensuring that the `Function` variable live
 (is referred to by some Julia variable) as long as the C code might need it.
 
 For example, in the GSL [one-dimensional minimization
-interface](http://www.gnu.org/software/gsl/manual/html_node/One-dimensional-Minimization.html),
+interface](https://www.gnu.org/software/gsl/manual/html_node/One-dimensional-Minimization.html),
 you don't simply pass your objective function to a minimization
 routine and wait until it is minimized.  Instead, you call a GSL
 routine to create a "minimizer object", store your function pointer in this
@@ -529,7 +529,7 @@ about 10 digits.
 
 At this point, I will shamelessly plug my own [NLopt
 package](https://github.com/stevengj/NLopt.jl) for Julia, which wraps
-around my free/open-source [NLopt](http://ab-initio.mit.edu/nlopt) library
+around my free/open-source [NLopt](https://ab-initio.mit.edu/nlopt) library
 to provide many more optimization algorithms than GSL, with perhaps a nicer
 interface.   However, the techniques used to pass callback functions to
 NLopt are actually quite similar to those used for GSL.

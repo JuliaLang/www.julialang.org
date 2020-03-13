@@ -15,7 +15,7 @@ library. However, in the first month or so, we decided to work towards a more ge
 networks (graphs with attributes defined on vertices and edges).
 Our change in direction was mainly motivated by:
 
-- The challenges associated with distributed graph computations. [This](http://www.frankmcsherry.org/graph/scalability/cost/2015/01/15/COST.html)
+- The challenges associated with distributed graph computations. [This](https://www.frankmcsherry.org/graph/scalability/cost/2015/01/15/COST.html)
   blog post was an eye opener.
 - Only very large graphs, of the order of terabytes or petabytes, require distributed execution. Most useful graphs can be analyzed on a single compute node.
 - Multi-threading is under heavy development, and we decided to wait for the full multi-threaded programming model to be available.
