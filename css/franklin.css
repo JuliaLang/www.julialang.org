@@ -1,0 +1,1 @@
+@charset "utf-8"; .container h1>a,h2>a,h3>a,h4>a,h5>a,h6>a{color:black}.container h1>a:hover,h2>a:hover,h3>a:hover,h4>a:hover,h5>a:hover,h6>a:hover{text-decoration:none}.container .tight-list p{margin-bottom:0}.container h2{margin-top:1.2em}.container h3{margin-top:.8em}.container.blog-title h3{font-size:18px;margin-bottom:1em}

@@ -1,899 +1,242 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>DiffEqFlux.jl – A Julia Library for Neural Differential Equations</title>
-<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
-
-<meta property="og:title" content="The Julia Language"/>
-<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
-<meta property="og:description" content="Official website for the Julia programming language"/>
-
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
-<link rel="stylesheet" href="https://julialang.org/v2/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://julialang.org/v2/css/app.css" />
-<link rel="stylesheet" href="https://julialang.org/v2/css/fonts.css" />
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [['$','$'], ['\\(','\\)']],
-      displayMath: [['$$','$$']],
-      processEscapes: true,
-      processEnvironments: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      TeX: { equationNumbers: { autoNumber: "AMS" },
-             extensions: ["AMSmath.js", "AMSsymbols.js"] }
-    }
-  });
-</script>
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-28835595-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-  
-
-  
-</head>
-
-<body>
-  
-  
-
-<div class="container py-3 py-lg-0">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
-
-    <a class="navbar-brand" href="../../../../" id="logo">
-      <img src="https://julialang.org/v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
-    </a>
-
-    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/downloads/">Download</a>
-        </li>
-        <li class="nav-item flex-md-fill text-md-center">
-          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
-        </li>
-        <li class="nav-item  active  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/blog/">Blog</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/community/">Community</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/learning/">Learning</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/research/">Research</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/jsoc/">JSoC</a>
-        </li>
-        <li class="nav-item donate flex-md-fill text-md-center">
-          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
-        </li>
-      </ul>
-    </div>
-
-  </nav>
-</div>
-
-
-
-  <br /><br />
-
-  <div class="container">
-
-  <div id="blogpost">
-    <h1>DiffEqFlux.jl – A Julia Library for Neural Differential Equations</h1>
-
-    <p class="metadata">
-      <span class="timestamp">18 January, 2019</span>
-      
-      &nbsp;|&nbsp;
-      <span class="author">Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit</span>
-      
-    </p>
-
-    
-
-<p>Translations: <a href="../../../../blog/2019/04/fluxdiffeq-zh_tw">Traditional Chinese</a></p>
-
-<p>In this blog post we will show you how to easily, efficiently, and
-robustly use differential equation (DiffEq) solvers with neural networks in Julia.</p>
-
-<p><img src="https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif" alt="Flux ODE Training Animation" /></p>
-
-<p>The <a href="https://arxiv.org/abs/1806.07366">Neural Ordinary Differential Equations</a>
-paper has attracted significant attention even before it was awarded one of the Best Papers of NeurIPS 2018.
-The paper already gives many exciting results combining these two
-disparate fields, but this is only the beginning: neural networks and
-differential equations were born to be together. This blog post, a collaboration
-between authors of <a href="https://github.com/FluxML/Flux.jl">Flux</a>,
-<a href="https://github.com/JuliaDiffEq/DifferentialEquations.jl">DifferentialEquations.jl</a>
-and the Neural ODEs paper, will explain why, outline current and future
-directions for this work, and start to give a sense of what&rsquo;s possible with
-state-of-the-art tools.</p>
-
-<p>The advantages of the Julia
-<a href="https://github.com/JuliaDiffEq/DifferentialEquations.jl">DifferentialEquations.jl</a> library for numerically solving differential equations have been
-<a href="http://www.stochasticlifestyle.com/comparison-differential-equation-solver-suites-matlab-r-julia-python-c-fortran/">discussed in detail in other posts</a>.
-Along with its
-<a href="https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl">extensive benchmarking against classic Fortran methods</a>,
-it includes other modern features such as
-<a href="http://www.stochasticlifestyle.com/solving-systems-stochastic-pdes-using-gpus-julia/">GPU acceleration</a>,
-<a href="http://www.stochasticlifestyle.com/multi-node-parallelism-in-julia-on-an-hpc/">distributed (multi-node) parallelism</a>,
-and <a href="https://docs.juliadiffeq.org/stable/features/callback_functions.html">sophisticated event handling</a>.
-Recently, these native Julia differential equation solvers have successfully been embedded
-into the <a href="https://github.com/FluxML/Flux.jl/">Flux</a> deep learning package, to allow the use of a full suite of
-highly tested and optimized DiffEq methods within neural networks. Using the new package
-<a href="https://github.com/JuliaDiffEq/DiffEqFlux.jl/">DiffEqFlux.jl</a>,
-we will show the reader how to easily add differential equation
-layers to neural networks using a range of differential equations models, including stiff ordinary
-differential equations, stochastic differential equations, delay differential
-equations, and hybrid (discontinuous) differential equations.</p>
-
-<p>This is the first toolbox to combine a fully-featured differential equations
-solver library and neural networks seamlessly together. The blog post will also
-show why the flexibility of a full differential equation solver suite is
-necessary. With the ability to fuse neural networks with ODEs, SDEs, DAEs, DDEs,
-stiff equations, and different methods for adjoint sensitivity calculations,
-this is a large generalization of the neural ODEs work and will allow
-researchers to better explore the problem domain.</p>
-
-<p>(Note: If you are interested in this work and are an undergraduate or graduate
-student, we have <a href="../../../../jsoc">Google Summer of Code projects available in this area</a>. This
-<a href="https://developers.google.com/open-source/gsoc/help/student-stipends">pays quite well over the summer</a>.
-Please join the <a href="https://slackinvite.julialang.org/">Julia Slack</a> and the #jsoc channel to discuss in more detail.)</p>
-
-<h2 id="what-do-differential-equations-have-to-do-with-machine-learning">What do differential equations have to do with machine learning?</h2>
-
-<p>The first question someone not familiar with the field might ask is, why are
-differential equations important in this context? The simple answer is that a
-differential equation is a way to specify an arbitrary nonlinear transform by
-mathematically encoding prior structural assumptions.</p>
-
-<p>Let&rsquo;s unpack that statement a bit. There are three
-common ways to define a nonlinear transform: direct
-modeling, machine learning, and differential equations.
-Directly writing down the nonlinear function only works
-if you know the exact functional form that relates the input to the output.
-However, in many cases, such exact relations are not known <em>a priori</em>.
-So how do you do nonlinear modeling if you don&rsquo;t know the nonlinearity?</p>
-
-<p>One way to address this is to use machine
-learning. In a typical machine learning problem, you are given some input $x$ and
-you want to predict an output $y$. This generation of a prediction $y$ from $x$
-is a machine learning model (let&rsquo;s call it $ML$).  During training, we attempt to
-adjust the parameters of $ML$ so that it generates accurate predictions.  We
-can then use $ML$ for inference (i.e., produce $y$s for novel inputs $x$).
-This is just a nonlinear transformation $y=ML(x)$.
-The reason $ML$ is interesting is because its form is basic but adapts to the
-data itself. For example, a simple neural network (in design matrix form) with
-sigmoid activation functions is simply matrix multiplications followed
-by application of sigmoid functions. Specifically,
-
-$$ ML(x) = \sigma(W_{3} \cdot \sigma(W_{2} \cdot \sigma(W_{1} \cdot x))) $$
-
-
-is a three-layer deep
-neural network, where $W=(W_1,W_2,W_3)$ are learnable parameters.
-You then choose $W$ such that $ML(x)=y$ reasonably fits the function you wanted it to fit.
-The theory and practice of machine learning confirms that this is a good way to learn nonlinearities.</p>
-
-<p>For example, the Universal Approximation Theorem states that, for
-enough layers or enough parameters (i.e. sufficiently large $W_{i}$ matrices), $ML(x)$
-can approximate any nonlinear function sufficiently close (subject to common constraints).</p>
-
-<p>So great, this always works! But it has some caveats, the main being
-that it has to learn everything about the nonlinear transform directly from the data.
-In many cases we do not know the full nonlinear equation, but we may know details about its structure.
-For example, the nonlinear function could be the population of rabbits in the forest,
-and we might know that their rate of births is dependent on the current population.
-Thus instead of starting from nothing, we may want to use this known <em>a priori</em> relation and a set of parameters that defines it.
-For the rabbits, let&rsquo;s say that we want to learn</p>
-
-
-$$\text{rabbits tomorrow} = \text{Model}(\text{rabbits today}).$$
-
-
-
-<p>In this case, we have prior knowledge of the rate of births being dependent on
-the current population. The way to mathematically state this
-structural assumption is via a differential equation. Here, what we are saying
-is that the birth rate of the rabbit population at a given time point increases
-when we have more rabbits. The simplest way of encoding that is</p>
-
-
-$$\text{rabbits}'(t) = \alpha\cdot \text{rabbits}(t)$$
-
-
-
-<p>where $\alpha$ is some learnable constant. If you know your calculus, the solution
-here is exponential growth from the starting point with a growth rate $\alpha$:
-$\text{rabbits}(t_\text{start})e^{(\alpha t)}$. But notice that we didn&rsquo;t need to know the
-solution to the differential equation to validate the idea: we encoded the
-structure of the model and mathematics itself then outputs what the solution
-should be. Because of this, differential equations have been the tool of choice
-in most science. For example, physical laws tell you how electrical quantities
-emit forces (<a href="https://en.wikipedia.org/wiki/Maxwell%27s_equations">Maxwell&rsquo;s Equations</a>).
-These are essentially equations of how things change and thus
-&ldquo;where things will be&rdquo; is the solution to a differential equation. But in recent
-decades this application has gone much further, with fields like systems biology
-learning about cellular interactions by encoding known biological structures and
-mathematically enumerating our assumptions or in targeted drug dosage through
-PK/PD modelling in systems pharmacology.</p>
-
-<p>So as our machine learning models grow and are hungry for larger and larger
-amounts of data, differential equations have become an attractive option for
-specifying nonlinearities in a learnable (via the parameters) but constrained
-form. They are essentially a way of incorporating prior domain-specific knowledge of the structural relations
-between the inputs and outputs. Given this way of looking at the two, both methods
-trade off advantages and disadvantages, making them complementary tools for modeling.
-It seems like a clear next step in scientific practice to start putting them
-together in new and exciting ways!</p>
-
-<h2 id="what-is-the-neural-ordinary-differential-equation-ode">What is the Neural Ordinary Differential Equation (ODE)?</h2>
-
-<p>The neural ordinary differential equation is one of many ways to put these two
-subjects together. The simplest way of explaining it is that, instead of
-learning the nonlinear transformation directly, we wish to learn the structures
-of the nonlinear transformation. Thus instead of doing $y=ML(x)$, we put the
-machine learning model on the derivative, $y&rsquo;(x) = ML(x)$, and now solve the ODE.
-Why would you ever do this? Well, one motivation is that defining the model in this way
-and then solving the ODE using the simplest and most error prone method, the
-Euler method, what you get is equivalent to a <a href="https://arxiv.org/abs/1512.03385">residual neural network</a>.
-The way the Euler method works is based on the fact that $y&rsquo;(x) = \frac{dy}{dx}$, thus</p>
-
-<p>
-$$ \Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x)$$
-
-
-which implies that
-
-$$ y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).$$
-
-</p>
-
-<p>This looks similar in structure to a ResNet, one of the most successful image
-processing models. The insight of the the Neural ODEs paper was that
-increasingly deep and powerful ResNet-like models effectively approximate a kind
-of &ldquo;infinitely deep&rdquo; model as each layer tends to zero. Rather than adding more
-layers, we can just model the differential equation directly and then solve it
-using a purpose-built ODE solver. Numerical ODE solvers are a science that goes
-all the way back to the first computers, and modern ones can adaptively choose
-step sizes $\Delta x$ and use high order approximations to dratically reduce the
-number of actual steps required. And as it turns out, this works well in
-practice, too.</p>
-
-<h2 id="how-do-you-solve-an-ode">How do you solve an ODE?</h2>
-
-<p>First, how do you numerically specify and solve an ODE? If you&rsquo;re new to solving
-ODEs, you may want to watch our
-<a href="https://www.youtube.com/watch?v=KPEqYtEd-zY">video tutorial on solving ODEs in Julia</a>
-and look through the
-<a href="https://docs.juliadiffeq.org/stable/tutorials/ode_example.html">ODE tutorial of the DifferentialEquations.jl documentation</a>.
-The idea is that you define an <code>ODEProblem</code> via a derivative equation <code>u'=f(u,p,t)</code>,
-and provide an initial condition <code>u0</code>, and a timespan <code>tspan</code> to solve over, and
-specify the parameters <code>p</code>.</p>
-
-<p>For example, the
-<a href="https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations">Lotka-Volterra equations describe the dynamics of the population of rabbits and wolves</a>.
-They can be written as:
-
-$$
-\begin{align*}
-x^\prime &= \alpha x + \beta x y \\
-y^\prime &= -\delta y + \gamma x y
-\end{align*}
-$$
-
-
-and encoded in Julia like:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">using</span> DifferentialEquations<span style="color:#666"></span>
-<span style="color:#a2f;font-weight:bold">function</span> lotka_volterra<span style="color:#666"></span>(du<span style="color:#666"></span>,u<span style="color:#666"></span>,p<span style="color:#666"></span>,t<span style="color:#666"></span>)
-  x<span style="color:#666"></span>, y<span style="color:#666"></span> <span style="color:#666">=</span> u<span style="color:#666"></span>
-  α<span style="color:#666"></span>, β<span style="color:#666"></span>, δ<span style="color:#666"></span>, <span style="color:#a2f">γ</span> <span style="color:#666">=</span> p<span style="color:#666"></span>
-  du<span style="color:#666"></span>[<span style="color:#666">1</span>] <span style="color:#666">=</span> dx<span style="color:#666"></span> <span style="color:#666">=</span> α<span style="color:#666"></span><span style="color:#666">*</span>x<span style="color:#666"></span> <span style="color:#666">-</span> β<span style="color:#666"></span><span style="color:#666">*</span>x<span style="color:#666"></span><span style="color:#666">*</span>y<span style="color:#666"></span>
-  du<span style="color:#666"></span>[<span style="color:#666">2</span>] <span style="color:#666">=</span> dy<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">-</span>δ<span style="color:#666"></span><span style="color:#666">*</span>y<span style="color:#666"></span> <span style="color:#666">+</span> <span style="color:#a2f">γ</span><span style="color:#666">*</span>x<span style="color:#666"></span><span style="color:#666">*</span>y<span style="color:#666"></span>
-<span style="color:#a2f;font-weight:bold">end</span>
-u0<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">1.0</span>,<span style="color:#666">1.0</span>]
-tspan<span style="color:#666"></span> <span style="color:#666">=</span> (<span style="color:#666">0.0</span>,<span style="color:#666">10.0</span>)
-p<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">1.5</span>,<span style="color:#666">1.0</span>,<span style="color:#666">3.0</span>,<span style="color:#666">1.0</span>]
-prob<span style="color:#666"></span> <span style="color:#666">=</span> ODEProblem<span style="color:#666"></span>(lotka_volterra<span style="color:#666"></span>,u0<span style="color:#666"></span>,tspan<span style="color:#666"></span>,p<span style="color:#666"></span>)</code></pre></div>
-
-<p>Then to solve the differential equations, you can simply call <code>solve</code> on the
-<code>prob</code>:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">sol<span style="color:#666"></span> <span style="color:#666">=</span> solve<span style="color:#666"></span>(prob<span style="color:#666"></span>)
-<span style="color:#a2f;font-weight:bold">using</span> Plots<span style="color:#666"></span>
-plot<span style="color:#666"></span>(sol<span style="color:#666"></span>)</code></pre></div>
-
-<p><img src="https://user-images.githubusercontent.com/1814174/51388169-9a07f300-1af6-11e9-8c6c-83c41e81d11c.png" alt="LV Solution Plot" /></p>
-
-<p>One last thing to note is that we can make our initial condition (<code>u0</code>) and time spans (<code>tspans</code>)
-to be functions of the parameters (the elements of <code>p</code>). For example, we can define the <code>ODEProblem</code>:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">u0_f<span style="color:#666"></span>(p<span style="color:#666"></span>,t0<span style="color:#666"></span>) <span style="color:#666">=</span> [p<span style="color:#666"></span>[<span style="color:#666">2</span>],p<span style="color:#666"></span>[<span style="color:#666">4</span>]]
-tspan_f<span style="color:#666"></span>(p<span style="color:#666"></span>) <span style="color:#666">=</span> (<span style="color:#666">0.0</span>,<span style="color:#666">10</span><span style="color:#666">*</span>p<span style="color:#666"></span>[<span style="color:#666">4</span>])
-p<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">1.5</span>,<span style="color:#666">1.0</span>,<span style="color:#666">3.0</span>,<span style="color:#666">1.0</span>]
-prob<span style="color:#666"></span> <span style="color:#666">=</span> ODEProblem<span style="color:#666"></span>(lotka_volterra<span style="color:#666"></span>,u0_f<span style="color:#666"></span>,tspan_f<span style="color:#666"></span>,p<span style="color:#666"></span>)</code></pre></div>
-
-<p>In this form, everything about the problem is determined by the parameter vector (<code>p</code>, referred to
-as <code>θ</code> in associated literature). The utility of this will be seen later.</p>
-
-<p>DifferentialEquations.jl has many powerful options for customising things like
-accuracy, tolerances, solver methods, events and more; check out <a href="https://docs.juliadiffeq.org/stable/">the
-docs</a> for more details on how to use it in
-more advanced ways.</p>
-
-<h2 id="let-s-put-an-ode-into-a-neural-net-framework">Let&rsquo;s Put an ODE Into a Neural Net Framework!</h2>
-
-<p>To understand embedding an ODE into a neural network, let&rsquo;s look at what a
-neural network layer actually is. A layer is really just a <em>differentiable
-function</em> which takes in a vector of size <code>n</code> and spits out a new vector of size
-<code>m</code>. That&rsquo;s it! Layers have traditionally been simple functions like matrix
-multiply, but in the spirit of <a href="../../../../blog/2018/12/ml-language-compiler">differentiable
-programming</a> people are
-increasingly experimenting with much more complex functions, such as ray tracers and
-physics engines.</p>
-
-<p>Turns out that differential equations solvers fit this framework, too: A solve
-takes in some vector <code>p</code> (which might include parameters like the initial
-starting point), and outputs some new vector, the solution. Moreover it&rsquo;s
-differentiable, which means we can put it straight into a larger differentiable
-program. This larger program can happily include neural networks, and we can keep
-using standard optimisation techniques like ADAM to optimise their weights.</p>
-
-<p>DiffEqFlux.jl makes it convenient to do just this; let&rsquo;s take it for a spin.
-We&rsquo;ll start by solving an equation as before, without gradients.</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">p<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">1.5</span>,<span style="color:#666">1.0</span>,<span style="color:#666">3.0</span>,<span style="color:#666">1.0</span>]
-prob<span style="color:#666"></span> <span style="color:#666">=</span> ODEProblem<span style="color:#666"></span>(lotka_volterra<span style="color:#666"></span>,u0<span style="color:#666"></span>,tspan<span style="color:#666"></span>,p<span style="color:#666"></span>)
-sol<span style="color:#666"></span> <span style="color:#666">=</span> solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)
-A<span style="color:#666"></span> <span style="color:#666">=</span> sol<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>] <span style="color:#080;font-style:italic"># length 101 vector</span></code></pre></div>
-
-<p>Let&rsquo;s plot <code>(t,A)</code> over the ODE&rsquo;s solution to see what we got:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">plot<span style="color:#666"></span>(sol<span style="color:#666"></span>)
-t<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">0</span><span style="color:#666">:</span><span style="color:#666">0.1</span><span style="color:#666">:</span><span style="color:#666">10.0</span>
-scatter!<span style="color:#666"></span>(t<span style="color:#666"></span>,A<span style="color:#666"></span>)</code></pre></div>
-
-<p><img src="https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png" alt="Data points plot" /></p>
-
-<p>The most basic differential equation layer is <code>concrete_solve</code>, which does the same
-thing with a slightly altered syntax. <code>concrete_solve</code> takes in the initial condition
-<code>u0</code>, the parameters <code>p</code> for the integrand, puts these in the differential equation defined
-by <code>prob</code>, and solves it with the chosen arguments (solver, tolerance, etc). For example:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">using</span> Flux<span style="color:#666"></span>, DiffEqFlux<span style="color:#666"></span>
-concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),u0<span style="color:#666"></span>,p<span style="color:#666"></span>,saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)</code></pre></div>
-
-<p>The nice thing about <code>concrete_solve</code> is that it takes care of the type handling
-necessary to make it compatible with the neural network framework (here Flux). To show this,
-let&rsquo;s define a neural network with the function as our single layer, and then a loss
-function that is the squared distance of the output values from <code>1</code>. In Flux, this looks like:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">p<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">2.2</span>, <span style="color:#666">1.0</span>, <span style="color:#666">2.0</span>, <span style="color:#666">0.4</span>] <span style="color:#080;font-style:italic"># Initial Parameter Vector</span>
-params<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>params<span style="color:#666"></span>(p<span style="color:#666"></span>)
-
-<span style="color:#a2f;font-weight:bold">function</span> predict_rd<span style="color:#666"></span>() <span style="color:#080;font-style:italic"># Our 1-layer neural network</span>
-  concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),u0<span style="color:#666"></span>,p<span style="color:#666"></span>,saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>]
-<span style="color:#a2f;font-weight:bold">end</span>
-
-loss_rd<span style="color:#666"></span>() <span style="color:#666">=</span> sum<span style="color:#666"></span>(abs2<span style="color:#666"></span>,x<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span> <span style="color:#a2f;font-weight:bold">for</span> x<span style="color:#666"></span> <span style="color:#a2f">in</span> predict_rd<span style="color:#666"></span>()) <span style="color:#080;font-style:italic"># loss function</span></code></pre></div>
-
-<p>Now we tell Flux to train the neural network by running a 100 epoch
-to minimise our loss function (<code>loss_rd()</code>) and thus obtain the optimized parameters:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">data<span style="color:#666"></span> <span style="color:#666">=</span> Iterators<span style="color:#666"></span><span style="color:#666">.</span>repeated<span style="color:#666"></span>((), <span style="color:#666">100</span>)
-opt<span style="color:#666"></span> <span style="color:#666">=</span> ADAM<span style="color:#666"></span>(<span style="color:#666">0.1</span>)
-cb<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">function</span> () <span style="color:#080;font-style:italic">#callback function to observe training</span>
-  display<span style="color:#666"></span>(loss_rd<span style="color:#666"></span>())
-  <span style="color:#080;font-style:italic"># using `remake` to re-create our `prob` with current parameters `p`</span>
-  display<span style="color:#666"></span>(plot<span style="color:#666"></span>(solve<span style="color:#666"></span>(remake<span style="color:#666"></span>(prob<span style="color:#666"></span>,p<span style="color:#666"></span><span style="color:#666">=</span>p<span style="color:#666"></span>),Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>),ylim<span style="color:#666"></span><span style="color:#666">=</span>(<span style="color:#666">0</span>,<span style="color:#666">6</span>)))
-<span style="color:#a2f;font-weight:bold">end</span>
-
-<span style="color:#080;font-style:italic"># Display the ODE with the initial parameter values.</span>
-cb<span style="color:#666"></span>()
-
-Flux<span style="color:#666"></span><span style="color:#666">.</span>train!<span style="color:#666"></span>(loss_rd<span style="color:#666"></span>, params<span style="color:#666"></span>, data<span style="color:#666"></span>, opt<span style="color:#666"></span>, cb<span style="color:#666"></span> <span style="color:#666">=</span> cb<span style="color:#666"></span>)</code></pre></div>
-
-<p>The result of this is the animation shown at the top.
-<a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/ode.jl">This code can be found in the model-zoo</a></p>
-
-<p>Flux finds the parameters of the neural network (<code>p</code>) which minimize
-the cost function, i.e. it trains the neural network: it just so happens that
-the forward pass of the neural network includes solving an ODE.
-Since our cost function put a penalty whenever the number of
-rabbits was far from 1, our neural network found parameters where our population
-of rabbits and wolves are both constant 1.</p>
-
-<p>Now that we have solving ODEs as just a layer, we can add it anywhere. For example,
-the multilayer perceptron is written in Flux as</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">m<span style="color:#666"></span> <span style="color:#666">=</span> Chain<span style="color:#666"></span>(
-  Dense<span style="color:#666"></span>(<span style="color:#666">28</span><span style="color:#666">^</span><span style="color:#666">2</span>, <span style="color:#666">32</span>, relu<span style="color:#666"></span>),
-  Dense<span style="color:#666"></span>(<span style="color:#666">32</span>, <span style="color:#666">10</span>),
-  softmax<span style="color:#666"></span>)</code></pre></div>
-
-<p>and if we had an appropriate ODE which took a parameter vector of the right size,
-we can stick it right in there:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">m<span style="color:#666"></span> <span style="color:#666">=</span> Chain<span style="color:#666"></span>(
-  Dense<span style="color:#666"></span>(<span style="color:#666">28</span><span style="color:#666">^</span><span style="color:#666">2</span>, <span style="color:#666">32</span>, relu<span style="color:#666"></span>),
-  <span style="color:#080;font-style:italic"># this would require an ODE of 32 parameters</span>
-  p<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),u0<span style="color:#666"></span>,p<span style="color:#666"></span>,saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>],
-  Dense<span style="color:#666"></span>(<span style="color:#666">32</span>, <span style="color:#666">10</span>),
-  softmax<span style="color:#666"></span>)</code></pre></div>
-
-<p>or we can stick it into a convolutional neural network, where the previous
-layers define the initial condition for the ODE:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">m<span style="color:#666"></span> <span style="color:#666">=</span> Chain<span style="color:#666"></span>(
-  Conv<span style="color:#666"></span>((<span style="color:#666">2</span>,<span style="color:#666">2</span>), <span style="color:#666">1</span><span style="color:#666">=</span><span style="color:#666">&gt;</span><span style="color:#666">16</span>, relu<span style="color:#666"></span>),
-  x<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> maxpool<span style="color:#666"></span>(x<span style="color:#666"></span>, (<span style="color:#666">2</span>,<span style="color:#666">2</span>)),
-  Conv<span style="color:#666"></span>((<span style="color:#666">2</span>,<span style="color:#666">2</span>), <span style="color:#666">16</span><span style="color:#666">=</span><span style="color:#666">&gt;</span><span style="color:#666">8</span>, relu<span style="color:#666"></span>),
-  x<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> maxpool<span style="color:#666"></span>(x<span style="color:#666"></span>, (<span style="color:#666">2</span>,<span style="color:#666">2</span>)),
-  x<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> reshape<span style="color:#666"></span>(x<span style="color:#666"></span>, <span style="color:#666">:</span>, size<span style="color:#666"></span>(x<span style="color:#666"></span>, <span style="color:#666">4</span>)),
-  x<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),x<span style="color:#666"></span>,p<span style="color:#666"></span>,saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>],
-  Dense<span style="color:#666"></span>(<span style="color:#666">288</span>, <span style="color:#666">10</span>), softmax<span style="color:#666"></span>) <span style="color:#666">|&gt;</span> gpu<span style="color:#666"></span></code></pre></div>
-
-<p>As long as you can write down the forward pass, we can take any parameterised,
-differentiable program and optimise it. The world is your oyster.</p>
-
-<h2 id="why-is-a-full-ode-solver-suite-necessary-for-doing-this-well">Why is a full ODE solver suite necessary for doing this well?</h2>
-
-<p>Where we have combined an existing solver suite and deep learning library, the
-excellent <a href="https://github.com/rtqichen/torchdiffeq">torchdiffeq</a> project takes
-an alternative approach, instead implementing solver methods directly in
-PyTorch, including an adaptive Runge Kutta 4-5 (<code>dopri5</code>) and an
-Adams-Bashforth-Moulton method (<code>adams</code>). However, while their approach is very
-effective for certain kinds of models, not having access to a full solver suite
-is limiting.</p>
-
-<p>Consider the following example, the <a href="https://www.radford.edu/~thompson/vodef90web/problems/demosnodislin/Single/DemoRobertson/demorobertson.pdf">ROBER
-ODE</a>.
-The most well-tested (and optimized) implementation of an
-Adams-Bashforth-Moulton method is the <a href="https://computation.llnl.gov/projects/sundials">CVODE integrator in the C++ package
-SUNDIALS</a> (a derivative of the
-classic LSODE). Let&rsquo;s use DifferentialEquations.jl to call CVODE with its Adams
-method and have it solve the ODE for us:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">rober<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f">@ode_def</span><span style="color:#666"></span> Rober<span style="color:#666"></span> <span style="color:#a2f;font-weight:bold">begin</span>
-  dy₁<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">-</span>k₁<span style="color:#666"></span><span style="color:#666">*</span>y₁<span style="color:#666"></span><span style="color:#666">+</span>k₃<span style="color:#666"></span><span style="color:#666">*</span>y₂<span style="color:#666"></span><span style="color:#666">*</span>y₃<span style="color:#666"></span>
-  dy₂<span style="color:#666"></span> <span style="color:#666">=</span>  k₁<span style="color:#666"></span><span style="color:#666">*</span>y₁<span style="color:#666"></span><span style="color:#666">-</span>k₂<span style="color:#666"></span><span style="color:#666">*</span>y₂<span style="color:#666"></span><span style="color:#666">^</span><span style="color:#666">2</span><span style="color:#666">-</span>k₃<span style="color:#666"></span><span style="color:#666">*</span>y₂<span style="color:#666"></span><span style="color:#666">*</span>y₃<span style="color:#666"></span>
-  dy₃<span style="color:#666"></span> <span style="color:#666">=</span>  k₂<span style="color:#666"></span><span style="color:#666">*</span>y₂<span style="color:#666"></span><span style="color:#666">^</span><span style="color:#666">2</span>
-<span style="color:#a2f;font-weight:bold">end</span> k₁<span style="color:#666"></span> k₂<span style="color:#666"></span> k₃<span style="color:#666"></span>
-prob<span style="color:#666"></span> <span style="color:#666">=</span> ODEProblem<span style="color:#666"></span>(rober<span style="color:#666"></span>,[<span style="color:#666">1.0</span>;<span style="color:#666">0.0</span>;<span style="color:#666">0.0</span>],(<span style="color:#666">0.0</span>,<span style="color:#666">1e11</span>),(<span style="color:#666">0.04</span>,<span style="color:#666">3e7</span>,<span style="color:#666">1e4</span>))
-solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,CVODE_Adams<span style="color:#666"></span>())</code></pre></div>
-
-<p>(For those familiar with solving ODEs in MATLAB, this is similar to <code>ode113</code>)</p>
-
-<p>Both this and the <code>dopri</code> method from <a href="https://www.unige.ch/~hairer/software.html">Ernst Hairer&rsquo;s Fortran
-Suite</a> stall and fail to solve the
-equation. This happens because the ODE is
-<a href="https://en.wikipedia.org/wiki/Stiff_equation">stiff</a>, and thus methods with
-&ldquo;smaller stability regions&rdquo; will not be able to solve it appropriately (for more
-details, I suggest reading Hairer&rsquo;s Solving Ordinary Differential Equations II).
-On the other hand <code>KenCarp4()</code> to this problem, the equation is solved in a
-blink of an eye:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">sol<span style="color:#666"></span> <span style="color:#666">=</span> solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,KenCarp4<span style="color:#666"></span>())
-<span style="color:#a2f;font-weight:bold">using</span> Plots<span style="color:#666"></span>
-plot<span style="color:#666"></span>(sol<span style="color:#666"></span>,xscale<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">:</span>log10<span style="color:#666"></span>,tspan<span style="color:#666"></span><span style="color:#666">=</span>(<span style="color:#666">0.1</span>,<span style="color:#666">1e11</span>))</code></pre></div>
-
-<p><img src="https://user-images.githubusercontent.com/1814174/51388944-eb18e680-1af8-11e9-874f-09478759596e.png" alt="ROBER Plot" /></p>
-
-<p>This is just one example of subtlety in integration: Stabilizing explicit
-methods via PI-adaptive controllers, step prediction in implicit solvers, etc.
-are all intricate details that take a lot of time and testing to become
-efficient and robust. Different problems require different methods: <a href="https://docs.juliadiffeq.org/stable/solvers/dynamical_solve.html#Symplectic-Integrators-1">Symplectic
-integrators</a>
-are required to <a href="https://scicomp.stackexchange.com/questions/29149/what-does-symplectic-mean-in-reference-to-numerical-integrators-and-does-scip/29154#29154">adequately handle physical many problems without
-drift</a>,
-and tools like <a href="https://docs.juliadiffeq.org/stable/solvers/split_ode_solve.html#Implicit-Explicit-(IMEX)-ODE-1">IMEX
-integrators</a>
-are required to handle ODEs which <a href="https://www.youtube.com/watch?v=okGybBmihOE">come from partial differential
-equations</a>. Building a
-production-quality solver is thus an enormous undertaking and relatively few
-exist.</p>
-
-<p>Rather than building an ML-specific solver suite in parallel to one suitable for
-scientific computing, in Julia they are one and the same, meaning you can take
-advantage of all of these methods today.</p>
-
-<h2 id="what-kinds-of-differential-equations-are-there">What kinds of differential equations are there?</h2>
-
-<p>Ordinary differential equations are only one kind of differential equation. There
-are many additional features you can add to the structure of a differential equation.
-For example, the amount of bunnies in the future isn&rsquo;t dependent on the number
-of bunnies right now because it takes a non-zero amount of time for a parent
-to come to term after a child is incepted. Thus the birth rate of bunnies is
-actually due to the amount of bunnies in the past. Using a lag term in a
-differential equation&rsquo;s derivative makes this equation known as a delay
-differential equation (DDE). Since
-<a href="https://docs.juliadiffeq.org/stable/tutorials/dde_example.html">DifferentialEquations.jl handles DDEs</a>
-through the same interface as ODEs, it can be used as a layer in
-Flux as well. Here&rsquo;s an example:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> delay_lotka_volterra<span style="color:#666"></span>(du<span style="color:#666"></span>,u<span style="color:#666"></span>,h<span style="color:#666"></span>,p<span style="color:#666"></span>,t<span style="color:#666"></span>)
-  x<span style="color:#666"></span>, y<span style="color:#666"></span> <span style="color:#666">=</span> u<span style="color:#666"></span>
-  α<span style="color:#666"></span>, β<span style="color:#666"></span>, δ<span style="color:#666"></span>, <span style="color:#a2f">γ</span> <span style="color:#666">=</span> p<span style="color:#666"></span>
-  du<span style="color:#666"></span>[<span style="color:#666">1</span>] <span style="color:#666">=</span> dx<span style="color:#666"></span> <span style="color:#666">=</span> (α<span style="color:#666"></span> <span style="color:#666">-</span> β<span style="color:#666"></span><span style="color:#666">*</span>y<span style="color:#666"></span>)<span style="color:#666">*</span>h<span style="color:#666"></span>(p<span style="color:#666"></span>,t<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>]
-  du<span style="color:#666"></span>[<span style="color:#666">2</span>] <span style="color:#666">=</span> dy<span style="color:#666"></span> <span style="color:#666">=</span> (δ<span style="color:#666"></span><span style="color:#666">*</span>x<span style="color:#666"></span> <span style="color:#666">-</span> <span style="color:#a2f">γ</span>)<span style="color:#666">*</span>y<span style="color:#666"></span>
-<span style="color:#a2f;font-weight:bold">end</span>
-h<span style="color:#666"></span>(p<span style="color:#666"></span>,t<span style="color:#666"></span>) <span style="color:#666">=</span> ones<span style="color:#666"></span>(eltype<span style="color:#666"></span>(p<span style="color:#666"></span>),<span style="color:#666">2</span>)
-prob<span style="color:#666"></span> <span style="color:#666">=</span> DDEProblem<span style="color:#666"></span>(delay_lotka_volterra<span style="color:#666"></span>,[<span style="color:#666">1.0</span>,<span style="color:#666">1.0</span>],h<span style="color:#666"></span>,(<span style="color:#666">0.0</span>,<span style="color:#666">10.0</span>),constant_lags<span style="color:#666"></span><span style="color:#666">=</span>[<span style="color:#666">0.1</span>])
-
-p<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">2.2</span>, <span style="color:#666">1.0</span>, <span style="color:#666">2.0</span>, <span style="color:#666">0.4</span>]
-params<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>params<span style="color:#666"></span>(p<span style="color:#666"></span>)
-<span style="color:#a2f;font-weight:bold">function</span> predict_rd_dde<span style="color:#666"></span>()
-  concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,MethodOfSteps<span style="color:#666"></span>(Tsit5<span style="color:#666"></span>()),u0<span style="color:#666"></span>,p<span style="color:#666"></span>,sensealg<span style="color:#666"></span><span style="color:#666">=</span>TrackerAdjoint<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>]
-<span style="color:#a2f;font-weight:bold">end</span>
-loss_rd_dde<span style="color:#666"></span>() <span style="color:#666">=</span> sum<span style="color:#666"></span>(abs2<span style="color:#666"></span>,x<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span> <span style="color:#a2f;font-weight:bold">for</span> x<span style="color:#666"></span> <span style="color:#a2f">in</span> predict_rd_dde<span style="color:#666"></span>())
-loss_rd_dde<span style="color:#666"></span>()</code></pre></div>
-
-<p>The full code for this example, including generating an
-animation,
-<a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/dde.jl">can be found in the model-zoo</a></p>
-
-<p>Additionally we can add randomness to our differential equation to simulate
-how random events can cause extra births or more deaths than expected. This
-kind of equation is known as a stochastic differential equation (SDE).
-Since <a href="https://docs.juliadiffeq.org/stable/tutorials/sde_example.html">DifferentialEquations.jl handles SDEs</a>
-(and is currently the only library with adaptive stiff and non-stiff SDE integrators),
-these can be handled as a layer in Flux similarly. Here&rsquo;s a neural net layer
-with an SDE:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> lotka_volterra_noise<span style="color:#666"></span>(du<span style="color:#666"></span>,u<span style="color:#666"></span>,p<span style="color:#666"></span>,t<span style="color:#666"></span>)
-  du<span style="color:#666"></span>[<span style="color:#666">1</span>] <span style="color:#666">=</span> <span style="color:#666">0.1</span>u<span style="color:#666"></span>[<span style="color:#666">1</span>]
-  du<span style="color:#666"></span>[<span style="color:#666">2</span>] <span style="color:#666">=</span> <span style="color:#666">0.1</span>u<span style="color:#666"></span>[<span style="color:#666">2</span>]
-<span style="color:#a2f;font-weight:bold">end</span>
-prob<span style="color:#666"></span> <span style="color:#666">=</span> SDEProblem<span style="color:#666"></span>(lotka_volterra<span style="color:#666"></span>,lotka_volterra_noise<span style="color:#666"></span>,[<span style="color:#666">1.0</span>,<span style="color:#666">1.0</span>],(<span style="color:#666">0.0</span>,<span style="color:#666">10.0</span>))
-
-p<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">2.2</span>, <span style="color:#666">1.0</span>, <span style="color:#666">2.0</span>, <span style="color:#666">0.4</span>]
-params<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>params<span style="color:#666"></span>(p<span style="color:#666"></span>)
-<span style="color:#a2f;font-weight:bold">function</span> predict_rd_sde<span style="color:#666"></span>()
-  concrete_solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,SOSRI<span style="color:#666"></span>(),u0<span style="color:#666"></span>,p<span style="color:#666"></span>,saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)[<span style="color:#666">1</span>,<span style="color:#666">:</span>]
-<span style="color:#a2f;font-weight:bold">end</span>
-loss_rd_sde<span style="color:#666"></span>() <span style="color:#666">=</span> sum<span style="color:#666"></span>(abs2<span style="color:#666"></span>,x<span style="color:#666"></span><span style="color:#666">-</span><span style="color:#666">1</span> <span style="color:#a2f;font-weight:bold">for</span> x<span style="color:#666"></span> <span style="color:#a2f">in</span> predict_fd_sde<span style="color:#666"></span>())
-loss_rd_sde<span style="color:#666"></span>()</code></pre></div>
-
-<p>And we can train the neural net to watch it in action and find parameters to make
-the amount of bunnies close to constant:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">data<span style="color:#666"></span> <span style="color:#666">=</span> Iterators<span style="color:#666"></span><span style="color:#666">.</span>repeated<span style="color:#666"></span>((), <span style="color:#666">100</span>)
-opt<span style="color:#666"></span> <span style="color:#666">=</span> ADAM<span style="color:#666"></span>(<span style="color:#666">0.1</span>)
-cb<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">function</span> ()
-  display<span style="color:#666"></span>(loss_rd_sde<span style="color:#666"></span>())
-  display<span style="color:#666"></span>(plot<span style="color:#666"></span>(solve<span style="color:#666"></span>(remake<span style="color:#666"></span>(prob<span style="color:#666"></span>,p<span style="color:#666"></span><span style="color:#666">=</span>p<span style="color:#666"></span>),SOSRI<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>),ylim<span style="color:#666"></span><span style="color:#666">=</span>(<span style="color:#666">0</span>,<span style="color:#666">6</span>)))
-<span style="color:#a2f;font-weight:bold">end</span>
-
-<span style="color:#080;font-style:italic"># Display the ODE with the current parameter values.</span>
-cb<span style="color:#666"></span>()
-
-Flux<span style="color:#666"></span><span style="color:#666">.</span>train!<span style="color:#666"></span>(loss_rd_sde<span style="color:#666"></span>, params<span style="color:#666"></span>, data<span style="color:#666"></span>, opt<span style="color:#666"></span>, cb<span style="color:#666"></span> <span style="color:#666">=</span> cb<span style="color:#666"></span>)</code></pre></div>
-
-<p><img src="https://user-images.githubusercontent.com/1814174/51399524-2c6abf80-1b14-11e9-96ae-0192f7debd03.gif" alt="SDE NN Animation" /></p>
-
-<p><a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/sde.jl">This code can be found in the model-zoo</a></p>
-
-<p>And we can keep going. There are differential equations
-<a href="https://docs.juliadiffeq.org/stable/tutorials/discrete_stochastic_example.html">which are piecewise constant</a>
-used in biological simulations, or
-<a href="https://docs.juliadiffeq.org/stable/tutorials/jump_diffusion.html">jump diffusion equations from financial models</a>,
-and the solvers map right over to the Flux neural network framework through DiffEqFlux.jl.
-DiffEqFlux.jl uses only around ~100 lines of code to pull this all off.</p>
-
-<h2 id="implementing-the-neural-ode-layer-in-julia">Implementing the Neural ODE layer in Julia</h2>
-
-<p>Let&rsquo;s go all the way back for a second and now implement the neural ODE layer
-in Julia. Remember that this is simply an ODE where the derivative function
-is defined by a neural network itself. To do this, let&rsquo;s first define the
-neural net for the derivative. In Flux, we can define a multilayer perceptron
-with 1 hidden layer and a <code>tanh</code> activation function like:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">dudt<span style="color:#666"></span> <span style="color:#666">=</span> Chain<span style="color:#666"></span>(Dense<span style="color:#666"></span>(<span style="color:#666">2</span>,<span style="color:#666">50</span>,tanh<span style="color:#666"></span>),Dense<span style="color:#666"></span>(<span style="color:#666">50</span>,<span style="color:#666">2</span>))</code></pre></div>
-
-<p>To define a <code>NeuralODE</code> layer, we then just need to give
-it a timespan and use the <code>NeuralODE</code> function:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">tspan<span style="color:#666"></span> <span style="color:#666">=</span> (<span style="color:#666">0.0f0</span>,<span style="color:#666">25.0f0</span>)
-node<span style="color:#666"></span> <span style="color:#666">=</span> NeuralODE<span style="color:#666"></span>(dudt<span style="color:#666"></span>,tspan<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)</code></pre></div>
-
-<p>As a side note, to run this on the GPU, it is sufficient to make the initial
-condition and neural network be on the GPU. This will cause the entire ODE
-solver&rsquo;s internal operations to take place on the GPU without extra data
-transfers in the integration scheme. This looks like:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">node<span style="color:#666"></span> <span style="color:#666">=</span> NeuralODE<span style="color:#666"></span>(gpu<span style="color:#666"></span>(dudt<span style="color:#666"></span>),tspan<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">0.1</span>)</code></pre></div>
-
-<h2 id="understanding-the-neural-ode-layer-behavior-by-example">Understanding the Neural ODE layer behavior by example</h2>
-
-<p>Now let&rsquo;s use the neural ODE layer in an example to find out what it means.
-First, let&rsquo;s generate a time series of an ODE at evenly spaced time points.
-We&rsquo;ll use the test equation from the Neural ODE paper.</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">u0<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#0b0;font-weight:bold">Float32</span>[<span style="color:#666">2.</span>; <span style="color:#666">0.</span>]
-datasize<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#666">30</span>
-tspan<span style="color:#666"></span> <span style="color:#666">=</span> (<span style="color:#666">0.0f0</span>,<span style="color:#666">1.5f0</span>)
-
-<span style="color:#a2f;font-weight:bold">function</span> trueODEfunc<span style="color:#666"></span>(du<span style="color:#666"></span>,u<span style="color:#666"></span>,p<span style="color:#666"></span>,t<span style="color:#666"></span>)
-    true_A<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">-</span><span style="color:#666">0.1</span> <span style="color:#666">2.0</span>; <span style="color:#666">-</span><span style="color:#666">2.0</span> <span style="color:#666">-</span><span style="color:#666">0.1</span>]
-    du<span style="color:#666"></span> <span style="color:#666">.=</span> ((u<span style="color:#666"></span><span style="color:#666">.^</span><span style="color:#666">3</span>)<span style="color:#666">&#39;</span>true_A<span style="color:#666"></span>)<span style="color:#666">&#39;</span>
-<span style="color:#a2f;font-weight:bold">end</span>
-t<span style="color:#666"></span> <span style="color:#666">=</span> range<span style="color:#666"></span>(tspan<span style="color:#666"></span>[<span style="color:#666">1</span>],tspan<span style="color:#666"></span>[<span style="color:#666">2</span>],length<span style="color:#666"></span><span style="color:#666">=</span>datasize<span style="color:#666"></span>)
-prob<span style="color:#666"></span> <span style="color:#666">=</span> ODEProblem<span style="color:#666"></span>(trueODEfunc<span style="color:#666"></span>,u0<span style="color:#666"></span>,tspan<span style="color:#666"></span>)
-ode_data<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#0b0;font-weight:bold">Array</span>(solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span>t<span style="color:#666"></span>))</code></pre></div>
-
-<p>Now let&rsquo;s pit a neural ODE against this data. To do so, we
-will define a single layer neural network which just has the same neural ODE
-as before (but lower the tolerances to help it converge closer, makes for a
-better animation!):</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">dudt<span style="color:#666"></span> <span style="color:#666">=</span> Chain<span style="color:#666"></span>(x<span style="color:#666"></span> <span style="color:#666">-</span><span style="color:#666">&gt;</span> x<span style="color:#666"></span><span style="color:#666">.^</span><span style="color:#666">3</span>,
-             Dense<span style="color:#666"></span>(<span style="color:#666">2</span>,<span style="color:#666">50</span>,tanh<span style="color:#666"></span>),
-             Dense<span style="color:#666"></span>(<span style="color:#666">50</span>,<span style="color:#666">2</span>))
-ps<span style="color:#666"></span> <span style="color:#666">=</span> Flux<span style="color:#666"></span><span style="color:#666">.</span>params<span style="color:#666"></span>(dudt<span style="color:#666"></span>)
-n_ode<span style="color:#666"></span> <span style="color:#666">=</span> NeuralODE<span style="color:#666"></span>(dudt<span style="color:#666"></span>,tspan<span style="color:#666"></span>,Tsit5<span style="color:#666"></span>(),saveat<span style="color:#666"></span><span style="color:#666">=</span>t<span style="color:#666"></span>,reltol<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1e-7</span>,abstol<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1e-9</span>)</code></pre></div>
-
-<p>Notice that the <code>neural_ode</code> has the same timespan and <code>saveat</code> as the solution
-that generated the data. This means that given an <code>x</code> (and initial value), it
-will generate a guess for what it thinks the time series will be where the
-dynamics (the structure) is predicted by the internal neural network. Let&rsquo;s see
-what time series it gives before we train the network. Since the ODE
-has two-dependent variables, we will simplify the plot by only showing the first.
-The code for the plot is:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">pred<span style="color:#666"></span> <span style="color:#666">=</span> n_ode<span style="color:#666"></span>(u0<span style="color:#666"></span>) <span style="color:#080;font-style:italic"># Get the prediction using the correct initial condition</span>
-scatter<span style="color:#666"></span>(t<span style="color:#666"></span>,ode_data<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>],label<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b44">d</span><span style="color:#b44">a</span><span style="color:#b44">t</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span>)
-scatter!<span style="color:#666"></span>(t<span style="color:#666"></span>,Flux<span style="color:#666"></span><span style="color:#666">.</span>data<span style="color:#666"></span>(pred<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>]),label<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b44">p</span><span style="color:#b44">r</span><span style="color:#b44">e</span><span style="color:#b44">d</span><span style="color:#b44">i</span><span style="color:#b44">c</span><span style="color:#b44">t</span><span style="color:#b44">i</span><span style="color:#b44">o</span><span style="color:#b44">n</span><span style="color:#b44">&#34;</span>)</code></pre></div>
-
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta http-equiv=content-type  content="text/html; charset=utf-8" /> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." /> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."/> <meta property="og:title" content="The Julia Language"/> <meta property="og:image" content="/assets/images/julia-open-graph.png"/> <meta property="og:description" content="Official website for the Julia programming language"/> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css" /> <link rel=stylesheet  href="/css/app.css" /> <link rel=stylesheet  href="/css/fonts.css" /> <link rel=stylesheet  href="/css/franklin.css" /> <script async defer src="/libs/buttons.js"></script> <!-- --> <!-- NOTE: google tracking, off for now <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> --> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/katex/katex.min.css"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>DiffEqFlux.jl – A Julia Library for Neural Differential Equations</title> <style> .container ul li p {margin-bottom: 0;} </style> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/" id=logo > <img src="/assets/infra/logo.svg" height=55  width=85  alt="JuliaLang Logo"/> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mr-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learning</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> <li class="nav-item donate flex-md-fill text-md-center"> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </ul> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>DiffEqFlux.jl – A Julia Library for Neural Differential Equations</h1> <h3> <span style="font-weight: lighter;"> 18 January 2019 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit </span> </h3> </div> <div class=container > <p>Translations: <a href="/blog/2019/04/fluxdiffeq-zh_tw/&#93;Traditional Chinese">Traditional Chinese</a></p> <p>In this blog post we will show you how to easily, efficiently, and robustly use differential equation &#40;DiffEq&#41; solvers with neural networks in Julia.</p> <p><img src="https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif" alt="Flux ODE Training Animation" /></p> <p>The <a href="https://arxiv.org/abs/1806.07366">Neural Ordinary Differential Equations</a> paper has attracted significant attention even before it was awarded one of the Best Papers of NeurIPS 2018. The paper already gives many exciting results combining these two disparate fields, but this is only the beginning: neural networks and differential equations were born to be together. This blog post, a collaboration between authors of <a href="https://github.com/FluxML/Flux.jl">Flux</a>, <a href="https://github.com/JuliaDiffEq/DifferentialEquations.jl">DifferentialEquations.jl</a> and the Neural ODEs paper, will explain why, outline current and future directions for this work, and start to give a sense of what&#39;s possible with state-of-the-art tools.</p> <p>The advantages of the Julia <a href="https://github.com/JuliaDiffEq/DifferentialEquations.jl">DifferentialEquations.jl</a> library for numerically solving differential equations have been <a href="https://www.stochasticlifestyle.com/comparison-differential-equation-solver-suites-matlab-r-julia-python-c-fortran/">discussed in detail in other posts</a>. Along with its <a href="https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl">extensive benchmarking against classic Fortran methods</a>, it includes other modern features such as <a href="https://www.stochasticlifestyle.com/solving-systems-stochastic-pdes-using-gpus-julia/">GPU acceleration</a>, <a href="https://docs.juliadiffeq.org/latest/features/monte_carlo.html">distributed &#40;multi-node&#41; parallelism</a>, and <a href="https://docs.juliadiffeq.org/latest/features/callback_functions.html">sophisticated event handling</a>. Recently, these native Julia differential equation solvers have successfully been embedded into the <a href="https://github.com/FluxML/Flux.jl/">Flux</a> deep learning package, to allow the use of a full suite of highly tested and optimized DiffEq methods within neural networks. Using the new package <a href="https://github.com/JuliaDiffEq/DiffEqFlux.jl/">DiffEqFlux.jl</a>, we will show the reader how to easily add differential equation layers to neural networks using a range of differential equations models, including stiff ordinary differential equations, stochastic differential equations, delay differential equations, and hybrid &#40;discontinuous&#41; differential equations.</p> <p>This is the first toolbox to combine a fully-featured differential equations solver library and neural networks seamlessly together. The blog post will also show why the flexibility of a full differential equation solver suite is necessary. With the ability to fuse neural networks with ODEs, SDEs, DAEs, DDEs, stiff equations, and different methods for adjoint sensitivity calculations, this is a large generalization of the neural ODEs work and will allow researchers to better explore the problem domain.</p> <p>&#40;Note: If you are interested in this work and are an undergraduate or graduate student, we have <a href="/soc/ideas-page">Google Summer of Code projects available in this area</a>. This <a href="https://developers.google.com/open-source/gsoc/help/student-stipends">pays quite well over the summer</a>. Please join the <a href="https://slackinvite.julialang.org/">Julia Slack</a> and the #jsoc channel to discuss in more detail.&#41;</p> <div class=franklin-toc ><ol><li><a href="#what_do_differential_equations_have_to_do_with_machine_learning">What do differential equations have to do with machine learning?</a><li><a href="#what_is_the_neural_ordinary_differential_equation_ode">What is the Neural Ordinary Differential Equation &#40;ODE&#41;?</a><li><a href="#how_do_you_solve_an_ode">How do you solve an ODE?</a><li><a href="#lets_put_an_ode_into_a_neural_net_framework">Let&#39;s Put an ODE Into a Neural Net Framework&#33;</a><li><a href="#why_is_a_full_ode_solver_suite_necessary_for_doing_this_well">Why is a full ODE solver suite necessary for doing this well?</a><li><a href="#what_kinds_of_differential_equations_are_there">What kinds of differential equations are there?</a><li><a href="#implementing_the_neural_ode_layer_in_julia">Implementing the Neural ODE layer in Julia</a><li><a href="#understanding_the_neural_ode_layer_behavior_by_example">Understanding the Neural ODE layer behavior by example</a><li><a href="#the_core_technical_challenge_backpropagation_through_differential_equation_solvers">The core technical challenge: backpropagation through differential equation solvers</a><li><a href="#conclusion">Conclusion</a></ol></div> <h2 id=what_do_differential_equations_have_to_do_with_machine_learning ><a href="#what_do_differential_equations_have_to_do_with_machine_learning">What do differential equations have to do with machine learning?</a></h2> <p>The first question someone not familiar with the field might ask is, why are differential equations important in this context? The simple answer is that a differential equation is a way to specify an arbitrary nonlinear transform by mathematically encoding prior structural assumptions.</p> <p>Let&#39;s unpack that statement a bit. There are three common ways to define a nonlinear transform: direct modeling, machine learning, and differential equations. Directly writing down the nonlinear function only works if you know the exact functional form that relates the input to the output. However, in many cases, such exact relations are not known <em>a priori</em>. So how do you do nonlinear modeling if you don&#39;t know the nonlinearity?</p> <p>One way to address this is to use machine learning. In a typical machine learning problem, you are given some input <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> and you want to predict an output <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>. This generation of a prediction <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> from <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> is a machine learning model &#40;let&#39;s call it <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">ML</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span></span></span></span>&#41;. During training, we attempt to adjust the parameters of <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">ML</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span></span></span></span> so that it generates accurate predictions. We can then use <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">ML</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span></span></span></span> for inference &#40;i.e., produce <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>s for novel inputs <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>&#41;. This is just a nonlinear transformation <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>M</mi><mi>L</mi><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">y=ML(x)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span>. The reason <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">ML</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span></span></span></span> is interesting is because its form is basic but adapts to the data itself. For example, a simple neural network &#40;in design matrix form&#41; with sigmoid activation functions is simply matrix multiplications followed by application of sigmoid functions. Specifically, <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>L</mi><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo><mo>=</mo><mi>σ</mi><mo stretchy=false >(</mo><msub><mi>W</mi><mn>3</mn></msub><mo>⋅</mo><mi>σ</mi><mo stretchy=false >(</mo><msub><mi>W</mi><mn>2</mn></msub><mo>⋅</mo><mi>σ</mi><mo stretchy=false >(</mo><msub><mi>W</mi><mn>1</mn></msub><mo>⋅</mo><mi>x</mi><mo stretchy=false >)</mo><mo stretchy=false >)</mo><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">ML(x)=\sigma(W_{3}\cdot\sigma(W_{2}\cdot\sigma(W_{1}\cdot x)))</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class=mopen >(</span><span class=mord ><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >⋅</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class=mopen >(</span><span class=mord ><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >⋅</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class=mopen >(</span><span class=mord ><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >⋅</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class=mclose >)</span><span class=mclose >)</span><span class=mclose >)</span></span></span></span></span> is a three-layer deep neural network, where <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mo stretchy=false >(</mo><msub><mi>W</mi><mn>1</mn></msub><mo separator=true >,</mo><msub><mi>W</mi><mn>2</mn></msub><mo separator=true >,</mo><msub><mi>W</mi><mn>3</mn></msub><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">W=(W_1,W_2,W_3)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class=mopen >(</span><span class=mord ><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mpunct >,</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mpunct >,</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mclose >)</span></span></span></span> are learnable parameters. You then choose <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span> such that <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>L</mi><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo><mo>=</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">ML(x)=y</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> reasonably fits the function you wanted it to fit. The theory and practice of machine learning confirms that this is a good way to learn nonlinearities. For example, the Universal Approximation Theorem states that, for enough layers or enough parameters &#40;i.e. sufficiently large <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">W_{i}</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.83333em;vertical-align:-0.15em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> matrices&#41;, <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>L</mi><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">ML(x)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span> can approximate any nonlinear function sufficiently close &#40;subject to common constraints&#41;.</p> <p>So great, this always works&#33; But it has some caveats, the main being that it has to learn everything about the nonlinear transform directly from the data. In many cases we do not know the full nonlinear equation, but we may know details about its structure. For example, the nonlinear function could be the population of rabbits in the forest, and we might know that their rate of births is dependent on the current population. Thus instead of starting from nothing, we may want to use this known <em>a priori</em> relation and a set of parameters that defines it. For the rabbits, let&#39;s say that we want to learn</p> <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>rabbits tomorrow</mtext><mo>=</mo><mtext>Model</mtext><mo stretchy=false >(</mo><mtext>rabbits today</mtext><mo stretchy=false >)</mo><mi mathvariant=normal >.</mi></mrow><annotation encoding="application/x-tex">\text{rabbits tomorrow} = \text{Model}(\text{rabbits today}).</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class=mord >rabbits tomorrow</span></span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class=mord >Model</span></span><span class=mopen >(</span><span class="mord text"><span class=mord >rabbits today</span></span><span class=mclose >)</span><span class=mord >.</span></span></span></span></span> <p>In this case, we have prior knowledge of the rate of births being dependent on the current population. The way to mathematically state this structural assumption is via a differential equation. Here, what we are saying is that the birth rate of the rabbit population at a given time point increases when we have more rabbits. The simplest way of encoding that is</p> <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext>rabbits</mtext><mo mathvariant=normal  lspace=0em  rspace=0em >′</mo></msup><mo stretchy=false >(</mo><mi>t</mi><mo stretchy=false >)</mo><mo>=</mo><mi>α</mi><mo>⋅</mo><mtext>rabbits</mtext><mo stretchy=false >(</mo><mi>t</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">\text{rabbits}&#x27;(t) = \alpha\cdot \text{rabbits}(t)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1.0862319999999999em;vertical-align:-0.25em;"></span><span class=mord ><span class="mord text"><span class=mord >rabbits</span></span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.836232em;"><span style="top:-3.1473400000000002em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class=mopen >(</span><span class="mord mathdefault">t</span><span class=mclose >)</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.44445em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >⋅</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class=mord >rabbits</span></span><span class=mopen >(</span><span class="mord mathdefault">t</span><span class=mclose >)</span></span></span></span></span> <p>where <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span> is some learnable constant. If you know your calculus, the solution here is exponential growth from the starting point with a growth rate <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>: <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>rabbits</mtext><mo stretchy=false >(</mo><msub><mi>t</mi><mtext>start</mtext></msub><mo stretchy=false >)</mo><msup><mi>e</mi><mrow><mo stretchy=false >(</mo><mi>α</mi><mi>t</mi><mo stretchy=false >)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\text{rabbits}(t_\text{start})e^{(\alpha t)}</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1.138em;vertical-align:-0.25em;"></span><span class="mord text"><span class=mord >rabbits</span></span><span class=mopen >(</span><span class=mord ><span class="mord mathdefault">t</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">start</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mclose >)</span><span class=mord ><span class="mord mathdefault">e</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.0037em;">α</span><span class="mord mathdefault mtight">t</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span>. But notice that we didn&#39;t need to know the solution to the differential equation to validate the idea: we encoded the structure of the model and mathematics itself then outputs what the solution should be. Because of this, differential equations have been the tool of choice in most science. For example, physical laws tell you how electrical quantities emit forces &#40;<a href="https://en.wikipedia.org/wiki/Maxwell&#37;27s_equations">Maxwell&#39;s Equations</a>&#41;. These are essentially equations of how things change and thus &quot;where things will be&quot; is the solution to a differential equation. But in recent decades this application has gone much further, with fields like systems biology learning about cellular interactions by encoding known biological structures and mathematically enumerating our assumptions or in targeted drug dosage through PK/PD modelling in systems pharmacology.</p> <p>So as our machine learning models grow and are hungry for larger and larger amounts of data, differential equations have become an attractive option for specifying nonlinearities in a learnable &#40;via the parameters&#41; but constrained form. They are essentially a way of incorporating prior domain-specific knowledge of the structural relations between the inputs and outputs. Given this way of looking at the two, both methods trade off advantages and disadvantages, making them complementary tools for modeling. It seems like a clear next step in scientific practice to start putting them together in new and exciting ways&#33;</p> <h2 id=what_is_the_neural_ordinary_differential_equation_ode ><a href="#what_is_the_neural_ordinary_differential_equation_ode">What is the Neural Ordinary Differential Equation &#40;ODE&#41;?</a></h2> <p>The neural ordinary differential equation is one of many ways to put these two subjects together. The simplest way of explaining it is that, instead of learning the nonlinear transformation directly, we wish to learn the structures of the nonlinear transformation. Thus instead of doing <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>M</mi><mi>L</mi><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">y=ML(x)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span>, we put the machine learning model on the derivative, <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo mathvariant=normal  lspace=0em  rspace=0em >′</mo></msup><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo><mo>=</mo><mi>M</mi><mi>L</mi><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">y&#x27;(x) = ML(x)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1.001892em;vertical-align:-0.25em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span>, and now solve the ODE. Why would you ever do this? Well, one motivation is that defining the model in this way and then solving the ODE using the simplest and most error prone method, the Euler method, what you get is equivalent to a <a href="https://arxiv.org/abs/1512.03385">residual neural network</a>. The way the Euler method works is based on the fact that <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo mathvariant=normal  lspace=0em  rspace=0em >′</mo></msup><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo><mo>=</mo><mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">y&#x27;(x) = \frac{dy}{dx}</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1.001892em;vertical-align:-0.25em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:1.277216em;vertical-align:-0.345em;"></span><span class=mord ><span class="mopen nulldelimiter"></span><span class=mfrac ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class=pstrut  style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">x</span></span></span></span><span style="top:-3.23em;"><span class=pstrut  style="height:3em;"></span><span class=frac-line  style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class=pstrut  style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>, thus</p> <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant=normal >Δ</mi><mi>y</mi><mo>=</mo><mo stretchy=false >(</mo><msub><mi>y</mi><mtext>next</mtext></msub><mo>−</mo><msub><mi>y</mi><mtext>prev</mtext></msub><mo stretchy=false >)</mo><mo>=</mo><mi mathvariant=normal >Δ</mi><mi>x</mi><mo>⋅</mo><mi>M</mi><mi>L</mi><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">\Delta y = (y_\text{next} - y_\text{prev}) = \Delta x\cdot ML(x)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class=mord >Δ</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class=mopen >(</span><span class=mord ><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">next</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >−</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:1.036108em;vertical-align:-0.286108em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">prev</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.286108em;"><span></span></span></span></span></span></span><span class=mclose >)</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.68333em;vertical-align:0em;"></span><span class=mord >Δ</span><span class="mord mathdefault">x</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >⋅</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span></span> <p>which implies that</p> <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>y</mi><mi>i</mi></msub><mo>+</mo><mi mathvariant=normal >Δ</mi><mi>x</mi><mo>⋅</mo><mi>M</mi><mi>L</mi><mo stretchy=false >(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy=false >)</mo><mi mathvariant=normal >.</mi></mrow><annotation encoding="application/x-tex">y_{i+1} = y_{i} + \Delta x\cdot ML(x_{i}).</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.638891em;vertical-align:-0.208331em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.208331em;"><span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >+</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:0.68333em;vertical-align:0em;"></span><span class=mord >Δ</span><span class="mord mathdefault">x</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >⋅</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">L</span><span class=mopen >(</span><span class=mord ><span class="mord mathdefault">x</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mclose >)</span><span class=mord >.</span></span></span></span></span> <p>This looks similar in structure to a ResNet, one of the most successful image processing models. The insight of the the Neural ODEs paper was that increasingly deep and powerful ResNet-like models effectively approximate a kind of &quot;infinitely deep&quot; model as each layer tends to zero. Rather than adding more layers, we can just model the differential equation directly and then solve it using a purpose-built ODE solver. Numerical ODE solvers are a science that goes all the way back to the first computers, and modern ones can adaptively choose step sizes <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant=normal >Δ</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\Delta x</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.68333em;vertical-align:0em;"></span><span class=mord >Δ</span><span class="mord mathdefault">x</span></span></span></span> and use high order approximations to drastically reduce the number of actual steps required. And as it turns out, this works well in practice, too.</p> <h2 id=how_do_you_solve_an_ode ><a href="#how_do_you_solve_an_ode">How do you solve an ODE?</a></h2> <p>First, how do you numerically specify and solve an ODE? If you&#39;re new to solving ODEs, you may want to watch our <a href="https://www.youtube.com/watch?v&#61;KPEqYtEd-zY">video tutorial on solving ODEs in Julia</a> and look through the <a href="https://docs.juliadiffeq.org/latest/tutorials/ode_example.html">ODE tutorial of the DifferentialEquations.jl documentation</a>. The idea is that you define an <code>ODEProblem</code> via a derivative equation <code>u&#39;&#61;f&#40;u,p,t&#41;</code>, and provide an initial condition <code>u0</code>, and a timespan <code>tspan</code> to solve over, and specify the parameters <code>p</code>.</p> <p>For example, the <a href="https://en.wikipedia.org/wiki/Lotka&#37;E2&#37;80&#37;93Volterra_equations">Lotka-Volterra equations describe the dynamics of the population of rabbits and wolves</a>. They can be written as:</p> <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo mathvariant=normal >′</mo></msup><mo>=</mo><mi>α</mi><mi>x</mi><mo>+</mo><mi>β</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">x^\prime = \alpha x + \beta x y</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.801892em;vertical-align:0em;"></span><span class=mord ><span class="mord mathdefault">x</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.801892em;"><span style="top:-3.113em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mord mathdefault">x</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >+</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span></span> <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo mathvariant=normal >′</mo></msup><mo>=</mo><mo>−</mo><mi>δ</mi><mi>y</mi><mo>+</mo><mi>γ</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">y^\prime = -\delta y + \gamma x y</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.996332em;vertical-align:-0.19444em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.801892em;"><span style="top:-3.113em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class=mord >−</span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >+</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span></span> <p>and encoded in Julia like: <pre><code class="julia hljs"><span class=hljs-keyword >using</span> DifferentialEquations
+<span class=hljs-keyword >function</span> lotka_volterra(du,u,p,t)
+  x, y = u
+  α, β, δ, <span class=hljs-literal >γ</span> = p
+  du[<span class=hljs-number >1</span>] = dx = α*x - β*x*y
+  du[<span class=hljs-number >2</span>] = dy = -δ*y + <span class=hljs-literal >γ</span>*x*y
+<span class=hljs-keyword >end</span>
+u0 = [<span class=hljs-number >1.0</span>,<span class=hljs-number >1.0</span>]
+tspan = (<span class=hljs-number >0.0</span>,<span class=hljs-number >10.0</span>)
+p = [<span class=hljs-number >1.5</span>,<span class=hljs-number >1.0</span>,<span class=hljs-number >3.0</span>,<span class=hljs-number >1.0</span>]
+prob = ODEProblem(lotka_volterra,u0,tspan,p)</code></pre> Then to solve the differential equations, you can simply call <code>solve</code> on the <code>prob</code>: <pre><code class="julia hljs">sol = solve(prob)
+<span class=hljs-keyword >using</span> Plots
+plot(sol)</code></pre> <img src="https://user-images.githubusercontent.com/1814174/51388169-9a07f300-1af6-11e9-8c6c-83c41e81d11c.png" alt="LV Solution Plot" /></p> <p>One last thing to note is that we can make our initial condition &#40;<code>u0</code>&#41; and time spans &#40;<code>tspans</code>&#41; to be functions of the parameters &#40;the elements of <code>p</code>&#41;. For example, we can define the <code>ODEProblem</code>:</p> <pre><code class="julia hljs">u0_f(p,t0) = [p[<span class=hljs-number >2</span>],p[<span class=hljs-number >4</span>]]
+tspan_f(p) = (<span class=hljs-number >0.0</span>,<span class=hljs-number >10</span>*p[<span class=hljs-number >4</span>])
+p = [<span class=hljs-number >1.5</span>,<span class=hljs-number >1.0</span>,<span class=hljs-number >3.0</span>,<span class=hljs-number >1.0</span>]
+prob = ODEProblem(lotka_volterra,u0_f,tspan_f,p)</code></pre> <p>In this form, everything about the problem is determined by the parameter vector &#40;<code>p</code>, referred to as <code>θ</code> in associated literature&#41;. The utility of this will be seen later.</p> <p>DifferentialEquations.jl has many powerful options for customising things like accuracy, tolerances, solver methods, events and more; check out <a href="https://docs.juliadiffeq.org/latest/">the docs</a> for more details on how to use it in more advanced ways.</p> <h2 id=lets_put_an_ode_into_a_neural_net_framework ><a href="#lets_put_an_ode_into_a_neural_net_framework">Let&#39;s Put an ODE Into a Neural Net Framework&#33;</a></h2> <p>To understand embedding an ODE into a neural network, let&#39;s look at what a neural network layer actually is. A layer is really just a <em>differentiable function</em> which takes in a vector of size <code>n</code> and spits out a new vector of size <code>m</code>. That&#39;s it&#33; Layers have traditionally been simple functions like matrix multiply, but in the spirit of <a href="/blog/2018/12/ml-language-compiler">differentiable programming</a> people are increasingly experimenting with much more complex functions, such as ray tracers and physics engines.</p> <p>Turns out that differential equations solvers fit this framework, too: A solve takes in some vector <code>p</code> &#40;which might include parameters like the initial starting point&#41;, and outputs some new vector, the solution. Moreover it&#39;s differentiable, which means we can put it straight into a larger differentiable program. This larger program can happily include neural networks, and we can keep using standard optimisation techniques like ADAM to optimise their weights.</p> <p>DiffEqFlux.jl makes it convenient to do just this; let&#39;s take it for a spin. We&#39;ll start by solving an equation as before, without gradients.</p> <pre><code class="julia hljs">p = [<span class=hljs-number >1.5</span>,<span class=hljs-number >1.0</span>,<span class=hljs-number >3.0</span>,<span class=hljs-number >1.0</span>]
+prob = ODEProblem(lotka_volterra,u0,tspan,p)
+sol = solve(prob,Tsit5(),saveat=<span class=hljs-number >0.1</span>)
+A = sol[<span class=hljs-number >1</span>,:] <span class=hljs-comment ># length 101 vector</span></code></pre> <p>Let&#39;s plot <code>&#40;t,A&#41;</code> over the ODE&#39;s solution to see what we got:</p> <pre><code class="julia hljs">plot(sol)
+t = <span class=hljs-number >0</span>:<span class=hljs-number >0.1</span>:<span class=hljs-number >10.0</span>
+scatter!(t,A)</code></pre> <p><img src="https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png" alt="Data points plot" /></p> <p>The most basic differential equation layer is <code>diffeq_rd</code>, which does the same thing with a slightly altered syntax. <code>diffeq_rd</code> takes in parameters <code>p</code> for the integrand, puts it in the differential equation defined by <code>prob</code>, and solves it with the chosen arguments &#40;solver, tolerance, etc&#41;. For example:</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Flux, DiffEqFlux
+diffeq_rd(p,prob,Tsit5(),saveat=<span class=hljs-number >0.1</span>)</code></pre> <p>The nice thing about <code>diffeq_rd</code> is that it takes care of the type handling necessary to make it compatible with the neural network framework &#40;here Flux&#41;. To show this, let&#39;s define a neural network with the function as our single layer, and then a loss function that is the squared distance of the output values from <code>1</code>. In Flux, this looks like:</p> <pre><code class="julia hljs">p = param([<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>]) <span class=hljs-comment ># Initial Parameter Vector</span>
+params = Flux.Params([p])
+
+<span class=hljs-keyword >function</span> predict_rd() <span class=hljs-comment ># Our 1-layer neural network</span>
+  diffeq_rd(p,prob,Tsit5(),saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:]
+<span class=hljs-keyword >end</span>
+
+loss_rd() = sum(abs2,x-<span class=hljs-number >1</span> <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> predict_rd()) <span class=hljs-comment ># loss function</span></code></pre> <p>Now we tell Flux to train the neural network by running a 100 epoch to minimise our loss function &#40;<code>loss_rd&#40;&#41;</code>&#41; and thus obtain the optimized parameters:</p> <pre><code class="julia hljs">data = Iterators.repeated((), <span class=hljs-number >100</span>)
+opt = ADAM(<span class=hljs-number >0.1</span>)
+cb = <span class=hljs-keyword >function</span> () <span class=hljs-comment >#callback function to observe training</span>
+  display(loss_rd())
+  <span class=hljs-comment ># using `remake` to re-create our `prob` with current parameters `p`</span>
+  display(plot(solve(remake(prob,p=Flux.data(p)),Tsit5(),saveat=<span class=hljs-number >0.1</span>),ylim=(<span class=hljs-number >0</span>,<span class=hljs-number >6</span>)))
+<span class=hljs-keyword >end</span>
+
+<span class=hljs-comment ># Display the ODE with the initial parameter values.</span>
+cb()
+
+Flux.train!(loss_rd, params, data, opt, cb = cb)</code></pre> <p>The result of this is the animation shown at the top. <a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/ode.jl">This code can be found in the model-zoo</a></p> <p>Flux finds the parameters of the neural network &#40;<code>p</code>&#41; which minimize the cost function, i.e. it trains the neural network: it just so happens that the forward pass of the neural network includes solving an ODE. Since our cost function put a penalty whenever the number of rabbits was far from 1, our neural network found parameters where our population of rabbits and wolves are both constant 1.</p> <p>Now that we have solving ODEs as just a layer, we can add it anywhere. For example, the multilayer perceptron is written in Flux as</p> <pre><code class="julia hljs">m = Chain(
+  Dense(<span class=hljs-number >28</span>^<span class=hljs-number >2</span>, <span class=hljs-number >32</span>, relu),
+  Dense(<span class=hljs-number >32</span>, <span class=hljs-number >10</span>),
+  softmax)</code></pre> <p>and if we had an appropriate ODE which took a parameter vector of the right size, we can stick it right in there:</p> <pre><code class="julia hljs">m = Chain(
+  Dense(<span class=hljs-number >28</span>^<span class=hljs-number >2</span>, <span class=hljs-number >32</span>, relu),
+  <span class=hljs-comment ># this would require an ODE of 32 parameters</span>
+  p -&gt; diffeq_rd(p,prob,Tsit5(),saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:],
+  Dense(<span class=hljs-number >32</span>, <span class=hljs-number >10</span>),
+  softmax)</code></pre> <p>or we can stick it into a convolutional neural network, where the previous layers define the initial condition for the ODE:</p> <pre><code class="julia hljs">m = Chain(
+  Conv((<span class=hljs-number >2</span>,<span class=hljs-number >2</span>), <span class=hljs-number >1</span>=&gt;<span class=hljs-number >16</span>, relu),
+  x -&gt; maxpool(x, (<span class=hljs-number >2</span>,<span class=hljs-number >2</span>)),
+  Conv((<span class=hljs-number >2</span>,<span class=hljs-number >2</span>), <span class=hljs-number >16</span>=&gt;<span class=hljs-number >8</span>, relu),
+  x -&gt; maxpool(x, (<span class=hljs-number >2</span>,<span class=hljs-number >2</span>)),
+  x -&gt; reshape(x, :, size(x, <span class=hljs-number >4</span>)),
+  x -&gt; diffeq_rd(p,prob,Tsit5(),saveat=<span class=hljs-number >0.1</span>,u0=x)[<span class=hljs-number >1</span>,:],
+  Dense(<span class=hljs-number >288</span>, <span class=hljs-number >10</span>), softmax) |&gt; gpu</code></pre> <p>As long as you can write down the forward pass, we can take any parameterised, differentiable program and optimise it. The world is your oyster.</p> <h2 id=why_is_a_full_ode_solver_suite_necessary_for_doing_this_well ><a href="#why_is_a_full_ode_solver_suite_necessary_for_doing_this_well">Why is a full ODE solver suite necessary for doing this well?</a></h2> <p>Where we have combined an existing solver suite and deep learning library, the excellent <a href="https://github.com/rtqichen/torchdiffeq">torchdiffeq</a> project takes an alternative approach, instead implementing solver methods directly in PyTorch, including an adaptive Runge Kutta 4-5 &#40;<code>dopri5</code>&#41; and an Adams-Bashforth-Moulton method &#40;<code>adams</code>&#41;. However, while their approach is very effective for certain kinds of models, not having access to a full solver suite is limiting.</p> <p>Consider the following example, the <a href="https://www.radford.edu/~thompson/vodef90web/problems/demosnodislin/Single/DemoRobertson/demorobertson.pdf">ROBER ODE</a>. The most well-tested &#40;and optimized&#41; implementation of an Adams-Bashforth-Moulton method is the <a href="https://computation.llnl.gov/projects/sundials">CVODE integrator in the C&#43;&#43; package SUNDIALS</a> &#40;a derivative of the classic LSODE&#41;. Let&#39;s use DifferentialEquations.jl to call CVODE with its Adams method and have it solve the ODE for us:</p> <pre><code class="julia hljs">rober = <span class=hljs-meta >@ode_def</span> Rober <span class=hljs-keyword >begin</span>
+  dy₁ = -k₁*y₁+k₃*y₂*y₃
+  dy₂ =  k₁*y₁-k₂*y₂^<span class=hljs-number >2</span>-k₃*y₂*y₃
+  dy₃ =  k₂*y₂^<span class=hljs-number >2</span>
+<span class=hljs-keyword >end</span> k₁ k₂ k₃
+prob = ODEProblem(rober,[<span class=hljs-number >1.0</span>;<span class=hljs-number >0.0</span>;<span class=hljs-number >0.0</span>],(<span class=hljs-number >0.0</span>,<span class=hljs-number >1e11</span>),(<span class=hljs-number >0.04</span>,<span class=hljs-number >3e7</span>,<span class=hljs-number >1e4</span>))
+solve(prob,CVODE_Adams())</code></pre> <p>&#40;For those familiar with solving ODEs in MATLAB, this is similar to <code>ode113</code>&#41;</p> <p>Both this and the <code>dopri</code> method from <a href="https://www.unige.ch/~hairer/software.html">Ernst Hairer&#39;s Fortran Suite</a> stall and fail to solve the equation. This happens because the ODE is <a href="https://en.wikipedia.org/wiki/Stiff_equation">stiff</a>, and thus methods with &quot;smaller stability regions&quot; will not be able to solve it appropriately &#40;for more details, I suggest reading Hairer&#39;s Solving Ordinary Differential Equations II&#41;. On the other hand <code>KenCarp4&#40;&#41;</code> to this problem, the equation is solved in a blink of an eye:</p> <pre><code class="julia hljs">sol = solve(prob,KenCarp4())
+<span class=hljs-keyword >using</span> Plots
+plot(sol,xscale=:log10,tspan=(<span class=hljs-number >0.1</span>,<span class=hljs-number >1e11</span>))</code></pre> <p><img src="https://user-images.githubusercontent.com/1814174/51388944-eb18e680-1af8-11e9-874f-09478759596e.png" alt="ROBER Plot" /></p> <p>This is just one example of subtlety in integration: Stabilizing explicit methods via PI-adaptive controllers, step prediction in implicit solvers, etc. are all intricate details that take a lot of time and testing to become efficient and robust. Different problems require different methods: <a href="https://docs.juliadiffeq.org/latest/solvers/dynamical_solve.html#Symplectic-Integrators-1">Symplectic integrators</a> are required to <a href="https://scicomp.stackexchange.com/questions/29149/what-does-symplectic-mean-in-reference-to-numerical-integrators-and-does-scip/29154#29154">adequately handle physical many problems without drift</a>, and tools like <a href="https://docs.juliadiffeq.org/latest/solvers/split_ode_solve.html#Implicit-Explicit-&#40;IMEX&#41;-ODE-1">IMEX integrators</a> are required to handle ODEs which <a href="https://www.youtube.com/watch?v&#61;okGybBmihOE">come from partial differential equations</a>. Building a production-quality solver is thus an enormous undertaking and relatively few exist.</p> <p>Rather than building an ML-specific solver suite in parallel to one suitable for scientific computing, in Julia they are one and the same, meaning you can take advantage of all of these methods today.</p> <h2 id=what_kinds_of_differential_equations_are_there ><a href="#what_kinds_of_differential_equations_are_there">What kinds of differential equations are there?</a></h2> <p>Ordinary differential equations are only one kind of differential equation. There are many additional features you can add to the structure of a differential equation. For example, the amount of bunnies in the future isn&#39;t dependent on the number of bunnies right now because it takes a non-zero amount of time for a parent to come to term after a child is incepted. Thus the birth rate of bunnies is actually due to the amount of bunnies in the past. Using a lag term in a differential equation&#39;s derivative makes this equation known as a delay differential equation &#40;DDE&#41;. Since <a href="https://docs.juliadiffeq.org/latest/tutorials/dde_example.html">DifferentialEquations.jl handles DDEs</a> through the same interface as ODEs, it can be used as a layer in Flux as well. Here&#39;s an example:</p> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> delay_lotka_volterra(du,u,h,p,t)
+  x, y = u
+  α, β, δ, <span class=hljs-literal >γ</span> = p
+  du[<span class=hljs-number >1</span>] = dx = (α - β*y)*h(p,t-<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>]
+  du[<span class=hljs-number >2</span>] = dy = (δ*x - <span class=hljs-literal >γ</span>)*y
+<span class=hljs-keyword >end</span>
+h(p,t) = ones(eltype(p),<span class=hljs-number >2</span>)
+prob = DDEProblem(delay_lotka_volterra,[<span class=hljs-number >1.0</span>,<span class=hljs-number >1.0</span>],h,(<span class=hljs-number >0.0</span>,<span class=hljs-number >10.0</span>),constant_lags=[<span class=hljs-number >0.1</span>])
+
+p = param([<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>])
+params = Flux.Params([p])
+<span class=hljs-keyword >function</span> predict_rd_dde()
+  diffeq_rd(p,prob,MethodOfSteps(Tsit5()),saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:]
+<span class=hljs-keyword >end</span>
+loss_rd_dde() = sum(abs2,x-<span class=hljs-number >1</span> <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> predict_rd_dde())
+loss_rd_dde()</code></pre> <p>The full code for this example, including generating an animation, <a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/dde.jl">can be found in the model-zoo</a></p> <p>Additionally we can add randomness to our differential equation to simulate how random events can cause extra births or more deaths than expected. This kind of equation is known as a stochastic differential equation &#40;SDE&#41;. Since <a href="https://docs.juliadiffeq.org/latest/tutorials/sde_example.html">DifferentialEquations.jl handles SDEs</a> &#40;and is currently the only library with adaptive stiff and non-stiff SDE integrators&#41;, these can be handled as a layer in Flux similarly. Here&#39;s a neural net layer with an SDE:</p> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> lotka_volterra_noise(du,u,p,t)
+  du[<span class=hljs-number >1</span>] = <span class=hljs-number >0.1</span>u[<span class=hljs-number >1</span>]
+  du[<span class=hljs-number >2</span>] = <span class=hljs-number >0.1</span>u[<span class=hljs-number >2</span>]
+<span class=hljs-keyword >end</span>
+prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[<span class=hljs-number >1.0</span>,<span class=hljs-number >1.0</span>],(<span class=hljs-number >0.0</span>,<span class=hljs-number >10.0</span>))
+
+p = param([<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>])
+params = Flux.Params([p])
+<span class=hljs-keyword >function</span> predict_fd_sde()
+  diffeq_fd(p,sol-&gt;sol[<span class=hljs-number >1</span>,:],<span class=hljs-number >101</span>,prob,SOSRI(),saveat=<span class=hljs-number >0.1</span>)
+<span class=hljs-keyword >end</span>
+loss_fd_sde() = sum(abs2,x-<span class=hljs-number >1</span> <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> predict_fd_sde())
+loss_fd_sde()</code></pre> <p>And we can train the neural net to watch it in action and find parameters to make the amount of bunnies close to constant:</p> <pre><code class="julia hljs">data = Iterators.repeated((), <span class=hljs-number >100</span>)
+opt = ADAM(<span class=hljs-number >0.1</span>)
+cb = <span class=hljs-keyword >function</span> ()
+  display(loss_fd_sde())
+  display(plot(solve(remake(prob,p=Flux.data(p)),SOSRI(),saveat=<span class=hljs-number >0.1</span>),ylim=(<span class=hljs-number >0</span>,<span class=hljs-number >6</span>)))
+<span class=hljs-keyword >end</span>
+
+<span class=hljs-comment ># Display the ODE with the current parameter values.</span>
+cb()
+
+Flux.train!(loss_fd_sde, params, data, opt, cb = cb)</code></pre> <p><img src="https://user-images.githubusercontent.com/1814174/51399524-2c6abf80-1b14-11e9-96ae-0192f7debd03.gif" alt="SDE NN Animation" /></p> <p><a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/sde.jl">This code can be found in the model-zoo</a></p> <p>And we can keep going. There are differential equations <a href="https://docs.juliadiffeq.org/latest/tutorials/discrete_stochastic_example.html">which are piecewise constant</a> used in biological simulations, or <a href="https://docs.juliadiffeq.org/latest/tutorials/jump_diffusion.html">jump diffusion equations from financial models</a>, and the solvers map right over to the Flux neural network framework through DiffEqFlux.jl. DiffEqFlux.jl uses only around ~100 lines of code to pull this all off.</p> <h2 id=implementing_the_neural_ode_layer_in_julia ><a href="#implementing_the_neural_ode_layer_in_julia">Implementing the Neural ODE layer in Julia</a></h2> <p>Let&#39;s go all the way back for a second and now implement the neural ODE layer in Julia. Remember that this is simply an ODE where the derivative function is defined by a neural network itself. To do this, let&#39;s first define the neural net for the derivative. In Flux, we can define a multilayer perceptron with 1 hidden layer and a <code>tanh</code> activation function like:</p> <pre><code class="julia hljs">dudt = Chain(Dense(<span class=hljs-number >2</span>,<span class=hljs-number >50</span>,tanh),Dense(<span class=hljs-number >50</span>,<span class=hljs-number >2</span>))</code></pre>
+<p>To define a <code>neural_ode</code> layer, we then just need to give it a timespan and use the <code>neural_ode</code> function:</p>
+<pre><code class="julia hljs">tspan = (<span class=hljs-number >0.0f0</span>,<span class=hljs-number >25.0f0</span>)
+x-&gt;neural_ode(dudt,x,tspan,Tsit5(),saveat=<span class=hljs-number >0.1</span>)</code></pre>
+<p>As a side note, to run this on the GPU, it is sufficient to make the initial condition and neural network be on the GPU. This will cause the entire ODE solver&#39;s internal operations to take place on the GPU without extra data transfers in the integration scheme. This looks like:</p>
+<pre><code class="julia hljs">x-&gt;neural_ode(gpu(dudt),gpu(x),tspan,Tsit5(),saveat=<span class=hljs-number >0.1</span>)</code></pre>
+<h2 id=understanding_the_neural_ode_layer_behavior_by_example ><a href="#understanding_the_neural_ode_layer_behavior_by_example">Understanding the Neural ODE layer behavior by example</a></h2>
+<p>Now let&#39;s use the neural ODE layer in an example to find out what it means. First, let&#39;s generate a time series of an ODE at evenly spaced time points. We&#39;ll use the test equation from the Neural ODE paper.</p>
+<pre><code class="julia hljs">u0 = <span class=hljs-built_in >Float32</span>[<span class=hljs-number >2.</span>; <span class=hljs-number >0.</span>]
+datasize = <span class=hljs-number >30</span>
+tspan = (<span class=hljs-number >0.0f0</span>,<span class=hljs-number >1.5f0</span>)
+
+<span class=hljs-keyword >function</span> trueODEfunc(du,u,p,t)
+    true_A = [-<span class=hljs-number >0.1</span> <span class=hljs-number >2.0</span>; -<span class=hljs-number >2.0</span> -<span class=hljs-number >0.1</span>]
+    du .= ((u.^<span class=hljs-number >3</span>)'true_A)'
+<span class=hljs-keyword >end</span>
+t = range(tspan[<span class=hljs-number >1</span>],tspan[<span class=hljs-number >2</span>],length=datasize)
+prob = ODEProblem(trueODEfunc,u0,tspan)
+ode_data = <span class=hljs-built_in >Array</span>(solve(prob,Tsit5(),saveat=t))</code></pre>
+<p>Now let&#39;s pit a neural ODE against this data. To do so, we will define a single layer neural network which just has the same neural ODE as before &#40;but lower the tolerances to help it converge closer, makes for a better animation&#33;&#41;:</p>
+<pre><code class="julia hljs">dudt = Chain(x -&gt; x.^<span class=hljs-number >3</span>,
+             Dense(<span class=hljs-number >2</span>,<span class=hljs-number >50</span>,tanh),
+             Dense(<span class=hljs-number >50</span>,<span class=hljs-number >2</span>))
+ps = Flux.params(dudt)
+n_ode = x-&gt;neural_ode(dudt,x,tspan,Tsit5(),saveat=t,reltol=<span class=hljs-number >1e-7</span>,abstol=<span class=hljs-number >1e-9</span>)</code></pre>
+<p>Notice that the <code>neural_ode</code> has the same timespan and <code>saveat</code> as the solution that generated the data. This means that given an <code>x</code> &#40;and initial value&#41;, it will generate a guess for what it thinks the time series will be where the dynamics &#40;the structure&#41; is predicted by the internal neural network. Let&#39;s see what time series it gives before we train the network. Since the ODE has two-dependent variables, we will simplify the plot by only showing the first. The code for the plot is:</p>
+<pre><code class="julia hljs">pred = n_ode(u0) <span class=hljs-comment ># Get the prediction using the correct initial condition</span>
+scatter(t,ode_data[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >"data"</span>)
+scatter!(t,Flux.data(pred[<span class=hljs-number >1</span>,:]),label=<span class=hljs-string >"prediction"</span>)</code></pre>
 <p><img src="https://user-images.githubusercontent.com/1814174/51585822-d9449400-1ea8-11e9-8665-956a16e95207.png" alt="Neural ODE Start" /></p>
+<p>But now let&#39;s train our neural network. To do so, define a prediction function like before, and then define a loss between our prediction and data:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> predict_n_ode()
+  n_ode(u0)
+<span class=hljs-keyword >end</span>
+loss_n_ode() = sum(abs2,ode_data .- predict_n_ode())</code></pre>
+<p>And now we train the neural network and watch as it learns how to predict our time series:</p>
+<pre><code class="julia hljs">data = Iterators.repeated((), <span class=hljs-number >1000</span>)
+opt = ADAM(<span class=hljs-number >0.1</span>)
+cb = <span class=hljs-keyword >function</span> () <span class=hljs-comment >#callback function to observe training</span>
+  display(loss_n_ode())
+  <span class=hljs-comment ># plot current prediction against data</span>
+  cur_pred = Flux.data(predict_n_ode())
+  pl = scatter(t,ode_data[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >"data"</span>)
+  scatter!(pl,t,cur_pred[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >"prediction"</span>)
+  display(plot(pl))
+<span class=hljs-keyword >end</span>
 
-<p>But now let&rsquo;s train our neural network. To do so, define a prediction function like before, and then
-define a loss between our prediction and data:</p>
+<span class=hljs-comment ># Display the ODE with the initial parameter values.</span>
+cb()
 
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">function</span> predict_n_ode<span style="color:#666"></span>()
-  n_ode<span style="color:#666"></span>(u0<span style="color:#666"></span>)
-<span style="color:#a2f;font-weight:bold">end</span>
-loss_n_ode<span style="color:#666"></span>() <span style="color:#666">=</span> sum<span style="color:#666"></span>(abs2<span style="color:#666"></span>,ode_data<span style="color:#666"></span> <span style="color:#666">.-</span> predict_n_ode<span style="color:#666"></span>())</code></pre></div>
-
-<p>And now we train the neural network and watch as it learns how to
-predict our time series:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">data<span style="color:#666"></span> <span style="color:#666">=</span> Iterators<span style="color:#666"></span><span style="color:#666">.</span>repeated<span style="color:#666"></span>((), <span style="color:#666">1000</span>)
-opt<span style="color:#666"></span> <span style="color:#666">=</span> ADAM<span style="color:#666"></span>(<span style="color:#666">0.1</span>)
-cb<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">function</span> () <span style="color:#080;font-style:italic">#callback function to observe training</span>
-  display<span style="color:#666"></span>(loss_n_ode<span style="color:#666"></span>())
-  <span style="color:#080;font-style:italic"># plot current prediction against data</span>
-  cur_pred<span style="color:#666"></span> <span style="color:#666">=</span> predict_n_ode<span style="color:#666"></span>()
-  pl<span style="color:#666"></span> <span style="color:#666">=</span> scatter<span style="color:#666"></span>(t<span style="color:#666"></span>,ode_data<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>],label<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b44">d</span><span style="color:#b44">a</span><span style="color:#b44">t</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span>)
-  scatter!<span style="color:#666"></span>(pl<span style="color:#666"></span>,t<span style="color:#666"></span>,cur_pred<span style="color:#666"></span>[<span style="color:#666">1</span>,<span style="color:#666">:</span>],label<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b44">p</span><span style="color:#b44">r</span><span style="color:#b44">e</span><span style="color:#b44">d</span><span style="color:#b44">i</span><span style="color:#b44">c</span><span style="color:#b44">t</span><span style="color:#b44">i</span><span style="color:#b44">o</span><span style="color:#b44">n</span><span style="color:#b44">&#34;</span>)
-  display<span style="color:#666"></span>(plot<span style="color:#666"></span>(pl<span style="color:#666"></span>))
-<span style="color:#a2f;font-weight:bold">end</span>
-
-<span style="color:#080;font-style:italic"># Display the ODE with the initial parameter values.</span>
-cb<span style="color:#666"></span>()
-
-Flux<span style="color:#666"></span><span style="color:#666">.</span>train!<span style="color:#666"></span>(loss_n_ode<span style="color:#666"></span>, ps<span style="color:#666"></span>, data<span style="color:#666"></span>, opt<span style="color:#666"></span>, cb<span style="color:#666"></span> <span style="color:#666">=</span> cb<span style="color:#666"></span>)</code></pre></div>
-
+Flux.train!(loss_n_ode, ps, data, opt, cb = cb)</code></pre>
 <p><img src="https://user-images.githubusercontent.com/1814174/51585825-dc3f8480-1ea8-11e9-8498-18cf55fba3e6.gif" alt="Neural ODE Train" /></p>
-
 <p><a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/neural_ode.jl">This code can be found in the model-zoo</a></p>
-
-<p>Notice that we are not learning a solution to the ODE.
-Instead, what we are learning is the tiny ODE system from which the ODE
-solution is generated. I.e., the neural network inside the neural_ode
-layer learns this function:</p>
-
-<p>Thus <strong>it learned a compact representation of how the
-time series works</strong>, and it can easily extrapolate to what would happen with
-different starting conditions. Not only that, it&rsquo;s a very flexible
-method for learning such representations. For example, if your data is
-unevenly spaced at time points <code>t</code>, just pass in <code>saveat=t</code> and the
-ODE solver takes care of it.</p>
-
-<p>As you could probably guess by now, the DiffEqFlux.jl has all kinds of
-extra related goodies like Neural SDEs (<code>neural_msde</code>) for you to explore in your
-applications.</p>
-
-<h2 id="the-core-technical-challenge-backpropagation-through-differential-equation-solvers">The core technical challenge: backpropagation through differential equation solvers</h2>
-
-<p>Let&rsquo;s end by explaining the technical issue that needed a solution to make this
-all possible. The core to any neural network framework is the ability to
-backpropagate derivatives in order to calculate the gradient of the loss function
-with respect to the network&rsquo;s parameters. Thus if we stick an ODE solver as a
-layer in a neural network, we need to backpropagate through it.</p>
-
-<p>There are multiple ways to do this. The most common is known as (adjoint) sensitivity
-analysis. Sensitivity analysis defines a new ODE whose solution gives the
-gradients to the cost function w.r.t. the parameters, and solves this secondary
-ODE. This is the method discussed in the neural ordinary differential equations
-paper, but actually dates back much further, and popular ODE solver frameworks
-like <a href="http://people.cs.vt.edu/~asandu/Software/FATODE/index.html">FATODE</a>,
-<a href="https://web.casadi.org/">CASADI</a>, and
-<a href="https://computation.llnl.gov/projects/sundials/cvodes">CVODES</a>
-have been available with this adjoint method for a long time (CVODES came out
-in 2005!). <a href="https://docs.juliadiffeq.org/stable/analysis/sensitivity.html">DifferentialEquations.jl has sensitivity analysis implemented too</a></p>
-
-<p>The efficiency problem with adjoint sensitivity analysis methods is that they require
-multiple forward solutions of the ODE. As you would expect, this is very costly.
-Methods like the checkpointing scheme in CVODES reduce the cost by saving closer
-time points to make the forward solutions shorter at the cost of using more
-memory. The method in the neural ordinary differential equations paper tries to
-eliminate the need for these forward solutions by doing a backwards solution
-of the ODE itself along with the adjoints. The issue with this is that this
-method implicitly makes the assumption that the ODE integrator is
-<a href="https://www.physics.drexel.edu/~valliere/PHYS305/Diff_Eq_Integrators/time_reversal/">reversible</a>.
-Sadly, there are no reversible adaptive integrators for first-order ODEs, so
-with no ODE solver method is this guaranteed to work. For example, here&rsquo;s a quick
-equation where a backwards solution to the ODE using the Adams method from the
-paper has &gt;1700% error in its final point, even with solver tolerances of 1e-12:</p>
-
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">using</span> Sundials<span style="color:#666"></span>, DiffEqBase<span style="color:#666"></span>
-<span style="color:#a2f;font-weight:bold">function</span> lorenz<span style="color:#666"></span>(du<span style="color:#666"></span>,u<span style="color:#666"></span>,p<span style="color:#666"></span>,t<span style="color:#666"></span>)
- du<span style="color:#666"></span>[<span style="color:#666">1</span>] <span style="color:#666">=</span> <span style="color:#666">10.0</span><span style="color:#666">*</span>(u<span style="color:#666"></span>[<span style="color:#666">2</span>]<span style="color:#666">-</span>u<span style="color:#666"></span>[<span style="color:#666">1</span>])
- du<span style="color:#666"></span>[<span style="color:#666">2</span>] <span style="color:#666">=</span> u<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">*</span>(<span style="color:#666">28.0</span><span style="color:#666">-</span>u<span style="color:#666"></span>[<span style="color:#666">3</span>]) <span style="color:#666">-</span> u<span style="color:#666"></span>[<span style="color:#666">2</span>]
- du<span style="color:#666"></span>[<span style="color:#666">3</span>] <span style="color:#666">=</span> u<span style="color:#666"></span>[<span style="color:#666">1</span>]<span style="color:#666">*</span>u<span style="color:#666"></span>[<span style="color:#666">2</span>] <span style="color:#666">-</span> (<span style="color:#666">8</span><span style="color:#666">/</span><span style="color:#666">3</span>)<span style="color:#666">*</span>u<span style="color:#666"></span>[<span style="color:#666">3</span>]
-<span style="color:#a2f;font-weight:bold">end</span>
-u0<span style="color:#666"></span> <span style="color:#666">=</span> [<span style="color:#666">1.0</span>;<span style="color:#666">0.0</span>;<span style="color:#666">0.0</span>]
-tspan<span style="color:#666"></span> <span style="color:#666">=</span> (<span style="color:#666">0.0</span>,<span style="color:#666">100.0</span>)
-prob<span style="color:#666"></span> <span style="color:#666">=</span> ODEProblem<span style="color:#666"></span>(lorenz<span style="color:#666"></span>,u0<span style="color:#666"></span>,tspan<span style="color:#666"></span>)
-sol<span style="color:#666"></span> <span style="color:#666">=</span> solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,CVODE_Adams<span style="color:#666"></span>(),reltol<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1e-12</span>,abstol<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1e-12</span>)
-prob2<span style="color:#666"></span> <span style="color:#666">=</span> ODEProblem<span style="color:#666"></span>(lorenz<span style="color:#666"></span>,sol<span style="color:#666"></span>[<span style="color:#a2f;font-weight:bold">end</span>],(<span style="color:#666">100.0</span>,<span style="color:#666">0.0</span>))
-sol<span style="color:#666"></span> <span style="color:#666">=</span> solve<span style="color:#666"></span>(prob<span style="color:#666"></span>,CVODE_Adams<span style="color:#666"></span>(),reltol<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1e-12</span>,abstol<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#666">1e-12</span>)
-<span style="color:#a2f">@show</span><span style="color:#666"></span> sol<span style="color:#666"></span>[<span style="color:#a2f;font-weight:bold">end</span>]<span style="color:#666">-</span>u0<span style="color:#666"></span> <span style="color:#080;font-style:italic">#[-17.5445, -14.7706, 39.7985]</span></code></pre></div>
-
-<p>(Here we once again use the CVODE C++ solvers from SUNDIALS since they are a close
-match to the SciPy integrators used in the neural ODE paper.)</p>
-
-<p>This inaccuracy is the reason why the method from the neural ODE paper is not
-implemented in software suites, but it once again highlights a detail. Not
-all ODEs will have a large error due to this issue. And for ODEs where it&rsquo;s not
-a problem, this will be the most efficient way to do adjoint sensitivity
-analysis. And this method only applies to ODEs. Not only that, it doesn&rsquo;t even
-apply to all ODEs. For example, ODEs with discontinuities (<a href="https://docs.juliadiffeq.org/stable/features/callback_functions.html">events</a>) are excluded by the assumptions of the derivation.
-Thus once again we arrive at the conclusion that one method is not enough.</p>
-
-<p>In DifferentialEquations.jl have implemented many different methods for
-computing the derivatives of differential equations with respect to parameters.
-We have a <a href="https://arxiv.org/abs/1812.01892">recent preprint</a> detailing
-some of these results. One of the things we have found is that direct use of
-automatic differentiation can be one of the most efficient and flexible methods.
-Julia&rsquo;s ForwardDiff.jl, Flux, and ReverseDiff.jl can directly be applied to
-perform automatic differentiation on the native Julia differential equation
-solvers themselves, and this can increase performance while giving new features.
-Our findings show that forward-mode automatic differentiation is fastest when
-there are less than 100 parameters in the differential
-equations, and that for &gt;100 number of parameters adjoint
-sensitivity analysis is the most efficient. Even
-then, we have good reason to believe that
-<a href="../../../../blog/2018/12/ml-language-compiler">the next generation reverse-mode automatic differentiation via source-to-source AD, Zygote.jl</a>,
-will be more efficient than all of the adjoint sensitivity implementations for
-large numbers of parameters.</p>
-
-<p>Altogether, being able to switch between different gradient methods without changing
-the rest of your code is crucial for having a scalable, optimized, and
-maintainable framework for integrating differential equations and neural networks.
-And this is precisely what DiffEqFlux.jl gives the user direct access to. There
-are three functions with a similar API:</p>
-
+<p>Notice that we are not learning a solution to the ODE. Instead, what we are learning is the tiny ODE system from which the ODE solution is generated. I.e., the neural network inside the neural_ode layer learns this function:</p>
+<p>Thus <strong>it learned a compact representation of how the time series works</strong>, and it can easily extrapolate to what would happen with different starting conditions. Not only that, it&#39;s a very flexible method for learning such representations. For example, if your data is unevenly spaced at time points <code>t</code>, just pass in <code>saveat&#61;t</code> and the ODE solver takes care of it.</p>
+<p>As you could probably guess by now, the DiffEqFlux.jl has all kinds of extra related goodies like Neural SDEs &#40;<code>neural_msde</code>&#41; for you to explore in your applications.</p>
+<h2 id=the_core_technical_challenge_backpropagation_through_differential_equation_solvers ><a href="#the_core_technical_challenge_backpropagation_through_differential_equation_solvers">The core technical challenge: backpropagation through differential equation solvers</a></h2>
+<p>Let&#39;s end by explaining the technical issue that needed a solution to make this all possible. The core to any neural network framework is the ability to backpropagate derivatives in order to calculate the gradient of the loss function with respect to the network&#39;s parameters. Thus if we stick an ODE solver as a layer in a neural network, we need to backpropagate through it.</p>
+<p>There are multiple ways to do this. The most common is known as &#40;adjoint&#41; sensitivity analysis. Sensitivity analysis defines a new ODE whose solution gives the gradients to the cost function w.r.t. the parameters, and solves this secondary ODE. This is the method discussed in the neural ordinary differential equations paper, but actually dates back much further, and popular ODE solver frameworks like <a href="https://people.cs.vt.edu/~asandu/Software/FATODE/index.html">FATODE</a>, <a href="https://web.casadi.org/">CASADI</a>, and <a href="https://computation.llnl.gov/projects/sundials/cvodes">CVODES</a> have been available with this adjoint method for a long time &#40;CVODES came out in 2005&#33;&#41;. <a href="https://docs.juliadiffeq.org/latest/analysis/sensitivity.html">DifferentialEquations.jl has sensitivity analysis implemented too</a></p>
+<p>The efficiency problem with adjoint sensitivity analysis methods is that they require multiple forward solutions of the ODE. As you would expect, this is very costly. Methods like the checkpointing scheme in CVODES reduce the cost by saving closer time points to make the forward solutions shorter at the cost of using more memory. The method in the neural ordinary differential equations paper tries to eliminate the need for these forward solutions by doing a backwards solution of the ODE itself along with the adjoints. The issue with this is that this method implicitly makes the assumption that the ODE integrator is <a href="https://www.physics.drexel.edu/~valliere/PHYS305/Diff_Eq_Integrators/time_reversal/">reversible</a>. Sadly, there are no reversible adaptive integrators for first-order ODEs, so with no ODE solver method is this guaranteed to work. For example, here&#39;s a quick equation where a backwards solution to the ODE using the Adams method from the paper has &gt;1700&#37; error in its final point, even with solver tolerances of 1e-12:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >using</span> Sundials, DiffEqBase
+<span class=hljs-keyword >function</span> lorenz(du,u,p,t)
+ du[<span class=hljs-number >1</span>] = <span class=hljs-number >10.0</span>*(u[<span class=hljs-number >2</span>]-u[<span class=hljs-number >1</span>])
+ du[<span class=hljs-number >2</span>] = u[<span class=hljs-number >1</span>]*(<span class=hljs-number >28.0</span>-u[<span class=hljs-number >3</span>]) - u[<span class=hljs-number >2</span>]
+ du[<span class=hljs-number >3</span>] = u[<span class=hljs-number >1</span>]*u[<span class=hljs-number >2</span>] - (<span class=hljs-number >8</span>/<span class=hljs-number >3</span>)*u[<span class=hljs-number >3</span>]
+<span class=hljs-keyword >end</span>
+u0 = [<span class=hljs-number >1.0</span>;<span class=hljs-number >0.0</span>;<span class=hljs-number >0.0</span>]
+tspan = (<span class=hljs-number >0.0</span>,<span class=hljs-number >100.0</span>)
+prob = ODEProblem(lorenz,u0,tspan)
+sol = solve(prob,CVODE_Adams(),reltol=<span class=hljs-number >1e-12</span>,abstol=<span class=hljs-number >1e-12</span>)
+prob2 = ODEProblem(lorenz,sol[<span class=hljs-keyword >end</span>],(<span class=hljs-number >100.0</span>,<span class=hljs-number >0.0</span>))
+sol = solve(prob,CVODE_Adams(),reltol=<span class=hljs-number >1e-12</span>,abstol=<span class=hljs-number >1e-12</span>)
+<span class=hljs-meta >@show</span> sol[<span class=hljs-keyword >end</span>]-u0 <span class=hljs-comment >#[-17.5445, -14.7706, 39.7985]</span></code></pre>
+<p>&#40;Here we once again use the CVODE C&#43;&#43; solvers from SUNDIALS since they are a close match to the SciPy integrators used in the neural ODE paper.&#41;</p>
+<p>This inaccuracy is the reason why the method from the neural ODE paper is not implemented in software suites, but it once again highlights a detail. Not all ODEs will have a large error due to this issue. And for ODEs where it&#39;s not a problem, this will be the most efficient way to do adjoint sensitivity analysis. And this method only applies to ODEs. Not only that, it doesn&#39;t even apply to all ODEs. For example, ODEs with discontinuities &#40;<a href="https://docs.juliadiffeq.org/latest/features/callback_functions.html">events</a>&#41; are excluded by the assumptions of the derivation. Thus once again we arrive at the conclusion that one method is not enough.</p>
+<p>In DifferentialEquations.jl have implemented many different methods for computing the derivatives of differential equations with respect to parameters. We have a <a href="https://arxiv.org/abs/1812.01892">recent preprint</a> detailing some of these results. One of the things we have found is that direct use of automatic differentiation can be one of the most efficient and flexible methods. Julia&#39;s ForwardDiff.jl, Flux, and ReverseDiff.jl can directly be applied to perform automatic differentiation on the native Julia differential equation solvers themselves, and this can increase performance while giving new features. Our findings show that forward-mode automatic differentiation is fastest when there are less than 100 parameters in the differential equations, and that for &gt;100 number of parameters adjoint sensitivity analysis is the most efficient. Even then, we have good reason to believe that <a href="/blog/2018/12/ml-language-compiler">the next generation reverse-mode automatic differentiation via source-to-source AD, Zygote.jl</a>, will be more efficient than all of the adjoint sensitivity implementations for large numbers of parameters.</p>
+<p>Altogether, being able to switch between different gradient methods without changing the rest of your code is crucial for having a scalable, optimized, and maintainable framework for integrating differential equations and neural networks. And this is precisely what DiffEqFlux.jl gives the user direct access to. There are three functions with a similar API:</p>
 <ul>
-<li><code>diffeq_rd</code> uses Flux&rsquo;s reverse-mode AD through the differential equation
-solver.</li>
-<li><code>diffeq_fd</code> uses ForwardDiff.jl&rsquo;s forward-mode AD through the differential
-equation solver.</li>
-<li><code>diffeq_adjoint</code> uses adjoint sensitivity analysis to &ldquo;backprop the ODE solver&rdquo;</li>
+<li><p><code>diffeq_rd</code> uses Flux&#39;s reverse-mode AD through the differential equation solver.</p>
+
+<li><p><code>diffeq_fd</code> uses ForwardDiff.jl&#39;s forward-mode AD through the differential equation solver.</p>
+
+<li><p><code>diffeq_adjoint</code> uses adjoint sensitivity analysis to &quot;backprop the ODE solver&quot;</p>
+
 </ul>
-
-<p>Therefore, to switch from a reverse-mode AD layer to a forward-mode
-AD layer, one simply has to change a single character. Since Julia-based automatic
-differentiation works on Julia code, the native Julia differential equation
-solvers will continue to benefit from advances in this field.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Machine learning and differential equations are destined to come together due to
-their complementary ways of describing a nonlinear world. In the Julia ecosystem
-we have merged the differential equation and deep learning packages in such a
-way that new independent developments in the two domains can directly be used together.
-We are only beginning to understand the possibilities that have opened up with
-this software. We hope that future blog posts will detail some of the cool
-applications which mix the two disciplines, such as embedding our coming
-pharmacometric simulation engine <a href="https://doi.org/10.1007/s10928-018-9606-9">PuMaS.jl</a>
-into the deep learning framework. With access to the full range of solvers for ODEs,
-SDEs, DAEs, DDEs, PDEs, discrete stochastic equations, and more, we are
-interested to see what kinds of next generation neural networks you will build with Julia.</p>
-
+<p>Therefore, to switch from a reverse-mode AD layer to a forward-mode AD layer, one simply has to change a single character. Since Julia-based automatic differentiation works on Julia code, the native Julia differential equation solvers will continue to benefit from advances in this field.</p>
+<h2 id=conclusion ><a href="#conclusion">Conclusion</a></h2>
+<p>Machine learning and differential equations are destined to come together due to their complementary ways of describing a nonlinear world. In the Julia ecosystem we have merged the differential equation and deep learning packages in such a way that new independent developments in the two domains can directly be used together. We are only beginning to understand the possibilities that have opened up with this software. We hope that future blog posts will detail some of the cool applications which mix the two disciplines, such as embedding our coming pharmacometric simulation engine <a href="https://doi.org/10.1007/s10928-018-9606-9">PuMaS.jl</a> into the deep learning framework. With access to the full range of solvers for ODEs, SDEs, DAEs, DDEs, PDEs, discrete stochastic equations, and more, we are interested to see what kinds of next generation neural networks you will build with Julia.</p>
 <p>Note: a citable version of this post is published on <a href="https://arxiv.org/abs/1902.02376">Arxiv</a>.</p>
-<pre><code>@article{DBLP:journals/corr/abs-1902-02376,
+<pre><code class="julia hljs"><span class=hljs-meta >@article</span>{DBLP:journals/corr/abs-<span class=hljs-number >1902</span>-<span class=hljs-number >02376</span>,
   author    = {Christopher Rackauckas and
                Mike Innes and
                Yingbo Ma and
                Jesse Bettencourt and
                Lyndon White and
                Vaibhav Dixit},
-  title     = {DiffEqFlux.jl - {A} Julia Library for Neural Differential Equations},
+  title     = {DiffEqFlux.jl - {A} Julia Library <span class=hljs-keyword >for</span> Neural Differential Equations},
   journal   = {CoRR},
-  volume    = {abs/1902.02376},
-  year      = {2019},
-  url       = {http://arxiv.org/abs/1902.02376},
+  volume    = {abs/<span class=hljs-number >1902.02376</span>},
+  year      = {<span class=hljs-number >2019</span>},
+  url       = {https://arxiv.org/abs/<span class=hljs-number >1902.02376</span>},
   archivePrefix = {arXiv},
-  eprint    = {1902.02376},
-  timestamp = {Tue, 21 May 2019 18:03:36 +0200},
-  biburl    = {https://dblp.org/rec/bib/journals/corr/abs-1902-02376},
+  eprint    = {<span class=hljs-number >1902.02376</span>},
+  timestamp = {Tue, <span class=hljs-number >21</span> May <span class=hljs-number >2019</span> <span class=hljs-number >18</span>:<span class=hljs-number >03</span>:<span class=hljs-number >36</span> +<span class=hljs-number >0200</span>},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/abs-<span class=hljs-number >1902</span>-<span class=hljs-number >02376</span>},
   bibsource = {dblp computer science bibliography, https://dblp.org}
-}</code></pre>
-
-  </div>
-
-  
-
-  </div>
-  </div>
-  </div>
-
-  <br />
-
-  
+}</code></pre></p>
 
 
-  <head>
-  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
-</head>
+</div>
+<br><br>
 
-<footer class="container-fluid footer-copy">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-10 py-2">
-          <p>
-            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
-          </p>
-          <p>
-            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
-          </p>
-        </div>
-        <div class="col-md-2 py-2">
-          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
-        </div>
+
+    
+        
+
+
+
+    
+    
+        
+
+
+    
+
+    <footer class="container-fluid footer-copy">
+  <div class=container >
+    <div class=row >
+      <div class="col-md-10 py-2">
+        <p>We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.
+        Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.</p>
+        <p>©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>; it has been built using <a style="color: #7a95dd" href="https://franklinjl.org">Franklin.jl</a> - a Julia native package for building websites.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
       </div>
     </div>
+  </div>
 </footer>
 
-
-  <script src="../../../../v2/js/jquery.min.js"></script>
-<script src="../../../../v2/js/bootstrap.min.js"></script>
-<script src="../../../../v2/js/platform.js"></script>
-<script src="../../../../v2/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-</body>
-
-</html>
+<script src="/libs/jquery/jquery.min.js"></script>
+<script src="/libs/bootstrap/bootstrap.min.js"></script>
+<script src="/libs/platform.js"></script>

@@ -1,356 +1,114 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Reliable and Reproducible Binary Artifacts for Julia Packages</title>
-<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
-
-<meta property="og:title" content="The Julia Language"/>
-<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
-<meta property="og:description" content="Official website for the Julia programming language"/>
-
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
-<link rel="stylesheet" href="https://julialang.org/v2/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://julialang.org/v2/css/app.css" />
-<link rel="stylesheet" href="https://julialang.org/v2/css/fonts.css" />
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [['$','$'], ['\\(','\\)']],
-      displayMath: [['$$','$$']],
-      processEscapes: true,
-      processEnvironments: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      TeX: { equationNumbers: { autoNumber: "AMS" },
-             extensions: ["AMSmath.js", "AMSsymbols.js"] }
-    }
-  });
-</script>
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-28835595-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-  
-
-  
-</head>
-
-<body>
-  
-  
-
-<div class="container py-3 py-lg-0">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
-
-    <a class="navbar-brand" href="../../../../" id="logo">
-      <img src="https://julialang.org/v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
-    </a>
-
-    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/downloads/">Download</a>
-        </li>
-        <li class="nav-item flex-md-fill text-md-center">
-          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
-        </li>
-        <li class="nav-item  active  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/blog/">Blog</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/community/">Community</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/learning/">Learning</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/research/">Research</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/jsoc/">JSoC</a>
-        </li>
-        <li class="nav-item donate flex-md-fill text-md-center">
-          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
-        </li>
-      </ul>
-    </div>
-
-  </nav>
-</div>
-
-
-
-  <br /><br />
-
-  <div class="container">
-
-  <div id="blogpost">
-    <h1>Reliable and Reproducible Binary Artifacts for Julia Packages</h1>
-
-    <p class="metadata">
-      <span class="timestamp">19 November, 2019</span>
-      
-      &nbsp;|&nbsp;
-      <span class="author">Elliot Saba, Stefan Karpinski, Kristoffer Carlsson</span>
-      
-    </p>
-
-    
-
-<p>Over the past few months, we have been iterating on and refining a design for <code>Pkg</code> in Julia 1.3+ to reason about binary objects that are not Julia packages.  While the motivating application for this work has been improving the installation experience for binaries built with <a href="https://github.com/JuliaPackaging/BinaryBuilder.jl"><code>BinaryBuilder.jl</code></a>, the artifacts subsystem is much more general and is widely applicable to all Julia packages.</p>
-
-<h1 id="pkg-artifacts">Pkg Artifacts</h1>
-
-<p>Artifacts, as outlined in <a href="https://github.com/JuliaLang/Pkg.jl/issues/1234"><code>Pkg.jl#1234</code></a> and now documented in <a href="https://julialang.github.io/Pkg.jl/dev/artifacts/">the latest docs of Pkg.jl</a>, provide a convenient way to associate containers of data with Julia projects and packages.  Artifacts are referred to by content-hash, or optionally by a name that is bound to a hash through an <code>Artifacts.toml</code> file.  An example <code>Artifacts.toml</code> file is shown here as an example:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-TOML" data-lang="TOML">[socrates]
-git<span style="">-</span>tree<span style="">-</span>sha1 = <span style="color:#b44">&#34;43563e7631a7eafae1f9f8d9d332e3de44ad7239&#34;</span>
-lazy = <span style="color:#a2f;font-weight:bold">true</span>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta http-equiv=content-type  content="text/html; charset=utf-8" /> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." /> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."/> <meta property="og:title" content="The Julia Language"/> <meta property="og:image" content="/assets/images/julia-open-graph.png"/> <meta property="og:description" content="Official website for the Julia programming language"/> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css" /> <link rel=stylesheet  href="/css/app.css" /> <link rel=stylesheet  href="/css/fonts.css" /> <link rel=stylesheet  href="/css/franklin.css" /> <script async defer src="/libs/buttons.js"></script> <!-- --> <!-- NOTE: google tracking, off for now <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> --> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Pkg + BinaryBuilder -- The Next Generation</title> <style> .container ul li p {margin-bottom: 0;} </style> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/" id=logo > <img src="/assets/infra/logo.svg" height=55  width=85  alt="JuliaLang Logo"/> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mr-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learning</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> <li class="nav-item donate flex-md-fill text-md-center"> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </ul> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Pkg + BinaryBuilder -- The Next Generation</h1> <h3> <span style="font-weight: lighter;"> 19 November 2019 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Elliot Saba, Stefan Karpinski, Kristoffer Carlsson </span> </h3> </div> <div class=container > <p>Over the past few months, we have been iterating on and refining a design for <code>Pkg</code> in Julia 1.3&#43; to reason about binary objects that are not Julia packages. While the motivating application for this work has been improving the installation experience for binaries built with <a href="https://github.com/JuliaPackaging/BinaryBuilder.jl"><code>BinaryBuilder.jl</code></a>, the artifacts subsystem is much more general and is widely applicable to all Julia packages.</p> <h2 id=pkg_artifacts ><a href="#pkg_artifacts">Pkg Artifacts</a></h2> <p>Artifacts, as outlined in <a href="https://github.com/JuliaLang/Pkg.jl/issues/1234"><code>Pkg.jl#1234</code></a> and now documented in <a href="https://julialang.github.io/Pkg.jl/dev/artifacts/">the latest docs of Pkg.jl</a>, provide a convenient way to associate containers of data with Julia projects and packages. Artifacts are referred to by content-hash, or optionally by a name that is bound to a hash through an <code>Artifacts.toml</code> file. An example <code>Artifacts.toml</code> file is shown here as an example:</p> <pre><code class="TOML hljs">[socrates]
+git-tree-sha1 = "43563e7631a7eafae1f9f8d9d332e3de44ad7239"
+lazy = true
 
     [[socrates.download]]
-    url = <span style="color:#b44">&#34;https://github.com/staticfloat/small_bin/raw/master/jsocrates.tar.gz&#34;</span>
-    sha256 = <span style="color:#b44">&#34;e65d2f13f2085f2c279830e863292312a72930fee5ba3c792b14c33ce5c5cc58&#34;</span>
+    url = "https://github.com/staticfloat/small_bin/raw/master/socrates.tar.gz"
+    sha256 = "e65d2f13f2085f2c279830e863292312a72930fee5ba3c792b14c33ce5c5cc58"
 
     [[socrates.download]]
-    url = <span style="color:#b44">&#34;https://github.com/staticfloat/small_bin/raw/master/jsocrates.tar.bz2&#34;</span>
-    sha256 = <span style="color:#b44">&#34;13fc17b97be41763b02cbb80e9d048302cec3bd3d446c2ed6e8210bddcd3ac76&#34;</span>
+    url = "https://github.com/staticfloat/small_bin/raw/master/socrates.tar.bz2"
+    sha256 = "13fc17b97be41763b02cbb80e9d048302cec3bd3d446c2ed6e8210bddcd3ac76"
 
 [[c_simple]]
-arch = <span style="color:#b44">&#34;x86_64&#34;</span>
-git<span style="">-</span>tree<span style="">-</span>sha1 = <span style="color:#b44">&#34;4bdf4556050cb55b67b211d4e78009aaec378cbc&#34;</span>
-libc = <span style="color:#b44">&#34;musl&#34;</span>
-os = <span style="color:#b44">&#34;linux&#34;</span>
+arch = "x86_64"
+git-tree-sha1 = "4bdf4556050cb55b67b211d4e78009aaec378cbc"
+libc = "musl"
+os = "linux"
 
     [[c_simple.download]]
-    sha256 = <span style="color:#b44">&#34;411d6befd49942826ea1e59041bddf7dbb72fb871bb03165bf4e164b13ab5130&#34;</span>
-    url = <span style="color:#b44">&#34;https://github.com/JuliaBinaryWrappers/c_simple_jll.jl/releases/download/c_simple+v1.2.3+0/c_simple.v1.2.3.x86_64-linux-musl.tar.gz&#34;</span>
+    sha256 = "411d6befd49942826ea1e59041bddf7dbb72fb871bb03165bf4e164b13ab5130"
+    url = "https://github.com/JuliaBinaryWrappers/c_simple_jll.jl/releases/download/c_simple+v1.2.3+0/c_simple.v1.2.3.x86_64-linux-musl.tar.gz"
 
 [[c_simple]]
-arch = <span style="color:#b44">&#34;x86_64&#34;</span>
-git<span style="">-</span>tree<span style="">-</span>sha1 = <span style="color:#b44">&#34;51264dbc770cd38aeb15f93536c29dc38c727e4c&#34;</span>
-os = <span style="color:#b44">&#34;macos&#34;</span>
+arch = "x86_64"
+git-tree-sha1 = "51264dbc770cd38aeb15f93536c29dc38c727e4c"
+os = "macos"
 
     [[c_simple.download]]
-    sha256 = <span style="color:#b44">&#34;6c17d9e1dc95ba86ec7462637824afe7a25b8509cc51453f0eb86eda03ed4dc3&#34;</span>
-    url = <span style="color:#b44">&#34;https://github.com/JuliaBinaryWrappers/c_simple_jll.jl/releases/download/c_simple+v1.2.3+0/c_simple.v1.2.3.x86_64-apple-darwin14.tar.gz&#34;</span>
+    sha256 = "6c17d9e1dc95ba86ec7462637824afe7a25b8509cc51453f0eb86eda03ed4dc3"
+    url = "https://github.com/JuliaBinaryWrappers/c_simple_jll.jl/releases/download/c_simple+v1.2.3+0/c_simple.v1.2.3.x86_64-apple-darwin14.tar.gz"
 
 [processed_output]
-git<span style="">-</span>tree<span style="">-</span>sha1 = <span style="color:#b44">&#34;1c223e66f1a8e0fae1f9fcb9d3f2e3ce48a82200&#34;</span></code></pre></div>
-<p>This <code>Artifacts.toml</code> binds three artifacts; one named <code>socrates</code>, one named <code>c_simple</code> and one named <code>processed_output</code>.  The single required piece of information for an artifact is its <code>git-tree-sha1</code>.  Because artifacts are addressed only by their content hash, the purpose of an <code>Artifacts.toml</code> file is to provide metadata about these artifacts, such as binding a human-readable name to a content hash, providing information about where an artifact may be downloaded from, or even binding a single name to multiple hashes, keyed by platform-specific constraints such as operating system or libgfortran version.</p>
+git-tree-sha1 = "1c223e66f1a8e0fae1f9fcb9d3f2e3ce48a82200"</code></pre> <p>This <code>Artifacts.toml</code> binds three artifacts; one named <code>socrates</code>, one named <code>c_simple</code> and one named <code>processed_output</code>. The single required piece of information for an artifact is its <code>git-tree-sha1</code>. Because artifacts are addressed only by their content hash, the purpose of an <code>Artifacts.toml</code> file is to provide metadata about these artifacts, such as binding a human-readable name to a content hash, providing information about where an artifact may be downloaded from, or even binding a single name to multiple hashes, keyed by platform-specific constraints such as operating system or libgfortran version.</p> <h2 id=artifact_types_and_properties ><a href="#artifact_types_and_properties">Artifact types and properties</a></h2> <p>In the above example, the <code>socrates</code> artifact showcases a platform-independent artifact with multiple download locations. When downloading and installing the <code>socrates</code> artifact, URLs will be attempted in-order until one succeeds. The <code>socrates</code> artifact is marked as <code>lazy</code>, which means that it will not be automatically downloaded at <code>Pkg.add&#40;&#41;</code> time when the containing package is installed, but rather will be downloaded on-demand when the package first attempts to use it. As an in-the-wild example of lazy artifacts, <code>BinaryBuilder.jl</code> itself uses <a href="https://github.com/JuliaPackaging/BinaryBuilder.jl/blob/85cc4e26ff2442fc71912e68767122346f5610d9/Artifacts.toml">a large number of lazy artifacts</a> to provide compilers for a multitude of languages and platform system targets, downloading artifacts named things such as <code>RustToolchain-aarch64-linux-musl.v1.18.3.x86_64-linux-gnu.squashfs</code> on demand.</p> <p>The <code>c_simple</code> artifact showcases a platform-dependent artifact, where each entry in the <code>c_simple</code> array contains keys that help the calling package choose the appropriate download based on the particulars of the host machine. Note that each artifact contains both a <code>git-tree-sha1</code> and a <code>sha256</code> for each download entry. This is to ensure that the downloaded tarball is secure before attempting to unpack it, as well as enforcing that all tarballs must expand to the same overall tree hash.</p> <p>The <code>processed_output</code> artifact contains no <code>download</code> stanza, and so cannot be installed. An artifact such as this would be the result of code that was previously run, generating a new artifact and binding the resultant hash to a name within this project. This is useful for both being able to refer to the artifact easily, as well as ensuring it is not eventually collected by the Pkg garbage collector.</p> <h2 id=working_with_artifacts ><a href="#working_with_artifacts">Working with artifacts</a></h2> <p>Artifacts can be manipulated using convenient APIs exposed from the <code>Pkg.Artifacts</code> namespace. As a motivating example, let us imagine that we are writing a package that needs to load the <a href="https://archive.ics.uci.edu/ml/datasets/iris">Iris machine learning dataset</a>. While we could just download the dataset during a build step into the package directory, and many packages currently do precisely this, that has some significant drawbacks. First, it modifies the package directory, making package installation stateful, which we&#39;d like to avoid. In the future, we would like to reach the point where packages can be installed completely read-only instead of being able to modify themselves after installation. Second, the downloaded data is not shared across different versions of our package. If we have three different versions of the package installed for use by various projects, then we need three different copies of the data, even if the bits are identical across versions. Moreover, each time we upgrade or downgrade the package, unless we do something clever &#40;and likely brittle&#41;, we will have to download the data again. With artifacts, we will instead check to see if our <code>iris</code> artifact already exists on-disk and only if it doesn&#39;t will we download and install it, after which we can bind the result into our <code>Artifacts.toml</code> file:</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Pkg.Artifacts
 
-<h2 id="artifact-types-and-properties">Artifact types and properties</h2>
+<span class=hljs-comment ># This is the path to the Artifacts.toml we will manipulate</span>
+artifacts_toml = joinpath(<span class=hljs-meta >@__DIR__</span>, <span class=hljs-string >"Artifacts.toml"</span>)
 
-<p>In the above example, the <code>socrates</code> artifact showcases a platform-independent artifact with multiple download locations.  When downloading and installing the <code>socrates</code> artifact, URLs will be attempted in-order until one succeeds.  The <code>socrates</code> artifact is marked as <code>lazy</code>, which means that it will not be automatically downloaded at <code>Pkg.add()</code> time when the containing package is installed, but rather will be downloaded on-demand when the package first attempts to use it.  As an in-the-wild example of lazy artifacts, <code>BinaryBuilder.jl</code> itself uses <a href="https://github.com/JuliaPackaging/BinaryBuilder.jl/blob/85cc4e26ff2442fc71912e68767122346f5610d9/Artifacts.toml">a large number of lazy artifacts</a> to provide compilers for a multitude of languages and platform system targets, downloading artifacts named things such as <code>RustToolchain-aarch64-linux-musl.v1.18.3.x86_64-linux-gnu.squashfs</code> on demand.</p>
+<span class=hljs-comment ># Query the `Artifacts.toml` file for the hash bound to the name "iris"</span>
+<span class=hljs-comment ># (returns `nothing` if no such binding exists)</span>
+iris_hash = artifact_hash(<span class=hljs-string >"iris"</span>, artifacts_toml)
 
-<p>The <code>c_simple</code> artifact showcases a platform-dependent artifact, where each entry in the <code>c_simple</code> array contains keys that help the calling package choose the appropriate download based on the particulars of the host machine.  Note that each artifact contains both a <code>git-tree-sha1</code> and a <code>sha256</code> for each download entry.  This is to ensure that the downloaded tarball is secure before attempting to unpack it, as well as enforcing that all tarballs must expand to the same overall tree hash.</p>
+<span class=hljs-comment ># If the name was not bound, or the hash it was bound to does not exist, create it!</span>
+<span class=hljs-keyword >if</span> iris_hash == <span class=hljs-literal >nothing</span> || !artifact_exists(iris_hash)
+    <span class=hljs-comment ># create_artifact() returns the content-hash of the artifact directory once we're finished creating it</span>
+    iris_hash = create_artifact() <span class=hljs-keyword >do</span> artifact_dir
+        <span class=hljs-comment ># We create the artifact by simply downloading a few files into the new artifact directory</span>
+        iris_url_base = <span class=hljs-string >"https://archive.ics.uci.edu/ml/machine-learning-databases/iris"</span>
+        download(<span class=hljs-string >"<span class=hljs-subst >$(iris_url_base)</span>/iris.data"</span>, joinpath(artifact_dir, <span class=hljs-string >"iris.csv"</span>))
+        download(<span class=hljs-string >"<span class=hljs-subst >$(iris_url_base)</span>/bezdekIris.data"</span>, joinpath(artifact_dir, <span class=hljs-string >"bezdekIris.csv"</span>))
+        download(<span class=hljs-string >"<span class=hljs-subst >$(iris_url_base)</span>/iris.names"</span>, joinpath(artifact_dir, <span class=hljs-string >"iris.names"</span>))
+    <span class=hljs-keyword >end</span>
 
-<p>The <code>processed_output</code> artifact contains no <code>download</code> stanza, and so cannot be installed.  An artifact such as this would be the result of code that was previously run, generating a new artifact and binding the resultant hash to a name within this project.  This is useful for both being able to refer to the artifact easily, as well as ensuring it is not eventually collected by the Pkg garbage collector.</p>
+    <span class=hljs-comment ># Now bind that hash within our `Artifacts.toml`.  `force = true` means that if it already exists,</span>
+    <span class=hljs-comment ># just overwrite with the new content-hash.  Unless the source files change, we do not expect</span>
+    <span class=hljs-comment ># the content hash to change, so this should not cause unnecessary version control churn.</span>
+    bind_artifact!(artifacts_toml, <span class=hljs-string >"iris"</span>, iris_hash)
+<span class=hljs-keyword >end</span>
 
-<h2 id="working-with-artifacts">Working with artifacts</h2>
+<span class=hljs-comment ># Get the path of the iris dataset, either newly created or previously generated.</span>
+<span class=hljs-comment ># this should be something like `~/.julia/artifacts/dbd04e28be047a54fbe9bf67e934be5b5e0d357a`</span>
+iris_dataset_path = artifact_path(iris_hash)</code></pre> <p>For the specific use case of using artifacts that were previously bound, we have the shorthand notation <code>artifact&quot;name&quot;</code> which will automatically search for the <code>Artifacts.toml</code> file contained within the current package, look up the given artifact by name, install it if it is not yet installed, then return the path to that given artifact.</p> <h2 id=artifact_lifecycle ><a href="#artifact_lifecycle">Artifact lifecycle</a></h2> <p>Artifacts are all installed within a global <code>artifacts</code> directory within your Julia package depot, usually within <code>~/.julia/artifacts</code>, keyed by content hash. While artifacts are designed to work well with Julia&#39;s multi-depot layering system, and also provides a <a href="https://julialang.github.io/Pkg.jl/dev/artifacts/#Overriding-artifact-locations-1">mechanism for overriding artifact locations</a> to aid in system administrators desiring to use specific, local, versions of libraries, in general we find that installing binary artifacts into a single, user-owned location like this works very well for the average Julia user. These artifacts stay installed on-disk until a <code>Pkg.gc&#40;&#41;</code> cleans away packages and artifacts that have been unused for at least one month. The garbage collector determines artifacts and packages are unused when a particular version/content-hash is not referred to by any <code>Manifest.toml</code> or <code>Artifacts.toml</code> file on disk. The garbage collector walks every <code>Manifest.toml</code> and <code>Artifacts.toml</code> file that has ever been loaded by Julia, and marks all reachable artifacts and package versions as used. All non-marked artifacts and package versions are then noted as such, and any that have been continually noted as unused for a one month are automatically deleted.</p> <p>This time delay is configurable by setting the <code>collect_delay</code> keyword argument to something smaller, such as <code>Pkg.gc&#40;;collect_delay&#61;Hour&#40;1&#41;&#41;</code> &#40;be sure to import the <a href="https://docs.julialang.org/en/v1/stdlib/Dates/"><code>Dates</code></a> stdlib to get time functions such as <code>Hour</code>&#33;&#41; to remove all artifacts that have been unused for an hour or more. This extensive grace period should eliminate the majority of user frustration stemmign from needing to redownload the same large binary packages after changing package versions or reinstalling packages after switching projects.</p> <h1 id=binarybuilderjl ><a href="#binarybuilderjl">BinaryBuilder.jl</a></h1> <p>You may be able to guess that <code>BinaryBuilder.jl</code> knows how to generate <code>Artifacts.toml</code> files &#40;<a href="https://github.com/JuliaBinaryWrappers/c_simple_jll.jl/blob/master/Artifacts.toml">example</a>&#41;, but that&#39;s not the only change. We were tired of the current best practice of needing to manually express the graph of all dependencies within your package&#39;s <code>deps/build.jl</code> file. To date, there has not been a simple, concise method of recursively installing your binary dependencies; users have been forced to resort to strategies such as embedding the <code>build.jl</code> files of all binary dependencies within their own packages. This works, but it&#39;s way clunkier than we&#39;d like. Luckily, we already have a package manager that knows how to deal with recursive dependencies, and so a simple solution was devised: as a part of the output of a <code>BinaryBuilder.jl</code> run, we will generate a wrapper julia package that will simultaneously allow us to express the DAG of binary dependencies, and provide boilerplate julia wrapper code that will make dealing with libraries and executables much simpler. We refer to these autogenerated packages as JLL packages.</p> <h2 id=julia_library_jll_packages ><a href="#julia_library_jll_packages">Julia library &#40;JLL&#41; packages</a></h2> <p>Autogenerated BinaryBulider-produced packages are normal Julia packages, with the notable inclusion of <code>Artifacts.toml</code> files that download the appropriate version of whatever binary artifacts were built by <code>BinaryBuilder</code> and uploaded to the repository&#39;s GitHub release. We refer to these autogenerated packages as &quot;Julia library packages&quot; or JLLs for short. BinaryBuilder attempts to upload all packages to <code>JuliaBinaryWrappers/&#36;&#40;package_name&#41;_jll.jl</code>, however this is, of course, configurable. An example package <a href="https://github.com/JuliaBinaryWrappers/c_simple_jll.jl">is given here</a>, the most interesting part being the new API that is exposed by these autogenerated packages.</p> <p>The code bindings within JLL packages are autogenerated from the <code>Products</code> defined within the <code>build_tarballs.jl</code> file that generates the package. For example purposes, we will assume that the following products were defined:</p> <pre><code class="julia hljs">products = [
+    FileProduct(<span class=hljs-string >"src/data.txt"</span>, :data_txt),
+    LibraryProduct(<span class=hljs-string >"libdataproc"</span>, :libdataproc),
+    ExecutableProduct(<span class=hljs-string >"mungify"</span>, :mungify_exe)
+]</code></pre> <p>With such products defined, the JLL package will contain the <code>data_txt</code>, <code>libdataproc</code> and <code>mungify_exe</code> symbols exported. For <code>FileProduct</code> variables, the exported value is a string pointing to the location of the file on-disk. For <code>LibraryProduct</code> variables, it is a string corresponding to the <code>SONAME</code> of the desired library &#40;it will have already been <code>dlopen&#40;&#41;</code>&#39;ed during the <code>__init__&#40;&#41;</code> method of the JLL package module so typical <code>ccall&#40;&#41;</code> usage applies&#41;, and for <code>ExecutableProduct</code> variables, the exported value is a function that can be called to set appropriate environment variables such as <code>PATH</code> and <code>LD_LIBRARY_PATH</code>. This is necessary so that nested depdenencies works properly, e.g. <code>ffmpeg</code> calling the <code>x264</code> binary during video encoding. Example:</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> c_simple_jll
 
-<p>Artifacts can be manipulated using convenient APIs exposed from the <code>Pkg.Artifacts</code> namespace.  As a motivating example, let us imagine that we are writing a package that needs to load the <a href="https://archive.ics.uci.edu/ml/datasets/iris">Iris machine learning dataset</a>.  While we could just download the dataset during a build step into the package directory, and many packages currently do precisely this, that has some significant drawbacks. First, it modifies the package directory, making package installation stateful, which we&rsquo;d like to avoid.  In the future, we would like to reach the point where packages can be installed completely read-only instead of being able to modify themselves after installation.  Second, the downloaded data is not shared across different versions of our package.  If we have three different versions of the package installed for use by various projects, then we need three different copies of the data, even if the bits are identical across versions.  Moreover, each time we upgrade or downgrade the package, unless we do something clever (and likely brittle), we will have to download the data again.  With artifacts, we will instead check to see if our <code>iris</code> artifact already exists on-disk and only if it doesn&rsquo;t will we download and install it, after which we can bind the result into our <code>Artifacts.toml</code> file:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">using</span> Pkg<span style="color:#666"></span><span style="color:#666">.</span>Artifacts<span style="color:#666"></span>
+<span class=hljs-comment ># For file products, you can access its file location directly:</span>
+data_lines = open(data_txt, <span class=hljs-string >"r"</span>) <span class=hljs-keyword >do</span> io
+    readlines(io)
+<span class=hljs-keyword >end</span>
 
-<span style="color:#080;font-style:italic"># This is the path to the Artifacts.toml we will manipulate</span>
-artifacts_toml<span style="color:#666"></span> <span style="color:#666">=</span> joinpath<span style="color:#666"></span>(<span style="color:#a2f">@__DIR__</span><span style="color:#666"></span>, <span style="color:#b44">&#34;</span><span style="color:#b44">A</span><span style="color:#b44">r</span><span style="color:#b44">t</span><span style="color:#b44">i</span><span style="color:#b44">f</span><span style="color:#b44">a</span><span style="color:#b44">c</span><span style="color:#b44">t</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">m</span><span style="color:#b44">l</span><span style="color:#b44">&#34;</span>)
+<span class=hljs-comment ># For library products, you can use the exported variable name in `ccall()` invocations directly</span>
+num_chars = <span class=hljs-keyword >ccall</span>((libdataproc, :count_characters), <span class=hljs-built_in >Cint</span>, (<span class=hljs-built_in >Cstring</span>, <span class=hljs-built_in >Cint</span>), data_lines[<span class=hljs-number >1</span>], length(data_lines[<span class=hljs-number >1</span>]))
 
-<span style="color:#080;font-style:italic"># Query the `Artifacts.toml` file for the hash bound to the name &#34;iris&#34;</span>
-<span style="color:#080;font-style:italic"># (returns `nothing` if no such binding exists)</span>
-iris_hash<span style="color:#666"></span> <span style="color:#666">=</span> artifact_hash<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b44">i</span><span style="color:#b44">r</span><span style="color:#b44">i</span><span style="color:#b44">s</span><span style="color:#b44">&#34;</span>, artifacts_toml<span style="color:#666"></span>)
+<span class=hljs-comment ># For executable products, you can use the exported variable name as a function that you can call</span>
+mungify_exe() <span class=hljs-keyword >do</span> mungify_exe_path
+    run(<span class=hljs-string >`<span class=hljs-variable >$mungify_exe_path</span> <span class=hljs-variable >$num_chars</span>`</span>)
+<span class=hljs-keyword >end</span></code></pre> <p>One of the big benefits of this new system is that running binaries that must link against libraries provided by another dependency, or call binaries provided within another dependency all works flawlessly because the wrapper JLL packages automatically set up the appropriate environment variables.</p> <h2 id=changes_to_build_tarballsjl ><a href="#changes_to_build_tarballsjl">Changes to <code>build_tarballs.jl</code></a></h2> <p>For those binary building veterans among us, not much has changed to the process of building binaries. The first change is some cleanup of the clunky products API; previously you needed to provide a closure to curry a <code>prefix</code> through to your products; this is no longer the case. To make this explicit, while you would previously write declarations such as:</p> <pre><code class="julia hljs">products(prefix) = [
+    LibraryProduct(prefix, <span class=hljs-string >"libglib"</span>, :libglib)
+]</code></pre> <p>You now simply write: <pre><code class="julia hljs">products = [
+    LibraryProduct(<span class=hljs-string >"libglib"</span>, :libglib)
+]</code></pre> <p>The second change is that dependencies are no longer linked straight to <code>build.jl</code> files, rather you give the names &#40;or names and versions&#41; of the JLL packages you want to install, and they &#40;along with all recursive dependencies&#41; will be installed and symlinked into <code>&#36;&#123;prefix&#125;</code>, similarly to before. To make this explicit, while you would previously write declarations such as:</p> <pre><code class="julia hljs">dependencies = [
+    <span class=hljs-string >"https://github.com/JuliaBinaryWrappers/c_simple_jll.jl/releases/download/c_simple%2Bv1.2.3%2B7/build_c_simple.v1.2.3.jl"</span>,
+]</code></pre> <p>You now simply write: <pre><code class="julia hljs">dependencies = [
+    <span class=hljs-string >"c_simple_jll"</span>,
+]</code></pre> <p>If you want to specify a specific version of a binary dependency, you may provide a full <a href="https://julialang.github.io/Pkg.jl/dev/api/#Pkg.PackageSpec"><code>PackageSpec</code></a>, as follows:</p> <pre><code class="julia hljs">dependencies = [
+    Pkg.Types.PackageSpec(;name=<span class=hljs-string >"c_simple_jll"</span>, version=<span class=hljs-string >v"1.2.3"</span>),
+]</code></pre> <p>Because JLL packages are registered just like any other public package, installing these build dependencies is as simple as querying the registry, cloning the latest version of the JLL package, inspecting its <code>Artifacts.toml</code> file and unpacking the appropriate artifact within the build prefix. Even better, these build dependencies are automatically recorded as dependencies for the generated new JLL package.</p> <h2 id=yggdrasil_a_collection_of_build_recipes ><a href="#yggdrasil_a_collection_of_build_recipes">Yggdrasil, a collection of build recipes</a></h2> <p>Previously, each user was encouraged to create their own &quot;builder repository&quot; where Travis CI would build binaries of their dependencies. This made setup rather more intricate and difficult than we prefer our tools to be, and also contributed to a discovery problem where it was very difficult to figure out of someone had already built a recipe for a particular dependency or not. To address both of these problems, we now have a community buildtree located at <a href="https://github.com/JuliaPackaging/Yggdrasil"><code>JuliaPackaging/Yggdrasil</code></a>. Users of the <code>BinaryBuilder.jl</code> wizard will typically result in opening a pull request to <code>Yggdrasil</code>, and many build recipes can already be found within its shady branches.</p> <h1 id=updating_your_packages ><a href="#updating_your_packages">Updating your packages</a></h1> <p>To update your packages, first build with the latest version of <code>BinaryBuilder</code>, then add the autogenerated JLL packages as dependencies in your projects and packages, use the new API for your <code>ccall&#40;&#41;</code>&#39;s and <code>run&#40;&#41;</code>&#39;ing your binaries, and give a small smile as you delete your <code>deps/build.jl</code> file. Death to all global mutable state.</p> <h2 id=beyond_jll_packages ><a href="#beyond_jll_packages">Beyond JLL packages</a></h2> <p>For an example of how JLL packages can be used for more than just JLL packages, we look to an <a href="https://github.com/staticfloat/Gtk.jl/blob/e500dcadaa8bf3571d27b0ac7cd92ef00febcb1f/src/Gtk.jl#L82-L111">example in <code>Gtk.jl</code></a>:</p> <pre><code class="julia hljs">mutable_artifacts_toml = joinpath(dirname(<span class=hljs-meta >@__DIR__</span>), <span class=hljs-string >"MutableArtifacts.toml"</span>)
+loaders_cache_name = <span class=hljs-string >"gdk-pixbuf-loaders-cache"</span>
+loaders_cache_hash = artifact_hash(loaders_cache_name, mutable_artifacts_toml)
+<span class=hljs-keyword >if</span> loaders_cache_hash === <span class=hljs-literal >nothing</span>
+    <span class=hljs-comment ># Run gdk-pixbuf-query-loaders, capture output,</span>
+    loader_cache_contents = gdk_pixbuf_query_loaders() <span class=hljs-keyword >do</span> gpql
+        withenv(<span class=hljs-string >"GDK_PIXBUF_MODULEDIR"</span> =&gt; gdk_pixbuf_loaders_dir) <span class=hljs-keyword >do</span>
+            <span class=hljs-keyword >return</span> <span class=hljs-built_in >String</span>(read(<span class=hljs-string >`<span class=hljs-variable >$gpql</span>`</span>))
+        <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >end</span>
 
-<span style="color:#080;font-style:italic"># If the name was not bound, or the hash it was bound to does not exist, create it!</span>
-<span style="color:#a2f;font-weight:bold">if</span> iris_hash<span style="color:#666"></span> <span style="color:#666">=</span><span style="color:#666">=</span> <span style="color:#a2f">nothing</span> <span style="color:#666">||</span> <span style="color:#666">!</span>artifact_exists<span style="color:#666"></span>(iris_hash<span style="color:#666"></span>)
-    <span style="color:#080;font-style:italic"># create_artifact() returns the content-hash of the artifact directory once we&#39;re finished creating it</span>
-    iris_hash<span style="color:#666"></span> <span style="color:#666">=</span> create_artifact<span style="color:#666"></span>() <span style="color:#a2f;font-weight:bold">do</span> artifact_dir<span style="color:#666"></span>
-        <span style="color:#080;font-style:italic"># We create the artifact by simply downloading a few files into the new artifact directory</span>
-        iris_url_base<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#b44">&#34;</span><span style="color:#b44">h</span><span style="color:#b44">t</span><span style="color:#b44">t</span><span style="color:#b44">p</span><span style="color:#b44">s</span><span style="color:#b44">:</span><span style="color:#b44">/</span><span style="color:#b44">/</span><span style="color:#b44">a</span><span style="color:#b44">r</span><span style="color:#b44">c</span><span style="color:#b44">h</span><span style="color:#b44">i</span><span style="color:#b44">v</span><span style="color:#b44">e</span><span style="color:#b44">.</span><span style="color:#b44">i</span><span style="color:#b44">c</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">u</span><span style="color:#b44">c</span><span style="color:#b44">i</span><span style="color:#b44">.</span><span style="color:#b44">e</span><span style="color:#b44">d</span><span style="color:#b44">u</span><span style="color:#b44">/</span><span style="color:#b44">m</span><span style="color:#b44">l</span><span style="color:#b44">/</span><span style="color:#b44">m</span><span style="color:#b44">a</span><span style="color:#b44">c</span><span style="color:#b44">h</span><span style="color:#b44">i</span><span style="color:#b44">n</span><span style="color:#b44">e</span><span style="color:#b44">-</span><span style="color:#b44">l</span><span style="color:#b44">e</span><span style="color:#b44">a</span><span style="color:#b44">r</span><span style="color:#b44">n</span><span style="color:#b44">i</span><span style="color:#b44">n</span><span style="color:#b44">g</span><span style="color:#b44">-</span><span style="color:#b44">d</span><span style="color:#b44">a</span><span style="color:#b44">t</span><span style="color:#b44">a</span><span style="color:#b44">b</span><span style="color:#b44">a</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">s</span><span style="color:#b44">/</span><span style="color:#b44">i</span><span style="color:#b44">r</span><span style="color:#b44">i</span><span style="color:#b44">s</span><span style="color:#b44">&#34;</span>
-        download<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b68;font-weight:bold">$</span>(iris_url_base<span style="color:#666"></span>)<span style="color:#b44">/</span><span style="color:#b44">i</span><span style="color:#b44">r</span><span style="color:#b44">i</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">d</span><span style="color:#b44">a</span><span style="color:#b44">t</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span>, joinpath<span style="color:#666"></span>(artifact_dir<span style="color:#666"></span>, <span style="color:#b44">&#34;</span><span style="color:#b44">i</span><span style="color:#b44">r</span><span style="color:#b44">i</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">c</span><span style="color:#b44">s</span><span style="color:#b44">v</span><span style="color:#b44">&#34;</span>))
-        download<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b68;font-weight:bold">$</span>(iris_url_base<span style="color:#666"></span>)<span style="color:#b44">/</span><span style="color:#b44">b</span><span style="color:#b44">e</span><span style="color:#b44">z</span><span style="color:#b44">d</span><span style="color:#b44">e</span><span style="color:#b44">k</span><span style="color:#b44">I</span><span style="color:#b44">r</span><span style="color:#b44">i</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">d</span><span style="color:#b44">a</span><span style="color:#b44">t</span><span style="color:#b44">a</span><span style="color:#b44">&#34;</span>, joinpath<span style="color:#666"></span>(artifact_dir<span style="color:#666"></span>, <span style="color:#b44">&#34;</span><span style="color:#b44">b</span><span style="color:#b44">e</span><span style="color:#b44">z</span><span style="color:#b44">d</span><span style="color:#b44">e</span><span style="color:#b44">k</span><span style="color:#b44">I</span><span style="color:#b44">r</span><span style="color:#b44">i</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">c</span><span style="color:#b44">s</span><span style="color:#b44">v</span><span style="color:#b44">&#34;</span>))
-        download<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b68;font-weight:bold">$</span>(iris_url_base<span style="color:#666"></span>)<span style="color:#b44">/</span><span style="color:#b44">i</span><span style="color:#b44">r</span><span style="color:#b44">i</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">n</span><span style="color:#b44">a</span><span style="color:#b44">m</span><span style="color:#b44">e</span><span style="color:#b44">s</span><span style="color:#b44">&#34;</span>, joinpath<span style="color:#666"></span>(artifact_dir<span style="color:#666"></span>, <span style="color:#b44">&#34;</span><span style="color:#b44">i</span><span style="color:#b44">r</span><span style="color:#b44">i</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">n</span><span style="color:#b44">a</span><span style="color:#b44">m</span><span style="color:#b44">e</span><span style="color:#b44">s</span><span style="color:#b44">&#34;</span>))
-    <span style="color:#a2f;font-weight:bold">end</span>
-
-    <span style="color:#080;font-style:italic"># Now bind that hash within our `Artifacts.toml`.  `force = true` means that if it already exists,</span>
-    <span style="color:#080;font-style:italic"># just overwrite with the new content-hash.  Unless the source files change, we do not expect</span>
-    <span style="color:#080;font-style:italic"># the content hash to change, so this should not cause unnecessary version control churn.</span>
-    bind_artifact!<span style="color:#666"></span>(artifacts_toml<span style="color:#666"></span>, <span style="color:#b44">&#34;</span><span style="color:#b44">i</span><span style="color:#b44">r</span><span style="color:#b44">i</span><span style="color:#b44">s</span><span style="color:#b44">&#34;</span>, iris_hash<span style="color:#666"></span>)
-<span style="color:#a2f;font-weight:bold">end</span>
-
-<span style="color:#080;font-style:italic"># Get the path of the iris dataset, either newly created or previously generated.</span>
-<span style="color:#080;font-style:italic"># this should be something like `~/.julia/artifacts/dbd04e28be047a54fbe9bf67e934be5b5e0d357a`</span>
-iris_dataset_path<span style="color:#666"></span> <span style="color:#666">=</span> artifact_path<span style="color:#666"></span>(iris_hash<span style="color:#666"></span>)</code></pre></div>
-<p>For the specific use case of using artifacts that were previously bound, we have the shorthand notation <code>artifact&quot;name&quot;</code> which will automatically search for the <code>Artifacts.toml</code> file contained within the current package, look up the given artifact by name, install it if it is not yet installed, then return the path to that given artifact.</p>
-
-<h2 id="artifact-lifecycle">Artifact lifecycle</h2>
-
-<p>Artifacts are all installed within a global <code>artifacts</code> directory within your Julia package depot, usually within <code>~/.julia/artifacts</code>, keyed by content hash.  While artifacts are designed to work well with Julia&rsquo;s multi-depot layering system, and also provides a <a href="https://julialang.github.io/Pkg.jl/dev/artifacts/#Overriding-artifact-locations-1">mechanism for overriding artifact locations</a> to aid in system administrators desiring to use specific, local, versions of libraries, in general we find that installing binary artifacts into a single, user-owned location like this works very well for the average Julia user.  These artifacts stay installed on-disk until a <code>Pkg.gc()</code> cleans away packages and artifacts that have been unused for at least one month.  The garbage collector determines artifacts and packages are unused when a particular version/content-hash is not referred to by any <code>Manifest.toml</code> or <code>Artifacts.toml</code> file on disk.  The garbage collector walks every <code>Manifest.toml</code> and <code>Artifacts.toml</code> file that has ever been loaded by Julia, and marks all reachable artifacts and package versions as used.  All non-marked artifacts and package versions are then noted as such, and any that have been continually noted as unused for a one month are automatically deleted.</p>
-
-<p>This time delay is configurable by setting the <code>collect_delay</code> keyword argument to something smaller, such as <code>Pkg.gc(;collect_delay=Hour(1))</code> (be sure to import the <a href="https://docs.julialang.org/en/v1/stdlib/Dates/"><code>Dates</code></a> stdlib to get time functions such as <code>Hour</code>!) to remove all artifacts that have been unused for an hour or more.  This extensive grace period should eliminate the majority of user frustration stemming from needing to redownload the same large binary packages after changing package versions or reinstalling packages after switching projects.</p>
-
-<h1 id="binarybuilder-jl">BinaryBuilder.jl</h1>
-
-<p>You may be able to guess that <code>BinaryBuilder.jl</code> knows how to generate <code>Artifacts.toml</code> files (<a href="https://github.com/JuliaBinaryWrappers/c_simple_jll.jl/blob/master/Artifacts.toml">example</a>), but that&rsquo;s not the only change.  We were tired of the current best practice of needing to manually express the graph of all dependencies within your package&rsquo;s <code>deps/build.jl</code> file.  To date, there has not been a simple, concise method of recursively installing your binary dependencies; users have been forced to resort to strategies such as embedding the <code>build.jl</code> files of all binary dependencies within their own packages.  This works, but it&rsquo;s way clunkier than we&rsquo;d like.  Luckily, we already have a package manager that knows how to deal with recursive dependencies, and so a simple solution was devised: as a part of the output of a <code>BinaryBuilder.jl</code> run, we will generate a wrapper julia package that will simultaneously allow us to express the DAG of binary dependencies, and provide boilerplate julia wrapper code that will make dealing with libraries and executables much simpler.  We refer to these autogenerated packages as JLL packages.</p>
-
-<h2 id="julia-library-jll-packages">Julia library (JLL) packages</h2>
-
-<p>Autogenerated BinaryBulider-produced packages are normal Julia packages, with the notable inclusion of <code>Artifacts.toml</code> files that download the appropriate version of whatever binary artifacts were built by <code>BinaryBuilder</code> and uploaded to the repository&rsquo;s GitHub release.  We refer to these autogenerated packages as &ldquo;Julia library packages&rdquo; or JLLs for short.  BinaryBuilder attempts to upload all packages to <code>JuliaBinaryWrappers/$(package_name)_jll.jl</code>, however this is, of course, configurable.  An example package <a href="https://github.com/JuliaBinaryWrappers/c_simple_jll.jl">is given here</a>, the most interesting part being the new API that is exposed by these autogenerated packages.</p>
-
-<p>The code bindings within JLL packages are autogenerated from the <code>Products</code> defined within the <code>build_tarballs.jl</code> file that generates the package.  For example purposes, we will assume that the following products were defined:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">products<span style="color:#666"></span> <span style="color:#666">=</span> [
-    FileProduct<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b44">s</span><span style="color:#b44">r</span><span style="color:#b44">c</span><span style="color:#b44">/</span><span style="color:#b44">d</span><span style="color:#b44">a</span><span style="color:#b44">t</span><span style="color:#b44">a</span><span style="color:#b44">.</span><span style="color:#b44">t</span><span style="color:#b44">x</span><span style="color:#b44">t</span><span style="color:#b44">&#34;</span>, <span style="color:#666">:</span>data_txt<span style="color:#666"></span>),
-    LibraryProduct<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b44">l</span><span style="color:#b44">i</span><span style="color:#b44">b</span><span style="color:#b44">d</span><span style="color:#b44">a</span><span style="color:#b44">t</span><span style="color:#b44">a</span><span style="color:#b44">p</span><span style="color:#b44">r</span><span style="color:#b44">o</span><span style="color:#b44">c</span><span style="color:#b44">&#34;</span>, <span style="color:#666">:</span>libdataproc<span style="color:#666"></span>),
-    ExecutableProduct<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b44">m</span><span style="color:#b44">u</span><span style="color:#b44">n</span><span style="color:#b44">g</span><span style="color:#b44">i</span><span style="color:#b44">f</span><span style="color:#b44">y</span><span style="color:#b44">&#34;</span>, <span style="color:#666">:</span>mungify_exe<span style="color:#666"></span>)
-]</code></pre></div>
-<p>With such products defined, the JLL package will contain the <code>data_txt</code>, <code>libdataproc</code> and <code>mungify_exe</code> symbols exported. For <code>FileProduct</code> variables, the exported value is a string pointing to the location of the file on-disk.  For <code>LibraryProduct</code> variables, it is a string corresponding to the <code>SONAME</code> of the desired library (it will have already been <code>dlopen()</code>&lsquo;ed during the <code>__init__()</code> method of the JLL package module so typical <code>ccall()</code> usage applies), and for <code>ExecutableProduct</code> variables, the exported value is a function that can be called to set appropriate environment variables such as <code>PATH</code> and <code>LD_LIBRARY_PATH</code>.  This is necessary so that nested dependencies works properly, e.g. <code>ffmpeg</code> calling the <code>x264</code> binary during video encoding.  Example:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia"><span style="color:#a2f;font-weight:bold">using</span> c_simple_jll<span style="color:#666"></span>
-
-<span style="color:#080;font-style:italic"># For file products, you can access its file location directly:</span>
-data_lines<span style="color:#666"></span> <span style="color:#666">=</span> open<span style="color:#666"></span>(data_txt<span style="color:#666"></span>, <span style="color:#b44">&#34;</span><span style="color:#b44">r</span><span style="color:#b44">&#34;</span>) <span style="color:#a2f;font-weight:bold">do</span> io<span style="color:#666"></span>
-    readlines<span style="color:#666"></span>(io<span style="color:#666"></span>)
-<span style="color:#a2f;font-weight:bold">end</span>
-
-<span style="color:#080;font-style:italic"># For library products, you can use the exported variable name in `ccall()` invocations directly</span>
-num_chars<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">ccall</span>((libdataproc<span style="color:#666"></span>, <span style="color:#666">:</span>count_characters<span style="color:#666"></span>), <span style="color:#0b0;font-weight:bold">Cint</span>, (<span style="color:#0b0;font-weight:bold">Cstring</span>, <span style="color:#0b0;font-weight:bold">Cint</span>), data_lines<span style="color:#666"></span>[<span style="color:#666">1</span>], length<span style="color:#666"></span>(data_lines<span style="color:#666"></span>[<span style="color:#666">1</span>]))
-
-<span style="color:#080;font-style:italic"># For executable products, you can use the exported variable name as a function that you can call</span>
-mungify_exe<span style="color:#666"></span>() <span style="color:#a2f;font-weight:bold">do</span> mungify_exe_path<span style="color:#666"></span>
-    run<span style="color:#666"></span>(<span style="color:#b44">`</span><span style="color:#b68;font-weight:bold">$mungify_exe_path</span><span style="color:#b44"> </span><span style="color:#b68;font-weight:bold">$num_chars</span><span style="color:#b44">`</span>)
-<span style="color:#a2f;font-weight:bold">end</span></code></pre></div>
-<p>One of the big benefits of this new system is that running binaries that must link against libraries provided by another dependency, or call binaries provided within another dependency all works flawlessly because the wrapper JLL packages automatically set up the appropriate environment variables.</p>
-
-<h2 id="changes-to-build-tarballs-jl">Changes to <code>build_tarballs.jl</code></h2>
-
-<p>For those binary building veterans among us, not much has changed to the process of building binaries.  The first change is some cleanup of the clunky products API; previously you needed to provide a closure to curry a <code>prefix</code> through to your products; this is no longer the case.  To make this explicit, while you would previously write declarations such as:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">products<span style="color:#666"></span>(prefix<span style="color:#666"></span>) <span style="color:#666">=</span> [
-    LibraryProduct<span style="color:#666"></span>(prefix<span style="color:#666"></span>, <span style="color:#b44">&#34;</span><span style="color:#b44">l</span><span style="color:#b44">i</span><span style="color:#b44">b</span><span style="color:#b44">g</span><span style="color:#b44">l</span><span style="color:#b44">i</span><span style="color:#b44">b</span><span style="color:#b44">&#34;</span>, <span style="color:#666">:</span>libglib<span style="color:#666"></span>)
-]</code></pre></div>
-<p>You now simply write:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">products<span style="color:#666"></span> <span style="color:#666">=</span> [
-    LibraryProduct<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b44">l</span><span style="color:#b44">i</span><span style="color:#b44">b</span><span style="color:#b44">g</span><span style="color:#b44">l</span><span style="color:#b44">i</span><span style="color:#b44">b</span><span style="color:#b44">&#34;</span>, <span style="color:#666">:</span>libglib<span style="color:#666"></span>)
-]</code></pre></div>
-<p>The second change is that dependencies are no longer linked straight to <code>build.jl</code> files, rather you give the names (or names and versions) of the JLL packages you want to install, and they (along with all recursive dependencies) will be installed and symlinked into <code>${prefix}</code>, similarly to before.  To make this explicit, while you would previously write declarations such as:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">dependencies<span style="color:#666"></span> <span style="color:#666">=</span> [
-    <span style="color:#b44">&#34;</span><span style="color:#b44">h</span><span style="color:#b44">t</span><span style="color:#b44">t</span><span style="color:#b44">p</span><span style="color:#b44">s</span><span style="color:#b44">:</span><span style="color:#b44">/</span><span style="color:#b44">/</span><span style="color:#b44">g</span><span style="color:#b44">i</span><span style="color:#b44">t</span><span style="color:#b44">h</span><span style="color:#b44">u</span><span style="color:#b44">b</span><span style="color:#b44">.</span><span style="color:#b44">c</span><span style="color:#b44">o</span><span style="color:#b44">m</span><span style="color:#b44">/</span><span style="color:#b44">J</span><span style="color:#b44">u</span><span style="color:#b44">l</span><span style="color:#b44">i</span><span style="color:#b44">a</span><span style="color:#b44">B</span><span style="color:#b44">i</span><span style="color:#b44">n</span><span style="color:#b44">a</span><span style="color:#b44">r</span><span style="color:#b44">y</span><span style="color:#b44">W</span><span style="color:#b44">r</span><span style="color:#b44">a</span><span style="color:#b44">p</span><span style="color:#b44">p</span><span style="color:#b44">e</span><span style="color:#b44">r</span><span style="color:#b44">s</span><span style="color:#b44">/</span><span style="color:#b44">c</span><span style="color:#b44">_</span><span style="color:#b44">s</span><span style="color:#b44">i</span><span style="color:#b44">m</span><span style="color:#b44">p</span><span style="color:#b44">l</span><span style="color:#b44">e</span><span style="color:#b44">_</span><span style="color:#b44">j</span><span style="color:#b44">l</span><span style="color:#b44">l</span><span style="color:#b44">.</span><span style="color:#b44">j</span><span style="color:#b44">l</span><span style="color:#b44">/</span><span style="color:#b44">r</span><span style="color:#b44">e</span><span style="color:#b44">l</span><span style="color:#b44">e</span><span style="color:#b44">a</span><span style="color:#b44">s</span><span style="color:#b44">e</span><span style="color:#b44">s</span><span style="color:#b44">/</span><span style="color:#b44">d</span><span style="color:#b44">o</span><span style="color:#b44">w</span><span style="color:#b44">n</span><span style="color:#b44">l</span><span style="color:#b44">o</span><span style="color:#b44">a</span><span style="color:#b44">d</span><span style="color:#b44">/</span><span style="color:#b44">c</span><span style="color:#b44">_</span><span style="color:#b44">s</span><span style="color:#b44">i</span><span style="color:#b44">m</span><span style="color:#b44">p</span><span style="color:#b44">l</span><span style="color:#b44">e</span><span style="color:#b44">%</span><span style="color:#b44">2</span><span style="color:#b44">B</span><span style="color:#b44">v</span><span style="color:#b44">1</span><span style="color:#b44">.</span><span style="color:#b44">2</span><span style="color:#b44">.</span><span style="color:#b44">3</span><span style="color:#b44">%</span><span style="color:#b44">2</span><span style="color:#b44">B</span><span style="color:#b44">7</span><span style="color:#b44">/</span><span style="color:#b44">b</span><span style="color:#b44">u</span><span style="color:#b44">i</span><span style="color:#b44">l</span><span style="color:#b44">d</span><span style="color:#b44">_</span><span style="color:#b44">c</span><span style="color:#b44">_</span><span style="color:#b44">s</span><span style="color:#b44">i</span><span style="color:#b44">m</span><span style="color:#b44">p</span><span style="color:#b44">l</span><span style="color:#b44">e</span><span style="color:#b44">.</span><span style="color:#b44">v</span><span style="color:#b44">1</span><span style="color:#b44">.</span><span style="color:#b44">2</span><span style="color:#b44">.</span><span style="color:#b44">3</span><span style="color:#b44">.</span><span style="color:#b44">j</span><span style="color:#b44">l</span><span style="color:#b44">&#34;</span>,
-]</code></pre></div>
-<p>You now simply write:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">dependencies<span style="color:#666"></span> <span style="color:#666">=</span> [
-    <span style="color:#b44">&#34;</span><span style="color:#b44">c</span><span style="color:#b44">_</span><span style="color:#b44">s</span><span style="color:#b44">i</span><span style="color:#b44">m</span><span style="color:#b44">p</span><span style="color:#b44">l</span><span style="color:#b44">e</span><span style="color:#b44">_</span><span style="color:#b44">j</span><span style="color:#b44">l</span><span style="color:#b44">l</span><span style="color:#b44">&#34;</span>,
-]</code></pre></div>
-<p>If you want to specify a specific version of a binary dependency, you may provide a full <a href="https://julialang.github.io/Pkg.jl/dev/api/#Pkg.PackageSpec"><code>PackageSpec</code></a>, as follows:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">dependencies<span style="color:#666"></span> <span style="color:#666">=</span> [
-    Pkg<span style="color:#666"></span><span style="color:#666">.</span>Types<span style="color:#666"></span><span style="color:#666">.</span>PackageSpec<span style="color:#666"></span>(;name<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#b44">c</span><span style="color:#b44">_</span><span style="color:#b44">s</span><span style="color:#b44">i</span><span style="color:#b44">m</span><span style="color:#b44">p</span><span style="color:#b44">l</span><span style="color:#b44">e</span><span style="color:#b44">_</span><span style="color:#b44">j</span><span style="color:#b44">l</span><span style="color:#b44">l</span><span style="color:#b44">&#34;</span>, version<span style="color:#666"></span><span style="color:#666">=</span>v<span style="color:#666"></span><span style="color:#b44">&#34;</span><span style="color:#b44">1</span><span style="color:#b44">.</span><span style="color:#b44">2</span><span style="color:#b44">.</span><span style="color:#b44">3</span><span style="color:#b44">&#34;</span>),
-]</code></pre></div>
-<p>Because JLL packages are registered just like any other public package, installing these build dependencies is as simple as querying the registry, cloning the latest version of the JLL package, inspecting its <code>Artifacts.toml</code> file and unpacking the appropriate artifact within the build prefix.  Even better, these build dependencies are automatically recorded as dependencies for the generated new JLL package.</p>
-
-<h2 id="yggdrasil-a-collection-of-build-recipes">Yggdrasil, a collection of build recipes</h2>
-
-<p>Previously, each user was encouraged to create their own &ldquo;builder repository&rdquo; where Travis CI would build binaries of their dependencies.  This made setup rather more intricate and difficult than we prefer our tools to be, and also contributed to a discovery problem where it was very difficult to figure out of someone had already built a recipe for a particular dependency or not.  To address both of these problems, we now have a community buildtree located at <a href="https://github.com/JuliaPackaging/Yggdrasil"><code>JuliaPackaging/Yggdrasil</code></a>.  Users of the <code>BinaryBuilder.jl</code> wizard will typically result in opening a pull request to <code>Yggdrasil</code>, and many build recipes can already be found within its shady branches.</p>
-
-<h1 id="updating-your-packages">Updating your packages</h1>
-
-<p>To update your packages, first build with the latest version of <code>BinaryBuilder</code>, then add the autogenerated JLL packages as dependencies in your projects and packages, use the new API for your <code>ccall()</code>&rsquo;s and <code>run()</code>&lsquo;ing your binaries, and give a small smile as you delete your <code>deps/build.jl</code> file.  Death to all global mutable state.</p>
-
-<h2 id="beyond-jll-packages">Beyond JLL packages</h2>
-
-<p>For an example of how JLL packages can be used for more than just JLL packages, we look to an <a href="https://github.com/staticfloat/Gtk.jl/blob/e500dcadaa8bf3571d27b0ac7cd92ef00febcb1f/src/Gtk.jl#L82-L111">example in <code>Gtk.jl</code></a>:</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-julia" data-lang="julia">mutable_artifacts_toml<span style="color:#666"></span> <span style="color:#666">=</span> joinpath<span style="color:#666"></span>(dirname<span style="color:#666"></span>(<span style="color:#a2f">@__DIR__</span><span style="color:#666"></span>), <span style="color:#b44">&#34;</span><span style="color:#b44">M</span><span style="color:#b44">u</span><span style="color:#b44">t</span><span style="color:#b44">a</span><span style="color:#b44">b</span><span style="color:#b44">l</span><span style="color:#b44">e</span><span style="color:#b44">A</span><span style="color:#b44">r</span><span style="color:#b44">t</span><span style="color:#b44">i</span><span style="color:#b44">f</span><span style="color:#b44">a</span><span style="color:#b44">c</span><span style="color:#b44">t</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">t</span><span style="color:#b44">o</span><span style="color:#b44">m</span><span style="color:#b44">l</span><span style="color:#b44">&#34;</span>)
-loaders_cache_name<span style="color:#666"></span> <span style="color:#666">=</span> <span style="color:#b44">&#34;</span><span style="color:#b44">g</span><span style="color:#b44">d</span><span style="color:#b44">k</span><span style="color:#b44">-</span><span style="color:#b44">p</span><span style="color:#b44">i</span><span style="color:#b44">x</span><span style="color:#b44">b</span><span style="color:#b44">u</span><span style="color:#b44">f</span><span style="color:#b44">-</span><span style="color:#b44">l</span><span style="color:#b44">o</span><span style="color:#b44">a</span><span style="color:#b44">d</span><span style="color:#b44">e</span><span style="color:#b44">r</span><span style="color:#b44">s</span><span style="color:#b44">-</span><span style="color:#b44">c</span><span style="color:#b44">a</span><span style="color:#b44">c</span><span style="color:#b44">h</span><span style="color:#b44">e</span><span style="color:#b44">&#34;</span>
-loaders_cache_hash<span style="color:#666"></span> <span style="color:#666">=</span> artifact_hash<span style="color:#666"></span>(loaders_cache_name<span style="color:#666"></span>, mutable_artifacts_toml<span style="color:#666"></span>)
-<span style="color:#a2f;font-weight:bold">if</span> loaders_cache_hash<span style="color:#666"></span> <span style="color:#666">=</span><span style="color:#666">=</span><span style="color:#666">=</span> <span style="color:#a2f">nothing</span>
-    <span style="color:#080;font-style:italic"># Run gdk-pixbuf-query-loaders, capture output,</span>
-    loader_cache_contents<span style="color:#666"></span> <span style="color:#666">=</span> gdk_pixbuf_query_loaders<span style="color:#666"></span>() <span style="color:#a2f;font-weight:bold">do</span> gpql<span style="color:#666"></span>
-        withenv<span style="color:#666"></span>(<span style="color:#b44">&#34;</span><span style="color:#b44">G</span><span style="color:#b44">D</span><span style="color:#b44">K</span><span style="color:#b44">_</span><span style="color:#b44">P</span><span style="color:#b44">I</span><span style="color:#b44">X</span><span style="color:#b44">B</span><span style="color:#b44">U</span><span style="color:#b44">F</span><span style="color:#b44">_</span><span style="color:#b44">M</span><span style="color:#b44">O</span><span style="color:#b44">D</span><span style="color:#b44">U</span><span style="color:#b44">L</span><span style="color:#b44">E</span><span style="color:#b44">D</span><span style="color:#b44">I</span><span style="color:#b44">R</span><span style="color:#b44">&#34;</span> <span style="color:#666">=</span><span style="color:#666">&gt;</span> gdk_pixbuf_loaders_dir<span style="color:#666"></span>) <span style="color:#a2f;font-weight:bold">do</span>
-            <span style="color:#a2f;font-weight:bold">return</span> String<span style="color:#666"></span>(read<span style="color:#666"></span>(<span style="color:#b44">`</span><span style="color:#b68;font-weight:bold">$gpql</span><span style="color:#b44">`</span>))
-        <span style="color:#a2f;font-weight:bold">end</span>
-    <span style="color:#a2f;font-weight:bold">end</span>
-
-    <span style="color:#080;font-style:italic"># Write cache out to file in new artifact</span>
-    loaders_cache_hash<span style="color:#666"></span> <span style="color:#666">=</span> create_artifact<span style="color:#666"></span>() <span style="color:#a2f;font-weight:bold">do</span> art_dir<span style="color:#666"></span>
-        open<span style="color:#666"></span>(joinpath<span style="color:#666"></span>(art_dir<span style="color:#666"></span>, <span style="color:#b44">&#34;</span><span style="color:#b44">l</span><span style="color:#b44">o</span><span style="color:#b44">a</span><span style="color:#b44">d</span><span style="color:#b44">e</span><span style="color:#b44">r</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">c</span><span style="color:#b44">a</span><span style="color:#b44">c</span><span style="color:#b44">h</span><span style="color:#b44">e</span><span style="color:#b44">&#34;</span>), <span style="color:#b44">&#34;</span><span style="color:#b44">w</span><span style="color:#b44">&#34;</span>) <span style="color:#a2f;font-weight:bold">do</span> io<span style="color:#666"></span>
-            write<span style="color:#666"></span>(io<span style="color:#666"></span>, loader_cache_contents<span style="color:#666"></span>)
-        <span style="color:#a2f;font-weight:bold">end</span>
-    <span style="color:#a2f;font-weight:bold">end</span>
-    bind_artifact!<span style="color:#666"></span>(mutable_artifacts_toml<span style="color:#666"></span>,
-        loaders_cache_name<span style="color:#666"></span>,
-        loaders_cache_hash<span style="color:#666"></span>;
-        force<span style="color:#666"></span><span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">true</span>
+    <span class=hljs-comment ># Write cache out to file in new artifact</span>
+    loaders_cache_hash = create_artifact() <span class=hljs-keyword >do</span> art_dir
+        open(joinpath(art_dir, <span class=hljs-string >"loaders.cache"</span>), <span class=hljs-string >"w"</span>) <span class=hljs-keyword >do</span> io
+            write(io, loader_cache_contents)
+        <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >end</span>
+    bind_artifact!(mutable_artifacts_toml,
+        loaders_cache_name,
+        loaders_cache_hash;
+        force=<span class=hljs-literal >true</span>
     )
-<span style="color:#a2f;font-weight:bold">end</span>
+<span class=hljs-keyword >end</span>
 
-<span style="color:#080;font-style:italic"># Point gdk to our cached loaders</span>
-<span style="color:#a2f">ENV</span>[<span style="color:#b44">&#34;</span><span style="color:#b44">G</span><span style="color:#b44">D</span><span style="color:#b44">K</span><span style="color:#b44">_</span><span style="color:#b44">P</span><span style="color:#b44">I</span><span style="color:#b44">X</span><span style="color:#b44">B</span><span style="color:#b44">U</span><span style="color:#b44">F</span><span style="color:#b44">_</span><span style="color:#b44">M</span><span style="color:#b44">O</span><span style="color:#b44">D</span><span style="color:#b44">U</span><span style="color:#b44">L</span><span style="color:#b44">E</span><span style="color:#b44">_</span><span style="color:#b44">F</span><span style="color:#b44">I</span><span style="color:#b44">L</span><span style="color:#b44">E</span><span style="color:#b44">&#34;</span>] <span style="color:#666">=</span> joinpath<span style="color:#666"></span>(artifact_path<span style="color:#666"></span>(loaders_cache_hash<span style="color:#666"></span>), <span style="color:#b44">&#34;</span><span style="color:#b44">l</span><span style="color:#b44">o</span><span style="color:#b44">a</span><span style="color:#b44">d</span><span style="color:#b44">e</span><span style="color:#b44">r</span><span style="color:#b44">s</span><span style="color:#b44">.</span><span style="color:#b44">c</span><span style="color:#b44">a</span><span style="color:#b44">c</span><span style="color:#b44">h</span><span style="color:#b44">e</span><span style="color:#b44">&#34;</span>)
-<span style="color:#a2f">ENV</span>[<span style="color:#b44">&#34;</span><span style="color:#b44">G</span><span style="color:#b44">D</span><span style="color:#b44">K</span><span style="color:#b44">_</span><span style="color:#b44">P</span><span style="color:#b44">I</span><span style="color:#b44">X</span><span style="color:#b44">B</span><span style="color:#b44">U</span><span style="color:#b44">F</span><span style="color:#b44">_</span><span style="color:#b44">M</span><span style="color:#b44">O</span><span style="color:#b44">D</span><span style="color:#b44">U</span><span style="color:#b44">L</span><span style="color:#b44">E</span><span style="color:#b44">D</span><span style="color:#b44">I</span><span style="color:#b44">R</span><span style="color:#b44">&#34;</span>] <span style="color:#666">=</span> gdk_pixbuf_loaders_dir<span style="color:#666"></span></code></pre></div>
-<p>Within the <code>__init__()</code> method of <code>Gtk</code>, this is looking to see if a local cache of <code>gdk-pixbuf</code> loaders has been generated.  This cache is machine-specific, and must be generated upon first run of the module.  Doing so requires invoking a binary from the <code>gdk_pixbuf_jll</code> package, which is done using that JLL package&rsquo;s <code>gdk_pixbuf_query_loaders</code> export.  By writing the result out to a new artifact and binding that artifact to a <code>MutableArtifacts.toml</code> file (an arbitrarily-named <code>.gitignore</code>&rsquo;d file), we are able to dynamically cache binary objects that are kept separately from the rest of our package data.  Gtk is thereafter informed of the cache location through environment variables.  We hope to improve this experience even further through the introduction of <a href="https://github.com/JuliaLang/Pkg.jl/issues/796#issuecomment-523154714">explicitly lifecycled caches</a> in a future Pkg release.</p>
-
-<h1 id="reproducibility-is-important">Reproducibility is Important</h1>
-
-<p>In conclusion, we hope that these new capabilities will empower you to write ever more reliable Julia packages.  This system has the huge benefit of working within the excellent Julia packaging system, gaining all of the reproducibility benefits of Manifests and the compatibility checking capabilities of the package resolver.  This means that now when you come back to a project six months later, instantiating it will install not only the exact Julia source code you had previously, but will also fetch the exact library versions that were installed when it was working.  This is a huge step forward in our quest to truly exert control over the whole computing platform that our applications and systems are built on top of, and we look forward to seeing the amazing projects that you as a community build on top of these exciting capabilities.</p>
-
-
-  </div>
-
-  
-
-  </div>
-  </div>
-  </div>
-
-  <br />
-
-  
-
-
-  <head>
-  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
-</head>
-
-<footer class="container-fluid footer-copy">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-10 py-2">
-          <p>
-            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
-          </p>
-          <p>
-            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
-          </p>
-        </div>
-        <div class="col-md-2 py-2">
-          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
-        </div>
-      </div>
-    </div>
-</footer>
-
-
-  <script src="../../../../v2/js/jquery.min.js"></script>
-<script src="../../../../v2/js/bootstrap.min.js"></script>
-<script src="../../../../v2/js/platform.js"></script>
-<script src="../../../../v2/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-</body>
-
-</html>
+<span class=hljs-comment ># Point gdk to our cached loaders</span>
+<span class=hljs-literal >ENV</span>[<span class=hljs-string >"GDK_PIXBUF_MODULE_FILE"</span>] = joinpath(artifact_path(loaders_cache_hash), <span class=hljs-string >"loaders.cache"</span>)
+<span class=hljs-literal >ENV</span>[<span class=hljs-string >"GDK_PIXBUF_MODULEDIR"</span>] = gdk_pixbuf_loaders_dir</code></pre> <p>Within the <code>__init__&#40;&#41;</code> method of <code>Gtk</code>, this is looking to see if a local cache of <code>gdk-pixbuf</code> loaders has been generated. This cache is machine-specific, and must be generated upon first run of the module. Doing so requires invoking a binary from the <code>gdk_pixbuf_jll</code> package, which is done using that JLL package&#39;s <code>gdk_pixbuf_query_loaders</code> export. By writing the result out to a new artifact and binding that artifact to a <code>MutableArtifacts.toml</code> file &#40;an arbitrarily-named <code>.gitignore</code>&#39;d file&#41;, we are able to dynamically cache binary objects that are kept separately from the rest of our package data. Gtk is thereafter informed of the cache location through environment variables. We hope to improve this experience even further through the introduction of <a href="https://github.com/JuliaLang/Pkg.jl/issues/796#issuecomment-523154714">explicitly lifecycled caches</a> in a future Pkg release.</p> <h1 id=reproducibility_is_important ><a href="#reproducibility_is_important">Reproducibility is Important</a></h1> <p>In conclusion, we hope that these new capabilities will empower you to write ever more reliable Julia packages. This system has the huge benefit of working within the excellent Julia packaging system, gaining all of the reproducibility benefits of Manifests and the compatibility checking capabilities of the package resolver. This means that now when you come back to a project six months later, instantiating it will install not only the exact Julia source code you had previously, but will also fetch the exact library versions that were installed when it was working. This is a huge step forward in our quest to truly exert control over the whole computing platform that our applications and systems are built on top of, and we look forward to seeing the amazing projects that you as a community build on top of these exciting capabilities.</p> </div> <br><br> <footer class="container-fluid footer-copy"> <div class=container > <div class=row > <div class="col-md-10 py-2"> <p>We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.</p> <p>©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>; it has been built using <a style="color: #7a95dd" href="https://franklinjl.org">Franklin.jl</a> - a Julia native package for building websites.</p> </div> <div class="col-md-2 py-2"> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </div> </div> </div> </footer> <script src="/libs/jquery/jquery.min.js"></script> <script src="/libs/bootstrap/bootstrap.min.js"></script> <script src="/libs/platform.js"></script>

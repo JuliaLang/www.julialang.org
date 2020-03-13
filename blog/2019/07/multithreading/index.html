@@ -1,253 +1,24 @@
-<!DOCTYPE html>
-<html>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta http-equiv=content-type  content="text/html; charset=utf-8" /> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." /> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."/> <meta property="og:title" content="The Julia Language"/> <meta property="og:image" content="/assets/images/julia-open-graph.png"/> <meta property="og:description" content="Official website for the Julia programming language"/> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css" /> <link rel=stylesheet  href="/css/app.css" /> <link rel=stylesheet  href="/css/fonts.css" /> <link rel=stylesheet  href="/css/franklin.css" /> <script async defer src="/libs/buttons.js"></script> <!-- --> <!-- NOTE: google tracking, off for now <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> --> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Announcing composable multi-threaded parallelism in Julia</title> <style> .container ul li p {margin-bottom: 0;} </style> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/" id=logo > <img src="/assets/infra/logo.svg" height=55  width=85  alt="JuliaLang Logo"/> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mr-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learning</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> <li class="nav-item donate flex-md-fill text-md-center"> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </ul> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Announcing composable multi-threaded parallelism in Julia</h1> <h3> <span style="font-weight: lighter;"> 23 July 2019 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Jeff Bezanson (Julia Computing), Jameson Nash (Julia Computing), Kiran Pamnany (Intel) </span> </h3> </div> <div class=container > <p>Software performance depends more and more on exploiting multiple processor cores. The <a href="https://www.gotw.ca/publications/concurrency-ddj.htm">free lunch</a> from Moore&#39;s Law is still over. Well, we here in the Julia developer community have something of a reputation for caring about performance. In pursuit of it, we have already built a lot of functionality for multi-process, distributed and GPUs, but we&#39;ve known for years that we would also need a good story for composable multi-threading. Today we are happy to announce a major new chapter in that story. We are releasing a preview of an entirely new threading interface for Julia programs: general task parallelism, inspired by parallel programming systems like <a href="https://cilk.mit.edu/">Cilk</a>, <a href="https://software.intel.com/en-us/intel-tbb/">Intel Threading Building Blocks</a><a href=TBB ></a> and <a href="https://tour.golang.org/concurrency/1">Go</a>. Task parallelism is now available in the v1.3.0-alpha release, an early preview of Julia version 1.3.0 likely to be released in a couple months. You can find binaries with this feature on the <a href="/downloads/">downloads page</a>, or build the <a href="https://github.com/JuliaLang/julia">master branch</a> from source.</p> <p>In this paradigm, any piece of a program can be marked for execution in parallel, and a &quot;task&quot; will be started to run that code automatically on an available thread. A dynamic scheduler handles all the decisions and details for you. Here&#39;s an example of parallel code you can now write in Julia:</p> <pre><code class="julia hljs"><span class=hljs-keyword >import</span> Base.Threads.<span class=hljs-meta >@spawn</span>
 
-<head>
-  <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Announcing composable multi-threaded parallelism in Julia</title>
-<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+<span class=hljs-keyword >function</span> fib(n::<span class=hljs-built_in >Int</span>)
+    <span class=hljs-keyword >if</span> n &lt; <span class=hljs-number >2</span>
+        <span class=hljs-keyword >return</span> n
+    <span class=hljs-keyword >end</span>
+    t = <span class=hljs-meta >@spawn</span> fib(n - <span class=hljs-number >2</span>)
+    <span class=hljs-keyword >return</span> fib(n - <span class=hljs-number >1</span>) + fetch(t)
+<span class=hljs-keyword >end</span></code></pre> <p>This, of course, is the classic highly-inefficient tree recursive implementation of the Fibonacci sequence — but running on any number of processor cores&#33; The line <code>t &#61; @spawn fib&#40;n - 2&#41;</code> starts a task to compute <code>fib&#40;n - 2&#41;</code>, which runs in parallel with the following line computing <code>fib&#40;n - 1&#41;</code>. <code>fetch&#40;t&#41;</code> waits for task <code>t</code> to complete and gets its return value.</p> <p>This model of parallelism has many wonderful properties. We see it as somewhat analogous to garbage collection: with GC, you freely allocate objects without worrying about when and how they are freed. With task parallelism, you freely spawn tasks — potentially millions of them — without worrying about where they run.</p> <p>The model is portable and free from low-level details. You don&#39;t need to explicitly start and stop threads, and you don&#39;t even need to know how many processors or threads there are &#40;though you can find out if you want&#41;.</p> <p>The model is nestable and composable: you can start parallel tasks that call library functions that themselves start parallel tasks, and everything works. Your CPUs will not be over-subscribed with threads. This property is crucial for a high-level language where a lot of work is done by library functions. You need to be free to write whatever code you need — including parallel code — without worrying about how the libraries it calls are implemented &#40;currently only for Julia code, but in the future we plan to extend this to native libraries such as BLAS&#41;.</p> <p>This is, in fact, the main reason we are excited about this announcement: from this point on, the capability of adding multi-core parallelism is unleashed over the entire Julia package ecosystem.</p> <div class=franklin-toc ><ol><li><a href="#some_history">Some history</a><li><a href="#how_to_use_it">How to use it</a><li><a href="#how_to_move_to_a_parallel_world">How to move to a parallel world</a><ol><li><a href="#task_scheduling_and_synchronization">Task scheduling and synchronization</a><li><a href="#thread-local_state">Thread-local state</a><li><a href="#random_number_generation">Random number generation</a></ol><li><a href="#under_the_hood">Under the hood</a><ol><li><a href="#allocating_and_switching_task_stacks">Allocating and switching task stacks</a><li><a href="#io">I/O</a><li><a href="#task_migration_across_system_threads">Task migration across system threads</a><li><a href="#sleeping_idle_threads">Sleeping idle threads</a><li><a href="#where_does_the_scheduler_run">Where does the scheduler run?</a><li><a href="#classic_bugs">Classic bugs</a></ol><li><a href="#looking_forward">Looking forward</a><li><a href="#acknowledgements">Acknowledgements</a></ol></div> <h2 id=some_history ><a href="#some_history">Some history</a></h2> <p>One of the most surprising aspects of this new feature is just how long it has been in the works. From the very beginning — prior even to the 0.1 release — Julia has had the <code>Task</code> type providing symmetric coroutines, which we&#39;ve used for event-based I/O. So we have always had a unit of <em>concurrency</em> &#40;independent streams of execution&#41; in the language, it just wasn&#39;t <em>parallel</em> &#40;simultaneous streams of execution&#41; yet. We knew we needed thread-based parallelism though, so in 2014 &#40;roughly the version 0.3 timeframe&#41; we set about the long process of making our code thread-safe. Yichao Yu put in some particularly impressive work on the garbage collector and thread-local-storage performance. One of the authors &#40;Kiran&#41; designed some basic infrastructure for scheduling multiple threads and managing atomic datastructures.</p> <p>In version 0.5 about two years later, we released the <code>@threads for</code> macro with &quot;experimental&quot; status which could handle simple parallel loops running on all cores. Even though that wasn&#39;t the final design we wanted, it did two important jobs: it let Julia programmers start taking advantage of multiple cores, and provided test cases to shake out thread-related bugs in our runtime. That initial <code>@threads</code> had some huge limitations, however: <code>@threads</code> loops could not be nested: if the functions they called used <code>@threads</code> recursively, those inner loops would only occupy the CPU that called them. It was also incompatible with our <code>Task</code> and I/O system: you couldn&#39;t do any I/O or switch among <code>Task</code>s inside a threaded loop.</p> <p>So the next logical step was to merge the <code>Task</code> and threading systems, and &quot;simply&quot; &#40;cue laughter&#41; allow <code>Task</code>s to run simultaneously on a pool of threads. We had many early discussions with Arch Robison &#40;then of Intel&#41; and concluded that this was the best model for our language. After version 0.5 &#40;around 2016&#41;, Kiran started experimenting with a new parallel task scheduler <a href="https://github.com/kpamnany/partr">partr</a> based on the idea of depth-first scheduling. He sold all of us on it with some nice animated slides, and it also didn&#39;t hurt that he was willing to do some of the work. The plan was to first develop partr as a standalone C library so it could be tested and benchmarked on its own and then integrate it with the Julia runtime.</p> <p>After Kiran completed the standalone version of partr, a few of us &#40;the authors of this post, as well as Keno Fischer and Intel&#39;s Anton Malakhov&#41; embarked on a series of face-to-face work sessions to figure out how to do the integration. The Julia runtime brings many extra features, such as garbage collection and event-based I/O, so this was not entirely straightforward. Somewhat disappointingly, though not unusually for a complex software project, it took much longer than expected — nearly two years — to get the new system working reliably. A later section of this post will explain some of the internals and difficulties involved for the curious. But first, let&#39;s take it for a spin.</p> <h2 id=how_to_use_it ><a href="#how_to_use_it">How to use it</a></h2> <p>To use Julia with multiple threads, set the <code>JULIA_NUM_THREADS</code> environment variable:</p> <pre><code class="bash hljs">$ JULIA_NUM_THREADS=4 ./julia</code></pre>
+<p>The <a href="https://junolab.org/">Juno IDE</a> automatically sets the number of threads based on the number of available processor cores, and also provides a graphical interface for changing the number of threads, so setting the variable manually is not necessary in that environment.</p>
+<p>The <code>Threads</code> submodule of <code>Base</code> houses most of the thread-specific functionality, such as querying the number of threads and the ID of the current thread:</p>
+<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Threads.nthreads()
+</span>4
 
-<meta property="og:title" content="The Julia Language"/>
-<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
-<meta property="og:description" content="Official website for the Julia programming language"/>
-
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
-<link rel="stylesheet" href="https://julialang.org/v2/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://julialang.org/v2/css/app.css" />
-<link rel="stylesheet" href="https://julialang.org/v2/css/fonts.css" />
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [['$','$'], ['\\(','\\)']],
-      displayMath: [['$$','$$']],
-      processEscapes: true,
-      processEnvironments: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      TeX: { equationNumbers: { autoNumber: "AMS" },
-             extensions: ["AMSmath.js", "AMSsymbols.js"] }
-    }
-  });
-</script>
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-28835595-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-  
-
-  
-</head>
-
-<body>
-  
-  
-
-<div class="container py-3 py-lg-0">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
-
-    <a class="navbar-brand" href="../../../../" id="logo">
-      <img src="https://julialang.org/v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
-    </a>
-
-    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/downloads/">Download</a>
-        </li>
-        <li class="nav-item flex-md-fill text-md-center">
-          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
-        </li>
-        <li class="nav-item  active  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/blog/">Blog</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/community/">Community</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/learning/">Learning</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/research/">Research</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/jsoc/">JSoC</a>
-        </li>
-        <li class="nav-item donate flex-md-fill text-md-center">
-          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
-        </li>
-      </ul>
-    </div>
-
-  </nav>
-</div>
-
-
-
-  <br /><br />
-
-  <div class="container">
-
-  <div id="blogpost">
-    <h1>Announcing composable multi-threaded parallelism in Julia</h1>
-
-    <p class="metadata">
-      <span class="timestamp">23 July, 2019</span>
-      
-      &nbsp;|&nbsp;
-      <span class="author">Jeff Bezanson (Julia Computing), Jameson Nash (Julia Computing), Kiran Pamnany (Intel)</span>
-      
-    </p>
-
-    
-
-<p>Software performance depends more and more on exploiting multiple processor cores.
-The <a href="http://www.gotw.ca/publications/concurrency-ddj.htm">free lunch</a> from Moore&rsquo;s Law is still over.
-Well, we here in the Julia developer community have something of a reputation for
-caring about performance.
-In pursuit of it, we have already built a lot of functionality for multi-process, distributed
-programming and GPUs, but we&rsquo;ve known for years that we would also need a good
-story for composable multi-threading.
-Today we are happy to announce a major new chapter in that story.
-We are releasing a preview of an entirely new threading interface for Julia programs:
-general task parallelism, inspired by parallel programming systems
-like <a href="http://cilk.mit.edu/">Cilk</a>, <a href="https://software.intel.com/en-us/intel-tbb/">Intel Threading Building Blocks</a> (TBB) and <a href="https://tour.golang.org/concurrency/1">Go</a>.
-Task parallelism is now available in the v1.3.0-alpha release, an early preview
-of Julia version 1.3.0 likely to be released in a couple months.
-You can find binaries with this feature on the <a href="https://julialang.org/downloads/">downloads page</a>, or build
-the <a href="https://github.com/JuliaLang/julia">master branch</a> from source.</p>
-
-<p>In this paradigm, any piece of a program can be marked for execution in parallel,
-and a &ldquo;task&rdquo; will be started to run that code automatically on an available thread.
-A dynamic scheduler handles all the decisions and details for you.
-Here&rsquo;s an example of parallel code you can now write in Julia:</p>
-<pre><code>import Base.Threads.@spawn
-
-function fib(n::Int)
-    if n < 2
-        return n
-    end
-    t = @spawn fib(n - 2)
-    return fib(n - 1) + fetch(t)
-end</code></pre>
-<p>This, of course, is the classic highly-inefficient tree recursive implementation of
-the Fibonacci sequence&mdash;but running on any number of processor cores!
-The line <code>t = @spawn fib(n - 2)</code> starts a task to compute <code>fib(n - 2)</code>, which runs in
-parallel with the following line computing <code>fib(n - 1)</code>.
-<code>fetch(t)</code> waits for task <code>t</code> to complete and gets its return value.</p>
-
-<p>This model of parallelism has many wonderful properties.
-We see it as somewhat analogous to garbage collection: with GC, you
-freely allocate objects without worrying about when and how they are freed.
-With task parallelism, you freely spawn tasks&mdash;potentially millions of them&mdash;without
-worrying about where they run.</p>
-
-<p>The model is portable and free from low-level details.
-You don&rsquo;t need to explicitly start and stop threads, and you don&rsquo;t even need to know how
-many processors or threads there are (though you can find out if you want).</p>
-
-<p>The model is nestable and composable: you can start parallel tasks that call library
-functions that themselves start parallel tasks, and everything works.
-Your CPUs will not be over-subscribed with threads.
-This property is crucial for a high-level language where a lot of work is done by library
-functions.
-You need to be free to write whatever code you need&mdash;including parallel code&mdash;
-without worrying about how the libraries it calls are implemented
-(currently only for Julia code, but in the future we plan to extend this to native libraries
-such as BLAS).</p>
-
-<p>This is, in fact, the main reason we are excited about this announcement: from this point on,
-the capability of adding multi-core parallelism is unleashed over the entire Julia package ecosystem.</p>
-
-<h2 id="some-history">Some history</h2>
-
-<p>One of the most surprising aspects of this new feature is just how long it has been in
-the works.
-From the very beginning&mdash;prior even to the 0.1 release&mdash;Julia has had the <code>Task</code>
-type providing symmetric coroutines, which we&rsquo;ve used for event-based I/O.
-So we have always had a unit of <em>concurrency</em> (independent streams of execution) in the language, it just
-wasn&rsquo;t <em>parallel</em> (simultaneous streams of execution) yet.
-We knew we needed thread-based parallelism though, so in 2014 (roughly the version 0.3 timeframe) we
-set about the long process of making our code thread-safe.
-Yichao Yu put in some particularly impressive work on the garbage collector and thread-local-storage performance.
-One of the authors (Kiran) designed some basic infrastructure for scheduling multiple threads and managing
-atomic datastructures.</p>
-
-<p>In version 0.5 about two years later, we released the <code>@threads for</code> macro with &ldquo;experimental&rdquo; status
-which could handle simple parallel loops running on all cores.
-Even though that wasn&rsquo;t the final design we wanted, it did two important jobs:
-it let Julia programmers start taking advantage of multiple cores, and provided
-test cases to shake out thread-related bugs in our runtime.
-That initial <code>@threads</code> had some huge limitations, however:
-<code>@threads</code> loops could not be nested: if the functions they called used <code>@threads</code>
-recursively, those inner loops would only occupy the CPU that called them.
-It was also incompatible with our <code>Task</code> and I/O system: you couldn&rsquo;t do any I/O or
-switch among <code>Task</code>s inside a threaded loop.</p>
-
-<p>So the next logical step was to merge the <code>Task</code> and threading systems, and &ldquo;simply&rdquo;
-(cue laughter) allow <code>Task</code>s to run simultaneously on a pool of threads.
-We had many early discussions with Arch Robison (then of Intel) and concluded
-that this was the best model for our language.
-After version 0.5 (around 2016), Kiran started experimenting with a new parallel
-task scheduler <a href="https://github.com/kpamnany/partr">partr</a> based on the idea of depth-first scheduling.
-He sold all of us on it with some nice animated slides, and it also didn&rsquo;t hurt that
-he was willing to do some of the work.
-The plan was to first develop partr as a standalone C library so it could be tested
-and benchmarked on its own and then integrate it with the Julia runtime.</p>
-
-<p>After Kiran completed the standalone version of partr, a few of us (the authors of
-this post, as well as Keno Fischer and Intel&rsquo;s Anton Malakhov) embarked on a series of
-face-to-face work sessions to figure out how to do the integration.
-The Julia runtime brings many extra features, such as garbage collection and
-event-based I/O, so this was not entirely straightforward.
-Somewhat disappointingly, though not unusually for a complex software project,
-it took much longer than expected&mdash;nearly two years&mdash;to get the new
-system working reliably.
-A later section of this post will explain some of the internals and difficulties
-involved for the curious.
-But first, let&rsquo;s take it for a spin.</p>
-
-<h2 id="how-to-use-it">How to use it</h2>
-
-<p>To use Julia with multiple threads, set the <code>JULIA_NUM_THREADS</code> environment
-variable:</p>
-<pre><code>$ JULIA_NUM_THREADS=4 ./julia</code></pre>
-<p>The <a href="https://junolab.org/">Juno IDE</a> automatically sets the number of threads based on the number of
-available processor cores, and also provides a graphical interface for changing
-the number of threads, so setting the variable manually is not necessary
-in that environment.</p>
-
-<p>The <code>Threads</code> submodule of <code>Base</code> houses most of the thread-specific functionality,
-such as querying the number of threads and the ID of the current thread:</p>
-<pre><code>julia> Threads.nthreads()
-4
-
-julia> Threads.threadid()
-1</code></pre>
+<span class=hljs-meta >julia&gt;</span><span class=julia > Threads.threadid()
+</span>1</code></pre>
 <p>Existing <code>@threads for</code> uses will still work, and now I/O is fully supported:</p>
-<pre><code>julia> Threads.@threads for i = 1:10
-           println("i = $i on thread $(Threads.threadid())")
-       end
-i = 1 on thread 1
+<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Threads.<span class=hljs-meta >@threads</span> <span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
+           println(<span class=hljs-string >"i = <span class=hljs-variable >$i</span> on thread <span class=hljs-subst >$(Threads.threadid()</span>)"</span>)
+       <span class=hljs-keyword >end</span>
+</span>i = 1 on thread 1
 i = 7 on thread 3
 i = 2 on thread 1
 i = 8 on thread 3
@@ -257,401 +28,190 @@ i = 10 on thread 4
 i = 4 on thread 2
 i = 5 on thread 2
 i = 6 on thread 2</code></pre>
-<p>Without further ado, let&rsquo;s try some nested parallelism.
-A perennial favorite example is mergesort, which divides its input in half
-and recursively sorts each half.
-The halves can be sorted independently, yielding a natural opportunity
-for parallelism.
-Here is that code:</p>
-<pre><code>import Base.Threads.@spawn
+<p>Without further ado, let&#39;s try some nested parallelism. A perennial favorite example is mergesort, which divides its input in half and recursively sorts each half. The halves can be sorted independently, yielding a natural opportunity for parallelism. Here is that code:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >import</span> Base.Threads.<span class=hljs-meta >@spawn</span>
 
-# sort the elements of `v` in place, from indices `lo` to `hi` inclusive
-function psort!(v, lo::Int=1, hi::Int=length(v))
-    if lo >= hi                       # 1 or 0 elements; nothing to do
-        return v
-    end
-    if hi - lo < 100000               # below some cutoff, run in serial
-        sort!(view(v, lo:hi), alg = MergeSort)
-        return v
-    end
+<span class=hljs-comment ># sort the elements of `v` in place, from indices `lo` to `hi` inclusive</span>
+<span class=hljs-keyword >function</span> psort!(v, lo::<span class=hljs-built_in >Int</span>=<span class=hljs-number >1</span>, hi::<span class=hljs-built_in >Int</span>=length(v))
+    <span class=hljs-keyword >if</span> lo &gt;= hi                       <span class=hljs-comment ># 1 or 0 elements; nothing to do</span>
+        <span class=hljs-keyword >return</span> v
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >if</span> hi - lo &lt; <span class=hljs-number >100000</span>               <span class=hljs-comment ># below some cutoff, run in serial</span>
+        sort!(view(v, lo:hi), alg = <span class=hljs-literal >MergeSort</span>)
+        <span class=hljs-keyword >return</span> v
+    <span class=hljs-keyword >end</span>
 
-    mid = (lo+hi)>>>1                 # find the midpoint
+    mid = (lo+hi)&gt;&gt;&gt;<span class=hljs-number >1</span>                 <span class=hljs-comment ># find the midpoint</span>
 
-    half = @spawn psort!(v, lo, mid)  # task to sort the lower half; will run
-    psort!(v, mid+1, hi)              # in parallel with the current call sorting
-                                      # the upper half
-    wait(half)                        # wait for the lower half to finish
+    half = <span class=hljs-meta >@spawn</span> psort!(v, lo, mid)  <span class=hljs-comment ># task to sort the lower half; will run</span>
+    psort!(v, mid+<span class=hljs-number >1</span>, hi)              <span class=hljs-comment ># in parallel with the current call sorting</span>
+                                      <span class=hljs-comment ># the upper half</span>
+    wait(half)                        <span class=hljs-comment ># wait for the lower half to finish</span>
 
-    temp = v[lo:mid]                  # workspace for merging
+    temp = v[lo:mid]                  <span class=hljs-comment ># workspace for merging</span>
 
-    i, k, j = 1, lo, mid+1            # merge the two sorted sub-arrays
-    @inbounds while k < j <= hi
-        if v[j] < temp[i]
+    i, k, j = <span class=hljs-number >1</span>, lo, mid+<span class=hljs-number >1</span>            <span class=hljs-comment ># merge the two sorted sub-arrays</span>
+    <span class=hljs-meta >@inbounds</span> <span class=hljs-keyword >while</span> k &lt; j &lt;= hi
+        <span class=hljs-keyword >if</span> v[j] &lt; temp[i]
             v[k] = v[j]
-            j += 1
-        else
+            j += <span class=hljs-number >1</span>
+        <span class=hljs-keyword >else</span>
             v[k] = temp[i]
-            i += 1
-        end
-        k += 1
-    end
-    @inbounds while k < j
+            i += <span class=hljs-number >1</span>
+        <span class=hljs-keyword >end</span>
+        k += <span class=hljs-number >1</span>
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-meta >@inbounds</span> <span class=hljs-keyword >while</span> k &lt; j
         v[k] = temp[i]
-        k += 1
-        i += 1
-    end
+        k += <span class=hljs-number >1</span>
+        i += <span class=hljs-number >1</span>
+    <span class=hljs-keyword >end</span>
 
-    return v
-end</code></pre>
-<p>This is just a standard mergesort implementation, similar to the one in Julia&rsquo;s
-<code>Base</code> library, with only the tiny addition of the <code>@spawn</code> construct on one
-of the recursive calls.
-Julia&rsquo;s <code>Distributed</code> standard library has also exported a <code>@spawn</code> macro for
-quite a while, but we plan to discontinue it in favor of the new threaded
-meaning (though it will still be available in 1.x versions, for backwards
-compatibility).
-This way of expressing parallelism is much more useful in shared memory,
-and &ldquo;spawn&rdquo; is a pretty standard term in task parallel APIs (used in Cilk
-as well as <a href="https://software.intel.com/en-us/node/506304">TBB</a>, for example).</p>
+    <span class=hljs-keyword >return</span> v
+<span class=hljs-keyword >end</span></code></pre>
+<p>This is just a standard mergesort implementation, similar to the one in Julia&#39;s <code>Base</code> library, with only the tiny addition of the <code>@spawn</code> construct on one of the recursive calls. Julia&#39;s <code>Distributed</code> standard library has also exported a <code>@spawn</code> macro for quite a while, but we plan to discontinue it in favor of the new threaded meaning &#40;though it will still be available in 1.x versions, for backwards compatibility&#41;. This way of expressing parallelism is much more useful in shared memory, and &quot;spawn&quot; is a pretty standard term in task parallel APIs &#40;used in Cilk as well as <a href="https://software.intel.com/en-us/node/506304">TBB</a>, for example&#41;.</p>
+<code>wait</code> simply waits for the specified task to finish. The code works by modifying its input, so we don&#39;t need the task&#39;s return value. Indicating that a return value is not needed is the only difference with the <code>fetch</code> call used in the earlier <code>fib</code> example. Note that we explicitly request <code>MergeSort</code> when calling Julia&#39;s standard <code>sort&#33;</code>, to make sure we&#39;re comparing apples to apples — <code>sort&#33;</code> actually uses quicksort by default for sorting numbers, which tends to be faster for random data. Let&#39;s time the code under <code>JULIA_NUM_THREADS&#61;2</code>:</p>
+<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > a = rand(<span class=hljs-number >20000000</span>);
+</span>
+<span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> sort!(b, alg = <span class=hljs-literal >MergeSort</span>);   <span class=hljs-comment ># single-threaded</span>
+</span>  2.589243 seconds (11 allocations: 76.294 MiB, 0.17% gc time)
 
-<p><code>wait</code> simply waits for the specified task to finish.
-The code works by modifying its input, so we don&rsquo;t need the task&rsquo;s return value.
-Indicating that a return value is not needed is the only difference with the
-<code>fetch</code> call used in the earlier <code>fib</code> example.
-Note that we explicitly request <code>MergeSort</code> when calling Julia&rsquo;s standard <code>sort!</code>,
-to make sure we&rsquo;re comparing apples to apples&mdash;<code>sort!</code> actually uses
-quicksort by default for sorting numbers, which tends to be faster for random data.
-Let&rsquo;s time the code under <code>JULIA_NUM_THREADS=2</code>:</p>
-<pre><code>julia> a = rand(20000000);
+<span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> sort!(b, alg = <span class=hljs-literal >MergeSort</span>);
+</span>  2.582697 seconds (11 allocations: 76.294 MiB, 2.25% gc time)
 
-julia> b = copy(a); @time sort!(b, alg = MergeSort);   # single-threaded
-  2.589243 seconds (11 allocations: 76.294 MiB, 0.17% gc time)
+<span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> psort!(b);    <span class=hljs-comment ># two threads</span>
+</span>  1.770902 seconds (3.78 k allocations: 686.935 MiB, 4.25% gc time)
 
-julia> b = copy(a); @time sort!(b, alg = MergeSort);
-  2.582697 seconds (11 allocations: 76.294 MiB, 2.25% gc time)
-
-julia> b = copy(a); @time psort!(b);    # two threads
-  1.770902 seconds (3.78 k allocations: 686.935 MiB, 4.25% gc time)
-
-julia> b = copy(a); @time psort!(b);
-  1.741141 seconds (3.78 k allocations: 686.935 MiB, 4.16% gc time)</code></pre>
-<p>While the run times are bit variable, we see a definite speedup from using
-two threads.
-The laptop we ran this on has four hyperthreads, and it is especially amazing
-that performance continues to improve if we add a third thread:</p>
-<pre><code>julia> b = copy(a); @time psort!(b);
-  1.511860 seconds (3.77 k allocations: 686.935 MiB, 6.45% gc time)</code></pre>
-<p>Thinking about this two-way decomposition algorithm running on three threads
-can make your head hurt a little!
-In our view, this helps underscore how &ldquo;automatic&rdquo; this interface makes
-parallelism feel.</p>
-
-<p>Let&rsquo;s try a different machine with slightly lower single thread performance,
-but more CPU cores:</p>
-<pre><code>$ for n in 1 2 4 8 16; do    JULIA_NUM_THREADS=$n ./julia psort.jl; done
+<span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> psort!(b);
+</span>  1.741141 seconds (3.78 k allocations: 686.935 MiB, 4.16% gc time)</code></pre>
+<p>While the run times are bit variable, we see a definite speedup from using two threads. The laptop we ran this on has four hyperthreads, and it is especially amazing that performance continues to improve if we add a third thread:</p>
+<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> psort!(b);
+</span>  1.511860 seconds (3.77 k allocations: 686.935 MiB, 6.45% gc time)</code></pre>
+<p>Thinking about this two-way decomposition algorithm running on three threads can make your head hurt a little&#33; In our view, this helps underscore how &quot;automatic&quot; this interface makes parallelism feel.</p>
+<p>Let&#39;s try a different machine with slightly lower single thread performance, but more CPU cores:</p>
+<pre><code class="bash hljs">$ <span class=hljs-keyword >for</span> n <span class=hljs-keyword >in</span> 1 2 4 8 16; <span class=hljs-keyword >do</span>    JULIA_NUM_THREADS=<span class=hljs-variable >$n</span> ./julia psort.jl; <span class=hljs-keyword >done</span>
   2.949212 seconds (3.58 k allocations: 686.932 MiB, 4.70% gc time)
   1.861985 seconds (3.77 k allocations: 686.935 MiB, 9.32% gc time)
   1.112285 seconds (3.78 k allocations: 686.935 MiB, 4.45% gc time)
   0.787816 seconds (3.80 k allocations: 686.935 MiB, 2.08% gc time)
   0.655762 seconds (3.79 k allocations: 686.935 MiB, 4.62% gc time)</code></pre>
-<p>The <code>psort.jl</code> script simply defines the <code>psort!</code> function, calls it once
-to avoid measuring compilation overhead, and then runs the same commands
-we used above.</p>
-
-<p>Notice that this speedup occurs despite the parallel code allocating
-<em>drastically</em> more memory than the standard routine.
-The allocations come from two sources: <code>Task</code> objects, and the <code>temp</code>
-arrays allocated on each call.
-The reference sorting routine re-uses a single temporary buffer among
-all recursive calls.
-Re-using the temporary array is more difficult with parallelism, but
-still possible&mdash;more on that a little later.</p>
-
-<h2 id="how-to-move-to-a-parallel-world">How to move to a parallel world</h2>
-
-<p>During the 1.3 series the new thread runtime is considered to be in beta testing.
-An &ldquo;official&rdquo; version will appear in a later release, to give us time to settle
-on an API we can commit to for the long term.
-Here&rsquo;s what you need to know if you want to upgrade your code over this period.</p>
-
-<h3 id="task-scheduling-and-synchronization">Task scheduling and synchronization</h3>
-
-<p>To aid compatibility, code will continue to run within a single thread by default.
-When tasks are launched using existing primitives (<code>schedule</code>, <code>@async</code>), they
-will run only within the thread that launches them.
-Similarly, a <code>Condition</code> object (used to signal tasks when events occur) can only
-be used by the thread that created it.
-Attempts to wait for or notify conditions from other threads will raise errors.
-Separate thread-safe condition variables have been added, and are available as
-<code>Threads.Condition</code>.
-This needs to be a separate type because thread-safe use of condition variables
-requires acquiring a lock.
-In Julia, the lock is bundled with the condition, so <code>lock</code> can simply be called
-on the condition itself:</p>
-<pre><code>lock(cond::Threads.Condition)
-try
-    while !ready
+<p>The <code>psort.jl</code> script simply defines the <code>psort&#33;</code> function, calls it once to avoid measuring compilation overhead, and then runs the same commands we used above.</p>
+<p>Notice that this speedup occurs despite the parallel code allocating <em>drastically</em> more memory than the standard routine. The allocations come from two sources: <code>Task</code> objects, and the <code>temp</code> arrays allocated on each call. The reference sorting routine re-uses a single temporary buffer among all recursive calls. Re-using the temporary array is more difficult with parallelism, but still possible — more on that a little later.</p>
+<h2 id=how_to_move_to_a_parallel_world ><a href="#how_to_move_to_a_parallel_world">How to move to a parallel world</a></h2>
+<p>During the 1.3 series the new thread runtime is considered to be in beta testing. An &quot;official&quot; version will appear in a later release, to give us time to settle on an API we can commit to for the long term. Here&#39;s what you need to know if you want to upgrade your code over this period.</p>
+<h3 id=task_scheduling_and_synchronization ><a href="#task_scheduling_and_synchronization">Task scheduling and synchronization</a></h3>
+<p>To aid compatibility, code will continue to run within a single thread by default. When tasks are launched using existing primitives &#40;<code>schedule</code>, <code>@async</code>&#41;, they will run only within the thread that launches them. Similarly, a <code>Condition</code> object &#40;used to signal tasks when events occur&#41; can only be used by the thread that created it. Attempts to wait for or notify conditions from other threads will raise errors. Separate thread-safe condition variables have been added, and are available as <code>Threads.Condition</code>. This needs to be a separate type because thread-safe use of condition variables requires acquiring a lock. In Julia, the lock is bundled with the condition, so <code>lock</code> can simply be called on the condition itself:</p>
+<pre><code class="julia hljs">lock(cond::Threads.<span class=hljs-built_in >Condition</span>)
+<span class=hljs-keyword >try</span>
+    <span class=hljs-keyword >while</span> !ready
         wait(cond)
-    end
-finally
+    <span class=hljs-keyword >end</span>
+<span class=hljs-keyword >finally</span>
     unlock(cond)
-end</code></pre>
-<p>As in previous versions, the standard lock to use to protect critical sections
-is <code>ReentrantLock</code>, which is now thread-safe (it was previously only used for
-synchronizing tasks).
-There are some other types of locks (<code>Threads.SpinLock</code> and <code>Threads.Mutex</code>) defined
-mostly for internal purposes.
-These are used in rare circumstances where (1) only threads and not tasks will be
-synchronized, and (2) you know the lock will only be held for a short time.</p>
-
-<p>The <code>Threads</code> module also provides <code>Semaphore</code> and <code>Event</code> types, which have their
-standard definitions.</p>
-
-<h3 id="thread-local-state">Thread-local state</h3>
-
-<p>Julia code naturally tends to be purely functional (no side effects or mutation),
-or to use only local mutation, so migrating to full thread-safety will hopefully
-be easy in many cases.
-But if your code uses shared state and you&rsquo;d like to make it thread-safe, there
-is some work to do.
-So far we have used two kinds of approaches to this in Julia&rsquo;s standard library:
-synchronization (locks), and thread- or task-local state.
-Locks work well for shared resources not accessed frequently, or for resources
-that cannot be duplicated for each thread.</p>
-
-<p>But for high-performance code we recommend thread-local state.
-Our <code>psort!</code> routine above can be improved in this way.
-Here is a recipe.
-First, we modify the function signature to accept pre-allocated buffers, using a default
-argument value to allocate space automatically when the caller doesn&rsquo;t provide it:</p>
-<pre><code>function psort!(v, lo::Int=1, hi::Int=length(v), temps=[similar(v, 0) for i = 1:Threads.nthreads()])</code></pre>
-<p>We simply need to allocate one initially-empty array per thread.
-Next, we modify the recursive calls to reuse the space:</p>
-<pre><code>    half = @spawn psort!(v, lo, mid, temps)
-    psort!(v, mid+1, hi, temps)</code></pre>
-<p>Finally, use the array reserved for the current thread, instead of allocating a new one,
-and resize it as needed:</p>
-<pre><code>    temp = temps[Threads.threadid()]
-    length(temp) < mid-lo+1 && resize!(temp, mid-lo+1)
-    copyto!(temp, 1, v, lo, mid-lo+1)</code></pre>
-<p>After these minor modifications, let&rsquo;s check performance on our large
-machine:</p>
-<pre><code>$ for n in 1 2 4 8 16; do    JULIA_NUM_THREADS=$n ./julia psort.jl; done
+<span class=hljs-keyword >end</span></code></pre>
+<p>As in previous versions, the standard lock to use to protect critical sections is <code>ReentrantLock</code>, which is now thread-safe &#40;it was previously only used for synchronizing tasks&#41;. There are some other types of locks &#40;<code>Threads.SpinLock</code> and <code>Threads.Mutex</code>&#41; defined mostly for internal purposes. These are used in rare circumstances where &#40;1&#41; only threads and not tasks will be synchronized, and &#40;2&#41; you know the the lock will only be held for a short time.</p>
+<p>The <code>Threads</code> module also provides <code>Semaphore</code> and <code>Event</code> types, which have their standard definitions.</p>
+<h3 id=thread-local_state ><a href="#thread-local_state">Thread-local state</a></h3>
+<p>Julia code naturally tends to be purely functional &#40;no side effects or mutation&#41;, or to use only local mutation, so migrating to full thread-safety will hopefully be easy in many cases. But if your code uses shared state and you&#39;d like to make it thread-safe, there is some work to do. So far we have used two kinds of approaches to this in Julia&#39;s standard library: synchronization &#40;locks&#41;, and thread- or task-local state. Locks work well for shared resources not accessed frequently, or for resources that cannot be duplicated for each thread.</p>
+<p>But for high-performance code we recommend thread-local state. Our <code>psort&#33;</code> routine above can be improved in this way. Here is a recipe. First, we modify the function signature to accept pre-allocated buffers, using a default argument value to allocate space automatically when the caller doesn&#39;t provide it:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> psort!(v, lo::<span class=hljs-built_in >Int</span>=<span class=hljs-number >1</span>, hi::<span class=hljs-built_in >Int</span>=length(v), temps=[similar(v, <span class=hljs-number >0</span>) <span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:Threads.nthreads()])</code></pre>
+<p>We simply need to allocate one initially-empty array per thread. Next, we modify the recursive calls to reuse the space:</p>
+<pre><code class="julia hljs">half = <span class=hljs-meta >@spawn</span> psort!(v, lo, mid, temps)
+    psort!(v, mid+<span class=hljs-number >1</span>, hi, temps)</code></pre>
+<p>Finally, use the array reserved for the current thread, instead of allocating a new one, and resize it as needed:</p>
+<pre><code class="julia hljs">temp = temps[Threads.threadid()]
+    length(temp) &lt; m-lo+<span class=hljs-number >1</span> &amp;&amp; resize!(temp, m-lo+<span class=hljs-number >1</span>)
+    copyto!(temp, <span class=hljs-number >1</span>, v, lo, m-lo+<span class=hljs-number >1</span>)</code></pre>
+<p>After these minor modifications, let&#39;s check performance on our large machine:</p>
+<pre><code class="bash hljs">$ <span class=hljs-keyword >for</span> n <span class=hljs-keyword >in</span> 1 2 4 8 16; <span class=hljs-keyword >do</span>    JULIA_NUM_THREADS=<span class=hljs-variable >$n</span> ./julia psort.jl; <span class=hljs-keyword >done</span>
   2.813555 seconds (3.08 k allocations: 153.448 MiB, 1.44% gc time)
   1.731088 seconds (3.28 k allocations: 192.195 MiB, 0.37% gc time)
   1.028344 seconds (3.30 k allocations: 221.997 MiB, 0.37% gc time)
   0.750888 seconds (3.31 k allocations: 267.298 MiB, 0.54% gc time)
   0.620054 seconds (3.38 k allocations: 298.295 MiB, 0.77% gc time)</code></pre>
-<h3 id="random-number-generation">Random number generation</h3>
-
-<p>The approach we&rsquo;ve taken with Julia&rsquo;s default global random number generator (<code>rand()</code> and friends)
-is to make it thread-specific.
-On first use, each thread will create an independent instance of the default RNG type
-(currently <code>MersenneTwister</code>) seeded from system entropy.
-All operations that affect the random number state (<code>rand</code>, <code>randn</code>, <code>seed!</code>, etc.) will then operate
-on only the current thread&rsquo;s RNG state.
-This way, multiple independent code sequences that seed and then use random numbers will individually
-work as expected.</p>
-
-<p>If you need all threads to use a known initial seed, you will need to set it up explicitly.
-For that kind of more precise control, or better performance, we recommend allocating and passing your
-own RNG objects (e.g. <code>Rand.MersenneTwister()</code>).</p>
-
-<h2 id="under-the-hood">Under the hood</h2>
-
-<p>As with garbage collection, the simple interface (<code>@spawn</code>) belies great
-complexity underneath.
-Here we will try to summarize some of the main difficulties and design
-decisions we faced.</p>
-
-<h3 id="allocating-and-switching-task-stacks">Allocating and switching task stacks</h3>
-
-<p>Each <code>Task</code> requires its own execution stack, distinct from the usual process or
-thread stacks provided by Unix operating systems.
-Windows has fibers, which correspond closely to tasks, and several library
-implementations of similar abstractions exist for Unix-family systems.</p>
-
-<p>There are many possible approaches to this, with different tradeoffs.
-As we often do, we tried to pick a method that would maximize throughput
-and reliability.
-We have a shared pool of stacks allocated by <code>mmap</code> (<code>VirtualAlloc</code> on
-Windows), defaulting to 4MiB each (2MiB on 32-bit systems).
-This can use quite a bit of virtual memory, so don&rsquo;t be alarmed if <code>top</code>
-shows your shiny new multi-threaded Julia code using 100GiB of address
-space.
-The vast majority of this space will not consume real resources, and is only
-there in case a task needs to execute a deep call chain (which will hopefully
-not persist for long).
-These are larger stacks than task systems in lower-level languages would
-probably provide, but we feel it makes good use of the CPU and OS kernel&rsquo;s
-highly refined memory management capabilities, while greatly reducing the
-possibility of stack overflow.</p>
-
-<p>The default stack size is a build-time option, set in <code>src/options.h</code>.
-The <code>Task</code> constructor also has an undocumented second argument allowing
-you to specify a stack size per-task.
-Using it is not recommended, since it is hard to predict how much stack
-space will be needed, for instance by the compiler or called libraries.</p>
-
-<p>A thread can switch to running a given task just by adjusting its registers to
-appear to &ldquo;return from&rdquo; the previous switch away from that task.
-We allocate a new stack out of a local pool just before we start running it.
-As soon as a task is done running, we can immediately release its stack back
-to the pool, avoiding excessive GC pressure.</p>
-
-<p>We also have an alternate implementation of stack switching (controlled by the
-<code>ALWAYS_COPY_STACKS</code> variable in <code>options.h</code>) that trades time for memory by
-copying live stack data when a task switch occurs.
-This may not be compatible with foreign code that uses <code>cfunction</code>,
-so it is not the default.</p>
-
-<p>We fall back to this implementation if stacks are consuming too much address
-space (some platforms—notably Linux and 32-bit machines—impose a fairly low limit).
-And of course, each implementation has code for multiple platforms and
-architectures, sometimes optimized further with inline assembly.
-Stack switching is a rich topic that could very well fill a blog post on its own.</p>
-
-<h3 id="i-o">I/O</h3>
-
-<p>We use libuv for cross-platform event-based I/O.
-It is designed to be able to function within a multithreaded program, but is not
-explicitly a multithreaded I/O library and so doesn&rsquo;t support concurrent use from
-multiple threads out of the box.
-For now, we protect access to libuv structures with a single global lock, and then allow any thread
-(one at a time) to run the event loop.
-When another thread needs the event loop thread to wake up, it issues an async signal.
-This can happen for multiple reasons, including another thread scheduling new work,
-another thread starting to run garbage collection, or another thread that wants to take
-the IO lock to do IO.</p>
-
-<h3 id="task-migration-across-system-threads">Task migration across system threads</h3>
-
-<p>In general, a task might start running on one thread, block for a while, and then
-restart on another.
-This changes fundamental assumptions about when thread-local values can change.
-Internally, Julia code uses thread-local variables <em>constantly</em>, for example
-every time you allocate memory.
-We have yet to begin all the changes needed to support migration, so for now
-a task must always run on the thread it started running on (though, of course,
-it can start running on any thread).
-To support this, we have a concept of &ldquo;sticky&rdquo; tasks that must run on a given
-thread, and per-thread queues for running tasks associated with each thread.</p>
-
-<h3 id="sleeping-idle-threads">Sleeping idle threads</h3>
-
-<p>When there aren&rsquo;t enough tasks to keep all threads busy, some need to sleep to avoid
-using 100% of all CPUs all the time.
-This is a tricky synchronization problem, since some threads might be scheduling new work
-while other threads are deciding to sleep.</p>
-
-<h3 id="where-does-the-scheduler-run">Where does the scheduler run?</h3>
-
-<p>When a task blocks, we need to call the scheduler to pick another task to run.
-What stack does that code use to run?
-It&rsquo;s possible to have a dedicated scheduler task, but we felt there would be
-less overhead if we allowed the scheduler code to run in the context of the
-recently-blocked task.
-That works fine, but it means a task can exist in a strange intermediate state
-where it is considered not to be running, and yet is in fact running the
-scheduler.
-One implication of that is that we might pull a task out of the scheduler queue just
-to realize that we don&rsquo;t need to switch away at all.</p>
-
-<h3 id="classic-bugs">Classic bugs</h3>
-
-<p>While trying to get this new functionality working, we encountered several
-maddeningly difficult bugs.
-The clear favorite was a mysterious hang on Windows that was fixed
-by literally <a href="https://github.com/JuliaLang/libuv/commit/26dbe5672c33fc885462c509fe2a9b36f35866fd">flipping a single bit</a>.</p>
-
-<p>Another good one was a <a href="https://github.com/JuliaLang/julia/pull/32570">missing exception handling personality</a>.
-In hindsight that could have been straightforward, but was confounded by two
-factors: first, the failure mode caused the kernel to stop our process in a way
-that we were not able to intercept in a debugger, and second, the failure was
-triggered by a seemingly-unrelated change.
-All Julia stack frames have an exception handling personality set, so the problem
-could only appear in the runtime system outside any Julia frame&mdash;a narrow window,
-since of course we are usually executing Julia code.</p>
-
-<h2 id="looking-forward">Looking forward</h2>
-
-<p>While we are excited about this milestone, a lot of work remains.
-This alpha release introduces the <code>@spawn</code> construct, but is not intended to finalize
-its design.
-Here are some of the points we hope to focus on to further develop
-our threading capabilities:</p>
-
+<h3 id=random_number_generation ><a href="#random_number_generation">Random number generation</a></h3>
+<p>The approach we&#39;ve taken with Julia&#39;s default global random number generator &#40;<code>rand&#40;&#41;</code> and friends&#41; is to make it thread-specific. On first use, each thread will create an independent instance of the default RNG type &#40;currently <code>MersenneTwister</code>&#41; seeded from system entropy. All operations that affect the random number state &#40;<code>rand</code>, <code>randn</code>, <code>seed&#33;</code>, etc.&#41; will then operate on only the current thread&#39;s RNG state. This way, multiple independent code sequences that seed and then use random numbers will individually work as expected.</p>
+<p>If you need all threads to use a known initial seed, you will need to set it up explicitly. For that kind of more precise control, or better performance, we recommend allocating and passing your own RNG objects &#40;e.g. <code>Rand.MersenneTwister&#40;&#41;</code>&#41;.</p>
+<h2 id=under_the_hood ><a href="#under_the_hood">Under the hood</a></h2>
+<p>As with garbage collection, the simple interface &#40;<code>@spawn</code>&#41; belies great complexity underneath. Here we will try to summarize some of the main difficulties and design decisions we faced.</p>
+<h3 id=allocating_and_switching_task_stacks ><a href="#allocating_and_switching_task_stacks">Allocating and switching task stacks</a></h3>
+<p>Each <code>Task</code> requires its own execution stack, distinct from the usual process or thread stacks provided by Unix operating systems. Windows has fibers, which correspond closely to tasks, and several library implementations of similar abstractions exist for Unix-family systems.</p>
+<p>There are many possible approaches to this, with different tradeoffs. As we often do, we tried to pick a method that would maximize throughput and reliability. We have a shared pool of stacks allocated by <code>mmap</code> &#40;<code>VirtualAlloc</code> on Windows&#41;, defaulting to 4MiB each &#40;2MiB on 32-bit systems&#41;. This can use quite a bit of virtual memory, so don&#39;t be alarmed if <code>top</code> shows your shiny new multi-threaded Julia code using 100GiB of address space. The vast majority of this space will not consume real resources, and is only there in case a task needs to execute a deep call chain &#40;which will hopefully not persist for long&#41;. These are larger stacks than task systems in lower-level languages would probably provide, but we feel it makes good use of the CPU and OS kernel&#39;s highly refined memory management capabilities, while greatly reducing the possibility of stack overflow.</p>
+<p>The default stack size is a build-time option, set in <code>src/options.h</code>. The <code>Task</code> constructor also has an undocumented second argument allowing you to specify a stack size per-task. Using it is not recommended, since it is hard to predict how much stack space will be needed, for instance by the compiler or called libraries.</p>
+<p>A thread can switch to running a given task just by adjusting its registers to appear to &quot;return from&quot; the previous switch away from that task. We allocate a new stack out of a local pool just before we start running it. As soon as a task is done running, we can immediately release its stack back to the pool, avoiding excessive GC pressure.</p>
+<p>We also have an alternate implementation of stack switching &#40;controlled by the <code>ALWAYS_COPY_STACKS</code> variable in <code>options.h</code>&#41; that trades time for memory by copying live stack data when a task switch occurs. This may not be compatible with foreign code that uses <code>cfunction</code>, so it is not the default.</p>
+<p>We fall back to this implementation if stacks are consuming too much address space &#40;some platforms—notably Linux and 32-bit machines—impose a fairly low limit&#41;. And of course, each implementation has code for multiple platforms and architectures, sometimes optimized further with inline assembly. Stack switching is a rich topic that could very well fill a blog post on its own.</p>
+<h3 id=io ><a href="#io">I/O</a></h3>
+<p>We use libuv for cross-platform event-based I/O. It is designed to be able to function within a multithreaded program, but is not explicitly a multithreaded I/O library and so doesn&#39;t support concurrent use from multiple threads out of the box. For now, we protect access to libuv structures with a single global lock, and then allow any thread &#40;one at a time&#41; to run the event loop. When another thread needs the event loop thread to wake up, it issues an async signal. This can happen for multiple reasons, including another thread scheduling new work, another thread starting to run garbage collection, or another thread that wants to take the IO lock to do IO.</p>
+<h3 id=task_migration_across_system_threads ><a href="#task_migration_across_system_threads">Task migration across system threads</a></h3>
+<p>In general, a task might start running on one thread, block for a while, and then restart on another. This changes fundamental assumptions about when thread-local values can change. Internally, Julia code uses thread-local variables <em>constantly</em>, for example every time you allocate memory. We have yet to begin all the changes needed to support migration, so for now a task must always run on the thread it started running on &#40;though, of course, it can start running on any thread&#41;. To support this, we have a concept of &quot;sticky&quot; tasks that must run on a given thread, and per-thread queues for running tasks associated with each thread.</p>
+<h3 id=sleeping_idle_threads ><a href="#sleeping_idle_threads">Sleeping idle threads</a></h3>
+<p>When there aren&#39;t enough tasks to keep all threads busy, some need to sleep to avoid using 100&#37; of all CPUs all the time. This is a tricky synchronization problem, since some threads might be scheduling new work while other threads are deciding to sleep.</p>
+<h3 id=where_does_the_scheduler_run ><a href="#where_does_the_scheduler_run">Where does the scheduler run?</a></h3>
+<p>When a task blocks, we need to call the scheduler to pick another task to run. What stack does that code use to run? It&#39;s possible to have a dedicated scheduler task, but we felt there would be less overhead if we allowed the scheduler code to run in the context of the recently-blocked task. That works fine, but it means a task can exist in a strange intermediate state where it is considered not to be running, and yet is in fact running the scheduler. One implication of that is that we might pull a task out of the scheduler queue just to realize that we don&#39;t need to switch away at all.</p>
+<h3 id=classic_bugs ><a href="#classic_bugs">Classic bugs</a></h3>
+<p>While trying to get this new functionality working, we encountered several maddeningly difficult bugs. The clear favorite was a mysterious hang on Windows that was fixed by literally <a href="https://github.com/JuliaLang/libuv/commit/26dbe5672c33fc885462c509fe2a9b36f35866fd">flipping a single bit</a>.</p>
+<p>Another good one was a <a href="https://github.com/JuliaLang/julia/pull/32570">missing exception handling personality</a>. In hindsight that could have been straightforward, but was confounded by two factors: first, the failure mode caused the kernel to stop our process in a way that we were not able to intercept in a debugger, and second, the failure was triggered by a seemingly-unrelated change. All Julia stack frames have an exception handling personality set, so the problem could only appear in the runtime system outside any Julia frame — a narrow window, since of course we are usually executing Julia code.</p>
+<h2 id=looking_forward ><a href="#looking_forward">Looking forward</a></h2>
+<p>While we are excited about this milestone, a lot of work remains. This alpha release introduces the <code>@spawn</code> construct, but is not intended to finalize its design. Here are some of the points we hope to focus on to further develop our threading capabilities:</p>
 <ul>
-<li>Performance work on task switch and I/O latency.</li>
-<li>Adding parallelism to the standard library. Many common operations like sorting and
-array broadcasting could now use multiple threads internally.</li>
-<li>Consider allowing task migration.</li>
-<li>Provide more atomic operations at the Julia level.</li>
-<li>Using multiple threads in the compiler.</li>
-<li>More performant parallel loops and reductions, with more scheduling options.</li>
-<li>Allow adding more threads at run time.</li>
-<li>Improved debugging tools.</li>
-<li>Explore API extensions, e.g. cancel points.</li>
-<li>Standard library of thread-safe data structures.</li>
-<li>Provide alternate schedulers.</li>
-<li>Explore integration with the <a href="http://cilk.mit.edu/tapir/">TAPIR</a> parallel IR (some early work <a href="https://github.com/JuliaLang/julia/pull/31086">here</a>).</li>
+<li><p>Performance work on task switch and I/O latency.</p>
+
+<li><p>Adding parallelism to the standard library. Many common operations like sorting and array broadcasting could now use multiple threads internally.</p>
+
+<li><p>Consider allowing task migration.</p>
+
+<li><p>Provide more atomic operations at the Julia level.</p>
+
+<li><p>Using multiple threads in the compiler.</p>
+
+<li><p>More performant parallel loops and reductions, with more scheduling options.</p>
+
+<li><p>Allow adding more threads at run time.</p>
+
+<li><p>Improved debugging tools.</p>
+
+<li><p>Explore API extensions, e.g. cancel points.</p>
+
+<li><p>Standard library of thread-safe data structures.</p>
+
+<li><p>Provide alternate schedulers.</p>
+
+<li><p>Explore integration with the <a href="https://cilk.mit.edu/tapir/">TAPIR</a> parallel IR &#40;some early work <a href="https://github.com/JuliaLang/julia/pull/31086">here</a>&#41;.</p>
+
 </ul>
-
-<h2 id="acknowledgements">Acknowledgements</h2>
-
-<p>We would like to gratefully acknowledge funding support from <a href="https://www.intel.com/">Intel</a> and <a href="http://relational.ai/">relationalAI</a>
-that made it possible to develop these new capabilities.</p>
-
-<p>We are also grateful to the several people who patiently tried this functionality
-while it was in development and filed bug reports or pull requests, and spurred us
-to keep going.
-If you encounter any issues using threads in Julia, please let us know on <a href="https://github.com/JuliaLang/julia/issues">GitHub</a> or
-our <a href="https://discourse.julialang.org/">Discourse</a> forum!</p>
+<h2 id=acknowledgements ><a href="#acknowledgements">Acknowledgements</a></h2>
+<p>We would like to gratefully acknowledge funding support from <a href="https://www.intel.com/">Intel</a> and <a href="https://relational.ai/">relationalAI</a> that made it possible to develop these new capabilities.</p>
+<p>We are also grateful to the several people who patiently tried this functionality while it was in development and filed bug reports or pull requests, and spurred us to keep going. If you encounter any issues using threads in Julia, please let us know on <a href="https://github.com/JuliaLang/julia/issues">GitHub</a> or our <a href="https://discourse.julialang.org/">Discourse</a> forum&#33;</p>
+</p>
 
 
-  </div>
-
-  
-
-  </div>
-  </div>
-  </div>
-
-  <br />
-
-  
+</div>
+<br><br>
 
 
-  <head>
-  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
-</head>
+    
+    
+        
 
-<footer class="container-fluid footer-copy">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-10 py-2">
-          <p>
-            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
-          </p>
-          <p>
-            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
-          </p>
-        </div>
-        <div class="col-md-2 py-2">
-          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
-        </div>
+
+    
+
+    <footer class="container-fluid footer-copy">
+  <div class=container >
+    <div class=row >
+      <div class="col-md-10 py-2">
+        <p>We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.
+        Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.</p>
+        <p>©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>; it has been built using <a style="color: #7a95dd" href="https://franklinjl.org">Franklin.jl</a> - a Julia native package for building websites.</p>
+      </div>
+      <div class="col-md-2 py-2">
+        <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
       </div>
     </div>
+  </div>
 </footer>
 
-
-  <script src="../../../../v2/js/jquery.min.js"></script>
-<script src="../../../../v2/js/bootstrap.min.js"></script>
-<script src="../../../../v2/js/platform.js"></script>
-<script src="../../../../v2/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-</body>
-
-</html>
+<script src="/libs/jquery/jquery.min.js"></script>
+<script src="/libs/bootstrap/bootstrap.min.js"></script>
+<script src="/libs/platform.js"></script>

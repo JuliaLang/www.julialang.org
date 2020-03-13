@@ -1,519 +1,103 @@
-<!DOCTYPE html>
-<html>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta http-equiv=content-type  content="text/html; charset=utf-8" /> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." /> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."/> <meta property="og:title" content="The Julia Language"/> <meta property="og:image" content="/assets/images/julia-open-graph.png"/> <meta property="og:description" content="Official website for the Julia programming language"/> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css" /> <link rel=stylesheet  href="/css/app.css" /> <link rel=stylesheet  href="/css/fonts.css" /> <link rel=stylesheet  href="/css/franklin.css" /> <script async defer src="/libs/buttons.js"></script> <!-- --> <!-- NOTE: google tracking, off for now <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> --> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/katex/katex.min.css"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl</title> <style> .container ul li p {margin-bottom: 0;} </style> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/" id=logo > <img src="/assets/infra/logo.svg" height=55  width=85  alt="JuliaLang Logo"/> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mr-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learning</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> <li class="nav-item donate flex-md-fill text-md-center"> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </ul> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl</h1> <h3> <span style="font-weight: lighter;"> 23 October 2015 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Jarrett Revels </span> </h3> </div> <div class=container > <p>This summer, I&#39;ve had the good fortune to be able to participate in the first ever <strong>Julia Summer of Code &#40;JSoC&#41;</strong>, generously sponsored by the Gordon and Betty Moore Foundation. My JSoC project was to explore the use of Julia for automatic differentiation &#40;AD&#41;, a topic with a wide array of applications in the field of optimization.</p> <p>Under the mentorship of Miles Lubin and Theodore Papamarkou, I completed a major overhaul of <strong><a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff.jl</a></strong>, a Julia package for calculating derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions &#40;or any callable Julia type, really&#41;.</p> <p>By the end of this post, you&#39;ll hopefully know a little bit about how ForwardDiff.jl works, why it&#39;s useful, and why Julia is uniquely well-suited for AD compared to other languages.</p> <h1 id=what_is_automatic_differentiation ><a href="#what_is_automatic_differentiation">What is Automatic Differentiation?</a></h1> <p>In broad terms, <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> describes a class of algorithms for automatically taking exact derivatives of user-provided functions. In addition to producing more accurate results, AD methods are also often faster than other common differentiation methods &#40;such as <a href="https://en.wikipedia.org/wiki/Numerical_differentiation">finite differencing</a>&#41;.</p> <p>The two main flavors of AD are called <em>forward mode</em> and <em>reverse mode</em>. As you might&#39;ve guessed, this post only discusses forward mode, which is the kind of AD implemented by ForwardDiff.jl.</p> <h1 id=seeing_forwarddiffjl_in_action ><a href="#seeing_forwarddiffjl_in_action">Seeing ForwardDiff.jl In Action</a></h1> <p>Before we get down to the nitty-gritty details, it might be helpful to see a simple example that illustrates various methods from ForwardDiff.jl&#39;s API.</p> <p>The snippet below is a somewhat contrived example, but works well enough as an introduction to the package. First, we define a target function we&#39;d like to differentiate, then use ForwardDiff.jl to calculate some derivatives of the function at a given input:</p> <pre><code class="julia hljs">julia&gt; <span class=hljs-keyword >using</span> ForwardDiff
 
-<head>
-  <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl</title>
-<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Official website for the Julia programming language. Join the Julia community today.">
+julia&gt; f(x::<span class=hljs-built_in >Vector</span>) = sum(sin, x) + prod(tan, x) * sum(sqrt, x);
 
-<meta property="og:title" content="The Julia Language"/>
-<meta property="og:image" content="http://www.julialang.org/images/julia-open-graph.png"/>
-<meta property="og:description" content="Official website for the Julia programming language"/>
+julia&gt; x = rand(<span class=hljs-number >5</span>)
+<span class=hljs-number >5</span>-element <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Float64</span>,<span class=hljs-number >1</span>}:
+ <span class=hljs-number >0.986403</span>
+ <span class=hljs-number >0.140913</span>
+ <span class=hljs-number >0.294963</span>
+ <span class=hljs-number >0.837125</span>
+ <span class=hljs-number >0.650451</span>
 
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
-<link rel="stylesheet" href="https://julialang.org/v2/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://julialang.org/v2/css/app.css" />
-<link rel="stylesheet" href="https://julialang.org/v2/css/fonts.css" />
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+julia&gt; g = ForwardDiff.gradient(f); <span class=hljs-comment ># g = ∇f</span>
 
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [['$','$'], ['\\(','\\)']],
-      displayMath: [['$$','$$']],
-      processEscapes: true,
-      processEnvironments: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      TeX: { equationNumbers: { autoNumber: "AMS" },
-             extensions: ["AMSmath.js", "AMSsymbols.js"] }
-    }
-  });
-</script>
+julia&gt; g(x)
+<span class=hljs-number >5</span>-element <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Float64</span>,<span class=hljs-number >1</span>}:
+ <span class=hljs-number >1.01358</span>
+ <span class=hljs-number >2.50014</span>
+ <span class=hljs-number >1.72574</span>
+ <span class=hljs-number >1.10139</span>
+ <span class=hljs-number >1.2445</span>
 
+julia&gt; j = ForwardDiff.jacobian(g); <span class=hljs-comment ># j = J(∇f)</span>
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-28835595-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+julia&gt; j(x)
+<span class=hljs-number >5</span>x5 <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Float64</span>,<span class=hljs-number >2</span>}:
+ <span class=hljs-number >0.585111</span>  <span class=hljs-number >3.48083</span>  <span class=hljs-number >1.7706</span>    <span class=hljs-number >0.994057</span>  <span class=hljs-number >1.03257</span>
+ <span class=hljs-number >3.48083</span>   <span class=hljs-number >1.06079</span>  <span class=hljs-number >5.79299</span>   <span class=hljs-number >3.25245</span>   <span class=hljs-number >3.37871</span>
+ <span class=hljs-number >1.7706</span>    <span class=hljs-number >5.79299</span>  <span class=hljs-number >0.423981</span>  <span class=hljs-number >1.65416</span>   <span class=hljs-number >1.71818</span>
+ <span class=hljs-number >0.994057</span>  <span class=hljs-number >3.25245</span>  <span class=hljs-number >1.65416</span>   <span class=hljs-number >0.251396</span>  <span class=hljs-number >0.964566</span>
+ <span class=hljs-number >1.03257</span>   <span class=hljs-number >3.37871</span>  <span class=hljs-number >1.71818</span>   <span class=hljs-number >0.964566</span>  <span class=hljs-number >0.140689</span>
 
-
-  
-
-  
-</head>
-
-<body>
-  
-  
-
-<div class="container py-3 py-lg-0">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
-
-    <a class="navbar-brand" href="../../../../" id="logo">
-      <img src="https://julialang.org/v2/img/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
-    </a>
-
-    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/downloads/">Download</a>
-        </li>
-        <li class="nav-item flex-md-fill text-md-center">
-          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
-        </li>
-        <li class="nav-item  active  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/blog/">Blog</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/community/">Community</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/learning/">Learning</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/research/">Research</a>
-        </li>
-        <li class="nav-item  flex-md-fill text-md-center">
-          <a class="nav-link" href="https://julialang.org/jsoc/">JSoC</a>
-        </li>
-        <li class="nav-item donate flex-md-fill text-md-center">
-          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
-        </li>
-      </ul>
-    </div>
-
-  </nav>
-</div>
-
-
-
-  <br /><br />
-
-  <div class="container">
-
-  <div id="blogpost">
-    <h1>JSoC 2015 project: Automatic Differentiation in Julia with ForwardDiff.jl</h1>
-
-    <p class="metadata">
-      <span class="timestamp">23 October, 2015</span>
-      
-      &nbsp;|&nbsp;
-      <span class="author">Jarrett Revels</span>
-      
-    </p>
-
-    
-
-<script type="text/javascript"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-<p>This summer, I&rsquo;ve had the good fortune to be able to participate in the first ever <strong>Julia Summer of Code (JSoC)</strong>, generously sponsored by the Gordon and Betty Moore Foundation. My JSoC project was to explore the use of Julia for automatic differentiation (AD), a topic with a wide array of applications in the field of optimization.</p>
-
-<p>Under the mentorship of Miles Lubin and Theodore Papamarkou, I completed a major overhaul of <strong><a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff.jl</a></strong>, a Julia package for calculating derivatives, gradients, Jacobians, Hessians, and higher-order derivatives of native Julia functions (or any callable Julia type, really).</p>
-
-<p>By the end of this post, you&rsquo;ll hopefully know a little bit about how ForwardDiff.jl works, why it&rsquo;s useful, and why Julia is uniquely well-suited for AD compared to other languages.</p>
-
-<h1 id="what-is-automatic-differentiation">What is Automatic Differentiation?</h1>
-
-<p>In broad terms, <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> describes a class of algorithms for automatically taking exact derivatives of user-provided functions. In addition to producing more accurate results, AD methods are also often faster than other common differentiation methods (such as <a href="https://en.wikipedia.org/wiki/Numerical_differentiation">finite differencing</a>).</p>
-
-<p>The two main flavors of AD are called <em>forward mode</em> and <em>reverse mode</em>. As you might&rsquo;ve guessed, this post only discusses forward mode, which is the kind of AD implemented by ForwardDiff.jl.</p>
-
-<h1 id="seeing-forwarddiff-jl-in-action">Seeing ForwardDiff.jl In Action</h1>
-
-<p>Before we get down to the nitty-gritty details, it might be helpful to see a simple example that illustrates various methods from ForwardDiff.jl&rsquo;s API.</p>
-
-<p>The snippet below is a somewhat contrived example, but works well enough as an introduction to the package. First, we define a target function we&rsquo;d like to differentiate, then use ForwardDiff.jl to calculate some derivatives of the function at a given input:</p>
-<pre><code>julia> using ForwardDiff
-
-julia> f(x::Vector) = sum(sin, x) + prod(tan, x) * sum(sqrt, x);
-
-julia> x = rand(5)
-5-element Array{Float64,1}:
- 0.986403
- 0.140913
- 0.294963
- 0.837125
- 0.650451
-
-julia> g = ForwardDiff.gradient(f); # g = ∇f
-
-julia> g(x)
-5-element Array{Float64,1}:
- 1.01358
- 2.50014
- 1.72574
- 1.10139
- 1.2445
-
-julia> j = ForwardDiff.jacobian(g); # j = J(∇f)
-
-julia> j(x)
-5x5 Array{Float64,2}:
- 0.585111  3.48083  1.7706    0.994057  1.03257
- 3.48083   1.06079  5.79299   3.25245   3.37871
- 1.7706    5.79299  0.423981  1.65416   1.71818
- 0.994057  3.25245  1.65416   0.251396  0.964566
- 1.03257   3.37871  1.71818   0.964566  0.140689
-
-julia> ForwardDiff.hessian(f, x) # H(f)(x) == J(∇f)(x), as expected
-5x5 Array{Float64,2}:
- 0.585111  3.48083  1.7706    0.994057  1.03257
- 3.48083   1.06079  5.79299   3.25245   3.37871
- 1.7706    5.79299  0.423981  1.65416   1.71818
- 0.994057  3.25245  1.65416   0.251396  0.964566
- 1.03257   3.37871  1.71818   0.964566  0.140689</code></pre>
-<p>Tada!</p>
-
-<p>Okay, that&rsquo;s not <em>too</em> exciting - I could&rsquo;ve just done the same thing with Calculus.jl. Why would I ever want to use ForwardDiff.jl?</p>
-
-<p>The simple answer is that ForwardDiff.jl&rsquo;s AD-based methods are, in many cases, much more performant than the finite differencing methods implemented in other packages.</p>
-
-<h1 id="how-forwarddiff-jl-works-an-overview">How ForwardDiff.jl Works - An Overview</h1>
-
-<p>The key technique leveraged by ForwardDiff.jl is the implementation of several different <code>ForwardDiffNumber</code> types, each of which allocate storage space for both normal values and derivative values. Elementary numerical functions on a <code>ForwardDiffNumber</code> are then overloaded to evaluate both the original function and the function&rsquo;s derivative, returning the results in the form of a new <code>ForwardDiffNumber</code>.</p>
-
-<p>Thus, we can pass these number types into a general function $f$ (which is assumed to be composed of the overloaded elementary functions), and the derivative information is naturally propagated at each step of the calculation by way of the chain rule. The final result of the evaluation (usually a <code>ForwardDiffNumber</code> or an array of them) then contains both $f(x)$ and $f&rsquo;(x)$, where $x$ was the original point of evaluation.</p>
-
-<h1 id="simple-forward-mode-ad-in-julia">Simple Forward Mode AD in Julia</h1>
-
-<p>The easiest way to write actual Julia code demonstrating this technique is to implement a simple <a href="https://en.wikipedia.org/wiki/Dual_number">dual number</a> type. Note that there is already <a href="https://github.com/JuliaDiff/DualNumbers.jl">a Julia package</a> dedicated to such an implementation, but we&rsquo;re going to roll our own here for pedagogical purposes.</p>
-
-<p>Here&rsquo;s how we&rsquo;ll define our <code>DualNumber</code> type:</p>
-<pre><code>immutable DualNumber{T} <: Number
+julia&gt; ForwardDiff.hessian(f, x) <span class=hljs-comment ># H(f)(x) == J(∇f)(x), as expected</span>
+<span class=hljs-number >5</span>x5 <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Float64</span>,<span class=hljs-number >2</span>}:
+ <span class=hljs-number >0.585111</span>  <span class=hljs-number >3.48083</span>  <span class=hljs-number >1.7706</span>    <span class=hljs-number >0.994057</span>  <span class=hljs-number >1.03257</span>
+ <span class=hljs-number >3.48083</span>   <span class=hljs-number >1.06079</span>  <span class=hljs-number >5.79299</span>   <span class=hljs-number >3.25245</span>   <span class=hljs-number >3.37871</span>
+ <span class=hljs-number >1.7706</span>    <span class=hljs-number >5.79299</span>  <span class=hljs-number >0.423981</span>  <span class=hljs-number >1.65416</span>   <span class=hljs-number >1.71818</span>
+ <span class=hljs-number >0.994057</span>  <span class=hljs-number >3.25245</span>  <span class=hljs-number >1.65416</span>   <span class=hljs-number >0.251396</span>  <span class=hljs-number >0.964566</span>
+ <span class=hljs-number >1.03257</span>   <span class=hljs-number >3.37871</span>  <span class=hljs-number >1.71818</span>   <span class=hljs-number >0.964566</span>  <span class=hljs-number >0.140689</span></code></pre> <p>Tada&#33;</p> <p>Okay, that&#39;s not <em>too</em> exciting - I could&#39;ve just done the same thing with Calculus.jl. Why would I ever want to use ForwardDiff.jl?</p> <p>The simple answer is that ForwardDiff.jl&#39;s AD-based methods are, in many cases, much more performant than the finite differencing methods implemented in other packages.</p> <h1 id=how_forwarddiffjl_works_-_an_overview ><a href="#how_forwarddiffjl_works_-_an_overview">How ForwardDiff.jl Works - An Overview</a></h1> <p>The key technique leveraged by ForwardDiff.jl is the implementation of several different <code>ForwardDiffNumber</code> types, each of which allocate storage space for both normal values and derivative values. Elementary numerical functions on a <code>ForwardDiffNumber</code> are then overloaded to evaluate both the original function and the function&#39;s derivative, returning the results in the form of a new <code>ForwardDiffNumber</code>.</p> <p>Thus, we can pass these number types into a general function <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> &#40;which is assumed to be composed of the overloaded elementary functions&#41;, and the derivative information is naturally propagated at each step of the calculation by way of the chain rule. The final result of the evaluation &#40;usually a <code>ForwardDiffNumber</code> or an array of them&#41; then contains both <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span> and <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi><mo mathvariant=normal  lspace=0em  rspace=0em >′</mo></msup><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">f&#x27;(x)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1.001892em;vertical-align:-0.25em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span>, where <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> was the original point of evaluation.</p> <h1 id=simple_forward_mode_ad_in_julia ><a href="#simple_forward_mode_ad_in_julia">Simple Forward Mode AD in Julia</a></h1> <p>The easiest way to write actual Julia code demonstrating this technique is to implement a simple <a href="https://en.wikipedia.org/wiki/Dual_number">dual number</a> type. Note that there is already <a href="https://github.com/JuliaDiff/DualNumbers.jl">a Julia package</a> dedicated to such an implementation, but we&#39;re going to roll our own here for pedagogical purposes.</p> <p>Here&#39;s how we&#39;ll define our <code>DualNumber</code> type:</p> <pre><code class="julia hljs"><span class=hljs-keyword >immutable</span> DualNumber{T} &lt;: <span class=hljs-built_in >Number</span>
     value::T
     deriv::T
-end
+<span class=hljs-keyword >end</span>
 
 value(d::DualNumber) = d.value
-deriv(d::DualNumber) = d.deriv</code></pre>
-<p>Next, we can start defining functions on <code>DualNumber</code>. Here are a few examples to give you a feel for the process:</p>
-<pre><code>function Base.sqrt(d::DualNumber)
+deriv(d::DualNumber) = d.deriv</code></pre> <p>Next, we can start defining functions on <code>DualNumber</code>. Here are a few examples to give you a feel for the process:</p> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> Base.sqrt(d::DualNumber)
     new_value = sqrt(value(d))
-    new_deriv = 0.5 / new_value
-    return DualNumber(new_value, new_deriv*deriv(d))
-end
+    new_deriv = <span class=hljs-number >0.5</span> / new_value
+    <span class=hljs-keyword >return</span> DualNumber(new_value, new_deriv*deriv(d))
+<span class=hljs-keyword >end</span>
 
-function Base.sin(d::DualNumber)
+<span class=hljs-keyword >function</span> Base.sin(d::DualNumber)
     new_value = sin(value(d))
     new_deriv = cos(value(d))
-    return DualNumber(new_value, new_deriv*deriv(d))
-end
+    <span class=hljs-keyword >return</span> DualNumber(new_value, new_deriv*deriv(d))
+<span class=hljs-keyword >end</span>
 
-function Base.(:+)(a::DualNumber, b::DualNumber)
+<span class=hljs-keyword >function</span> Base.(:+)(a::DualNumber, b::DualNumber)
     new_value = value(a) + value(b)
     new_deriv = deriv(a) + deriv(b)
-    return DualNumber(new_value, new_deriv)
-end
+    <span class=hljs-keyword >return</span> DualNumber(new_value, new_deriv)
+<span class=hljs-keyword >end</span>
 
-function Base.(:*)(a::DualNumber, b::DualNumber)
+<span class=hljs-keyword >function</span> Base.(:*)(a::DualNumber, b::DualNumber)
     val_a, val_b = value(a), value(b)
     new_value = val_a * val_b
     new_deriv = val_b * deriv(a) + val_a * deriv(b)
-    return DualNumber(new_value, new_deriv)
-end</code></pre>
-<p>We can now evaluate the derivative of <em>any scalar function composed of the above elementary functions</em>. To do so, we simply pass an instance of our <code>DualNumber</code> type into the function, and extract the derivative from the result. For example:</p>
-<pre><code>julia> f(x) = sqrt(sin(x * x)) + x
-f (generic function with 1 method)
+    <span class=hljs-keyword >return</span> DualNumber(new_value, new_deriv)
+<span class=hljs-keyword >end</span></code></pre> <p>We can now evaluate the derivative of <em>any scalar function composed of the above elementary functions</em>. To do so, we simply pass an instance of our <code>DualNumber</code> type into the function, and extract the derivative from the result. For example:</p> <pre><code class="julia hljs">julia&gt; f(x) = sqrt(sin(x * x)) + x
+f (generic <span class=hljs-keyword >function</span> with <span class=hljs-number >1</span> method)
 
-julia> f(1.0)
-1.8414709848078965
+julia&gt; f(<span class=hljs-number >1.0</span>)
+<span class=hljs-number >1.8414709848078965</span>
 
-julia> d = f(DualNumber(1.0, 1.0))
-DualNumber{Float64}(1.8414709848078965,1.5403023058681398)
+julia&gt; d = f(DualNumber(<span class=hljs-number >1.0</span>, <span class=hljs-number >1.0</span>))
+DualNumber{<span class=hljs-built_in >Float64</span>}(<span class=hljs-number >1.8414709848078965</span>,<span class=hljs-number >1.5403023058681398</span>)
 
-julia> deriv1 = deriv(d)
-1.589002649374538
+julia&gt; deriv1 = deriv(d)
+<span class=hljs-number >1.589002649374538</span>
 
-julia> using Calculus; deriv2 = Calculus.derivative(f, 1.0)
-1.5890026493377403
+julia&gt; <span class=hljs-keyword >using</span> Calculus; deriv2 = Calculus.derivative(f, <span class=hljs-number >1.0</span>)
+<span class=hljs-number >1.5890026493377403</span>
 
-julia> deriv1 - deriv2
-3.679767601738604e-11</code></pre>
-<p>Notice that our dual number result comes <em>close</em> to the result obtained from Calculus.jl, but is actually slightly different. That slight difference is due to the approximation error inherent to the finite differencing method employed by Calculus.jl.</p>
-
-<p>In reality, the number types that ForwardDiff.jl provides are quite a bit more complicated than <code>DualNumber</code>. Instead of simple dual numbers, the various <code>ForwardDiffNumber</code> types behave like <em>ensembles</em> of dual numbers and <a href="https://adl.stanford.edu/hyperdual/Fike_AIAA-2011-886.pdf">hyper-dual numbers</a> (the higher-order analog of dual numbers). This ensemble-based approach allows for simultaneous calculation of multiple higher-order partial derivatives in a single evaluation of the target function. For an in-depth examination of ForwardDiff.jl&rsquo;s number type implementation, see <a href="hhttp://www.juliadiff.org/ForwardDiff.jl/stable/dev/how_it_works/">this section of the developer documentation</a>.</p>
-
-<h1 id="performance-comparison-the-ackley-function">Performance Comparison: The Ackley Function</h1>
-
-<p>The best way to illustrate the performance gains that can be achieved using ForwardDiff.jl is to do some benchmarking. Let&rsquo;s compare the time to calculate the gradient of a function using ForwardDiff.jl, Calculus.jl, and a Python-based AD tool, AlgoPy.</p>
-
-<p>The function we&rsquo;ll be using in our test is the <a href="http://www.sfu.ca/~ssurjano/ackley.html">Ackley function</a>, which is mathematically defined as</p>
-
-
-$$f(\vec{x}) = -a \exp\left( -b \sqrt{\frac{1}{k} \sum_{i=1}^k x^{2}_{i}} \right) - \exp\left(\frac{1}{k} \sum_{i=1}^k \cos(cx_{i})\right) + a + \exp(1)$$
-
-
-
-<p>Here&rsquo;s the definition of the function in Julia:</p>
-<pre><code>function ackley(x)
-    a, b, c = 20.0, -0.2, 2.0*π
+julia&gt; deriv1 - deriv2
+<span class=hljs-number >3.679767601738604e-11</span></code></pre> <p>Notice that our dual number result comes <em>close</em> to the result obtained from Calculus.jl, but is actually slightly different. That slight difference is due to the approximation error inherent to the finite differencing method employed by Calculus.jl.</p> <p>In reality, the number types that ForwardDiff.jl provides are quite a bit more complicated than <code>DualNumber</code>. Instead of simple dual numbers, the various <code>ForwardDiffNumber</code> types behave like <em>ensembles</em> of dual numbers and <a href="https://adl.stanford.edu/hyperdual/Fike_AIAA-2011-886.pdf">hyper-dual numbers</a> &#40;the higher-order analog of dual numbers&#41;. This ensemble-based approach allows for simultaneous calculation of multiple higher-order partial derivatives in a single evaluation of the target function. For an in-depth examination of ForwardDiff.jl&#39;s number type implementation, see <a href="https://www.juliadiff.org/ForwardDiff.jl/types.html">this section of the developer documentation</a>.</p> <h1 id=performance_comparison_the_ackley_function ><a href="#performance_comparison_the_ackley_function">Performance Comparison: The Ackley Function</a></h1> <p>The best way to illustrate the performance gains that can be achieved using ForwardDiff.jl is to do some benchmarking. Let&#39;s compare the time to calculate the gradient of a function using ForwardDiff.jl, Calculus.jl, and a Python-based AD tool, AlgoPy.</p> <p>The function we&#39;ll be using in our test is the <a href="https://www.sfu.ca/~ssurjano/ackley.html">Ackley function</a>, which is mathematically defined as</p> <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy=false >(</mo><mover accent=true ><mi>x</mi><mo>⃗</mo></mover><mo stretchy=false >)</mo><mo>=</mo><mo>−</mo><mi>a</mi><mi>exp</mi><mo>⁡</mo><mrow><mo fence=true >(</mo><mo>−</mo><mi>b</mi><msqrt><mrow><mfrac><mn>1</mn><mi>k</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><msubsup><mi>x</mi><mi>i</mi><mn>2</mn></msubsup></mrow></msqrt><mo fence=true >)</mo></mrow><mo>−</mo><mi>exp</mi><mo>⁡</mo><mrow><mo fence=true >(</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><mi>cos</mi><mo>⁡</mo><mo stretchy=false >(</mo><mi>c</mi><msub><mi>x</mi><mi>i</mi></msub><mo stretchy=false >)</mo><mo fence=true >)</mo></mrow><mo>+</mo><mi>a</mi><mo>+</mo><mi>exp</mi><mo>⁡</mo><mo stretchy=false >(</mo><mn>1</mn><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">f(\vec{x}) = -a \exp\left( -b \sqrt{\frac{1}{k} \sum_{i=1}^k x^{2}_{i}} \right) - \exp\left(\frac{1}{k} \sum_{i=1}^k \cos(cx_{i})\right) + a + \exp(1)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class=mopen >(</span><span class="mord accent"><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.714em;"><span style="top:-3em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class="mord mathdefault">x</span></span></span><span style="top:-3em;"><span class=pstrut  style="height:3em;"></span><span class=accent-body  style="left:-0.20772em;"><span class=overlay  style="height:0.714em;width:0.471em;"><svg width='0.471em' height='0.714em' style='width:0.471em' viewBox='0 0 471 714' preserveAspectRatio='xMinYMin'><path d='M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5 3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11 10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63 -1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1 -7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59 H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359 c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></span><span class=mclose >)</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:3.6138830000000004em;vertical-align:-1.55002em;"></span><span class=mord >−</span><span class="mord mathdefault">a</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mop >exp</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=minner ><span class=mopen ><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span class=pstrut  style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span class=pstrut  style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span class=pstrut  style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎛</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:1.55002em;"><span></span></span></span></span></span></span><span class=mord >−</span><span class="mord mathdefault">b</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:2.0638630000000004em;"><span class=svg-align  style="top:-5.301532em;"><span class=pstrut  style="height:5.301532em;"></span><span class=mord  style="padding-left:1.056em;"><span class=mord ><span class="mopen nulldelimiter"></span><span class=mfrac ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.32144em;"><span style="top:-2.314em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.23em;"><span class=pstrut  style="height:3em;"></span><span class=frac-line  style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class=mord >1</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.8361130000000003em;"><span style="top:-1.872331em;margin-left:0em;"><span class=pstrut  style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class=pstrut  style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class=pstrut  style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:1.277669em;"><span></span></span></span></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mord ><span class="mord mathdefault">x</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.7959080000000001em;"><span style="top:-2.4231360000000004em;margin-left:0em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span style="top:-3.0448000000000004em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.27686399999999994em;"><span></span></span></span></span></span></span></span></span><span style="top:-4.023863em;"><span class=pstrut  style="height:5.301532em;"></span><span class=hide-tail  style="min-width:0.742em;height:3.3815320000000004em;"><svg width='400em' height='3.3815320000000004em' viewBox='0 0 400000 3381' preserveAspectRatio='xMinYMin slice'><path d='M702 80H40000040 H742v3247l-4 4-4 4c-.667.7 -2 1.5-4 2.5s-4.167 1.833-6.5 2.5-5.5 1-9.5 1 h-12l-28-84c-16.667-52-96.667 -294.333-240-727l-212 -643 -85 170 c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667 219 661 l218 661zM702 80H400000v40H742z'/></svg></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:1.277669em;"><span></span></span></span></span></span><span class=mclose ><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span class=pstrut  style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎠</span></span></span><span style="top:-2.8100000000000005em;"><span class=pstrut  style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span class=pstrut  style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎞</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:1.55002em;"><span></span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >−</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:3.1137820000000005em;vertical-align:-1.277669em;"></span><span class=mop >exp</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=minner ><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">(</span></span><span class=mord ><span class="mopen nulldelimiter"></span><span class=mfrac ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.32144em;"><span style="top:-2.314em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.23em;"><span class=pstrut  style="height:3em;"></span><span class=frac-line  style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class=mord >1</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.8361130000000003em;"><span style="top:-1.872331em;margin-left:0em;"><span class=pstrut  style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class=pstrut  style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class=pstrut  style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:1.277669em;"><span></span></span></span></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mop >cos</span><span class=mopen >(</span><span class="mord mathdefault">c</span><span class=mord ><span class="mord mathdefault">x</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mclose >)</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size4">)</span></span></span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >+</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >+</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class=mop >exp</span><span class=mopen >(</span><span class=mord >1</span><span class=mclose >)</span></span></span></span></span> <p>Here&#39;s the definition of the function in Julia:</p> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> ackley(x)
+    a, b, c = <span class=hljs-number >20.0</span>, -<span class=hljs-number >0.2</span>, <span class=hljs-number >2.0</span>*<span class=hljs-literal >π</span>
     len_recip = inv(length(x))
     sum_sqrs = zero(eltype(x))
     sum_cos = sum_sqrs
-    for i in x
+    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> x
         sum_cos += cos(c*i)
-        sum_sqrs += i^2
-    end
-    return (-a * exp(b * sqrt(len_recip*sum_sqrs)) -
-            exp(len_recip*sum_cos) + a + e)
-end</code></pre>
-<p>&hellip;and here&rsquo;s the corresponding Python definition:</p>
-<pre><code>def ackley(x):
-    a, b, c = 20.0, -0.2, 2.0*numpy.pi
-    len_recip = 1.0/len(x)
-    sum_sqrs, sum_cos = 0.0, 0.0
-    for i in x:
+        sum_sqrs += i^<span class=hljs-number >2</span>
+    <span class=hljs-keyword >end</span>
+    <span class=hljs-keyword >return</span> (-a * exp(b * sqrt(len_recip*sum_sqrs)) -
+            exp(len_recip*sum_cos) + a + <span class=hljs-literal >e</span>)
+<span class=hljs-keyword >end</span></code></pre> <p>...and here&#39;s the corresponding Python definition:</p> <pre><code class="python hljs"><span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >ackley</span><span class=hljs-params >(x)</span>:</span>
+    a, b, c = <span class=hljs-number >20.0</span>, <span class=hljs-number >-0.2</span>, <span class=hljs-number >2.0</span>*numpy.pi
+    len_recip = <span class=hljs-number >1.0</span>/len(x)
+    sum_sqrs, sum_cos = <span class=hljs-number >0.0</span>, <span class=hljs-number >0.0</span>
+    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> x:
         sum_cos += algopy.cos(c*i)
         sum_sqrs += i*i
-    return (-a * algopy.exp(b*algopy.sqrt(len_recip*sum_sqrs)) -
-            algopy.exp(len_recip*sum_cos) + a + numpy.e)</code></pre>
-<h1 id="performance-comparison-the-results">Performance Comparison: The Results</h1>
-
-<p>The benchmarks were performed with input vectors of length 16, 1600, and 16000, taking the best time out of 5 trials for each test. I ran them on a late 2013 MacBook Pro (macOS 10.9.5, 2.6 GHz Intel Core i5, 8 GB 1600 MHz DDR3) with the following versions of the relevant libraries: Julia v0.4.1-pre+15, Python v2.7.9, ForwardDiff.jl v0.1.2, Calculus.jl v0.1.13, and AlgoPy v0.5.1.</p>
-
-<p>Let&rsquo;s start by looking at the evaluation times of <code>ackley(x)</code> in both Python and Julia:</p>
-
-<table>
-<thead>
-<tr>
-<th>length(x)&emsp;</th>
-<th>Python time (s)&emsp;</th>
-<th>Julia time (s)&emsp;</th>
-<th>Speed-Up vs. Python&emsp;</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>16</td>
-<td>0.00011</td>
-<td>2.3e-6</td>
-<td>47.83x</td>
-</tr>
-
-<tr>
-<td>1600</td>
-<td>0.00477</td>
-<td>4.0269e-5</td>
-<td>118.45x</td>
-</tr>
-
-<tr>
-<td>16000</td>
-<td>0.04747</td>
-<td>0.00037</td>
-<td>128.30x</td>
-</tr>
-</tbody>
-</table>
-
-<p>As you can see, there&rsquo;s already a significant performance difference between the languages. We&rsquo;ll have to keep that in mind when comparing our Julia differentiation tools with AlgoPy, in order to avoid confusing the languages&rsquo; performance characteristics with those of the libraries (though there is obviously a solid coupling between the two concepts).</p>
-
-<p>The below table shows the evaluation times of <code>∇ackley(x)</code> using various libraries (the <code>chunk_size</code> column denotes a configuration option passed to the <code>ForwardDiff.gradient</code> method, see the <a href="https://www.juliadiff.org/ForwardDiff.jl/stable/user/advanced/#Configuring-Chunk-Size-1">chunk-mode docs</a> for details.):</p>
-
-<table>
-<thead>
-<tr>
-<th>length(x)&emsp;</th>
-<th>AlgoPy time (s)&emsp;</th>
-<th>Calculus.jl time (s)&emsp;</th>
-<th>ForwardDiff time (s)&emsp;</th>
-<th>chunk_size&emsp;</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>16</td>
-<td>0.00212</td>
-<td>2.2e-5</td>
-<td>3.5891e-5</td>
-<td>16</td>
-</tr>
-
-<tr>
-<td>1600</td>
-<td>0.53439</td>
-<td>0.10259</td>
-<td>0.01304</td>
-<td>10</td>
-</tr>
-
-<tr>
-<td>16000</td>
-<td>101.55801</td>
-<td>11.18762</td>
-<td>1.35411</td>
-<td>10</td>
-</tr>
-</tbody>
-</table>
-
-<p>From the above tables, we can calculate the speed-up ratio of ForwardDiff.jl over the other libraries:</p>
-
-<table>
-<thead>
-<tr>
-<th>length(x)&emsp;</th>
-<th>Speed-Up vs. AlgoPy&emsp;</th>
-<th>Speed-Up vs. Calculus.jl&emsp;</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>16</td>
-<td>59.07x</td>
-<td>0.61x</td>
-</tr>
-
-<tr>
-<td>1600</td>
-<td>40.98x</td>
-<td>7.86x</td>
-</tr>
-
-<tr>
-<td>16000</td>
-<td>74.99x</td>
-<td>8.26x</td>
-</tr>
-</tbody>
-</table>
-
-<p>As you can see, Python + AlgoPy falls pretty short of the speeds achieved by Julia + ForwardDiff.jl, or even Julia + Calculus.jl. While Calculus.jl is actually almost twice as fast as ForwardDiff.jl for the lowest input dimension vector, it is ~8 times slower than ForwardDiff.jl for the higher input dimension vectors.</p>
-
-<p>Another metric that might be useful to look at is the &ldquo;slowdown ratio&rdquo; between the gradient evaluation time and the function evaluation time, defined as:</p>
-
-
-$$\text{slowdown ratio} = \frac{\text{gradient time}}{\text{function time}}$$
-
-
-
-<p>Here are the results (lower is better):</p>
-
-<table>
-<thead>
-<tr>
-<th>length(x)&emsp;</th>
-<th>AlgoPy ratio&emsp;</th>
-<th>Calculus.jl ratio&emsp;</th>
-<th>ForwardDiff.jl ratio&emsp;</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>16</td>
-<td>19.27</td>
-<td>9.56</td>
-<td>15.60</td>
-</tr>
-
-<tr>
-<td>1600</td>
-<td>112.03</td>
-<td>2547.61</td>
-<td>323.82</td>
-</tr>
-
-<tr>
-<td>16000</td>
-<td>2139.41</td>
-<td>30236.81</td>
-<td>3659.77</td>
-</tr>
-</tbody>
-</table>
-
-<p>Both AlgoPy and ForwardDiff.jl beat out Calculus.jl for evaluation at higher input dimensions, which isn&rsquo;t too surprising. AlgoPy beating ForwardDiff.jl, though, might catch you off guard - ForwardDiff.jl had the fastest absolute runtimes, after all! One explanation for this outcome is that AlgoPy falls back to vectorized Numpy methods when calculating the gradient, while the <code>ackley</code> function itself uses your usual, slow Python scalar arithmetic. Julia&rsquo;s scalar arithmetic performance is <em>much</em> faster than Python&rsquo;s, so ForwardDiff.jl doesn&rsquo;t have as much &ldquo;room for improvement&rdquo; as AlgoPy does.</p>
-
-<h1 id="julia-s-ad-advantage">Julia&rsquo;s AD Advantage</h1>
-
-<p>At the beginning of this post, I promised I would give the reader an answer to the question: &ldquo;Why is Julia uniquely well-suited for AD compared to other languages?&rdquo;</p>
-
-<p>There are several good answers, but the chief reason for Julia’s superiority is its efficient implementation of <em>multiple dispatch</em>.</p>
-
-<p>Unlike many other languages, Julia’s type-based operator overloading is fast and natural, as it&rsquo;s one of the central design tenets of the language. Since Julia is JIT-compiled, the bytecode representation of a Julia function can be tied directly to the types with which the function is called. This allows the compiler to optimize every Julia method for the specific input type at runtime.</p>
-
-<p>This ability is phenomenally useful for implementing forward mode AD, which relies almost entirely on operator overloading in order to work. In most other scientific computing languages, operator overloading is either very slow (e.g. MATLAB), fraught with weird edge cases (e.g. Python), arduous to implement generally (e.g. C++) or some combination of all three. In addition, very few languages allow operator overloading to naturally extend to native, black-box, user-written code. Julia&rsquo;s multiple dispatch is the secret weapon leveraged by ForwardDiff.jl to overcome these hurdles.</p>
-
-<h1 id="future-directions">Future Directions</h1>
-
-<p>The new version of ForwardDiff.jl has just been released, but development of the package is still ongoing! Here&rsquo;s a list of things I&rsquo;d like to see ForwardDiff.jl support in the future:</p>
-
-<ul>
-<li>More elementary function definitions on <code>ForwardDiffNumber</code> types</li>
-<li>More optimized versions of existing elementary function definitions on <code>ForwardDiffNumber</code> types</li>
-<li>Methods for evaluating Jacobian-matrix products (highly useful in conjunction with reverse mode AD).</li>
-<li>Parallel/shared-memory/distributed-memory versions of current API methods for handling problems with huge input/output dimensions</li>
-<li>A more robust benchmarking suite for catching performance regressions</li>
-</ul>
-
-<p>If you have any ideas on how to make ForwardDiff.jl more useful, feel free to open a pull request or issue in <a href="https://github.com/JuliaDiff/ForwardDiff.jl">the package&rsquo;s GitHub repository</a>.</p>
-
-
-  </div>
-
-  
-
-  </div>
-  </div>
-  </div>
-
-  <br />
-
-  
-
-
-  <head>
-  <meta name="description" content="We thank our contributors, donators, and Fastly for their support in keeping the Julia Language going. Donate here to help pay for Julia's needs."/>
-</head>
-
-<footer class="container-fluid footer-copy">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-10 py-2">
-          <p>
-            We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.
-          </p>
-          <p>
-            ©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
-          </p>
-        </div>
-        <div class="col-md-2 py-2">
-          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
-        </div>
-      </div>
-    </div>
-</footer>
-
-
-  <script src="../../../../v2/js/jquery.min.js"></script>
-<script src="../../../../v2/js/bootstrap.min.js"></script>
-<script src="../../../../v2/js/platform.js"></script>
-<script src="../../../../v2/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-</body>
-
-</html>
+    <span class=hljs-keyword >return</span> (-a * algopy.exp(b*algopy.sqrt(len_recip*sum_sqrs)) -
+            algopy.exp(len_recip*sum_cos) + a + numpy.e)</code></pre> <h1 id=performance_comparison_the_results ><a href="#performance_comparison_the_results">Performance Comparison: The Results</a></h1> <p>The benchmarks were performed with input vectors of length 16, 1600, and 16000, taking the best time out of 5 trials for each test. I ran them on a late 2013 MacBook Pro &#40;macOS 10.9.5, 2.6 GHz Intel Core i5, 8 GB 1600 MHz DDR3&#41; with the following versions of the relevant libraries: Julia v0.4.1-pre&#43;15, Python v2.7.9, ForwardDiff.jl v0.1.2, Calculus.jl v0.1.13, and AlgoPy v0.5.1.</p> <p>Let&#39;s start by looking at the evaluation times of <code>ackley&#40;x&#41;</code> in both Python and Julia:</p> <table><tr><th>length&#40;x&#41;<th>Python time &#40;s&#41;<th>Julia time &#40;s&#41;<th>Speed-Up vs. Python<tr><td>16<td>0.00011<td>2.3e-6<td>47.83x<tr><td>1600<td>0.00477<td>4.0269e-5<td>118.45x<tr><td>16000<td>0.04747<td>0.00037<td>128.30x</table> <p>As you can see, there&#39;s already a significant performance difference between the languages. We&#39;ll have to keep that in mind when comparing our Julia differentiation tools with AlgoPy, in order to avoid confusing the languages&#39; performance characteristics with those of the libraries &#40;though there is obviously a solid coupling between the two concepts&#41;.</p> <p>The below table shows the evaluation times of <code>∇ackley&#40;x&#41;</code> using various libraries &#40;the <code>chunk_size</code> column denotes a configuration option passed to the <code>ForwardDiff.gradient</code> method, see the <a href="https://www.juliadiff.org/ForwardDiff.jl/chunk_vec_modes.html">chunk-mode docs</a> for details.&#41;:</p> <table><tr><th>length&#40;x&#41;<th>AlgoPy time &#40;s&#41;<th>Calculus.jl time &#40;s&#41;<th>ForwardDiff time &#40;s&#41;<th>chunk_size<tr><td>16<td>0.00212<td>2.2e-5<td>3.5891e-5<td>16<tr><td>1600<td>0.53439<td>0.10259<td>0.01304<td>10<tr><td>16000<td>101.55801<td>11.18762<td>1.35411<td>10</table> <p>From the above tables, we can calculate the speed-up ratio of ForwardDiff.jl over the other libraries:</p> <table><tr><th>length&#40;x&#41;<th>Speed-Up vs. AlgoPy<th>Speed-Up vs. Calculus.jl<tr><td>16<td>59.07x<td>0.61x<tr><td>1600<td>40.98x<td>7.86x<tr><td>16000<td>74.99x<td>8.26x</table> <p>As you can see, Python &#43; AlgoPy falls pretty short of the speeds achieved by Julia &#43; ForwardDiff.jl, or even Julia &#43; Calculus.jl. While Calculus.jl is actually almost twice as fast as ForwardDiff.jl for the lowest input dimension vector, it is ~8 times slower than ForwardDiff.jl for the higher input dimension vectors.</p> <p>Another metric that might be useful to look at is the &quot;slowdown ratio&quot; between the gradient evaluation time and the function evaluation time, defined as:</p> <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>slowdown ratio</mtext><mo>=</mo><mfrac><mtext>gradient time</mtext><mtext>function time</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{slowdown ratio} = \frac{\text{gradient time}}{\text{function time}}</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class=mord >slowdown ratio</span></span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:2.0574399999999997em;vertical-align:-0.686em;"></span><span class=mord ><span class="mopen nulldelimiter"></span><span class=mfrac ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class="mord text"><span class=mord >function time</span></span></span></span><span style="top:-3.23em;"><span class=pstrut  style="height:3em;"></span><span class=frac-line  style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class="mord text"><span class=mord >gradient time</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span> <p>Here are the results &#40;lower is better&#41;:</p> <table><tr><th>length&#40;x&#41;<th>AlgoPy ratio<th>Calculus.jl ratio<th>ForwardDiff.jl ratio<tr><td>16<td>19.27<td>9.56<td>15.60<tr><td>1600<td>112.03<td>2547.61<td>323.82<tr><td>16000<td>2139.41<td>30236.81<td>3659.77</table> <p>Both AlgoPy and ForwardDiff.jl beat out Calculus.jl for evaluation at higher input dimensions, which isn&#39;t too surprising. AlgoPy beating ForwardDiff.jl, though, might catch you off guard - ForwardDiff.jl had the fastest absolute runtimes, after all&#33; One explanation for this outcome is that AlgoPy falls back to vectorized Numpy methods when calculating the gradient, while the <code>ackley</code> function itself uses your usual, slow Python scalar arithmetic. Julia&#39;s scalar arithmetic performance is <em>much</em> faster than Python&#39;s, so ForwardDiff.jl doesn&#39;t have as much &quot;room for improvement&quot; as AlgoPy does.</p> <h1 id=julias_ad_advantage ><a href="#julias_ad_advantage">Julia&#39;s AD Advantage</a></h1> <p>At the beginning of this post, I promised I would give the reader an answer to the question: &quot;Why is Julia uniquely well-suited for AD compared to other languages?&quot;</p> <p>There are several good answers, but the chief reason for Julia’s superiority is its efficient implementation of <em>multiple dispatch</em>.</p> <p>Unlike many other languages, Julia’s type-based operator overloading is fast and natural, as it&#39;s one of the central design tenets of the language. Since Julia is JIT-compiled, the bytecode representation of a Julia function can be tied directly to the types with which the function is called. This allows the compiler to optimize every Julia method for the specific input type at runtime.</p> <p>This ability is phenomenally useful for implementing forward mode AD, which relies almost entirely on operator overloading in order to work. In most other scientific computing languages, operator overloading is either very slow &#40;e.g. MATLAB&#41;, fraught with weird edge cases &#40;e.g. Python&#41;, arduous to implement generally &#40;e.g. C&#43;&#43;&#41; or some combination of all three. In addition, very few languages allow operator overloading to naturally extend to native, black-box, user-written code. Julia&#39;s multiple dispatch is the secret weapon leveraged by ForwardDiff.jl to overcome these hurdles.</p> <h1 id=future_directions ><a href="#future_directions">Future Directions</a></h1> <p>The new version of ForwardDiff.jl has just been released, but development of the package is still ongoing&#33; Here&#39;s a list of things I&#39;d like to see ForwardDiff.jl support in the future:</p> <ul> <li><p>More elementary function definitions on <code>ForwardDiffNumber</code> types</p> <li><p>More optimized versions of existing elementary function definitions on <code>ForwardDiffNumber</code> types</p> <li><p>Methods for evaluating Jacobian-matrix products &#40;highly useful in conjunction with reverse mode AD&#41;.</p> <li><p>Parallel/shared-memory/distributed-memory versions of current API methods for handling problems with huge input/output dimensions</p> <li><p>A more robust benchmarking suite for catching performance regressions</p> </ul> <p>If you have any ideas on how to make ForwardDiff.jl more useful, feel free to open a pull request or issue in <a href="https://github.com/JuliaDiff/ForwardDiff.jl">the package&#39;s GitHub repository</a>.</p> </div> <br><br> <footer class="container-fluid footer-copy"> <div class=container > <div class=row > <div class="col-md-10 py-2"> <p>We thank <a style="color: #7a95dd" href="https://www.fastly.com">Fastly</a> for their generous infrastructure support. Donations help pay for community resources such as CI, Discourse, workshops, travel, JuliaCon, and other such needs.</p> <p>©2020 JuliaLang.org contributors. The website content uses the <a style="color: #7a95dd" href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>; it has been built using <a style="color: #7a95dd" href="https://franklinjl.org">Franklin.jl</a> - a Julia native package for building websites.</p> </div> <div class="col-md-2 py-2"> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </div> </div> </div> </footer> <script src="/libs/jquery/jquery.min.js"></script> <script src="/libs/bootstrap/bootstrap.min.js"></script> <script src="/libs/platform.js"></script>
