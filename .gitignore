@@ -1,4 +1,3 @@
-public
-resources
-tmp
-public
+.DS_Store
+__site
+node_modules/

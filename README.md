@@ -1,28 +1,63 @@
-This is the GitHub repository for the Julia Programming Language's main website, [julialang.org](http://julialang.org/). The repository for the source code of the language itself can be found at [github.com/JuliaLang/julia](https://github.com/JuliaLang/julia).
+# README
 
-The Julia website is generated using GitHub pages and Hugo, as [explained here](https://gohugo.io/hosting-and-deployment/hosting-on-github/#github-project-pages).
+This is the GitHub repository for the Julia Programming Language's main website, [julialang.org](https://julialang.org/).
+The repository for the source code of the language itself can be found at [github.com/JuliaLang/julia](https://github.com/JuliaLang/julia).
 
-# Making Simple Changes 
+The Julia website is generated using GitHub pages and [Franklin.jl](https://github.com/tlienart/Franklin.jl), a Julia native package for building websites.
 
-To suggest a change to the website, you can simply naviagte to the page with the content you think should be changed, and edit it. You will be prompted to fork the repo (if you haven't already) and then open a Pull Request. Once the Pull Request is open, Netlify will build a preview of the site with the changes you made. You can click the link there to validate that the changes appear as you would expect. 
+## Making Simple Changes
 
-Once your Pull Request is merged, you should see your changes show up on the website in a few minutes or less. 
+To suggest a change to the website, you can simply navigate to the page with the content you think should be changed, and edit it.
+You will be prompted to fork the repo (if you haven't already) and then open a Pull Request. Once the Pull Request is open, Netlify will build a preview of the site with the changes you made.
+You can click the link there to validate that the changes appear as you would expect.
 
-# Making More Complex Changes 
+Once your Pull Request is merged, you should see your changes show up on the website in a few minutes or less.
 
-To suggest a change to the website that is more signifcant, it is suggested that you make said changes and test them locally on your device. You can do this by simply forking the base repo, cloning it locally onto your device, making the changes you want, and then following the "Installing locally" instructions below. 
+## Making More Complex Changes
 
-Once you have validated that everything looks good, you can open a Pull Request and check the Deploy Preview from Netlify as a final sanity check. 
+To suggest a change to the website that is more significant, it is suggested that you make said changes and test them locally on your device.
+You can do this by simply forking the base repo, cloning it locally onto your device, making the changes you want, and then following the "Installing locally" instructions below.
 
-# Installing locally
+Once you have validated that everything looks good, you can open a Pull Request and check the Deploy Preview from Netlify as a final sanity check.
 
-You can either download a single binary file for Hugo from
-[Hugo releases](https://github.com/gohugoio/hugo/releases) or you can install
-it as per the instructions [here](https://gohugo.io/getting-started/installing/).
+## Making modifications and seeing the changes locally
 
-To build and serve the website run:
+Start by installing Franklin: in Julia,
 
-    hugo server
+```
+julia> using Pkg; Pkg.add("Franklin")
+```
 
-in the root of this repository. You can then visit [http://localhost:1313](http://localhost:1313)
-to view the site.
+then, clone the repository, `cd` to  it and do
+
+```
+julia> using Franklin
+
+julia> serve()
+→ Initial full pass...
+→ evaluating code [...] (learning/code-examples.md)
+→ Starting the server...
+✓ LiveServer listening on https://localhost:8000/ ...
+  (use CTRL+C to shut down)
+```
+
+Navigate to `localhost:8000` in a browser and you should see a preview of any modifications you make locally.
+
+**Modifying the CSS**: modify the relevant files in `_css/`.
+
+**Modifying the HTML structure**: if you want to modify the navbar, or the footer, go to `_layout/` and modify the relevant template fragment.
+
+**Modifying the landing page**: since the landing page has its own design, it is written in HTML with a few insertions of repurposeable fragments where appropriate, just modify `index.html`
+
+## Looking for broken links
+
+Every so often, one should do an in-depth check that there are no broken links.
+While Franklin provides a quick way to do this, it's a good idea to this in depth from time to time.
+The [broken-link-checker](https://github.com/stevenvachon/broken-link-checker) package is a pretty neat way to do this.
+After installing it with `npm` just do
+
+```
+blc https://julialang.org -ro
+```
+
+(it takes a while).
