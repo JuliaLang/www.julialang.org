@@ -65,12 +65,7 @@ But there are still very few principled time-series libraries out there, so you 
 
 The main goal of the project is to port capability from sktime to MLJ.
 
-### Mentors
-
-@@tight-list
-* [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
-* [Markus Löning](https://github.com/mloning) (sktime developer)
-@@
+**Mentors**: [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer), [Markus Löning](https://github.com/mloning) (sktime developer).
 
 ### Details
 
