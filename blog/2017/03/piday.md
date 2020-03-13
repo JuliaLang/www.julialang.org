@@ -466,7 +466,7 @@ plot(f, 0, 2, aspect_ratio=:equal, fill=(0, :orange), alpha=0.2, label="")
 
 ~~~
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 600 400">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 600 400">
 <defs>
   <clipPath id="clip00">
     <rect x="0" y="0" width="600" height="400"/>
@@ -636,7 +636,7 @@ p
 
 ~~~
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 600 400">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 600 400">
 <defs>
   <clipPath id="clip00">
     <rect x="0" y="0" width="600" height="400"/>
