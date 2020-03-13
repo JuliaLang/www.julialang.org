@@ -66,7 +66,7 @@ Julia’s official documentation is in English, but many groups work to translat
 * [JuliaLangPt](https://github.com/JuliaLangPt) (Portuguese)
 * [JuliaKorea](https://juliakorea.github.io/ko/) (Korean)
 * [JuliaGerman](https://github.com/JuliaLangGerman) (German)
-* [Julia Francophonie](https://juliafran.org/) (French)
+* [Julia Francophonie](https://www.juliafran.org/) (French)
 @@
 
 Please let us know if you have another organization dedicated to these efforts.
