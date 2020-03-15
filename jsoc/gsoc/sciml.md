@@ -112,7 +112,7 @@ along with performance enhancements to existing methods will be considered.
 Some work in this area can be found in
 [DiffEqParamEstim.jl](https://github.com/JuliaDiffEq/DiffEqParamEstim.jl)
 and [DiffEqBayes.jl](https://github.com/JuliaDiffEq/DiffEqBayes.jl). Examples
-can be found [in the DifferentialEquations.jl documentation](https://docs.juliadiffeq.org/latest/analysis/parameter_estimation.html).
+can be found [in the DifferentialEquations.jl documentation]( https://docs.juliadiffeq.org/dev/analysis/parameter_estimation).
 
 **Recommended Skills**: Background knowledge of standard machine learning,
 statistical, or optimization techniques. It's recommended but not required that
