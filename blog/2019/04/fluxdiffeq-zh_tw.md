@@ -39,8 +39,8 @@ state-of-the-art tools. -->
 的眾多優勢已經在[其他文章中被詳細討論](https://www.stochasticlifestyle.com/comparison-differential-equation-solver-suites-matlab-r-julia-python-c-fortran/)。
 除了[經典 Fortran 方法的眾多效能評測](https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl)之外，
 它包含了其他新穎的功能，像是 [GPU 加速](https://www.stochasticlifestyle.com/solving-systems-stochastic-pdes-using-gpus-julia/)、
-[分散式（多節點）平行運算](https://docs.juliadiffeq.org/latest/features/monte_carlo.html)
-以及[精密的事件處理](https://docs.juliadiffeq.org/latest/features/callback_functions.html)。
+[分散式（多節點）平行運算](https://docs.juliadiffeq.org/dev/features/ensemble)
+以及[精密的事件處理](https://docs.juliadiffeq.org/dev/features/callback_functions)。
 最近，這些 Julia 土生土長的微分方程方法已經成功地整合進 [Flux](https://github.com/FluxML/Flux.jl/) 深度學習套件，
 並允許在神經網路中使用整套完整測試、優化的 DiffEq 方法。
 我們將會使用新套件 [DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl/) 展示給讀者，
@@ -54,8 +54,8 @@ Along with its
 [extensive benchmarking against classic Fortran methods](https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl),
 it includes other modern features such as
 [GPU acceleration](https://www.stochasticlifestyle.com/solving-systems-stochastic-pdes-using-gpus-julia/),
-[distributed (multi-node) parallelism](https://docs.juliadiffeq.org/latest/features/monte_carlo.html),
-and [sophisticated event handling](https://docs.juliadiffeq.org/latest/features/callback_functions.html).
+[distributed (multi-node) parallelism]( https://docs.juliadiffeq.org/dev/features/ensemble.html),
+and [sophisticated event handling]( https://docs.juliadiffeq.org/dev/features/callback_functions.html).
 Recently, these native Julia differential equation solvers have successfully been embedded
 into the [Flux](https://github.com/FluxML/Flux.jl/) deep learning package, to allow the use of a full suite of
 highly tested and optimized DiffEq methods within neural networks. Using the new package
@@ -273,7 +273,7 @@ practice, too. -->
 
 首先，要如何解出微分方程的數值解呢？如果你是解微分方程的新手，
 你可能想要參考我們的[用 Julia 解微分方程影片教學](https://www.youtube.com/watch?v=KPEqYtEd-zY)，
-以及參考我們的[DifferentialEquations.jl 微分方程教學手冊](https://docs.juliadiffeq.org/latest/tutorials/ode_example.html)。
+以及參考我們的[DifferentialEquations.jl 微分方程教學手冊]( https://docs.juliadiffeq.org/dev/tutorials/ode_example)。
 概念是這樣的，如果你透過導函數 `u'=f(u,p,t)` 定義一個 `ODEProblem`，
 接著就能用初始條件 `u0` 、時間區段 `tspan`，以及相關的參數 `p` 去解這個問題。
 
@@ -281,7 +281,7 @@ practice, too. -->
 ODEs, you may want to watch our
 [video tutorial on solving ODEs in Julia](https://www.youtube.com/watch?v=KPEqYtEd-zY)
 and look through the
-[ODE tutorial of the DifferentialEquations.jl documentation](https://docs.juliadiffeq.org/latest/tutorials/ode_example.html).
+[ODE tutorial of the DifferentialEquations.jl documentation]( https://docs.juliadiffeq.org/dev/tutorials/ode_example.html).
 The idea is that you define an `ODEProblem` via a derivative equation `u'=f(u,p,t)`,
 and provide an initial condition `u0`, and a timespan `tspan` to solve over, and
 specify the parameters `p`. -->
@@ -348,11 +348,11 @@ as `θ` in associated literature). The utility of this will be seen later. -->
 
 DifferentialEquations.jl 提供非常多強大的選項以供客製化，
 像是準確度（accuracy）、容忍度（tolerances）、微分方程方法、事件等等；可以參考
-[手冊](https://docs.juliadiffeq.org/latest/)以獲得更多進階的使用方式。
+[手冊](https://docs.juliadiffeq.org/dev/)以獲得更多進階的使用方式。
 
 <!-- DifferentialEquations.jl has many powerful options for customising things like
 accuracy, tolerances, solver methods, events and more; check out [the
-docs](https://docs.juliadiffeq.org/latest/) for more details on how to use it in
+docs]( https://docs.juliadiffeq.org/dev/) for more details on how to use it in
 more advanced ways. -->
 
 ## 讓我們把微分方程放到神經網路架構裡吧！
@@ -587,7 +587,7 @@ plot(sol,xscale=:log10,tspan=(0.1,1e11))
 
 ![ROBER Plot](https://user-images.githubusercontent.com/1814174/51388944-eb18e680-1af8-11e9-874f-09478759596e.png)
 
-這不過是個積分法一些微小細節的範例：藉由 PI-適應性控制器和步距預測隱式解算器等，都有著複雜微小的細節並需要長時間的開發與測試，才能變成有效率並穩定的求解器。而不同的問題也會需要不同的方法：如為了在許多[物理問題上得到夠好的解並避免偏移](https://scicomp.stackexchange.com/questions/29149/what-does-symplectic-mean-in-reference-to-numerical-integrators-and-does-scip/29154#29154)，[Symplectic 積分器]((https://docs.juliadiffeq.org/latest/solvers/dynamical_solve.html#Symplectic-Integrators-1))是必須的；另外像是 [IMEX 積分器](https://docs.juliadiffeq.org/latest/solvers/split_ode_solve.html#Implicit-Explicit-(IMEX)-ODE-1) 在求解偏微分方程上也是不可或缺的。由此可見建立一個具產品水準的求解器是有迫切需要，但目前相對稀少的。
+這不過是個積分法一些微小細節的範例：藉由 PI-適應性控制器和步距預測隱式解算器等，都有著複雜微小的細節並需要長時間的開發與測試，才能變成有效率並穩定的求解器。而不同的問題也會需要不同的方法：如為了在許多[物理問題上得到夠好的解並避免偏移](https://scicomp.stackexchange.com/questions/29149/what-does-symplectic-mean-in-reference-to-numerical-integrators-and-does-scip/29154#29154)，[Symplectic 積分器](( https://docs.juliadiffeq.org/dev/solvers/dynamical_solve/#Symplectic-Integrators-1))是必須的；另外像是 [IMEX 積分器]( https://docs.juliadiffeq.org/dev/solvers/split_ode_solve/#Implicit-Explicit-(IMEX)-ODE-1) 在求解偏微分方程上也是不可或缺的。由此可見建立一個具產品水準的求解器是有迫切需要，但目前相對稀少的。
 
 在科學運算這個領域，常常會為了機器學習類型的方法設計獨立的函式庫，但在 Julia 中裡兩者並無不同，也就是說你可以直接利用這些現成的函式庫。
 
@@ -595,11 +595,11 @@ plot(sol,xscale=:log10,tspan=(0.1,1e11))
 methods via PI-adaptive controllers, step prediction in implicit solvers, etc.
 are all intricate details that take a lot of time and testing to become
 efficient and robust. Different problems require different methods: [Symplectic
-integrators](https://docs.juliadiffeq.org/latest/solvers/dynamical_solve.html#Symplectic-Integrators-1)
+integrators]( https://docs.juliadiffeq.org/dev/solvers/dynamical_solve/#Symplectic-Integrators-1)
 are required to [adequately handle physical many problems without
 drift](https://scicomp.stackexchange.com/questions/29149/what-does-symplectic-mean-in-reference-to-numerical-integrators-and-does-scip/29154#29154),
 and tools like [IMEX
-integrators](https://docs.juliadiffeq.org/latest/solvers/split_ode_solve.html#Implicit-Explicit-(IMEX)-ODE-1)
+integrators]( https://docs.juliadiffeq.org/dev/solvers/split_ode_solve/#Implicit-Explicit-(IMEX)-ODE-1)
 are required to handle ODEs which [come from partial differential
 equations](https://www.youtube.com/watch?v=okGybBmihOE). Building a
 production-quality solver is thus an enormous undertaking and relatively few
@@ -612,7 +612,7 @@ advantage of all of these methods today. -->
 ## 究竟有多少種不同的微分方程呢？
 <!-- ## What kinds of differential equations are there? -->
 
-常微分方程不過只是其中一種微分方程而已。有許多不同額外的特徵是可以被加入到微分方程的結構式裡。舉例來說，兔子未來數量不是與現在的兔子數量有關，因為親代兔子需要花一段時間懷孕，之後子代兔子才會出生。因此，實際上兔子的出生率應與過去的兔子數量有關。在原來的範例的微分方程中的導數加入一個延遲項，使得這組方程形成所謂的時滯微分方程 (DDE)。由於 DifferentialEquations.jl 使用與[常微分方程相同的介面處理時滯微分方程](https://docs.juliadiffeq.org/latest/tutorials/dde_example.html)，它也可以被當成 Flux 中的一層神經網路。這裡是個範例：
+常微分方程不過只是其中一種微分方程而已。有許多不同額外的特徵是可以被加入到微分方程的結構式裡。舉例來說，兔子未來數量不是與現在的兔子數量有關，因為親代兔子需要花一段時間懷孕，之後子代兔子才會出生。因此，實際上兔子的出生率應與過去的兔子數量有關。在原來的範例的微分方程中的導數加入一個延遲項，使得這組方程形成所謂的時滯微分方程 (DDE)。由於 DifferentialEquations.jl 使用與[常微分方程相同的介面處理時滯微分方程]( https://docs.juliadiffeq.org/dev/tutorials/dde_example)，它也可以被當成 Flux 中的一層神經網路。這裡是個範例：
 <!-- Ordinary differential equations are only one kind of differential equation. There
 are many additional features you can add to the structure of a differential equation.
 For example, the amount of bunnies in the future isn't dependent on the number
@@ -621,7 +621,7 @@ to come to term after a child is incepted. Thus the birth rate of bunnies is
 actually due to the amount of bunnies in the past. Using a lag term in a
 differential equation's derivative makes this equation known as a delay
 differential equation (DDE). Since
-[DifferentialEquations.jl handles DDEs](https://docs.juliadiffeq.org/latest/tutorials/dde_example.html)
+[DifferentialEquations.jl handles DDEs]( https://docs.juliadiffeq.org/dev/tutorials/dde_example)
 through the same interface as ODEs, it can be used as a layer in
 Flux as well. Here's an example: -->
 
@@ -651,13 +651,13 @@ animation,
 
 除此之外，我們也可以在微分方程中導入隨機性去模擬隨機事件如何影響預期外的出生或死亡。
 這類的微分方程被稱為隨機微分方程 (SDE)。
-由於 [DifferentialEquations.jl 同樣也可以處理隨機微分方程](https://docs.juliadiffeq.org/latest/tutorials/sde_example.html) (也是目前唯一一個包含剛性與非剛性隨機微分方程解算器的函式庫)，
+由於 [DifferentialEquations.jl 同樣也可以處理隨機微分方程]( https://docs.juliadiffeq.org/dev/tutorials/sde_example) (也是目前唯一一個包含剛性與非剛性隨機微分方程解算器的函式庫)，
 也同樣可以用類似方法引入 Flux 作為神經網路的一層。
 以下是使用 SDE 作為神經網路一層的範例：
 <!-- Additionally we can add randomness to our differential equation to simulate
 how random events can cause extra births or more deaths than expected. This
 kind of equation is known as a stochastic differential equation (SDE).
-Since [DifferentialEquations.jl handles SDEs](https://docs.juliadiffeq.org/latest/tutorials/sde_example.html)
+Since [DifferentialEquations.jl handles SDEs]( https://docs.juliadiffeq.org/dev/tutorials/sde_example)
 (and is currently the only library with adaptive stiff and non-stiff SDE integrators),
 these can be handled as a layer in Flux similarly. Here's a neural net layer
 with an SDE: -->
@@ -700,11 +700,11 @@ Flux.train!(loss_fd_sde, params, data, opt, cb = cb)
 
 [This code can be found in the model-zoo](https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/sde.jl)
 
-我們可以繼續下去。譬如也些微分方程式是呈[分片段常數函數 (piecewise constant)](https://docs.juliadiffeq.org/latest/tutorials/discrete_stochastic_example.html)被使用在生物模擬上，抑或是被應用於財務模型中的[跳耀擴散方程式 (jump diffusion)](https://docs.juliadiffeq.org/latest/tutorials/jump_diffusion.html)。而上述這些方程式解算器，都可以透過 FluxDiffEq.jl 很好地整合進 Flux 神經網路的架構裡，且 FluxDiffEq.jl 大約只使用了約 100 行左右的程式碼便完成了這些實作。
+我們可以繼續下去。譬如也些微分方程式是呈[分片段常數函數 (piecewise constant)]( https://docs.juliadiffeq.org/dev/tutorials/discrete_stochastic_example)被使用在生物模擬上，抑或是被應用於財務模型中的[跳耀擴散方程式 (jump diffusion)]( https://docs.juliadiffeq.org/dev/tutorials/jump_diffusion)。而上述這些方程式解算器，都可以透過 FluxDiffEq.jl 很好地整合進 Flux 神經網路的架構裡，且 FluxDiffEq.jl 大約只使用了約 100 行左右的程式碼便完成了這些實作。
 <!-- And we can keep going. There are differential equations
-[which are piecewise constant](https://docs.juliadiffeq.org/latest/tutorials/discrete_stochastic_example.html)
+[which are piecewise constant]( https://docs.juliadiffeq.org/dev/tutorials/discrete_stochastic_example)
 used in biological simulations, or
-[jump diffusion equations from financial models](https://docs.juliadiffeq.org/latest/tutorials/jump_diffusion.html),
+[jump diffusion equations from financial models]( https://docs.juliadiffeq.org/dev/tutorials/jump_diffusion),
 and the solvers map right over to the Flux neural network frame work through FluxDiffEq.jl
 FluxDiffEq.jl uses only around ~100 lines of code to pull this all off. -->
 
@@ -870,7 +870,7 @@ layer in a neural network, we need to backpropagate through it. -->
 [CASADI](https://web.casadi.org/) 以及
 [CVODES](https://computation.llnl.gov/projects/sundials/cvodes)
 已經使用伴隨法一段時間了（CVODES 甚至從 2005 年就問世了！）。
-[DifferentialEquations.jl 也提供了敏感性分析的實作](https://docs.juliadiffeq.org/latest/analysis/sensitivity.html)。
+[DifferentialEquations.jl 也提供了敏感性分析的實作]( https://docs.juliadiffeq.org/dev/analysis/sensitivity)。
 
 <!-- There are multiple ways to do this. The most common is known as (adjoint) sensitivity
 analysis. Sensitivity analysis defines a new ODE whose solution gives the
@@ -881,7 +881,7 @@ like [FATODE](https://people.cs.vt.edu/~asandu/Software/FATODE/index.html),
 [CASADI](https://web.casadi.org/), and
 [CVODES](https://computation.llnl.gov/projects/sundials/cvodes)
 have been available with this adjoint method for a long time (CVODES came out
-in 2005!). [DifferentialEquations.jl has sensitivity analysis implemented too](https://docs.juliadiffeq.org/latest/analysis/sensitivity.html) -->
+in 2005!). [DifferentialEquations.jl has sensitivity analysis implemented too]( https://docs.juliadiffeq.org/dev/analysis/sensitivity) -->
 
 在伴隨敏感性分析的效率性問題上，它們需要微分方程的多個解。
 可預見的，這會非常花時間。像 CVODES 的方法，利用了檢查點機制，藉由儲存接近的時間點來推論解，
@@ -931,7 +931,7 @@ match to the SciPy integrators used in the neural ODE paper.) -->
 這再一次地凸顯了這些小細節。而並非所有微分方程都在這個問題上有如此巨大的誤差。
 對於那些並不會造成問題的微分方程來說，伴隨敏感性分析方法會是最有效率的。
 除此之外，這個方法只能用於常微分方程上。不只是這樣，它甚至不能被用於所有常微分方程。
-舉例來說，具有非連續性（[事件](https://docs.juliadiffeq.org/latest/features/callback_functions.html)）的常微分方程並不符合可微分這個假設。
+舉例來說，具有非連續性（[事件]( https://docs.juliadiffeq.org/dev/features/callback_functions)）的常微分方程並不符合可微分這個假設。
 目前為止，我們再一次得到了相同的總結，單一方法是不夠的。
 
 <!-- This inaccuracy is the reason why the method from the neural ODE paper is not
@@ -939,7 +939,7 @@ implemented in software suites, but it once again highlights a detail. Not
 all ODEs will have a large error due to this issue. And for ODEs where it's not
 a problem, this will be the most efficient way to do adjoint sensitivity
 analysis. And this method only applies to ODEs. Not only that, it doesn't even
-apply to all ODEs. For example, ODEs with discontinuities ([events](https://docs.juliadiffeq.org/latest/features/callback_functions.html)) are excluded by the assumptions of the derivation.
+apply to all ODEs. For example, ODEs with discontinuities ([events]( https://docs.juliadiffeq.org/dev/features/callback_functions)) are excluded by the assumptions of the derivation.
 Thus once again we arrive at the conclusion that one method is not enough. -->
 
 DifferentialEquations.jl 套件已經實作了非常多不同的方法來計算微分方程的參數微分。
