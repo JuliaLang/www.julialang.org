@@ -41,14 +41,14 @@ jobs:
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
               using Franklin; optimize()'
       - name: Deploy (preview)
-        if: github.event.pull_request.opened || github.event.pull_request.edited
+        if: github.event.pull_request.opened == 'true' || github.event.pull_request.edited == 'true'
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           SSH: true
           BRANCH: gh-preview
           FOLDER: __site
       - name: Deploy (main)
-        if: github.event.push && github.ref == 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           SSH: true
