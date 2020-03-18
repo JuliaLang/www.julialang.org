@@ -2,7 +2,7 @@
 
 This page lists a bunch of project ideas, meant to serve as starting points as you develop your own plan. You're free to modify them to your tastes, or propose something totally different in an area you're interested in.
 
-We have our project ideas organized roughly into the skillsets required:
+We have our project ideas organized roughly into the skill sets required:
 
 @@tight-list
 * [Turing projects](/jsoc/gsoc/turing/) for probabilistic modelling and probabilistic programming.
