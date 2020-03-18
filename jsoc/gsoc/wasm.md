@@ -13,7 +13,7 @@ Because Julia relies on an asynchronous task runtime and WebAssembly currently l
 
 ## Wasm threading
 
-WebAssembly is in the process of standardizing [threads](https://github.com/WebAssembly/threads). Simultaneously, work is ongoing to to introduce a new threading runtime in julia (see [#22631](https://github.com/JuliaLang/julia/pull/22631) and replated PRs). This project would investigate enabling threading support for Julia on the WebAssembly platform, implenting runtime parallel primitives on the web assembly platform and ensuring that high level threading constructs are correctly mapped to the underlying platform. Please note that both the WebAssembly and julia threading infrastructure is still in active development and may continue to change over the duration of the project. An informed understanding of the state of these projects is a definite pre-requisite for this project.
+WebAssembly is in the process of standardizing [threads](https://github.com/WebAssembly/threads). Simultaneously, work is ongoing to to introduce a new threading runtime in julia (see [#22631](https://github.com/JuliaLang/julia/pull/22631) and replated PRs). This project would investigate enabling threading support for Julia on the WebAssembly platform, implementing runtime parallel primitives on the web assembly platform and ensuring that high level threading constructs are correctly mapped to the underlying platform. Please note that both the WebAssembly and julia threading infrastructure is still in active development and may continue to change over the duration of the project. An informed understanding of the state of these projects is a definite pre-requisite for this project.
 
 **Recommended Skills**: Experience with C and multi-threaded programming.
 
@@ -37,19 +37,19 @@ Several Julia libraries (e.g. WebIO.jl, Escher.jl) provide input and output capa
 
 ## Iodide notebook integration
 
-Experimental support exists for running Julia/wasm inside [Iodide](https://github.com/iodide-project/iodide) notebooks. There are a number of possible improvements to this integration, such as improving the quality of output and allowing interactive exploration of Julia objects from the iodide frontend. In addition, iodide notebooks should have support for specifying Julia manifest files in order to allow reproducability in the face of changing package versions.
+Experimental support exists for running Julia/wasm inside [Iodide](https://github.com/iodide-project/iodide) notebooks. There are a number of possible improvements to this integration, such as improving the quality of output and allowing interactive exploration of Julia objects from the iodide frontend. In addition, iodide notebooks should have support for specifying Julia manifest files in order to allow reproducibility in the face of changing package versions.
 
 **Recommended Skills**: Experience with JavaScript.
 
 ## Native dependencies for the web
 
-The Julia project uses [BinaryBuilder](https://github.com/JuliaPackaging/BinaryBuilder.jl) to provide binaries of native dependencies of julia packages. Experiemental support exists to extend this support to the wasm platform, but few packages have been ported. This project would consist of attempting to port a significant fraction of the binary dependencies of the julia ecosystem to the web platform by improving the toolchain support in BinaryBuilder or (if necessary), porting upstream packages to fix assumptions not applicable on the wasm platform.
+The Julia project uses [BinaryBuilder](https://github.com/JuliaPackaging/BinaryBuilder.jl) to provide binaries of native dependencies of julia packages. Experimental support exists to extend this support to the wasm platform, but few packages have been ported. This project would consist of attempting to port a significant fraction of the binary dependencies of the julia ecosystem to the web platform by improving the toolchain support in BinaryBuilder or (if necessary), porting upstream packages to fix assumptions not applicable on the wasm platform.
 
-**Recommended Skills**: Experience with building native libraries in Unix enivronments.
+**Recommended Skills**: Experience with building native libraries in Unix environments.
 
 ## Distributed computing with untrusted parties
 
-The Distributed computing abstractions in julia provide convenient abstraction for implementing programs that span many communicating julia processes on different machines. However, the existing abstractions generally asssume that all communicating processes are part of the same trust domain (e.g. they allow messages to execute arbitrary code on the remote). With some of the nodes potentially running in the web browser (or multiple browser nodes being part of the same distributed computing cluster via WebRPC), this assumption no longer holds true and new interfaces need to be designed to support multiple trust domains without overly restricting usability.
+The Distributed computing abstractions in julia provide convenient abstraction for implementing programs that span many communicating julia processes on different machines. However, the existing abstractions generally assume that all communicating processes are part of the same trust domain (e.g. they allow messages to execute arbitrary code on the remote). With some of the nodes potentially running in the web browser (or multiple browser nodes being part of the same distributed computing cluster via WebRPC), this assumption no longer holds true and new interfaces need to be designed to support multiple trust domains without overly restricting usability.
 
 **Recommended Skills**: Experience with distributed computing and writing libraries in Julia.
 
