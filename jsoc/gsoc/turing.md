@@ -9,9 +9,9 @@ Project mentors are [Hong Ge](https://github.com/yebai), [Cameron Pfiffer](https
 
 Turing's performance has been sporadically benchmarked against various other probabilistic programming languages (e.g. Turing, Stan, PyMC3, TensorFlow Prob), but a systemic approach to studying where Turing excels and where it falls short would be useful. A GSoC student would implement identical models in many PPLs and build tools to benchmark all PPLs against one another.
 
-**Recommended skills:** An interest in Julia and Turing, as well as experience or desire to learn about various other PPLs. Some experience with automated tasks useful, but not necessary at the outset.
+**Recommended skills:** An interest in Julia and Turing, as well as experience or desire to learn about various other PPLs. Some experience with automated tasks is useful, but not necessary at the outset.
 
-**Expected output:** A suite of auto-updating bechmarks that track Turing's performance on models implemented in various languages.
+**Expected output:** A suite of auto-updating benchmarks that track Turing's performance on models implemented in various languages.
 
 ## Nested sampling integration
 
@@ -32,7 +32,7 @@ Function memoization is a way to reduce costly function evaluation by caching th
 ## Making Distributions GPU compatible
 Julia's GPU tooling is generally quite good, but currently Turing is not able to reliably use GPUs while sampling because [Distributions.jl](https://github.com/JuliaStats/Distributions.jl) is not GPU compatible. A student on this project would work with the Turing developers and the Distributions developers to allow the use of GPU parallelism where possible in Turing.
 
-**Recommended skills:** GPU computing. Understanding of various statistical distributions useful but not required.
+**Recommended skills:** GPU computing. Understanding of various statistical distributions is useful but not required.
 
 **Expected output:** A set of Distributions.jl objects where `logpdf` calls can be easily run through a GPU.
 
@@ -66,3 +66,4 @@ Small, fixed-size vectors and matrices are fairly common in Turing models. This 
 **Recommended skills:** An understanding of generated functions in Julia. Some knowledge of random number generators and probability distributions. An interest in performance optimization and micro-optimization as well as general-purpose GPU programming.
 
 **Expected output:** A package StaticDistributions.jl containing implementations of non-allocating multivariate and matrix-variate distributions with vectorized logpdf support, a benchmarking of StaticDistributions.jl against Distributions.jl, and tutorials on how to use StaticDistributions together with CuArrays and the Julia GPU stack.
+

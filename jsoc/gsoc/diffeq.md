@@ -24,7 +24,7 @@ methods to implement are:
 - Parallel-in-time ODE Methods
 - Rosenbrock-W methods
 - Approximate matrix factorization
-- Runge-Kutta-Chebyschev Methods (high stability RK methods)
+- Runge-Kutta-Chebyshev Methods (high stability RK methods)
 - Fully Implicit Runge-Kutta (FIRK) methods
 - Anderson Acceleration
 - Boundary value problem (BVP) solvers like MIRK and collocation methods
@@ -37,7 +37,7 @@ equation (PDE) solvers and are thus important to many communities like
 computational fluid dynamics, mathematical biology, and quantum mechanics.
 
 This project is good for both software engineers interested in the field of
-numerical analysis and those students who are interested in perusing graduate
+numerical analysis and those students who are interested in pursuing graduate
 research in the field.
 
 **Recommended Skills**: Background knowledge in numerical analysis, numerical
@@ -108,7 +108,7 @@ to learn and a strong understanding of calculus and linear algebra.
 
 ## Tools for global sensitivity analysis
 
-Global Sensitivity Analysis is a popular tool to assess the affect that parameters
+Global Sensitivity Analysis is a popular tool to assess the effect that parameters
 have on a differential equation model. A good introduction [can be found in this thesis](https://discovery.ucl.ac.uk/19896/). Global Sensitivity Analysis tools can be
 much more efficient than Local Sensitivity Analysis tools, and give a better
 view of how parameters affect the model in a more general sense.
@@ -157,7 +157,7 @@ methods.
 ## Model Order Reduction
 
 Model order reduction is a technique for automatically finding a small model which approximates
-the large model but is computationally much cheaper. We plan to use the infrustructure built
+the large model but is computationally much cheaper. We plan to use the infrastructure built
 by ModelingToolkit.jl to [implement a litany of methods](https://github.com/JuliaDiffEq/ModelingToolkit.jl/issues/58)
 and find out the best way to accelerate differential equation solves.
 
@@ -193,3 +193,4 @@ solvers is not required.
 **Expected Results**: Efficient and high-quality implementations of model transformation methods.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+

@@ -103,7 +103,7 @@ estimation with the most high-powered and robust methodologies. Possible project
 include improving methods for Bayesian estimation of parameters via Stan.jl
 and Julia-based libraries like Turing.jl, or global optimization-based approaches.
 Novel techniques like classifying model outcomes via support vector machines
-and deep neural networks is can also be considered. Research and benchmarking
+and deep neural networks can also be considered. Research and benchmarking
 to attempt to find the most robust methods will take place in this project.
 Additionally, the implementation of methods for estimating structure, such
 as [topological sensitivity analysis](https://www.pnas.org/content/111/52/18507)
@@ -168,3 +168,4 @@ Julia knowledge is preferred but not strictly required.
 **Expected Results**: Efficient and high-quality implementations of multistart optimization methods.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas) and [Patrick Kofod Mogensen](https://github.com/pkofod)
+

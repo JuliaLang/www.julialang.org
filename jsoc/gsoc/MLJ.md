@@ -1,6 +1,6 @@
 # MLJ Projects – Summer of Code
 
-[MLJ](https://github.com/alan-turing-institute/MLJ.jl) is a machine learning framework for Julia aiming to provide a convenient way to use and combine a multitude of tools and models available in the Julia ML/Stats ecosystem. MLJ is released under the MIT licensed and sponsored by the Alan Turing Institute.
+[MLJ](https://github.com/alan-turing-institute/MLJ.jl) is a machine learning framework for Julia aiming to provide a convenient way to use and combine a multitude of tools and models available in the Julia ML/Stats ecosystem. MLJ is released under the MIT license and sponsored by the Alan Turing Institute.
 
 Project mentors are [Anthony Blaom](https://github.com/ablaom), [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer).
 
@@ -10,7 +10,7 @@ Granting parole to accepting credit applications decision support tools guide hu
 In the latter often without any human in the loop. It is important that these decisions are fair.
 But what does fair mean?
 Does it mean we simply don't feed protective features such as age, gender and ethnicity?
-No, theses are correlated with location, shoe size etc.
+No, these are correlated with location, shoe size etc.
 Also, what does fair mean does it mean proportionally we want the same false-positive-rate or false-negative rate.
 But which one?
 Do we want the proportion that predicted-to-recommit a crime and don't be equalised or the ones that predicted-to-not-recommit a crime and do be equalised across groups?
@@ -59,7 +59,7 @@ References:
 
 MLJ is so far focused on tabular data. This project is to add support for time series data in a modular, composable way.
 
-Time series are everywhere in real-world applications and there has been an increase in interest in time series toolboxes recently (see e.g. [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
+Time series are everywhere in real-world applications and there has been an increase in interest in time series frameworks recently (see e.g. [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
 
 But there are still very few principled time-series libraries out there, so you would be working on something that could be very useful for a large number of people. To find out more, check out this [paper](https://learningsys.org/neurips19/assets/papers/sktime_ml_systems_neurips2019.pdf) on sktime.
 
@@ -90,4 +90,4 @@ Implement MLJ with [MLFlow](https://mlflow.org). MLFlow is a flexible model mana
 
 **Project idea**: Bring MLJ to Kaggle!
 See if MLJ and your data science skills are up to the challenge of matching the Kaggle tutorial results of other ML frameworks using Julia.
-Many Kaggle competitions rely on comparing and combining the predictions of numerous models, and with over 120 models and a maturing selection of meta-modelling tools, MLJ is poised to enter the fray. Help us lure more data scientists to Julia, and help us identity MLJ shortcomings, by developing end-to-end applications of MLJ tools and models to Kaggle tutorials.
+Many Kaggle competitions rely on comparing and combining the predictions of numerous models, and with over 120 models and a maturing selection of meta-modelling tools, MLJ is poised to enter the fray. Help us lure more data scientists to Julia, and help us identify MLJ shortcomings, by developing end-to-end applications of MLJ tools and models to Kaggle tutorials.

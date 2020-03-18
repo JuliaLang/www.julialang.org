@@ -74,7 +74,7 @@ moment, many of these are implemented in external libraries such as
 [openspecfun](https://github.com/JuliaLang/openspecfun). This project would involve
 implementing these functions in native Julia (possibly utilising the work in
 [SpecialFunctions.jl](https://github.com/nolta/SpecialFunctions.jl)),
-seeking out opportunties for possible improvements along the way, such as supporting
+seeking out opportunities for possible improvements along the way, such as supporting
 `Float32` and `BigFloat`, exploiting fused multiply-add operations, and improving errors
 and boundary cases.
 
@@ -86,7 +86,7 @@ and boundary cases.
 
 ### Matrix functions
 
-Matrix functions maps matrices onto other matrices, and can often be interpreted as generalizations of ordinary functions like sine and exponential, which map numbers to numbers. Once considered a niche province of numerical algorithms, matrix functions now appear routinely in applications to cryptography, aircraft design, nonlinear dynamics, and finance.
+Matrix functions map matrices onto other matrices, and can often be interpreted as generalizations of ordinary functions like sine and exponential, which map numbers to numbers. Once considered a niche province of numerical algorithms, matrix functions now appear routinely in applications to cryptography, aircraft design, nonlinear dynamics, and finance.
 
 This project proposes to implement state of the art algorithms that extend the currently available matrix functions in Julia, as outlined in issue [#5840](https://github.com/JuliaLang/julia/issues/5840). In addition to matrix generalizations of standard functions such as real matrix powers, surds and logarithms, students will be challenged to design generic interfaces for lifting general scalar-valued functions to their matrix analogues for the efficient computation of arbitrary (well-behaved) matrix functions and their derivatives.
 
@@ -185,3 +185,4 @@ This experimentation could be carried out as a package with a new implementation
 **Require Skills**: Familiarity with extended precision numerics OR performance considerations. Familiarity either with Julia or GMP.
 
 **Mentors**: [Jameson Nash](https://github.com/vtjnash)
+

@@ -56,7 +56,7 @@ The work happens at this [PR](https://github.com/JuliaGL/GLAbstraction.jl/pull/8
 * getting rid of Reactive/Color/ and other not strictly opengl related packages. Instead offer overloadable APIs to do the job
 * Introduce leaner VertexArray buffer, integrating nicely with view(buffer, faces). A mesh is then basically just view(vertices::Vector{Point3f0}, indices::Vector{GLTriangle})
 * Introduce UniformBuffers to hold state in shaders independent of executing the shader
-* Introduce lean RenderObject, that doesn't hold any data, besides information on the shader layout - data will get transferred via calling the object with new data. When uniformbuffers are used, data can also be updated in place
+* Introduce lean RenderObject, that doesn't hold any data, besides information on the shader layout - data will get transferred via calling the object with new data. When uniform buffers are used, data can also be updated in place
 * remove GLVisualize specific code, that was basically just parked here because I didn't had a better place to put it
 * Transpiler integration - make it the main way to create shaders, instead of having ugly templated shader that nobody understands
 @@
@@ -104,3 +104,4 @@ The [VegaLite.jl](https://github.com/queryverse/VegaLite.jl) package provides a 
 **Recommended Skills**: Familiarity with Julia, vega-lite or vega, and Node.
 
 **Mentors**: [David Anthoff](https://github.com/davidanthoff)
+
