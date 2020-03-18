@@ -85,14 +85,14 @@ linear algebra, and the ability (or eagerness to learn) to write fast code.
 
 ## Discretizations of partial differential equations
 
-There are two ways to approach libraires for partial differential equations (PDEs): one can build "toolkits" which enable users to discretize any PDE but require knowledge
+There are two ways to approach libraries for partial differential equations (PDEs): one can build "toolkits" which enable users to discretize any PDE but require knowledge
 of numerical PDE methods, or one can build "full-stop" PDE solvers for specific
 PDEs. There are many different ways solving PDEs could be approached, and here
 are some ideas for potential projects:
 
 @@tight-list
 1. Automated PDE discretization tooling. We want users to describe a PDE in its mathematical form and automate the rest of the solution process. See [this issue for details](https://github.com/JuliaDiffEq/DifferentialEquations.jl/issues/469).
-2. Enhancement of existing tools for discretizing PDEs. The finite differencing (FDM) library [DiffEqOperators.jl](https://github.com/JuliaDiffEq/DiffEqOperators.jl) could be enahnced to allow non-uniform grids or composition of operators. The finite element method (FEM) library [FEniCS.jl](https://github.com/JuliaDiffEq/FEniCS.jl) could wrap more of the FEniCS library.
+2. Enhancement of existing tools for discretizing PDEs. The finite differencing (FDM) library [DiffEqOperators.jl](https://github.com/JuliaDiffEq/DiffEqOperators.jl) could be enhanced to allow non-uniform grids or composition of operators. The finite element method (FEM) library [FEniCS.jl](https://github.com/JuliaDiffEq/FEniCS.jl) could wrap more of the FEniCS library.
 3. Full stop solvers of common fluid dynamical equations, such as diffusion-advection-convection equations, or of hyperbolic PDEs such as the Hamilton-Jacobi-Bellman equations would be useful to many users.
 4. Using stochastic differential equation (SDE) solvers to efficiently (and highly parallel) approximate certain PDEs.
 5. Development of ODE solvers for more efficiently solving specific types of PDE discretizations. See the "Native Julia solvers for ordinary differential equations" project.
@@ -128,7 +128,7 @@ analysis.
 
 Parameter identifiability analysis is an analysis that describes whether the
 parameters of a dynamical system can be identified from data or whether they
-are redundent. There are two forms of identifiability analysis: structural
+are redundant. There are two forms of identifiability analysis: structural
 and practical. Structural identifiability analysis relates changes in the
 solution of the ODE directly to other parameters, showcasing that it is
 impossible to distinguish between parameter A being higher and parameter B
