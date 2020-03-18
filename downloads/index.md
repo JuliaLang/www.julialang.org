@@ -151,7 +151,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 ~~~
 <table class="downloads table table-hover  table-bordered">
   <tbody>
-    <tr>z
+    <tr>
       <th> Windows Self-Extracting Archive (.exe) <a href="/downloads/platform/#windows">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.4/julia-1.4.0-rc2-win32.exe">32-bit</a> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.4/julia-1.4.0-rc2-win64.exe">64-bit</a> </td>
