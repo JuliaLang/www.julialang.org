@@ -36,7 +36,8 @@ Contributors to core LightGraphs.jl code must demonstrate that their proposed ch
 @@tight-list
 * Creation of a set of benchmark algorithms that measure different aspects of LightGraphs.jl and cover different use cases
 * Application of the suite to different graph classes for performing benchmarks (for example, graphs of various sizes and densities and graphs that are good approximations those that arise in typical datasets)
-* Development of an approach to integrate automatic regression tests into the existing GitHub PR process
+* Development of an approach to integrate automated regression tests into the existing GitHub PR process
 @@
 
 **Expected Results**: creation of a benchmark suite and automatic regression testing system as described above.
+

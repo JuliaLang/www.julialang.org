@@ -24,7 +24,7 @@ Some ideas include:
 - Using immutable collections ([https://github.com/JuliaCollections/FunctionalCollections.jl]()) to accelerate computational problems in the compiler.
 @@
 
-But this just a sample list, and is far more than one summer of work. So what do you want to work on?
+But this is just a sample list, and is far more than one summer of work. So what do you want to work on?
 
 **Recommended Skills**: Ability to write type-stable Julia code. Ability to find performance issues. Knowledge about data structures and related algorithms. Interest in a particular problem above (or propose your own).
 
@@ -50,7 +50,7 @@ and will make sure that linking a shared Julia library to Python works on all pl
 If there is still time after this, the project can be extended to make the interaction
 between Python and Julia work smoothly.
 We will need to make sure that all functions can be called with rich
-python datatypes, and that conversions to common Julia datatypes happens automatically.
+python data types, and that conversions to common Julia data types happens automatically.
 If the conversion can't happen automatically, we need to make sure that there are easy ways
 to convert a Python object to the correct Julia object.
 
@@ -74,3 +74,4 @@ I have a number of other compiler projects I'm currently working on. Please cont
 @@
 
 **Mentors**: [Jameson Nash](https://github.com/vtjnash)
+

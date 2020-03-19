@@ -3,17 +3,17 @@
 
 Julia has early support for targeting WebAssembly and running in the web browser. Please note that this is a rapidly moving area (see the [project repository](https://github.com/Keno/julia-wasm) for a more detailed overview), so if you are interested in this work, please make sure to inform yourself of the current state and talk to us to scope out an appropriate project. The below is intended as a set of possible starting points.
 
-Mentor for these project is [Keno Fischer](https://github.com/Keno) unless otherwise stated.
+Mentor for these projects is [Keno Fischer](https://github.com/Keno) unless otherwise stated.
 
 ## Code generation improvements and async ABI
 
-Because Julia relies on an asynchronous task runtime and WebAssembly currently lacks native support for stack management, Julia needs to explicitly manage task stacks in the wasm heap and perform a compiler transformation to use this stack instead of the native WebAssembly stack. The overhead of this transformation directly impacts the performance of Julia on the wasm platform. Additionally, since all code julia uses (including arbitrary C/C++ libraries) must be compiled using this transformation, it needs to cover a wide variety of inputs and be coordinated with other users having similar needs (e.g. the Pyodide project to run python on the web). The project would aim to improve the quality, robustness and flexibility of this transformation.
+Because Julia relies on an asynchronous task runtime and WebAssembly currently lacks native support for stack management, Julia needs to explicitly manage task stacks in the wasm heap and perform a compiler transformation to use this stack instead of the native WebAssembly stack. The overhead of this transformation directly impacts the performance of Julia on the wasm platform. Additionally, since all code Julia uses (including arbitrary C/C++ libraries) must be compiled using this transformation, it needs to cover a wide variety of inputs and be coordinated with other users having similar needs (e.g. the Pyodide project to run python on the web). The project would aim to improve the quality, robustness and flexibility of this transformation.
 
 **Recommended Skills**: Experience with LLVM.
 
 ## Wasm threading
 
-WebAssembly is in the process of standardizing [threads](https://github.com/WebAssembly/threads). Simultaneously, work is ongoing to to introduce a new threading runtime in julia (see [#22631](https://github.com/JuliaLang/julia/pull/22631) and replated PRs). This project would investigate enabling threading support for Julia on the WebAssembly platform, implementing runtime parallel primitives on the web assembly platform and ensuring that high level threading constructs are correctly mapped to the underlying platform. Please note that both the WebAssembly and julia threading infrastructure is still in active development and may continue to change over the duration of the project. An informed understanding of the state of these projects is a definite pre-requisite for this project.
+WebAssembly is in the process of standardizing [threads](https://github.com/WebAssembly/threads). Simultaneously, work is ongoing to introduce a new threading runtime in julia (see [#22631](https://github.com/JuliaLang/julia/pull/22631) and replated PRs). This project would investigate enabling threading support for Julia on the WebAssembly platform, implementing runtime parallel primitives on the web assembly platform and ensuring that high level threading constructs are correctly mapped to the underlying platform. Please note that both the WebAssembly and julia threading infrastructure is still in active development and may continue to change over the duration of the project. An informed understanding of the state of these projects is a definite prerequisite for this project.
 
 **Recommended Skills**: Experience with C and multi-threaded programming.
 
@@ -58,3 +58,4 @@ The Distributed computing abstractions in julia provide convenient abstraction f
 Currently supported use cases for julia on the web platform are primarily geared towards providing interactive environments to support exploration of the full language. Of course, this leads to significantly larger binaries than would be required for using Julia as part of a production deployment. By disabling dynamic language features (e.g. eval) one could generate small binaries suitable for deployment. Some progress towards this exists in packages like [PackageCompiler.jl](https://github.com/JuliaLang/PackageCompiler.jl), though significant work remains to be done.
 
 **Recommended Skills**: Interest in or experience with Julia internals.
+

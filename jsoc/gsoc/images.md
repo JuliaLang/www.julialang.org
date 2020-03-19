@@ -43,4 +43,4 @@ Example algorithms:
 
 ### Where to go for discussion and to find mentors
 
-Depending on project, potential mentors include [Tim Holy](https://github.com/timholy) and [Zygmunt Szpak](https://github.com/zygmuntszpak) but may also involve other JuliaImages developers.  Interested students are encouraged to [open an issue in Images.jl](https://github.com/JuliaImages/Images.jl/issues/new) to introduce themselves and discuss project ideas.
+Depending on the project, potential mentors include [Tim Holy](https://github.com/timholy) and [Zygmunt Szpak](https://github.com/zygmuntszpak) but may also involve other JuliaImages developers.  Interested students are encouraged to [open an issue in Images.jl](https://github.com/JuliaImages/Images.jl/issues/new) to introduce themselves and discuss project ideas.
