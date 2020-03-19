@@ -250,7 +250,7 @@ The platforms currently supported by Julia are listed below. They are divided in
     <tr>
 
       <td> i686 (32-bit) </td>
-      <td> Tier 1 </td>
+      <td> Tier 2 </td>
     </tr>
     <tr>
       <td rowspan="7"> Linux </td>
@@ -271,12 +271,12 @@ The platforms currently supported by Julia are listed below. They are divided in
     <tr>
 
       <td> ARMv7 (32-bit) </td>
-      <td> Tier 2 </td>
+      <td> Tier 3 </td>
     </tr>
     <tr>
 
       <td> ARMv8 (64-bit) </td>
-      <td> Tier 2 </td>
+      <td> Tier 1 </td>
     </tr>
     <tr>
 
