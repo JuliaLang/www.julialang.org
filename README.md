@@ -60,4 +60,4 @@ After installing it with `npm` just do
 blc https://julialang.org -ro
 ```
 
-(it takes a while, and may require you to do it in several steps).
+(it takes a while, and may require you to do it in several steps). 
