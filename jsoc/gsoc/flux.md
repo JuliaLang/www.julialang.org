@@ -69,6 +69,14 @@ Some experience with implementing deep learning models would be ideal for this p
 
 Mentors: [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
 
+### Port the Fast.ai book:"Deep Learning for Coders with fastai and PyTorch" to Julia
+
+In this task, you will be porting the "Deep Learning for Coders with fastai and PyTorch" into Julia using Flux.jl
+
+Experience with implementing machine learning and Julia's Flux.jl package are required in order to be successful on this project. You will also likley work with others in the community on this since it's a 19 chapter book. Feel free to check out the `#fast-ai-port` channel on Slack for more details. 
+
+Please post in the `#fast-ai-port` channel on Slack to get a preview of the book for a better idea of the projects scope. 
+
 ## Deep Learning for 3D Computer Vision
 
 Build deep learning models for 3D computer vision using Flux. There has been a lot of interest in exploiting 3D models (in the form of Voxels, Point Clouds, Meshes, etc.) for developing more reliable computer vision models. The objective of this project would be to develop a framework (powered by Flux + Zygote) which helps accelerate 3D Computer Vision research in Julia.
