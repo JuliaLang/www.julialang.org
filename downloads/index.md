@@ -21,7 +21,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
 @@
 
 
-## Current stable release: v1.4.0 (March 21, 2019)
+## Current stable release: v1.4.0 (March 21, 2020)
 
 Checksums for this release are available in both [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-1.4.0.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-1.4.0.sha256) formats.
 
