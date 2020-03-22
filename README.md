@@ -28,6 +28,8 @@ Start by installing Franklin: in Julia,
 julia> using Pkg; Pkg.add("Franklin")
 ```
 
+(Note: _if you already have Franklin, make sure to update it to the latest version before proceeding_).
+
 then, clone the repository, `cd` to  it and do
 
 ```
