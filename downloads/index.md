@@ -17,7 +17,7 @@ We provide several ways for you to run Julia:
 
 Please see [platform specific instructions](/downloads/platform/) for further installation instructions and if you have trouble installing Julia.
 If the provided download files do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
-Different OSes and architectures have varying [tiers of support](/downloads/#support_tiers), and are listed at the bottom of this page.
+Different OSes and architectures have varying [tiers of support](/downloads/#currently_supported_platforms), and are listed at the bottom of this page.
 @@
 
 
