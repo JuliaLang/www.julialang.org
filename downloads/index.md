@@ -136,6 +136,70 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 ~~~
 @@ @@
 
+{{ifdef upcoming_release}}
+
+## Upcoming release: v{{upcoming_release}} ({{upcoming_release_date}})
+
+ We're currently testing release candidates for Julia v1.4.0, an upcoming minor release in the 1.x series of releases. We encourage developers and interested users to try it out and report any issues they encounter. As a prerelease, it should not be considered production-ready; it's intended to give users a chance to try out 1.4 with their code before the full release.
+
+Checksums for this release are available in both, [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.sha256) formats.
+
+@@row @@col-12
+~~~
+<table class="downloads table table-hover  table-bordered">
+  <tbody>
+    <tr>
+      <th> Windows Self-Extracting Archive (.exe) <a href="/downloads/platform/#windows">[help]</a></th>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{upcoming_release_short}}/julia-{{upcoming_release}}-win32.exe">32-bit</a> </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-win64.exe">64-bit</a> </td>
+    </tr>
+    <tr>
+      <th> macOS 10.8+ Package (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
+      <td colspan="3"> </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-mac64.dmg">64-bit</a> </td>
+    </tr>
+    <tr>
+      <th> Generic Linux Binaries for x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-i686.tar.gz">32-bit</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x86/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-i686.tar.gz.asc">GPG</a>)
+      </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-x86_64.tar.gz">64-bit</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-x86_64.tar.gz.asc">GPG</a>)
+      </td>
+    </tr>
+    <tr>
+      <th> Generic Linux Binaries for ARM <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
+      <td colspan="3"> Coming soon <!--<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
+                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz.asc">GPG</a>) -->
+      </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-aarch64.tar.gz">64-bit (AArch64)</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-aarch64.tar.gz.asc">GPG</a>)
+      </td>
+    </tr>
+    <tr>
+      <th> Generic FreeBSD Binaries for x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
+      <td colspan="3"> </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-freebsd-x86_64.tar.gz">64-bit</a>
+        (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-freebsd-x86_64.tar.gz.asc">GPG</a>)
+      </td>
+    </tr>
+    <tr>
+      <th> Source </th>
+      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v{{upcoming_release}}/julia-{{upcoming_release}}.tar.gz">Tarball</a>
+        (<a href="https://github.com/JuliaLang/julia/releases/download/v{{upcoming_release}}/julia-{{upcoming_release}}.tar.gz.asc">GPG</a>)
+      </td>
+      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v{{upcoming_release}}/julia-{{upcoming_release}}-full.tar.gz">Tarball with dependencies</a>
+        (<a href="https://github.com/JuliaLang/julia/releases/download/v{{upcoming_release}}/julia-{{upcoming_release}}-full.tar.gz.asc">GPG</a>)
+      </td>
+      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/v1.4.0-rc2">GitHub</a> </td>
+    </tr>
+  </tbody>
+</table>
+~~~
+@@ @@
+
+{{end}} <!-- upcoming_release -->
+
 
 ## Older Releases
 
