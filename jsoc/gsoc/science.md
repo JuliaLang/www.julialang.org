@@ -1,16 +1,6 @@
 
 # Scientific Projects – Summer of Code
 
-## Quantum Computation: Simulation of Noisy Circuits
-
-[Noisy Intermediate-Scale Quantum (NISQ) technology will be available in the near future.](https://arxiv.org/abs/1801.00862) However, it would be much more convenient if we could test our algorithm with noise and simulate our quantum algorithm on noisy circuits to explore their stability, efficiency. To assist the research of NISQ, enhancing the quantum circuit simulator in Julia [Yao.jl](https://github.com/QuantumBFS/Yao.jl) with noisy circuit simulation would be quite useful. We are planning to implement the algorithm in a recent paper as our SoC project: [Efficient classical simulation of noisy quantum computation](https://arxiv.org/pdf/1810.03176.pdf).
-
-**Recommended Skills**: Background knowledge in quantum information and tensor networks and the ability of coding with Julia.
-
-**Expected Results**: Provide Yao.jl an extension package that defines different kinds of noise and provide Yao.jl with the ability to simulate certain kinds of noisy circuits efficiently.
-
-**Mentors**: [Roger Luo](https://github.com/Roger-luo/)
-
 
 ## Computational methods using zonotopes
 
