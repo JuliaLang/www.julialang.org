@@ -46,6 +46,7 @@ Get jupyter notebooks for the following youtube tutorials over [JuliaBoxTutorial
 * Malcolm Sherrington. [Mastering Julia 1.0](https://www.packtpub.com/application-development/mastering-julia-10). Packt Publishing, November 2019.
 * Antonello Lobianco. [Julia Quick Syntax Reference](https://www.apress.com/gp/book/9781484251898). Apress, November 2019.
 * Bogumil Kaminski. [Julia プログラミングクックブック](https://www.oreilly.co.jp/books/9784873118895/). Japanese translation for Julia 1.2 by Hidemoto Nakada. Orairījapan, Tōkyo, October 2019.
+* Günter Faes. [Datenanalyse mit Julia: Einstieg in die Datenanalyse mit der Programmiersprache Julia](https://www.amazon.de/Datenanalyse-mit-Julia-Einstieg-Programmiersprache/dp/3749485089/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=Datenanalyse+mit+Julia&qid=1582912563&sr=8-3). Books on Demand, September 2019.
 * Hayden Klok and Yoni Nazarathy. [Statistics with julia: Fundamentals for data science, machine learning and artificial intelligence. September 2019. Draft](https://github.com/h-Klok/StatsWithJuliaBook)
 * Ben Lauwens and Allen B. Downey. [Think Julia](https://www.oreilly.com/library/view/think-julia/9781492045021/). O&rsquo;Reilly Media, June 2019.
 * Giray Ökten. [First Semester in Numerical Analysis with Julia](https://purl.flvc.org/fsu/fd/FSU_libsubv1_scholarship_submission_1556028278_15938059). Florida State University Libraries, April 2019.
