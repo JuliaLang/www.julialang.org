@@ -33,25 +33,25 @@ This session demonstrates Julia's statistics capabilities, which are provided by
 
 ## Fast Fourier Transforms
 
-Julia provides a built-in interface to the [FFTW](https://www.fftw.org/) library. This session demonstrates the Julia's [signal processing](https://docs.julialang.org/en/release-0.1/stdlib/base/#signal_processing) capabilities, such as FFTs and DCTs. Also see the [Hadamard](https://github.com/stevengj/Hadamard.jl) package.
+Julia provides a built-in interface to the [FFTW](http://www.fftw.org/) library. This session demonstrates the Julia's [signal processing](https://docs.julialang.org/en/release-0.1/stdlib/base/#signal_processing) capabilities, such as FFTs and DCTs. Also see the [Hadamard](https://github.com/stevengj/Hadamard.jl) package.
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/1iBLaHGL1AM" frameborder="0" allowfullscreen></iframe>~~~
 
 ## Optimization ([slides](https://github.com/JuliaLang/julia-tutorial/raw/master/NumericalOptimization/presentation.pdf))
 
-This session focuses largely on using Julia for solving linear programming problems. The algebraic modeling language discussed was later released as [JuMP](https://github.com/IainNZ/JuMP.jl). Benchmarks are shown evaluating the performance of Julia for implementing low-level optimization code. Optimization software in Julia has been grouped under the [JuliaOpt](https://juliaopt.org/) project.
+This session focuses largely on using Julia for solving linear programming problems. The algebraic modeling language discussed was later released as [JuMP](https://github.com/IainNZ/JuMP.jl). Benchmarks are shown evaluating the performance of Julia for implementing low-level optimization code. Optimization software in Julia has been grouped under the [JuliaOpt](http://juliaopt.org/) project.
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/O1icUP6sajU" frameborder="0" allowfullscreen></iframe>~~~
 
 ## Metaprogramming and Macros
 
-Julia is homoiconic: it represents its own code as a data structure of the language itself. Since code is represented by objects that can be created and manipulated from within the language, it is possible for a program to transform and generate its own code. [Metaprogramming](https://docs.julialang.org/en/release-0.1/manual/metaprogramming/) is described in detail in the Julia manual.
+Julia is homoiconic: it represents its own code as a data structure of the language itself. Since code is represented by objects that can be created and manipulated from within the language, it is possible for a program to transform and generate its own code. [Metaprogramming](https://docs.julialang.org/en/v1/manual/metaprogramming/#) is described in detail in the Julia manual.
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/EpNeNCGmyZE" frameborder="0" allowfullscreen></iframe>~~~
 
 ## Parallel and Distributed Computing ([Lab](https://github.com/JuliaLang/julia-tutorial/raw/master/NumericalOptimization/tutorial.pdf), [Solution](https://github.com/JuliaLang/julia-tutorial/blob/master/NumericalOptimization/Tutorial.jl))
 
-[Parallel and distributed computing](https://docs.julialang.org/en/release-0.1/manual/parallel-computing/) have been an integral part of Julia's capabilities from an early stage. This session describes existing basic capabilities, which can be used as building blocks for higher level parallel libraries.
+[Parallel and distributed computing](https://docs.julialang.org/en/v1/manual/parallel-computing/#Parallel-Computing-1) have been an integral part of Julia's capabilities from an early stage. This session describes existing basic capabilities, which can be used as building blocks for higher level parallel libraries.
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/JoRn4ryMclc" frameborder="0" allowfullscreen></iframe>~~~
 

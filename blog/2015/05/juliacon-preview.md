@@ -12,7 +12,7 @@ The [first ever JuliaCon](https://juliacon.org/2014/) was held in Chicago last y
 
 * On Wednesday 24th there will an introduction to Julia workshop run by [David P. Sanders (@dpsanders)](https://github.com/dpsanders) as well as a Julia **hackathon** - a great chance to get some help for your new Julia projects, or to begin contributing to Julia or its many packages.
 * On Thursday 25th and Friday 26th we will be having speakers talking about a range of topics - we were fortunate to have so many fantastic submissions that we had to open up a second track of talks. The near-final [schedule is on the main page](https://juliacon.org). We'll be alternating between ~40 minute long "regular" talks, and ~10 minute long "lightning" talks across all the sessions.
-* On Saturday 27th we will finish with a series of **workshops** on a range of topics: data wrangling and visualization, [optimization](https://juliaopt.org), high-performance computing and more. These workshops run from 1.5 to 3 hours and will be a great way to rapidly boost your Julia skills.
+* On Saturday 27th we will finish with a series of **workshops** on a range of topics: data wrangling and visualization, [optimization](http://www.juliaopt.org/), high-performance computing and more. These workshops run from 1.5 to 3 hours and will be a great way to rapidly boost your Julia skills.
 
 ### Thursday's Talks
 
@@ -33,14 +33,14 @@ Whatever you get up to after the talks end on Thursday, make sure you are up in 
 ### Friday's talks
 
 ~~~
-<img src="https://www.juliaopt.org/images/juliaopt.svg" width="20%"><img src="/assets/images/el.png" width="20%">
+<img src="http://www.juliaopt.org//images/juliaopt.svg" width="20%"><img src="/assets/images/el.png" width="20%">
 ~~~
 
 \\\\
 
 If you are interested in learning **how Julia works** from the people who work on it every day, then Friday morning's session is for you. The morning will kick off with newly-minted-PhD and Julia co-founder [Jeff Bezanson (@JeffBezanson)](https://github.com/JeffBezanson), who is still recovering from his defense and will be updating us on the title of his talk soon. We'll be learning more about different stages of the **compilation process** from contributors [Jake Bolewski (@jakebolewski)](https://github.com/jakebolewski) and [Jacob Quinn (@quinnj)](https://github.com/quinnj), and we'll be covering a miscellany of other cutting-edge topics for Julia like tuning LLVM, debugging, and interfaces.
 
-In the afternoon we'll have four sessions split across two rooms. In the second **scientific applications** session we'll be learning more about how Julia is being used to **prevent airborne collisions** from Lincoln Lab's Robert Moss, and [Iain Dunning (@IainNZ)](https://github.com/IainNZ) will give a sequel to last years [JuliaOpt](https://juliaopt.org) talk to update us on how Julia is becoming the language of choice for many for **optimization**. We'll also hear how Julia is enabling rapid development of advanced algorithms for simulating **quantum systems**, evolving graphs, and analyzing **seismic waves**.
+In the afternoon we'll have four sessions split across two rooms. In the second **scientific applications** session we'll be learning more about how Julia is being used to **prevent airborne collisions** from Lincoln Lab's Robert Moss, and [Iain Dunning (@IainNZ)](https://github.com/IainNZ) will give a sequel to last years [JuliaOpt](http://www.juliaopt.org/) talk to update us on how Julia is becoming the language of choice for many for **optimization**. We'll also hear how Julia is enabling rapid development of advanced algorithms for simulating **quantum systems**, evolving graphs, and analyzing **seismic waves**.
 
 The **numerical computing** track kicks of with Stanford's Prof. [Jack Poulson (@poulson)](https://github.com/poulson), creator of the [Elemental](https://github.com/elemental/Elemental) library for **distributed-memory linear algebra**. Right after, the linear algebra wizard [Zhang Xianyi (@xianyi)](https://github.com/xianyi) will give a talk about [OpenBLAS](https://github.com/xianyi/OpenBLAS), the high-performance linear algebra library Julia ships with. After a break, we'll hear Viral's thoughts on how **sparse matrices** currently and should work in Julia, before finishing off with lightning talks about **validated numerics** and **Taylor series**.
 

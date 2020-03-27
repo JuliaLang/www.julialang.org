@@ -173,7 +173,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaIntervals](https://github.com/JuliaIntervals) - Rigorous numerics with interval arithmetic & applications
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
-* [JuliaOpt](https://github.com/JuliaOpt) – [Optimization](https://www.juliaopt.org/) ([Gitter](https://gitter.im/JuliaOpt/home))
+* [JuliaOpt](https://github.com/JuliaOpt) – [Optimization](http://www.juliaopt.org//) ([Gitter](https://gitter.im/JuliaOpt/home))
 * [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
 @@
