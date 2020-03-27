@@ -5,7 +5,7 @@
 @def authors = """<a href="https://karpinski.org/">Stefan Karpinski</a>"""  
 
 
-I'll be giving a talk on Julia at the [New York Open Statistical Programming Meetup on May 1st](https://www.meetup.com/nyhackr/events/60839932/). After my presentation, [John Myles White](https://www.johnmyleswhite.com/) and [Shane Conway](https://www.statalgo.com/) are going to give followup demos of statistical applications using Julia. Then we're going to hang out and grab drinks nearby. Thanks to [Harlan Harris](https://www.harlan.harris.name/) and [Drew Conway](https://www.drewconway.com/) for setting the whole thing up!
+I'll be giving a talk on Julia at the [New York Open Statistical Programming Meetup on May 1st](https://www.meetup.com/nyhackr/events/60839932/). After my presentation, [John Myles White](https://www.johnmyleswhite.com/) and [Shane Conway](https://www.statalgo.com/) are going to give followup demos of statistical applications using Julia. Then we're going to hang out and grab drinks nearby. Thanks to [Harlan Harris](http://www.harlan.harris.name/) and [Drew Conway](http://www.drewconway.com/) for setting the whole thing up!
 
 **Announcement:**
 

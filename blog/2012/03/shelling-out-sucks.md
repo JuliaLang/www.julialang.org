@@ -165,7 +165,7 @@ That wasn't successful.
 What's going on?
 
 The heart of the problem is that when you shell out, the commands in the pipeline are not immediate children of the main program, but rather its grandchildren:
-the program spawns a shell, which makes a bunch of UNIX pipes, forks child processes, connects inputs and outputs to pipes using the [`dup2` system call](https://developer.apple.com/library/IOs/#documentation/System/Conceptual/ManPages_iPhoneOS/man2/dup2.2.html), and then execs the appropriate commands.
+the program spawns a shell, which makes a bunch of UNIX pipes, forks child processes, connects inputs and outputs to pipes using the [`dup2` system call](https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man2/dup2.2.html), and then execs the appropriate commands.
 As a result, your main program is not the parent of the commands in the pipeline, but rather, their grandparent.
 Therefore, it doesn't know their process IDs, nor can it wait on them or get their exit statuses when they terminate.
 The shell process, which is their parent, has to do all of that.

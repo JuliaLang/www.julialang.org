@@ -55,7 +55,7 @@ The Julia community participated in Google Summer of Code 2014. Wrap-up blog pos
 
 [JuliaStats](https://juliastats.github.io/) - statistical and machine learning community.
 
-[JuliaOpt](https://www.juliaopt.org/) - optimization community.
+[JuliaOpt](http://www.juliaopt.org/) - optimization community.
 
 [IJulia](https://github.com/JuliaLang/IJulia.jl) - notebook interface built on IPython.
 

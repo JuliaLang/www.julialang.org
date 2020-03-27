@@ -2,7 +2,7 @@
 @def rss = """ Distributed Numerical Optimization | This post walks through the parallel computing functionality of Julia... """
 @def published = "5 April 2013"
 @def title = "Distributed Numerical Optimization"
-@def authors = """<a href="https://www.mit.edu/~mlubin/">Miles Lubin</a>"""  
+@def authors = """<a href="https://mlubin.github.io/">Miles Lubin</a>"""  
 @def hascode = true
 @def hasmath = true
 
@@ -39,7 +39,7 @@ If it is costly to evaluate $ f_i(x) $, then the algorithm is naturally
 parallelizable at step 2. The minimization in step 3 can be computed by solving
 a linear optimization problem, which is usually very fast. (Let me point out
 here that Julia has interfaces to linear programming and other
-optimization solvers under [JuliaOpt](https://juliaopt.org/).
+optimization solvers under [JuliaOpt](http://www.juliaopt.org/).
 
 Abstracting the math, we can write the algorithm using the following Julia code.
 
@@ -96,7 +96,7 @@ functionality.  This model of parallelism is very different from the typical
 SIMD style of MPI. Both approaches are useful in different contexts, and I
 expect an MPI wrapper for Julia will appear in the future (see also [here](https://github.com/lcw/julia-mpi)).
 
-Reading the [manual](https://docs.julialang.org/en/release-0.1/manual/parallel-computing/) on parallel computing is highly recommended, and I won't try to reproduce it in
+Reading the [manual](https://docs.julialang.org/en/v1/manual/parallel-computing/#Parallel-Computing-1) on parallel computing is highly recommended, and I won't try to reproduce it in
 this post. Instead, we'll dig into and extend one of the examples it presents.
 
 The implementation of `pmap` in Julia is
