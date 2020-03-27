@@ -60,7 +60,7 @@ The Julia community is global, with meetups all over the world and resources in 
 Julia’s official documentation is in English, but many groups work to translate and localize documentation and other resources. A few such groups that are leading these efforts include:
 
 @@tight-list
-* [JuliaTokyo](https://julia.tokyo/) (Japanese)
+* [JuliaTokyo](http://julia.tokyo/) (Japanese)
 * [JuliaCN](https://cn.julialang.org/) (Chinese)
 * [JuliaLangEs](https://github.com/JuliaLangEs) (Spanish)
 * [JuliaLangPt](https://github.com/JuliaLangPt) (Portuguese)
@@ -77,7 +77,7 @@ Julia has local user groups around the world, including:
 #### Asia
 
 @@tight-list
-* [Julia China](https://www.juliacn.com/meetups/)
+* [Julia China](http://www.juliacn.com/meetups/)
 * [Bangalore Julia User Group](https://www.meetup.com/Bangalore-Julia-User-Group/)
 * [Julia Delhi](https://www.meetup.com/Juliadelhi/)
 * [Singapore Julia User Group](https://www.meetup.com/Singapore-Julia-User-Group/)

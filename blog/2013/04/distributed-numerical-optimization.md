@@ -212,7 +212,7 @@ Now for the fun part. The complete cutting-plane algorithm (along with
 additional variants) is implemented in [JuliaBenders](https://github.com/mlubin/JuliaBenders). The code is
 specialized for [stochastic
 programming](https://en.wikipedia.org/wiki/Stochastic_programming) where the cutting-plane algorithm is known as the [L-shaped
-method](https://www.springerreference.com/docs/html/chapterdbid/72429.html) or Benders decomposition and is used to decompose the solution of
+method](http://www.springerreference.com/docs/html/chapterdbid/72429.html) or Benders decomposition and is used to decompose the solution of
 large linear optimization problems. Here, `solvesubproblem` entails solving a
 relatively small linear optimization problem. Test instances are taken from [the
 previously mentioned paper](https://dx.doi.org/10.1023/A:1021858008222).

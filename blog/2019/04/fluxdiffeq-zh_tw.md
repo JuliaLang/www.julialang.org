@@ -886,7 +886,7 @@ in 2005!). [DifferentialEquations.jl has sensitivity analysis implemented too]( 
 在伴隨敏感性分析的效率性問題上，它們需要微分方程的多個解。
 可預見的，這會非常花時間。像 CVODES 的方法，利用了檢查點機制，藉由儲存接近的時間點來推論解，
 伴隨著記憶體用量的增加，得以加速。在 Neural ODE 一文中所使用的方法，則嘗試要以反向的伴隨法來替代對前向方法的依賴。
-然而衍生的問題則是，這個方法隱含地假設了微分方程積分器必須是[可逆的](https://www.physics.drexel.edu/~valliere/PHYS305/Diff_Eq_Integrators/time_reversal/)。
+然而衍生的問題則是，這個方法隱含地假設了微分方程積分器必須是[可逆的](http://www.physics.drexel.edu/~valliere/PHYS305/Diff_Eq_Integrators/time_reversal/)。
 令人失望的是，目前對於一階微分方程尚不存在可逆的適應型積分器，所以沒有這樣的微分方程求解器可以用。
 舉例而言，作為一個快速的驗證，在論文中針對這樣的微分方程上使用反向解算器 Adams，
 即便設定了 1e-12 的容忍度，還是在最後一個點上就會產生 >1700% 的誤差：
@@ -899,7 +899,7 @@ memory. The method in the neural ordinary differential equations paper tries to
 eliminate the need for these forward solutions by doing a backwards solution
 of the ODE itself along with the adjoints. The issue with this is that this
 method implicitly makes the assumption that the ODE integrator is
-[reversible](https://www.physics.drexel.edu/~valliere/PHYS305/Diff_Eq_Integrators/time_reversal/).
+[reversible](http://www.physics.drexel.edu/~valliere/PHYS305/Diff_Eq_Integrators/time_reversal/).
 Sadly, there are no reversible adaptive integrators for first-order ODEs, so
 with no ODE solver method is this guaranteed to work. For example, here's a quick
 equation where a backwards solution to the ODE using the Adams method from the

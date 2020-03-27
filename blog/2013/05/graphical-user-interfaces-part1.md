@@ -2,7 +2,7 @@
 @def rss = """ Building GUIs with Julia, Tk, and Cairo, Part I | This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia.... """
 @def published = "23 May 2013"
 @def title = "Building GUIs with Julia, Tk, and Cairo, Part I"
-@def authors = """ <a href="https://holylab.wustl.edu">Timothy E. Holy</a>"""  
+@def authors = """ <a href="http://holylab.wustl.edu">Timothy E. Holy</a>"""  
 @def hascode = true
 
 This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia.

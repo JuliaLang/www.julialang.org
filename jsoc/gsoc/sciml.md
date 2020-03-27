@@ -139,7 +139,7 @@ with partial differential equations.
 [FEniCS](https://fenicsproject.org/) project for finite element solutions of partial differential
 equations. We would like to augment the Julia wrappers to allow for integration with Julia's
 automatic differentiation libraries like [Zygote.jl](https://github.com/FluxML/Zygote.jl) by
-using [dolfin-adjoint](https://www.dolfin-adjoint.org/en/release/). This would require setting up
+using [dolfin-adjoint](http://www.dolfin-adjoint.org/en/release/). This would require setting up
 this library for automatic installation for Julia users and writing adjoint passes which utilize
 this adjoint builder library. It would result in the first total integration between PDEs and
 neural networks.

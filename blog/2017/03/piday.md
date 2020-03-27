@@ -239,7 +239,7 @@ abs(pi - pi_approx3)
 
 ## Finding guaranteed bounds on &pi;
 
-by [David P. Sanders](https://sistemas.fciencias.unam.mx/~dsanders/),  Department of Physics, Faculty of Sciences, National University of Mexico (UNAM)
+by [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/),  Department of Physics, Faculty of Sciences, National University of Mexico (UNAM)
 
 ### Using standard floating-point arithmetic
 

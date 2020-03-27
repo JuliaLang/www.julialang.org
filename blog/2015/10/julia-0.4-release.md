@@ -69,7 +69,7 @@ Nightly builds will use the versioning scheme 0.5.0-dev.
 The Julia ecosystem continues to grow, and there are now
 [over 700](https://pkg.julialang.org/pulse.html) registered packages! (highlights below)
 
-The second [JuliaCon](https://www.juliacon.org) was held in Cambridge (USA) in June, 2015.
+The second [JuliaCon](https://juliacon.org) was held in Cambridge (USA) in June, 2015.
 Over 60 talks were recorded and
 [are available for viewing](https://www.youtube.com/playlist?list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM).
 
@@ -94,6 +94,6 @@ the #MonthOfJulia series exploring the core language and a number of packages.
 
 [Gadfly](https://gadflyjl.org/) - Grammar of Graphics-inspired statistical plotting.
 
-[Winston](https://github.com/nolta/Winston.jl) - 2D plotting.
+[Winston](https://github.com/JuliaGraphics/Winston.jl) - 2D plotting.
 
 [JunoLab](https://junolab.org/) - LightTable-based interactive environment.

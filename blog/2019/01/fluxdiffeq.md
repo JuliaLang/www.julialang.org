@@ -656,7 +656,7 @@ memory. The method in the neural ordinary differential equations paper tries to
 eliminate the need for these forward solutions by doing a backwards solution
 of the ODE itself along with the adjoints. The issue with this is that this
 method implicitly makes the assumption that the ODE integrator is
-[reversible](https://www.physics.drexel.edu/~valliere/PHYS305/Diff_Eq_Integrators/time_reversal/).
+[reversible](http://www.physics.drexel.edu/~valliere/PHYS305/Diff_Eq_Integrators/time_reversal/).
 Sadly, there are no reversible adaptive integrators for first-order ODEs, so
 with no ODE solver method is this guaranteed to work. For example, here's a quick
 equation where a backwards solution to the ODE using the Adams method from the

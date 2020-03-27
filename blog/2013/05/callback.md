@@ -7,10 +7,10 @@
 
 
 One of the great strengths of Julia is that it is so easy to [call C
-code](https://docs.julialang.org/en/latest/manual/calling-c-and-fortran-code.html) natively, with no special "glue" routines or overhead to marshal
+code](https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#) natively, with no special "glue" routines or overhead to marshal
 arguments and convert return values.  For example, if you want to call
 [GNU GSL](https://www.gnu.org/software/gsl/) to compute a special function
-like a [Debye integral](https://linux.math.tifr.res.in/manuals/html/gsl-ref-html/gsl-ref_7.html), it is as easy as:
+like a [Debye integral](http://linux.math.tifr.res.in/manuals/html/gsl-ref-html/gsl-ref_7.html), it is as easy as:
 
 ```
 debye_1(x) = ccall((:gsl_sf_debye_1,:libgsl), Cdouble, (Cdouble,), x)
@@ -229,7 +229,7 @@ The `qsort` interface is nowadays considered rather antiquated.  Years
 ago, it was supplemented on BSD-Unix systems, and eventually in GNU
 libc, by a function called `qsort_r` that solves the problem of passing
 parameters to the callback in a re-entrant way.  This is how the BSD (e.g. MacOS)
-`qsort_r` function [is defined](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/qsort_r.3.html):
+`qsort_r` function [is defined](https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man3/qsort_r.3.html):
 
 ```julia
 void qsort_r(void *base, size_t nmemb, size_t size, void *thunk,
@@ -290,7 +290,7 @@ The example above has one major problem that has nothing to do with
 Julia: the `qsort_r` function is not portable.  The above example
 won't work on Windows, since the Windows C library doesn't define
 `qsort_r` (instead, it has a function called
-[qsort_s](https://msdn.microsoft.com/en-us/library/4xc60xas%28VS.80%29.aspx),
+[qsort_s](https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/qsort-s?view=vs-2019),
 which of course uses an argument order incompatible with *both* the
 BSD and GNU `qsort_r` functions).  Worse, it will crash on GNU/Linux
 systems, which *do* provide `qsort_r` but with an
@@ -529,7 +529,7 @@ about 10 digits.
 
 At this point, I will shamelessly plug my own [NLopt
 package](https://github.com/stevengj/NLopt.jl) for Julia, which wraps
-around my free/open-source [NLopt](https://ab-initio.mit.edu/nlopt) library
+around my free/open-source [NLopt](https://nlopt.readthedocs.io/en/latest/) library
 to provide many more optimization algorithms than GSL, with perhaps a nicer
 interface.   However, the techniques used to pass callback functions to
 NLopt are actually quite similar to those used for GSL.
