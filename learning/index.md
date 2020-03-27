@@ -80,7 +80,6 @@ _Julia 1.0 was released on 8 August 2018_
 
 @@tight-list
 * [A Fast Track to Julia: A Quick and Dirty Overview (Cheatsheet)](https://juliadocs.github.io/Julia-Cheat-Sheet/)
-* [A Julia cheat sheet](https://github.com/stevengj/1806/blob/master/julia/Julia-cheatsheet.pdf) by [Steven Johnson](https://math.mit.edu/~stevenj/)
 * [Julia.jl - Curated list of Julia resources and packages](https://github.com/svaksha/Julia.jl#index) by Svaksha
 * [Julia Observer - A website for browsing Julia packages](https://juliaobserver.com/) by [Dan Segal](https://seg.al/)
 @@
