@@ -8,7 +8,7 @@
 <a href="https://github.com/JeffBezanson/">Jeff Bezanson</a>
 <a href="https://karpinski.org/">Stefan Karpinski</a>
 <a href="https://github.com/ViralBShah/">Viral B. Shah</a>
-<a href="http://www-math.mit.edu/~edelman/">Alan Edelman</a>
+<a href="https://math.mit.edu/~edelman/">Alan Edelman</a>
 ~~~
 
 In short, because we are greedy.
