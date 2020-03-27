@@ -102,7 +102,7 @@ Tutorials and other learning materials are in the [learning section](/learning/)
 ### Classes using Julia for teaching
 
 Julia is now being used in several universities and online courses.
-If you know of other classes using Julia for teaching, please consider [updating this list](https://github.com/JuliaLang/www.julialang.org/edit/master/content/teaching/_index.md).
+If you know of other classes using Julia for teaching, please consider [updating this list](/learning/).
 
 @@tight-list
 * AGH University of Science and Technology, Poland
