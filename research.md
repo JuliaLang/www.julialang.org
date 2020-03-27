@@ -51,7 +51,7 @@ Please add a `CITATION.bib` file (BibTeX format) in the top-level directory of y
 The key for the bib entry should be &lt;PackageName.jl&gt;-&lt;year&gt;-&lt;letter&gt; (Use a letter if you have multiple citations in same year).
 For example, see the [CITATION.bib](https://github.com/JuliaLang/julia/blob/master/CITATION.bib) file in the Julia repo.
 
-We welcome additions to this list in the form of [pull requests](https://github.com/JuliaLang/www.julialang.org/tree/master/content/research#readme)
+We welcome additions to this list in the form of [pull requests](https://github.com/JuliaLang/www.julialang.org/blob/master/research.md)
 
 
 ## 2019
