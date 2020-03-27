@@ -347,4 +347,4 @@ For some more in-depth discussion of metaprogramming techniques and macros, see 
 - link to [the video](https://www.youtube.com/watch?v=rAxzR7lMGDM)
 - link to the [Jupyter notebooks](https://github.com/dpsanders/intermediate_julia)
 
-**Author**: [David P. Sanders](https://sistemas.fciencias.unam.mx/~dsanders/), Associate Professor, Department of Physics, Faculty of Sciences, National University of Mexico (UNAM).
+**Author**: [David P. Sanders](http://sistemas.fciencias.unam.mx/~dsanders/), Associate Professor, Department of Physics, Faculty of Sciences, National University of Mexico (UNAM).

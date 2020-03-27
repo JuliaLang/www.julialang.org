@@ -109,7 +109,7 @@ One possible solution is to vectorize *every function automatically*.   The
 language [Chapel](https://en.wikipedia.org/wiki/Chapel_%28programming_language%29)
 does this: every function `f(x...)` implicitly
 defines a function `f(x::Array...)` that evaluates `map(f, x...)`
-[(Chamberlain et al, 2011)](https://pgas11.rice.edu/papers/ChamberlainEtAl-Chapel-Iterators-PGAS11.pdf).
+[(Chamberlain et al, 2011)](http://pgas11.rice.edu/papers/ChamberlainEtAl-Chapel-Iterators-PGAS11.pdf).
 This could be implemented in Julia as well via
 function-call overloading [(Bezanson, 2015: chapter 4)](https://github.com/JeffBezanson/phdthesis/blob/master/main.pdf),
 but we chose to go in a different direction.
@@ -269,7 +269,7 @@ One approach that may occur to you, and which has been implemented in a
 variety of languages (e.g. [Kennedy & McKinley, 1993](https://dl.acm.org/citation.cfm?id=665526);
 [Lewis et al., 1998](https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.46.6627);
 [Chakravarty & Keller, 2001](https://dl.acm.org/citation.cfm?id=507661);
-[Manjikian & Abdelrahman, 2002](https://ieeexplore.ieee.org.libproxy.mit.edu/document/577265/);
+[Manjikian & Abdelrahman, 2002](http://ieeexplore.ieee.org.libproxy.mit.edu/document/577265/);
 [Sarkar, 2010](https://ieeexplore.ieee.org/document/5389392/);
 [Prasad et al., 2011](https://dl.acm.org/citation.cfm?id=1993517);
 [Wu et al., 2012](https://dl.acm.org/citation.cfm?id=2457490)), is to only
@@ -281,7 +281,7 @@ implemented as libraries (e.g. template libraries in C++:
 languages (DSLs)](https://en.wikipedia.org/wiki/Domain-specific_language)
 as extensions of existing languages; in Python, for example, loop fusion for a small
 set of vector operations and array/scalar types can be found in the
-[Theano](https://deeplearning.net/software/theano/introduction.html),
+[Theano](http://deeplearning.net/software/theano/introduction.html),
 [PyOP2](https://op2.github.io/PyOP2/), and [Numba](https://github.com/numba/numba/pull/1110)
 software. Likewise, in Julia we could
 potentially build the compiler to recognize that it can fuse
@@ -377,7 +377,7 @@ like `x += y` to be equivalent to calls to a special function,
 like `x = plusequals!(x, y)`, that can be defined as an in-place operation, rather
 than `x += y` being a synonym for `x = x + y` as in Julia today.
 ([NumPy does this](https://docs.python.org/3.3/reference/datamodel.html#object.__iadd__).)
-By itself, this can be used to [avoid temporary arrays in some simple cases](https://blog.svenbrauch.de/2016/04/13/processing-scientific-data-in-python-and-numpy-but-doing-it-fast/) by breaking them into a sequence of in-place updates, but
+By itself, this can be used to [avoid temporary arrays in some simple cases](http://blog.svenbrauch.de/2016/04/13/processing-scientific-data-in-python-and-numpy-but-doing-it-fast/) by breaking them into a sequence of in-place updates, but
 it doesn't handle more complex expressions, is limited to a few
 operations like `+`, and doesn't address the cache inefficiency of
 multiple loops.   (In Julia 0.6, you can do `x .+= y` and it is

@@ -46,7 +46,7 @@ Many databases distribute their data in some standardized file formats. As for g
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sQvNNj3MthQ" frameborder="0" allowfullscreen></iframe>
 ~~~
 
-Sometimes you may need only a part of data provided by a database. In such a case, web-based APIs are handy to fetch necessary data on demand. [BioMart Central Portal](https://www.biomart.org/) offers a unified access point to a range of biological databases that is programmatically accessible via REST and SOAP APIs. Julian wrapper to BioMart will make it much easier to access data by automatically converting response to Julia objects. In the R language, the [biomaRt](https://bioconductor.org/packages/release/bioc/html/biomaRt.html) package is one of the most downloaded packages in Bioconductor packages: <https://www.bioconductor.org/packages/stats/>.
+Sometimes you may need only a part of data provided by a database. In such a case, web-based APIs are handy to fetch necessary data on demand. [BioMart Central Portal](http://www.biomart.org/) offers a unified access point to a range of biological databases that is programmatically accessible via REST and SOAP APIs. Julian wrapper to BioMart will make it much easier to access data by automatically converting response to Julia objects. In the R language, the [biomaRt](https://bioconductor.org/packages/release/bioc/html/biomaRt.html) package is one of the most downloaded packages in Bioconductor packages: <https://www.bioconductor.org/packages/stats/>.
 
 
 ## Try BioJulia!

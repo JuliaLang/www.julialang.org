@@ -122,7 +122,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * École Polytechnique Fédérale de Lausanne
     * [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
 * [Einaudi Institute for Economics and Finance, Rome](https://www.eief.it/eief/)
-    * [Econometrics of DSGE Models](https://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](https://www.gragusa.org))
+    * [Econometrics of DSGE Models](https://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://gragusa.org))
 * Emory University
     * [MATH 346](https://www.mathcs.emory.edu/~lruthot/courses/sp15-math346.html), Introduction to Optimization Theory (Prof. Lars Ruthotto), Spring 2015
     * [MATH 516](https://www.mathcs.emory.edu/~lruthot/courses/math516.html), Numerical Analysis II (Prof. Lars Ruthotto), Spring 2015
@@ -142,9 +142,9 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Iowa State University
     * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann), Fall 2014
 * [Luiss University Rome](https://www.luiss.edu/), [Department of Economics and Finance](https://economiaefinanza.luiss.it)
-    * [Econometric Theory](https://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](https://www.gragusa.org))
-* [Lund University, Sweden](https://www.lunduniversity.lu.se/), [Department of Automatic Control](https://control.lth.se/)
-    * [Julia for Scientific Computing](https://www.control.lth.se/education/doctorate-program/julia-course/julia-course-2019/)
+    * [Econometric Theory](https://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](http://gragusa.org))
+* [Lund University, Sweden](https://www.lunduniversity.lu.se/), [Department of Automatic Control](http://control.lth.se/)
+    * [Julia for Scientific Computing](http://www.control.lth.se/education/doctorate-program/julia-course/julia-course-2019/)
     * [Optimization for Learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)
 * Massachusetts Institute of Technology (MIT)
     * [6.251 / 15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas), Fall 2015
@@ -178,14 +178,14 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [ES123](https://www.rma.ac.be/en/rma-bachelor-in-engineering.html), Computer Algorithms and Programming Project (Prof. [Ben Lauwens](https://www.rma.ac.be/en/rma-contact.html)), Spring 2018
     * [ES313](https://www.rma.ac.be/en/rma-bachelor-in-engineering.html), Mathematical modelling and Computer Simulation (Prof. [Ben Lauwens](https://www.rma.ac.be/en/rma-contact.html)), Fall 2018
 * “Sapienza” University of Rome, Italy
-    * [Operations Research](https://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2015
-    * [Optimization for Complex Systems](https://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2016
+    * [Operations Research](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2015
+    * [Optimization for Complex Systems](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2016
 * [Sciences Po Paris](https://www.sciencespo.fr), [Department of Economics](https://econ.sciences-po.fr), Spring 2016.
     * [Computational Economics for PhDs](https://github.com/ScPo-CompEcon/Syllabus) ([Florian Oswald](https://floswald.github.io))
 * SGH Warsaw School of Economics, Poland
-    * 223490-0286, Statistical Learning Methods ([Bogumił Kamiński](https://bogumilkaminski.pl/about/)): Fall 2017, Spring 2018, Fall 2018
-    * 234900-0286, Agent-Based Modeling ([Bogumił Kamiński](https://bogumilkaminski.pl/about/)): Fall 2017, Spring 2018, Fall 2018
-    * 239420-0553, _Introduction to Deep Learning_ module ([Bogumił Kamiński](https://bogumilkaminski.pl/about/)): Spring 2018
+    * 223490-0286, Statistical Learning Methods ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): Fall 2017, Spring 2018, Fall 2018
+    * 234900-0286, Agent-Based Modeling ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): Fall 2017, Spring 2018, Fall 2018
+    * 239420-0553, _Introduction to Deep Learning_ module ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): Spring 2018
 * Southcentral Kentucky Community and Technical College
     * CIT 120 Computational Thinking (Inst. [Bryan Knowles](https://github.com/snotskie/)), Online, Fall 2017
 * Stanford University
@@ -239,7 +239,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [Optimization in Machine Learning](https://www.irit.fr/cimi-machine-learning/node/15.html), (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/)), Fall 2015
 * [Université de Liège](https://www.ulg.ac.be/)
     * [MATH0462](https://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2016-2017-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](https://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
-    * [MATH0461](https://progcours.ulg.ac.be/cocoon/cours/MATH0461-2.html), Introduction to Numerical Optimization (Prof. [Quentin Louveaux](https://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
+    * [MATH0461](https://www.programmes.uliege.be/cocoon/20192020/cours/MATH0461-2.html), Introduction to Numerical Optimization (Prof. [Quentin Louveaux](https://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
     * [MATH0462](https://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2015-2016-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](https://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2015
 * Université de Montréal
     * [IFT1575](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-1575/), Modèles de recherche opérationnelle (Prof. [Bernard Gendron](https://www.iro.umontreal.ca/~gendron/)), Fall 2017

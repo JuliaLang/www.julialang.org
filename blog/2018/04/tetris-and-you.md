@@ -9,7 +9,7 @@ Good news, everyone! Starting v1.0, Tetris will be included in the standard libr
 
 Until Julia v1.0 drops next Wednesday, though, you can play online at:
 
-+ [JuliaTetris.com](https://www.juliatetris.com)
++ [JuliaTetris.com](http://www.juliatetris.com)
 
 Example footage below.
 
@@ -47,7 +47,7 @@ Example footage below.
 </style>
 
 <div class="cs-tetris-div">
-  <a href="https://www.juliatetris.com">
+  <a href="http://www.juliatetris.com">
     <img src="/assets/blog/2018-04-01-tetris-and-you/green_tetris.gif" alt="tetris game">
   </a>
 </div>
