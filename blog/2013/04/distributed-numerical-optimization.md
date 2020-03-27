@@ -39,7 +39,7 @@ If it is costly to evaluate $ f_i(x) $, then the algorithm is naturally
 parallelizable at step 2. The minimization in step 3 can be computed by solving
 a linear optimization problem, which is usually very fast. (Let me point out
 here that Julia has interfaces to linear programming and other
-optimization solvers under [JuliaOpt](http://www.juliaopt.org//).
+optimization solvers under [JuliaOpt](http://www.juliaopt.org/).
 
 Abstracting the math, we can write the algorithm using the following Julia code.
 

@@ -33,7 +33,7 @@ Whatever you get up to after the talks end on Thursday, make sure you are up in 
 ### Friday's talks
 
 ~~~
-<img src="http://www.juliaopt.org//images/juliaopt.svg" width="20%"><img src="/assets/images/el.png" width="20%">
+<img src="http://www.juliaopt.org/images/juliaopt.svg" width="20%"><img src="/assets/images/el.png" width="20%">
 ~~~
 
 \\\\

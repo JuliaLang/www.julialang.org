@@ -82,7 +82,7 @@ the #MonthOfJulia series exploring the core language and a number of packages.
 
 [JuliaStats](https://juliastats.github.io/) - statistical and machine learning community.
 
-[JuliaOpt](http://www.juliaopt.org//) - optimization community.
+[JuliaOpt](http://www.juliaopt.org/) - optimization community.
 
 [JuliaQuantum](https://juliaquantum.github.io/) - Julia libraries for quantum-science and technology.
 
