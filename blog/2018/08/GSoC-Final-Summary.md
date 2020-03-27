@@ -1,12 +1,12 @@
 @def rss_pubdate = Date(2018, 8, 6)
-@def rss = """ GSoC 2018: Reinforcement Learning and Generative models using Flux | In this post I'm going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of Flux.jl (https://github.com/FluxML), a machine learning library written in Julia (https://github.com/julia/julialang). My project cover... """
+@def rss = """ GSoC 2018: Reinforcement Learning and Generative models using Flux | In this post I'm going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of Flux.jl (https://github.com/FluxML), a machine learning library written in Julia (https://github.com/JuliaLang/julia). My project cover... """
 @def published = "6 August 2018"
 @def title = "GSoC 2018: Reinforcement Learning and Generative models using Flux"
 @def authors = """ <a href="https://github.com/tejank10">Tejan Karmali</a>"""  
 
 Hello, world!
 
-In this post I'm going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of [Flux.jl](https://github.com/FluxML), a machine learning library written in [Julia](https://github.com/julia/julialang). My project covered Reinforcement Learning and computer vision models.
+In this post I'm going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of [Flux.jl](https://github.com/FluxML), a machine learning library written in [Julia](https://github.com/JuliaLang/julia). My project covered Reinforcement Learning and computer vision models.
 
 The project is spread over these 4 codebases
 1. [Flux-baselines](https://github.com/tejank10/Flux-baselines)
@@ -49,7 +49,7 @@ Some of these models have been deployed on Flux's [website](https://fluxml.ai/ex
 #### Future Work
 
 1. Add more variety of models, especially the ones which have come up in the last 18 months.
-2. Create an interface to easily train and test any environment from [OpenAIGym.jl](https://github.com.JuliaML/OpenAIGym.jl).
+2. Create an interface to easily train and test any environment from [OpenAIGym.jl](https://github.com/JuliaML/OpenAIGym.jl).
 
 ## 2. AlphaGo.jl
 
@@ -128,4 +128,4 @@ During the past three months, I learn a lot about Reinforcement Learning and Alp
 
 ## Acknowledgements
 
-I really would like to thank my mentor [Mike Innes](https://github.com/MikeInnes) for guiding me throughout the project, and [James Bradbury](https://github.om/jekbradbury) for his valuable inputs for improving the code in the Reinforcement Learning models. I also would like to thank [Neethu Mariya Joy](https://github.com/roboneet) for deploying the trained models on the web. And last but not the least, The Julia Project and NumFOCUS: for sponsoring me and all other JSoC students for JuliaCon'18 London.
+I really would like to thank my mentor [Mike Innes](https://github.com/MikeInnes) for guiding me throughout the project, and [James Bradbury](https://github.com/jekbradbury) for his valuable inputs for improving the code in the Reinforcement Learning models. I also would like to thank [Neethu Mariya Joy](https://github.com/roboneet) for deploying the trained models on the web. And last but not the least, The Julia Project and NumFOCUS: for sponsoring me and all other JSoC students for JuliaCon'18 London.

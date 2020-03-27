@@ -25,8 +25,8 @@ mapping or aligning, and because reference sequences are most commonly
 genome-scale (about 3.2 billions length for human), a full-text search index is
 used to speed up this alignment process.  This kind of full-text search index
 is implemented in many bioinformatics tools, most notably
-[bowtie2](https://bowtie-bio.sourceforge.net/bowtie2/index.shtml) and
-[BWA](https://bio-bwa.sourceforge.net/), whose papers are cited thousands of
+[bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) and
+[BWA](http://bio-bwa.sourceforge.net/), whose papers are cited thousands of
 times.
 
 ![Mapping](/assets/blog/2015-10-03-sequence-analysis/mapping.png)
