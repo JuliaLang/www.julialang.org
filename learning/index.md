@@ -121,14 +121,14 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [CS 5220](https://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel), Spring 2014
 * École Polytechnique Fédérale de Lausanne
     * [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
-* [Einaudi Institute for Economics and Finance, Rome](https://www.eief.it/eief/)
+* [Einaudi Institute for Economics and Finance, Rome](http://www.eief.it/eief/)
     * [Econometrics of DSGE Models](https://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://gragusa.org))
 * Emory University
     * [MATH 346](https://www.mathcs.emory.edu/~lruthot/courses/sp15-math346.html), Introduction to Optimization Theory (Prof. Lars Ruthotto), Spring 2015
     * [MATH 516](https://www.mathcs.emory.edu/~lruthot/courses/math516.html), Numerical Analysis II (Prof. Lars Ruthotto), Spring 2015
 * Federal Rural University of Rio de Janeiro (UFRRJ)
     * TM429, Introduction to Recommender Systems (Prof. [Filipe Braida](https://github.com/filipebraida)), Fall 2016, Spring 2017
-* [Federal University of Alagoas](https://www.ufal.edu.br) (_Universidade Federal de Alagoas_, UFAL)
+* [Federal University of Alagoas](https://ufal.br) (_Universidade Federal de Alagoas_, UFAL)
     * COMP272, Distributed Systems ([Prof. André Lage-Freitas](https://sites.google.com/a/ic.ufal.br/andrelage)): 2015, 2016, and 2017
 * [Federal University of Paraná](https://www.ufpr.br/) (_Universidade Federal do Paraná_, UFPR)
     * CM103, Mathematics Laboratory ([Prof. Abel Soares Siqueira](https://abelsiqueira.github.io/)): 2016, 2017, and 2018
@@ -138,7 +138,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Hadsel High School, Stokmarknes, Nordland, Norway
     * [AnsattOversikt](https://www.hadsel.vgs.no/AnsattOversikt.aspx?personid=16964&amp;mid1=15925), [REA3034] Programmering og modellering (Programming and modeling with Julia and Snap), 2018 / 19 (High school lecturer Olav A Marschall, M.sc. Computer Science)
 * IIT Indore
-    * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](https://marjan.fesb.hr/~slap/)), June 2016
+    * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://marjan.fesb.hr/~slap/)), June 2016
 * Iowa State University
     * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann), Fall 2014
 * [Luiss University Rome](https://www.luiss.edu/), [Department of Economics and Finance](https://economiaefinanza.luiss.it)
@@ -225,7 +225,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * CHEG 5395, Metaheuristic and Heuristic Methods in Chemical Engineering (Prof. Ranjan Srivastava), Spring 2018
 * University of Edinburgh
     * Spring 2017, [MATH11146](https://www.drps.ed.ac.uk/16-17/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/index.html))
-    * Spring 2016, [MATH11146](https://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/index.html))
+    * Spring 2016, [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/index.html))
 * University of Glasgow, School of Mathematics and Statistics
     * An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](https://www.gla.ac.uk/postgraduate/taught/dataanalytics/)), September 2017
 *   University of Oulu
@@ -238,9 +238,9 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Université Paul Sabatier, Toulouse
     * [Optimization in Machine Learning](https://www.irit.fr/cimi-machine-learning/node/15.html), (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/)), Fall 2015
 * [Université de Liège](https://www.ulg.ac.be/)
-    * [MATH0462](https://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2016-2017-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](https://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
-    * [MATH0461](https://www.programmes.uliege.be/cocoon/20192020/cours/MATH0461-2.html), Introduction to Numerical Optimization (Prof. [Quentin Louveaux](https://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
-    * [MATH0462](https://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2015-2016-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](https://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2015
+    * [MATH0462](http://www.tcuvelier.be/teaching-2016-2017-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
+    * [MATH0461](https://www.programmes.uliege.be/cocoon/20192020/cours/MATH0461-2.html), Introduction to Numerical Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
+    * [MATH0462](https://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2015-2016-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2015
 * Université de Montréal
     * [IFT1575](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-1575/), Modèles de recherche opérationnelle (Prof. [Bernard Gendron](https://www.iro.umontreal.ca/~gendron/)), Fall 2017
     * [IFT3245](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3245/), Simulation et modèles (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Fall 2017

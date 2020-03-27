@@ -517,7 +517,7 @@ If you encounter any issues using threads in Julia, please let us know on [GitHu
 our [Discourse][] forum!
 
 
-[free lunch]: https://www.gotw.ca/publications/concurrency-ddj.htm
+[free lunch]: http://www.gotw.ca/publications/concurrency-ddj.htm
 [Cilk]: http://supertech.csail.mit.edu/cilk/
 [Intel Threading Building Blocks]: https://software.intel.com/en-us/intel-tbb/
 [Go]: https://tour.golang.org/concurrency/1

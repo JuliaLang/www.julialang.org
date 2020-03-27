@@ -429,7 +429,7 @@ Windows 具有与任务密切相关的纤程，并且 Unix 系列系统也有多
 如果您在使用 Julia 中的线程时遇到任何问题，请在[GitHub][]或我们的[论坛][Discourse]中告知我们!
 
 
-[free lunch]: https://www.gotw.ca/publications/concurrency-ddj.htm
+[free lunch]: http://www.gotw.ca/publications/concurrency-ddj.htm
 [Cilk]: http://supertech.csail.mit.edu/cilk/
 [Intel Threading Building Blocks]: https://software.intel.com/en-us/intel-tbb/
 [Go]: https://tour.golang.org/concurrency/1

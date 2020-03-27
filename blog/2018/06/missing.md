@@ -9,7 +9,7 @@ The 0.7 release of Julia will soon introduce first-class support for statistical
 missing values. Being essential for statistical analyses and data management,
 this feature is common among specialized languages, such as
 [SQL](https://en.wikipedia.org/wiki/Null_(SQL)) (with the `NULL` value),
-[R](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#NA-handling) (`NA`),
+[R](http://cran.r-project.org/doc/manuals/r-release/R-lang.html#NA-handling) (`NA`),
 [SAS](https://support.sas.com/documentation/cdl/en/lrcon/62955/HTML/default/viewer.htm#a001292604.htm)
 (`.`, `' '`, etc.) or
 [Stata](https://www.stata.com/support/faqs/data-management/logical-expressions-and-missing-values/)

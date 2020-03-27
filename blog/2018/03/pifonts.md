@@ -186,6 +186,6 @@ It occurred to me to ask "what is the average of π?", or "what would it look li
 
 ![accumulating pi](/assets/blog/2018-04-13-pifonts/accumulate-pi.png)
 
-For a complete font based on the average shapes of many other fonts, have a look at [Averia](https://www.iotic.com/averia/).
+For a complete font based on the average shapes of many other fonts, have a look at [Averia](http://iotic.com/averia/).
 
 I haven't yet found a way to list all the fonts that contain the full set of Unicode π symbols. In theory I think I can use [Freetype.jl](https://github.com/juliagraphics/FreeType.jl) to inspect a font to see whether it contains code points for particular character glyphs. Perhaps I’ll report back on 3-14-19 with any progress…

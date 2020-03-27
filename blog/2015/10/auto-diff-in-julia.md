@@ -147,7 +147,7 @@ julia> deriv1 - deriv2
 
 Notice that our dual number result comes *close* to the result obtained from Calculus.jl, but is actually slightly different. That slight difference is due to the approximation error inherent to the finite differencing method employed by Calculus.jl.
 
-In reality, the number types that ForwardDiff.jl provides are quite a bit more complicated than `DualNumber`. Instead of simple dual numbers, the various `ForwardDiffNumber` types behave like *ensembles* of dual numbers and [hyper-dual numbers](https://adl.stanford.edu/hyperdual/Fike_AIAA-2011-886.pdf) (the higher-order analog of dual numbers). This ensemble-based approach allows for simultaneous calculation of multiple higher-order partial derivatives in a single evaluation of the target function. For an in-depth examination of ForwardDiff.jl's number type implementation, see [this section of the developer documentation](https://www.juliadiff.org/ForwardDiff.jl/types.html).
+In reality, the number types that ForwardDiff.jl provides are quite a bit more complicated than `DualNumber`. Instead of simple dual numbers, the various `ForwardDiffNumber` types behave like *ensembles* of dual numbers and [hyper-dual numbers](http://adl.stanford.edu/hyperdual/Fike_AIAA-2011-886.pdf) (the higher-order analog of dual numbers). This ensemble-based approach allows for simultaneous calculation of multiple higher-order partial derivatives in a single evaluation of the target function. For an in-depth examination of ForwardDiff.jl's number type implementation, see [this section of the developer documentation](https://www.juliadiff.org/ForwardDiff.jl/types.html).
 
 # Performance Comparison: The Ackley Function
 
