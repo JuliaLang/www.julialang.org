@@ -2,7 +2,7 @@
 @def rss = """ Building GUIs with Julia, Tk, and Cairo, Part II | In this installment, we'll cover both low-level graphics (using Cairo) and plotting graphs inside GUIs (using Winston).... """
 @def published = "23 May 2013"
 @def title = "Building GUIs with Julia, Tk, and Cairo, Part II"
-@def authors = """<a href="https://holylab.wustl.edu">Timothy E. Holy</a>"""  
+@def authors = """<a href="http://holylab.wustl.edu">Timothy E. Holy</a>"""  
 @def hascode = true
 
 
@@ -272,7 +272,7 @@ You can see these details in `rubberband.jl`.
 For many GUIs in Julia, an important component will be the ability to display data graphically.
 While we could draw graphs directly with Cairo, it would be a lot of work to build from scratch; fortunately, there's an excellent package, Winston, that already does this.
 
-Since there's a nice set of [examples](https://github.com/nolta/Winston.jl/blob/master/doc/examples.md) of some of the things you can do with Winston, here our focus is very narrow: how do you integrate Winston plots into GUIs built with Tk.
+Since there's a nice set of examples of some of the things you can do with Winston, here our focus is very narrow: how do you integrate Winston plots into GUIs built with Tk.
 Fortunately, this is quite easy.
 Let's walk through an example:
 

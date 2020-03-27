@@ -38,7 +38,7 @@ Happy coding.
 
 [JuliaBloggers](https://www.juliabloggers.com/) and the [searchable package listing](https://pkg.julialang.org/) were recently introduced.
 
-The first ever [JuliaCon](https://www.juliacon.org) was held in Chicago in June, 2014. Several session recordings are available, and the others will be released soon:
+The first ever [JuliaCon](https://juliacon.org) was held in Chicago in June, 2014. Several session recordings are available, and the others will be released soon:
 
 - [Opening session](/blog/2014/08/juliacon-opening-session/)
 - [Optimization session](/blog/2014/08/juliacon-opt-session/)
@@ -46,8 +46,8 @@ The first ever [JuliaCon](https://www.juliacon.org) was held in Chicago in June,
 The Julia community participated in Google Summer of Code 2014. Wrap-up blog posts will be coming soon from the participants:
 
 - [Simon Danisch](https://github.com/SimonDanisch) ([3D visualization](https://randomphantasies.wordpress.com/))
-- [Shashi Gowda](https://github.com/shashi) ([Interactive Widgets for IJulia](https://github.com/shashi/Interact.jl) and [React.jl](https://shashi.github.io/React.jl))
-- [Mike Innes](https://github.com/one-more-minute) ([Julia + LightTable](https://github.com/one-more-minute/Juno-LT))
+- [Shashi Gowda](https://github.com/shashi) ([Interactive Widgets for IJulia](https://github.com/shashi/Interact.jl) and [React.jl](https://juliagizmos.github.io/Reactive.jl/))
+- [Mike Innes](https://github.com/MikeInnes) ([Julia + LightTable](https://github.com/one-more-minute/Juno-LT))
 
 **Topical highlights**
 
@@ -63,4 +63,4 @@ The Julia community participated in Google Summer of Code 2014. Wrap-up blog pos
 
 [Gadfly](https://gadflyjl.org/) - Grammar of Graphics-inspired statistical plotting.
 
-[Winston](https://github.com/nolta/Winston.jl) - 2D plotting.
+[Winston](https://github.com/JuliaGraphics/Winston.jl) - 2D plotting.
