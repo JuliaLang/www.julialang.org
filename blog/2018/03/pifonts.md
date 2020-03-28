@@ -87,7 +87,7 @@ By the way, these alternative symbols for π such as `\mitpi` don't evaluate as 
 
 ### The phonogram symbol Ⓟ
 
-Not all fonts contain a suitable Greek π at `U+03C0`. A few expensive fonts such as [Gotham](https://www.typography.com/fonts/gotham/overview/) offer the circled P symbol at `U+03c0` instead of π. This is the "phonogram" (or "phonorecord") symbol, which usually lives at `U+2117` (the one at `U+24C5` is also used), and it's like the copyright symbol © but for sound recordings. The story behind this is that, particularly before the days of Unicode standardization, font companies sometimes favoured pragmatism over correctness. According to [David Berlow](https://www.typophile.com/node/45116):
+Not all fonts contain a suitable Greek π at `U+03C0`. A few expensive fonts such as [Gotham](https://www.typography.com/fonts/gotham/overview/) offer the circled P symbol at `U+03c0` instead of π. This is the "phonogram" (or "phonorecord") symbol, which usually lives at `U+2117` (the one at `U+24C5` is also used), and it's like the copyright symbol © but for sound recordings. The story behind this is that, particularly before the days of Unicode standardization, font companies sometimes favoured pragmatism over correctness. According to [David Berlow](http://davidberlow.fontbureau.com/):
 
 > we at Font Bureau understand how users work, and so we put the p in a circle, a "must-have" glyph that is very difficult for a user to make on the fly, in the slot of a glyph (math pi) that most people really don't need (because even if they do, it's in the Symbol font on every single computer on earth).
 

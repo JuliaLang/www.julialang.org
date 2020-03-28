@@ -14,7 +14,7 @@ the release-0.4 branch of the codebase, and we recommend the 0.4.x line for user
 requiring a more stable Julia environment.
 
 The Julia ecosystem continues to grow, and there are now
-[over 700](https://pkg.julialang.org/pulse.html) registered packages! (highlights below).
+over 700 registered packages! (highlights below).
 JuliaCon 2015 was held in June, and >60 talks are [available to view](https://www.youtube.com/playlist?list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM). [JuliaCon India](https://www.juliacon.in/2015) will be held in Bangalore on 9 and 10 October.
 
 We welcome bug reports on our GitHub tracker, and general usage questions on the
@@ -36,7 +36,7 @@ to try 0.4 from the comfort of your browser. Happy Coding!
 - [Function call overloading for arbitrary objects](https://github.com/JuliaLang/julia/pull/8712)
 - [Generated functions](https://github.com/JuliaLang/julia/issues/7311) (sometimes known as "staged functions") introduce finer control
   over compile-time specialization.
-  [Docs](https://docs.julialang.org/en/release-0.4/manual/metaprogramming/#generated-functions)
+  [Docs](https://docs.julialang.org/en/v1/manual/metaprogramming/#)
   and related [JuliaCon talk](https://www.youtube.com/watch?v=KAN8zbM659o&list=PLP8iPy9hna6Sdx4soiGrSefrmOPdUWixM&index=55).
 - [Support for documenting user functions and other objects](https://github.com/JuliaLang/julia/pull/8791)
   and retrieving the documentation via the help system.
@@ -67,7 +67,7 @@ Nightly builds will use the versioning scheme 0.5.0-dev.
 **Community News**
 
 The Julia ecosystem continues to grow, and there are now
-[over 700](https://pkg.julialang.org/pulse.html) registered packages! (highlights below)
+over 700 registered packages! (highlights below)
 
 The second [JuliaCon](https://juliacon.org) was held in Cambridge (USA) in June, 2015.
 Over 60 talks were recorded and
