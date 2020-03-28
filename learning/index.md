@@ -106,7 +106,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 
 @@tight-list
 * AGH University of Science and Technology, Poland
-    * [Signal processing in medical diagnostic systems](https://home.agh.edu.pl/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej) (Tomasz Pieciak), Spring 2015
+    * [Signal processing in medical diagnostic systems](http://home.agh.edu.pl/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej) (Tomasz Pieciak), Spring 2015
 * Arizona State University
     * MAT 423, Numerical Analysis (Prof. Clemens Heitzinger), Fall 2014
 * Azad University, Science and Research Branch
