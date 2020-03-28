@@ -175,8 +175,8 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Purdue University
     * [CS51400](https://www.cs.purdue.edu/homes/dgleich/cs514-2016/), Numerical Analysis (Prof. [David Gleich](https://www.cs.purdue.edu/homes/dgleich/)), Spring 2016
 * Royal Military Academy (Brussels)
-    * [ES123](https://www.rma.ac.be/en/rma-bachelor-in-engineering.html), Computer Algorithms and Programming Project (Prof. [Ben Lauwens](https://www.rma.ac.be/en/rma-contact.html)), Spring 2018
-    * [ES313](https://www.rma.ac.be/en/rma-bachelor-in-engineering.html), Mathematical modelling and Computer Simulation (Prof. [Ben Lauwens](https://www.rma.ac.be/en/rma-contact.html)), Fall 2018
+    * ES123, Computer Algorithms and Programming Project (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Spring 2018
+    * ES313, Mathematical modelling and Computer Simulation (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Fall 2018
 * “Sapienza” University of Rome, Italy
     * [Operations Research](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2015
     * [Optimization for Complex Systems](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2016
