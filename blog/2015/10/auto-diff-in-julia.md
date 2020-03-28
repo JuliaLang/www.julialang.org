@@ -147,7 +147,7 @@ julia> deriv1 - deriv2
 
 Notice that our dual number result comes *close* to the result obtained from Calculus.jl, but is actually slightly different. That slight difference is due to the approximation error inherent to the finite differencing method employed by Calculus.jl.
 
-In reality, the number types that ForwardDiff.jl provides are quite a bit more complicated than `DualNumber`. Instead of simple dual numbers, the various `ForwardDiffNumber` types behave like *ensembles* of dual numbers and [hyper-dual numbers](http://adl.stanford.edu/hyperdual/Fike_AIAA-2011-886.pdf) (the higher-order analog of dual numbers). This ensemble-based approach allows for simultaneous calculation of multiple higher-order partial derivatives in a single evaluation of the target function. For an in-depth examination of ForwardDiff.jl's number type implementation, see [this section of the developer documentation](https://www.juliadiff.org/ForwardDiff.jl/types.html).
+In reality, the number types that ForwardDiff.jl provides are quite a bit more complicated than `DualNumber`. Instead of simple dual numbers, the various `ForwardDiffNumber` types behave like *ensembles* of dual numbers and [hyper-dual numbers](http://adl.stanford.edu/hyperdual/Fike_AIAA-2011-886.pdf) (the higher-order analog of dual numbers). This ensemble-based approach allows for simultaneous calculation of multiple higher-order partial derivatives in a single evaluation of the target function.
 
 # Performance Comparison: The Ackley Function
 
@@ -202,7 +202,7 @@ Let's start by looking at the evaluation times of `ackley(x)` in both Python and
 
 As you can see, there's already a significant performance difference between the languages. We'll have to keep that in mind when comparing our Julia differentiation tools with AlgoPy, in order to avoid confusing the languages' performance characteristics with those of the libraries (though there is obviously a solid coupling between the two concepts).
 
-The below table shows the evaluation times of `∇ackley(x)` using various libraries (the `chunk_size` column denotes a configuration option passed to the `ForwardDiff.gradient` method, see the [chunk-mode docs](https://www.juliadiff.org/ForwardDiff.jl/chunk_vec_modes.html) for details.):
+The below table shows the evaluation times of `∇ackley(x)` using various libraries (the `chunk_size` column denotes a configuration option passed to the `ForwardDiff.gradient` method, see the [docs](http://www.juliadiff.org/ForwardDiff.jl/latest/index.html) for details.):
 
 | length(x) | AlgoPy time (s) | Calculus.jl time (s) | ForwardDiff time (s) | chunk_size |
 |-----|-------|--------|--------|------|
