@@ -180,7 +180,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * “Sapienza” University of Rome, Italy
     * [Operations Research](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2015
     * [Optimization for Complex Systems](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2016
-* [Sciences Po Paris](https://www.sciencespo.fr), [Department of Economics](https://econ.sciences-po.fr), Spring 2016.
+* [Sciences Po Paris](https://www.sciencespo.fr), [Department of Economics](https://www.sciencespo.fr/department-economics/en), Spring 2016.
     * [Computational Economics for PhDs](https://github.com/ScPo-CompEcon/Syllabus) ([Florian Oswald](https://floswald.github.io))
 * SGH Warsaw School of Economics, Poland
     * 223490-0286, Statistical Learning Methods ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): Fall 2017, Spring 2018, Fall 2018
