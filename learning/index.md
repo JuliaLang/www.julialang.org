@@ -122,7 +122,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * École Polytechnique Fédérale de Lausanne
     * [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
 * [Einaudi Institute for Economics and Finance, Rome](http://www.eief.it/eief/)
-    * [Econometrics of DSGE Models](https://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://gragusa.org))
+    * [Econometrics of DSGE Models](http://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://gragusa.org))
 * Emory University
     * [MATH 346](https://www.mathcs.emory.edu/~lruthot/courses/sp15-math346.html), Introduction to Optimization Theory (Prof. Lars Ruthotto), Spring 2015
     * [MATH 516](https://www.mathcs.emory.edu/~lruthot/courses/math516.html), Numerical Analysis II (Prof. Lars Ruthotto), Spring 2015
@@ -142,7 +142,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Iowa State University
     * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann), Fall 2014
 * [Luiss University Rome](https://www.luiss.edu/), [Department of Economics and Finance](https://economiaefinanza.luiss.it)
-    * [Econometric Theory](https://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](http://gragusa.org))
+    * [Econometric Theory](http://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](http://gragusa.org))
 * [Lund University, Sweden](https://www.lunduniversity.lu.se/), [Department of Automatic Control](http://control.lth.se/)
     * [Julia for Scientific Computing](http://www.control.lth.se/education/doctorate-program/julia-course/julia-course-2019/)
     * [Optimization for Learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)
@@ -150,7 +150,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [6.251 / 15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas), Fall 2015
     * [18.06](https://web.mit.edu/18.06/www/), Linear Algebra: Fall 2015, Dr. [Alex Townsend](https://github.com/ajt60gaibb); Fall 2014, Prof. Alexander Postnikov; Fall [2013](https://stellar.mit.edu/S/course/18/fa13/18.06), Prof. Alan Edelman
     * [18.303](https://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj)), Fall 2013–2016.
-    * [18.337 / 6.338](https://beowulf.csail.mit.edu/18.337), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). [Fall 2015](https://courses.csail.mit.edu/18.337/2015) ([IJulia notebooks](https://github.com/alanedelman/18.337_2015)). Fall 2013–
+    * [18.337 / 6.338](http://courses.csail.mit.edu/18.337/2016/), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). [Fall 2015](https://courses.csail.mit.edu/18.337/2015) ([IJulia notebooks](https://github.com/alanedelman/18.337_2015)). Fall 2013–
     * [18.085 / 0851](https://math.mit.edu/classes/18.085/2015FA/index.html), Computational Science And Engineering I (Prof. Pedro J. Sáenz)
     * [18.330](https://homerreid.dyndns.org/teaching/18.330/), Introduction to Numerical Analysis (Dr. Homer Reid), Spring 2013–2015
     * [18.335](https://math.mit.edu/~stevenj/18.335/), Introduction to Numerical Methods (Prof. Steven G. Johnson), Fall 2013, Spring 2015
@@ -175,12 +175,12 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Purdue University
     * [CS51400](https://www.cs.purdue.edu/homes/dgleich/cs514-2016/), Numerical Analysis (Prof. [David Gleich](https://www.cs.purdue.edu/homes/dgleich/)), Spring 2016
 * Royal Military Academy (Brussels)
-    * [ES123](https://www.rma.ac.be/en/rma-bachelor-in-engineering.html), Computer Algorithms and Programming Project (Prof. [Ben Lauwens](https://www.rma.ac.be/en/rma-contact.html)), Spring 2018
-    * [ES313](https://www.rma.ac.be/en/rma-bachelor-in-engineering.html), Mathematical modelling and Computer Simulation (Prof. [Ben Lauwens](https://www.rma.ac.be/en/rma-contact.html)), Fall 2018
+    * ES123, Computer Algorithms and Programming Project (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Spring 2018
+    * ES313, Mathematical modelling and Computer Simulation (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Fall 2018
 * “Sapienza” University of Rome, Italy
     * [Operations Research](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2015
     * [Optimization for Complex Systems](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2016
-* [Sciences Po Paris](https://www.sciencespo.fr), [Department of Economics](https://econ.sciences-po.fr), Spring 2016.
+* [Sciences Po Paris](https://www.sciencespo.fr), [Department of Economics](https://www.sciencespo.fr/department-economics/en), Spring 2016.
     * [Computational Economics for PhDs](https://github.com/ScPo-CompEcon/Syllabus) ([Florian Oswald](https://floswald.github.io))
 * SGH Warsaw School of Economics, Poland
     * 223490-0286, Statistical Learning Methods ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): Fall 2017, Spring 2018, Fall 2018
@@ -193,7 +193,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [AA228/CS238](https://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer), Fall 2014
     * [EE103](https://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2014, Fall 2015
     * [CME 257](https://github.com/icme/cme257-advanced-julia/), Advanced Topics in Scientific Computing with Julia (Mr. [Brad Nelson](https://github.com/bnels)), Fall 2015
-    * [EE266](https://ee266.stanford.edu/), Stochastic Control (Prof. Sanjay Lall), Spring 2016
+    * [EE266](http://ee266.stanford.edu/), Stochastic Control (Prof. Sanjay Lall), Spring 2016
 * Tokyo Metropolitan University, Tokyo, Japan
     * L0407, [Exercises in Programming I for Mechanical Systems Engineering](https://github.com/hsugawa8651/mseprogOne) (Hiroharu Sugawara): Fall 2018, Fall 2019
 * [TU Dortmund / SFB 823](https://www.statistik.tu-dortmund.de/sfb823.html), Germany
@@ -240,7 +240,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * [Université de Liège](https://www.ulg.ac.be/)
     * [MATH0462](http://www.tcuvelier.be/teaching-2016-2017-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
     * [MATH0461](https://www.programmes.uliege.be/cocoon/20192020/cours/MATH0461-2.html), Introduction to Numerical Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
-    * [MATH0462](https://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2015-2016-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2015
+    * [MATH0462](http://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2015-2016-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2015
 * Université de Montréal
     * [IFT1575](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-1575/), Modèles de recherche opérationnelle (Prof. [Bernard Gendron](https://www.iro.umontreal.ca/~gendron/)), Fall 2017
     * [IFT3245](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3245/), Simulation et modèles (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Fall 2017

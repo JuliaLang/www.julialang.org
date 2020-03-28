@@ -8,13 +8,13 @@ Neural networks can be used as a method for efficiently solving difficult partia
 differential equations. Recently this strategy has been dubbed [physics-informed neural networks](https://www.sciencedirect.com/science/article/pii/S0021999118307125)
 and has seen a resurgence because of its efficiency advantages over classical
 deep learning. Efficient implementations from recent papers are being
-explored as part of the [NeuralNetDiffEq.jl](https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl)
-package. The [issue tracker](https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl/issues)
+explored as part of the [NeuralNetDiffEq.jl](https://github.com/SciML/NeuralNetDiffEq.jl)
+package. The [issue tracker](https://github.com/SciML/NeuralNetDiffEq.jl/issues)
 contains links to papers which would be interesting new neural network based methods to
 implement and benchmark against classical techniques. Project work in this area
 includes:
 
-- [Improved training strategies](https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl/issues/71) for PINNs.
+- [Improved training strategies](https://github.com/SciML/NeuralNetDiffEq.jl/issues/71) for PINNs.
 - Implementing new neural architectures that impose physical constraints like [divergence-free criteria](https://arxiv.org/pdf/2002.00021.pdf).
 - Demonstrating large-scale problems solved by PINN training.
 - Improving the speed and parallelization of PINN training routines.
@@ -38,16 +38,16 @@ models. Further improvements to the methodology, like
 physical and biological knowledge into the system in order to make it a data and
 compute efficient learning method. However, there are many computational aspects
 left to explore. The purpose of this project is to enhance the universal
-differential equation approximation abilities of [DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl),
+differential equation approximation abilities of [DiffEqFlux.jl](https://github.com/SciML/DiffEqFlux.jl),
 adding features like:
 
 - Improved adjoints for DAEs and SDEs
-- [Non-neural network universal approximators](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/173)
-- Various [improvements to](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/133) [minibatching](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/118)
-- Support for [second order ODEs (i.e. symplectic integrators)](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/48)
-- [Continuous normalizing flows](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/46) and [FFJORD](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues/47)
+- [Non-neural network universal approximators](https://github.com/SciML/DiffEqFlux.jl/issues/173)
+- Various [improvements to](https://github.com/SciML/DiffEqFlux.jl/issues/133) [minibatching](https://github.com/SciML/DiffEqFlux.jl/issues/118)
+- Support for [second order ODEs (i.e. symplectic integrators)](https://github.com/SciML/DiffEqFlux.jl/issues/48)
+- [Continuous normalizing flows](https://github.com/SciML/DiffEqFlux.jl/issues/46) and [FFJORD](https://github.com/SciML/DiffEqFlux.jl/issues/47)
 
-See the [DiffEqFlux.jl issue tracker](https://github.com/JuliaDiffEq/DiffEqFlux.jl/issues)
+See the [DiffEqFlux.jl issue tracker](https://github.com/SciML/DiffEqFlux.jl/issues)
 for full details.
 
 This project is good for both software engineers interested in the field of
@@ -110,9 +110,9 @@ as [topological sensitivity analysis](https://www.pnas.org/content/111/52/18507)
 along with performance enhancements to existing methods will be considered.
 
 Some work in this area can be found in
-[DiffEqParamEstim.jl](https://github.com/JuliaDiffEq/DiffEqParamEstim.jl)
-and [DiffEqBayes.jl](https://github.com/JuliaDiffEq/DiffEqBayes.jl). Examples
-can be found [in the DifferentialEquations.jl documentation]( https://docs.juliadiffeq.org/dev/analysis/parameter_estimation).
+[DiffEqParamEstim.jl](https://github.com/SciML/DiffEqParamEstim.jl)
+and [DiffEqBayes.jl](https://github.com/SciML/DiffEqBayes.jl). Examples
+can be found [in the DifferentialEquations.jl documentation]( https://docs.sciml.ai/dev/analysis/parameter_estimation).
 
 **Recommended Skills**: Background knowledge of standard machine learning,
 statistical, or optimization techniques. It's recommended but not required that
@@ -135,7 +135,7 @@ Scientific machine learning requires mixing scientific computing libraries with 
 [This blog post highlights how the tooling of Julia is fairly advanced in this field](https://www.stochasticlifestyle.com/the-essential-tools-of-scientific-machine-learning-scientific-ml/) compared to alternatives such as Python,
 but one area that has not been completely worked out is integration of automatic differentiation
 with partial differential equations.
-[FEniCS.jl](https://github.com/JuliaDiffEq/FEniCS.jl) is a wrapper to the
+[FEniCS.jl](https://github.com/SciML/FEniCS.jl) is a wrapper to the
 [FEniCS](https://fenicsproject.org/) project for finite element solutions of partial differential
 equations. We would like to augment the Julia wrappers to allow for integration with Julia's
 automatic differentiation libraries like [Zygote.jl](https://github.com/FluxML/Zygote.jl) by

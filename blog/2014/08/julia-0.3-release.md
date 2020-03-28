@@ -47,7 +47,7 @@ The Julia community participated in Google Summer of Code 2014. Wrap-up blog pos
 
 - [Simon Danisch](https://github.com/SimonDanisch) ([3D visualization](https://randomphantasies.wordpress.com/))
 - [Shashi Gowda](https://github.com/shashi) ([Interactive Widgets for IJulia](https://github.com/shashi/Interact.jl) and [React.jl](https://juliagizmos.github.io/Reactive.jl/))
-- [Mike Innes](https://github.com/MikeInnes) ([Julia + LightTable](https://github.com/one-more-minute/Juno-LT))
+- [Mike Innes](https://github.com/MikeInnes) ([Julia + LightTable](https://github.com/JuliaIDE/Juno-LT))
 
 **Topical highlights**
 

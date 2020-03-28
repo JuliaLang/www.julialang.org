@@ -7,7 +7,7 @@
 @def hasmath = true
 
 
-My original GSoC project was about implementing native Julia solvers for solving boundary value problems (BVPs) that were determined from second order ordinary differential equations (ODEs). I started down the BVP path, built a shooting method to solve BVPs from initial value problems (IVPs), and then built the beginning of the mono-implicit Runge-Kutta (MIRK) method. Those solvers are in the [BoundaryValueDiffEq.jl](https://github.com/JuliaDiffEq/BoundaryValueDiffEq.jl) repository. Instead of trying to jump directly to the end point, and talk about how to do every detail in MIRK, I went to explore how those details naturally arise in second order ODEs. I implemented many solvers for dynamical IVPs. Although I didn’t fully complete my original goal by the end of GSoC, I am almost there.
+My original GSoC project was about implementing native Julia solvers for solving boundary value problems (BVPs) that were determined from second order ordinary differential equations (ODEs). I started down the BVP path, built a shooting method to solve BVPs from initial value problems (IVPs), and then built the beginning of the mono-implicit Runge-Kutta (MIRK) method. Those solvers are in the [BoundaryValueDiffEq.jl](https://github.com/SciML/BoundaryValueDiffEq.jl) repository. Instead of trying to jump directly to the end point, and talk about how to do every detail in MIRK, I went to explore how those details naturally arise in second order ODEs. I implemented many solvers for dynamical IVPs. Although I didn’t fully complete my original goal by the end of GSoC, I am almost there.
 
 ## Symplecticity
 
@@ -48,11 +48,11 @@ Finally, we analyze the solution by computing the first integrals and plotting t
 
 ![first integrals](/assets/blog/2017-11-01-gsoc-ode/symplectic_ruth3.svg)
 
-Note that symplectic integrator doesn't mean that it has exact conservation. The solutions of a symplectic integrator are on a symplectic manifold, but don't necessarily conserve the Hamiltonian (energy). The energy can have fluctuations in a (quasi-)periodic manner, so that the first integrals have small variations. In the above case, the energy varies at most `6e-6`, and it tends to come back. The variations also decrease as `dt` is smaller. The angular momentum is conserved perfectly. More details are in this [notebook](https://tutorials.juliadiffeq.org/html/models/05-kepler_problem.html).
+Note that symplectic integrator doesn't mean that it has exact conservation. The solutions of a symplectic integrator are on a symplectic manifold, but don't necessarily conserve the Hamiltonian (energy). The energy can have fluctuations in a (quasi-)periodic manner, so that the first integrals have small variations. In the above case, the energy varies at most `6e-6`, and it tends to come back. The variations also decrease as `dt` is smaller. The angular momentum is conserved perfectly. More details are in this [notebook](https://tutorials.sciml.ai/html/models/05-kepler_problem.html).
 
 ## Adaptivity and Dense Output
 
-Again, I explored adaptivity and dense output in the IVP world. I implemented several adaptive Runge-Kutta-Nyström (RKN) solvers. The MIRK adaptivity and RKN adaptivity share one common theme, which is error estimation, and MIRK does it by using dense output. Calculating Poincaré section is an example of a practical usage of the dense output. When plotting the Poincaré section, we usually need to use [`saveat`]( https://docs.juliadiffeq.org/dev/basics/common_solver_opts/#Output-Control-1) or [`ContinuousCallback`]( https://docs.juliadiffeq.org/dev/features/callback_functions.html#ContinuousCallbacks-1), and both of them need dense output in order to do well. Dense output is essentially a continuous solution of a ODE. `saveat` uses dense output to evaluate values at the specified time, so the ODE integration can still be adaptive (the integrator doesn't need to hit the exact `saveat` point). `ContinuousCallback` performs root-finding on the dense output to find when does an event occur. Thus, high order dense output is important for calculating accurate `saveat` and `ContinuousCallback`. Here are two examples of plotting Poincaré section.
+Again, I explored adaptivity and dense output in the IVP world. I implemented several adaptive Runge-Kutta-Nyström (RKN) solvers. The MIRK adaptivity and RKN adaptivity share one common theme, which is error estimation, and MIRK does it by using dense output. Calculating Poincaré section is an example of a practical usage of the dense output. When plotting the Poincaré section, we usually need to use [`saveat`]( https://docs.sciml.ai/dev/basics/common_solver_opts/#Output-Control-1) or [`ContinuousCallback`]( https://docs.sciml.ai/dev/features/callback_functions.html#ContinuousCallbacks-1), and both of them need dense output in order to do well. Dense output is essentially a continuous solution of a ODE. `saveat` uses dense output to evaluate values at the specified time, so the ODE integration can still be adaptive (the integrator doesn't need to hit the exact `saveat` point). `ContinuousCallback` performs root-finding on the dense output to find when does an event occur. Thus, high order dense output is important for calculating accurate `saveat` and `ContinuousCallback`. Here are two examples of plotting Poincaré section.
 
 #### Duffing oscillator
 
@@ -79,7 +79,7 @@ end
 draw_duffing(8, 1, 5, 0.02, 0.5)
 ```
 
-Then, we need to get the solution at $\omega t \mod 2\pi=0$ to plot the Poincaré section, and we can achieve this by using [`saveat`]( https://docs.juliadiffeq.org/dev/basics/common_solver_opts/#Output-Control-1).
+Then, we need to get the solution at $\omega t \mod 2\pi=0$ to plot the Poincaré section, and we can achieve this by using [`saveat`]( https://docs.sciml.ai/dev/basics/common_solver_opts/#Output-Control-1).
 
 ![duffing Poincaré section](/assets/blog/2017-11-01-gsoc-ode/duffing_poincare_0.svg)
 
@@ -112,7 +112,7 @@ draw_driven_pendulum(1.12456789, 0.23456789, 0.7425755501794571)
 
 ## Boundary Value Problem
 
-The MIRK solver in [`BoundaryValueDiffEq`](https://github.com/JuliaDiffEq/BoundaryValueDiffEq.jl) doesn't have adaptivity and dense output yet, but with all the things that I have learned from IVPs, most of the pieces have been implemented or understood and so we can expect this to be completed in the near future. Here is an example of using the `BoundaryValueDiffEq` package. In this example, we will solve the problem
+The MIRK solver in [`BoundaryValueDiffEq`](https://github.com/SciML/BoundaryValueDiffEq.jl) doesn't have adaptivity and dense output yet, but with all the things that I have learned from IVPs, most of the pieces have been implemented or understood and so we can expect this to be completed in the near future. Here is an example of using the `BoundaryValueDiffEq` package. In this example, we will solve the problem
 
 $$
 \ddot{\theta}+\frac{g}{L}\theta=0,\quad \theta(\frac{\pi}{4})=-\frac{\pi}{2},\quad \dot{\theta}(\frac{\pi}{2})=\frac{\pi}{2}.
@@ -139,7 +139,7 @@ sol1 = solve(bvp1, GeneralMIRK4(), dt=0.05)
 
 ![bvp](/assets/blog/2017-11-01-gsoc-ode/bvp.svg)
 
-More details can be found in [here]( https://docs.juliadiffeq.org/dev/tutorials/bvp_example/).
+More details can be found in [here]( https://docs.sciml.ai/dev/tutorials/bvp_example/).
 
 ## Acknowledgements
 

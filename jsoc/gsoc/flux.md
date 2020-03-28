@@ -49,7 +49,7 @@ exciting project if you are interested in both music and machine learning.
 
 ## Flux.jl
 
-Flux usually takes part in [Google Summer of Code](https://summerofcode.withgoogle.com), as part of the wider Julia organisation. We follow the same [rules and application guidelines](/jsoc/ideas-page) as Julia, so please check there for more information on applying. Below are a set of ideas for potential projects (though you are welcome to explore anything you are interested in).
+Flux usually takes part in [Google Summer of Code](https://summerofcode.withgoogle.com), as part of the wider Julia organisation. We follow the same [rules and application guidelines](/jsoc/projects/) as Julia, so please check there for more information on applying. Below are a set of ideas for potential projects (though you are welcome to explore anything you are interested in).
 
 Flux projects are typically very competitive; we encourage you to get started early, as successful students typically have early PRs or working prototypes as part of the application. It is a good idea to simply start contributing via issue discussion and PRs and let a project grow from there; you can take a look at [this list of issues](https://github.com/issues?utf8=✓&q=is%3Aopen+archived%3Afalse+user%3AFluxML+label%3A%22help+wanted%22) for some starter contributions.
 
@@ -63,7 +63,7 @@ Mentors: [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
 
 Flux's [model zoo](https://github.com/FluxML/model-zoo/) contains examples of a wide range of deep learning models and techniques. This project would involve adding new models, showing how to recreate state-of-the-art results (e.g. AlphaGo) or interesting and unusual model architectures (e.g. transformer networks). We'd be particularly interested in any models involving reinforcement learning, or anything with images, sound or speech.
 
-Some experience with implementing deep learning models would be ideal for this project, but is not essential for a student willing to pick up the skills and read ML papers. It's up to you whether you implement a single ambitious model, or multiple small ones. A good source of inspiration might be the [NIPS Challenge](https://nurture.ai/nips-challenge).
+Some experience with implementing deep learning models would be ideal for this project, but is not essential for a student willing to pick up the skills and read ML papers. It's up to you whether you implement a single ambitious model, or multiple small ones.
 
 *Note that this project is quite popular; students who show skills and interests in other parts of the stack may have an easier time distinguishing themselves.*
 
@@ -73,9 +73,9 @@ Mentors: [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
 
 In this task, you will be porting the "Deep Learning for Coders with fastai and PyTorch" into Julia using Flux.jl
 
-Experience with implementing machine learning and Julia's Flux.jl package are required in order to be successful on this project. You will also likley work with others in the community on this since it's a 19 chapter book. Feel free to check out the `#fast-ai-port` channel on Slack for more details. 
+Experience with implementing machine learning and Julia's Flux.jl package are required in order to be successful on this project. You will also likley work with others in the community on this since it's a 19 chapter book. Feel free to check out the `#fast-ai-port` channel on Slack for more details.
 
-Please post in the `#fast-ai-port` channel on Slack to get a preview of the book for a better idea of the projects scope. 
+Please post in the `#fast-ai-port` channel on Slack to get a preview of the book for a better idea of the projects scope.
 
 ## Deep Learning for 3D Computer Vision
 
@@ -84,7 +84,7 @@ Build deep learning models for 3D computer vision using Flux. There has been a l
 Some inspiration could be drawn from python frameworks like [Kaolin](https://kaolin.readthedocs.io/en/latest/), [Pytorch3D](https://pytorch3d.readthedocs.io/en/latest/overview.html), and [Tensorflow Graphics](https://www.tensorflow.org/graphics/overview). This project would involve developing (a few of) the following modules:
 
 @@tight-list
-* Integration with Differentiable Graphics Frameworks (like [RayTracer.jl](https://github.com/avik-pal/RayTracer.jl) or bindings with non-Julia ones like [DiB-R](https://nv-tlabs.github.io/DIB-R/) and [Soft Rasterizer](https://vgl.ict.usc.edu/Research/softrasterizer/).
+* Integration with Differentiable Graphics Frameworks (like [RayTracer.jl](https://github.com/avik-pal/RayTracer.jl) or bindings with non-Julia ones like [DiB-R](https://nv-tlabs.github.io/DIB-R/) and [Soft Rasterizer](https://arxiv.org/abs/1904.01786).
 * Graphics engine for (differentiable) interconversion across various representations like Voxels, Point Clouds, SDFs, Meshes, etc.
 * Deep Learning Models like PointCNN, DGCNN, PointCNN++, etc or other newer models.
 * Examples using these components for 3D Reconstruction, Object Synthesis using GANs, 3D Object Tracking, etc.

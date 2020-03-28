@@ -19,24 +19,24 @@ The paper already gives many exciting results combining these two
 disparate fields, but this is only the beginning: neural networks and
 differential equations were born to be together. This blog post, a collaboration
 between authors of [Flux](https://github.com/FluxML/Flux.jl),
-[DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl)
+[DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl)
 and the Neural ODEs paper, will explain why, outline current and future
 directions for this work, and start to give a sense of what's possible with
 state-of-the-art tools.
 
 The advantages of the Julia
-[DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl) library for numerically solving differential equations have been
+[DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl) library for numerically solving differential equations have been
 [discussed in detail in other posts](https://www.stochasticlifestyle.com/comparison-differential-equation-solver-suites-matlab-r-julia-python-c-fortran/).
 Along with its
-[extensive benchmarking against classic Fortran methods](https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl),
+[extensive benchmarking against classic Fortran methods](https://github.com/SciML/DiffEqBenchmarks.jl),
 it includes other modern features such as
 [GPU acceleration](https://www.stochasticlifestyle.com/solving-systems-stochastic-pdes-using-gpus-julia/),
-[distributed (multi-node) parallelism]( https://docs.juliadiffeq.org/dev/features/ensemble),
-and [sophisticated event handling]( https://docs.juliadiffeq.org/dev/features/callback_functions).
+[distributed (multi-node) parallelism]( https://docs.sciml.ai/dev/features/ensemble),
+and [sophisticated event handling]( https://docs.sciml.ai/dev/features/callback_functions).
 Recently, these native Julia differential equation solvers have successfully been embedded
 into the [Flux](https://github.com/FluxML/Flux.jl/) deep learning package, to allow the use of a full suite of
 highly tested and optimized DiffEq methods within neural networks. Using the new package
-[DiffEqFlux.jl](https://github.com/JuliaDiffEq/DiffEqFlux.jl/),
+[DiffEqFlux.jl](https://github.com/SciML/DiffEqFlux.jl/),
 we will show the reader how to easily add differential equation
 layers to neural networks using a range of differential equations models, including stiff ordinary
 differential equations, stochastic differential equations, delay differential
@@ -168,7 +168,7 @@ First, how do you numerically specify and solve an ODE? If you're new to solving
 ODEs, you may want to watch our
 [video tutorial on solving ODEs in Julia](https://www.youtube.com/watch?v=KPEqYtEd-zY)
 and look through the
-[ODE tutorial of the DifferentialEquations.jl documentation]( https://docs.juliadiffeq.org/dev/tutorials/ode_example).
+[ODE tutorial of the DifferentialEquations.jl documentation]( https://docs.sciml.ai/dev/tutorials/ode_example).
 The idea is that you define an `ODEProblem` via a derivative equation `u'=f(u,p,t)`,
 and provide an initial condition `u0`, and a timespan `tspan` to solve over, and
 specify the parameters `p`.
@@ -217,7 +217,7 @@ In this form, everything about the problem is determined by the parameter vector
 as `θ` in associated literature). The utility of this will be seen later.
 
 DifferentialEquations.jl has many powerful options for customising things like
-accuracy, tolerances, solver methods, events and more; check out [the docs](https://docs.juliadiffeq.org/dev/) for more details on how to use it in
+accuracy, tolerances, solver methods, events and more; check out [the docs](https://docs.sciml.ai/dev/) for more details on how to use it in
 more advanced ways.
 
 ## Let's Put an ODE Into a Neural Net Framework!
@@ -401,7 +401,7 @@ plot(sol,xscale=:log10,tspan=(0.1,1e11))
 This is just one example of subtlety in integration: Stabilizing explicit
 methods via PI-adaptive controllers, step prediction in implicit solvers, etc.
 are all intricate details that take a lot of time and testing to become
-efficient and robust. Different problems require different methods: [Symplectic integrators](https://docs.juliadiffeq.org/dev/solvers/dynamical_solve/#Symplectic-Integrators-1) are required to [adequately handle physical many problems without drift](https://scicomp.stackexchange.com/questions/29149/what-does-symplectic-mean-in-reference-to-numerical-integrators-and-does-scip/29154#29154), and tools like [IMEX integrators]( https://docs.juliadiffeq.org/dev/solvers/split_ode_solve/#Implicit-Explicit-(IMEX)-ODE-1)
+efficient and robust. Different problems require different methods: [Symplectic integrators](https://docs.sciml.ai/dev/solvers/dynamical_solve/#Symplectic-Integrators-1) are required to [adequately handle physical many problems without drift](https://scicomp.stackexchange.com/questions/29149/what-does-symplectic-mean-in-reference-to-numerical-integrators-and-does-scip/29154#29154), and tools like [IMEX integrators]( https://docs.sciml.ai/dev/solvers/split_ode_solve/#Implicit-Explicit-(IMEX)-ODE-1)
 are required to handle ODEs which [come from partial differential
 equations](https://www.youtube.com/watch?v=okGybBmihOE). Building a
 production-quality solver is thus an enormous undertaking and relatively few
@@ -421,7 +421,7 @@ to come to term after a child is incepted. Thus the birth rate of bunnies is
 actually due to the amount of bunnies in the past. Using a lag term in a
 differential equation's derivative makes this equation known as a delay
 differential equation (DDE). Since
-[DifferentialEquations.jl handles DDEs]( https://docs.juliadiffeq.org/dev/tutorials/dde_example)
+[DifferentialEquations.jl handles DDEs]( https://docs.sciml.ai/dev/tutorials/dde_example)
 through the same interface as ODEs, it can be used as a layer in
 Flux as well. Here's an example:
 
@@ -451,7 +451,7 @@ animation,
 Additionally we can add randomness to our differential equation to simulate
 how random events can cause extra births or more deaths than expected. This
 kind of equation is known as a stochastic differential equation (SDE).
-Since [DifferentialEquations.jl handles SDEs]( https://docs.juliadiffeq.org/dev/tutorials/sde_example)
+Since [DifferentialEquations.jl handles SDEs]( https://docs.sciml.ai/dev/tutorials/sde_example)
 (and is currently the only library with adaptive stiff and non-stiff SDE integrators),
 these can be handled as a layer in Flux similarly. Here's a neural net layer
 with an SDE:
@@ -494,9 +494,9 @@ Flux.train!(loss_fd_sde, params, data, opt, cb = cb)
 [This code can be found in the model-zoo](https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/sde.jl)
 
 And we can keep going. There are differential equations
-[which are piecewise constant]( https://docs.juliadiffeq.org/dev/tutorials/discrete_stochastic_example)
+[which are piecewise constant]( https://docs.sciml.ai/dev/tutorials/discrete_stochastic_example)
 used in biological simulations, or
-[jump diffusion equations from financial models]( https://docs.juliadiffeq.org/dev/tutorials/jump_diffusion),
+[jump diffusion equations from financial models]( https://docs.sciml.ai/dev/tutorials/jump_diffusion),
 and the solvers map right over to the Flux neural network framework through DiffEqFlux.jl.
 DiffEqFlux.jl uses only around ~100 lines of code to pull this all off.
 
@@ -646,7 +646,7 @@ like [FATODE](https://people.cs.vt.edu/~asandu/Software/FATODE/index.html),
 [CASADI](https://web.casadi.org/), and
 [CVODES](https://computation.llnl.gov/projects/sundials/cvodes)
 have been available with this adjoint method for a long time (CVODES came out
-in 2005!). [DifferentialEquations.jl has sensitivity analysis implemented too]( https://docs.juliadiffeq.org/dev/analysis/sensitivity)
+in 2005!). [DifferentialEquations.jl has sensitivity analysis implemented too]( https://docs.sciml.ai/dev/analysis/sensitivity)
 
 The efficiency problem with adjoint sensitivity analysis methods is that they require
 multiple forward solutions of the ODE. As you would expect, this is very costly.
@@ -686,7 +686,7 @@ implemented in software suites, but it once again highlights a detail. Not
 all ODEs will have a large error due to this issue. And for ODEs where it's not
 a problem, this will be the most efficient way to do adjoint sensitivity
 analysis. And this method only applies to ODEs. Not only that, it doesn't even
-apply to all ODEs. For example, ODEs with discontinuities ([events]( https://docs.juliadiffeq.org/dev/features/callback_functions)) are excluded by the assumptions of the derivation.
+apply to all ODEs. For example, ODEs with discontinuities ([events]( https://docs.sciml.ai/dev/features/callback_functions)) are excluded by the assumptions of the derivation.
 Thus once again we arrive at the conclusion that one method is not enough.
 
 In DifferentialEquations.jl have implemented many different methods for

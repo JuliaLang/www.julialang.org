@@ -168,7 +168,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 
 @@tight-list
 * [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](https://www.juliadiff.org/)
-* [JuliaDiffEq](https://github.com/JuliaDiffEq) – [Differential equation solving and analysis](https://juliadiffeq.github.io/) ([Gitter](https://gitter.im/JuliaDiffEq/Lobby))
+* [JuliaDiffEq](https://github.com/SciML) – [Differential equation solving and analysis](https://sciml.ai) ([Gitter](https://gitter.im/JuliaDiffEq/Lobby))
 * [JuliaGeometry](https://github.com/JuliaGeometry) – Computational Geometry
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaIntervals](https://github.com/JuliaIntervals) - Rigorous numerics with interval arithmetic & applications
