@@ -13,7 +13,7 @@ A separate blog post detailing some of the [highlights of the new release](/blog
 We'll be releasing regular bugfix backports from the 0.5.x line, which is recommended for users requiring a stable language and API.
 Major feature work is ongoing on master for 0.6-dev.
 
-The Julia ecosystem continues to grow, and there are now [over one thousand](https://pkg.julialang.org/pulse.html) registered packages!
+The Julia ecosystem continues to grow, and there are now over one thousand registered packages!
 The third annual [JuliaCon](https://juliacon.org/) took place in Cambridge, MA in the [summer of 2016](/blog/2016/09/juliacon2016/), with an exciting line up of talks and keynotes.
 Most of them are [available to view](https://www.youtube.com/playlist?list=PLP8iPy9hna6SQPwZUDtAM59-wPzCPyD_S).
 

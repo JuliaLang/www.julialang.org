@@ -226,7 +226,5 @@ not to join us?
 ## Acknowledgements
 
 I gratefully acknowledge the Moore Foundation and the Julia project for
-supporting the BioJulia project. I also would like to thank [Ben J.
-Ward](https://github.com/Ward9250) and [Kevin
-Murray](https://github.com/kdmurray91) for comments on my program code and other
+supporting the BioJulia project. I also would like to thank [Ben J. Ward](https://github.com/BenJWard) and [Kevin Murray](https://github.com/kdmurray91) for comments on my program code and other
 contributions.
