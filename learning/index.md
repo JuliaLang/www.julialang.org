@@ -122,7 +122,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * École Polytechnique Fédérale de Lausanne
     * [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
 * [Einaudi Institute for Economics and Finance, Rome](http://www.eief.it/eief/)
-    * [Econometrics of DSGE Models](https://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://gragusa.org))
+    * [Econometrics of DSGE Models](http://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://gragusa.org))
 * Emory University
     * [MATH 346](https://www.mathcs.emory.edu/~lruthot/courses/sp15-math346.html), Introduction to Optimization Theory (Prof. Lars Ruthotto), Spring 2015
     * [MATH 516](https://www.mathcs.emory.edu/~lruthot/courses/math516.html), Numerical Analysis II (Prof. Lars Ruthotto), Spring 2015
@@ -142,7 +142,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Iowa State University
     * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann), Fall 2014
 * [Luiss University Rome](https://www.luiss.edu/), [Department of Economics and Finance](https://economiaefinanza.luiss.it)
-    * [Econometric Theory](https://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](http://gragusa.org))
+    * [Econometric Theory](http://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](http://gragusa.org))
 * [Lund University, Sweden](https://www.lunduniversity.lu.se/), [Department of Automatic Control](http://control.lth.se/)
     * [Julia for Scientific Computing](http://www.control.lth.se/education/doctorate-program/julia-course/julia-course-2019/)
     * [Optimization for Learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)
