@@ -28,7 +28,7 @@ Happy coding!
 
 [nf]: https://www.numfocus.org
 [gsoc]: https://summerofcode.withgoogle.com/
-[projects]: /soc/ideas-page/
+[projects]: /jsoc/projects/
 [apply]: /jsoc/guidelines/
 [nf-ann]: https://www.numfocus.org/blog/applications-are-open-for-google-summer-of-code-with-numfocus/
 [discourse]: https://discourse.julialang.org
