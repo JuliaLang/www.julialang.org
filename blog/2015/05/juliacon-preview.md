@@ -17,7 +17,7 @@ The [first ever JuliaCon](https://juliacon.org/2014/) was held in Chicago last y
 ### Thursday's Talks
 
 ~~~
-<img src="https://avatars3.githubusercontent.com/u/6486271" width="20%"><img src="https://juliaastro.github.io/images/logo.svg" width="20%"><img src="/assets/images/juliacloud.svg" width="20%">
+<img src="https://avatars3.githubusercontent.com/u/6486271" width="20%"><img src="/assets/images/juliaastro.svg" width="20%"><img src="/assets/images/juliacloud.svg" width="20%">
 ~~~
 
 After getting everyone settled in, we'll start the conference proper with a session about the use of Julia in a wide variety of **scientific applications**. Many of the talks at the conference focus on Julia package organizations: groupings of similar packages that promote interoperability and focussing of efforts. In the session [Daniel C. Jones (@dcjones)](https://github.com/dcjones), the creator of the visualization package [Gadfly](https://gadflyjl.org), will discuss the advances being made in the [BioJulia](https://github.com/BioJulia) **bioinformatics** organization, and [Kyle Barbary (@kbarbary)](https://github.com/kbarbary) will present [JuliaAstro](https://juliaastro.github.io/), a home for **astronomy and astrophysics** packages. Theres something for everyone: quantitative **economic modeling** ([QuantEcon.jl](https://quantecon.org/)), **quantum statistical simulations**, and how to fit Julia into a pre-existing body of code in other languages.
@@ -33,7 +33,7 @@ Whatever you get up to after the talks end on Thursday, make sure you are up in 
 ### Friday's talks
 
 ~~~
-<img src="http://www.juliaopt.org/images/juliaopt.svg" width="20%"><img src="/assets/images/el.png" width="20%">
+<img src="/assets/images/juliaopt.svg" width="20%"><img src="/assets/images/el.png" width="20%">
 ~~~
 
 \\\\
