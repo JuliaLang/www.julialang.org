@@ -16,7 +16,7 @@ usual, the conference began with a day dedicated to workshops.
 
 The
 first workshop was on the
-[DifferentialEquations](https://github.com/JuliaDiffEq/) ecosystem,
+[DifferentialEquations](https://github.com/SciML/) ecosystem,
 championed by [Chris
 Rackauckas,](https://www.youtube.com/watch?v=7NDkpWoNiQ4) who spoke
 about his vision to make the ecosystem the scientist’s one stop shop

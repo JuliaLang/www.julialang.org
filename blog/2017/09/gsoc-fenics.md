@@ -1,5 +1,5 @@
 @def rss_pubdate = Date(2017, 9, 1)
-@def rss = """ GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox | Throughout this Google Summer of Code project I, along with my mentors, aimed to create a Wrapper for the FEniCS Finite Element Toolbox in the Julia Language. Our work done can be found at FEniCS.jl (https://github.com/JuliaDiffEq/FEniCS.jl) . This would allow users to perform FEM calculations direc... """
+@def rss = """ GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox | Throughout this Google Summer of Code project I, along with my mentors, aimed to create a Wrapper for the FEniCS Finite Element Toolbox in the Julia Language. Our work done can be found at FEniCS.jl (https://github.com/SciML/FEniCS.jl) . This would allow users to perform FEM calculations direc... """
 @def published = "1 September 2017"
 @def title = "GSoC 2017 : A Wrapper for the FEniCS Finite Element Toolbox"
 @def authors = "Yiannis Simillides, Bart Janssens, Chris Rackauckas"  
@@ -7,7 +7,7 @@
 @def hascode = true
 
 
-Throughout this Google Summer of Code project I, along with my mentors, aimed to create a Wrapper for the FEniCS Finite Element Toolbox in the Julia Language. Our work done can be found at [FEniCS.jl](https://github.com/JuliaDiffEq/FEniCS.jl) . This would allow users to perform FEM calculations directly in Julia, utilizing our [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) wrapping functionality. We currently have wrapped the main  functionality, along with providing the necessary instructions to add further components when they are deemed necessary. Members of the Julia community not directly related to the project also contributed small fixes and suggestions throughout the project. The majority of the code produced has already been merged to the GitHub repository (which was created specifically for this project). One of the main improvements which would greatly increase its usage would be the further integration with the JuliaDiffEq package.
+Throughout this Google Summer of Code project I, along with my mentors, aimed to create a Wrapper for the FEniCS Finite Element Toolbox in the Julia Language. Our work done can be found at [FEniCS.jl](https://github.com/SciML/FEniCS.jl) . This would allow users to perform FEM calculations directly in Julia, utilizing our [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) wrapping functionality. We currently have wrapped the main  functionality, along with providing the necessary instructions to add further components when they are deemed necessary. Members of the Julia community not directly related to the project also contributed small fixes and suggestions throughout the project. The majority of the code produced has already been merged to the GitHub repository (which was created specifically for this project). One of the main improvements which would greatly increase its usage would be the further integration with the JuliaDiffEq package.
 
 \toc
 
@@ -88,7 +88,7 @@ Due to the nature of this project, which relied on FEniCS, we faced various chal
 
 I hope to be able to maintain and improve the package, using it where possibly throughout my further studies. Some identifiable improvements, in order of difficulty are :
 
-- [Fixing precompilation](https://github.com/JuliaDiffEq/FEniCS.jl/issues/28) which would provide a large performance benefit. This error is well documented, and the fix is relatively simple. At the same time it would require the rewriting of a large segment of the codebase due to the way we currently access functions and attributes.
+- [Fixing precompilation](https://github.com/SciML/FEniCS.jl/issues/28) which would provide a large performance benefit. This error is well documented, and the fix is relatively simple. At the same time it would require the rewriting of a large segment of the codebase due to the way we currently access functions and attributes.
 - Improving plotting. We currently rely on the FEniCS plotting backend to plot the necessary functions/meshes/objects. For more detailed visualization we can use Paraview, like in FEniCS. A direct Julia plotter would be nice, as we could provide further customization to our objects.
 - Integration with JuliaDiffEq. We can currently specify and create the necessary objects for the solution of some FEM problems. We have also provided interfaces for accessing most of their attributes aswell as exporting the necessary arrays. Despite this, we currently have no automatic way of seamlessly accessing them via other packages. By providing this access, we would be able to greatly extend the packages capabilities.
 - FEniCS itself is a collection of different components. The FFC(FEniCS Form Compiler) takes matrix assembly expressions and compiles these to C code and then further to machine code. A more optimal way of doing this, would be to replace the whole process with Julia code

@@ -49,8 +49,8 @@ linear algebra, and the ability (or eagerness to learn) to write fast code.
 
 ## Neural networks for solving differential equations
 
-Neural networks can be used as a method for efficiently solving difficult partial differential equations. Efficient implementations from recent papers are being explored as part of the [NeuralNetDiffEq.jl](https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl) package.
-The [issue tracker](https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl/issues) contains links to papers which would be interesting new neural network based methods to implement and benchmark against classical techniques.
+Neural networks can be used as a method for efficiently solving difficult partial differential equations. Efficient implementations from recent papers are being explored as part of the [NeuralNetDiffEq.jl](https://github.com/SciML/NeuralNetDiffEq.jl) package.
+The [issue tracker](https://github.com/SciML/NeuralNetDiffEq.jl/issues) contains links to papers which would be interesting new neural network based methods to implement and benchmark against classical techniques.
 
 **Recommended Skills**: Background knowledge in numerical analysis and machine learning.
 
@@ -61,7 +61,7 @@ The [issue tracker](https://github.com/JuliaDiffEq/NeuralNetDiffEq.jl/issues) co
 ## Performance enhancements for differential equation solvers
 
 Wouldn't it be cool to have had a part in the development of widely used efficient differential equation solvers?
-DifferentialEquations.jl has a wide range of existing methods and [an extensive benchmark suite](https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl) which is used for tuning the methods for performance.
+DifferentialEquations.jl has a wide range of existing methods and [an extensive benchmark suite](https://github.com/SciML/DiffEqBenchmarks.jl) which is used for tuning the methods for performance.
 Many of its methods are already the fastest in their class, but there is still a lot of performance enhancement work that can be done.
 In this project you can learn the details about a wide range of methods and dig into the optimization of the algorithm's strategy and the implementation in order to improve benchmarks.
 Projects that could potentially improve the performance of the full differential equations ecosystem include:
@@ -91,8 +91,8 @@ PDEs. There are many different ways solving PDEs could be approached, and here
 are some ideas for potential projects:
 
 @@tight-list
-1. Automated PDE discretization tooling. We want users to describe a PDE in its mathematical form and automate the rest of the solution process. See [this issue for details](https://github.com/JuliaDiffEq/DifferentialEquations.jl/issues/469).
-2. Enhancement of existing tools for discretizing PDEs. The finite differencing (FDM) library [DiffEqOperators.jl](https://github.com/JuliaDiffEq/DiffEqOperators.jl) could be enhanced to allow non-uniform grids or composition of operators. The finite element method (FEM) library [FEniCS.jl](https://github.com/JuliaDiffEq/FEniCS.jl) could wrap more of the FEniCS library.
+1. Automated PDE discretization tooling. We want users to describe a PDE in its mathematical form and automate the rest of the solution process. See [this issue for details](https://github.com/SciML/DifferentialEquations.jl/issues/469).
+2. Enhancement of existing tools for discretizing PDEs. The finite differencing (FDM) library [DiffEqOperators.jl](https://github.com/SciML/DiffEqOperators.jl) could be enhanced to allow non-uniform grids or composition of operators. The finite element method (FEM) library [FEniCS.jl](https://github.com/SciML/FEniCS.jl) could wrap more of the FEniCS library.
 3. Full stop solvers of common fluid dynamical equations, such as diffusion-advection-convection equations, or of hyperbolic PDEs such as the Hamilton-Jacobi-Bellman equations would be useful to many users.
 4. Using stochastic differential equation (SDE) solvers to efficiently (and highly parallel) approximate certain PDEs.
 5. Development of ODE solvers for more efficiently solving specific types of PDE discretizations. See the "Native Julia solvers for ordinary differential equations" project.
@@ -113,7 +113,7 @@ have on a differential equation model. A good introduction [can be found in this
 much more efficient than Local Sensitivity Analysis tools, and give a better
 view of how parameters affect the model in a more general sense.
 The goal of this project would be to implement more global
-sensitivity analysis methods like the eFAST method into [DiffEqSensitivity.jl](https://github.com/JuliaDiffEq/DiffEqSensitivity.jl) which
+sensitivity analysis methods like the eFAST method into [DiffEqSensitivity.jl](https://github.com/SciML/DiffEqSensitivity.jl) which
 can be used with any differential equation solver on the common interface.
 
 **Recommended Skills**: An understanding of how to use DifferentialEquations.jl
@@ -135,14 +135,14 @@ impossible to distinguish between parameter A being higher and parameter B
 being lower, or the vice versa situation, given only data about the solution
 because of how the two interact. This could be done directly on the symbolic
 form of the equation as part of
-[ModelingToolkit.jl](https://github.com/JuliaDiffEq/ModelingToolkit.jl).
+[ModelingToolkit.jl](https://github.com/SciML/ModelingToolkit.jl).
 Meanwhile, practical identifiability analysis looks as to whether the parameters
 are non-identifiable in a practical sense, for example if two parameters are
 numerically indistinguishable (given possibly noisy data). In this case, numerical
 techniques being built in DiffEqSensitivity.jl, such as a
-[nonlinear likelihood profiler](https://github.com/JuliaDiffEq/DiffEqSensitivity.jl/issues/109)
+[nonlinear likelihood profiler](https://github.com/SciML/DiffEqSensitivity.jl/issues/109)
 or an
-[information sensitivity measure](https://github.com/JuliaDiffEq/DiffEqSensitivity.jl/issues/108)
+[information sensitivity measure](https://github.com/SciML/DiffEqSensitivity.jl/issues/108)
 can be used to showcase whether a parameter has a unique enough effect to be determined.
 
 **Recommended Skills**: A basic background in differential equations and the ability to use
@@ -158,7 +158,7 @@ methods.
 
 Model order reduction is a technique for automatically finding a small model which approximates
 the large model but is computationally much cheaper. We plan to use the infrastructure built
-by ModelingToolkit.jl to [implement a litany of methods](https://github.com/JuliaDiffEq/ModelingToolkit.jl/issues/58)
+by ModelingToolkit.jl to [implement a litany of methods](https://github.com/SciML/ModelingToolkit.jl/issues/58)
 and find out the best way to accelerate differential equation solves.
 
 **Recommended Skills**: A basic background in differential equations and the ability to use
@@ -173,7 +173,7 @@ solvers is not required.
 
 Numerically solving a differential equation can be difficult, and thus it can be helpful for
 users to simplify their model before handing it to the solver. Alas this takes time... so
-let's automate it! [ModelingToolkit.jl](https://github.com/JuliaDiffEq/ModelingToolkit.jl) is
+let's automate it! [ModelingToolkit.jl](https://github.com/SciML/ModelingToolkit.jl) is
 a project for automating the model transformation process. Various parts of the library are
 still open, such as:
 
