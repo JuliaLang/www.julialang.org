@@ -1,7 +1,10 @@
-<!-- @def prepath = "www.julialang.org" -->
+<!-- RSS parameters -->
+@def generate_rss = true
+@def website_title = "JuliaLang - The Julia programming language"
+@def website_descr = "Official website for the Julia programming language."
+@def website_url = "https://julialang.org"
 
 <!-- NOTE: don't change what's below -->
-@def generate_rss = false
 @def div_content = "container" <!-- instead of franklin-content -->
 @def hasmath = false <!-- by default pages don't have maths or code -->
 @def hascode = false
