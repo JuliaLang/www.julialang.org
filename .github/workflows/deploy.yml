@@ -43,7 +43,7 @@ jobs:
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
       - name: Deploy (preview)
         if: github.event_name == 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@releases/v3.4.2
+        uses: JamesIves/github-pages-deploy-action@3.4.2
         with:
           SSH: true
           BRANCH: gh-preview
