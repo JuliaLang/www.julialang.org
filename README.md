@@ -51,6 +51,21 @@ Navigate to `localhost:8000` in a browser and you should see a preview of any mo
 
 **Modifying the landing page**: since the landing page has its own design, it is written in HTML with a few insertions of repurposeable fragments where appropriate, just modify `index.html`
 
+## Adding a blog post
+
+Follow the blueprint of the many other blog posts in terms of folder structure and file structure.
+One important thing to bear in mind is that RSS is a bit picky in terms of what it can accept so be careful for what goes in
+
+* `@def rss = ...`
+* `@def title = ...`
+
+In particular:
+
+* avoid the use of `&` for instance change `ML&PL` for `ML-PL`,
+* only use plain text in `rss`, no links, no markup, no HTML entities.
+
+If in doubt, after running Franklin's server, copy the content of `__site/feed.xml` into [the w3 feed validator](https://validator.w3.org/feed/check.cgi), it should show "Valid RSS feed".
+
 ## Looking for broken links
 
 Every so often, one should do an in-depth check that there are no broken links.

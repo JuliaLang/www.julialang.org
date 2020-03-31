@@ -1,7 +1,7 @@
 @def rss_pubdate = Date(2019, 8, 6)
 @def rss = """ Julia User & Developer Survey 2019 | We conducted the first annual Julia User & Developer Survey in June, and the results (/assets/images/2019-julia-user-developer-survey.pdf) were presented by Viral Shah at JuliaCon on July 23 (https://youtu.be/yx6lBSHqGfc).... """
 @def published = "6 August 2019"
-@def title = "Julia User & Developer Survey 2019"
+@def title = "Julia User - Developer Survey 2019"
 @def authors = "Viral Shah (Julia Computing), Andrew Claster (Julia Computing), Abhijith C (Julia Computing)"  
 
 
