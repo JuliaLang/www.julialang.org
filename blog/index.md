@@ -114,11 +114,11 @@ Blogs from the broader Julia community can be found at [Julia Bloggers](https://
 
 **2017**
 
-[機器學習以及程式語言](/blog/2017/12/ml&pl-zh_tw/) 2017-12-25
+[機器學習以及程式語言](/blog/2017/12/ml-pl-zh_tw/) 2017-12-25
 
-[机器学习与编程语言](/blog/2017/12/ml&pl-cn/) 2017-12-20
+[机器学习与编程语言](/blog/2017/12/ml-pl-cn/) 2017-12-20
 
-[On Machine Learning and Programming Languages](/blog/2017/12/ml&pl/) 2017-12-06
+[On Machine Learning and Programming Languages](/blog/2017/12/ml-pl/) 2017-12-06
 
 [GSoC 2017: Native Julia second order ODE and BVP solvers](/blog/2017/11/gsoc-ode/) 2017-11-01
 

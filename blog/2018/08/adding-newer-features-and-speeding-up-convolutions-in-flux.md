@@ -135,7 +135,7 @@ I was able to attend JuliaCon 2018 in London. Thanks to __The Julia Project__ an
 
 # Why use Julia and Flux for Deep Learning?
 
-There is a [brilliant post](/blog/2017/12/ml&pl) on how Julia can play its part as a Language for Machine Learning. That post summarizes the reasons from the viewpoint of people highly experienced in the field of Machine Learning. Here I shall be presenting the reasons from a layman's point of view.
+There is a [brilliant post](/blog/2017/12/ml-pl/) on how Julia can play its part as a Language for Machine Learning. That post summarizes the reasons from the viewpoint of people highly experienced in the field of Machine Learning. Here I shall be presenting the reasons from a layman's point of view.
 
 Just think about implementing a standard Computer Vision model in one of the popular frameworks, like Pytorch or Tensorflow. It's pretty simple, right? Just call the necessary layers using their API, and you're done. Now imagine having to define something that is not present in their standard library. You need to first write your custom layer (both forward and backward passes, in case you are wondering) in C++ and if that was not hard enough you go about to define the GPU Kernel for that code in CUDA C. Now you integrate this layer (obviously in Python) with Pytorch or Tensorflow as per their particular API. And good luck debugging the SegFaults that you get.
 
