@@ -14,6 +14,14 @@
     <pubDate>Tue, 15 Aug 2017 00:00:00 UT</pubDate>
   </item>
   <item>
+    <title>机器学习与编程语言 (Simplified Chinese)</title>
+    <link>https://julialang.org/blog/2017/12/ml-pl-cn/index.html</link>
+    <description><![CDATA[机器学习与编程语言 &#40;Simplified Chinese&#41; | &gt; 任何足够复杂的机器学习系统，里面都拼凑了半个不规范，处处错误，且运行缓慢的编程语言。^greenspun ... 
+<br><a href="https://julialang.org/blog/2017/12/ml-pl-cn/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2017/12/ml-pl-cn/index.html</guid>
+    <pubDate>Wed, 20 Dec 2017 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title>A portrait of JuliaCon 2018</title>
     <link>https://julialang.org/blog/2018/09/juliacon2018/index.html</link>
     <description><![CDATA[A portrait of JuliaCon 2018 | &#33;JuliaCon2018 group photo &#40;/assets/blog/2018-09-11-juliacon2018/JuliaCon2018<em>group</em>photo.jpg&#41;... 
@@ -70,14 +78,6 @@
     <pubDate>Fri, 13 Oct 2017 00:00:00 UT</pubDate>
   </item>
   <item>
-    <title>On Machine Learning and Programming Languages</title>
-    <link>https://julialang.org/blog/2017/12/ml&pl/index.html</link>
-    <description><![CDATA[On Machine Learning and Programming Languages | &gt; Any sufficiently complicated machine learning system contains an ad-hoc, informally-specified, bug-ridden, slow implementation of half of a programming language.^greenspun ... 
-<br><a href="https://julialang.org/blog/2017/12/ml&pl/index.html">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/12/ml&pl/index.html</guid>
-    <pubDate>Wed, 6 Dec 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
     <title>GSoC 2018 and Speech Recognition for the Flux Model Zoo: The Conclusion</title>
     <link>https://julialang.org/blog/2018/08/GSoC2018-speech-recognition/index.html</link>
     <description><![CDATA[GSoC 2018 and Speech Recognition for the Flux Model Zoo: The Conclusion | Here we are on the other end of Google Summer of Code 2018. It has been a challenging and educational experience, and I wouldn&#39;t have it any other way. I am thankful to the Julia community, and especially my mentor @MikeInnes &#40;https://github.com/mikeinnes&#41;, for supporting me through this. I&#39;ve learn... 
@@ -108,14 +108,6 @@
 <br><a href="https://julialang.org/blog/2017/03/piday/index.html">Read more</a>]]></description>
     <guid>https://julialang.org/blog/2017/03/piday/index.html</guid>
     <pubDate>Tue, 14 Mar 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title>Julia的版本发布流程</title>
-    <link>https://julialang.org/blog/2019/09/release-process-zh-cn/index.html</link>
-    <description><![CDATA[Julia’s Release Process | People involved in the day-to-day development of a project tend to become so familiar with its rhythm and process that they internalize it and it feels like everyone must just <em>know</em> how each stage unfolds. Of course, from the outside looking in it&#39;s not so obvious. So I thought it might be helpful t... 
-<br><a href="https://julialang.org/blog/2019/09/release-process-zh-cn/index.html">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/09/release-process-zh-cn/index.html</guid>
-    <pubDate>Sat, 7 Sep 2019 00:00:00 UT</pubDate>
   </item>
   <item>
     <title>GSoC 2018: Reinforcement Learning and Generative models using Flux</title>
@@ -156,6 +148,14 @@
 <br><a href="https://julialang.org/blog/2016/09/biojulia2016-mid/index.html">Read more</a>]]></description>
     <guid>https://julialang.org/blog/2016/09/biojulia2016-mid/index.html</guid>
     <pubDate>Sat, 10 Sep 2016 00:00:00 UT</pubDate>
+  </item>
+  <item>
+    <title>On Machine Learning and Programming Languages</title>
+    <link>https://julialang.org/blog/2017/12/ml-pl/index.html</link>
+    <description><![CDATA[On Machine Learning and Programming Languages | &gt; Any sufficiently complicated machine learning system contains an ad-hoc, informally-specified, bug-ridden, slow implementation of half of a programming language.^greenspun ... 
+<br><a href="https://julialang.org/blog/2017/12/ml-pl/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2017/12/ml-pl/index.html</guid>
+    <pubDate>Wed, 6 Dec 2017 00:00:00 UT</pubDate>
   </item>
   <item>
     <title>GSoC 2017: Efficient Discretizations of PDE Operators</title>
@@ -254,14 +254,6 @@
     <pubDate>Tue, 19 Sep 2017 00:00:00 UT</pubDate>
   </item>
   <item>
-    <title>機器學習以及程式語言(Traditional Chinese)</title>
-    <link>https://julialang.org/blog/2017/12/ml&pl-zh_tw/index.html</link>
-    <description><![CDATA[機器學習以及程式語言&#40;Traditional Chinese&#41; | &gt; 任何足夠複雜的機器學習系統都包含一個特別設置、不符規範、充滿 bug 又緩慢實作的程式語言半成品。^greenspun ... 
-<br><a href="https://julialang.org/blog/2017/12/ml&pl-zh_tw/index.html">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/12/ml&pl-zh_tw/index.html</guid>
-    <pubDate>Mon, 25 Dec 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
     <title>A Julia interpreter and debugger</title>
     <link>https://julialang.org/blog/2019/03/debuggers/index.html</link>
     <description><![CDATA[A Julia interpreter and debugger | The authors are pleased to announce the release of a fully-featured... 
@@ -342,7 +334,7 @@
     <pubDate>Tue, 19 Nov 2019 00:00:00 UT</pubDate>
   </item>
   <item>
-    <title>Julia夏季会议@Beijing & 本地化奖</title>
+    <title>Julia夏季会议@Beijing - 本地化奖</title>
     <link>https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/index.html</link>
     <description><![CDATA[<a href="https://github.com/JuliaCN">JuliaCN</a>在8月24日，中国北京举办了自2016以来第五次Julia会议。我们非常感谢Julia社区对本次活动的支持， 以及<a href="https://caiyunapp.com/">彩云科技</a>, <a href="https://microsoft.com/">微软中国</a>, <a href="https://swarma.org">集智俱乐部</a>, <a href="https://syncedreview.com/">机器之心</a>对本次活动的大力支持。本次活动有100余人注册，实到50余人。 线上直播在线人数达1600余人。 
 <br><a href="https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/index.html">Read more</a>]]></description>
@@ -526,14 +518,6 @@
     <pubDate>Sat, 9 Aug 2014 00:00:00 UT</pubDate>
   </item>
   <item>
-    <title>机器学习与编程语言 (Simplified Chinese)</title>
-    <link>https://julialang.org/blog/2017/12/ml&pl-cn/index.html</link>
-    <description><![CDATA[机器学习与编程语言 &#40;Simplified Chinese&#41; | &gt; 任何足够复杂的机器学习系统，里面都拼凑了半个不规范，处处错误，且运行缓慢的编程语言。^greenspun ... 
-<br><a href="https://julialang.org/blog/2017/12/ml&pl-cn/index.html">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2017/12/ml&pl-cn/index.html</guid>
-    <pubDate>Wed, 20 Dec 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
     <title>Profiling tool wins and woes</title>
     <link>https://julialang.org/blog/2019/09/profilers/index.html</link>
     <description><![CDATA[Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: <a href="http://www.brendangregg.com/flamegraphs.html">brendangregg&#39;s often cloned flamegraphs tool</a> was created in 2011&#33; So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports. <img src="https://julialang.org/assets/blog/2019-09-16-profilers/profile-instruments-bad.png" alt="Instruments.app bad result" />
@@ -640,7 +624,7 @@
   <item>
     <title>Building a Language and Compiler for Machine Learning</title>
     <link>https://julialang.org/blog/2018/12/ml-language-compiler/index.html</link>
-    <description><![CDATA[Building a Language and Compiler for Machine Learning | Since we originally proposed &#40;/blog/2017/12/ml&amp;pl&#41; the need for a first-class language, compiler and ecosystem for machine learning &#40;ML&#41;, there have been plenty of interesting developments in the field. Not only have the tradeoffs in existing systems, such as TensorFlow and PyTo... 
+    <description><![CDATA[Building a Language and Compiler for Machine Learning | Since we originally proposed the need for a first-class language, compiler and ecosystem for machine learning &#40;ML&#41;, there have been plenty of interesting developments in the field. Not only have the tradeoffs in existing systems, such as TensorFlow and PyTo... 
 <br><a href="https://julialang.org/blog/2018/12/ml-language-compiler/index.html">Read more</a>]]></description>
     <guid>https://julialang.org/blog/2018/12/ml-language-compiler/index.html</guid>
     <pubDate>Mon, 3 Dec 2018 00:00:00 UT</pubDate>
@@ -814,6 +798,14 @@
     <pubDate>Thu, 2 May 2019 00:00:00 UT</pubDate>
   </item>
   <item>
+    <title>機器學習以及程式語言(Traditional Chinese)</title>
+    <link>https://julialang.org/blog/2017/12/ml-pl-zh_tw/index.html</link>
+    <description><![CDATA[機器學習以及程式語言&#40;Traditional Chinese&#41; | &gt; 任何足夠複雜的機器學習系統都包含一個特別設置、不符規範、充滿 bug 又緩慢實作的程式語言半成品。^greenspun ... 
+<br><a href="https://julialang.org/blog/2017/12/ml-pl-zh_tw/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2017/12/ml-pl-zh_tw/index.html</guid>
+    <pubDate>Mon, 25 Dec 2017 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title>Upgrades to the REPL in Julia 0.6</title>
     <link>https://julialang.org/blog/2017/04/repl-0.6-highlights/index.html</link>
     <description><![CDATA[Upgrades to the REPL in Julia 0.6 | Since version 0.3, Julia has come with a command-line interface — a REPL &#40;https://en.wikipedia.org/wiki/Read&#37;E2&#37;80&#37;93eval&#37;E2&#37;80&#37;93print_loop&#41;... 
@@ -822,7 +814,7 @@
     <pubDate>Tue, 25 Apr 2017 00:00:00 UT</pubDate>
   </item>
   <item>
-    <title>Julia User & Developer Survey 2019</title>
+    <title>Julia User - Developer Survey 2019</title>
     <link>https://julialang.org/blog/2019/08/2019-julia-survey/index.html</link>
     <description><![CDATA[Julia User &amp; Developer Survey 2019 | We conducted the first annual Julia User &amp; Developer Survey in June, and the results &#40;/assets/images/2019-julia-user-developer-survey.pdf&#41; were presented by Viral Shah at JuliaCon on July 23 &#40;https://youtu.be/yx6lBSHqGfc&#41;.... 
 <br><a href="https://julialang.org/blog/2019/08/2019-julia-survey/index.html">Read more</a>]]></description>
