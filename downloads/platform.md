@@ -172,3 +172,20 @@ Julia is available in the [Ports Collection](https://svnweb.freebsd.org/ports/he
 ```
 pkg install julia
 ```
+
+## Arch Linux
+
+Julia can be installed with
+
+```
+sudo pacman -S julia
+```
+
+## Conda
+
+Julia is available on [conda-forge](https://github.com/conda-forge/julia-feedstock).
+Note that there is currently no Windows build, and that it might be older versions.
+
+```
+conda install -c conda-forge julia
+```
