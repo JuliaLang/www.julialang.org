@@ -20,8 +20,9 @@ If the provided download files do not work for you, please [file an issue in the
 Different OSes and architectures have varying [tiers of support](/downloads/#currently_supported_platforms), and are listed at the bottom of this page.
 @@
 
-
-## Current stable release: v{{stable_release}} ({{stable_release_date}})
+~~~
+<h2><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h2>
+~~~
 
 Checksums for this release are available in both [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.sha256) formats.
 
@@ -80,8 +81,9 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
 @@ @@
 
 
-
-## Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})
+~~~
+<h2><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})</a></h2>
+~~~
 
 Checksums for this release are available in both, [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) formats.
 
