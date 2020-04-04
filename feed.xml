@@ -110,6 +110,14 @@
     <pubDate>Tue, 14 Mar 2017 00:00:00 UT</pubDate>
   </item>
   <item>
+    <title>Julia的版本发布流程</title>
+    <link>https://julialang.org/blog/2019/09/release-process-zh-cn/index.html</link>
+    <description><![CDATA[从事软件开发的行家里手们对版本发布流程与节奏如此了若指掌，以至于他们将其精髓<strong>内化</strong>（internalize）并以为人人都懂得这些“浅显的道理”。可是事实恰好相反，外行一眼望去如同雾里看花。所以为了整个Julia社区，乃至于其它编程语言社区，我觉得有必要将Julia的开发过程白纸黑字地写下来。在本文中，我将阐述...
+<br><a href="https://julialang.org/blog/2019/09/release-process-zh-cn/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2019/09/release-process-zh-cn/index.html</guid>
+    <pubDate>Sat, 7 Sep 2019 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title>GSoC 2018: Reinforcement Learning and Generative models using Flux</title>
     <link>https://julialang.org/blog/2018/08/GSoC-Final-Summary/index.html</link>
     <description><![CDATA[GSoC 2018: Reinforcement Learning and Generative models using Flux | In this post I&#39;m going to briefly summarize about the machine learning models I have worked on during this summer for GSoC. I worked towards enriching model zoo of Flux.jl &#40;https://github.com/FluxML&#41;, a machine learning library written in Julia &#40;https://github.com/JuliaLang/julia&#41;. My project cover... 
