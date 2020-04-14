@@ -3,6 +3,10 @@
 
 Please take a moment to read the [Julia Community Standards](/community/standards/). We expect that your participation in any Julia related forum, online or offline, respects these standards.
 
+## Events
+
+<iframe src="https://calendar.google.com/calendar/embed?src=julialang.org_komauaqet14eog9oiv3p6o7pmg%40group.calendar.google.com&ctz=America%2FNew_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
 ## Diversity and Inclusion
 
 The Julia Community is committed to continuing to foster an inclusive and diverse culture. Read more about how we are doing this on our [diversity page](/diversity/).
