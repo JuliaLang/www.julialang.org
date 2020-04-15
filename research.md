@@ -53,6 +53,11 @@ For example, see the [CITATION.bib](https://github.com/JuliaLang/julia/blob/mast
 
 We welcome additions to this list in the form of [pull requests](https://github.com/JuliaLang/www.julialang.org/blob/master/research.md)
 
+## 2020
+
+@@tight-list
+* **Sequential Bayesian inference for vector autoregressions with stochastic volatility**. Mark Bognanni, John Zito. (2020) _Journal of Economic Dynamics and Control_, 113: 103851. doi: [10.1016/j.jedc.2020.103851](https://doi.org/10.1016/j.jedc.2020.103851). url: <http://www.sciencedirect.com/science/article/pii/S016518892030021X>.
+@@
 
 ## 2019
 
