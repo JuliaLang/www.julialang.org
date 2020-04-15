@@ -1,6 +1,6 @@
 # Julia Hackathons
 
-## Current Hackathon: First World Wide Vitual Julia Language Hackathon on April 17th
+## Current Hackathon: First World Wide Virtual Julia Language Hackathon on April 17th
 
 This first hackathon will be hosted on Zoom which will allow us to have breakout rooms. The plan is to have a main room as a waiting room for logistical stuff and then different breakout rooms where the actual hacking/building will take place. [Based on this survey that we put together](https://docs.google.com/forms/d/e/1FAIpQLSdYdr3T1i6jLee1ES2PfJ-MRadjlDAQQGTVx3vrquceLGCTyg/viewform?usp=sf_link), we will have a number of high level rooms for topics like Data Science, Visualization, Machine Learning, etc. and then if there are groups that form within those highlevel domains who want to move to a different room for a specific project, we can facilitate that. 
 
