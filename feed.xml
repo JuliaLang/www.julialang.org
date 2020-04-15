@@ -286,14 +286,6 @@
     <pubDate>Tue, 20 Oct 2015 00:00:00 UT</pubDate>
   </item>
   <item>
-    <title>Graft.jl - General purpose graph analytics for Julia</title>
-    <link>https://julialang.org/blog/2016/08/GSoC2016-Graft/index.html</link>
-    <description><![CDATA[Graft.jl - General purpose graph analytics for Julia | This blog post describes my work on Graft.jl &#40;https://github.com/pranavtbhat/Graft.jl&#41;, a general purpose graph analysis package for Julia. For those unfamiliar with graph algorithms, a quick introduction &#40;https://www.cl.cam.ac.uk/teaching/1011/PrincComm/slides/graph<em>theory</em>1-11.pdf&#41; might help.... 
-<br><a href="https://julialang.org/blog/2016/08/GSoC2016-Graft/index.html">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2016/08/GSoC2016-Graft/index.html</guid>
-    <pubDate>Mon, 22 Aug 2016 00:00:00 UT</pubDate>
-  </item>
-  <item>
     <title>Julia 0.5 Release Announcement</title>
     <link>https://julialang.org/blog/2016/10/julia-0.5-release/index.html</link>
     <description><![CDATA[Julia 0.5 Release Announcement | After over a year of development, the Julia community is proud to announce... 
@@ -654,7 +646,7 @@
     <pubDate>Wed, 18 Dec 2019 00:00:00 UT</pubDate>
   </item>
   <item>
-    <title>Some &#928;-ography</title>
+    <title>More π</title>
     <link>https://julialang.org/blog/2018/03/pifonts/index.html</link>
     <description><![CDATA[Some &pi;-ography | Although we&#39;ve known about &quot;Archimedes&#39; constant&quot; for a few millennia, we&#39;ve been referring to it as the Greek letter π only since the 1700s. Patricia Rothman <a href="https://www.historytoday.com/patricia-rothman/william-jones-and-his-circle-man-who-invented-pi">suggested</a> that the following page <em>could</em> c... 
 <br><a href="https://julialang.org/blog/2018/03/pifonts/index.html">Read more</a>]]></description>
