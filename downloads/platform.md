@@ -86,10 +86,10 @@ tar -xvzf julia-x.y.z-linux-x86\_64.tar.gz
 This will extract the files to a folder named `julia-x.y.z`. We would refer this as `<Julia directory>`. To run Julia, you can do any of the following:
 
 *   Create a symbolic link to `julia` inside a folder which is on your system `PATH`
-*   Add Julia's `bin` folder to your system `PATH` environment variable
+*   Add Julia's `bin` folder (with full path) to your system `PATH` environment variable
 *   Invoke the `julia` executable by using its full path, as in `<Julia directory>/bin/julia`
 
-To add Julia's `bin` folder to `PATH` environment variable, you can edit the `~/.bash_profile` or `~/.bashrc` file. Open the file in your favourite editor and add a new line as follows:
+To add Julia's `bin` folder (with full path) to `PATH` environment variable, you can edit the `~/.bashrc` (or `~/.bash_profile`) file. Open the file in your favourite editor and add a new line as follows:
 
 ```
 export PATH="$PATH:/path/to/<Julia directory>/bin"
