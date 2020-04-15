@@ -5,6 +5,7 @@ The repository for the source code of the language itself can be found at [githu
 
 The Julia website is generated using GitHub pages and [Franklin.jl](https://github.com/tlienart/Franklin.jl), a Julia native package for building websites.
 
+
 ## Making Simple Changes
 
 To suggest a change to the website, you can simply navigate to the page with the content you think should be changed, and edit it.
