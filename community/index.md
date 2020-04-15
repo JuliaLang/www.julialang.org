@@ -51,7 +51,7 @@ All the [JuliaCon](https://juliacon.org/) videos and other videos of general int
 
 ## Other channels
 
-On Twitter, tweet with the [#julialang](https://twitter.com/search?q=%23julialang) hashtag.
+On Twitter, tweet with the [#julialang](https://twitter.com/search?q=%23julialang) hashtag and check out the [Official Julia Language Twitter account](https://twitter.com/JuliaLanguage) for Julia updates.
 
 Julia also has a presence on Stack Overflow under the [julia](https://stackoverflow.com/tags/julia) tag, and on Stack Overflow en Español under [julia](https://es.stackoverflow.com/questions/tagged/julia).
 
