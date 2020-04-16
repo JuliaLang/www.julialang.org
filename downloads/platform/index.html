@@ -11,12 +11,12 @@
 <ul>
 <li><p>Create a symbolic link to <code>julia</code> inside a folder which is on your system <code>PATH</code></p>
 
-<li><p>Add Julia&#39;s <code>bin</code> folder to your system <code>PATH</code> environment variable</p>
+<li><p>Add Julia&#39;s <code>bin</code> folder &#40;with full path&#41; to your system <code>PATH</code> environment variable</p>
 
 <li><p>Invoke the <code>julia</code> executable by using its full path, as in <code>&lt;Julia directory&gt;/bin/julia</code></p>
 
 </ul>
-<p>To add Julia&#39;s <code>bin</code> folder to <code>PATH</code> environment variable, you can edit the <code>~/.bash_profile</code> or <code>~/.bashrc</code> file. Open the file in your favourite editor and add a new line as follows:</p>
+<p>To add Julia&#39;s <code>bin</code> folder &#40;with full path&#41; to <code>PATH</code> environment variable, you can edit the <code>~/.bashrc</code> &#40;or <code>~/.bash_profile</code>&#41; file. Open the file in your favourite editor and add a new line as follows:</p>
 <pre><code class="julia hljs"><span class=hljs-keyword >export</span> PATH=<span class=hljs-string >"<span class=hljs-variable >$PATH</span>:/path/to/&lt;Julia directory&gt;/bin"</span></code></pre>
 <p>Apart from this, there are several ways through which you can change environment variable. You can follow <a href="https://help.ubuntu.com/community/EnvironmentVariables">this guide</a> to find out a way convenient for you.</p>
 <p>Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove <code>~/.julia</code>. The startup file is at <code>~/.juliarc.jl</code> and the history at <code>~/.julia_history</code>.</p>
