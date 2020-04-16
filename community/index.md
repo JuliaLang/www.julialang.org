@@ -1,5 +1,6 @@
+# Community
 
-# Community Standards
+## Community Standards
 
 Please take a moment to read the [Julia Community Standards](/community/standards/). We expect that your participation in any Julia related forum, online or offline, respects these standards.
 
