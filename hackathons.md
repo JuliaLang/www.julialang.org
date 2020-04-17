@@ -15,7 +15,7 @@ Friday April 17th. We will have multiple kickoffs for various time zones:
  - US East Coast Kick off 10 AM EDT (UTC -4)
  - US West Coast Kick off 10 AM PDT (UTC -7) [1 PM EDT]
  
-Hacking will end officially at 7 PM EDT (UTC -4). We will have a submisson form setup [here]() on the day of the event so that we can highlight some cool projects that were built during the Hackathon. 
+Hacking will end officially at 7 PM EDT (UTC -4). We will have a submisson form setup [here](https://docs.google.com/forms/d/e/1FAIpQLScKntdRDWXt1yNx4Wevtk-_fT34krvY271j-x-KD3VN9oIvxA/viewform?usp=sf_link) on the day of the event so that we can highlight some cool projects that were built during the Hackathon. 
  
 ## Where 
 
