@@ -10,7 +10,7 @@ Once everyone is moved from the main lobby/room to the breakout rooms (which has
 
 ## When 
 
-We will have multiple kickoffs for various time zones. 
+Friday April 17th. We will have multiple kickoffs for various time zones:  
  - Europe/Asia Kick off 10 AM (UTC +1 London Time), [5 AM EDT]
  - US East Coast Kick off 10 AM EDT (UTC -4)
  - US West Coast Kick off 10 AM PDT (UTC -7) [1 PM EDT]
@@ -22,6 +22,7 @@ Hacking will end officially at 7 PM EDT (UTC -4). We will have a submisson form 
 World Wide! We want this Hackathon to be accessibile to everyone. 
 
 ## How to join
+NOTE: To join the Hackathon, you must have the Zoom Desktop/Mobile Client Installed. You cannot join the call via the web interface. If you have trouble joining, try opening the call in a incognito window and you will be prompted to install the Desktop/Mobile Client. 
 
 ```
 Topic: First World Wide Virtual Julia Language Hackathon
