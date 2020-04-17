@@ -6,7 +6,7 @@ This first hackathon will be hosted on Zoom which will allow us to have breakout
 
 [Breakout Room List](https://docs.google.com/document/d/1sp4Y1s8kUFHRZ9UWDGmwxZprH6O1Wgo7jIT9VQPpCVw/edit?usp=sharing)
 
-Once everyone is moved from the main lobby/room to the breakout rooms (which has to be done manually by hosts, so please be patient), it would be awesome for everyone to do quick intros and then appoint a breakout room host. This person just needs to compile a quick list of all the projects and such folks are working on so we can add that list under each breakout room (that way when people join from another time zone as the day progresses, they will have a better idea of where they should go).
+Everyone will be given Co-Host permission so they can move freely between breakout rooms.
 
 ## When 
 
@@ -22,7 +22,6 @@ Hacking will end officially at 7 PM EDT (UTC -4). We will have a submisson form 
 World Wide! We want this Hackathon to be accessibile to everyone. 
 
 ## How to join
-NOTE: To join the Hackathon, you must have the Zoom Desktop/Mobile Client Installed. You cannot join the call via the web interface. If you have trouble joining, try opening the call in a incognito window and you will be prompted to install the Desktop/Mobile Client. 
 
 ```
 Topic: First World Wide Virtual Julia Language Hackathon
