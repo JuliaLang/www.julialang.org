@@ -30,7 +30,7 @@ Head over to [JuliaAcademy](https://juliaacademy.com) to take some free online J
 
 The Julia organization is applying to participant in [Google's Season of Docs](https://developers.google.com/season-of-docs).
 The Julia organization generally fields a large number of students mentored by open source developers, university professors at leading institutions from all around the world, and technical writers in the Julia Community. 
-Students who are accepted into this prestigious program are paid a stipend to contribute open source documentation around  around Julia and its package ecosystem.
+Students who are accepted into this prestigious program are paid a stipend to contribute open source documentation to Julia and its package ecosystem.
 
 If this sounds like something you would be interested in, head over to the [Projects page](/jsoc/gsod/projects/) to see a list of all the available technical writing projects.
 
