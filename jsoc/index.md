@@ -28,7 +28,7 @@ Head over to [JuliaAcademy](https://juliaacademy.com) to take some free online J
 
 ## Google Season of Docs (GSoD)
 
-The Julia organization is applying to participant in [Google's Season of Docs](https://developers.google.com/season-of-docs).
+The Julia organization is applying to participate in [Google's Season of Docs](https://developers.google.com/season-of-docs).
 The Julia organization generally fields a large number of students mentored by open source developers, university professors at leading institutions from all around the world, and technical writers in the Julia Community. 
 Students who are accepted into this prestigious program are paid a stipend to contribute open source documentation to Julia and its package ecosystem.
 
