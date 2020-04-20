@@ -86,6 +86,7 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
 ~~~
 
 Checksums for this release are available in both, [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) formats.
+Some very old (AMD) CPUs continue to work on (unsupported) Julia 1.3.1, and older versions including Julia LTS.
 
 @@row @@col-12
 ~~~
