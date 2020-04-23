@@ -1,5 +1,12 @@
-module.exports = function (hljs) {
+/*
+Language: Leaf
+Author: Hale Chan <halechan@qq.com>
+Description: Based on the Leaf reference from https://vapor.github.io/documentation/guide/leaf.html.
+*/
+
+function leaf (hljs) {
   return {
+    name: 'Leaf',
     contains: [
       {
         className: 'function',
@@ -36,4 +43,6 @@ module.exports = function (hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = leaf;

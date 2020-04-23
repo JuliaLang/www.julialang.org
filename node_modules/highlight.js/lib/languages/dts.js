@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: Device Tree
+Description: *.dts files used in the Linux kernel
+Author: Martin Braun <martin.braun@ettus.com>, Moritz Fischer <moritz.fischer@ettus.com>
+Website: https://elinux.org/Device_Tree_Reference
+Category: config
+*/
+
+function dts(hljs) {
   var STRINGS = {
     className: 'string',
     variants: [
@@ -101,6 +109,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'Device Tree',
     keywords: "",
     contains: [
       DTS_ROOT_NODE,
@@ -120,4 +129,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = dts;

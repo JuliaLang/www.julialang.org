@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: TP
+Author: Jay Strybis <jay.strybis@gmail.com>
+Description: FANUC TP programming language (TPP).
+*/
+
+
+function tp(hljs) {
   var TPID = {
     className: 'number',
     begin: '[1-9][0-9]*', /* no leading zeros */
@@ -30,6 +37,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'TP',
     keywords: {
       keyword:
         'ABORT ACC ADJUST AND AP_LD BREAK CALL CNT COL CONDITION CONFIG DA DB ' +
@@ -80,4 +88,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = tp;

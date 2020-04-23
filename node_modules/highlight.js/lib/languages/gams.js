@@ -1,4 +1,13 @@
-module.exports = function (hljs) {
+/*
+ Language: GAMS
+ Author: Stefan Bechert <stefan.bechert@gmx.net>
+ Contributors: Oleg Efimov <efimovov@gmail.com>, Mikko Kouhia <mikko.kouhia@iki.fi>
+ Description: The General Algebraic Modeling System language
+ Website: https://www.gams.com
+ Category: scientific
+ */
+
+function gams (hljs) {
   var KEYWORDS = {
     'keyword':
       'abort acronym acronyms alias all and assign binary card diag display ' +
@@ -75,6 +84,7 @@ module.exports = function (hljs) {
   };
 
   return {
+    name: 'GAMS',
     aliases: ['gms'],
     case_insensitive: true,
     keywords: KEYWORDS,
@@ -150,4 +160,6 @@ module.exports = function (hljs) {
       SYMBOLS,
     ]
   };
-};
+}
+
+module.exports = gams;

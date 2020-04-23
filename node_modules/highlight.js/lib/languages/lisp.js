@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: Lisp
+Description: Generic lisp syntax
+Author: Vasily Polovnyov <vast@whiteants.net>
+Category: lisp
+*/
+
+function lisp(hljs) {
   var LISP_IDENT_RE = '[a-zA-Z_\\-\\+\\*\\/\\<\\=\\>\\&\\#][a-zA-Z0-9_\\-\\+\\*\\/\\<\\=\\>\\&\\#!]*';
   var MEC_RE = '\\|[^]*?\\|';
   var LISP_SIMPLE_NUMBER_RE = '(\\-|\\+)?\\d+(\\.\\d+|\\/\\d+)?((d|e|f|l|s|D|E|F|L|S)(\\+|\\-)?\\d+)?';
@@ -86,6 +93,7 @@ module.exports = function(hljs) {
   BODY.contains = [QUOTED, QUOTED_ATOM, LIST, LITERAL, NUMBER, STRING, COMMENT, VARIABLE, KEYWORD, MEC, IDENT];
 
   return {
+    name: 'Lisp',
     illegal: /\S/,
     contains: [
       NUMBER,
@@ -99,4 +107,6 @@ module.exports = function(hljs) {
       IDENT
     ]
   };
-};
+}
+
+module.exports = lisp;

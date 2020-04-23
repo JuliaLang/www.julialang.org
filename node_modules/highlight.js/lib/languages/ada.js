@@ -1,4 +1,13 @@
-module.exports = // We try to support full Ada2012
+/*
+Language: Ada
+Author: Lars Schulna <kartoffelbrei.mit.muskatnuss@gmail.org>
+Description: Ada is a general-purpose programming language that has great support for saftey critical and real-time applications.
+             It has been developed by the DoD and thus has been used in military and safety-critical applications (like civil aviation).
+             The first version appeared in the 80s, but it's still actively developed today with
+             the newest standard being Ada2012.
+*/
+
+// We try to support full Ada2012
 //
 // We highlight all appearances of types, keywords, literals (string, char, number, bool)
 // and titles (user defined function/procedure/package)
@@ -8,7 +17,7 @@ module.exports = // We try to support full Ada2012
 // xml (broken by Foo : Bar type), elm (broken by Foo : Bar type), vbscript-html (broken by body keyword)
 // sql (ada default.txt has a lot of sql keywords)
 
-function(hljs) {
+function ada(hljs) {
     // Regular expression for Ada numeric literals.
     // stolen form the VHDL highlighter
 
@@ -27,7 +36,7 @@ function(hljs) {
     var ID_REGEX = '[A-Za-z](_?[A-Za-z0-9.])*';
 
     // bad chars, only allowed in literals
-    var BAD_CHARS = '[]{}%#\'\"'
+    var BAD_CHARS = '[]{}%#\'\"';
 
     // Ada doesn't have block comments, only line comments
     var COMMENTS = hljs.COMMENT('--', '$');
@@ -65,6 +74,7 @@ function(hljs) {
     };
 
     return {
+        name: 'Ada',
         case_insensitive: true,
         keywords: {
             keyword:
@@ -169,4 +179,6 @@ function(hljs) {
             // {begin: '\\s+:=\\s+'},
         ]
     };
-};
+}
+
+module.exports = ada;

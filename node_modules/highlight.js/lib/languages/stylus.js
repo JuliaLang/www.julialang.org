@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: Stylus
+Author: Bryant Williams <b.n.williams@gmail.com>
+Description: Stylus is an expressive, robust, feature-rich CSS language built for nodejs.
+Website: https://github.com/stylus/stylus
+Category: css
+*/
+
+function stylus(hljs) {
 
   var VARIABLE = {
     className: 'variable',
@@ -338,6 +346,7 @@ module.exports = function(hljs) {
   ];
 
   return {
+    name: 'Stylus',
     aliases: ['styl'],
     case_insensitive: false,
     keywords: 'if else for in',
@@ -441,4 +450,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = stylus;

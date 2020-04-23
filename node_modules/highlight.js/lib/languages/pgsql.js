@@ -1,4 +1,22 @@
-module.exports = function(hljs) {
+/*
+Language: PostgreSQL and PL/pgSQL
+Author: Egor Rogov (e.rogov@postgrespro.ru)
+Website: https://www.postgresql.org/docs/11/sql.html
+Description:
+    This language incorporates both PostgreSQL SQL dialect and PL/pgSQL language.
+    It is based on PostgreSQL version 11. Some notes:
+    - Text in double-dollar-strings is _always_ interpreted as some programming code. Text
+      in ordinary quotes is _never_ interpreted that way and highlighted just as a string.
+    - There are quite a bit "special cases". That's because many keywords are not strictly
+      they are keywords in some contexts and ordinary identifiers in others. Only some
+      of such cases are handled; you still can get some of your identifiers highlighted
+      wrong way.
+    - Function names deliberately are not highlighted. There is no way to tell function
+      call from other constructs, hence we can't highlight _all_ function names. And
+      some names highlighted while others not looks ugly.
+*/
+
+function pgsql(hljs) {
   var COMMENT_MODE = hljs.COMMENT('--', '$');
   var UNQUOTED_IDENT = '[a-zA-Z_][a-zA-Z_0-9$]*';
   var DOLLAR_STRING = '\\$([a-zA-Z_]?|[a-zA-Z_][a-zA-Z_0-9]*)\\$';
@@ -75,8 +93,6 @@ module.exports = function(hljs) {
     // OID-types
     'OID REGPROC|10 REGPROCEDURE|10 REGOPER|10 REGOPERATOR|10 REGCLASS|10 REGTYPE|10 REGROLE|10 ' +
     'REGNAMESPACE|10 REGCONFIG|10 REGDICTIONARY|10 ';// +
-    // some types from standard extensions
-    'HSTORE|10 LO LTREE|10 ';
 
   var TYPES_RE =
     TYPES.trim()
@@ -192,7 +208,7 @@ module.exports = function(hljs) {
     'ACOS ACOSD ASIN ASIND ATAN ATAND ATAN2 ATAN2D COS COSD COT COTD SIN SIND TAN TAND ' +
     // https://www.postgresql.org/docs/11/static/functions-string.html
     'BIT_LENGTH CHAR_LENGTH CHARACTER_LENGTH LOWER OCTET_LENGTH OVERLAY POSITION SUBSTRING TREAT TRIM UPPER ' +
-    'ASCII BTRIM CHR CONCAT CONCAT_WS CONVERT CONVERT_FROM CONVERT_TO DECODE ENCODE INITCAP' +
+    'ASCII BTRIM CHR CONCAT CONCAT_WS CONVERT CONVERT_FROM CONVERT_TO DECODE ENCODE INITCAP ' +
     'LEFT LENGTH LPAD LTRIM MD5 PARSE_IDENT PG_CLIENT_ENCODING QUOTE_IDENT|10 QUOTE_LITERAL|10 ' +
     'QUOTE_NULLABLE|10 REGEXP_MATCH REGEXP_MATCHES REGEXP_REPLACE REGEXP_SPLIT_TO_ARRAY ' +
     'REGEXP_SPLIT_TO_TABLE REPEAT REPLACE REVERSE RIGHT RPAD RTRIM SPLIT_PART STRPOS SUBSTR ' +
@@ -211,7 +227,7 @@ module.exports = function(hljs) {
     'AREA CENTER DIAMETER HEIGHT ISCLOSED ISOPEN NPOINTS PCLOSE POPEN RADIUS WIDTH ' +
     'BOX BOUND_BOX CIRCLE LINE LSEG PATH POLYGON ' +
     // https://www.postgresql.org/docs/11/static/functions-net.html
-    'ABBREV BROADCAST HOST HOSTMASK MASKLEN NETMASK NETWORK SET_MASKLEN TEXT INET_SAME_FAMILY' +
+    'ABBREV BROADCAST HOST HOSTMASK MASKLEN NETMASK NETWORK SET_MASKLEN TEXT INET_SAME_FAMILY ' +
     'INET_MERGE MACADDR8_SET7BIT ' +
     // https://www.postgresql.org/docs/11/static/functions-textsearch.html
     'ARRAY_TO_TSVECTOR GET_CURRENT_TS_CONFIG NUMNODE PLAINTO_TSQUERY PHRASETO_TSQUERY WEBSEARCH_TO_TSQUERY ' +
@@ -272,6 +288,7 @@ module.exports = function(hljs) {
                .join('|');
 
     return {
+        name: 'PostgreSQL',
         aliases: ['postgres','postgresql'],
         case_insensitive: true,
         keywords: {
@@ -484,4 +501,6 @@ module.exports = function(hljs) {
           }
         ]
   };
-};
+}
+
+module.exports = pgsql;

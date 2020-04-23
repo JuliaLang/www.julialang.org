@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: Oxygene
+Author: Carlo Kok <ck@remobjects.com>
+Description: Oxygene is built on the foundation of Object Pascal, revamped and extended to be a modern language for the twenty-first century.
+Website: https://www.elementscompiler.com/elements/default.aspx
+*/
+
+function oxygene(hljs) {
   var OXYGENE_KEYWORDS = 'abstract add and array as asc aspect assembly async begin break block by case class concat const copy constructor continue '+
     'create default delegate desc distinct div do downto dynamic each else empty end ensure enum equals event except exit extension external false '+
     'final finalize finalizer finally flags for forward from function future global group has if implementation implements implies in index inherited '+
@@ -45,6 +52,7 @@ module.exports = function(hljs) {
     ]
   };
   return {
+    name: 'Oxygene',
     case_insensitive: true,
     lexemes: /\.?\w+/,
     keywords: OXYGENE_KEYWORDS,
@@ -66,4 +74,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = oxygene;

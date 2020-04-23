@@ -1,5 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: Python profiler
+Description: Python profiler results
+Author: Brian Beck <exogen@gmail.com>
+*/
+
+function profile(hljs) {
   return {
+    name: 'Python profiler',
     contains: [
       hljs.C_NUMBER_MODE,
       {
@@ -26,4 +33,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = profile;

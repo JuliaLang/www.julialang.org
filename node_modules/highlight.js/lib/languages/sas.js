@@ -1,4 +1,10 @@
-module.exports = function(hljs) {
+/*
+Language: SAS
+Author: Mauricio Caceres <mauricio.caceres.bravo@gmail.com>
+Description: Syntax Highlighting for SAS
+*/
+
+function sas(hljs) {
 
     // Data step and PROC SQL statements
     var SAS_KEYWORDS = ''+
@@ -72,6 +78,7 @@ module.exports = function(hljs) {
         'trim|unquote|until|upcase|verify|while|window';
 
     return {
+        name: 'SAS',
         aliases: ['sas', 'SAS'],
         case_insensitive: true, // SAS is case-insensitive
         keywords: {
@@ -122,4 +129,6 @@ module.exports = function(hljs) {
             hljs.C_BLOCK_COMMENT_MODE
         ]
     };
-};
+}
+
+module.exports = sas;

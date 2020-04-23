@@ -1,4 +1,14 @@
-module.exports = function(hljs) {
+/*
+Language: Swift
+Description: Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns.
+Author: Chris Eidhof <chris@eidhof.nl>
+Contributors: Nate Cook <natecook@gmail.com>, Alexander Lichter <manniL@gmx.net>
+Website: https://swift.org
+Category: common, system
+*/
+
+
+function swift(hljs) {
   var SWIFT_KEYWORDS = {
       keyword: '#available #colorLiteral #column #else #elseif #endif #file ' +
         '#fileLiteral #function #if #imageLiteral #line #selector #sourceLocation ' +
@@ -13,7 +23,7 @@ module.exports = function(hljs) {
       literal: 'true false nil',
       built_in: 'abs advance alignof alignofValue anyGenerator assert assertionFailure ' +
         'bridgeFromObjectiveC bridgeFromObjectiveCUnconditional bridgeToObjectiveC ' +
-        'bridgeToObjectiveCUnconditional c contains count countElements countLeadingZeros ' +
+        'bridgeToObjectiveCUnconditional c compactMap contains count countElements countLeadingZeros ' +
         'debugPrint debugPrintln distance dropFirst dropLast dump encodeBitsAsWords ' +
         'enumerate equal fatalError filter find getBridgedObjectiveCType getVaList ' +
         'indices insertionSort isBridgedToObjectiveC isBridgedVerbatimToObjectiveC ' +
@@ -37,7 +47,7 @@ module.exports = function(hljs) {
   var OPTIONAL_USING_TYPE = {
     className: 'type',
     begin: '\\b[A-Z][\\w\u00C0-\u02B8\']*[!?]'
-  }
+  };
   var BLOCK_COMMENT = hljs.COMMENT(
     '/\\*',
     '\\*/',
@@ -67,6 +77,7 @@ module.exports = function(hljs) {
   SUBST.contains = [NUMBERS];
 
   return {
+    name: 'Swift',
     keywords: SWIFT_KEYWORDS,
     contains: [
       STRING,
@@ -127,4 +138,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = swift;

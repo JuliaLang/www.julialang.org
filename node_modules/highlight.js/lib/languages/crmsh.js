@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: crmsh
+Author: Kristoffer Gronlund <kgronlund@suse.com>
+Website: http://crmsh.github.io
+Description: Syntax Highlighting for the crmsh DSL
+Category: config
+*/
+
+function crmsh(hljs) {
   var RESOURCES = 'primitive rsc_template';
 
   var COMMANDS = 'group clone ms master location colocation order fencing_topology ' +
@@ -18,6 +26,7 @@ module.exports = function(hljs) {
   var LITERALS = 'Master Started Slave Stopped start promote demote stop monitor true false';
 
   return {
+    name: 'crmsh',
     aliases: ['crm', 'pcmk'],
     case_insensitive: true,
     keywords: {
@@ -90,4 +99,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = crmsh;

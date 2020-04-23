@@ -1,5 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: Golo
+Author: Philippe Charriere <ph.charriere@gmail.com>
+Description: a lightweight dynamic language for the JVM
+Website: http://golo-lang.org/
+*/
+
+function golo(hljs) {
     return {
+      name: 'Golo',
       keywords: {
         keyword:
           'println readln print import module function local return let var ' +
@@ -19,4 +27,6 @@ module.exports = function(hljs) {
         }
       ]
     }
-};
+}
+
+module.exports = golo;

@@ -1,4 +1,13 @@
-module.exports = /**
+/*
+Language: D
+Author: Aleksandar Ruzicic <aleksandar@ruzicic.info>
+Description: D is a language with C-like syntax and static typing. It pragmatically combines efficiency, control, and modeling power, with safety and programmer productivity.
+Version: 1.0a
+Website: https://dlang.org
+Date: 2012-04-08
+*/
+
+/**
  * Known issues:
  *
  * - invalid hex string literals will be recognized as a double quoted strings
@@ -14,7 +23,7 @@ module.exports = /**
  *   up to the end of line is matched as special token sequence)
  */
 
-function(hljs) {
+function d(hljs) {
   /**
    * Language keywords
    *
@@ -235,6 +244,7 @@ function(hljs) {
   );
 
   return {
+    name: 'D',
     lexemes: hljs.UNDERSCORE_IDENT_RE,
     keywords: D_KEYWORDS,
     contains: [
@@ -254,4 +264,6 @@ function(hljs) {
         D_ATTRIBUTE_MODE
     ]
   };
-};
+}
+
+module.exports = d;

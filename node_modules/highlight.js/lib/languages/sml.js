@@ -1,5 +1,14 @@
-module.exports = function(hljs) {
+/*
+Language: SML (Standard ML)
+Author: Edwin Dalorzo <edwin@dalorzo.org>
+Description: SML language definition.
+Website: https://www.smlnj.org
+Origin: ocaml.js
+Category: functional
+*/
+function sml(hljs) {
   return {
+    name: 'SML (Standard ML)',
     aliases: ['ml'],
     keywords: {
       keyword:
@@ -62,4 +71,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = sml;

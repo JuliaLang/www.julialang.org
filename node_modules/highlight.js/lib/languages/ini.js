@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: TOML, also INI
+Description: TOML aims to be a minimal configuration file format that's easy to read due to obvious semantics.
+Contributors: Guillaume Gomez <guillaume1.gomez@gmail.com>
+Category: common, config
+Website: https://github.com/toml-lang/toml
+*/
+
+function ini(hljs) {
   var NUMBERS = {
     className: 'number',
     relevance: 0,
@@ -47,6 +55,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'TOML, also INI',
     aliases: ['toml'],
     case_insensitive: true,
     illegal: /\S/,
@@ -73,4 +82,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = ini;

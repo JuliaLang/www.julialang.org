@@ -1,5 +1,14 @@
-module.exports = function(hljs) {
+/*
+Language: Vim Script
+Author: Jun Yang <yangjvn@126.com>
+Description: full keyword and built-in from http://vimdoc.sourceforge.net/htmldoc/
+Website: https://www.vim.org
+Category: scripting
+*/
+
+function vim(hljs) {
   return {
+    name: 'Vim Script',
     lexemes: /[!#@\w]+/,
     keywords: {
       keyword:
@@ -106,4 +115,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = vim;

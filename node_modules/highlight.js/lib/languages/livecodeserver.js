@@ -1,4 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: LiveCode
+Author: Ralf Bitter <rabit@revigniter.com>
+Description: Language definition for LiveCode server accounting for revIgniter (a web application framework) characteristics.
+Version: 1.1
+Date: 2019-04-17
+Category: enterprise
+*/
+
+function livecodeserver(hljs) {
   var VARIABLE = {
     className: 'variable',
     variants: [
@@ -21,6 +30,7 @@ module.exports = function(hljs) {
   });
   var TITLE2 = hljs.inherit(hljs.TITLE_MODE, {begin: '\\b([A-Za-z0-9_\\-]+)\\b'});
   return {
+    name: 'LiveCode',
     case_insensitive: false,
     keywords: {
       keyword:
@@ -157,4 +167,6 @@ module.exports = function(hljs) {
     ].concat(COMMENT_MODES),
     illegal: ';$|^\\[|^=|&|{'
   };
-};
+}
+
+module.exports = livecodeserver;

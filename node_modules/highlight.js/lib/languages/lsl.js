@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: LSL (Linden Scripting Language)
+Description: The Linden Scripting Language is used in Second Life by Linden Labs.
+Author: Builder's Brewery <buildersbrewery@gmail.com>
+Website: http://wiki.secondlife.com/wiki/LSL_Portal
+Category: scripting
+*/
+
+function lsl(hljs) {
 
     var LSL_STRING_ESCAPE_CHARS = {
         className: 'subst',
@@ -49,6 +57,7 @@ module.exports = function(hljs) {
     };
 
     return {
+        name: 'LSL (Linden Scripting Language)',
         illegal: ':',
         contains: [
             LSL_STRINGS,
@@ -80,4 +89,6 @@ module.exports = function(hljs) {
             }
         ]
     };
-};
+}
+
+module.exports = lsl;

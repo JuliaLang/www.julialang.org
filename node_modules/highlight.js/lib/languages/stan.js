@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: Stan
+Description: The Stan probabilistic programming language
+Author: Jeffrey B. Arnold <jeffrey.arnold@gmail.com>
+Website: http://mc-stan.org/
+Category: scientific
+*/
+
+function stan(hljs) {
   // variable names cannot conflict with block identifiers
   var BLOCKS = [
     'functions',
@@ -143,6 +151,7 @@ module.exports = function(hljs) {
   ];
 
   return {
+    name: 'Stan',
     aliases: ['stanfuncs'],
     keywords: {
       'title': BLOCKS.join(' '),
@@ -184,7 +193,7 @@ module.exports = function(hljs) {
       {
         // hack: in range constraints, upper must follow either , or <
         // <lower = ..., upper = ...> or <upper = ...>
-        begin: /[<,]*upper\s*=/,
+        begin: /[<,]\s*upper\s*=/,
         keywords: 'upper'
       },
       {
@@ -216,4 +225,6 @@ module.exports = function(hljs) {
       }
     ]
   }
-};
+}
+
+module.exports = stan;

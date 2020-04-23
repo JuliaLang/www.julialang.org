@@ -1,4 +1,10 @@
-module.exports = function(hljs) {
+/*
+Language: ActionScript
+Author: Alexander Myadzel <myadzel@gmail.com>
+Category: scripting
+*/
+
+function actionscript(hljs) {
   var IDENT_RE = '[a-zA-Z_$][a-zA-Z0-9_$]*';
   var IDENT_FUNC_RETURN_TYPE_RE = '([*]|[a-zA-Z_$][a-zA-Z0-9_$]*)';
 
@@ -9,6 +15,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'ActionScript',
     aliases: ['as'],
     keywords: {
       keyword: 'as break case catch class const continue default delete do dynamic each ' +
@@ -70,4 +77,6 @@ module.exports = function(hljs) {
     ],
     illegal: /#/
   };
-};
+}
+
+module.exports = actionscript;

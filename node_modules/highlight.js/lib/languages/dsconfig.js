@@ -1,4 +1,10 @@
-module.exports = function(hljs) {
+/*
+ Language: dsconfig
+ Description: dsconfig batch configuration language for LDAP directory servers
+ Contributors: Jacob Childress <jacobc@gmail.com>
+ Category: enterprise, config
+ */
+function dsconfig(hljs) {
   var QUOTED_PROPERTY = {
     className: 'string',
     begin: /"/, end: /"/
@@ -43,4 +49,6 @@ module.exports = function(hljs) {
       hljs.HASH_COMMENT_MODE
     ]
   };
-};
+}
+
+module.exports = dsconfig;

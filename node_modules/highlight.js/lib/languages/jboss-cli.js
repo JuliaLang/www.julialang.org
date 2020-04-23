@@ -1,4 +1,12 @@
-module.exports = function (hljs) {
+/*
+ Language: JBoss CLI
+ Author: Raphaël Parrëe <rparree@edc4it.com>
+ Description: language definition jboss cli
+ Website: https://docs.jboss.org/author/display/WFLY/Command+Line+Interface
+ Category: config
+ */
+
+function jbossCli (hljs) {
   var PARAM = {
     begin: /[\w-]+ *=/, returnBegin: true,
     relevance: 0,
@@ -25,6 +33,7 @@ module.exports = function (hljs) {
     begin: /--[\w\-=\/]+/,
   };
   return {
+    name: 'JBoss CLI',
     aliases: ['wildfly-cli'],
     lexemes: '[a-z\-]+',
     keywords: {
@@ -43,4 +52,6 @@ module.exports = function (hljs) {
       PARAMSBLOCK
     ]
   }
-};
+}
+
+module.exports = jbossCli;

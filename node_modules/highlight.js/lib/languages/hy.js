@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: Hy
+Description: Hy is a wonderful dialect of Lisp that’s embedded in Python.
+Author: Sergey Sobko <s.sobko@profitware.ru>
+Website: http://docs.hylang.org/en/stable/
+Category: lisp
+*/
+
+function hy(hljs) {
   var keywords = {
     'builtin-name':
       // keywords
@@ -94,8 +102,11 @@ module.exports = function(hljs) {
   COLLECTION.contains = DEFAULT_CONTAINS;
 
   return {
+    name: 'Hy',
     aliases: ['hylang'],
     illegal: /\S/,
     contains: [SHEBANG, LIST, STRING, HINT, HINT_COL, COMMENT, KEY, COLLECTION, NUMBER, LITERAL]
   }
-};
+}
+
+module.exports = hy;

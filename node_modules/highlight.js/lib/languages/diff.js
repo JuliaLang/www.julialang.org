@@ -1,5 +1,14 @@
-module.exports = function(hljs) {
+/*
+Language: Diff
+Description: Unified and context diff
+Author: Vasily Polovnyov <vast@whiteants.net>
+Website: https://www.gnu.org/software/diffutils/
+Category: common
+*/
+
+function diff(hljs) {
   return {
+    name: 'Diff',
     aliases: ['patch'],
     contains: [
       {
@@ -36,4 +45,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = diff;

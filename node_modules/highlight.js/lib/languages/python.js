@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: Python
+Description: Python is an interpreted, object-oriented, high-level programming language with dynamic semantics.
+Website: https://www.python.org
+Category: common
+*/
+
+function python(hljs) {
   var KEYWORDS = {
     keyword:
       'and elif is global as in if from raise for except finally print import pass return ' +
@@ -79,11 +86,18 @@ module.exports = function(hljs) {
   };
   var PARAMS = {
     className: 'params',
-    begin: /\(/, end: /\)/,
-    contains: ['self', PROMPT, NUMBER, STRING, hljs.HASH_COMMENT_MODE]
+    variants: [
+      // Exclude params at functions without params
+      {begin: /\(\s*\)/, skip: true, className: null },
+      {
+        begin: /\(/, end: /\)/, excludeBegin: true, excludeEnd: true,
+        contains: ['self', PROMPT, NUMBER, STRING, hljs.HASH_COMMENT_MODE],
+      },
+    ],
   };
   SUBST.contains = [STRING, NUMBER, PROMPT];
   return {
+    name: 'Python',
     aliases: ['py', 'gyp', 'ipython'],
     keywords: KEYWORDS,
     illegal: /(<\/|->|\?)|=>/,
@@ -120,4 +134,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = python;

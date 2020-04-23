@@ -1,4 +1,9 @@
-module.exports = function(hljs) {
+/*
+Language: Ceylon
+Author: Lucas Werkmeister <mail@lucaswerkmeister.de>
+Website: https://ceylon-lang.org
+*/
+function ceylon(hljs) {
   // 2.3. Identifiers and keywords
   var KEYWORDS =
     'assembly module package import alias class interface object given value ' +
@@ -7,7 +12,7 @@ module.exports = function(hljs) {
     'catch finally then let this outer super is exists nonempty';
   // 7.4.1 Declaration Modifiers
   var DECLARATION_MODIFIERS =
-    'shared abstract formal default actual variable late native deprecated' +
+    'shared abstract formal default actual variable late native deprecated ' +
     'final sealed annotation suppressWarnings small';
   // 7.4.2 Documentation
   var DOCUMENTATION =
@@ -48,6 +53,7 @@ module.exports = function(hljs) {
   SUBST.contains = EXPRESSIONS;
 
   return {
+    name: 'Ceylon',
     keywords: {
       keyword: KEYWORDS + ' ' + DECLARATION_MODIFIERS,
       meta: DOCUMENTATION
@@ -63,4 +69,6 @@ module.exports = function(hljs) {
       }
     ].concat(EXPRESSIONS)
   };
-};
+}
+
+module.exports = ceylon;

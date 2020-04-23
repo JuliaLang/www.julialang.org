@@ -1,4 +1,13 @@
-module.exports = function (hljs) {
+/*
+Language: Handlebars
+Requires: xml.js
+Author: Robin Ward <robin.ward@gmail.com>
+Description: Matcher for Handlebars as well as EmberJS additions.
+Website: https://handlebarsjs.com
+Category: template
+*/
+
+function handlebars(hljs) {
   var BUILT_INS = {'builtin-name': 'each in with if else unless bindattr action collection debugger log outlet template unbound view yield lookup'};
 
   var IDENTIFIER_PLAIN_OR_QUOTED = {
@@ -28,6 +37,7 @@ module.exports = function (hljs) {
   var PREVENT_ESCAPE_WITH_ANOTHER_PRECEEDING_BACKSLASH = {begin: /\\\\(?=\{\{)/, skip: true};
 
   return {
+    name: 'Handlebars',
     aliases: ['hbs', 'html.hbs', 'html.handlebars'],
     case_insensitive: true,
     subLanguage: 'xml',
@@ -71,4 +81,6 @@ module.exports = function (hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = handlebars;

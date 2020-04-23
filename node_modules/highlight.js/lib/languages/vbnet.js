@@ -1,5 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: Visual Basic .NET
+Description: Visual Basic .NET (VB.NET) is a multi-paradigm, object-oriented programming language, implemented on the .NET Framework.
+Author: Poren Chiang <ren.chiang@gmail.com>
+Website: https://docs.microsoft.com/en-us/dotnet/visual-basic/getting-started/
+*/
+
+function vbnet(hljs) {
   return {
+    name: 'Visual Basic .NET',
     aliases: ['vb'],
     case_insensitive: true,
     keywords: {
@@ -52,4 +60,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = vbnet;

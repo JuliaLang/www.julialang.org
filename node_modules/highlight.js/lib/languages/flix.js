@@ -1,4 +1,11 @@
-module.exports = function (hljs) {
+/*
+ Language: Flix
+ Category: functional
+ Author: Magnus Madsen <mmadsen@uwaterloo.ca>
+ Website: https://flix.dev/
+ */
+
+function flix (hljs) {
 
     var CHAR = {
         className: 'string',
@@ -28,6 +35,7 @@ module.exports = function (hljs) {
     };
 
     return {
+        name: 'Flix',
         keywords: {
             literal: 'true false',
             keyword: 'case class def else enum if impl import in lat rel index let match namespace switch type yield with'
@@ -41,4 +49,6 @@ module.exports = function (hljs) {
             hljs.C_NUMBER_MODE
         ]
     };
-};
+}
+
+module.exports = flix;

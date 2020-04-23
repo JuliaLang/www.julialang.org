@@ -1,8 +1,16 @@
-module.exports = function(hljs) {
+/*
+Language: Smali
+Author: Dennis Titze <dennis.titze@gmail.com>
+Description: Basic Smali highlighting
+Website: https://github.com/JesusFreke/smali
+*/
+
+function smali(hljs) {
   var smali_instr_low_prio = ['add', 'and', 'cmp', 'cmpg', 'cmpl', 'const', 'div', 'double', 'float', 'goto', 'if', 'int', 'long', 'move', 'mul', 'neg', 'new', 'nop', 'not', 'or', 'rem', 'return', 'shl', 'shr', 'sput', 'sub', 'throw', 'ushr', 'xor'];
   var smali_instr_high_prio = ['aget', 'aput', 'array', 'check', 'execute', 'fill', 'filled', 'goto/16', 'goto/32', 'iget', 'instance', 'invoke', 'iput', 'monitor', 'packed', 'sget', 'sparse'];
   var smali_keywords = ['transient', 'constructor', 'abstract', 'final', 'synthetic', 'public', 'private', 'protected', 'static', 'bridge', 'system'];
   return {
+    name: 'Smali',
     aliases: ['smali'],
     contains: [
       {
@@ -52,4 +60,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = smali;

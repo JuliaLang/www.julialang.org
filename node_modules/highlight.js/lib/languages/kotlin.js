@@ -1,4 +1,13 @@
-module.exports = function(hljs) {
+/*
+ Language: Kotlin
+ Description: Kotlin is an OSS statically typed programming language that targets the JVM, Android, JavaScript and Native.
+ Author: Sergey Mashkov <cy6erGn0m@gmail.com>
+ Website: https://kotlinlang.org
+ Category: common
+ */
+
+
+function kotlin(hljs) {
   var KEYWORDS = {
     keyword:
       'abstract as val var vararg get set class object open private protected public noinline ' +
@@ -59,7 +68,7 @@ module.exports = function(hljs) {
       }
     ]
   };
-  SUBST.contains.push(STRING)
+  SUBST.contains.push(STRING);
 
   var ANNOTATION_USE_SITE = {
     className: 'meta', begin: '@(?:file|property|field|get|set|receiver|param|setparam|delegate)\\s*:(?:\\s*' + hljs.UNDERSCORE_IDENT_RE + ')?'
@@ -117,6 +126,7 @@ module.exports = function(hljs) {
   KOTLIN_PAREN_TYPE.variants[1].contains = [ KOTLIN_PAREN_TYPE2 ];
 
   return {
+    name: 'Kotlin',
     aliases: ['kt'],
     keywords: KEYWORDS,
     contains : [
@@ -213,4 +223,6 @@ module.exports = function(hljs) {
       KOTLIN_NUMBER_MODE
     ]
   };
-};
+}
+
+module.exports = kotlin;

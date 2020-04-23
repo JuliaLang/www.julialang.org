@@ -1,6 +1,15 @@
-module.exports = function(hljs) {
+/*
+Language: MIPS Assembly
+Author: Nebuleon Fumika <nebuleon.fumika@gmail.com>
+Description: MIPS Assembly (up to MIPS32R2)
+Website: https://en.wikipedia.org/wiki/MIPS_architecture
+Category: assembler
+*/
+
+function mipsasm(hljs) {
     //local labels: %?[FB]?[AT]?\d{1,2}\w+
   return {
+    name: 'MIPS Assembly',
     case_insensitive: true,
     aliases: ['mips'],
     lexemes: '\\.?' + hljs.IDENT_RE,
@@ -83,4 +92,6 @@ module.exports = function(hljs) {
     ],
     illegal: '\/'
   };
-};
+}
+
+module.exports = mipsasm;

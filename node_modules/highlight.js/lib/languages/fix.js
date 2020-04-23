@@ -1,5 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: FIX
+Author: Brent Bradbury <brent@brentium.com>
+*/
+
+function fix(hljs) {
   return {
+    name: 'FIX',
     contains: [
     {
       begin: /[^\u2401\u0001]+/,
@@ -25,4 +31,6 @@ module.exports = function(hljs) {
     }],
     case_insensitive: true
   };
-};
+}
+
+module.exports = fix;

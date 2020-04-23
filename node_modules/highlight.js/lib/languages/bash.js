@@ -1,35 +1,75 @@
-module.exports = function(hljs) {
-  var VAR = {
+/*
+Language: Bash
+Author: vah <vahtenberg@gmail.com>
+Contributrors: Benjamin Pannell <contact@sierrasoftworks.com>
+Website: https://www.gnu.org/software/bash/
+Category: common
+*/
+
+function bash(hljs) {
+  const VAR = {};
+  const BRACED_VAR = {
+    begin: /\$\{/, end:/\}/,
+    contains: [
+      { begin: /:-/, contains: [VAR] } // default values
+    ]
+  };
+  Object.assign(VAR,{
     className: 'variable',
     variants: [
       {begin: /\$[\w\d#@][\w\d_]*/},
-      {begin: /\$\{(.*?)}/}
+      BRACED_VAR
     ]
+  });
+
+  const SUBST = {
+    className: 'subst',
+    begin: /\$\(/, end: /\)/,
+    contains: [hljs.BACKSLASH_ESCAPE]
   };
-  var QUOTE_STRING = {
+  const QUOTE_STRING = {
     className: 'string',
     begin: /"/, end: /"/,
     contains: [
       hljs.BACKSLASH_ESCAPE,
       VAR,
-      {
-        className: 'variable',
-        begin: /\$\(/, end: /\)/,
-        contains: [hljs.BACKSLASH_ESCAPE]
-      }
+      SUBST
     ]
   };
-  var ESCAPED_QUOTE = {
+  SUBST.contains.push(QUOTE_STRING);
+  const ESCAPED_QUOTE = {
     className: '',
     begin: /\\"/
 
   };
-  var APOS_STRING = {
+  const APOS_STRING = {
     className: 'string',
     begin: /'/, end: /'/
   };
+  const ARITHMETIC = {
+    begin: /\$\(\(/,
+    end: /\)\)/,
+    contains: [
+      { begin: /\d+#[0-9a-f]+/, className: "number" },
+      hljs.NUMBER_MODE,
+      VAR
+    ]
+  };
+  const SHEBANG = {
+    className: 'meta',
+    begin: /^#![^\n]+sh\s*$/,
+    relevance: 10
+  };
+  const FUNCTION = {
+    className: 'function',
+    begin: /\w[\w\d_]*\s*\(\s*\)\s*\{/,
+    returnBegin: true,
+    contains: [hljs.inherit(hljs.TITLE_MODE, {begin: /\w[\w\d_]*/})],
+    relevance: 0
+  };
 
   return {
+    name: 'Bash',
     aliases: ['sh', 'zsh'],
     lexemes: /\b-?[a-z\._]+\b/,
     keywords: {
@@ -58,18 +98,9 @@ module.exports = function(hljs) {
         '-ne -eq -lt -gt -f -d -e -s -l -a' // relevance booster
     },
     contains: [
-      {
-        className: 'meta',
-        begin: /^#![^\n]+sh\s*$/,
-        relevance: 10
-      },
-      {
-        className: 'function',
-        begin: /\w[\w\d_]*\s*\(\s*\)\s*\{/,
-        returnBegin: true,
-        contains: [hljs.inherit(hljs.TITLE_MODE, {begin: /\w[\w\d_]*/})],
-        relevance: 0
-      },
+      SHEBANG,
+      FUNCTION,
+      ARITHMETIC,
       hljs.HASH_COMMENT_MODE,
       QUOTE_STRING,
       ESCAPED_QUOTE,
@@ -77,4 +108,6 @@ module.exports = function(hljs) {
       VAR
     ]
   };
-};
+}
+
+module.exports = bash;

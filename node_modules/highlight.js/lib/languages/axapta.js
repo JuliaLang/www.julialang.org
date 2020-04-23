@@ -1,5 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: Microsoft Axapta (now Dynamics 365)
+Author: Dmitri Roudakov <dmitri@roudakov.ru>
+Website: https://dynamics.microsoft.com/en-us/ax-overview/
+Category: enterprise
+*/
+
+function axapta(hljs) {
   return {
+    name: 'Dynamics 365',
     keywords: 'false int abstract private char boolean static null if for true ' +
       'while long throw finally protected final return void enum else ' +
       'break new catch byte super case short default double public try this switch ' +
@@ -27,4 +35,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = axapta;

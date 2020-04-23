@@ -1,6 +1,13 @@
-module.exports = function(hljs) {
-  var AT_IDENTIFIER = '@[a-z-]+' // @font-face
-  var AT_MODIFIERS = "and or not only"
+/*
+Language: SCSS
+Description: Scss is an extension of the syntax of CSS.
+Author: Kurt Emch <kurt@kurtemch.com>
+Website: https://sass-lang.com
+Category: common, css
+*/
+function scss(hljs) {
+  var AT_IDENTIFIER = '@[a-z-]+'; // @font-face
+  var AT_MODIFIERS = "and or not only";
   var IDENT_RE = '[a-zA-Z-][a-zA-Z0-9_-]*';
   var VARIABLE = {
     className: 'variable',
@@ -29,6 +36,7 @@ module.exports = function(hljs) {
     }
   };
   return {
+    name: 'SCSS',
     case_insensitive: true,
     illegal: '[=/|\']',
     contains: [
@@ -111,4 +119,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = scss;

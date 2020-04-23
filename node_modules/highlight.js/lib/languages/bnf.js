@@ -1,5 +1,12 @@
-module.exports = function(hljs){
+/*
+Language: Backus–Naur Form
+Website: https://en.wikipedia.org/wiki/Backus–Naur_form
+Author: Oleg Efimov <efimovov@gmail.com>
+*/
+
+function bnf(hljs){
   return {
+    name: 'Backus–Naur Form',
     contains: [
       // Attribute
       {
@@ -9,20 +16,20 @@ module.exports = function(hljs){
       // Specific
       {
         begin: /::=/,
-        starts: {
-          end: /$/,
-          contains: [
-            {
-              begin: /</, end: />/
-            },
-            // Common
-            hljs.C_LINE_COMMENT_MODE,
-            hljs.C_BLOCK_COMMENT_MODE,
-            hljs.APOS_STRING_MODE,
-            hljs.QUOTE_STRING_MODE
-          ]
-        }
+        end: /$/,
+        contains: [
+          {
+            begin: /</, end: />/
+          },
+          // Common
+          hljs.C_LINE_COMMENT_MODE,
+          hljs.C_BLOCK_COMMENT_MODE,
+          hljs.APOS_STRING_MODE,
+          hljs.QUOTE_STRING_MODE
+        ]
       }
     ]
   };
-};
+}
+
+module.exports = bnf;

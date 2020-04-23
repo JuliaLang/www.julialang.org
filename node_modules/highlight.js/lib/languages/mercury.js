@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: Mercury
+Author: mucaho <mkucko@gmail.com>
+Description: Mercury is a logic/functional programming language which combines the clarity and expressiveness of declarative programming with advanced static analysis and error detection features.
+Website: https://www.mercurylang.org
+*/
+
+function mercury(hljs) {
   var KEYWORDS = {
     keyword:
       'module use_module import_module include_module end_module initialise ' +
@@ -42,7 +49,7 @@ module.exports = function(hljs) {
     begin: '\\\\[abfnrtv]\\|\\\\x[0-9a-fA-F]*\\\\\\|%[-+# *.0-9]*[dioxXucsfeEgGp]',
     relevance: 0
   };
-  STRING.contains = STRING.contains.slice() // we need our own copy of contains
+  STRING.contains = STRING.contains.slice(); // we need our own copy of contains
   STRING.contains.push(STRING_FMT);
 
   var IMPLICATION = {
@@ -65,6 +72,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'Mercury',
     aliases: ['m', 'moo'],
     keywords: KEYWORDS,
     contains: [
@@ -80,4 +88,6 @@ module.exports = function(hljs) {
       {begin: /\.$/} // relevance booster
     ]
   };
-};
+}
+
+module.exports = mercury;

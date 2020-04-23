@@ -1,5 +1,13 @@
-module.exports = function(hljs) {
+/*
+ Language: Groovy
+ Author: Guillaume Laforge <glaforge@gmail.com>
+ Description: Groovy programming language implementation inspired from Vsevolod's Java mode
+ Website: https://groovy-lang.org
+ */
+
+function groovy(hljs) {
     return {
+        name: 'Groovy',
         keywords: {
             literal : 'true false null',
             keyword:
@@ -90,4 +98,6 @@ module.exports = function(hljs) {
         ],
         illegal: /#|<\//
     }
-};
+}
+
+module.exports = groovy;

@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: Parser3
+Requires: xml.js
+Author: Oleg Volchkov <oleg@volchkov.net>
+Website: https://www.parser.ru/en/
+Category: template
+*/
+
+function parser3(hljs) {
   var CURLY_SUBCOMMENT = hljs.COMMENT(
     '{',
     '}',
@@ -7,6 +15,7 @@ module.exports = function(hljs) {
     }
   );
   return {
+    name: 'Parser3',
     subLanguage: 'xml', relevance: 0,
     contains: [
       hljs.COMMENT('^#', '$'),
@@ -44,4 +53,6 @@ module.exports = function(hljs) {
       hljs.C_NUMBER_MODE
     ]
   };
-};
+}
+
+module.exports = parser3;

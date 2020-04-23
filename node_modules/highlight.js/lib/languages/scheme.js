@@ -1,4 +1,15 @@
-module.exports = function(hljs) {
+/*
+Language: Scheme
+Description: Scheme is a programming language in the Lisp family.
+             (keywords based on http://community.schemewiki.org/?scheme-keywords)
+Author: JP Verkamp <me@jverkamp.com>
+Contributors: Ivan Sagalaev <maniac@softwaremaniacs.org>
+Origin: clojure.js
+Website: http://community.schemewiki.org/?what-is-scheme
+Category: lisp
+*/
+
+function scheme(hljs) {
   var SCHEME_IDENT_RE = '[^\\(\\)\\[\\]\\{\\}",\'`;#|\\\\\\s]+';
   var SCHEME_SIMPLE_NUMBER_RE = '(\\-|\\+)?\\d+([./]\\d+)?';
   var SCHEME_COMPLEX_NUMBER_RE = SCHEME_SIMPLE_NUMBER_RE + '[+\\-]' + SCHEME_SIMPLE_NUMBER_RE + 'i';
@@ -62,12 +73,6 @@ module.exports = function(hljs) {
   };
 
   var STRING = hljs.QUOTE_STRING_MODE;
-
-  var REGULAR_EXPRESSION = {
-    className: 'regexp',
-    begin: '#[pr]x"',
-    end: '[^\\\\]"'
-  };
 
   var COMMENT_MODES = [
     hljs.COMMENT(
@@ -137,7 +142,10 @@ module.exports = function(hljs) {
   BODY.contains = [LITERAL, NUMBER, STRING, IDENT, QUOTED_IDENT, QUOTED_LIST, LIST].concat(COMMENT_MODES);
 
   return {
+    name: 'Scheme',
     illegal: /\S/,
     contains: [SHEBANG, NUMBER, STRING, QUOTED_IDENT, QUOTED_LIST, LIST].concat(COMMENT_MODES)
   };
-};
+}
+
+module.exports = scheme;

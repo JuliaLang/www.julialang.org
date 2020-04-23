@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: JavaScript
+Description: JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions.
+Category: common, scripting
+Website: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+*/
+
+function javascript(hljs) {
   var FRAGMENT = {
     begin: '<>',
     end: '</>'
@@ -86,8 +93,16 @@ module.exports = function(hljs) {
     hljs.C_BLOCK_COMMENT_MODE,
     hljs.C_LINE_COMMENT_MODE
   ]);
+  var PARAMS = {
+    className: 'params',
+    begin: /\(/, end: /\)/,
+    excludeBegin: true,
+    excludeEnd: true,
+    contains: PARAMS_CONTAINS
+  };
 
   return {
+    name: 'JavaScript',
     aliases: ['js', 'jsx', 'mjs', 'cjs'],
     keywords: KEYWORDS,
     contains: [
@@ -182,6 +197,9 @@ module.exports = function(hljs) {
               }
             ]
           },
+          { // could be a comma delimited list of params to a function call
+            begin: /,/, relevance: 0,
+          },
           {
             className: '',
             begin: /\s/,
@@ -209,19 +227,14 @@ module.exports = function(hljs) {
         beginKeywords: 'function', end: /\{/, excludeEnd: true,
         contains: [
           hljs.inherit(hljs.TITLE_MODE, {begin: IDENT_RE}),
-          {
-            className: 'params',
-            begin: /\(/, end: /\)/,
-            excludeBegin: true,
-            excludeEnd: true,
-            contains: PARAMS_CONTAINS
-          }
+          PARAMS
         ],
         illegal: /\[|%/
       },
       {
         begin: /\$[(.]/ // relevance booster for a pattern common to JS libs: `$(something)` and `$.something`
       },
+
       hljs.METHOD_GUARD,
       { // ES6 class
         className: 'class',
@@ -233,9 +246,22 @@ module.exports = function(hljs) {
         ]
       },
       {
-        beginKeywords: 'constructor get set', end: /\{/, excludeEnd: true
+        beginKeywords: 'constructor', end: /\{/, excludeEnd: true
+      },
+      {
+        begin:'(get|set)\\s*(?=' + IDENT_RE+ '\\()',
+        end: /{/,
+        keywords: "get set",
+        contains: [
+          hljs.inherit(hljs.TITLE_MODE, {begin: IDENT_RE}),
+          { begin: /\(\)/ }, // eat to avoid empty params
+          PARAMS
+        ]
+
       }
     ],
     illegal: /#(?!!)/
   };
-};
+}
+
+module.exports = javascript;

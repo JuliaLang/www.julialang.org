@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: NSIS
+Description: Nullsoft Scriptable Install System
+Author: Jan T. Sott <jan.sott@gmail.com>
+Website: https://nsis.sourceforge.io/Main_Page
+*/
+
+function nsis(hljs) {
   var CONSTANTS = {
     className: 'variable',
     begin: /\$(ADMINTOOLS|APPDATA|CDBURN_AREA|CMDLINE|COMMONFILES32|COMMONFILES64|COMMONFILES|COOKIES|DESKTOP|DOCUMENTS|EXEDIR|EXEFILE|EXEPATH|FAVORITES|FONTS|HISTORY|HWNDPARENT|INSTDIR|INTERNET_CACHE|LANGUAGE|LOCALAPPDATA|MUSIC|NETHOOD|OUTDIR|PICTURES|PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES32|PROGRAMFILES64|PROGRAMFILES|QUICKLAUNCH|RECENT|RESOURCES_LOCALIZED|RESOURCES|SENDTO|SMPROGRAMS|SMSTARTUP|STARTMENU|SYSDIR|TEMP|TEMPLATES|VIDEOS|WINDIR)/
@@ -71,6 +78,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'NSIS',
     case_insensitive: false,
     keywords: {
       keyword:
@@ -102,4 +110,6 @@ module.exports = function(hljs) {
       hljs.NUMBER_MODE
     ]
   };
-};
+}
+
+module.exports = nsis;

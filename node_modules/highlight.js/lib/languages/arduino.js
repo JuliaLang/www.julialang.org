@@ -1,10 +1,18 @@
-module.exports = function(hljs) {
+/*
+Language: Arduino
+Author: Stefania Mellai <s.mellai@arduino.cc>
+Description: The Arduino® Language is a superset of C++. This rules are designed to highlight the Arduino® source code. For info about language see http://www.arduino.cc.
+Requires: cpp.js
+Website: https://www.arduino.cc
+*/
+
+function arduino(hljs) {
 
 	var ARDUINO_KW = {
       keyword:
         'boolean byte word String',
       built_in:
-        'setup loop' +
+        'setup loop ' +
         'KeyboardController MouseController SoftwareSerial ' +
         'EthernetServer EthernetClient LiquidCrystal ' +
         'RobotControl GSMVoiceCall EthernetUDP EsploraTFT ' +
@@ -94,5 +102,9 @@ module.exports = function(hljs) {
   kws.literal += ' ' + ARDUINO_KW.literal;
   kws.built_in += ' ' + ARDUINO_KW.built_in;
 
+  ARDUINO.name = 'Arduino';
+
   return ARDUINO;
-};
+}
+
+module.exports = arduino;

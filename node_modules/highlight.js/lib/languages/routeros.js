@@ -1,10 +1,17 @@
-module.exports = // Colors from RouterOS terminal:
+/*
+Language: Microtik RouterOS script
+Author: Ivan Dementev <ivan_div@mail.ru>
+Description: Scripting host provides a way to automate some router maintenance tasks by means of executing user-defined scripts bounded to some event occurrence
+Website: https://wiki.mikrotik.com/wiki/Manual:Scripting
+*/
+
+// Colors from RouterOS terminal:
 //   green        - #0E9A00
 //   teal         - #0C9A9A
 //   purple       - #99069A
 //   light-brown  - #9A9900
 
-function(hljs) {
+function routeros(hljs) {
 
   var STATEMENTS = 'foreach do while for if from to step else on-error and or not in';
 
@@ -17,15 +24,6 @@ function(hljs) {
   var LITERALS = 'true false yes no nothing nil null';
 
   var OBJECTS = 'traffic-flow traffic-generator firewall scheduler aaa accounting address-list address align area bandwidth-server bfd bgp bridge client clock community config connection console customer default dhcp-client dhcp-server discovery dns e-mail ethernet filter firewall firmware gps graphing group hardware health hotspot identity igmp-proxy incoming instance interface ip ipsec ipv6 irq l2tp-server lcd ldp logging mac-server mac-winbox mangle manual mirror mme mpls nat nd neighbor network note ntp ospf ospf-v3 ovpn-server page peer pim ping policy pool port ppp pppoe-client pptp-server prefix profile proposal proxy queue radius resource rip ripng route routing screen script security-profiles server service service-port settings shares smb sms sniffer snmp snooper socks sstp-server system tool tracking type upgrade upnp user-manager users user vlan secret vrrp watchdog web-access wireless pptp pppoe lan wan layer7-protocol lease simple raw';
-
-  // print parameters
-  // Several parameters are available for print command:
-  // ToDo: var PARAMETERS_PRINT = 'append as-value brief detail count-only file follow follow-only from interval terse value-list without-paging where info';
-  // ToDo: var OPERATORS = '&& and ! not || or in ~ ^ & << >> + - * /';
-  // ToDo: var TYPES = 'num number bool boolean str string ip ip6-prefix id time array';
-  // ToDo: The following tokens serve as delimiters in the grammar: ()  []  {}  :   ;   $   /
-
-  var VAR_PREFIX = 'global local set for foreach';
 
   var VAR = {
     className: 'variable',
@@ -53,11 +51,9 @@ function(hljs) {
     className: 'string',
     begin: /'/, end: /'/
   };
-
-  var IPADDR = '((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\b';
-  var IPADDR_wBITMASK =  IPADDR+'/(3[0-2]|[1-2][0-9]|\\d)';
   //////////////////////////////////////////////////////////////////////
   return {
+    name: 'Microtik RouterOS script',
     aliases: ['routeros', 'mikrotik'],
     case_insensitive: true,
     lexemes: /:?[\w-]+/,
@@ -155,4 +151,6 @@ function(hljs) {
       },//*/
     ]
   };
-};
+}
+
+module.exports = routeros;

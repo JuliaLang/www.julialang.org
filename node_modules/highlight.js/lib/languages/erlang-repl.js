@@ -1,5 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: Erlang REPL
+Author: Sergey Ignatov <sergey@ignatov.spb.su>
+Website: https://www.erlang.org
+Category: functional
+*/
+
+function erlangRepl(hljs) {
   return {
+    name: 'Erlang REPL',
     keywords: {
       built_in:
         'spawn spawn_link self',
@@ -42,4 +50,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = erlangRepl;

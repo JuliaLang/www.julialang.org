@@ -1,5 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: Excel formulae
+Author: Victor Zhou <OiCMudkips@users.noreply.github.com>
+Description: Excel formulae
+Website: https://products.office.com/en-us/excel/
+*/
+
+function excel(hljs) {
   return {
+    name: 'Excel formulae',
     aliases: ['xlsx', 'xls'],
     case_insensitive: true,
     lexemes: /[a-zA-Z][\w\.]*/,
@@ -44,4 +52,6 @@ module.exports = function(hljs) {
       })
     ]
   };
-};
+}
+
+module.exports = excel;

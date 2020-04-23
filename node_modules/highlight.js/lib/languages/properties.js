@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: .properties
+Contributors: Valentin Aitken <valentin@nalisbg.com>, Egor Rogov <e.rogov@postgrespro.ru>
+Website: https://en.wikipedia.org/wiki/.properties
+Category: common, config
+*/
+
+function properties(hljs) {
 
   // whitespaces: space, tab, formfeed
   var WS0 = '[ \\t\\f]*';
@@ -24,6 +31,7 @@ module.exports = function(hljs) {
         };
 
   return {
+    name: '.properties',
     case_insensitive: true,
     illegal: /\S/,
     contains: [
@@ -66,4 +74,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = properties;

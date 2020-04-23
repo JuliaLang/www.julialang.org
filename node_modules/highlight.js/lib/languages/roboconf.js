@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: Roboconf
+Author: Vincent Zurczak <vzurczak@linagora.com>
+Description: Syntax highlighting for Roboconf's DSL
+Website: http://roboconf.net
+Category: config
+*/
+
+function roboconf(hljs) {
   var IDENTIFIER = '[a-zA-Z-_][^\\n{]+\\{';
 
   var PROPERTY = {
@@ -21,6 +29,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'Roboconf',
     aliases: ['graph', 'instances'],
     case_insensitive: true,
     keywords: 'import',
@@ -63,4 +72,6 @@ module.exports = function(hljs) {
       hljs.HASH_COMMENT_MODE
     ]
   };
-};
+}
+
+module.exports = roboconf;

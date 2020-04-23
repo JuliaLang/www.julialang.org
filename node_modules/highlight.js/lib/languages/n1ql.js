@@ -1,5 +1,14 @@
-module.exports = function(hljs) {
+/*
+ Language: N1QL
+ Author: Andres Täht <andres.taht@gmail.com>
+ Contributors: Rene Saarsoo <nene@triin.net>
+ Description: Couchbase query language
+ Website: https://www.couchbase.com/products/n1ql
+ */
+
+function n1ql(hljs) {
   return {
+    name: 'N1QL',
     case_insensitive: true,
     contains: [
       {
@@ -65,4 +74,6 @@ module.exports = function(hljs) {
       hljs.C_BLOCK_COMMENT_MODE
     ]
   };
-};
+}
+
+module.exports = n1ql;

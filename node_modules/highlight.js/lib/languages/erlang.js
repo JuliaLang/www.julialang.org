@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: Erlang
+Description: Erlang is a general-purpose functional language, with strict evaluation, single assignment, and dynamic typing.
+Author: Nikolay Zakharov <nikolay.desh@gmail.com>, Dmitry Kovega <arhibot@gmail.com>
+Website: https://www.erlang.org
+Category: functional
+*/
+
+function erlang(hljs) {
   var BASIC_ATOM_RE = '[a-z\'][a-zA-Z0-9_\']*';
   var FUNCTION_NAME_RE = '(' + BASIC_ATOM_RE + ':' + BASIC_ATOM_RE + '|' + BASIC_ATOM_RE + ')';
   var ERLANG_RESERVED = {
@@ -102,6 +110,7 @@ module.exports = function(hljs) {
     contains: BASIC_MODES
   };
   return {
+    name: 'Erlang',
     aliases: ['erl'],
     keywords: ERLANG_RESERVED,
     illegal: '(</|\\*=|\\+=|-=|/\\*|\\*/|\\(\\*|\\*\\))',
@@ -142,4 +151,6 @@ module.exports = function(hljs) {
       {begin: /\.$/} // relevance booster
     ]
   };
-};
+}
+
+module.exports = erlang;

@@ -1,4 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: YAML
+Description: Yet Another Markdown Language
+Author: Stefan Wienert <stwienert@gmail.com>
+Contributors: Carl Baxter <carl@cbax.tech>
+Requires: ruby.js
+Website: https://yaml.org
+Category: common, config
+*/
+function yaml(hljs) {
   var LITERALS = 'true false yes no null';
 
   // Define keys as starting with a word character
@@ -35,9 +44,19 @@ module.exports = function(hljs) {
     ]
   };
 
+  var DATE_RE = '[0-9]{4}(-[0-9][0-9]){0,2}';
+  var TIME_RE = '([Tt \\t][0-9][0-9]?(:[0-9][0-9]){2})?';
+  var FRACTION_RE = '(\\.[0-9]*)?';
+  var ZONE_RE = '([ \\t])*(Z|[-+][0-9][0-9]?(:[0-9][0-9])?)?';
+  var TIMESTAMP = {
+    className: 'number',
+    begin: '\\b' + DATE_RE + TIME_RE + FRACTION_RE + ZONE_RE + '\\b',
+  };
+
   return {
+    name: 'YAML',
     case_insensitive: true,
-    aliases: ['yml', 'YAML', 'yaml'],
+    aliases: ['yml', 'YAML'],
     contains: [
       KEY,
       {
@@ -87,6 +106,7 @@ module.exports = function(hljs) {
         beginKeywords: LITERALS,
         keywords: {literal: LITERALS}
       },
+      TIMESTAMP,
       // numbers are any valid C-style number that
       // sit isolated from other words
       {
@@ -96,4 +116,6 @@ module.exports = function(hljs) {
       STRING
     ]
   };
-};
+}
+
+module.exports = yaml;

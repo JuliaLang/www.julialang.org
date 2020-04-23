@@ -1,4 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: Go
+Author: Stephan Kountso aka StepLg <steplg@gmail.com>
+Contributors: Evgeny Stepanischev <imbolk@gmail.com>
+Description: Google go language (golang). For info about language
+Website: http://golang.org/
+Category: common, system
+*/
+
+function go(hljs) {
   var GO_KEYWORDS = {
     keyword:
       'break default func interface select case map struct chan else goto package switch ' +
@@ -11,6 +20,7 @@ module.exports = function(hljs) {
       'append cap close complex copy imag len make new panic print println real recover delete'
   };
   return {
+    name: 'Go',
     aliases: ['golang'],
     keywords: GO_KEYWORDS,
     illegal: '</',
@@ -50,4 +60,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = go;

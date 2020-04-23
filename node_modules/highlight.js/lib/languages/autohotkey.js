@@ -1,11 +1,19 @@
-module.exports = function(hljs) {
+/*
+Language: AutoHotkey
+Author: Seongwon Lee <dlimpid@gmail.com>
+Description: AutoHotkey language definition
+Category: scripting
+*/
+
+function autohotkey(hljs) {
   var BACKTICK_ESCAPE = {
     begin: '`[\\s\\S]'
   };
 
   return {
+    name: 'AutoHotkey',
     case_insensitive: true,
-    aliases: [ 'ahk' ],
+    aliases: ['ahk'],
     keywords: {
       keyword: 'Break Continue Critical Exit ExitApp Gosub Goto New OnExit Pause return SetBatchLines SetTimer Suspend Thread Throw Until ahk_id ahk_class ahk_pid ahk_exe ahk_group',
       literal: 'true false NOT AND OR',
@@ -40,7 +48,7 @@ module.exports = function(hljs) {
         ]
       },
       {
-        className: 'meta', 
+        className: 'meta',
         begin: '^\\s*#\\w+', end:'$',
         relevance: 0
       },
@@ -54,4 +62,6 @@ module.exports = function(hljs) {
       }
     ]
   }
-};
+}
+
+module.exports = autohotkey;

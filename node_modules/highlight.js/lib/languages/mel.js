@@ -1,5 +1,14 @@
-module.exports = function(hljs) {
+/*
+Language: MEL
+Description: Maya Embedded Language
+Author: Shuen-Huei Guan <drake.guan@gmail.com>
+Website: http://www.autodesk.com/products/autodesk-maya/overview
+Category: graphics
+*/
+
+function mel(hljs) {
   return {
+    name: 'MEL',
     keywords:
       'int float string vector matrix if else switch case default while do for in break ' +
       'continue global proc return about abs addAttr addAttributeEditorNodeHelp addDynamic ' +
@@ -221,4 +230,6 @@ module.exports = function(hljs) {
       hljs.C_BLOCK_COMMENT_MODE
     ]
   };
-};
+}
+
+module.exports = mel;

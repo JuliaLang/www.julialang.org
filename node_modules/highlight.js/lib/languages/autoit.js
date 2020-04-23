@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: AutoIt
+Author: Manh Tuan <junookyo@gmail.com>
+Description: AutoIt language definition
+Category: scripting
+*/
+
+function autoit(hljs) {
     var KEYWORDS = 'ByRef Case Const ContinueCase ContinueLoop ' +
         'Default Dim Do Else ElseIf EndFunc EndIf EndSelect ' +
         'EndSwitch EndWith Enum Exit ExitLoop For Func ' +
@@ -115,6 +122,7 @@ module.exports = function(hljs) {
         };
 
     return {
+        name: 'AutoIt',
         case_insensitive: true,
         illegal: /\/\*/,
         keywords: {
@@ -132,4 +140,6 @@ module.exports = function(hljs) {
             FUNCTION
         ]
     }
-};
+}
+
+module.exports = autoit;

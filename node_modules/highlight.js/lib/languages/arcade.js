@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+ Language: ArcGIS Arcade
+ Category: scripting
+ Author: John Foster <jfoster@esri.com>
+ Website: https://developers.arcgis.com/arcade/
+ Description: ArcGIS Arcade is an expression language used in many Esri ArcGIS products such as Pro, Online, Server, Runtime, JavaScript, and Python
+*/
+function arcade(hljs) {
   var IDENT_RE = '[A-Za-z_][0-9A-Za-z_]*';
   var KEYWORDS = {
     keyword:
@@ -18,7 +25,6 @@ module.exports = function(hljs) {
       'TrackGeometryWindow TrackIndex TrackStartTime TrackWindow TypeOf Union UrlEncode Variance ' +
       'Weekday When Within Year '
   };
-  var EXPRESSIONS;
   var SYMBOL = {
     className: 'symbol',
     begin: '\\$[datastore|feature|layer|map|measure|sourcefeature|sourcelayer|targetfeature|targetlayer|value|view]+'
@@ -59,6 +65,7 @@ module.exports = function(hljs) {
   ]);
 
   return {
+    name: 'ArcGIS Arcade',
     aliases: ['arcade'],
     keywords: KEYWORDS,
     contains: [
@@ -134,4 +141,6 @@ module.exports = function(hljs) {
     ],
     illegal: /#(?!!)/
   };
-};
+}
+
+module.exports = arcade;

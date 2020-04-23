@@ -1,4 +1,14 @@
-module.exports = function(hljs) {
+/*
+Language: QML
+Requires: javascript.js, xml.js
+Author: John Foster <jfoster@esri.com>
+Description: Syntax highlighting for the Qt Quick QML scripting language, based mostly off
+             the JavaScript parser.
+Website: https://doc.qt.io/qt-5/qmlapplications.html
+Category: scripting
+*/
+
+function qml(hljs) {
   var KEYWORDS = {
       keyword:
         'in of on if for while finally var new function do return void else break catch ' +
@@ -16,7 +26,7 @@ module.exports = function(hljs) {
         'module console window document Symbol Set Map WeakSet WeakMap Proxy Reflect ' +
         'Behavior bool color coordinate date double enumeration font geocircle georectangle ' +
         'geoshape int list matrix4x4 parent point quaternion real rect ' +
-        'size string url variant vector2d vector3d vector4d' +
+        'size string url variant vector2d vector3d vector4d ' +
         'Promise'
     };
 
@@ -89,6 +99,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'QML',
     aliases: ['qt'],
     case_insensitive: false,
     keywords: KEYWORDS,
@@ -165,4 +176,6 @@ module.exports = function(hljs) {
     ],
     illegal: /#/
   };
-};
+}
+
+module.exports = qml;

@@ -1,10 +1,17 @@
-module.exports = function(hljs) {
-  var IDENT_RE = '[a-zA-Z_$][a-zA-Z0-9_$]*';
-  var IDENT_FUNC_RETURN_TYPE_RE = '([*]|[a-zA-Z_$][a-zA-Z0-9_$]*)';
+/*
+Language: Haxe
+Description: Haxe is an open source toolkit based on a modern, high level, strictly typed programming language.
+Author: Christopher Kaster <ikasoki@gmail.com> (Based on the actionscript.js language file by Alexander Myadzel)
+Contributors: Kenton Hamaluik <kentonh@gmail.com>
+Website: https://haxe.org
+*/
+
+function haxe(hljs) {
 
   var HAXE_BASIC_TYPES = 'Int Float String Bool Dynamic Void Array ';
 
   return {
+    name: 'Haxe',
     aliases: ['hx'],
     keywords: {
       keyword: 'break case cast catch continue default do dynamic else enum extern ' +
@@ -108,4 +115,6 @@ module.exports = function(hljs) {
     ],
     illegal: /<\//
   };
-};
+}
+
+module.exports = haxe;

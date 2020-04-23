@@ -1,5 +1,14 @@
-module.exports = function(hljs) {
+/*
+Language: Intel x86 Assembly
+Author: innocenat <innocenat@gmail.com>
+Description: x86 assembly language using Intel's mnemonic and NASM syntax
+Website: https://en.wikipedia.org/wiki/X86_assembly_language
+Category: assembler
+*/
+
+function x86asm(hljs) {
   return {
+    name: 'Intel x86 Assembly',
     case_insensitive: true,
     lexemes: '[.%]?' + hljs.IDENT_RE,
     keywords: {
@@ -132,4 +141,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = x86asm;

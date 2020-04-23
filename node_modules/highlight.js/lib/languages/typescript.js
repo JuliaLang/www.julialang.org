@@ -1,4 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: TypeScript
+Author: Panu Horsmalahti <panu.horsmalahti@iki.fi>
+Contributors: Ike Ku <dempfi@yahoo.com>
+Description: TypeScript is a strict superset of JavaScript
+Website: https://www.typescriptlang.org
+Category: common, scripting
+*/
+
+function typescript(hljs) {
   var JS_IDENT_RE = '[A-Za-z$_][0-9A-Za-z$_]*';
   var KEYWORDS = {
     keyword:
@@ -108,6 +117,7 @@ module.exports = function(hljs) {
 
 
   return {
+    name: 'TypeScript',
     aliases: ['ts'],
     keywords: KEYWORDS,
     contains: [
@@ -202,4 +212,6 @@ module.exports = function(hljs) {
       ARGS
     ]
   };
-};
+}
+
+module.exports = typescript;

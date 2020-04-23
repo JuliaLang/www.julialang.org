@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: Monkey
+Description: Monkey2 is an easy to use, cross platform, games oriented programming language from Blitz Research.
+Author: Arthur Bikmullin <devolonter@gmail.com>
+Website: https://blitzresearch.itch.io/monkey2
+*/
+
+function monkey(hljs) {
   var NUMBER = {
     className: 'number', relevance: 0,
     variants: [
@@ -10,6 +17,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'Monkey',
     case_insensitive: true,
     keywords: {
       keyword: 'public private property continue exit extern new try catch ' +
@@ -71,4 +79,6 @@ module.exports = function(hljs) {
       NUMBER
     ]
   }
-};
+}
+
+module.exports = monkey;

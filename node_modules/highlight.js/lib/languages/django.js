@@ -1,4 +1,14 @@
-module.exports = function(hljs) {
+/*
+Language: Django
+Description: Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+Requires: xml.js
+Author: Ivan Sagalaev <maniac@softwaremaniacs.org>
+Contributors: Ilya Baryshev <baryshev@gmail.com>
+Website: https://www.djangoproject.com
+Category: template
+*/
+
+function django(hljs) {
   var FILTER = {
     begin: /\|[A-Za-z]+:?/,
     keywords: {
@@ -19,6 +29,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'Django',
     aliases: ['jinja'],
     case_insensitive: true,
     subLanguage: 'xml',
@@ -60,4 +71,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = django;

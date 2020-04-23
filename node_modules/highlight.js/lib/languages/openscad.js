@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: OpenSCAD
+Author: Dan Panzarella <alsoelp@gmail.com>
+Description: OpenSCAD is a language for the 3D CAD modeling software of the same name.
+Website: https://www.openscad.org
+Category: scientific
+*/
+
+function openscad(hljs) {
 	var SPECIAL_VARS = {
 		className: 'keyword',
 		begin: '\\$(f[asn]|t|vp[rtd]|children)'
@@ -36,6 +44,7 @@ module.exports = function(hljs) {
 	};
 
 	return {
+		name: 'OpenSCAD',
 		aliases: ['scad'],
 		keywords: {
 			keyword: 'function module include use for intersection_for if else \\%',
@@ -53,4 +62,6 @@ module.exports = function(hljs) {
 			FUNCTIONS
 		]
 	}
-};
+}
+
+module.exports = openscad;

@@ -1,4 +1,10 @@
-module.exports = function(hljs) {
+/*
+Language: Augmented Backus-Naur Form
+Author: Alex McKibben <alex@nullscope.net>
+Website: https://tools.ietf.org/html/rfc5234
+*/
+
+function abnf(hljs) {
     var regexes = {
         ruleDeclaration: "^[a-zA-Z][a-zA-Z0-9-]*",
         unexpectedChars: "[!@#$^&',?+~`|:]"
@@ -51,6 +57,7 @@ module.exports = function(hljs) {
     };
 
     return {
+      name: 'Augmented Backus-Naur Form',
       illegal: regexes.unexpectedChars,
       keywords: keywords.join(" "),
       contains: [
@@ -64,4 +71,6 @@ module.exports = function(hljs) {
           hljs.NUMBER_MODE
       ]
     };
-};
+}
+
+module.exports = abnf;

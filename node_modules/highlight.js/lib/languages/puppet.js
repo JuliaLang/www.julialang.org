@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: Puppet
+Author: Jose Molina Colmenero <gaudy41@gmail.com>
+Website: https://puppet.com/docs
+Category: config
+*/
+
+function puppet(hljs) {
 
   var PUPPET_KEYWORDS = {
     keyword:
@@ -55,6 +62,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'Puppet',
     aliases: ['pp'],
     contains: [
       COMMENT,
@@ -111,4 +119,6 @@ module.exports = function(hljs) {
       }
     ]
   }
-};
+}
+
+module.exports = puppet;

@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: Verilog
+Author: Jon Evans <jon@craftyjon.com>
+Contributors: Boone Severson <boone.severson@gmail.com>
+Description: Verilog is a hardware description language used in electronic design automation to describe digital and mixed-signal systems. This highlighter supports Verilog and SystemVerilog through IEEE 1800-2012.
+Website: http://www.verilog.com
+*/
+
+function verilog(hljs) {
   var SV_KEYWORDS = {
     keyword:
       'accept_on alias always always_comb always_ff always_latch and assert assign ' +
@@ -59,6 +67,7 @@ module.exports = function(hljs) {
       '$sformatf $fgetc $ungetc $fgets $sscanf $rewind $ftell $ferror'
     };
   return {
+    name: 'Verilog',
     aliases: ['v', 'sv', 'svh'],
     case_insensitive: false,
     keywords: SV_KEYWORDS, lexemes: /[\w\$]+/,
@@ -95,4 +104,6 @@ module.exports = function(hljs) {
       }
     ]
   }; // return
-};
+}
+
+module.exports = verilog;

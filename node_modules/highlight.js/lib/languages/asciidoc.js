@@ -1,5 +1,15 @@
-module.exports = function(hljs) {
+/*
+Language: AsciiDoc
+Requires: xml.js
+Author: Dan Allen <dan.j.allen@gmail.com>
+Website: http://asciidoc.org
+Description: A semantic, text-based document format that can be exported to HTML, DocBook and other backends.
+Category: markup
+*/
+
+function asciidoc(hljs) {
   return {
+    name: 'AsciiDoc',
     aliases: ['adoc'],
     contains: [
       // block comment
@@ -184,4 +194,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = asciidoc;

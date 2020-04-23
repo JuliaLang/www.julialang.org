@@ -1,5 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: Shell Session
+Requires: bash.js
+Author: TSUYUSATO Kitsune <make.just.on@gmail.com>
+Category: common
+*/
+
+function shell(hljs) {
   return {
+    name: 'Shell Session',
     aliases: ['console'],
     contains: [
       {
@@ -11,4 +19,6 @@ module.exports = function(hljs) {
       }
     ]
   }
-};
+}
+
+module.exports = shell;

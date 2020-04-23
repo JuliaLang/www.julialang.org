@@ -1,4 +1,10 @@
-module.exports = function(hljs) {
+/*
+Language: Tagger Script
+Author: Philipp Wolfer <ph.wolfer@gmail.com>
+Description: Syntax Highlighting for the Tagger Script as used by MusicBrainz Picard.
+Website: https://picard.musicbrainz.org
+ */
+function taggerscript(hljs) {
 
   var COMMENT = {
     className: 'comment',
@@ -33,6 +39,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'Tagger Script',
     contains: [
       COMMENT,
       FUNCTION,
@@ -40,4 +47,6 @@ module.exports = function(hljs) {
       ESCAPE_SEQUENCE
     ]
   };
-};
+}
+
+module.exports = taggerscript;

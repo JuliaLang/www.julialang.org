@@ -1,4 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: Twig
+Requires: xml.js
+Author: Luke Holder <lukemh@gmail.com>
+Description: Twig is a templating language for PHP
+Website: https://twig.symfony.com
+Category: template
+*/
+
+function twig(hljs) {
   var PARAMS = {
     className: 'params',
     begin: '\\(', end: '\\)'
@@ -34,6 +43,7 @@ module.exports = function(hljs) {
   TAGS = TAGS + ' ' + TAGS.split(' ').map(function(t){return 'end' + t}).join(' ');
 
   return {
+    name: 'Twig',
     aliases: ['craftcms'],
     case_insensitive: true,
     subLanguage: 'xml',
@@ -62,4 +72,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = twig;

@@ -1,4 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: MoonScript
+Author: Billy Quith <chinbillybilbo@gmail.com>
+Description: MoonScript is a programming language that transcompiles to Lua.
+Origin: coffeescript.js
+Website: http://moonscript.org/
+Category: scripting
+*/
+
+function moonscript(hljs) {
   var KEYWORDS = {
     keyword:
       // Moonscript keywords
@@ -62,6 +71,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'MoonScript',
     aliases: ['moon'],
     keywords: KEYWORDS,
     illegal: /\/\*/,
@@ -108,4 +118,6 @@ module.exports = function(hljs) {
       }
     ])
   };
-};
+}
+
+module.exports = moonscript;

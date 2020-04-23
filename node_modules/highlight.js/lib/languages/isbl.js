@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: ISBL
+Author: Dmitriy Tarasov <dimatar@gmail.com>
+Description: built-in language DIRECTUM
+Category: enterprise
+*/
+
+function isbl(hljs) {
   // Определение идентификаторов
   var UNDERSCORE_IDENT_RE = "[A-Za-zА-Яа-яёЁ_!][A-Za-zА-Яа-яёЁ_0-9]*";
 
@@ -3154,6 +3161,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'ISBL',
     aliases: ["isbl"],
     case_insensitive: true,
     lexemes: UNDERSCORE_IDENT_RE,
@@ -3169,4 +3177,6 @@ module.exports = function(hljs) {
       COMMENTS,
     ],
   };
-};
+}
+
+module.exports = isbl;

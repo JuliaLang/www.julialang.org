@@ -1,4 +1,10 @@
-module.exports = function(hljs) {
+/*
+Language: HTML, XML
+Website: https://www.w3.org/XML/
+Category: common
+*/
+
+function xml(hljs) {
   var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
   var XML_ENTITIES = {
     className: 'symbol',
@@ -45,6 +51,7 @@ module.exports = function(hljs) {
     ]
   };
   return {
+    name: 'HTML, XML',
     aliases: ['html', 'xhtml', 'rss', 'atom', 'xjb', 'xsd', 'xsl', 'plist', 'wsf', 'svg'],
     case_insensitive: true,
     contains: [
@@ -91,19 +98,6 @@ module.exports = function(hljs) {
         begin: /<\?xml/, end: /\?>/, relevance: 10
       },
       {
-        begin: /<\?(php)?/, end: /\?>/,
-        subLanguage: 'php',
-        contains: [
-          // We don't want the php closing tag ?> to close the PHP block when
-          // inside any of the following blocks:
-          {begin: '/\\*', end: '\\*/', skip: true},
-          {begin: 'b"', end: '"', skip: true},
-          {begin: 'b\'', end: '\'', skip: true},
-          hljs.inherit(hljs.APOS_STRING_MODE, {illegal: null, className: null, contains: null, skip: true}),
-          hljs.inherit(hljs.QUOTE_STRING_MODE, {illegal: null, className: null, contains: null, skip: true})
-        ]
-      },
-      {
         className: 'tag',
         /*
         The lookahead pattern (?=...) ensures that 'begin' only matches
@@ -127,7 +121,7 @@ module.exports = function(hljs) {
         contains: [TAG_INTERNALS],
         starts: {
           end: '\<\/script\>', returnEnd: true,
-          subLanguage: ['actionscript', 'javascript', 'handlebars', 'xml']
+          subLanguage: ['javascript', 'handlebars', 'xml']
         }
       },
       {
@@ -142,4 +136,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = xml;

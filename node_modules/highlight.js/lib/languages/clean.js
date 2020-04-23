@@ -1,5 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: Clean
+Author: Camil Staps <info@camilstaps.nl>
+Category: functional
+Website: http://clean.cs.ru.nl
+*/
+
+function clean(hljs) {
   return {
+    name: 'Clean',
     aliases: ['clean','icl','dcl'],
     keywords: {
       keyword:
@@ -23,4 +31,6 @@ module.exports = function(hljs) {
       {begin: '->|<-[|:]?|#!?|>>=|\\{\\||\\|\\}|:==|=:|<>'} // relevance booster
     ]
   };
-};
+}
+
+module.exports = clean;

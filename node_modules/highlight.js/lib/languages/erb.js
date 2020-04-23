@@ -1,5 +1,16 @@
-module.exports = function(hljs) {
+/*
+Language: ERB (Embedded Ruby)
+Requires: xml.js, ruby.js
+Author: Lucas Mazza <lucastmazza@gmail.com>
+Contributors: Kassio Borges <kassioborgesm@gmail.com>
+Description: "Bridge" language defining fragments of Ruby in HTML within <% .. %>
+Website: https://ruby-doc.org/stdlib-2.6.5/libdoc/erb/rdoc/ERB.html
+Category: template
+*/
+
+function erb(hljs) {
   return {
+    name: 'ERB',
     subLanguage: 'xml',
     contains: [
       hljs.COMMENT('<%#', '%>'),
@@ -11,4 +22,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = erb;

@@ -1,8 +1,16 @@
-module.exports = function(hljs) {
+/*
+Language: BASIC
+Author: Raphaël Assénat <raph@raphnet.net>
+Description: Based on the BASIC reference from the Tandy 1000 guide
+Website: https://en.wikipedia.org/wiki/Tandy_1000
+*/
+
+function basic(hljs) {
   return {
+    name: 'BASIC',
     case_insensitive: true,
     illegal: '^\.',
-    // Support explicitely typed variables that end with $%! or #.
+    // Support explicitly typed variables that end with $%! or #.
     lexemes: '[a-zA-Z][a-zA-Z0-9_\$\%\!\#]*',
     keywords: {
         keyword:
@@ -47,4 +55,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = basic;

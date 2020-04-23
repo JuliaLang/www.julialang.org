@@ -1,4 +1,14 @@
-module.exports = function(hljs) {
+/*
+Language: LiveScript
+Author: Taneli Vatanen <taneli.vatanen@gmail.com>
+Contributors: Jen Evers-Corvina <jen@sevvie.net>
+Origin: coffeescript.js
+Description: LiveScript is a programming language that transcompiles to JavaScript. For info about language see http://livescript.net/
+Website: https://livescript.net
+Category: scripting
+*/
+
+function livescript(hljs) {
   var KEYWORDS = {
     keyword:
       // JS keywords
@@ -105,6 +115,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'LiveScript',
     aliases: ['ls'],
     keywords: KEYWORDS,
     illegal: /\/\*/,
@@ -150,4 +161,6 @@ module.exports = function(hljs) {
       }
     ])
   };
-};
+}
+
+module.exports = livescript;

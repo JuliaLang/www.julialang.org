@@ -1,6 +1,14 @@
-module.exports = function(hljs) {
+/*
+ Language: SQL
+ Contributors: Nikolay Lisienko <info@neor.ru>, Heiko August <post@auge8472.de>, Travis Odom <travis.a.odom@gmail.com>, Vadimtro <vadimtro@yahoo.com>, Benjamin Auder <benjamin.auder@gmail.com>
+ Website: https://en.wikipedia.org/wiki/SQL
+ Category: common
+ */
+
+function sql(hljs) {
   var COMMENT_MODE = hljs.COMMENT('--', '$');
   return {
+    name: 'SQL',
     case_insensitive: true,
     illegal: /[<>{}*]/,
     contains: [
@@ -157,4 +165,6 @@ module.exports = function(hljs) {
       hljs.HASH_COMMENT_MODE
     ]
   };
-};
+}
+
+module.exports = sql;

@@ -1,11 +1,38 @@
-module.exports = function(hljs) {
-  var NUMBER = {className: 'number', begin: '[\\$%]\\d+'};
+/*
+Language: Apache config
+Author: Ruslan Keba <rukeba@gmail.com>
+Contributors: Ivan Sagalaev <maniac@softwaremaniacs.org>
+Website: https://httpd.apache.org
+Description: language definition for Apache configuration files (httpd.conf & .htaccess)
+Category: common, config
+*/
+
+function apache(hljs) {
+  var NUMBER_REF = {className: 'number', begin: '[\\$%]\\d+'};
+  var NUMBER = {className: 'number', begin: '\\d+'};
+  var IP_ADDRESS = {
+    className: "number",
+    begin: '\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}(:\\d{1,5})?'
+  };
+  var PORT_NUMBER = {
+    className: "number",
+    begin: ":\\d{1,5}"
+  };
   return {
+    name: 'Apache config',
     aliases: ['apacheconf'],
     case_insensitive: true,
     contains: [
       hljs.HASH_COMMENT_MODE,
-      {className: 'section', begin: '</?', end: '>'},
+      {className: 'section', begin: '</?', end: '>',
+      contains: [
+        IP_ADDRESS,
+        PORT_NUMBER,
+        // low relevance prevents us from claming XML/HTML where this rule would
+        // match strings inside of XML tags
+        hljs.inherit(hljs.QUOTE_STRING_MODE, { relevance:0 })
+      ]
+    },
       {
         className: 'attribute',
         begin: /\w+/,
@@ -22,7 +49,7 @@ module.exports = function(hljs) {
           end: /$/,
           relevance: 0,
           keywords: {
-            literal: 'on off all'
+            literal: 'on off all deny allow'
           },
           contains: [
             {
@@ -32,8 +59,9 @@ module.exports = function(hljs) {
             {
               className: 'variable',
               begin: '[\\$%]\\{', end: '\\}',
-              contains: ['self', NUMBER]
+              contains: ['self', NUMBER_REF]
             },
+            IP_ADDRESS,
             NUMBER,
             hljs.QUOTE_STRING_MODE
           ]
@@ -42,4 +70,6 @@ module.exports = function(hljs) {
     ],
     illegal: /\S/
   };
-};
+}
+
+module.exports = apache;

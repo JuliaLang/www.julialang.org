@@ -1,4 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: SQF
+Author: Søren Enevoldsen <senevoldsen90@gmail.com>
+Contributors: Marvin Saignat <contact@zgmrvn.com>, Dedmen Miller <dedmen@dedmen.de>
+Description: Scripting language for the Arma game series
+Website: https://community.bistudio.com/wiki/SQF_syntax
+Category: scripting
+*/
+
+function sqf(hljs) {
   // In SQF, a variable start with _
   var VARIABLE = {
     className: 'variable',
@@ -55,6 +64,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'SQF',
     aliases: ['sqf'],
     case_insensitive: true,
     keywords: {
@@ -423,4 +433,6 @@ module.exports = function(hljs) {
     ],
     illegal: /#|^\$ /
   };
-};
+}
+
+module.exports = sqf;

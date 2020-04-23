@@ -1,4 +1,10 @@
-module.exports = function(hljs) {
+/*
+Language: SubUnit
+Author: Sergey Bronnikov <sergeyb@bronevichok.ru>
+Website: https://pypi.org/project/python-subunit/
+*/
+
+function subunit(hljs) {
   var DETAILS = {
     className: 'string',
     begin: '\\[\n(multipart)?', end: '\\]\n'
@@ -22,6 +28,7 @@ module.exports = function(hljs) {
     ],
   };
   return {
+    name: 'SubUnit',
     case_insensitive: true,
     contains: [
       DETAILS,
@@ -30,4 +37,6 @@ module.exports = function(hljs) {
       KEYWORDS
     ]
   };
-};
+}
+
+module.exports = subunit;

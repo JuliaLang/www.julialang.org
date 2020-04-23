@@ -1,4 +1,10 @@
-module.exports = function(hljs) {
+/*
+Language: CSS
+Category: common, css
+Website: https://developer.mozilla.org/en-US/docs/Web/CSS
+*/
+
+function css(hljs) {
   var FUNCTION_LIKE = {
     begin: /[\w-]+\(/, returnBegin: true,
     contains: [
@@ -15,7 +21,7 @@ module.exports = function(hljs) {
         ]
       }
     ]
-  }
+  };
   var ATTRIBUTE = {
     className: 'attribute',
     begin: /\S/, end: ':', excludeEnd: true,
@@ -35,11 +41,10 @@ module.exports = function(hljs) {
         }
       ]
     }
-  }
-  var AT_IDENTIFIER = '@[a-z-]+' // @font-face
-  var AT_MODIFIERS = "and or not only"
-  var MEDIA_TYPES = "all print screen speech"
-  var AT_PROPERTY_RE = /@\-?\w[\w]*(\-\w+)*/ // @-webkit-keyframes
+  };
+  var AT_IDENTIFIER = '@[a-z-]+'; // @font-face
+  var AT_MODIFIERS = "and or not only";
+  var AT_PROPERTY_RE = /@\-?\w[\w]*(\-\w+)*/; // @-webkit-keyframes
   var IDENT_RE = '[a-zA-Z-][a-zA-Z0-9_-]*';
   var RULE = {
     begin: /(?:[A-Z\_\.\-]+|--[a-zA-Z0-9_-]+)\s*:/, returnBegin: true, end: ';', endsWithParent: true,
@@ -49,6 +54,7 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'CSS',
     case_insensitive: true,
     illegal: /[=\/|'\$]/,
     contains: [
@@ -122,4 +128,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = css;

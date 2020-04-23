@@ -1,10 +1,17 @@
-module.exports = function(hljs){
+/*
+Language: Brainfuck
+Author: Evgeny Stepanischev <imbolk@gmail.com>
+Website: https://esolangs.org/wiki/Brainfuck
+*/
+
+function brainfuck(hljs){
   var LITERAL = {
     className: 'literal',
     begin: '[\\+\\-]',
     relevance: 0
   };
   return {
+    name: 'Brainfuck',
     aliases: ['bf'],
     contains: [
       hljs.COMMENT(
@@ -33,4 +40,6 @@ module.exports = function(hljs){
       LITERAL
     ]
   };
-};
+}
+
+module.exports = brainfuck;

@@ -1,4 +1,11 @@
-module.exports = function(hljs) {
+/*
+Language: Lasso
+Author: Eric Knibbe <eric@lassosoft.com>
+Description: Lasso is a language and server platform for database-driven web applications. This definition handles Lasso 9 syntax and LassoScript for Lasso 8.6 and earlier.
+Website: http://www.lassosoft.com/What-Is-Lasso
+*/
+
+function lasso(hljs) {
   var LASSO_IDENT_RE = '[a-zA-Z_][\\w.]*';
   var LASSO_ANGLE_RE = '<\\?(lasso(script)?|=)';
   var LASSO_CLOSE_RE = '\\]|\\?>';
@@ -106,6 +113,7 @@ module.exports = function(hljs) {
     }
   ];
   return {
+    name: 'Lasso',
     aliases: ['ls', 'lassoscript'],
     case_insensitive: true,
     lexemes: LASSO_IDENT_RE + '|&[lg]t;',
@@ -159,4 +167,6 @@ module.exports = function(hljs) {
       }
     ].concat(LASSO_CODE)
   };
-};
+}
+
+module.exports = lasso;

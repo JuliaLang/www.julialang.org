@@ -1,5 +1,14 @@
-module.exports = function(hljs) {
+/*
+Language: Protocol Buffers
+Author: Dan Tao <daniel.tao@gmail.com>
+Description: Protocol buffer message definition format
+Website: https://developers.google.com/protocol-buffers/docs/proto3
+Category: protocols
+*/
+
+function protobuf(hljs) {
   return {
+    name: 'Protocol Buffers',
     keywords: {
       keyword: 'package import option optional required repeated group oneof',
       built_in: 'double float int32 int64 uint32 uint64 sint32 sint64 ' +
@@ -23,7 +32,7 @@ module.exports = function(hljs) {
       {
         className: 'function',
         beginKeywords: 'rpc',
-        end: /;/, excludeEnd: true,
+        end: /[{;]/, excludeEnd: true,
         keywords: 'rpc returns'
       },
       {
@@ -32,4 +41,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = protobuf;

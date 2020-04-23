@@ -1,5 +1,15 @@
-module.exports = function(hljs) {
+/*
+Language: Clojure REPL
+Description: Clojure REPL sessions
+Author: Ivan Sagalaev <maniac@softwaremaniacs.org>
+Requires: clojure.js
+Website: https://clojure.org
+Category: lisp
+*/
+
+function clojureRepl(hljs) {
   return {
+    name: 'Clojure REPL',
     contains: [
       {
         className: 'meta',
@@ -11,4 +21,6 @@ module.exports = function(hljs) {
       }
     ]
   }
-};
+}
+
+module.exports = clojureRepl;

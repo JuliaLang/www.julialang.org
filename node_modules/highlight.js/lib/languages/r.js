@@ -1,7 +1,16 @@
-module.exports = function(hljs) {
+/*
+Language: R
+Description: R is a free software environment for statistical computing and graphics.
+Author: Joe Cheng <joe@rstudio.org>
+Website: https://www.r-project.org
+Category: scientific
+*/
+
+function r(hljs) {
   var IDENT_RE = '([a-zA-Z]|\\.[a-zA-Z.])[a-zA-Z0-9._]*';
 
   return {
+    name: 'R',
     contains: [
       hljs.HASH_COMMENT_MODE,
       {
@@ -66,4 +75,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = r;

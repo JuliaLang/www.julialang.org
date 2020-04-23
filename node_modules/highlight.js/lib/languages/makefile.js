@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: Makefile
+Author: Ivan Sagalaev <maniac@softwaremaniacs.org>
+Contributors: Joël Porquet <joel@porquet.org>
+Website: https://www.gnu.org/software/make/manual/html_node/Introduction.html
+Category: common
+*/
+
+function makefile(hljs) {
   /* Variables: simple (eg $(var)) and special (eg $@) */
   var VARIABLE = {
     className: 'variable',
@@ -54,6 +62,7 @@ module.exports = function(hljs) {
     contains: [VARIABLE,]
   };
   return {
+    name: 'Makefile',
     aliases: ['mk', 'mak'],
     keywords:
       'define endef undefine ifdef ifndef ifeq ifneq else endif ' +
@@ -69,4 +78,6 @@ module.exports = function(hljs) {
       TARGET,
     ]
   };
-};
+}
+
+module.exports = makefile;

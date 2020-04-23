@@ -1,9 +1,17 @@
-module.exports = function(hljs) {
+/*
+ Language: Apache Access Log
+ Author: Oleg Efimov <efimovov@gmail.com>
+ Description: Apache/Nginx Access Logs
+ Website: https://httpd.apache.org/docs/2.4/logs.html#accesslog
+ */
+
+function accesslog(hljs) {
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
   var HTTP_VERBS = [
     "GET", "POST", "HEAD", "PUT", "DELETE", "CONNECT", "OPTIONS", "PATCH", "TRACE"
-  ]
+  ];
   return {
+    name: 'Apache Access Log',
     contains: [
       // IP
       {
@@ -61,4 +69,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = accesslog;

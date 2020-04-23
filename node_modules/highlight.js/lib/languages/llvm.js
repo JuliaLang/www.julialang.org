@@ -1,6 +1,15 @@
-module.exports = function(hljs) {
+/*
+Language: LLVM IR
+Author: Michael Rodler <contact@f0rki.at>
+Description: language used as intermediate representation in the LLVM compiler framework
+Website: https://llvm.org/docs/LangRef.html
+Category: assembler
+*/
+
+function llvm(hljs) {
   var identifier = '([-a-zA-Z$._][\\w\\-$.]*)';
   return {
+    name: 'LLVM IR',
     //lexemes: '[.%]?' + hljs.IDENT_RE,
     keywords:
       'begin end true false declare define global ' +
@@ -85,4 +94,6 @@ module.exports = function(hljs) {
       },
     ]
   };
-};
+}
+
+module.exports = llvm;

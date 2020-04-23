@@ -1,4 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: Scilab
+Author: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>
+Origin: matlab.js
+Description: Scilab is a port from Matlab
+Website: https://www.scilab.org
+Category: scientific
+*/
+
+function scilab(hljs) {
 
   var COMMON_CONTAINS = [
     hljs.C_NUMBER_MODE,
@@ -10,6 +19,7 @@ module.exports = function(hljs) {
   ];
 
   return {
+    name: 'Scilab',
     aliases: ['sci'],
     lexemes: /%?\w+/,
     keywords: {
@@ -50,4 +60,6 @@ module.exports = function(hljs) {
       hljs.COMMENT('//', '$')
     ].concat(COMMON_CONTAINS)
   };
-};
+}
+
+module.exports = scilab;

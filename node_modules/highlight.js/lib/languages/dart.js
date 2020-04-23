@@ -1,4 +1,13 @@
-module.exports = function(hljs) {
+/*
+Language: Dart
+Requires: markdown.js
+Author: Maxim Dikun <dikmax@gmail.com>
+Description: Dart a modern, object-oriented language developed by Google. For more information see https://www.dartlang.org/
+Website: https://dart.dev
+Category: scripting
+*/
+
+function dart(hljs) {
   var SUBST = {
     className: 'subst',
     variants: [{
@@ -77,13 +86,15 @@ module.exports = function(hljs) {
   };
 
   return {
+    name: 'Dart',
     keywords: KEYWORDS,
     contains: [
       STRING,
       hljs.COMMENT(
         '/\\*\\*',
         '\\*/', {
-          subLanguage: 'markdown'
+          subLanguage: 'markdown',
+          relevance:0
         }
       ),
       hljs.COMMENT(
@@ -93,6 +104,7 @@ module.exports = function(hljs) {
             subLanguage: 'markdown',
             begin: '.',
             end: '$',
+            relevance:0
           }]
         }
       ),
@@ -119,4 +131,6 @@ module.exports = function(hljs) {
       }
     ]
   }
-};
+}
+
+module.exports = dart;

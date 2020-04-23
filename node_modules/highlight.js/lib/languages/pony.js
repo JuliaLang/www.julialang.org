@@ -1,4 +1,12 @@
-module.exports = function(hljs) {
+/*
+Language: Pony
+Author: Joe Eli McIlvain <joe.eli.mac@gmail.com>
+Description: Pony is an open-source, object-oriented, actor-model,
+             capabilities-secure, high performance programming language.
+Website: https://www.ponylang.io
+*/
+
+function pony(hljs) {
   var KEYWORDS = {
     keyword:
       'actor addressof and as be break class compile_error compile_intrinsic ' +
@@ -59,6 +67,7 @@ module.exports = function(hljs) {
    */
 
   return {
+    name: 'Pony',
     keywords: KEYWORDS,
     contains: [
       TYPE_NAME,
@@ -71,4 +80,6 @@ module.exports = function(hljs) {
       hljs.C_BLOCK_COMMENT_MODE
     ]
   };
-};
+}
+
+module.exports = pony;

@@ -1,4 +1,10 @@
-module.exports = function(hljs) {
+/*
+Language: Extended Backus-Naur Form
+Author: Alex McKibben <alex@nullscope.net>
+Website: https://en.wikipedia.org/wiki/Extended_Backus–Naur_form
+*/
+
+function ebnf(hljs) {
     var commentMode = hljs.COMMENT(/\(\*/, /\*\)/);
 
     var nonTerminalMode = {
@@ -29,6 +35,7 @@ module.exports = function(hljs) {
     };
 
     return {
+        name: 'Extended Backus-Naur Form',
         illegal: /\S/,
         contains: [
             commentMode,
@@ -36,4 +43,6 @@ module.exports = function(hljs) {
             ruleBodyMode
         ]
     };
-};
+}
+
+module.exports = ebnf;

@@ -1,6 +1,16 @@
-module.exports = function(hljs) {
+/*
+Language: OCaml
+Author: Mehdi Dogguy <mehdi@dogguy.org>
+Contributors: Nicolas Braud-Santoni <nicolas.braud-santoni@ens-cachan.fr>, Mickael Delahaye <mickael.delahaye@gmail.com>
+Description: OCaml language definition.
+Website: https://ocaml.org
+Category: functional
+*/
+
+function ocaml(hljs) {
   /* missing support for heredoc-like string (OCaml 4.0.2+) */
   return {
+    name: 'OCaml',
     aliases: ['ml'],
     keywords: {
       keyword:
@@ -67,4 +77,6 @@ module.exports = function(hljs) {
       }
     ]
   }
-};
+}
+
+module.exports = ocaml;

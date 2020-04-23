@@ -1,5 +1,14 @@
-module.exports = function(hljs) {
+/*
+Language: RenderMan RSL
+Author: Konstantin Evdokimenko <qewerty@gmail.com>
+Contributors: Shuen-Huei Guan <drake.guan@gmail.com>
+Website: https://renderman.pixar.com/resources/RenderMan_20/shadingLanguage.html
+Category: graphics
+*/
+
+function rsl(hljs) {
   return {
+    name: 'RenderMan RSL',
     keywords: {
       keyword:
         'float color point normal vector matrix while for if do return else break extern continue',
@@ -32,4 +41,6 @@ module.exports = function(hljs) {
       }
     ]
   };
-};
+}
+
+module.exports = rsl;
