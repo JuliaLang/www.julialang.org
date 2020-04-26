@@ -182,17 +182,19 @@ $$y^\prime = -\delta y + \gamma x y$$
 
 and encoded in Julia like:
 
-    using DifferentialEquations
-    function lotka_volterra(du,u,p,t)
-      x, y = u
-      α, β, δ, γ = p
-      du[1] = dx = α*x - β*x*y
-      du[2] = dy = -δ*y + γ*x*y
-    end
-    u0 = [1.0,1.0]
-    tspan = (0.0,10.0)
-    p = [1.5,1.0,3.0,1.0]
-    prob = ODEProblem(lotka_volterra,u0,tspan,p)
+```julia
+using DifferentialEquations
+function lotka_volterra(du,u,p,t)
+  x, y = u
+  α, β, δ, γ = p
+  du[1] = dx = α*x - β*x*y
+  du[2] = dy = -δ*y + γ*x*y
+end
+u0 = [1.0,1.0]
+tspan = (0.0,10.0)
+p = [1.5,1.0,3.0,1.0]
+prob = ODEProblem(lotka_volterra,u0,tspan,p)
+```
 
 Then to solve the differential equations, you can simply call `solve` on the
 `prob`:
@@ -206,7 +208,7 @@ Then to solve the differential equations, you can simply call `solve` on the
 One last thing to note is that we can make our initial condition (`u0`) and time spans (`tspans`)
 to be functions of the parameters (the elements of `p`). For example, we can define the `ODEProblem`:
 
-```
+```julia
 u0_f(p,t0) = [p[2],p[4]]
 tspan_f(p) = (0.0,10*p[4])
 p = [1.5,1.0,3.0,1.0]
@@ -250,7 +252,7 @@ A = sol[1,:] # length 101 vector
 
 Let's plot `(t,A)` over the ODE's solution to see what we got:
 
-```
+```julia
 plot(sol)
 t = 0:0.1:10.0
 scatter!(t,A)
@@ -260,7 +262,7 @@ scatter!(t,A)
 
 The most basic differential equation layer is `concrete_solve`, which does the same
 thing with a slightly altered syntax. `concrete_solve` takes in the initial condition
-`u0`, the parameters `p` for the integrand, puts these in the differential equation defined 
+`u0`, the parameters `p` for the integrand, puts these in the differential equation defined
 by `prob`, and solves it with the chosen arguments (solver, tolerance, etc). For example:
 
 ```julia
