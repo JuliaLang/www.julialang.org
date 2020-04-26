@@ -3,8 +3,6 @@
 @def published = "18 January 2019"
 @def title = "DiffEqFlux.jl – A Julia Library for Neural Differential Equations"
 @def authors = """Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit"""  
-@def hascode = true
-@def hasmath = true
 
 Translations: [Traditional Chinese](/blog/2019/04/fluxdiffeq-zh_tw/]Traditional Chinese)
 
