@@ -260,7 +260,7 @@ scatter!(t,A)
 
 The most basic differential equation layer is `concrete_solve`, which does the same
 thing with a slightly altered syntax. `concrete_solve` takes in the initial condition
-`u0`, the parameters `p` for the integrand, puts these in the differential equation defined 
+`u0`, the parameters `p` for the integrand, puts these in the differential equation defined
 by `prob`, and solves it with the chosen arguments (solver, tolerance, etc). For example:
 
 ```julia
