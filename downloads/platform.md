@@ -55,7 +55,7 @@ On macOS, a `Julia-<version>.dmg` file is provided, which contains `Julia-<versi
 
 To start running Julia from the Terminal, you can do the following:
 
-Navivate to `/usr/local/bin` and remove the `julia` file. Then type the following command:
+Navigate to `/usr/local/bin` and remove the `julia` file. Then type the following command:
 
 ```
 ln -s /Applications/Julia-<version>.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
