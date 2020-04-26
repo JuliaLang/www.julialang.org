@@ -6,11 +6,7 @@
 
 <!-- NOTE: don't change what's below -->
 @def div_content = "container" <!-- instead of franklin-content -->
-@def hasmath = false <!-- by default pages don't have maths or code -->
-@def hascode = false
 @def author = ""
-@def automath = false
-@def autocode = false
 
 <!-- Templating of the Downloads -->
 @def stable_release = "1.4.1"
