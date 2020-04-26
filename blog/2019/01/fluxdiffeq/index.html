@@ -6,12 +6,12 @@ prob = ODEProblem(lotka_volterra,u0,tspan,p)
 sol = solve(prob,Tsit5(),saveat=<span class=hljs-number >0.1</span>)
 A = sol[<span class=hljs-number >1</span>,:] <span class=hljs-comment ># length 101 vector</span></code></pre> <p>Let&#39;s plot <code>&#40;t,A&#41;</code> over the ODE&#39;s solution to see what we got:</p> <pre><code class="julia hljs">plot(sol)
 t = <span class=hljs-number >0</span>:<span class=hljs-number >0.1</span>:<span class=hljs-number >10.0</span>
-scatter!(t,A)</code></pre> <p><img src="https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png" alt="Data points plot" /></p> <p>The most basic differential equation layer is <code>diffeq_rd</code>, which does the same thing with a slightly altered syntax. <code>diffeq_rd</code> takes in parameters <code>p</code> for the integrand, puts it in the differential equation defined by <code>prob</code>, and solves it with the chosen arguments &#40;solver, tolerance, etc&#41;. For example:</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Flux, DiffEqFlux
-diffeq_rd(p,prob,Tsit5(),saveat=<span class=hljs-number >0.1</span>)</code></pre> <p>The nice thing about <code>diffeq_rd</code> is that it takes care of the type handling necessary to make it compatible with the neural network framework &#40;here Flux&#41;. To show this, let&#39;s define a neural network with the function as our single layer, and then a loss function that is the squared distance of the output values from <code>1</code>. In Flux, this looks like:</p> <pre><code class="julia hljs">p = param([<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>]) <span class=hljs-comment ># Initial Parameter Vector</span>
-params = Flux.Params([p])
+scatter!(t,A)</code></pre> <p><img src="https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png" alt="Data points plot" /></p> <p>The most basic differential equation layer is <code>concrete_solve</code>, which does the same thing with a slightly altered syntax. <code>concrete_solve</code> takes in the initial condition <code>u0</code>, the parameters <code>p</code> for the integrand, puts these in the differential equation defined by <code>prob</code>, and solves it with the chosen arguments &#40;solver, tolerance, etc&#41;. For example:</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Flux, DiffEqFlux
+concrete_solve(prob,Tsit5(),u0,p,saveat=<span class=hljs-number >0.1</span>)</code></pre> <p>The nice thing about <code>concrete_solve</code> is that it takes care of the type handling necessary to make it compatible with the neural network framework &#40;here Flux&#41;. To show this, let&#39;s define a neural network with the function as our single layer, and then a loss function that is the squared distance of the output values from <code>1</code>. In Flux, this looks like:</p> <pre><code class="julia hljs">p = [<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>] <span class=hljs-comment ># Initial Parameter Vector</span>
+params = Flux.params(p)
 
 <span class=hljs-keyword >function</span> predict_rd() <span class=hljs-comment ># Our 1-layer neural network</span>
-  diffeq_rd(p,prob,Tsit5(),saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:]
+  concrete_solve(prob,Tsit5(),u0,p,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:]
 <span class=hljs-keyword >end</span>
 
 loss_rd() = sum(abs2,x-<span class=hljs-number >1</span> <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> predict_rd()) <span class=hljs-comment ># loss function</span></code></pre> <p>Now we tell Flux to train the neural network by running a 100 epoch to minimise our loss function &#40;<code>loss_rd&#40;&#41;</code>&#41; and thus obtain the optimized parameters:</p> <pre><code class="julia hljs">data = Iterators.repeated((), <span class=hljs-number >100</span>)
@@ -19,7 +19,7 @@ opt = ADAM(<span class=hljs-number >0.1</span>)
 cb = <span class=hljs-keyword >function</span> () <span class=hljs-comment >#callback function to observe training</span>
   display(loss_rd())
   <span class=hljs-comment ># using `remake` to re-create our `prob` with current parameters `p`</span>
-  display(plot(solve(remake(prob,p=Flux.data(p)),Tsit5(),saveat=<span class=hljs-number >0.1</span>),ylim=(<span class=hljs-number >0</span>,<span class=hljs-number >6</span>)))
+  display(plot(solve(remake(prob,p=p),Tsit5(),saveat=<span class=hljs-number >0.1</span>),ylim=(<span class=hljs-number >0</span>,<span class=hljs-number >6</span>)))
 <span class=hljs-keyword >end</span>
 
 <span class=hljs-comment ># Display the ODE with the initial parameter values.</span>
@@ -31,7 +31,7 @@ Flux.train!(loss_rd, params, data, opt, cb = cb)</code></pre> <p>The result of t
   softmax)</code></pre> <p>and if we had an appropriate ODE which took a parameter vector of the right size, we can stick it right in there:</p> <pre><code class="julia hljs">m = Chain(
   Dense(<span class=hljs-number >28</span>^<span class=hljs-number >2</span>, <span class=hljs-number >32</span>, relu),
   <span class=hljs-comment ># this would require an ODE of 32 parameters</span>
-  p -&gt; diffeq_rd(p,prob,Tsit5(),saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:],
+  p -&gt; concrete_solve(prob,Tsit5(),u0,p,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:],
   Dense(<span class=hljs-number >32</span>, <span class=hljs-number >10</span>),
   softmax)</code></pre> <p>or we can stick it into a convolutional neural network, where the previous layers define the initial condition for the ODE:</p> <pre><code class="julia hljs">m = Chain(
   Conv((<span class=hljs-number >2</span>,<span class=hljs-number >2</span>), <span class=hljs-number >1</span>=&gt;<span class=hljs-number >16</span>, relu),
@@ -39,7 +39,7 @@ Flux.train!(loss_rd, params, data, opt, cb = cb)</code></pre> <p>The result of t
   Conv((<span class=hljs-number >2</span>,<span class=hljs-number >2</span>), <span class=hljs-number >16</span>=&gt;<span class=hljs-number >8</span>, relu),
   x -&gt; maxpool(x, (<span class=hljs-number >2</span>,<span class=hljs-number >2</span>)),
   x -&gt; reshape(x, :, size(x, <span class=hljs-number >4</span>)),
-  x -&gt; diffeq_rd(p,prob,Tsit5(),saveat=<span class=hljs-number >0.1</span>,u0=x)[<span class=hljs-number >1</span>,:],
+  x -&gt; concrete_solve(prob,Tsit5(),x,p,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:],
   Dense(<span class=hljs-number >288</span>, <span class=hljs-number >10</span>), softmax) |&gt; gpu</code></pre> <p>As long as you can write down the forward pass, we can take any parameterised, differentiable program and optimise it. The world is your oyster.</p> <h2 id=why_is_a_full_ode_solver_suite_necessary_for_doing_this_well ><a href="#why_is_a_full_ode_solver_suite_necessary_for_doing_this_well">Why is a full ODE solver suite necessary for doing this well?</a></h2> <p>Where we have combined an existing solver suite and deep learning library, the excellent <a href="https://github.com/rtqichen/torchdiffeq">torchdiffeq</a> project takes an alternative approach, instead implementing solver methods directly in PyTorch, including an adaptive Runge Kutta 4-5 &#40;<code>dopri5</code>&#41; and an Adams-Bashforth-Moulton method &#40;<code>adams</code>&#41;. However, while their approach is very effective for certain kinds of models, not having access to a full solver suite is limiting.</p> <p>Consider the following example, the <a href="https://www.radford.edu/~thompson/vodef90web/problems/demosnodislin/Single/DemoRobertson/demorobertson.pdf">ROBER ODE</a>. The most well-tested &#40;and optimized&#41; implementation of an Adams-Bashforth-Moulton method is the <a href="https://computation.llnl.gov/projects/sundials">CVODE integrator in the C&#43;&#43; package SUNDIALS</a> &#40;a derivative of the classic LSODE&#41;. Let&#39;s use DifferentialEquations.jl to call CVODE with its Adams method and have it solve the ODE for us:</p> <pre><code class="julia hljs">rober = <span class=hljs-meta >@ode_def</span> Rober <span class=hljs-keyword >begin</span>
   dy₁ = -k₁*y₁+k₃*y₂*y₃
   dy₂ =  k₁*y₁-k₂*y₂^<span class=hljs-number >2</span>-k₃*y₂*y₃
@@ -57,10 +57,10 @@ plot(sol,xscale=:log10,tspan=(<span class=hljs-number >0.1</span>,<span class=hl
 h(p,t) = ones(eltype(p),<span class=hljs-number >2</span>)
 prob = DDEProblem(delay_lotka_volterra,[<span class=hljs-number >1.0</span>,<span class=hljs-number >1.0</span>],h,(<span class=hljs-number >0.0</span>,<span class=hljs-number >10.0</span>),constant_lags=[<span class=hljs-number >0.1</span>])
 
-p = param([<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>])
-params = Flux.Params([p])
+p = [<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>]
+params = Flux.params(p)
 <span class=hljs-keyword >function</span> predict_rd_dde()
-  diffeq_rd(p,prob,MethodOfSteps(Tsit5()),saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:]
+  concrete_solve(prob,MethodOfSteps(Tsit5()),u0,p,sensealg=TrackerAdjoint(),saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:]
 <span class=hljs-keyword >end</span>
 loss_rd_dde() = sum(abs2,x-<span class=hljs-number >1</span> <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> predict_rd_dde())
 loss_rd_dde()</code></pre> <p>The full code for this example, including generating an animation, <a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/dde.jl">can be found in the model-zoo</a></p> <p>Additionally we can add randomness to our differential equation to simulate how random events can cause extra births or more deaths than expected. This kind of equation is known as a stochastic differential equation &#40;SDE&#41;. Since <a href=" https://docs.sciml.ai/dev/tutorials/sde_example">DifferentialEquations.jl handles SDEs</a> &#40;and is currently the only library with adaptive stiff and non-stiff SDE integrators&#41;, these can be handled as a layer in Flux similarly. Here&#39;s a neural net layer with an SDE:</p> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> lotka_volterra_noise(du,u,p,t)
@@ -69,28 +69,28 @@ loss_rd_dde()</code></pre> <p>The full code for this example, including generati
 <span class=hljs-keyword >end</span>
 prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[<span class=hljs-number >1.0</span>,<span class=hljs-number >1.0</span>],(<span class=hljs-number >0.0</span>,<span class=hljs-number >10.0</span>))
 
-p = param([<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>])
-params = Flux.Params([p])
-<span class=hljs-keyword >function</span> predict_fd_sde()
-  diffeq_fd(p,sol-&gt;sol[<span class=hljs-number >1</span>,:],<span class=hljs-number >101</span>,prob,SOSRI(),saveat=<span class=hljs-number >0.1</span>)
+p = [<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>]
+params = Flux.params(p)
+<span class=hljs-keyword >function</span> predict_rd_sde()
+  concrete_solve(prob,SOSRI(),u0,p,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:]
 <span class=hljs-keyword >end</span>
-loss_fd_sde() = sum(abs2,x-<span class=hljs-number >1</span> <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> predict_fd_sde())
-loss_fd_sde()</code></pre> <p>And we can train the neural net to watch it in action and find parameters to make the amount of bunnies close to constant:</p> <pre><code class="julia hljs">data = Iterators.repeated((), <span class=hljs-number >100</span>)
+loss_rd_sde() = sum(abs2,x-<span class=hljs-number >1</span> <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> predict_fd_sde())
+loss_rd_sde()</code></pre> <p>And we can train the neural net to watch it in action and find parameters to make the amount of bunnies close to constant:</p> <pre><code class="julia hljs">data = Iterators.repeated((), <span class=hljs-number >100</span>)
 opt = ADAM(<span class=hljs-number >0.1</span>)
 cb = <span class=hljs-keyword >function</span> ()
-  display(loss_fd_sde())
-  display(plot(solve(remake(prob,p=Flux.data(p)),SOSRI(),saveat=<span class=hljs-number >0.1</span>),ylim=(<span class=hljs-number >0</span>,<span class=hljs-number >6</span>)))
+  display(loss_rd_sde())
+  display(plot(solve(remake(prob,p=p),SOSRI(),saveat=<span class=hljs-number >0.1</span>),ylim=(<span class=hljs-number >0</span>,<span class=hljs-number >6</span>)))
 <span class=hljs-keyword >end</span>
 
 <span class=hljs-comment ># Display the ODE with the current parameter values.</span>
 cb()
 
-Flux.train!(loss_fd_sde, params, data, opt, cb = cb)</code></pre> <p><img src="https://user-images.githubusercontent.com/1814174/51399524-2c6abf80-1b14-11e9-96ae-0192f7debd03.gif" alt="SDE NN Animation" /></p> <p><a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/sde.jl">This code can be found in the model-zoo</a></p> <p>And we can keep going. There are differential equations <a href=" https://docs.sciml.ai/dev/tutorials/discrete_stochastic_example">which are piecewise constant</a> used in biological simulations, or <a href=" https://docs.sciml.ai/dev/tutorials/jump_diffusion">jump diffusion equations from financial models</a>, and the solvers map right over to the Flux neural network framework through DiffEqFlux.jl. DiffEqFlux.jl uses only around ~100 lines of code to pull this all off.</p> <h2 id=implementing_the_neural_ode_layer_in_julia ><a href="#implementing_the_neural_ode_layer_in_julia">Implementing the Neural ODE layer in Julia</a></h2> <p>Let&#39;s go all the way back for a second and now implement the neural ODE layer in Julia. Remember that this is simply an ODE where the derivative function is defined by a neural network itself. To do this, let&#39;s first define the neural net for the derivative. In Flux, we can define a multilayer perceptron with 1 hidden layer and a <code>tanh</code> activation function like:</p> <pre><code class="julia hljs">dudt = Chain(Dense(<span class=hljs-number >2</span>,<span class=hljs-number >50</span>,tanh),Dense(<span class=hljs-number >50</span>,<span class=hljs-number >2</span>))</code></pre>
-<p>To define a <code>neural_ode</code> layer, we then just need to give it a timespan and use the <code>neural_ode</code> function:</p>
+Flux.train!(loss_rd_sde, params, data, opt, cb = cb)</code></pre> <p><img src="https://user-images.githubusercontent.com/1814174/51399524-2c6abf80-1b14-11e9-96ae-0192f7debd03.gif" alt="SDE NN Animation" /></p> <p><a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/sde.jl">This code can be found in the model-zoo</a></p> <p>And we can keep going. There are differential equations <a href=" https://docs.sciml.ai/dev/tutorials/discrete_stochastic_example">which are piecewise constant</a> used in biological simulations, or <a href=" https://docs.sciml.ai/dev/tutorials/jump_diffusion">jump diffusion equations from financial models</a>, and the solvers map right over to the Flux neural network framework through DiffEqFlux.jl. DiffEqFlux.jl uses only around ~100 lines of code to pull this all off.</p> <h2 id=implementing_the_neural_ode_layer_in_julia ><a href="#implementing_the_neural_ode_layer_in_julia">Implementing the Neural ODE layer in Julia</a></h2> <p>Let&#39;s go all the way back for a second and now implement the neural ODE layer in Julia. Remember that this is simply an ODE where the derivative function is defined by a neural network itself. To do this, let&#39;s first define the neural net for the derivative. In Flux, we can define a multilayer perceptron with 1 hidden layer and a <code>tanh</code> activation function like:</p> <pre><code class="julia hljs">dudt = Chain(Dense(<span class=hljs-number >2</span>,<span class=hljs-number >50</span>,tanh),Dense(<span class=hljs-number >50</span>,<span class=hljs-number >2</span>))</code></pre>
+<p>To define a <code>NeuralODE</code> layer, we then just need to give it a timespan and use the <code>NeuralODE</code> function:</p>
 <pre><code class="julia hljs">tspan = (<span class=hljs-number >0.0f0</span>,<span class=hljs-number >25.0f0</span>)
-x-&gt;neural_ode(dudt,x,tspan,Tsit5(),saveat=<span class=hljs-number >0.1</span>)</code></pre>
+node = NeuralODE(dudt,tspan,Tsit5(),saveat=<span class=hljs-number >0.1</span>)</code></pre>
 <p>As a side note, to run this on the GPU, it is sufficient to make the initial condition and neural network be on the GPU. This will cause the entire ODE solver&#39;s internal operations to take place on the GPU without extra data transfers in the integration scheme. This looks like:</p>
-<pre><code class="julia hljs">x-&gt;neural_ode(gpu(dudt),gpu(x),tspan,Tsit5(),saveat=<span class=hljs-number >0.1</span>)</code></pre>
+<pre><code class="julia hljs">node = NeuralODE(gpu(dudt),tspan,Tsit5(),saveat=<span class=hljs-number >0.1</span>)</code></pre>
 <h2 id=understanding_the_neural_ode_layer_behavior_by_example ><a href="#understanding_the_neural_ode_layer_behavior_by_example">Understanding the Neural ODE layer behavior by example</a></h2>
 <p>Now let&#39;s use the neural ODE layer in an example to find out what it means. First, let&#39;s generate a time series of an ODE at evenly spaced time points. We&#39;ll use the test equation from the Neural ODE paper.</p>
 <pre><code class="julia hljs">u0 = <span class=hljs-built_in >Float32</span>[<span class=hljs-number >2.</span>; <span class=hljs-number >0.</span>]
@@ -109,7 +109,7 @@ ode_data = <span class=hljs-built_in >Array</span>(solve(prob,Tsit5(),saveat=t))
              Dense(<span class=hljs-number >2</span>,<span class=hljs-number >50</span>,tanh),
              Dense(<span class=hljs-number >50</span>,<span class=hljs-number >2</span>))
 ps = Flux.params(dudt)
-n_ode = x-&gt;neural_ode(dudt,x,tspan,Tsit5(),saveat=t,reltol=<span class=hljs-number >1e-7</span>,abstol=<span class=hljs-number >1e-9</span>)</code></pre>
+n_ode = NeuralODE(dudt,tspan,Tsit5(),saveat=t,reltol=<span class=hljs-number >1e-7</span>,abstol=<span class=hljs-number >1e-9</span>)</code></pre>
 <p>Notice that the <code>neural_ode</code> has the same timespan and <code>saveat</code> as the solution that generated the data. This means that given an <code>x</code> &#40;and initial value&#41;, it will generate a guess for what it thinks the time series will be where the dynamics &#40;the structure&#41; is predicted by the internal neural network. Let&#39;s see what time series it gives before we train the network. Since the ODE has two-dependent variables, we will simplify the plot by only showing the first. The code for the plot is:</p>
 <pre><code class="julia hljs">pred = n_ode(u0) <span class=hljs-comment ># Get the prediction using the correct initial condition</span>
 scatter(t,ode_data[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >"data"</span>)
@@ -126,7 +126,7 @@ opt = ADAM(<span class=hljs-number >0.1</span>)
 cb = <span class=hljs-keyword >function</span> () <span class=hljs-comment >#callback function to observe training</span>
   display(loss_n_ode())
   <span class=hljs-comment ># plot current prediction against data</span>
-  cur_pred = Flux.data(predict_n_ode())
+  cur_pred = predict_n_ode()
   pl = scatter(t,ode_data[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >"data"</span>)
   scatter!(pl,t,cur_pred[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >"prediction"</span>)
   display(plot(pl))
