@@ -2,10 +2,12 @@
 @def rss = """ Multidimensional algorithms and iteration | Julia makes it easy to write elegant and... """
 @def published = "1 February 2016"
 @def title = "Multidimensional algorithms and iteration"
-@def authors = """ <a href="http://holylab.wustl.edu">Tim Holy</a>"""  
+@def authors = """ <a href="http://holylab.wustl.edu">Tim Holy</a>"""
 @def hascode = true
 
 **Note: updated December 2018 for Julia 1.1**
+
+**Note: updated April 2020 for clarity**
 
 Julia makes it easy to write elegant and
 efficient multidimensional algorithms. The new capabilities rest on
@@ -15,9 +17,8 @@ emphasize that developing these capabilities was a collaborative
 effort, with the bulk of the work done by Matt Bauman (@mbauman),
 Jutho Haegeman (@Jutho), and myself (@timholy).
 
-These iterators are deceptively simple, so much so that I've never
-been entirely convinced that this blog post is necessary: once you
-learn a few principles, there's almost nothing to it.  However, like
+These iterators are deceptively simple: just a few principles bring a
+world of power in writing multidimensional algorithms.  However, like
 many simple concepts, the implications can take a while to sink in.
 It's also possible to confuse these techniques with
 [`Base.Cartesian`](https://docs.julialang.org/en/latest/devdocs/cartesian/),
@@ -32,9 +33,9 @@ from the
 
 # eachindex, CartesianIndex, and CartesianIndices
 
-You may already know that there are two recommended
-ways to iterate over the elements in an `AbstractArray`: if you don't
-need an index associated with each element, then you can use
+There are two recommended "default" ways to iterate over the elements in an
+[`AbstractArray`](https://docs.julialang.org/en/v1.4/manual/arrays/):
+if you don't need an index associated with each element, then you can use
 
 ```
 for a in A    # A is an AbstractArray
@@ -61,7 +62,7 @@ for i in CartesianIndices(A)
 end
 ```
 
-Let's see what these objects are:
+You can see for yourself what this does with the following:
 
 ```
 julia> A = rand(3,2)
