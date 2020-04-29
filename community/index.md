@@ -196,6 +196,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
 * [JuliaDynamics](https://github.com/JuliaDynamics) - [Dynamical systems](https://juliadynamics.github.io/DynamicalSystems.jl/latest/), nonlinear dynamics and chaos.
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
+* [JuliaHealth](https://github.com/JuliaHealth) - medicine, health care, public health ([website](https://juliahealth.org/))
 * [JuliaMolSim](https://github.com/JuliaMolSim) – Molecular Simulation in Materials Science and Chemistry
 * [JuliaReach](https://github.com/JuliaReach) - [Reachability Computations for Dynamical Systems](https://juliareach.github.io/JuliaReach-website/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
 @@
