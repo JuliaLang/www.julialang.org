@@ -14,12 +14,16 @@ You can click the link there to validate that the changes appear as you would ex
 
 Once your Pull Request is merged, you should see your changes show up on the website in a few minutes or less.
 
+Build previews for each Pull Request are available at: https://julialang.netlify.app (note that given the GitHub Actions design, build previews are only available for those who have write access to the repo). 
+
 ## Making More Complex Changes
 
 To suggest a change to the website that is more significant, it is suggested that you make said changes and test them locally on your device.
 You can do this by simply forking the base repo, cloning it locally onto your device, making the changes you want, and then following the "Installing locally" instructions below.
 
 Once you have validated that everything looks good, you can open a Pull Request and check the Deploy Preview from Netlify as a final sanity check.
+
+Build previews for each Pull Request are available at: https://julialang.netlify.app (note that given the GitHub Actions design, build previews are only available for those who have write access to the repo). 
 
 ## Making modifications and seeing the changes locally
 

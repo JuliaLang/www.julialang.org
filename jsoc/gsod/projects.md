@@ -20,20 +20,52 @@ DifferentialEquations.jl is a widely used Julia library for solving ordinary, st
 
 ## JuliaGraphs
 
-[JuliaGraphs](https://github.com/JuliaGraphs) provides a set of abstractions, reference implementations, and essential algorithms to build and work on graphs. The mentor for this project is [Seth Bromberger](https://github.com/sbromberger).
+[JuliaGraphs](https://github.com/JuliaGraphs) provides a set of abstractions, reference implementations, and essential algorithms to build and work on graphs. The mentor for this project is [Seth Bromberger](https://github.com/sbromberger). This project could include one or more of the following documentation efforts:
 
-- ### Central website
+#### Central website
 
-  The central website of [JuliaGraphs](https://juliagraphs.github.io/) offers an overview of the ecosystem packages and is still mostly a description. It can be improved to become the first resource for people getting started with graphs in Julia with a quick tour of the feature, some visual explanations of the algorithms.
+  The central website of [JuliaGraphs](https://juliagraphs.github.io/) offers an overview of the ecosystem's packages and is still mostly a description. It can be improved to become the first resource for people getting started with graphs in Julia.
+   - This includes highlighting features of various packages in the ecosystem. 
+   - Visual explanations of the algorithms used in Graphs
+   - Begginer guides for those taking their first step into the world of using grpahs in Julia. 
+   
+   __This project would/could include the following:__
+ - Performing an audit of the existing website to make sure the features highlighted are still relevant and supported.  
+ - Highlighting features of various packages in the ecosystem such that one will know what is possible with JuliaGraphs. 
+ - Including use cases and potential examples to highlight the functionality without overwhelmeing vistors with technical jargon. 
+ - Creating a section which highlights the different uses of the various packages in different domains (Healthcare, Education, Etc.)
+ - Optionally, creating beginner guides for those taking their first step into the world of using graphs in Julia. 
+ - If time allows, researching visual explanations of the algorithms used in Graphs
 
-- ### LightGraphs 2.0 documentation
+#### LightGraphs 2.0 documentation
 
   The upcoming version 2.0 of LightGraphs, due later this summer, represents a fundamental change in the LightGraphs API. Assistance is needed to make sure the documentation represents the latest and greatest features.
-
-- ### Tutorials
+  
+  __This project would/could include the following:__
+ - Performing an audit of the existing API docs to see what documentation can stay the same.  
+ - Analysing the changes made in the 2.0 release to ensure they are properly documented with examples. 
+ - Writing an blog post/discourse post which highlights major changes in the 2.0 release. 
+ - Optionally, creating beginner guides for those taking their first step into the world of using graphs in Julia. 
+ - If time allows, creating a template of materials to support future major version releases. 
+ 
+#### Tutorials
 
   The documentation of all JuliaGraphs packages, such as [LightGraphs](https://juliagraphs.github.io/LightGraphs.jl/latest/) is developer-oriented, showing the API of the different types and functions of the packages.
   Some step-by-step examples and motivation for the use of each feature can be added, making it more accessible for users of the package.
+  
+  __This project would/could include the following:__
+ - Performing an audit of the existing tutorials to see what materials exist already.  
+ - Working with maintainers to document motivation for various features. 
+ - Integrating the motivation into the existing tutorials to further learners understanding. 
+ - Optionally, creating beginner guides to fill any gaps left by existing tutorials (this would be more indepth and technical). 
+ - If time allows, creating a template for tutorials across all packages in the LightGraphs ecosystem. 
+
+### Potential Impact
+  The JuliaGraphs ecosystem is used by end-users and library developers alike. Each of these communities requires a different type of documentation: end users need to understand how to use the functions to solve scientific/technical problems; library developers need to understand how to integrate the APIs into their own code. 
+
+  The potential impact of the GSOD effort – that is, the development of comprehensive, easy-to-understand documentation for one or both of these communities – would be the increased adoption of LightGraphs as one of the fastest single-language open-source graph analytic toolkits. From a well-regulated corpus of developer documentation, we should expect an increase in the number of contributors to the JuliaGraphs ecosystem and increased interest in development of new packages that incorporate JuliaGraphs libraries, while a thorough set of end-user documentation would increase the usage of LightGraphs in scientific research. Furthermore, general awareness of JuliaGraphs and the Julia Programming Language would be improved with a revamp of the main JuliaGraphs website, which could serve as the central landing point for all graph-related activity in Julia.
+  
+  The impact can be quantified by the monitoring the number of users who visit the main JuliaGraphs website pre and post update. 
 
 ## JuliaStats (Statistics)
 

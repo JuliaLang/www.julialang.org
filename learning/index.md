@@ -11,7 +11,7 @@
 
 ## Video
 
-Get jupyter notebooks for the following youtube tutorials over [JuliaBoxTutorials](https://github.com/JuliaComputing/JuliaBoxTutorials) or run them directly on [JuliaBox](https://juliabox.com).
+Jupyter notebooks are available for the following YouTube tutorials over at the [JuliaBoxTutorials](https://github.com/JuliaComputing/JuliaBoxTutorials) repository on GitHub.
 
 @@tight-list
 * [Intro to Julia (version 1.0)](https://www.youtube.com/watch?v=8h8rQyEpiZA&amp;t) , by Jane Herriman
@@ -24,6 +24,8 @@ Get jupyter notebooks for the following youtube tutorials over [JuliaBoxTutorial
 * [Intro to solving differential equations in Julia](https://www.youtube.com/watch?v=KPEqYtEd-zY), by Chris Rackauckas
 * [Intro to Julia (version 0.6)](https://www.youtube.com/watch?v=4igzy3bGVkQ), by Jane Herriman
 @@
+
+The [Julia Language's YouTube channel](https://www.youtube.com/user/JuliaLanguage) also provides a number of tutorials and  various other Julia Language content. 
 
 ## Text
 
