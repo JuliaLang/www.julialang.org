@@ -20,7 +20,7 @@ DifferentialEquations.jl is a widely used Julia library for solving ordinary, st
 
 ## Graphs
 
-LightGraphs.jl provides a set of abstractions, reference implementations and essential algorithms to build and work on graphs.
+LightGraphs.jl provides a set of abstractions, reference implementations, and essential algorithms to build and work on graphs. The mentor for this project is [Seth Bromberger](https://github.com/sbromberger).
 
 - ### Central website
 
@@ -35,33 +35,39 @@ LightGraphs.jl provides a set of abstractions, reference implementations and ess
   The documentation of all JuliaGraphs packages, such as [LightGraphs](https://juliagraphs.github.io/LightGraphs.jl/latest/) is developer-oriented, showing the API of the different types and functions of the packages.
   Some step-by-step examples and motivation for the use of each feature can be added, making it more accessible for users of the package.
 
-- ## Statistics
+## JuliaStats (Statistics)
 
-  The [JuliaStats](https://github.com/juliastats) organization hosts packages solving various problems in data analysis and statistics, from computing [distances](https://github.com/JuliaStats/Distances.jl/) to [grouping data points together](https://juliastats.github.io/Clustering.jl/stable).
+The [JuliaStats](https://github.com/juliastats) organization hosts packages solving various problems in data analysis and statistics, from computing [distances](https://github.com/JuliaStats/Distances.jl/) to [grouping data points together](https://juliastats.github.io/Clustering.jl/stable).
   This breadth of scope makes it challenging to keep track of which task is performed in each package.
 
 - ### JuliaStats website
 
-  The [main website](https://juliastats.github.io) is at the moment displaying a brief list of packages from the ecosystem. We could use this central place to map the features to the different packages, and how to use them in different situations.
-
-- ### Problem-oriented documentation
-
-  For key packages such as [Distributions.jl](https://juliastats.github.io/Distributions.jl/stable), tutorials could be written in the same fashion as introductions to the analysis problem at hand and how it gets solved in the package using the API.
-
+  The [main website](https://juliastats.github.io) is at the moment displaying a brief list of packages from the ecosystem. We could use this central place to map the features to the different packages, and how to use them in different situations. We envison this could potentially look like the "Compare Features" section of the [GitHub pricing page](https://github.com/pricing) with additional pages that highlight the use cases of the different packages in various domains. 
+  
+__This project would/could include the following:__
+ - Performing an audit of the existing website to make sure the features highlighted are still relevant and supported.  
+ - Comparing the features in a fashion which highlights the potential overlap and differences.
+ - Including use cases and potential examples to highlight the functionality without overwhelmeing vistors with technical jargon. 
+ - Creating a section which highlights the different uses of the various packages in different domains (Healthcare, Education, Etc.)
+ - If time allows and there is interest from the writer, certain packages that are part of the JuliaStats org (like [GLM.jl](https://github.com/JuliaStats/GLM.jl) are in need of more examples (which can be taken/solcited from community members), and a clarification of the relationships with DataFrames / Stats Models). While this requires a bit more interest in delving into the technical details, the addition of more examples would help the packages use. 
+ 
+__Potential impact and the Why?:__
+ - As Julia was origionally written as a scientific computing language, JuliaStats represents a core pillar of the community. Ensuring that those interested in transitioning from another language to Julia are able to understand the JuliaStats ecosystem better is the primary motivation for this project. By properly documenting and aggreating the feature sets of these packages, we will not only help more easily onboard new folks into the JuliaStats ecosystem but also help minimize any duplication of efforts that may arise from someone re-writting existing features that already exist. 
+ 
+ - The impact of this project can be quantified by measuring if the number of questions related to the features available in the [JuliaStats ecosystem on Discourse](https://discourse.julialang.org/c/domain/stats) goes down. 
+  
 ## Flux (Machine Learning)
 
-[Flux.jl](https://github.com/FluxML/Flux.jl) is an elegant approach to machine learning in Julia. It is designed to be hackable and flexible, extendable and exposes powerful AD tools. It also provides abstractions over the popular layers and optimisers used in neural networks. It is built with differentiable programming in mind.
+[Flux.jl](https://github.com/FluxML/Flux.jl) is an elegant approach to machine learning in Julia. It is designed to be hackable and flexible, extendable and exposes powerful AD tools. It also provides abstractions over the popular layers and optimisers used in neural networks. It is built with differentiable programming in mind. The mentor for this project would be [Dhairya Gandhi](https://github.com/dhairyagandhi96).
 
-- ### Updated Documentation and Website
-
-  The [documentation](https://fluxml.ai/Flux.jl/stable/) for Flux.jl needs updating and references to model examples where necessary. Flux.jl runs doctests with every commit. The docs only expose a limited subset of the possible ways the APIs can function, and while efforts have been made to ensure that most usecases have been represented, we would like the user to get a feel of how they can leverage a more expressive training loop, or carry out very custom optimisation routines, etc. This could be done by way of motivating use cases in the API design.
+- ### Reinventing the FluxML Website
 
   As a part of this, the content on the main landing page https://fluxml.ai can be revamped to highlight some of the interesting progress. The website could use some poilsh with regards to further clarify the messaging without overwhelming a newcomer, while showing off some of the finer grained details to a veteran eye.
 
 
 ## VS Code extension
 
-The [Julia VS Code extension](https://github.com/JuliaEditorSupport/julia-vscode) currently has hardly any documentation. We are looking for someone to flesh out the docs and the [homepage](https://www.julia-vscode.org/) for the extension. The mentor for this project is [David Anthoff](https://github.com/davidanthoff).
+The [Julia VS Code extension](https://github.com/JuliaEditorSupport/julia-vscode) currently has hardly any documentation. We are looking for someone to flesh out the docs and the [homepage](https://www.julia-vscode.org/) for the extension. The mentor for this project would be [David Anthoff](https://github.com/davidanthoff).
 
 __This project would/could include the following:__
  - Performing an audit of what existing aspects of the Julia VS Code extension are documented. 
@@ -76,4 +82,4 @@ __Potential impact and the Why?:__
 
 ## Queryverse
 
-[Queryverse](https://www.queryverse.org/) is a family of packages in the data science space. Many packages have rudimentary documentation but could use updates, polish, proper tutorials etc. We are looking for help with documentation for all packages, and to build out the homepage for the project.
+[Queryverse](https://www.queryverse.org/) is a family of packages in the data science space. Many packages have rudimentary documentation but could use updates, polish, proper tutorials etc. We are looking for help with documentation for all packages, and to build out the homepage for the project. The mentor for this project would be [David Anthoff](https://github.com/davidanthoff).
