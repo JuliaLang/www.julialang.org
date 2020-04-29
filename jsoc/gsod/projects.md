@@ -58,17 +58,21 @@ LightGraphs.jl provides a set of abstractions, reference implementations and ess
 
   As a part of this, the content on the main landing page https://fluxml.ai can be revamped to highlight some of the interesting progress. The website could use some poilsh with regards to further clarify the messaging without overwhelming a newcomer, while showing off some of the finer grained details to a veteran eye.
 
- - ### Port ML Tutorials
-
-  There are a lot of high quality open-source ML tutorials for users to not just learn a new conept but also get a feel for the underlying tooling they use. The PyTorch tutorials and the Fast.ai courses are some of our favorites. We would like Flux ports of the same which can be published on the website.
-
- - ### Model-Zoo Examples
-
-  The model-zoo is where a lot of the examples of modeling lives. From basic MLPs to advanced reinforcement learning and differentiable programming demos, we would like to have literature around them in a manner that can be understood by [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl). This way we have an awesome range of models and examples in a notebook style format available automatically for tinkering by users.
 
 ## VS Code extension
 
-The [Julia VS Code extension](https://github.com/JuliaEditorSupport/julia-vscode) currently has hardly any documentation. We are looking for someone to flesh out the docs and the [homepage](https://www.julia-vscode.org/) for the extension.
+The [Julia VS Code extension](https://github.com/JuliaEditorSupport/julia-vscode) currently has hardly any documentation. We are looking for someone to flesh out the docs and the [homepage](https://www.julia-vscode.org/) for the extension. The mentor for this project is [David Anthoff](https://github.com/davidanthoff).
+
+__This project would/could include the following:__
+ - Performing an audit of what existing aspects of the Julia VS Code extension are documented. 
+ - Documenting the remaining features of the extension (this does not require too much technical background but applicants should be familiar with the functionality of an Integrated Development Enviorment - "IDE")
+ - The documentation for the Atom IDE is paticularly well done so we hope to be able to take inspiration from that to improve the docs for the Julia VS Code extension. You can find the Atom docs [here](https://flight-manual.atom.io). 
+ - If time allows, there is also a desire for the creation of a "Getting started in Julia using VS Code" guide which will help more quickly onboard folks into the Julia Community from other languages who may already use VS Code. 
+ 
+__Potential impact and the Why?:__
+ - IDE's are commonplace amoung developers. Currently, the Julia Community heavily favors the use of Atom. We hope that by properly documenting how to use the Julia VS Code Extension we will not only help diversify the use of IDE's in the community but also improve our ability to onborad new folks into our community who may not be comfortable starting a new language plus a new IDE. 
+
+ - The impact of this project can be quantified by assessing potential increases in the usage of the extension and by soliciting feedback from the community on the docs after they have been updated. 
 
 ## Queryverse
 
