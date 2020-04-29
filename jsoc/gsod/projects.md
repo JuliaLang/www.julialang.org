@@ -18,9 +18,9 @@ DifferentialEquations.jl is a widely used Julia library for solving ordinary, st
 
   The organization hosts the [DiffEqBenchmarks.jl](https://github.com/SciML/DiffEqBenchmarks.jl) repository which generates websites and pdfs describing the performance relationships not only between the native Julia differential equation solvers, but also between the commonly used C++ and Fortran methods, making it the most comprehensive set of differential equation solver benchmarks. These benchmarking scripts utilize [Weave.jl](https://github.com/mpastell/Weave.jl) to automate the process. Technical writers can contribute benchmarks which cover new areas and types of differential equations and add explanatory details and summaries to help with the interpretation of benchmarks. Additionally, skilled technical writers may with to help setup systems to update the benchmarks in some semi-automated form, along with detection and flagging whenever performance regressions are found (i.e. the benchmark equivalent to doc tests).
 
-## Graphs
+## JuliaGraphs
 
-LightGraphs.jl provides a set of abstractions, reference implementations, and essential algorithms to build and work on graphs. The mentor for this project is [Seth Bromberger](https://github.com/sbromberger).
+[JuliaGraphs](https://github.com/JuliaGraphs) provides a set of abstractions, reference implementations, and essential algorithms to build and work on graphs. The mentor for this project is [Seth Bromberger](https://github.com/sbromberger).
 
 - ### Central website
 
@@ -38,9 +38,9 @@ LightGraphs.jl provides a set of abstractions, reference implementations, and es
 ## JuliaStats (Statistics)
 
 The [JuliaStats](https://github.com/juliastats) organization hosts packages solving various problems in data analysis and statistics, from computing [distances](https://github.com/JuliaStats/Distances.jl/) to [grouping data points together](https://juliastats.github.io/Clustering.jl/stable).
-  This breadth of scope makes it challenging to keep track of which task is performed in each package.
+  This breadth of scope makes it challenging to keep track of which task is performed in each package. The mentors for this project can be found [here](https://github.com/orgs/JuliaStats/people). 
 
-- ### JuliaStats website
+ ### JuliaStats website
 
   The [main website](https://juliastats.github.io) is at the moment displaying a brief list of packages from the ecosystem. We could use this central place to map the features to the different packages, and how to use them in different situations. We envison this could potentially look like the "Compare Features" section of the [GitHub pricing page](https://github.com/pricing) with additional pages that highlight the use cases of the different packages in various domains. 
   
