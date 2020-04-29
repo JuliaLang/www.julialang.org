@@ -21,19 +21,23 @@ The organization hosts the [DiffEqBenchmarks.jl](https://github.com/SciML/DiffEq
 ## Graphs
 
 LightGraphs.jl provides a set of abstractions, reference implementations and essential algorithms to build and work on graphs.
+This project could include one or more of the following documentation efforts:
 
-### Central website
+#### Central website
 
 The central website of [JuliaGraphs](https://juliagraphs.github.io/) offers an overview of the ecosystem packages and is still mostly a description. It can be improved to become the first resource for people getting started with graphs in Julia with a quick tour of the feature, some visual explanations of the algorithms.
 
-### LightGraphs 2.0 documentation
+#### LightGraphs 2.0 documentation
 
 The upcoming version 2.0 of LightGraphs, due later this summer, represents a fundamental change in the LightGraphs API. Assistance is needed to make sure the documentation represents the latest and greatest features.
 
-### Tutorials
+#### Tutorials
 
 The documentation of all JuliaGraphs packages, such as [LightGraphs](https://juliagraphs.github.io/LightGraphs.jl/latest/) is developer-oriented, showing the API of the different types and functions of the packages.
 Some step-by-step examples and motivation for the use of each feature can be added, making it more accessible for users of the package.
+
+### Potential Impact
+The JuliaGraphs ecosystem is used by end-users and library developers alike. Each of these communities requires a different type of documentation: end users need to understand how to use the functions to solve scientific/technical problems; library developers need to understand how to integrate the APIs into their own code. The potential impact of the GSOD effort – that is, the development of comprehensive, easy-to-understand documentation for one or both of these communities – would be the increased adoption of LightGraphs as one of the fastest single-language open-source graph analytic toolkits. From a well-regulated corpus of developer documentation, we should expect an increase in the number of contributors to the JuliaGraphs ecosystem and increased interest in development of new packages that incorporate JuliaGraphs libraries, while a thorough set of end-user documentation would increase the usage of LightGraphs in scientific research. Furthermore, general awareness of JuliaGraphs and the Julia Programming Language would be improved with a revamp of the main JuliaGraphs website, which could serve as the central landing point for all graph-related activity in Julia.
 
 ## Statistics
 
