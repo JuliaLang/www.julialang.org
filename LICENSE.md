@@ -1,7 +1,7 @@
 Except where otherwise specified (e.g. in the footer of specific pages),
 the content of the [julialang.org] website is licensed under the MIT License.
 
-> Copyright (c) 2011-2015: Jeff Bezanson, Stefan Karpinski, Viral B. Shah,
+> Copyright (c) 2011-2019: Jeff Bezanson, Stefan Karpinski, Viral B. Shah,
 > and other contributors:
 >
 > https://github.com/JuliaLang/www.julialang.org/contributors
