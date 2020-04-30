@@ -96,8 +96,8 @@ The [JuliaStats](https://github.com/juliastats) organization hosts packages solv
 
 - ### Reinventing the FluxML Website
 
-  As a part of this project, the content on the main landing page https://fluxml.ai can be revamped to highlight some of the interesting progress. The website could use some poilsh with regards to further clarify the messaging without overwhelming a newcomer, while showing off some of the finer grained details to a veteran eye.
-  Tools developed by FluxML are widely used by many projects, from Graph Neural Network libraries and Probabilistic Programming libraries to Scientific ML projects and modern large scale Transformer networks. We would like to showoff the flexibility and use cases that we fit in.
+  As a part of this project, the content on the main landing page <https://fluxml.ai> can be revamped to highlight some of the interesting progress. The website could use some polish with regards to further clarify the messaging without overwhelming a newcomer, while showing off some of the finer grained details to a veteran eye.
+  Tools developed by FluxML are widely used by many projects, from Graph Neural Network libraries [Mill.jl](https://github.com/pevnak/Mill.jl), [GeometricFlux.jl](https://github.com/yuehhua/GeometricFlux.jl) and Probabilistic Programming libraries [Turing.jl](https://github.com/TuringLang/Turing.jl) to Scientific ML projects [DiffEqFlux.jl](https://github.com/SciML/DiffEqFlux.jl) and modern large scale Transformer networks [Transformers.jl](https://github.com/chengchingwen/Transformers.jl). We would like to showoff the flexibility and use cases that we fit in.
 
 - ### Tutorials
 
@@ -111,7 +111,7 @@ The [JuliaStats](https://github.com/juliastats) organization hosts packages solv
 
 ### Potential Impact
 
-  Flux is an innovative approach to machine learning. This also means that not all the same patterns and assumptions truly hold when translating from a different framework. It also needs a way to communicate a compelling description of how to implement many of the user facing niceties that one might need in the course of completing an ML project. Through this, we want to also find areas of improvement where we could offer a better user experience for our users.
+  Flux is an innovative approach to machine learning. This also means that not all the same patterns and assumptions truly hold when translating from a different framework. It also needs a way to communicate a compelling description of how to implement many of the user facing niceties that one might need in the course of completing an ML project. Through this, we want to also find areas of improvement where we could offer a better user experience.
 
   This would definitely also greatly benefit the adoption of Flux in the larger ML ecosystem, which we feel is currently held back due to not having enough of these simple patterns documented in an approachable form. We want to see an increase in the number of contributors to the various packages too, since that would help us improve our stack better. Flux also utilises simple to understand and performant code, made possible by Julia, and through this, we also want to bring awareness to how our ecosystem has matured, and increase its adoption in research and in industry.
 
