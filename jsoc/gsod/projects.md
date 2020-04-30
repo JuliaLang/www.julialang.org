@@ -24,7 +24,7 @@ DifferentialEquations.jl is a widely used Julia library for solving ordinary, st
 
 [The Julia docs](https://docs.julialang.org/en/v1/) provide provide a robust set of examples and context for the available functionality in the Julia Programming Language. The mentor for this project is [Logan Kilpatrick](https://github.com/logankilpatrick) with support from [other Julia Language members](https://github.com/orgs/JuliaLang/people). 
 
-### Audit the exiting documentation
+### Audit the existing documentation
 
   While the [Julia documentation](https://docs.julialang.org/en/v1/) is robust, it has been written and worked on by hundreds of contributors over many years. This has led to potential instances where the docs do not represent a singular voice and may not be as clear as they can be. 
   
