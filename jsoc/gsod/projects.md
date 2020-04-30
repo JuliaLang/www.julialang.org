@@ -97,7 +97,7 @@ The [JuliaStats](https://github.com/juliastats) organization hosts packages solv
 - ### Reinventing the FluxML Website
 
   As a part of this project, the content on the main landing page <https://fluxml.ai> can be revamped to highlight some of the interesting progress. The website could use some polish with regards to further clarify the messaging without overwhelming a newcomer, while showing off some of the finer grained details to a veteran eye.
-  Tools developed by FluxML are widely used by many projects, from Graph Neural Network libraries [Mill.jl](https://github.com/pevnak/Mill.jl), [GeometricFlux.jl](https://github.com/yuehhua/GeometricFlux.jl) and Probabilistic Programming libraries [Turing.jl](https://github.com/TuringLang/Turing.jl) to Scientific ML projects [DiffEqFlux.jl](https://github.com/SciML/DiffEqFlux.jl) and modern large scale Transformer networks [Transformers.jl](https://github.com/chengchingwen/Transformers.jl). We would like to showoff the flexibility and use cases that we fit in.
+  Tools developed by FluxML are widely used by many projects, from Graph Neural Network libraries [Mill.jl](https://github.com/pevnak/Mill.jl), [GeometricFlux.jl](https://github.com/yuehhua/GeometricFlux.jl) and Probabilistic Programming libraries [Turing.jl](https://github.com/TuringLang/Turing.jl) to Scientific ML projects [DiffEqFlux.jl](https://github.com/SciML/DiffEqFlux.jl) and modern large scale Transformer networks [Transformers.jl](https://github.com/chengchingwen/Transformers.jl). We would like to show off the flexibility and use cases that we fit in.
 
 - ### Tutorials
 
