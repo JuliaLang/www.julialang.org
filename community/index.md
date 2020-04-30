@@ -7,7 +7,7 @@ Please take a moment to read the [Julia Community Standards](/community/standard
 ## Events
 
 ~~~
-<iframe src="https://calendar.google.com/calendar/b/2/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=UTC&amp;src=anVsaWFsYW5nLm9yZ19rb21hdWFxZXQxNGVvZzlvaXYzcDZvN3BtZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%238E24AA" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://calendar.google.com/calendar/b/2/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=UTC&amp;src=anVsaWFsYW5nLm9yZ19rb21hdWFxZXQxNGVvZzlvaXYzcDZvN3BtZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%238E24AA" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
 ~~~
 
 ## Diversity and Inclusion
