@@ -9,12 +9,10 @@ The Julia website is generated using GitHub pages and [Franklin.jl](https://gith
 ## Making Simple Changes
 
 To suggest a change to the website, you can simply navigate to the page with the content you think should be changed, and edit it.
-You will be prompted to fork the repo (if you haven't already) and then open a Pull Request. Once the Pull Request is open, Netlify will build a preview of the site with the changes you made.
-You can click the link there to validate that the changes appear as you would expect.
-
+You will be prompted to fork the repo (if you haven't already) and then open a Pull Request. 
 Once your Pull Request is merged, you should see your changes show up on the website in a few minutes or less.
 
-Build previews for each Pull Request are available at: https://julialang.netlify.app (note that given the GitHub Actions design, build previews are only available for those who have write access to the repo). 
+Build previews for each Pull Request are available at: https://julialang.netlify.app (note that given the GitHub Actions design, build previews are currently only available for those who have write access to the repo, others will see a "failed CI" indication which they can ignore). 
 
 ## Making More Complex Changes
 
