@@ -1,6 +1,6 @@
 # Julia's Google Season of Docs Projects
 
-Below are the projects which have been proposed for Google Season of Docs. If you have questions about potential projects, the first point of contact would be the mentor(s) listed on the project. If you are unable to get ahold of the potential mentor(s), you should email `jsoc@julialang.org` and CC `logan@julialang.org`. 
+Below are the projects which have been proposed for Google Season of Docs under the umbrella of the Julia Language. If you have questions about potential projects, the first point of contact would be the mentor(s) listed on the project. If you are unable to get ahold of the potential mentor(s), you should email `jsoc@julialang.org` and CC `logan@julialang.org`. 
 
 We at the Julia Language are committed to making the application process and participation in GSoD with Julia accessible to everyone. If you have questions or requests, please do reach out and we will do our best to accomodate you. 
 
@@ -20,6 +20,42 @@ DifferentialEquations.jl is a widely used Julia library for solving ordinary, st
 
   The organization hosts the [DiffEqBenchmarks.jl](https://github.com/SciML/DiffEqBenchmarks.jl) repository which generates websites and pdfs describing the performance relationships not only between the native Julia differential equation solvers, but also between the commonly used C++ and Fortran methods, making it the most comprehensive set of differential equation solver benchmarks. These benchmarking scripts utilize [Weave.jl](https://github.com/mpastell/Weave.jl) to automate the process. Technical writers can contribute benchmarks which cover new areas and types of differential equations and add explanatory details and summaries to help with the interpretation of benchmarks. Additionally, skilled technical writers may with to help setup systems to update the benchmarks in some semi-automated form, along with detection and flagging whenever performance regressions are found (i.e. the benchmark equivalent to doc tests).
 
+## Julia (Main Documentation)
+
+[The Julia docs](https://docs.julialang.org/en/v1/) provide provide a robust set of examples and context for the available functionality in the Julia Programming Language. The mentor for this project is [Logan Kilpatrick](https://github.com/logankilpatrick) with support from [other Julia Language members](https://github.com/orgs/JuliaLang/people). 
+
+### Audit the exiting documentation
+
+  While the [Julia documentation](https://docs.julialang.org/en/v1/) is robust, it has been written and worked on by hundreds of contributors over many years. This has led to potential instances where the docs do not represent a singular voice and may not be as clear as they can be. 
+  
+  __This project would/could include the following:__
+  - Identifying pain points in the docs and conducting an audit on those sections (the docs are robust and long, so auditing all of the docs may be enough work for a stand alone project). 
+  - Rewording/rewriting the sections in questions (perhaps with more examples) to ensure clarity. 
+  - Optionally, updating the [FAQ section of the docs](https://docs.julialang.org/en/v1/manual/faq/) to reflect more popular questions from the Julia Discourse and Stack Overflow. 
+  - If time allows, adding additional docs tests (which are just examples of the use of a function, see [here](https://github.com/JuliaLang/julia/pull/35647)) to ensure it is clear what each function does, just by reading the docs. 
+  
+  __Potential impact and the Why?:__
+  - This project represents a unique opportunity to work on a core aspect of the Julia Language. Given the high visibility level of the Julia docs, making sure they are done well and truly help developers is very important. Since we are a open source and community driven project, it is very diffidult to keep a singular voice and extensively vett each and every doc change. This project presents the chance to ensure Julia devs will have clear and useful documentation for years to come. 
+  
+  - Success for this project could be quantified by keeping track of the number of issues raised on the parts of the docs that were audited and updated. 
+
+
+### Updating contributing guide
+
+  The [Julia contributing guide](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md) provides details on how one who is either a new Julia contributor or returning contributor, can make a change to the Julia docs or the core Julia code base. 
+  
+   __This project would/could include the following:__
+   - Auditing the existing contributing guide to ensure it covers developer usecases correctly. 
+   - Moving the guide to a more robust and user friendly section of the [Julia Website](https://julialang.org) (potentially making a "contributing" folder and then having details on different usecases rather than just one long doc). 
+   - Optionally, making a contributing guide template so that all of the 3,000+ Julia Packages also have guidelines for contributors. 
+   - If time allows, making a step by step "first time contributor" guide which highlights common first time contributions, where to find potential things to contribute/change, and how to contribute those. 
+   
+   __Potential impact and the Why?:__
+   - Ensuring that the Julia Language provides an open, inclusive, and friendly community for first time and returning contributors is a high priority. Historically, Julia has been used in mostly scientific domains, thus the docs and other materials are written with that audience in mind. As the community countinues to grow, it is evident that we need to be approaching documents, like the contributing guide, differently so we can warmly welcome the next generation of Julia developers. 
+   
+   - Success for this project could be quantified by keeping track of whether or not the number of first time contributors goes up and if they are able to open a Pull Request that follows the suggestions in the contributing guide successfully. 
+
+  
 ## JuliaGraphs
 
 [JuliaGraphs](https://github.com/JuliaGraphs) provides a set of abstractions, reference implementations, and essential algorithms to build and work on graphs. The mentor for this project is [Seth Bromberger](https://github.com/sbromberger). This project could include one or more of the following documentation efforts:
