@@ -1,3 +1,10 @@
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: #ccc;
+  }
+}
+
 #main-menu {
   background-color: #fff !important;
   padding: 0;
