@@ -76,6 +76,7 @@ In more detail, you may find it useful to consider the following questions:
   - Do you have the mathematical/scientific background for your project? Many of the Julialang projects have a significant portion that require technical expertise and applicants need to demonstrate their ability to handle the chosen project.
   - How should we contact you? Let us know your email address and GitHub  username.
   - Do you have a website or blog?
+  - Are you part of an underrepresented group in STEM? If so, please feel free to provide detail on this as we at the Julia Language are committed to promoting diversity and inclusion in our selection process.
   - Anything else you'd like to mention!
 * **Logistics.**
   - What other time commitments, such as summer courses, other jobs, planned vacations, etc., will you have over the summer?
