@@ -35,6 +35,7 @@ We thank our sponsors for making Julia possible:
 * [Alfred P. Sloan Foundation](https://sloan.org/grant-detail/7999)
 * Intel
 * Research grants from various agencies have led to Julia contributions: [NSF](https://nsf.gov), [DARPA](https://www.darpa.mil/), [NIH](https://www.nih.gov/), [NASA](https://nasa.gov), and [FAA](https://www.faa.gov/).
+* And all of our [individual sponsors on GitHub](https://github.com/sponsors/JuliaLang). 
 @@
 
 ## Publications
