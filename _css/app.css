@@ -25,6 +25,31 @@
   height: 55px;
 }
 
+#menu li {
+    list-style-type: none;
+    padding: 4px 4px;
+    text-decoration: none;
+    background-color: none;
+    display: block;
+    text-align: left;
+}
+
+#menu a{
+  color:white;
+  display: block;
+}
+
+.footer-heading{
+  color:#4D64AE;
+}
+
+#menu ul{
+    width: 100%;
+    background: #cacaca;
+    margin: 0;
+    padding: 0;
+}
+
 .main-heading {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
@@ -299,7 +324,7 @@
   color: #fff;
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   padding: 10px 0;
 }
 .footer-copy p {
