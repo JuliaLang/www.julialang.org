@@ -79,6 +79,7 @@
     #animation {
         height: 700px;
     }
+    .container li > p { margin-bottom: 0 }
   </style>
   <div id="animation">
   <div id="player_main">
@@ -153,12 +154,12 @@ and we want to make sure their bugs are addressed.
 
 For users who did encounter such particularly difficult problems, we have for
 a long time had one particular answer: If you can reproduce it on a linux
-machine and get us a trace from the rr tool (https://rr-project.org/), we can
-probably get it fixed for you very rapidly. For the uninitiated, rr is a Linux
+machine and get us a trace from the `rr` tool <https://rr-project.org/>, we can
+probably get it fixed for you very rapidly. For the uninitiated, `rr` is a Linux
 debugging tool originally written by Robert O'Callahan at Mozilla. Is it a tool
 known as a "time traveling debugger" or "reverse execution engine". Essentially,
-rr splits reproducing bugs into a "record" and a "replay" phase. The record
-phase is performed by the bug reporter. During this phase, rr creates a perfect
+`rr` splits reproducing bugs into a "record" and a "replay" phase. The record
+phase is performed by the bug reporter. During this phase, `rr` creates a perfect
 record of the execution, including the *bitwise exact* memory and register state
 after every instruction. This trace can then be analyzed during the replay
 phase (which can be performed by a different developer on a different machine).
@@ -171,7 +172,7 @@ first let's take the capabilities for granted and take a look at the workflow
 it enables.
 
 In Julia 1.5, there is now a new command line flag `--bug-report=rr` that will
-automatically create and upload an rr recording. An example usage is shown
+automatically create and upload an `rr` recording. An example usage is shown
 in the animation at the start of this post (which just creates a deliberate
 crash by unsafely dereferencing a bad pointer). However to summarize:
 
@@ -187,22 +188,22 @@ crash by unsafely dereferencing a bad pointer). However to summarize:
    their own machine.
 
 In addition to this manual mechanism, we are also switching our linux CI systems
-to automatically create rr traces of any execution. That way, if a CI run fails,
+to automatically create `rr` traces of any execution. That way, if a CI run fails,
 we are guaranteed to be able to debug it.
 
-If a bug report includes a link to an rr trace, no further reproduction
+If a bug report includes a link to an `rr` trace, no further reproduction
 instructions are required (if the bug is something non-obvious like
 unexpected behavior, some comments on what the expected behavior was may
-still be helpful), since the rr trace is guaranteed to perfectly capture
+still be helpful), since the `rr` trace is guaranteed to perfectly capture
 the environment the bug was reproduced in. This almost immediately knocks
 out all the common problems I started this post with. "Works for me" is no
 longer an available answer. If it's in the trace, it broke on somebody's machine
 and can be debugged. "Heisenbug"s are no longer an issue. If it was captured
-once in rr, it can always be debugged. It even solves the busy-expert problem,
+once in `rr`, it can always be debugged. It even solves the busy-expert problem,
 as it allows non-experts to help out with triage. If such a report does not
-contain an rr trace, any developer, and in particular non-experts can attempt to
+contain an `rr` trace, any developer, and in particular non-experts can attempt to
 reproduce the bug and create one. Even if the expert is still required to do
-the final diagnosis, doing so from an rr trace is orders of magnitude faster
+the final diagnosis, doing so from an `rr` trace is orders of magnitude faster
 than from a plain bug report.
 
 # Chronomancy for dummies
@@ -260,7 +261,7 @@ Of course, there are some drawbacks as well. In order to function `rr` has to
 have an extremely precise model of the operation of the kernel and the ways
 in which it interacts with userspace. On Linux this interface is supposedly
 stable, but few applications put as stringent a constraint on that promise as
-rr does (e.g. even a single bit difference can be problematic).
+`rr` does (e.g. even a single bit difference can be problematic).
 
 The details here are quite involved, and I recommend reading Robert's
 [technical report](https://arxiv.org/abs/1610.02144) for a deeper overview of
@@ -345,9 +346,9 @@ this is as follows:
     said, I understand there's active discussions with IBM to determine whether this
     analysis is correct.
 
-One additional point of complication, is that it is quiet easy for hypervisors
+One additional point of complication, is that it is quite easy for hypervisors
 (such as those used by cloud vendors) to interfere with the CPU capabilities
-required by rr. My understanding is that `rr` works fine on the latest generation
+required by `rr`. My understanding is that `rr` works fine on the latest generation
 of AWS machines, but not on GCP or Azure.
 
 Lastly, we shouldn't fail to mention GPUs. GPUs are heavily utilized by Julia
@@ -370,7 +371,7 @@ bring this capability to their platforms, but it may be a long road.
 In summary, these new capabilities are currently only supported on Intel x86_64
 chips. However, this is a bit of a chicken-and-egg problem. The hardware
 requirements are non-trivial, but not egregious. If the hardware vendors cared
-about this problem, they could definitely build hardware that enabled rr to work
+about this problem, they could definitely build hardware that enabled `rr` to work
 (and if they really cared, they could build hardware assist features to make
 `rr` much faster), but without a significant user base of such features they
 have little incentive to care. I'm hoping that by rolling out these capabilities
@@ -384,7 +385,7 @@ mentioned, some of this is already in progress).
 
 # A word on privacy
 
-By its nature, an rr trace will contain any file touched by the process during
+By its nature, an `rr` trace will contain any file touched by the process during
 its lifetime. In particular, this may contain things like your julia history,
 configuration files for your system, any secrets entered or read (i.e. make
 sure to use ssh-agent if your reproducer involves using SSH for authentication),
@@ -405,11 +406,11 @@ through this feature privately.
 
 Being able to replay the traces is only the beginning. I like to say that
 with `rr`, debugging becomes a data analysis problem, since any question
-you could possible ask about the program is already contained in the data,
+you could possibly ask about the program is already contained in the data,
 it just becomes a question of extracting the answer. By default, `rr` drops
 you into GDB, but GDB is unlikely to be the correct frontend for such analysis.
 `rr`'s original author Robert O'Callahan now has a startup working on a
-next-generation frontend over at https://pernos.co/ (no affiliation, but his work
+next-generation frontend over at <https://pernos.co/> (no affiliation, but his work
 made much of this possible, so a plug is the least I can do here). That said,
 Julia itself tends to be a pretty good tool for data analysis and I have some
 ideas what such a frontend may look like (notebook style, with the ability to
@@ -440,12 +441,12 @@ were encountered during this work, they were reported to the relevant vendor und
 existing funded contracts.
 
 Further, Julia Computing has [previously announced](https://juliacomputing.com/blog/2019/02/13/JuliaTeam-Vision.html)
-that rr integration will likely be available in future commercial offerings.
+that `rr` integration will likely be available in future commercial offerings.
 This is a separate piece of work and not a Julia Computing product. If you
 are interested in using these capabilities with a Julia Computing product,
 or under your Julia Computing support agreement, please contact your support
 representative.
 
 Lastly, your author discloses his self-interest. He spends too much time
-trying to get bug reports to reproduce under rr so they can be fixed, so if y'all
+trying to get bug reports to reproduce under `rr` so they can be fixed, so if y'all
 would do that for me, that'd be swell.
