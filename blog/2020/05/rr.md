@@ -246,7 +246,7 @@ $$ \mathcal{S}_{i+1} = \begin{cases}
 Did that help? No? oh. Well, it made me feel better about my physics degree and
 also I've been told it's not research until it has at least one equation in it,
 so there you go. Also, people worked really hard to get the equation rendering working,
-on this blog, so I better use it. Anyway, were were we?
+on this blog, so I better use it. Anyway, where were we?
 
 Ah yes, `rr` works by treating the kernel/userspace boundary as the determinism boundary.
 This has a lot of advantages. For one, the kernel isolates a lot of state. If a
