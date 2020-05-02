@@ -39,10 +39,6 @@
   display: block;
 }
 
-.footer-heading{
-  color:#4D64AE;
-}
-
 #menu ul{
     width: 100%;
     background: #cacaca;
@@ -482,6 +478,11 @@ h4 {
 a {
 	color: #005bc0;
 }
+
+.footer-heading{
+  color:#4D64AE;
+}
+
 
 table th {
   background-color: #eee;
