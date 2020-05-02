@@ -197,9 +197,11 @@ prob = ODEProblem(lotka_volterra,u0,tspan,p)
 Then to solve the differential equations, you can simply call `solve` on the
 `prob`:
 
-    sol = solve(prob)
-    using Plots
-    plot(sol)
+```julia
+sol = solve(prob)
+using Plots
+plot(sol)
+```
 
 ![LV Solution Plot](https://user-images.githubusercontent.com/1814174/51388169-9a07f300-1af6-11e9-8c6c-83c41e81d11c.png)
 
