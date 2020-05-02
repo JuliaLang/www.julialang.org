@@ -13,7 +13,7 @@
  - For realtime help from a person, you should check out our [official chat channels](/community/#chat).
  - If you think there may be a bug in core Julia, search the [open issues on the core Julia repo](https://github.com/JuliaLang/julia/issues).
  - If you think you may have found a security vulnerability in Julia, please read the [instructions for reporting security issues](https://github.com/JuliaLang/julia/security/policy).
- - If you think you have found a problem with this website, please see the [issues section for the website repository](https://github.com/JuliaLang/www.julialang.org).
+ - If you think you have found a problem with this website, please see the [issues section for the website repository](https://github.com/JuliaLang/www.julialang.org/issues).
 
 ## Are you looking for a paticular Julia Package?
  - Check out the [packages page](/packages/) to browse the complete list of all registered Julia Packages.
@@ -27,7 +27,7 @@
  - To announce your package to the Julia community, post on the Julia Discourse under the [package announcement](https://discourse.julialang.org/c/community/packages/47) section. 
  
 ## Need to contact the Julia Language?
- - Contact contact@julialang.org and let us know how we can help!
+ - Contact `contact@julialang.org` and let us know how we can help!
  
 ## Anything else?
- - Contact logan@julialang.org and let us know how we can help!
+ - Contact `logan@julialang.org` and let us know how we can help!
