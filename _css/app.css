@@ -46,23 +46,6 @@
     padding: 0;
 }
 
-.footer-copy {
-    padding-top: 2em;
-    margin-left: auto;
-    margin-right: auto;
-}
-.footer-copy ul > a {
-    font-size: 95%;
-}
-.footer-copy ul > a:first-of-type {
-    font-size: 115%;
-    font-weight: bold;
-}
-#footer-bottom {
-    font-size: 90%;
-    padding-bottom: 2em;
-}
-
 .main-heading {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
