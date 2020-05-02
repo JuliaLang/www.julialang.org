@@ -1,5 +1,3 @@
-# Help
-
 ## New to Julia?
  - Read the [Getting Started tutorial](https://docs.julialang.org/en/v1/manual/getting-started/).
  - Do you learn best via programming books? Check out the [full list of Julia Books](https://julialang.org/learning/#books).
