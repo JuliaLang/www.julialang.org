@@ -156,7 +156,7 @@ For users who did encounter such particularly difficult problems, we have for
 a long time had one particular answer: If you can reproduce it on a linux
 machine and get us a trace from the `rr` tool <https://rr-project.org/>, we can
 probably get it fixed for you very rapidly. For the uninitiated, `rr` is a Linux
-debugging tool originally written by Robert O'Callahan at Mozilla. Is it a tool
+debugging tool originally written by Robert O'Callahan at Mozilla. It is a tool
 known as a "time traveling debugger" or "reverse execution engine". Essentially,
 `rr` splits reproducing bugs into a "record" and a "replay" phase. The record
 phase is performed by the bug reporter. During this phase, `rr` creates a perfect
@@ -212,7 +212,7 @@ A computer is fundamentally a deterministic machine. Given equivalent
 states as inputs, most instructions will produce a deterministic state
 as output. So where do all the subtle execution differences comes from that
 produce diverging executions and prevent bugs from reproducing? Well, the
-complete answer is complicated an has lots of details, but is roughly split
+complete answer is complicated and has lots of details, but is roughly split
 up into:
 
 1) The input state is large. Probably the state of your entire hard drive and
@@ -267,7 +267,7 @@ The details here are quite involved, and I recommend reading Robert's
 [technical report](https://arxiv.org/abs/1610.02144) for a deeper overview of
 some of `rr`'s design points (though even that only scratches the surface).
 
-One final though for this section is the origin of the term "time-traveling"
+One final thought for this section is the origin of the term "time-traveling"
 debugger. It stems from the mode of analysis that a system like this enables.
 In a traditional debugger, it is possible to execute one instruction at a time,
 and step from memory state to memory state in the forwards direction. Systems
