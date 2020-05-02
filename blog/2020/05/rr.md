@@ -165,7 +165,7 @@ after every instruction. This trace can then be analyzed during the replay
 phase (which can be performed by a different developer on a different machine).
 Capabilities like these have long been imagined in academia, but it is extremely
 hard to achieve in a way that does not introduce large overheads or distort
-regular execution. `rr` is that first such tool that (in our experience) is
+regular execution. `rr` is the first such tool that (in our experience) is
 performant enough to be used in the regular course of development. It is worth
 discussing how this is achieved (and what limitations the approach has), but
 first let's take the capabilities for granted and take a look at the workflow
@@ -210,7 +210,7 @@ than from a plain bug report.
 
 A computer is fundamentally a deterministic machine. Given equivalent
 states as inputs, most instructions will produce a deterministic state
-as output. So where do all the subtle execution differences comes from that
+as output. So where do all the subtle execution differences come from that
 produce diverging executions and prevent bugs from reproducing? Well, the
 complete answer is complicated and has lots of details, but is roughly split
 up into:
@@ -239,7 +239,7 @@ function $\mathcal{I}_{ip(\mathcal{S}_i)}$, corresponding to the instruction to 
 executed at time $i$, or some asynchronous event $\mathcal{A}_i$
 
 $$ \mathcal{S}_{i+1} = \begin{cases}
-    \mathcal{A}_i(S_{i}) & \text{if an asynchronous even occured at time $i$} \\
+    \mathcal{A}_i(S_{i}) & \text{if an asynchronous event occured at time $i$} \\
     \mathcal{I}_{\text{ip}(\mathcal{S}_i)} & \text{otherwise}
 \end{cases} $$
 
