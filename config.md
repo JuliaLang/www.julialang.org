@@ -5,7 +5,7 @@
 @def website_url = "https://julialang.org"
 
 <!-- NOTE: don't change what's below -->
-@def div_content = "container" <!-- instead of franklin-content -->
+@def div_content = "container main" <!-- instead of franklin-content -->
 @def author = ""
 
 <!-- Templating of the Downloads -->
