@@ -119,32 +119,31 @@
 ~~~
 
 The Julia project, like any large open source project, gets a large number of
-bug reports everyday. As the developers of the language, we try our best to
+bug reports every day. As the developers of the language, we try our best to
 be as responsive as possible and to triage, investigate and fix any bugs as
 quickly as possible. For some bugs, this is easy. If the bug report is well
 written and the problem is evident, getting it fixed is usually a quick affair.
-However, for a large number of issues, this is not as easy. There are several
+However, for a large number of reports, this is not as easy. There are several
 common reasons why bugs may go unaddressed for extended periods of time, for
 example:
 
-1) The bug may not reproduce deterministically, or maybe only reproduces on the
+1) The bug may not reproduce deterministically, or may only reproduce on the
    reporter's machine (sometimes known as a [Heisenbug](https://en.wikipedia.org/wiki/Heisenbug)).
-2) The bug report may be incomplete as to the environment in which the bug occurs,
+2) The bug report may be incomplete in specifying the environment in which the bug occurs,
    making it hard to reproduce.
 3) The bug reporter may have seen the bug once, but not been entirely sure what
    caused it making it hard to give a reproducer and making the bug report
    largely unactionable.
 4) The bug may occur only in a large project that is hard to set up.
-5) The bug may require specialized expertise to diagnose (e.g. a missing GC root),
-   but the time commitment to reproduce it is too large for those who have the
-   requisite expertise, since their time is in high demand.
+5) The bug may require specialized expertise to diagnose (e.g. a missing GC root).
+   Usually, the time of such experts is in high demand, making the time commitment
+   required to reproduce and investigate such bugs prohibitive.
 
 In addition, there are the bugs that never get filed, because the user may
-feel the effort to write a high-quality bug report is too high, since their
-specific setup would be too complicated to describe and reproduce. Such
-experiences are frustrating both for the users encountering them and for us,
-because we don't learn about them and sometimes only hear about it years later,
-when we get told that somebody gave up on their project in Julia because they
+feel the effort to write a high-quality bug report is too high. Such
+experiences are frustrating both for the users encountering them and for us.
+We often don't learn about these experiences and sometimes only hear about them years later.
+Somebody may have given up on their project in Julia because they
 encountered some crashing problem that they didn't feel qualified to reduce into
 a concise bug report and subsequently gave up on using Julia for their project.
 Lastly, we don't want or expect our users to be expert bug reporters. They are
@@ -152,18 +151,18 @@ often working scientists who are good programmers, but may not have any
 background in software engineering. These are some of our most valuable users,
 and we want to make sure their bugs are addressed.
 
-For users who did encounter such particularly difficult problems, we have for
-a long time had one particular answer: If you can reproduce it on a linux
+In the past, for users who did encounter particularly difficult problems, we have for
+a long time had one answer: If you can reproduce it on a linux
 machine and get us a trace from the `rr` tool <https://rr-project.org/>, we can
 probably get it fixed for you very rapidly. For the uninitiated, `rr` is a Linux
 debugging tool originally developed at Mozilla by Robert O'Callahan and others. It is a tool
 known as a "time traveling debugger" or "reverse execution engine". Essentially,
-`rr` splits reproducing bugs into a "record" and a "replay" phase. The record
+`rr` splits reproducing bugs into two phases: "record" and a "replay". The record
 phase is performed by the bug reporter. During this phase, `rr` creates a perfect
 record of the execution, including the *bitwise exact* memory and register state
 after every instruction. This trace can then be analyzed during the replay
 phase (which can be performed by a different developer on a different machine).
-Capabilities like these have long been imagined in academia, but it is extremely
+Capabilities like these have long been imagined in academia, but are extremely
 hard to achieve in a way that does not introduce large overheads or distort
 regular execution. `rr` is the first such tool that (in our experience) is
 performant enough to be used in the regular course of development. It is worth
@@ -171,13 +170,14 @@ discussing how this is achieved (and what limitations the approach has), but
 first let's take the capabilities for granted and take a look at the workflow
 it enables.
 
-In Julia 1.5, there is now a new command line flag `--bug-report=rr` that will
+In Julia 1.5, which will be released in a few weeks,
+there is now a new command line flag `--bug-report=rr` that will
 automatically create and upload an `rr` recording. An example usage is shown
 in the animation at the start of this post (which just creates a deliberate
 crash by unsafely dereferencing a bad pointer). However to summarize:
 
 1. The bug reporter passes `--bug-report=rr` to her julia instance and
-   reproduces whatever bug they are attempting to reproduce.
+   reproduces whatever bug she is attempting to reproduce.
 
 2. Once julia exits or crashes, the bug reporter is prompted to authorize an
    upload by clicking on a link (GitHub-based authentication is used for abuse
@@ -188,21 +188,22 @@ crash by unsafely dereferencing a bad pointer). However to summarize:
    their own machine.
 
 In addition to this manual mechanism, we are also switching our linux CI systems
-to automatically create `rr` traces of any execution. That way, if a CI run fails,
+to automatically create `rr` traces of any execution. This way, if a CI run fails,
 we are guaranteed to be able to debug it.
 
-If a bug report includes a link to an `rr` trace, no further reproduction
-instructions are required (if the bug is something non-obvious like
+If a bug report includes a link to an `rr` trace, in theory no further reproduction
+instructions are required. The `rr` trace is guaranteed to perfectly capture
+the environment the bug was reproduced in. Of course, if the bug is something non-obvious like
 unexpected behavior, some comments on what the expected behavior was may
-still be helpful), since the `rr` trace is guaranteed to perfectly capture
-the environment the bug was reproduced in. This almost immediately knocks
+still be helpful. 
+Having perfect reproducability almost immediately knocks
 out all the common problems I started this post with. "Works for me" is no
 longer an available answer. If it's in the trace, it broke on somebody's machine
 and can be debugged. "Heisenbug"s are no longer an issue. If it was captured
 once in `rr`, it can always be debugged. It even solves the busy-expert problem,
 as it allows non-experts to help out with triage. If such a report does not
-contain an `rr` trace, any developer, and in particular non-experts can attempt to
-reproduce the bug and create one. Even if the expert is still required to do
+contain an `rr` trace, any developer, and in particular non-experts, can attempt to
+reproduce the bug and create a trace. Even if the expert is still required to do
 the final diagnosis, doing so from an `rr` trace is orders of magnitude faster
 than from a plain bug report.
 
@@ -215,10 +216,10 @@ produce diverging executions and prevent bugs from reproducing? Well, the
 complete answer is complicated and has lots of details, but is roughly split
 up into:
 
-1) The input state is large. Probably the state of your entire hard drive and
-    memory. That's at least `2^2^large` bits of state right there each of which
+1) The size of the input state. Naively this state encompasses at least your entire hard drive and
+    memory. That's at least $2^{2^\text{large}}$ bits of state right there each of which
     could potentially cause a difference in execution. You really want to figure
-    out what state is relevant, since `2^2^large` is probably too many bits to send
+    out what state is relevant, since $2^{2^\text{large}}$ is probably too many bits to send
     somebody.
 
 2) Any input or other asynchronous events. This can mean user input, or
@@ -229,15 +230,15 @@ up into:
 
 4) Direct observation of non-determinstic hardware effects (i.e. the "most" qualifier above).
    This includes instructions that are deliberately non-deterministic, such as RDRAND,
-   which generates a random number. As well as oberservable effects of hardware state
+   which generates a random number. It also includes oberservable, but undesiarable effects of hardware state
    (e.g. timing side channels from cache or branch predictor state).
 
-However, in theory if a tool was able to capture 100% of the relevant state
+However, in theory, if a tool was able to capture 100% of the relevant state
 from these categories, it could repeated generate exactly the same memory image.
-This is not a novel idea, but the devil is in the detail. As already mentioned,
-just capturing everything is probably too large, if at all possible. Particularly
-for asynchronous events, the details quickly become complicated. For example, how
-do we define "when" an asynchronous event happened. I.e. what is our notion of time?
+This is not a novel idea, but the devil is in the detail. Discussing these details
+is beyond the scope of this particular post, but here is a taste: For an asynchonous event, how
+do we define "when" this event happened with respect to the rest of the execution.
+I.e. what is the correct notion of time?
 Real time doesn't work because instruction issue frequency isn't constant (in addition
 to all the usual issues of dealing with time). Probably the most convenient thing
 to use would be the number of retired instructions, but there are some challenges
@@ -261,7 +262,7 @@ on this blog, so I better use it. Anyway, where were we?
 
 Ah yes - how does `rr` do what it does? One of the key tricks it uses is to re-use
 an abstraction boundary that already exists: That between the application and the
-underlying Operating System (or more specifically the Linux kernel). Exploiting
+underlying operating system (or more specifically the Linux kernel). Exploiting
 this abstraction boundary as a determinism boundary (that is relying on determinism
 to apply any changes made internal to the application, but explicitly recording
 any changes made by the kernel) has a lot of advantages.
@@ -301,7 +302,8 @@ not do justice to the reason why `rr` works so well. That reason is simple:
 performance. Overhead for recording of single threaded processes
 is generally below 2x, most often between 2% and 50% (lower for purely
 numerical calculations, higher for workloads that interact with the OS).
-Recording multiple threads or processes that share memory is harder. By default `rr`
+Recording multiple threads or processes that share memory (as opposed to
+using kernel-based message passing) is harder. By default `rr`
 serializes (i.e. runs one after the other rather than in parallel)
 execution of such tasks. In general, this is
 required for correctness, since it is not possible to observe and record the
@@ -311,14 +313,14 @@ concurrent threads. It is thus a good idea to try and reproduce any issues at lo
 There is some interesting academic thinking on high efficiency, parallel recording
 of shared memory applications, but nothing even close to being production ready.
 
-With that caveat in mind, here is some real benchmark numbers of overhead for
-the julia test suite. The test suite mostly uses message-passing based
+With that caveat in mind, here are some real benchmark numbers of overhead for
+the julia test suite (as seen on CI). The test suite mostly uses message-passing based
 parallelism for running multiple tests in parallel. Only the `threads` test
 incurs the shared memory overhead penalty. Below, we plot the overhead of
 recording for each test in the julia test suite. Over the entire test suite, the mean
 overhead was 50% (i.e. on average a recorded test took 50% longer than a non-
 recorded test, say 3s rather than 2s). As expected, the `threads` test is the
-work offender with about 600% overhead. However, a lot of the computational
+worst offender with about 600% overhead. However, a lot of the computational
 benchmarks (e.g. in LinearAlgebra or SparseArrays) show very little overhead.
 This is expected, because these tests spend a lot of time in user space, which
 does not require any data to be recorded.
@@ -334,14 +336,15 @@ already cached some of the work that would have otherwise been necessary to
 run the test. Additionally, and fortunately for us, while the mean slow down
 is 50% on a test-by-test basis, the overall runtime of the test suite is dominated
 by the low-overhead purely computations tests, plus a separate run of the `threads`
-test. As a result the increase in total time from running rr is attributable almost
-entirely to the `threads` test alone.
-Surprisingly too, your traces may often be quite small!
+test. As a result the increase in total time from running the test suite under
+rr is attributable almost entirely to the `threads` test alone.
+Surprisingly too, the traces may often be quite small!
 The total compressed size of a trace for a full run of the test suite (about
 30 minutes on 10 cores) is about three gigabytes. As a point of comparison
 this is significantly smaller than a even full-memory coredump would be at the end
-of the test suite run, which would be around 10GB. From the trace, we can not
-only reproduce such a core-dump, but every single of the hundreds of billions
+of the test suite run (around 10GB or so, though probably decently well compressible
+with standard techniques). From the trace, we can not
+only reproduce such a core-dump, but every single of the trillions
 of intermediate states!
 
 # Hardware and Software limitations
@@ -357,7 +360,7 @@ this is as follows:
 
 - For x86_64 with AMD Ryzen microarchitecture, it seems potentially possible, but the
     AMD performance counters are less accurate than those found on Intel chips.
-    It may be possible to compensate for this in software, but the in-accuracies
+    It may be possible to compensate for this in software, but the inaccuracies
     are ill-understood. Help in investigation is welcome ([issue](https://github.com/mozilla/rr/issues/2034)).
 
 - For AArch64, ll/sc-based atomics introduce additional problems, since various
@@ -382,7 +385,7 @@ this is as follows:
 One additional point of complication, in our experience, is that it is quite common for
 hypervisors (such as those used by cloud vendors) to disable the CPU capabilities
 required by `rr`, rendering it incapable of functioning inside virtual machines.
-. `rr` appears works fine on the latest generation of Amazon AWS machines
+`rr` appears works fine on the latest generation of Amazon AWS machines
 (above a certain size), but not on Google GCP or Microsoft Azure.
 
 Lastly, we shouldn't fail to mention GPUs. GPUs are heavily utilized by Julia
@@ -412,7 +415,7 @@ have little incentive to care. I'm hoping that by rolling out these capabilities
 widely, these incentives will start presenting themselves. Judging from the size
 of the community and discounting for those that use unsupported hardware or
 operating system, the number of users for whom this feature will be available
-like numbers in the hundreds of thousands. That isn't super large, by hardware
+likely numbers in the hundreds of thousands. That isn't super large by hardware
 vendor standards, but it isn't trivially small either. If any hardware vendor
 is interested in making this work, we'd be happy to talk to you (and as I
 mentioned, some of this is already in progress).
@@ -442,8 +445,8 @@ through this feature privately.
 # Future outlook
 
 Being able to replay the traces is only the beginning. I like to say that
-with `rr`, debugging becomes a data analysis problem, since any question
-you could possibly ask about the program is already contained in the data,
+with `rr`, debugging becomes a data analysis problem, since the answer to
+any question you could possibly ask about the program is already contained in the trace,
 it just becomes a question of extracting the answer. By default, `rr` drops
 you into GDB, but GDB is unlikely to be the correct frontend for such analysis.
 `rr`'s original author Robert O'Callahan now has a startup working on a
