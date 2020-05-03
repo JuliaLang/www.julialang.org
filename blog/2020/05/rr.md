@@ -305,10 +305,28 @@ threads. It is thus a good idea to try and reproduce any issues at low core coun
 With that caveat in mind. Here is some real benchmark numbers of overhead for
 the julia test suite. The tests suite mostly uses message-passing based
 parallelism for running multiple tests in parallel. Only the `threads` test
-incurs the shared memory overhead penalty. Here are the measurements:
+incurs the shared memory overhead penalty. Below, we plot the overhead of
+recording for each test in the julia test suite. Over the entire test suite, the mean
+overhead was 50% (i.e. on average a recorded test took 50% longer than a non-
+recorded test, say 3s rather than 2s). As expected, the `threads` test is the
+work offender with about 600% overhead. However, a lot of the computational
+benchmarks (e.g. in LinearAlgebra or SparseArrays) show very little overhead.
+This is expected, because these tests spend a lot of time in user space, which
+does not require any data to be recorded.
 
-[data]
+![overhead](/assets/blog/2020-05-02-rr/data/overhead.svg)
 
+You might wonder why some tests ran faster under rr. I have not investigated
+this in detail, but I believe it to be a measurement artifact. The runtime of
+tests can depend on what code previously ran on the same worker (since common
+code results are chached) and since work is assigned greedly to workers, a change
+in the schedule can sometimes result in tests running on a worker that has
+already cached some of the work that would have otherwise been necessary to
+run the test. Additionally, and fortunately for us, while the mean slow down
+is 50% on a test-by-test basis, the overall runtime of the test suite is dominated
+by the low-overhead purely computations tests, plus a separate run of the `threads`
+test. As a result the increase in total time from running rr is attributable almost
+entirely to the `threads` test alone.
 The total compressed size of a trace for a full run of the test suite (about
 30 minutes on 10 cores) is about three gigabytes.
 
