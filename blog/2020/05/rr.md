@@ -87,7 +87,7 @@
                     cols="100"
                     id="record_player"
                     rows="40"
-                    speed="1"
+                    speed="2"
                     theme="asciinema"
                     title="Recording"
                     src="/assets/blog/2020-05-02-rr/record.cast">
@@ -97,7 +97,7 @@
                     id="replay_player"
                     class="hidden"
                     rows="40"
-                    speed="1"
+                    speed="1.5"
                     theme="asciinema"
                     title="Recording"
                     src="/assets/blog/2020-05-02-rr/replay.cast">
@@ -156,7 +156,7 @@ For users who did encounter such particularly difficult problems, we have for
 a long time had one particular answer: If you can reproduce it on a linux
 machine and get us a trace from the `rr` tool <https://rr-project.org/>, we can
 probably get it fixed for you very rapidly. For the uninitiated, `rr` is a Linux
-debugging tool originally written by Robert O'Callahan at Mozilla. It is a tool
+debugging tool originally developed at Mozilla by Robert O'Callahan and others. It is a tool
 known as a "time traveling debugger" or "reverse execution engine". Essentially,
 `rr` splits reproducing bugs into a "record" and a "replay" phase. The record
 phase is performed by the bug reporter. During this phase, `rr` creates a perfect
