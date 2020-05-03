@@ -80,7 +80,7 @@ Please let us know if you have another organization dedicated to these efforts.
 
 ### User groups and meetups
 
-Julia has local user groups around the world, including:
+Julia has [local user groups around the world](https://www.meetup.com/topics/julia/), including:
 
 #### Asia
 
