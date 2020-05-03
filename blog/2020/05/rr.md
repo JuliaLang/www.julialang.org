@@ -227,13 +227,24 @@ up into:
 
 3) Execution ordering and data races in multi-threaded executions.
 
+4) Direct observation of non-determinstic hardware effects (i.e. the "most" qualifier above).
+   This includes instructions that are deliberately non-deterministic, such as RDRAND,
+   which generates a random number. As well as oberservable effects of hardware state
+   (e.g. timing side channels from cache or branch predictor state).
+
 However, in theory if a tool was able to capture 100% of the relevant state
 from these categories, it could repeated generate exactly the same memory image.
 This is not a novel idea, but the devil is in the detail. As already mentioned,
-just capturing everything is probably too large, if at all possible (e.g. how
-do you capture interrupt timing - how do you even talk about time in this setting?).
+just capturing everything is probably too large, if at all possible. Particularly
+for asynchronous events, the details quickly become complicated. For example, how
+do we define "when" an asynchronous event happened. I.e. what is our notion of time?
+Real time doesn't work because instruction issue frequency isn't constant (in addition
+to all the usual issues of dealing with time). Probably the most convenient thing
+to use would be the number of retired instructions, but there are some challenges
+here depending on the hardware (which will be discussed a bit in the hardware section
+below).
 
-In other words, for some input state $\mathcal{S_{i}}$,
+To summarize, for some input state $\mathcal{S_{i}}$,
 the output state $\mathcal{S_{i+1}}$ is determined by some pure, deterministic
 function $\mathcal{I}_{ip(\mathcal{S}_i)}$, corresponding to the instruction to be
 executed at time $i$, or some asynchronous event $\mathcal{A}_i$
@@ -248,8 +259,13 @@ also I've been told it's not research until it has at least one equation in it,
 so there you go. Also, people worked really hard to get the equation rendering working,
 on this blog, so I better use it. Anyway, where were we?
 
-Ah yes, `rr` works by treating the kernel/userspace boundary as the determinism boundary.
-This has a lot of advantages. For one, the kernel isolates a lot of state. If a
+Ah yes - how does `rr` do what it does? One of the key tricks it uses is to re-use
+an abstraction boundary that already exists: That between the application and the
+underlying Operating System (or more specifically the Linux kernel). Exploiting
+this abstraction boundary as a determinism boundary (that is relying on determinism
+to apply any changes made internal to the application, but explicitly recording
+any changes made by the kernel) has a lot of advantages.
+For one, the kernel isolates a lot of state. If a
 part of the disk state (e.g. a file) wasn't requested through the kernel, you
 can be guaranteed that it didn't affect the process state (assuming the kernel
 works correctly of course). It abstracts over hardware details and provides
@@ -257,13 +273,13 @@ a uniform interface to resources like the network. It also isolates processes
 from another, so if there is one process of interest (e.g. julia) only the
 activity relevant to it has to be recovered.
 
-Of course, there are some drawbacks as well. In order to function `rr` has to
+That said, this scheme also introduces some complications. In order to function, `rr` must
 have an extremely precise model of the operation of the kernel and the ways
-in which it interacts with userspace. On Linux this interface is supposedly
-stable, but few applications put as stringent a constraint on that promise as
-`rr` does (e.g. even a single bit difference can be problematic).
+in which it interacts with userspace. The Linux developers work hard to attempt
+to keep this interface stable, but few applications put as stringent a constraint on that promise as
+`rr` does. Sometimes even a single bit difference in kernel behavior can be problematic!
 
-The details here are quite involved, and I recommend reading Robert's
+If these details interest you, I recommend reading Robert's
 [technical report](https://arxiv.org/abs/1610.02144) for a deeper overview of
 some of `rr`'s design points (though even that only scratches the surface).
 
@@ -271,7 +287,7 @@ One final thought for this section is the origin of the term "time-traveling"
 debugger. It stems from the mode of analysis that a system like this enables.
 In a traditional debugger, it is possible to execute one instruction at a time,
 and step from memory state to memory state in the forwards direction. Systems
-like `rr` allow the opposite during replay: Step backwards through the state of
+like `rr` allow the opposite during replay: step backwards through the state of
 the system. Under the hood this is accomplished by playing forward from the
 beginning (or more likely some intermediate checkpoint created for performance
 reasons), until the previous state is reached. However, to the end user, the
@@ -285,25 +301,18 @@ not do justice to the reason why `rr` works so well. That reason is simple:
 performance. Overhead for recording of single threaded processes
 is generally below 2x, most often between 2% and 50% (lower for purely
 numerical calculations, higher for workloads that interact with the OS).
-Recording multi-threaded processes is tougher. By default `rr` serializes
-execution of tasks that access the same shared memory. In generality this is
+Recording multiple threads or processes that share memory is harder. By default `rr`
+serializes (i.e. runs one after the other rather than in parallel)
+execution of such tasks. In general, this is
 required for correctness, since it is not possible to observe and record the
-interleaving of memory operations to shared memory spaces. However, there is
-hope. If the multi-threaded program is well-behaved (or mostly well-behaved)
-in that communication happens by message passing rather than shared memory, or
-if accesses to shared memory are explicitly synchronized in a recordable fashion,
-multi-threaded recording becomes possible. `rr` currently supports the former,
-if the messages are passed via operating system pipes. We are interested in
-techniques for the latter and there is some interesting academic work in this
-direction, but nothing close to production ready. A complete solution would
-probably combine compiler-based analysis of safe regions with dynamic
-enforcement of safety for regions where this cannot be proven by the compiler.
-However, that is for future work. For the moment, recording multi-threaded,
+interleaving of memory operations to shared memory spaces. As a result,
 shared-memory applications will likely incur overhead linear in the number of
-threads. It is thus a good idea to try and reproduce any issues at low core count.
+concurrent threads. It is thus a good idea to try and reproduce any issues at low core count.
+There is some interesting academic thinking on high efficiency, parallel recording
+of shared memory applications, but nothing even close to being production ready.
 
-With that caveat in mind. Here is some real benchmark numbers of overhead for
-the julia test suite. The tests suite mostly uses message-passing based
+With that caveat in mind, here is some real benchmark numbers of overhead for
+the julia test suite. The test suite mostly uses message-passing based
 parallelism for running multiple tests in parallel. Only the `threads` test
 incurs the shared memory overhead penalty. Below, we plot the overhead of
 recording for each test in the julia test suite. Over the entire test suite, the mean
@@ -327,8 +336,13 @@ is 50% on a test-by-test basis, the overall runtime of the test suite is dominat
 by the low-overhead purely computations tests, plus a separate run of the `threads`
 test. As a result the increase in total time from running rr is attributable almost
 entirely to the `threads` test alone.
+Surprisingly too, your traces may often be quite small!
 The total compressed size of a trace for a full run of the test suite (about
-30 minutes on 10 cores) is about three gigabytes.
+30 minutes on 10 cores) is about three gigabytes. As a point of comparison
+this is significantly smaller than a even full-memory coredump would be at the end
+of the test suite run, which would be around 10GB. From the trace, we can not
+only reproduce such a core-dump, but every single of the hundreds of billions
+of intermediate states!
 
 # Hardware and Software limitations
 
@@ -346,28 +360,30 @@ this is as follows:
     It may be possible to compensate for this in software, but the in-accuracies
     are ill-understood. Help in investigation is welcome ([issue](https://github.com/mozilla/rr/issues/2034)).
 
-- For Aarch64, ll/sc-based atomics introduce additional problems, since various
+- For AArch64, ll/sc-based atomics introduce additional problems, since various
     external factors (interrupts, descheduling, etc.) can be observed as sc aborts.
     With proper hardware support, this would be possible to work around, but such
-    hardware support appeared to be too in-accurate on older generation Aarch64 chips
-    and have been removed on recent generation ones. That said, Aarch64
-    microarchitectures are varied and as evidenced by the x86_64 experience, these
-    things can vary quite a bit by microarchitecture. Investigation of the hardware
-    capabilities of various Aarch64 microarchitectures would be very welcome
+    hardware support appeared to be inaccurate on older generation AArch64 chips
+    and has been removed on recent generation ones. That said, AArch64
+    microarchitectures are varied and as evidenced by the x86_64 experience, the
+    the quality of implementation of the relevant hardware support can vary quite
+    a bit by microarchitecture. Investigation of the hardware
+    capabilities of various AArch64 microarchitectures would be very welcome
     ([issue](https://github.com/mozilla/rr/issues/1373)).
 
-- We have looked into rr on POWER9, which is found in several large supercomputers
-    that run julia jobs. POWER9 has similar issues to Aarch64 since it is also an
+- We have looked into `rr` on POWER9, which is found in several large supercomputers
+    that run julia jobs. POWER9 has similar issues to AArch64 since it is also an
     ll/sc architecture, as well as supporting hardware transactional memory. In theory,
     we believe the hardware exists to compensate for these issues, but preliminary
     investigation suggests the hardware is not accurate enough to support `rr`. That
     said, I understand there's active discussions with IBM to determine whether this
     analysis is correct.
 
-One additional point of complication, is that it is quite easy for hypervisors
-(such as those used by cloud vendors) to interfere with the CPU capabilities
-required by `rr`. My understanding is that `rr` works fine on the latest generation
-of AWS machines, but not on GCP or Azure.
+One additional point of complication, in our experience, is that it is quite common for
+hypervisors (such as those used by cloud vendors) to disable the CPU capabilities
+required by `rr`, rendering it incapable of functioning inside virtual machines.
+. `rr` appears works fine on the latest generation of Amazon AWS machines
+(above a certain size), but not on Google GCP or Microsoft Azure.
 
 Lastly, we shouldn't fail to mention GPUs. GPUs are heavily utilized by Julia
 users, but are currently not supported by `rr`. Changing this is tricky. GPUs
@@ -380,7 +396,7 @@ decent chance of succeeding, since open source drivers allow insight into exactl
 how the GPU works and when it will modify process memory. GPUs with proprietary
 drivers are a lot harder. For one, their interface to userspace is not necessarily
 known. Additionally, proprietary drivers tend to be a lot less well behaved
-than open source ones (the linux kernel review process tends to filter out
+than open source ones (the Linux kernel review process tends to filter out
 the most egregious behavior). For example, proprietary drivers have been
 observed to use the userspace stack for scratch space. For those GPUs in use
 by a large number of Julia users, we hope to work with the relevant vendors to
@@ -405,12 +421,14 @@ mentioned, some of this is already in progress).
 
 By its nature, an `rr` trace will contain any file touched by the process during
 its lifetime. In particular, this may contain things like your julia history,
-configuration files for your system, any secrets entered or read (i.e. make
+your process environment (including any secrets you may be automatically adding
+to it from bashrc or similar), any configuration files for your system,
+any secrets entered or read (i.e. make
 sure to use ssh-agent if your reproducer involves using SSH for authentication),
 any private code you may be using, etc. We are investigating building tooling
 to help understand what's in the trace and anonymize parts of the trace that are
-potentially sensitive, but do not have long-ranging effects in the trace. We
-will also likely be disabling history by default if the `--bug-report` command
+potentially sensitive, but do not otherwise affect the trace.
+We will also likely be disabling history by default if the `--bug-report` command
 line flag is passed. Nevertheless, please make sure to have the system
 administrator's permission before using the `--bug-report` feature. If you are
 not sure, we recommend creating the reproducer in a sanitized, isolated
