@@ -77,7 +77,8 @@ Julia’s official documentation is in English, but many groups work to translat
 @@
 
 Please let us know if you have another organization dedicated to these efforts.
-User groups and meetups
+
+### User groups and meetups
 
 Julia has local user groups around the world, including:
 
