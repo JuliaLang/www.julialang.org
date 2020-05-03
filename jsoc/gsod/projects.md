@@ -170,7 +170,7 @@ __Potential impact and the Why?:__
 
 [Queryverse](https://www.queryverse.org/) is a family of packages in the data science space. Many packages have rudimentary documentation but could use updates, polish, proper tutorials etc. We are looking for help with documentation for all packages, and to build out the homepage for the project. The mentor for this project would be [David Anthoff](https://github.com/davidanthoff).
 
-## Turing
+## Turing (Probabilistic Machine Learning)
 
 [Turing.jl](https://turing.ml/dev/) is a probabilistic programming language written in Julia. The team is looking for help with several projects. Mentors for this project would be [Cameron Pfiffer](https://github.com/cpfiffer/), [Martin Trapp](https://github.com/trappmartin/), [Kai Xu](https://github.com/xukai92), or [Hong Ge](https://github.com/yebai/).
 
