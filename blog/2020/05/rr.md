@@ -428,8 +428,9 @@ sure to use ssh-agent if your reproducer involves using SSH for authentication),
 any private code you may be using, etc. We are investigating building tooling
 to help understand what's in the trace and anonymize parts of the trace that are
 potentially sensitive, but do not otherwise affect the trace.
-We will also likely be disabling history by default if the `--bug-report` command
-line flag is passed. Nevertheless, please make sure to have the system
+For the moment, we disable reading the histry by default when creating an
+rr trace (using the history can be explicitly opted into when necessary
+for reproduction). Nevertheless, please make sure to have the system
 administrator's permission before using the `--bug-report` feature. If you are
 not sure, we recommend creating the reproducer in a sanitized, isolated
 environment (e.g. a docker container). Alternatively, while the `--bug-report`
