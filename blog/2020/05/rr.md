@@ -13,25 +13,25 @@
         transform: scale(1)
       }
       10% {
-        transform: translate(-10%,10%) scale(0.1) rotateZ(30deg);
+        transform: translate(-5%,-14%) scale(0.1) rotateZ(30deg);
       }
       20% {
-        transform: translate(-20%,-5%) scale(0.1) rotateZ(30deg);
+        transform: translate(-10%,-25%) scale(0.1) rotateZ(30deg);
       }
       30% {
-        transform: translate(-10%,-20%) scale(0.1) rotateZ(30deg);
+        transform: translate(-5%,-30%) scale(0.1) rotateZ(30deg);
       }
       40% {
-        transform: translate(-10%,-18%) scale(0.05) rotateZ(30deg);
+        transform: translate(-5%,-30%) scale(0.05) rotateZ(30deg);
       }
       55% {
-        transform: translate(-10%,-18%) scale(0.05) rotateZ(30deg);
+        transform: translate(-5%,-30%) scale(0.05) rotateZ(30deg);
       }
       60% {
-        transform: translate(-10%,-25%) scale(0.05) rotateZ(30deg);
+        transform: translate(-5%,-35%) scale(0.05) rotateZ(30deg);
       }
       90% {
-        transform: translate(10%,-25%) scale(0.1) rotateZ(30deg) rotateX(140deg);
+        transform: translate(8%,-25%) scale(0.1) rotateZ(30deg) rotateX(140deg);
       }
     }
     @keyframes fadeIn {
@@ -64,6 +64,8 @@
       margin: auto;
       z-index: 0;
       opacity: 0;
+      width: 629px;
+      height: 282px;
     }
     #arch_diagram.animated {
       animation-name: fadeIn;
