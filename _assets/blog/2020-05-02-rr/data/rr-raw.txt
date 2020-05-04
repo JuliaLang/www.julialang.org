@@ -1,0 +1,348 @@
+LinearAlgebra/triangular            (2) |        started at 2020-05-02T05:07:44.923
+LinearAlgebra/dense                 (4) |        started at 2020-05-02T05:07:45.174
+LinearAlgebra/schur                 (6) |        started at 2020-05-02T05:07:45.175
+LinearAlgebra/special               (7) |        started at 2020-05-02T05:07:45.176
+LinearAlgebra/qr                    (3) |        started at 2020-05-02T05:07:45.177
+LinearAlgebra/lapack               (11) |        started at 2020-05-02T05:07:45.178
+LinearAlgebra/matmul                (5) |        started at 2020-05-02T05:07:45.178
+LinearAlgebra/eigen                 (8) |        started at 2020-05-02T05:07:45.179
+LinearAlgebra/svd                  (10) |        started at 2020-05-02T05:07:45.18
+LinearAlgebra/bunchkaufman          (9) |        started at 2020-05-02T05:07:45.181
+LinearAlgebra/schur                 (6) |    43.12 |   1.57 |  3.6 |    4033.57 |   365.25
+LinearAlgebra/tridiag               (6) |        started at 2020-05-02T05:08:29.536
+LinearAlgebra/lapack               (11) |    95.91 |   2.87 |  3.0 |    5223.51 |   409.17
+LinearAlgebra/bidiag               (11) |        started at 2020-05-02T05:09:22.566
+LinearAlgebra/eigen                 (8) |   104.85 |   3.82 |  3.6 |    5868.74 |   391.31
+LinearAlgebra/diagonal              (8) |        started at 2020-05-02T05:09:31.48
+LinearAlgebra/tridiag               (6) |    66.37 |   2.21 |  3.3 |    5705.29 |   464.64
+LinearAlgebra/cholesky              (6) |        started at 2020-05-02T05:09:35.995
+LinearAlgebra/bunchkaufman          (9) |   110.43 |   3.73 |  3.4 |    6285.80 |   412.73
+LinearAlgebra/lu                    (9) |        started at 2020-05-02T05:09:37.111
+LinearAlgebra/special               (7) |   113.87 |   3.40 |  3.0 |    9760.47 |   453.87
+LinearAlgebra/symmetric             (7) |        started at 2020-05-02T05:09:39.952
+LinearAlgebra/svd                  (10) |   127.06 |   4.43 |  3.5 |    7302.74 |   457.04
+LinearAlgebra/generic              (10) |        started at 2020-05-02T05:09:53.696
+LinearAlgebra/generic              (10) |    59.72 |   1.92 |  3.2 |    3016.77 |   652.57
+LinearAlgebra/uniformscaling       (10) |        started at 2020-05-02T05:10:53.523
+LinearAlgebra/dense                 (4) |   188.73 |   8.51 |  4.5 |   18869.41 |   654.61
+LinearAlgebra/lq                    (4) |        started at 2020-05-02T05:10:54.738
+LinearAlgebra/qr                    (3) |   190.41 |   5.91 |  3.1 |   14675.13 |   672.42
+LinearAlgebra/hessenberg            (3) |        started at 2020-05-02T05:10:57.082
+LinearAlgebra/cholesky              (6) |   110.66 |   3.75 |  3.4 |    8952.34 |   651.75
+LinearAlgebra/blas                  (6) |        started at 2020-05-02T05:11:26.73
+LinearAlgebra/lq                    (4) |    47.16 |   2.82 |  6.0 |   11693.37 |   949.46
+LinearAlgebra/adjtrans              (4) |        started at 2020-05-02T05:11:41.966
+LinearAlgebra/symmetric             (7) |   124.50 |   5.51 |  4.4 |   10874.37 |   685.49
+LinearAlgebra/pinv                  (7) |        started at 2020-05-02T05:11:44.523
+LinearAlgebra/blas                  (6) |    21.18 |   1.09 |  5.1 |    1808.80 |   698.90
+LinearAlgebra/givens                (6) |        started at 2020-05-02T05:11:47.985
+LinearAlgebra/givens                (6) |     5.87 |   0.16 |  2.8 |     403.05 |   698.90
+LinearAlgebra/structuredbroadcast   (6) |        started at 2020-05-02T05:11:53.926
+LinearAlgebra/pinv                  (7) |    13.14 |   0.61 |  4.6 |    1417.05 |   879.29
+LinearAlgebra/addmul                (7) |        started at 2020-05-02T05:11:57.74
+LinearAlgebra/adjtrans              (4) |    20.07 |   0.89 |  4.4 |    2203.31 |   949.46
+LinearAlgebra/ldlt                  (4) |        started at 2020-05-02T05:12:02.108
+LinearAlgebra/ldlt                  (4) |     1.36 |   0.05 |  3.6 |     108.92 |   949.46
+ambiguous                           (4) |        started at 2020-05-02T05:12:03.539
+LinearAlgebra/uniformscaling       (10) |    84.96 |   2.89 |  3.4 |    4248.06 |   691.97
+compiler/inference                 (10) |        started at 2020-05-02T05:12:18.594
+ambiguous                           (4) |    32.42 |   1.40 |  4.3 |    4495.94 |   949.46
+compiler/validation                 (4) |        started at 2020-05-02T05:12:36.024
+compiler/validation                 (4) |     0.39 |   0.00 |  0.0 |      16.45 |   949.46
+compiler/ssair                      (4) |        started at 2020-05-02T05:12:36.487
+LinearAlgebra/structuredbroadcast   (6) |    43.65 |   1.75 |  4.0 |    4155.82 |   749.78
+compiler/irpasses                   (6) |        started at 2020-05-02T05:12:37.647
+compiler/irpasses                   (6) |     1.32 |   0.06 |  4.5 |     125.25 |   758.55
+compiler/ssair                      (4) |     2.50 |   0.04 |  1.7 |      61.61 |   949.46
+compiler/inline                     (4) |        started at 2020-05-02T05:12:39.062
+compiler/inline                     (4) |     0.65 |   0.02 |  3.3 |      38.68 |   949.46
+compiler/contextual                 (4) |        started at 2020-05-02T05:12:39.782
+compiler/codegen                    (6) |        started at 2020-05-02T05:12:40.419
+compiler/contextual                 (4) |     1.03 |   0.02 |  2.1 |      68.36 |   949.46
+subarray                            (4) |        started at 2020-05-02T05:12:40.883
+compiler/codegen                    (6) |     4.05 |   0.43 | 10.6 |      82.86 |   771.44
+strings/basic                       (6) |        started at 2020-05-02T05:12:44.607
+LinearAlgebra/lu                    (9) |   188.63 |   5.61 |  3.0 |    9527.51 |   668.29
+strings/search                      (9) |        started at 2020-05-02T05:12:45.856
+strings/search                      (9) |     4.19 |   0.06 |  1.4 |     112.46 |   668.29
+strings/util                        (9) |        started at 2020-05-02T05:12:50.162
+LinearAlgebra/hessenberg            (3) |   116.65 |   3.44 |  2.9 |    6677.16 |   814.41
+strings/io                          (3) |        started at 2020-05-02T05:12:53.841
+strings/basic                       (6) |    10.80 |   0.28 |  2.6 |     705.73 |   771.44
+strings/types                       (6) |        started at 2020-05-02T05:12:55.54
+strings/util                        (9) |     7.20 |   0.12 |  1.7 |     265.00 |   668.29
+unicode/utf8                        (9) |        started at 2020-05-02T05:12:57.486
+compiler/inference                 (10) |    39.02 |   1.34 |  3.4 |    2462.89 |   707.38
+core                               (10) |        started at 2020-05-02T05:12:57.776
+unicode/utf8                        (9) |     0.25 |   0.00 |  0.0 |       7.40 |   668.29
+worlds                              (9) |        started at 2020-05-02T05:12:57.854
+strings/io                          (3) |     4.24 |   0.10 |  2.3 |     150.42 |   817.42
+keywordargs                         (3) |        started at 2020-05-02T05:12:58.194
+worlds                              (9) |     2.70 |   0.05 |  1.8 |     114.61 |   668.29
+strings/types                       (6) |     5.07 |   0.34 |  6.8 |    1222.72 |   777.43
+numbers                             (9) |        started at 2020-05-02T05:13:00.683
+subtype                             (6) |        started at 2020-05-02T05:13:00.687
+keywordargs                         (3) |     3.81 |   0.07 |  1.9 |      91.12 |   817.42
+char                                (3) |        started at 2020-05-02T05:13:02.113
+char                                (3) |     5.08 |   0.15 |  2.9 |     269.35 |   818.49
+triplequote                         (3) |        started at 2020-05-02T05:13:10.273
+triplequote                         (3) |     0.08 |   0.00 |  0.0 |       0.41 |   818.57
+intrinsics                          (3) |        started at 2020-05-02T05:13:10.536
+intrinsics                          (3) |     1.00 |   0.04 |  4.1 |      28.28 |   818.70
+dict                                (3) |        started at 2020-05-02T05:13:11.644
+subtype                             (6) |    22.13 |   0.90 |  4.0 |    1492.98 |  1135.19
+hashing                             (6) |        started at 2020-05-02T05:13:22.888
+hashing                             (6) |    17.97 |   0.59 |  3.3 |    1445.05 |  1135.19
+iobuffer                            (6) |        started at 2020-05-02T05:13:40.933
+iobuffer                            (6) |     1.79 |   0.05 |  2.5 |      95.12 |  1135.19
+staged                              (6) |        started at 2020-05-02T05:13:42.8
+staged                              (6) |     3.18 |   0.10 |  3.2 |     220.87 |  1135.19
+offsetarray                         (6) |        started at 2020-05-02T05:13:46.049
+dict                                (3) |    44.12 |   1.66 |  3.8 |    2026.97 |   876.66
+arrayops                            (3) |        started at 2020-05-02T05:13:55.96
+LinearAlgebra/bidiag               (11) |   292.93 |   7.60 |  2.6 |   14649.05 |   638.09
+tuple                              (11) |        started at 2020-05-02T05:14:15.608
+tuple                              (11) |     7.45 |   0.17 |  2.2 |     318.20 |   638.09
+reduce                             (11) |        started at 2020-05-02T05:14:23.178
+offsetarray                         (6) |    48.73 |   1.93 |  4.0 |    4403.80 |  1135.19
+reducedim                           (6) |        started at 2020-05-02T05:14:34.848
+numbers                             (9) |   115.20 |   2.62 |  2.3 |    4438.60 |   782.53
+abstractarray                       (9) |        started at 2020-05-02T05:14:55.995
+reduce                             (11) |    33.05 |   1.50 |  4.5 |    1791.34 |   752.65
+intfuncs                           (11) |        started at 2020-05-02T05:14:56.338
+core                               (10) |   130.99 |  18.09 | 13.8 |   12428.23 |  2325.52
+intfuncs                           (11) |    13.35 |   0.30 |  2.2 |     448.29 |   752.65
+vecelement                         (11) |        started at 2020-05-02T05:15:09.797
+reducedim                           (6) |    35.92 |   1.12 |  3.1 |    2684.48 |  1153.58
+rational                            (6) |        started at 2020-05-02T05:15:10.846
+simdloop                           (10) |        started at 2020-05-02T05:15:11.899
+simdloop                           (10) |     4.89 |   0.06 |  1.2 |     294.26 |  2325.52
+bitarray                           (10) |        started at 2020-05-02T05:15:17.291
+LinearAlgebra/matmul                (5) |   452.19 |  13.99 |  3.1 |   20005.08 |   571.91
+copy                                (5) |        started at 2020-05-02T05:15:18.862
+rational                            (6) |    13.00 |   0.40 |  3.0 |     929.84 |  1153.58
+math                                (6) |        started at 2020-05-02T05:15:23.917
+copy                                (5) |     5.13 |   0.09 |  1.8 |     248.61 |   571.91
+fastmath                            (5) |        started at 2020-05-02T05:15:24.107
+vecelement                         (11) |    18.99 |   0.81 |  4.3 |    1608.24 |   752.65
+functional                         (11) |        started at 2020-05-02T05:15:28.888
+LinearAlgebra/diagonal              (8) |   365.21 |  12.36 |  3.4 |   20176.03 |   757.78
+iterators                           (8) |        started at 2020-05-02T05:15:36.814
+functional                         (11) |    11.66 |   0.31 |  2.6 |     568.71 |   752.65
+operators                          (11) |        started at 2020-05-02T05:15:40.657
+fastmath                            (5) |    16.93 |   0.28 |  1.7 |     715.81 |   590.96
+ordering                            (5) |        started at 2020-05-02T05:15:41.172
+ordering                            (5) |     4.72 |   0.07 |  1.5 |     156.34 |   592.02
+path                                (5) |        started at 2020-05-02T05:15:46.001
+path                                (5) |     2.21 |   0.04 |  1.9 |     100.44 |   608.41
+ccall                               (5) |        started at 2020-05-02T05:15:48.315
+operators                          (11) |    11.33 |   0.33 |  2.9 |     595.60 |   752.65
+parse                              (11) |        started at 2020-05-02T05:15:52.091
+parse                              (11) |    10.91 |   0.29 |  2.6 |     536.67 |   752.65
+loading                            (11) |        started at 2020-05-02T05:16:03.204
+math                                (6) |    45.83 |   1.13 |  2.5 |    3140.18 |  1200.80
+gmp                                 (6) |        started at 2020-05-02T05:16:09.825
+subarray                            (4) |   210.78 |  10.29 |  4.9 |   23197.24 |  1313.74
+sorting                             (4) |        started at 2020-05-02T05:16:11.734
+gmp                                 (6) |     5.70 |   0.57 | 10.0 |     313.74 |  1200.80
+spawn                               (6) |        started at 2020-05-02T05:16:15.597
+LinearAlgebra/triangular            (2) |   516.81 |  19.88 |  3.8 |   45425.40 |  1197.22
+backtrace                           (2) |        started at 2020-05-02T05:16:22.812
+backtrace                           (2) |     3.27 |   0.03 |  1.0 |      81.79 |  1216.28
+exceptions                          (2) |        started at 2020-05-02T05:16:26.152
+exceptions                          (2) |     1.13 |   0.03 |  2.5 |      31.17 |  1225.58
+file                                (2) |        started at 2020-05-02T05:16:27.363
+file                                (2) |    11.95 |   0.24 |  2.0 |     485.66 |  1234.80
+read                                (2) |        started at 2020-05-02T05:16:39.386
+spawn                               (6) |    26.44 |   0.20 |  0.7 |     503.43 |  1200.80
+version                             (6) |        started at 2020-05-02T05:16:42.108
+version                             (6) |     1.39 |   0.03 |  2.5 |      88.35 |  1200.80
+namedtuple                          (6) |        started at 2020-05-02T05:16:43.613
+abstractarray                       (9) |   108.72 |   4.00 |  3.7 |    5241.47 |   834.34
+namedtuple                          (6) |     4.44 |   0.07 |  1.5 |     202.18 |  1200.80
+broadcast                           (6) |        started at 2020-05-02T05:16:48.128
+sorting                             (4) |    43.39 |   1.13 |  2.6 |    2824.54 |  1448.64
+complex                             (4) |        started at 2020-05-02T05:16:55.194
+mpfr                                (9) |        started at 2020-05-02T05:16:55.222
+iterators                           (8) |    85.26 |   2.48 |  2.9 |    4587.39 |   919.07
+floatapprox                         (8) |        started at 2020-05-02T05:17:02.19
+floatapprox                         (8) |     2.29 |   0.08 |  3.5 |     114.32 |   919.07
+reflection                          (8) |        started at 2020-05-02T05:17:04.591
+loading                            (11) |    61.64 |   2.18 |  3.5 |    3756.00 |   765.55
+regex                              (11) |        started at 2020-05-02T05:17:04.944
+regex                              (11) |     3.42 |   0.09 |  2.7 |     136.87 |   765.55
+float16                            (11) |        started at 2020-05-02T05:17:08.471
+complex                             (4) |    13.95 |   0.47 |  3.4 |     889.80 |  1477.73
+combinatorics                       (4) |        started at 2020-05-02T05:17:09.218
+arrayops                            (3) |   197.44 |   7.17 |  3.6 |   10501.62 |   962.48
+sysinfo                             (3) |        started at 2020-05-02T05:17:13.499
+sysinfo                             (3) |     0.34 |   0.00 |  0.0 |      16.07 |   962.48
+env                                 (3) |        started at 2020-05-02T05:17:13.948
+ccall                               (5) |    85.99 |  47.06 | 54.7 |     679.41 |   616.20
+env                                 (3) |     0.88 |   0.04 |  4.0 |      19.53 |   962.48
+ranges                              (3) |        started at 2020-05-02T05:17:14.938
+combinatorics                       (4) |     5.86 |   0.27 |  4.7 |     761.47 |  1487.58
+rounding                            (5) |        started at 2020-05-02T05:17:15.15
+mod2pi                              (4) |        started at 2020-05-02T05:17:15.155
+reflection                          (8) |    10.59 |   0.24 |  2.3 |     466.31 |   919.07
+euler                               (8) |        started at 2020-05-02T05:17:15.292
+mod2pi                              (4) |     0.50 |   0.00 |  0.0 |      22.55 |  1487.58
+show                                (4) |        started at 2020-05-02T05:17:15.777
+float16                            (11) |     7.27 |   0.22 |  3.1 |     394.49 |   765.55
+client                             (11) |        started at 2020-05-02T05:17:15.854
+client                             (11) |     1.68 |   0.03 |  1.8 |      80.36 |   765.55
+euler                               (8) |     2.26 |   0.05 |  2.4 |     122.30 |   919.07
+errorshow                          (11) |        started at 2020-05-02T05:17:17.647
+sets                                (8) |        started at 2020-05-02T05:17:17.652
+rounding                            (5) |     9.67 |   0.22 |  2.2 |     509.40 |   616.20
+goto                                (5) |        started at 2020-05-02T05:17:24.927
+goto                                (5) |     0.13 |   0.00 |  0.0 |       0.97 |   616.20
+llvmcall                            (5) |        started at 2020-05-02T05:17:25.163
+llvmcall                            (5) |     0.65 |   0.00 |  0.0 |       6.19 |   624.26
+llvmcall2                           (5) |        started at 2020-05-02T05:17:25.924
+llvmcall2                           (5) |     0.20 |   0.00 |  0.0 |       0.87 |   624.98
+ryu                                 (5) |        started at 2020-05-02T05:17:26.227
+mpfr                                (9) |    31.73 |   0.54 |  1.7 |    1468.24 |   910.15
+some                                (9) |        started at 2020-05-02T05:17:27.558
+some                                (9) |     2.36 |   0.04 |  1.5 |     101.03 |   910.29
+meta                                (9) |        started at 2020-05-02T05:17:30.037
+errorshow                          (11) |    13.68 |   0.31 |  2.2 |     489.67 |   782.86
+stacktraces                        (11) |        started at 2020-05-02T05:17:31.424
+meta                                (9) |     3.93 |   0.12 |  3.0 |     164.78 |   910.73
+docs                                (9) |        started at 2020-05-02T05:17:34.085
+stacktraces                        (11) |     4.44 |   0.10 |  2.2 |     183.98 |   782.86
+misc                               (11) |        started at 2020-05-02T05:17:35.971
+ryu                                 (5) |     9.75 |   0.24 |  2.4 |     431.88 |   659.46
+enums                               (5) |        started at 2020-05-02T05:17:36.085
+enums                               (5) |     7.73 |   0.12 |  1.6 |     339.75 |   684.16
+cmdlineargs                         (5) |        started at 2020-05-02T05:17:43.923
+read                                (2) |    69.22 |   3.91 |  5.7 |    2620.36 |  1749.95
+int                                 (2) |        started at 2020-05-02T05:17:48.679
+docs                                (9) |    16.67 |   0.50 |  3.0 |     725.59 |   934.12
+interpreter                         (9) |        started at 2020-05-02T05:17:50.863
+interpreter                         (9) |     2.30 |   0.00 |  0.0 |      11.50 |   934.37
+checked                             (9) |        started at 2020-05-02T05:17:53.277
+sets                                (8) |    37.90 |   0.99 |  2.6 |    1151.78 |   919.07
+bitset                              (8) |        started at 2020-05-02T05:17:55.665
+bitset                              (8) |     2.70 |   0.08 |  2.9 |      82.39 |   919.07
+floatfuncs                          (8) |        started at 2020-05-02T05:17:58.479
+show                                (4) |    43.39 |   1.52 |  3.5 |    3632.85 |  1588.99
+boundscheck                         (4) |        started at 2020-05-02T05:17:59.24
+boundscheck                         (4) |     5.01 |   0.00 |  0.0 |       2.37 |  1588.99
+error                               (4) |        started at 2020-05-02T05:18:04.319
+error                               (4) |     1.77 |   0.00 |  0.0 |      50.57 |  1588.99
+cartesian                           (4) |        started at 2020-05-02T05:18:06.156
+int                                 (2) |    17.59 |   4.62 | 26.3 |     656.01 |  1804.84
+osutils                             (2) |        started at 2020-05-02T05:18:06.342
+osutils                             (2) |     0.10 |   0.00 |  0.0 |       0.78 |  1804.84
+channels                            (2) |        started at 2020-05-02T05:18:06.52
+cartesian                           (4) |     0.83 |   0.09 | 11.5 |      99.33 |  1616.95
+iostream                            (4) |        started at 2020-05-02T05:18:07.057
+misc                               (11) |    31.22 |   2.87 |  9.2 |    1655.05 |   817.66
+iostream                            (4) |     1.15 |   0.06 |  5.5 |     105.69 |  1616.95
+specificity                         (4) |        started at 2020-05-02T05:18:08.277
+specificity                         (4) |     0.27 |   0.00 |  0.0 |       2.54 |  1616.95
+reinterpretarray                    (4) |        started at 2020-05-02T05:18:08.615
+checked                             (9) |    15.51 |   0.17 |  1.1 |     217.69 |   940.68
+syntax                              (9) |        started at 2020-05-02T05:18:08.901
+secretbuffer                       (11) |        started at 2020-05-02T05:18:10.256
+floatfuncs                          (8) |    11.79 |   0.38 |  3.3 |     660.51 |   919.07
+logging                             (8) |        started at 2020-05-02T05:18:10.377
+secretbuffer                       (11) |     1.44 |   0.54 | 37.2 |      37.34 |   817.66
+missing                            (11) |        started at 2020-05-02T05:18:12.105
+syntax                              (9) |     7.33 |   0.14 |  1.9 |     191.36 |   942.50
+asyncmap                            (9) |        started at 2020-05-02T05:18:16.345
+reinterpretarray                    (4) |    12.01 |   0.48 |  4.0 |    1061.80 |  1616.95
+atexit                              (4) |        started at 2020-05-02T05:18:20.697
+broadcast                           (6) |    93.87 |   2.52 |  2.7 |    5797.63 |  1270.54
+SparseArrays/higherorderfns         (6) |        started at 2020-05-02T05:18:22.081
+logging                             (8) |    11.66 |   0.25 |  2.1 |     453.75 |   919.07
+SparseArrays/sparse                 (8) |        started at 2020-05-02T05:18:22.149
+asyncmap                            (9) |    14.25 |   0.37 |  2.6 |     443.34 |   944.00
+SparseArrays/sparsevector           (9) |        started at 2020-05-02T05:18:30.699
+atexit                              (4) |    14.41 |   0.00 |  0.0 |      18.44 |  1616.95
+Pkg/resolve                         (4) |        started at 2020-05-02T05:18:35.183
+missing                            (11) |    24.62 |   0.65 |  2.6 |     994.51 |   817.66
+LibGit2/libgit2                    (11) |        started at 2020-05-02T05:18:37.081
+channels                            (2) |    38.02 |  11.31 | 29.8 |     394.76 |  1804.84
+Dates/accessors                     (2) |        started at 2020-05-02T05:18:44.613
+ranges                              (3) |    90.41 |   5.06 |  5.6 |    9390.02 |  1009.43
+Dates/adjusters                     (3) |        started at 2020-05-02T05:18:45.687
+Pkg/resolve                         (4) |    18.25 |   2.43 | 13.3 |    4830.75 |  1635.30
+Dates/query                         (4) |        started at 2020-05-02T05:18:53.505
+Dates/query                         (4) |     1.01 |   0.06 |  5.5 |      60.70 |  1635.30
+Dates/periods                       (4) |        started at 2020-05-02T05:18:54.588
+Dates/accessors                     (2) |    11.29 |   1.01 |  9.0 |    3783.38 |  1804.84
+Dates/ranges                        (2) |        started at 2020-05-02T05:18:55.976
+Dates/adjusters                     (3) |    11.20 |   0.22 |  1.9 |     299.21 |  1030.97
+Dates/rounding                      (3) |        started at 2020-05-02T05:18:57.002
+Dates/rounding                      (3) |     3.99 |   0.11 |  2.7 |     138.56 |  1031.77
+Dates/types                         (3) |        started at 2020-05-02T05:19:01.101
+Dates/types                         (3) |     3.70 |   0.12 |  3.2 |     127.97 |  1032.57
+Dates/io                            (3) |        started at 2020-05-02T05:19:04.912
+Dates/periods                       (4) |    14.35 |   0.51 |  3.6 |    1064.54 |  1635.30
+Dates/arithmetic                    (4) |        started at 2020-05-02T05:19:09.011
+Dates/ranges                        (2) |    18.62 |   0.40 |  2.1 |    1035.95 |  1804.84
+Dates/conversions                   (2) |        started at 2020-05-02T05:19:14.7
+Dates/arithmetic                    (4) |     7.10 |   0.29 |  4.1 |     607.93 |  1635.30
+Base64                              (4) |        started at 2020-05-02T05:19:16.178
+Dates/conversions                   (2) |     1.53 |   0.03 |  2.0 |      54.01 |  1804.84
+CRC32c                              (2) |        started at 2020-05-02T05:19:16.3
+CRC32c                              (2) |     1.35 |   0.03 |  2.5 |      78.08 |  1804.84
+DelimitedFiles                      (2) |        started at 2020-05-02T05:19:17.722
+Base64                              (4) |     2.90 |   0.45 | 15.4 |    1560.55 |  1641.63
+Distributed                         (4) |        started at 2020-05-02T05:19:19.151
+DelimitedFiles                      (2) |     8.27 |   0.33 |  4.0 |     673.58 |  1804.84
+FileWatching                        (2) |        started at 2020-05-02T05:19:26.075
+Dates/io                            (3) |    23.60 |   0.40 |  1.7 |     845.47 |  1082.61
+Future                              (3) |        started at 2020-05-02T05:19:28.622
+Future                              (3) |     0.00 |   0.00 |  0.0 |       0.09 |  1082.61
+InteractiveUtils                    (3) |        started at 2020-05-02T05:19:28.726
+InteractiveUtils                    (3) |    22.84 |   0.40 |  1.7 |     710.98 |  1119.52
+Libdl                               (3) |        started at 2020-05-02T05:19:51.683
+LinearAlgebra/addmul                (7) |   474.86 |  14.17 |  3.0 |   34304.18 |  1185.27
+Logging                             (7) |        started at 2020-05-02T05:19:52.68
+Libdl                               (3) |     1.25 |   0.00 |  0.0 |      25.14 |  1122.53
+Markdown                            (3) |        started at 2020-05-02T05:19:53.043
+Logging                             (7) |     4.07 |   0.11 |  2.7 |     266.62 |  1185.27
+Mmap                                (7) |        started at 2020-05-02T05:19:56.85
+Markdown                            (3) |     9.14 |   0.22 |  2.5 |     386.51 |  1122.58
+Printf                              (3) |        started at 2020-05-02T05:20:02.287
+FileWatching                        (2) |    38.21 |   2.97 |  7.8 |     157.17 |  1804.84
+Profile                             (2) |        started at 2020-05-02T05:20:04.372
+Mmap                                (7) |    12.51 |   8.76 | 70.0 |     230.23 |  1185.27
+REPL                                (7) |        started at 2020-05-02T05:20:09.434
+Profile                             (2) |         failed at 2020-05-02T05:20:14.104
+Random                             (12) |        started at 2020-05-02T05:20:16.801
+Printf                              (3) |    26.69 |   0.39 |  1.4 |     898.96 |  1181.23
+SHA                                 (3) |        started at 2020-05-02T05:20:29.52
+REPL                                (7) |    32.74 |   0.96 |  2.9 |    2187.34 |  1250.95
+Serialization                       (7) |        started at 2020-05-02T05:20:42.254
+Serialization                       (7) |     9.85 |   0.33 |  3.3 |     890.40 |  1258.61
+Sockets                             (7) |        started at 2020-05-02T05:20:52.208
+SparseArrays/higherorderfns         (6) |   154.07 |   3.59 |  2.3 |    8766.34 |  1448.41
+Statistics                          (6) |        started at 2020-05-02T05:20:56.551
+Sockets                             (7) |         failed at 2020-05-02T05:20:57.781
+SuiteSparse                        (13) |        started at 2020-05-02T05:21:00.166
+Random                             (12) |    50.69 |   1.15 |  2.3 |    3465.82 |   408.99
+Test                               (12) |        started at 2020-05-02T05:21:08.493
+bitarray                           (10) |   358.50 |   5.67 |  1.6 |   18399.19 |  2325.52
+UUIDs                              (10) |        started at 2020-05-02T05:21:15.961
+UUIDs                              (10) |     0.51 |   0.00 |  0.0 |      20.27 |  2325.52
+Unicode                            (10) |        started at 2020-05-02T05:21:16.577
+Unicode                            (10) |     9.23 |   0.08 |  0.9 |     434.13 |  2325.52
+Statistics                          (6) |    43.15 |   1.19 |  2.7 |    2784.85 |  1545.70
+Test                               (12) |    39.40 |   0.16 |  0.4 |     574.73 |   451.54
+LibGit2/libgit2                    (11) |   196.96 |   1.25 |  0.6 |    1381.16 |  1102.28
+cmdlineargs                         (5) |   252.91 |   0.32 |  0.1 |     624.73 |   722.91
+Distributed                         (4) |   185.37 |   0.00 |  0.0 |      34.36 |  1641.63
+SuiteSparse                        (13) |   103.50 |   4.49 |  4.3 |    8043.75 |   479.30
+SHA                                 (3) |   145.19 |   0.47 |  0.3 |     656.34 |  1215.29
+SparseArrays/sparsevector           (9) |   303.31 |  10.19 |  3.4 |   22691.52 |  1358.31
+SparseArrays/sparse                 (8) |   385.70 |  62.69 | 16.3 |   17294.42 |  1419.08
+precompile                          (1) |        started at 2020-05-02T05:24:48.252
+precompile                          (1) |    40.07 |   0.12 |  0.3 |     435.97 |   279.22
+SharedArrays                        (1) |        started at 2020-05-02T05:25:28.848
+SharedArrays                        (1) |    44.46 |   2.06 |  4.6 |    1665.86 |   328.90
+threads                             (1) |   407.59 |   0.02 |  0.0 |      49.48 |   356.78
+stress                              (1) |   140.91 |   0.03 |  0.0 |     109.04 |   356.78

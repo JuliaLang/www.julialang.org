@@ -34,6 +34,8 @@ Blogs from the broader Julia community can be found at [Julia Bloggers](https://
 <div class="grid">
 ~~~
 
+[Coming in Julia 1.5: Time Traveling (Linux) Bug Reports](/blog/2020/05/rr/) 2020-05-02
+
 [Google's Code-In Contest Wrap up](/blog/2020/02/gci-summary/) 2020-02-10
 
 [Yao.jl - Differentiable Quantum Programming In Julia](/blog/2019/12/yao-differentiable-quantum-programming/) 2019-12-28
