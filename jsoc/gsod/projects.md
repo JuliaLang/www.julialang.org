@@ -187,3 +187,27 @@ Here are some ideas:
 ### Potential impact
 
 Turing is a rapidly developing probabilistic programming language, used by machine learning researchers, data scientists, statisticians, and economists. Improving any measure of the informational tools in Turing will allow those communities to integrate better with the Julia community, which will in turn improve the rest of Julia's ecosystem. Better documentation and guides will attract new learners and help to transition more experienced people from tools that do not meet their needs.
+
+
+## JuliaIntervals (Interval arithmetic methods)
+
+The [JuliaIntervals organization](https://github.com/JuliaIntervals) develops a suite of packages based on [interval arithmetic](https://github.com/JuliaIntervals/IntervalArithmetic.jl) for performing numerical computations with guaranteed results.
+We are looking for help with several projects, with
+mentors [David P. Sanders](https://github.com/dpsanders) and [Luis Benet](https://github.com/lbenet).
+
+Here are some possible projects:
+
+- Modernize the documentation for [`IntervalArithmetic.jl`](https://github.com/JuliaIntervals/IntervalArithmetic.jl).
+The documentation has not kept pace with the development of the package; e.g. methods for constructing intervals have changed significantly since most of the documentation was written. It is also unclear who the target audience is. The documentation should be split up into tutorial material, more advanced "how-to's", reference documentation, and explanation of the underlying mathematical concepts. There should be a discussion of performance implications of the different approaches to directed rounding that includes results from a benchmark suite. There should also be a section explaining how to use different floating-point types with the package, and a section discussing composability with other packages, and possible pitfalls, as highlighted in the [`NumberIntervals.jl`](https://github.com/gwater/NumberIntervals.jl) package.
+
+- Several of the packages currently have rather minimal documentation, in particular [`IntervalOptimization.jl`](https://github.com/BryanCorzo/IntervalOptimization), [`IntervalConstraintProgramming.jl`](https://github.com/JuliaIntervals/IntervalConstraintProgramming.jl) and [`TaylorModels.jl`](https://github.com/JuliaIntervals/TaylorModels.jl). These need full tutorials and "how-to's" for solving example problems, as well as reference documentation. Preferably they should also be compared their use to other techniques for solving similar problems. Potential pitfalls should also be highlighted.
+
+- Design a web page for the [`JuliaIntervals`](https://github.com/JuliaIntervals) suite of packages. This web page should provide information about the various packages in the suite, as well as related packages in the Julia ecosystem, showing what they can be used for and exhibiting interesting examples. The web page should also contain a guide to orient a user towards the relevant package for their needs, for example using some kind of decision tree.
+
+### Potential impact
+
+[`IntervalArithmetic.jl`](https://github.com/JuliaIntervals/IntervalArithmetic.jl) is heading towards full compliance with the international standard IEEE-1788. Once compliance is reached we will release v1.0 of the package and will advertise the package to the wider interval arithmetic community.
+
+We anticipate that there may be significant interest and adoption by new users at that time. For this reason it will be crucial to have documentation that is up-to-date, correct, and usable, for both new users and as a reference.
+
+Furthermore, since there are now an increasing number of packages built on top of [`IntervalArithmetic.jl`](https://github.com/JuliaIntervals/IntervalArithmetic.jl) which will also be of interest to these users, a guide to both which package is suitable for which application and how to use them correctly is required.
