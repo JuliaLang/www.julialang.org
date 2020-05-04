@@ -6,7 +6,7 @@ We at the Julia Language are committed to making the application process and par
 
 ## Differential Equations (SciML)
 
-[DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl) is a widely used Julia library for solving ordinary, stochastic, delay, any many more types of differential equations. Below are the proposed projects in this area. Technical writers may wish to do a combination of these projects. The mentors for the JuliaDiffEq projects are [Chris Rackauckas](https://github.com/ChrisRackauckas) and [Kanav Gupta](https://github.com/kanav99).
+[DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl) is a widely used Julia library for solving ordinary, stochastic, delay, any many more types of differential equations. Below are the proposed projects in this area. Technical writers may wish to do a combination of these projects. The mentors for the JuliaDiffEq projects are [Chris Rackauckas](https://github.com/ChrisRackauckas), [Kanav Gupta](https://github.com/kanav99), and [Sam Isaacson](https://github.com/isaacsas).
 
 Here are some possible projects:
 
@@ -24,7 +24,7 @@ Here are some possible projects:
 
 ## Julia (Main Documentation)
 
-[The Julia docs](https://docs.julialang.org/en/v1/) provide provide a robust set of examples and context for the available functionality in the Julia Programming Language. The mentor for this project is [Logan Kilpatrick](https://github.com/logankilpatrick) with support from [other Julia Language members](https://github.com/orgs/JuliaLang/people). 
+[The Julia docs](https://docs.julialang.org/en/v1/) provide provide a robust set of examples and context for the available functionality in the Julia Programming Language. The mentors for this project are [Logan Kilpatrick](https://github.com/logankilpatrick) and [Avik Sengupta](https://github.com/aviks) with support from [other Julia Language members](https://github.com/orgs/JuliaLang/people). 
 
 ### Audit the existing documentation
 
