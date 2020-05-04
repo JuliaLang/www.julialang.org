@@ -56,7 +56,7 @@ All this doesn't seem like too much to ask for, does it?
 
 Even though we recognize that we are inexcusably greedy, we still want to have it all.
 About two and a half years ago, we set out to create the language of our greed.
-It's not complete, but it's time for an initial release — the language we've created is called [Julia](https://julialang.org).
+It's not complete, but it's time for an initial[^1] release — the language we've created is called [Julia](https://julialang.org).
 It already delivers on 90% of our ungracious demands, and now it needs the ungracious demands of others to shape it further.
 So, if you are also a greedy, unreasonable, demanding programmer, we want you to give it a try.
 
@@ -79,3 +79,5 @@ trackbacks:
 - [Simplified Chinese translation](https://sd.csdn.net/a/20120223/312315.html)
 - [Traditional Chinese translation](http://www.hellogcc.org/?p=20)
 - [Linuxfr.org blog post (French)](https://linuxfr.org/news/version-1-0-de-julia)
+
+[^1]: This was originally written as being "time for a 1.0 release." Version 1.0 wasn't released until [much later](https://julialang.org/blog/2018/08/one-point-zero/).
