@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0rc1 (09960d6, 2020-04-09)"
+   sodipodi:docname="arch.svg"
+   id="ccdiagram"
+   viewBox="-1040.8889 -32 928.76394 416.86056"
+   height="282.35147"
+   width="629.07812"
+   version="1.1">
+  <metadata
+     id="metadata762">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:current-layer="g757"
+     inkscape:window-maximized="0"
+     inkscape:window-y="743"
+     inkscape:window-x="2696"
+     inkscape:cy="68.133575"
+     inkscape:cx="276.68393"
+     inkscape:zoom="0.85703125"
+     fit-margin-bottom="20"
+     fit-margin-right="5"
+     fit-margin-left="5"
+     fit-margin-top="-280"
+     showgrid="false"
+     id="namedview760"
+     inkscape:window-height="997"
+     inkscape:window-width="1632"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <filter
+     id="grayscale">
+    <feColorMatrix
+       id="feColorMatrix405"
+       values="0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0"
+       type="matrix" />
+  </filter>
+  <defs
+     id="defs410">
+    <style
+       id="style408"
+       type="text/css">@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400');</style>
+  </defs>
+  <g
+     transform="translate(-264.50696,-422.14861)"
+     id="g757">
+    <g
+       id="g432"
+       pointer-events="auto">
+      <g
+         id="g420"
+         opacity="1">
+        <g
+           id="g418">
+          <g
+             id="g416">
+            <polygon
+               id="polygon412"
+               stroke="#818181"
+               stroke-width="2"
+               fill="#ffffff"
+               points="-48,398 144,509 144,546 -48,657 -112,657 -304,546 -304,509 -112,398 " />
+            <polygon
+               id="polygon414"
+               stroke="#818181"
+               stroke-width="0"
+               fill="#e6e7e8"
+               points="-80,416 112,527 -80,638 -272,527 " />
+          </g>
+        </g>
+      </g>
+      <g
+         id="g430"
+         opacity="1">
+        <g
+           id="g428">
+          <g
+             id="g426">
+            <polygon
+               id="polygon422"
+               stroke="#818181"
+               stroke-width="2"
+               fill="#ffffff"
+               points="-576,426 -448,500 -448,537 -576,611 -640,611 -768,537 -768,500 -640,426 " />
+            <polygon
+               id="polygon424"
+               stroke="#818181"
+               stroke-width="0"
+               fill="#e6e7e8"
+               points="-608,444 -480,518 -608,592 -736,518 " />
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g434"
+       pointer-events="auto" />
+    <g
+       id="g436" />
+    <g
+       id="g438"
+       pointer-events="auto" />
+    <g
+       id="g440" />
+    <g
+       id="g446"
+       pointer-events="auto">
+      <g
+         id="g442"
+         opacity="1" />
+      <g
+         id="g444"
+         opacity="1" />
+    </g>
+    <g
+       id="g448"
+       pointer-events="none" />
+    <g
+       id="g572"
+       pointer-events="auto">
+      <g
+         id="g458">
+        <g
+           id="g456"
+           cursor="cell">
+          <line
+             id="line450"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="660"
+             x2="-438"
+             y1="694"
+             x1="-496" />
+          <line
+             id="line452"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="660"
+             x2="-438"
+             y1="694"
+             x1="-496" />
+          <polygon
+             id="polygon454"
+             stroke-width="1"
+             stroke="#000000"
+             fill="#000000"
+             stroke-linejoin="round"
+             points="-429,655 -454,660 -441,662 -438,670 " />
+        </g>
+      </g>
+      <g
+         id="g468">
+        <g
+           id="g466"
+           cursor="cell">
+          <line
+             id="line460"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="570"
+             x2="-134"
+             y1="592"
+             x1="-96" />
+          <line
+             id="line462"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="570"
+             x2="-134"
+             y1="592"
+             x1="-96" />
+          <polygon
+             id="polygon464"
+             stroke-width="1"
+             stroke="#000000"
+             fill="#000000"
+             stroke-linejoin="round"
+             points="-144,564 -135,579 -132,571 -118,570 " />
+        </g>
+      </g>
+      <g
+         id="g476">
+        <g
+           id="g474"
+           cursor="cell">
+          <line
+             id="line470"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="601"
+             x2="-528"
+             y1="518"
+             x1="-672" />
+          <line
+             id="line472"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="601"
+             x2="-528"
+             y1="518"
+             x1="-672" />
+        </g>
+      </g>
+      <g
+         id="g486">
+        <g
+           id="g484"
+           cursor="cell">
+          <line
+             id="line478"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="727"
+             x2="-330"
+             y1="759"
+             x1="-384" />
+          <line
+             id="line480"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="727"
+             x2="-330"
+             y1="759"
+             x1="-384" />
+          <polygon
+             id="polygon482"
+             stroke-width="1"
+             stroke="#000000"
+             fill="#000000"
+             stroke-linejoin="round"
+             points="-320,722 -346,727 -332,729 -329,736 " />
+        </g>
+      </g>
+      <g
+         id="g494">
+        <g
+           id="g492"
+           cursor="cell">
+          <line
+             id="line488"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="564"
+             x2="-464"
+             y1="518"
+             x1="-544" />
+          <line
+             id="line490"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="564"
+             x2="-464"
+             y1="518"
+             x1="-544" />
+        </g>
+      </g>
+      <g
+         id="g502">
+        <g
+           id="g500"
+           cursor="cell">
+          <line
+             id="line496"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="564"
+             x2="-464"
+             y1="481"
+             x1="-608" />
+          <line
+             id="line498"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="564"
+             x2="-464"
+             y1="481"
+             x1="-608" />
+        </g>
+      </g>
+      <g
+         id="g510">
+        <g
+           id="g508"
+           cursor="cell">
+          <line
+             id="line504"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="592"
+             x2="-96"
+             y1="703"
+             x1="-288" />
+          <line
+             id="line506"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="592"
+             x2="-96"
+             y1="703"
+             x1="-288" />
+        </g>
+      </g>
+      <g
+         id="g518">
+        <g
+           id="g516"
+           cursor="cell">
+          <line
+             id="line512"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="759"
+             x2="-384"
+             y1="731"
+             x1="-432" />
+          <line
+             id="line514"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="759"
+             x2="-384"
+             y1="731"
+             x1="-432" />
+        </g>
+      </g>
+      <g
+         id="g528">
+        <g
+           id="g526"
+           cursor="cell">
+          <line
+             id="line520"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="555"
+             x2="-608"
+             y1="633"
+             x1="-474" />
+          <line
+             id="line522"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="555"
+             x2="-608"
+             y1="633"
+             x1="-474" />
+          <polygon
+             id="polygon524"
+             stroke-width="1"
+             stroke="#000000"
+             fill="#000000"
+             stroke-linejoin="round"
+             points="-464,638 -473,623 -476,631 -490,633 " />
+        </g>
+      </g>
+      <g
+         id="g536">
+        <g
+           id="g534"
+           cursor="cell">
+          <line
+             id="line530"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="731"
+             x2="-432"
+             y1="774"
+             x1="-508" />
+          <line
+             id="line532"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="731"
+             x2="-432"
+             y1="774"
+             x1="-508" />
+        </g>
+      </g>
+      <g
+         id="g544">
+        <g
+           id="g542"
+           cursor="cell">
+          <line
+             id="line538"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="694"
+             x2="-496"
+             y1="731"
+             x1="-432" />
+          <line
+             id="line540"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="694"
+             x2="-496"
+             y1="731"
+             x1="-432" />
+        </g>
+      </g>
+      <g
+         id="g552">
+        <g
+           id="g550"
+           cursor="cell">
+          <line
+             id="line546"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="527"
+             x2="-208"
+             y1="629"
+             x1="-384" />
+          <line
+             id="line548"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="527"
+             x2="-208"
+             y1="629"
+             x1="-384" />
+        </g>
+      </g>
+      <g
+         id="g560">
+        <g
+           id="g558"
+           cursor="cell">
+          <line
+             id="line554"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="601"
+             x2="-528"
+             y1="564"
+             x1="-464" />
+          <line
+             id="line556"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="601"
+             x2="-528"
+             y1="564"
+             x1="-464" />
+        </g>
+      </g>
+      <g
+         id="g570">
+        <g
+           id="g568"
+           cursor="cell">
+          <line
+             id="line562"
+             opacity="0"
+             stroke-width="8"
+             stroke="#ff0000"
+             y2="559"
+             x2="-154"
+             y1="527"
+             x1="-208" />
+          <line
+             id="line564"
+             stroke-linecap="round"
+             stroke-width="2"
+             stroke="#000000"
+             y2="559"
+             x2="-154"
+             y1="527"
+             x1="-208" />
+          <polygon
+             id="polygon566"
+             stroke-width="1"
+             stroke="#000000"
+             fill="#000000"
+             stroke-linejoin="round"
+             points="-144,564 -153,549 -156,557 -170,559 " />
+        </g>
+      </g>
+    </g>
+    <g
+       id="g609"
+       pointer-events="auto">
+      <g
+         id="g579"
+         opacity="1">
+        <g
+           id="39323913-4301-4629-bc58-2a57ac11b5aa">
+          <svg
+             id="svg576"
+             version="1.1"
+             viewBox="0 0 16.669 25.153"
+             width="63"
+             height="95.068001"
+             y="478"
+             x="-168">
+            <path
+               inkscape:connector-curvature="0"
+               id="path574"
+               stroke-width="0.268"
+               stroke="#000000"
+               fill="#000000"
+               d="m 16.668,22.903 q 0,1.64 -0.864,2.091 -0.865,0.451 -2.297,-0.376 L 3.161,18.645 Q 1.728,17.818 0.864,16.369 0.001,14.921 0,13.28 0,12.557 0.042,11.89 0.084,11.224 0.208,10.496 0.332,9.769 0.521,9.194 0.711,8.619 1.031,8.155 1.35,7.691 1.764,7.472 2.178,7.252 2.776,7.325 q 0.598,0.073 1.32,0.49 0.107,0.06 0.497,0.58 0.391,0.52 0.882,1.165 0.491,0.646 1.279,1.394 0.788,0.75 1.58,1.207 0.793,0.458 1.58,0.618 0.788,0.161 1.28,0.083 0.49,-0.079 0.881,-0.147 0.39,-0.069 0.497,-0.007 0.722,0.416 1.32,1.035 0.598,0.619 1.013,1.315 0.414,0.697 0.734,1.531 0.32,0.834 0.509,1.627 0.19,0.793 0.313,1.664 0.124,0.872 0.166,1.586 0.042,0.713 0.042,1.438 z M 12.88,8.51 q 0,2.173 -1.332,2.942 Q 10.216,12.221 8.334,11.134 6.452,10.048 5.12,7.741 3.79,5.434 3.79,3.26 q 0,-2.173 1.331,-2.942 1.332,-0.77 3.214,0.317 1.882,1.087 3.214,3.394 1.332,2.306 1.332,4.48 z" />
+          </svg>
+        </g>
+      </g>
+      <g
+         id="g600"
+         opacity="1">
+        <g
+           id="1e0dcc03-b4c0-41ad-bb22-2dfd5bccc940">
+          <svg
+             id="svg597"
+             version="1.1"
+             viewBox="0 0 26.624 30.611"
+             width="100.625"
+             height="115.695"
+             y="546"
+             x="-467">
+            <g
+               id="g595"
+               fill-rule="evenodd">
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path581"
+                 stroke-width="0.265"
+                 fill="#4286c5"
+                 d="m 13.312,0.306 v 15 l 12.99,-7.5 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path583"
+                 stroke-width="0.265"
+                 fill="#26527b"
+                 d="m 0.322,7.806 12.99,7.5 v -15 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path585"
+                 stroke-width="0.265"
+                 stroke="#b7d1e9"
+                 fill="none"
+                 d="m 13.312,0.306 v 15" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path587"
+                 stroke-width="0.265"
+                 fill="#26527b"
+                 d="m 13.312,15.306 12.99,-7.5 -6.495,18.75 -6.495,3.75 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path589"
+                 stroke-width="0.265"
+                 fill="#326ca2"
+                 d="m 0.322,7.806 12.99,7.5 v 15 l -6.495,-3.75 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path591"
+                 stroke-width="0.265"
+                 stroke="#deeaf5"
+                 fill="none"
+                 d="m 0.322,7.806 12.99,7.5 12.99,-7.5 -12.99,7.5 v 15" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path593"
+                 stroke-width="0.529"
+                 stroke="#000000"
+                 fill="none"
+                 d="m 13.312,0.306 -12.99,7.5 6.495,18.75 6.495,3.75 6.495,-3.75 6.495,-18.75 z" />
+            </g>
+          </svg>
+        </g>
+      </g>
+      <g
+         id="g607"
+         opacity="1">
+        <g
+           id="2685515d-0fdf-4c31-b26d-7cf5ad8c321d">
+          <svg
+             id="svg604"
+             version="1.1"
+             viewBox="0 0 16.669 25.153"
+             width="63"
+             height="95.068001"
+             y="709"
+             x="-568">
+            <path
+               inkscape:connector-curvature="0"
+               id="path602"
+               stroke-width="0.268"
+               stroke="#000000"
+               fill="#000000"
+               d="m 16.668,22.903 q 0,1.64 -0.864,2.091 -0.865,0.451 -2.297,-0.376 L 3.161,18.645 Q 1.728,17.818 0.864,16.369 0.001,14.921 0,13.28 0,12.557 0.042,11.89 0.084,11.224 0.208,10.496 0.332,9.769 0.521,9.194 0.711,8.619 1.031,8.155 1.35,7.691 1.764,7.472 2.178,7.252 2.776,7.325 q 0.598,0.073 1.32,0.49 0.107,0.06 0.497,0.58 0.391,0.52 0.882,1.165 0.491,0.646 1.279,1.394 0.788,0.75 1.58,1.207 0.793,0.458 1.58,0.618 0.788,0.161 1.28,0.083 0.49,-0.079 0.881,-0.147 0.39,-0.069 0.497,-0.007 0.722,0.416 1.32,1.035 0.598,0.619 1.013,1.315 0.414,0.697 0.734,1.531 0.32,0.834 0.509,1.627 0.19,0.793 0.313,1.664 0.124,0.872 0.166,1.586 0.042,0.713 0.042,1.438 z M 12.88,8.51 q 0,2.173 -1.332,2.942 Q 10.216,12.221 8.334,11.134 6.452,10.048 5.12,7.741 3.79,5.434 3.79,3.26 q 0,-2.173 1.331,-2.942 1.332,-0.77 3.214,0.317 1.882,1.087 3.214,3.394 1.332,2.306 1.332,4.48 z" />
+          </svg>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g646"
+       pointer-events="auto">
+      <g
+         id="g644"
+         opacity="1">
+        <g
+           id="d6056bf5-cfdd-4ddb-aada-8587ef0556e1">
+          <svg
+             height="100%"
+             width="100%"
+             id="svg641"
+             version="1.1"
+             overflow="visible"
+             y="509"
+             x="-48">
+            <g
+               id="g639"
+               transform="matrix(1.000405,0.578735,-1.000405,0.578735,0,0)">
+              <svg
+                 id="svg637"
+                 version="1.1"
+                 height="98"
+                 width="153"
+                 y="-49"
+                 x="-76.5">
+                <svg
+                   height="100%"
+                   width="100%"
+                   id="svg635"
+                   version="1.1"
+                   viewBox="0 0 153.14 98.64">
+                  <defs
+                     id="defs613">
+                    <style
+                       id="style611">.cls-1{fill:#1a1a1a}</style>
+                  </defs>
+                  <g
+                     data-name="Layer 2"
+                     id="Layer_2">
+                    <g
+                       data-name="Layer 1"
+                       id="Layer_1-2">
+                      <g
+                         id="layer1">
+                        <g
+                           id="g3855">
+                          <g
+                             id="g945">
+                            <g
+                               id="g984">
+                              <g
+                                 id="g920">
+                                <path
+                                   inkscape:connector-curvature="0"
+                                   class="cls-1"
+                                   d="m 93.14,80.94 h -13 V 21.13 l 13,-3.58 z"
+                                   id="path3804" />
+                                <g
+                                   id="g898">
+                                <g
+                                   id="g893">
+                                <path
+                                   inkscape:connector-curvature="0"
+                                   fill="#4d64ae"
+                                   d="m 22.17,36.33 a 8.9,8.9 0 1 1 8.9,-8.9 8.91,8.91 0 0 1 -8.9,8.9 z"
+                                   id="path19" />
+                                </g>
+                                <path
+                                   inkscape:connector-curvature="0"
+                                   class="cls-1"
+                                   d="M 29.14,80.83 A 26.48,26.48 0 0 1 27.83,90 12.12,12.12 0 0 1 24.21,95.4 12.33,12.33 0 0 1 18.57,98 36.64,36.64 0 0 1 11.25,98.67 22.47,22.47 0 0 1 6.44,98.2 13,13 0 0 1 2.9,96.93 6,6 0 0 1 0.76,95.07 3.62,3.62 0 0 1 0,92.88 4.26,4.26 0 0 1 1.59,89.5 a 6.47,6.47 0 0 1 4.33,-1.35 5,5 0 0 1 1.87,0.32 6,6 0 0 1 1.43,0.79 12,12 0 0 1 1.16,1.07 c 0.31,0.4 0.59,0.77 0.83,1.12 a 7.58,7.58 0 0 0 1.51,1.55 2.3,2.3 0 0 0 1.15,0.4 1.85,1.85 0 0 0 1,-0.28 2,2 0 0 0 0.71,-1 7.18,7.18 0 0 0 0.4,-1.91 23.12,23.12 0 0 0 0.16,-3.06 V 40.48 l 13,-3.58 z"
+                                   id="path3819" />
+                                </g>
+                                <path
+                                   inkscape:connector-curvature="0"
+                                   class="cls-1"
+                                   d="M 48.14,37.94 V 68 a 6.14,6.14 0 0 0 0.47,2.39 6.45,6.45 0 0 0 1.39,1.85 7,7 0 0 0 2,1.27 6.12,6.12 0 0 0 2.4,0.48 4.2,4.2 0 0 0 1.61,-0.4 8.42,8.42 0 0 0 1.8,-1.12 13.27,13.27 0 0 0 1.81,-1.66 12.92,12.92 0 0 0 1.61,-2.11 V 37.94 h 13 v 43 h -13 v -4 a 22.47,22.47 0 0 1 -5.43,3.53 13.62,13.62 0 0 1 -5.59,1.28 16.52,16.52 0 0 1 -5.9,-1 15.59,15.59 0 0 1 -4.76,-2.89 13.56,13.56 0 0 1 -3.17,-4.28 12.41,12.41 0 0 1 -1.15,-5.29 V 37.94 Z"
+                                   id="path3802" />
+                                <g
+                                   id="g905">
+                                <g
+                                   id="g890">
+                                <path
+                                   inkscape:connector-curvature="0"
+                                   fill="#ca3c32"
+                                   d="m 105.79,36.33 a 8.9,8.9 0 1 1 8.91,-8.9 8.91,8.91 0 0 1 -8.91,8.9 z"
+                                   id="path13" />
+                                <path
+                                   inkscape:connector-curvature="0"
+                                   fill="#9259a3"
+                                   d="m 127.18,36.33 a 8.9,8.9 0 1 1 8.91,-8.9 8.91,8.91 0 0 1 -8.91,8.9 z"
+                                   id="path25" />
+                                <path
+                                   inkscape:connector-curvature="0"
+                                   fill="#399746"
+                                   d="m 116.49,17.8 a 8.9,8.9 0 1 1 8.9,-8.9 8.89,8.89 0 0 1 -8.9,8.9 z"
+                                   id="path31" />
+                                </g>
+                                <path
+                                   inkscape:connector-curvature="0"
+                                   class="cls-1"
+                                   d="m 100.14,40.6 13,-3.58 v 43.92 h -13 z"
+                                   id="path3823" />
+                                </g>
+                                <path
+                                   inkscape:connector-curvature="0"
+                                   class="cls-1"
+                                   d="m 140.14,58.77 a 37.64,37.64 0 0 0 -3.77,1.87 21.89,21.89 0 0 0 -3.46,2.3 12.77,12.77 0 0 0 -2.55,2.67 5.12,5.12 0 0 0 -1,2.94 8.53,8.53 0 0 0 0.32,2.34 7,7 0 0 0 0.87,1.91 5.15,5.15 0 0 0 1.23,1.27 2.67,2.67 0 0 0 1.51,0.48 6.3,6.3 0 0 0 3.18,-1 41.31,41.31 0 0 0 3.62,-2.47 z m 13,22.17 h -13 v -3.42 c -0.71,0.61 -1.42,1.17 -2.11,1.67 a 14.2,14.2 0 0 1 -2.3,1.35 13.56,13.56 0 0 1 -2.82,0.88 19.75,19.75 0 0 1 -3.78,0.31 16,16 0 0 1 -5.33,-0.83 12.23,12.23 0 0 1 -4,-2.31 10.23,10.23 0 0 1 -2.51,-3.53 11,11 0 0 1 -0.87,-4.37 10.27,10.27 0 0 1 0.91,-4.42 13.11,13.11 0 0 1 2.55,-3.57 19.36,19.36 0 0 1 3.77,-2.86 40.26,40.26 0 0 1 4.65,-2.31 c 1.67,-0.69 3.4,-1.32 5.17,-1.91 l 5.25,-1.71 1.43,-0.31 v -4.26 a 11.91,11.91 0 0 0 -0.44,-3.45 5.82,5.82 0 0 0 -1.15,-2.31 4,4 0 0 0 -1.79,-1.31 6.6,6.6 0 0 0 -2.34,-0.4 7.38,7.38 0 0 0 -2.59,0.4 4.37,4.37 0 0 0 -1.67,1.11 3.94,3.94 0 0 0 -0.91,1.59 6.52,6.52 0 0 0 -0.28,2 9.51,9.51 0 0 1 -0.28,2.35 4.85,4.85 0 0 1 -0.91,2 4.47,4.47 0 0 1 -1.79,1.28 6.84,6.84 0 0 1 -2.9,0.52 7.51,7.51 0 0 1 -2.51,-0.4 6.16,6.16 0 0 1 -1.91,-1.15 6,6 0 0 1 -1.27,-1.75 5.59,5.59 0 0 1 -0.44,-2.18 6.42,6.42 0 0 1 1.51,-4.1 13.16,13.16 0 0 1 4.06,-3.3 23.45,23.45 0 0 1 5.92,-2.14 31.07,31.07 0 0 1 7.12,-0.8 32.21,32.21 0 0 1 7.87,0.84 16.37,16.37 0 0 1 5.49,2.34 9.55,9.55 0 0 1 3.18,3.66 10.91,10.91 0 0 1 1,4.81 z"
+                                   id="path3808" />
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </svg>
+            </g>
+          </svg>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g738"
+       pointer-events="auto">
+      <g
+         id="g661"
+         opacity="1">
+        <g
+           id="a7143c88-507f-4456-b4fa-e8573d38f07f">
+          <svg
+             height="100%"
+             width="100%"
+             id="svg658"
+             version="1.1"
+             overflow="visible"
+             y="703"
+             x="-288">
+            <g
+               id="g656"
+               transform="matrix(1.2350782,0.7144936,-1.2350782,0.7144936,0,0)">
+              <circle
+                 id="circle648"
+                 r="23"
+                 fill="#000000"
+                 cy="0"
+                 cx="0" />
+              <svg
+                 id="svg654"
+                 version="1.1"
+                 style="fill:#ffffff"
+                 y="-16"
+                 x="-13.5"
+                 height="32"
+                 width="27">
+                <svg
+                   id="svg652"
+                   version="1.1"
+                   viewBox="0 0 27 32"
+                   height="32"
+                   width="27">
+                  <path
+                     inkscape:connector-curvature="0"
+                     id="path650"
+                     d="m 13.714,2.286 c 7.571,0 13.714,6.143 13.714,13.714 0,6.054 -3.929,11.196 -9.375,13.018 -0.696,0.125 -0.946,-0.304 -0.946,-0.661 0,-0.446 0.018,-1.929 0.018,-3.768 0,-1.286 -0.429,-2.107 -0.929,-2.536 3.054,-0.339 6.268,-1.5 6.268,-6.768 0,-1.5 -0.536,-2.714 -1.411,-3.679 0.143,-0.357 0.607,-1.75 -0.143,-3.643 -1.143,-0.357 -3.768,1.411 -3.768,1.411 a 12.895,12.895 0 0 0 -6.858,0 c 0,0 -2.625,-1.768 -3.768,-1.411 -0.75,1.893 -0.286,3.286 -0.143,3.643 -0.875,0.964 -1.411,2.179 -1.411,3.679 0,5.25 3.196,6.429 6.25,6.768 -0.393,0.357 -0.75,0.964 -0.875,1.839 C 9.551,24.249 7.551,24.856 6.355,22.749 5.605,21.445 4.248,21.338 4.248,21.338 2.909,21.32 4.159,22.177 4.159,22.177 c 0.893,0.411 1.518,2 1.518,2 0.804,2.446 4.625,1.625 4.625,1.625 0,1.143 0.018,2.214 0.018,2.554 0,0.357 -0.25,0.786 -0.946,0.661 C 3.928,27.196 -0.001,22.053 -0.001,15.999 -0.001,8.428 6.142,2.285 13.713,2.285 Z M 5.196,21.982 C 5.232,21.911 5.178,21.821 5.071,21.768 4.964,21.732 4.875,21.75 4.839,21.804 c -0.036,0.071 0.018,0.161 0.125,0.214 0.089,0.054 0.196,0.036 0.232,-0.036 z M 5.75,22.589 C 5.821,22.535 5.804,22.41 5.714,22.303 5.625,22.214 5.5,22.178 5.428,22.249 c -0.071,0.054 -0.054,0.179 0.036,0.286 0.089,0.089 0.214,0.125 0.286,0.054 z m 0.536,0.804 c 0.089,-0.071 0.089,-0.214 0,-0.339 -0.071,-0.125 -0.214,-0.179 -0.304,-0.107 -0.089,0.054 -0.089,0.196 0,0.321 0.089,0.125 0.232,0.179 0.304,0.125 z m 0.75,0.75 C 7.107,24.072 7.072,23.911 6.965,23.804 6.84,23.679 6.679,23.661 6.608,23.75 c -0.089,0.071 -0.054,0.232 0.071,0.339 0.125,0.125 0.286,0.143 0.357,0.054 z m 1.018,0.446 C 8.09,24.482 7.983,24.357 7.822,24.303 7.679,24.267 7.518,24.321 7.483,24.428 c -0.035,0.107 0.071,0.232 0.232,0.268 0.143,0.054 0.304,0 0.339,-0.107 z m 1.125,0.09 c 0,-0.125 -0.143,-0.214 -0.304,-0.196 -0.161,0 -0.286,0.089 -0.286,0.196 0,0.125 0.125,0.214 0.304,0.196 0.161,0 0.286,-0.089 0.286,-0.196 z M 10.214,24.5 c -0.018,-0.107 -0.161,-0.179 -0.321,-0.161 -0.161,0.036 -0.268,0.143 -0.25,0.268 0.018,0.107 0.161,0.179 0.321,0.143 0.16,-0.036 0.268,-0.143 0.25,-0.25 z" />
+                </svg>
+              </svg>
+            </g>
+          </svg>
+        </g>
+      </g>
+      <g
+         id="g679"
+         opacity="1">
+        <g
+           id="95234804-1ebc-4eda-8a02-801e83dc03ac">
+          <svg
+             height="100%"
+             width="100%"
+             id="svg676"
+             version="1.1"
+             overflow="visible"
+             y="481"
+             x="-608">
+            <g
+               id="g674"
+               transform="matrix(0.85368603,0.49385797,-0.85368603,0.49385797,0,0)">
+              <circle
+                 id="circle663"
+                 r="25"
+                 fill="transparent"
+                 cy="0"
+                 cx="0" />
+              <svg
+                 id="svg672"
+                 version="1.1"
+                 y="-25"
+                 x="-25"
+                 height="50"
+                 width="50">
+                <svg
+                   height="100%"
+                   width="100%"
+                   id="svg670"
+                   version="1.1"
+                   viewBox="0 0 50 50">
+                  <g
+                     fill="#d86613"
+                     id="Working">
+                    <path
+                       inkscape:connector-curvature="0"
+                       id="path665"
+                       d="M 44.31,44.31 H 5.69 V 5.69 h 38.62 z m -36.62,-2 H 42.31 V 7.69 H 7.69 Z" />
+                    <path
+                       inkscape:connector-curvature="0"
+                       id="path667"
+                       d="m 11.21,1 h 2 v 5.69 h -2 z m 6.27,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z M 11.21,43.31 h 2 V 49 h -2 z m 6.27,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z M 43.31,11.45 H 49 v 2 h -5.69 z m 0,6.27 H 49 v 2 h -5.69 z m 0,6.28 H 49 v 2 h -5.69 z m 0,6.28 H 49 v 2 h -5.69 z m 0,6.27 H 49 v 2 H 43.31 Z M 1,11.45 h 5.69 v 2 H 1 Z m 0,6.27 h 5.69 v 2 H 1 Z M 1,24 h 5.69 v 2 H 1 Z m 0,6.28 h 5.69 v 2 H 1 Z m 0,6.27 h 5.69 v 2 H 1 Z" />
+                  </g>
+                </svg>
+              </svg>
+            </g>
+          </svg>
+        </g>
+      </g>
+      <g
+         id="g698"
+         opacity="1">
+        <g
+           id="0df4b02a-12d3-4bc0-9067-e05e1d3a4fed">
+          <svg
+             height="100%"
+             width="100%"
+             id="svg695"
+             version="1.1"
+             overflow="visible"
+             y="518"
+             x="-544">
+            <g
+               id="g693"
+               transform="matrix(0.85368603,0.49385797,-0.85368603,0.49385797,0,0)">
+              <circle
+                 id="circle681"
+                 r="25"
+                 fill="transparent"
+                 cy="0"
+                 cx="0" />
+              <svg
+                 id="svg691"
+                 version="1.1"
+                 y="-25"
+                 x="-25"
+                 height="50"
+                 width="50">
+                <svg
+                   height="100%"
+                   width="100%"
+                   id="svg689"
+                   version="1.1"
+                   viewBox="0 0 50 50">
+                  <g
+                     fill="#d86613"
+                     id="g687">
+                    <path
+                       inkscape:connector-curvature="0"
+                       id="path683"
+                       d="M 44.31,44.31 H 5.69 V 5.69 h 38.62 z m -36.62,-2 H 42.31 V 7.69 H 7.69 Z" />
+                    <path
+                       inkscape:connector-curvature="0"
+                       id="path685"
+                       d="m 11.21,1 h 2 v 5.69 h -2 z m 6.27,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z M 11.21,43.31 h 2 V 49 h -2 z m 6.27,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z M 43.31,11.45 H 49 v 2 h -5.69 z m 0,6.27 H 49 v 2 h -5.69 z m 0,6.28 H 49 v 2 h -5.69 z m 0,6.28 H 49 v 2 h -5.69 z m 0,6.27 H 49 v 2 H 43.31 Z M 1,11.45 h 5.69 v 2 H 1 Z m 0,6.27 h 5.69 v 2 H 1 Z M 1,24 h 5.69 v 2 H 1 Z m 0,6.28 h 5.69 v 2 H 1 Z m 0,6.27 h 5.69 v 2 H 1 Z" />
+                  </g>
+                </svg>
+              </svg>
+            </g>
+          </svg>
+        </g>
+      </g>
+      <g
+         id="g717"
+         opacity="1">
+        <g
+           id="0534c5bb-37cb-43e9-9ee0-55d50ac0d798">
+          <svg
+             height="100%"
+             width="100%"
+             id="svg714"
+             version="1.1"
+             overflow="visible"
+             y="518"
+             x="-672">
+            <g
+               id="g712"
+               transform="matrix(0.85368603,0.49385797,-0.85368603,0.49385797,0,0)">
+              <circle
+                 id="circle700"
+                 r="25"
+                 fill="transparent"
+                 cy="0"
+                 cx="0" />
+              <svg
+                 id="svg710"
+                 version="1.1"
+                 y="-25"
+                 x="-25"
+                 height="50"
+                 width="50">
+                <svg
+                   height="100%"
+                   width="100%"
+                   id="svg708"
+                   version="1.1"
+                   viewBox="0 0 50 50">
+                  <g
+                     fill="#d86613"
+                     id="g706">
+                    <path
+                       inkscape:connector-curvature="0"
+                       id="path702"
+                       d="M 44.31,44.31 H 5.69 V 5.69 h 38.62 z m -36.62,-2 H 42.31 V 7.69 H 7.69 Z" />
+                    <path
+                       inkscape:connector-curvature="0"
+                       id="path704"
+                       d="m 11.21,1 h 2 v 5.69 h -2 z m 6.27,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z M 11.21,43.31 h 2 V 49 h -2 z m 6.27,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z M 43.31,11.45 H 49 v 2 h -5.69 z m 0,6.27 H 49 v 2 h -5.69 z m 0,6.28 H 49 v 2 h -5.69 z m 0,6.28 H 49 v 2 h -5.69 z m 0,6.27 H 49 v 2 H 43.31 Z M 1,11.45 h 5.69 v 2 H 1 Z m 0,6.27 h 5.69 v 2 H 1 Z M 1,24 h 5.69 v 2 H 1 Z m 0,6.28 h 5.69 v 2 H 1 Z m 0,6.27 h 5.69 v 2 H 1 Z" />
+                  </g>
+                </svg>
+              </svg>
+            </g>
+          </svg>
+        </g>
+      </g>
+      <g
+         id="g736"
+         opacity="1">
+        <g
+           id="80e02db7-bbd4-4601-bb27-4e8f03cf075f">
+          <svg
+             height="100%"
+             width="100%"
+             id="svg733"
+             version="1.1"
+             overflow="visible"
+             y="555"
+             x="-608">
+            <g
+               id="g731"
+               transform="matrix(0.85368603,0.49385797,-0.85368603,0.49385797,0,0)">
+              <circle
+                 id="circle719"
+                 r="25"
+                 fill="transparent"
+                 cy="0"
+                 cx="0" />
+              <svg
+                 id="svg729"
+                 version="1.1"
+                 y="-25"
+                 x="-25"
+                 height="50"
+                 width="50">
+                <svg
+                   height="100%"
+                   width="100%"
+                   id="svg727"
+                   version="1.1"
+                   viewBox="0 0 50 50">
+                  <g
+                     fill="#d86613"
+                     id="g725">
+                    <path
+                       inkscape:connector-curvature="0"
+                       id="path721"
+                       d="M 44.31,44.31 H 5.69 V 5.69 h 38.62 z m -36.62,-2 H 42.31 V 7.69 H 7.69 Z" />
+                    <path
+                       inkscape:connector-curvature="0"
+                       id="path723"
+                       d="m 11.21,1 h 2 v 5.69 h -2 z m 6.27,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z m 6.28,0 h 2 v 5.69 h -2 z M 11.21,43.31 h 2 V 49 h -2 z m 6.27,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z m 6.28,0 h 2 V 49 h -2 z M 43.31,11.45 H 49 v 2 h -5.69 z m 0,6.27 H 49 v 2 h -5.69 z m 0,6.28 H 49 v 2 h -5.69 z m 0,6.28 H 49 v 2 h -5.69 z m 0,6.27 H 49 v 2 H 43.31 Z M 1,11.45 h 5.69 v 2 H 1 Z m 0,6.27 h 5.69 v 2 H 1 Z M 1,24 h 5.69 v 2 H 1 Z m 0,6.28 h 5.69 v 2 H 1 Z m 0,6.27 h 5.69 v 2 H 1 Z" />
+                  </g>
+                </svg>
+              </svg>
+            </g>
+          </svg>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g753"
+       pointer-events="auto">
+      <g
+         id="g751"
+         opacity="1">
+        <g
+           id="b69f9d1a-7f96-4bfc-9d1b-6fe4a6502e32">
+          <svg
+             height="100%"
+             width="100%"
+             id="svg748"
+             version="1.1"
+             overflow="visible"
+             y="426"
+             x="-576">
+            <text
+               id="text742"
+               xml:space="preserve"
+               transform="matrix(0.707,0.409,-0.707,0.409,0,0)"
+               font-weight="bold"
+               fill="#000000"
+               font-size="33.3333px"
+               y="36.5"
+               font-family="'Open Sans'"
+               stroke-width="4"
+               stroke="#ffffff"><tspan
+                 id="tspan740"
+                 dy="0"
+                 x="8">Linux CI</tspan></text>
+            <text
+               id="text746"
+               xml:space="preserve"
+               transform="matrix(0.707,0.409,-0.707,0.409,0,0)"
+               font-weight="bold"
+               fill="#000000"
+               font-size="33.3333px"
+               y="36.5"
+               font-family="'Open Sans'"><tspan
+                 id="tspan744"
+                 dy="0"
+                 x="8">Linux CI</tspan></text>
+          </svg>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g755" />
+  </g>
+</svg>

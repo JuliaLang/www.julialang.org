@@ -606,6 +606,14 @@
     <pubDate>Thu, 14 Apr 2016 00:00:00 UT</pubDate>
   </item>
   <item>
+    <title>Coming in Julia 1.5: Time Traveling (Linux) Bug Reporting</title>
+    <link>https://julialang.org/blog/2020/05/rr/index.html</link>
+    <description><![CDATA[Julia 1.5 is gaining a cool new bug reporting capability, leveraging mozilla&#39;s rr project to automatically create fully-reproducible bug reports
+<br><a href="https://julialang.org/blog/2020/05/rr/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2020/05/rr/index.html</guid>
+    <pubDate>Sat, 2 May 2020 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title>The Julia Project and Its Entities</title>
     <link>https://julialang.org/blog/2019/02/julia-entities/index.html</link>
     <description><![CDATA[The Julia Project and Its Entities | There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. It’s pretty hard to know about these things without being in the thick of it. In this blog post I’ll... 
