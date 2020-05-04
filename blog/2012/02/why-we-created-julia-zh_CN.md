@@ -56,7 +56,6 @@ Trackbacks:
 - [Douglas Bates](https://dmbates.blogspot.in/2012/03/julia-version-of-multinomial-sampler_12.html)
 - [Vince Buffalo](https://vincebuffalo.com/blog/2012/03/07/thoughts-on-julia-and-r.html)
 - [John Myles White](https://www.johnmyleswhite.com/notebook/2012/03/31/julia-i-love-you/)
-- [Tim Salimans](http://timsalimans.com/gibbs-sampling-with-julia/)
 - [Habrahabr.ru (Russian)](https://habrahabr.ru/blogs/programming/138577/)
 - [Linux.org.ru (Russian)](https://www.linux.org.ru/news/opensource/7440863)
 - [hellogcc.org (Chinese)](http://www.hellogcc.org/?p=20)
