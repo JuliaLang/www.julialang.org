@@ -16,7 +16,7 @@ Here are some possible projects:
   
 - ### Conversion of READMEs to full Documentation
 
-  There are many areas in the SciML which have READMEs but not a full documentation. One prominent example is [DiffEqFlux.jl](https://github.com/SciML/DiffEqFlux.jl) which has had [multiple blog posts written on it](https://julialang.org/blog/2019/01/fluxdiffeq/) but stil has just a README! Changing from the README to a proper documentation, utilzing the same information but re-styling the writing into proper tutorial and reference portions, would be a major win. Global sensitivity analysis is another area where it would be useful to restyle towards a full documentation.
+  There are many areas in the SciML which have READMEs but not a full documentation. One prominent example is [DiffEqFlux.jl](https://github.com/SciML/DiffEqFlux.jl) which has had [multiple blog posts written on it](https://julialang.org/blog/2019/01/fluxdiffeq/) but still has just a README! Changing from the README to a proper documentation, utilzing the same information but re-styling the writing into proper tutorial and reference portions, would be a major win. Global sensitivity analysis is another area where it would be useful to restyle towards a full documentation.
 
 - ### Tutorial Writing
 
