@@ -4,7 +4,11 @@
 @def rss_pubdate = Date(2020, 5, 2)
 @def rss = """Julia 1.5 is gaining a cool new bug reporting capability, leveraging mozilla's rr project to automatically create fully-reproducible bug reports"""
 @def meta = [("property" => "og:video",
-             "content" => "https://julialang.org/assets/blog/2020-05-02-rr/preview.mp4")]
+             "content" => "https://julialang.org/assets/blog/2020-05-02-rr/preview.mp4"),
+	     ("name" => "twitter:player",
+	      "content" = "https://www.youtube.com/embed/JO6Jvad3XRU"),
+	     ("name" => "twitter:player:width", content="960"),
+	     ("name" => "twitter:player:height", content="720")]
 
 ~~~
   <link rel="stylesheet" type="text/css" href="/assets/blog/2020-05-02-rr/asciinema-player.css" />
