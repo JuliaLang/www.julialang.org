@@ -75,10 +75,6 @@ If in doubt, after running Franklin's server, copy the content of `__site/feed.x
 
 In order to add `<meta ... >` tags on your blog post, add
 
-```
-@def meta = ("prop1"=>"val1", "prop2"=>"val2")
-```
-
 or for multiple tags
 
 ```
