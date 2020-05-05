@@ -2,11 +2,7 @@
     {{meta}}
 
 Plug in specific meta information for a blog page. The `meta` local page
-variable should be given as a tuple of pairs like so:
-```
-@def meta = ("property"=>"og:video", "content"=>"http://example.com/")
-```
-Multiple meta tags can be specified that way too by just passing a list:
+variable should be given as a list of tuples of pairs like so:
 ```
 @def meta = [("property"=>"og:video", "content"=>"http://example.com/"),
              ("propery"=>"og:title", "content"=>"The Rock")]
@@ -14,10 +10,13 @@ Multiple meta tags can be specified that way too by just passing a list:
 """
 function hfun_meta()
     m = locvar(:meta)
-    if eltype(m) isa Pair
-        return _meta(m)
+    io = IOBuffer()
+    for tuple in locvar(:meta)
+        write(io, "<meta ")
+        for (prop, val) in tuple
+            write(io, "$prop=\"$val\" ")
+        end
+        write(io, ">")
     end
-    return prod(_meta.(m))
+    return String(take!(io))
 end
-
-_meta(m) = "<meta " * prod("$k=\"$v\" " for (k, v) in m) * ">"
