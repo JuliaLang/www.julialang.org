@@ -286,6 +286,14 @@
     <pubDate>Tue, 20 Oct 2015 00:00:00 UT</pubDate>
   </item>
   <item>
+    <title>GSoC and JSoC 2020 Project List</title>
+    <link>https://julialang.org/blog/2020/05/jsoc-gsoc2020/index.html</link>
+    <description><![CDATA[The Julia Language will host 25 students during summer 2020 working on open-source projects throughout the Julia ecosystem
+<br><a href="https://julialang.org/blog/2020/05/jsoc-gsoc2020/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2020/05/jsoc-gsoc2020/index.html</guid>
+    <pubDate>Tue, 5 May 2020 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title>Julia 0.5 Release Announcement</title>
     <link>https://julialang.org/blog/2016/10/julia-0.5-release/index.html</link>
     <description><![CDATA[Julia 0.5 Release Announcement | After over a year of development, the Julia community is proud to announce... 
