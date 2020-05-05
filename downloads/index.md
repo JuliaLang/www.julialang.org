@@ -212,9 +212,9 @@ Older releases of Julia for all platforms are available on the [Older releases p
 
 
 
-## Nightly builds
+## "Nightly" builds
 
-Nightly builds of the current unstable development version of Julia are available on the [nightlies page](/downloads/nightlies/). These are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current release version of Julia, above.
+Builds of the current unstable development version of Julia are available on the [nightlies page](/downloads/nightlies/). Built after each update to master, these are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current release version of Julia, above.
 
 
 
