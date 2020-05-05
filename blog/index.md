@@ -33,6 +33,7 @@ Blogs from the broader Julia community can be found at [Julia Bloggers](https://
 </style>
 <div class="grid">
 ~~~
+[GSoC and JSoC 2020 Project List](/blog/2020/05/jsoc-gsoc2020/) 2020-05-05
 
 [Coming in Julia 1.5: Time Traveling (Linux) Bug Reports](/blog/2020/05/rr/) 2020-05-02
 
