@@ -234,7 +234,7 @@ up into:
 
 4) Direct observation of non-determinstic hardware effects (i.e. the "most" qualifier above).
    This includes instructions that are deliberately non-deterministic, such as RDRAND,
-   which generates a random number. It also includes oberservable, but undesiarable effects of hardware state
+   which generates a random number. It also includes observable, but undesirable effects of hardware state
    (e.g. timing side channels from cache or branch predictor state).
 
 However, in theory, if a tool was able to capture 100% of the relevant state
