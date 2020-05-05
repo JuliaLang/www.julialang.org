@@ -6,13 +6,18 @@ variable should be given as a tuple of pairs like so:
 ```
 @def meta = ("property"=>"og:video", "content"=>"http://example.com/")
 ```
+Multiple meta tags can be specified that way too by just passing a list:
+```
+@def meta = [("property"=>"og:video", "content"=>"http://example.com/"),
+             ("propery"=>"og:title", "content"=>"The Rock")]
+```
 """
 function hfun_meta()
-    io = IOBuffer()
-    write(io, "<meta ")
-    for (k, v) in locvar(:meta)
-        write(io, "$k=\"$v\" ")
+    m = locvar(:meta)
+    if eltype(m) isa Pair
+        return _meta(m)
     end
-    write(io, ">")
-    return String(take!(io))
+    return prod(_meta.(m))
 end
+
+_meta(m) = "<meta " * prod("$k=\"$v\" " for (k, v) in m) * ">"
