@@ -71,6 +71,19 @@ In particular:
 
 If in doubt, after running Franklin's server, copy the content of `__site/feed.xml` into [the w3 feed validator](https://validator.w3.org/feed/check.cgi), it should show "Valid RSS feed".
 
+### Metadata
+
+In order to add `<meta ... >` tags on your blog post, add
+
+or for multiple tags
+
+```
+@def meta = [("prop11"=>"val11", "prop21"=>"val21"),
+             ("prop12"=>"val12", "prop22"=>"val22")]
+```
+
+see for instance [Keno's recent blog post](https://raw.githubusercontent.com/JuliaLang/www.julialang.org/master/blog/2020/05/rr.md).
+
 ## Looking for broken links
 
 Every so often, one should do an in-depth check that there are no broken links.

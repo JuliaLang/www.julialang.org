@@ -1,8 +1,14 @@
 @def authors = "Keno Fischer"
 @def published = "2 May 2020"
-@def title = "Coming in Julia 1.5: Time Traveling (Linux) Bug Reporting"
+@def title = "Julia 1.5 Feature Preview: Time Traveling (Linux) Bug Reporting"
 @def rss_pubdate = Date(2020, 5, 2)
 @def rss = """Julia 1.5 is gaining a cool new bug reporting capability, leveraging mozilla's rr project to automatically create fully-reproducible bug reports"""
+@def meta = [("property" => "og:video",
+             "content" => "https://julialang.org/assets/blog/2020-05-02-rr/preview.mp4"),
+	     ("name" => "twitter:player",
+	      "content" = "https://www.youtube.com/embed/JO6Jvad3XRU"),
+	     ("name" => "twitter:player:width", content="960"),
+	     ("name" => "twitter:player:height", content="720")]
 
 ~~~
   <link rel="stylesheet" type="text/css" href="/assets/blog/2020-05-02-rr/asciinema-player.css" />
@@ -197,7 +203,7 @@ If a bug report includes a link to an `rr` trace, in theory no further reproduct
 instructions are required. The `rr` trace is guaranteed to perfectly capture
 the environment the bug was reproduced in. Of course, if the bug is something non-obvious like
 unexpected behavior, some comments on what the expected behavior was may
-still be helpful. 
+still be helpful.
 Having perfect reproducability almost immediately knocks
 out all the common problems I started this post with. "Works for me" is no
 longer an available answer. If it's in the trace, it broke on somebody's machine
@@ -232,7 +238,7 @@ up into:
 
 4) Direct observation of non-determinstic hardware effects (i.e. the "most" qualifier above).
    This includes instructions that are deliberately non-deterministic, such as RDRAND,
-   which generates a random number. It also includes oberservable, but undesiarable effects of hardware state
+   which generates a random number. It also includes observable, but undesirable effects of hardware state
    (e.g. timing side channels from cache or branch predictor state).
 
 However, in theory, if a tool was able to capture 100% of the relevant state
