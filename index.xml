@@ -614,6 +614,14 @@
     <pubDate>Thu, 14 Apr 2016 00:00:00 UT</pubDate>
   </item>
   <item>
+    <title>Julia 1.5 Feature Preview: Time Traveling (Linux) Bug Reporting</title>
+    <link>https://julialang.org/blog/2020/05/rr/index.html</link>
+    <description><![CDATA[Julia 1.5 is gaining a cool new bug reporting capability, leveraging mozilla&#39;s rr project to automatically create fully-reproducible bug reports
+<br><a href="https://julialang.org/blog/2020/05/rr/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2020/05/rr/index.html</guid>
+    <pubDate>Sat, 2 May 2020 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title>The Julia Project and Its Entities</title>
     <link>https://julialang.org/blog/2019/02/julia-entities/index.html</link>
     <description><![CDATA[The Julia Project and Its Entities | There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. It’s pretty hard to know about these things without being in the thick of it. In this blog post I’ll... 
@@ -652,14 +660,6 @@
 <br><a href="https://julialang.org/blog/2019/12/artifacts-zh_cn/index.html">Read more</a>]]></description>
     <guid>https://julialang.org/blog/2019/12/artifacts-zh_cn/index.html</guid>
     <pubDate>Wed, 18 Dec 2019 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title>More π</title>
-    <link>https://julialang.org/blog/2018/03/pifonts/index.html</link>
-    <description><![CDATA[Some &pi;-ography | Although we&#39;ve known about &quot;Archimedes&#39; constant&quot; for a few millennia, we&#39;ve been referring to it as the Greek letter π only since the 1700s. Patricia Rothman <a href="https://www.historytoday.com/patricia-rothman/william-jones-and-his-circle-man-who-invented-pi">suggested</a> that the following page <em>could</em> c... 
-<br><a href="https://julialang.org/blog/2018/03/pifonts/index.html">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/03/pifonts/index.html</guid>
-    <pubDate>Wed, 14 Mar 2018 00:00:00 UT</pubDate>
   </item>
   <item>
     <title>Stanford Talk Announcement</title>
