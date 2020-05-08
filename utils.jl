@@ -30,10 +30,11 @@ end
 Plug in the list of blog posts contained in the `/blog/` folder.
 """
 function hfun_blogposts()
+    curyear = Dates.Year(Dates.today()).value
     io = IOBuffer()
-    for year in 2020:-1:2012
+    for year in curyear:-1:2012
         ys = "$year"
-        write(io, "\n**$year**\n")
+        year < curyear && write(io, "\n**$year**\n")
         for month in 12:-1:1
             ms = "0"^(1-div(month, 10)) * "$month"
             base = joinpath("blog", ys, ms)
