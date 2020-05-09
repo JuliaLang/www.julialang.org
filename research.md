@@ -58,6 +58,7 @@ We welcome additions to this list in the form of [pull requests](https://github.
 
 @@tight-list
 * **Sequential Bayesian inference for vector autoregressions with stochastic volatility**. Mark Bognanni, John Zito. (2020) _Journal of Economic Dynamics and Control_, 113: 103851. doi: [10.1016/j.jedc.2020.103851](https://doi.org/10.1016/j.jedc.2020.103851). url: <http://www.sciencedirect.com/science/article/pii/S016518892030021X>.
+* **Automatic Differentiation for Solid Mechanics**. Andrea Vigliotti, Ferdinando Auricchio. (2020) _Archives of Computational Methods in Engineering_. doi: [10.1007/s11831-019-09396-y](https://doi.org/10.1007/s11831-019-09396-y). url: <https://link.springer.com/article/10.1007%2Fs11831-019-09396-y>. preprint: <https://arxiv.org/abs/2001.07366>
 @@
 
 ## 2019
