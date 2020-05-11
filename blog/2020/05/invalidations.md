@@ -4,6 +4,7 @@
 @def rss_pubdate = Date(2020, 5, 11)
 @def rss = """Julia is fast, but compiling Julia code takes time. This post analyzes why it's sometimes necessary to repeat that work, and what might be done to fix it."""
 
+\toc
 
 [The Julia programming language][Julia] has wonderful flexibility with types, and this allows you to combine packages in unanticipated ways to solve new kinds of problems.
 Crucially, it achieves this flexibility without sacrificing performance.
@@ -24,7 +25,7 @@ Recently I got interested in a specific source of this latency, and this blog po
 
 When Julia compiles a method for specific types, it saves the resulting code
 so that it can be used by any caller.
-This is crucial to performance, because it means generally compilation has to be done only once for a specific type.
+This is crucial to performance, because it means that compilation generally has to be done only once for a specific type.
 To keep things really simple, I'm going to use a very artificial example.
 
 ```
@@ -146,8 +147,7 @@ However, if you try `@code_typed applyf(c)` again, you'll notice something curio
 Julia has gone to the trouble to create a new-and-improved implementation of `applyf`,
 one which also union-splits for `String`.
 This brings us to the topic of this blog post: the old compiled method has been *invalidated*.
-Given new information---which here comes from defining or loading new methods---
-Julia changes its mind about how things should be implemented,
+Given new information--which here comes from defining or loading new methods--Julia changes its mind about how things should be implemented,
 and this forces Julia to recompile `applyf`.
 
 If you add fourth and fifth methods,
@@ -173,14 +173,14 @@ CodeInfo(
 
 There are now so many possibilities that Julia just gives up and
 uses "runtime dispatch" to decide what method of `f` to call.
-It doesn't even try to enforce the fact that `f` returns and `Int`,
+It doesn't even try to enforce the fact that `f` returns an `Int`,
 in part because determining such facts takes time (adding to compiler latency)
 and because functions with many methods typically tend to return multiple types
 anyway.
 
 Compiling each of these new implementations takes JIT-time.
 If Julia knew in advance that you'd arrive at this place, it would never have bothered to produce that first, heavily-optimized version of `applyf`.
-But the performance benefits of such optimizations are so large that, when applicable, they are well worth it.
+But the performance benefits of such optimizations are so large that, when applicable, they can be well worth it.
 For example, if you start a fresh Julia session and just define the `f(::Int)`
 and `f(::Bool)` methods, then
 
@@ -214,9 +214,9 @@ If method invalidation happens often, this might contribute to making Julia "fee
 Unfortunately, method invalidation is pretty common.
 First, let's get some baseline statistics.
 Using the [MethodAnalysis] package (which is at a very early stage of development
-at the time of this writing), you can find out that a fresh Julia session
-(albeit one that has loaded the MethodAnalysis package and used it to perform some analysis) has almost 50,000 `MethodInstance`s tucked away in its cache.
+at the time of this writing), you can find out that a fresh Julia session has almost 50,000 `MethodInstance`s tucked away in its cache.
 These are mostly for `Base` and the standard libraries.
+(There are some additional `MethodInstance`s that get created to load the MethodAnalysis package and do this analysis, but these are surely a very small fraction of the total.)
 
 Using some not-yet merged work in both Julia itself and [SnoopCompile], we can count the number of invalidations when we load various packages into a fresh Julia session:
 
@@ -237,8 +237,8 @@ Using some not-yet merged work in both Julia itself and [SnoopCompile], we can c
 | DifferentialEquations | 6.13.0 | 6777 |
 
 You can see that key packages used by large portions of the Julia ecosystem invalidate
-hundreds or thousands of MethodInstances, sometimes more than 10% of the total
-number of MethodInstances present before loading the package.
+hundreds or thousands of `MethodInstance`s, sometimes more than 10% of the total
+number of `MethodInstance`s present before loading the package.
 
 ## How serious is method invalidation?
 
@@ -328,13 +328,13 @@ function applyf(container)
 end
 c = Any[1, false];
 applyf(c)
-
-using SnoopCompile
 ```
 
 Then,
 
 ```julia-repl
+julia> using SnoopCompile
+
 julia> invalidation_trees(@snoopr f(x::String) = 3)
 1-element Array{SnoopCompile.MethodInvalidations,1}:
  insert f(x::String) in Main at REPL[7]:1 invalidated:
@@ -344,16 +344,17 @@ julia> invalidation_trees(@snoopr f(x::String) = 3)
 Let's walk through this output a bit.
 `@snoopr` turns on some debugging code inside Julia, and then executes the supplied statment;
 it returns a fairly opaque list that can be parsed by `invalidation_trees`.
-Entries in the returned array correspond to method additions (or deletions, if relevant) that trigger one or more invalidations.
+Entries in the array returned by `invalidation_trees` correspond to method additions (or deletions, if relevant) that trigger one or more invalidations.
 In this case, the output means that the new `f(x::String)` method triggered an invalidation of `applyf(::Array{Any,1})`,
 due to intersection with the signature `f(::Any)`.
 `(0 children)` means that `applyf(::Vector{Any})` does not yet have any methods that called it and which in turn need to be invalidated.
-Finally, `more specific` (which is printed in cyan) indicate that the new method was strictly more specific than the one that got invalidated.
+Finally, `more specific` (which is printed in cyan) indicate that the new method `f(::String)` was strictly more specific than the signature `f(::Any)` used by the `applyf` `MethodInstance` that got invalidated.
 
 As we mentioned above, there are good reasons to think this invalidation is "necessary," meaning that it is an unavoidable consequence of the choices made to optimize runtime performance while also allowing one to dynamically extend functions.
 However, that doesn't mean there is nothing that you, as a developer, could do to eliminate this invalidation.
 Perhaps there is no real need to ever call `applyf` with a `Vector{Any}`;
 perhaps you can fix one of its upstream callers to supply a concretely-type vector.
+Or perhaps you could define more `f` methods at the outset, so that Julia has a better understanding of the different types that `applyf` needs to handle.
 In some cases, though, you might really need to call `applyf` with a `Vector{Any}`, in which case the best choice is to accept this invalidation as necessary and move on.
 
 ### New methods with ambiguous specificity
@@ -389,7 +390,7 @@ julia> trees = invalidation_trees(@snoopr using FixedPointNumbers)
 ```
 
 This list is ordered from least- to most-consequential in terms of total number of invalidations.
-The final entry, for `(::Type{X})(x::Real) where X<:FixedPoint`, triggered the invalidation of what nominally appear to be more than 350 MethodInstances.
+The final entry, for `(::Type{X})(x::Real) where X<:FixedPoint`, triggered the invalidation of what nominally appear to be more than 350 `MethodInstance`s.
 (There is no guarantee that these methods are all disjoint from one another;
 the results are represented as a tree, where each node links to its callers.)
 In contrast, the first entry is responsible for just two invalidations.
@@ -450,8 +451,8 @@ Type{Union{}}
 
 which shows that there is one Type, the "empty Type", that lies in their intersection.
 
-There are good reasons to believe that the right way to fix such methods is to exclude ambiguous pairs from invalidation---if it were to be called by the compiled code, it would trigger an error anyway.
-If such a change gets made to Julia, then all the ones marked "ambiguous" should magically disappear.
+There are good reasons to believe that the right way to fix such methods is to exclude ambiguous pairs from invalidation--if it were to be called by the compiled code, it would trigger an error anyway.
+If this gets changed in Julia, then all the ones marked "ambiguous" should magically disappear.
 Consequently, we can turn our attention to other cases.
 
 Let's look at the next item up the list:
@@ -537,9 +538,9 @@ In the statistics below, we'll lump partial specialization in with ambiguity.
 
 ### Some summary statistics
 
-Let's go back to our table above, and augment it with "sources" of invalidation:
+Let's go back to our table above, and count the number of invalidations in each of these categories:
 
-| Package | greater specificity | lesser specificity | ambiguity |
+| Package | more specific | less specific | ambiguous |
 |:------- | ------------------:| --------:| -----:|
 | Example | 0 | 0 | 0 | 0 |
 | Revise | 6 | 0 | 0 |
@@ -565,23 +566,22 @@ However, it appears that there will need to be a second round in which package d
 You may have noticed that two packages, `Example` and `Revise`, trigger far fewer invalidations that the rest of the packages in our analysis.
 `Example` is quite trivial, but `Revise` and its dependencies are quite large.
 How does it avoid this problem?
-First, Revise does not extending very many Base methods;
-most of its methods are to functions it "owns," and the same is true for its dependencies.
+First, Revise does not extend very many Base methods;
+most of its methods are for functions it "owns," and the same is true for its dependencies.
 Second, in the closing days of Julia 1.5's merge window,
 Revise (and Julia) underwent a process of tracking down invalidations and eliminating them;
 for comparison, on Julia 1.4, Revise triggers more than a 1000 non-unique invalidations.
 The success of this effort gives one hope that other packages too may one day have fewer invalidations.
 
 As stated above, there is reason to hope that most of the invalidations marked as "ambiguous" will be fixed by changes to Julia's compiler.
-Here our focus is on those marked "more specific," since those are cases where it is hard to imagine a generic fix.
+Here our focus is on those marked "more specific," since those are cases where it is harder to imagine a generic fix.
 
-### Fixing a case of type-instability
+### Fixing type instabilities
 
-In engineering Julia and Revise to reduce invalidations, at least two cases were fixed by resolving a type-instability.
+In engineering Julia and Revise to reduce invalidations, at least two cases were fixed by resolving type-instabilities.
 For example, one set of invalidations happened because `CodeTracking`, a dependency of Revise's, defines new methods for `Base.PkgId`.
-It turns out that this triggered an invalidation of `_tryrequire_from_serialized`, which is used to load packages;
-a negative consequence is that Revise introduced a slight latency upon loading the *next* package.
-However, it turned out to be an easy fix: one section of `_tryrequire_from_serialized` had a passage
+It turns out that this triggered an invalidation of `_tryrequire_from_serialized`, which is used to load packages.
+Fortunately, it turned out to be an easy fix: one section of `_tryrequire_from_serialized` had a passage
 
 ```
 for M in mod::Vector{Any}
@@ -601,9 +601,11 @@ It sufficed to add
 immediately after the `for` statement to fix the problem.
 Not only does this fix the invalidation, but it lets the compiler generate better code.
 
-The other case was similar: a call from `Pkg` of `keys` on an AbstractDict of unknown type
-(due to a higher `@nospecialize` call).
-Replacing `keys(dct)` with `Base.KeySet(dct)` (which is the default consequence of calling `keys`) eliminated a very consequential invalidation, one that triggered seconds-long latencies in the next `Pkg` command after loading Revise.
+The other case was a call from `Pkg` of `keys` on an AbstractDict of unknown type
+(due to a caller's `@nospecialize` annotation).
+Replacing `keys(dct)` with `Base.KeySet(dct)` (which is the default return value of `keys`) eliminated a very consequential invalidation, one that triggered seconds-long latencies in the next `Pkg` command after loading Revise.
+The benefits of this change in Pkg's code went far beyond helping Revise; any package depending on the OrderedCollections package (which is a dependency of Revise and what actually triggered the invalidation) got the same benefit.
+With these and a few other relatively simple changes, loading Revise no longer forces Julia to recompile much of Pkg's code the next time you try to update packages.
 
 ### Redirecting call chains
 
@@ -627,7 +629,7 @@ If you look up this definition, you'll see it's
 reduce_empty(op, T) = _empty_reduce_error()
 ```
 
-which indicates that it is the fallback method for reducing over an empty collection, and indeed calling this results in an error:
+which indicates that it is the fallback method for reducing over an empty collection, and as you might expect from the name, calling it results in an error:
 
 ```julia-repl
 julia> op = Base.BottomRF(Base.max)
@@ -642,7 +644,7 @@ Stacktrace:
  [4] top-level scope at REPL[36]:1
 ```
 
-This essentially means that no "identity element" has been defined for this operation and type.
+This essentially means that no "neutral element" has been defined for this operation and type.
 
 Can we avoid this fallback?
 One approach is to define the method directly: modify Julia to add
@@ -678,7 +680,7 @@ julia> node = invtree.children[1]
 MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype) at depth 1 with 38 children
 ```
 
-We can display the whole tree using `show(node)`:
+We can display this whole branch of the tree using `show(node)`:
 
 ```julia-repl
 julia> show(node)
@@ -751,8 +753,8 @@ Julia's remarkable flexibility and outstanding code-generation open many new hor
 These advantages come with a few costs, and here we've explored one of them, method invalidation.
 While Julia's core developers have been aware of its cost for a long time,
 we're only now starting to get tools to analyze it in a manner suitable for a larger population of users and developers.
-Because it's not been easy to measure previously, it would not be surprising if there are numerous opportunities to reduce it, waiting to be discovered.
-One might hope that the next period of development might see significant strides in new ways of getting packages to work together without stomping on each other's toes.
+Because it's not been easy to measure previously, it would not be surprising if there are numerous opportunities for improvement waiting to be discovered.
+One might hope that the next period of development might see significant improvement in getting packages to work together without stomping on each other's toes.
 
 [Julia]: https://julialang.org/
 [union-splitting]: https://julialang.org/blog/2018/08/union-splitting/
@@ -761,4 +763,3 @@ One might hope that the next period of development might see significant strides
 [PRJulia]: https://github.com/JuliaLang/julia/pull/35768
 [PRSC]: https://github.com/timholy/SnoopCompile.jl/pull/79
 [method ambiguity]: https://docs.julialang.org/en/latest/manual/methods/#man-ambiguities-1
-[sentinel]: https://en.wikipedia.org/wiki/Sentinel_value
