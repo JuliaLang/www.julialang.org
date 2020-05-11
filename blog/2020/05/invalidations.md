@@ -415,7 +415,7 @@ insert (::Type{X})(x::Real) where X<:FixedPoint in FixedPointNumbers at /home/ti
    6 mt_cache
 
 
-julia> mi, invtree = tree[:backedges,1]
+julia> mi, node = tree[:backedges,1]
 MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) => MethodInstance for +(::AbstractChar, ::UInt8) at depth 0 with 157 children
 
 julia> mi.def
@@ -465,7 +465,21 @@ insert reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint in F
 
 `reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint` is strictly more specific than `reduce_empty(::Function, ::Type{T} where T)`.
 This might look like one of those "necessary" invalidations.
-Below we'll analyze this in far greater detail and discover some possible fixes.
+However, even though it's marked "more specific," the new method `reduce_empty(::typeof(Base.add_sum), ::Type{F}) where F<:FixedPoint` can't be reached from a call `reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber})`:
+
+```julia-repl
+julia> mi, node = tree[:backedges, 1]
+MethodInstance for reduce_empty(::Function, ::Type{T} where T) => MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) at depth 0 with 143 children
+
+julia> node.mi      # this is the MethodInstance that called `mi`
+MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber})
+
+julia> typeintersect(tree.method.sig, node.mi.specTypes)
+Union{}
+```
+
+This is is a consequence of the fact that Julia's compiler has chosen not to specialize the argument types, and `reduce_empty(::Function, ::Type{T} where T)` is broader than what could be determined from the caller.
+Thus, while it looks like a case of greater specificity, in fact this is more analogous to the "partial specialization" described below.
 
 Moving backward another step, we get to `sizeof(::Type{X}) where X<:FixedPoint`.
 Simply put, this looks like a method that we don't need; perhaps it dates from some confusion, or an era where perhaps it was necessary.
@@ -613,7 +627,7 @@ Let's return to our FixedPointNumbers `reduce_empty` example above.
 A little prodding as done above reveals that this corresponds to the definition
 
 ```julia-repl
-julia> mi, invtree = tree[:backedges, 1]
+julia> mi, node = tree[:backedges, 1]
 MethodInstance for reduce_empty(::Function, ::Type{T} where T) => MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) at depth 0 with 136 children
 
 julia> mi
@@ -635,18 +649,19 @@ which indicates that it is the fallback method for reducing over an empty collec
 julia> op = Base.BottomRF(Base.max)
 Base.BottomRF{typeof(max)}(max)
 
-julia> Base.reduce_empty(op, VERSION)
+julia> Base.reduce_empty(op, VersionNumber)
 ERROR: ArgumentError: reducing over an empty collection is not allowed
 Stacktrace:
  [1] _empty_reduce_error() at ./reduce.jl:299
- [2] reduce_empty(::Function, ::VersionNumber) at ./reduce.jl:309
- [3] reduce_empty(::Base.BottomRF{typeof(max)}, ::VersionNumber) at ./reduce.jl:324
- [4] top-level scope at REPL[36]:1
+ [2] reduce_empty(::Function, ::Type{T} where T) at ./reduce.jl:309
+ [3] reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{T} where T) at ./reduce.jl:324
+ [4] top-level scope at REPL[2]:1
 ```
 
 This essentially means that no "neutral element" has been defined for this operation and type.
 
-Can we avoid this fallback?
+For the purposes of illustration, let's ignore the fact that this might be a case where the fix might in principle be made in the compiler.
+Using ordinary Julia code, can we avoid this fallback?
 One approach is to define the method directly: modify Julia to add
 
 ```
@@ -654,16 +669,20 @@ reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) = _empty_reduc
 ```
 
 so that we get the same result but don't rely on the fallback.
-But perhaps a better approach is to see who's calling it:
+
+Given our observation above that this *apparent* invalidating method is not actually reachable by this call chain,
+another approach is to force the compiler to specialize the method by adding type parameters:
+
+```
+reduce_empty(op::F, ::Type{T}) where {F,T} = _empty_reduce_error()
+```
+
+While there's little actual reason to force specialization on a method that just issues an error, in this case it does have the effect of allowing the compiler to realize that our new method is not reachable from this call path.
+
+For addressing this purely at the level of Julia code, perhaps the best approach is to see who's calling it:
 
 ```julia-repl
-julia> invtree.mi
-MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber})
-
-julia> invtree.mi.def
-reduce_empty(op::Base.BottomRF, T) in Base at reduce.jl:324
-
-julia> invtree.children
+julia> node.children
 5-element Array{SnoopCompile.InstanceTree,1}:
  MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype) at depth 1 with 38 children
  MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{Int64}) at depth 1 with 39 children
@@ -676,7 +695,7 @@ This illustrates how to work with an `InstanceTree`: you access the MethodInstan
 Let's start with the first one:
 
 ```julia-repl
-julia> node = invtree.children[1]
+julia> node = node.children[1]
 MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype) at depth 1 with 38 children
 ```
 
