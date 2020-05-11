@@ -42,7 +42,7 @@ If you call `applyf([100, 200])`, it will compile a version of `applyf`
 knowing that only `f(::Int)` will be used: the call will be "hard-wired" into the code that Julia produces.
 You can see this using `@code_typed`:
 
-```
+```julia-repl
 julia> @code_typed applyf([100,200])
 CodeInfo(
 1 ─     Base.arrayref(true, container, 1)::Int64
@@ -58,7 +58,7 @@ call `applyf([100])`.)
 
 If you pass a `Vector{Bool}`, it will compile `applyf` again, this time specializing it for `x::Bool`:
 
-```
+```julia-repl
 julia> @code_typed applyf([true,false])
 CodeInfo(
 1 ─     Base.arrayref(true, container, 1)::Bool
@@ -77,7 +77,8 @@ You don't normally see these, but Julia manages them for you; anytime you write
 code that calls `applyf`, it checks to see if this previous compilation work can be reused.
 
 For the purpose of this blog post, things start to get especially interesting if we try the following:
-```
+
+```julia-repl
 julia> c = Any[1, false];
 
 julia> applyf(c)
@@ -158,7 +159,7 @@ f(::Missing) = 5
 
 then Julia produces
 
-```
+```julia-repl
 julia> @code_typed applyf(c)
 CodeInfo(
 1 ─ %1 = Base.arrayref(true, container, 1)::Any
@@ -183,7 +184,7 @@ But the performance benefits of such optimizations are so large that, when appli
 For example, if you start a fresh Julia session and just define the `f(::Int)`
 and `f(::Bool)` methods, then
 
-```
+```julia-repl
 julia> using BenchmarkTools
 
 julia> @btime applyf($c)
@@ -245,7 +246,7 @@ The next time you want to call functionality that gets invalidated,
 you have to wait for recompilation.
 We can illustrate this using everyone's favorite example, plotting:
 
-```
+```julia-repl
 julia> using Plots
 
 julia> @time display(plot(rand(5)))
@@ -254,14 +255,14 @@ julia> @time display(plot(rand(5)))
 
 As is well known, it's much faster the second time, because it's already compiled:
 
-```
+```julia-repl
 julia> @time display(plot(rand(5)))
   0.311226 seconds (19.93 k allocations: 775.055 KiB)
 ```
 
 Moreover, if you decide you want some additional functionality and decide to load a new package, sometimes it's essentially as fast again:
 
-```
+```julia-repl
 julia> using StaticArrays
 
 julia> @time display(plot(rand(5)))
@@ -270,7 +271,7 @@ julia> @time display(plot(rand(5)))
 
 But if you load a package that does a lot of invalidation:
 
-```
+```julia-repl
 julia> using SIMD
 
 julia> @time display(plot(rand(5)))
@@ -332,7 +333,8 @@ using SnoopCompile
 ```
 
 Then,
-```
+
+```julia-repl
 julia> invalidation_trees(@snoopr f(x::String) = 3)
 1-element Array{SnoopCompile.MethodInvalidations,1}:
  insert f(x::String) in Main at REPL[7]:1 invalidated:
@@ -358,7 +360,7 @@ In some cases, though, you might really need to call `applyf` with a `Vector{Any
 
 Now let's try a real-world case, where the outcomes are more complex.
 
-```
+```julia-repl
 julia> trees = invalidation_trees(@snoopr using FixedPointNumbers)
 5-element Array{SnoopCompile.MethodInvalidations,1}:
  insert promote_rule(::Type{T}, ::Type{Tf}) where {T<:Normed, Tf<:AbstractFloat} in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/normed.jl:310 invalidated:
@@ -396,14 +398,14 @@ One does not have to look at this list for very long to see that the majority of
 Consider the line `backedges: MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) triggered...`.
 We can see which method this is by the following:
 
-```
+```julia-repl
 julia> which(Char, (Int32,))
 (::Type{T})(x::Number) where T<:AbstractChar in Base at char.jl:48
 ```
 
 or directly as
 
-```
+```julia-repl
 julia> tree = trees[end]
 insert (::Type{X})(x::Real) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:51 invalidated:
    mt_backedges: signature Tuple{Type{T} where T<:Int64,Int64} triggered MethodInstance for convert(::Type{T}, ::Int64) where T<:Int64 (1 children) ambiguous
@@ -426,7 +428,7 @@ We'll see how to work with `InstanceTree`s in a moment, for now we want to focus
 You may find it surprising that this method signature is ambiguous with `(::Type{X})(x::Real) where X<:FixedPoint`: after all, an `AbstractChar` is quite different from a `FixedPoint` number.
 We can discover why with
 
-```
+```julia-repl
 julia> tree.method.sig
 Tuple{Type{X},Real} where X<:FixedPoint
 
@@ -441,7 +443,7 @@ These two signatures have non-empty intersection.
 The second parameter, `Int32`, makes sense as the intersection of `Int32` and `Real`.
 The first arises from
 
-```
+```julia-repl
 julia> typeintersect(Type{<:FixedPoint}, Type{<:AbstractChar})
 Type{Union{}}
 ```
@@ -454,7 +456,7 @@ Consequently, we can turn our attention to other cases.
 
 Let's look at the next item up the list:
 
-```
+```julia-repl
 julia> tree = trees[end-1]
 insert reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:225 invalidated:
    backedges: MethodInstance for reduce_empty(::Function, ::Type{T} where T) triggered MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) (136 children) more specific
@@ -475,7 +477,7 @@ It is not clear why such methods should be invalidating, and this may be a Julia
 
 If you try
 
-```
+```julia-repl
 julia> trees = invalidation_trees(@snoopr using StaticArrays)
 ```
 
@@ -493,7 +495,7 @@ use the default method.
 The vast majority of the rest appear to derive from ambiguities.
 However, one more interesting case we've not seen before is
 
-```
+```julia-repl
 julia> tree = trees[end-7]
 insert unsafe_convert(::Type{Ptr{T}}, m::Base.RefValue{FA}) where {N, T, D, FA<:FieldArray{N,T,D}} in StaticArrays at /home/tim/.julia/packages/StaticArrays/mlIi1/src/FieldArray.jl:124 invalidated:
    mt_backedges: signature Tuple{typeof(Base.unsafe_convert),Type{Ptr{_A}} where _A,Base.RefValue{_A} where _A} triggered MethodInstance for unsafe_convert(::Type{Ptr{Nothing}}, ::Base.RefValue{_A} where _A) (159 children) more specific
@@ -504,7 +506,7 @@ has been only partially specified: it depends on a type parameter `_A`.
 Where does such a signature come from?
 You can extract this line with
 
-```
+```julia-repl
 julia> trigger = tree[:mt_backedges, 1]
 MethodInstance for unsafe_convert(::Type{Ptr{Nothing}}, ::Base.RefValue{_A} where _A) at depth 0 with 159 children
 
@@ -608,7 +610,7 @@ Replacing `keys(dct)` with `Base.KeySet(dct)` (which is the default consequence 
 Let's return to our FixedPointNumbers `reduce_empty` example above.
 A little prodding as done above reveals that this corresponds to the definition
 
-```
+```julia-repl
 julia> mi, invtree = tree[:backedges, 1]
 MethodInstance for reduce_empty(::Function, ::Type{T} where T) => MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) at depth 0 with 136 children
 
@@ -627,7 +629,7 @@ reduce_empty(op, T) = _empty_reduce_error()
 
 which indicates that it is the fallback method for reducing over an empty collection, and indeed calling this results in an error:
 
-```
+```julia-repl
 julia> op = Base.BottomRF(Base.max)
 Base.BottomRF{typeof(max)}(max)
 
@@ -652,7 +654,7 @@ reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) = _empty_reduc
 so that we get the same result but don't rely on the fallback.
 But perhaps a better approach is to see who's calling it:
 
-```
+```julia-repl
 julia> invtree.mi
 MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber})
 
@@ -671,14 +673,14 @@ julia> invtree.children
 This illustrates how to work with an `InstanceTree`: you access the MethodInstance through `.mi` and its callers through `.children`.
 Let's start with the first one:
 
-```
+```julia-repl
 julia> node = invtree.children[1]
 MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype) at depth 1 with 38 children
 ```
 
 We can display the whole tree using `show(node)`:
 
-```
+```julia-repl
 julia> show(node)
  MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype)
   MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber})
@@ -733,7 +735,7 @@ Adding this to `Pkg` would be type-piracy, since `max`, `BottomRF`, and `Version
 But there are other possible fixes.
 A little higher up the tree we see a call to `mapreduce`, and this presents another opportunity because `mapreduce` allows you to supply an `init` value:
 
-```
+```julia-repl
 julia> mapreduce(identity, max, Set(VersionNumber[]); init=VersionNumber(0))
 v"0.0.0"
 ```
