@@ -18,9 +18,9 @@ These efforts have met with considerable success: the upcoming Julia 1.5 feels "
 But the job of reducing latency is not over yet.
 Recently I got interested in a specific source of this latency, and this blog post is a summary of some of what I've learned about the scope of this problem and opportunities for further improvement.
 
-# Method invalidation: what is it and when does it happen?
+## Method invalidation: what is it and when does it happen?
 
-## An example: compilation in the presence of Union-splitting
+### An example: compilation in the presence of Union-splitting
 
 When Julia compiles a method for specific types, it saves the resulting code
 so that it can be used by any caller.
@@ -128,7 +128,7 @@ end
 
 This is [union-splitting], a performance optimization for cases where an object might be of one of several types.
 
-## Triggering method invalidation
+### Triggering method invalidation
 
 One point in particular is worth noting: what's up with that final `f(x)::Int` call?
 Didn't it already handle all the possibilities?
@@ -208,7 +208,7 @@ If `applyf` is performance-critical, you'll be very happy that Julia tries to gi
 But this leaves the door open to invalidation, which means recompilation the next time you use `applyf`.
 If method invalidation happens often, this might contribute to making Julia "feel" sluggish.
 
-# How common is method invalidation?
+## How common is method invalidation?
 
 Unfortunately, method invalidation is pretty common.
 First, let's get some baseline statistics.
@@ -239,7 +239,7 @@ You can see that key packages used by large portions of the Julia ecosystem inva
 hundreds or thousands of MethodInstances, sometimes more than 10% of the total
 number of MethodInstances present before loading the package.
 
-# How serious is method invalidation?
+## How serious is method invalidation?
 
 The next time you want to call functionality that gets invalidated,
 you have to wait for recompilation.
@@ -286,7 +286,7 @@ Loading time is somewhat increased by invalidation, but the cost of
 first-time usage is typically larger. When possible, it's best to get
 the invalidation out of the way before starting your work.
 
-# Can and should this be fixed?
+## Can and should this be fixed?
 
 Invalidations affect latency on their own, but they also impact other potential strategies for reducing latency.
 For example, julia creates "precompile" (`*.ji`) files to speed up package usage.
@@ -302,7 +302,7 @@ The real question is whether there are *unnecessary* invalidations,
 or an unexploited strategy to limit their impact.
 Determining the answer to that question requires that we develop an understanding the common reasons for the large number of invalidations listed in the table above.
 
-# An analysis of the causes of invalidation
+## An analysis of the causes of invalidation
 
 This section relies on a recent [pull request to Julia][PRJulia] and
 the [invalidations branch][PRSC] of [SnoopCompile].
@@ -313,7 +313,7 @@ execute them first.
 As we analyze causes of invalidation, you'll note that in some cases we can begin to think about how they might be fixed.
 However, we'll save more detailed recommendations for the final section.
 
-## New methods with greater specificity
+### New methods with greater specificity
 
 It will be simplest to start with a case we already understand, the `applyf` example above. In a fresh Julia session,
 
@@ -354,7 +354,7 @@ Perhaps there is no real need to ever call `applyf` with a `Vector{Any}`;
 perhaps you can fix one of its upstream callers to supply a concretely-type vector.
 In some cases, though, you might really need to call `applyf` with a `Vector{Any}`, in which case the best choice is to accept this invalidation as necessary and move on.
 
-## New methods with ambiguous specificity
+### New methods with ambiguous specificity
 
 Now let's try a real-world case, where the outcomes are more complex.
 
@@ -471,7 +471,7 @@ So we've discovered an easy place where a developer could do something to produc
 You'll also notice one example where the new method is *less specific*.
 It is not clear why such methods should be invalidating, and this may be a Julia bug.
 
-## Partial specialization
+### Partial specialization
 
 If you try
 
@@ -533,7 +533,7 @@ So here we see that a technique that very successfully reduces latencies also ha
 Fortunately, these cases of partial specialization also seem to count as ambiguities, and so if ambiguous matches are eliminated it should also solve partial specialization.
 In the statistics below, we'll lump partial specialization in with ambiguity.
 
-## Some summary statistics
+### Some summary statistics
 
 Let's go back to our table above, and augment it with "sources" of invalidation:
 
@@ -558,7 +558,7 @@ In general terms, the last two columns should probably be fixed by changes in ho
 The good news is that these counts reveal that much will likely be fixed by "automated" means.
 However, it appears that there will need to be a second round in which package developers inspect individual invalidations to determine what, if anything, can be done to remediate them.
 
-# Fixing invalidations
+## Fixing invalidations
 
 You may have noticed that two packages, `Example` and `Revise`, trigger far fewer invalidations that the rest of the packages in our analysis.
 `Example` is quite trivial, but `Revise` and its dependencies are quite large.
@@ -573,7 +573,7 @@ The success of this effort gives one hope that other packages too may one day ha
 As stated above, there is reason to hope that most of the invalidations marked as "ambiguous" will be fixed by changes to Julia's compiler.
 Here our focus is on those marked "more specific," since those are cases where it is hard to imagine a generic fix.
 
-## Fixing a case of type-instability
+### Fixing a case of type-instability
 
 In engineering Julia and Revise to reduce invalidations, at least two cases were fixed by resolving a type-instability.
 For example, one set of invalidations happened because `CodeTracking`, a dependency of Revise's, defines new methods for `Base.PkgId`.
@@ -603,7 +603,7 @@ The other case was similar: a call from `Pkg` of `keys` on an AbstractDict of un
 (due to a higher `@nospecialize` call).
 Replacing `keys(dct)` with `Base.KeySet(dct)` (which is the default consequence of calling `keys`) eliminated a very consequential invalidation, one that triggered seconds-long latencies in the next `Pkg` command after loading Revise.
 
-## Redirecting call chains
+### Redirecting call chains
 
 Let's return to our FixedPointNumbers `reduce_empty` example above.
 A little prodding as done above reveals that this corresponds to the definition
@@ -743,7 +743,7 @@ However, it's a bit uglier than the original;
 perhaps a nicer approach would be to allow one to supply `init` as a keyword argument to `maximum` itself.
 While this is not supported on Julia versions up through 1.5, it's a feature that seems to make sense, and this analysis suggests that it might also allow developers to make code more robust against certain kinds of invalidation.
 
-# Summary
+## Summary
 
 Julia's remarkable flexibility and outstanding code-generation open many new horizons.
 These advantages come with a few costs, and here we've explored one of them, method invalidation.
