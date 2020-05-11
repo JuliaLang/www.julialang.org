@@ -1,7 +1,7 @@
 @def authors = "Tim Holy"
-@def published = "10 May 2020"
+@def published = "11 May 2020"
 @def title = "Analyzing sources of compiler latency in Julia: method invalidations"
-@def rss_pubdate = Date(2020, 5, 10)
+@def rss_pubdate = Date(2020, 5, 11)
 @def rss = """Julia is fast, but compiling Julia code takes time. This post analyzes why it's sometimes necessary to repeat that work, and what might be done to fix it."""
 
 
@@ -27,7 +27,7 @@ so that it can be used by any caller.
 This is crucial to performance, because it means generally compilation has to be done only once for a specific type.
 To keep things really simple, I'm going to use a very artificial example.
 
-```julia
+```
 f(x::Int) = 1
 f(x::Bool) = 2
 
@@ -116,7 +116,7 @@ quite simple. First, look at those `arrayref` statements: they are annotated
 Immediately after each reference, notice that there are two `isa` statements
 followed by a `ϕ`; all of this is essentially equivalent to
 
-```julia
+```
 if isa(x, Bool)
     value = 2
 elseif isa(x, Int)
@@ -126,7 +126,7 @@ else
 end
 ```
 
-This is [union-splitting], a key optimization for performance in the face of uncertain types.
+This is [union-splitting], a performance optimization for cases where an object might be of one of several types.
 
 ## Triggering method invalidation
 
@@ -219,21 +219,21 @@ These are mostly for `Base` and the standard libraries.
 
 Using some not-yet merged work in both Julia itself and [SnoopCompile], we can count the number of invalidations when we load various packages into a fresh Julia session:
 
-| Package | # of unique invalidations |
-|:------- | ------------------:|
-| Example | 0 |
-| Revise | 27 |
-| FixedPointNumbers | 429 |
-| SIMD | 2799 |
-| StaticArrays | 2852 |
-| Optim | 3171 |
-| Images | 3638 |
-| Flux | 3697 |
-| Plots | 4002 |
-| DataFrames | 4048 |
-| JuMP | 4666 |
-| Makie | 6118 |
-| DifferentialEquations | 6777 |
+| Package | Version | # of unique invalidations |
+|:------- | -------:| ------------------:|
+| Example | 0.5.3 | 0 |
+| Revise | 2.6.6 | 27 |
+| FixedPointNumbers | 0.8.0 | 429 |
+| SIMD | 2.8.0 | 2799 |
+| StaticArrays | 0.12.3 | 2852 |
+| Optim | 0.21.0 | 3171 |
+| Images | 0.22.2 | 3638 |
+| Flux | 0.10.4 | 3697 |
+| Plots | 1.2.3 | 4002 |
+| DataFrames | 0.21.0 | 4048 |
+| JuMP | 0.21.2 | 4666 |
+| Makie | 0.10.0 | 6118 |
+| DifferentialEquations | 6.13.0 | 6777 |
 
 You can see that key packages used by large portions of the Julia ecosystem invalidate
 hundreds or thousands of MethodInstances, sometimes more than 10% of the total
@@ -245,7 +245,7 @@ The next time you want to call functionality that gets invalidated,
 you have to wait for recompilation.
 We can illustrate this using everyone's favorite example, plotting:
 
-```julia
+```
 julia> using Plots
 
 julia> @time display(plot(rand(5)))
@@ -254,14 +254,23 @@ julia> @time display(plot(rand(5)))
 
 As is well known, it's much faster the second time, because it's already compiled:
 
-```julia
+```
 julia> @time display(plot(rand(5)))
   0.311226 seconds (19.93 k allocations: 775.055 KiB)
 ```
 
-Now load a package that does a lot of invalidation, and try again:
+Moreover, if you decide you want some additional functionality and decide to load a new package, sometimes it's essentially as fast again:
 
-```julia
+```
+julia> using StaticArrays
+
+julia> @time display(plot(rand(5)))
+  0.305394 seconds (19.96 k allocations: 781.836 KiB)
+```
+
+But if you load a package that does a lot of invalidation:
+
+```
 julia> using SIMD
 
 julia> @time display(plot(rand(5)))
@@ -270,8 +279,6 @@ julia> @time display(plot(rand(5)))
 
 Because so much got invalidated by loading SIMD, Julia had to recompile many methods before it could once again produce a plot, so that in terms of time it was almost as expensive as the first usage.
 The size of the effect varies substantially depending on what task you are trying to achieve and what packages you load to do the invalidation.
-(If you do this with StaticArrays rather than SIMD there's no increase in latency,
-but that's because StaticArrays was already loaded as an internal dependency of Plots.)
 
 It's worth noting that you can escape much of this cost by loading all
 packages at the outset.
@@ -284,24 +291,24 @@ the invalidation out of the way before starting your work.
 Invalidations affect latency on their own, but they also impact other potential strategies for reducing latency.
 For example, julia creates "precompile" (`*.ji`) files to speed up package usage.
 Currently, it saves type-inferred but not "native" code to its precompile files.
-In principle, saving native code would eliminate latency (for the method and type combinations that have been precompiled), but this will be ineffective if most of this code ends up getting invalidated.
+In principle, saving native code would eliminate latency for the method and type combinations that have been precompiled, but this will be ineffective if most of this code ends up getting invalidated.
 Indeed, it could make it even worse, because you're doing work (loading more stuff from disk) without much reward.
-Consequently, reducing invalidation seems likely to be useful on its own, and a necessary prerequisite to other potential strategies.
+Consequently, reducing invalidation seems likely to be useful on its own, and a necessary prerequisite to other potential strategies for reducing latency.
 
 As to "can it be fixed?", that depends on the goal.
 We will never get rid of invalidation altogether; as the `applyf` example above shows,
 invalidation is sometimes necessary if you want both good runtime performance and interactive usage, and this combination is one of the best things about Julia.
 The real question is whether there are *unnecessary* invalidations,
-or a strategy to limit their impact.
+or an unexploited strategy to limit their impact.
 Determining the answer to that question requires that we develop an understanding the common reasons for the large number of invalidations listed in the table above.
 
 # An analysis of the causes of invalidation
 
 This section relies on a recent [pull request to Julia][PRJulia] and
 the [invalidations branch][PRSC] of [SnoopCompile].
-If you try to replicate these, remember that invalidations occur only
+If you try to replicate these results, remember that invalidations occur only
 for methods that have been compiled, which generally means you have to
-execute them.
+execute them first.
 
 As we analyze causes of invalidation, you'll note that in some cases we can begin to think about how they might be fixed.
 However, we'll save more detailed recommendations for the final section.
@@ -335,7 +342,7 @@ julia> invalidation_trees(@snoopr f(x::String) = 3)
 Let's walk through this output a bit.
 `@snoopr` turns on some debugging code inside Julia, and then executes the supplied statment;
 it returns a fairly opaque list that can be parsed by `invalidation_trees`.
-Entries in the returned array correspond to method additions (or deletions, if relevant) that triggers one or more invalidations.
+Entries in the returned array correspond to method additions (or deletions, if relevant) that trigger one or more invalidations.
 In this case, the output means that the new `f(x::String)` method triggered an invalidation of `applyf(::Array{Any,1})`,
 due to intersection with the signature `f(::Any)`.
 `(0 children)` means that `applyf(::Vector{Any})` does not yet have any methods that called it and which in turn need to be invalidated.
@@ -345,80 +352,121 @@ As we mentioned above, there are good reasons to think this invalidation is "nec
 However, that doesn't mean there is nothing that you, as a developer, could do to eliminate this invalidation.
 Perhaps there is no real need to ever call `applyf` with a `Vector{Any}`;
 perhaps you can fix one of its upstream callers to supply a concretely-type vector.
-Or perhaps it may be well-typed, but inference fails to realize that;
-you could annotate the result of some call with `Vector{String}`, for instance,
-if you were certain of the result type.
-Of course, in some cases you might really need to call `applyf` with a `Vector{Any}`, in which case the best choice is to accept this invalidation as necessary and move on.
+In some cases, though, you might really need to call `applyf` with a `Vector{Any}`, in which case the best choice is to accept this invalidation as necessary and move on.
 
 ## New methods with ambiguous specificity
 
 Now let's try a real-world case, where the outcomes are more complex.
 
 ```
-julia> invalidation_trees(@snoopr using FixedPointNumbers)
-6-element Array{SnoopCompile.MethodInvalidations,1}:
+julia> trees = invalidation_trees(@snoopr using FixedPointNumbers)
+5-element Array{SnoopCompile.MethodInvalidations,1}:
  insert promote_rule(::Type{T}, ::Type{Tf}) where {T<:Normed, Tf<:AbstractFloat} in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/normed.jl:310 invalidated:
    backedges: MethodInstance for promote_rule(::Type{Union{}}, ::Type{Float64}) triggered MethodInstance for promote_type(::Type{Float64}, ::Type{S} where S<:Integer) (0 children) less specific
               MethodInstance for promote_rule(::Type{S} where S<:Integer, ::Type{Float64}) triggered MethodInstance for promote_type(::Type{Float64}, ::Type{S} where S<:Integer) (0 children) ambiguous
-
- insert oneunit(::Type{X}) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:93 invalidated:
-   backedges: MethodInstance for oneunit(::Type{T} where T<:AbstractChar) triggered MethodInstance for first(::Base.OneTo{T}) where T<:AbstractChar (0 children) ambiguous
-   7 mt_cache
+   3 mt_cache
 
  insert one(::Type{X}) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:94 invalidated:
-   mt_backedges: signature Tuple{typeof(one),Type{T} where T<:AbstractChar} triggered MethodInstance for oneunit(::Type{T} where T<:AbstractChar) (0 children) ambiguous
-   5 mt_cache
+   mt_backedges: signature Tuple{typeof(one),Type{T} where T<:AbstractChar} triggered MethodInstance for oneunit(::Type{T} where T<:AbstractChar) (1 children) ambiguous
+   1 mt_cache
 
  insert sizeof(::Type{X}) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:100 invalidated:
    backedges: MethodInstance for sizeof(::DataType) triggered MethodInstance for Base.CyclePadding(::DataType) (25 children) ambiguous
               MethodInstance for sizeof(::Type) triggered MethodInstance for padding(::DataType) (3 children) more specific
               MethodInstance for sizeof(::Type{T} where T) triggered MethodInstance for array_subpadding(::Type{T} where T, ::Type{T} where T) (0 children) more specific
-   1 mt_cache
+   7 mt_cache
 
  insert reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:225 invalidated:
    backedges: MethodInstance for reduce_empty(::Function, ::Type{T} where T) triggered MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) (136 children) more specific
-   3 mt_cache
 
  insert (::Type{X})(x::Real) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:51 invalidated:
    mt_backedges: signature Tuple{Type{T} where T<:Int64,Int64} triggered MethodInstance for convert(::Type{T}, ::Int64) where T<:Int64 (1 children) ambiguous
    backedges: MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) triggered MethodInstance for +(::AbstractChar, ::UInt8) (157 children) ambiguous
               MethodInstance for (::Type{T} where T<:AbstractChar)(::UInt32) triggered MethodInstance for (::Type{T} where T<:AbstractChar)(::UInt32) (197 children) ambiguous
-   1 mt_cache
+   6 mt_cache
 ```
 
-This list is ordered from least-consequential to most consequential in terms of total number of invalidations.
+This list is ordered from least- to most-consequential in terms of total number of invalidations.
 The final entry, for `(::Type{X})(x::Real) where X<:FixedPoint`, triggered the invalidation of what nominally appear to be more than 350 MethodInstances.
-(It is not certain that these methods are all disjoint from one another.)
+(There is no guarantee that these methods are all disjoint from one another;
+the results are represented as a tree, where each node links to its callers.)
 In contrast, the first entry is responsible for just two invalidations.
 
 One does not have to look at this list for very long to see that the majority of the invalidated methods are due to [method ambiguity].
-From
+Consider the line `backedges: MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) triggered...`.
+We can see which method this is by the following:
 
-```julia
+```
 julia> which(Char, (Int32,))
 (::Type{T})(x::Number) where T<:AbstractChar in Base at char.jl:48
 ```
+
+or directly as
+
+```
+julia> tree = trees[end]
+insert (::Type{X})(x::Real) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:51 invalidated:
+   mt_backedges: signature Tuple{Type{T} where T<:Int64,Int64} triggered MethodInstance for convert(::Type{T}, ::Int64) where T<:Int64 (1 children) ambiguous
+   backedges: MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) triggered MethodInstance for +(::AbstractChar, ::UInt8) (157 children) ambiguous
+              MethodInstance for (::Type{T} where T<:AbstractChar)(::UInt32) triggered MethodInstance for (::Type{T} where T<:AbstractChar)(::UInt32) (197 children) ambiguous
+   6 mt_cache
+
+
+julia> mi, invtree = tree[:backedges,1]
+MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) => MethodInstance for +(::AbstractChar, ::UInt8) at depth 0 with 157 children
+
+julia> mi.def
+(::Type{T})(x::Number) where T<:AbstractChar in Base at char.jl:48
+```
+
+`trees[end]` selected the last (most consequential) method and the invalidations it triggered; indexing this with `:backedges` selected the category (`:mt_backedges`, `:backedges`, or `:mt_cache`), and the integer index selected the particular entry from that category.
+This returns a pair `MethodInstance => InstanceTree`, where the latter is a type encoding the tree.
+We'll see how to work with `InstanceTree`s in a moment, for now we want to focus on the `mi` portion of that pair.
 
 You may find it surprising that this method signature is ambiguous with `(::Type{X})(x::Real) where X<:FixedPoint`: after all, an `AbstractChar` is quite different from a `FixedPoint` number.
 We can discover why with
 
 ```
-julia> typeintersect(FixedPoint, AbstractChar)
-Union{}
+julia> tree.method.sig
+Tuple{Type{X},Real} where X<:FixedPoint
+
+julia> mi.specTypes
+Tuple{Type{T} where T<:AbstractChar,Int32}
+
+julia> typeintersect(tree.method.sig, mi.specTypes)
+Tuple{Type{Union{}},Int32}
 ```
 
-which shows that there is one type, the "empty type", that lies in their intersection.
+These two signatures have non-empty intersection.
+The second parameter, `Int32`, makes sense as the intersection of `Int32` and `Real`.
+The first arises from
 
-There are good reasons to believe that the right way to fix such methods is to exclude ambiguous pairs from invalidation.
+```
+julia> typeintersect(Type{<:FixedPoint}, Type{<:AbstractChar})
+Type{Union{}}
+```
+
+which shows that there is one Type, the "empty Type", that lies in their intersection.
+
+There are good reasons to believe that the right way to fix such methods is to exclude ambiguous pairs from invalidation---if it were to be called by the compiled code, it would trigger an error anyway.
 If such a change gets made to Julia, then all the ones marked "ambiguous" should magically disappear.
 Consequently, we can turn our attention to other cases.
-`reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint` is strictly more specific than `reduce_empty(::Function, ::Type{T} where T)`.
-It's curious that this is listed as a backedge of `reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber})`, since the latter is a concrete signature on its own.
-This case too seems like something that should be fixed in Julia's invalidation logic.
 
-Moving backward, we get to `sizeof(::Type{X}) where X<:FixedPoint`.
+Let's look at the next item up the list:
+
+```
+julia> tree = trees[end-1]
+insert reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:225 invalidated:
+   backedges: MethodInstance for reduce_empty(::Function, ::Type{T} where T) triggered MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) (136 children) more specific
+```
+
+`reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint` is strictly more specific than `reduce_empty(::Function, ::Type{T} where T)`.
+This might look like one of those "necessary" invalidations.
+Below we'll analyze this in far greater detail and discover some possible fixes.
+
+Moving backward another step, we get to `sizeof(::Type{X}) where X<:FixedPoint`.
 Simply put, this looks like a method that we don't need; perhaps it dates from some confusion, or an era where perhaps it was necessary.
-So we've discovered the first place where a developer could do something to productively decrease the number of invalidations, in this case by just deleting the method.
+So we've discovered an easy place where a developer could do something to productively decrease the number of invalidations, in this case by just deleting the method.
 
 You'll also notice one example where the new method is *less specific*.
 It is not clear why such methods should be invalidating, and this may be a Julia bug.
@@ -427,14 +475,14 @@ It is not clear why such methods should be invalidating, and this may be a Julia
 
 If you try
 
-```julia
+```
 julia> trees = invalidation_trees(@snoopr using StaticArrays)
 ```
 
 you'll see a much longer output.
 A large number of invalidations derive from the fact that StaticArrays defines a method for `!=`, which invalidates the fallback definition
 
-```julia
+```
 !=(x, y) = !(x == y)
 ```
 
@@ -445,7 +493,7 @@ use the default method.
 The vast majority of the rest appear to derive from ambiguities.
 However, one more interesting case we've not seen before is
 
-```julia
+```
 julia> tree = trees[end-7]
 insert unsafe_convert(::Type{Ptr{T}}, m::Base.RefValue{FA}) where {N, T, D, FA<:FieldArray{N,T,D}} in StaticArrays at /home/tim/.julia/packages/StaticArrays/mlIi1/src/FieldArray.jl:124 invalidated:
    mt_backedges: signature Tuple{typeof(Base.unsafe_convert),Type{Ptr{_A}} where _A,Base.RefValue{_A} where _A} triggered MethodInstance for unsafe_convert(::Type{Ptr{Nothing}}, ::Base.RefValue{_A} where _A) (159 children) more specific
@@ -473,7 +521,7 @@ and see all the `MethodInstance`s that called this one.
 You'll notice three `_show_default` `MethodInstance`s here;
 a little digging reveals that this is defined as
 
-```julia
+```
 function _show_default(io::IO, @nospecialize(x))
     t = typeof(x)
     ...
@@ -483,6 +531,7 @@ end
 So the `@nospecialize` annotation, designed to reduce the number of cases when `_show_default` needs to be recompiled, causes the methods *it* uses to become triggers for invalidation.
 So here we see that a technique that very successfully reduces latencies also has a side effect of increasing the number of invalidations.
 Fortunately, these cases of partial specialization also seem to count as ambiguities, and so if ambiguous matches are eliminated it should also solve partial specialization.
+In the statistics below, we'll lump partial specialization in with ambiguity.
 
 ## Some summary statistics
 
@@ -506,8 +555,202 @@ Let's go back to our table above, and augment it with "sources" of invalidation:
 
 The numbers in this table don't add up to those in the first, for a variety of reasons (here there is no attempt to remove duplicates, here we don't count "mt_cache" invalidations which were included in the first table, etc.).
 In general terms, the last two columns should probably be fixed by changes in how Julia does invalidations; the first column indicates invalidations that should either be fixed in packages, Julia's own code, or will need to remain unfixed.
-The good news is that much will likely be fixed by "automated" means,
-but it appears that there will need to be a second round in which package developers inspect individual invalidations to determine what, if anything, can be done to remediate them.
+The good news is that these counts reveal that much will likely be fixed by "automated" means.
+However, it appears that there will need to be a second round in which package developers inspect individual invalidations to determine what, if anything, can be done to remediate them.
+
+# Fixing invalidations
+
+You may have noticed that two packages, `Example` and `Revise`, trigger far fewer invalidations that the rest of the packages in our analysis.
+`Example` is quite trivial, but `Revise` and its dependencies are quite large.
+How does it avoid this problem?
+First, Revise does not extending very many Base methods;
+most of its methods are to functions it "owns," and the same is true for its dependencies.
+Second, in the closing days of Julia 1.5's merge window,
+Revise (and Julia) underwent a process of tracking down invalidations and eliminating them;
+for comparison, on Julia 1.4, Revise triggers more than a 1000 non-unique invalidations.
+The success of this effort gives one hope that other packages too may one day have fewer invalidations.
+
+As stated above, there is reason to hope that most of the invalidations marked as "ambiguous" will be fixed by changes to Julia's compiler.
+Here our focus is on those marked "more specific," since those are cases where it is hard to imagine a generic fix.
+
+## Fixing a case of type-instability
+
+In engineering Julia and Revise to reduce invalidations, at least two cases were fixed by resolving a type-instability.
+For example, one set of invalidations happened because `CodeTracking`, a dependency of Revise's, defines new methods for `Base.PkgId`.
+It turns out that this triggered an invalidation of `_tryrequire_from_serialized`, which is used to load packages;
+a negative consequence is that Revise introduced a slight latency upon loading the *next* package.
+However, it turned out to be an easy fix: one section of `_tryrequire_from_serialized` had a passage
+
+```
+for M in mod::Vector{Any}
+    if PkgId(M) == modkey && module_build_id(M) === build_id
+        return M
+    end
+end
+```
+
+and since `M` had type `Any`, the compiler couldn't predict which version of `PkgId` would be called.
+It sufficed to add
+
+```
+    M = M::Module
+```
+
+immediately after the `for` statement to fix the problem.
+Not only does this fix the invalidation, but it lets the compiler generate better code.
+
+The other case was similar: a call from `Pkg` of `keys` on an AbstractDict of unknown type
+(due to a higher `@nospecialize` call).
+Replacing `keys(dct)` with `Base.KeySet(dct)` (which is the default consequence of calling `keys`) eliminated a very consequential invalidation, one that triggered seconds-long latencies in the next `Pkg` command after loading Revise.
+
+## Redirecting call chains
+
+Let's return to our FixedPointNumbers `reduce_empty` example above.
+A little prodding as done above reveals that this corresponds to the definition
+
+```
+julia> mi, invtree = tree[:backedges, 1]
+MethodInstance for reduce_empty(::Function, ::Type{T} where T) => MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) at depth 0 with 136 children
+
+julia> mi
+MethodInstance for reduce_empty(::Function, ::Type{T} where T)
+
+julia> mi.def
+reduce_empty(op, T) in Base at reduce.jl:309
+```
+
+If you look up this definition, you'll see it's
+
+```
+reduce_empty(op, T) = _empty_reduce_error()
+```
+
+which indicates that it is the fallback method for reducing over an empty collection, and indeed calling this results in an error:
+
+```
+julia> op = Base.BottomRF(Base.max)
+Base.BottomRF{typeof(max)}(max)
+
+julia> Base.reduce_empty(op, VERSION)
+ERROR: ArgumentError: reducing over an empty collection is not allowed
+Stacktrace:
+ [1] _empty_reduce_error() at ./reduce.jl:299
+ [2] reduce_empty(::Function, ::VersionNumber) at ./reduce.jl:309
+ [3] reduce_empty(::Base.BottomRF{typeof(max)}, ::VersionNumber) at ./reduce.jl:324
+ [4] top-level scope at REPL[36]:1
+```
+
+This essentially means that no "identity element" has been defined for this operation and type.
+
+Can we avoid this fallback?
+One approach is to define the method directly: modify Julia to add
+
+```
+reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) = _empty_reduce_error()
+```
+
+so that we get the same result but don't rely on the fallback.
+But perhaps a better approach is to see who's calling it:
+
+```
+julia> invtree.mi
+MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber})
+
+julia> invtree.mi.def
+reduce_empty(op::Base.BottomRF, T) in Base at reduce.jl:324
+
+julia> invtree.children
+5-element Array{SnoopCompile.InstanceTree,1}:
+ MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype) at depth 1 with 38 children
+ MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{Int64}) at depth 1 with 39 children
+ MethodInstance for mapreduce_empty(::typeof(identity), ::typeof(max), ::Type{Pkg.Resolve.FieldValue}) at depth 1 with 21 children
+ MethodInstance for mapreduce_empty(::typeof(identity), ::Pkg.Resolve.var"#132#134"{Pkg.Resolve.var"#smx#133"{Pkg.Resolve.Graph,Pkg.Resolve.Messages}}, ::Type{Int64}) at depth 1 with 10 children
+ MethodInstance for mapreduce_empty(::typeof(identity), ::typeof(max), ::Type{Int64}) at depth 1 with 23 children
+```
+
+This illustrates how to work with an `InstanceTree`: you access the MethodInstance through `.mi` and its callers through `.children`.
+Let's start with the first one:
+
+```
+julia> node = invtree.children[1]
+MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype) at depth 1 with 38 children
+```
+
+We can display the whole tree using `show(node)`:
+
+```
+julia> show(node)
+ MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype)
+  MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber})
+   MethodInstance for foldl_impl(::Base.BottomRF{typeof(max)}, ::NamedTuple{(),Tuple{}}, ::Set{VersionNumber})
+    MethodInstance for mapfoldl_impl(::typeof(identity), ::typeof(max), ::NamedTuple{(),Tuple{}}, ::Set{VersionNumber})
+     MethodInstance for #mapfoldl#201(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(mapfoldl), ::typeof(identity), ::typeof(max), ::Set{VersionNumber})
+      MethodInstance for mapfoldl(::typeof(identity), ::typeof(max), ::Set{VersionNumber})
+       MethodInstance for #mapreduce#205(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(mapreduce), ::typeof(identity), ::typeof(max), ::Set{VersionNumber})
+        MethodInstance for mapreduce(::typeof(identity), ::typeof(max), ::Set{VersionNumber})
+         MethodInstance for maximum(::Set{VersionNumber})
+          MethodInstance for set_maximum_version_registry!(::Pkg.Types.Context, ::Pkg.Types.PackageSpec)
+           MethodInstance for collect_project!(::Pkg.Types.Context, ::Pkg.Types.PackageSpec, ::String, ::Dict{Base.UUID,Array{Pkg.Types.PackageSpec,1}})
+            MethodInstance for collect_fixed!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Dict{Base.UUID,String})
+             MethodInstance for resolve_versions!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1})
+             ⋮
+```
+
+This indicates that this invalidation path resulted from a call to `maximum` from a function in `Pkg`, `set_maximum_version_registry!`.  A little digging reveals that it is defined as
+
+```
+function set_maximum_version_registry!(ctx::Context, pkg::PackageSpec)
+    pkgversions = Set{VersionNumber}()
+    for path in registered_paths(ctx, pkg.uuid)
+        pathvers = keys(load_versions(ctx, path; include_yanked=false))
+        union!(pkgversions, pathvers)
+    end
+    if length(pkgversions) == 0
+        pkg.version = VersionNumber(0)
+    else
+        max_version = maximum(pkgversions)
+        pkg.version = VersionNumber(max_version.major, max_version.minor, max_version.patch, max_version.prerelease, ("",))
+    end
+end
+```
+
+From that error above, we know that this invalidation is produced by an error-path triggered by trying to reduce over an empty collection.
+Interestingly, we can see that `set_maximum_version_registry!` handles an empty collection by other means:
+there is, in fact, no chance that `maximum(pkgversions)` will ever reach the error case.
+However, the compiler does not realize that, and therefore generates code that has been prepared to call `reduce_empty`, and that makes it vulnerable to invalidation.
+
+There are a couple of potential fixes.
+From here, we see that a potentially better definition `reduce_empty` for `VersionNumber`s might be
+
+```
+reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) = VersionNumber(0)
+```
+
+In that case we could delete the `length` check and rely on this to produce the desired outcome.
+One should take this approach only if one can be convinced that version 0 can act as a universal "neutral element" for reductions involving `max` over `VersionNumber`s.
+Adding this to `Pkg` would be type-piracy, since `max`, `BottomRF`, and `VersionNumber` are all defined in `Base`, so fixing it this way would best be done in Base.
+
+But there are other possible fixes.
+A little higher up the tree we see a call to `mapreduce`, and this presents another opportunity because `mapreduce` allows you to supply an `init` value:
+
+```
+julia> mapreduce(identity, max, Set(VersionNumber[]); init=VersionNumber(0))
+v"0.0.0"
+```
+
+Perhaps we could just call this instead of `maximum`.
+However, it's a bit uglier than the original;
+perhaps a nicer approach would be to allow one to supply `init` as a keyword argument to `maximum` itself.
+While this is not supported on Julia versions up through 1.5, it's a feature that seems to make sense, and this analysis suggests that it might also allow developers to make code more robust against certain kinds of invalidation.
+
+# Summary
+
+Julia's remarkable flexibility and outstanding code-generation open many new horizons.
+These advantages come with a few costs, and here we've explored one of them, method invalidation.
+While Julia's core developers have been aware of its cost for a long time,
+we're only now starting to get tools to analyze it in a manner suitable for a larger population of users and developers.
+Because it's not been easy to measure previously, it would not be surprising if there are numerous opportunities to reduce it, waiting to be discovered.
+One might hope that the next period of development might see significant strides in new ways of getting packages to work together without stomping on each other's toes.
 
 [Julia]: https://julialang.org/
 [union-splitting]: https://julialang.org/blog/2018/08/union-splitting/
@@ -516,3 +759,4 @@ but it appears that there will need to be a second round in which package develo
 [PRJulia]: https://github.com/JuliaLang/julia/pull/35768
 [PRSC]: https://github.com/timholy/SnoopCompile.jl/pull/79
 [method ambiguity]: https://docs.julialang.org/en/latest/manual/methods/#man-ambiguities-1
+[sentinel]: https://en.wikipedia.org/wiki/Sentinel_value
