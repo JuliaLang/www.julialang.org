@@ -39,7 +39,15 @@ function applyf(container)
 end
 ```
 
-If you call `applyf([100, 200])`, it will compile a version of `applyf`
+Here I've defined two functions; `f` is a function with two very simple methods,
+and `arrayf` is a function with just one method that supports `Any` argument at all.
+When you call `applyf`, Julia will compile _specialized_ versions on demand for the
+particular types of `container` that you're using at that moment (even though I didn't
+use a single type in its definition!).  
+
+If you call `applyf([100, 200])`, Julia will compile and use a version of `applyf` specifically
+created for `Vector{Int}`.  Since the element type (`Int`) is a part of the `container`'s type, it
+will compile this specialization
 knowing that only `f(::Int)` will be used: the call will be "hard-wired" into the code that Julia produces.
 You can see this using `@code_typed`:
 
@@ -57,7 +65,7 @@ has elements indexable by 1 and 2. (Those `arrayref` statements enforce
 bounds-checking, and ensure that Julia will throw an appropriate error if you
 call `applyf([100])`.)
 
-If you pass a `Vector{Bool}`, it will compile `applyf` again, this time specializing it for `x::Bool`:
+If you pass a `Vector{Bool}`, it will compile `applyf` again, this time specializing it for `Bool` elements:
 
 ```julia-repl
 julia> @code_typed applyf([true,false])
@@ -70,7 +78,7 @@ CodeInfo(
 
 In this case, you can see that Julia knew those two `arrayref` statements would
 return a `Bool`, and since it knows the value of `f(::Bool)` it just went
-ahead and computed the result for you.
+ahead and computed the result at compile time for you.
 
 At the end of these experiments, hidden away in Julia's "method cache" there will
 be two `MethodInstance`s of `applyf`, one specialized for `Vector{Int}` and the other specialized for `Vector{Bool}`.
@@ -143,7 +151,7 @@ f(::String) = 3
 
 and Julia has prepared the way to make sure it will still give the right answer even if we add new methods to `f`.
 
-However, if you try `@code_typed applyf(c)` again, you'll notice something curious:
+However, if you try `@code_typed applyf(Any[1, false])` again, you'll notice something curious:
 Julia has gone to the trouble to create a new-and-improved implementation of `applyf`,
 one which also union-splits for `String`.
 This brings us to the topic of this blog post: the old compiled method has been *invalidated*.
@@ -176,7 +184,7 @@ uses "runtime dispatch" to decide what method of `f` to call.
 It doesn't even try to enforce the fact that `f` returns an `Int`,
 in part because determining such facts takes time (adding to compiler latency)
 and because functions with many methods typically tend to return multiple types
-anyway.
+anyway.  Adding further methods of `f` would no longer cause invalidations of this very generic implementation or any of its callers.
 
 Compiling each of these new implementations takes JIT-time.
 If Julia knew in advance that you'd arrive at this place, it would never have bothered to produce that first, heavily-optimized version of `applyf`.
@@ -535,7 +543,7 @@ julia> trigger.children
 ```
 
 and see all the `MethodInstance`s that called this one.
-You'll notice three `_show_default` `MethodInstance`s here;
+You'll notice three `_show_default` `MethodInstance`s with the bulk of the children here;
 a little digging reveals that this is defined as
 
 ```
@@ -627,6 +635,10 @@ Let's return to our FixedPointNumbers `reduce_empty` example above.
 A little prodding as done above reveals that this corresponds to the definition
 
 ```julia-repl
+julia> tree = trees[end-1]
+ insert reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:225 invalidated:
+    backedges: MethodInstance for reduce_empty(::Function, ::Type{T} where T) triggered MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) (136 children) more specific
+
 julia> mi, node = tree[:backedges, 1]
 MethodInstance for reduce_empty(::Function, ::Type{T} where T) => MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) at depth 0 with 136 children
 
