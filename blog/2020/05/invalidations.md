@@ -15,7 +15,7 @@ when you first run Julia code.
 This problem is often summarized as "time-to-first-plot," though there is nothing specific about plotting other than the fact that plotting libraries tend to involve large code bases, and these must be JIT-compiled.
 
 Many people have spent a lot of time analyzing and reducing Julia's latency.
-These efforts have met with considerable success: the upcoming Julia 1.5 feels "snappier" than any recent version I've used.
+These efforts have met with considerable success: the upcoming Julia 1.5 feels snappier than any recent version I've used.
 But the job of reducing latency is not over yet.
 Recently I got interested in a specific source of this latency, and this blog post is a summary of some of what I've learned about the scope of this problem and opportunities for further improvement.
 
@@ -371,30 +371,34 @@ Now let's try a real-world case, where the outcomes are more complex.
 
 ```julia-repl
 julia> trees = invalidation_trees(@snoopr using FixedPointNumbers)
-5-element Array{SnoopCompile.MethodInvalidations,1}:
- insert promote_rule(::Type{T}, ::Type{Tf}) where {T<:Normed, Tf<:AbstractFloat} in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/normed.jl:310 invalidated:
-   backedges: MethodInstance for promote_rule(::Type{Union{}}, ::Type{Float64}) triggered MethodInstance for promote_type(::Type{Float64}, ::Type{S} where S<:Integer) (0 children) less specific
-              MethodInstance for promote_rule(::Type{S} where S<:Integer, ::Type{Float64}) triggered MethodInstance for promote_type(::Type{Float64}, ::Type{S} where S<:Integer) (0 children) ambiguous
-   3 mt_cache
-
+6-element Array{SnoopCompile.MethodInvalidations,1}:
  insert one(::Type{X}) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:94 invalidated:
-   mt_backedges: signature Tuple{typeof(one),Type{T} where T<:AbstractChar} triggered MethodInstance for oneunit(::Type{T} where T<:AbstractChar) (1 children) ambiguous
+   mt_backedges: signature Tuple{typeof(one),Type{T} where T<:AbstractChar} triggered MethodInstance for oneunit(::Type{T} where T<:AbstractChar) (0 children) ambiguous
    1 mt_cache
 
- insert sizeof(::Type{X}) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:100 invalidated:
-   backedges: MethodInstance for sizeof(::DataType) triggered MethodInstance for Base.CyclePadding(::DataType) (25 children) ambiguous
-              MethodInstance for sizeof(::Type) triggered MethodInstance for padding(::DataType) (3 children) more specific
-              MethodInstance for sizeof(::Type{T} where T) triggered MethodInstance for array_subpadding(::Type{T} where T, ::Type{T} where T) (0 children) more specific
-   7 mt_cache
+ insert oneunit(::Type{X}) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:93 invalidated:
+   backedges: superseding oneunit(::Type{T}) where T in Base at number.jl:300 with MethodInstance for oneunit(::Type{T} where T<:AbstractChar) (1 children) more specific
+   3 mt_cache
 
- insert reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:225 invalidated:
-   backedges: MethodInstance for reduce_empty(::Function, ::Type{T} where T) triggered MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) (136 children) more specific
+ insert promote_rule(::Type{T}, ::Type{Tf}) where {T<:Normed, Tf<:AbstractFloat} in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/normed.jl:310 invalidated:
+   backedges: superseding promote_rule(::Type{var"#s822"} where var"#s822"<:AbstractIrrational, ::Type{T}) where T<:Real in Base at irrationals.jl:42 with MethodInstance for promote_rule(::Type{Union{}}, ::Type{Float64}) (1 children) ambiguous
+              superseding promote_rule(::Type{var"#s92"} where var"#s92", ::Type{var"#s91"} where var"#s91") in Base at promotion.jl:235 with MethodInstance for promote_rule(::Type{S} where S<:Integer, ::Type{Float64}) (1 children) more specific
+   6 mt_cache
+
+ insert sizeof(::Type{X}) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:100 invalidated:
+   backedges: superseding sizeof(x) in Base at essentials.jl:449 with MethodInstance for sizeof(::DataType) (26 children) more specific
+              superseding sizeof(x) in Base at essentials.jl:449 with MethodInstance for sizeof(::Type) (4 children) more specific
+              superseding sizeof(x) in Base at essentials.jl:449 with MethodInstance for sizeof(::Type{T} where T) (1 children) more specific
+   4 mt_cache
+
+ insert reduce_empty(::typeof(Base.add_sum), ::Type{F}) where F<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:222 invalidated:
+   backedges: superseding reduce_empty(op, T) in Base at reduce.jl:309 with MethodInstance for reduce_empty(::Function, ::Type{T} where T) (137 children) more specific
 
  insert (::Type{X})(x::Real) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:51 invalidated:
    mt_backedges: signature Tuple{Type{T} where T<:Int64,Int64} triggered MethodInstance for convert(::Type{T}, ::Int64) where T<:Int64 (1 children) ambiguous
-   backedges: MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) triggered MethodInstance for +(::AbstractChar, ::UInt8) (157 children) ambiguous
-              MethodInstance for (::Type{T} where T<:AbstractChar)(::UInt32) triggered MethodInstance for (::Type{T} where T<:AbstractChar)(::UInt32) (197 children) ambiguous
-   6 mt_cache
+   backedges: superseding (::Type{T})(x::Number) where T<:AbstractChar in Base at char.jl:48 with MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) (187 children) ambiguous
+              superseding (::Type{T})(x::Number) where T<:AbstractChar in Base at char.jl:48 with MethodInstance for (::Type{T} where T<:AbstractChar)(::UInt32) (198 children) ambiguous
+   3 mt_cache
 ```
 
 This list is ordered from least- to most-consequential in terms of total number of invalidations.
