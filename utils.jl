@@ -59,7 +59,7 @@ function hfun_blogposts()
     # we want to  avoid this to avoid an empty separator
     r = Franklin.fd2html(String(take!(io)), internal=true)
     startswith(r, "<p>")    && (r = chop(r, head=3))
-    endswith(r,   "</p>")   && (r = chop(r, tail=4))
-    endswith(r,   "</p>\n") && (r = chop(r, tail=5))
+    endswith(r,   "</p>")   && return chop(r, tail=4)
+    endswith(r,   "</p>\n") && return chop(r, tail=5)
     return r
 end
