@@ -404,7 +404,7 @@ the results are represented as a tree, where each node links to its callers.)
 In contrast, the first entry is responsible for just two invalidations.
 
 One does not have to look at this list for very long to see that the majority of the invalidated methods are due to [method ambiguity].
-Consider the line `backedges: MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) triggered...`.
+Consider the line `...char.jl:48 with MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32)`.
 We can see which method this is by the following:
 
 ```julia-repl
@@ -418,21 +418,23 @@ or directly as
 julia> tree = trees[end]
 insert (::Type{X})(x::Real) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:51 invalidated:
    mt_backedges: signature Tuple{Type{T} where T<:Int64,Int64} triggered MethodInstance for convert(::Type{T}, ::Int64) where T<:Int64 (1 children) ambiguous
-   backedges: MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) triggered MethodInstance for +(::AbstractChar, ::UInt8) (157 children) ambiguous
-              MethodInstance for (::Type{T} where T<:AbstractChar)(::UInt32) triggered MethodInstance for (::Type{T} where T<:AbstractChar)(::UInt32) (197 children) ambiguous
-   6 mt_cache
+   backedges: superseding (::Type{T})(x::Number) where T<:AbstractChar in Base at char.jl:48 with MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) (187 children) ambiguous
+              superseding (::Type{T})(x::Number) where T<:AbstractChar in Base at char.jl:48 with MethodInstance for (::Type{T} where T<:AbstractChar)(::UInt32) (198 children) ambiguous
+   3 mt_cache
 
+julia> tree.method
+(::Type{X})(x::Real) where X<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:51
 
-julia> mi, node = tree[:backedges,1]
-MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) => MethodInstance for +(::AbstractChar, ::UInt8) at depth 0 with 157 children
+julia> node = tree[:backedges,1]
+MethodInstance for (::Type{T} where T<:AbstractChar)(::Int32) at depth 0 with 187 children
 
-julia> mi.def
+julia> node.mi.def
 (::Type{T})(x::Number) where T<:AbstractChar in Base at char.jl:48
 ```
 
 `trees[end]` selected the last (most consequential) method and the invalidations it triggered; indexing this with `:backedges` selected the category (`:mt_backedges`, `:backedges`, or `:mt_cache`), and the integer index selected the particular entry from that category.
-This returns a pair `MethodInstance => InstanceTree`, where the latter is a type encoding the tree.
-We'll see how to work with `InstanceTree`s in a moment, for now we want to focus on the `mi` portion of that pair.
+This returns an `InstanceTree`, where the latter is a type encoding the tree.
+(`:mt_backedges` will return a `sig=>node` pair, where `sig` is the invalidated signature.)
 
 You may find it surprising that this method signature is ambiguous with `(::Type{X})(x::Real) where X<:FixedPoint`: after all, an `AbstractChar` is quite different from a `FixedPoint` number.
 We can discover why with
@@ -441,10 +443,10 @@ We can discover why with
 julia> tree.method.sig
 Tuple{Type{X},Real} where X<:FixedPoint
 
-julia> mi.specTypes
+julia> node.mi.specTypes
 Tuple{Type{T} where T<:AbstractChar,Int32}
 
-julia> typeintersect(tree.method.sig, mi.specTypes)
+julia> typeintersect(tree.method.sig, node.mi.specTypes)
 Tuple{Type{Union{}},Int32}
 ```
 
@@ -463,33 +465,8 @@ There are good reasons to believe that the right way to fix such methods is to e
 If this gets changed in Julia, then all the ones marked "ambiguous" should magically disappear.
 Consequently, we can turn our attention to other cases.
 
-Let's look at the next item up the list:
-
-```julia-repl
-julia> tree = trees[end-1]
-insert reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:225 invalidated:
-   backedges: MethodInstance for reduce_empty(::Function, ::Type{T} where T) triggered MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) (136 children) more specific
-```
-
-`reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint` is strictly more specific than `reduce_empty(::Function, ::Type{T} where T)`.
-This might look like one of those "necessary" invalidations.
-However, even though it's marked "more specific," the new method `reduce_empty(::typeof(Base.add_sum), ::Type{F}) where F<:FixedPoint` can't be reached from a call `reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber})`:
-
-```julia-repl
-julia> mi, node = tree[:backedges, 1]
-MethodInstance for reduce_empty(::Function, ::Type{T} where T) => MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) at depth 0 with 143 children
-
-julia> node.mi      # this is the MethodInstance that called `mi`
-MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber})
-
-julia> typeintersect(tree.method.sig, node.mi.specTypes)
-Union{}
-```
-
-This is is a consequence of the fact that Julia's compiler has chosen not to specialize the argument types, and `reduce_empty(::Function, ::Type{T} where T)` is broader than what could be determined from the caller.
-Thus, while it looks like a case of greater specificity, in fact this is more analogous to the "partial specialization" described below.
-
-Moving backward another step, we get to `sizeof(::Type{X}) where X<:FixedPoint`.
+For now we'll skip `trees[end-1]`, and consider `tree[end-2]` which results from defining
+`sizeof(::Type{X}) where X<:FixedPoint`.
 Simply put, this looks like a method that we don't need; perhaps it dates from some confusion, or an era where perhaps it was necessary.
 So we've discovered an easy place where a developer could do something to productively decrease the number of invalidations, in this case by just deleting the method.
 
@@ -498,65 +475,42 @@ It is not clear why such methods should be invalidating, and this may be a Julia
 
 ### Partial specialization
 
-If you try
+Let's return now to
 
 ```julia-repl
-julia> trees = invalidation_trees(@snoopr using StaticArrays)
+julia> tree = trees[end-1]
+insert reduce_empty(::typeof(Base.add_sum), ::Type{F}) where F<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:222 invalidated:
+   backedges: superseding reduce_empty(op, T) in Base at reduce.jl:309 with MethodInstance for reduce_empty(::Function, ::Type{T} where T) (137 children) more specific
+
+julia> node = tree[:backedges, 1]
+MethodInstance for reduce_empty(::Function, ::Type{T} where T) at depth 0 with 137 children
 ```
 
-you'll see a much longer output.
-A large number of invalidations derive from the fact that StaticArrays defines a method for `!=`, which invalidates the fallback definition
-
-```
-!=(x, y) = !(x == y)
-```
-
-Since such definitions account for hundreds of nominal invalidations, it would be well worth considering whether it is possible to delete the custom `!=` methods.
-For example, if they are purely for internal use you could modify each caller to
-use the default method.
-
-The vast majority of the rest appear to derive from ambiguities.
-However, one more interesting case we've not seen before is
+That certainly looks like a less specific method than the one we defined.
+We can look at the callers of this `reduce_empty` method:
 
 ```julia-repl
-julia> tree = trees[end-7]
-insert unsafe_convert(::Type{Ptr{T}}, m::Base.RefValue{FA}) where {N, T, D, FA<:FieldArray{N,T,D}} in StaticArrays at /home/tim/.julia/packages/StaticArrays/mlIi1/src/FieldArray.jl:124 invalidated:
-   mt_backedges: signature Tuple{typeof(Base.unsafe_convert),Type{Ptr{_A}} where _A,Base.RefValue{_A} where _A} triggered MethodInstance for unsafe_convert(::Type{Ptr{Nothing}}, ::Base.RefValue{_A} where _A) (159 children) more specific
-```
-
-In this case, the signature that triggered the invalidation, `Base.unsafe_convert(::Type{Ptr{_A}} where _A, ::Base.RefValue{_A} where _A)`,
-has been only partially specified: it depends on a type parameter `_A`.
-Where does such a signature come from?
-You can extract this line with
-
-```julia-repl
-julia> trigger = tree[:mt_backedges, 1]
-MethodInstance for unsafe_convert(::Type{Ptr{Nothing}}, ::Base.RefValue{_A} where _A) at depth 0 with 159 children
-
-julia> trigger.children
+julia> node.children
 5-element Array{SnoopCompile.InstanceTree,1}:
- MethodInstance for unsafe_convert(::Type{Ptr{Nothing}}, ::Base.RefValue{_A} where _A) at depth 1 with 0 children
- MethodInstance for unsafe_convert(::Type{Ptr{T}}, ::Base.RefValue{Tuple{Vararg{T,N}}}) where {N, T} at depth 1 with 2 children
- MethodInstance for _show_default(::Base.GenericIOBuffer{Array{UInt8,1}}, ::Any) at depth 1 with 113 children
- MethodInstance for _show_default(::IOContext{Base.GenericIOBuffer{Array{UInt8,1}}}, ::Any) at depth 1 with 37 children
- MethodInstance for _show_default(::IOContext{REPL.Terminals.TTYTerminal}, ::Any) at depth 1 with 2 children
+ MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) at depth 1 with 39 children
+ MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{Int64}) at depth 1 with 39 children
+ MethodInstance for mapreduce_empty(::typeof(identity), ::typeof(max), ::Type{Pkg.Resolve.FieldValue}) at depth 1 with 21 children
+ MethodInstance for mapreduce_empty(::typeof(identity), ::Pkg.Resolve.var"#132#134"{Pkg.Resolve.var"#smx#133"{Pkg.Resolve.Graph,Pkg.Resolve.Messages}}, ::Type{Int64}) at depth 1 with 10 children
+ MethodInstance for mapreduce_empty(::typeof(identity), ::typeof(max), ::Type{Int64}) at depth 1 with 23 children
 ```
 
-and see all the `MethodInstance`s that called this one.
-You'll notice three `_show_default` `MethodInstance`s with the bulk of the children here;
-a little digging reveals that this is defined as
+If we look at the source for these definitions, we can figure out that they'd call `reduce_empty` with one of two functions, `max` and `identity`.
+Neither of these is consistent with the method for `add_sum` we've defined:
 
-```
-function _show_default(io::IO, @nospecialize(x))
-    t = typeof(x)
-    ...
-end
+```julia-repl
+julia> tree.method
+reduce_empty(::typeof(Base.add_sum), ::Type{F}) where F<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:222
 ```
 
-So the `@nospecialize` annotation, designed to reduce the number of cases when `_show_default` needs to be recompiled, causes the methods *it* uses to become triggers for invalidation.
-So here we see that a technique that very successfully reduces latencies also has a side effect of increasing the number of invalidations.
-Fortunately, these cases of partial specialization also seem to count as ambiguities, and so if ambiguous matches are eliminated it should also solve partial specialization.
-In the statistics below, we'll lump partial specialization in with ambiguity.
+What's happening here is that we're running up against the compiler's heuristics for specialization:
+it's not actually possible that any of these callers would end up calling our new method,
+but because the compiler decides to create a "generic" version of the method, the signature gets flagged by the invalidation machinery as matching.
+
 
 ### Some summary statistics
 
@@ -566,17 +520,17 @@ Let's go back to our table above, and count the number of invalidations in each 
 |:------- | ------------------:| --------:| -----:|
 | Example | 0 | 0 | 0 | 0 |
 | Revise | 6 | 0 | 0 |
-| FixedPointNumbers | 139 | 0 | 381 |
-| SIMD | 3040 | 0 | 1017 |
-| StaticArrays | 1382 | 13 | 2540 |
-| Optim | 1385 | 13 | 2941 |
-| Images | 1513 | 113 | 3102 |
-| Flux | 1177 | 49 | 4107 |
-| Plots | 1104 | 48 | 4604 |
-| DataFrames | 2725 | 0 | 2680 |
-| JuMP | 1549 | 14 | 5164 |
-| Makie | 5147 | 92 | 4145 |
-| DifferentialEquations | 3776 | 53 | 7419 |
+| FixedPointNumbers | 170 | 0 | 387 |
+| SIMD | 3903 | 0 | 187 |
+| StaticArrays | 989 | 0 | 3133 |
+| Optim | 1643 | 0 | 2921 |
+| Images | 1749 | 14 | 3671 |
+| Flux | 1991 | 26 | 3460 |
+| Plots | 1542 | 11 | 4302 |
+| DataFrames | 4919 | 0 | 783 |
+| JuMP | 2145 | 0 | 4670 |
+| Makie | 6233 | 46 | 5526 |
+| DifferentialEquations | 5152 | 18 | 6218 |
 
 The numbers in this table don't add up to those in the first, for a variety of reasons (here there is no attempt to remove duplicates, here we don't count "mt_cache" invalidations which were included in the first table, etc.).
 In general terms, the last two columns should probably be fixed by changes in how Julia does invalidations; the first column indicates invalidations that should either be fixed in packages, Julia's own code, or will need to remain unfixed.
@@ -635,17 +589,10 @@ Let's return to our FixedPointNumbers `reduce_empty` example above.
 A little prodding as done above reveals that this corresponds to the definition
 
 ```julia-repl
-julia> tree = trees[end-1]
- insert reduce_empty(::typeof(Base.mul_prod), ::Type{F}) where F<:FixedPoint in FixedPointNumbers at /home/tim/.julia/packages/FixedPointNumbers/w2pxG/src/FixedPointNumbers.jl:225 invalidated:
-    backedges: MethodInstance for reduce_empty(::Function, ::Type{T} where T) triggered MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) (136 children) more specific
+julia> node = tree[:backedges, 1]
+MethodInstance for reduce_empty(::Function, ::Type{T} where T) at depth 0 with 137 children
 
-julia> mi, node = tree[:backedges, 1]
-MethodInstance for reduce_empty(::Function, ::Type{T} where T) => MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) at depth 0 with 136 children
-
-julia> mi
-MethodInstance for reduce_empty(::Function, ::Type{T} where T)
-
-julia> mi.def
+julia> node.mi.def
 reduce_empty(op, T) in Base at reduce.jl:309
 ```
 
@@ -691,43 +638,25 @@ reduce_empty(op::F, ::Type{T}) where {F,T} = _empty_reduce_error()
 
 While there's little actual reason to force specialization on a method that just issues an error, in this case it does have the effect of allowing the compiler to realize that our new method is not reachable from this call path.
 
-For addressing this purely at the level of Julia code, perhaps the best approach is to see who's calling it:
-
-```julia-repl
-julia> node.children
-5-element Array{SnoopCompile.InstanceTree,1}:
- MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype) at depth 1 with 38 children
- MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{Int64}) at depth 1 with 39 children
- MethodInstance for mapreduce_empty(::typeof(identity), ::typeof(max), ::Type{Pkg.Resolve.FieldValue}) at depth 1 with 21 children
- MethodInstance for mapreduce_empty(::typeof(identity), ::Pkg.Resolve.var"#132#134"{Pkg.Resolve.var"#smx#133"{Pkg.Resolve.Graph,Pkg.Resolve.Messages}}, ::Type{Int64}) at depth 1 with 10 children
- MethodInstance for mapreduce_empty(::typeof(identity), ::typeof(max), ::Type{Int64}) at depth 1 with 23 children
-```
-
-This illustrates how to work with an `InstanceTree`: you access the MethodInstance through `.mi` and its callers through `.children`.
-Let's start with the first one:
-
-```julia-repl
-julia> node = node.children[1]
-MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype) at depth 1 with 38 children
-```
-
-We can display this whole branch of the tree using `show(node)`:
+For addressing this purely at the level of Julia code, perhaps the best approach is to see who's calling it. We looked at `node.children` above, but now let's get a more expansive view:
 
 ```julia-repl
 julia> show(node)
- MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype)
-  MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber})
-   MethodInstance for foldl_impl(::Base.BottomRF{typeof(max)}, ::NamedTuple{(),Tuple{}}, ::Set{VersionNumber})
-    MethodInstance for mapfoldl_impl(::typeof(identity), ::typeof(max), ::NamedTuple{(),Tuple{}}, ::Set{VersionNumber})
-     MethodInstance for #mapfoldl#201(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(mapfoldl), ::typeof(identity), ::typeof(max), ::Set{VersionNumber})
-      MethodInstance for mapfoldl(::typeof(identity), ::typeof(max), ::Set{VersionNumber})
-       MethodInstance for #mapreduce#205(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(mapreduce), ::typeof(identity), ::typeof(max), ::Set{VersionNumber})
-        MethodInstance for mapreduce(::typeof(identity), ::typeof(max), ::Set{VersionNumber})
-         MethodInstance for maximum(::Set{VersionNumber})
-          MethodInstance for set_maximum_version_registry!(::Pkg.Types.Context, ::Pkg.Types.PackageSpec)
-           MethodInstance for collect_project!(::Pkg.Types.Context, ::Pkg.Types.PackageSpec, ::String, ::Dict{Base.UUID,Array{Pkg.Types.PackageSpec,1}})
-            MethodInstance for collect_fixed!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Dict{Base.UUID,String})
-             MethodInstance for resolve_versions!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1})
+julia> show(node)
+MethodInstance for reduce_empty(::Function, ::Type{T} where T)
+ MethodInstance for reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber})
+  MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber}, ::Base.HasEltype)
+   MethodInstance for reduce_empty_iter(::Base.BottomRF{typeof(max)}, ::Set{VersionNumber})
+    MethodInstance for foldl_impl(::Base.BottomRF{typeof(max)}, ::NamedTuple{(),Tuple{}}, ::Set{VersionNumber})
+     MethodInstance for mapfoldl_impl(::typeof(identity), ::typeof(max), ::NamedTuple{(),Tuple{}}, ::Set{VersionNumber})
+      MethodInstance for #mapfoldl#201(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(mapfoldl), ::typeof(identity), ::typeof(max), ::Set{VersionNumber})
+       MethodInstance for mapfoldl(::typeof(identity), ::typeof(max), ::Set{VersionNumber})
+        MethodInstance for #mapreduce#205(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(mapreduce), ::typeof(identity), ::typeof(max), ::Set{VersionNumber})
+         MethodInstance for mapreduce(::typeof(identity), ::typeof(max), ::Set{VersionNumber})
+          MethodInstance for maximum(::Set{VersionNumber})
+           MethodInstance for set_maximum_version_registry!(::Pkg.Types.Context, ::Pkg.Types.PackageSpec)
+            MethodInstance for collect_project!(::Pkg.Types.Context, ::Pkg.Types.PackageSpec, ::String, ::Dict{Base.UUID,Array{Pkg.Types.PackageSpec,1}})
+             MethodInstance for collect_fixed!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Dict{Base.UUID,String})
              ⋮
 ```
 
@@ -777,6 +706,9 @@ Perhaps we could just call this instead of `maximum`.
 However, it's a bit uglier than the original;
 perhaps a nicer approach would be to allow one to supply `init` as a keyword argument to `maximum` itself.
 While this is not supported on Julia versions up through 1.5, it's a feature that seems to make sense, and this analysis suggests that it might also allow developers to make code more robust against certain kinds of invalidation.
+
+As this hopefully illustrates, there's often more than one way to "fix" an invalidation.
+Finding the best approach may require that we as a community develop experience with this novel consideration.
 
 ## Summary
 
