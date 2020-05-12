@@ -626,7 +626,7 @@ table tr td {
     hyphens: auto;
 }
 
-@media only screen and (min-width: 940px){
+@media only screen and (min-width: 970px){
   .edit-float {
     background-image: url("../assets/infra/edit_icon.svg");
     background-size: 25px 25px;
