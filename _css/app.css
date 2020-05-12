@@ -626,15 +626,15 @@ table tr td {
     hyphens: auto;
 }
 
-@media only screen and (min-width: 800px){
+@media only screen and (min-width: 940px){
   .edit-float {
     background-image: url("../assets/infra/edit_icon.svg");
-    background-size: 30px 30px;
+    background-size: 25px 25px;
     background-repeat: no-repeat;
     background-position: center;
   	position:fixed;
-  	width:60px;
-  	height:60px;
+  	width:55px;
+  	height:55px;
   	bottom:40px;
   	right:30px;
   	background-color: #e6eeff;
