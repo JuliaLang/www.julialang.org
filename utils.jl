@@ -63,3 +63,27 @@ function hfun_blogposts()
     endswith(r,   "</p>\n") && return chop(r, tail=5)
     return r
 end
+
+"""
+    {{recentblogposts}}
+
+Input the 3 latest blog posts.
+"""
+function hfun_recentblogposts()
+    # go in reverse order until 3 file paths are recovered
+    # for each file path
+    #   retrieve date
+    #   retrieve a blurb (could have a blog page var blurb to make it easier)
+    #   write div as below
+    io = IOBuffer()
+    for post in posts
+        write(io, """
+            <div class="col-lg-4 col-md-12 blog">
+              <h3><a href="$url" class="title">$title</a>
+              </h3><span class="article-date">$date</span>
+              $blurb
+            </div>
+            """)
+    end
+    return String(take!(io))
+end
