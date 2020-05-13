@@ -40,7 +40,7 @@ end
 ```
 
 Here I've defined two functions; `f` is a function with two very simple methods,
-and `arrayf` is a function with just one method that supports `Any` argument at all.
+and `applyf` is a function with just one method that supports `Any` argument at all.
 When you call `applyf`, Julia will compile _specialized_ versions on demand for the
 particular types of `container` that you're using at that moment, even though I didn't
 specify a single type in its definition.
