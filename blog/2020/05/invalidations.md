@@ -584,8 +584,9 @@ immediately after the `for` statement to fix the problem.
 Not only does this fix the invalidation, but it lets the compiler generate better code.
 
 The other case was a call from `Pkg` of `keys` on an AbstractDict of unknown type
-(due to partial specialization).
-Replacing `keys(dct)` with `Base.KeySet(dct)` (which is the default return value of `keys`) eliminated a very consequential invalidation, one that triggered seconds-long latencies in the next `Pkg` command after loading Revise.
+(due to inference failure).
+Resolving that inference problem eliminated a very consequential invalidation, one that triggered seconds-long latencies in the next `Pkg` command after loading Revise.
+
 The benefits of this change in Pkg's code went far beyond helping Revise; any package depending on the OrderedCollections package (which is a dependency of Revise and what actually triggered the invalidation) got the same benefit.
 With these and a few other relatively simple changes, loading Revise no longer forces Julia to recompile much of Pkg's code the next time you try to update packages.
 
