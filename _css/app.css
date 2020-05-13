@@ -190,6 +190,11 @@
   font-family: "Roboto", sans-serif;
 }
 
+.rss-icon {
+  color: #e2802f;
+  float: right;
+}
+
 .blog {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
