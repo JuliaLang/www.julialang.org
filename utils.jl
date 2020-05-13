@@ -40,18 +40,25 @@ function hfun_blogposts()
             base = joinpath("blog", ys, ms)
             isdir(base) || continue
             posts = filter!(p -> endswith(p, ".md"), readdir(base))
-            for post in posts
+            days  = zeros(Int, length(posts))
+            lines = Vector{String}(undef, length(posts))
+            for (i, post) in enumerate(posts)
                 ps  = splitext(post)[1]
                 url = "/blog/$ys/$ms/$ps/"
                 surl = strip(url, '/')
                 title = pagevar(surl, :title)
                 pubdate = pagevar(surl, :published)
                 if isnothing(pubdate)
-                    date = "$ys-$ms-10"
+                    date    = "$ys-$ms-01"
+                    days[i] = 1
                 else
-                    date = Date(pubdate, dateformat"d U Y")
+                    date    = Date(pubdate, dateformat"d U Y")
+                    days[i] = day(date)
                 end
-                write(io, "\n[$title]($url) $date \n")
+                lines[i] = "\n[$title]($url) $date \n"
+            end
+            for line in lines[sortperm(days, rev=true)]
+                write(io, line)
             end
         end
     end
@@ -64,26 +71,34 @@ function hfun_blogposts()
     return r
 end
 
-"""
-    {{recentblogposts}}
-
-Input the 3 latest blog posts.
-"""
-function hfun_recentblogposts()
-    # go in reverse order until 3 file paths are recovered
-    # for each file path
-    #   retrieve date
-    #   retrieve a blurb (could have a blog page var blurb to make it easier)
-    #   write div as below
-    io = IOBuffer()
-    for post in posts
-        write(io, """
-            <div class="col-lg-4 col-md-12 blog">
-              <h3><a href="$url" class="title">$title</a>
-              </h3><span class="article-date">$date</span>
-              $blurb
-            </div>
-            """)
-    end
-    return String(take!(io))
-end
+# """
+#     {{recentblogposts}}
+#
+# Input the 3 latest blog posts.
+# """
+# function hfun_recentblogposts()e
+#     curyear = Dates.Year(Dates.today()).value
+#     nfound = 0
+#     for year in curyear:-1:2019
+#         for month in 12:-1:1
+#
+#         end
+#     end
+#
+#     # go in reverse order until 3 file paths are recovered
+#     # for each file path
+#     #   retrieve date
+#     #   retrieve a blurb (could have a blog page var blurb to make it easier)
+#     #   write div as below
+#     io = IOBuffer()
+#     for post in posts
+#         write(io, """
+#             <div class="col-lg-4 col-md-12 blog">
+#               <h3><a href="$url" class="title">$title</a>
+#               </h3><span class="article-date">$date</span>
+#               $blurb
+#             </div>
+#             """)
+#     end
+#     return String(take!(io))
+# end
