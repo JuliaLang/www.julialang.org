@@ -634,16 +634,16 @@ table tr td {
 @media only screen and (min-width: 970px){
   .edit-float {
     background-image: url("../assets/infra/edit_icon.svg");
-    background-size: 25px 25px;
+    background-size: 18px 18px;
     background-repeat: no-repeat;
     background-position: center;
   	position:fixed;
-  	width:55px;
-  	height:55px;
+  	width:45px;
+  	height:45px;
   	bottom:40px;
   	right:30px;
   	background-color: #e6eeff;
-  	border-radius:50px;
+  	border-radius:40px;
   	text-align:center;
   	box-shadow: 2px 2px 3px #999;
 
