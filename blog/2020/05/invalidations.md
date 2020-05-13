@@ -630,7 +630,7 @@ Using ordinary Julia code, can we avoid this fallback?
 One approach is to define the method directly: modify Julia to add
 
 ```
-reduce_empty(::Base.BottomRF{typeof(max)}, ::Type{VersionNumber}) = _empty_reduce_error()
+reduce_empty(::typeof(max), ::Type{VersionNumber}) = _empty_reduce_error()
 ```
 
 so that we get the same result but don't rely on the fallback.
