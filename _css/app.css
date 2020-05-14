@@ -2,20 +2,28 @@
   background-color: #fff !important;
   padding: 0;
 }
-#main-menu li.nav-item {
+#main-menu .nav-item {
   padding: 16px;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid transparent;
 }
-#main-menu li.nav-item:hover {
+#main-menu .nav-item:hover {
   background-color: #eee;
-  border-bottom: 2px solid #CA3C32;
 }
-#main-menu li.nav-item.donate:hover {
+#main-menu .nav-item.donate:hover {
   background-color: #fff;
   border-bottom: 0;
 }
-#main-menu li.nav-item.active {
-  border-bottom: 2px solid #CA3C32;
+#main-menu .nav-item.active,
+#main-menu .nav-item:hover {
+  border-bottom-color: #ca3c32;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: inherit;
+}
+
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .nav-item:hover .nav-link {
+  color: #ca3c32;
 }
 .navbar-brand {
   margin-left: 0.25rem;
@@ -561,9 +569,6 @@ pre {
 	}
 }
 
-.navbar-light .navbar-nav .nav-link {
-	color: #767676;
-}
 
 @media (max-width: 575px) {
 	.main-heading {
