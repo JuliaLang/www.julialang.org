@@ -400,10 +400,12 @@ h4.card-title {
 .btn-primary {
   background-color: #4D64AE;
 }
-.btn-success,
-.btn-primary {
-  border: 1px solid rgba(0,0,0, 0.25);
+.page-heading .btn-success,
+.page-heading .btn-primary {
+  border-color: transparent;
+  box-shadow: 0px 0px 0px 3px #0a0a0a;
 }
+
 
 .link {
   color: #4D64AE;
@@ -438,7 +440,7 @@ img.ecosystem-image {
 .page-heading {
   color: #fff;
   padding: 3rem;
-  background-image: url('../assets/infra/splash-img.png');
+  background-image: url('https://raw.githubusercontent.com/cormullion/graphics/ed1bbef52ae2081a5a192f23d35a0cb9b38b8d30/svg-banners/backsplash-3.svg');
   background-repeat: repeat-x;
   background-size: auto 100%;
 }
@@ -453,6 +455,11 @@ img.ecosystem-image {
   margin-bottom: 2rem;
 }
 
+.page-heading .main-heading,
+.page-heading .secondary-heading {
+  text-shadow: 3px 3px #0a0a0a;
+}
+
 .page-heading p {
   margin-bottom: 0;
 }
@@ -460,6 +467,7 @@ img.ecosystem-image {
 .page-heading span.btn {
   padding-left: 0;
   padding-right: 0;
+  vertical-align: middle;
 }
 
 img {
