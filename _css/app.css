@@ -17,12 +17,16 @@
 #main-menu li.nav-item.active {
   border-bottom: 2px solid #CA3C32;
 }
-#logo {
-  padding: 0 20px 0 0;
+.navbar-brand {
+  margin-left: 0.25rem;
+  margin-right: 0;
+  padding-bottom: 1rem;
 }
-#logo img {
-  width: 85px;
-  height: 55px;
+.navbar-brand img {
+  height: 50px;
+}
+.navbar-right {
+  margin-right: 0.25rem;
 }
 
 #menu li {
