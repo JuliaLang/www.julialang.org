@@ -244,7 +244,7 @@ up into:
    (e.g. timing side channels from cache or branch predictor state).
 
 However, in theory, if a tool was able to capture 100% of the relevant state
-from these categories, it could repeated generate exactly the same memory image.
+from these categories, it could repeatedly generate exactly the same memory image.
 This is not a novel idea, but the devil is in the detail. Discussing these details
 is beyond the scope of this particular post, but here is a taste: For an asynchonous event, how
 do we define "when" this event happened with respect to the rest of the execution.
