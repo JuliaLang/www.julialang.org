@@ -64,12 +64,6 @@
   margin-bottom: 50px;
 }
 
-.page-heading a {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-}
-
 .extra-link {
   font-size: 12px;
   text-decoration: none !important;
@@ -292,10 +286,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-.btn-success {
-	background-color: #008a00;
-}
-
 .btn-outline-primary {
 	color: #0072ee;
 }
@@ -404,10 +394,17 @@ h4.card-title {
   }
 }
 
+.btn-success {
+  background-color: #008a00;
+}
 .btn-primary {
   background-color: #4D64AE;
-  border-color: #4D64AE;
 }
+.btn-success,
+.btn-primary {
+  border: 1px solid rgba(0,0,0, 0.25);
+}
+
 .link {
   color: #4D64AE;
 }
@@ -438,26 +435,35 @@ img.ecosystem-image {
   margin-right: 20px;
 }
 
-.jumbotron {
+.page-heading {
+  color: #fff;
+  padding: 3rem;
   background-image: url('../assets/infra/splash-img.png');
   background-repeat: repeat-x;
   background-size: auto 100%;
 }
 
+.page-heading .main-heading {
+  font-weight: 100;
+  margin-bottom: 2rem;
+}
+
+.page-heading .secondary-heading {
+  font-size: 28px;
+  margin-bottom: 2rem;
+}
+
+.page-heading p {
+  margin-bottom: 0;
+}
+
+.page-heading span.btn {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 img {
   max-width: 100%;
-}
-
-.page-heading .main-heading {
-  color: #fff;
-  font-weight: 100;
-}
-.page-heading .secondary-heading {
-  color: #ccc;
-}
-
-.jumbotron a.link {
-  color: #ccc;
 }
 
 h1 {
@@ -526,10 +532,6 @@ blockquote p {
 }
 #top-alert p {
   margin-bottom: 0;
-}
-
-#main-jumbo {
-  padding: 3rem 2rem;
 }
 
 code, table.benchmarks tbody {
