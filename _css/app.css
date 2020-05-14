@@ -512,6 +512,7 @@ blockquote p {
   padding-right: 0;
 }
 #top-alert .alert {
+  border-radius: 0;
   margin-bottom: 0.2rem;
 }
 #top-alert p {
