@@ -1,1175 +1,771 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <url>
-    <loc>https://julialang.org/blog/2020/02/gci-summary/</loc>
-    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/</loc>
-    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
-  </url>
-  
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://julialang.org/</loc>
-    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
   </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/</loc>
-    <lastmod>2019-12-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/12/artifacts-zh_cn/</loc>
-    <lastmod>2019-12-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/11/artifacts/</loc>
-    <lastmod>2019-11-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/11/google-code-in/</loc>
-    <lastmod>2019-11-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/09/profilers/</loc>
-    <lastmod>2019-09-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/09/julia-workshop-beijing/</loc>
-    <lastmod>2019-09-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/</loc>
-    <lastmod>2019-09-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/09/release-process-zh-cn/</loc>
-    <lastmod>2019-09-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/08/release-process/</loc>
-    <lastmod>2019-08-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/08/2019-julia-survey/</loc>
-    <lastmod>2019-08-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/07/multithreading-zh-cn/</loc>
-    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/07/multithreading/</loc>
-    <lastmod>2019-07-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/06/diffeqbot/</loc>
-    <lastmod>2019-06-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/05/jsoc19/</loc>
-    <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/</loc>
-    <lastmod>2019-05-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw/</loc>
-    <lastmod>2019-04-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/03/debuggers/</loc>
-    <lastmod>2019-03-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/02/julia-entities/</loc>
-    <lastmod>2019-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/02/light-graphs/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2019/01/fluxdiffeq/</loc>
-    <lastmod>2019-01-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/12/ml-language-compiler/</loc>
-    <lastmod>2018-12-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/09/pkgtutorial/</loc>
-    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/09/juliacon2018/</loc>
-    <lastmod>2018-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/09/julia-community-prizes/</loc>
-    <lastmod>2018-09-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/08/gsoc2018-speech-recognition/</loc>
-    <lastmod>2018-08-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/08/adding-newer-features-and-speeding-up-convolutions-in-flux/</loc>
-    <lastmod>2018-08-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/08/union-splitting/</loc>
-    <lastmod>2018-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/08/one-point-zero/</loc>
-    <lastmod>2018-08-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/08/one-point-zero-zh_cn/</loc>
-    <lastmod>2018-08-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/08/one-point-zero-es/</loc>
-    <lastmod>2018-08-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/08/one-point-zero-zh_tw/</loc>
-    <lastmod>2018-08-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/08/gsoc-final-summary/</loc>
-    <lastmod>2018-08-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/07/iterators-in-julia-0.7/</loc>
-    <lastmod>2018-07-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/06/missing/</loc>
-    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/05/extensible-broadcast-fusion/</loc>
-    <lastmod>2018-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/04/tetris-and-you/</loc>
-    <lastmod>2018-04-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/03/pifonts/</loc>
-    <lastmod>2018-03-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2018/02/gsoc2018-numfocus/</loc>
-    <lastmod>2018-02-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/12/mlpl-zh_tw/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/12/mlpl-cn/</loc>
-    <lastmod>2017-12-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/12/mlpl/</loc>
-    <lastmod>2017-12-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/11/gsoc-ode/</loc>
-    <lastmod>2017-11-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/10/gsoc-neuralnetdiffeq/</loc>
-    <lastmod>2017-10-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/10/command-interpolation-for-dummies/</loc>
-    <lastmod>2017-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/09/hamiltonian-indirect-inference/</loc>
-    <lastmod>2017-09-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/09/bio-parallel/</loc>
-    <lastmod>2017-09-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/09/gsoc-derivative_operators/</loc>
-    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/09/gsoc-mcmc-with-flexible-numbers-of-parameters/</loc>
-    <lastmod>2017-09-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/09/gsoc-fenics/</loc>
-    <lastmod>2017-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/08/gsoc-docs-in-juno/</loc>
-    <lastmod>2017-08-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/08/native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/</loc>
-    <lastmod>2017-08-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/08/juliacon/</loc>
-    <lastmod>2017-08-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/08/dsl/</loc>
-    <lastmod>2017-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/06/julia-0.6-release/</loc>
-    <lastmod>2017-06-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/05/raspberry-pi-julia/</loc>
-    <lastmod>2017-05-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/04/repl-0.6-highlights/</loc>
-    <lastmod>2017-04-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/04/offset-arrays/</loc>
-    <lastmod>2017-04-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/03/julia-fresh-paper/</loc>
-    <lastmod>2017-03-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/03/piday/</loc>
-    <lastmod>2017-03-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/03/cudanative/</loc>
-    <lastmod>2017-03-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2017/01/moredots/</loc>
-    <lastmod>2017-01-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/10/julia-0.5-highlights/</loc>
-    <lastmod>2016-10-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/10/julia-0.5-release/</loc>
-    <lastmod>2016-10-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/10/structuredqueries/</loc>
-    <lastmod>2016-10-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/09/juliacon2016/</loc>
-    <lastmod>2016-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/09/biojulia2016-mid/</loc>
-    <lastmod>2016-09-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/08/gsoc2016-graft/</loc>
-    <lastmod>2016-08-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-convex.jl/</loc>
-    <lastmod>2016-08-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/05/juliacon-invitation/</loc>
-    <lastmod>2016-05-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/04/biojulia2016/</loc>
-    <lastmod>2016-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/04/gsoc/</loc>
-    <lastmod>2016-04-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/03/arrays-iteration/</loc>
-    <lastmod>2016-03-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/03/parallelaccelerator/</loc>
-    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/02/iteration/</loc>
-    <lastmod>2016-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2016/01/atom-work/</loc>
-    <lastmod>2016-01-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2015/10/datastreams/</loc>
-    <lastmod>2015-10-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2015/10/auto-diff-in-julia/</loc>
-    <lastmod>2015-10-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2015/10/glvisualize/</loc>
-    <lastmod>2015-10-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2015/10/biojulia-sequence-analysis/</loc>
-    <lastmod>2015-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2015/10/compose3d-threejs/</loc>
-    <lastmod>2015-10-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2015/10/nullablearrays/</loc>
-    <lastmod>2015-10-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2015/10/julia-0.4-release/</loc>
-    <lastmod>2015-10-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2015/05/juliacon-preview/</loc>
-    <lastmod>2015-05-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2015/05/jsoc-cfp/</loc>
-    <lastmod>2015-05-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2014/08/julia-0.3-release/</loc>
-    <lastmod>2014-08-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2014/08/juliacon-opening-session/</loc>
-    <lastmod>2014-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2014/08/juliacon-opt-session/</loc>
-    <lastmod>2014-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2013/09/fast-numeric/</loc>
-    <lastmod>2013-09-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/</loc>
-    <lastmod>2013-05-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/</loc>
-    <lastmod>2013-05-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2013/05/callback/</loc>
-    <lastmod>2013-05-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2013/04/put-this-in-your-pipe/</loc>
-    <lastmod>2013-04-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2013/04/distributed-numerical-optimization/</loc>
-    <lastmod>2013-04-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2013/03/julia-tutorial-mit/</loc>
-    <lastmod>2013-03-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2013/03/efficient-aggregates/</loc>
-    <lastmod>2013-03-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2012/08/design-and-implementation-of-julia/</loc>
-    <lastmod>2012-08-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2012/04/nyc-open-stats-meetup-announcement/</loc>
-    <lastmod>2012-04-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2012/03/lang-next-talk-announcement/</loc>
-    <lastmod>2012-03-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2012/03/shelling-out-sucks/</loc>
-    <lastmod>2012-03-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2012/03/stanford-talk-video/</loc>
-    <lastmod>2012-03-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2012/02/talk-announcement/</loc>
-    <lastmod>2012-02-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2012/02/why-we-created-julia/</loc>
-    <lastmod>2012-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/blog/2012/02/why-we-created-julia-zh_cn/</loc>
-    <lastmod>2012-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/diversity/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/download/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/gsod/projects/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/learning/code-examples/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/license/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/manual/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/maw16/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/readme/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/soc/ideas-page/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/utf8proc/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/utf8proc/doc/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/utf8proc/releases/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bst19/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/asb16/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/rlkgl19/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/b17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/mc16/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/ot14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/dtp16/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/jsb15/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/rn17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bmp17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/lrof18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/tspk14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/guidelines/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/rzrb16/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/abcfffklmrss18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/abffkrss19/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/iabccfgkss19/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bckse14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/fs18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/zaaf18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/ms14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/j19/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bdfp2014/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/rpfnetal2018/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/mh15/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/gb19/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/kn18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/jfc17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/lfors17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/gsoc/compiler/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/cpw14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/rsllbhgl16/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/rgkl17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/gss14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/ld13/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/rdb18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/umzhdb14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/rn217/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/dyff19/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/baablpp19/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/i18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/r18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bfd2017/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/hz19/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/k14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/isfgrjkss18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bzfpzwp14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/tto14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/js15/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/jsb15a/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/rsl17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/gsoc/general/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/uhzb14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/h18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/learning/getting-started/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/gsoc/graphics/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/gsoc/hpc/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bvd2016/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bt18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/dv17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/opv16/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bomhfv15/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/ht14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/community/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/community/standards/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/community/stewards/</loc>
-  </url>
-  
   <url>
     <loc>https://julialang.org/downloads/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/downloads/nightlies/</loc>
+    <loc>https://julialang.org/blog/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/downloads/oldreleases/</loc>
+    <loc>https://julialang.org/community/</loc>
   </url>
-  
-  <url>
-    <loc>https://julialang.org/ecosystems/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/benchmarks/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/zbpcbv2018/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/archive/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bkse12/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/beks17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bccksvz2018/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/tf2017/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/gsoc/graphs/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/gsoc/images/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/bffps19/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/dhl2017/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/pc18/</loc>
-  </url>
-  
   <url>
     <loc>https://julialang.org/learning/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/pk18/</loc>
+    <loc>https://julialang.org/research/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/jsoc/gsoc/flux/</loc>
+    <loc>https://julialang.org/jsoc/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/rb18/</loc>
+    <loc>https://julialang.org/benchmarks/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/zh15/</loc>
+    <loc>https://julialang.org/learning/code-examples/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/rn18/</loc>
+    <loc>https://julialang.org/blog/2020/02/gci-summary/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/jfc17a/</loc>
+    <loc>https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/zanm17/</loc>
+    <loc>https://julialang.org/blog/2019/12/artifacts-zh_cn/</loc>
   </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/gsoc/mlj/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/ep16/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/clldnr17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/pmg15/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/hbc/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/mr2017/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/fhhj17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/sekbk13/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/gsoc/diffeq/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/jsoc/gsoc/numerics/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/so14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/l13/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/pkmanr18/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/hlp14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/pk16/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/ce14/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/alktvs17/</loc>
-  </url>
-  
-  <url>
-    <loc>https://julialang.org/research/v14/</loc>
-  </url>
-  
   <url>
     <loc>https://julialang.org/downloads/platform/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/esbwgk17/</loc>
+    <loc>https://julialang.org/downloads/oldreleases/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/r19/</loc>
+    <loc>https://julialang.org/downloads/nightlies/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/gfs17/</loc>
+    <loc>https://julialang.org/assets/juliareleases.asc</loc>
   </url>
-  
+  <url>
+    <loc>https://julialang.org/feed.xml</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/11/artifacts/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/09/profilers/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/09/release-process-zh-cn/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/09/julia-workshop-beijing/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/08/release-process/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/08/2019-julia-survey/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/07/multithreading-zh-cn/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/07/multithreading/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/06/diffeqbot/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/05/jsoc19/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/03/debuggers/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/02/julia-entities/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/02/light-graphs/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/01/fluxdiffeq/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/12/ml-language-compiler/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/09/Pkgtutorial/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/09/juliacon2018/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/09/julia-community-prizes/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/GSoC2018-speech-recognition/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/adding-newer-features-and-speeding-up-convolutions-in-flux/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/union-splitting/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/one-point-zero/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/one-point-zero-zh_tw/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/one-point-zero-zh_cn/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/one-point-zero-es/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/GSoC-Final-Summary/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/07/iterators-in-julia-0.7/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/06/missing/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/05/extensible-broadcast-fusion/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/04/tetris-and-you/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/03/pifonts/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/02/gsoc2018-numfocus/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/12/ml-pl-zh_tw/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/12/ml-pl-cn/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/12/ml-pl/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/11/gsoc-ode/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/10/gsoc-NeuralNetDiffEq/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/10/command-interpolation-for-dummies/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/09/Hamiltonian-Indirect-Inference/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/09/bio-parallel/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/09/gsoc-derivative_operators/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/09/GSOC-MCMC-with-flexible-numbers-of-parameters/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/09/gsoc-fenics/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/08/gsoc-docs-in-juno/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/08/native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/08/juliacon/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/08/dsl/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/06/julia-0.6-release/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/05/raspberry-pi-julia/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/04/repl-0.6-highlights/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/04/offset-arrays/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/03/julia-fresh-paper/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/03/piday/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/03/cudanative/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/01/moredots/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/10/julia-0.5-highlights/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/10/julia-0.5-release/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/10/StructuredQueries/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/09/juliacon2016/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/09/biojulia2016-mid/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/08/GSoC2016-Graft/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-Convex.jl/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/05/juliacon-invitation/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/04/biojulia2016/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/04/gsoc/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/03/arrays-iteration/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/03/parallelaccelerator/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/02/iteration/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/01/atom-work/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/datastreams/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/auto-diff-in-julia/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/glvisualize/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/biojulia-sequence-analysis/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/compose3d-threejs/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/nullablearrays/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/julia-0.4-release/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/05/juliacon-preview/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/05/jsoc-cfp/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2014/08/julia-0.3-release/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2014/08/juliacon-opt-session/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2014/08/juliacon-opening-session/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/09/fast-numeric/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/05/callback/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/04/put-this-in-your-pipe/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/04/distributed-numerical-optimization/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/03/julia-tutorial-MIT/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/03/efficient-aggregates/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/08/design-and-implementation-of-julia/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/04/nyc-open-stats-meetup-announcement/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/03/lang-next-talk-announcement/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/03/shelling-out-sucks/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/03/stanford-talk-video/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/02/talk-announcement/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/02/why-we-created-julia/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/community/standards/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/diversity/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/assets/images/2019-julia-user-developer-survey.pdf</loc>
+  </url>
   <url>
     <loc>https://julialang.org/jsoc/projects/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/bffvps18/</loc>
+    <loc>https://julialang.org/jsoc/guidelines/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/bffps19b/</loc>
+    <loc>https://julialang.org/jsoc/archive/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/dklp17/</loc>
+    <loc>https://julialang.org/learning/getting-started/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/kbk19/</loc>
+    <loc>https://julialang.org/jsoc/gsod/projects/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/hpoepp16/</loc>
+    <loc>https://julialang.org/assets/benchmarks/benchmarks.csv</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/ont14/</loc>
+    <loc>https://julialang.org/blog/2017/08/juliacon/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/jsoc/gsoc/sciml/</loc>
+    <loc>https://julialang.org/blog/2017/12/ml-pl-cn/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/jsoc/gsoc/science/</loc>
+    <loc>https://julialang.org/blog/2018/09/juliacon2018/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/sog16/</loc>
+    <loc>https://julialang.org/assets/benchmarks/benchmarks.ipynb</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/jdmj2017/</loc>
+    <loc>https://julialang.org/blog/2017/03/julia-fresh-paper/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/tddm14/</loc>
+    <loc>https://julialang.org/blog/2012/04/nyc-open-stats-meetup-announcement/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/r17/</loc>
+    <loc>https://julialang.org/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-Convex.jl/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/gbzwp16/</loc>
+    <loc>https://julialang.org/blog/2015/10/nullablearrays/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/soc/</loc>
+    <loc>https://julialang.org/blog/2014/08/julia-0.3-release/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/fjf17/</loc>
+    <loc>https://julialang.org/blog/2017/10/gsoc-NeuralNetDiffEq/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/fbdsw13/</loc>
+    <loc>https://julialang.org/blog/2018/08/GSoC2018-speech-recognition/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/jsoc/gsoc/kalmanbucy/</loc>
+    <loc>https://julialang.org/blog/2018/08/one-point-zero-zh_tw/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/hsbc17/</loc>
+    <loc>https://julialang.org/blog/2018/08/adding-newer-features-and-speeding-up-convolutions-in-flux/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/ahk16/</loc>
+    <loc>https://julialang.org/blog/2017/03/piday/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/jsoc/gsoc/tables/</loc>
+    <loc>https://julialang.org/blog/2019/09/release-process-zh-cn/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/bs19/</loc>
+    <loc>https://julialang.org/blog/2018/08/GSoC-Final-Summary/index.html</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/to14/</loc>
+    <loc>https://julialang.org/blog/2013/03/julia-tutorial-MIT/index.html</loc>
   </url>
-  
+  <url>
+    <loc>https://julialang.org/blog/2016/10/julia-0.5-highlights/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/08/design-and-implementation-of-julia/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/09/biojulia2016-mid/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/12/ml-pl/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/09/gsoc-derivative_operators/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/04/fluxdiffeq-zh_tw/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/04/distributed-numerical-optimization/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/05/callback/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/02/iteration/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/09/fast-numeric/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/05/raspberry-pi-julia/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2020/02/gci-summary/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/04/put-this-in-your-pipe/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/03/arrays-iteration/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/10/command-interpolation-for-dummies/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/09/Hamiltonian-Indirect-Inference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/03/debuggers/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/compose3d-threejs/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/10/julia-0.5-release/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/03/shelling-out-sucks/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/03/efficient-aggregates/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/auto-diff-in-julia/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/09/GSOC-MCMC-with-flexible-numbers-of-parameters/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/11/artifacts/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/09/julia-workshop-beijing-zh_cn/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/06/julia-0.6-release/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/07/iterators-in-julia-0.7/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/datastreams/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/one-point-zero-es/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/union-splitting/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/julia-0.4-release/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/05/jsoc-cfp/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/05/extensible-broadcast-fusion/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/02/light-graphs/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/02/why-we-created-julia/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/one-point-zero/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/05/juliacon-invitation/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/09/julia-workshop-beijing/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/01/atom-work/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/02/why-we-created-julia-zh_CN/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/09/Pkgtutorial/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2013/05/graphical-user-interfaces-part2/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/09/julia-community-prizes/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/04/biojulia2016/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/09/bio-parallel/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2014/08/juliacon-opening-session/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/09/profilers/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/08/native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/assets/research/julia-fresh-approach-BEKS.pdf</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/10/StructuredQueries/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/08/one-point-zero-zh_cn/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/01/fluxdiffeq/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/09/gsoc-fenics/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/04/tetris-and-you/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/03/cudanative/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/03/stanford-talk-video/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/08/gsoc-docs-in-juno/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/04/gsoc/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/02/julia-entities/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/11/gsoc-ode/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/12/ml-language-compiler/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/04/offset-arrays/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/12/artifacts-zh_cn/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/03/pifonts/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/02/talk-announcement/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2012/03/lang-next-talk-announcement/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/biojulia-sequence-analysis/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2014/08/juliacon-opt-session/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/07/multithreading-zh-cn/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/07/multithreading/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/10/glvisualize/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/08/dsl/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/06/diffeqbot/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/09/juliacon2016/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/02/gsoc2018-numfocus/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2016/03/parallelaccelerator/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2018/06/missing/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2015/05/juliacon-preview/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/01/moredots/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/05/jsoc19/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/08/release-process/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/12/ml-pl-zh_tw/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2017/04/repl-0.6-highlights/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/blog/2019/08/2019-julia-survey/index.html</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/community/stewards/</loc>
+  </url>
   <url>
     <loc>https://julialang.org/project/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/oezl19/</loc>
+    <loc>https://julialang.org/assets/blog/moredots/More-Dots.ipynb</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/jsoc/gsoc/tooling/</loc>
+    <loc>https://julialang.org/assets/blog/Julia-0.5-highlights-notebook/Julia%200.5%20Highlights.ipynb</loc>
   </url>
-  
+  <url>
+    <loc>https://julialang.org/assets/blog/chemin-wasmer-09.pdf</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/assets/images/lang.next.pdf</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/assets/blog/IAP_2013_Lightning.pdf</loc>
+  </url>
   <url>
     <loc>https://julialang.org/jsoc/gsoc/turing/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/bbcilsz16/</loc>
+    <loc>https://julialang.org/jsoc/gsoc/flux/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/teaching/</loc>
+    <loc>https://julialang.org/jsoc/gsoc/sciml/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/lzww19/</loc>
+    <loc>https://julialang.org/assets/blog/nyhackr.pdf</loc>
   </url>
-  
+  <url>
+    <loc>https://julialang.org/assets/blog/julia-dynamic-2012-tr.pdf</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/compiler/</loc>
+  </url>
   <url>
     <loc>https://julialang.org/jsoc/gsoc/wasm/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/llwz19/</loc>
+    <loc>https://julialang.org/jsoc/gsoc/hpc/</loc>
   </url>
-  
   <url>
-    <loc>https://julialang.org/research/hn14/</loc>
+    <loc>https://julialang.org/jsoc/gsoc/numerics/</loc>
   </url>
-  
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/science/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/diffeq/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/tooling/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/images/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/general/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/graphs/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/graphics/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/mlj/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/tables/</loc>
+  </url>
+  <url>
+    <loc>https://julialang.org/jsoc/gsoc/kalmanbucy/</loc>
+  </url>
 </urlset>
