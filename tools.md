@@ -1,0 +1,139 @@
+# Useful Tools for Julia
+
+~~~
+<!--
+       Containers: EDITORS AND IDES
+  -->
+  <div class="container">
+      <br><br>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-2 language-features"><hr/></div>
+        <div class="col-lg-6 col-md-8 language-features section-heading">
+          <h2 class="lead secondary-heading">Editors and IDEs</h2>
+        </div>
+        <div class="col-lg-3 col-md-2 language-features"><hr/></div>
+      </div>
+
+      <br>
+
+      <div class="row ides">
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Juno</h3>
+		  	<a href="https://junolab.org/" target="_blank">
+            <img src="/assets/infra/atom.png" height="85" width="85" alt="Atom Logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://junolab.org/" target="_blank">Atom Plugin</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>VS Code</h3>
+		  	<a href="https://www.julia-vscode.org/" target="_blank">
+            <img src="/assets/infra/vscode.png" height="85" width="85" alt="VSCode Logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://www.julia-vscode.org/" target="_blank">VS Code Extension</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Jupyter</h3>
+		  	<a href="https://github.com/JuliaLang/IJulia.jl" target="_blank">
+            <img src="/assets/infra/jupyter.svg" height="85" width="85" alt="Jupyter Logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaLang/IJulia.jl" target="_blank">Jupyter kernel</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>JetBrains</h3>
+		  	<a href="https://github.com/JuliaEditorSupport/julia-intellij" target="_blank">
+            <img src="/assets/infra/jetbrains.png" height="85" width="85" alt="JetBrains Logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaEditorSupport/julia-intellij" target="_blank">IntelliJ IDEA Plugin</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Vim</h3>
+		  	<a href="https://github.com/JuliaEditorSupport/julia-vim" target="_blank">
+            <img src="/assets/infra/vim.png" height="85" width="85" alt="Vim Logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaEditorSupport/julia-vim" target="_blank">Vim plugin</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Emacs</h3>
+		  	<a href="https://github.com/JuliaEditorSupport/julia-emacs" target="_blank">
+            <img src="/assets/infra/emacs.png" height="85" width="85" alt="Emacs Logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaEditorSupport/julia-emacs" target="_blank">Emacs plugin</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>SublimeText</h3>
+		  	<a href="https://github.com/JuliaEditorSupport/Julia-sublime" target="_blank">
+            <img src="/assets/infra/sublime.png" height="85" width="85" alt="Sublime logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaEditorSupport/Julia-sublime" target="_blank">Sublime Text</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>NotePad++</h3>
+		  	<a href="https://github.com/JuliaEditorSupport/julia-NotepadPlusPlus" target="_blank">
+            <img src="/assets/infra/notepad.png" height="85" width="85" alt="Notepad Plus Plus logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaEditorSupport/julia-NotepadPlusPlus" target="_blank">Notepad++</a>
+          </h4>
+        </div>
+      </div>
+    </div>
+
+  <!--
+       Containers: ESSENTIAL TOOLS
+  -->
+  <div class="container">
+      <br><br>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-2 language-features"><hr/></div>
+        <div class="col-lg-6 col-md-8 language-features section-heading">
+          <h2 class="lead secondary-heading">Essential Tools</h2>
+        </div>
+        <div class="col-lg-3 col-md-2 language-features"><hr/></div>
+      </div>
+
+      <br>
+
+      <div class="row ides">
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Debugger</h3>
+		  	<a href="https://github.com/JuliaDebug/Debugger.jl" target="_blank">
+            <img src="/assets/infra/Debug.png" height="85" width="85" alt="Debugger" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaDebug/Debugger.jl" target="_blank">Debugger.jl</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Profiler</h3>
+		  	<a href="https://docs.julialang.org/en/v1/manual/profile/" target="_blank">
+            <img src="/assets/infra/profile.png" height="85" width="85" alt="Profiler Logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://docs.julialang.org/en/v1/manual/profile/" target="_blank">Profile (Stdlib)</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>Revise</h3>
+		  	<a href="https://github.com/timholy/Revise.jl" target="_blank">
+            <img src="/assets/infra/revise.png" height="85" width="85" alt="Revise Logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/timholy/Revise.jl" target="_blank">Revise.jl</a>
+          </h4>
+        </div>
+        <div class="col-lg-3 col-md-6 ide ide-feature">
+          <h3>GPUs</h3>
+		  	<a href="https://github.com/JuliaGPU" target="_blank">
+            <img src="/assets/infra/gpu.png" height="85" width="85" alt="Julia GPU Logo" /></a>
+          <h4 class="outer-link">
+            <a class="link extra-link" href="https://github.com/JuliaGPU" target="_blank">JuliaGPU</a>
+          </h4>
+        </div>
+      </div>
+    </div>
+~~~
