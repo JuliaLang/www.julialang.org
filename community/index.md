@@ -189,7 +189,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 ### Scientific Domains
 
 @@tight-list
-* [BioJulia](https://github.com/BioJulia) – Biology ([Gitter](https://gitter.im/BioJulia/home))
+* [BioJulia](https://github.com/BioJulia) – Biology, bioinformatics, computational biology ([website](https://biojulia.net), [Gitter](https://gitter.im/BioJulia/home))
 * [EcoJulia](https://github.com/EcoJulia) – Ecology
 * [JuliaAstro](https://github.com/JuliaAstro) – [Astronomy](https://juliaastro.github.io/) ([Gitter](https://gitter.im/JuliaAstro/home))
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
