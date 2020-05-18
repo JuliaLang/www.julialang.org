@@ -10,9 +10,11 @@
 <body>
   <div class="container-fluid" id="top-alert">
     <div class="alert alert-dark alert-dismissible mb-0" role="alert">
+      <!-- Only this <p> element should be changed in an alert -->
       <p class="text-center">
         JuliaCon is online and free this year. <a href="https://juliacon.org/2020/tickets/">Register now</a> for JuliaCon 2020!
 			</p>
+			<!-- Nothing more! -->
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
@@ -30,7 +32,7 @@
         The Julia Language
       </h1>
       <h2 class="secondary-heading">
-        A fresh approach to technical computing. 
+        A fresh approach to technical computing.
       </h2>
 
       <p>
@@ -654,14 +656,15 @@ end
 
 {{insert foot_general.html}}
 <script>
-	$topAlert = $('#top-alert .alert');
-	const closed = JSON.parse(localStorage.getItem('closed'));
-	if (closed) {
-		$topAlert.alert('close');
-	}
-	$topAlert.on('close.bs.alert', function () {
-		localStorage.setItem('closed', true);
-	});
+  $topAlert = $('#top-alert .alert');
+  const alertText = $('#top-alert p').html().trim();
+  const alertClosed = JSON.parse(localStorage.getItem(alertText));
+  if (alertClosed) {
+    $topAlert.alert('close');
+  }
+  $topAlert.on('close.bs.alert', function () {
+    localStorage.setItem(alertText, true);
+  });
 </script>
 </body>
 </html>
