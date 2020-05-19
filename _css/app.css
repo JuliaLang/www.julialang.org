@@ -402,16 +402,11 @@ h4.card-title {
   }
 }
 
-.btn-success {
-  background-color: #008a00;
-}
-.btn-primary {
-  background-color: #4D64AE;
-}
 .page-heading .btn-success,
 .page-heading .btn-primary {
   border-color: transparent;
-  box-shadow: 0px 0px 0px 3px #0a0a0a;
+  box-shadow: 0px 0px 0px 2px #0a0a0a;
+  text-shadow: 1px 1px 2px #0a0a0a;
 }
 
 
@@ -465,7 +460,7 @@ img.ecosystem-image {
 
 .page-heading .main-heading,
 .page-heading .secondary-heading {
-  text-shadow: 3px 3px #0a0a0a;
+  text-shadow: 3px 3px 3px #0a0a0a;
 }
 
 .page-heading p {
