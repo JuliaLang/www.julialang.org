@@ -8,7 +8,7 @@ different location on the same computer, or even to a different computer.
 
 Julia is available for Windows 7 and later for both 32 bit and 64 bit versions.
 
-*We highly recommend running Julia using a modern terminal, such as installing the [Windows Terminal from the Microsoft Store](https://aka.ms/terminal).* 
+**We highly recommend running Julia using a modern terminal, such as installing the [Windows Terminal from the Microsoft Store](https://aka.ms/terminal).**
 
 
 ### Installation Notes
