@@ -6,47 +6,52 @@ different location on the same computer, or even to a different computer.
 
 ## Windows
 
-Julia is available for Windows 7 and later, both 32 bit and 64 bit.
+Julia is available for Windows 7 and later for both 32 bit and 64 bit versions.
 
+**We highly recommend running Julia using a modern terminal, such as installing the [Windows Terminal from the Microsoft Store](https://aka.ms/terminal).**
+
+
+### Installation Notes
 @@tight-list
-1.  Download the Windows julia.exe installer for your platform. 32-bit julia works on both x86 and x86\_64. 64-bit julia will only run on 64-bit Windows (x86\_64).
-2.  Run the downloaded program to extract Julia.
-3.  At the "Choose Installation directory" step, copy the Path in the "Destination Folder" into a Notepad or similar file for future reference, and finish installation.
-4.  At this point, you can decide whether you want to invoke Julia by simply typing `julia` in the command line, or paste the entire path you saved in the Notepad. To invoke Julia by simply typing `julia` in the command line, perform the following steps.
+1.  Download the Windows Julia installer from https://julialang.org/downloads/. Note, the 32-bit Julia binaries work on both 32-bit and 64-bit Windows  (x86 and x86\_64), but the 64-bit Julia binaries only run on 64-bit Windows (x86\_64).
+2. Run the installer and note the installation directory. The installation directory should look something like `C:\Users\JohnDoe\AppData\Local\Programs\Julia 1.5.0`, *please note this path*. 
 @@
 
-If on Windows 10,
+To invoke Julia by simply typing `julia` in the command line, the Julia executable directory needs to be added to PATH. Perform the following steps to add Julia to PATH.
+
+
+#### Adding Julia to PATH on Windows 10,
 
 @@tight-list
-1.  Hit (Windows Key + R) to open run, and type in `sysdm.cpl` and hit enter. This will open up the System Properties. Click on the "Advanced" tab.
-2.  Now, click the "Environment Variables..." button.
-3.  Under the "System Variables" section (the lower half), find the row with "Path" in the first column, and click edit.
-4.  The "Edit environment variable" UI will appear. Here, click "New", and paste in the text you copied into the Notepad.
-5.  Hit OK and dismiss all the dialogs. You can now run Julia from the command line!
+1.  Open Run (Windows Key + R),  type in `rundll32 sysdm.cpl,EditEnvironmentVariables` and hit enter.
+2.  Under either the "User Variables" or "System Variables" section, find the row with "Path", and click edit.
+3.  The "Edit environment variable" UI will appear. Here, click "New", and paste in the directory noted from the installation stage. This should look something like `C:\Users\JohnDoe\AppData\Local\Programs\Julia 1.5.0\bin`
+4.  Click OK. You can now run Julia from the command line, by typing `julia`!
 @@
 
-Else, if on Windows 7 or 8,
+#### Adding Julia to PATH on Windows 7 or 8
 
 @@tight-list
-1.  Hit (Windows Key + R) to open run, and type in `sysdm.cpl` and hit enter. This will open up the System Properties.
-2.  In the System Properties window, click the Advanced tab, and then click "Environment Variables".
-3.  In the System Variables window, highlight Path, and click Edit.
-4.  In the Edit System Variables window, move the cursor to the end of the field.
-5.  If there is no semicolon at the end, add it and paste in the text you copied into the notepad.
-6.  Hit OK and dismiss all the dialogs. You can now run Julia from the command line!
+1.  Open Run (Windows Key + R),  type in `rundll32 sysdm.cpl,EditEnvironmentVariables` and hit enter.
+2.  In the System Variables window, highlight Path, and click Edit.
+3.  In the Edit System Variables window, move the cursor to the end of the field.
+4.  If there is no semicolon at the end, add it and paste in the text you copied into the notepad. This should look something like `C:\Users\JohnDoe\AppData\Local\Programs\Julia 1.5.0\bin`
+5.  Click OK. You can now run Julia from the command line, by typing `julia`!
 @@
 
-Windows 7 / Windows Server 2012 users will also need to install:
+
+### Windows 7 / Windows Server 2012 Installation Notes
+
+Windows 7 / Windows Server 2012 users also need to install:
 
 @@tight-list
 *   the [TLS easy\_fix](https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in) for the package manager to work, see [this Discourse thread](https://discourse.julialang.org/t/errors-for-git-pkg/9351) for more details.
 *   [Windows Management Framework 3.0 or later](https://docs.microsoft.com/en-us/powershell/scripting/wmf/overview) to include PowerShell 3.0 or later.
 @@
 
-It is recommended that users on these legacy Windows systems install and use a terminal besides `cmd.exe` since the default terminal application has known issues which affect its usability with Julia and other libuv-based cross-platform software.
+### Uninstallation
 
-Uninstallation is performed by using the Windows uninstaller (or deleting the extracted directory). The packages directory in `%HOME%/.julia` can be deleted if you would no longer like to retain the user installed packages. If you would also like to remove your preferences files, remove `%HOME%/.juliarc.jl` and `%HOME%/.julia_history`.
-
+Uninstallation is preferably performed by using the Windows uninstaller. The directory in `%HOME%/.julia` can then be deleted if you want to remove all traces of Julia (this includes user installed packages).
 
 
 ## macOS
