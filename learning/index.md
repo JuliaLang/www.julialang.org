@@ -30,6 +30,7 @@ The [Julia Language's YouTube channel](https://www.youtube.com/user/JuliaLanguag
 ## Text
 
 @@tight-list
+* [From zero to Julia!](https://techytok.com/from-zero-to-julia/) by [Aurelio Amerio](https://github.com/aurelio-amerio). An expanding series of short lessons about Julia, starting from beginner level and going up to deal with more advanced topics.
 *   [Julia Workshop for Physicists](https://github.com/crstnbr/JuliaOulu20) by [Carsten Bauer](https://github.com/crstnbr) (see also [JuliaWorkshop19](https://github.com/crstnbr/JuliaWorkshop19)).
 * [ThinkJulia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html)
 * [A Deep Introduction to Julia for Data Science and Scientific Computing](https://ucidatascienceinitiative.github.io/IntroToJulia/) by [Chris Rackauckas](https://chrisrackauckas.com/)
