@@ -13,10 +13,21 @@ Here are some possible projects:
 - ### Updated Documentation and Doc Testing
 
   DifferentialEquations.jl's documentation at [DiffEqDocs.jl](https://github.com/SciML/DiffEqDocs.jl) was one of the first [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) projects, and as such much of its internals are in dire need of updates. Notably, automated reference handling would fix issues with deadlinks that are not uncommon. Additionally, none of the examples run doc tests, and thus currently the organization relies on user issues to find out when to update the pages. Lastly, there are many requests for a PDF form of this documentation since many of the materials are only featured in this form, yet sadly there is currently no PDF builder associated with DiffEqDocs.jl even though Documenter.jl has recently gained this functionality.
-  
+
 - ### Conversion of READMEs to full Documentation
 
   There are many areas in the SciML which have READMEs but not full documentation. One prominent example is [DiffEqFlux.jl](https://github.com/SciML/DiffEqFlux.jl) which has had [multiple blog posts written on it](https://julialang.org/blog/2019/01/fluxdiffeq/) but still has just a README! Changing from the README to proper documentation, utilizing the same information but re-styling the writing into the proper tutorial and reference portions, would be a major win. Global sensitivity analysis is another area where it would be useful to restyle towards full documentation.
+
+- ### Unified Organization Documentation
+
+[SciML](https://sciml.ai/) is the scientific machine learning organization. However, its documentation is spread amongst many different fairly large packages:
+
+- [DifferentialEquations.jl](https://docs.sciml.ai/latest/)
+- [DiffEqFlux.jl](https://diffeqflux.sciml.ai/dev/)
+- [ModelingToolkit.jl](https://mtk.sciml.ai/dev/)
+- [Surrogates.jl](https://surrogates.sciml.ai/latest/)
+
+Just to name a few. One project would be to create a unified scientific machine learning documentation that would make it easy to move between all of these different package docs and understand the cohesive organization.
 
 - ### Tutorial Writing
 
