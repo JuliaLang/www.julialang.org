@@ -46,7 +46,6 @@ The [Julia Language's YouTube channel](https://www.youtube.com/user/JuliaLanguag
 @@tight-list
 * Tom Kwong. [Hands-on Design Patterns and Best Practices with Julia](https://www.packtpub.com/application-development/hands-design-patterns-julia-10).  Packt Publishing, January 2020.
 * Tanmay Bakshi. [Tanmay Teaches Julia for Beginners: A Springboard to Machine Learning for All Ages](https://www.mheducation.co.uk/tanmay-teaches-julia-for-beginners-a-springboard-to-machine-learning-for-all-ages-9781260456639-emea). McGraw Hill, November 2019.
-* Malcolm Sherrington. [Mastering Julia 1.0](https://www.packtpub.com/application-development/mastering-julia-10). Packt Publishing, November 2019.
 * Antonello Lobianco. [Julia Quick Syntax Reference](https://www.apress.com/gp/book/9781484251898). Apress, November 2019.
 * Bogumil Kaminski. [Julia プログラミングクックブック](https://www.oreilly.co.jp/books/9784873118895/). Japanese translation for Julia 1.2 by Hidemoto Nakada. Orairījapan, Tōkyo, October 2019.
 * Günter Faes. [Datenanalyse mit Julia: Einstieg in die Datenanalyse mit der Programmiersprache Julia](https://www.amazon.de/Datenanalyse-mit-Julia-Einstieg-Programmiersprache/dp/3749485089/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=Datenanalyse+mit+Julia&qid=1582912563&sr=8-3). Books on Demand, September 2019.
