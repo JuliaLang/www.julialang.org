@@ -67,7 +67,7 @@ Trackbacks:
 - [Phoronix](https://www.phoronix.com/scan.php?page=news_item&px=MTA2ODg)
 - [The Endeavor (John D. Cook)](https://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/)
 - [Walking Randomly (Mike Croucher)](http://www.walkingrandomly.com/?p=87)
-- [Douglas Bates](https://dmbates.blogspot.in/2012/03/julia-version-of-multinomial-sampler_12.html)
+- [Douglas Bates](https://www.r-bloggers.com/a-julia-version-of-the-multinomial-sampler-2/)
 - [Vince Buffalo](https://vincebuffalo.com/blog/2012/03/07/thoughts-on-julia-and-r.html)
 - [John Myles White](https://www.johnmyleswhite.com/notebook/2012/03/31/julia-i-love-you/)
 - [Habrahabr.ru (Russian)](https://habrahabr.ru/blogs/programming/138577/)
