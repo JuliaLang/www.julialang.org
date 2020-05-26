@@ -29,7 +29,7 @@ Build previews for each Pull Request are available at: https://julialang.netlify
 
 Start by installing Franklin: in Julia,
 
-```
+```julia
 julia> using Pkg; Pkg.add("Franklin")
 ```
 
@@ -37,7 +37,7 @@ julia> using Pkg; Pkg.add("Franklin")
 
 then, clone the repository, `cd` to  it and do
 
-```
+```julia
 julia> using Franklin
 
 julia> serve()
@@ -77,7 +77,7 @@ In order to add `<meta ... >` tags on your blog post, add
 
 or for multiple tags
 
-```
+```julia
 @def meta = [("prop11"=>"val11", "prop21"=>"val21"),
              ("prop12"=>"val12", "prop22"=>"val22")]
 ```
