@@ -249,7 +249,7 @@ The platforms currently supported by Julia are listed below. They are divided in
     </tr>
     <tr>
       <td rowspan="2"> Windows </td>
-      <td rowspan="2"> 7+ </td>
+      <td rowspan="2"> 10+ </td>
       <td> x86-64 (64-bit) </td>
       <td> Tier 1 </td>
     </tr>
