@@ -44,6 +44,7 @@ The [Julia Language's YouTube channel](https://www.youtube.com/user/JuliaLanguag
 ## Books
 
 @@tight-list
+* Zacharias Voulgaris. [Julia for Machine Learning](https://technicspub.com/julia/). Technics Publications, June 2020.
 * Tom Kwong. [Hands-on Design Patterns and Best Practices with Julia](https://www.packtpub.com/application-development/hands-design-patterns-julia-10).  Packt Publishing, January 2020.
 * Tanmay Bakshi. [Tanmay Teaches Julia for Beginners: A Springboard to Machine Learning for All Ages](https://www.mheducation.co.uk/tanmay-teaches-julia-for-beginners-a-springboard-to-machine-learning-for-all-ages-9781260456639-emea). McGraw Hill, November 2019.
 * Antonello Lobianco. [Julia Quick Syntax Reference](https://www.apress.com/gp/book/9781484251898). Apress, November 2019.
@@ -58,7 +59,6 @@ The [Julia Language's YouTube channel](https://www.youtube.com/user/JuliaLanguag
 * Adrian Salceanu. [Julia Programming Projects](https://www.packtpub.com/big-data-and-business-intelligence/julia-programming-projects). Packt Publishing, December 2018.
 * Przemysław Szufel and Bogumił Kamiński. [Julia 1.0 Programming Cookbook](https://www.packtpub.com/application-development/julia-10-programming-cookbook). Packt Publishing, November 2018.
 * Ivo Balbaert. [Julia 1.0 Programming](https://www.packtpub.com/application-development/julia-10-programming-second-edition). Packt Publishing, September 2018.
-* Zacharias Voulgaris. [Julia for Machine Learning](https://technicspub.com/julia/). Technics Publications, 2016.
 @@
 
 _Julia 1.0 was released on 8 August 2018_
