@@ -58,6 +58,7 @@ The [Julia Language's YouTube channel](https://www.youtube.com/user/JuliaLanguag
 * Adrian Salceanu. [Julia Programming Projects](https://www.packtpub.com/big-data-and-business-intelligence/julia-programming-projects). Packt Publishing, December 2018.
 * Przemysław Szufel and Bogumił Kamiński. [Julia 1.0 Programming Cookbook](https://www.packtpub.com/application-development/julia-10-programming-cookbook). Packt Publishing, November 2018.
 * Ivo Balbaert. [Julia 1.0 Programming](https://www.packtpub.com/application-development/julia-10-programming-second-edition). Packt Publishing, September 2018.
+* Zacharias Voulgaris. [Julia for Machine Learning](https://technicspub.com/julia/). Technics Publications, 2016.
 @@
 
 _Julia 1.0 was released on 8 August 2018_
