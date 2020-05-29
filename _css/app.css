@@ -302,37 +302,46 @@
 	color: #d91b35;
 }
 
-.footer-menu {
-  background-color: #394059;
-  color: #fff;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-}
-.footer-menu h6 {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-}
-.footer-menu ul.nav li a {
-  padding: 3px 0;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-size: 13px;
-  color: #fff;
-}
-
 .footer-copy {
-  background-color: #2C2F3E;
+  background-color: #2c2f3e;
   color: #fff;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  padding: 10px 0;
+  padding-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
 }
 .footer-copy p {
   padding: 0;
   margin: 0;
+}
+.footer-copy ul {
+  display: inline-block;
+  list-style: none;
+}
+.footer-copy ul a {
+  font-size: 95%;
+  color: #fff;
+}
+
+.footer-copy li:first-child a {
+  font-size: 110%;
+  font-weight: bold;
+  color: #7a95dd;
+}
+.footer-copy #footer-bottom {
+  font-size: 90%;
+}
+.footer-copy #footer-bottom a {
+  color: #7a95dd;
+}
+
+.footrow ul {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 800px) {
+  .footrow ul {
+    width: 20%;
+  }
 }
 
 h4.card-title {
@@ -412,10 +421,6 @@ h4.card-title {
 
 .link {
   color: #4D64AE;
-}
-
-.footer-menu-item {
-  margin-top: 30px;
 }
 
 #ecosystem-tab-content div.tab-pane {
@@ -504,10 +509,6 @@ h4 {
 
 a {
 	color: #005bc0;
-}
-
-.footer-heading{
-  color:#4D64AE;
 }
 
 
