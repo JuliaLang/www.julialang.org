@@ -209,3 +209,23 @@ The documentation has not kept pace with the development of the package; e.g. me
 We anticipate that there may be significant interest and adoption by new users at that time. For this reason, it will be crucial to have documentation that is up-to-date, correct, and usable, for both new users and as a reference.
 
 Furthermore, since there are now an increasing number of packages built on top of [`IntervalArithmetic.jl`](https://github.com/JuliaIntervals/IntervalArithmetic.jl) which will also be of interest to these users, a guide to both which package is suitable for which application and how to use them correctly is required.
+
+## Julia GPU programming
+
+Julia has several GPU back-ends, like CUDA.jl and AMDGPUnative.jl, that aim to provide a flexible and high-performance GPU programming environment in a high-level, productive programming language. These back-ends are organized under the JuliaGPU organization, with a landing page at https://juliagpu.org/. There are several possible projects to improve documentation for the JuliaGPU organization, guided by mentors [Tim Besard](https://github.com/maleadt) and [Valentin Churavy](https://github.com/vchuravy).
+
+- Landing page: the current landing page hosts a short blurb on each back-end, but for users to decide which back-end they should use it would need to better reflect the tradeoffs, hardware and software compatibility, maturity, etc.
+
+- GPU programming tutorials: to demonstrate Julia's GPU programming capabilities, a technical writer could work on tutorials that demonstrate common parallel programming patterns in Julia, and contrast that to GPU programming in the official toolkit languages (e.g. CUDA C) and/or other parallel programming possibilities that Julia has to offer (e.g. multithreaded programming). Example of such a tutorial: https://juliagpu.gitlab.io/CUDA.jl/tutorials/introduction/
+
+CUDA.jl is currently the most popular back-end of the JuliaGPU ecosystem, and its documentation can be significantly improved on several aspects:
+
+- High-level usage examples and documentation: CUDA.jl makes it possible to program GPUs using much higher-level programming paradigms than GPU programmers are used to, e.g. using arrays and higher-order abstractions. A technical writer could work on explaining these possibilities, the necessary tools and APIs, and how it relates to lower-level kernel programming.
+
+- Kernel programming documentation: CUDA.jl mimics CUDA C, but several of its APIs are slightly different than their C counterparts. The documentation should explain this, and list which CUDA features are or are not supported. A technical writer could work on this, possibly adding inline examples to demonstrate these features with actual examples.
+
+- API documentation: Many of CUDA's APIs are available in CUDA.jl via high-level wrappers, but that is not always obvious to users. The documentation of these wrappers should be checked for completeness, and presented in a structured manner so that users can easily consult it and do not need to consult the documentation of the underlying C APIs.
+
+### Potential impact 
+
+Julia's GPU programming capabilities are widely used, but users currently are all but required to already have GPU programming experience in order to know how to navigate the Julia GPU back-ends. Improving the technical documentation for the JuliaGPU organization and the CUDA.jl back-end would make it possible to skip this step, and make it possible for users to program GPUs without previous experience, greatly democratizing the ever-increasing compute capabilities that GPUs have to offer.
