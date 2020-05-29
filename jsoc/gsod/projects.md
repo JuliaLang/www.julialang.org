@@ -212,7 +212,7 @@ Furthermore, since there are now an increasing number of packages built on top o
 
 ## Julia GPU programming
 
-Julia has several GPU back-ends, like CUDA.jl and AMDGPUnative.jl, that aim to provide a flexible and high-performance GPU programming environment in a high-level, productive programming language. These back-ends are organized under the JuliaGPU organization, with a landing page at https://juliagpu.org/. There are several possible projects to improve documentation for the JuliaGPU organization:
+Julia has several GPU back-ends, like CUDA.jl and AMDGPUnative.jl, that aim to provide a flexible and high-performance GPU programming environment in a high-level, productive programming language. These back-ends are organized under the JuliaGPU organization, with a landing page at https://juliagpu.org/. There are several possible projects to improve documentation for the JuliaGPU organization, guided by mentors [Tim Besard](https://github.com/maleadt) and [Valentin Churavy](https://github.com/vchuravy).
 
 - Landing page: the current landing page hosts a short blurb on each back-end, but for users to decide which back-end they should use it would need to better reflect the tradeoffs, hardware and software compatibility, maturity, etc.
 
