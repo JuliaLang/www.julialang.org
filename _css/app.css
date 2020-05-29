@@ -162,7 +162,7 @@
   background-color: #CA3C32;
 }
 
-.ide, .blog, .video {
+.ide, .blog {
   background-color: #F2F2F2;
   border-left: 20px solid #fff;
   border-right: 20px solid #fff;
@@ -273,20 +273,7 @@
 }
 
 .video {
-  text-align: left;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  background-color: #fff;
-}
-.video img {
-  width: 100%;
-}
-.video h6 {
-  padding: 10px;
-  background-color: #F2F2F2;
-}
-.video a {
-  font-size: 14px;
+  padding: 20px;
 }
 
 .btn {
