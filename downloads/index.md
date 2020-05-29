@@ -273,7 +273,7 @@ The platforms currently supported by Julia are listed below. They are divided in
     <tr>
 
       <td> Nvidia PTX (64-bit) </td>
-      <td> Tier 1 <a href="https://github.com/JuliaGPU/CUDAnative.jl">(External)</a> </td>
+      <td> Tier 1 <a href="https://juliagpu.org">(JuliaGPU)</a> </td>
     </tr>
     <tr>
 
