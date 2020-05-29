@@ -64,9 +64,6 @@ function hfun_blogposts()
     # markdown conversion adds `<p>` beginning and end but
     # we want to  avoid this to avoid an empty separator
     r = Franklin.fd2html(String(take!(io)), internal=true)
-    startswith(r, "<p>")    && (r = chop(r, head=3))
-    endswith(r,   "</p>")   && return chop(r, tail=4)
-    endswith(r,   "</p>\n") && return chop(r, tail=5)
     return r
 end
 
