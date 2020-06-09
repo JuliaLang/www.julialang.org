@@ -363,26 +363,6 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
 </table>
 
 <br />
-
-<h2>Julia + Juno IDE bundles (v0.3.12)</h2>
-<table class="downloads table table-hover table-bordered">
-  <tbody>
-  <tr>
-    <th> Windows (7+) </th>
-    <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-windows-x32.zip">32-bit</a> </td>
-    <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-windows-x64.zip">64-bit</a> </td>
-  </tr>
-  <tr>
-    <th> macOS (10.8+)</th>
-    <td colspan="2"> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-mac-x64.dmg">64-bit</a> </td>
-  </tr>
-  <tr>
-    <th> Linux </th>
-    <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-linux-x32.zip">32-bit</a> </td>
-    <td> <a href="https://junolab.s3.amazonaws.com/release/1.0.3/juno-linux-x64.zip">64-bit</a> </td>
-  </tr>
-  </tbody>
-</table>
 ~~~
 
 ## v0.2.1 (Feb 11, 2014)
