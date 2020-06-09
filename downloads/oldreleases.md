@@ -384,11 +384,11 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
   <tr>
       <th> Windows (.zip) </th>
       <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.1/julia0.1.2-WINNT-i686+Git.zip">32-bit</a> </td>
-      <td> 64-bit (Unavailable) </td>
+      <td> </td>
   </tr>
   <tr>
       <th> macOS (.dmg) </th>
-      <td>32-bit (Unavailable)</td>
+      <td> </td>
       <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.1/julia-0.1.2-mac64.dmg">64-bit</a> </td>
   </tr>
   <tr>
