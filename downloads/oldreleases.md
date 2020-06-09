@@ -314,10 +314,6 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x64/0.4/julia-0.4.7-linux-x86_64.tar.gz">64-bit</a> (<a href="https://julialang-s3.julialang.org/bin/linux/x64/0.4/julia-0.4.7-linux-x86_64.tar.gz.asc">GPG</a>)</td>
   </tr>
   <tr>
-      <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
-      <td colspan="6"> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia/">32/64-bit</a> </td>
-  </tr>
-  <tr>
       <th> Source </th>
       <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.7/julia-0.4.7.tar.gz">Tarball</a> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.7/julia-0.4.7.tar.gz.asc">GPG</a>) </td>
       <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v0.4.7/julia-0.4.7-full.tar.gz">Tarball with dependencies</a><br> (<a href="https://github.com/JuliaLang/julia/releases/download/v0.4.7/julia-0.4.7-full.tar.gz.asc">GPG</a>) </td>
@@ -340,14 +336,6 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
   <tr>
       <th> macOS Package (.dmg) </th>
       <td colspan="2"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.3/julia-0.3.12-mac64.dmg">10.7+ 64-bit</a> </td>
-  </tr>
-  <tr>
-      <th> Ubuntu packages (.deb) </th>
-      <td colspan="2"> <a href="https://launchpad.net/~staticfloat/+archive/juliareleases">32/64-bit</a> </td>
-  </tr>
-  <tr>
-      <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
-      <td colspan="2"> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia/">32/64-bit</a> </td>
   </tr>
   <tr>
       <th> Generic Linux binaries </th>
@@ -378,10 +366,6 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
   <tr>
       <th> macOS Package (.dmg) </th>
       <td colspan="2"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.2/julia-0.2.1-mac64.dmg">10.7+ 64-bit</a> </td>
-  </tr>
-  <tr>
-      <th> Ubuntu packages (.deb) </th>
-      <td colspan="2"> <a href="https://launchpad.net/~staticfloat/+archive/juliareleases">32/64-bit</a> </td>
   </tr>
   <tr>
       <th> Source </th>
