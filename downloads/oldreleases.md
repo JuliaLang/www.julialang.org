@@ -17,7 +17,7 @@ nor maintained anymore.
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.3/julia-1.3.1-win64.exe">64-bit</a> </td>
     </tr>
     <tr>
-      <th> macOS 10.8+ (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
+      <th> macOS (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
       <td colspan="3"> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.3/julia-1.3.1-mac64.dmg">64-bit</a> </td>
     </tr>
@@ -71,7 +71,7 @@ nor maintained anymore.
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.2/julia-1.2.0-win64.exe">64-bit</a> </td>
     </tr>
     <tr>
-      <th> macOS 10.8+ (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
+      <th> macOS (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
       <td colspan="3"> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.2/julia-1.2.0-mac64.dmg">64-bit</a> </td>
     </tr>
@@ -125,7 +125,7 @@ nor maintained anymore.
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.1/julia-1.1.1-win64.exe">64-bit</a> </td>
     </tr>
     <tr>
-      <th> macOS 10.8+ (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
+      <th> macOS (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
       <td colspan="3"> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.1/julia-1.1.1-mac64.dmg">64-bit</a> </td>
     </tr>
@@ -176,12 +176,12 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
 <table class="downloads table table-hover  table-bordered">
   <tbody>
     <tr>
-      <th> Windows Self-Extracting Archive (.exe) <a href="/downloads/platform/#windows">[help]</a></th>
+      <th> Windows (.exe) <a href="/downloads/platform/#windows">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.7/julia-0.7.0-win32.exe">32-bit</a> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/0.7/julia-0.7.0-win64.exe">64-bit</a> </td>
     </tr>
       <tr>
-      <th> macOS 10.8+ Package (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
+      <th> macOS (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
       <td colspan="3"> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.7/julia-0.7.0-mac64.dmg">64-bit</a> </td>
     </tr>
@@ -223,12 +223,12 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
 <table class="downloads table table-hover table-bordered">
   <tbody>
   <tr>
-    <th> Windows Self-Extracting Archive (.exe) <a href="/downloads/platform/#windows">[help]</a></th>
+    <th> Windows (.exe) <a href="/downloads/platform/#windows">[help]</a></th>
     <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.6/julia-0.6.4-win32.exe">32-bit</a> </td>
     <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/0.6/julia-0.6.4-win64.exe">64-bit</a> </td>
   </tr>
   <tr>
-    <th> macOS Package (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
+    <th> macOS (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
     <td colspan="6"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.6/julia-0.6.4-mac64.dmg">10.8+ 64-bit</a> </td>
   </tr>
   <tr>
@@ -266,12 +266,12 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
 <table class="downloads table table-hover table-bordered">
 <tbody>
   <tr>
-      <th> Windows Self-Extracting Archive (.exe) </th>
+      <th> Windows (.exe) </th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.5/julia-0.5.2-win32.exe">32-bit</a> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/0.5/julia-0.5.2-win64.exe">64-bit</a> </td>
   </tr>
   <tr>
-      <th> macOS Package (.dmg) </th>
+      <th> macOS (.dmg) </th>
       <td colspan="6"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.5/julia-0.5.2-mac64.dmg">10.8+ 64-bit</a> </td>
   </tr>
   <tr>
@@ -300,12 +300,12 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
 <table class="downloads table table-hover table-bordered">
 <tbody>
   <tr>
-      <th> Windows Self-Extracting Archive (.exe) </th>
+      <th> Windows (.exe) </th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.4/julia-0.4.7-win32.exe">32-bit</a> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/0.4/julia-0.4.7-win64.exe">64-bit</a> </td>
   </tr>
   <tr>
-      <th> macOS Package (.dmg) </th>
+      <th> macOS (.dmg) </th>
       <td colspan="6"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.4/julia-0.4.7-mac64.dmg">10.7+ 64-bit</a> </td>
   </tr>
   <tr>
@@ -329,12 +329,12 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
 <table class="downloads table table-hover table-bordered">
   <tbody>
   <tr>
-      <th> Windows Self-Extracting Archive (.exe) </th>
+      <th> Windows (.exe) </th>
       <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.3/julia-0.3.12-win32.exe">32-bit</a> </td>
       <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/0.3/julia-0.3.12-win64.exe">64-bit</a> </td>
   </tr>
   <tr>
-      <th> macOS Package (.dmg) </th>
+      <th> macOS (.dmg) </th>
       <td colspan="2"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.3/julia-0.3.12-mac64.dmg">10.7+ 64-bit</a> </td>
   </tr>
   <tr>
@@ -359,12 +359,12 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
 <table class="downloads table table-hover table-bordered">
   <tbody>
   <tr>
-      <th> Windows Self-Extracting Archive (.exe) </th>
+      <th> Windows (.exe) </th>
       <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.2/julia-0.2.1-win32.exe">32-bit</a> </td>
       <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/0.2/julia-0.2.1-win64.exe">64-bit</a> </td>
   </tr>
   <tr>
-      <th> macOS Package (.dmg) </th>
+      <th> macOS (.dmg) </th>
       <td colspan="2"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.2/julia-0.2.1-mac64.dmg">10.7+ 64-bit</a> </td>
   </tr>
   <tr>
@@ -382,12 +382,12 @@ Julia v0.7.0 is a transitional release, intended to aid users in transitioning f
 <table class="downloads table table-hover table-bordered">
   <tbody>
   <tr>
-      <th> Windows Archive (.zip) </th>
+      <th> Windows (.zip) </th>
       <td> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/0.1/julia0.1.2-WINNT-i686+Git.zip">32-bit</a> </td>
       <td> 64-bit (Unavailable) </td>
   </tr>
   <tr>
-      <th> macOS Package (.dmg) </th>
+      <th> macOS (.dmg) </th>
       <td>32-bit (Unavailable)</td>
       <td> <a href="https://julialang-s3.julialang.org/bin/mac/x64/0.1/julia-0.1.2-mac64.dmg">64-bit</a> </td>
   </tr>
