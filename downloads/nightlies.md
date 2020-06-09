@@ -32,10 +32,6 @@ Most users are advised to use the latest official release version of Julia.
       <td colspan="2"> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linuxaarch64.tar.gz">64-bit (AArch64)</a> </td>
   </tr>
   <tr>
-      <th> Fedora/RHEL/CentOS/SL packages (.rpm) </th>
-      <td colspan="2"> <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia-nightlies/">32/64-bit</a> </td>
-  </tr>
-  <tr>
       <th> Source </th>
       <td colspan="2"> <a href="https://github.com/JuliaLang/julia">GitHub</a> </td>
   </tr>
