@@ -64,6 +64,7 @@ We welcome additions to this list in the form of [pull requests](https://github.
 ## 2019
 
 @@tight-list
+* **PDFIO: PDF Reader Library for native Julia**. Sambit Dash. (2019) _Journal of Open Source Software_. doi: [10.21105/joss.01453](https://doi.org/10.21105%2Fjoss.01453) Package: [PDFIO.jl](https://github.com/sambitdash/PDFIO.jl)
 * **Fast objective coupled planar illumination microscopy**. Cody Greer, Timothy E. Holy. (2019) _Nature Communications_, 10.1. doi: [10.1038/s41467-019-12340-0](https://dx.doi.org/10.1038/s41467-019-12340-0). url: <https://www.nature.com/articles/s41467-019-12340-0>. Package: [FastScanningAndDPI](https://github.com/HolyLab/FastScanningAndDPI).
 * **Sensory coding mechanisms revealed by optical tagging of physiologically defined neuronal types**. Donghoon Lee, Maiko Kume, Timothy E. Holy. (2019) _Science_, 366.6471. doi: [10.1126/science.aax8055](https://dx.doi.org/10.1126/science.aax8055). url: <https://science.sciencemag.org/content/366/6471/1384.abstract>. Packages: [BlockRegistration.jl](https://github.com/HolyLab/BlockRegistration.jl), [BlockRegistrationScheduler.jl](https://github.com/HolyLab/BlockRegistrationScheduler.jl).
 * **A highly accurate pixel-based FRAP model based on spectral-domain numerical methods**. M. Röding, L. Lacroix, A. Krona, T. Gebäck, N. Lorén. (2019) _Biophysical Journal_, 116: 1348–1361. doi: [10.1016/j.bpj.2019.02.023](https://dx.doi.org/10.1016/j.bpj.2019.02.023).
