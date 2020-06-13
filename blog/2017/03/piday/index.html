@@ -21,8 +21,8 @@ setprecision(<span class=hljs-built_in >BigFloat</span>, <span class=hljs-number
 
 <span class=hljs-literal >true</span></code></pre> <h2 id=pi_via_inline_assembly_instructions ><a href="#pi_via_inline_assembly_instructions">&pi; via inline assembly instructions</a></h2> <p>by <a href="https://github.com/simonbyrne">Simon Byrne</a></p> <p>Julia provides a very low-level <code>llvmcall</code> interface, which allows the user to directly write <a href="https://llvm.org/docs/LangRef.html">LLVM intermediate representation</a>, including the use of inline assembly. The following snippet calls the <code>fldpi</code> instruction &#40;&quot;<strong>f</strong>loating point <strong>l</strong>oa<strong>d</strong> <strong>pi</strong>&quot;&#41; which loads the constant &pi; onto the floating point register stack &#40;this works only on x86 and x86_64 architectures&#41;</p> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> asm_pi()
     Base.llvmcall(
-    <span class=hljs-string >""" %pi = call double asm "fldpi", "={st}"()
-        ret double %pi"""</span>,
+    <span class=hljs-string >&quot;&quot;&quot; %pi = call double asm &quot;fldpi&quot;, &quot;={st}&quot;()
+        ret double %pi&quot;&quot;&quot;</span>,
     <span class=hljs-built_in >Float64</span>, <span class=hljs-built_in >Tuple</span>{})
 <span class=hljs-keyword >end</span>
 
@@ -256,7 +256,7 @@ Interval(<span class=hljs-number >0.1111111111111111</span>, <span class=hljs-nu
 <pre><code class="julia hljs">f(x) = √(<span class=hljs-number >4</span> - x^<span class=hljs-number >2</span>)
 
 f (generic <span class=hljs-keyword >function</span> with <span class=hljs-number >1</span> method)</code></pre>
-<pre><code class="julia hljs">plot(f, <span class=hljs-number >0</span>, <span class=hljs-number >2</span>, aspect_ratio=:equal, fill=(<span class=hljs-number >0</span>, :orange), alpha=<span class=hljs-number >0.2</span>, label=<span class=hljs-string >""</span>)</code></pre>
+<pre><code class="julia hljs">plot(f, <span class=hljs-number >0</span>, <span class=hljs-number >2</span>, aspect_ratio=:equal, fill=(<span class=hljs-number >0</span>, :orange), alpha=<span class=hljs-number >0.2</span>, label=<span class=hljs-string >&quot;&quot;</span>)</code></pre>
 
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width=600  height=400  viewBox="0 0 600 400">
@@ -404,8 +404,8 @@ p = plot(aspect_ratio=:equal)
 <span class=hljs-keyword >for</span> X <span class=hljs-keyword >in</span> intervals
     Y = f(X)
 
-    plot!(IntervalBox(X, Interval(<span class=hljs-number >0</span>, Y.lo)), c=:blue, label=<span class=hljs-string >""</span>, alpha=<span class=hljs-number >0.1</span>)
-    plot!(IntervalBox(X, Interval(Y.lo, Y.hi)), c=:red, label=<span class=hljs-string >""</span>, alpha=<span class=hljs-number >0.1</span>)
+    plot!(IntervalBox(X, Interval(<span class=hljs-number >0</span>, Y.lo)), c=:blue, label=<span class=hljs-string >&quot;&quot;</span>, alpha=<span class=hljs-number >0.1</span>)
+    plot!(IntervalBox(X, Interval(Y.lo, Y.hi)), c=:red, label=<span class=hljs-string >&quot;&quot;</span>, alpha=<span class=hljs-number >0.1</span>)
 <span class=hljs-keyword >end</span>
 
 plot!(f, <span class=hljs-number >0</span>, <span class=hljs-number >2</span>)
@@ -919,12 +919,12 @@ Interval(<span class=hljs-number >3.0284648797549782</span>, <span class=hljs-nu
 <p>As we increase the number of sub-intervals, the approximation gets better and better:</p>
 <pre><code class="julia hljs">setdisplay(:standard, sigfigs=<span class=hljs-number >5</span>)
 
-println(<span class=hljs-string >"N \t area interval \t \t diameter"</span>)
+println(<span class=hljs-string >&quot;N \t area interval \t \t diameter&quot;</span>)
 <span class=hljs-keyword >for</span> N <span class=hljs-keyword >in</span> <span class=hljs-number >50</span>:<span class=hljs-number >50</span>:<span class=hljs-number >1000</span>
     intervals = make_intervals(N)
     area = (<span class=hljs-number >2</span>/N) * sum(√(<span class=hljs-number >4</span> - X^<span class=hljs-number >2</span>) <span class=hljs-keyword >for</span> X <span class=hljs-keyword >in</span> intervals)
 
-    println(<span class=hljs-string >"<span class=hljs-variable >$N</span> \t <span class=hljs-variable >$area</span> \t <span class=hljs-subst >$(diam(area)</span>)"</span>)
+    println(<span class=hljs-string >&quot;<span class=hljs-variable >$N</span> \t <span class=hljs-variable >$area</span> \t <span class=hljs-subst >$(diam(area)</span>)&quot;</span>)
 <span class=hljs-keyword >end</span>
 
 N 	 area interval 	 	 diameter
@@ -996,6 +996,7 @@ N 	 area interval 	 	 diameter
         <li><a href="/community/#official_channels">Official Channels</a>
         <li><a href="/community/standards/">Code of Conduct</a>
         <li><a href="/community/#events">Events</a>
+        <li><a href="https://shop.spreadshirt.com/numfocus/official+julia+logo?idea=5bca3ad9f93764414a5de55f">Shop Merchandise</a>
       </ul>
       <ul>
         <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>

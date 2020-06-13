@@ -117,13 +117,13 @@ X = f(tmp7)</code></pre>
 <p>Although other languages have also implemented similar <code>broadcast</code> semantics, Julia is unusual in being able to support such operations for <em>arbitrary</em> user-defined functions and types with <em>performance comparable to hand-written C</em> loops, even though its <code>broadcast</code> function is written <em>entirely in Julia</em> with no special support from the compiler.   This not only requires efficient compilation and higher-order inlining as mentioned above, but also the ability to <a href="/blog/2016/02/iteration/">efficiently iterate over arrays of arbitrary dimensionalities</a> determined at compile-time for each caller.</p>
 <h3 id=not_just_numbers ><a href="#not_just_numbers">Not just numbers</a></h3>
 <p>Although the examples above were all for numeric computations, in fact neither the <code>broadcast</code> function nor the dot-call fusion syntax is limited to numeric data.  For example:</p>
-<pre><code class="julia hljs">julia&gt; s = [<span class=hljs-string >"The QUICK Brown"</span>, <span class=hljs-string >"fox     jumped"</span>, <span class=hljs-string >"over the LAZY dog."</span>];
+<pre><code class="julia hljs">julia&gt; s = [<span class=hljs-string >&quot;The QUICK Brown&quot;</span>, <span class=hljs-string >&quot;fox     jumped&quot;</span>, <span class=hljs-string >&quot;over the LAZY dog.&quot;</span>];
 
-julia&gt; s .= replace.(lowercase.(s), <span class=hljs-string >r"\s+"</span>, <span class=hljs-string >"-"</span>)
+julia&gt; s .= replace.(lowercase.(s), <span class=hljs-string >r&quot;\s+&quot;</span>, <span class=hljs-string >&quot;-&quot;</span>)
 <span class=hljs-number >3</span>-element <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >String</span>,<span class=hljs-number >1</span>}:
- <span class=hljs-string >"the-quick-brown"</span>   
- <span class=hljs-string >"fox-jumped"</span>        
- <span class=hljs-string >"over-the-lazy-dog."</span></code></pre>
+ <span class=hljs-string >&quot;the-quick-brown&quot;</span>   
+ <span class=hljs-string >&quot;fox-jumped&quot;</span>        
+ <span class=hljs-string >&quot;over-the-lazy-dog.&quot;</span></code></pre>
 <p>Here, we take an array <code>s</code> of strings, we convert each string to lower case, and then we replace any sequence of whitespace &#40;the <a href="https://docs.julialang.org/en/latest/manual/strings.html#Regular-Expressions-1">regular expression</a> <code>r&quot;\s&#43;&quot;</code>&#41; with a hyphen <code>&quot;-&quot;</code>.  Since these two dot calls are nested, they are fused into a single loop over <code>s</code> and are written in-place in <code>s</code> thanks to the <code>s .&#61; ...</code> &#40;temporary <em>strings</em> are allocated in this process, but not temporary <em>arrays</em> of strings&#41;.   Furthermore, notice that the arguments <code>r&quot;\s&#43;&quot;</code> and <code>&quot;-&quot;</code> are treated as &quot;scalars&quot; and are &quot;broadcasted&quot; to every element of <code>s</code>.</p>
 <p>The general rule &#40;starting in Julia 0.6&#41; is that, in <code>broadcast</code>, arguments of <em>any type</em> are <em>treated as scalars by default</em>.  The main exceptions are arrays &#40;subtypes of <code>AbstractArray</code>&#41; and tuples, which are treated as containers and are iterated over.  &#40;If you define your own container type that is not a subtype of <code>AbstractArray</code>, you can tell <code>broadcast</code> to treat it as a container to be iterated over by overloading <code>Base.Broadcast.containertype</code> and a couple of other functions.&#41;</p>
 <h3 id=not_just_containers ><a href="#not_just_containers">Not just containers</a></h3>
@@ -184,6 +184,7 @@ julia&gt; s .= replace.(lowercase.(s), <span class=hljs-string >r"\s+"</span>, <
         <li><a href="/community/#official_channels">Official Channels</a>
         <li><a href="/community/standards/">Code of Conduct</a>
         <li><a href="/community/#events">Events</a>
+        <li><a href="https://shop.spreadshirt.com/numfocus/official+julia+logo?idea=5bca3ad9f93764414a5de55f">Shop Merchandise</a>
       </ul>
       <ul>
         <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>

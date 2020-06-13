@@ -42,7 +42,7 @@ julia&gt; f([<span class=hljs-number >1</span>,<span class=hljs-number >2</span>
     tic()
     put = blackscholes(sptprice, initStrike, rate, volatility, time)
     t = toq()
-    println(<span class=hljs-string >"checksum: "</span>, sum(put))
+    println(<span class=hljs-string >&quot;checksum: &quot;</span>, sum(put))
     <span class=hljs-keyword >return</span> t
 <span class=hljs-keyword >end</span></code></pre> <p>Here, the <code>blackscholes</code> function takes five arguments, each of which is an array of <code>Float64</code>s. The <code>run</code> function initializes these five arrays and passes them to <code>blackscholes</code>, which, along with the <code>cndf2</code> &#40;cumulative normal distribution&#41; function that it calls, does several computations involving pointwise addition &#40;<code>.&#43;</code>&#41;, subtraction &#40;<code>.-</code>&#41;, multiplication &#40;<code>.*</code>&#41;, and division &#40;<code>./</code>&#41; on the arrays. It&#39;s not necessary to understand the details of the Black-Scholes formula; the important thing to notice about the code is that we are doing lots of pointwise array arithmetic. Using Julia 0.4.4-pre on a 4-core Ubuntu 14.04 desktop machine with 8 GB of memory, the <code>run</code> function takes about 11 seconds to run when called with an argument of 40,000,000 &#40;meaning that we are dealing with 40-million-element arrays&#41;:</p> <pre><code class="julia hljs">julia&gt; <span class=hljs-meta >@time</span> run(<span class=hljs-number >40_000_000</span>)
 checksum: <span class=hljs-number >8.381928525856283e8</span>
@@ -213,6 +213,7 @@ sys	<span class=hljs-number >0</span>m0<span class=hljs-number >.874</span>s</co
         <li><a href="/community/#official_channels">Official Channels</a>
         <li><a href="/community/standards/">Code of Conduct</a>
         <li><a href="/community/#events">Events</a>
+        <li><a href="https://shop.spreadshirt.com/numfocus/official+julia+logo?idea=5bca3ad9f93764414a5de55f">Shop Merchandise</a>
       </ul>
       <ul>
         <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>

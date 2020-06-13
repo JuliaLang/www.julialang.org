@@ -19,7 +19,7 @@ $ time ./fib
 real    0m0.723s
 user    0m0.717s
 sys     0m0.003s
-$ instruments -t <span class=hljs-string >"Time Profiler"</span> ./fib
+$ instruments -t <span class=hljs-string >&quot;Time Profiler&quot;</span> ./fib
 Instruments Trace Complete: instrumentscli0.trace
 $ open instrumentscli0.trace</code></pre>
 <p>In <code>Instruments.app</code>, this does quite well, except for one peculiar combination of options.</p>
@@ -37,7 +37,7 @@ $ perf record --call-graph dwarf ./a.out
 <pre><code class="bash hljs">$ perf report --stdio --call-graph=none
 <span class=hljs-comment ># Total Lost Samples: 0</span>
 <span class=hljs-comment >#</span>
-<span class=hljs-comment ># Samples: 4K of event 'cycles:uppp'</span>
+<span class=hljs-comment ># Samples: 4K of event &#x27;cycles:uppp&#x27;</span>
 <span class=hljs-comment ># Event count (approx.): 3344003009</span>
 <span class=hljs-comment >#</span>
 <span class=hljs-comment ># Children      Self  Command  Shared Object     Symbol</span>
@@ -53,7 +53,7 @@ $ perf record --call-graph dwarf ./a.out
 <pre><code class="bash hljs">$ perf report --stdio --call-graph=none
 <span class=hljs-comment ># Total Lost Samples: 0</span>
 <span class=hljs-comment >#</span>
-<span class=hljs-comment ># Samples: 4K of event 'cycles:uppp'</span>
+<span class=hljs-comment ># Samples: 4K of event &#x27;cycles:uppp&#x27;</span>
 <span class=hljs-comment ># Event count (approx.): 2752040208</span>
 <span class=hljs-comment >#</span>
 <span class=hljs-comment ># Children      Self  Command  Shared Object     Symbol</span>
@@ -98,7 +98,7 @@ $ perf record --call-graph dwarf ./a.out
 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Profile.print(format=:tree)
 </span>260 REPL[1]:2; fib(::Int64)
 112 REPL[1]:1; fib_r(::Int64)
-212 task.jl:333; REPL.var"##26#27"
+212 task.jl:333; REPL.var&quot;##26#27&quot;
  212 REPL.jl:118; macro expansion
   212 REPL.jl:86; eval_user_input
    212 boot.jl:330; eval
@@ -191,9 +191,9 @@ index cf339d8a4b..f6e9c08e2c 100644
 <span class=hljs-comment >--- a/src/jitlayers.cpp</span>
 <span class=hljs-comment >+++ b/src/jitlayers.cpp</span>
 <span class=hljs-meta >@@ -3,9 +3,7 @@</span>
- #include "llvm-version.h"
- #include "platform.h"
- #include "options.h"
+ #include &quot;llvm-version.h&quot;
+ #include &quot;platform.h&quot;
+ #include &quot;options.h&quot;
 <span class=hljs-deletion >-#if defined(_OS_WINDOWS_) || defined(_OS_FREEBSD_)</span>
  #  define JL_DISABLE_FPO
 <span class=hljs-deletion >-#endif</span>
@@ -256,7 +256,7 @@ Showing nodes accounting <span class=hljs-keyword >for</span> 632, 100% of 632 t
 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Profile.print(format=:tree, recur=:flat)
 </span>94  ./REPL[1]:1; fib_r(::Int64)
 260 ./REPL[2]:2; fib(::Int64)
-275 ./task.jl:333; (::REPL.var"##26#27"{REPL.REPLBackend})()
+275 ./task.jl:333; (::REPL.var&quot;##26#27&quot;{REPL.REPLBackend})()
  275 ./REPL.jl:118; macro expansion
   275 ./REPL.jl:86; eval_user_input(::Any, ::REPL.REPLBackend)
    275 ./boot.jl:330; eval(::Module, ::Any)
@@ -350,6 +350,7 @@ end</code></pre>
         <li><a href="/community/#official_channels">Official Channels</a>
         <li><a href="/community/standards/">Code of Conduct</a>
         <li><a href="/community/#events">Events</a>
+        <li><a href="https://shop.spreadshirt.com/numfocus/official+julia+logo?idea=5bca3ad9f93764414a5de55f">Shop Merchandise</a>
       </ul>
       <ul>
         <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>

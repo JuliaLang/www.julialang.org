@@ -2,9 +2,9 @@
 <span class=hljs-keyword >using</span> Cairo
 <span class=hljs-keyword >using</span> Tk
 
-win = Toplevel(<span class=hljs-string >"Test"</span>, <span class=hljs-number >400</span>, <span class=hljs-number >200</span>)
+win = Toplevel(<span class=hljs-string >&quot;Test&quot;</span>, <span class=hljs-number >400</span>, <span class=hljs-number >200</span>)
 c = Canvas(win)
-pack(c, expand=<span class=hljs-literal >true</span>, fill=<span class=hljs-string >"both"</span>)</code></pre> <p>We&#39;ve created a window 400 pixels wide and 200 pixels high. <code>c</code> is our Canvas, a type defined in the <code>Tk</code> package. Later we&#39;ll dig into the internals a bit, but for now suffice it to say that a Canvas is a multi-component object that you can often treat as a black box. The initial call creating the canvas leaves a lot of its fields undefined, because you don&#39;t yet know crucial details like the size of the canvas. The call to <code>pack</code> specifies that this canvas fills the entire window, and simultaneously fills in the missing information in the Canvas object itself.</p> <p>Note that the window is currently blank, because we haven&#39;t drawn anything to it yet, so you can see whatever was lying underneath. In my case it captured a small region of my desktop:</p> <p><img src="/assets/blog/GUI_figures/cairo_example2.jpg?raw&#61;true" alt="cairo snapshot" /></p> <p>Now let&#39;s do some drawing. Cairo doesn&#39;t know anything about Tk Canvases, so we have to pull out the part of it that works directly with Cairo:</p> <pre><code class="julia hljs">ctx = getgc(c)</code></pre>
+pack(c, expand=<span class=hljs-literal >true</span>, fill=<span class=hljs-string >&quot;both&quot;</span>)</code></pre> <p>We&#39;ve created a window 400 pixels wide and 200 pixels high. <code>c</code> is our Canvas, a type defined in the <code>Tk</code> package. Later we&#39;ll dig into the internals a bit, but for now suffice it to say that a Canvas is a multi-component object that you can often treat as a black box. The initial call creating the canvas leaves a lot of its fields undefined, because you don&#39;t yet know crucial details like the size of the canvas. The call to <code>pack</code> specifies that this canvas fills the entire window, and simultaneously fills in the missing information in the Canvas object itself.</p> <p>Note that the window is currently blank, because we haven&#39;t drawn anything to it yet, so you can see whatever was lying underneath. In my case it captured a small region of my desktop:</p> <p><img src="/assets/blog/GUI_figures/cairo_example2.jpg?raw&#61;true" alt="cairo snapshot" /></p> <p>Now let&#39;s do some drawing. Cairo doesn&#39;t know anything about Tk Canvases, so we have to pull out the part of it that works directly with Cairo:</p> <pre><code class="julia hljs">ctx = getgc(c)</code></pre>
 <code>getgc</code> means &quot;get graphics context,&quot; returning an object &#40;here <code>ctx</code>&#41; that holds all relevant information about the current state of drawing to this canvas.</p>
 <p>One nice feature of Cairo is that the coordinates are abstracted; ultimately we care about screen pixels, but we can set up <em>user coordinates</em> that have whatever scaling is natural to the problem. We just have to tell Cairo how to convert user coordinates to <em>device</em> &#40;screen&#41; coordinates. We set up a coordinate system using <code>set_coords</code>, defined in <code>base/graphics.jl</code>:</p>
 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> set_coords(ctx::GraphicsContext, x, y, w, h, l, r, t, b)</code></pre>
@@ -42,8 +42,8 @@ Tk.update()</code></pre>
 <p>Images are rendered in Cairo inside a <code>rectangle</code> &#40;controlling placement of the image&#41; followed by <code>fill</code>. So far this is just like the simple drawing above. The difference is the <em>source</em>, which now will be a <em>surface</em> instead of an RGB color. If you&#39;re drawing from Julia, chances are that you want to display an in-memory array. The main trick is that Cairo requires this array to be a matrix of type <code>Uint32</code> encoding the color. The scheme is that the least significant byte is the blue value &#40;ranging from <code>0x00</code> to <code>0xff</code>&#41;, the next is green, and the next red. &#40;The most significant byte can encode the alpha value, or transparency, if you specify that transparency is to be used in your image surface.&#41;</p>
 <p>Both <code>Winston</code> and <code>Images</code> can generate a buffer of <code>Uint32</code> for you. Let&#39;s try the one in <code>Images</code>:</p>
 <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Images
-img = imread(<span class=hljs-string >"some_photo.jpg"</span>)
-buf = uint32color(img)'
+img = imread(<span class=hljs-string >&quot;some_photo.jpg&quot;</span>)
+buf = uint32color(img)&#x27;
 image(ctx, CairoRGBSurface(buf), <span class=hljs-number >0</span>, <span class=hljs-number >0</span>, <span class=hljs-number >10</span>, <span class=hljs-number >10</span>)
 reveal(c)
 Tk.update()</code></pre>
@@ -79,9 +79,9 @@ c.mouse.button1press = (c, x, y) -&gt; rubberband_start(c, x, y, selectiondonefu
 <code>rubberband_start</code>, a function defined in <code>rubberband.jl</code>, will now be called whenever the user presses the left mouse button. <code>selectiondonefunc</code> is a callback that we supply; it will be executed when the user releases the mouse button, and it needs to implement whatever it is we want to achieve with the selected region &#40;in this case, a zoom operation&#41;. Part of what <code>rubberband_start</code> does is to bind <code>selectiondonefunc</code> to the release of the mouse button, via <code>c.mouse.button1release</code>. <code>bb</code> is a <code>BoundingBox</code> &#40;a type defined in <code>base/graphics.jl</code>&#41; that will store the region selected by the user, and this gets passed to <code>selectiondonefunc</code>. &#40;The first two inputs to <code>zoombb</code>, <code>imgc</code> and <code>img2</code>, store settings that are relevant to this particular GUI but will not be described in detail here.&#41;</p>
 <p>The <code>mouse</code> inside a <code>Canvas</code> is an object of type <code>MouseHandler</code>, which has fields for <code>press</code> and <code>release</code> of all 3 mouse buttons and additional ones for motion. However, a few cases &#40;which happen to be relevant to this GUI&#41; are not available in <code>MouseHandler</code>. Here are some examples of how to configure these actions:</p>
 <pre><code class="julia hljs"><span class=hljs-comment ># Bind double-clicks</span>
-bind(c.c, <span class=hljs-string >"&lt;Double-Button-1&gt;"</span>, (path,x,y)-&gt;zoom_reset(imgc, img2))
+bind(c.c, <span class=hljs-string >&quot;&lt;Double-Button-1&gt;&quot;</span>, (path,x,y)-&gt;zoom_reset(imgc, img2))
 <span class=hljs-comment ># Bind Shift-scroll (using the wheel mouse)</span>
-bindwheel(c.c, <span class=hljs-string >"Shift"</span>, (path,delta)-&gt;panhorz(imgc,img2,int(delta)))</code></pre>
+bindwheel(c.c, <span class=hljs-string >&quot;Shift&quot;</span>, (path,delta)-&gt;panhorz(imgc,img2,int(delta)))</code></pre>
 <p>The <code>delta</code> argument for the wheel mouse will encode the direction of scrolling.</p>
 <h3 id=the_rubber_band_region_selection ><a href="#the_rubber_band_region_selection">The rubber band &#40;region selection&#41;</a></h3>
 <p>Support for the rubber band is provided in the file <code>rubberband.jl</code>. Like <code>navigation.jl</code>, this is a stand-alone set of functions that you should be able to incorporate into other projects. It draws a dashed rectangle employing the same machinery we described at the top of this page, with slight modifications to create the dashes &#40;through the <code>set_dash</code> function&#41;. By now, this should all be fairly straightforward.</p>
@@ -103,25 +103,25 @@ bindwheel(c.c, <span class=hljs-string >"Shift"</span>, (path,delta)-&gt;panhorz
 <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Tk
 <span class=hljs-keyword >using</span> Winston
 
-win = Toplevel(<span class=hljs-string >"Testing"</span>, <span class=hljs-number >400</span>, <span class=hljs-number >200</span>)
+win = Toplevel(<span class=hljs-string >&quot;Testing&quot;</span>, <span class=hljs-number >400</span>, <span class=hljs-number >200</span>)
 fwin = Frame(win)
-pack(fwin, expand=<span class=hljs-literal >true</span>, fill=<span class=hljs-string >"both"</span>)</code></pre>
+pack(fwin, expand=<span class=hljs-literal >true</span>, fill=<span class=hljs-string >&quot;both&quot;</span>)</code></pre>
 <p>We chose to fill the entire window with a frame <code>fwin</code>, so that everything inside this GUI will have a consistent background. All other objects will be placed inside <code>fwin</code>.</p>
 <p>Next, let&#39;s set up the elements, a Canvas on the left and a single button on the right:</p>
 <pre><code class="julia hljs">c = Canvas(fwin, <span class=hljs-number >300</span>, <span class=hljs-number >200</span>)
-grid(c, <span class=hljs-number >1</span>, <span class=hljs-number >1</span>, sticky=<span class=hljs-string >"nsew"</span>)
+grid(c, <span class=hljs-number >1</span>, <span class=hljs-number >1</span>, sticky=<span class=hljs-string >&quot;nsew&quot;</span>)
 fctrls = Frame(fwin)
-grid(fctrls, <span class=hljs-number >1</span>, <span class=hljs-number >2</span>, sticky=<span class=hljs-string >"sw"</span>, pady=<span class=hljs-number >5</span>, padx=<span class=hljs-number >5</span>)
+grid(fctrls, <span class=hljs-number >1</span>, <span class=hljs-number >2</span>, sticky=<span class=hljs-string >&quot;sw&quot;</span>, pady=<span class=hljs-number >5</span>, padx=<span class=hljs-number >5</span>)
 grid_columnconfigure(fwin, <span class=hljs-number >1</span>, weight=<span class=hljs-number >1</span>)
 grid_rowconfigure(fwin, <span class=hljs-number >1</span>, weight=<span class=hljs-number >1</span>)
 
-ok = Button(fctrls, <span class=hljs-string >"OK"</span>)
+ok = Button(fctrls, <span class=hljs-string >&quot;OK&quot;</span>)
 grid(ok, <span class=hljs-number >1</span>, <span class=hljs-number >1</span>)</code></pre>
 <p>Finally, let&#39;s plot something inside the Canvas:</p>
 <pre><code class="julia hljs">x = linspace(<span class=hljs-number >0.0</span>,<span class=hljs-number >10.0</span>,<span class=hljs-number >1001</span>)
 y = sin(x)
 p = FramedPlot()
-add(p, Curve(x, y, <span class=hljs-string >"color"</span>, <span class=hljs-string >"red"</span>))
+add(p, Curve(x, y, <span class=hljs-string >&quot;color&quot;</span>, <span class=hljs-string >&quot;red&quot;</span>))
 
 Winston.display(c, p)
 reveal(c)
@@ -175,6 +175,7 @@ Tk.update()</code></pre>
         <li><a href="/community/#official_channels">Official Channels</a>
         <li><a href="/community/standards/">Code of Conduct</a>
         <li><a href="/community/#events">Events</a>
+        <li><a href="https://shop.spreadshirt.com/numfocus/official+julia+logo?idea=5bca3ad9f93764414a5de55f">Shop Merchandise</a>
       </ul>
       <ul>
         <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>

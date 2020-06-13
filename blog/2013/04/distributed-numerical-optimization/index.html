@@ -9,7 +9,7 @@ state, subproblems = initialize()
     results = cell(n)
     i = <span class=hljs-number >1</span>
     <span class=hljs-comment ># function to produce the next work item from the queue.</span>
-    <span class=hljs-comment ># in this case it's just an index.</span>
+    <span class=hljs-comment ># in this case it&#x27;s just an index.</span>
     next_idx() = (idx=i; i+=<span class=hljs-number >1</span>; idx)
     <span class=hljs-meta >@sync</span> <span class=hljs-keyword >begin</span>
         <span class=hljs-keyword >for</span> p=<span class=hljs-number >1</span>:np
@@ -59,7 +59,7 @@ isconverged() = converged
             <span class=hljs-meta >@spawnlocal</span> <span class=hljs-keyword >begin</span>
                 <span class=hljs-keyword >while</span> !isconverged()
                     <span class=hljs-keyword >if</span> length(subproblems) == <span class=hljs-number >0</span>
-                        <span class=hljs-comment ># no more subproblems but haven't converged yet</span>
+                        <span class=hljs-comment ># no more subproblems but haven&#x27;t converged yet</span>
                         yield()
                         <span class=hljs-keyword >continue</span>
                     <span class=hljs-keyword >end</span>
@@ -134,7 +134,7 @@ scaling observed with 20 workers is likely a system artifact.
 <p>There are a few more hoops to jump through in order to run on EC2. First we must build a system image &#40;AMI&#41; with Julia installed. Julia connects to workers over ssh, so I found it useful to put my EC2 ssh key on the AMI and also set <code>StrictHostKeyChecking no</code> in <code>/etc/ssh/ssh_config</code> to disable the authenticity prompt when connecting to new workers. Someone will likely correct me on if this is the right approach.</p>
 <p>Assuming we have an AMI in place, we can fire up the instances. I used an m3.xlarge instance for the master and m1.medium instances for the workers. &#40;Note: you can save a lot of money by using the spot market.&#41;</p>
 <p>To add remote workers on startup, Julia accepts a file with a list of host names through the <code>--machinefile</code> option. We can generate this easily enough by using the EC2 API Tools &#40;Ubuntu package <code>ec2-api-tools</code>&#41; with the command</p>
-<pre><code class="julia hljs">ec2-describe-instances | grep running | awk '{ print $<span class=hljs-number >5</span>; }' &gt; mfile</code></pre>
+<pre><code class="julia hljs">ec2-describe-instances | grep running | awk &#x27;{ print $<span class=hljs-number >5</span>; }&#x27; &gt; mfile</code></pre>
 <p>On the master instance we can then run</p>
 <pre><code class="julia hljs">julia --machinefile mfile runatr.jl Data/storm <span class=hljs-number >4000</span> <span class=hljs-number >0.6</span> <span class=hljs-number >30</span></code></pre>
 <p>Results from various runs are presented in the table below.</p>
@@ -233,6 +233,7 @@ master process is run on an m3.xlarge instance.
         <li><a href="/community/#official_channels">Official Channels</a>
         <li><a href="/community/standards/">Code of Conduct</a>
         <li><a href="/community/#events">Events</a>
+        <li><a href="https://shop.spreadshirt.com/numfocus/official+julia+logo?idea=5bca3ad9f93764414a5de55f">Shop Merchandise</a>
       </ul>
       <ul>
         <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>

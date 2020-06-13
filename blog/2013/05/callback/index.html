@@ -174,10 +174,10 @@ gsl_minimizer_xmax(m::GSL_Minimizer) =
 <pre><code class="julia hljs">m = GSL_Minimizer()
 gsl_minimizer_set!(m, sin, -<span class=hljs-number >1</span>, -<span class=hljs-number >3</span>, <span class=hljs-number >1</span>)
 <span class=hljs-keyword >while</span> gsl_minimizer_xmax(m) - gsl_minimizer_xmin(m) &gt; <span class=hljs-number >1e-6</span>
-    println(<span class=hljs-string >"iterating at x = <span class=hljs-subst >$(gsl_minimizer_x(m)</span>)"</span>)
+    println(<span class=hljs-string >&quot;iterating at x = <span class=hljs-subst >$(gsl_minimizer_x(m)</span>)&quot;</span>)
     gsl_minimizer_iterate!(m)
 <span class=hljs-keyword >end</span>
-println(<span class=hljs-string >"found minimum <span class=hljs-subst >$(gsl_minimizer_f(m)</span>) at x = <span class=hljs-subst >$(gsl_minimizer_x(m)</span>)"</span>)</code></pre>
+println(<span class=hljs-string >&quot;found minimum <span class=hljs-subst >$(gsl_minimizer_f(m)</span>) at x = <span class=hljs-subst >$(gsl_minimizer_x(m)</span>)&quot;</span>)</code></pre>
 <p>After a few iterations, it prints <code>found minimum -1.0 at x &#61;
 -1.5707963269964016</code>, which is the correct minimum &#40;&minus;&pi;/2&#41; to about 10 digits.</p>
 <p>At this point, I will shamelessly plug my own <a href="https://github.com/stevengj/NLopt.jl">NLopt package</a> for Julia, which wraps around my free/open-source <a href="https://nlopt.readthedocs.io/en/latest/">NLopt</a> library to provide many more optimization algorithms than GSL, with perhaps a nicer interface.   However, the techniques used to pass callback functions to NLopt are actually quite similar to those used for GSL.</p>
@@ -225,6 +225,7 @@ println(<span class=hljs-string >"found minimum <span class=hljs-subst >$(gsl_mi
         <li><a href="/community/#official_channels">Official Channels</a>
         <li><a href="/community/standards/">Code of Conduct</a>
         <li><a href="/community/#events">Events</a>
+        <li><a href="https://shop.spreadshirt.com/numfocus/official+julia+logo?idea=5bca3ad9f93764414a5de55f">Shop Merchandise</a>
       </ul>
       <ul>
         <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>

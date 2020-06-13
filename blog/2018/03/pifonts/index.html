@@ -2,20 +2,20 @@
 </span>π = 3.1415926535897...</code></pre> <p>and you can use it freely in expressions:</p> <pre><code class="julia hljs"><span class=hljs-meta >@test</span> kepler_solver.([<span class=hljs-literal >π</span>/<span class=hljs-number >4</span>, <span class=hljs-literal >π</span>/<span class=hljs-number >6</span>, <span class=hljs-number >8</span><span class=hljs-literal >π</span>/<span class=hljs-number >3</span>], <span class=hljs-number >0</span>) ≈ [<span class=hljs-literal >π</span>/<span class=hljs-number >4</span>, <span class=hljs-literal >π</span>/<span class=hljs-number >6</span>, <span class=hljs-number >2</span><span class=hljs-literal >π</span>/<span class=hljs-number >3</span>]</code></pre>
 <p>&#40;although <code>pi</code> will still work, if you&#39;d prefer&#41;. In Julia version 0.7, π and other mathematical constants such as Euler&#39;s ℯ &#40;2.7182818284590&#41; live in the <code>Base.MathConstants</code> module.</p>
 <p>As always in Julia, you can usually see how the magic is performed:</p>
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Base.REPLCompletions.latex_symbols[<span class=hljs-string >"\\pi"</span>]
-</span>"π"</code></pre>
+<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Base.REPLCompletions.latex_symbols[<span class=hljs-string >&quot;\\pi&quot;</span>]
+</span>&quot;π&quot;</code></pre>
 <h3 id="more_π"><a href="#more_π">More π</a></h3>
 <p>We usually use the <code>U&#43;03C0</code> π from the Unicode block for Greek and Coptic text glyphs &#40;Coptic was the Greek-based script adopted by the Egyptians to replace hieroglyphs&#41;, but there are other π symbols intended mainly for mathematical use. The following snippet of Julia code tries to show all the lower-case Unicode π symbols:</p>
 <pre><code class="julia hljs">morepi = [
-(<span class=hljs-number >0x3c0</span>,    <span class=hljs-string >"\\pi"</span>,           <span class=hljs-string >"GREEK SMALL LETTER PI"</span>)
-(<span class=hljs-number >0x213c</span>,   <span class=hljs-string >"\\bbpi"</span>,         <span class=hljs-string >"DOUBLE-STRUCK SMALL PI"</span>) <span class=hljs-comment ># v0.7</span>
-(<span class=hljs-number >0x1d6d1</span>,  <span class=hljs-string >"\\mbfpi"</span>,        <span class=hljs-string >"MATHEMATICAL BOLD SMALL PI"</span>)
-(<span class=hljs-number >0x1D70B</span>,  <span class=hljs-string >"\\mitpi"</span>,        <span class=hljs-string >"MATHEMATICAL ITALIC SMALL PI"</span>)
-(<span class=hljs-number >0x1d745</span>,  <span class=hljs-string >"\\mbfitpi"</span>,      <span class=hljs-string >"MATHEMATICAL BOLD ITALIC SMALL PI"</span>)
-(<span class=hljs-number >0x1d77f</span>,  <span class=hljs-string >"\\bsanspi"</span>,      <span class=hljs-string >"MATHEMATICAL SANS-SERIF BOLD SMALL PI"</span>) <span class=hljs-comment ># v0.7</span>
-(<span class=hljs-number >0x1d7b9</span>,   <span class=hljs-string >"\\mbfitsanspi"</span>, <span class=hljs-string >"MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL PI"</span>)];
+(<span class=hljs-number >0x3c0</span>,    <span class=hljs-string >&quot;\\pi&quot;</span>,           <span class=hljs-string >&quot;GREEK SMALL LETTER PI&quot;</span>)
+(<span class=hljs-number >0x213c</span>,   <span class=hljs-string >&quot;\\bbpi&quot;</span>,         <span class=hljs-string >&quot;DOUBLE-STRUCK SMALL PI&quot;</span>) <span class=hljs-comment ># v0.7</span>
+(<span class=hljs-number >0x1d6d1</span>,  <span class=hljs-string >&quot;\\mbfpi&quot;</span>,        <span class=hljs-string >&quot;MATHEMATICAL BOLD SMALL PI&quot;</span>)
+(<span class=hljs-number >0x1D70B</span>,  <span class=hljs-string >&quot;\\mitpi&quot;</span>,        <span class=hljs-string >&quot;MATHEMATICAL ITALIC SMALL PI&quot;</span>)
+(<span class=hljs-number >0x1d745</span>,  <span class=hljs-string >&quot;\\mbfitpi&quot;</span>,      <span class=hljs-string >&quot;MATHEMATICAL BOLD ITALIC SMALL PI&quot;</span>)
+(<span class=hljs-number >0x1d77f</span>,  <span class=hljs-string >&quot;\\bsanspi&quot;</span>,      <span class=hljs-string >&quot;MATHEMATICAL SANS-SERIF BOLD SMALL PI&quot;</span>) <span class=hljs-comment ># v0.7</span>
+(<span class=hljs-number >0x1d7b9</span>,   <span class=hljs-string >&quot;\\mbfitsanspi&quot;</span>, <span class=hljs-string >&quot;MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL PI&quot;</span>)];
 
-foreach(p -&gt; println(<span class=hljs-string >" <span class=hljs-subst >$(<span class=hljs-built_in >Char</span>(p[<span class=hljs-number >1</span>])</span>) U+<span class=hljs-subst >$(lpad(hex(p[<span class=hljs-number >1</span>])</span>, 5, "0</span><span class=hljs-string >")) <span class=hljs-subst >$(rpad(p[<span class=hljs-number >2</span>], <span class=hljs-number >15</span>)</span>) <span class=hljs-subst >$(p[<span class=hljs-number >3</span>])</span>"</span>), morepi)</code></pre>
+foreach(p -&gt; println(<span class=hljs-string >&quot; <span class=hljs-subst >$(<span class=hljs-built_in >Char</span>(p[<span class=hljs-number >1</span>])</span>) U+<span class=hljs-subst >$(lpad(hex(p[<span class=hljs-number >1</span>])</span>, 5, &quot;0</span><span class=hljs-string >&quot;)) <span class=hljs-subst >$(rpad(p[<span class=hljs-number >2</span>], <span class=hljs-number >15</span>)</span>) <span class=hljs-subst >$(p[<span class=hljs-number >3</span>])</span>&quot;</span>), morepi)</code></pre>
 <p>The two tab completions commented as <code>v0.7</code> have been added for Julia version 0.7.</p>
 <p>The output you see will depend a lot on your computer, operating system, and various other settings. This is a good introduction to the adventure game that is the Wonderful World of Fonts. Here, for example, is what I see if I evaluate this snippet in my Julia REPL today &#40;version 0.6.2&#41;, using the Terminal app on macOS:</p>
 <p><img src="/assets/blog/2018-04-13-pifonts/terminal-1.png" alt="Terminal app before" /></p>
@@ -42,12 +42,12 @@ foreach(p -&gt; println(<span class=hljs-string >" <span class=hljs-subst >$(<sp
 <span class=hljs-keyword >function</span> buildfontlist()
     fonts = []
     <span class=hljs-keyword >for</span> font <span class=hljs-keyword >in</span> Fontconfig.list()
-        families = Fontconfig.format(font, <span class=hljs-string >"%{family}"</span>)
-        <span class=hljs-keyword >for</span> family <span class=hljs-keyword >in</span> split(families, <span class=hljs-string >","</span>)
+        families = Fontconfig.format(font, <span class=hljs-string >&quot;%{family}&quot;</span>)
+        <span class=hljs-keyword >for</span> family <span class=hljs-keyword >in</span> split(families, <span class=hljs-string >&quot;,&quot;</span>)
             push!(fonts, family)
         <span class=hljs-keyword >end</span>
     <span class=hljs-keyword >end</span>
-    filter!(f -&gt; !ismatch(<span class=hljs-string >r".LastResort|Agenda|Topaz|Bodoni Ornaments|System"</span>,
+    filter!(f -&gt; !ismatch(<span class=hljs-string >r&quot;.LastResort|Agenda|Topaz|Bodoni Ornaments|System&quot;</span>,
         f), fonts)
     <span class=hljs-keyword >return</span> sort(unique(fonts))
 <span class=hljs-keyword >end</span>
@@ -57,19 +57,19 @@ foreach(p -&gt; println(<span class=hljs-string >" <span class=hljs-subst >$(<sp
     ncols = <span class=hljs-number >25</span>
     nrows = convert(<span class=hljs-built_in >Int</span>, ceil(length(fonts))) ÷ ncols
     <span class=hljs-meta >@svg</span> <span class=hljs-keyword >begin</span>
-        background(<span class=hljs-string >"ivory"</span>)
+        background(<span class=hljs-string >&quot;ivory&quot;</span>)
         setopacity(<span class=hljs-number >1</span>)
         t = Table(nrows, ncols, <span class=hljs-number >30</span>, <span class=hljs-number >25</span>)
-        sethue(<span class=hljs-string >"black"</span>)
+        sethue(<span class=hljs-string >&quot;black&quot;</span>)
         cellnumber = <span class=hljs-number >1</span>
         <span class=hljs-keyword >for</span> n <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:length(fonts)
             fontface(fonts[n])
-            te = textextents(<span class=hljs-string >"π"</span>)
+            te = textextents(<span class=hljs-string >&quot;π&quot;</span>)
             <span class=hljs-keyword >if</span> te[<span class=hljs-number >3</span>] &gt; <span class=hljs-number >0.0</span>
                 fontsize(<span class=hljs-number >18</span>)
-                text(<span class=hljs-string >"π"</span>, t[cellnumber], halign=:center)
-                setfont(<span class=hljs-string >"Lucida-Sans"</span>, <span class=hljs-number >3</span>)
-                settext(fonts[n], t[cellnumber] + (<span class=hljs-number >0</span>, isodd(cellnumber) ? <span class=hljs-number >6</span> : <span class=hljs-number >10</span>), halign=<span class=hljs-string >"center"</span>)
+                text(<span class=hljs-string >&quot;π&quot;</span>, t[cellnumber], halign=:center)
+                setfont(<span class=hljs-string >&quot;Lucida-Sans&quot;</span>, <span class=hljs-number >3</span>)
+                settext(fonts[n], t[cellnumber] + (<span class=hljs-number >0</span>, isodd(cellnumber) ? <span class=hljs-number >6</span> : <span class=hljs-number >10</span>), halign=<span class=hljs-string >&quot;center&quot;</span>)
                 cellnumber += <span class=hljs-number >1</span>
             <span class=hljs-keyword >end</span>
         <span class=hljs-keyword >end</span>
@@ -99,16 +99,16 @@ tabulatepi()</code></pre>
 <span class=hljs-keyword >function</span> accumulatepi()
     fonts = buildfontlist()
     <span class=hljs-meta >@png</span> <span class=hljs-keyword >begin</span>
-        background(<span class=hljs-string >"midnightblue"</span>)
-        sethue(<span class=hljs-string >"lightgoldenrod2"</span>)
+        background(<span class=hljs-string >&quot;midnightblue&quot;</span>)
+        sethue(<span class=hljs-string >&quot;lightgoldenrod2&quot;</span>)
         setline(<span class=hljs-number >0.2</span>)
         fontsize(<span class=hljs-number >560</span>)
         setopacity(<span class=hljs-number >0.3</span>)
         <span class=hljs-keyword >for</span> n <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:length(fonts)
             fontface(fonts[n])
-            te = textextents(<span class=hljs-string >"π"</span>)
+            te = textextents(<span class=hljs-string >&quot;π&quot;</span>)
             <span class=hljs-keyword >if</span> te[<span class=hljs-number >3</span>] &gt; <span class=hljs-number >0.0</span>
-                textstroke(<span class=hljs-string >"π"</span>, O, :stroke)
+                textstroke(<span class=hljs-string >&quot;π&quot;</span>, O, :stroke)
             <span class=hljs-keyword >end</span>
         <span class=hljs-keyword >end</span>
     <span class=hljs-keyword >end</span>
@@ -160,6 +160,7 @@ accumulatepi()</code></pre>
         <li><a href="/community/#official_channels">Official Channels</a>
         <li><a href="/community/standards/">Code of Conduct</a>
         <li><a href="/community/#events">Events</a>
+        <li><a href="https://shop.spreadshirt.com/numfocus/official+julia+logo?idea=5bca3ad9f93764414a5de55f">Shop Merchandise</a>
       </ul>
       <ul>
         <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>

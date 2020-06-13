@@ -1,17 +1,17 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta http-equiv=content-type  content="text/html; charset=utf-8" /> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." /> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."/> <meta property="og:title" content="The Julia Language"/> <meta property="og:image" content="/assets/images/julia-open-graph.png"/> <meta property="og:description" content="Official website for the Julia programming language"/> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css" /> <link rel=stylesheet  href="/css/app.css" /> <link rel=stylesheet  href="/css/franklin.css" /> <link rel=stylesheet  href="/css/fonts.css" /> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Put This In Your Pipe</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Put This In Your Pipe <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 8 April 2013 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://karpinski.org/">Stefan Karpinski</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/04/put-this-in-your-pipe.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>In a <a href="/blog/2012/03/shelling-out-sucks/">previous post</a>, I talked about why &quot;shelling out&quot; to spawn a pipeline of external programs via an intermediate shell is a common cause of bugs, security holes, unnecessary overhead, and silent failures. But it&#39;s so convenient&#33; Why can&#39;t running pipelines of external programs be convenient <em>and</em> safe? Well, there&#39;s no real reason, actually. The shell itself manages to construct and execute pipelines quite well. In principle, there&#39;s nothing stopping high-level languages from doing it at least as well as shells do – the common ones just don&#39;t by default, instead requiring users to make the extra effort to use external programs safely and correctly. There are two major impediments:</p> <ul> <li><p>Some moderately tricky low-level UNIX plumbing using the <a href="https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/pipe.2.html"><code>pipe</code></a>, <a href="https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/dup2.2.html"><code>dup2</code></a>, <a href="https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/fork.2.html"><code>fork</code></a>, <a href="https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/close.2.html"><code>close</code></a>, and <a href="https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/execve.2.html"><code>exec</code></a> system calls;</p> <li><p>The UX problem of designing an easy, flexible programming interface for commands and pipelines.</p> </ul> <p>This post describes the system we designed and implemented for Julia, and how it avoids the major flaws of shelling out in other languages. First, I&#39;ll present the Julia version of the previous post&#39;s example – counting the number of lines in a given directory containing the string &quot;foo&quot;. The fact that Julia provides complete, specific diagnostic error messages when pipelines fail turns out to reveal a surprising and subtle bug, lurking in what appears to be a perfectly innocuous UNIX pipeline. After fixing this bug, we go into details of how Julia&#39;s external command execution and pipeline construction system actually works, and why it provides greater flexibility and safety than the traditional approach of using an intermediate shell to do all the heavy lifting.</p> <h2 id=simple_pipeline_subtle_bug ><a href="#simple_pipeline_subtle_bug">Simple Pipeline, Subtle Bug</a></h2> <p>Here&#39;s how you write the example of counting the number of lines in a directory containing the string &quot;foo&quot; in Julia &#40;you can follow along at home if you have Julia installed from source by changing directories into the Julia source directory and doing <code>cp -a src &quot;source code&quot;; mkdir tmp</code> and then firing up the Julia repl&#41;:</p> <pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >"src"</span>;
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta http-equiv=content-type  content="text/html; charset=utf-8" /> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al." /> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."/> <meta property="og:title" content="The Julia Language"/> <meta property="og:image" content="/assets/images/julia-open-graph.png"/> <meta property="og:description" content="Official website for the Julia programming language"/> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css" /> <link rel=stylesheet  href="/css/app.css" /> <link rel=stylesheet  href="/css/franklin.css" /> <link rel=stylesheet  href="/css/fonts.css" /> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Put This In Your Pipe</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Put This In Your Pipe <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 8 April 2013 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://karpinski.org/">Stefan Karpinski</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/04/put-this-in-your-pipe.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>In a <a href="/blog/2012/03/shelling-out-sucks/">previous post</a>, I talked about why &quot;shelling out&quot; to spawn a pipeline of external programs via an intermediate shell is a common cause of bugs, security holes, unnecessary overhead, and silent failures. But it&#39;s so convenient&#33; Why can&#39;t running pipelines of external programs be convenient <em>and</em> safe? Well, there&#39;s no real reason, actually. The shell itself manages to construct and execute pipelines quite well. In principle, there&#39;s nothing stopping high-level languages from doing it at least as well as shells do – the common ones just don&#39;t by default, instead requiring users to make the extra effort to use external programs safely and correctly. There are two major impediments:</p> <ul> <li><p>Some moderately tricky low-level UNIX plumbing using the <a href="https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/pipe.2.html"><code>pipe</code></a>, <a href="https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/dup2.2.html"><code>dup2</code></a>, <a href="https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/fork.2.html"><code>fork</code></a>, <a href="https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/close.2.html"><code>close</code></a>, and <a href="https://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man2/execve.2.html"><code>exec</code></a> system calls;</p> <li><p>The UX problem of designing an easy, flexible programming interface for commands and pipelines.</p> </ul> <p>This post describes the system we designed and implemented for Julia, and how it avoids the major flaws of shelling out in other languages. First, I&#39;ll present the Julia version of the previous post&#39;s example – counting the number of lines in a given directory containing the string &quot;foo&quot;. The fact that Julia provides complete, specific diagnostic error messages when pipelines fail turns out to reveal a surprising and subtle bug, lurking in what appears to be a perfectly innocuous UNIX pipeline. After fixing this bug, we go into details of how Julia&#39;s external command execution and pipeline construction system actually works, and why it provides greater flexibility and safety than the traditional approach of using an intermediate shell to do all the heavy lifting.</p> <h2 id=simple_pipeline_subtle_bug ><a href="#simple_pipeline_subtle_bug">Simple Pipeline, Subtle Bug</a></h2> <p>Here&#39;s how you write the example of counting the number of lines in a directory containing the string &quot;foo&quot; in Julia &#40;you can follow along at home if you have Julia installed from source by changing directories into the Julia source directory and doing <code>cp -a src &quot;source code&quot;; mkdir tmp</code> and then firing up the Julia repl&#41;:</p> <pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >&quot;src&quot;</span>;
 
 julia&gt; int(readchomp(<span class=hljs-string >`find <span class=hljs-variable >$dir</span> -type f -print0`</span> |&gt; <span class=hljs-string >`xargs -0 grep foo`</span> |&gt; <span class=hljs-string >`wc -l`</span>))
 <span class=hljs-number >5</span></code></pre> <p>This Julia command looks suspiciously similar to the naïve Ruby version we started with in the previous post:</p> <pre><code class="ruby hljs"><span class=hljs-string >`find <span class=hljs-subst >#{dir}</span> -type f -print0 | xargs -0 grep foo | wc -l`</span>.to_i</code></pre>
 <p>However, it isn&#39;t susceptible to the same problems:</p>
-<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >"source code"</span>;
+<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >&quot;source code&quot;</span>;
 
 julia&gt; int(readchomp(<span class=hljs-string >`find <span class=hljs-variable >$dir</span> -type f -print0`</span> |&gt; <span class=hljs-string >`xargs -0 grep foo`</span> |&gt; <span class=hljs-string >`wc -l`</span>))
 <span class=hljs-number >5</span>
 
-julia&gt; dir = <span class=hljs-string >"nonexistent"</span>;
+julia&gt; dir = <span class=hljs-string >&quot;nonexistent&quot;</span>;
 
 julia&gt; int(readchomp(<span class=hljs-string >`find <span class=hljs-variable >$dir</span> -type f -print0`</span> |&gt; <span class=hljs-string >`xargs -0 grep foo`</span> |&gt; <span class=hljs-string >`wc -l`</span>))
-find: <span class=hljs-string >`nonexistent': No such file or directory
+find: <span class=hljs-string >`nonexistent&#x27;: No such file or directory
 ERROR: failed processes:
   Process(`</span>find nonexistent -<span class=hljs-keyword >type</span> f -print0<span class=hljs-string >`, ProcessExited(1)) [1]
   Process(`</span>xargs -<span class=hljs-number >0</span> grep foo<span class=hljs-string >`, ProcessExited(123)) [123]
@@ -19,12 +19,12 @@ ERROR: failed processes:
  in readall at process.jl:365
  in readchomp at io.jl:172
 
-julia&gt; dir = "foo'; echo MALICIOUS ATTACK; echo '";
+julia&gt; dir = &quot;foo&#x27;; echo MALICIOUS ATTACK; echo &#x27;&quot;;
 
 julia&gt; int(readchomp(`</span>find $dir -<span class=hljs-keyword >type</span> f -print0<span class=hljs-string >` |&gt; `</span>xargs -<span class=hljs-number >0</span> grep foo<span class=hljs-string >` |&gt; `</span>wc -l<span class=hljs-string >`))
-find: `</span>foo\'; echo MALICIOUS ATTACK; echo \'': No such file or directory
+find: `</span>foo\&#x27;; echo MALICIOUS ATTACK; echo \&#x27;&#x27;: No such file or directory
 ERROR: failed processes:
-  Process(<span class=hljs-string >`find "foo'; echo MALICIOUS ATTACK; echo '" -type f -print0`</span>, ProcessExited(<span class=hljs-number >1</span>)) [<span class=hljs-number >1</span>]
+  Process(<span class=hljs-string >`find &quot;foo&#x27;; echo MALICIOUS ATTACK; echo &#x27;&quot; -type f -print0`</span>, ProcessExited(<span class=hljs-number >1</span>)) [<span class=hljs-number >1</span>]
   Process(<span class=hljs-string >`xargs -0 grep foo`</span>, ProcessExited(<span class=hljs-number >123</span>)) [<span class=hljs-number >123</span>]
  <span class=hljs-keyword >in</span> pipeline_error at process.jl:<span class=hljs-number >412</span>
  <span class=hljs-keyword >in</span> readall at process.jl:<span class=hljs-number >365</span>
@@ -55,7 +55,7 @@ ERROR: failed processes:
 julia&gt; success(<span class=hljs-string >`echo bar`</span> |&gt; <span class=hljs-string >`grep foo`</span>)
 <span class=hljs-literal >false</span></code></pre>
 <p>Now we know why <code>grep</code> is &quot;failing&quot; – and <code>xargs</code> too, since it returns a non-zero status if the program it runs returns non-zero. This means that our Julia pipeline and the &quot;responsible&quot; Ruby version are both susceptible to bogus failures when we search an existing directory that happens not to contain the string &quot;foo&quot; anywhere:</p>
-<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >"tmp"</span>;
+<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >&quot;tmp&quot;</span>;
 
 julia&gt; int(readchomp(<span class=hljs-string >`find <span class=hljs-variable >$dir</span> -type f -print0`</span> |&gt; <span class=hljs-string >`xargs -0 grep foo`</span> |&gt; <span class=hljs-string >`wc -l`</span>))
 ERROR: failed process: Process(<span class=hljs-string >`xargs -0 grep foo`</span>, ProcessExited(<span class=hljs-number >123</span>)) [<span class=hljs-number >123</span>]
@@ -65,7 +65,7 @@ ERROR: failed process: Process(<span class=hljs-string >`xargs -0 grep foo`</spa
  <span class=hljs-keyword >in</span> readall at process.jl:<span class=hljs-number >365</span>
  <span class=hljs-keyword >in</span> readchomp at io.jl:<span class=hljs-number >172</span></code></pre>
 <p>Since <code>grep</code> indicates not finding anything using a non-zero return status, the <code>readall</code> function concludes that its pipeline failed and raises an error to that effect. In this case, this default behavior is undesirable: we want the expression to just return <code>0</code> without raising an error. The simple fix in Julia is this:</p>
-<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >"tmp"</span>;
+<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >&quot;tmp&quot;</span>;
 
 julia&gt; int(readchomp(<span class=hljs-string >`find <span class=hljs-variable >$dir</span> -type f -print0`</span> |&gt; ignorestatus(<span class=hljs-string >`xargs -0 grep foo`</span>) |&gt; <span class=hljs-string >`wc -l`</span>))
 <span class=hljs-number >0</span></code></pre>
@@ -79,10 +79,10 @@ julia&gt; typeof(ans)
 <span class=hljs-built_in >Cmd</span></code></pre>
 <p>&#40;In the Julia repl, <code>ans</code> is automatically bound to the value of the last evaluated input.&#41; In order to actually run a command, you have to <em>do</em> something with a command object. To run a command and capture its output into a string – what other languages do with backticks automatically – you can apply the <code>readall</code> function:</p>
 <pre><code class="julia hljs">julia&gt; readall(<span class=hljs-string >`echo Hello`</span>)
-<span class=hljs-string >"Hello\n"</span></code></pre>
+<span class=hljs-string >&quot;Hello\n&quot;</span></code></pre>
 <p>Since it&#39;s very common to want to discard the trailing line break at the end of a command&#39;s output, Julia provides the <code>readchomp&#40;x&#41;</code> command which is equivalent to writing <code>chomp&#40;readall&#40;x&#41;&#41;</code>:</p>
 <pre><code class="julia hljs">julia&gt; readchomp(<span class=hljs-string >`echo Hello`</span>)
-<span class=hljs-string >"Hello"</span></code></pre>
+<span class=hljs-string >&quot;Hello&quot;</span></code></pre>
 <p>To run a command without capturing its output, letting it just print to the same <code>stdout</code> stream as the main process – i.e. what the <code>system</code> function does when given a command as a string in other languages – use the <code>run</code> function:</p>
 <pre><code class="julia hljs">julia&gt; run(<span class=hljs-string >`echo Hello`</span>)
 Hello</code></pre>
@@ -110,92 +110,92 @@ ERROR: failed process: Process(<span class=hljs-string >`notaprogram`</span>, Pr
  <span class=hljs-keyword >in</span> run at process.jl:<span class=hljs-number >384</span></code></pre>
 <p>In the latter case, an error is still raised in the parent process since the problem is that the executable doesn&#39;t even exist, rather than merely that it ran and returned a non-zero status.</p>
 <p>Although Julia&#39;s backtick syntax intentionally mimics the shell as closely as possible, there is an important distinction: the command string is never passed to a shell to be interpreted and executed; instead it is parsed in Julia code, using the same rules the shell uses to determine what the command and arguments are. Command objects allow you to see what the program and arguments were determined to be by accessing the <code>.exec</code> field:</p>
-<pre><code class="julia hljs">julia&gt; cmd = <span class=hljs-string >`perl -e 'print "Hello\n"'`</span>
-<span class=hljs-string >`perl -e 'print "Hello\n"'`</span>
+<pre><code class="julia hljs">julia&gt; cmd = <span class=hljs-string >`perl -e &#x27;print &quot;Hello\n&quot;&#x27;`</span>
+<span class=hljs-string >`perl -e &#x27;print &quot;Hello\n&quot;&#x27;`</span>
 
 julia&gt; cmd.exec
 <span class=hljs-number >3</span>-element <span class=hljs-built_in >Union</span>(UTF8String,ASCIIString) <span class=hljs-built_in >Array</span>:
- <span class=hljs-string >"perl"</span>
- <span class=hljs-string >"-e"</span>
- <span class=hljs-string >"print \"Hello\\n\""</span></code></pre>
+ <span class=hljs-string >&quot;perl&quot;</span>
+ <span class=hljs-string >&quot;-e&quot;</span>
+ <span class=hljs-string >&quot;print \&quot;Hello\\n\&quot;&quot;</span></code></pre>
 <p>This field is a plain old array of strings that can be manipulated like any other Julia array.</p>
 <h2 id=constructing_commands ><a href="#constructing_commands">Constructing Commands</a></h2>
 <p>The purpose of the backtick notation in Julia is to provide a familiar, shell-like syntax for making objects representing commands with arguments. To that end, quotes and spaces work just as they do in the shell. The real power of backtick syntax doesn&#39;t emerge, however, until we begin constructing commands programmatically. Just as in the shell &#40;and in Julia strings&#41;, you can interpolate values into commands using the dollar sign &#40;<code>&#36;</code>&#41;:</p>
-<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >"src"</span>;
+<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >&quot;src&quot;</span>;
 
 julia&gt; <span class=hljs-string >`find <span class=hljs-variable >$dir</span> -type f`</span>.exec
 <span class=hljs-number >4</span>-element <span class=hljs-built_in >Union</span>(UTF8String,ASCIIString) <span class=hljs-built_in >Array</span>:
- <span class=hljs-string >"find"</span>
- <span class=hljs-string >"src"</span>
- <span class=hljs-string >"-type"</span>
- <span class=hljs-string >"f"</span></code></pre>
+ <span class=hljs-string >&quot;find&quot;</span>
+ <span class=hljs-string >&quot;src&quot;</span>
+ <span class=hljs-string >&quot;-type&quot;</span>
+ <span class=hljs-string >&quot;f&quot;</span></code></pre>
 <p>Unlike in the shell, however, Julia values interpolated into commands are interpolated as a single verbatim argument – no characters inside the value are interpreted as special after the value has been interpolated:</p>
-<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >"two words"</span>;
+<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >&quot;two words&quot;</span>;
 
 julia&gt; <span class=hljs-string >`find <span class=hljs-variable >$dir</span> -type f`</span>.exec
 <span class=hljs-number >4</span>-element <span class=hljs-built_in >Union</span>(UTF8String,ASCIIString) <span class=hljs-built_in >Array</span>:
- <span class=hljs-string >"find"</span>
- <span class=hljs-string >"two words"</span>
- <span class=hljs-string >"-type"</span>
- <span class=hljs-string >"f"</span>
+ <span class=hljs-string >&quot;find&quot;</span>
+ <span class=hljs-string >&quot;two words&quot;</span>
+ <span class=hljs-string >&quot;-type&quot;</span>
+ <span class=hljs-string >&quot;f&quot;</span>
 
-julia&gt; dir = <span class=hljs-string >"foo'bar"</span>;
+julia&gt; dir = <span class=hljs-string >&quot;foo&#x27;bar&quot;</span>;
 
 julia&gt; <span class=hljs-string >`find <span class=hljs-variable >$dir</span> -type f`</span>.exec
 <span class=hljs-number >4</span>-element <span class=hljs-built_in >Union</span>(UTF8String,ASCIIString) <span class=hljs-built_in >Array</span>:
- <span class=hljs-string >"find"</span>
- <span class=hljs-string >"foo'bar"</span>
- <span class=hljs-string >"-type"</span>
- <span class=hljs-string >"f"</span></code></pre>
+ <span class=hljs-string >&quot;find&quot;</span>
+ <span class=hljs-string >&quot;foo&#x27;bar&quot;</span>
+ <span class=hljs-string >&quot;-type&quot;</span>
+ <span class=hljs-string >&quot;f&quot;</span></code></pre>
 <p>This works no matter what the contents of the interpolated value is, allowing simple interpolation of characters that are quite difficult to pass as parts of command-line arguments even in the shell &#40;for the following examples, <code>tmp/a.tsv</code> and <code>tmp/b.tsv</code> can be created in the shell with <code>echo -e &quot;foo\tbar\nbaz\tqux&quot; &gt; tmp/a.tsv; echo -e &quot;foo\t1\nbaz\t2&quot; &gt; tmp/b.tsv</code>&#41;:</p>
-<pre><code class="julia hljs">julia&gt; tab = <span class=hljs-string >"\t"</span>;
+<pre><code class="julia hljs">julia&gt; tab = <span class=hljs-string >&quot;\t&quot;</span>;
 
 julia&gt; cmd = <span class=hljs-string >`join -t<span class=hljs-variable >$tab</span> tmp/a.tsv tmp/b.tsv`</span>;
 
 julia&gt; cmd.exec
 <span class=hljs-number >4</span>-element <span class=hljs-built_in >Union</span>(UTF8String,ASCIIString) <span class=hljs-built_in >Array</span>:
- <span class=hljs-string >"join"</span>
- <span class=hljs-string >"-t\t"</span>
- <span class=hljs-string >"tmp/a.tsv"</span>
- <span class=hljs-string >"tmp/b.tsv"</span>
+ <span class=hljs-string >&quot;join&quot;</span>
+ <span class=hljs-string >&quot;-t\t&quot;</span>
+ <span class=hljs-string >&quot;tmp/a.tsv&quot;</span>
+ <span class=hljs-string >&quot;tmp/b.tsv&quot;</span>
 
 julia&gt; run(cmd)
 foo     bar     <span class=hljs-number >1</span>
 baz     qux     <span class=hljs-number >2</span></code></pre>
 <p>Moreover, what comes after the <code>&#36;</code> can actually be any valid Julia expression, not just a variable name:</p>
-<pre><code class="julia hljs">julia&gt; <span class=hljs-string >`join -t$"\t" tmp/a.tsv tmp/b.tsv`</span>.exec
+<pre><code class="julia hljs">julia&gt; <span class=hljs-string >`join -t$&quot;\t&quot; tmp/a.tsv tmp/b.tsv`</span>.exec
 <span class=hljs-number >4</span>-element <span class=hljs-built_in >Union</span>(UTF8String,ASCIIString) <span class=hljs-built_in >Array</span>:
- <span class=hljs-string >"join"</span>
- <span class=hljs-string >"-t\t"</span>
- <span class=hljs-string >"a.tsv"</span>
- <span class=hljs-string >"b.tsv"</span></code></pre>
+ <span class=hljs-string >&quot;join&quot;</span>
+ <span class=hljs-string >&quot;-t\t&quot;</span>
+ <span class=hljs-string >&quot;a.tsv&quot;</span>
+ <span class=hljs-string >&quot;b.tsv&quot;</span></code></pre>
 <p>A tab character is somewhat harder to pass in the shell, requiring command interpolation and some tricky quoting:</p>
-<pre><code class="bash hljs">bash-3.2$ join -t<span class=hljs-string >"<span class=hljs-subst >$(printf '\t')</span>"</span> tmp/a.tsv tmp/b.tsv
+<pre><code class="bash hljs">bash-3.2$ join -t<span class=hljs-string >&quot;<span class=hljs-subst >$(printf &#x27;\t&#x27;)</span>&quot;</span> tmp/a.tsv tmp/b.tsv
 foo	    bar	    1
 baz	    qux	    2</code></pre>
 <p>While interpolating values with spaces and other strange characters is great for non-brittle construction of commands, there was a reason why the shell split values on spaces in the first place: to allow interpolation of multiple arguments. Most modern shells have first-class array types, but older shells used space-separation to simulate arrays. Thus, if you interpolate a value like &quot;foo bar&quot; into a command in the shell, it&#39;s treated as two separate words by default. In languages with first-class array types, however, there&#39;s a much better option: consistently interpolate single values as single arguments and interpolate arrays as multiple values. This is precisely what Julia&#39;s backtick interpolation does:</p>
-<pre><code class="julia hljs">julia&gt; dirs = [<span class=hljs-string >"foo"</span>, <span class=hljs-string >"bar"</span>, <span class=hljs-string >"baz"</span>];
+<pre><code class="julia hljs">julia&gt; dirs = [<span class=hljs-string >&quot;foo&quot;</span>, <span class=hljs-string >&quot;bar&quot;</span>, <span class=hljs-string >&quot;baz&quot;</span>];
 
 julia&gt; <span class=hljs-string >`find <span class=hljs-variable >$dirs</span> -type f`</span>.exec
 <span class=hljs-number >6</span>-element <span class=hljs-built_in >Union</span>(UTF8String,ASCIIString) <span class=hljs-built_in >Array</span>:
- <span class=hljs-string >"find"</span>
- <span class=hljs-string >"foo"</span>
- <span class=hljs-string >"bar"</span>
- <span class=hljs-string >"baz"</span>
- <span class=hljs-string >"-type"</span>
- <span class=hljs-string >"f"</span></code></pre>
+ <span class=hljs-string >&quot;find&quot;</span>
+ <span class=hljs-string >&quot;foo&quot;</span>
+ <span class=hljs-string >&quot;bar&quot;</span>
+ <span class=hljs-string >&quot;baz&quot;</span>
+ <span class=hljs-string >&quot;-type&quot;</span>
+ <span class=hljs-string >&quot;f&quot;</span></code></pre>
 <p>And of course, no matter how strange the strings contained in an interpolated array are, they become verbatim arguments, without any shell interpretation. Julia&#39;s backticks have one more fancy trick up their sleeve. We saw earlier &#40;without really remarking on it&#41; that you could interpolate single values into a larger argument:</p>
-<pre><code class="julia hljs">julia&gt; x = <span class=hljs-string >"bar"</span>;
+<pre><code class="julia hljs">julia&gt; x = <span class=hljs-string >&quot;bar&quot;</span>;
 
 julia&gt; <span class=hljs-string >`echo foo<span class=hljs-variable >$x</span>`</span>
 <span class=hljs-string >`echo foobar`</span></code></pre>
 <p>What happens if <code>x</code> is an array? Only one way to find out:</p>
-<pre><code class="julia hljs">julia&gt; x = [<span class=hljs-string >"bar"</span>, <span class=hljs-string >"baz"</span>];
+<pre><code class="julia hljs">julia&gt; x = [<span class=hljs-string >&quot;bar&quot;</span>, <span class=hljs-string >&quot;baz&quot;</span>];
 
 julia&gt; <span class=hljs-string >`echo foo<span class=hljs-variable >$x</span>`</span>
 <span class=hljs-string >`echo foobar foobaz`</span></code></pre>
 <p>Julia does what the shell would do if you wrote <code>echo foo&#123;bar,baz&#125;</code>. This even works correctly for multiple values interpolated into the same shell word:</p>
-<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >"/data"</span>; names = [<span class=hljs-string >"foo"</span>,<span class=hljs-string >"bar"</span>]; exts=[<span class=hljs-string >"csv"</span>,<span class=hljs-string >"tsv"</span>];
+<pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >&quot;/data&quot;</span>; names = [<span class=hljs-string >&quot;foo&quot;</span>,<span class=hljs-string >&quot;bar&quot;</span>]; exts=[<span class=hljs-string >&quot;csv&quot;</span>,<span class=hljs-string >&quot;tsv&quot;</span>];
 
 julia&gt; <span class=hljs-string >`cat <span class=hljs-variable >$dir</span>/<span class=hljs-variable >$names</span>.<span class=hljs-variable >$exts</span>`</span>
 <span class=hljs-string >`cat /data/foo.csv /data/foo.tsv /data/bar.csv /data/bar.tsv`</span></code></pre>
@@ -246,6 +246,7 @@ julia&gt; <span class=hljs-string >`cat <span class=hljs-variable >$dir</span>/<
         <li><a href="/community/#official_channels">Official Channels</a>
         <li><a href="/community/standards/">Code of Conduct</a>
         <li><a href="/community/#events">Events</a>
+        <li><a href="https://shop.spreadshirt.com/numfocus/official+julia+logo?idea=5bca3ad9f93764414a5de55f">Shop Merchandise</a>
       </ul>
       <ul>
         <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>

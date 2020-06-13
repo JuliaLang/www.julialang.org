@@ -158,7 +158,7 @@ sa = sqsum(a, <span class=hljs-number >1</span>)   <span class=hljs-comment ># s
 sb = sqsum(b, <span class=hljs-number >1</span>)   <span class=hljs-comment ># sum(abs2(y)) for each column in b</span>
 
 r = sa .+ reshape(sb, <span class=hljs-number >1</span>, n)          <span class=hljs-comment ># first two terms</span>
-gemm!(<span class=hljs-string >'T'</span>, <span class=hljs-string >'N'</span>, -<span class=hljs-number >2.0</span>, a, b, <span class=hljs-number >1.0</span>, r)  <span class=hljs-comment ># add (-2.0) * a' * b to r</span>
+gemm!(<span class=hljs-string >&#x27;T&#x27;</span>, <span class=hljs-string >&#x27;N&#x27;</span>, -<span class=hljs-number >2.0</span>, a, b, <span class=hljs-number >1.0</span>, r)  <span class=hljs-comment ># add (-2.0) * a&#x27; * b to r</span>
 
 <span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:length(r)
     r[i] = sqrt(r[i])
@@ -217,6 +217,7 @@ gemm!(<span class=hljs-string >'T'</span>, <span class=hljs-string >'N'</span>, 
         <li><a href="/community/#official_channels">Official Channels</a>
         <li><a href="/community/standards/">Code of Conduct</a>
         <li><a href="/community/#events">Events</a>
+        <li><a href="https://shop.spreadshirt.com/numfocus/official+julia+logo?idea=5bca3ad9f93764414a5de55f">Shop Merchandise</a>
       </ul>
       <ul>
         <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>

@@ -112,7 +112,7 @@ tspan = (<span class=hljs-number >0.0f0</span>,<span class=hljs-number >1.5f0</s
 
 <span class=hljs-keyword >function</span> trueODEfunc(du,u,p,t)
     true_A = [-<span class=hljs-number >0.1</span> <span class=hljs-number >2.0</span>; -<span class=hljs-number >2.0</span> -<span class=hljs-number >0.1</span>]
-    du .= ((u.^<span class=hljs-number >3</span>)'true_A)'
+    du .= ((u.^<span class=hljs-number >3</span>)&#x27;true_A)&#x27;
 <span class=hljs-keyword >end</span>
 t = range(tspan[<span class=hljs-number >1</span>],tspan[<span class=hljs-number >2</span>],length=datasize)
 prob = ODEProblem(trueODEfunc,u0,tspan)
@@ -125,8 +125,8 @@ ps = Flux.params(dudt)
 n_ode = NeuralODE(dudt,tspan,Tsit5(),saveat=t,reltol=<span class=hljs-number >1e-7</span>,abstol=<span class=hljs-number >1e-9</span>)</code></pre>
 <p>注意到，<code>neural_ode</code> 中使用和產生資料的常微分方程解相同的時間跨度與 <code>saveat</code>，所以它會在每個時間點針對神經網路預測的動態系統狀態來產生一個預測值。讓我們來看看最初這個神經網路會給出怎樣的時間序列。由於這個常微分方程有兩個應變數，為了簡化畫圖的作業，我們只畫出第一個應變數。程式碼如下：</p>
 <pre><code class="julia hljs">pred = n_ode(u0) <span class=hljs-comment ># 使用真實的初始值來產生預測值</span>
-scatter(t,ode_data[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >"data"</span>)
-scatter!(t,pred[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >"prediction"</span>)</code></pre>
+scatter(t,ode_data[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >&quot;data&quot;</span>)
+scatter!(t,pred[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >&quot;prediction&quot;</span>)</code></pre>
 <p><img src="https://user-images.githubusercontent.com/1814174/51585822-d9449400-1ea8-11e9-8665-956a16e95207.png" alt="Neural ODE Start" /></p>
 <p>現在讓我們來訓練我們的神經網路吧！為此，這裡如同前文一般定義了一個預測函數、一個 loss 函數來評估我們的預測值與資料：</p>
 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> predict_n_ode()
@@ -140,8 +140,8 @@ cb = <span class=hljs-keyword >function</span> () <span class=hljs-comment ># �
   display(loss_n_ode())
   <span class=hljs-comment ># 畫出當下預測和資料</span>
   cur_pred = predict_n_ode()
-  pl = scatter(t,ode_data[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >"data"</span>)
-  scatter!(pl,t,cur_pred[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >"prediction"</span>)
+  pl = scatter(t,ode_data[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >&quot;data&quot;</span>)
+  scatter!(pl,t,cur_pred[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >&quot;prediction&quot;</span>)
   display(plot(pl))
 <span class=hljs-keyword >end</span>
 
@@ -235,6 +235,7 @@ sol = solve(prob,CVODE_Adams(),reltol=<span class=hljs-number >1e-12</span>,abst
         <li><a href="/community/#official_channels">Official Channels</a>
         <li><a href="/community/standards/">Code of Conduct</a>
         <li><a href="/community/#events">Events</a>
+        <li><a href="https://shop.spreadshirt.com/numfocus/official+julia+logo?idea=5bca3ad9f93764414a5de55f">Shop Merchandise</a>
       </ul>
       <ul>
         <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
