@@ -493,7 +493,7 @@ we can stick it right in there: -->
 m = Chain(
   Dense(28^2, 32, relu),
   # this would require an ODE of 32 parameters
-  p -> solve(prob,Tsit5(),saveat=0.1)[1,:],
+  p -> solve(prob,Tsit5(),p=p,saveat=0.1)[1,:],
   Dense(32, 10),
   softmax)
 ```
@@ -509,7 +509,7 @@ m = Chain(
   Conv((2,2), 16=>8, relu),
   x -> maxpool(x, (2,2)),
   x -> reshape(x, :, size(x, 4)),
-  x -> concrete_solve(prob,Tsit5(),x,p,saveat=0.1)[1,:],
+  x -> solve(prob,Tsit5(),x=x,saveat=0.1)[1,:],
   Dense(288, 10), softmax) |> gpu
 ```
 
