@@ -18,12 +18,11 @@ prob = ODEProblem(lotka_volterra,u0,tspan,p)
 sol = solve(prob,Tsit5(),saveat=<span class=hljs-number >0.1</span>)
 A = sol[<span class=hljs-number >1</span>,:] <span class=hljs-comment ># length 101 vector</span></code></pre> <p>我們一起將微分方程的解畫在 <code>&#40;t,A&#41;</code> 座標軸上，一起看看我們得到什麼：</p> <pre><code class="julia hljs">plot(sol)
 t = <span class=hljs-number >0</span>:<span class=hljs-number >0.1</span>:<span class=hljs-number >10.0</span>
-scatter!(t,A)</code></pre> <p><img src="https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png" alt="Data points plot" /></p> <p>最基礎的微分方程層是 <code>concrete_solve</code>，它會做相同的事，只有一點語法上的改變。 <code>concrete_solve</code> 會接受被積函數的參數 <code>p</code>，並且把它放進由 <code>prob</code> 定義好的微分方程中， 然後根據挑選好的程式參數（解算器、容忍度...等等）解方程式。 範例如下：</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Flux, DiffEqFlux
-concrete_solve(prob,Tsit5(),u0,p,saveat=<span class=hljs-number >0.1</span>)</code></pre> <p>在 <code>concrete_solve</code> 中的一個好的設計是，它會處理型別的相容性，讓它可以相容於神經網路框架（Flux）。 要證明這個，我們來用函數定義一層神經網路，然後還有一個損失函數，是輸出值相對 <code>1</code> 距離的平方。 在 Flux 中，他看起來像這樣：</p> <pre><code class="julia hljs">p = [<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>] <span class=hljs-comment ># 初始參數向量</span>
+scatter!(t,A)</code></pre> <p><img src="https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png" alt="Data points plot" /></p> <p>在 <code>solve</code> 中的一個好的設計是，它會處理型別的相容性，讓它可以相容於神經網路框架（Flux）。 要證明這個，我們來用函數定義一層神經網路，然後還有一個損失函數，是輸出值相對 <code>1</code> 距離的平方。 在 Flux 中，他看起來像這樣：</p> <pre><code class="julia hljs">p = [<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>] <span class=hljs-comment ># 初始參數向量</span>
 params = Flux.params(p)
 
 <span class=hljs-keyword >function</span> predict_rd() <span class=hljs-comment ># 我們的單層神經網路</span>
-  concrete_solve(prob,Tsit5(),u0,p,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:]
+  solve(prob,Tsit5(),p=p,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:]
 <span class=hljs-keyword >end</span>
 
 loss_rd() = sum(abs2,x-<span class=hljs-number >1</span> <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> predict_rd()) <span class=hljs-comment ># 損失函數</span></code></pre> <p>現在我們會叫 Flux 來訓練神經網路，藉由跑 100 epoch 來最小化我們的損失函數（<code>loss_rd&#40;&#41;</code>）， 因此，可以得到最佳化的參數：</p> <pre><code class="julia hljs">data = Iterators.repeated((), <span class=hljs-number >100</span>)
@@ -43,7 +42,7 @@ Flux.train!(loss_rd, params, data, opt, cb = cb)</code></pre> <p>結果會以動
   softmax)</code></pre> <p>而且，假如我們有個帶有合適大小的參數向量的 ODE ，我們可以像這樣把它代入我們的模型中：</p> <pre><code class="julia hljs">m = Chain(
   Dense(<span class=hljs-number >28</span>^<span class=hljs-number >2</span>, <span class=hljs-number >32</span>, relu),
   <span class=hljs-comment ># this would require an ODE of 32 parameters</span>
-  p -&gt; concrete_solve(prob,Tsit5(),u0,p,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:],
+  p -&gt; solve(prob,Tsit5(),p=p,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:],
   Dense(<span class=hljs-number >32</span>, <span class=hljs-number >10</span>),
   softmax)</code></pre> <p>抑或是，我們也可以把它代入到卷積神經網路中，使用前一層卷積層的輸出當作 ODE 的初始條件使用：</p> <pre><code class="julia hljs">m = Chain(
   Conv((<span class=hljs-number >2</span>,<span class=hljs-number >2</span>), <span class=hljs-number >1</span>=&gt;<span class=hljs-number >16</span>, relu),
@@ -51,7 +50,7 @@ Flux.train!(loss_rd, params, data, opt, cb = cb)</code></pre> <p>結果會以動
   Conv((<span class=hljs-number >2</span>,<span class=hljs-number >2</span>), <span class=hljs-number >16</span>=&gt;<span class=hljs-number >8</span>, relu),
   x -&gt; maxpool(x, (<span class=hljs-number >2</span>,<span class=hljs-number >2</span>)),
   x -&gt; reshape(x, :, size(x, <span class=hljs-number >4</span>)),
-  x -&gt; concrete_solve(prob,Tsit5(),x,p,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:],
+  x -&gt; solve(prob,Tsit5(),x=x,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:],
   Dense(<span class=hljs-number >288</span>, <span class=hljs-number >10</span>), softmax) |&gt; gpu</code></pre> <p>只要你可以寫下 forward pass，我們就可以處理任何參數化可微分的程序並優化它。一個新世界即為你的囊中之物啊。</p> <h2 id="完整的_ode_求解工具對於這個應用為什麼是必須呢"><a href="#完整的_ode_求解工具對於這個應用為什麼是必須呢">完整的 ODE 求解工具對於這個應用為什麼是必須呢？</a></h2> <p>前文中，我們把現有的求解工具和深度學習結合在一起。反觀另一個傑出的實作 <a href="https://github.com/rtqichen/torchdiffeq">torchdiffeq</a> 採取了另一種實作方式，直接使用 pytorch 實作了許多求解演算法，包含一個適應性的 Runge Kutta 4-5 &#40;<code>dopri5</code>&#41; 和一個 Adams-Bashforth-Moulton 方法 &#40;<code>adams</code>&#41;。然而，其中的實作對於特定的模型來說，雖可算是非常有效率地，但無法完整整合所有可行的求解工具，這帶來了一些限制。</p> <p>我們考慮以下這個例子：<a href="https://www.radford.edu/~thompson/vodef90web/problems/demosnodislin/Single/DemoRobertson/demorobertson.pdf">ROBER ODE</a>。最被廣泛測試過 &#40;且最佳化&#41; 過的 Adams-Bashforth-Moulton 方法的實作是著名的 <a href="https://computation.llnl.gov/projects/sundials">C&#43;&#43; 套件 SUNDIALS 中的 CVODE 積分器</a> &#40;傳統的 LSODE 的一個分支&#41;。讓我們用 DifferentialEquations.jl 去使用 CVODE 中的 Adams 方法來解這個 ODE 吧：</p> <pre><code class="julia hljs">rober = <span class=hljs-meta >@ode_def</span> Rober <span class=hljs-keyword >begin</span>
   dy₁ = -k₁*y₁+k₃*y₂*y₃
   dy₂ =  k₁*y₁-k₂*y₂^<span class=hljs-number >2</span>-k₃*y₂*y₃
@@ -72,8 +71,10 @@ prob = DDEProblem(delay_lotka_volterra,u0,h,(<span class=hljs-number >0.0</span>
 
 p = [<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>]
 params = Flux.params(p)
+
+<span class=hljs-keyword >using</span> DiffEqSensitivity
 <span class=hljs-keyword >function</span> predict_rd_dde()
-  concrete_solve(prob,MethodOfSteps(Tsit5()),u0,p,saveat=<span class=hljs-number >0.1</span>,sensealg=TrackerAdjoint())[<span class=hljs-number >1</span>,:]
+  solve(prob,MethodOfSteps(Tsit5()),p=p,saveat=<span class=hljs-number >0.1</span>,sensealg=TrackerAdjoint())[<span class=hljs-number >1</span>,:]
 <span class=hljs-keyword >end</span>
 loss_rd_dde() = sum(abs2,x-<span class=hljs-number >1</span> <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> predict_rd_dde())
 loss_rd_dde()</code></pre> <p>這個範例的完整程式碼，包含產生動畫在內，可以在 <a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/dde.jl">model-zoo</a> 裡找到。</p> <p>除此之外，我們也可以在微分方程中導入隨機性去模擬隨機事件如何影響預期外的出生或死亡。 這類的微分方程被稱為隨機微分方程 &#40;SDE&#41;。 由於 <a href=" https://docs.sciml.ai/dev/tutorials/sde_example">DifferentialEquations.jl 同樣也可以處理隨機微分方程</a> &#40;也是目前唯一一個包含剛性與非剛性隨機微分方程解算器的函式庫&#41;， 也同樣可以用類似方法引入 Flux 作為神經網路的一層。 以下是使用 SDE 作為神經網路一層的範例：</p> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> lotka_volterra_noise(du,u,p,t)
@@ -84,10 +85,11 @@ prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[<span class=hljs-number >
 
 p = param([<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>])
 params = Flux.params(p)
-<span class=hljs-keyword >function</span> predict_fd_sde()
-  concrete_solve(prob,SOSRI(),u0,p,saveat=<span class=hljs-number >0.1</span>,sensealg=TrackerAdjoint())[<span class=hljs-number >1</span>,:]
+<span class=hljs-keyword >function</span> predict_sde()
+  solve(prob,SOSRI(),p=p,sensealg=TrackerAdjoint(),saveat=<span class=hljs-number >0.1</span>,
+                     abstol=<span class=hljs-number >1e-1</span>,reltol=<span class=hljs-number >1e-1</span>)[<span class=hljs-number >1</span>,:]
 <span class=hljs-keyword >end</span>
-loss_fd_sde() = sum(abs2,x-<span class=hljs-number >1</span> <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> predict_fd_sde())
+loss_fd_sde() = sum(abs2,x-<span class=hljs-number >1</span> <span class=hljs-keyword >for</span> x <span class=hljs-keyword >in</span> predict_sde())
 loss_fd_sde()</code></pre> <p>接著我們可以訓練這個神經網路去找出一組參數使得兔子數量成一個定值並觀察中間變化的過程：</p> <pre><code class="julia hljs">data = Iterators.repeated((), <span class=hljs-number >100</span>)
 opt = ADAM(<span class=hljs-number >0.1</span>)
 cb = <span class=hljs-keyword >function</span> ()
@@ -121,8 +123,8 @@ ode_data = <span class=hljs-built_in >Array</span>(solve(prob,Tsit5(),saveat=t))
 <pre><code class="julia hljs">dudt = Chain(x -&gt; x.^<span class=hljs-number >3</span>,
              Dense(<span class=hljs-number >2</span>,<span class=hljs-number >50</span>,tanh),
              Dense(<span class=hljs-number >50</span>,<span class=hljs-number >2</span>))
-ps = Flux.params(dudt)
-n_ode = NeuralODE(dudt,tspan,Tsit5(),saveat=t,reltol=<span class=hljs-number >1e-7</span>,abstol=<span class=hljs-number >1e-9</span>)</code></pre>
+n_ode = NeuralODE(dudt,tspan,Tsit5(),saveat=t,reltol=<span class=hljs-number >1e-7</span>,abstol=<span class=hljs-number >1e-9</span>)
+ps = Flux.params(n_ode)</code></pre>
 <p>注意到，<code>neural_ode</code> 中使用和產生資料的常微分方程解相同的時間跨度與 <code>saveat</code>，所以它會在每個時間點針對神經網路預測的動態系統狀態來產生一個預測值。讓我們來看看最初這個神經網路會給出怎樣的時間序列。由於這個常微分方程有兩個應變數，為了簡化畫圖的作業，我們只畫出第一個應變數。程式碼如下：</p>
 <pre><code class="julia hljs">pred = n_ode(u0) <span class=hljs-comment ># 使用真實的初始值來產生預測值</span>
 scatter(t,ode_data[<span class=hljs-number >1</span>,:],label=<span class=hljs-string >&quot;data&quot;</span>)
