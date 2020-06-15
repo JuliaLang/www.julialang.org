@@ -11,4 +11,4 @@ Julia’s official documentation is in English, but many groups work to translat
 * [Julia Francophonie](https://www.juliafran.org/) (French)
 @@
 
-Please let us know if you have another organization dedicated to these efforts.
+Please [let us know](https://github.com/JuliaLang/www.julialang.org/issues/new) if you have another organization dedicated to these efforts.
