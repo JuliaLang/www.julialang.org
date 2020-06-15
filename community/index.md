@@ -104,7 +104,7 @@
    <br>
    <div class="row">
      <div class="col-12" style="text-align: center">
-       <a class="btn btn-sm btn-outline-primary" href="otherChannels/">See other Julia Channels</a>
+       <a class="btn btn-sm btn-outline-primary" href="otherchannels/">See other Julia Channels</a>
      </div>
    </div>
  </div>
