@@ -70,17 +70,19 @@ Password: 476732
 
 While not officially part of this Hackathon, there will be a talk titled: PackageCompiler and Static Compilation in Julia from 12pm – 1pm EDT on Friday. Details below: 
 
-```
-Register here https://form.jotform.me/200931129844454  for a free Webinar on "PackageCompiler and Static Compilation in Julia". 
+~~~<blockquote class="blockquote">~~~
 
- Know how one can use PackageCompiler.jl to cache the loading and compiled code of functions in packages, effectively removing the compilation overhead. 
+Register here [https://form.jotform.me/200931129844454](https://form.jotform.me/200931129844454) for a free Webinar on "PackageCompiler and Static Compilation in Julia".
+
+Know how one can use PackageCompiler.jl to cache the loading and compiled code of functions in packages, effectively removing the compilation overhead.
 
 You will also learn how to create apps - executable programs that can be run on other machines without requiring Julia installation and without having to provide the source code.
 
 The Webinar is led by Julia Computing's @KristofferC89, who is a long-time contributor to Julia, PackageCompiler.jl, the Julia package manager and debugger.
 
- #julialang
-```
+#julialang
+
+~~~</blockquote>~~~
 
 # Questions
 
