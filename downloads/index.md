@@ -21,7 +21,7 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
 <style>
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   padding: 20 0 5 0;
 }
 
@@ -58,7 +58,7 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
 </style>
 
 <div class="grid-container">
-<!-- four columns -->
+<!-- five columns -->
 	<div class="platform">
 		<img src="/assets/images/windows-logo.png" width="80px" height="80px">
 		<h1>
@@ -77,10 +77,16 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
 			Linux <a href="/downloads/platform/#linux_and_freebsd">[help]</a>
 		</h1>
 	</div>
+  <div class="platform">
+		<img src="/assets/images/freebsd.png" width="80px" height="80px">
+		<h1>
+			FreeBSD <a href="/downloads/platform/#linux_and_freebsd">[help]</a>
+		</h1>
+	</div>
 	<div class="platform">
 		<img src="/assets/images/github-logo.png" width="80px" height="80px">
 		<h1>
-			Source
+			Source <a href="https://github.com/JuliaLang/julia/tree/master/doc/build">[help]</a>
 		</h1>
 	</div>
 <!-- windows -->
@@ -118,13 +124,16 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
 				<p>
 					<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{stable_release_short}}/julia-{{stable_release}}-linux-aarch64.tar.gz">64-bit (AArch64)</a> (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{stable_release_short}}/julia-{{stable_release}}-linux-aarch64.tar.gz.asc">GPG</a>)
 				</p>
-				<p>
-					FreeBSD Binaries for x86
-				</p>
-				<p>
-					<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/{{stable_release_short}}/julia-{{stable_release}}-freebsd-x86_64.tar.gz">64-bit</a> (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/{{stable_release_short}}/julia-{{stable_release}}-freebsd-x86_64.tar.gz.asc">GPG</a>)
-				</p>
 	</div>
+  <!-- freeBSD -->
+  	<div class="downloads">
+    <p>
+      FreeBSD Binaries for x86
+    </p>
+    <p>
+      <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/{{stable_release_short}}/julia-{{stable_release}}-freebsd-x86_64.tar.gz">64-bit</a> (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/{{stable_release_short}}/julia-{{stable_release}}-freebsd-x86_64.tar.gz.asc">GPG</a>)
+    </p>
+  	</div>
 
   <!-- source -->
 
