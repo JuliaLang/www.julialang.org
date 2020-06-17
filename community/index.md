@@ -80,8 +80,7 @@
      <!-- 3 -->
      <div class="col-lg-4 col-md-6 feature">
        <h3>Chat</h3>
-       <p>For casual conversation and quick, informal questions, we have an <a href="https://slackinvite.julialang.org/">official Julia Slack</a>. Slack is also a good place to start if you think you need help but aren’t quite sure what you should be asking or where to ask it.
-          The JuliaCN community has a QQ group: 316628299
+       <p>For casual conversation and quick, informal questions, we have an <a href="https://slackinvite.julialang.org/">official Julia Slack</a>. As an open source alternative to Slack (and the home to many Julia sub-communities), we have a <a href="https://julialang.zulipchat.com/join/ljh03tjbc5jtdadh0lwkhp0h/">Julia Zulip organization</a>.
        </p>
      </div>
      <!-- 4 -->
