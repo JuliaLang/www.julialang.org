@@ -1,6 +1,6 @@
 ## Other channels
 
-For those who prefer IRC to our official forums, there is a [#julia channel](https://webchat.freenode.net/?channels=julia) on Freenode. We also have an unofficial [Gitter](https://gitter.im/JuliaLang/julia) channel. There is a small [Julia subreddit](https://www.reddit.com/r/Julia/) for casual discussion. As an open source alternative to Slack, we have a [Julia Zulip organization](https://julialang.zulipchat.com/) which you can get an automated invite to [at this link.](https://julialang.zulipchat.com/join/ljh03tjbc5jtdadh0lwkhp0h/)
+We also have an unofficial [Gitter](https://gitter.im/JuliaLang/julia) channel. There is a [Julia subreddit](https://www.reddit.com/r/Julia/) for casual discussion on Reddit. The JuliaCN community has a QQ group: 316628299
 
 The Julia Language is also present and active on the following platforms in order to engage the widest audience possible:
 
