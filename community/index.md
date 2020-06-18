@@ -26,13 +26,13 @@
  <div class="container-fluid alt-color packages">
    <br><br>
    <div class="row">
-     <div class="col-lg-4 col-md-3 language-features "><hr/></div>
-     <div class="col-lg-4 col-md-6 language-features section-heading">
+     <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+     <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
        <h2 class="lead secondary-heading">
          Official Channels
        </h2>
      </div>
-     <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
    </div>
 
    <br>
@@ -91,11 +91,11 @@
    <br><br>
    <div class="container">
      <div class="row">
-       <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
-       <div class="col-lg-4 col-md-6 ecosystem section-heading">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
          <h2 class="lead secondary-heading">Events</h2>
        </div>
-       <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
      </div>
 
      <br>
@@ -118,13 +118,13 @@
   <br><br>
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-md-3 language-features "><hr/></div>
-      <div class="col-lg-4 col-md-6 language-features section-heading">
+      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
         <h2 class="lead secondary-heading">
           Julia User and Developer Survey
         </h2>
       </div>
-      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
     </div>
     <br>
 
@@ -141,11 +141,11 @@
   <br><br>
    <div class="container">
      <div class="row">
-       <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
-       <div class="col-lg-4 col-md-6 ecosystem section-heading">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
          <h2 class="lead secondary-heading">Localization</h2>
        </div>
-       <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
      </div>
 
      <br>
