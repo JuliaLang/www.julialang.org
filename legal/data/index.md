@@ -1,6 +1,6 @@
 # Pkg Telemetry
 
-When you do package operations in Julia that connect to package servers, some anonymous data about your client install is sent to the server, which collects and aggregates this data. The data sent allows the developers of Julia to improve Julia and its ecosystem. We try to collect the minimum amount of information that allows us to accurately estimate key characteristics of Julia's usage patterns. The [Data Overview](#Data-Overview) section breaks down what information is sent, what each item means, why it's sent, and how collecting this data helps us understand Julia's usage and improve its ecosystem. The [Opting Out](#Opting-Out) section, gives details about how to opt out of sending telemetry partially or entirely.
+When you do package operations in Julia that connect to package servers, some anonymous data about your client install is sent to the server, which collects and aggregates this data. The data sent allows the developers of Julia to improve Julia and its ecosystem. We try to collect the minimum amount of information that allows us to accurately estimate key characteristics of Julia's usage patterns. The [Data Overview](#data_overview) section breaks down what information is sent, what each item means, why it's sent, and how collecting this data helps us understand Julia's usage and improve its ecosystem. The [Opting Out](#opting_out) section, gives details about how to opt out of sending telemetry partially or entirely.
 
 ## Data Overview
 
@@ -44,7 +44,7 @@ This is the so-called "platform triplet" which identifies the details of what ar
 ```text
 Julia-Client-UUID: afda810c-134c-4059-9594-3d1b0e9f0928
 ```
-The first time the Julia client connects to a package server, it generates a random client UUID, which it sends with each request (unless you have [opted out](#Opting-Out) of doing so). This helps us estimate how many Julia installs there are, which in combination with some of the other telemetry data allows estimating the number of Julia users. Having some persistent unique client value is essential for answering this question, since otherwise there's no way to distinguish a single client making a thousand requests from a thousand clients making a single request each. It also helps us answer other significant questions:
+The first time the Julia client connects to a package server, it generates a random client UUID, which it sends with each request (unless you have [opted out](#opting_out) of doing so). This helps us estimate how many Julia installs there are, which in combination with some of the other telemetry data allows estimating the number of Julia users. Having some persistent unique client value is essential for answering this question, since otherwise there's no way to distinguish a single client making a thousand requests from a thousand clients making a single request each. It also helps us answer other significant questions:
 
 @@tight-list
 - How often do users upgrade Julia?
@@ -56,7 +56,7 @@ The first time the Julia client connects to a package server, it generates a ran
 
 Being able to answer these kinds of questions helps to improve the Julia experience for everyone. For example, if most users upgrade Julia as soon as possible, we should consider making more frequent Julia releases, whereas if most users only upgrade every six months or longer, then we might want to consider making less frequent releases and spend our limited time and energy on other aspects of development.
 
-It's worth noting that *"how many Julia users are there?"* is the first question asked by organizations of all kinds—commercial, philanthropic and governmental—when they are considering investing in Julia, whether by giving grants to support open source work, sponsoring JuliaCon, or adopting the language for development of their own software systems.
+It's worth noting that *"How many Julia users are there?"* is the first question asked by organizations of all kinds—commercial, philanthropic and governmental—when they are considering investing in Julia, whether by giving grants to support open source work, sponsoring JuliaCon, or adopting the language for development of their own software systems. Being able to reliably and concretely answer this question is essential for promoting the development of the language and its ecosystem.
 
 ### Project Hash
 
@@ -73,7 +73,7 @@ Privacy of the user is protected by using a secret, securely generated, random s
 Julia-CI-Variables: APPVEYOR=n;CI=n;CIRCLECI=n;CONTINUOUS_INTEGRATION=n;GITHUB_ACTIONS=n
 GITLAB_CI=n;JULIA_CI=n;TF_BUILD=n;TRAVIS=n
 ```
-This header gives an indicator for each of a set of environment variables that are commonly set on automated continuous integration (CI) systems, such as AppVeyor, Azure Pipelines, CircleCI, GitHub Actions, GitLab, and Travis CI. On user systems, theses will typically not be set. When analyzing requests to package servers, these indictors help to distinguish request from automated CI systems from real users. Automated CI systems can initiate a lot of requests which would significantly pollute statistics about Julia usage by real users. Due to the large volume of requests that can be initiated by CI systems, it is also often necessary to handle these systems specially to reduce service costs, e.g. by setting up a package server that is co-located with the CI service. Without the ability to accurately identify CI requests, it would be hard or impossible to identify and mitigate these costs.
+This header gives an indicator for each of a set of environment variables that are commonly set on automated continuous integration (CI) systems, such as AppVeyor, Azure Pipelines, CircleCI, GitHub Actions, GitLab, and Travis CI. On user systems, these will typically not be set. When analyzing requests to package servers, these indicators help to distinguish request from automated CI systems from real users. Automated CI systems can initiate a lot of requests which would significantly pollute statistics about Julia usage by real users. Due to the large volume of requests that can be initiated by CI systems, it is also often necessary to handle these systems specially to reduce service costs, e.g. by setting up a package server that is co-located with the CI service. Without the ability to accurately identify CI requests, it would be hard or impossible to identify and mitigate these costs.
 
 Under no circumstances is the full value of an environment variable sent, which is crucial for preserving user privacy and not potentially leaking sensitive data (secrets are often stored in environment variables). For each environment variable that is checked, only one of four possible values is sent:
 
