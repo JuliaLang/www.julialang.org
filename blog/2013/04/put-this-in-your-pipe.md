@@ -31,7 +31,11 @@ Here's how you write the example of counting the number of lines in a directory 
 ```julia
 julia> dir = "src"; # works in the git repo for Julia
 
-julia> parse(Int, readchomp(pipeline(`find $dir -type f -print0`, `xargs -0 grep foo`, `wc -l`)))
+julia> parse(Int, readchomp(pipeline(
+           `find $dir -type f -print0`,
+           `xargs -0 grep foo`,
+           `wc -l`,
+       )))
 5
 ```
 
@@ -46,12 +50,20 @@ However, it isn't susceptible to the same problems:
 ```julia
 julia> dir = "source code";
 
-julia> parse(Int, readchomp(pipeline(`find $dir -type f -print0`, `xargs -0 grep foo`, `wc -l`)))
+julia> parse(Int, readchomp(pipeline(
+           `find $dir -type f -print0`,
+           `xargs -0 grep foo`,
+           `wc -l`,
+       )))
 5
 
 julia> dir = "nonexistent";
 
-julia> parse(Int, readchomp(pipeline(`find $dir -type f -print0`, `xargs -0 grep foo`, `wc -l`)))
+julia> parse(Int, readchomp(pipeline(
+           `find $dir -type f -print0`,
+           `xargs -0 grep foo`,
+           `wc -l`,
+       )))
 find: ‘nonexistent’: No such file or directory
 ERROR: failed processes:
   Process(`find nonexistent -type f -print0`, ProcessExited(1)) [1]
@@ -59,7 +71,11 @@ ERROR: failed processes:
 
 julia> dir = "foo'; echo MALICIOUS ATTACK; echo '";
 
-julia> parse(Int, readchomp(pipeline(`find $dir -type f -print0`, `xargs -0 grep foo`, `wc -l`)))
+julia> parse(Int, readchomp(pipeline(
+           `find $dir -type f -print0`,
+           `xargs -0 grep foo`,
+           `wc -l`,
+       )))
 find: ‘foo'; echo MALICIOUS ATTACK; echo '’: No such file or directory
 ERROR: failed processes:
   Process(`find "foo'; echo MALICIOUS ATTACK; echo '" -type f -print0`, ProcessExited(1)) [1]
@@ -119,7 +135,11 @@ This means that our Julia pipeline and the "responsible" Ruby version are both s
 ```julia
 julia> dir = "src";
 
-julia> parse(Int, readchomp(pipeline(`find $dir -type f -print0`, `xargs -0 grep flippity`, `wc -l`)))
+julia> parse(Int, readchomp(pipeline(
+           `find $dir -type f -print0`,
+           `xargs -0 grep flippity`,
+           `wc -l`,
+       )))
 ERROR: failed process: Process(`xargs -0 grep flippity`, ProcessExited(123)) [123]
 ```
 
@@ -129,7 +149,11 @@ we want the expression to just return `0` without raising an error.
 The simple fix in Julia is this:
 
 ```julia
-julia> parse(Int, readchomp(pipeline(`find $dir -type f -print0`, ignorestatus(`xargs -0 grep flippity`), `wc -l`)))
+julia> parse(Int, readchomp(pipeline(
+           `find $dir -type f -print0`,
+           ignorestatus(`xargs -0 grep flippity`),
+           `wc -l`,
+       )))
 0
 ```
 
