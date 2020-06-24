@@ -204,20 +204,31 @@ In the latter case, an error is still raised in the parent process since the pro
 Although Julia's backtick syntax intentionally mimics the shell as closely as possible, there is an important distinction:
 the command string is never passed to a shell to be interpreted and executed;
 instead it is parsed in Julia code, using the same rules the shell uses to determine what the command and arguments are.
-Command objects allow you to see what the program and arguments were determined to be by accessing the `.exec` field:
+Command objects look a bit like strings, but they're actually more like an array of strings, which can be seen if you collect a command:
 
 ```julia
 julia> cmd = `perl -e 'print "Hello\n"'`
 `perl -e 'print "Hello\n"'`
 
-julia> cmd.exec
+julia> collect(cmd)
 3-element Array{String,1}:
  "perl"
  "-e"
  "print \"Hello\\n\""
 ```
 
-This field is a plain old array of strings that can be manipulated like any other Julia array.
+You can also get the length of a command object and index into it:
+
+```julia
+julia> length(cmd)
+3
+
+julia> cmd[3]
+"print \"Hello\\n\""
+```
+
+So commands are very much just a funny kind of string array.
+If your terminal supports underlines, the individual words in the command will be underlined, helping you to easily see where the breaks between words are.
 
 ## Constructing Commands
 
@@ -229,7 +240,7 @@ Just as in the shell (and in Julia strings), you can interpolate values into com
 ```julia
 julia> dir = "src";
 
-julia> `find $dir -type f`.exec
+julia> collect(`find $dir -type f`)
 4-element Union(UTF8String,ASCIIString) Array:
  "find"
  "src"
@@ -242,7 +253,7 @@ Unlike in the shell, however, Julia values interpolated into commands are interp
 ```julia
 julia> dir = "two words";
 
-julia> `find $dir -type f`.exec
+julia> collect(`find $dir -type f`)
 4-element Array{String,1}:
  "find"
  "two words"
@@ -251,7 +262,7 @@ julia> `find $dir -type f`.exec
 
 julia> dir = "foo'bar";
 
-julia> `find $dir -type f`.exec
+julia> collect(`find $dir -type f`)
 4-element Array{String,1}:
  "find"
  "foo'bar"
@@ -266,7 +277,7 @@ julia> tab = "\t";
 
 julia> cmd = `join -t$tab tmp/a.tsv tmp/b.tsv`;
 
-julia> cmd.exec
+julia> collect(cmd)
 4-element Array{String,1}:
  "join"
  "-t\t"
@@ -282,7 +293,7 @@ Process(`join '-t   ' tmp/a.tsv tmp/b.tsv`, ProcessExited(0))
 Moreover, what comes after the `$` can actually be any valid Julia expression, not just a variable name:
 
 ```julia
-julia> `join -t$"\t" tmp/a.tsv tmp/b.tsv`.exec
+julia> collect(`join -t$"\t" tmp/a.tsv tmp/b.tsv`)
 4-element Array{String,1}:
  "join"
  "-t\t"
@@ -309,7 +320,7 @@ This is precisely what Julia's backtick interpolation does:
 ```julia
 julia> dirs = ["foo", "bar", "baz"];
 
-julia> `find $dirs -type f`.exec
+julia> collect(`find $dirs -type f`)
 6-element Array{String,1}:
  "find"
  "foo"
