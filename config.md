@@ -20,6 +20,6 @@
 If the following lines are commented, the "upcoming release" section
 in `downloads/index.md` will not be shown.
 -->
-@def upcoming_release = "1.5.0-beta1"
+@def upcoming_release = "1.5.0-rc1"
 @def upcoming_release_short = "1.5"
-@def upcoming_release_date = "May 28, 2020"
+@def upcoming_release_date = "June 26, 2020"
