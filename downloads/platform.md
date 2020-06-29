@@ -170,6 +170,16 @@ Recent Debian/ubuntu distributions include their own build of Julia, which can b
 sudo apt install julia
 ```
 
+## Arch Linux
+The Arch User Repository has [a package for Julia](https://aur.archlinux.org/packages/julia-bin) that is built from the official binaries of Julia. To install it run:
+
+```
+sudo pacman -S base-devel git
+git clone https://aur.archlinux.org/julia-bin.git
+cd julia-bin
+makepkg -si
+```
+
 ## FreeBSD Ports
 
 Julia is available in the [Ports Collection](https://svnweb.freebsd.org/ports/head/lang/julia/). To install from the FreeBSD binary package manager, `pkg`, run
