@@ -374,14 +374,6 @@
     <pubDate>Sun, 25 Oct 2015 00:00:00 UT</pubDate>
   </item>
   <item>
-    <title>Julia 1.0 Anunciando el release de Julia 1.0 (Spanish)</title>
-    <link>https://julialang.org/blog/2018/08/one-point-zero-es/index.html</link>
-    <description><![CDATA[La anticipada liberación de la versión 1.0 de...
-<br><a href="https://julialang.org/blog/2018/08/one-point-zero-es/index.html">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/08/one-point-zero-es/index.html</guid>
-    <pubDate>Wed, 8 Aug 2018 00:00:00 UT</pubDate>
-  </item>
-  <item>
     <title>Yao.jl - Differentiable Quantum Programming In Julia</title>
     <link>https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/index.html</link>
     <description><![CDATA[Yao.jl - Differentiable Quantum Programming In Julia
@@ -436,14 +428,6 @@
 <br><a href="https://julialang.org/blog/2012/02/why-we-created-julia/index.html">Read more</a>]]></description>
     <guid>https://julialang.org/blog/2012/02/why-we-created-julia/index.html</guid>
     <pubDate>Tue, 14 Feb 2012 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title>Announcing the release of Julia 1.0</title>
-    <link>https://julialang.org/blog/2018/08/one-point-zero/index.html</link>
-    <description><![CDATA[Announcing the release of Julia 1.0 | The much anticipated 1.0 release of Julia &#40;https://julialang.org&#41; is the culmination of... 
-<br><a href="https://julialang.org/blog/2018/08/one-point-zero/index.html">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2018/08/one-point-zero/index.html</guid>
-    <pubDate>Wed, 8 Aug 2018 00:00:00 UT</pubDate>
   </item>
   <item>
     <title>An invitation to JuliaCon 2016</title>
@@ -820,14 +804,6 @@
 <br><a href="https://julialang.org/blog/2017/04/repl-0.6-highlights/index.html">Read more</a>]]></description>
     <guid>https://julialang.org/blog/2017/04/repl-0.6-highlights/index.html</guid>
     <pubDate>Tue, 25 Apr 2017 00:00:00 UT</pubDate>
-  </item>
-  <item>
-    <title>Julia User - Developer Survey 2019</title>
-    <link>https://julialang.org/blog/2019/08/2019-julia-survey/index.html</link>
-    <description><![CDATA[Julia User &amp; Developer Survey 2019 | We conducted the first annual Julia User &amp; Developer Survey in June, and the results &#40;/assets/images/2019-julia-user-developer-survey.pdf&#41; were presented by Viral Shah at JuliaCon on July 23 &#40;https://youtu.be/yx6lBSHqGfc&#41;.... 
-<br><a href="https://julialang.org/blog/2019/08/2019-julia-survey/index.html">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2019/08/2019-julia-survey/index.html</guid>
-    <pubDate>Tue, 6 Aug 2019 00:00:00 UT</pubDate>
   </item>
 </channel>
 </rss>
