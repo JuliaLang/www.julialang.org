@@ -277,6 +277,11 @@ The platforms currently supported by Julia are listed below. They are divided in
     </tr>
     <tr>
 
+      <td> AMD GPUs (64-bit) </td>
+      <td> Tier 3 <a href="https://juliagpu.org">(JuliaGPU)</a> </td>
+    </tr>
+    <tr>
+
       <td> ARMv7 (32-bit) </td>
       <td> Tier 3 </td>
     </tr>
