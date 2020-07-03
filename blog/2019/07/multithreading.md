@@ -364,7 +364,7 @@ work as expected.
 
 If you need all threads to use a known initial seed, you will need to set it up explicitly.
 For that kind of more precise control, or better performance, we recommend allocating and passing your
-own RNG objects (e.g. `Rand.MersenneTwister()`).
+own RNG objects (e.g. `Random.MersenneTwister()`).
 
 ## Under the hood
 
