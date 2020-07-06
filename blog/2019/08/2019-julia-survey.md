@@ -8,9 +8,9 @@
 We conducted the first annual Julia User & Developer Survey in June, and the [results](/assets/images/2019-julia-user-developer-survey.pdf) were presented by [Viral Shah at JuliaCon on July 23](https://youtu.be/yx6lBSHqGfc).
 
 ~~~
-        <object width="100%" height="400" data="/assets/images/2019-julia-user-developer-survey.pdf"  type="application/pdf">
-            <embed src="/assets/images/2019-julia-user-developer-survey.pdf" type="application/pdf" />
-        </object>
+<object width="100%" height="400" data="/assets/images/2019-julia-user-developer-survey.pdf"  type="application/pdf">
+    <embed src="/assets/images/2019-julia-user-developer-survey.pdf" type="application/pdf" />
+</object>
 ~~~
 
 Special thanks to all who participated in the survey!
