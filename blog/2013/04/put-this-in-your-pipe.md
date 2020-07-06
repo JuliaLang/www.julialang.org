@@ -163,7 +163,7 @@ Without such detailed error reporting, this bug would be pretty difficult to tra
 
 ## Do-Nothing Backticks
 
-Julia borrows the backtick syntax for external commands form Perl and Ruby, both of which in turn got it from the shell.
+Julia borrows the backtick syntax for external commands from Perl and Ruby, both of which in turn got it from the shell.
 Unlike in these predecessors, however, in Julia backticks don't immediately run commands, nor do they necessarily indicate that you want to capture the output of the command.
 Instead, backticks just construct an object representing a command:
 
@@ -199,8 +199,8 @@ Hello
 Process(`echo Hello`, ProcessExited(0))
 ```
 
-The `"Hello\n"` after the `readall` command is a returned value, whereas the `Hello` after the `run` command is printed output.
-The `Process(`echo Hello`, ProcessExited(0))` is the value returned by `run`.
+The `"Hello"` after the `readchomp` command is a returned value, whereas the `Hello` after the `run` command is printed output.
+The ``Process(`echo Hello`, ProcessExited(0))`` is the value returned by `run`.
 (If your terminal supports color, these are colored differently so that you can easily distinguish them visually.)
 If something goes wrong, an exception is raised:
 
@@ -265,7 +265,7 @@ Just as in the shell (and in Julia strings), you can interpolate values into com
 julia> dir = "src";
 
 julia> collect(`find $dir -type f`)
-4-element Union(UTF8String,ASCIIString) Array:
+4-element Array{String,1}:
  "find"
  "src"
  "-type"
