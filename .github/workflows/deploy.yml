@@ -47,7 +47,7 @@ jobs:
       - name: Deploy (preview)
         continue-on-error: true
         if: github.event_name == 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@3.4.2
+        uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           SSH: true
           BRANCH: gh-preview
