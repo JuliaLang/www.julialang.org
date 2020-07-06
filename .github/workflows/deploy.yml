@@ -38,14 +38,16 @@ jobs:
       # specific arguments, see the documentation or ?optimize in the REPL.
       - name: Build site
         run: julia -e '
-              using Pkg; Pkg.add(["NodeJS", "Franklin"]);
+              using Pkg;
+              Pkg.add("NodeJS");
+              Pkg.add(PackageSpec(name="Franklin",version="0.8"));
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
               using Franklin; optimize();
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
       - name: Deploy (preview)
         continue-on-error: true
         if: github.event_name == 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@3.4.2
+        uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           SSH: true
           BRANCH: gh-preview
