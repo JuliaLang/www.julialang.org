@@ -82,7 +82,7 @@ ERROR: failed process: Process(<span class=hljs-string >`xargs -0 grep flippity`
 <span class=hljs-number >0</span></code></pre>
 <p>This works correctly in all cases. Next I&#39;ll explain <em>how</em> all of this works, but for now it&#39;s enough to note that the detailed error message provided when our pipeline failed exposed a rather subtle bug that would eventually cause subtle and hard-to-debug problems when used in production. Without such detailed error reporting, this bug would be pretty difficult to track down.</p>
 <h2 id=do-nothing_backticks ><a href="#do-nothing_backticks">Do-Nothing Backticks</a></h2>
-<p>Julia borrows the backtick syntax for external commands form Perl and Ruby, both of which in turn got it from the shell. Unlike in these predecessors, however, in Julia backticks don&#39;t immediately run commands, nor do they necessarily indicate that you want to capture the output of the command. Instead, backticks just construct an object representing a command:</p>
+<p>Julia borrows the backtick syntax for external commands from Perl and Ruby, both of which in turn got it from the shell. Unlike in these predecessors, however, in Julia backticks don&#39;t immediately run commands, nor do they necessarily indicate that you want to capture the output of the command. Instead, backticks just construct an object representing a command:</p>
 <pre><code class="julia hljs">julia&gt; <span class=hljs-string >`echo Hello`</span>
 <span class=hljs-string >`echo Hello`</span>
 
@@ -98,7 +98,7 @@ julia&gt; typeof(ans)
 <pre><code class="julia hljs">julia&gt; run(<span class=hljs-string >`echo Hello`</span>)
 Hello
 Process(<span class=hljs-string >`echo Hello`</span>, ProcessExited(<span class=hljs-number >0</span>))</code></pre>
-<p>The <code>&quot;Hello\n&quot;</code> after the <code>readall</code> command is a returned value, whereas the <code>Hello</code> after the <code>run</code> command is printed output. The <code>Process&#40;</code>echo Hello<code>, ProcessExited&#40;0&#41;&#41;</code> is the value returned by <code>run</code>. &#40;If your terminal supports color, these are colored differently so that you can easily distinguish them visually.&#41; If something goes wrong, an exception is raised:</p>
+<p>The <code>&quot;Hello&quot;</code> after the <code>readchomp</code> command is a returned value, whereas the <code>Hello</code> after the <code>run</code> command is printed output. The <code>Process&#40;&#96;echo Hello&#96;, ProcessExited&#40;0&#41;&#41;</code> is the value returned by <code>run</code>. &#40;If your terminal supports color, these are colored differently so that you can easily distinguish them visually.&#41; If something goes wrong, an exception is raised:</p>
 <pre><code class="julia hljs">julia&gt; run(<span class=hljs-string >`false`</span>)
 ERROR: failed process: Process(<span class=hljs-string >`false`</span>, ProcessExited(<span class=hljs-number >1</span>)) [<span class=hljs-number >1</span>]
 
@@ -132,7 +132,7 @@ julia&gt; cmd[<span class=hljs-number >3</span>]
 <pre><code class="julia hljs">julia&gt; dir = <span class=hljs-string >&quot;src&quot;</span>;
 
 julia&gt; collect(<span class=hljs-string >`find <span class=hljs-variable >$dir</span> -type f`</span>)
-<span class=hljs-number >4</span>-element <span class=hljs-built_in >Union</span>(UTF8String,ASCIIString) <span class=hljs-built_in >Array</span>:
+<span class=hljs-number >4</span>-element <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >String</span>,<span class=hljs-number >1</span>}:
  <span class=hljs-string >&quot;find&quot;</span>
  <span class=hljs-string >&quot;src&quot;</span>
  <span class=hljs-string >&quot;-type&quot;</span>
