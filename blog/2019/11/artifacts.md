@@ -9,7 +9,7 @@ Over the past few months, we have been iterating on and refining a design for `P
 
 ## Pkg Artifacts
 
-Artifacts, as outlined in [`Pkg.jl#1234`](https://github.com/JuliaLang/Pkg.jl/issues/1234) and now documented in [the latest docs of Pkg.jl](https://julialang.github.io/Pkg.jl/dev/artifacts/), provide a convenient way to associate containers of data with Julia projects and packages.  Artifacts are referred to by content-hash, or optionally by a name that is bound to a hash through an `Artifacts.toml` file.  An example `Artifacts.toml` file is shown here as an example:
+Artifacts, as outlined in [`Pkg.jl#1234`](https://github.com/JuliaLang/Pkg.jl/issues/1234) and now documented in [the latest docs of Pkg.jl](https://julialang.github.io/Pkg.jl/dev/artifacts/), provide a convenient way to associate containers of data with Julia projects and packages.  Artifacts are referred to by content-hash, or optionally by a name that is bound to a hash through an `Artifacts.toml` file.  An `Artifacts.toml` file is shown here as an example:
 
 ```TOML
 [socrates]
@@ -99,7 +99,7 @@ For the specific use case of using artifacts that were previously bound, we have
 
 Artifacts are all installed within a global `artifacts` directory within your Julia package depot, usually within `~/.julia/artifacts`, keyed by content hash.  While artifacts are designed to work well with Julia's multi-depot layering system, and also provides a [mechanism for overriding artifact locations](https://julialang.github.io/Pkg.jl/dev/artifacts/#Overriding-artifact-locations-1) to aid in system administrators desiring to use specific, local, versions of libraries, in general we find that installing binary artifacts into a single, user-owned location like this works very well for the average Julia user.  These artifacts stay installed on-disk until a `Pkg.gc()` cleans away packages and artifacts that have been unused for at least one month.  The garbage collector determines artifacts and packages are unused when a particular version/content-hash is not referred to by any `Manifest.toml` or `Artifacts.toml` file on disk.  The garbage collector walks every `Manifest.toml` and `Artifacts.toml` file that has ever been loaded by Julia, and marks all reachable artifacts and package versions as used.  All non-marked artifacts and package versions are then noted as such, and any that have been continually noted as unused for a one month are automatically deleted.
 
-This time delay is configurable by setting the `collect_delay` keyword argument to something smaller, such as `Pkg.gc(;collect_delay=Hour(1))` (be sure to import the [`Dates`](https://docs.julialang.org/en/v1/stdlib/Dates/) stdlib to get time functions such as `Hour`!) to remove all artifacts that have been unused for an hour or more.  This extensive grace period should eliminate the majority of user frustration stemmign from needing to redownload the same large binary packages after changing package versions or reinstalling packages after switching projects.
+This time delay is configurable by setting the `collect_delay` keyword argument to something smaller, such as `Pkg.gc(;collect_delay=Hour(1))` (be sure to import the [`Dates`](https://docs.julialang.org/en/v1/stdlib/Dates/) stdlib to get time functions such as `Hour`!) to remove all artifacts that have been unused for an hour or more.  This extensive grace period should eliminate the majority of user frustration stemming from needing to redownload the same large binary packages after changing package versions or reinstalling packages after switching projects.
 
 # BinaryBuilder.jl
 
@@ -119,7 +119,7 @@ products = [
 ]
 ```
 
-With such products defined, the JLL package will contain the `data_txt`, `libdataproc` and `mungify_exe` symbols exported. For `FileProduct` variables, the exported value is a string pointing to the location of the file on-disk.  For `LibraryProduct` variables, it is a string corresponding to the `SONAME` of the desired library (it will have already been `dlopen()`'ed during the `__init__()` method of the JLL package module so typical `ccall()` usage applies), and for `ExecutableProduct` variables, the exported value is a function that can be called to set appropriate environment variables such as `PATH` and `LD_LIBRARY_PATH`.  This is necessary so that nested depdenencies works properly, e.g. `ffmpeg` calling the `x264` binary during video encoding.  Example:
+With such products defined, the JLL package will contain the `data_txt`, `libdataproc` and `mungify_exe` symbols exported. For `FileProduct` variables, the exported value is a string pointing to the location of the file on-disk.  For `LibraryProduct` variables, it is a string corresponding to the `SONAME` of the desired library (it will have already been `dlopen()`'ed during the `__init__()` method of the JLL package module so typical `ccall()` usage applies), and for `ExecutableProduct` variables, the exported value is a function that can be called to set appropriate environment variables such as `PATH` and `LD_LIBRARY_PATH`.  This is necessary so that nested dependencies work properly, e.g. `ffmpeg` calling the `x264` binary during video encoding.  Example:
 
 ```julia
 using c_simple_jll
@@ -184,7 +184,7 @@ Because JLL packages are registered just like any other public package, installi
 
 ## Yggdrasil, a collection of build recipes
 
-Previously, each user was encouraged to create their own "builder repository" where Travis CI would build binaries of their dependencies.  This made setup rather more intricate and difficult than we prefer our tools to be, and also contributed to a discovery problem where it was very difficult to figure out of someone had already built a recipe for a particular dependency or not.  To address both of these problems, we now have a community buildtree located at [`JuliaPackaging/Yggdrasil`](https://github.com/JuliaPackaging/Yggdrasil).  Users of the `BinaryBuilder.jl` wizard will typically result in opening a pull request to `Yggdrasil`, and many build recipes can already be found within its shady branches.
+Previously, each user was encouraged to create their own "builder repository" where Travis CI would build binaries of their dependencies.  This made setup rather more intricate and difficult than we prefer our tools to be, and also contributed to a discovery problem where it was very difficult to figure out whether someone had already built a recipe for a particular dependency or not.  To address both of these problems, we now have a community buildtree located at [`JuliaPackaging/Yggdrasil`](https://github.com/JuliaPackaging/Yggdrasil).  Users of the `BinaryBuilder.jl` wizard will typically result in opening a pull request to `Yggdrasil`, and many build recipes can already be found within its shady branches.
 
 # Updating your packages
 
