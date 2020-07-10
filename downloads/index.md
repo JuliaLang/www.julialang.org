@@ -36,7 +36,7 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{stable_release_short}}/julia-{{stable_release}}-win32.exe">32-bit</a> </td>
     </tr>
     <tr>
-      <th> macOS (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
+      <th> macOS <a href="/downloads/platform/#macos">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.dmg">64-bit</a> </td>
       <td colspan="3"> </td>
     </tr>
@@ -97,7 +97,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{lts_release_short}}/julia-{{lts_release}}-win32.exe">32-bit</a> </td>
     </tr>
     <tr>
-      <th> macOS (.dmg) <a href="/downloads/platform/#macos">[help]</a></th>
+      <th> macOS <a href="/downloads/platform/#macos">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{lts_release_short}}/julia-{{lts_release}}-mac64.dmg">64-bit</a> </td>
       <td colspan="3"> </td>
     </tr>
