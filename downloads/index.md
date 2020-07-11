@@ -31,7 +31,7 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
 <table class="downloads table table-hover table-bordered">
   <tbody>
     <tr>
-      <th> Windows (.exe) <a href="/downloads/platform/#windows">[help]</a></th>
+      <th> Windows <a href="/downloads/platform/#windows">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/{{stable_release_short}}/julia-{{stable_release}}-win64.exe">64-bit</a> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{stable_release_short}}/julia-{{stable_release}}-win32.exe">32-bit</a> </td>
     </tr>
@@ -92,7 +92,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 <table class="downloads table table-hover  table-bordered">
   <tbody>
     <tr>
-      <th> Windows (.exe) <a href="/downloads/platform/#windows">[help]</a></th>
+      <th> Windows <a href="/downloads/platform/#windows">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/{{lts_release_short}}/julia-{{lts_release}}-win64.exe">64-bit</a> </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{lts_release_short}}/julia-{{lts_release}}-win32.exe">32-bit</a> </td>
     </tr>
