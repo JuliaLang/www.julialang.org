@@ -15,7 +15,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Install SSH Client
-        continue-on-error: true
+        if: github.event_name != 'pull_request' || github.repository == github.event.pull_request.head.repo.full_name # if this build is NOT a PR build, OR if this build is a PR build and the PR is NOT from a fork
         uses: webfactory/ssh-agent@v0.2.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
@@ -45,8 +45,7 @@ jobs:
               using Franklin; optimize();
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
       - name: Deploy (preview)
-        continue-on-error: true
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name # if this build is a PR build and the PR is NOT from a fork
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           SSH: true
