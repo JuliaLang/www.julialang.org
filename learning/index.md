@@ -11,7 +11,7 @@
 
 ## Video
 
-Jupyter notebooks are available for the following YouTube tutorials over at the [JuliaBoxTutorials](https://github.com/JuliaComputing/JuliaBoxTutorials) repository on GitHub.
+Jupyter notebooks are available for the following YouTube tutorials over at the [JuliaTutorials](https://github.com/JuliaAcademy/JuliaTutorials) repository on GitHub.
 
 @@tight-list
 * [Intro to Julia (version 1.0)](https://www.youtube.com/watch?v=8h8rQyEpiZA&amp;t) , by Jane Herriman
