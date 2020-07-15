@@ -261,33 +261,28 @@ The platforms currently supported by Julia are listed below. They are divided in
       <td> Tier 1 </td>
     </tr>
     <tr>
-
       <td> i686 (32-bit) </td>
       <td> Tier 2 </td>
     </tr>
     <tr>
-      <td rowspan="7"> Linux </td>
-      <td rowspan="7"> 2.6.18+ </td>
+      <td rowspan="8"> Linux </td>
+      <td rowspan="8"> 2.6.18+ </td>
       <td> x86-64 (64-bit) </td>
       <td> Tier 1 </td>
     </tr>
     <tr>
-
       <td> i686 (32-bit) </td>
       <td> Tier 1 </td>
     </tr>
     <tr>
-
       <td> Nvidia PTX (64-bit) </td>
       <td> Tier 1 <a href="https://juliagpu.org">(JuliaGPU)</a> </td>
     </tr>
     <tr>
-
       <td> AMD GPUs (64-bit) </td>
       <td> Tier 3 <a href="https://juliagpu.org">(JuliaGPU)</a> </td>
     </tr>
     <tr>
-
       <td> ARMv7 (32-bit) </td>
       <td> Tier 3 </td>
     </tr>
@@ -296,16 +291,13 @@ The platforms currently supported by Julia are listed below. They are divided in
       <td> Tier 1 </td>
     </tr>
     <tr>
-
       <td> x86-64 musl libc </td>
       <td> Tier 3 </td>
     </tr>
     <tr>
-      <td></td>
       <td> PowerPC (64-bit)  </td>
       <td> Tier 3  </td>
     </tr>
-
     <tr>
       <td rowspan="2"> FreeBSD </td>
       <td rowspan="2"> 11.0+ </td>
