@@ -2,15 +2,16 @@
 @def rss = """ Announcing the release of Julia 1.0 | The much anticipated 1.0 release of Julia (https://julialang.org) is the culmination of... """
 @def published = "8 August 2018"
 @def title = "Announcing the release of Julia 1.0"
-@def authors = "the Julia developers"  
+@def authors = "Julia developers"
 
 ~~~Translations:  <a href="/blog/2018/08/one-point-zero-zh_cn">Simplified Chinese</a>, <a href="/blog/2018/08/one-point-zero-zh_tw">Traditional Chinese</a>, <a href="https://julialang.org/blog/2018/08/one-point-zero-es">Spanish</a>
 ~~~
 
 The much anticipated 1.0 release of [Julia](https://julialang.org) is the culmination of
-nearly a decade of work to build a language for greedy programmers. JuliaCon2018
+nearly a decade of work to build a language for greedy programmers. JuliaCon 2018
 celebrated the event with a reception where the community officially [set the version to
-1.0.0 together](https://www.youtube.com/watch?v=1jN5wKvN-Uk#t=3850).
+1.0.0 together](https://www.youtube.com/watch?v=1jN5wKvN-Uk#t=3850). The release was accompanied by a
+talk: [*A brief history and wild speculation about the future of Julia*](/assets/blog/2018-08-08-one-point-zero/release-1.0-keynote.pdf).
 
 Julia was [first publicly
 announced](/blog/2012/02/why-we-created-julia) with a number of strong
