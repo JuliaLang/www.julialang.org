@@ -297,13 +297,12 @@ The platforms currently supported by Julia are listed below. They are divided in
       <td> Tier 1 </td>
     </tr>
     <tr>
-
-      <td> x86-64 musl libc </td>
-      <td> Tier 3 </td>
     </tr>
     <tr>
 
       <td> PowerPC (64-bit) </td>
+      <td></td>
+      <td> x86-64 musl libc </td>
       <td> Tier 3 </td>
     </tr>
     <tr>
