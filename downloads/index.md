@@ -292,19 +292,20 @@ The platforms currently supported by Julia are listed below. They are divided in
       <td> Tier 3 </td>
     </tr>
     <tr>
-
       <td> ARMv8 (64-bit) </td>
       <td> Tier 1 </td>
     </tr>
     <tr>
-    </tr>
-    <tr>
 
-      <td> PowerPC (64-bit) </td>
-      <td></td>
       <td> x86-64 musl libc </td>
       <td> Tier 3 </td>
     </tr>
+    <tr>
+      <td></td>
+      <td> PowerPC (64-bit)  </td>
+      <td> Tier 3  </td>
+    </tr>
+
     <tr>
       <td rowspan="2"> FreeBSD </td>
       <td rowspan="2"> 11.0+ </td>
