@@ -43,6 +43,11 @@ sudo yum install julia</code></pre>
 <h2 id=debianubuntu_linux ><a href="#debianubuntu_linux">Debian/Ubuntu Linux</a></h2>
 <p>Recent Debian/ubuntu distributions include their own build of Julia, which can be installed in the usual way. If this is not the version of Julia you want, you will need to use the official binaries.</p>
 <pre><code class="julia hljs">sudo apt install julia</code></pre>
+<h2 id=arch_linux ><a href="#arch_linux">Arch Linux</a></h2>  The Arch User Repository has <a href="https://aur.archlinux.org/packages/julia-bin">a package for Julia</a> that is built from the official binaries of Julia. To install it run:</p>
+<pre><code class="julia hljs">sudo pacman -S base-devel git
+git clone https://aur.archlinux.org/julia-bin.git
+cd julia-bin
+makepkg -si</code></pre>
 <h2 id=freebsd_ports ><a href="#freebsd_ports">FreeBSD Ports</a></h2>
 <p>Julia is available in the <a href="https://svnweb.freebsd.org/ports/head/lang/julia/">Ports Collection</a>. To install from the FreeBSD binary package manager, <code>pkg</code>, run</p>
 <pre><code class="julia hljs">pkg install julia</code></pre></div><br><br>
