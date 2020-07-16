@@ -374,6 +374,14 @@
     <pubDate>Sun, 25 Oct 2015 00:00:00 UT</pubDate>
   </item>
   <item>
+    <title>Julia 1.0 Anunciando el release de Julia 1.0 (Spanish)</title>
+    <link>https://julialang.org/blog/2018/08/one-point-zero-es/index.html</link>
+    <description><![CDATA[La anticipada liberación de la versión 1.0 de...
+<br><a href="https://julialang.org/blog/2018/08/one-point-zero-es/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2018/08/one-point-zero-es/index.html</guid>
+    <pubDate>Wed, 8 Aug 2018 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title>Yao.jl - Differentiable Quantum Programming In Julia</title>
     <link>https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/index.html</link>
     <description><![CDATA[Yao.jl - Differentiable Quantum Programming In Julia
@@ -428,6 +436,14 @@
 <br><a href="https://julialang.org/blog/2012/02/why-we-created-julia/index.html">Read more</a>]]></description>
     <guid>https://julialang.org/blog/2012/02/why-we-created-julia/index.html</guid>
     <pubDate>Tue, 14 Feb 2012 00:00:00 UT</pubDate>
+  </item>
+  <item>
+    <title>Announcing the release of Julia 1.0</title>
+    <link>https://julialang.org/blog/2018/08/one-point-zero/index.html</link>
+    <description><![CDATA[Announcing the release of Julia 1.0. The much anticipated 1.0 release of Julia is the culmination of...
+<br><a href="https://julialang.org/blog/2018/08/one-point-zero/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2018/08/one-point-zero/index.html</guid>
+    <pubDate>Wed, 8 Aug 2018 00:00:00 UT</pubDate>
   </item>
   <item>
     <title>An invitation to JuliaCon 2016</title>
