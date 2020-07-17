@@ -50,7 +50,7 @@ in the unfortunate situation where using views to eliminate allocation itself ca
 previous Julia versions, you had to choose between copying array slices or using views but having to
 allocate view objects. Even though view objects are small and relatively cheap to allocate, any
 amount of allocation can inhibit optimizations and trigger garbage collection, both of which can be
-painful in performance-ctricial code. Eliminating this allocation has been sufficiently important for
+painful in performance-critical code. Eliminating this allocation has been sufficiently important for
 some users that the [UnsafeArrays](https://github.com/JuliaArrays/UnsafeArrays.jl) package exists
 solely to allow creating views without allocating.[^UnsafeArrays]
 
