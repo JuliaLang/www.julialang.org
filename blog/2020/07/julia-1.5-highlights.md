@@ -1,4 +1,4 @@
-@def title = "Julia v1.5 Highlights"
+@def title = "Julia 1.5 Highlights"
 @def authors = "Jeff Bezanson and Stefan Karpinski"
 @def published = "24 July 2020"
 @def rss_pubdate = (2020, 7, 24)
@@ -12,22 +12,20 @@ Let's walk through some highlights.
 
 \toc
 
-## More inline and stack allocation
+## All structs can be stack allocated
 
-This release brings a major, long-desired optimization that can significantly reduce heap allocations
-in some workloads.
-
-To understand it, it helps to know a bit about Julia’s object model. Julia has both mutable and
-immutable kinds of objects. New record (composite) types declared with `struct` are immutable, whereas
-if you want a mutable record, you have to use `mutable struct` to declare the new type. The language
-automatically picks memory layouts and calling conventions for each type, generally trying to be
-compatible with C/C++. In general, a mutable object must exist in a single location on the heap, so
-mutable objects will be stored and passed by reference (unless the compiler can prove that it won’t
-matter). Immutable objects, on the other hand, give the compiler much greater flexibility.
-For example, an immutable struct containing two values could be passed to a function by reference just
-like a mutable struct with the same fields, but it can also be passed just by passing those two values
-in registers—because there’s no memory location that needs to be kept in sync with the values since
-regardless of where they came from, they cannot be modified.
+This release brings a major, long-desired optimization that can significantly reduce heap
+allocations in some workloads. To understand it, it helps to know a bit about Julia’s object model.
+Julia has both mutable and immutable kinds of objects. New record (composite) types declared with
+`struct` are immutable, whereas if you want a mutable record, you have to use `mutable struct` to
+declare the new type. The language automatically picks memory layouts and calling conventions for
+each type, generally trying to be compatible with C/C++. In general, a mutable object must exist in
+a single location on the heap, so mutable objects will be stored and passed by reference (unless the
+compiler can prove that it won’t matter). Immutable objects, on the other hand, give the compiler
+much greater flexibility. For example, an immutable struct containing two values could be passed to
+a function by reference just like a mutable struct with the same fields, but it can also be passed
+just by passing those two values in registers—because there’s no memory location that needs to be
+kept in sync with the values since regardless of where they came from, they cannot be modified.
 
 Prior to this release, layout optimizations for immutable objects had a significant limitation: if an
 immutable object pointed to a heap-allocated, mutable object, it would itself need to be heap-allocated.
@@ -52,16 +50,13 @@ allocate view objects. Even though view objects are small and relatively cheap t
 amount of allocation can inhibit optimizations and trigger garbage collection, both of which can be
 painful in performance-critical code. Eliminating this allocation has been sufficiently important for
 some users that the [UnsafeArrays](https://github.com/JuliaArrays/UnsafeArrays.jl) package exists
-solely to allow creating views without allocating.[^UnsafeArrays]
-
-[^UnsafeArrays]: This is done by using pointers instead of object references, which avoids allocation
-but means that it’s possible to write memory-unsafe code that segfaults—hence the "Unsafe" part of
-the package name.
+solely to allow creating views without allocating.
 
 In 1.5 this difficult choice goes away: using views no longer forces allocation. This means that
-`UnsafeArrays` is no longer necessary. Needless to say, removing the need for elaborate performance
-workarounds is always one of the highest aspirations of a compiler developer. To see this in action,
-here is a simple function for summing n x n neighborhoods of a matrix:
+`UnsafeArrays` is no longer necessary in the vast majority of cases. Needless to say, removing the
+need for elaborate performance workarounds is always one of the highest aspirations of a compiler
+developer. To see this in action, here is a simple function for summing n x n neighborhoods of a
+matrix:
 
 ```
 function sum_neighborhoods(A, n::Int)
@@ -107,6 +102,10 @@ BenchmarkTools.Trial:
   samples:          1164
   evals/sample:     1
 ```
+
+The speedup is actually not that large, which is a testament to the fact that Julia's allocator is
+very efficient, but note the difference in allocations: 250004 on 1.4 versus 2 on 1.5. The
+difference is all those view objects which don't need to heap allocated anymore.
 
 We would like to thank [RelationalAI](https://www.relational.ai/) for sponsoring this work.
 
@@ -286,26 +285,30 @@ Julia ships with a built-in package manager called `Pkg`. In the past, `Pkg` has
 directly from GitHub, GitLab, BitBucket, or wherever else they happen to be hosted. While this was a
 great way to bootstrap a package ecosystem, it has a number of disadvantages:
 
-Vanishing resources: if the repo for a package goes away—the maintainer deletes it, makes it private,
-the hosting services goes down—then nobody can install that package anymore. We want to insulate Julia
-users from getting "[left-padded](https://en.wikipedia.org/wiki/Npm_(software)#Notable_breakages)".
-Lack of insight: the Julia project has no idea what packages are installed a lot or a little. GitHub
-(or wherever packages are hosted) has this information but doesn't share it with us. It would be really
-beneficial to know what packages get used the most.
-Coupling with Git/GitHub: if you're installing packages from git hosting services, that ties the
-package manager to that hosting service's API and/or the git protocol. Since 1.0 there's nothing
-inherently tying Julia packages with git aside from how we get them.
-Firewall problems: A lot of organizations with firewalls block git and/or SSH; it's not uncommon
-to block access to random code hosting services since IT may want some say over what open source code
-people use. Having a single server as the sole point-of-contact for installing packages and using a
-standard protocol like HTTPS would alleviate firewall problems considerably. Even better if it was
-trivial to set up a caching proxy server inside the firewall.
-Performance: while downloading packages from GitHub may work great in North America, it's not so fast
-in the rest of the world. We've heard of Pkg operations taking tens of minutes for users in China and
-Australia. We want Julia users _everywhere_ to have a great experience installing packages.
+- *Vanishing resources:* if the repo for a package goes away—the maintainer deletes it, makes it private,
+  the hosting services goes down—then nobody can install that package anymore. We want to insulate Julia
+  users from getting "[left-padded](https://en.wikipedia.org/wiki/Npm_(software)#Notable_breakages)".
+
+- *Lack of insight:* the Julia project has no idea what packages are installed a lot or a little. GitHub
+  (or wherever packages are hosted) has this information but doesn't share it with us. It would be really
+  beneficial to know what packages get used the most.
+
+- *Coupling with Git/GitHub:* if you're installing packages from git hosting services, that ties the
+  package manager to that hosting service's API and/or the git protocol. There's nothing
+  inherently requiring Julia packages to be developed with git or served by git hosting.
+
+- *Firewall problems:* A lot of organizations with firewalls block git and/or SSH; it's not uncommon
+  to block access to random code hosting services since IT may want some say over what open source code
+  people use. Having a single server as the sole point-of-contact for installing packages and using a
+  standard protocol like HTTPS would alleviate firewall problems considerably. Even better if it was
+  trivial to set up a caching proxy server inside the firewall.
+
+- *Performance:* while downloading packages from GitHub may work great in North America, it's not so fast
+  in the rest of the world. We've heard of Pkg operations taking tens of minutes for users in China and
+  Australia. We want Julia users _everywhere_ to have a great experience installing packages.
 
 A new way of getting packages was introduced in Julia 1.4, known as
-"[the pkg protocol](https://github.com/JuliaLang/Pkg.jl/issues/1377)", which solves all of these issues.
+"[the Pkg protocol](https://github.com/JuliaLang/Pkg.jl/issues/1377)", which solves all of these issues.
 Instead of downloading packages from wherever they happen to be hosted, the Pkg client connects to a
 "Pkg server" using a simple HTTPS protocol to download new versions of package registries, package
 tarballs and artifacts—everything that's needed to install and use packages. This protocol was optional
