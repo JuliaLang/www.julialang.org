@@ -179,8 +179,7 @@ named tuples:
 - `(; name, value, type)` is shorthand for
 - `(name = name, value = value, type = type)`.
 
-These shorthands also work when the value being passed is a field in a structure (or anything else
-that uses `.field` syntax):
+These shorthands also work when the value being passed is a field in a structure with the same name as the keyword argument (or anything else that uses `object.field` syntax):
 
 - `printstyled("text"; opts.color)` is shorthand for
 - `printstyled("text"; color = opts.color)`.
@@ -291,44 +290,46 @@ Calling `randn(1000)` is nearly twice as fast in Julia 1.5 compared with Julia 1
 Generating random booleans also got **much** faster: `rand(Bool, 1000)` is nearly 6x faster.
 Finally, sampling from discrete collections has also gotten faster: `rand(1:100, 1000)` got 25% faster.
 
-## Pkg Protocol now the default way to get packages
+## Pkg Protocol now the default
 
 Julia ships with a built-in package manager called `Pkg`. In the past, `Pkg` has downloaded packages
 directly from GitHub, GitLab, BitBucket, or wherever else they happen to be hosted. While this was a
 great way to bootstrap a package ecosystem, it has a number of disadvantages:
 
-- *Vanishing resources:* if the repo for a package goes away—the maintainer deletes it, makes it private,
-  the hosting services goes down—then nobody can install that package anymore. We want to insulate Julia
-  users from getting "[left-padded](https://en.wikipedia.org/wiki/Npm_(software)#Notable_breakages)".
+- *Vanishing resources:* if the repo for a package goes away because the maintainer deletes it, makes it
+  private, or its hosting service goes down, then nobody can install that package anymore. We want to
+  insulate Julia users from getting
+  "[left-padded](https://en.wikipedia.org/wiki/Npm_(software)#Notable_breakages)".
 
 - *Lack of insight:* the Julia project has no idea what packages are installed a lot or a little. GitHub
-  (or wherever packages are hosted) has this information but doesn't share it with us. It would be really
-  beneficial to know what packages get used the most.
+  et al. have this information but doesn't share it with us. It would be really beneficial to the
+  community to know what packages get used the most.
 
 - *Coupling with Git/GitHub:* if you're installing packages from git hosting services, that ties the
   package manager to that hosting service's API and/or the git protocol. There's nothing
-  inherently requiring Julia packages to be developed with git or served by git hosting.
+  inherently requiring Julia packages to be developed with git or served by git hosting services.
 
-- *Firewall problems:* A lot of organizations with firewalls block git and/or SSH; it's not uncommon
-  to block access to random code hosting services since IT may want some say over what open source code
-  people use. Having a single server as the sole point-of-contact for installing packages and using a
-  standard protocol like HTTPS would alleviate firewall problems considerably. Even better if it was
-  trivial to set up a caching proxy server inside the firewall.
+- *Firewall problems:* A lot of organizations with firewalls block git and/or ssh. It's not uncommon
+  to block access to code hosting services since IT may need control over what software people use.
+  Having a single server as the sole point-of-contact for installing Julia packages and using a standard
+  protocol like HTTPS would alleviate firewall problems considerably. Even better if it was trivial
+  to set up a caching proxy server inside the firewall.
 
 - *Performance:* while downloading packages from GitHub may work great in North America, it's not so fast
   in the rest of the world. We've heard of Pkg operations taking tens of minutes for users in China and
   Australia. We want Julia users _everywhere_ to have a great experience installing packages.
 
-A new way of getting packages was introduced in Julia 1.4, known as
-"[the Pkg protocol](https://github.com/JuliaLang/Pkg.jl/issues/1377)", which solves all of these issues.
+A new way of getting packages was introduced in Julia 1.4, known as "[the Pkg
+protocol](https://github.com/JuliaLang/Pkg.jl/issues/1377)", which solves all of these issues.
 Instead of downloading packages from wherever they happen to be hosted, the Pkg client connects to a
 "Pkg server" using a simple HTTPS protocol to download new versions of package registries, package
-tarballs and artifacts—everything that's needed to install and use packages. This protocol was optional
-in 1.4 because we wanted to have time to test it out, make sure it was working well, and build out the
-required server infrastructure. In 1.5, we've flipped the switch: the Pkg protocol is now the default
-way that Julia gets packages. By default everything is downloaded from https://pkg.julialang.org
-(it's not a website, as the very basic landing page tells you), which is served by a dozen pkg servers
-around the world ensuring that everyone has a great experience installing and updating Julia packages.
+tarballs and artifacts—everything that's needed to install and use packages. This protocol was
+introduced in 1.4 but not used by default: we wanted to have time to test it out, make sure it was
+working well, and build out the required server infrastructure. In 1.5, we've flipped the switch,
+making the Pkg protocol the default way that Julia gets packages. Now by default everything is
+downloaded from https://pkg.julialang.org (it's not a website, as the very basic landing page tells
+you), which is served by a dozen pkg servers around the world ensuring that everyone has a great
+experience installing and updating Julia packages.
 
 ## Conclusion
 
