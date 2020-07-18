@@ -1,5 +1,5 @@
 @def title = "Julia 1.5 Highlights"
-@def authors = "Jeff Bezanson and Stefan Karpinski"
+@def authors = "Jeff Bezanson & Stefan Karpinski"
 @def published = "24 July 2020"
 @def rss_pubdate = (2020, 7, 24)
 @def rss = """Julia version 1.5 has been released, featuring many performance improvements and new capabilities."""
@@ -109,7 +109,7 @@ difference is all those view objects which don't need to heap allocated anymore.
 
 We would like to thank [RelationalAI](https://www.relational.ai/) for sponsoring this work.
 
-## Multithreading
+## Multithreading API stabilization & improvements
 
 Improving support for parallelism is a major focus of ongoing work. Threading was introduced as an
 experimental feature way back in v0.5, and since then nearly every release has increased thread safety
@@ -161,21 +161,33 @@ But in general, this release improves compiler latency by a considerable margin 
 
 ## Implicit keyword argument values
 
-When passing a keyword argument, or constructing a named tuple, it's quite common for the value to be
-held in a variable with the same name as the argument or field name. For example, if you are printing
-colored text and have the color to use in a variable called `color`, you need to write
-`printstyled("text", color=color)`.
-Typing the same words twice all the time can get tedious, especially when delegating several keyword
-arguments to another function. This release adds a convenient shorthand that has already become popular
-in several other languages (such as TypeScript): `printstyled("text"; color)` is an abbreviation for
-`printstyled("text"; color=color)`. Note the semicolon before the `color` argument: this is necessary
-for Julia to distinguish this shorthand syntax from passing `color` as a second positional argument.
-A similar shorthand works for named tuples: `(; name, value, type)` is shorthand  for
-`(name=name, value=value, type=type)`. These shorthands also work when the value being passed is a
-field in a structure (or anything else that uses `.field` syntax): `printstyled("text"; opts.color)`
-is shorthand for `printstyled("text"; color=opts.color)`. Although this change doesn't allow
-programmers to _do_ anything they couldn't do before, it makes writing code that works with keyword
-arguments and named tuples a lot more pleasant, concise and readable.
+When passing a keyword argument, or constructing a named tuple, it's quite common for the value to
+be held in a variable with the same name as the argument or field name. For example, if you are
+printing colored text and have the color to use in a variable called `color`, you need to write
+`printstyled("text", color=color)`. Typing the same words twice all the time can get tedious,
+especially when delegating several keyword arguments to another function. This release adds a
+convenient shorthand that has already become popular in several other languages (such as
+TypeScript):
+
+- `printstyled("text"; color)` is an abbreviation for
+- `printstyled("text"; color = color)`.
+
+Note the semicolon before the `color` argument: this is necessary for Julia to distinguish this
+shorthand syntax from passing `color` as a second positional argument. A similar shorthand works for
+named tuples:
+
+- `(; name, value, type)` is shorthand for
+- `(name = name, value = value, type = type)`.
+
+These shorthands also work when the value being passed is a field in a structure (or anything else
+that uses `.field` syntax):
+
+- `printstyled("text"; opts.color)` is shorthand for
+- `printstyled("text"; color = opts.color)`.
+
+Although this change doesn't allow programmers to _do_ anything they couldn't do before, it makes
+writing code that works with keyword arguments and named tuples a lot more pleasant, concise and
+readable.
 
 ## The return of "soft scope" in the REPL
 
@@ -248,7 +260,7 @@ This change fixes a common stumbling block for new Julia users and an annoyance 
 like to use the REPL for debugging, while not sacrificing the suitability of the language for reliable
 programming at scale.
 
-## `@ccall` macro
+## New `@ccall` macro
 
 Julia has long had a capable and widely-used interface for calling C functions. While the functionality
 is fine, some greedy programmers (our favorite kind) pointed out that the syntax is less than
