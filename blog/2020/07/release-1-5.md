@@ -17,7 +17,7 @@ Let's walk through some highlights.
 This release brings a major, long-desired optimization that can significantly reduce heap allocations
 in some workloads.
 
-To understand it, it helps to know a bit about Julia’s object model. Julia has both immutable and
+To understand it, it helps to know a bit about Julia’s object model. Julia has both mutable and
 immutable kinds of objects. New record (composite) types declared with `struct` are immutable, whereas
 if you want a mutable record, you have to use `mutable struct` to declare the new type. The language
 automatically picks memory layouts and calling conventions for each type, generally trying to be
