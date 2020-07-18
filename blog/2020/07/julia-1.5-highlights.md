@@ -12,7 +12,7 @@ Let's walk through some highlights.
 
 \toc
 
-## All structs can be stack allocated
+## More inline and stack allocation
 
 This release brings a major, long-desired optimization that can significantly reduce heap
 allocations in some workloads. To understand it, it helps to know a bit about Julia’s object model.
@@ -38,6 +38,8 @@ As a result of this work, arbitrary immutable objects—regardless of whether th
 reference mutable objects or not—can now be stack allocated, passed and returned by value, and stored
 inline in arrays and other objects. In short, immutable structs that refer to mutable values are now
 just as efficient as immutable structs that only refer to other immutable objects.
+(There are some size-based limits to which structs can be stack allocated, but they are unlikely
+to be exceeded in practice.)
 
 This is a big deal because many important abstractions can only be implemented by wrapping mutable
 objects in structs. The classic example in Julia is array "views" (the `SubArray` type), which wrap
@@ -289,6 +291,12 @@ normally-distributed double-precision floats.
 Calling `randn(1000)` is nearly twice as fast in Julia 1.5 compared with Julia 1.4.
 Generating random booleans also got **much** faster: `rand(Bool, 1000)` is nearly 6x faster.
 Finally, sampling from discrete collections has also gotten faster: `rand(1:100, 1000)` got 25% faster.
+
+## Automated rr-based bug reports
+
+There is a new command-line option `--bug-report=rr` which makes it trivially easy to record
+and upload [rr](https://rr-project.org/) traces to aid in fixing bugs.
+This feature is described in detail in [a separate blog post](https://julialang.org/blog/2020/05/rr).
 
 ## Pkg Protocol now the default
 
