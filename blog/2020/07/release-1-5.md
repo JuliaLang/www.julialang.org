@@ -182,7 +182,7 @@ arguments and named tuples a lot more pleasant, concise and readable.
 
 Variable scope is a surprisingly rich source of design conundrums in programming languages.
 For the most part, dividing a program into many nested scopes is a great thing: it aids in local
-reasoning about what code means, it helps enable optimizations, and it prevents changes in one section
+reasoning about what code means, it enables optimizations, and it prevents changes in one section
 of code from accidentally breaking distant, unrelated code. All good features for "programming in the
 large". But for quick, experimental programming it is tedious to worry about the lifetime of every
 variable, and in particular, the safe default of making things local rather than global can sometimes
@@ -231,19 +231,19 @@ front-end behave differently than the default REPL is not a good situation, so w
 After a lengthy discussion and several designs considered and prototyped, we settled on the following
 solution in v1.5:
 
-Make the REPL behave like IJulia, and Julia versions 0.6 or earlier.
-Keep the 1.0 behavior in files, to avoid breaking anybody's code.
-Print a warning if code in a file would behave differently than in the REPL, requesting an explicit
-`local` or `global` declaration to disambiguate the variable in the loop.
+- Make the REPL behave like IJulia, and Julia versions 0.6 or earlier.
+- Keep the 1.0 behavior in files, to avoid breaking anybody's code.
+- Print a warning if code in a file would behave differently than in the REPL, requesting an explicit
+  `local` or `global` declaration to disambiguate the variable in the loop.
 
 We feel this is the best that can be done without making breaking changes. Arguably, it's the best
 that can be done even allowing breaking changes, without radically changing the way scopes or variable
 declarations work. It has several desirable properties:
 
-Code works as expected by new users in the REPL and in notebooks
-You can cut and paste code between function bodies and the REPL for debugging
-In files, where accidentally clobbering a global by assigning to it inside of a local scope is a real
-problem, you get a clear warning, prompting you to clarify whether the clobbering is intentional.
+- Code works as expected by new users in the REPL and in notebooks.
+- You can cut and paste code between function bodies and the REPL for debugging.
+- In files, where accidentally clobbering a global by assigning to it inside of a local scope is a real
+  problem, you get a clear warning, prompting you to clarify whether the clobbering is intentional.
 
 This change fixes a common stumbling block for new Julia users and an annoyance for regular users who
 like to use the REPL for debugging, while not sacrificing the suitability of the language for reliable
