@@ -4,7 +4,8 @@
 ## Native Julia ODE, SDE, DAE, DDE, and (S)PDE Solvers
 
 The DifferentialEquations.jl ecosystem has an extensive set of state-of-the-art
-methods for solving differential equations. By mixing native methods and wrapped
+methods for solving differential equations hosted by the [SciML Scientific Machine
+Learning Software Organization](https://sciml.ai/). By mixing native methods and wrapped
 methods under the same dispatch system, [DifferentialEquations.jl serves both as a system to deploy and research the most modern efficient methodologies](https://arxiv.org/abs/1807.06430).
 While most of the basic methods have been developed and optimized, many newer
 methods need high performance implementations and real-world tests of their
@@ -47,10 +48,13 @@ linear algebra, and the ability (or eagerness to learn) to write fast code.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
-## Neural networks for solving differential equations
+## Physics-Informend Neural networks (PINN) for solving differential equations
 
-Neural networks can be used as a method for efficiently solving difficult partial differential equations. Efficient implementations from recent papers are being explored as part of the [NeuralNetDiffEq.jl](https://github.com/SciML/NeuralNetDiffEq.jl) package.
-The [issue tracker](https://github.com/SciML/NeuralNetDiffEq.jl/issues) contains links to papers which would be interesting new neural network based methods to implement and benchmark against classical techniques.
+Neural networks can be used as a method for efficiently solving difficult partial differential equations. 
+Efficient implementations of physics-informed machine learning from recent papers are being explored as 
+part of the [NeuralNetDiffEq.jl](https://github.com/SciML/NeuralNetDiffEq.jl) package.
+The [issue tracker](https://github.com/SciML/NeuralNetDiffEq.jl/issues) contains links to papers which 
+would be interesting new neural network based methods to implement and benchmark against classical techniques.
 
 **Recommended Skills**: Background knowledge in numerical analysis and machine learning.
 
