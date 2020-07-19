@@ -43,6 +43,7 @@ The [Julia Language's YouTube channel](https://www.youtube.com/user/JuliaLanguag
 ## Books
 
 @@tight-list
+* Erik Engheim. [Julia for Beginners](https://leanpub.com/julia-for-beginners). Leanpub, July 2020
 * Zacharias Voulgaris. [Julia for Machine Learning](https://technicspub.com/julia/). Technics Publications, June 2020.
 * Tom Kwong. [Hands-on Design Patterns and Best Practices with Julia](https://www.packtpub.com/application-development/hands-design-patterns-julia-10).  Packt Publishing, January 2020.
 * Tanmay Bakshi. [Tanmay Teaches Julia for Beginners: A Springboard to Machine Learning for All Ages](https://www.mheducation.co.uk/tanmay-teaches-julia-for-beginners-a-springboard-to-machine-learning-for-all-ages-9781260456639-emea). McGraw Hill, November 2019.
