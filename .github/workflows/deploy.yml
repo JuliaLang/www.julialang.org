@@ -22,12 +22,10 @@ jobs:
       - name: Fix URLs for PR preview deployment (pull request previews)
         if: github.event_name == 'pull_request'
         run: |
-          cat config.md
-          rm -rf config.md.original
-          mv config.md config.md.original
-          sed -e 's/@def prepath = ""/@def prepath = "previews\/PR${{ github.event.number }}"/g' -e 's/@def website_url = "https\:\/\/julialang\.org\/"/@def website_url = "https\:\/\/julialang\.netlify\.app\/previews\/PR${{ github.event.number }}\/"/g' config.md.original > config.md
-          rm -rf config.md.original
-          cat config.md
+          echo "::set-env name=JULIA_FRANKLIN_WEBSITE_URL::https://julialang.netlify.app/previews/PR${{ github.event.number }}/"
+          echo "::set-env name=JULIA_FRANKLIN_PREPATH::previews/PR${{ github.event.number }}}"
+      - run: echo $JULIA_FRANKLIN_WEBSITE_URL
+      - run: echo $JULIA_FRANKLIN_PREPATH
       # Python is necessary for pre-rendering steps as well as to install
       # matplotlib which is necessary if you intend to use PyPlot. If you do
       # not, then you can remove the `run: pip install matplotlib` line.
