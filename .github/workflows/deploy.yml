@@ -23,7 +23,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           echo "::set-env name=JULIA_FRANKLIN_WEBSITE_URL::https://julialang.netlify.app/previews/PR${{ github.event.number }}/"
-          echo "::set-env name=JULIA_FRANKLIN_PREPATH::previews/PR${{ github.event.number }}}"
+          echo "::set-env name=JULIA_FRANKLIN_PREPATH::previews/PR${{ github.event.number }}"
       - run: echo $JULIA_FRANKLIN_WEBSITE_URL
       - run: echo $JULIA_FRANKLIN_PREPATH
       # Python is necessary for pre-rendering steps as well as to install
