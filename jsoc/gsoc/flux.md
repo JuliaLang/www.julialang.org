@@ -59,6 +59,12 @@ There are many high-quality open-source tutorials and learning materials availab
 
 Mentors: [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
 
+### FermiNets: Generative Synthesis for Automating the Choice of Neural Architectures
+
+The application of machine learning requires an understanding a practictioner to optimize a neural architecture for a given problem, or does it? Recently techniques in automated machine learning, also known as AutoML, have dropped this requirement by allowing for good architectures to be found automatically. One such method is the [FermiNet](https://arxiv.org/abs/1809.05989) which employs generative synthesis to give a neural architecture which respects certain operational requirements. The goal of this project is to implement the FermiNet in Flux to allow for automated sythesis of neural networks.
+
+Mentors: [Chris Rackauckas](https://github.com/ChrisRackauckas) and [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
+
 ### Model Zoo Examples
 
 Flux's [model zoo](https://github.com/FluxML/model-zoo/) contains examples of a wide range of deep learning models and techniques. This project would involve adding new models, showing how to recreate state-of-the-art results (e.g. AlphaGo) or interesting and unusual model architectures (e.g. transformer networks). We'd be particularly interested in any models involving reinforcement learning, or anything with images, sound or speech.
