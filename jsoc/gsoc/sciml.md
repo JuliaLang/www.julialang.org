@@ -1,6 +1,7 @@
 
-# Scientific Machine Learning
+# Scientific Machine Learning (SciML) Projects
 
+These projects are hosted by the [SciML Open Source Scientific Machine Learning Software Organzation](https://sciml.ai/).
 
 ### Physics-Informed Neural Networks (PINNs) and Solving Differential Equations with Deep Learning
 
@@ -129,7 +130,7 @@ simultaneously.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas), [Vaibhav Dixit](https://github.com/Vaibhavdixit02)
 
-## Integration of FEniCS.jl with dolfin-adjoint + Zygote.jl for Scientific Machine Learning
+## Integration of FEniCS.jl with dolfin-adjoint + Zygote.jl for Finite Element Scientific Machine Learning
 
 Scientific machine learning requires mixing scientific computing libraries with machine learning.
 [This blog post highlights how the tooling of Julia is fairly advanced in this field](https://www.stochasticlifestyle.com/the-essential-tools-of-scientific-machine-learning-scientific-ml/) compared to alternatives such as Python,
