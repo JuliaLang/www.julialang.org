@@ -335,9 +335,9 @@ tarballs and artifacts—everything that's needed to install and use packages. T
 introduced in 1.4 but not used by default: we wanted to have time to test it out, make sure it was
 working well, and build out the required server infrastructure. In 1.5, we've flipped the switch,
 making the Pkg protocol the default way that Julia gets packages. Now by default everything is
-downloaded from https://pkg.julialang.org (it's not a website, as the very basic landing page tells
-you), which is served by a dozen pkg servers around the world ensuring that everyone has a great
-experience installing and updating Julia packages.
+downloaded from <https://pkg.julialang.org> (it's not a website, as the very basic landing page tells
+you), which is served by a dozen pkg servers around the world, ensuring that everyone everywhere has
+a great experience installing and updating Julia packages.
 
 ## Conclusion
 
