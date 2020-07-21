@@ -12,7 +12,7 @@ Let's walk through some highlights.
 
 \toc
 
-## More inline and stack allocation
+## Struct layout and allocation optimizations
 
 This release brings a major, long-desired optimization that can significantly reduce heap
 allocations in some workloads. To understand it, it helps to know a bit about Julia’s object model.
@@ -34,7 +34,7 @@ to be a one-to-one correspondence between object fields and GC roots. For 1.5, J
 [redesign](https://github.com/JuliaLang/julia/pull/33886) to fix this, allowing the compiler to track
 multiple roots inside object fields.
 
-As a result of this work, arbitrary immutable objects—regardless of whether they have fields which
+As a result of this work, arbitrary immutable objects—regardless of whether they have fields that
 reference mutable objects or not—can now be stack allocated, passed and returned by value, and stored
 inline in arrays and other objects. In short, immutable structs that refer to mutable values are now
 just as efficient as immutable structs that only refer to other immutable objects.
