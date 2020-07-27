@@ -79,10 +79,11 @@
    </div>
    <br>
    <div class="row">
-     <div class="col-12" style="text-align: center">
+     <div class="col text-center">
        <a class="btn btn-sm btn-outline-primary" href="otherchannels/">See other Julia Channels</a>
      </div>
    </div>
+   <br>
  </div>
 
  <!--
