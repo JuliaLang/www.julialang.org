@@ -14,5 +14,4 @@ Below you will find a breakdown of our past and current diversity and inclusion 
  :-----------------------| :--------------------------- | :---------------------------  
  January 2020 | JuliaAcademy Overhaul | [https://juliaacademy.com](https://juliaacademy.com)  
  January 2020 | JuliaCon 2020 Financial Assistance | [https://docs.google.com/forms/d/e/1FAIpQLSeb0gjPEGbSa6twHIImSfE-xtxoAlO9P0k_WgOv_wrG1eWgUQ/viewform](https://docs.google.com/forms/d/e/1FAIpQLSeb0gjPEGbSa6twHIImSfE-xtxoAlO9P0k_WgOv_wrG1eWgUQ/viewform)
- November 2018 | Julia Computing Awards Diversity and Inclusion Grants | [https://juliacomputing.com/blog/2018/11/30/DandI-grant-awards.html](https://juliacomputing.com/blog/2018/11/30/DandI-grant-awards.html)                    
-                |                   |                   
+ November 2018 | Julia Computing Awards Diversity and Inclusion Grants | [https://juliacomputing.com/blog/2018/11/30/DandI-grant-awards.html](https://juliacomputing.com/blog/2018/11/30/DandI-grant-awards.html)                   
