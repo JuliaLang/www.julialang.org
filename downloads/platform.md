@@ -76,9 +76,16 @@ You can uninstall Julia by deleting Julia.app and the packages directory in `~/.
 
 ## Linux and FreeBSD
 
-It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD.
+It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following
+command downloads the latest Julia version and makes a symlink to allow the `julia` command to find the binary:
 
+```
+wget https://julialang-s3.julialang.org/bin/linux/x64/1.4/julia-1.4.2-linux-x86_64.tar.gz
+tar -xvzf julia-1.4.2-linux-x86\_64.tar.gz
+ln -s ~/julia-1.4.2/bin/julia ~/.local/bin/
+```
 
+### More Detailed Instructions and Explanation
 
 The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the `julia` executable.
 
