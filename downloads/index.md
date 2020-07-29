@@ -215,7 +215,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 
 {{end}} <!-- upcoming_release -->
 
-(*) Most users would prefer the `glibc` version of the distribution unless you know that your system uses `musl`.
+(*) Most Linux users should use the glibc binaries unless you know that your system uses musl as its libc.
 
 ## Older Releases
 
