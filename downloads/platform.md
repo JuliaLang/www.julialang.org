@@ -86,11 +86,12 @@ The generic Linux and FreeBSD binaries do not require any special installation s
 
 First, download the `.tar.gz` file from the [downloads page](/downloads/). Most users would prefer the `glibc` version of the distribution unless you know that your system uses `musl`. You need to extract this file to a suitable location. To extract the file, you can use the following command:
 
-```
-tar -xvzf julia-x.y.z-linux-x86\_64.tar.gz
-```
+~~~
+<pre><code>tar -xvzf julia-{{stable_release}}-linux-x86_64.tar.gz</pre></code>
+~~~
 
-This will extract the files to a folder named `julia-x.y.z`. We would refer this as `<Julia directory>`. To run Julia, you can do any of the following:
+This will extract the files to a folder named according to the version (here ~~~<code>julia-{{stable_release}}</code>~~~).
+We would refer this as `<Julia directory>`. To run Julia, you can do any of the following:
 
 *   Create a symbolic link to `julia` inside a folder which is on your system `PATH`
 *   Add Julia's `bin` folder (with full path) to your system `PATH` environment variable
