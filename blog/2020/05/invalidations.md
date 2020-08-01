@@ -560,35 +560,74 @@ Here our focus is on those marked "more specific," since those are cases where i
 
 ### Fixing type instabilities
 
-In engineering Julia and Revise to reduce invalidations, at least two cases were fixed by resolving type-instabilities.
-For example, one set of invalidations happened because CodeTracking, a dependency of Revise's, defines new methods for `Base.PkgId`.
-It turns out that this triggered an invalidation of `_tryrequire_from_serialized`, which is used to load packages.
-Fortunately, it turned out to be an easy fix: one section of `_tryrequire_from_serialized` had a passage
+Most of the time, Julia is very good at inferring a concrete type for each object,
+and when successful this eliminates the risk of invalidations.
+However, as illustrated by our `applyf` example, certain input types can make inference impossible.
+Fortunately, it's possible to write your code in ways that eliminate or reduce the impact of such invalidations.
+
+An excellent resource for avoiding inference problems is Julia's [performance tips] page.
+That these tips appear on a page about performance, rather than invalidation, is a happy state of affairs:
+not only are you making your (or Julia's) code more robust against invalidation, you're almost certainly making it faster.
+
+Virtually all the type-related tips on that page can be used to reduce invalidations.
+Here, we'll present a couple of examples and then focus on some of the more subtle issues.
+
+#### Add annotations for containers with abstractly-typed elements
+
+As the performance page indicates, when working with containers, concrete-typing is best:
+`Vector{Int}` will typically be faster in usage and more robust to invalidation than `Vector{Any}`.
+When possible, using concrete typing is highly recommended.
+However, there are cases where you sometimes need elements to have an abstract type.
+In such cases, one common fix is to annotate elements at the point of usage.
+
+For instance, Julia's [IOContext] structure is defined roughly as
 
 ```
-for M in mod::Vector{Any}
-    if PkgId(M) == modkey && module_build_id(M) === build_id
-        return M
-    end
+struct IOContext{IO_t <: IO} <: AbstractPipe
+    io::IO_t
+    dict::ImmutableDict{Symbol, Any}
 end
 ```
 
-and since `M` had type `Any`, the compiler couldn't predict which version of `PkgId` would be called.
-It sufficed to add
+There are good reasons to use a value-type of `Any`, but that makes it impossible for the compiler to infer the type of any object looked up in an IOContext.
+Fortunately, you can help!
+For example, the documentation specifies that the `:color` setting should be a `Bool`, and since it appears in documentation it's something we can safely enforce.
+Changing
 
 ```
-    M = M::Module
+iscolor = get(io, :color, false)
 ```
 
-immediately after the `for` statement to fix the problem.
-Not only does this fix the invalidation, but it lets the compiler generate better code.
+to either of
 
-The other case was a call from `Pkg` of `keys` on an AbstractDict of unknown type
-(due to inference failure).
-Resolving that inference problem eliminated a very consequential invalidation, one that triggered seconds-long latencies in the next `Pkg` command after loading Revise.
+```
+iscolor = get(io, :color, false)::Bool     # the rhs is Bool-valued
+iscolor::Bool = get(io, :color, false)     # `iscolor` must be Bool throughout scope
+```
 
-The benefits of this change in Pkg's code went far beyond helping Revise; any package depending on the OrderedCollections package (which is a dependency of Revise and what actually triggered the invalidation) got the same benefit.
-With these and a few other relatively simple changes, loading Revise no longer forces Julia to recompile much of Pkg's code the next time you try to update packages.
+makes computations performed with `iscolor` robust against invalidation.
+For example, the SIMD package defines a new method for `!`, which is typically union-split on non-inferred arguments.
+Julia's `with_output_color` function computes `!iscolor`,
+and without the type annotation it becomes vulnerable to invalidation.
+Adding the annotation fixed hundreds of invalidations in methods that directly or indirectly call `with_output_color`.
+(Such annotations are not necessary for uses like `if iscolor...`, `iscolor ? a : b`, or `iscolor && return nothing` because these are built into the language and do not rely on dispatch.)
+
+#### Force runtime dispatch
+
+In some circumstances it may not be possible to add a type annotation: `f(x)::Bool` will throw an error if `f(x)` does not return a `Bool`.
+To avoid breaking generic code, sometimes it's necessary to have an alternate strategy.
+
+
+Above we looked at cases where Julia can't specialize the code due to containers with abstract elements.
+There are also circumstances where specialization is undesirable because it would force Julia to compile too many variants.
+For example, consider Julia's `methods(f::Function)`:
+by default, Julia specializes `myfunc(f::Function)` for the particular function `f`, but for something like `methods` which might be called hundreds or thousands of times with different `f`s and which is not performance-critical, that amount of compilation would be counterproductive.
+Consequently, Julia allows you to annotate an argument with `@nospecialize`, and so `methods` is defined as `function methods(@nospecialize(f), ...)`.
+
+`@nospecialize` is a very important and effective tool for reducing compiler latency, but ironically it can also make you more vulnerable to invalidation.
+For example, consider the following definition:
+
+
 
 ### Redirecting call chains
 
@@ -716,6 +755,10 @@ While this is not supported on Julia versions up through 1.5, it's a feature tha
 As this hopefully illustrates, there's often more than one way to "fix" an invalidation.
 Finding the best approach may require some experimentation.
 
+## Notes
+
+MethodInstances with no backedges may be called by runtime dispatch. (Not sure how those get `::Any` type annotations, though.)
+
 ## Summary
 
 Julia's remarkable flexibility and outstanding code-generation open many new horizons.
@@ -732,3 +775,5 @@ One might hope that the next period of development might see significant improve
 [PRJulia]: https://github.com/JuliaLang/julia/pull/35768
 [PRSC]: https://github.com/timholy/SnoopCompile.jl/pull/79
 [method ambiguity]: https://docs.julialang.org/en/latest/manual/methods/#man-ambiguities-1
+[IOContext]: https://docs.julialang.org/en/latest/base/io-network/#Base.IOContext
+[performance tips]: https://docs.julialang.org/en/latest/manual/performance-tips/
