@@ -14,7 +14,7 @@ Julia is available for Windows 7 and later for both 32 bit and 64 bit versions.
 ### Installation Notes
 @@tight-list
 1.  Download the Windows Julia installer from https://julialang.org/downloads/. Note, the 32-bit Julia binaries work on both 32-bit and 64-bit Windows  (x86 and x86\_64), but the 64-bit Julia binaries only run on 64-bit Windows (x86\_64).
-2. Run the installer and note the installation directory. The installation directory should look something like `C:\Users\JohnDoe\AppData\Local\Programs\Julia\Julia 1.5.0`, *please note this path*. 
+2. Run the installer and note the installation directory. The installation directory should look something like `C:\Users\JohnDoe\AppData\Local\Programs\Julia 1.5.0`, *please note this path*. 
 @@
 
 To invoke Julia by simply typing `julia` in the command line, the Julia executable directory needs to be added to PATH. Perform the following steps to add Julia to PATH.
