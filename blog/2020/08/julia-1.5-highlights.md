@@ -5,7 +5,8 @@
 @def rss = """Julia version 1.5 has been released, featuring many performance improvements and new capabilities."""
 
 
-Julia version 1.5 has been released. Releases are timed and hence not planned around
+[Julia version 1.5 has been released](https://discourse.julialang.org/t/julia-v1-5-0-has-been-released/44169).
+Releases are timed and hence not planned around
 specific features, but this time we seem to have gotten lucky: quite a few major
 developments came together to make 1.5 particularly exciting.
 Let's walk through some highlights.
