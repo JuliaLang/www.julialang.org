@@ -121,3 +121,21 @@ function hfun_recentblogposts()
     end
     return String(take!(io))
 end
+
+"""
+    {{redirect url}}
+
+Creates a HTML layout for a redirect to `url`.
+"""
+function hfun_redirect(url)
+    s = """
+    <!-- REDIRECT -->
+    <!doctype html>
+    <html>
+      <head>
+        <meta http-equiv="refresh" content="0; url=$(url[1])">
+      </head>
+    </html>
+    """
+    return s
+end
