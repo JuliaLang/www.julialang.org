@@ -80,7 +80,7 @@
 
      <p>We have created a non-exhaustive list of community provided Julia tutorials. Check them out to <a href="tutorials/">learn Julia through the lens of someone from the community</a>.
      </p>
-     <p>We also have a growing number of curated Julia courses available through <a href="https://juliaacademy.com/courses">JuliaAcademy</a>. The JuliaAcademy platform is operated by Julia Computing. Courses on JuliaAcademy have been contributed by Julia Computing and by community members.</p>
+     <p>We also have a growing number of curated Julia courses available through <a href="https://juliaacademy.com/courses">JuliaAcademy</a>. The JuliaAcademy platform is operated by <a href="https://juliacomputing.com">Julia Computing</a>. Courses on JuliaAcademy have been contributed by Julia Computing and by community members.</p>
      <a href="https://juliaacademy.com/courses">
      <img src="assets/JA-1.png" alt="JuliaAcademy" class="img-fluid">
      <img src="assets/JA-2.png" alt="JuliaAcademy" class="img-fluid">
