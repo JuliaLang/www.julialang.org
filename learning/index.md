@@ -60,6 +60,7 @@
 
    <p>We also have a <a href="notebooks/">curated set of Julia video tutorials</a> that have accompanying Jupyter Notebooks viewers can follow along with.</p>
    </p>
+   <br><br>
   </div>
 
 
@@ -79,7 +80,12 @@
 
      <p>We have created a non-exhaustive list of community provided Julia tutorials. Check them out to <a href="tutorials/">learn Julia through the lens of someone from the community</a>.
      </p>
-
+     <p>We also have a growing number of curated Julia courses available through <a href="https://juliaacademy.com/courses">JuliaAcademy</a>.</p>
+     <a href="https://juliaacademy.com/courses">
+     <img src="assets/JA-1.png" alt="JuliaAcademy" width="600" height="200" class="center">
+     <img src="assets/JA-2.png" alt="JuliaAcademy" width="600" height="200" class="center">
+     <img src="assets/JA-3.png" alt="JuliaAcademy" width="600" height="200" class="center">
+     </a>
    </div>
  </div>
 <br>
@@ -88,8 +94,8 @@
     Containers: Julia Books
   -->
 <div class="container-fluid alt-color packages">
-  <br><br>
   <div class="container">
+  <br><br>
     <div class="row">
       <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
       <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
@@ -102,8 +108,9 @@
     <br>
 
     <p>Interested in getting a Julia book? Check out the <a href="books/">amazing books members of our community has written</a> since Julia was created.</p>
+    <img src="assets/books.png" alt="Julia book collection" width="600" height="450" class="center">
   </div>
-  <br>
+  <br><br>
 </div>
 
  <!--
@@ -122,9 +129,9 @@
 
      <p>Julia is ready for the classroom. We encourage instructors to participate in the <a href="/community/">Julia community</a> for questions about Julia or specific packages.
      This page puts together various resources that instructors and students alike may find useful.
-     See <a href="classes/">where Julia</a> is being taught today.
+     See <a href="classes/">where Julia is being taught today</a>.
      </p>
-
+     <img src="assets/schools.png" alt="Collection of schools where Julia is taught" width="600" height="450" class="center">
    </div>
  </div>
 <br>
