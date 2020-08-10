@@ -4,7 +4,7 @@
 
 Before you apply, it's a good idea to get in touch with the Julia community.
 Ask questions on [Discourse](https://discourse.julialang.org) or [join the
-Julia Slack](https://slackinvite.julialang.org/) to get connected with
+Julia Slack](http://slackinvite.julialang.org/) to get connected with
 potential mentors to help find interesting projects. The Slack channel `#jsoc` is
 dedicated to helping students get the help they need. Additionally, you should
 make use of these connections to start making some small contributions and
