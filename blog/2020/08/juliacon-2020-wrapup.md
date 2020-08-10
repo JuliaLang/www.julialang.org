@@ -26,7 +26,7 @@ Being virtual, we didn't want to miss out on the chance encounters, discussions,
 In the effort to bring the JuliaCon experience from virtual to material, we launched a [JuliaCon 2020 T-shirt and Mug](https://www.bonfire.com/store/the-julia-language/). These items helped raise ~4,000 USD which helps offset the lost funds due to the conference being free this year. The money will be used to cover AV/Technical expenses and any excess funds will be transferred to the Julia Language's account with NumFOCUS which helps fund core Julia Language infrastructure and outreach programs like Julia Summer of Code and our upcoming Julia Season of Docs. 
 
 
-We would be remise to not mention the strong support of our fiscal and media partners for this year's JuliaCon. Without them, running a conference like JuliaCon would not be feasible so we are extremely grateful for our veteran and new sponsors alike. 
+We would be remiss to not mention the strong support of our fiscal and media partners for this year's JuliaCon. Without them, running a conference like JuliaCon would not be feasible so we are extremely grateful for our veteran and new sponsors alike. 
 
 ![JuliaCon Sponsors](/assets/blog/2020-08-10-JuliaCon/JuliaCon2020Sponsors.png)
 
