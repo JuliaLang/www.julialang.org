@@ -130,8 +130,11 @@
     </div>
     <br>
 
-    <p>We conducted the first annual Julia User & Developer Survey in June 2019, and <a href="https://www.youtube.com/watch?v=yx6lBSHqGfc">presented the results at JuliaCon</a>. Download the <a href="/assets/images/2019-julia-user-developer-survey.pdf">survey findings</a>.</p>
-    <p>The 2020 Julia User and Developer Survey is currently live. Please <a href="https://discourse.julialang.org/t/the-2020-julia-language-survey-is-live-now/41002/14">take the survey</a>.</p>
+    <p>We conduct the Julia User & Developer Survey right before JuliaCon every year and present the findings at JuliaCon. The survey has now been conducted two years in a row:</p>
+        <ul>
+            <li> 2020: <a href="/assets/2020-julia-user-developer-survey.pdf">Slides</a> and <a href="https://www.youtube.com/watch?v=lBhw7C_bIyk">JuliaCon 2020 talk</a>
+            <li> 2019: <a href="/assets/2019-julia-user-developer-survey.pdf">Slides</a>, <a href="https://www.youtube.com/watch?v=yx6lBSHqGfc">JuliaCon 2019 talk</a>, and <a href="/blog/2019/08/2019-julia-survey/">blog post</a>
+        </ul>
   </div>
   <br>
 </div>
