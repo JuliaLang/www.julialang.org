@@ -1,7 +1,7 @@
 @def title = "JuliaCon 2020 Wrap-up"
 @def authors = "The JuliaCon 2020 Organizing Committee"
-@def published = "10 August 2020"
-@def rss_pubdate = Date(2020, 8, 10)
+@def published = "11 August 2020"
+@def rss_pubdate = Date(2020, 8, 11)
 @def rss = """JuliaCon 2020 Wrap-up"""
 
 JuliaCon 2020, the 7th annual Julia conference, has come to a close. This year, given the global COVID-19 Pandemic, the [organizing committee](https://juliacon.org/2020/committee.html) made the decision to move the conference from Lisbon, Portugal into a [completely virtual experience](https://discourse.julialang.org/t/juliacon-2020-is-going-virtual/38327). This virtual format presented many challenges that we had to move quickly to solve. Avik and Jane (co-Chairs of JuliaCon) detailed some of the thinking and rationale for the high level design decisions that were made for this year's JuliaCon in the [final episode of the inaugural JuliaCon podcast](https://www.youtube.com/watch?v=hbHmH0fezjs). 
@@ -10,7 +10,7 @@ Before we go further and summarize the outcomes of this year's JuliaCon, it is i
 
 ## Outcomes
 
-JuliaCon 2020 had over 10,000 conference registrations this year with over 1,000 of those people joining us on the official conference discussion forum on Discord. The Julia Language Youtube channel registered 28,900 unique viewers during the conference (up from 9,500 unique viewers during JuliaCon 2019) from 78 countries, representing a tripling in size. The JuliaCon website itself had over 20,000 unique visitors. We are also pleased to report that according to Google Analytics, over 21% of the unique visitors were identified as female which may have potentially been as a result of concerted efforts to engage with and invite people from underrepresented groups in tech to attend JuliaCon. This effort will continue and grow into next year's conference with a focus on inviting diverse folks from specific technical backgrounds where Julia can benefit their work. 
+JuliaCon 2020 had over 10,000 conference registrations this year with over 1,000 of those people joining us on the official conference discussion forum on Discord. The [Julia Language Youtube channel](https://www.youtube.com/user/JuliaLanguage) registered 28,900 unique viewers during the conference (up from 9,500 unique viewers during JuliaCon 2019) from 78 countries, representing a tripling in size. The JuliaCon website itself had over 20,000 unique visitors. We are also pleased to report that according to Google Analytics, over 21% of the unique visitors were identified as female which may have potentially been as a result of concerted efforts to engage with and invite people from underrepresented groups in tech to attend JuliaCon. This effort will continue and grow into next year's conference with a focus on inviting diverse folks from specific technical backgrounds where Julia can benefit their work. 
 
 This year, we created more than [164 YouTube videos for the conference](https://www.youtube.com/playlist?list=PLP8iPy9hna6Tl2UHTrm4jnIYrLkIcAROR) including talks, workshops, and sponsor addresses. This was an increase from [last year's 116 videos](https://www.youtube.com/playlist?list=PLP8iPy9hna6StY9tIJIUN3F_co9A0zh0H). In general, we were also more selective in choosing talks for 2020, compared to 2019.
 
