@@ -3,7 +3,7 @@
 This is the GitHub repository for the Julia Programming Language's main website, [julialang.org](https://julialang.org/).
 The repository for the source code of the language itself can be found at [github.com/JuliaLang/julia](https://github.com/JuliaLang/julia).
 
-The Julia website is generated using GitHub pages and [Franklin.jl](https://github.com/tlienart/Franklin.jl), a Julia native package for building websites.
+The Julia website is generated using GitHub pages and [Franklin.jl](https://github.com/tlienart/Franklin.jl), a Julia native package for building static websites.
 
 
 ## Making Simple Changes
@@ -66,7 +66,7 @@ One important thing to bear in mind is that RSS is a bit picky in terms of what 
 
 In particular:
 
-* avoid the use of `&` for instance change `ML&PL` for `ML-PL`,
+* avoid the use of `&`, for instance change `ML&PL` to `ML-PL`,
 * only use plain text in `rss`, no links, no markup, no HTML entities.
 
 If in doubt, after running Franklin's server, copy the content of `__site/feed.xml` into [the w3 feed validator](https://validator.w3.org/feed/check.cgi), it should show "Valid RSS feed".
@@ -74,6 +74,10 @@ If in doubt, after running Franklin's server, copy the content of `__site/feed.x
 ### Metadata
 
 In order to add `<meta ... >` tags on your blog post, add
+
+```julia
+@def meta = ("prop11"=>"val11", "prop21"=>"val21")
+```
 
 or for multiple tags
 
