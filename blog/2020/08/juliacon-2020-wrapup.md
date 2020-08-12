@@ -26,7 +26,7 @@ We would be remiss to not mention the strong support of our fiscal and media par
 
 ![JuliaCon Sponsors](/assets/blog/2020-08-10-JuliaCon/JuliaCon2020Sponsors.png)
 
-The final thanks goes to you, the JuliaCon conference attendees and community members. Without so much interest and support from the community, JuliaCon would not be what it is. Despite not being in person and getting to enjoy Lisbon, JuliaCon 2020 was a massive success. We look forward to next year's conference being better than ever. Do check out these blog posts by [Tom Kwong](https://ahsmart.com/pub/juliacon2020/) and [Bogumił Kamiński](https://bkamins.github.io/julialang/2020/08/07/production-ready.html) for a view from the attendees.
+The final thanks goes to you, the JuliaCon conference attendees and community members. Without so much interest and support from the community, JuliaCon would not be what it is. Despite not being in person and getting to enjoy Lisbon, JuliaCon 2020 was a massive success. We look forward to next year's conference being better than ever. Do check out these blog posts by [Tom Kwong](https://ahsmart.com/pub/juliacon2020/), [Bogumił Kamiński](https://bkamins.github.io/julialang/2020/08/07/production-ready.html), and [InveniaLabs](https://invenia.github.io/blog/2020/08/12/juliacon/) for a view from the attendees.
 
 ~ The JuliaCon Organizing Committee
 
