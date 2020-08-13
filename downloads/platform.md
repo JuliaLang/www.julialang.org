@@ -38,7 +38,7 @@ To invoke Julia by simply typing `julia` in the command line, the Julia executab
 1.  Open Run (Windows Key + R),  type in `rundll32 sysdm.cpl,EditEnvironmentVariables` and hit enter.
 2.  In the System Variables window, highlight Path, and click Edit.
 3.  In the Edit System Variables window, move the cursor to the end of the field.
-4.  If there is no semicolon at the end, add it and paste in the text you copied into the notepad. This should look something like \winpathbin.
+4.  If there is no semicolon at the end, add it and paste in the path to the `bin` folder within the installation directory noted earlier. This path should look something like \winpathbin.
 5.  Click OK. You can now run Julia from the command line, by typing `julia`!
 @@
 

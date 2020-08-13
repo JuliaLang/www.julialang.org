@@ -206,7 +206,7 @@ instructions are required. The `rr` trace is guaranteed to perfectly capture
 the environment the bug was reproduced in. Of course, if the bug is something non-obvious like
 unexpected behavior, some comments on what the expected behavior was may
 still be helpful.
-Having perfect reproducability almost immediately knocks
+Having perfect reproducibility almost immediately knocks
 out all the common problems I started this post with. "Works for me" is no
 longer an available answer. If it's in the trace, it broke on somebody's machine
 and can be debugged. "Heisenbug"s are no longer an issue. If it was captured
@@ -238,7 +238,7 @@ up into:
 
 3) Execution ordering and data races in multi-threaded executions.
 
-4) Direct observation of non-determinstic hardware effects (i.e. the "most" qualifier above).
+4) Direct observation of non-deterministic hardware effects (i.e. the "most" qualifier above).
    This includes instructions that are deliberately non-deterministic, such as RDRAND,
    which generates a random number. It also includes observable, but undesirable effects of hardware state
    (e.g. timing side channels from cache or branch predictor state).
@@ -246,7 +246,7 @@ up into:
 However, in theory, if a tool was able to capture 100% of the relevant state
 from these categories, it could repeatedly generate exactly the same memory image.
 This is not a novel idea, but the devil is in the detail. Discussing these details
-is beyond the scope of this particular post, but here is a taste: For an asynchonous event, how
+is beyond the scope of this particular post, but here is a taste: For an asynchronous event, how
 do we define "when" this event happened with respect to the rest of the execution.
 I.e. what is the correct notion of time?
 Real time doesn't work because instruction issue frequency isn't constant (in addition
@@ -261,7 +261,7 @@ function $\mathcal{I}_{ip(\mathcal{S}_i)}$, corresponding to the instruction to 
 executed at time $i$, or some asynchronous event $\mathcal{A}_i$
 
 $$ \mathcal{S}_{i+1} = \begin{cases}
-    \mathcal{A}_i(S_{i}) & \text{if an asynchronous event occured at time $i$} \\
+    \mathcal{A}_i(S_{i}) & \text{if an asynchronous event occurred at time $i$} \\
     \mathcal{I}_{\text{ip}(\mathcal{S}_i)} & \text{otherwise}
 \end{cases} $$
 
@@ -340,7 +340,7 @@ does not require any data to be recorded.
 You might wonder why some tests ran faster under rr. I have not investigated
 this in detail, but I believe it to be a measurement artifact. The runtime of
 tests can depend on what code previously ran on the same worker (since common
-code results are chached) and since work is assigned greedly to workers, a change
+code results are cached) and since work is assigned greedily to workers, a change
 in the schedule can sometimes result in tests running on a worker that has
 already cached some of the work that would have otherwise been necessary to
 run the test. Additionally, and fortunately for us, while the mean slow down
@@ -441,7 +441,7 @@ sure to use ssh-agent if your reproducer involves using SSH for authentication),
 any private code you may be using, etc. We are investigating building tooling
 to help understand what's in the trace and anonymize parts of the trace that are
 potentially sensitive, but do not otherwise affect the trace.
-For the moment, we disable reading the histry by default when creating an
+For the moment, we disable reading the history by default when creating an
 rr trace (using the history can be explicitly opted into when necessary
 for reproduction). Nevertheless, please make sure to have the system
 administrator's permission before using the `--bug-report` feature. If you are

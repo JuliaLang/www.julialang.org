@@ -463,9 +463,17 @@ img.ecosystem-image {
 }
 
 .page-heading span.btn {
+  padding-top: 18px;
   padding-left: 0;
   padding-right: 0;
   vertical-align: middle;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 img {
