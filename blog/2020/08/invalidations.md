@@ -90,7 +90,7 @@ This may seem a lot more complicated, but the take-home message is actually
 quite simple. First, look at that `arrayref` statement: it is annotated
 `Any`, meaning that Julia can't predict in advance what it will return.
 Immediately after the reference, notice the `isa` statement
-followed by a `ϕ`; all of this is essentially equivalent to
+followed by a `φ`; all of this is essentially equivalent to:
 
 ```julia
 if isa(x, Int)
@@ -337,7 +337,7 @@ with `ascend`:
 
 ![snoopr_simd_ascend](/assets/blog/2020-invalidations/SIMD_ascend.png)
 
-You're referred elsewhere for information about how to navigate this interactive menu,
+The [SnoopCompile documentation](https://timholy.github.io/SnoopCompile.jl/stable/snoopr/) has information about how to navigate this interactive menu,
 and how to interpret the results to identify a fix, but in very rough terms
 what's happening is that `deserialize_msg` is creating a [`Distributed.CallWaitMsg`](https://github.com/JuliaLang/julia/blob/5be3a544250a3c13de8d8ef2b434953005aee5c3/stdlib/Distributed/src/messages.jl#L26-L30) with very poor *a priori* type information (all arguments are inferred to be of type `Any`);
 since the `args` field of a `CallWaitMsg` must be a `Tuple`, and because inference doesn't know that the supplied argument is already a `Tuple`, it calls `convert(Tuple, args)` so as to ensure it can construct the `CallWaitMsg` object.
