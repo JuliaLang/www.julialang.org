@@ -1,7 +1,7 @@
 @def authors = "Tim Holy, Jeff Bezanson, and Jameson Nash"
-@def published = "15 August 2020"
+@def published = "17 August 2020"
 @def title = "Analyzing sources of compiler latency in Julia: method invalidations"
-@def rss_pubdate = Date(2020, 8, 15)
+@def rss_pubdate = Date(2020, 8, 17)
 @def rss = """Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation and tools for detecting and eliminating its causes."""
 
 \toc
@@ -320,7 +320,7 @@ Most of these changes were at least partially inspired by new tools to analyze t
 
 Recently, the [SnoopCompile] package gained the ability to analyze invalidations and help developers fix them.
 Because these tools will likely change over time, this blog post will only touch the surface; people who want to help fix invalidations are encouraged to read [SnoopCompile's documentation](https://timholy.github.io/SnoopCompile.jl/stable/snoopr/) for further detail.
-There is also a [video]() available with a live-session fixing a real-world invalidation, which might serve as a useful example.
+There is also a [video](https://www.youtube.com/watch?v=7VbXbI6OmYo) available with a live-session fixing a real-world invalidation, which might serve as a useful example.
 
 But to give you a taste of what this looks like, here are a couple of screenshots.
 These were taken in Julia's REPL, but you can also use these tools in [vscode] or other environments.
@@ -345,7 +345,7 @@ But SIMD defines a new `convert(Tuple, v::Vec)` method which has greater specifi
 and so loading the SIMD package triggers invalidation of everything that depends on the less-specific method `convert(Tuple, ::Any)`.
 
 As is usually the case, there are several ways to fix this: we could drop the `::Tuple` in the definition of `CallWaitMsg` (it doesn't need to call `convert` if there are no restrictions on the type), or we could assert that `args` is *already* a tuple in `deserialize_msg`, thus informing Julia that it can afford to skip the call to `convert`.
-This is intended only as a taste of what's involved in fixing invalidations; more extensive descriptions are available in [SnoopCompile's documentation](https://timholy.github.io/SnoopCompile.jl/stable/snoopr/) and the [video]().
+This is intended only as a taste of what's involved in fixing invalidations; more extensive descriptions are available in [SnoopCompile's documentation](https://timholy.github.io/SnoopCompile.jl/stable/snoopr/) and the [video](https://www.youtube.com/watch?v=7VbXbI6OmYo).
 
 But it also conveys an important point: most invalidations come from poorly-inferred code, so by fixing invalidations you're often improving quality in other ways.  Julia's [performance tips] page has a wealth of good advice about avoiding non-inferrable code, and in particular cases (where you might know more about the types than inference is able to determine on its own) you can help inference by adding type-assertions.
 Again, some of the recently-merged `latency` pull requests to Julia might serve as instructive examples.
