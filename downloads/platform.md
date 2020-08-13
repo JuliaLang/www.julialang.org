@@ -10,11 +10,14 @@ Julia is available for Windows 7 and later for both 32 bit and 64 bit versions.
 
 **We highly recommend running Julia using a modern terminal, such as installing the [Windows Terminal from the Microsoft Store](https://aka.ms/terminal).**
 
+\newcommand{\winpath}{~~~<code>C:\Users\JohnDoe\AppData\Local\Programs\Julia {{stable_release}}</code>~~~}
+\newcommand{\winpathbin}{~~~<code>C:\Users\JohnDoe\AppData\Local\Programs\Julia {{stable_release}}\bin</code>~~~}
+
 
 ### Installation Notes
 @@tight-list
 1.  Download the Windows Julia installer from https://julialang.org/downloads/. Note, the 32-bit Julia binaries work on both 32-bit and 64-bit Windows  (x86 and x86\_64), but the 64-bit Julia binaries only run on 64-bit Windows (x86\_64).
-2. Run the installer and note the installation directory. The installation directory should look something like `C:\Users\JohnDoe\AppData\Local\Programs\Julia 1.5.0`, *please note this path*. 
+2. Run the installer and note the installation directory. The installation directory should look something like \winpath, *please note this path*.
 @@
 
 To invoke Julia by simply typing `julia` in the command line, the Julia executable directory needs to be added to PATH. Perform the following steps to add Julia to PATH.
@@ -25,7 +28,7 @@ To invoke Julia by simply typing `julia` in the command line, the Julia executab
 @@tight-list
 1.  Open Run (Windows Key + R),  type in `rundll32 sysdm.cpl,EditEnvironmentVariables` and hit enter.
 2.  Under either the "User Variables" or "System Variables" section, find the row with "Path", and click edit.
-3.  The "Edit environment variable" UI will appear. Here, click "New", and paste in the path to the `\bin` folder within the installation directory noted earlier. This path should look something like `C:\Users\JohnDoe\AppData\Local\Programs\Julia 1.5.0\bin`.
+3.  The "Edit environment variable" UI will appear. Here, click "New", and paste in the directory noted from the installation stage. This should look something like \winpathbin.
 4.  Click OK. You can now run Julia from the command line, by typing `julia`!
 @@
 
@@ -35,7 +38,7 @@ To invoke Julia by simply typing `julia` in the command line, the Julia executab
 1.  Open Run (Windows Key + R),  type in `rundll32 sysdm.cpl,EditEnvironmentVariables` and hit enter.
 2.  In the System Variables window, highlight Path, and click Edit.
 3.  In the Edit System Variables window, move the cursor to the end of the field.
-4.  If there is no semicolon at the end, add it and paste in the path to the `bin` folder within the installation directory noted earlier. This path should look something like `C:\Users\JohnDoe\AppData\Local\Programs\Julia 1.5.0\bin`.
+4.  If there is no semicolon at the end, add it and paste in the path to the `bin` folder within the installation directory noted earlier. This path should look something like \winpathbin.
 5.  Click OK. You can now run Julia from the command line, by typing `julia`!
 @@
 
@@ -62,13 +65,13 @@ To start running Julia from the Terminal, you can do the following:
 
 Navigate to `/usr/local/bin` and remove the `julia` file. Then type the following command:
 
+
 ```
-ln -s /Applications/Julia-<version>.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
+ln -s /Applications/Julia-{{stable_release}}.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
 ```
 
-which creates a symlink to the Julia version of your choosing.
-
-Remember to replace the version of `Julia-<version>.app` above with the version of your Julia app. Once that is done, you can close the shell profile page and quit Terminal. Now, just simply open Terminal again, type in `julia` in it, and it should run your version of Julia!
+which creates a symlink to a Julia version (here {{stable_release}}) of your choosing.
+Once that is done, you can close the shell profile page and quit Terminal. Now, just simply open Terminal again, type in `julia` in it, and it should run your version of Julia!
 
 You can uninstall Julia by deleting Julia.app and the packages directory in `~/.julia`. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove `~/.juliarc.jl` and `~/.julia_history`.
 
@@ -85,10 +88,11 @@ The generic Linux and FreeBSD binaries do not require any special installation s
 First, download the `.tar.gz` file from the [downloads page](/downloads/). Most users would prefer the `glibc` version of the distribution unless you know that your system uses `musl`. You need to extract this file to a suitable location. To extract the file, you can use the following command:
 
 ```
-tar -xvzf julia-x.y.z-linux-x86\_64.tar.gz
+tar -xvzf julia-{{stable_release}}-linux-x86_64.tar.gz
 ```
 
-This will extract the files to a folder named `julia-x.y.z`. We would refer this as `<Julia directory>`. To run Julia, you can do any of the following:
+This will extract the files to a folder named according to the version (here ~~~<code>julia-{{stable_release}}</code>~~~).
+We would refer this as `<Julia directory>`. To run Julia, you can do any of the following:
 
 *   Create a symbolic link to `julia` inside a folder which is on your system `PATH`
 *   Add Julia's `bin` folder (with full path) to your system `PATH` environment variable
