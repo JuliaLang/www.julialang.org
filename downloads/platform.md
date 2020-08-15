@@ -67,10 +67,10 @@ Navigate to `/usr/local/bin` and remove the `julia` file. Then type the followin
 
 
 ```
-ln -s /Applications/Julia-{{stable_release}}.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
+ln -s /Applications/Julia-{{stable_release_short}}.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
 ```
 
-which creates a symlink to a Julia version (here {{stable_release}}) of your choosing.
+which creates a symlink to a Julia version (here {{stable_release_short}}) of your choosing.
 Once that is done, you can close the shell profile page and quit Terminal. Now, just simply open Terminal again, type in `julia` in it, and it should run your version of Julia!
 
 You can uninstall Julia by deleting Julia.app and the packages directory in `~/.julia`. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove `~/.juliarc.jl` and `~/.julia_history`.
