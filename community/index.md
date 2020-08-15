@@ -182,7 +182,7 @@
     </div>
     <br>
 
-    <p>The Julia Language is proud to have fostered a diverse assortment of GitHub Organizations over the years. <a href="organizations.md">Find out more about our Ecosystem's GitHub Orgs.</a></p> 
+    <p>The Julia Language is proud to have fostered a diverse assortment of GitHub Organizations over the years. <a href="organizations">Find out more about our Ecosystem's GitHub Orgs.</a></p> 
   </div>
   <br>
 </div>
