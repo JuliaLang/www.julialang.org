@@ -164,4 +164,26 @@
    </div>
  </div>
 <br>
+
+<!--
+    Containers: Julia GitHub Orgs
+  -->
+<div class="container-fluid alt-color packages">
+  <br><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+        <h2 class="lead secondary-heading">
+          Julia GitHub Orgs
+        </h2>
+      </div>
+      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+    </div>
+    <br>
+
+    <p>The Julia Language is proud to have fostered a diverse assortment of GitHub Organizations over the years. <a href="organizations.md">Find out more about our Ecosystem's GitHub Orgs.</a></p> 
+  </div>
+  <br>
+</div>
 ~~~
