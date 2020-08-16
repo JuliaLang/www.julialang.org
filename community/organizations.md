@@ -28,6 +28,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaDebug](https://github.com/JuliaDebug)
 * [JuliaPackaging](https://github.com/JuliaPackaging) - Tooling for Julia's binary packages and dependencies
 * [JuliaPy](https://github.com/JuliaPy) - Software that connects the Julia and Python languages.
+* [JuliaStrings](https://github.com/JuliaStrings)
 @@ 
 
 ### Computing
@@ -76,6 +77,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaFEM](https://github.com/JuliaFEM) -  Finite Element Method
 * [JuliaText](https://github.com/JuliaText) - Natual Language Processing, (textual) Information Retrieval, and Computational Linguistics
 * [JuliaApproximation](https://github.com/JuliaApproximation)
+* [JuliaCrypto](https://github.com/JuliaCrypto) - Cryptography made easy in Julia
 @@
 
 ### Data Science
