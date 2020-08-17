@@ -83,7 +83,7 @@ It is strongly recommended that the official generic binaries from the downloads
 command downloads the latest Julia version and makes a symlink to allow the `julia` command to find the binary:
 
 ```
-wget https://julialang-s3.julialang.org/bin/linux/x64/1.4/julia-{{ stable_release }}-linux-x86_64.tar.gz
+wget https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{ stable_release }}-linux-x86_64.tar.gz
 tar -xvzf julia-{{ stable_release }}-linux-x86\_64.tar.gz
 ln -s "$PWD"/julia-{{ stable_release }}/bin/julia ~/.local/bin/
 ```
