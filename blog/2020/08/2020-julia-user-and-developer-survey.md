@@ -1,3 +1,9 @@
+@def title = "2020 Julia User and Developer Survey"
+@def authors = "Andrew Claster & Viral Shah"
+@def published = "22 August 2020"
+@def rss_pubdate = Date(2020, 8, 22)
+@def rss = """This year, 2,565 Julia users and developers participated in the second annual Julia User and Developer Survey."""
+
 # Julia User and Developer Survey
 
 
