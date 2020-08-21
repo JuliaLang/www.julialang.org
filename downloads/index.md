@@ -260,10 +260,15 @@ The platforms currently supported by Julia are listed below. They are divided in
       <th> Support Tier </th>
     </tr>
     <tr>
-      <td> macOS </td>
+      <td rowspan="2"> macOS </td>
       <td> 10.9+ </td>
       <td> x86-64 (64-bit) </td>
       <td> Tier 1 </td>
+    </tr>
+    <tr>
+      <td> 10.6+ </td>
+      <td> i686 (32-bit) / x86-64 (64-bit) </td>
+      <td> Tier 3 </td>
     </tr>
     <tr>
       <td rowspan="2"> Windows </td>
