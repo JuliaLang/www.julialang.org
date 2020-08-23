@@ -77,31 +77,22 @@ You can uninstall Julia by deleting Julia.app and the packages directory in `~/.
 
 ## Linux and FreeBSD
 
-It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following command downloads the latest Julia version in your home directory. The last line demonstrates how to start `julia`:
+It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following set of commands downloads the latest version of Julia into a directory named ~~~<code>julia-{{stable_release}}</code>~~~.
 
 ```
-cd ~
 wget https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{ stable_release }}-linux-x86_64.tar.gz
 tar zxvf julia-{{ stable_release }}-linux-x86_64.tar.gz
-~/julia-{{ stable_release }}/bin/julia
 ```
 
-### More Detailed Instructions and Explanation
+### Running Julia
 
-The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the `julia` executable.
+The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the `julia` executable. The directory where Julia is installed is referred to as `<Julia directory>`.
 
-First, download the `.tar.gz` file from the [downloads page](/downloads/). Most users would prefer the `glibc` version of the distribution unless you know that your system uses `musl`. You need to extract this file to a suitable location. To extract the file, you can use the following command:
+To run Julia, you can do any of the following:
 
-```
-tar -xvzf julia-{{stable_release}}-linux-x86_64.tar.gz
-```
-
-This will extract the files to a folder named according to the version (here ~~~<code>julia-{{stable_release}}</code>~~~).
-We would refer this as `<Julia directory>`. To run Julia, you can do any of the following:
-
+*   Invoke the `julia` executable by using its full path: `<Julia directory>/bin/julia`
 *   Create a symbolic link to `julia` inside a folder which is on your system `PATH`
 *   Add Julia's `bin` folder (with full path) to your system `PATH` environment variable
-*   Invoke the `julia` executable by using its full path, as in `<Julia directory>/bin/julia`
 
 To add Julia's `bin` folder (with full path) to `PATH` environment variable, you can edit the `~/.bashrc` (or `~/.bash_profile`) file. Open the file in your favourite editor and add a new line as follows:
 
