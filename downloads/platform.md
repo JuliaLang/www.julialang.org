@@ -75,17 +75,15 @@ Once that is done, you can close the shell profile page and quit Terminal. Now, 
 
 You can uninstall Julia by deleting Julia.app and the packages directory in `~/.julia`. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove `~/.juliarc.jl` and `~/.julia_history`.
 
-
-
 ## Linux and FreeBSD
 
-It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following
-command downloads the latest Julia version and makes a symlink to allow the `julia` command to find the binary:
+It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following command downloads the latest Julia version in your home directory. The last line demonstrates how to start `julia`:
 
 ```
+cd ~
 wget https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{ stable_release }}-linux-x86_64.tar.gz
-tar -xvzf julia-{{ stable_release }}-linux-x86\_64.tar.gz
-ln -s "$PWD"/julia-{{ stable_release }}/bin/julia ~/.local/bin/
+tar zxvf julia-{{ stable_release }}-linux-x86_64.tar.gz
+~/julia-{{ stable_release }}/bin/julia
 ```
 
 ### More Detailed Instructions and Explanation
