@@ -2,22 +2,18 @@
 <p>which creates a symlink to a Julia version &#40;here 1.5&#41; of your choosing. Once that is done, you can close the shell profile page and quit Terminal. Now, just simply open Terminal again, type in <code>julia</code> in it, and it should run your version of Julia&#33;</p>
 <p>You can uninstall Julia by deleting Julia.app and the packages directory in <code>~/.julia</code>. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove <code>~/.juliarc.jl</code> and <code>~/.julia_history</code>.</p>
 <h2 id=linux_and_freebsd ><a href="#linux_and_freebsd">Linux and FreeBSD</a></h2>
-<p>It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following command downloads the latest Julia version in your home directory. The last line demonstrates how to start <code>julia</code>:</p>
-<pre><code class="julia hljs">cd ~
-wget https://julialang-s3.julialang.org/bin/linux/x64/<span class=hljs-number >1.5</span>/julia-<span class=hljs-number >1.5</span><span class=hljs-number >.0</span>-linux-x86_64.tar.gz
-tar zxvf julia-<span class=hljs-number >1.5</span><span class=hljs-number >.0</span>-linux-x86_64.tar.gz
-~/julia-<span class=hljs-number >1.5</span><span class=hljs-number >.0</span>/bin/julia</code></pre>
-<h3 id=more_detailed_instructions_and_explanation ><a href="#more_detailed_instructions_and_explanation">More Detailed Instructions and Explanation</a></h3>
-<p>The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the <code>julia</code> executable.</p>
-<p>First, download the <code>.tar.gz</code> file from the <a href="/downloads/">downloads page</a>. Most users would prefer the <code>glibc</code> version of the distribution unless you know that your system uses <code>musl</code>. You need to extract this file to a suitable location. To extract the file, you can use the following command:</p>
-<pre><code class="julia hljs">tar -xvzf julia-<span class=hljs-number >1.5</span><span class=hljs-number >.0</span>-linux-x86_64.tar.gz</code></pre>
-<p>This will extract the files to a folder named according to the version &#40;here <code>julia-1.5.0</code>&#41;. We would refer this as <code>&lt;Julia directory&gt;</code>. To run Julia, you can do any of the following:</p>
+<p>It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following set of commands downloads the latest version of Julia into a directory named <code>julia-1.5.0</code>.</p>
+<pre><code class="julia hljs">wget https://julialang-s3.julialang.org/bin/linux/x64/<span class=hljs-number >1.5</span>/julia-<span class=hljs-number >1.5</span><span class=hljs-number >.0</span>-linux-x86_64.tar.gz
+tar zxvf julia-<span class=hljs-number >1.5</span><span class=hljs-number >.0</span>-linux-x86_64.tar.gz</code></pre>
+<h3 id=running_julia ><a href="#running_julia">Running Julia</a></h3>
+<p>The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the <code>julia</code> executable. The directory where Julia is installed is referred to as <code>&lt;Julia directory&gt;</code>.</p>
+<p>To run Julia, you can do any of the following:</p>
 <ul>
+<li><p>Invoke the <code>julia</code> executable by using its full path: <code>&lt;Julia directory&gt;/bin/julia</code></p>
+
 <li><p>Create a symbolic link to <code>julia</code> inside a folder which is on your system <code>PATH</code></p>
 
 <li><p>Add Julia&#39;s <code>bin</code> folder &#40;with full path&#41; to your system <code>PATH</code> environment variable</p>
-
-<li><p>Invoke the <code>julia</code> executable by using its full path, as in <code>&lt;Julia directory&gt;/bin/julia</code></p>
 
 </ul>
 <p>To add Julia&#39;s <code>bin</code> folder &#40;with full path&#41; to <code>PATH</code> environment variable, you can edit the <code>~/.bashrc</code> &#40;or <code>~/.bash_profile</code>&#41; file. Open the file in your favourite editor and add a new line as follows:</p>
