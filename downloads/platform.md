@@ -73,7 +73,7 @@ ln -s /Applications/Julia-{{stable_release_short}}.app/Contents/Resources/julia/
 which creates a symlink to a Julia version (here {{stable_release_short}}) of your choosing.
 Once that is done, you can close the shell profile page and quit Terminal. Now, just simply open Terminal again, type in `julia` in it, and it should run your version of Julia!
 
-You can uninstall Julia by deleting Julia.app and the packages directory in `~/.julia`. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove `~/.juliarc.jl` and `~/.julia_history`.
+You can uninstall Julia by deleting Julia.app and the packages directory in `~/.julia`. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove `~/.julia/config/startup.jl` and `~/.julia/logs/repl_history.jl`.
 
 ## Linux and FreeBSD
 
@@ -102,7 +102,7 @@ export PATH="$PATH:/path/to/<Julia directory>/bin"
 
 Apart from this, there are several ways through which you can change environment variable. You can follow [this guide](https://help.ubuntu.com/community/EnvironmentVariables) to find out a way convenient for you.
 
-Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove `~/.julia`. The startup file is at `~/.juliarc.jl` and the history at `~/.julia_history`.
+Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove `~/.julia`. The startup file is at `~/.julia/config/startup.jl` and the history at `~/.julia/logs/repl_history.jl`.
 
 
 
@@ -110,7 +110,7 @@ Julia installs all its files in a single directory. Deleting the directory where
 
 
 
-The following distribution-specific packages are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.
+The following distribution-specific packages are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. All these distributions are community maintained, and hence they may not always have the latest versions of Julia, and sometimes, the instructions may not work. In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.
 
 
 
@@ -164,7 +164,7 @@ Note that Fedora guidelines advise against uploading new breaking releases to of
 
 ## Debian/Ubuntu Linux
 
-Recent Debian/ubuntu distributions include their own build of Julia, which can be installed in the usual way. If this is not the version of Julia you want, you will need to use the official binaries.
+Recent Debian/ubuntu distributions include their own build of Julia, which can be installed in the usual way. Check the versions of Julia provided in [Ubuntu](https://packages.ubuntu.com/search?keywords=julia) and [Debian](https://packages.debian.org/search?keywords=julia). If this is not the version of Julia you want, you will need to use the official binaries.
 
 ```
 sudo apt install julia
