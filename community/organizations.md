@@ -63,7 +63,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 ### Scientific Domains
 
 @@tight-list
-* [BioJulia](https://github.com/BioJulia) – Biology, bioinformatics, computational biology ([website](https://biojulia.net), [Gitter](https://gitter.im/BioJulia/home))
+* [BioJulia](https://github.com/BioJulia) – [Biology, bioinformatics, computational biology](https://biojulia.net) ([Gitter](https://gitter.im/BioJulia/home))
 * [EcoJulia](https://github.com/EcoJulia) – Ecology
 * [JuliaAstro](https://github.com/JuliaAstro) – [Astronomy](https://juliaastro.github.io/)
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
@@ -71,7 +71,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
 * [JuliaDynamics](https://github.com/JuliaDynamics) - [Dynamical systems](https://juliadynamics.github.io/DynamicalSystems.jl/latest/), nonlinear dynamics and chaos.
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
-* [JuliaHealth](https://github.com/JuliaHealth) - medicine, health care, public health ([website](https://juliahealth.org/))
+* [JuliaHealth](https://github.com/JuliaHealth) - [medicine, health care, public health](https://juliahealth.org/)
 * [JuliaMolSim](https://github.com/JuliaMolSim) – Molecular Simulation in Materials Science and Chemistry
 * [JuliaReach](https://github.com/JuliaReach) - [Reachability Computations for Dynamical Systems](https://juliareach.github.io/JuliaReach-website/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
 * [JuliaFEM](https://github.com/JuliaFEM) -  Finite Element Method
