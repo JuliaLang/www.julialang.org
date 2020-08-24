@@ -263,67 +263,74 @@ The platforms currently supported by Julia are listed below. They are divided in
       <td rowspan="2"> macOS </td>
       <td> 10.9+ </td>
       <td> x86-64 (64-bit) </td>
-      <td> Tier 1 </td>
+      <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
       <td> 10.6+ </td>
       <td> i686 (32-bit) / x86-64 (64-bit) </td>
-      <td> Tier 3 </td>
+      <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
-      <td rowspan="2"> Windows </td>
-      <td rowspan="2"> 10+ </td>
+      <td rowspan="3"> Windows </td>
+      <td> 10+ </td>
       <td> x86-64 (64-bit) </td>
-      <td> Tier 1 </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> 10+ </td>
+      <td> i686 (32-bit) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> 7+ </td>
+      <td> i686 (32-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="7"> Linux (Glibc)</td>
+      <td rowspan="7"> 2.6.18+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
       <td> i686 (32-bit) </td>
-      <td> Tier 2 </td>
+      <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td rowspan="8"> Linux </td>
-      <td rowspan="8"> 2.6.18+ </td>
-      <td> x86-64 (64-bit) </td>
-      <td> Tier 1 </td>
+      <td> <a href="https://juliagpu.org">Nvidia PTX (64-bit)</a> </td>
+      <td> <font color="green">Tier 1</font> </a> </td>
     </tr>
     <tr>
-      <td> i686 (32-bit) </td>
-      <td> Tier 1 </td>
-    </tr>
-    <tr>
-      <td> Nvidia PTX (64-bit) </td>
-      <td> Tier 1 <a href="https://juliagpu.org">(JuliaGPU)</a> </td>
-    </tr>
-    <tr>
-      <td> AMD GPUs (64-bit) </td>
-      <td> Tier 3 <a href="https://juliagpu.org">(JuliaGPU)</a> </td>
-    </tr>
-    <tr>
-      <td> ARMv7 (32-bit) </td>
-      <td> Tier 3 </td>
+      <td> <a href="https://juliagpu.org">AMD GPUs (64-bit)</a> </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
     </tr>
     <tr>
       <td> ARMv8 (64-bit) </td>
-      <td> Tier 1 </td>
+      <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> x86-64 musl libc </td>
-      <td> Tier 3 </td>
+      <td> ARMv7 (32-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
       <td> PowerPC (64-bit)  </td>
-      <td> Tier 3  </td>
+      <td> <font color="crimson">Tier 3</font>  </td>
+    </tr>
+    <tr>
+      <td rowspan="1"> Linux (Musl) </td>
+      <td rowspan="1"> 2.6.39+ </td>
+      <td> x86-64 (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
       <td rowspan="2"> FreeBSD </td>
       <td rowspan="2"> 11.0+ </td>
       <td> x86-64 (64-bit) </td>
-      <td> Tier 1 </td>
+      <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-
       <td> i686 (32-bit) </td>
-      <td> Tier 3 </td>
+      <td> <font color="crimson">Tier 3</font> </td>
     </tr>
   </tbody>
 </table>
@@ -332,9 +339,13 @@ The platforms currently supported by Julia are listed below. They are divided in
 
 ### Support tiers for the latest stable release of Julia
 
-@@tight-list
-* **Tier 1**: Julia is guaranteed to build from source and pass all tests on these platforms when built with the default options. Official binaries are always available and CI is run on every commit to ensure support is actively maintained.
-* **Tier 2**: Julia is guaranteed to build from source using the default build options, but may or may not pass all tests. Official binaries are available on a case-by-case basis.
-* **Tier 3**: Julia may or may not build. If it does, it is unlikely to pass tests. Binaries may be available in some cases. When they are, they should be considered experimental. Ongoing support is dependent on community efforts.
-* **Tier 4**: Julia built at some point in the past, but is known not to build currently.
-@@
+@@row @@col-12
+~~~
+<ul>
+<li> <font color="green">Tier 1</font>: Julia is guaranteed to build from source and pass all tests on these platforms when built with the default options. Official binaries are always available and CI is run on every commit to ensure support is actively maintained.
+<li> <font color="orange">Tier 2</font>: Julia is guaranteed to build from source using the default build options, but may or may not pass all tests. Official binaries are available on a case-by-case basis.
+<li> <font color="crimson">Tier 3</font>: Julia may or may not build. If it does, it is unlikely to pass tests. Binaries may be available in some cases. When they are, they should be considered experimental. Ongoing support is dependent on community efforts.
+<li> Tier 4: Julia built at some point in the past, but is known not to build currently.
+</ul>
+~~~
+@@ @@
