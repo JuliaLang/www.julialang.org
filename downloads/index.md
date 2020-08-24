@@ -283,7 +283,7 @@ The platforms currently supported by Julia are listed below. They are divided in
     </tr>
     <tr>
       <td> 7+ </td>
-      <td> i686 (32-bit) </td>
+      <td> i686 (32-bit) / x86-64 (64-bit) </td>
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
