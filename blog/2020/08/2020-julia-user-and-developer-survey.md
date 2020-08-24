@@ -10,7 +10,7 @@
 This year, 2,565 Julia users and developers participated in the second annual Julia User and Developer Survey - up from 1,844 participants last year. This year, the survey was administered in 4 languages: English, Spanish, Chinese and German.
 
 
-The survey was presented during JuliaCon, and highlights are included below. 
+The survey was presented during JuliaCon, and highlights are included below. The [slides](/assets/2020-julia-user-developer-survey.pdf) are available for download.
 
 
 ## Who Are Julia Users and Developers?
@@ -60,7 +60,8 @@ From 2019 to 2020, there was an increase in the percentage of respondents lookin
 
 
 
-
+@@row @@col-12
+~~~
 <table class="c16">
 <tbody>
     <tr class="c3">
@@ -109,7 +110,9 @@ From 2019 to 2020, there was an increase in the percentage of respondents lookin
     </tr>
 </tbody>
 </table>
-	
+~~~
+@@ @@
+
 
 ## Why Julia?
 

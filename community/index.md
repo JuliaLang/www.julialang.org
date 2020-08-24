@@ -132,7 +132,7 @@
 
     <p>We conduct the Julia User & Developer Survey right before JuliaCon every year and present the findings at JuliaCon. The survey has now been conducted two years in a row:</p>
         <ul>
-            <li> 2020: <a href="/assets/2020-julia-user-developer-survey.pdf">Slides</a> and <a href="https://www.youtube.com/watch?v=lBhw7C_bIyk">JuliaCon 2020 talk</a>
+            <li> 2020: <a href="/assets/2020-julia-user-developer-survey.pdf">Slides</a>, <a href="https://www.youtube.com/watch?v=lBhw7C_bIyk">JuliaCon 2020 talk</a>, and <a href="/blog/2020/08/2020-julia-survey/">blog post</a>
             <li> 2019: <a href="/assets/2019-julia-user-developer-survey.pdf">Slides</a>, <a href="https://www.youtube.com/watch?v=yx6lBSHqGfc">JuliaCon 2019 talk</a>, and <a href="/blog/2019/08/2019-julia-survey/">blog post</a>
         </ul>
   </div>
@@ -182,7 +182,7 @@
     </div>
     <br>
 
-    <p>The Julia Language is proud to have fostered a diverse assortment of GitHub Organizations over the years. <a href="organizations">Find out more about our Ecosystem's GitHub Orgs.</a></p> 
+    <p>The Julia Language is proud to have fostered a diverse assortment of GitHub Organizations over the years. <a href="organizations">Find out more about our Ecosystem's GitHub Orgs.</a></p>
   </div>
   <br>
 </div>
