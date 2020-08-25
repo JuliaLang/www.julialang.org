@@ -70,7 +70,7 @@ i = 6 on thread 2</code></pre>
     <span class=hljs-keyword >return</span> v
 <span class=hljs-keyword >end</span></code></pre>
 <p>This is just a standard mergesort implementation, similar to the one in Julia&#39;s <code>Base</code> library, with only the tiny addition of the <code>@spawn</code> construct on one of the recursive calls. Julia&#39;s <code>Distributed</code> standard library has also exported a <code>@spawn</code> macro for quite a while, but we plan to discontinue it in favor of the new threaded meaning &#40;though it will still be available in 1.x versions, for backwards compatibility&#41;. This way of expressing parallelism is much more useful in shared memory, and &quot;spawn&quot; is a pretty standard term in task parallel APIs &#40;used in Cilk as well as <a href="https://software.intel.com/en-us/node/506304">TBB</a>, for example&#41;.</p>
-<code>wait</code> simply waits for the specified task to finish. The code works by modifying its input, so we don&#39;t need the task&#39;s return value. Indicating that a return value is not needed is the only difference with the <code>fetch</code> call used in the earlier <code>fib</code> example. Note that we explicitly request <code>MergeSort</code> when calling Julia&#39;s standard <code>sort&#33;</code>, to make sure we&#39;re comparing apples to apples — <code>sort&#33;</code> actually uses quicksort by default for sorting numbers, which tends to be faster for random data. Let&#39;s time the code under <code>JULIA_NUM_THREADS&#61;2</code>:</p>
+<p><code>wait</code> simply waits for the specified task to finish. The code works by modifying its input, so we don&#39;t need the task&#39;s return value. Indicating that a return value is not needed is the only difference with the <code>fetch</code> call used in the earlier <code>fib</code> example. Note that we explicitly request <code>MergeSort</code> when calling Julia&#39;s standard <code>sort&#33;</code>, to make sure we&#39;re comparing apples to apples — <code>sort&#33;</code> actually uses quicksort by default for sorting numbers, which tends to be faster for random data. Let&#39;s time the code under <code>JULIA_NUM_THREADS&#61;2</code>:</p>
 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > a = rand(<span class=hljs-number >20000000</span>);
 </span>
 <span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> sort!(b, alg = <span class=hljs-literal >MergeSort</span>);   <span class=hljs-comment ># single-threaded</span>
@@ -183,7 +183,7 @@ i = 6 on thread 2</code></pre>
 <h2 id=acknowledgements ><a href="#acknowledgements">Acknowledgements</a></h2>
 <p>We would like to gratefully acknowledge funding support from <a href="https://www.intel.com/">Intel</a> and <a href="https://relational.ai/">relationalAI</a> that made it possible to develop these new capabilities.</p>
 <p>We are also grateful to the several people who patiently tried this functionality while it was in development and filed bug reports or pull requests, and spurred us to keep going. If you encounter any issues using threads in Julia, please let us know on <a href="https://github.com/JuliaLang/julia/issues">GitHub</a> or our <a href="https://discourse.julialang.org/">Discourse</a> forum&#33;</p>
-</p>
+<p></p>
 </div><br><br>
 
 

@@ -47,7 +47,7 @@ StructuredQueries.Query{Tables.Table}</code></pre>
 <p>One can pipe arguments to verbs inside an <code>@query</code> context. For instance, the <code>Query</code> above is equivalent to that produced by</p>
 <pre><code class="julia hljs"><span class=hljs-meta >@query</span> iris |&gt; filter(sepal_length &gt; <span class=hljs-number >5.0</span>)</code></pre>
 <p>In this case, the first argument &#40;<code>sepal_length &gt; 5.0</code>&#41; to the verb <code>filter</code> is not a data source specification &#40;<code>iris</code>&#41;, which is instead the first argument to <code>|&gt;</code>, but is rather a query argument &#40;<code>sepal_length &gt; 5.0</code>&#41;.</p>
-<code>Query</code> objects represent the structure of a query composed of the three building blocks above. To see how, lets take a look at the internals of a <code>Query</code>:</p>
+<p><code>Query</code> objects represent the structure of a query composed of the three building blocks above. To see how, lets take a look at the internals of a <code>Query</code>:</p>
 <pre><code class="julia hljs">julia&gt; fieldnames(q)
 <span class=hljs-number >2</span>-element <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Symbol</span>,<span class=hljs-number >1</span>}:
  :source
@@ -232,7 +232,8 @@ ERROR: <span class=hljs-built_in >ArgumentError</span>: Undefined source: tbl. C
 <pre><code class="julia hljs"><span class=hljs-meta >@query</span> filter(tbl, A | B)</code></pre>
 <p>can be given, say, three-valued logic semantics via higher-order lifting, but</p>
 <pre><code class="julia hljs">f(x, y) = x | y
-<span class=hljs-meta >@query</span> filter(tbl, f(A, B))</code></pre> cannot.</p>
+<span class=hljs-meta >@query</span> filter(tbl, f(A, B))</code></pre>
+<p>cannot.</p>
 <p>Which approach to solving the hard question of <code>Nullable</code> semantics is better? It really is not clear. Right now, the Julia statistics community is trying out both solutions. I am hopeful time and experimentation will yield new insights.</p>
 <h2 id=sql_backends ><a href="#sql_backends">SQL backends</a></h2>
 <p>Above we have seen &#40;i&#41; how the implementation of a generic querying interface suggested a solution to the column-indexing and the <code>Nullable</code> semantics problems and &#40;ii&#41; how these latter solutions may be implemented in a manner generic over so-called column-indexable in-memory Julia tabular data structures. But we haven&#39;t said anything about how the interface is generic over tables other than in-memory Julia objects. In particular, we desire that the above framework be applicable to SQL database connections as well.</p>

@@ -83,7 +83,8 @@ Model{<span class=hljs-comment >##7#8}(#7)</span>
 
 julia&gt; m5(<span class=hljs-number >10</span>)
 <span class=hljs-number >20</span></code></pre>
-<p>To check that the macro is doing what we think it is, we can use the <code>@macroexpand</code> command, which itself is a macro &#40;as denoted by the initial <code>@</code>&#41;: <pre><code class="julia hljs">julia&gt; <span class=hljs-meta >@macroexpand</span> <span class=hljs-meta >@model</span> <span class=hljs-number >2</span>x
+<p>To check that the macro is doing what we think it is, we can use the <code>@macroexpand</code> command, which itself is a macro &#40;as denoted by the initial <code>@</code>&#41;:</p>
+<pre><code class="julia hljs">julia&gt; <span class=hljs-meta >@macroexpand</span> <span class=hljs-meta >@model</span> <span class=hljs-number >2</span>x
 :((Main.Model)((<span class=hljs-comment >#71#x-&gt;begin  # In[12], line 2:</span>
                     <span class=hljs-number >2</span><span class=hljs-comment >#71#x</span>
                 <span class=hljs-keyword >end</span>)))</code></pre>

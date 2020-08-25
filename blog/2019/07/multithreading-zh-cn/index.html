@@ -8,7 +8,7 @@
     <span class=hljs-keyword >return</span> fib(n - <span class=hljs-number >1</span>) + fetch(t)
 <span class=hljs-keyword >end</span></code></pre> <p>当然，这是斐波那契序列的非常低效的经典树型递归实现。 但，它可以在任意数量的处理器核心上运行！ 这一行 <code>t &#61; @spawn fib&#40;n - 2&#41;</code> 启动一个计算 <code>fib&#40;n - 2&#41;</code> 的任务， 该任务与计算 <code>fib&#40;n - 1&#41;</code> 的代码并行运行。 而 <code>fetch&#40;t&#41;</code> 将等待任务 <code>t</code> 完成并获取其返回值。</p> <p>这一并行模型有许多奇妙的特性。我们认为它有点像垃圾回收（GC）： 使用 GC，你可以自由分配对象而无需担心何时以及如何释放对象。 而使用任务并行，您可以自由生成任务（可能多达数百万个），而无需担心它们在哪运行。</p> <p>这一模型非常轻量，且不用关心底层细节。 您无需显式启动和结束线程，甚至不需要知道有多少处理器或线程（尽管仍可以按需得知）。</p> <p>该模型是可嵌套，可组合的： 您可以启动并行任务，这些任务调用库函数，而这些函数本身也可以启动并行任务，一切都会正常运行。 您的 CPU 不会因线程过多而饱和。 此特性对于高级语言至关重要，因为它们由库函数完成大量工作。 您只需要自由编写所需的任何代码（包括并行代码），而无需担心它调用的库是如何实现的 （目前仅适用于 Julia 代码，但将来我们计划将其扩展到 native 库（如 BLAS））。</p> <p>事实上，这是此次发布令人兴奋的主要原因： 从现在开始，整个 Julia 生态系统都将能添加多核并行的能力。</p> <div class=franklin-toc ><ol><li><a href="#一些历史">一些历史</a><li><a href="#如何使用">如何使用</a><li><a href="#如何迁移到并行世界">如何迁移到并行世界</a><ol><li><a href="#任务调度和同步">任务调度和同步</a><li><a href="#线程局部状态">线程局部状态</a><li><a href="#随机数生成">随机数生成</a></ol><li><a href="#深入底层">深入底层</a><ol><li><a href="#分配和切换任务堆栈">分配和切换任务堆栈</a><li><a href="#io">I/O</a><li><a href="#跨系统线程的任务迁移">跨系统线程的任务迁移</a><li><a href="#休眠空闲线程">休眠空闲线程</a><li><a href="#调度器在哪运行">调度器在哪运行？</a><li><a href="#经典错误">经典错误</a></ol><li><a href="#展望">展望</a><li><a href="#致谢">致谢</a></ol></div> <h2 id="一些历史"><a href="#一些历史">一些历史</a></h2> <p>这一新功能最令人惊讶的方面之一是它极长的开发历史。 从非常早期（甚至从 0.1 版本之前）开始，Julia 就提供对称协程的<code>Task</code>类型，该类型用于基于事件的 I/O。 因此，我们始终在语言中具有<em>并发</em>单元（独立的执行流），只是它不是并行的（同时的执行流）。 我们需要基于线程的并行性，因此在 2014 年（大致是 0.3 版本），我们着手进行漫长的重构过程来使代码线程安全。 Yichao Yu在垃圾回收器和线程局部存储性能方面投入了一些特别令人印象深刻的工作。 作者之一（Kiran）设计了一些基础结构，用于调度多个线程和管理原子数据结构。</p> <p>大约两年后，在版本 0.5 中，我们发布了具有“实验”性质的宏 <code>@threads for</code> ， 该宏可以处理在所有核心上运行的简单并行循环。 尽管这不是我们想要的最终设计，但它做了两项重要的工作： 它让 Julia 程序员可以利用多个核心，并提供测试用例来清除运行时中与线程相关的Bug。 然而，这个早期版本的 <code>@threads</code> 有一些巨大限制： <code>@threads</code> 循环不能嵌套：如果调用的函数递归调用<code>@threads</code>，这些内部循环将只能使用调用它们的CPU； 它还与我们的 <code>Task</code> 和 I/O 系统不兼容：您无法在线程循环内进行任何 I/O 或在 <code>Task</code> 间切换。</p> <p>因此，逻辑上接下来应该将 <code>Task</code> 和线程系统合并， 并且“简单地”（此处应有笑声）允许 <code>Task</code> 在线程池上同时运行。 我们与 Arch Robison（当时在英特尔公司）进行了许多早期讨论， 并得出结论：这就是我们语言的最佳模式。 在版本 0.5（2016 年左右）之后，Kiran 开始基于深度优先调度尝试新的并行任务调度器<a href="https://github.com/kpamnany/partr">partr</a>。 他用一些漂亮的动画幻灯片向我们所有人推销它，不过他愿意做一些工作也没什么坏处。 计划是首先将 partr 开发为独立的 C 库，以便可以自行进行测试和性能测试， 然后将其与 Julia 运行时集成。</p> <p>在 Kiran 完成独立版本的 Partr 之后， 我们中的一些人（本文的作者，以及Keno Fischer和英特尔的Anton Malakhov）开始了一系列面对面的工作， 以研究如何进行集成。Julia 运行时带来了许多额外的功能，如垃圾回收和基于事件的 I/O，因此这一工作并不简单。 有点令人失望的是，搞定新系统的时间比预期的要长得多——将近两年，尽管对于一个复杂的软件项目来说这一周期并不罕见。 这篇文章的稍后部分将为好奇的人解释一些内部细节和涉及的难点，但首先让我们把它搁在一边。</p> <h2 id="如何使用"><a href="#如何使用">如何使用</a></h2> <p>要在 Julia 中使用多线程，请设置环境变量：JULIA<em>NUM</em>THREADS</p> <pre><code class="bash hljs">$ JULIA_NUM_THREADS=4 ./julia</code></pre>
 <p><a href="https://junolab.org/">Juno IDE</a> 可根据可用处理器核心数自动设置线程数，还提供用于更改线程数的图形界面，因此在该环境中不需要手动设置环境变量。</p>
-<code>Base</code> 的子模块 <code>Threads</code> 包含大多数线程特定的功能，例如查询线程数和当前线程的ID：</p>
+<p><code>Base</code> 的子模块 <code>Threads</code> 包含大多数线程特定的功能，例如查询线程数和当前线程的ID：</p>
 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Threads.nthreads()
 </span>4
 
@@ -70,7 +70,7 @@ i = 6 on thread 2</code></pre>
     <span class=hljs-keyword >return</span> v
 <span class=hljs-keyword >end</span></code></pre>
 <p>这只是一个标准的并归排序实现，和 Julia <code>Base</code>库中的实现大体相同， 仅对其中一个递归调用添加了一个小小的 <code>@spawn</code>。 Julia 的 <code>Distributed</code> 标准库在相当长的一段时间内也导出了宏<code>@spawn</code>，但我们计划将其弃用， 以支持新的线程语义（尽管它仍将在 1.x 版本中提供，用于提供向前兼容性）。 这种表达并行的方式在共享内存中更有用，在任务并行 API 中，&quot;spawn&quot;是一个相当标准的术语（如在 Cilk 和 TBB 中就均被使用）。</p>
-<code>wait</code> 只需等待指定任务完成。代码通过修改其输入来工作，因此我们不需要任务的返回值。 与前面的 <code>fib</code> 示例中使用的 <code>fetch</code> 的唯一区别是不需要返回值。 请注意，我们在调用 Julia 的标准 <code>sort&#33;</code> 时明确要求使用 <code>MergeSort</code>, 以确保我们进行公平地比较——默认情况下，我们使用快速排序对数字进行排序， 对于随机数据来说，这往往更快。 让我们在 <code>JULIA_NUM_THREADS&#61;2</code> 的前提下运行代码并计时：</p>
+<p><code>wait</code> 只需等待指定任务完成。代码通过修改其输入来工作，因此我们不需要任务的返回值。 与前面的 <code>fib</code> 示例中使用的 <code>fetch</code> 的唯一区别是不需要返回值。 请注意，我们在调用 Julia 的标准 <code>sort&#33;</code> 时明确要求使用 <code>MergeSort</code>, 以确保我们进行公平地比较——默认情况下，我们使用快速排序对数字进行排序， 对于随机数据来说，这往往更快。 让我们在 <code>JULIA_NUM_THREADS&#61;2</code> 的前提下运行代码并计时：</p>
 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > a = rand(<span class=hljs-number >20000000</span>);
 </span>
 <span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> sort!(b, alg = <span class=hljs-literal >MergeSort</span>);   <span class=hljs-comment ># 单线程</span>
@@ -95,7 +95,7 @@ i = 6 on thread 2</code></pre>
   1.112285 seconds (3.78 k allocations: 686.935 MiB, 4.45% gc time)
   0.787816 seconds (3.80 k allocations: 686.935 MiB, 2.08% gc time)
   0.655762 seconds (3.79 k allocations: 686.935 MiB, 4.62% gc time)</code></pre>
-<code>psort.jlpsort&#33;</code>脚本只定义了函数<code>psort&#33;</code>，调用它一次以避免测量编译开销， 然后运行与上面的命令相同的命令。</p>
+<p><code>psort.jlpsort&#33;</code>脚本只定义了函数<code>psort&#33;</code>，调用它一次以避免测量编译开销， 然后运行与上面的命令相同的命令。</p>
 <p>请注意，尽管并行代码分配的内存比标准程序<em>多得多</em>，但仍然有加速效果。 分配有两个来源：<code>Task</code> 对象和在每次调用上分配的临时 <code>temp</code> 数组。 参考排序程序在所有递归调用中重用了单个临时缓冲区。 但使用并行，重用临时数组比较困难，但仍然是可能的, 稍后将详细介绍。</p>
 <h2 id="如何迁移到并行世界"><a href="#如何迁移到并行世界">如何迁移到并行世界</a></h2>
 <p>在 1.3 系列中，新线程运行时仍视为处于 beta 测试阶段。 “正式”版将出现在之后的版本中，以便有充足的时间用来确定可长期维护的 API。 如果要在此时间段内升级代码，您需要了解以下内容。</p>
@@ -110,7 +110,7 @@ i = 6 on thread 2</code></pre>
     unlock(cond)
 <span class=hljs-keyword >end</span></code></pre>
 <p>与以前的版本一样，用于保护临界区的标准锁 <code>ReentrantLock</code> 现已线程安全（以前仅用于同步任务）。 有一些其他类型的锁（<code>Threads.SpinLock</code> 和 <code>Threads.Mutex</code>）主要为内部目的而定义。 它们只用于极少数情况：&#40;1&#41; 只有线程需要同步，而不是任务，&#40;2&#41; 已知锁将只持有很短的时间。</p>
-<code>Threads</code> 模块还提供 <code>Semaphore</code>（信号量）和 <code>Event</code>（事件）类型，它们都遵循其标准定义。</p>
+<p><code>Threads</code> 模块还提供 <code>Semaphore</code>（信号量）和 <code>Event</code>（事件）类型，它们都遵循其标准定义。</p>
 <h3 id="线程局部状态"><a href="#线程局部状态">线程局部状态</a></h3>
 <p>Julia 代码一般倾向于纯函数式（没有副作用或可变性），或者只使用局部可变性， 因此，在许多情况下迁移到完全线程安全的代码应该很容易。 但是，如果代码使用共享状态且希望使其线程安全，则有一些工作要做。 到目前为止，我们在 Julia 的标准库中使用了两种方法：同步&#40;锁&#41;和线程或任务局部状态。 锁适用于不经常访问的共享资源，或无法让每个线程都持有副本的资源。</p>
 <p>但对于高性能代码，我们建议采用线程局部状态。 上面的 <code>psort&#33;</code> 程序可以这样改进。以下是具体步骤： 首先，我们修改函数签名以接受预分配的缓冲区， 当调用方不提供预分配缓冲区时使用默认参数自动分配空间:</p>
@@ -181,7 +181,7 @@ i = 6 on thread 2</code></pre>
 <h2 id="致谢"><a href="#致谢">致谢</a></h2>
 <p>我们非常感谢 <a href="https://www.intel.com/">Intel</a> 和 <a href="https://relational.ai/">relationalAI</a> 提供的资金支持，这使得开发这些新功能成为可能。</p>
 <p>我们也感谢耐心地尝试此功能的人们，他们在开发中提交错误报告或PR，并激励我们继续前进。 如果您在使用 Julia 中的线程时遇到任何问题，请在<a href="https://github.com/JuliaLang/julia/issues">GitHub</a>或我们的<a href="https://discourse.julialang.org/">论坛</a>中告知我们&#33;</p>
-</p>
+<p></p>
 </div><br><br>
 
 

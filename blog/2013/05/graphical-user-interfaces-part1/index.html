@@ -130,7 +130,7 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
     state.timer = TimeoutAsyncWork(i -&gt; stept(inc, ctrls, state, showframe))
     start_timer(state.timer, iround(<span class=hljs-number >1000</span>*dt), iround(<span class=hljs-number >1000</span>*dt))
 <span class=hljs-keyword >end</span></code></pre>
-<code>stept&#40;&#41;</code> increments the <code>t</code> frame by the specified amount &#40;typically 1 or -1&#41;, while <code>playt&#40;&#41;</code> starts a timer that will call <code>stept</code> at regular intervals. The timer is stopped if play reaches the beginning or end of the movie. The <code>stop_playing&#33;</code> function checks to see whether we have an active timer, and if so stops it:</p>
+<p><code>stept&#40;&#41;</code> increments the <code>t</code> frame by the specified amount &#40;typically 1 or -1&#41;, while <code>playt&#40;&#41;</code> starts a timer that will call <code>stept</code> at regular intervals. The timer is stopped if play reaches the beginning or end of the movie. The <code>stop_playing&#33;</code> function checks to see whether we have an active timer, and if so stops it:</p>
 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> stop_playing!(state::NavigationState)
     <span class=hljs-keyword >if</span> !is(state.timer, <span class=hljs-literal >nothing</span>)
         stop_timer(state.timer)
@@ -171,7 +171,7 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
     updatet(ctrls, state)
     showframe(state)
 <span class=hljs-keyword >end</span></code></pre>
-<code>sett</code> runs when the user types an entry into the edit box; if the user types in nonsense like &quot;foo&quot;, it will gracefully reset it to the current position.</p>
+<p><code>sett</code> runs when the user types an entry into the edit box; if the user types in nonsense like &quot;foo&quot;, it will gracefully reset it to the current position.</p>
 <p>There&#39;s a complementary set of these functions for the <code>z</code> controls.</p>
 <p>These callbacks implement the functionality of this &quot;navigation&quot; GUI. The other main task is initialization. We won&#39;t cover this in gory detail &#40;you are invited to browse the code&#41;, but let&#39;s hit a few highlights.</p>
 <h4 id=creating_the_buttons ><a href="#creating_the_buttons">Creating the buttons</a></h4>

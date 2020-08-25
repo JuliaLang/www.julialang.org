@@ -52,7 +52,7 @@ Bio.Seq.SeqRecord{Bio.Seq.ReferenceSequence,<span class=hljs-built_in >Array</sp
     <span class=hljs-keyword >return</span> ret
 <span class=hljs-keyword >end</span>
 
-println(open(countmapped, BAMReader, <span class=hljs-literal >ARGS</span>[<span class=hljs-number >1</span>]))</code></pre> <code>JULIA_NUM_THREADS</code> environment variable controls the number of worker threads. The result below shows that the elapsed time is almost halved using two threads:</p> <pre><code class="julia hljs">~/.j/v/Bio $ time julia countmapped.jl SRR1238088.sort.bam
+println(open(countmapped, BAMReader, <span class=hljs-literal >ARGS</span>[<span class=hljs-number >1</span>]))</code></pre> <p><code>JULIA_NUM_THREADS</code> environment variable controls the number of worker threads. The result below shows that the elapsed time is almost halved using two threads:</p> <pre><code class="julia hljs">~/.j/v/Bio $ time julia countmapped.jl SRR1238088.sort.bam
 <span class=hljs-number >28040186</span>
        <span class=hljs-number >29.27</span> real        <span class=hljs-number >28.64</span> user         <span class=hljs-number >0.66</span> sys
 ~/.j/v/Bio $ env JULIA_NUM_THREADS=<span class=hljs-number >2</span> time julia countmapped.jl SRR1238088.sort.bam

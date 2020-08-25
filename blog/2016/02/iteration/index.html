@@ -119,7 +119,7 @@ dims&#41;</code> where <code>dims</code> specifies the dimensions you want to su
             x[Ipre, i, Ipost] ...</code></pre>
 <p>so that <code>x</code> would be traversed in memory-order.</p>
 <h2 id=broadcasting ><a href="#broadcasting">Broadcasting</a></h2>
-<code>CartesianIndex</code>es are <em>not</em> broadcastable:</p>
+<p><code>CartesianIndex</code>es are <em>not</em> broadcastable:</p>
 <pre><code class="julia hljs">julia&gt; <span class=hljs-literal >I</span> = <span class=hljs-built_in >CartesianIndex</span>(<span class=hljs-number >2</span>, <span class=hljs-number >7</span>)
 <span class=hljs-built_in >CartesianIndex</span>(<span class=hljs-number >2</span>, <span class=hljs-number >7</span>)
 

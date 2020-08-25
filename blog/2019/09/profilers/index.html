@@ -274,7 +274,7 @@ Total snapshots: 629</code></pre>
 <p>There&#39;s many more tools for examining profile exploration tools that I haven&#39;t mentioned, including the venerable <a href="https://github.com/timholy/ProfileView.jl">ProfileView.jl</a> and <a href="https://docs.junolab.org/stable/man/juno_frontend.html#Profiler-1">Juno.jl</a>. And there&#39;s other tools too for working on performance questions, such as the simple <a href="https://docs.julialang.org/en/v1/base/base/#Base.@time">@time</a> and the batteries-included <a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a> . Those will often then lead to needing to do deeper exploration of the code. For that next step, consider using <a href="https://github.com/JuliaDebug/Cthulhu.jl">Cthulhu.jl</a> and <a href="https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/">learning more about other kinds of debugging</a>.</p>
 <p>And finally, we&#39;re working on a <a href="https://github.com/JuliaLang/julia/pull/31534">memory profiler</a> for JuliaLang to let you explore questions of memory consumption, similar to the time-duration-consumed questions explored above. So watch for more updates to come&#33;</p>
 <hr />
-<table class=fndef  id="fndef:1">
+<p><table class=fndef  id="fndef:1">
     <tr>
         <td class=fndef-backref ><a href="#fnref:1">[1]</a>
         <td class=fndef-content >When writing this, I forget to also test the <code>--fasynchronous-unwind-tables</code> flag to <code>gcc</code>, which is supposed to be exact. However, it seemed not to make a difference to <code>perf</code>. My understanding is that this flag was already the default on x86-64. To confirm this, I tested the inverse flag &#40;<code>-fno-asynchronous-unwind-tables</code>&#41; and noted that this did make the result even worse.
@@ -286,7 +286,8 @@ Total snapshots: 629</code></pre>
         <td class=fndef-content >The <code>collapse&#61;false</code> option controls whether to merge the profile by line number or to keep them distinct by instruction pointer. One useful code-maintence trick is to try to ensure each line does relatively little, so that line numbers are a precise source of information. This doesn&#39;t need to be taken to the extreme, as I do below as an example &#40;nearly writing out a <a href="https://en.m.wikipedia.org/wiki/Three-address_code">3AC</a> manually&#41;, since several of these statements will likely get optimized and moved anyways. But sometimes it can be invaluable to see if one <code>fib_r</code> call was more expensive than the other in our example, or to know <em>which</em> array was being indexed just from the stacktrace, etc.
     
 </table>
- <pre><code class="julia-repl hljs">@noinline function fib(n)
+</p>
+<pre><code class="julia-repl hljs">@noinline function fib(n)
     if n &gt; 1
         n -= 1
         x1 = fib_r(n)
@@ -306,7 +307,7 @@ end</code></pre>
  199 ./REPL[1]:1; cpuid
   3   ./processor_x86.cpp:8; jl_cpuid
   192 ./processor_x86.cpp:12; jl_cpuid
-  1   ./libjulia.1.4.dylib:?; _GLOBAL__sub_I_runtime_ccall.cpp</code></pre></p>
+  1   ./libjulia.1.4.dylib:?; _GLOBAL__sub_I_runtime_ccall.cpp</code></pre>
 </div><br><br>
 
 
