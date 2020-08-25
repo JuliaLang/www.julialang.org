@@ -36,7 +36,7 @@ jobs:
       - name: Install Julia
         uses: julia-actions/setup-julia@v1
         with:
-          version: 1.3.0
+          version: 1.5.0
       # This ensures that NodeJS and Franklin are loaded then it installs
       # highlight.js which is needed for the prerendering step.
       # Then the environment is activated and instantiated to install all
@@ -47,7 +47,7 @@ jobs:
         run: julia -e '
               using Pkg;
               Pkg.add("NodeJS");
-              Pkg.add(PackageSpec(name="Franklin",version="0.8"));
+              Pkg.add(PackageSpec(name="Franklin",version="0.9"));
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
               using Franklin; optimize();
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
