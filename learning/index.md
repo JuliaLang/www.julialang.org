@@ -1,3 +1,4 @@
+@def title="Get started with Julia"
 
 ~~~
 <!--
