@@ -4,8 +4,6 @@
 @def rss_pubdate = Date(2020, 8, 24)
 @def rss = """This year, 2,565 Julia users and developers participated in the second annual Julia User and Developer Survey."""
 
-# Julia User and Developer Survey
-
 
 This year, 2,565 Julia users and developers participated in the second annual Julia User and Developer Survey - up from 1,844 participants last year. This year, the survey was administered in 4 languages: English, Spanish, Chinese and German.
 
