@@ -137,7 +137,7 @@ Calls annotated `::Union{}` do not return.
 
 ### Triggering method invalidation
 
-**NOTE**: This demo is begin run on Julia's master branch (which will become 1.6).
+**NOTE**: This demo is being run on Julia's master branch (which will become 1.6).
 Depending on your version of Julia, you might get different results and/or need to define more than one
 additional method for `f` to see the outcome shown here.
 
