@@ -219,7 +219,7 @@ These are mostly for `Base` and the standard libraries.
 
 Using [SnoopCompile], we can count the number of invalidations triggered by loading various packages into a fresh Julia session:
 
-| Package | Version | # invalidations (Julia 1.5) | # invalidations (master branch) |
+| Package | Version | # inv., Julia 1.5 | # inv., master branch |
 |:------- | -------:| ---------:| ---------:|
 | Example | 0.5.3 | 0 | 0 |
 | Revise | 2.7.3 | 23 | 0 |
@@ -235,9 +235,9 @@ Using [SnoopCompile], we can count the number of invalidations triggered by load
 | JuMP | 0.21.3 | 4281 | 1952 |
 | DifferentialEquations | 6.15.0 | 6373 | 2309 |
 
-('x' indicates that the package cannot be loaded. Run when Julia's `master` was at commit 1c9c24170c53273832088431de99fe19247af172, pre-1.6.)
+('x' indicates that the package cannot be loaded. Julia's master-branch results were at commit 1c9c24170c53273832088431de99fe19247af172, partway through the development of Julia 1.6.)
 
-You can see that key packages used by large portions of the Julia ecosystem have traditionally
+You can see that key packages used by large portions of the Julia ecosystem have historically
 invalidated hundreds or thousands of `MethodInstance`s, sometimes more than 10% of the total
 number of `MethodInstance`s present before loading the package.
 The situation has been dramatically improved on Julia 1.6, but there remains more
@@ -292,8 +292,8 @@ This doesn't just affect plotting or packages. For example, loading packages cou
 
 You can minimize some of the costs of invalidation by loading all packages at the outset--if all invalidations happen before you start compiling very much code, then the first compilation already takes the full suite of methods into account.
 
-On versions of Julia prior to 1.5 and especially 1.6, package load time was substantially increased by invalidation.
-Especially on Julia 1.6, invalidation only rarely affects package load times,
+On versions of Julia up to and including 1.5, package load time was substantially increased by invalidation.
+On Julia 1.6, invalidation only rarely affects package load times,
 largely because Pkg and the loading code have been made more resistant to invalidation.
 
 ## Can and should this be fixed?
@@ -312,7 +312,7 @@ We will never get rid of invalidation altogether; as the `applyf` example above 
 invalidation is sometimes necessary if you want both good runtime performance and interactive usage, and this combination is one of the best things about Julia.
 The real question is whether there are *unnecessary* invalidations,
 or an unexploited strategy to limit their impact.
-Determining the answer to that question requires that we develop an understanding the common sources of invalidation and what can be done to fix them.
+While the table above resoundingly demonstrates the feasibility of reducing the frequency of invalidation, going any further requires that we develop an understanding the common sources of invalidation and what can be done to fix them.
 
 ## Changes in Julia that have reduced the number of invalidations
 
@@ -322,7 +322,7 @@ A [crucial change](https://github.com/JuliaLang/julia/pull/36733) was the realiz
 Another [pair](https://github.com/JuliaLang/julia/pull/36208) of [fundamental](https://github.com/JuliaLang/julia/pull/35904) changes led to subtle but significant alterations in how much Julia specializes poorly-inferred code to reflect the current state of the world.
 By making Julia less eager to specialize in such circumstances, huge swaths of the package ecosystem became more robust against invalidation.
 
-As demonstrated by the `applyf` example, the version that was well-inferred from the outset--when we passed it `container = [100]`, a `Vector{Int}`--never needed to be invalidated; it was only those `MethodInstance`s compiled for `Vector{Any}` that needed updating.  So the last major component of how we've reduced invalidations is to improve the inferrability of Julia's own code.  By recording and analyzing invalidations, we gained a much better understanding of where the weaknesses in Julia's own code were with respect to inferrability.  We used this information to improve the implementations of dozens of methods, and added type annotations in many more, to help Julia generate better code.
+Finally, as demonstrated by the `applyf` example, the version that was well-inferred from the outset--when we passed it `container = [100]`, a `Vector{Int}`--never needed to be invalidated; it was only those `MethodInstance`s compiled for `Vector{Any}` that needed updating.  So the last major component of how we've reduced invalidations is to improve the inferrability of Julia's own code.  By recording and analyzing invalidations, we gained a much better understanding of where the weaknesses in Julia's own code were with respect to inferrability.  We used this information to improve the implementations of dozens of methods, and added type annotations in many more, to help Julia generate better code.
 You find many examples by searching for the [latency tag](https://github.com/JuliaLang/julia/pulls?q=is%3Apr+label%3Alatency+is%3Aclosed) among closed pull requests.
 
 It's worth noting that the task of improving code is never finished, and this is true here as well.  In tackling this problem we ended up developing a number of new tools to analyze the source of invalidations and fix the corresponding inference problems.  We briefly touch on this final topic below.
@@ -362,17 +362,17 @@ since the `args` field of a `CallWaitMsg` must be a `Tuple`, and because inferen
 But SIMD defines a new `convert(Tuple, v::Vec)` method which has greater specificity,
 and so loading the SIMD package triggers invalidation of everything that depends on the less-specific method `convert(Tuple, ::Any)`.
 
-As is usually the case, there are several ways to fix this: we could drop the `::Tuple` in the definition of `struct CallWaitMsg` (it doesn't need to call `convert` if there are no restrictions on the type), or we could assert that `args` is *already* a tuple in `deserialize_msg`, thus informing Julia that it can afford to skip the call to `convert`.
+As is usually the case, there are several ways to fix this: we could drop the `::Tuple` in the definition of `struct CallWaitMsg`, because there's no need to call `convert` if the object is already known to have the correct type (which would be `Any` if we dropped the field type-specification, and `Any` is not restrictive).  Alternatively, we could keep the `::Tuple` in the type-specification, and use external knowledge that we have and assert that `args` is *already* a `Tuple` in `deserialize_msg` where it calls `CallWaitMsg`, thus informing Julia that it can afford to skip the call to `convert`.
 This is intended only as a taste of what's involved in fixing invalidations; more extensive descriptions are available in [SnoopCompile's documentation](https://timholy.github.io/SnoopCompile.jl/stable/snoopr/) and the [video](https://www.youtube.com/watch?v=7VbXbI6OmYo).
 
 But it also conveys an important point: most invalidations come from poorly-inferred code, so by fixing invalidations you're often improving quality in other ways.  Julia's [performance tips] page has a wealth of good advice about avoiding non-inferrable code, and in particular cases (where you might know more about the types than inference is able to determine on its own) you can help inference by adding type-assertions.
-Again, some of the recently-merged `latency` pull requests to Julia might serve as instructive examples.
+Again, some of the recently-merged "latency" pull requests to Julia might serve as instructive examples.
 
 ## Summary
 
 ### Impacts of progress to date
 
-The cumulative impact of these and other changes over the course of the development (so far) of Julia 1.6 is noticeable. For example, on Julia 1.5 we have extra latencies to load the next package (due to the loading code being invalidated) and to execute already-code if it gets invalidated by loading other packages:
+The cumulative impact of these and other changes over the course of the development (so far) of Julia 1.6 is noticeable. For example, on Julia 1.5 we have extra latencies to load the next package (due to the loading code being invalidated) and to execute already-compiled code if it gets invalidated by loading other packages:
 
 ```julia-repl
 julia> @time using Plots
@@ -408,21 +408,25 @@ julia> @time display(plot(rand(5)))
   0.115085 seconds (395.11 k allocations: 22.646 MiB)
 ```
 
-You can see that loading is dramatically faster.
-Why is usage faster? There likely to be several contributions:
+You can see that the first load is dramatically faster, an effect that is partly but not completely due to reduction in invalidations (reducing invalidations helped by preventing sequential invalidation of the loading code itself as Julia loads the sequence of packages needed for Plots).  This effect is illustrated clearly by the load of `Example`, which on Julia 1.5 led to another 0.7s worth of recompilation due to invalidations triggered by loading Plots; on Julia's master branch, this cost is gone because Plots does not invalidate the loading code.
 
-- improvements in compilation speed on Julia 1.6 (a topic worthy of a separate blog post)
-- with less invalidation, some of the code needed for plotting may not need recompilation
-- with less invalidation, more `precompile` statements deliver value
+Likewise, the second call to `display(plot(...))` is much faster, because loading SIMD did not extensively invalidate crucial code compiled for plotting.
 
-As an example of the latter two, on Julia 1.5 the most expensive call to infer (which you can measure with SnoopCompile's `@snoopi` macro) is `recipe_pipeline!(::Plots.Plot{Plots.GRBackend}, ::Dict{Symbol,Any}, ::Tuple{Array{Float64,1}}))`, which requires nearly 0.4s of inference time.
-On Julia's master branch, this inference doesn't even need to happen, because the precompiled code is still valid.
+Perhaps the biggest mystery is, why is the first usage faster? There likely to be several contributions:
 
-There's another way to get a more comprehensive look at the state of Julia and the progress since 1.5: since most invalidations come from poorly-inferred code, we can analyze `MethodInstance`s and determine which ones have been inferred for "problematic" signatures (e.g., `==(Int, Any)` when we'd prefer a concrete type for the second argument). Aside from counting them, it's also worth noting how many *other* `MethodInstance`s depend on these "bad" `MethodInstance`s and would therefore be invalidated if we happened to define the right (or wrong) new method.  Below is a histogram tallying the number of dependents for each problematic inferred signature, comparing Julia 1.5 (top) with the master branch (bottom):
+- improvements in compilation speed on Julia 1.6 (a separate line of work worthy of its own blog post)
+- with less invalidation, some Base code exploited by plotting may not need recompilation
+- with less invalidation, more `precompile` statements for Plots' own internal methods can be used
+
+As an example of the latter two, on Julia 1.5 the most expensive call to infer during the `display(plot(...))` call (which you can measure with SnoopCompile's `@snoopi` macro) is `recipe_pipeline!(::Plots.Plot{Plots.GRBackend}, ::Dict{Symbol,Any}, ::Tuple{Array{Float64,1}}))`, which by itself requires nearly 0.4s of inference time.
+Plot actually attempts to precompile this statement, but it can't benefit from the result because some of the code that this statement depends on gets invalidated by loading Plots.
+On Julia's master branch, this inference doesn't need to happen because the precompiled code is still valid.
+
+There's another way to get a more comprehensive look at the state of Julia and the progress since 1.5: since most invalidations come from poorly-inferred code, we can analyze all extant `MethodInstance`s and determine which ones have been inferred for "problematic" signatures (e.g., `isequal(::Int, ::Any)` when we'd prefer a concrete type for the second argument). Aside from counting them, it's also worth noting how many *other* `MethodInstance`s depend on these "bad" `MethodInstance`s and would therefore be invalidated if we happened to define the right (or wrong) new method.  Below is a histogram tallying the number of dependents for each problematic inferred signature, comparing Julia 1.5 (top) with the master branch (bottom):
 
 ![backedges](/assets/blog/2020-invalidations/invalidation_backedge_analysis.png)
 
-The very large zero bin for the master branch indicates that many of the problematic signatures on Julia 1.5 do not even appear in `master`'s precompiled code. This plot reveals extensive progress, but that tail suggests that the effort is not yet entirely done.
+The very large zero bin for the master branch indicates that many of the problematic signatures on Julia 1.5 do not even appear in `master`'s precompiled code. This plot reveals extensive progress, but that tail suggests that the effort is not yet done.
 
 ### Outlook for the future
 
