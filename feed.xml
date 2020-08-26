@@ -230,6 +230,14 @@
     <pubDate>Sat, 21 Jan 2017 00:00:00 UT</pubDate>
   </item>
   <item>
+    <title>Analyzing sources of compiler latency in Julia: method invalidations</title>
+    <link>https://julialang.org/blog/2020/08/invalidations/index.html</link>
+    <description><![CDATA[Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation, tools for detecting and eliminating its causes, and the impact this effort has had on latency.
+<br><a href="https://julialang.org/blog/2020/08/invalidations/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2020/08/invalidations/index.html</guid>
+    <pubDate>Wed, 26 Aug 2020 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title>Upgrades to the REPL in Julia 0.6</title>
     <link>https://julialang.org/blog/2017/04/repl-0.6-highlights/index.html</link>
     <description><![CDATA[Upgrades to the REPL in Julia 0.6 | Since version 0.3, Julia has come with a command-line interface — a REPL &#40;https://en.wikipedia.org/wiki/Read&#37;E2&#37;80&#37;93eval&#37;E2&#37;80&#37;93print_loop&#41;... 
