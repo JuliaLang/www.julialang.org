@@ -30,13 +30,13 @@ end
 Plug in the list of blog posts contained in the `/blog/` folder.
 """
 function hfun_blogposts()
-    curyear = Dates.Year(Dates.today()).value
+    curyear = year(Dates.today())
     io = IOBuffer()
     for year in curyear:-1:2012
         ys = "$year"
         year < curyear && write(io, "\n**$year**\n")
         for month in 12:-1:1
-            ms = "0"^(1-div(month, 10)) * "$month"
+            ms = "0"^(month < 10) * "$month"
             base = joinpath("blog", ys, ms)
             isdir(base) || continue
             posts = filter!(p -> endswith(p, ".md"), readdir(base))
