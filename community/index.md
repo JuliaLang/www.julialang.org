@@ -156,7 +156,7 @@
      <br>
 
      <p>Julia’s official documentation is in English, but many groups work to translate and localize the documentation along with other resources.
-     Currently, the active localization effort's are: <a href="https://cn.julialang.org/">JuliaCN (Chinese)</a> and <a href="https://github.com/JuliaLangEs">JuliaLangEs (Spanish)</a>.
+     Currently, the active localization effort's are: <a href="https://cn.julialang.org/">JuliaCN (Chinese)</a> and <a href="https://github.com/JuliaEs">JuliaEs (Spanish)</a>.
      See past <a href="localization/">localization efforts</a>.</p>
 
      <br>
