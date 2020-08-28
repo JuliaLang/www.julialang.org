@@ -56,6 +56,9 @@ Windows 7 / Windows Server 2012 users also need to install:
 
 Uninstallation is preferably performed by using the Windows uninstaller. The directory in `%HOME%/.julia` can then be deleted if you want to remove all traces of Julia (this includes user installed packages).
 
+## Cross-platform installer
+
+[Jill.py](https://github.com/johnnychen94/jill.py) is a community-maintained command-line tool that automates the installation workflow for all platforms. After installing this using `pip install jill -U`, you can then use `jill install` to install the current stable release, and `jill install latest` to install the nightly builds.
 
 ## macOS
 
