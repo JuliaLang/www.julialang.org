@@ -83,7 +83,7 @@ Commit history and associated PRs, issues, etc. provide important context about 
 
 The BoF ultimately touched on a few high-level takeaways:
 
-- Many technical problems associated with OSS are the same problems that make building robust and modular software difficult in the first place. The process is often analogous (and sometimes equivalent) to factoring a reusable library out of an application-centric codebase. The Julia ecosystem alleviates many of the traditional burdens associated with this process by arming contributors with great open-source tooling, a well-designed package manager, and - of course - a highly composable underlying language.
+- Many technical problems associated with OSS are the same problems that make building robust and modular software difficult in the first place. The process is often analogous (and sometimes equivalent) to factoring a reusable library out of an application-centric codebase. The Julia ecosystem alleviates many of the burdens traditionally associated with this process by arming contributors with great open-source tooling, a well-designed package manager, and - of course - a highly composable language underlying it all.
 - Many technical problems associated with OSS stem from the *transition* from closed-source to open-source, rather than post hoc maintainenance of open-sourced code. This may indicate that, where possible, it's more favorable to open-source code early (possibly even by default) to avoid accumulating technical/organizational debt that impedes open-sourcing later.
 - Many organizational problems associated with OSS stem from poor incentivation for key decision makers and misalignment of open-source goals with business goals.
 
