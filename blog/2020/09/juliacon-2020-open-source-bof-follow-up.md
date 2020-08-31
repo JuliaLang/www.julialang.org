@@ -1,4 +1,4 @@
-@def title = "Transition Code From Closed To Open: JuliaCon 2020's Session on OSS Efforts In Industry"
+@def title = "Transitioning Code From Closed To Open: JuliaCon 2020's Session on OSS Efforts In Industry"
 @def authors = "Jarrett Revels"
 @def published = "8 September 2020"
 @def rss_pubdate = Date(2020, 9, 8)
