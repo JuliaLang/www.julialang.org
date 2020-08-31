@@ -73,7 +73,7 @@ One attendee proposed a very interesting challenge that they've faced in industr
 
 #### Git History/Metadata Preservation
 
-Commit history and associated PRs, issues, etc. provide important context about design decisions that can ideally be preserved in the transition from closed-source to open-source. However, this can be a significant challenge depending on the providence of the code and documentation practices. It appears that this process is easier (or less necessary) if...
+Commit history and associated PRs, issues, etc. provide important context about design decisions that can ideally be preserved in the transition from closed-source to open-source. However, this can be a significant challenge depending on the provenance of the code and documentation practices. It appears that this process is easier (or less necessary) if...
 
 - ...design decisions and their motivations are captured in history-agnostic documentation as a matter of practice.
 - ...the to-be-open-sourced code is coming from its own repo rather than from a monorepo.
