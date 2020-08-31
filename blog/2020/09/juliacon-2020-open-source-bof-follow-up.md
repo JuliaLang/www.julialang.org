@@ -14,7 +14,7 @@ This blog post is a summary of a similarly industry-targeted session: [the "Tran
 
 ## How The BoF Came To Be
 
-Allow me to provide some background before diving in - I'm Jarrett :wave: Formerly a research software developer with [MIT's Julia Group](https://julia.mit.edu/), I left in 2019 to start [Beacon Biosignals](https://beacon.bio) with some incredibly talented neuroscience + Julia friends. We’re building technology to makes brain monitoring more accessible, interpretable, and actionable, and the Julia ecosystem has played a critical role in many of our early wins.
+Allow me to provide some background before diving in - I'm Jarrett :wave: Formerly a research software developer with [the Julia Lab at MIT](https://julia.mit.edu/), I left in 2019 to start [Beacon Biosignals](https://beacon.bio) with some incredibly talented neuroscience + Julia friends. We’re building technology to makes brain monitoring more accessible, interpretable, and actionable, and the Julia ecosystem has played a critical role in many of our early wins.
 
 By early 2020, Beacon had accumulated a lot of interesting work internally that I knew we should open-source/upstream, but perhaps unsurprisingly, it was difficult to actually prioritize doing so when there were so many other pressing concerns competing for our finite bandwidth. I imagined that we weren't the only private entity in the Juliaverse in which the phrase “ah, we should definitely open-source <internal tool> at some point” is commonly uttered but seldom acted upon.
 
