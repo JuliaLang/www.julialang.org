@@ -37,7 +37,7 @@ Many early adopters of Julia in industry are already prolific contributors (and 
 
 Industry users face many unique technical and non-technical challenges when making open-source contributions. Here are a few of the items discussed at the BoF.
 
-### "Clopen" Dependency Chains
+#### "Clopen" Dependency Chains
 
 This problem is introduced when open-sourceable code has a nontrivial (sometimes transitive) dependency that needs to remain closed-source. For example, package `A` is mostly open-sourceable, but depends on internal package `B` which is not.
 
@@ -45,11 +45,11 @@ One solution (that may require a small or large amount of effort, depending on t
 
 Another flavor of this problem can exist when open-sourced code features many downstream closed-source dependencies. Multiple attendees noted that organizations would sometimes require the implementation/maintenance of an additional internal wrapper overtop the open-source version of their package.
 
-### Oranizations That Don't Use OSS In The First Place
+#### Organizations That Don't Use OSS In The First Place
 
 One attendee brought up that, for many organizations, the first barrier to allowing employee OSS contributions is to allow internal usage of OSS at all. It can be hard for decision makers at organizations that have no prior OSS experience to come to terms with the traditional motivations and arguments for OSS. They may even harbor [common misconceptions](https://www.dreamsongs.com/IHE/IHE-29.html#58965) about how the process actually works. Luckily, there's [a plethora of material available online](https://bfy.tw/OvDl) that targets exactly this audience that organization members can bundle up in a manner that's most effective for their organization.
 
-### Licensing, Patents, and IP
+#### Licensing, Patents, and IP
 
 One difficulty reported during the BoF was getting organizational approval to release software [under permissive licenses](https://en.wikipedia.org/wiki/Permissive_software_license). This can be tricky, indeed, as there isn't a one-size-fits-all solution for every business, and non-technical decision makers might not have prior understanding of the legal aspects of OSS. A few different suggestions/ideas came up on this topic during the BoF:
 
@@ -63,15 +63,15 @@ One difficulty reported during the BoF was getting organizational approval to re
 
 - If possible, organizations should formulate their OSS plans in harmony with their IP strategy. It's easier to plan an IP strategy that incorporates OSS up-front than it is to retrofit OSS policies over top existing IP policies. For later-stage companies, the development of new products/services can provide an opportunity to revisit older IP models and refactor them into more OSS-amenable strategies.
 
-### Open Sourcing Packages That Previously Used Internal CI/CD
+#### Open Sourcing Packages That Previously Used Internal CI/CD
 
 One important element of successful open-source projects is that CI logs should generally be available to all contributors. This is can be a burdensome criteria to meet if a previously closed-source package utilized internal CI/CD pipelines with nicer properties than publicly available CI pipelines. In some instances, certain flavors of this problem can be solved with better tooling, e.g. self-hosted (but publically accessible) package registries can vendor open-sourced packages just as nicely as Julia's General Registry, but might leverage custom CI/CD for pre-registration checks.
 
-### Open Source Efforts Could Reveal Strategic Intent
+#### Open Source Efforts Could Reveal Strategic Intent
 
 One attendee proposed a very interesting challenge that they've faced in industry: In theory, their company was fine with contributing their internal implementation of a technique back to the OSS community, but couldn't actually do so because it would reveal that the company was working in a specific area of strategic interest to their market that they didn't want to reveal publicly. One solution to this problem would be to anonymously open source the implementation; however, this is obviously nonideal and the risk to business-critical strategic information will often be too high.
 
-### Git History/Metadata Preservation
+#### Git History/Metadata Preservation
 
 Commit history and associated PRs, issues, etc. provide important context about design decisions that can ideally be preserved in the transition from closed-source to open-source. However, this can be a significant challenge depending on the providence of the code and documentation practices. It appears that this process is easier (or less necessary) if...
 
