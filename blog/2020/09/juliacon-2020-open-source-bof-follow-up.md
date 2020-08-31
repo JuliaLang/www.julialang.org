@@ -26,7 +26,7 @@ The rest of this post summarizes the thoughts, ideas, and conclusions that came 
 
 Many early adopters of Julia in industry are already prolific contributors (and employers!) within the Julia open-source software (OSS) ecosystem. Here are a few motivating factors that have pushed these companies to contribute:
 
-- Maintaining a community presence is great for recruiting both community collaborators and future FTEs, especially to attract the scientific domain experts that are uniquely prevalent in the Julia community.
+- Maintaining a community presence is great for recruiting both community collaborators and future FTEs, especially to attract the scientific domain experts that are prevalent in the Julia community.
 - Open-sourcing a piece of software encourages well-scoped, composable APIs and discourages overcoupling of orthogonal functionality.
 - Open-sourcing a project encourages structuring/maintaining the project in a manner that keeps the contribution/collaboration barrier low
 - Improvements to the health/growth of the Julia ecosystem are felt by the companies that contribute to it, as a more robust/featureful ecosystem attracts more great community members and improves productivity for existing community members.
