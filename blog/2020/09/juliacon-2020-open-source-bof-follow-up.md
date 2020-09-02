@@ -31,7 +31,8 @@ Many early adopters of Julia in industry are already prolific contributors (and 
 - Open-sourcing a project encourages structuring/maintaining the project in a manner that keeps the contribution/collaboration barrier low
 - Improvements to the health/growth of the Julia ecosystem are felt by the companies that contribute to it, as a more robust/featureful ecosystem attracts more great community members and improves productivity for existing community members.
 - As a language, Julia's strongly compositional nature (and its awesome package manager) makes it relatively intuitive to build and vendor self-contained packages from the get-go. From inception, such packages can be easier to separate from internal/private code than components of traditional monolithic codebases, thus lowering the effort required to publicly release them.
-- One of the key benefits of using open-source software is that you're able to more easily diagnose and fix any problems that you encounter with open-source dependencies; often, it's technically more sound for such patches to live in the upstream dependency itself, where they can be further maintained by the community.
+- Companies that take on open-source dependencies can more easily diagnose/fix issues that they encounter in their particular usage of the dependency. Contributing these patches upstream enables the patches to be tested and maintained by a much wider community.
+- Companies can more easily extend open-source dependencies to better address their particular needs. By upstreaming these extensions (or releasing them as packages in their own right), companies can drive a dependency in the direction that is most impactful to them.
 
 ## Barriers To OSS Contribution From Industry
 
