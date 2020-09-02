@@ -26,7 +26,7 @@ The rest of this post summarizes the thoughts, ideas, and conclusions that came 
 
 Many early adopters of Julia in industry are already prolific contributors (and employers!) within the Julia open-source software (OSS) ecosystem. Here are a few motivating factors that have pushed these companies to contribute:
 
-- Maintaining a community presence is great for recruiting both community collaborators and future FTEs, especially to attract the scientific domain experts that are uniquely prevalent in the Julia community.
+- Maintaining a community presence is great for recruiting both community collaborators and future FTEs, especially to attract the scientific domain experts that are prevalent in the Julia community.
 - Open-sourcing a piece of software encourages well-scoped, composable APIs and discourages overcoupling of orthogonal functionality.
 - Open-sourcing a project encourages structuring/maintaining the project in a manner that keeps the contribution/collaboration barrier low
 - Improvements to the health/growth of the Julia ecosystem are felt by the companies that contribute to it, as a more robust/featureful ecosystem attracts more great community members and improves productivity for existing community members.
@@ -73,7 +73,7 @@ One attendee proposed a very interesting challenge that they've faced in industr
 
 #### Git History/Metadata Preservation
 
-Commit history and associated PRs, issues, etc. provide important context about design decisions that can ideally be preserved in the transition from closed-source to open-source. However, this can be a significant challenge depending on the providence of the code and documentation practices. It appears that this process is easier (or less necessary) if...
+Commit history and associated PRs, issues, etc. provide important context about design decisions that can ideally be preserved in the transition from closed-source to open-source. However, this can be a significant challenge depending on the provenance of the code and documentation practices. It appears that this process is easier (or less necessary) if...
 
 - ...design decisions and their motivations are captured in history-agnostic documentation as a matter of practice.
 - ...the to-be-open-sourced code is coming from its own repo rather than from a monorepo.
