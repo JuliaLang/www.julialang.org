@@ -12,7 +12,7 @@ To suggest a change to the website, you can simply navigate to the page with the
 You will be prompted to fork the repo (if you haven't already) and then open a Pull Request.
 Once your Pull Request is merged, you should see your changes show up on the website in a few minutes or less.
 
-Build previews for each Pull Request are available at: https://julialang.netlify.app (note that given the GitHub Actions design, build previews are currently only available for those who have write access to the repo, others will see a "failed CI" indication which they can ignore).
+Build previews for each Pull Request will be linked in the comment section of the PR once the site has been successfully build.
 
 **Note**: please only use _fenced_ code blocks (i.e. code blocks delimited by backticks) and not indented code blocks.
 
