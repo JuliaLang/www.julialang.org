@@ -77,7 +77,7 @@ Blog Posts:
  - [https://tejasvaidhyadev.github.io/blog/Hitting-the-road](https://tejasvaidhyadev.github.io/blog/Hitting-the-road)
  - [https://tejasvaidhyadev.github.io/blog/First-Milestone](https://tejasvaidhyadev.github.io/blog/First-Milestone)
  - [https://tejasvaidhyadev.github.io/blog/Sentencepiece](https://tejasvaidhyadev.github.io/blog/Sentencepiece)
- - [https://tejasvaidhyadev.github.io/blog/Hey-Albert)(https://tejasvaidhyadev.github.io/blog/Hey-Albert)
+ - [https://tejasvaidhyadev.github.io/blog/Hey-Albert](https://tejasvaidhyadev.github.io/blog/Hey-Albert)
  - [https://tejasvaidhyadev.github.io/blog/the-end-is-just-another-beginning](https://tejasvaidhyadev.github.io/blog/the-end-is-just-another-beginning)
 
 ### Ludovico Bessi
