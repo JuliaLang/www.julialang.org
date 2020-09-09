@@ -198,6 +198,14 @@
     <pubDate>Tue, 30 Jul 2019 00:00:00 UT</pubDate>
   </item>
   <item>
+    <title>GSoC 2020 Wrap-Up</title>
+    <link>https://julialang.org/blog/2020/09/gsoc-2020-wrapup/index.html</link>
+    <description><![CDATA[GSoC &amp; JSoC 2020 Wrap-Up.
+<br><a href="https://julialang.org/blog/2020/09/gsoc-2020-wrapup/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2020/09/gsoc-2020-wrapup/index.html</guid>
+    <pubDate>Tue, 8 Sep 2020 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title>Creating domain-specific languages in Julia using macros</title>
     <link>https://julialang.org/blog/2017/08/dsl/index.html</link>
     <description><![CDATA[Creating domain-specific languages in Julia using macros | Since the beginning of Julia, it has been tempting to use macros to write <strong>domain-specific languages</strong> &#40;DSLs&#41;, i.e. to <em>extend</em> Julia syntax to provide a simpler interface to create Julia objects with complicated behaviour. The first, and still most extensive, example is JuMP &#40;https://github.com/Ju... 
