@@ -139,8 +139,8 @@ A Standards compliant Interval Arithmetic Library
 Blog Posts:
  - [https://nextjournal.com/krish8484/a-standards-compliant-interval-arithmetic-library](https://nextjournal.com/krish8484/a-standards-compliant-interval-arithmetic-library)
 
-### SebastianGuadalupe
-Computational Methods using Zonotopess
+### Sebastian Guadalupe
+Computational Methods using Zonotopes
 
 Blog Posts:
  - [https://nextjournal.com/sguadalupe](https://nextjournal.com/sguadalupe)
