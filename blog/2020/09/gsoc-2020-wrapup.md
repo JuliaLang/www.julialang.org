@@ -158,10 +158,8 @@ Blog Posts:
 Neural Networks for solving differential equations
 
 Blog Posts:
- - [https://nextjournal.com/kirill_zubov/physics-informed-neural-networks-pinns-solvers-on-julia-gsoc-2020-first-evaluations](https://nextjournal.com/kirill_zubov/physics-informed-neural-networks-pinns-solvers-on-julia-gsoc-2020-first-evaluations)
- - [https://nextjournal.com/kirill_zubov/physics-informed-neural-networks-pinns-solver-on-julia-gsoc-2020-second-evaluation](https://nextjournal.com/kirill_zubov/physics-informed-neural-networks-pinns-solver-on-julia-gsoc-2020-second-evaluation)
- - [https://nextjournal.com/kirill_zubov/physics-informed-neural-networks-pinns-solver-on-julia-gsoc-2020-final-report](https://nextjournal.com/kirill_zubov/physics-informed-neural-networks-pinns-solver-on-julia-gsoc-2020-final-report)
-
+ - [https://nextjournal.com/ashutosh-b-b/jsoc-2020-working-with-differential-equations-and-neural-networks](https://nextjournal.com/ashutosh-b-b/jsoc-2020-working-with-differential-equations-and-neural-networks)
+ 
 ### Abhinav Mehndiratta
 Parallel Graph Algorithms
 
