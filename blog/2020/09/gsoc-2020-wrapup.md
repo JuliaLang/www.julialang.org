@@ -18,6 +18,9 @@ Adding GPML capabilities to JuliaGaussianProcesses
 ### Arthur Lui
 BNP Benchmarks and Feature Comparisons for Turing and Other PPLs
 
+Blog Posts:
+- [https://luiarthur.github.io/TuringBnpBenchmarks/](https://luiarthur.github.io/TuringBnpBenchmarks/)
+
 ### Nirmal Praveen Suthar
 Deep Learning for 3D Computer Vision
 
