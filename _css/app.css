@@ -62,7 +62,7 @@
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-weight: 100;
-  font-size: 48px;
+  font-size: 46px;
 }
 .secondary-heading {
   /* font-family: "Futura LT Medium"; */
@@ -436,7 +436,7 @@ img.ecosystem-image {
 
 .page-heading {
   color: #fff;
-  padding: 3rem;
+  padding: 2rem;
   background-image: url('../assets/infra/backsplash-min-0.5.svg');
   background-repeat: repeat-x;
   background-size: auto 100%;
@@ -444,7 +444,6 @@ img.ecosystem-image {
 
 .page-heading .main-heading {
   font-weight: 100;
-  margin-bottom: 2rem;
 }
 
 .page-heading .secondary-heading {
