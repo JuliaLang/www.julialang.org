@@ -85,34 +85,23 @@
    </div>
    <br>
  </div>
-
+~~~
  <!--
       Containers: Events
  -->
-  <div class="container pt-sm-2">
-   <br><br>
-   <div class="container">
-     <div class="row">
-       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
-       <div class="col-lg-4 col-md-6 language-features section-heading">
-         <h2 class="lead secondary-heading">Events</h2>
-       </div>
-       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
-     </div>
+## Events
 
-     <br>
+The Julia Community has a shared calander for all upcoming global events. If you are an event organizer, please [email us](mailto:logan@julialang.org) with the details so it can be added to the calander. The Julia community also has [local meetups around the world](https://www.meetup.com/topics/julia/all/).
+      
+{% alert warning %}
 
-     <p>The Julia Community has a shared calander for all upcoming global events. If you are an event organizer, please <a href="mailto:logan@julialang.org">email us</a>
-     with the details so it can be added to the calander. The Julia community also has <a href="https://www.meetup.com/topics/julia/all/">local meetups around the world.</a></p>
+The Julia Community calendar below should be shown in your local time zone. You can confirm this by checking the calendar's footer!
 
-     <iframe src="https://calendar.google.com/calendar/b/2/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=UTC&amp;src=anVsaWFsYW5nLm9yZ19rb21hdWFxZXQxNGVvZzlvaXYzcDZvN3BtZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%238E24AA" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+{% endalert %}
 
-     <br>
+{% calendar julialang.org_komauaqet14eog9oiv3p6o7pmg@group.calendar.google.com %}
 
-   </div>
- </div>
-<br>
-
+~~~
 <!--
     Containers: Julia User and Developer Survey
   -->
