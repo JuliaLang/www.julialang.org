@@ -1,44 +1,44 @@
 <!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta property="og:title" content="The Julia Language"> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <meta property="og:description" content="Official website for the Julia programming language"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/katex/katex.min.css"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Some fun with &#928; in Julia</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Some fun with &#928; in Julia <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 14 March 2017 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Simon Byrne, Luis Benet and David Sanders </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2017/03/piday.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p><img src="/assets/images/pi.png" alt=pi  /></p> <blockquote> <p>Image courtesy of <a href="https://github.com/cormullion">Cormullion</a>, code <a href="https://gist.github.com/cormullion/e979d819e478da73280faaeb67490888">here</a>. <br/> This post is available as a Jupyter notebook <a href="https://github.com/simonbyrne/Pi.jl/blob/master/pi.ipynb">here</a>.</p> </blockquote> <div class=franklin-toc ><ol><li><a href="#pi_in_julia">&pi; in Julia</a><li><a href="#pi_via_inline_assembly_instructions">&pi; via inline assembly instructions</a><li><a href="#pi_using_a_taylor_series_expansions">&pi; using a Taylor series expansions</a><ol><li><a href="#madhavas_formula">Madhava&#39;s formula</a><li><a href="#machins_approach">Machin&#39;s approach</a></ol><li><a href="#finding_guaranteed_bounds_on_pi">Finding guaranteed bounds on &pi;</a><ol><li><a href="#using_standard_floating-point_arithmetic">Using standard floating-point arithmetic</a></ol><li><a href="#summing_a_series_using_interval_arithmetic">Summing a series using interval arithmetic</a><li><a href="#calculating_an_area">Calculating an area</a></ol></div> <h2 id=pi_in_julia ><a href="#pi_in_julia">&pi; in Julia</a></h2> <p>by <a href="https://github.com/simonbyrne">Simon Byrne</a></p> <p>Like most technical languages, Julia provides a variable constant for &pi;. However Julia&#39;s handling is a bit special.</p> <pre><code class="julia hljs"><span class=hljs-literal >pi</span>
 
-<span class=hljs-literal >π</span> = <span class=hljs-number >3.1415926535897</span>...</code></pre> <p>It can also be accessed via the unicode symbol &#40;you can get it at the REPL or in a notebook via the TeX completion <code>\pi</code> followed by a tab&#41;</p> <pre><code class="julia hljs"><span class=hljs-literal >π</span>
+<span class=hljs-literal >π</span> &amp;<span class=hljs-comment >#61; 3.1415926535897...</span></code></pre> <p>It can also be accessed via the unicode symbol &#40;you can get it at the REPL or in a notebook via the TeX completion <code>\pi</code> followed by a tab&#41;</p> <pre><code class="julia hljs"><span class=hljs-literal >π</span>
 
-<span class=hljs-literal >π</span> = <span class=hljs-number >3.1415926535897</span>...</code></pre> <p>You&#39;ll notice that it doesn&#39;t print like an ordinary floating point number: that&#39;s because it isn&#39;t one.</p> <pre><code class="julia hljs">typeof(<span class=hljs-literal >pi</span>)
+<span class=hljs-literal >π</span> &amp;<span class=hljs-comment >#61; 3.1415926535897...</span></code></pre> <p>You&#39;ll notice that it doesn&#39;t print like an ordinary floating point number: that&#39;s because it isn&#39;t one.</p> <pre><code class="julia hljs">typeof&amp;<span class=hljs-comment >#40;pi&amp;#41;</span>
 
-<span class=hljs-built_in >Irrational</span>{:<span class=hljs-literal >π</span>}</code></pre> <p>&pi; and a few other irrational constants are instead stored as special <code>Irrational</code> values, rather than being rounded to <code>Float64</code>. These act like ordinary numeric values, except that they can are converted automatically to any floating point type without any intermediate rounding:</p> <pre><code class="julia hljs"><span class=hljs-number >1</span> + <span class=hljs-literal >pi</span> <span class=hljs-comment ># integers are promoted to Float64 by default</span>
+<span class=hljs-built_in >Irrational</span>&amp;<span class=hljs-comment >#123;:π&amp;#125;</span></code></pre> <p>&pi; and a few other irrational constants are instead stored as special <code>Irrational</code> values, rather than being rounded to <code>Float64</code>. These act like ordinary numeric values, except that they can are converted automatically to any floating point type without any intermediate rounding:</p> <pre><code class="julia hljs"><span class=hljs-number >1</span> &amp;<span class=hljs-comment >#43; pi # integers are promoted to Float64 by default</span>
 
-<span class=hljs-number >4.141592653589793</span></code></pre> <pre><code class="julia hljs"><span class=hljs-built_in >Float32</span>(<span class=hljs-number >1</span>) + <span class=hljs-literal >pi</span> <span class=hljs-comment ># Float32</span>
+<span class=hljs-number >4.141592653589793</span></code></pre> <pre><code class="julia hljs"><span class=hljs-built_in >Float32</span>&amp;<span class=hljs-comment >#40;1&amp;#41; &amp;#43; pi # Float32</span>
 
-<span class=hljs-number >4.141593f0</span></code></pre> <p>This is particularly useful for use with arbitrary-precision <code>BigFloat</code>s, as &pi; can be evaluated to full precision &#40;rather than be truncated to <code>Float64</code> and converted back&#41;.</p> <pre><code class="julia hljs"><span class=hljs-built_in >BigFloat</span>(<span class=hljs-number >1</span>) + <span class=hljs-literal >pi</span> <span class=hljs-comment ># 256 bits by default</span>
+<span class=hljs-number >4.141593f0</span></code></pre> <p>This is particularly useful for use with arbitrary-precision <code>BigFloat</code>s, as &pi; can be evaluated to full precision &#40;rather than be truncated to <code>Float64</code> and converted back&#41;.</p> <pre><code class="julia hljs"><span class=hljs-built_in >BigFloat</span>&amp;<span class=hljs-comment >#40;1&amp;#41; &amp;#43; pi # 256 bits by default</span>
 
-<span class=hljs-number >4.141592653589793238462643383279502884197169399375105820974944592307816406286198</span></code></pre> <p>If &pi; were stored as a <code>Float64</code>, we would instead get</p> <pre><code class="julia hljs"><span class=hljs-built_in >BigFloat</span>(<span class=hljs-number >1</span>) + <span class=hljs-built_in >Float64</span>(<span class=hljs-literal >pi</span>)
+<span class=hljs-number >4.141592653589793238462643383279502884197169399375105820974944592307816406286198</span></code></pre> <p>If &pi; were stored as a <code>Float64</code>, we would instead get</p> <pre><code class="julia hljs"><span class=hljs-built_in >BigFloat</span>&amp;<span class=hljs-comment >#40;1&amp;#41; &amp;#43; Float64&amp;#40;pi&amp;#41;</span>
 
 <span class=hljs-number >4.141592653589793115997963468544185161590576171875000000000000000000000000000000</span></code></pre> <p>In fact <code>BigFloat</code> &#40;which uses the <a href="https://www.mpfr.org">MPFR</a> library&#41; will compute &pi; on demand to the current precision, which is set via <code>setprecision</code>. This provides an easy way to get its digits:</p> <pre><code class="julia hljs"><span class=hljs-comment ># to 1024 bits</span>
-setprecision(<span class=hljs-built_in >BigFloat</span>, <span class=hljs-number >1024</span>) <span class=hljs-keyword >do</span>
-    <span class=hljs-built_in >BigFloat</span>(<span class=hljs-literal >pi</span>)
+setprecision&amp;<span class=hljs-comment >#40;BigFloat, 1024&amp;#41; do</span>
+    <span class=hljs-built_in >BigFloat</span>&amp;<span class=hljs-comment >#40;pi&amp;#41;</span>
 <span class=hljs-keyword >end</span>
 
-<span class=hljs-number >3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724586997</span></code></pre> <p>The last few printed digits may be incorrect due to the conversion from the internal binary format of <code>BigFloat</code> to the decimal representation used for printing. This is just a presentation issue, however – the internal binary representation is correctly rounded to the last bit.</p> <p>Another neat property of <code>Irrational</code>s is that inequalities are correct:</p> <pre><code class="julia hljs"><span class=hljs-built_in >Float64</span>(<span class=hljs-literal >pi</span>) &lt; <span class=hljs-literal >pi</span> &lt; nextfloat(<span class=hljs-built_in >Float64</span>(<span class=hljs-literal >pi</span>))
+<span class=hljs-number >3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724586997</span></code></pre> <p>The last few printed digits may be incorrect due to the conversion from the internal binary format of <code>BigFloat</code> to the decimal representation used for printing. This is just a presentation issue, however – the internal binary representation is correctly rounded to the last bit.</p> <p>Another neat property of <code>Irrational</code>s is that inequalities are correct:</p> <pre><code class="julia hljs"><span class=hljs-built_in >Float64</span>&amp;<span class=hljs-comment >#40;pi&amp;#41; &amp;lt; pi &amp;lt; nextfloat&amp;#40;Float64&amp;#40;pi&amp;#41;&amp;#41;</span>
 
-<span class=hljs-literal >true</span></code></pre> <h2 id=pi_via_inline_assembly_instructions ><a href="#pi_via_inline_assembly_instructions">&pi; via inline assembly instructions</a></h2> <p>by <a href="https://github.com/simonbyrne">Simon Byrne</a></p> <p>Julia provides a very low-level <code>llvmcall</code> interface, which allows the user to directly write <a href="https://llvm.org/docs/LangRef.html">LLVM intermediate representation</a>, including the use of inline assembly. The following snippet calls the <code>fldpi</code> instruction &#40;&quot;<strong>f</strong>loating point <strong>l</strong>oa<strong>d</strong> <strong>pi</strong>&quot;&#41; which loads the constant &pi; onto the floating point register stack &#40;this works only on x86 and x86_64 architectures&#41;</p> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> asm_pi()
-    Base.llvmcall(
-    <span class=hljs-string >&quot;&quot;&quot; %pi = call double asm &quot;fldpi&quot;, &quot;={st}&quot;()
-        ret double %pi&quot;&quot;&quot;</span>,
-    <span class=hljs-built_in >Float64</span>, <span class=hljs-built_in >Tuple</span>{})
+<span class=hljs-literal >true</span></code></pre> <h2 id=pi_via_inline_assembly_instructions ><a href="#pi_via_inline_assembly_instructions">&pi; via inline assembly instructions</a></h2> <p>by <a href="https://github.com/simonbyrne">Simon Byrne</a></p> <p>Julia provides a very low-level <code>llvmcall</code> interface, which allows the user to directly write <a href="https://llvm.org/docs/LangRef.html">LLVM intermediate representation</a>, including the use of inline assembly. The following snippet calls the <code>fldpi</code> instruction &#40;&quot;<strong>f</strong>loating point <strong>l</strong>oa<strong>d</strong> <strong>pi</strong>&quot;&#41; which loads the constant &pi; onto the floating point register stack &#40;this works only on x86 and x86_64 architectures&#41;</p> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> asm_pi&amp;<span class=hljs-comment >#40;&amp;#41;</span>
+    Base.llvmcall&amp;<span class=hljs-comment >#40;</span>
+    &amp;quot;&amp;quot;&amp;quot; &amp;<span class=hljs-comment >#37;pi &amp;#61; call double asm &amp;quot;fldpi&amp;quot;, &amp;quot;&amp;#61;&amp;#123;st&amp;#125;&amp;quot;&amp;#40;&amp;#41;</span>
+        ret double &amp;<span class=hljs-comment >#37;pi&amp;quot;&amp;quot;&amp;quot;,</span>
+    <span class=hljs-built_in >Float64</span>, <span class=hljs-built_in >Tuple</span>&amp;<span class=hljs-comment >#123;&amp;#125;&amp;#41;</span>
 <span class=hljs-keyword >end</span>
 
-asm_pi (generic <span class=hljs-keyword >function</span> with <span class=hljs-number >1</span> method)</code></pre> <pre><code class="julia hljs">asm_pi()
+asm_pi &amp;<span class=hljs-comment >#40;generic function with 1 method&amp;#41;</span></code></pre> <pre><code class="julia hljs">asm_pi&amp;<span class=hljs-comment >#40;&amp;#41;</span>
 
-<span class=hljs-number >3.141592653589793</span></code></pre> <p>We can look at the actual resulting code that is generated:</p> <pre><code class="julia hljs"><span class=hljs-meta >@code_native</span> asm_pi()
+<span class=hljs-number >3.141592653589793</span></code></pre> <p>We can look at the actual resulting code that is generated:</p> <pre><code class="julia hljs"><span class=hljs-meta >@code_native</span> asm_pi&amp;<span class=hljs-comment >#40;&amp;#41;</span>
 
     	.section	__TEXT,__text,regular,pure_instructions
-    Filename: In[<span class=hljs-number >10</span>]
-    	pushq	%rbp
-    	movq	%rsp, %rbp
+    Filename: In&amp;<span class=hljs-comment >#91;10&amp;#93;</span>
+    	pushq	&amp;<span class=hljs-comment >#37;rbp</span>
+    	movq	&amp;<span class=hljs-comment >#37;rsp, &amp;#37;rbp</span>
     Source line: <span class=hljs-number >2</span>
     	fldpi
-    	fstpl	-<span class=hljs-number >8</span>(%rbp)
-    	movsd	-<span class=hljs-number >8</span>(%rbp), %xmm0         <span class=hljs-comment >## xmm0 = mem[0],zero</span>
-    	popq	%rbp
+    	fstpl	-<span class=hljs-number >8</span>&amp;<span class=hljs-comment >#40;&amp;#37;rbp&amp;#41;</span>
+    	movsd	-<span class=hljs-number >8</span>&amp;<span class=hljs-comment >#40;&amp;#37;rbp&amp;#41;, &amp;#37;xmm0         ## xmm0 &amp;#61; mem&amp;#91;0&amp;#93;,zero</span>
+    	popq	&amp;<span class=hljs-comment >#37;rbp</span>
     	retq</code></pre> <p>If you&#39;re wondering what the rest of these instructions are doing:</p> <ol> <li><p>the <code>pushq</code> and <code>movq</code> adds to the <a href="https://en.wikipedia.org/wiki/Call_stack">call stack frame</a>.</p> <li><p><code>fldpi</code> pushes &pi; to the x87 floating point register stack</p> </ol> <ul> <li><p>x87 is the older legacy floating point instruction set dating back to the original <a href="https://en.wikipedia.org/wiki/Intel_8087">Intel 8087 coprocessor</a>.</p> </ul> <ol start=3 > <li><p><code>fstpl</code> and <code>movsd</code> moves the value to the SSE floating point register <code>xmm0</code></p> </ol> <ul> <li><p>Julia, like most modern software, uses the newer SSE instruction set for its floating point operations. This also allows us to take advantage of things like <a href="https://en.wikipedia.org/wiki/SIMD">SIMD operations</a>.</p> </ul> <ol start=4 > <li><p><code>popq</code> and <code>retq</code> pops the call stack frame.</p> </ol> <h2 id=pi_using_a_taylor_series_expansions ><a href="#pi_using_a_taylor_series_expansions">&pi; using a Taylor series expansions</a></h2> <p>by <a href="https://github.com/lbenet">Luis Benet</a>, Instituto de Ciencias Físicas, Universidad Nacional Autónoma de México &#40;UNAM&#41;&#41;</p> <p>This will demonstrate how to evaluate &pi; using various Taylor series expansions via the <a href="https://github.com/JuliaDiff/TaylorSeries.jl">TaylorSeries.jl</a> package.</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> TaylorSeries</code></pre>
 <h3 id=madhavas_formula ><a href="#madhavas_formula">Madhava&#39;s formula</a></h3>
 <p>One of the standard trigonmetric identities is</p>
@@ -67,10 +67,10 @@ s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
 c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
 M834 80h400000v40h-400000z'/></svg></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.13278em;"><span></span></span></span></span></span></span></span></span>, a value which is within the radius of convergence.</p>
 <p>We obtain the Taylor series of order 37th, using <code>BigFloat</code>s:</p>
-<pre><code class="julia hljs">series1 = <span class=hljs-number >6</span>atan( Taylor1(<span class=hljs-built_in >BigFloat</span>, <span class=hljs-number >37</span>) )
-convert(Taylor1{<span class=hljs-built_in >Rational</span>{<span class=hljs-built_in >BigInt</span>}},series1)
+<pre><code class="julia hljs">series1 &amp;<span class=hljs-comment >#61; 6atan&amp;#40; Taylor1&amp;#40;BigFloat, 37&amp;#41; &amp;#41;</span>
+convert&amp;<span class=hljs-comment >#40;Taylor1&amp;#123;Rational&amp;#123;BigInt&amp;#125;&amp;#125;,series1&amp;#41;</span>
 
-<span class=hljs-number >6</span>//<span class=hljs-number >1</span> t - <span class=hljs-number >2</span>//<span class=hljs-number >1</span> t³ + <span class=hljs-number >6</span>//<span class=hljs-number >5</span> t⁵ - <span class=hljs-number >6</span>//<span class=hljs-number >7</span> t⁷ + <span class=hljs-number >2</span>//<span class=hljs-number >3</span> t⁹ - <span class=hljs-number >6</span>//<span class=hljs-number >11</span> t¹¹ + <span class=hljs-number >6</span>//<span class=hljs-number >13</span> t¹³ - <span class=hljs-number >2</span>//<span class=hljs-number >5</span> t¹⁵ + <span class=hljs-number >6</span>//<span class=hljs-number >17</span> t¹⁷ - <span class=hljs-number >6</span>//<span class=hljs-number >19</span> t¹⁹ + <span class=hljs-number >2</span>//<span class=hljs-number >7</span> t²¹ - <span class=hljs-number >6</span>//<span class=hljs-number >23</span> t²³ + <span class=hljs-number >6</span>//<span class=hljs-number >25</span> t²⁵ - <span class=hljs-number >2</span>//<span class=hljs-number >9</span> t²⁷ + <span class=hljs-number >6</span>//<span class=hljs-number >29</span> t²⁹ - <span class=hljs-number >6</span>//<span class=hljs-number >31</span> t³¹ + <span class=hljs-number >2</span>//<span class=hljs-number >11</span> t³³ - <span class=hljs-number >6</span>//<span class=hljs-number >35</span> t³⁵ + <span class=hljs-number >6</span>//<span class=hljs-number >37</span> t³⁷ + 𝒪(t³⁸)</code></pre>
+<span class=hljs-number >6</span>//<span class=hljs-number >1</span> t - <span class=hljs-number >2</span>//<span class=hljs-number >1</span> t³ &amp;<span class=hljs-comment >#43; 6//5 t⁵ - 6//7 t⁷ &amp;#43; 2//3 t⁹ - 6//11 t¹¹ &amp;#43; 6//13 t¹³ - 2//5 t¹⁵ &amp;#43; 6//17 t¹⁷ - 6//19 t¹⁹ &amp;#43; 2//7 t²¹ - 6//23 t²³ &amp;#43; 6//25 t²⁵ - 2//9 t²⁷ &amp;#43; 6//29 t²⁹ - 6//31 t³¹ &amp;#43; 2//11 t³³ - 6//35 t³⁵ &amp;#43; 6//37 t³⁷ &amp;#43; 𝒪&amp;#40;t³⁸&amp;#41;</span></code></pre>
 <p>Note that the series above has only odd powers, so we will be using in this case 18 coefficients.</p>
 <p>Evaluating that expression in <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant=normal >/</mi><msqrt><mn>3</mn></msqrt></mrow><annotation encoding="application/x-tex">1/\sqrt{3}</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1.1572200000000001em;vertical-align:-0.25em;"></span><span class=mord >1</span><span class=mord >/</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.90722em;"><span class=svg-align  style="top:-3em;"><span class=pstrut  style="height:3em;"></span><span class=mord  style="padding-left:0.833em;"><span class=mord >3</span></span></span><span style="top:-2.86722em;"><span class=pstrut  style="height:3em;"></span><span class=hide-tail  style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
 c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
@@ -84,19 +84,19 @@ H400000v40H845.2724
 s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
 c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
 M834 80h400000v40h-400000z'/></svg></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.13278em;"><span></span></span></span></span></span></span></span></span> we get</p>
-<pre><code class="julia hljs">pi_approx1 = evaluate(series1, <span class=hljs-number >1</span>/sqrt(big(<span class=hljs-number >3</span>)))
+<pre><code class="julia hljs">pi_approx1 &amp;<span class=hljs-comment >#61; evaluate&amp;#40;series1, 1/sqrt&amp;#40;big&amp;#40;3&amp;#41;&amp;#41;&amp;#41;</span>
 
 <span class=hljs-number >3.141592653647826046431202390582141253830948237428790668441592864548346569098516</span></code></pre>
 <p>Then, the 37th order Taylor expansion yields a value which differs from <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span> in:</p>
-<pre><code class="julia hljs">abs(<span class=hljs-literal >pi</span> - pi_approx1)
+<pre><code class="julia hljs">abs&amp;<span class=hljs-comment >#40;pi - pi_approx1&amp;#41;</span>
 
 <span class=hljs-number >5.803280796855900730263836963377883805368484746664827224053016281231814650118929e-11</span></code></pre>
 <p>To obtain more accurate results, we may simply increase the order of the expansion:</p>
-<pre><code class="julia hljs">series2 = <span class=hljs-number >6</span>atan( Taylor1(<span class=hljs-built_in >BigFloat</span>,<span class=hljs-number >99</span>) ) <span class=hljs-comment ># 49 coefficients of the series</span>
-pi_approx2 = evaluate(series2, <span class=hljs-number >1</span>/sqrt(<span class=hljs-built_in >BigInt</span>(<span class=hljs-number >3</span>)))
+<pre><code class="julia hljs">series2 &amp;<span class=hljs-comment >#61; 6atan&amp;#40; Taylor1&amp;#40;BigFloat,99&amp;#41; &amp;#41; # 49 coefficients of the series</span>
+pi_approx2 &amp;<span class=hljs-comment >#61; evaluate&amp;#40;series2, 1/sqrt&amp;#40;BigInt&amp;#40;3&amp;#41;&amp;#41;&amp;#41;</span>
 
 <span class=hljs-number >3.141592653589793238462643347272152237127662423839333289949470742535834074912581</span></code></pre>
-<pre><code class="julia hljs">abs(<span class=hljs-literal >pi</span> - pi_approx2)
+<pre><code class="julia hljs">abs&amp;<span class=hljs-comment >#40;pi - pi_approx2&amp;#41;</span>
 
 <span class=hljs-number >3.600735064706950697553577253102547384977198233137361734413175534929622111373249e-26</span></code></pre>
 <p>This formulation is one of the <a href="https://en.wikipedia.org/wiki/Madhava_series#Another_formula_for_the_circumference_of_a_circle"><em>Madhava</em> or <em>Gregory–Leibniz series</em></a>:</p>
@@ -116,10 +116,10 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class=vlist-s >​
 <p>Following the same idea, <a href="https://en.wikipedia.org/wiki/John_Machin#Formula">John Machin</a> derived an algorithm which converges much faster, using the identity</p>
 <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>π</mi><mn>4</mn></mfrac><mo>=</mo><mn>4</mn><mi>arctan</mi><mo>⁡</mo><mrow><mo fence=true >(</mo><mfrac><mn>1</mn><mn>5</mn></mfrac><mo fence=true >)</mo></mrow><mo>−</mo><mi>arctan</mi><mo>⁡</mo><mrow><mo fence=true >(</mo><mfrac><mn>1</mn><mn>239</mn></mfrac><mo fence=true >)</mo></mrow><mi mathvariant=normal >.</mi></mrow><annotation encoding="application/x-tex">\frac{\pi}{4} = 4 \arctan\left(\frac{1}{5}\right) - \arctan\left(\frac{1}{239}\right).</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1.7935600000000003em;vertical-align:-0.686em;"></span><span class=mord ><span class="mopen nulldelimiter"></span><span class=mfrac ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.10756em;"><span style="top:-2.314em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class=mord >4</span></span></span><span style="top:-3.23em;"><span class=pstrut  style="height:3em;"></span><span class=frac-line  style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:2.40003em;vertical-align:-0.95003em;"></span><span class=mord >4</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mop >arctan</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=minner ><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class=mord ><span class="mopen nulldelimiter"></span><span class=mfrac ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.32144em;"><span style="top:-2.314em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class=mord >5</span></span></span><span style="top:-3.23em;"><span class=pstrut  style="height:3em;"></span><span class=frac-line  style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class=mord >1</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >−</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:2.40003em;vertical-align:-0.95003em;"></span><span class=mop >arctan</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=minner ><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class=mord ><span class="mopen nulldelimiter"></span><span class=mfrac ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.32144em;"><span style="top:-2.314em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class=mord >2</span><span class=mord >3</span><span class=mord >9</span></span></span><span style="top:-3.23em;"><span class=pstrut  style="height:3em;"></span><span class=frac-line  style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class=mord >1</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mord >.</span></span></span></span></span>
 <p>Following what we did above, using again a 37th Taylor expansion:</p>
-<pre><code class="julia hljs">ser = atan( Taylor1(<span class=hljs-built_in >BigFloat</span>, <span class=hljs-number >37</span>) )
-pi_approx3 = <span class=hljs-number >4</span>*( <span class=hljs-number >4</span>*evaluate(ser, <span class=hljs-number >1</span>/big(<span class=hljs-number >5</span>)) - evaluate(ser, <span class=hljs-number >1</span>/big(<span class=hljs-number >239</span>)) )
+<pre><code class="julia hljs">ser &amp;<span class=hljs-comment >#61; atan&amp;#40; Taylor1&amp;#40;BigFloat, 37&amp;#41; &amp;#41;</span>
+pi_approx3 &amp;<span class=hljs-comment >#61; 4*&amp;#40; 4*evaluate&amp;#40;ser, 1/big&amp;#40;5&amp;#41;&amp;#41; - evaluate&amp;#40;ser, 1/big&amp;#40;239&amp;#41;&amp;#41; &amp;#41;</span>
 <span class=hljs-number >3.141592653589793238462643383496777424642594661632063407072684671069773618535135</span></code></pre>
-<pre><code class="julia hljs">abs(<span class=hljs-literal >pi</span> - pi_approx3)
+<pre><code class="julia hljs">abs&amp;<span class=hljs-comment >#40;pi - pi_approx3&amp;#41;</span>
 <span class=hljs-number >2.17274540445425262256957586097740078761957212248936631045983596428448951876822e-28</span></code></pre>
 <h2 id=finding_guaranteed_bounds_on_pi ><a href="#finding_guaranteed_bounds_on_pi">Finding guaranteed bounds on &pi;</a></h2>
 <p>by <a href="http://sistemas.fciencias.unam.mx/~dsanders/">David P. Sanders</a>,  Department of Physics, Faculty of Sciences, National University of Mexico &#40;UNAM&#41;</p>
@@ -136,115 +136,115 @@ pi_approx3 = <span class=hljs-number >4</span>*( <span class=hljs-number >4</spa
 <p>This is obtained by approximating the sum in <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>N</mi></msub></mrow><annotation encoding="application/x-tex">T_N</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.83333em;vertical-align:-0.15em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> using integrals from below and above:</p>
 <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∫</mo><mrow><mi>x</mi><mo>=</mo><mi>N</mi><mo>+</mo><mn>1</mn></mrow><mi mathvariant=normal >∞</mi></msubsup><mfrac><mn>1</mn><msup><mi>x</mi><mn>2</mn></msup></mfrac><mi>d</mi><mi>x</mi><mo>≤</mo><msub><mi>T</mi><mi>N</mi></msub><mo>≤</mo><msubsup><mo>∫</mo><mrow><mi>x</mi><mo>=</mo><mi>N</mi></mrow><mi mathvariant=normal >∞</mi></msubsup><mfrac><mn>1</mn><msup><mi>x</mi><mn>2</mn></msup></mfrac><mi>d</mi><mi>x</mi><mi mathvariant=normal >.</mi></mrow><annotation encoding="application/x-tex">\int_{x=N+1}^\infty \frac{1}{x^2} dx \le T_N \le \int_{x=N}^\infty \frac{1}{x^2} dx.</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:2.384573em;vertical-align:-0.970281em;"></span><span class=mop ><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.414292em;"><span style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mrel mtight">=</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.8129000000000004em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.970281em;"><span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mord ><span class="mopen nulldelimiter"></span><span class=mfrac ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.32144em;"><span style="top:-2.314em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class=mord ><span class="mord mathdefault">x</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class=pstrut  style="height:3em;"></span><span class=frac-line  style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class=mord >1</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >≤</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.83333em;vertical-align:-0.15em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >≤</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:2.3262420000000006em;vertical-align:-0.9119499999999999em;"></span><span class=mop ><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.4142920000000005em;"><span style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mrel mtight">=</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span style="top:-3.812900000000001em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mord ><span class="mopen nulldelimiter"></span><span class=mfrac ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.32144em;"><span style="top:-2.314em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class=mord ><span class="mord mathdefault">x</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class=pstrut  style="height:3em;"></span><span class=frac-line  style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class=pstrut  style="height:3em;"></span><span class=mord ><span class=mord >1</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span><span class=mord >.</span></span></span></span></span>
 <p><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>N</mi></msub></mrow><annotation encoding="application/x-tex">S_N</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.83333em;vertical-align:-0.15em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> may be calculated easily by summing either forwards or backwards:</p>
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> forward_sum(N, T=<span class=hljs-built_in >Float64</span>)
-    total = zero(T)
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> forward_sum&amp;<span class=hljs-comment >#40;N, T&amp;#61;Float64&amp;#41;</span>
+    total &amp;<span class=hljs-comment >#61; zero&amp;#40;T&amp;#41;</span>
     <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:N
-        total += one(T) / (i^<span class=hljs-number >2</span>)
+        total &amp;<span class=hljs-comment >#43;&amp;#61; one&amp;#40;T&amp;#41; / &amp;#40;i^2&amp;#41;</span>
     <span class=hljs-keyword >end</span>
     total
 <span class=hljs-keyword >end</span>
 
-<span class=hljs-keyword >function</span> reverse_sum(N, T=<span class=hljs-built_in >Float64</span>)
-    total = zero(T)
+<span class=hljs-keyword >function</span> reverse_sum&amp;<span class=hljs-comment >#40;N, T&amp;#61;Float64&amp;#41;</span>
+    total &amp;<span class=hljs-comment >#61; zero&amp;#40;T&amp;#41;</span>
     <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> N:-<span class=hljs-number >1</span>:<span class=hljs-number >1</span>
-        total += one(T) / (i^<span class=hljs-number >2</span>)
+        total &amp;<span class=hljs-comment >#43;&amp;#61; one&amp;#40;T&amp;#41; / &amp;#40;i^2&amp;#41;</span>
     <span class=hljs-keyword >end</span>
     total
 <span class=hljs-keyword >end</span>
 
-reverse_sum (generic <span class=hljs-keyword >function</span> with <span class=hljs-number >2</span> methods)</code></pre>
+reverse_sum &amp;<span class=hljs-comment >#40;generic function with 2 methods&amp;#41;</span></code></pre>
 <p>To find <em>rigorous</em> bounds for <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>N</mi></msub></mrow><annotation encoding="application/x-tex">S_N</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.83333em;vertical-align:-0.15em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, we use &quot;directed rounding&quot;, that is, we round downwards for the lower bound and  upwards for the upper bound:</p>
-<pre><code class="julia hljs">N = <span class=hljs-number >10</span>^<span class=hljs-number >6</span>
+<pre><code class="julia hljs">N &amp;<span class=hljs-comment >#61; 10^6</span>
 
-lowerbound_S_N =
-    setrounding(<span class=hljs-built_in >Float64</span>, <span class=hljs-literal >RoundDown</span>) <span class=hljs-keyword >do</span>
-        forward_sum(N)
+lowerbound_S_N &amp;<span class=hljs-comment >#61;</span>
+    setrounding&amp;<span class=hljs-comment >#40;Float64, RoundDown&amp;#41; do</span>
+        forward_sum&amp;<span class=hljs-comment >#40;N&amp;#41;</span>
     <span class=hljs-keyword >end</span>
 
-upperbound_S_N =
-    setrounding(<span class=hljs-built_in >Float64</span>, <span class=hljs-literal >RoundUp</span>) <span class=hljs-keyword >do</span>
-        forward_sum(N)
+upperbound_S_N &amp;<span class=hljs-comment >#61;</span>
+    setrounding&amp;<span class=hljs-comment >#40;Float64, RoundUp&amp;#41; do</span>
+        forward_sum&amp;<span class=hljs-comment >#40;N&amp;#41;</span>
     <span class=hljs-keyword >end</span>
 
-(lowerbound_S_N, upperbound_S_N)
+&amp;<span class=hljs-comment >#40;lowerbound_S_N, upperbound_S_N&amp;#41;</span>
 
-(<span class=hljs-number >1.6449330667377557</span>,<span class=hljs-number >1.644933066959796</span>)</code></pre>
+&amp;<span class=hljs-comment >#40;1.6449330667377557,1.644933066959796&amp;#41;</span></code></pre>
 <p>We incorporate the respective bound on <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>N</mi></msub></mrow><annotation encoding="application/x-tex">T_N</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.83333em;vertical-align:-0.15em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> to obtain the bounds on <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>, and hence on <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>:</p>
-<pre><code class="julia hljs">N = <span class=hljs-number >10</span>^<span class=hljs-number >6</span>
+<pre><code class="julia hljs">N &amp;<span class=hljs-comment >#61; 10^6</span>
 
-lower_π =
-    setrounding(<span class=hljs-built_in >Float64</span>, <span class=hljs-literal >RoundDown</span>) <span class=hljs-keyword >do</span>
-        lower_bound = forward_sum(N) + <span class=hljs-number >1</span>/(N+<span class=hljs-number >1</span>)
-        sqrt(<span class=hljs-number >6</span> * lower_bound)
+lower_π &amp;<span class=hljs-comment >#61;</span>
+    setrounding&amp;<span class=hljs-comment >#40;Float64, RoundDown&amp;#41; do</span>
+        lower_bound &amp;<span class=hljs-comment >#61; forward_sum&amp;#40;N&amp;#41; &amp;#43; 1/&amp;#40;N&amp;#43;1&amp;#41;</span>
+        sqrt&amp;<span class=hljs-comment >#40;6 * lower_bound&amp;#41;</span>
     <span class=hljs-keyword >end</span>
 
-upper_π =
-    setrounding(<span class=hljs-built_in >Float64</span>, <span class=hljs-literal >RoundUp</span>) <span class=hljs-keyword >do</span>
-        upper_bound = forward_sum(N) + <span class=hljs-number >1</span>/N
-        sqrt(<span class=hljs-number >6</span> * upper_bound)
+upper_π &amp;<span class=hljs-comment >#61;</span>
+    setrounding&amp;<span class=hljs-comment >#40;Float64, RoundUp&amp;#41; do</span>
+        upper_bound &amp;<span class=hljs-comment >#61; forward_sum&amp;#40;N&amp;#41; &amp;#43; 1/N</span>
+        sqrt&amp;<span class=hljs-comment >#40;6 * upper_bound&amp;#41;</span>
     <span class=hljs-keyword >end</span>
 
-(lower_π, upper_π, lowerbound_S_N)
+&amp;<span class=hljs-comment >#40;lower_π, upper_π, lowerbound_S_N&amp;#41;</span>
 
-(<span class=hljs-number >3.1415926534833463</span>,<span class=hljs-number >3.1415926536963346</span>,<span class=hljs-number >1.6449330667377557</span>)</code></pre>
+&amp;<span class=hljs-comment >#40;3.1415926534833463,3.1415926536963346,1.6449330667377557&amp;#41;</span></code></pre>
 <pre><code class="julia hljs">upper_π - lower_π
 
 <span class=hljs-number >2.1298829366855898e-10</span></code></pre>
 <p>We may check that the true value of <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span> is indeed contained in the interval:</p>
-<pre><code class="julia hljs">lower_π &lt; <span class=hljs-literal >pi</span> &lt; upper_π
+<pre><code class="julia hljs">lower_π &amp;lt; <span class=hljs-literal >pi</span> &amp;lt; upper_π
 
 <span class=hljs-literal >true</span></code></pre>
 <p>Summing in the opposite direction turns out to give a more accurate answer:</p>
-<pre><code class="julia hljs">N = <span class=hljs-number >10</span>^<span class=hljs-number >6</span>
+<pre><code class="julia hljs">N &amp;<span class=hljs-comment >#61; 10^6</span>
 
-lower_π =
-    setrounding(<span class=hljs-built_in >Float64</span>, <span class=hljs-literal >RoundDown</span>) <span class=hljs-keyword >do</span>
-        lower_bound = reverse_sum(N) + <span class=hljs-number >1</span>/(N+<span class=hljs-number >1</span>)
-        sqrt(<span class=hljs-number >6</span> * lower_bound)
+lower_π &amp;<span class=hljs-comment >#61;</span>
+    setrounding&amp;<span class=hljs-comment >#40;Float64, RoundDown&amp;#41; do</span>
+        lower_bound &amp;<span class=hljs-comment >#61; reverse_sum&amp;#40;N&amp;#41; &amp;#43; 1/&amp;#40;N&amp;#43;1&amp;#41;</span>
+        sqrt&amp;<span class=hljs-comment >#40;6 * lower_bound&amp;#41;</span>
     <span class=hljs-keyword >end</span>
 
-upper_π =
-    setrounding(<span class=hljs-built_in >Float64</span>, <span class=hljs-literal >RoundUp</span>) <span class=hljs-keyword >do</span>
-        upper_bound = reverse_sum(N) + <span class=hljs-number >1</span>/N
-        sqrt(<span class=hljs-number >6</span> * upper_bound)
+upper_π &amp;<span class=hljs-comment >#61;</span>
+    setrounding&amp;<span class=hljs-comment >#40;Float64, RoundUp&amp;#41; do</span>
+        upper_bound &amp;<span class=hljs-comment >#61; reverse_sum&amp;#40;N&amp;#41; &amp;#43; 1/N</span>
+        sqrt&amp;<span class=hljs-comment >#40;6 * upper_bound&amp;#41;</span>
     <span class=hljs-keyword >end</span>
 
-(lower_π, upper_π)
-(<span class=hljs-number >3.1415926535893144</span>,<span class=hljs-number >3.141592653590272</span>)</code></pre>
+&amp;<span class=hljs-comment >#40;lower_π, upper_π&amp;#41;</span>
+&amp;<span class=hljs-comment >#40;3.1415926535893144,3.141592653590272&amp;#41;</span></code></pre>
 <pre><code class="julia hljs">upper_π - lower_π
 
 <span class=hljs-number >9.57456336436735e-13</span>
 
-lower_π &lt; <span class=hljs-literal >pi</span> &lt; upper_π
+lower_π &amp;lt; <span class=hljs-literal >pi</span> &amp;lt; upper_π
 <span class=hljs-literal >true</span></code></pre>
 <p>In principle, we could attain arbitrarily good precision with higher-precision <code>BigFloat</code>s, but the result is hampered by the slow convergence of the series.</p>
 <h2 id=summing_a_series_using_interval_arithmetic ><a href="#summing_a_series_using_interval_arithmetic">Summing a series using interval arithmetic</a></h2>
 <p>We repeat the calculation using <em>interval arithmetic</em>, provided by the <a href="https://github.com/dpsanders/ValidatedNumerics.jl">ValidatedNumerics.jl</a> package.</p>
 <pre><code class="julia hljs"><span class=hljs-keyword >using</span> ValidatedNumerics</code></pre>
-<pre><code class="julia hljs">setdisplay(:standard)  <span class=hljs-comment ># abbreviated display of intervals</span>
+<pre><code class="julia hljs">setdisplay&amp;<span class=hljs-comment >#40;:standard&amp;#41;  # abbreviated display of intervals</span>
 <span class=hljs-number >6</span></code></pre>
-<pre><code class="julia hljs">N = <span class=hljs-number >10000</span>
-S = forward_sum(N, Interval)
-S += <span class=hljs-number >1</span>/(N+<span class=hljs-number >1</span>) .. <span class=hljs-number >1</span>/N  <span class=hljs-comment ># interval bound on the remainder of the series</span>
-π_interval = √(<span class=hljs-number >6</span>S)
+<pre><code class="julia hljs">N &amp;<span class=hljs-comment >#61; 10000</span>
+S &amp;<span class=hljs-comment >#61; forward_sum&amp;#40;N, Interval&amp;#41;</span>
+S &amp;<span class=hljs-comment >#43;&amp;#61; 1/&amp;#40;N&amp;#43;1&amp;#41; .. 1/N  # interval bound on the remainder of the series</span>
+π_interval &amp;<span class=hljs-comment >#61; √&amp;#40;6S&amp;#41;</span>
 
-[<span class=hljs-number >3.14159</span>, <span class=hljs-number >3.1416</span>]</code></pre>
+&amp;<span class=hljs-comment >#91;3.14159, 3.1416&amp;#93;</span></code></pre>
 <p>Here we used an abbreviated display for the interval. Let&#39;s see the whole thing:</p>
-<pre><code class="julia hljs">setdisplay(:full)
+<pre><code class="julia hljs">setdisplay&amp;<span class=hljs-comment >#40;:full&amp;#41;</span>
 π_interval
 
-Interval(<span class=hljs-number >3.1415926488148807</span>, <span class=hljs-number >3.141592658365341</span>)</code></pre>
+Interval&amp;<span class=hljs-comment >#40;3.1415926488148807, 3.141592658365341&amp;#41;</span></code></pre>
 <p>Its diameter &#40;width&#41; is</p>
-<pre><code class="julia hljs">diam(π_interval)
+<pre><code class="julia hljs">diam&amp;<span class=hljs-comment >#40;π_interval&amp;#41;</span>
 <span class=hljs-number >9.550460422502738e-9</span></code></pre>
 <p>Thus, the result is correct to approximately 8 decimals.</p>
 <p>In this calculation, we used the fact that arithmetic operations of intervals with numbers automatically promote the numbers to an interval:</p>
-<pre><code class="julia hljs">setdisplay(:full)  <span class=hljs-comment ># full interval display</span>
-Interval(<span class=hljs-number >0</span>) + <span class=hljs-number >1</span>/<span class=hljs-number >3</span>^<span class=hljs-number >2</span>
+<pre><code class="julia hljs">setdisplay&amp;<span class=hljs-comment >#40;:full&amp;#41;  # full interval display</span>
+Interval&amp;<span class=hljs-comment >#40;0&amp;#41; &amp;#43; 1/3^2</span>
 
-Interval(<span class=hljs-number >0.1111111111111111</span>, <span class=hljs-number >0.11111111111111112</span>)</code></pre>
+Interval&amp;<span class=hljs-comment >#40;0.1111111111111111, 0.11111111111111112&amp;#41;</span></code></pre>
 <p>This is an interval containing the true real number <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant=normal >/</mi><mn>9</mn></mrow><annotation encoding="application/x-tex">1/9</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class=mord >1</span><span class=mord >/</span><span class=mord >9</span></span></span></span> &#40;written <code>1//9</code> in Julia&#41;:</p>
-<pre><code class="julia hljs"><span class=hljs-number >1</span>//<span class=hljs-number >9</span> ∈ convert(Interval{<span class=hljs-built_in >Float64</span>}, <span class=hljs-number >1</span>/<span class=hljs-number >3</span>^<span class=hljs-number >2</span>)
+<pre><code class="julia hljs"><span class=hljs-number >1</span>//<span class=hljs-number >9</span> ∈ convert&amp;<span class=hljs-comment >#40;Interval&amp;#123;Float64&amp;#125;, 1/3^2&amp;#41;</span>
 
 <span class=hljs-literal >true</span></code></pre>
 <p>Finally, we can check that the true value of <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span> is indeed inside our interval:</p>
@@ -253,11 +253,11 @@ Interval(<span class=hljs-number >0.1111111111111111</span>, <span class=hljs-nu
 <span class=hljs-literal >true</span></code></pre>
 <h2 id=calculating_an_area ><a href="#calculating_an_area">Calculating an area</a></h2>
 <p>Although the calculation above is simple, the derivation of the series itself is not. In this section, we will use a more natural way to calculate <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>, namely that the area of a circle of radius <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> is <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy=false >(</mo><mi>r</mi><mo stretchy=false >)</mo><mo>=</mo><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">A(r) = \pi r^2</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class=mopen >(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class=mclose >)</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class=mord ><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>. We will calculate the area of one quadrant of a circle of radius <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">r=2</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.64444em;vertical-align:0em;"></span><span class=mord >2</span></span></span></span>, which is equal to <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>:</p>
-<pre><code class="julia hljs"><span class=hljs-keyword >using</span> Plots; gr();</code></pre>
-<pre><code class="julia hljs">f(x) = √(<span class=hljs-number >4</span> - x^<span class=hljs-number >2</span>)
+<pre><code class="julia hljs"><span class=hljs-keyword >using</span> Plots; gr&amp;<span class=hljs-comment >#40;&amp;#41;;</span></code></pre>
+<pre><code class="julia hljs">f&amp;<span class=hljs-comment >#40;x&amp;#41; &amp;#61; √&amp;#40;4 - x^2&amp;#41;</span>
 
-f (generic <span class=hljs-keyword >function</span> with <span class=hljs-number >1</span> method)</code></pre>
-<pre><code class="julia hljs">plot(f, <span class=hljs-number >0</span>, <span class=hljs-number >2</span>, aspect_ratio=:equal, fill=(<span class=hljs-number >0</span>, :orange), alpha=<span class=hljs-number >0.2</span>, label=<span class=hljs-string >&quot;&quot;</span>)</code></pre>
+f &amp;<span class=hljs-comment >#40;generic function with 1 method&amp;#41;</span></code></pre>
+<pre><code class="julia hljs">plot&amp;<span class=hljs-comment >#40;f, 0, 2, aspect_ratio&amp;#61;:equal, fill&amp;#61;&amp;#40;0, :orange&amp;#41;, alpha&amp;#61;0.2, label&amp;#61;&amp;quot;&amp;quot;&amp;#41;</span></code></pre>
 
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" width=600  height=400  viewBox="0 0 600 400">
@@ -373,43 +373,43 @@ c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
 M1001 80h400000v40h-400000z'/></svg></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.177736em;"><span></span></span></span></span></span><span class=mord >.</span></span></span></span></span>
 <p>In calculus, we learn that we can approximate integrals using <strong>Riemann sums</strong>. Interval arithmetic allows us to make these Riemann sums <strong>rigorous</strong> in a very simple way, as follows.</p>
 <p>We split up the <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> axis into intervals, for example of equal width:</p>
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> make_intervals(N=<span class=hljs-number >10</span>)
-    xs = linspace(<span class=hljs-number >0</span>, <span class=hljs-number >2</span>, N+<span class=hljs-number >1</span>)
-    <span class=hljs-keyword >return</span> [xs[i]..xs[i+<span class=hljs-number >1</span>] <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:length(xs)-<span class=hljs-number >1</span>]
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> make_intervals&amp;<span class=hljs-comment >#40;N&amp;#61;10&amp;#41;</span>
+    xs &amp;<span class=hljs-comment >#61; linspace&amp;#40;0, 2, N&amp;#43;1&amp;#41;</span>
+    <span class=hljs-keyword >return</span> &amp;<span class=hljs-comment >#91;xs&amp;#91;i&amp;#93;..xs&amp;#91;i&amp;#43;1&amp;#93; for i in 1:length&amp;#40;xs&amp;#41;-1&amp;#93;</span>
 <span class=hljs-keyword >end</span>
 
-intervals = make_intervals()
+intervals &amp;<span class=hljs-comment >#61; make_intervals&amp;#40;&amp;#41;</span>
 
-<span class=hljs-number >10</span>-element <span class=hljs-built_in >Array</span>{ValidatedNumerics.Interval{<span class=hljs-built_in >Float64</span>},<span class=hljs-number >1</span>}:
- Interval(<span class=hljs-number >0.0</span>, <span class=hljs-number >0.2</span>)                               
- Interval(<span class=hljs-number >0.19999999999999998</span>, <span class=hljs-number >0.4</span>)               
- Interval(<span class=hljs-number >0.39999999999999997</span>, <span class=hljs-number >0.6000000000000001</span>)
- Interval(<span class=hljs-number >0.6</span>, <span class=hljs-number >0.8</span>)                               
- Interval(<span class=hljs-number >0.7999999999999999</span>, <span class=hljs-number >1.0</span>)                
- Interval(<span class=hljs-number >1.0</span>, <span class=hljs-number >1.2000000000000002</span>)                
- Interval(<span class=hljs-number >1.2</span>, <span class=hljs-number >1.4000000000000001</span>)                
- Interval(<span class=hljs-number >1.4</span>, <span class=hljs-number >1.6</span>)                               
- Interval(<span class=hljs-number >1.5999999999999999</span>, <span class=hljs-number >1.8</span>)                
- Interval(<span class=hljs-number >1.7999999999999998</span>, <span class=hljs-number >2.0</span>)</code></pre>
+<span class=hljs-number >10</span>-element <span class=hljs-built_in >Array</span>&amp;<span class=hljs-comment >#123;ValidatedNumerics.Interval&amp;#123;Float64&amp;#125;,1&amp;#125;:</span>
+ Interval&amp;<span class=hljs-comment >#40;0.0, 0.2&amp;#41;                               </span>
+ Interval&amp;<span class=hljs-comment >#40;0.19999999999999998, 0.4&amp;#41;               </span>
+ Interval&amp;<span class=hljs-comment >#40;0.39999999999999997, 0.6000000000000001&amp;#41;</span>
+ Interval&amp;<span class=hljs-comment >#40;0.6, 0.8&amp;#41;                               </span>
+ Interval&amp;<span class=hljs-comment >#40;0.7999999999999999, 1.0&amp;#41;                </span>
+ Interval&amp;<span class=hljs-comment >#40;1.0, 1.2000000000000002&amp;#41;                </span>
+ Interval&amp;<span class=hljs-comment >#40;1.2, 1.4000000000000001&amp;#41;                </span>
+ Interval&amp;<span class=hljs-comment >#40;1.4, 1.6&amp;#41;                               </span>
+ Interval&amp;<span class=hljs-comment >#40;1.5999999999999999, 1.8&amp;#41;                </span>
+ Interval&amp;<span class=hljs-comment >#40;1.7999999999999998, 2.0&amp;#41;</span></code></pre>
 <p>Given one of those intervals, we evaluate the function of interest:</p>
-<pre><code class="julia hljs">II = intervals[<span class=hljs-number >1</span>]
+<pre><code class="julia hljs">II &amp;<span class=hljs-comment >#61; intervals&amp;#91;1&amp;#93;</span>
 
-Interval(<span class=hljs-number >0.0</span>, <span class=hljs-number >0.2</span>)</code></pre>
-<pre><code class="julia hljs">f(II)
+Interval&amp;<span class=hljs-comment >#40;0.0, 0.2&amp;#41;</span></code></pre>
+<pre><code class="julia hljs">f&amp;<span class=hljs-comment >#40;II&amp;#41;</span>
 
-Interval(<span class=hljs-number >1.9899748742132397</span>, <span class=hljs-number >2.0</span>)</code></pre>
+Interval&amp;<span class=hljs-comment >#40;1.9899748742132397, 2.0&amp;#41;</span></code></pre>
 <p>The result is an interval that is <strong>guaranteed to contain</strong> the true range of the function <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> over that interval. So the lower and upper bounds of the intervals may be used as lower and upper bounds of the height of the box in a Riemann integral:</p>
-<pre><code class="julia hljs">intervals = make_intervals(<span class=hljs-number >30</span>)
+<pre><code class="julia hljs">intervals &amp;<span class=hljs-comment >#61; make_intervals&amp;#40;30&amp;#41;</span>
 
-p = plot(aspect_ratio=:equal)
+p &amp;<span class=hljs-comment >#61; plot&amp;#40;aspect_ratio&amp;#61;:equal&amp;#41;</span>
 <span class=hljs-keyword >for</span> X <span class=hljs-keyword >in</span> intervals
-    Y = f(X)
+    Y &amp;<span class=hljs-comment >#61; f&amp;#40;X&amp;#41;</span>
 
-    plot!(IntervalBox(X, Interval(<span class=hljs-number >0</span>, Y.lo)), c=:blue, label=<span class=hljs-string >&quot;&quot;</span>, alpha=<span class=hljs-number >0.1</span>)
-    plot!(IntervalBox(X, Interval(Y.lo, Y.hi)), c=:red, label=<span class=hljs-string >&quot;&quot;</span>, alpha=<span class=hljs-number >0.1</span>)
+    plot&amp;<span class=hljs-comment >#33;&amp;#40;IntervalBox&amp;#40;X, Interval&amp;#40;0, Y.lo&amp;#41;&amp;#41;, c&amp;#61;:blue, label&amp;#61;&amp;quot;&amp;quot;, alpha&amp;#61;0.1&amp;#41;</span>
+    plot&amp;<span class=hljs-comment >#33;&amp;#40;IntervalBox&amp;#40;X, Interval&amp;#40;Y.lo, Y.hi&amp;#41;&amp;#41;, c&amp;#61;:red, label&amp;#61;&amp;quot;&amp;quot;, alpha&amp;#61;0.1&amp;#41;</span>
 <span class=hljs-keyword >end</span>
 
-plot!(f, <span class=hljs-number >0</span>, <span class=hljs-number >2</span>)
+plot&amp;<span class=hljs-comment >#33;&amp;#40;f, 0, 2&amp;#41;</span>
 
 p</code></pre>
 
@@ -910,45 +910,45 @@ p</code></pre>
 </svg>
 
 <p>Now we just sum up the areas:</p>
-<pre><code class="julia hljs">N = <span class=hljs-number >20</span>
-intervals = make_intervals(N)
+<pre><code class="julia hljs">N &amp;<span class=hljs-comment >#61; 20</span>
+intervals &amp;<span class=hljs-comment >#61; make_intervals&amp;#40;N&amp;#41;</span>
 
-width = <span class=hljs-number >2</span>/N
-width * sum(√(<span class=hljs-number >4</span> - X^<span class=hljs-number >2</span>) <span class=hljs-keyword >for</span> X <span class=hljs-keyword >in</span> intervals)
+width &amp;<span class=hljs-comment >#61; 2/N</span>
+width * sum&amp;<span class=hljs-comment >#40;√&amp;#40;4 - X^2&amp;#41; for X in intervals&amp;#41;</span>
 
-Interval(<span class=hljs-number >3.0284648797549782</span>, <span class=hljs-number >3.2284648797549846</span>)</code></pre>
+Interval&amp;<span class=hljs-comment >#40;3.0284648797549782, 3.2284648797549846&amp;#41;</span></code></pre>
 <p>As we increase the number of sub-intervals, the approximation gets better and better:</p>
-<pre><code class="julia hljs">setdisplay(:standard, sigfigs=<span class=hljs-number >5</span>)
+<pre><code class="julia hljs">setdisplay&amp;<span class=hljs-comment >#40;:standard, sigfigs&amp;#61;5&amp;#41;</span>
 
-println(<span class=hljs-string >&quot;N \t area interval \t \t diameter&quot;</span>)
+println&amp;<span class=hljs-comment >#40;&amp;quot;N \t area interval \t \t diameter&amp;quot;&amp;#41;</span>
 <span class=hljs-keyword >for</span> N <span class=hljs-keyword >in</span> <span class=hljs-number >50</span>:<span class=hljs-number >50</span>:<span class=hljs-number >1000</span>
-    intervals = make_intervals(N)
-    area = (<span class=hljs-number >2</span>/N) * sum(√(<span class=hljs-number >4</span> - X^<span class=hljs-number >2</span>) <span class=hljs-keyword >for</span> X <span class=hljs-keyword >in</span> intervals)
+    intervals &amp;<span class=hljs-comment >#61; make_intervals&amp;#40;N&amp;#41;</span>
+    area &amp;<span class=hljs-comment >#61; &amp;#40;2/N&amp;#41; * sum&amp;#40;√&amp;#40;4 - X^2&amp;#41; for X in intervals&amp;#41;</span>
 
-    println(<span class=hljs-string >&quot;<span class=hljs-variable >$N</span> \t <span class=hljs-variable >$area</span> \t <span class=hljs-subst >$(diam(area)</span>)&quot;</span>)
+    println&amp;<span class=hljs-comment >#40;&amp;quot;&amp;#36;N \t &amp;#36;area \t &amp;#36;&amp;#40;diam&amp;#40;area&amp;#41;&amp;#41;&amp;quot;&amp;#41;</span>
 <span class=hljs-keyword >end</span>
 
 N 	 area interval 	 	 diameter
-<span class=hljs-number >50</span> 	 [<span class=hljs-number >3.0982</span>, <span class=hljs-number >3.1783</span>] 	 <span class=hljs-number >0.0800000000000165</span>
-<span class=hljs-number >100</span> 	 [<span class=hljs-number >3.1204</span>, <span class=hljs-number >3.1605</span>] 	 <span class=hljs-number >0.040000000000032454</span>
-<span class=hljs-number >150</span> 	 [<span class=hljs-number >3.1276</span>, <span class=hljs-number >3.1543</span>] 	 <span class=hljs-number >0.02666666666670814</span>
-<span class=hljs-number >200</span> 	 [<span class=hljs-number >3.1311</span>, <span class=hljs-number >3.1512</span>] 	 <span class=hljs-number >0.02000000000006308</span>
-<span class=hljs-number >250</span> 	 [<span class=hljs-number >3.1332</span>, <span class=hljs-number >3.1493</span>] 	 <span class=hljs-number >0.016000000000075065</span>
-<span class=hljs-number >300</span> 	 [<span class=hljs-number >3.1346</span>, <span class=hljs-number >3.1481</span>] 	 <span class=hljs-number >0.013333333333415354</span>
-<span class=hljs-number >350</span> 	 [<span class=hljs-number >3.1356</span>, <span class=hljs-number >3.1472</span>] 	 <span class=hljs-number >0.011428571428676815</span>
-<span class=hljs-number >400</span> 	 [<span class=hljs-number >3.1364</span>, <span class=hljs-number >3.1465</span>] 	 <span class=hljs-number >0.010000000000123688</span>
-<span class=hljs-number >450</span> 	 [<span class=hljs-number >3.137</span>, <span class=hljs-number >3.146</span>] 	 <span class=hljs-number >0.008888888889027502</span>
-<span class=hljs-number >500</span> 	 [<span class=hljs-number >3.1374</span>, <span class=hljs-number >3.1455</span>] 	 <span class=hljs-number >0.008000000000148333</span>
-<span class=hljs-number >550</span> 	 [<span class=hljs-number >3.1378</span>, <span class=hljs-number >3.1452</span>] 	 <span class=hljs-number >0.007272727272884527</span>
-<span class=hljs-number >600</span> 	 [<span class=hljs-number >3.1381</span>, <span class=hljs-number >3.1449</span>] 	 <span class=hljs-number >0.006666666666829357</span>
-<span class=hljs-number >650</span> 	 [<span class=hljs-number >3.1384</span>, <span class=hljs-number >3.1446</span>] 	 <span class=hljs-number >0.006153846154013376</span>
-<span class=hljs-number >700</span> 	 [<span class=hljs-number >3.1386</span>, <span class=hljs-number >3.1444</span>] 	 <span class=hljs-number >0.0057142857144931725</span>
-<span class=hljs-number >750</span> 	 [<span class=hljs-number >3.1388</span>, <span class=hljs-number >3.1443</span>] 	 <span class=hljs-number >0.005333333333562784</span>
-<span class=hljs-number >800</span> 	 [<span class=hljs-number >3.139</span>, <span class=hljs-number >3.1441</span>] 	 <span class=hljs-number >0.005000000000246363</span>
-<span class=hljs-number >850</span> 	 [<span class=hljs-number >3.1391</span>, <span class=hljs-number >3.1439</span>] 	 <span class=hljs-number >0.004705882353203794</span>
-<span class=hljs-number >900</span> 	 [<span class=hljs-number >3.1393</span>, <span class=hljs-number >3.1438</span>] 	 <span class=hljs-number >0.004444444444719142</span>
-<span class=hljs-number >950</span> 	 [<span class=hljs-number >3.1394</span>, <span class=hljs-number >3.1437</span>] 	 <span class=hljs-number >0.004210526316076102</span>
-<span class=hljs-number >1000</span> 	 [<span class=hljs-number >3.1395</span>, <span class=hljs-number >3.1436</span>] 	 <span class=hljs-number >0.004000000000294435</span></code></pre>
+<span class=hljs-number >50</span> 	 &amp;<span class=hljs-comment >#91;3.0982, 3.1783&amp;#93; 	 0.0800000000000165</span>
+<span class=hljs-number >100</span> 	 &amp;<span class=hljs-comment >#91;3.1204, 3.1605&amp;#93; 	 0.040000000000032454</span>
+<span class=hljs-number >150</span> 	 &amp;<span class=hljs-comment >#91;3.1276, 3.1543&amp;#93; 	 0.02666666666670814</span>
+<span class=hljs-number >200</span> 	 &amp;<span class=hljs-comment >#91;3.1311, 3.1512&amp;#93; 	 0.02000000000006308</span>
+<span class=hljs-number >250</span> 	 &amp;<span class=hljs-comment >#91;3.1332, 3.1493&amp;#93; 	 0.016000000000075065</span>
+<span class=hljs-number >300</span> 	 &amp;<span class=hljs-comment >#91;3.1346, 3.1481&amp;#93; 	 0.013333333333415354</span>
+<span class=hljs-number >350</span> 	 &amp;<span class=hljs-comment >#91;3.1356, 3.1472&amp;#93; 	 0.011428571428676815</span>
+<span class=hljs-number >400</span> 	 &amp;<span class=hljs-comment >#91;3.1364, 3.1465&amp;#93; 	 0.010000000000123688</span>
+<span class=hljs-number >450</span> 	 &amp;<span class=hljs-comment >#91;3.137, 3.146&amp;#93; 	 0.008888888889027502</span>
+<span class=hljs-number >500</span> 	 &amp;<span class=hljs-comment >#91;3.1374, 3.1455&amp;#93; 	 0.008000000000148333</span>
+<span class=hljs-number >550</span> 	 &amp;<span class=hljs-comment >#91;3.1378, 3.1452&amp;#93; 	 0.007272727272884527</span>
+<span class=hljs-number >600</span> 	 &amp;<span class=hljs-comment >#91;3.1381, 3.1449&amp;#93; 	 0.006666666666829357</span>
+<span class=hljs-number >650</span> 	 &amp;<span class=hljs-comment >#91;3.1384, 3.1446&amp;#93; 	 0.006153846154013376</span>
+<span class=hljs-number >700</span> 	 &amp;<span class=hljs-comment >#91;3.1386, 3.1444&amp;#93; 	 0.0057142857144931725</span>
+<span class=hljs-number >750</span> 	 &amp;<span class=hljs-comment >#91;3.1388, 3.1443&amp;#93; 	 0.005333333333562784</span>
+<span class=hljs-number >800</span> 	 &amp;<span class=hljs-comment >#91;3.139, 3.1441&amp;#93; 	 0.005000000000246363</span>
+<span class=hljs-number >850</span> 	 &amp;<span class=hljs-comment >#91;3.1391, 3.1439&amp;#93; 	 0.004705882353203794</span>
+<span class=hljs-number >900</span> 	 &amp;<span class=hljs-comment >#91;3.1393, 3.1438&amp;#93; 	 0.004444444444719142</span>
+<span class=hljs-number >950</span> 	 &amp;<span class=hljs-comment >#91;3.1394, 3.1437&amp;#93; 	 0.004210526316076102</span>
+<span class=hljs-number >1000</span> 	 &amp;<span class=hljs-comment >#91;3.1395, 3.1436&amp;#93; 	 0.004000000000294435</span></code></pre>
 </div><br><br>
 
 
