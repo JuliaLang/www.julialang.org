@@ -13,19 +13,19 @@
 <p>The validation loss is settling at a suboptimal level, even though the training loss continues to decrease. I am unsure at this juncture what the cause of this behavior may be, since I have endeavored to hew as closely as possible to the implementation details given by Zhang et al. I don&#39;t believe it is in the CTC function since I have tested the CTC loss function several times against hand-worked solutions and seen it produce correct results; similarly, the gradients it provided allowed the network to fit one training example to a near-zero level of loss, so it would seem the function is providing a loss signal reliable enough to minimize the loss. It is possible that how I called the backpropagation needs to be investigated to see if the loss values from within a batch were being composed properly.</p>
 <h1 id=running_the_models ><a href="#running_the_models">Running the models</a></h1>
 <p>Running the training procedure for the models should be straightforward. Make sure that the WAV, Flux, CuArrays, JLD, and BSON packages are installed. As well, install <a href="https://github.com/maetshju/MFCC.jl">the fork I&#39;ve made of the MFCC package</a> &#40;which only updates one line to make a function run on Julia 0.6&#41;. Start by cloning the Git repository for the project:</p>
-<pre><code class="bash hljs">&amp;<span class=hljs-comment >#36;&amp;gt; git clone https://github.com/maetshju/gsoc2018.git</span></code></pre>
+<pre><code class="bash hljs">$&gt; git <span class=hljs-built_in >clone</span> https://github.com/maetshju/gsoc2018.git</code></pre>
 <p>The user will need to download the TIMIT speech corpus from the Linguistic Data Consortium, as I discussed in the first section of <a href="https://maetshju.github.io/speech-features.html">this previous blog post</a>.</p>
 <h2 id=ctc_model ><a href="#ctc_model">CTC model</a></h2>
 <p>Navigate into the <code>speech-cnn</code> folder. To extract the data from the TIMIT corpus, use the <code>00-data.jl</code> script. More information on this script can be found in <a href="https://maetshju.github.io/speech-features.html">the blog post dedicated to it</a>.</p>
-<pre><code class="bash hljs">&amp;<span class=hljs-comment >#36;&amp;gt; julia 00-data.jl</span></code></pre>
+<pre><code class="bash hljs">$&gt; julia 00-data.jl</code></pre>
 <p>Now, to train the network, run the <code>01-speech-cnn.jl</code> script. Make sure you&#39;ve removed the <code>README.md</code> files from the data folders, if you downloaded them.</p>
-<pre><code class="bash hljs">&amp;<span class=hljs-comment >#36;&amp;gt; julia 01-speech-cnn.jl</span></code></pre>
+<pre><code class="bash hljs">$&gt; julia 01-speech-cnn.jl</code></pre>
 <p>Note that it is essentially necessary to have a GPU to train the network on because the training process is extremely slow on just the CPU. Additionally, the script calls out to the GPU implementation of the CTC algorithm, which will fail without a GPU. The script will likely take over a day to run, so come back to it later. After the script finishes, the model should be trained and ready for use in making predictions.</p>
 <h2 id=framewise_model ><a href="#framewise_model">Framewise model</a></h2>
 <p>Navigate into the <code>speech-blstm</code> folder. To extract the data from the TIMIT corpus, use the <code>00-data.jl</code> script.</p>
-<pre><code class="bash hljs">&amp;<span class=hljs-comment >#36;&amp;gt; julia 00-data.jl</span></code></pre>
+<pre><code class="bash hljs">$&gt; julia 00-data.jl</code></pre>
 <p>Now, to train the network, run the <code>01-speech-blstm.jl</code> script. Make sure you&#39;ve removed the <code>README.md</code> files from the data folders, if you downloaded them.</p>
-<pre><code class="bash hljs">&amp;<span class=hljs-comment >#36;&amp;gt; julia 01-speech-blstm.jl</span></code></pre>
+<pre><code class="bash hljs">$&gt; julia 01-speech-blstm.jl</code></pre>
 <p>This network trains reasonably fast on the CPU, so GPU functionality was not implemented.</p>
 <h1 id=get_the_code ><a href="#get_the_code">Get the code</a></h1>
 <p>The code written during this project may be found <a href="https://github.com/maetshju/gsoc2018">on my GitHub</a>. There are also several pull requests that were made to contribute code to the larger package ecosystem:</p>
