@@ -6,7 +6,7 @@ When you do package operations in Julia that connect to package servers, some an
 
 Telemetry data is sent in the form of HTTP headers included in each request to a package server. The exact information that is sent to your current package server can be determined from within Julia by doing `import Pkg; Pkg.telemetryinfo()` which prints a block of telemetry headers like this:
 
-```text
+```plaintext
 Julia-Pkg-Protocol: 1.0
 Julia-Version: 1.5.0
 Julia-System: x86_64-apple-darwin14-libgfortran5
@@ -20,28 +20,28 @@ In what follows, we will go through each header, giving an example, an explanati
 
 ### Pkg Protocol
 
-```text
+```plaintext
 Julia-Pkg-Protocol: 1.0
 ```
 This is the version number of the package protocol that the client supports, which allows the server to know which features the client has and what responses it will know how to handle. It is the only telemetry header which is not optional since it is necessary for correct interaction between the client and server. Currently `1.0` is the only possible value, so this header gives zero information (for now).
 
 ### Version
 
-```text
+```plaintext
 Julia-Version: 1.5.0
 ```
 This is the value of the `VERSION` global variable. It helps us understand which versions of Julia people are using, which in turn helps package developers make informed decisions about how much effort they should put into maintaining support for various versions of Julia. Without this information, we have no way of knowing what the usage distribution over different versions of the language is. It is also necessary for interpreting some of the other values, such as `Julia-System` since the format and meaning of the returned value can change with different versions of Julia.
 
 ### System
 
-```text
+```plaintext
 Julia-System: x86_64-apple-darwin14-libgfortran5
 ```
 This is the so-called "platform triplet" which identifies the details of what architecture, operating system, kernel version, and other ABI ("application binary interface") features the client system has. Knowing the number of users of each operating system helps Julia's developers and package developers prioritize support for different operating systems. Julia's package manager provides pre-built binary libraries for many dependencies; these are selected using precisely this triplet value, so knowing how many users there are for each possible triplet value helps understand where the maintainers' limited support energy should be focused to benefit the greatest number of users.
 
 ### Client UUID
 
-```text
+```plaintext
 Julia-Client-UUID: afda810c-134c-4059-9594-3d1b0e9f0928
 ```
 The first time the Julia client connects to a package server, it generates a random client UUID, which it sends with each request (unless you have [opted out](#opting_out) of doing so). This helps us estimate how many Julia installs there are, which in combination with some of the other telemetry data allows estimating the number of Julia users. Having some persistent unique client value is essential for answering this question, since otherwise there's no way to distinguish a single client making a thousand requests from a thousand clients making a single request each. It also helps us answer other significant questions:
@@ -60,7 +60,7 @@ It's worth noting that *"How many Julia users are there?"* is the first question
 
 ### Project Hash
 
-```text
+```plaintext
 Julia-Project-Hash: fb03cd4baee60f383ef185fb5884d852766df25c
 ```
 This hash value uniquely identifies the path of the active project without revealing any information about that path. Having this value allows determining when packages are dependencies of the same project, as opposed to being used in different projects on the same client: if two requests have the same project hash value, they are used by the same project; if they have different project hashes, they are not. No other information is revealed by this cryptographic hash value—you can only compare them to see if they are the same or different. Comparisons of hash values from different clients (or to different servers) are meaningless and provide no information.
@@ -69,7 +69,7 @@ Privacy of the user is protected by using a secret, securely generated, random s
 
 ### CI Variables
 
-```text
+```plaintext
 Julia-CI-Variables: APPVEYOR=n;CI=n;CIRCLECI=n;CONTINUOUS_INTEGRATION=n;GITHUB_ACTIONS=n
 GITLAB_CI=n;JULIA_CI=n;TF_BUILD=n;TRAVIS=n
 ```
@@ -88,14 +88,14 @@ The reason for spelling out the names of all the environment variables is so tha
 
 ### HyperLogLog
 
-```text
+```plaintext
 Julia-HyperLogLog: 405,2
 ```
 The number of distinct values in a stream can be efficiently estimated using the [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) estimator. Each client randomly chooses one of 1024 "buckets" which is the first value of this field and generates a random 64-bit unsigned integer and computes the number of trailing zeros of that value, which is the second value. In total, there are only 66,560 possible values for this header and since the second value is sampled from a heavily skewed distribution, there are many collisions, making it impossible to use this to distinguish all distinct users. Taken in aggregate, however, these random values can be used to roughly estimate the number of unique clients in a set of requests. There are a number of drawbacks and limitations to this approach that make client UUIDs still beneficial for understanding Julia usage, but the HyperLogLog values help understand some aspects of aggregate behavior even when we include users who opt out of sending client UUIDs.
 
 ### Interactive
 
-```text
+```plaintext
 Julia-Interactive: true
 ```
 This is a boolean indicator of whether the client session is interactive (i.e. in the Julia REPL) or non-interactive (i.e. a script or other automated process). This serves two purposes: it further helps distinguish real users from CI systems (the latter are never interactive) and gives insight into how people use the package manager. The current assumption is that most people use Julia's package manager interactively, and thus the bulk of development effort has gone towards supporting and developing that use case. If we learn from this data that a larger than expected portion of people use the package manager in a non-interactive way, then we should devote more resources to supporting that use case.
@@ -112,7 +112,7 @@ secret_salt = "0P7zbWDTAfsOmlh8j7Tq7yYNMiJ8ewIhzsj6"
 
 The directory the file appears in indicates that it's for the `pkg.julialang.org` package server. The entry for `HyperLogLog` and `client_uuid` give the plain values that are sent for those headers while the `secret_salt` field is not sent but used when hashing the path of the active project to generate the `Julia-Project-Hash` header. If you want to opt out of sending a client UUID, you can edit this file and set `client_uuid = false` to indicate that you are opting out of sending the client UUID and anything derived from it (i.e. the project hash). After changing that, `Pkg.telemetryinfo()` prints this:
 
-```text
+```plaintext
 Julia-Pkg-Protocol: 1.0
 Julia-Version: 1.6.0-DEV.282
 Julia-System: x86_64-apple-darwin14-libgfortran5
@@ -123,7 +123,7 @@ Julia-Interactive: true
 
 The `Julia-Client-UUID` and `Julia-Project-Hash` headers are no longer sent. If you want to only opt out of sending the project hash header, you can leave `client_uuid` as (or delete it entirely and a new one will be generated) and set `secret_salt = false`, which results in this telemetry info being sent:
 
-```text
+```plaintext
 Julia-Pkg-Protocol: 1.0
 Julia-Version: 1.6.0-DEV.282
 Julia-System: x86_64-apple-darwin14-libgfortran5
