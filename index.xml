@@ -398,6 +398,14 @@
     <pubDate>Mon, 16 Sep 2019 00:00:00 UT</pubDate>
   </item>
   <item>
+    <title>Transitioning Code From Closed To Open: A JuliaCon 2020 Discussion Between Julia Users In Industry</title>
+    <link>https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/index.html</link>
+    <description><![CDATA[Within private companies, it can be difficult to smoothly transition internal code into high quality open-source contributions. At JuliaCon 2020, industry Julia users came together to discuss how to maximize their impact in the Julia ecosystem.
+<br><a href="https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/index.html">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/index.html</guid>
+    <pubDate>Wed, 16 Sep 2020 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title>Tetris coming to Julia language for v1.0</title>
     <link>https://julialang.org/blog/2018/04/tetris-and-you/index.html</link>
     <description><![CDATA[Tetris coming to Julia language for v1.0 | Good news, everyone&#33; Starting v1.0, Tetris will be included in the standard library. This will allow you to play a round of Tetris while your code is busy running.... 
