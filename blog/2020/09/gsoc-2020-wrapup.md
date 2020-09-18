@@ -97,6 +97,9 @@ Blog Posts:
 ### Aadesh Deshmukh
 MLJTime - Adding Time Series Support For MLJ
 
+Blog Posts:
+ - [https://nextjournal.com/aa25desh](https://nextjournal.com/aa25desh)
+
 ### Utkarsh530
 Performance Enhancements and Optimizations for Differential Equation solvers
 
