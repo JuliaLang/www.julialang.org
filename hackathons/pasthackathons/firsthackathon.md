@@ -2,24 +2,24 @@
 
 ## Current Hackathon: First World Wide Virtual Julia Language Hackathon on April 17th
 
-This first hackathon will be hosted on Zoom which will allow us to have breakout rooms. The plan is to have a main room as a waiting room for logistical stuff and then different breakout rooms where the actual hacking/building will take place. [Based on this survey that we put together](https://docs.google.com/forms/d/e/1FAIpQLSdYdr3T1i6jLee1ES2PfJ-MRadjlDAQQGTVx3vrquceLGCTyg/viewform?usp=sf_link), we will have a number of high level rooms for topics like Data Science, Visualization, Machine Learning, etc. and then if there are groups that form within those highlevel domains who want to move to a different room for a specific project, we can facilitate that. 
+This first hackathon will be hosted on Zoom which will allow us to have breakout rooms. The plan is to have a main room as a waiting room for logistical stuff and then different breakout rooms where the actual hacking/building will take place. [Based on this survey that we put together](https://docs.google.com/forms/d/e/1FAIpQLSdYdr3T1i6jLee1ES2PfJ-MRadjlDAQQGTVx3vrquceLGCTyg/viewform?usp=sf_link), we will have a number of high level rooms for topics like Data Science, Visualization, Machine Learning, etc. and then if there are groups that form within those highlevel domains who want to move to a different room for a specific project, we can facilitate that.
 
 [Breakout Room List](https://docs.google.com/document/d/1sp4Y1s8kUFHRZ9UWDGmwxZprH6O1Wgo7jIT9VQPpCVw/edit?usp=sharing)
 
 Everyone will be given Co-Host permission so they can move freely between breakout rooms.
 
-## When 
+## When
 
 Friday April 17th. We will have multiple kickoffs for various time zones:  
  - Europe/Asia Kick off 10 AM (UTC +1 London Time), [5 AM EDT]
  - US East Coast Kick off 10 AM EDT (UTC -4)
  - US West Coast Kick off 10 AM PDT (UTC -7) [1 PM EDT]
- 
-Hacking will end officially at 7 PM EDT (UTC -4). We will have a submisson form setup [here](https://docs.google.com/forms/d/e/1FAIpQLScKntdRDWXt1yNx4Wevtk-_fT34krvY271j-x-KD3VN9oIvxA/viewform?usp=sf_link) on the day of the event so that we can highlight some cool projects that were built during the Hackathon. 
- 
-## Where 
 
-World Wide! We want this Hackathon to be accessibile to everyone. 
+Hacking will end officially at 7 PM EDT (UTC -4). We will have a submisson form setup [here](https://docs.google.com/forms/d/e/1FAIpQLScKntdRDWXt1yNx4Wevtk-_fT34krvY271j-x-KD3VN9oIvxA/viewform?usp=sf_link) on the day of the event so that we can highlight some cool projects that were built during the Hackathon.
+
+## Where
+
+World Wide! We want this Hackathon to be accessibile to everyone.
 
 ## How to join
 
@@ -66,9 +66,9 @@ Meeting ID: 456 598 7673
 Password: 476732
 ```
 
-# Will there be any talks or demos at this Hackathon? 
+# Will there be any talks or demos at this Hackathon?
 
-While not officially part of this Hackathon, there will be a talk titled: PackageCompiler and Static Compilation in Julia from 12pm – 1pm EDT on Friday. Details below: 
+While not officially part of this Hackathon, there will be a talk titled: PackageCompiler and Static Compilation in Julia from 12pm – 1pm EDT on Friday. Details below:
 
 ~~~<blockquote class="blockquote">~~~
 
@@ -86,7 +86,6 @@ The Webinar is led by Julia Computing's @KristofferC89, who is a long-time contr
 
 # Questions
 
-Please join the #hackathons channel on Slack for more info! 
+Please join the #hackathons channel on Slack for more info!
 
-This is a first of its kind event and there are bound to be issues as we work through this. Thanks everyone for participating, being helpful, and patient as we try to bring people together during these trying times. 
-
+This is a first of its kind event and there are bound to be issues as we work through this. Thanks everyone for participating, being helpful, and patient as we try to bring people together during these trying times.
