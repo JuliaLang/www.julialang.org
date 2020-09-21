@@ -16,6 +16,7 @@ and build efficient implementations into the \*DiffEq libraries
 methods to implement are:
 
 @@tight-list
+- Global error estimating ODE solvers
 - Implicit-Explicit (IMEX) Methods
 - Geometric (exponential) integrators
 - Low memory Runge-Kutta methods
@@ -48,12 +49,12 @@ linear algebra, and the ability (or eagerness to learn) to write fast code.
 
 **Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
 
-## Physics-Informend Neural networks (PINN) for solving differential equations
+## Improvements to Physics-Informend Neural networks (PINN) for solving differential equations
 
 Neural networks can be used as a method for efficiently solving difficult partial differential equations. 
 Efficient implementations of physics-informed machine learning from recent papers are being explored as 
-part of the [NeuralNetDiffEq.jl](https://github.com/SciML/NeuralNetDiffEq.jl) package.
-The [issue tracker](https://github.com/SciML/NeuralNetDiffEq.jl/issues) contains links to papers which 
+part of the [NeuralPDE.jl](https://github.com/SciML/NeuralPDE.jl) package.
+The [issue tracker](https://github.com/SciML/NeuralPDE.jl/issues) contains links to papers which 
 would be interesting new neural network based methods to implement and benchmark against classical techniques.
 
 **Recommended Skills**: Background knowledge in numerical analysis and machine learning.
