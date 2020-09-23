@@ -27,7 +27,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#cur
 ---
 
 ~~~
-<h2><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h2>
+<h2 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h2>
 ~~~
 
 Checksums for this release are available in both [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.sha256) formats.
@@ -91,7 +91,7 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
 
 
 ~~~
-<h2><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})</a></h2>
+<h2 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})</a></h2>
 ~~~
 
 Checksums for this release are available in both, [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) formats.
