@@ -84,7 +84,8 @@ Replaying `SIGNAL: SIGSEGV(det)': expecting tracee signal or trap, but instead a
  `write' (ticks: 144040993972)
 ```
 
-What does this mean? First a quick refresher about how rr works: Basically, it records any modifications made to the process memory by the kernel (or any other source of non-determinism). Then, between such modification it relies on the determinism of the processor to produce a bitwise-identical output state, given an input memory state.
+What does this mean? First a quick refresher about how rr works: Basically, it records any modifications made to the process memory by the kernel (or any other source of non-determinism). Then, between such modification it relies on the determinism of the processor to produce a bitwise-identical output state, given an input memory state. At each event rr also records the complete incoming and outgoing register state.
+The incoming register state is not strictly required (since it will be deterministically computed from the previous input state), but it can be useful for some analyses purposes, as well as allowing an additional check that replay is proceeding correctly.
 
 Now, what happened here is that rr expected to get a deterministic (`(det)`) segfault (i.e. one caused by the execution of an instruction, as opposed to being asynchronously sent by some other process e.g. using `kill -SIGSEGV`). However, instead of seeing this segfault, we ended up somewhere else. In this case (`but instead at
  'write'`), during the replay, we instead tried to execute a write system call. We've already seen the output behavior of the program (basically one write for every episode), so a reasonable guess is that during replay, it instead sucessfully finished the episode and reached the next `write` system call (which would have been the first
@@ -133,7 +134,7 @@ ase:0x7f0499f49240 gs_base:0x0
 } 
 ```
 
-Let's start with explaining some terminology. While rr does keep track of elapsed wall clock time (`real_time` above), that notion of "time" is entirely informational. Instead, rather than dividing time into hours, seconds and minutes, `rr` divides time into `events`, `tid` (+ serial, not shown and only relevant when tids are re-used) and `ticks`. `events` are a global (over the tree of recorded processes) linear ordering of events that cause external modification to the process' memory (e.g. system calls or signals), whereas `ticks` are a per-task (think per-thread or per-`tid`) measure of forward progress. The exact metric depends on the CPU microarchitecture and what measurement hardware is available. Valid choices are e.g. `Number of retired instructions` or `Number of retired conditional branches`, but in theory any stable, reliable count of forward progress is sufficient, as long as it uniquely identifies (potentially in conjunction with the register state) a particular point in the execution (e.g. number of retired instructions works trivially and retired conditional branches mostly work, because that count in conjunction with the instruction pointer forms a monotonically increasing pair).
+Let's start with explaining some terminology. While rr does keep track of elapsed wall clock time (`real_time` above), that notion of "time" is entirely informational. Instead, rather than dividing time into hours, seconds and minutes, `rr` divides time into `events`, `tid` (the kernel's thread id for each task; in circumstances where ids are reused an additional `serial` counter is computed, but not saved) and `ticks`. `events` are a global (over the tree of recorded processes) linear ordering of events that cause external modification to the process' memory (e.g. system calls or signals), whereas `ticks` are a per-task (think per-thread or per-`tid`) measure of forward progress. The exact metric depends on the CPU microarchitecture and what measurement hardware is available. Valid choices are e.g. `Number of retired instructions` or `Number of retired conditional branches`, but in theory any stable, reliable count of forward progress is sufficient, as long as it uniquely identifies (potentially in conjunction with the register state) a particular point in the execution (e.g. number of retired instructions works trivially and retired conditional branches mostly work, because that count in conjunction with the instruction pointer forms a monotonically increasing pair).
 
 Alright, so looking at the event log, we basically see reflected what we already knew: It does a bunch of write system calls (to print the episode number), a ton of computation (143 billion conditional branches' worth), and eventually it's supposed to crash. We also know that at event `51909` (the last write before the supposed segfault), things in the replay were still mostly on track. We can't say whether the memory contents had already diverged, but we at least know that the register state and the number of instructions executed was bitwise identical to what happened during the recording.
 
@@ -169,7 +170,7 @@ Dump of assembler code for function jl_apply_tuple_type:
 [snip]
 ```
 
-Alright, so that's a load from `r10`. Luckily `r10` is recorded in the trace: `r10:0x1007f0490b784d0`. A seasoned debugger will quickly recognize this pointer as too wide. In particular, this pointer has the lowest bit of its high byte set. These bits are mostly unused. Sometimes unused pointer bits are used for extra information, but at least julia itself only uses the unused low bits for this purpose, not the high bits. That said, this trace included a significant number of external native libraries (including a full python environment), so it's certainly possible that some external library would have used such pointer tagging techniques. Let's do some more investigation. The first thing I tried to do was take a look at the pointer with the high bit manually cleared to see if it was a valid julia object at all or just some junk that somehow ended up being loaded from:
+Alright, so that's a load from `r10`. Luckily `r10` is recorded in the trace: `r10:0x1007f0490b784d0`. A seasoned debugger will quickly recognize this pointer as too wide. In particular, in general, for use space pointers, the high byte is `0x00`, but here it is `0x01` (gdb drops leading zeros). Sometimes unused pointer bits are used for extra information, but at least julia itself only uses the unused low bits for this purpose, not the high bits. That said, this trace included a significant number of external native libraries (including a full python environment), so it's certainly possible that some external library would have used such pointer tagging techniques. Let's do some more investigation. The first thing I tried to do was take a look at the pointer with the high bit manually cleared to see if it was a valid julia object at all or just some junk that somehow ended up being loaded from:
 
 ```
 (rr) p jl_(0x7f0490b784d0)
@@ -282,20 +283,12 @@ jl_svecset (x=0x7f0490b784d0 <jl_system_image_data+16912>, i=<optimized out>, t=
     at /buildworker/worker/package_linux64/build/src/builtins.c:728
 ```
 
-For reference (from the 1.5 release branch):
+For reference, here's the relevant function we're currently in from the Julia 1.5 branch:
 
-```
+```c
 JL_CALLABLE(jl_f_tuple)
 {
-    size_t i;
-    if (nargs == 0)
-        return (jl_value_t*)jl_emptytuple;
-    jl_datatype_t *tt;
-    if (nargs < jl_page_size / sizeof(jl_value_t*)) {
-        jl_value_t **types = (jl_value_t**)alloca(nargs * sizeof(jl_value_t*));
-        for (i = 0; i < nargs; i++)
-            types[i] = jl_typeof(args[i]);
-        tt = jl_inst_concrete_tupletype_v(types, nargs);
+[snip]
     }
     else {
         jl_svec_t *types = jl_alloc_svec_uninit(nargs);
@@ -303,19 +296,14 @@ JL_CALLABLE(jl_f_tuple)
         for (i = 0; i < nargs; i++)
             jl_svecset(types, i, jl_typeof(args[i]));
         tt = jl_inst_concrete_tupletype(types);
-        JL_GC_POP();
-    }
-    if (tt->instance != NULL)
-        return tt->instance;
-    jl_ptls_t ptls = jl_get_ptls_states();
-    jl_value_t *jv = jl_gc_alloc(ptls, jl_datatype_size(tt), tt);
-    for (i = 0; i < nargs; i++)
-        set_nth_field(tt, (void*)jv, i, args[i]);
-    return jv;
+[snip]
 }
 ```
 
-So we're just getting the type pointer from some array. We can find out which one:
+The code is fairly straightforward: It's just iterating over the incoming arguments to `tuple`,
+and getting the types for each one (such that it can then create an appropriate tuple type
+that matches the argument). Clearly we just computed the type of one of the incoming arrays
+and are setting it into the svec. We can find out which array we just computed the type of:
 
 ```
 (rr) disas
@@ -354,7 +342,19 @@ Array{Any, 1}
 ```
 
 (note that we masked out the low bits, which julia does use as mentioned above - and
-if we looked at the assembly the code does the same). Now:
+if we looked at the assembly the code does the same).
+
+
+To recap: We found a suspicious pointer `0x1007f0490b784d0`, noticed it was loaded from
+`0x436487c0`, which we then found was previously set by loading the type pointer from some array
+object. We then found that the address of said array object was `0x7f0478f5aa10`, meaning
+that it's type pointer was at `0x7f0478f5aa08` (the value of which would eventually
+be propagated to the crash site). We further saw that at
+least in the replay, the value at `0x7f0478f5aa08` correctly pointed to the `Array{Any, 1}` type
+without any suspicious high bit flips.
+
+Let's further look at all memory accesses to this type tag at `0x7f0478f5aa08` (going backwards
+in time) to see if we find anything suspicious:
 
 ```
 (rr) awatch *0x7f0478f5aa08
@@ -438,13 +438,14 @@ Current tick: 143756648123
 This gives us a lot of information. Basically, we looked at the type tag a couple of times trying
 to allocate the tuple during event 51911, but other than that, nothing read or wrote it since event 51839.
 We also know that during event 51839 it must have still had the correct value, since otherwise we would have
-seen the crash. At this point, we basically have the full story:
+seen the crash there. At this point, we basically have the full story:
 
-At some point after event 51839, something flipped the low bit of the high byte of either the array itself
-or the value of the type pointer in the svec of types. This causes the type cache lookup (the `type_hash`
-stuff we saw above to fail), causing the program to try to allocate a new type for this tuple, which then
-crashes because it tries to actually look at the type, causing the original segfault. During replay,
-the bit does not get flipped, the type cache lookup succeeds and the program just goes along normally.
+At some point after event 51839, something flipped the lowest bit of the high byte of either the type tag of array
+itself (at memory location `0x7f0478f5aa08`) or the value of the type pointer in the svec of types
+(at memory location `0x436487c0`). This causes the type cache lookup (the `type_hash`
+ function we saw) to fail. As a result, the program tries to allocate a new type for this tuple, which then
+crashes because it attempts to actually look at the type corrupted type pointer. The observed segfault results.
+During replay, the bit does not get flipped, the type cache lookup succeeds and the program just goes along normally.
 
 What kind of issues could cause a bit flip like this? We already checked for obvious explanations
 like a weird kernel or strange devices, which leaves more obscure causes: CPU microarchitecture issues
