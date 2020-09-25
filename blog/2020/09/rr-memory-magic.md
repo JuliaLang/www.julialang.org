@@ -514,7 +514,7 @@ remaining. To quote Sherlock Holmes
 > When you have eliminated the impossible, whatever remains, however improbable, must be the truth.
 
 Without `rr`, it may often be tempting to blame unexplained crashes on bad hardware,
-cosmic rays or gremlins living under the floors. Here, we were able to fairly convincingly
+cosmic rays or gremlins living under the floor. Here, we were able to fairly convincingly
 conclude that that the issue must indeed be bad memory. I like to say that `rr` turns a
 debugging problem into a data analysis problem and here, as is so often the case, the most
 insightful piece is figuring out what data is missing.
