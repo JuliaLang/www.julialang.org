@@ -13,13 +13,13 @@ A full example can be found in `blog/2020/05/rr.md`.
 """
 function hfun_meta()
     p = "property"
-    # default og properties, can be over-written by the user
+    # default og properties, can be overwritten by the user
     ogdflt = (
         title = (p, "og:title", "The Julia Language"),
         image = (p, "og:image", "/assets/images/julia-open-graph.png"),
         descr = (p, "og:description", "Official website for the Julia programming language"),
         )
-    # check what the user has provided (if anything) and override defaults
+    # check what the user has provided (if anything) use defaults otherwise
     meta = locvar(:meta)
     if !isnothing(meta)
         for c in keys(ogdflt)
