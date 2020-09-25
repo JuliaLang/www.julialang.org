@@ -1,16 +1,18 @@
-@def authors = "Keno Fischer"
-@def published = "2 May 2020"
-@def title = "Julia 1.5 Feature Preview: Time Traveling (Linux) Bug Reporting"
++++
+authors = "Keno Fischer"
+published = "2 May 2020"
+title = "Julia 1.5 Feature Preview: Time Traveling (Linux) Bug Reporting"
+rss = """Julia 1.5 is gaining a cool new bug reporting capability, leveraging mozilla's rr project to automatically create fully-reproducible bug reports"""
+meta = [
+    ("property", "og:video", "https://julialang.org/assets/blog/2020-05-02-rr/preview.mp4"),
+		("name", "twitter:player", "https://www.youtube.com/embed/JO6Jvad3XRU"),
+		("name", "twitter:player:width", "960"),
+		("name", "twitter:player:height", "720")
+		]
++++
+
+<!-- @tlienart -- leave this here for now -->
 @def rss_pubdate = Date(2020, 5, 2)
-@def rss = """Julia 1.5 is gaining a cool new bug reporting capability, leveraging mozilla's rr project to automatically create fully-reproducible bug reports"""
-@def meta = [("property" => "og:video",
-              "content" => "https://julialang.org/assets/blog/2020-05-02-rr/preview.mp4"),
-			 ("name" => "twitter:player",
-			  "content" => "https://www.youtube.com/embed/JO6Jvad3XRU"),
-	     	 ("name" => "twitter:player:width",
-			  "content" => "960"),
-	     	 ("name" => "twitter:player:height",
-			 "content" => "720")]
 
 ~~~
   <link rel="stylesheet" type="text/css" href="/assets/blog/2020-05-02-rr/asciinema-player.css" />
