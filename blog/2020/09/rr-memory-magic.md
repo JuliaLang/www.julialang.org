@@ -508,10 +508,11 @@ an invaluable tool to analyze this issue. The fact that the stray bit flip was m
 from the recording already excluded 99% of possible cases for the crash, and some
 careful analysis of the trace gave enough clues to be able to eliminate most of the
 remaining. To quote Sherlock Holmes
+
 > When you have eliminated the impossible, whatever remains, however improbable, must be the truth.
-Without `rr`, it may often
-be tempting to blame unexplained crashes on bad hardware, cosmic rays or gremlins
-living under the floors. Here, we were able to fairly convincingly conclude that
-that the issue must indeed be bad memory. I like to say that `rr` turns a debugging
-problem into a data analysis problem and here, as is so often the case, the most
+
+Without `rr`, it may often be tempting to blame unexplained crashes on bad hardware,
+cosmic rays or gremlins living under the floors. Here, we were able to fairly convincingly
+conclude that that the issue must indeed be bad memory. I like to say that `rr` turns a
+debugging problem into a data analysis problem and here, as is so often the case, the most
 insightful piece is figuring out what data is missing.
