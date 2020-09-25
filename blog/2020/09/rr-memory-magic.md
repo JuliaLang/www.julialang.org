@@ -90,8 +90,8 @@ The incoming register state is not strictly required (since it will be determini
 
 Now, what happened here is that `rr` expected to get a deterministic (`(det)`) segfault
 (i.e. one caused by the execution of an instruction, as opposed to being asynchronously sent by some other process e.g. using `kill -SIGSEGV`). 
-However, instead of seeing this segfault, we ended up somewhere else. In this case (`but instead at
- 'write'`), during the replay, we instead tried to execute a write system call.
+However, instead of seeing this segfault, we ended up somewhere else: `but instead at
+ 'write'`. During the replay, `rr` found itself being told to execute a `write` system call rather than seeing the crash.
 We've already seen the output behavior of the program (basically one write for every episode),
 so a reasonable guess is that during replay, it instead successfully finished the episode and reached the next `write` system call (which would have been the first
  execution point at which the `rr` supervisor regains control from the tracee). In `rr` parlance, we call this a "divergence": A situation in which the execution path taken during replay differs from what actually happened during recording. Divergences are generally caused by rr bugs resulting in unobserved memory modifications (e.g. an imperfect model of the kernel's memory modification behavior), but there are more subtle issues that may be responsible as well (such as CPU microarchitecture bugs). I thus turned to trying to debug this divergence. There are a few common candidates for divergences that I looked for first. In no particular order of preference, they are:
@@ -184,7 +184,7 @@ $1 = void
 (rr) 
 ```
 
-Ok, so this is actually a pointer to a julia object (the type `Array{Any, 1}`) with a corrupted high bit. Let's gather some more information. We're still 10000 ticks away from the place where the segfault was supposed to occur, but let's see what's currently happening in the process:
+Ok, so this is actually a pointer to a julia object (the type `Array{Any, 1}`) with a mysteriously set high bit. It's not necessarily unexpected for junk to junk data to look like valid pointers. Junk data often comes from uninitialized re-use of memory, and could certainly pick up part of a valid pointer if such a pointer was previously at that memory location. To narrow things down further, let's gather some more information. We're still 10000 ticks away from the place where the segfault was supposed to occur, but let's see what's currently happening in the process:
 
 ```
 (rr) bt
@@ -495,7 +495,7 @@ determined this is not a Julia bug and the user will probably be replacing their
 
 With about an hour's work (plus 2-3 hours to add the `seek-to-ticks` functionality written,
 tested, upstreamed, etc.), we managed to remotely and conclusively diagnose that a reported
-crash was caused by faulty memory on the users machine.  Even though the `rr` trace did not
+crash was caused by faulty memory on the user's machine.  Even though the `rr` trace did not
 contain the actual cause of the crash, it was nevertheless
 an invaluable tool to analyze this issue. The fact that the stray bit flip was missing
 from the recording already excluded 99% of possible cases for the crash, and some
