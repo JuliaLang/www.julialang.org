@@ -1,8 +1,8 @@
 +++
 author = "Keno Fischer"
 published = "24 September 2020"
-title = "Remotely Debugging Faulty Memory - an rr case study"
-rss = """Since the release of Julia 1.5 we've gotten lots of rr traces. This tells the story of a particularly interesting one."""
+title = "Using time travel to remotely debug faulty DRAM"
+rss = """The story of debugging a mysterious Julia segfault."""
 meta = [
     ("property", "og:image", "https://julialang.org/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg"),
     ("name", "twitter:creator:id", "4922348584"),
@@ -18,7 +18,7 @@ meta = [
   <script src="/assets/blog/2020-05-02-rr/asciinema-player.js"></script>
 ~~~
 
-A [few months ago](/blog/2020/05/rr) on this blog, I introduced a new Julia feature that lets users easily submit `rr` traces along with their bug reports (please go read that post if you haven't, otherwise the rest of this post may not make much sense). Since Julia 1.5 was officially released a little over a month ago, more than a dozen users
+A [few months ago](/blog/2020/05/rr) on this blog, I introduced a new Julia feature that lets users easily submit bugreports using the `rr` time-traveling debugger (please go read that post if you haven't, otherwise the rest of this post may not make much sense). Since Julia 1.5 was officially released a little over a month ago, more than a dozen users
 have made use of this capability to send us detailed bug reports. So far, everything went according to plan.
 
 ~~~
