@@ -1,10 +1,12 @@
 +++
-authors = "Keno Fischer"
+author = "Keno Fischer"
 published = "24 September 2020"
 title = "Remotely Debugging Faulty Memory - an rr case study"
 rss = """Since the release of Julia 1.5 we've gotten lots of rr traces. This tells the story of a particularly interesting one."""
 meta = [
     ("property", "og:image", "https://julialang.org/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg"),
+    ("name", "twitter:creator:id", "4922348584"),
+    ("name", "twitter:card", "summary_large_image")
     ]
 +++
 

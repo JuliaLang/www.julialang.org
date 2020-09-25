@@ -151,3 +151,19 @@ function hfun_redirect(url)
     """
     return s
 end
+
+"""
+    {{author_twitter}}
+"""
+function hfun_author_twitter()
+    meta = locvar(:meta)
+    if meta !== nothing
+        for (kind, tag, value) in meta
+            if kind == "name" && tag == "twitter:creator:id"
+                return " <a href=\"https://twitter.com/intent/user?user_id=$value\"><img src=\"/assets/infra/twitter_16.png\"/></a>"
+            end
+        end
+    end
+    return ""
+end
+
