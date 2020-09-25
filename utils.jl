@@ -12,12 +12,16 @@ variable should be given as an iterable of 3-tuples like so:
 A full example can be found in `blog/2020/05/rr.md`.
 """
 function hfun_meta()
+    title = locvar(:title)
+    isnothing(title) && (title = "The Julia Language")
+    descr = locvar(:rss)
+    isnothing(descr) && (descr = "Official website for the Julia programming language")
     p = "property"
     # default og properties, can be overwritten by the user
     ogdflt = (
-        title = (p, "og:title", "The Julia Language"),
+        title = (p, "og:title", title),
+        descr = (p, "og:description", descr),
         image = (p, "og:image", "/assets/images/julia-open-graph.png"),
-        descr = (p, "og:description", "Official website for the Julia programming language"),
         )
     # check what the user has provided (if anything) use defaults otherwise
     meta = locvar(:meta)
@@ -166,4 +170,3 @@ function hfun_author_twitter()
     end
     return ""
 end
-
