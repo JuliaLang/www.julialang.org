@@ -1,7 +1,7 @@
 @def authors = "Keno Fischer"
-@def published = "23 September 2020"
+@def published = "24 September 2020"
 @def title = "Remotely Debugging Faulty Memory - an rr case study"
-@def rss_pubdate = Date(2020, 5, 2)
+@def rss_pubdate = Date(2020, 9, 24)
 @def rss = """Since the release of Julia 1.5 we've gotten lots of rr traces. This tells the story of a particularly interesting one."""
 
 ~~~
@@ -9,8 +9,8 @@
   <script src="/assets/blog/2020-05-02-rr/asciinema-player.js"></script>
 ~~~
 
-A [few months ago](../05/rr) on this blog, I introduced a new Julia feature that lets users easily submit rr traces along with their bug reports (please go read that post if you haven't, otherwise the rest of this post may not make much sense). Since Julia 1.5 was officially released a little over a month ago, more than a dozen users
-have made use of this capability to send us detailed bug reports. So far, everything went to plan.
+A [few months ago](/blog/2020/05/rr) on this blog, I introduced a new Julia feature that lets users easily submit `rr` traces along with their bug reports (please go read that post if you haven't, otherwise the rest of this post may not make much sense). Since Julia 1.5 was officially released a little over a month ago, more than a dozen users
+have made use of this capability to send us detailed bug reports. So far, everything went according to plan.
 
 ~~~
 <center>
@@ -18,11 +18,11 @@ have made use of this capability to send us detailed bug reports. So far, everyt
 </center><br/>
 ~~~
 
-In this post I want to tell the story of issue [#37524](https://github.com/JuliaLang/julia/issues/37524), the most unusual of the several rr traces we received. As spoiled in the title of this blog post, the eventual issue turned
+In this post I want to tell the story of issue [#37524](https://github.com/JuliaLang/julia/issues/37524), the most unusual of the several `rr` traces we received. As spoiled in the title of this blog post, the eventual issue turned
 out to be faulty memory. However, by popular demand, and to dispel any rumors of the use of black magic, I thought
 it might be worth stepping through the analysis of this issue step by step.
 
-When debugging an rr trace, the first thing to do is usually to just replay it to the point of the crash to look around (sometimes the crash is obvious from the state of the program at the crash location, other times, more history is required). In this case the initial investigation was done by my colleague
+When debugging an `rr` trace, the first thing to do is usually to just replay it to the point of the crash to look around (sometimes the crash is obvious from the state of the program at the crash location, other times, more history is required). In this case the initial investigation was done by my colleague
 [Tim Besard](https://github.com/maleadt). Downloading the trace and starting the replay he would have seen the following. Note that this recording is sped up about 20x (it runs for about two minutes real time) and lightly edited at the end to focus on only the relevant output.
 
 ~~~
@@ -30,14 +30,15 @@ When debugging an rr trace, the first thing to do is usually to just replay it t
                     speed="20"
                     theme="asciinema"
                     title="The initial replay"
-                    src="/assets/blog/2020-09-23-rr-memory/rrmemory.cast">
+                    src="/assets/blog/2020-09-23-rr-memory/rrmemory.cast"
+                    preload>
   </asciinema-player>
 ~~~
 
 So clearly the user who submitted the bug report was doing some sort of episodic procedure (maybe an ML training process), and a couple thousand iterations in, something went wrong. The issue reported the following output:
 ```
 signal (11): Segmentation fault
-in expression starting at /home/user/RL-Carla/rl-carla/proofofconcepts/crashes/julia-crash.jl:76
+in expression starting at julia-crash.jl:76
 jl_is_concrete_type at /buildworker/worker/package_linux64/build/src/julia.h:1222 [inlined]
 jl_apply_tuple_type_v_ at /buildworker/worker/package_linux64/build/src/jltypes.c:1381 [inlined]
 jl_apply_tuple_type at /buildworker/worker/package_linux64/build/src/jltypes.c:1389
@@ -46,13 +47,13 @@ jl_lookup_generic_ at /buildworker/worker/package_linux64/build/src/gf.c:2361 [i
 jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2394
 jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1690 [inlined]
 do_apply at /buildworker/worker/package_linux64/build/src/builtins.c:655
-update! at /home/user/RL-Carla/rl_framework/src/approximators/Knn2.jl:48
-update! at /home/user/RL-Carla/rl_framework/src/approximators/Knn2.jl:106
+update! at Knn2.jl:48
+update! at Knn2.jl:106
 unknown function (ip: 0x7f0483dd8205)
 [snip]
 ```
 
-but instead, we get an internal rr error:
+but instead, we get an internal `rr` error:
 
 ```raw
 [FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig()]                                                     
@@ -84,14 +85,18 @@ Replaying `SIGNAL: SIGSEGV(det)': expecting tracee signal or trap, but instead a
  `write' (ticks: 144040993972)
 ```
 
-What does this mean? First a quick refresher about how rr works: Basically, it records any modifications made to the process memory by the kernel (or any other source of non-determinism). Then, between such modification it relies on the determinism of the processor to produce a bitwise-identical output state, given an input memory state. At each event rr also records the complete incoming and outgoing register state.
+What does this mean? First a quick refresher about how `rr` works: Basically, it records any modifications made to the process memory by the kernel (or any other source of non-determinism). Then, between such modification it relies on the determinism of the processor to produce a bitwise-identical output state, given an input memory state. At each event `rr` also records the complete incoming and outgoing register state.
 The incoming register state is not strictly required (since it will be deterministically computed from the previous input state), but it can be useful for some analyses purposes, as well as allowing an additional check that replay is proceeding correctly.
 
-Now, what happened here is that rr expected to get a deterministic (`(det)`) segfault (i.e. one caused by the execution of an instruction, as opposed to being asynchronously sent by some other process e.g. using `kill -SIGSEGV`). However, instead of seeing this segfault, we ended up somewhere else. In this case (`but instead at
- 'write'`), during the replay, we instead tried to execute a write system call. We've already seen the output behavior of the program (basically one write for every episode), so a reasonable guess is that during replay, it instead sucessfully finished the episode and reached the next `write` system call (which would have been the first
- execution point at which the `rr` supervisor regains control from the tracee). In rr parlance, we call this a "divergence": A situation in which the execution path taken during replay differs from what actually happened during recording. Divergences are generally caused by rr bugs resulting in unobserved memory modifications (e.g. an imperfect model of the kernel's memory modification behavior), but there are more subtle issues that may be responsible as well (such as CPU microarchitecture bugs). I thus turned to trying to debug this divergence. There are a few common candidates for divergences that I looked for first. In no particular order of preference, they are:
+Now, what happened here is that `rr` expected to get a deterministic (`(det)`) segfault
+(i.e. one caused by the execution of an instruction, as opposed to being asynchronously sent by some other process e.g. using `kill -SIGSEGV`). 
+However, instead of seeing this segfault, we ended up somewhere else. In this case (`but instead at
+ 'write'`), during the replay, we instead tried to execute a write system call.
+We've already seen the output behavior of the program (basically one write for every episode),
+so a reasonable guess is that during replay, it instead successfully finished the episode and reached the next `write` system call (which would have been the first
+ execution point at which the `rr` supervisor regains control from the tracee). In `rr` parlance, we call this a "divergence": A situation in which the execution path taken during replay differs from what actually happened during recording. Divergences are generally caused by rr bugs resulting in unobserved memory modifications (e.g. an imperfect model of the kernel's memory modification behavior), but there are more subtle issues that may be responsible as well (such as CPU microarchitecture bugs). I thus turned to trying to debug this divergence. There are a few common candidates for divergences that I looked for first. In no particular order of preference, they are:
 
-- Unusual system calls that may not have gotten enough testing in rr, thus making it likely that rr's model of the kernel behavior is incomplete
+- Unusual system calls that may not have gotten enough testing in `rr`, thus making it likely that `rr`'s model of the kernel behavior is incomplete
 - Unusual or proprietary devices/device drivers/kernel extensions that may be silently modifying userspace memory (a big no-no, and probably a security issue, but surprisingly many bad drivers do it anyway).
 - Unusual CPUs or microarchitectures that may not have been tested before (e.g. old Silvermont Atom chips are known to have such microarchitecture bugs).
 
@@ -134,14 +139,14 @@ ase:0x7f0499f49240 gs_base:0x0
 } 
 ```
 
-Let's start with explaining some terminology. While rr does keep track of elapsed wall clock time (`real_time` above), that notion of "time" is entirely informational. Instead, rather than dividing time into hours, seconds and minutes, `rr` divides time into `events`, `tid` (the kernel's thread id for each task; in circumstances where ids are reused an additional `serial` counter is computed, but not saved) and `ticks`. `events` are a global (over the tree of recorded processes) linear ordering of events that cause external modification to the process' memory (e.g. system calls or signals), whereas `ticks` are a per-task (think per-thread or per-`tid`) measure of forward progress. The exact metric depends on the CPU microarchitecture and what measurement hardware is available. Valid choices are e.g. `Number of retired instructions` or `Number of retired conditional branches`, but in theory any stable, reliable count of forward progress is sufficient, as long as it uniquely identifies (potentially in conjunction with the register state) a particular point in the execution (e.g. number of retired instructions works trivially and retired conditional branches mostly work, because that count in conjunction with the instruction pointer forms a monotonically increasing pair).
+Let's start with explaining some terminology. While `rr` does keep track of elapsed wall clock time (`real_time` above), that notion of "time" is entirely informational. Instead, rather than dividing time into hours, seconds and minutes, `rr` divides time into `events`, `tid` (the kernel's thread id for each task; in circumstances where ids are reused an additional `serial` counter is computed, but not saved) and `ticks`. `events` are a global (over the tree of recorded processes) linear ordering of events that cause external modification to the process' memory (e.g. system calls or signals), whereas `ticks` are a per-task (think per-thread or per-`tid`) measure of forward progress. The exact metric depends on the CPU microarchitecture and what measurement hardware is available. Valid choices are e.g. `Number of retired instructions` or `Number of retired conditional branches`, but in theory any stable, reliable count of forward progress is sufficient, as long as it uniquely identifies (potentially in conjunction with the register state) a particular point in the execution (e.g. number of retired instructions works trivially and retired conditional branches mostly work, because that count in conjunction with the instruction pointer forms a monotonically increasing pair).
 
 Alright, so looking at the event log, we basically see reflected what we already knew: It does a bunch of write system calls (to print the episode number), a ton of computation (143 billion conditional branches' worth), and eventually it's supposed to crash. We also know that at event `51909` (the last write before the supposed segfault), things in the replay were still mostly on track. We can't say whether the memory contents had already diverged, but we at least know that the register state and the number of instructions executed was bitwise identical to what happened during the recording.
 
 One good way to investigate a divergence is to poke around in memory a bit prior to when one suspects the divergence to
 have occurred and see what kind of memory modifications could have made the difference. Usually, I just do this by going to the prior event, but in our case, there are 15 million conditional branches between the last two events, which is quite a bit of distance. Instead I hacked up a [quick command](https://github.com/mozilla/rr/pull/2658) that lets us seek directly to a particular tick count. In this case, I arbitrarily chose `143998750000`, about 10000 ticks prior to when the segfault occurred during the recording. Let's go there:
 
-```
+```bash
 $ rr replay -g 51908 --serve-files .
 [snip]
 0x0000000070000002 in ?? ()
@@ -170,7 +175,7 @@ Dump of assembler code for function jl_apply_tuple_type:
 [snip]
 ```
 
-Alright, so that's a load from `r10`. Luckily `r10` is recorded in the trace: `r10:0x1007f0490b784d0`. A seasoned debugger will quickly recognize this pointer as too wide. In particular, in general, for use space pointers, the high byte is `0x00`, but here it is `0x01` (gdb drops leading zeros). Sometimes unused pointer bits are used for extra information, but at least julia itself only uses the unused low bits for this purpose, not the high bits. That said, this trace included a significant number of external native libraries (including a full python environment), so it's certainly possible that some external library would have used such pointer tagging techniques. Let's do some more investigation. The first thing I tried to do was take a look at the pointer with the high bit manually cleared to see if it was a valid julia object at all or just some junk that somehow ended up being loaded from:
+Alright, so that's a load from `r10`. Luckily `r10` is recorded in the trace: `r10:0x1007f0490b784d0`. A seasoned debugger will quickly recognize this pointer as too wide. In particular, in general, for use space pointers, the high byte is `0x00`, but here it is `0x01` (gdb drops leading zeros). Sometimes unused pointer bits are used for extra information, but at least julia itself only uses the unused low bits for this purpose, not the high bits. That said, this trace included a significant number of external native libraries (including a full python environment), so it's certainly possible that some external library would have used such pointer tagging techniques. Let's do some more investigation. The first thing I tried to do was take a look at the pointer with the high bit manually cleared to see if it was a valid Julia object at all or just some junk that somehow ended up being loaded from:
 
 ```
 (rr) p jl_(0x7f0490b784d0)
@@ -224,8 +229,8 @@ Continuing.
 [FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig()] 
 ```
 
-we just get the divergence again, so it never actually reached this execution point, but diverged earlier (but only happened to crash there). Can we find out what happened? Looking back at the assembly, we see that r10 was loaded from
-`rax`, which we also have: rax:0x436487c0. What's there currently (remember we're still 10000 ticks before the crash):
+we just get the divergence again, so it never actually reached this execution point, but diverged earlier (but only happened to crash there). Can we find out what happened? Looking back at the assembly, we see that `r10` was loaded from
+`rax`, which we also have: `rax:0x436487c0`. What's there currently (remember we're still 10000 ticks before the crash)?:
 
 ```
 (rr) p *(void**)0x436487c0
@@ -261,7 +266,7 @@ Continuing.
  -> Assertion `false' failed to hold. Replaying `SIGNAL: SIGSEGV(det)': expecting tracee signal or trap, but instead at `write' (ticks: 144040993972)
 ```
 
-We see some accesses from the type cache, and then the divergence. What about in the other direction? (Note that the divergence crashed the rr process, so we have to first get back to the same execution point - luckily since this is a recording, everything is stable, so we can just `seek-ticks` right back to where we were).
+We see some accesses from the type cache, and then the divergence. What about in the other direction? (Note that the divergence crashed the `rr` process, so we have to first get back to the same execution point - luckily since this is a recording, everything is stable, so we can just `seek-ticks` right back to where we were).
 
 ```
 (rr) awatch *(void**)0x436487c0
@@ -341,7 +346,7 @@ $9 = (void **) 0x7f0478f5aa08
 Array{Any, 1}
 ```
 
-(note that we masked out the low bits, which julia does use as mentioned above - and
+(note that we masked out the low bits, which `julia` does use as mentioned above - and
 if we looked at the assembly the code does the same).
 
 
@@ -486,17 +491,18 @@ so maybe it would have found one). Further analysis of the failure would require
 to the DRAM and perhaps an electron microscope, but we need not go there, because we've already
 determined this is not a Julia bug and the user will probably be replacing their machine.
 
-# Conclusion
+## Conclusion
 
 With about an hour's work (plus 2-3 hours to add the `seek-to-ticks` functionality written,
 tested, upstreamed, etc.), we managed to remotely and conclusively diagnose that a reported
-crash was caused by faulty memory on the users machine.  Even though the rr trace did not
+crash was caused by faulty memory on the users machine.  Even though the `rr` trace did not
 contain the actual cause of the crash, it was nevertheless
 an invaluable tool to analyze this issue. The fact that the stray bit flip was missing
 from the recording already excluded 99% of possible cases for the crash, and some
 careful analysis of the trace gave enough clues to be able to eliminate most of the
-remaining. To quote Sherlock Holmes "When you have eliminated the impossible,
-whatever remains, however improbable, must be the truth". Without rr, it may often
+remaining. To quote Sherlock Holmes
+> When you have eliminated the impossible, whatever remains, however improbable, must be the truth.
+Without `rr`, it may often
 be tempting to blame unexplained crashes on bad hardware, cosmic rays or gremlins
 living under the floors. Here, we were able to fairly convincingly conclude that
 that the issue must indeed be bad memory. I like to say that `rr` turns a debugging
