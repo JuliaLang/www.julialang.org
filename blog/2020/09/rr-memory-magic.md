@@ -1,8 +1,15 @@
-@def authors = "Keno Fischer"
-@def published = "24 September 2020"
-@def title = "Remotely Debugging Faulty Memory - an rr case study"
++++
+authors = "Keno Fischer"
+published = "24 September 2020"
+title = "Remotely Debugging Faulty Memory - an rr case study"
+rss = """Since the release of Julia 1.5 we've gotten lots of rr traces. This tells the story of a particularly interesting one."""
+meta = [
+    ("property", "og:image", "https://julialang.org/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg"),
+    ]
++++
+
+<!-- @tlienart -- leave this here for now -->
 @def rss_pubdate = Date(2020, 9, 24)
-@def rss = """Since the release of Julia 1.5 we've gotten lots of rr traces. This tells the story of a particularly interesting one."""
 
 ~~~
   <link rel="stylesheet" type="text/css" href="/assets/blog/2020-05-02-rr/asciinema-player.css" />
@@ -89,7 +96,7 @@ What does this mean? First a quick refresher about how `rr` works: Basically, it
 The incoming register state is not strictly required (since it will be deterministically computed from the previous input state), but it can be useful for some analyses purposes, as well as allowing an additional check that replay is proceeding correctly.
 
 Now, what happened here is that `rr` expected to get a deterministic (`(det)`) segfault
-(i.e. one caused by the execution of an instruction, as opposed to being asynchronously sent by some other process e.g. using `kill -SIGSEGV`). 
+(i.e. one caused by the execution of an instruction, as opposed to being asynchronously sent by some other process e.g. using `kill -SIGSEGV`).
 However, instead of seeing this segfault, we ended up somewhere else: `but instead at
  'write'`. During the replay, `rr` found itself being told to execute a `write` system call rather than seeing the crash.
 We've already seen the output behavior of the program (basically one write for every episode),
@@ -136,7 +143,7 @@ rax:0x436487c0 rbx:0x7f0490b74330 rcx:0xb479 rdx:0x435f2dc8 rsi:0x435f2dc0 rdi:0
 6ca71230 r8:0x1 r9:0x7f0490b74330 r10:0x1007f0490b784d0 r11:0x4364d190 r12:0x0 r13:0x7f0490b88c70 r14:0x7f047daf36d0 r1
 5:0xb479 rip:0x7f049e2ba8e3 eflags:0x10287 cs:0x33 ss:0x2b ds:0x0 es:0x0 fs:0x0 gs:0x0 orig_rax:0xffffffffffffffff fs_b
 ase:0x7f0499f49240 gs_base:0x0                                                                                         
-} 
+}
 ```
 
 Let's start with explaining some terminology. While `rr` does keep track of elapsed wall clock time (`real_time` above), that notion of "time" is entirely informational. Instead, rather than dividing time into hours, seconds and minutes, `rr` divides time into `events`, `tid` (the kernel's thread id for each task; in circumstances where ids are reused an additional `serial` counter is computed, but not saved) and `ticks`. `events` are a global (over the tree of recorded processes) linear ordering of events that cause external modification to the process' memory (e.g. system calls or signals), whereas `ticks` are a per-task (think per-thread or per-`tid`) measure of forward progress. The exact metric depends on the CPU microarchitecture and what measurement hardware is available. Valid choices are e.g. `Number of retired instructions` or `Number of retired conditional branches`, but in theory any stable, reliable count of forward progress is sufficient, as long as it uniquely identifies (potentially in conjunction with the register state) a particular point in the execution (e.g. number of retired instructions works trivially and retired conditional branches mostly work, because that count in conjunction with the instruction pointer forms a monotonically increasing pair).
@@ -181,7 +188,7 @@ Alright, so that's a load from `r10`. Luckily `r10` is recorded in the trace: `r
 (rr) p jl_(0x7f0490b784d0)
 Array{Any, 1}
 $1 = void
-(rr) 
+(rr)
 ```
 
 Ok, so this is actually a pointer to a julia object (the type `Array{Any, 1}`) with a mysteriously set high bit. It's not necessarily unexpected for junk to junk data to look like valid pointers. Junk data often comes from uninitialized re-use of memory, and could certainly pick up part of a valid pointer if such a pointer was previously at that memory location. To narrow things down further, let's gather some more information. We're still 10000 ticks away from the place where the segfault was supposed to occur, but let's see what's currently happening in the process:
@@ -190,12 +197,12 @@ Ok, so this is actually a pointer to a julia object (the type `Array{Any, 1}`) w
 (rr) bt
 #0  type_hash (kj=<optimized out>, failed=failed@entry=0x7fff6ca7102c)
     at /buildworker/worker/package_linux64/build/src/jltypes.c:1003
-#1  0x00007f049e2b5856 in typekey_hash (nofail=0, n=<optimized out>, key=0x435f2dc8, 
+#1  0x00007f049e2b5856 in typekey_hash (nofail=0, n=<optimized out>, key=0x435f2dc8,
     tn=0x7f0490b99000 <jl_system_image_data+150848>) at /buildworker/worker/package_linux64/build/src/jltypes.c:1013
 #2  lookup_type (tn=0x7f0490b99000 <jl_system_image_data+150848>, key=0x435f2dc8, n=46200)
     at /buildworker/worker/package_linux64/build/src/jltypes.c:623
-#3  0x00007f049e2b9655 in inst_datatype_inner (dt=<optimized out>, p=<optimized out>, p@entry=0x435f2dc0, 
-    iparams=iparams@entry=0x435f2dc8, ntp=<optimized out>, cacheable=cacheable@entry=1, stack=stack@entry=0x0, 
+#3  0x00007f049e2b9655 in inst_datatype_inner (dt=<optimized out>, p=<optimized out>, p@entry=0x435f2dc0,
+    iparams=iparams@entry=0x435f2dc8, ntp=<optimized out>, cacheable=cacheable@entry=1, stack=stack@entry=0x0,
     env=0x0) at /buildworker/worker/package_linux64/build/src/jltypes.c:1158
 #4  0x00007f049e2bbefc in jl_inst_concrete_tupletype (p=p@entry=0x435f2dc0)
     at /buildworker/worker/package_linux64/build/src/jltypes.c:1399
@@ -226,7 +233,7 @@ Alright, so we're currently trying to allocate a tuple of `42600` elements, all 
 Breakpoint 1 at 0x7f049e2ba8e3: file /buildworker/worker/package_linux64/build/src/julia.h, line 1222.
 (rr) c
 Continuing.
-[FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig()] 
+[FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig()]
 ```
 
 we just get the divergence again, so it never actually reached this execution point, but diverged earlier (but only happened to crash there). Can we find out what happened? Looking back at the assembly, we see that `r10` was loaded from
@@ -252,16 +259,16 @@ Continuing.
 Thread 1 hit Hardware access (read/write) watchpoint 1: *(void**)0x436487c0
 
 Value = (void *) 0x7f0490b784d0 <jl_system_image_data+16912>
-0x00007f049e2b584e in typekey_hash (nofail=0, n=<optimized out>, key=0x435f2dc8, 
+0x00007f049e2b584e in typekey_hash (nofail=0, n=<optimized out>, key=0x435f2dc8,
     tn=0x7f0490b99000 <jl_system_image_data+150848>) at /buildworker/worker/package_linux64/build/src/jltypes.c:1013
 1013  /buildworker/worker/package_linux64/build/src/jltypes.c: No such file or directory.
 
 typekey_eq (key=key@entry=0x435f2dc8, n=n@entry=46200, tt=<optimized out>, tt=<optimized out>)
     at /buildworker/worker/package_linux64/build/src/jltypes.c:560
 560 in /buildworker/worker/package_linux64/build/src/jltypes.c
-(rr) 
+(rr)
 Continuing.
-[FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig()] 
+[FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig()]
  (task 19490 (rec:7760) at time 51911)
  -> Assertion `false' failed to hold. Replaying `SIGNAL: SIGSEGV(det)': expecting tracee signal or trap, but instead at `write' (ticks: 144040993972)
 ```
@@ -392,22 +399,22 @@ jl_isa (x=0x7f0478f5aa10, t=t@entry=0x7f0490b784d0 <jl_system_image_data+16912>)
 2064  /buildworker/worker/package_linux64/build/src/subtype.c: No such file or directory.
 #0  jl_isa (x=0x7f0478f5aa10, t=t@entry=0x7f0490b784d0 <jl_system_image_data+16912>)
     at /buildworker/worker/package_linux64/build/src/subtype.c:2064
-#1  0x00007f049e2cd91c in sig_match_simple (lensig=<optimized out>, va=1, sig=<optimized out>, n=46201, 
+#1  0x00007f049e2cd91c in sig_match_simple (lensig=<optimized out>, va=1, sig=<optimized out>, n=46201,
     args=0x42f54590, arg1=0x7f0492cdab30 <jl_system_image_data+35022960>)
     at /buildworker/worker/package_linux64/build/src/typemap.c:173
-#2  jl_typemap_entry_assoc_exact (ml=<optimized out>, arg1=arg1@entry=0x7f0492cdab30 <jl_system_image_data+35022960>, 
+#2  jl_typemap_entry_assoc_exact (ml=<optimized out>, arg1=arg1@entry=0x7f0492cdab30 <jl_system_image_data+35022960>,
     args=args@entry=0x42f54590, n=n@entry=46201, world=world@entry=27833)
     at /buildworker/worker/package_linux64/build/src/typemap.c:675
-#3  0x00007f049e2c914c in jl_typemap_assoc_exact (world=27833, offs=<optimized out>, n=46201, args=0x42f54590, 
+#3  0x00007f049e2c914c in jl_typemap_assoc_exact (world=27833, offs=<optimized out>, n=46201, args=0x42f54590,
     arg1=0x7f0492cdab30 <jl_system_image_data+35022960>, ml_or_cache=<optimized out>)
     at /buildworker/worker/package_linux64/build/src/julia_internal.h:1075
-#4  jl_lookup_generic_ (world=27833, callsite=<optimized out>, nargs=46201, args=0x42f54590, 
+#4  jl_lookup_generic_ (world=27833, callsite=<optimized out>, nargs=46201, args=0x42f54590,
     F=0x7f0492cdab30 <jl_system_image_data+35022960>) at /buildworker/worker/package_linux64/build/src/gf.c:2342
 #5  jl_apply_generic (F=0x7f0492cdab30 <jl_system_image_data+35022960>, args=args@entry=0x42f54590, nargs=46200)
     at /buildworker/worker/package_linux64/build/src/gf.c:2394
 #6  0x00007f049e2d8f04 in jl_apply (nargs=<optimized out>, args=0x42f54588)
     at /buildworker/worker/package_linux64/build/src/julia.h:1690
-#7  do_apply (args=<optimized out>, nargs=<optimized out>, iterate=0x7f0493df96f0 <jl_system_image_data+52974640>, 
+#7  do_apply (args=<optimized out>, nargs=<optimized out>, iterate=0x7f0493df96f0 <jl_system_image_data+52974640>,
     F=<optimized out>) at /buildworker/worker/package_linux64/build/src/builtins.c:655
 [snip]
 Current event: 51911
@@ -421,7 +428,7 @@ jl_isa (x=0x7f0478f5aa10, t=t@entry=0x7f0490b784d0 <jl_system_image_data+16912>)
 2064  in /buildworker/worker/package_linux64/build/src/subtype.c
 #0  jl_isa (x=0x7f0478f5aa10, t=t@entry=0x7f0490b784d0 <jl_system_image_data+16912>)
     at /buildworker/worker/package_linux64/build/src/subtype.c:2064
-#1  0x00007f049e2cd91c in sig_match_simple (lensig=<optimized out>, va=1, sig=<optimized out>, n=46201, 
+#1  0x00007f049e2cd91c in sig_match_simple (lensig=<optimized out>, va=1, sig=<optimized out>, n=46201,
     args=0x52409d10, arg1=0x7f0492cdab30 <jl_system_image_data+35022960>)
     at /buildworker/worker/package_linux64/build/src/typemap.c:173
 Current event: 51911

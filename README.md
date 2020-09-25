@@ -73,20 +73,13 @@ If in doubt, after running Franklin's server, copy the content of `__site/feed.x
 
 ### Metadata
 
-In order to add `<meta ... >` tags on your blog post, add
+In order to add `<meta aaa="bbb" content="ccc">` tags on your blog post, add
 
 ```julia
-@def meta = ("prop11"=>"val11", "prop21"=>"val21")
+@def meta =[("aaa", "bbb", "ccc"),]
 ```
 
-or for multiple tags
-
-```julia
-@def meta = [("prop11"=>"val11", "prop21"=>"val21"),
-             ("prop12"=>"val12", "prop22"=>"val22")]
-```
-
-see for instance [Keno's recent blog post](https://raw.githubusercontent.com/JuliaLang/www.julialang.org/master/blog/2020/05/rr.md).
+(you can specify multiple tags of course). See for instance [Keno's recent blog post](https://raw.githubusercontent.com/JuliaLang/www.julialang.org/master/blog/2020/05/rr.md).
 
 ## Looking for broken links
 

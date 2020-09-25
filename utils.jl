@@ -4,21 +4,33 @@ using Dates
     {{meta}}
 
 Plug in specific meta information for a blog page. The `meta` local page
-variable should be given as a list of tuples of pairs like so:
+variable should be given as an iterable of 3-tuples like so:
 ```
-@def meta = [("property"=>"og:video", "content"=>"http://example.com/"),
-             ("propery"=>"og:title", "content"=>"The Rock")]
+@def meta = [("property", "og:video", "http://example.com/"),
+             ("name", "twitter:player", "https://www.youtube.com/embed/XXXXXX")]
 ```
+A full example can be found in `blog/2020/05/rr.md`.
 """
 function hfun_meta()
-    m = locvar(:meta)
-    io = IOBuffer()
-    for tuple in locvar(:meta)
-        write(io, "<meta ")
-        for (prop, val) in tuple
-            write(io, "$prop=\"$val\" ")
+    p = "property"
+    # default og properties, can be over-written by the user
+    ogdflt = (
+        title = (p, "og:title", "The Julia Language"),
+        image = (p, "og:image", "/assets/images/julia-open-graph.png"),
+        descr = (p, "og:description", "Official website for the Julia programming language"),
+        )
+    # check what the user has provided (if anything) and override defaults
+    meta = locvar(:meta)
+    if !isnothing(meta)
+        for c in keys(ogdflt)
+            any(m -> m[2] == "og:$c", meta) || push!(meta, getindex(ogdflt, c))
         end
-        write(io, ">")
+    else
+        meta = values(ogdflt)
+    end
+    io = IOBuffer()
+    for m in meta
+        write(io, "<meta $(m[1])=\"$(m[2])\" content=\"$(m[3])\">\n")
     end
     return String(take!(io))
 end
