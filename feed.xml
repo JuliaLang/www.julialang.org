@@ -822,9 +822,9 @@
     <pubDate>Fri, 18 Jan 2019 00:00:00 UT</pubDate>
   </item>
   <item>
-    <title>Remotely Debugging Faulty Memory - an rr case study</title>
+    <title>Using time travel to remotely debug faulty DRAM</title>
     <link>https://julialang.org/blog/2020/09/rr-memory-magic/index.html</link>
-    <description><![CDATA[Since the release of Julia 1.5 we&#39;ve gotten lots of rr traces. This tells the story of a particularly interesting one.
+    <description><![CDATA[The story of debugging a mysterious Julia segfault.
 <br><a href="https://julialang.org/blog/2020/09/rr-memory-magic/index.html">Read more</a>]]></description>
     <guid>https://julialang.org/blog/2020/09/rr-memory-magic/index.html</guid>
     <pubDate>Thu, 24 Sep 2020 00:00:00 UT</pubDate>
