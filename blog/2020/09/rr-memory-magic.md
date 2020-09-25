@@ -3,6 +3,8 @@
 @def title = "Remotely Debugging Faulty Memory - an rr case study"
 @def rss_pubdate = Date(2020, 9, 24)
 @def rss = """Since the release of Julia 1.5 we've gotten lots of rr traces. This tells the story of a particularly interesting one."""
+@def meta = [("property" => "og:image",
+              "content" => "https://julialang.org/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg")]
 
 ~~~
   <link rel="stylesheet" type="text/css" href="/assets/blog/2020-05-02-rr/asciinema-player.css" />
