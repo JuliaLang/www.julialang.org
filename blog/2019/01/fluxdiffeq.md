@@ -338,7 +338,7 @@ m = Chain(
   Conv((2,2), 16=>8, relu),
   x -> maxpool(x, (2,2)),
   x -> reshape(x, :, size(x, 4)),
-  x -> solve(prob,Tsit5(),x=x,saveat=0.1)[1,:],
+  x -> solve(prob,Tsit5(),u0=x,saveat=0.1)[1,:],
   Dense(288, 10), softmax) |> gpu
 ```
 
@@ -457,7 +457,7 @@ function lotka_volterra_noise(du,u,p,t)
   du[1] = 0.1u[1]
   du[2] = 0.1u[2]
 end
-prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[1.0,1.0],(0.0,10.0))
+prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[1.0,1.0],(0.0,5.0))
 
 p = [2.2, 1.0, 2.0, 0.4]
 params = Flux.params(p)
