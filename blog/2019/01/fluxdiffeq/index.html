@@ -51,7 +51,7 @@ Flux.train!(loss_rd, params, data, opt, cb = cb)</code></pre> <p>The result of t
   Conv((<span class=hljs-number >2</span>,<span class=hljs-number >2</span>), <span class=hljs-number >16</span>=&gt;<span class=hljs-number >8</span>, relu),
   x -&gt; maxpool(x, (<span class=hljs-number >2</span>,<span class=hljs-number >2</span>)),
   x -&gt; reshape(x, :, size(x, <span class=hljs-number >4</span>)),
-  x -&gt; solve(prob,Tsit5(),x=x,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:],
+  x -&gt; solve(prob,Tsit5(),u0=x,saveat=<span class=hljs-number >0.1</span>)[<span class=hljs-number >1</span>,:],
   Dense(<span class=hljs-number >288</span>, <span class=hljs-number >10</span>), softmax) |&gt; gpu</code></pre> <p>As long as you can write down the forward pass, we can take any parameterised, differentiable program and optimise it. The world is your oyster.</p> <h2 id=why_is_a_full_ode_solver_suite_necessary_for_doing_this_well ><a href="#why_is_a_full_ode_solver_suite_necessary_for_doing_this_well">Why is a full ODE solver suite necessary for doing this well?</a></h2> <p>Where we have combined an existing solver suite and deep learning library, the excellent <a href="https://github.com/rtqichen/torchdiffeq">torchdiffeq</a> project takes an alternative approach, instead implementing solver methods directly in PyTorch, including an adaptive Runge Kutta 4-5 &#40;<code>dopri5</code>&#41; and an Adams-Bashforth-Moulton method &#40;<code>adams</code>&#41;. However, while their approach is very effective for certain kinds of models, not having access to a full solver suite is limiting.</p> <p>Consider the following example, the <a href="https://www.radford.edu/~thompson/vodef90web/problems/demosnodislin/Single/DemoRobertson/demorobertson.pdf">ROBER ODE</a>. The most well-tested &#40;and optimized&#41; implementation of an Adams-Bashforth-Moulton method is the <a href="https://computation.llnl.gov/projects/sundials">CVODE integrator in the C&#43;&#43; package SUNDIALS</a> &#40;a derivative of the classic LSODE&#41;. Let&#39;s use DifferentialEquations.jl to call CVODE with its Adams method and have it solve the ODE for us:</p> <pre><code class="julia hljs">rober = <span class=hljs-meta >@ode_def</span> Rober <span class=hljs-keyword >begin</span>
   dy₁ = -k₁*y₁+k₃*y₂*y₃
   dy₂ =  k₁*y₁-k₂*y₂^<span class=hljs-number >2</span>-k₃*y₂*y₃
@@ -81,7 +81,7 @@ loss_rd_dde()</code></pre> <p>The full code for this example, including generati
   du[<span class=hljs-number >1</span>] = <span class=hljs-number >0.1</span>u[<span class=hljs-number >1</span>]
   du[<span class=hljs-number >2</span>] = <span class=hljs-number >0.1</span>u[<span class=hljs-number >2</span>]
 <span class=hljs-keyword >end</span>
-prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[<span class=hljs-number >1.0</span>,<span class=hljs-number >1.0</span>],(<span class=hljs-number >0.0</span>,<span class=hljs-number >10.0</span>))
+prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[<span class=hljs-number >1.0</span>,<span class=hljs-number >1.0</span>],(<span class=hljs-number >0.0</span>,<span class=hljs-number >5.0</span>))
 
 p = [<span class=hljs-number >2.2</span>, <span class=hljs-number >1.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >0.4</span>]
 params = Flux.params(p)
