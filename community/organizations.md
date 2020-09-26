@@ -48,6 +48,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 ### Mathematics
 
 @@tight-list
+* [AlgebraicJulia](https://algebraicjulia.github.io/) – Applied Category Theory
 * [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](https://www.juliadiff.org/)
 * [JuliaGeometry](https://github.com/JuliaGeometry) – Computational Geometry
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
