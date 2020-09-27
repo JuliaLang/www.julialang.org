@@ -108,7 +108,7 @@
     </div>
     <br>
 
-    <p>Interested in getting a Julia book? Check out the <a href="books/">amazing books members of our community has written</a> since Julia was created.</p>
+    <p>Interested in getting a Julia book? Check out the <a href="books/">amazing books members of our community have written</a> since Julia was created.</p>
     <img src="assets/books.png" alt="Julia book collection" class="img-fluid">
   </div>
   <br><br>
