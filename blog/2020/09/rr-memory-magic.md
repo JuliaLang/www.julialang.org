@@ -64,7 +64,7 @@ unknown function (ip: 0x7f0483dd8205)
 
 but instead, we get an internal `rr` error:
 
-```raw
+```plaintext
 [FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig()]                                                     
  (task 17107 (rec:7760) at time 51911)                                                                                 
  -> Assertion `false' failed to hold. Replaying `SIGNAL: SIGSEGV(det)': expecting tracee signal or trap, but instead at
@@ -89,7 +89,7 @@ This is the point where Tim asked me to take over, since that really isn't suppo
 Now, the error message here may look a bit scary, but let's parse it out part by part. The actual error message
 is:
 
-```raw
+```plaintext
 Replaying `SIGNAL: SIGSEGV(det)': expecting tracee signal or trap, but instead at
  `write' (ticks: 144040993972)
 ```
@@ -111,7 +111,7 @@ so a reasonable guess is that during replay, it instead successfully finished th
 
 However, looking through the raw trace (the event log obtained using `rr dump`) and asking for hardware details, nothing particularly suspicious came to mind, so I set to analyzing the trace itself. In the listing above, I snipped out the events before the segfaults, but here they are for reference, so we can talk about them a bit:
 
-```raw
+```plaintext
 {
   real_time:38257.562367 global_time:51903, event:`SYSCALL: write' (state:ENTERING_SYSCALL) tid:7760, ticks:143983372177
 rax:0xffffffffffffffda rbx:0x681fffa0 rcx:0xffffffffffffffff rdx:0x4 rsi:0x7f046a9a0338 rdi:0xd rbp:0xd rsp:0x681ffe10 r8:0x0 r9:0x7f0490095f90 r10:0x7f0475ad7bb0 r11:0x246 r12:0x0 r13:0x7f046a9a0338 r14:0x4 r15:0x7f046a9a0338 rip:0x70000002 eflags:0x246 cs:0x33 ss:0x2b ds:0x0 es:0x0 fs:0x0 gs:0x0 orig_rax:0x1 fs_base:0x7f0499f49240 gs_base:0x0
