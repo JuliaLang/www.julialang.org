@@ -1,4 +1,5 @@
 using Dates
+using TimeZones
 
 """
     {{meta}}
@@ -169,4 +170,12 @@ function hfun_author_twitter()
         end
     end
     return ""
+end
+function hfun_zone()
+    zone=localzone().name
+    if length(zone)>0
+        return zone
+    else
+        return "UTC"
+    end
 end
