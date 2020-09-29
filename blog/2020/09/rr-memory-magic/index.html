@@ -81,10 +81,10 @@ Dump of assembler code <span class=hljs-keyword >for</span> <span class=hljs-key
 [snip]
    <span class=hljs-number >0x00007f049e2ba8e0</span> &lt;+<span class=hljs-number >96</span>&gt;:  mov    (%rax),%r10
    <span class=hljs-number >0x00007f049e2ba8e3</span> &lt;+<span class=hljs-number >99</span>&gt;:  mov    -<span class=hljs-number >0x8</span>(%r10),%r9
-[snip]</code></pre> <p>Alright, so that&#39;s a load from <code>r10</code>. Luckily <code>r10</code> is recorded in the trace: <code>r10:0x1007f0490b784d0</code>. A seasoned debugger will quickly recognize this pointer as too wide. In particular, in general, for use space pointers, the high byte is <code>0x00</code>, but here it is <code>0x01</code> &#40;gdb drops leading zeros&#41;. Sometimes unused pointer bits are used for extra information, but at least julia itself only uses the unused low bits for this purpose, not the high bits. That said, this trace included a significant number of external native libraries &#40;including a full python environment&#41;, so it&#39;s certainly possible that some external library would have used such pointer tagging techniques. Let&#39;s do some more investigation. The first thing I tried to do was take a look at the pointer with the high bit manually cleared to see if it was a valid Julia object at all or just some junk that somehow ended up being loaded from:</p> <pre><code class="julia hljs">(rr) p jl_(<span class=hljs-number >0x7f0490b784d0</span>)
+[snip]</code></pre> <p>Alright, so that&#39;s a load from <code>r10</code>. Luckily <code>r10</code> is recorded in the trace: <code>r10:0x1007f0490b784d0</code>. A seasoned debugger will quickly recognize this pointer as too wide. In particular, in general, for user space pointers, the high byte is <code>0x00</code>, but here it is <code>0x01</code> &#40;gdb drops leading zeros&#41;. Sometimes unused pointer bits are used for extra information, but at least julia itself only uses the unused low bits for this purpose, not the high bits. That said, this trace included a significant number of external native libraries &#40;including a full python environment&#41;, so it&#39;s certainly possible that some external library would have used such pointer tagging techniques. Let&#39;s do some more investigation. The first thing I tried to do was take a look at the pointer with the high bit manually cleared to see if it was a valid Julia object at all or just some junk that somehow ended up being loaded from:</p> <pre><code class="julia hljs">(rr) p jl_(<span class=hljs-number >0x7f0490b784d0</span>)
 <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Any</span>, <span class=hljs-number >1</span>}
 $<span class=hljs-number >1</span> = void
-(rr)</code></pre> <p>Ok, so this is actually a pointer to a julia object &#40;the type <code>Array&#123;Any, 1&#125;</code>&#41; with a mysteriously set high bit. It&#39;s not necessarily unexpected for junk to junk data to look like valid pointers. Junk data often comes from uninitialized re-use of memory, and could certainly pick up part of a valid pointer if such a pointer was previously at that memory location. To narrow things down further, let&#39;s gather some more information. We&#39;re still 10000 ticks away from the place where the segfault was supposed to occur, but let&#39;s see what&#39;s currently happening in the process:</p> <pre><code class="julia hljs">(rr) bt
+(rr)</code></pre> <p>Ok, so this is actually a pointer to a julia object &#40;the type <code>Array&#123;Any, 1&#125;</code>&#41; with a mysteriously set high bit. It&#39;s not necessarily unexpected for junk data to look like valid pointers. Junk data often comes from uninitialized re-use of memory, and could certainly pick up part of a valid pointer if such a pointer was previously at that memory location. To narrow things down further, let&#39;s gather some more information. We&#39;re still 10000 ticks away from the place where the segfault was supposed to occur, but let&#39;s see what&#39;s currently happening in the process:</p> <pre><code class="julia hljs">(rr) bt
 <span class=hljs-comment >#0  type_hash (kj=&lt;optimized out&gt;, failed=failed@entry=0x7fff6ca7102c)</span>
     at /buildworker/worker/package_linux64/build/src/jltypes.c:<span class=hljs-number >1003</span>
 <span class=hljs-comment >#1  0x00007f049e2b5856 in typekey_hash (nofail=0, n=&lt;optimized out&gt;, key=0x435f2dc8,</span>
@@ -197,7 +197,10 @@ $<span class=hljs-number >9</span> = (void **) <span class=hljs-number >0x7f0478
 Hardware access (read/write) watchpoint <span class=hljs-number >6</span>: *<span class=hljs-number >0x7f0478f5aa08</span>
 
 (rr) command <span class=hljs-number >6</span>
-
+     when
+     when-ticks
+     c
+     <span class=hljs-keyword >end</span>
 
 (rr) rc
 Continuing.
