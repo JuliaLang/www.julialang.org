@@ -184,7 +184,7 @@ Dump of assembler code for function jl_apply_tuple_type:
 [snip]
 ```
 
-Alright, so that's a load from `r10`. Luckily `r10` is recorded in the trace: `r10:0x1007f0490b784d0`. A seasoned debugger will quickly recognize this pointer as too wide. In particular, in general, for use space pointers, the high byte is `0x00`, but here it is `0x01` (gdb drops leading zeros). Sometimes unused pointer bits are used for extra information, but at least julia itself only uses the unused low bits for this purpose, not the high bits. That said, this trace included a significant number of external native libraries (including a full python environment), so it's certainly possible that some external library would have used such pointer tagging techniques. Let's do some more investigation. The first thing I tried to do was take a look at the pointer with the high bit manually cleared to see if it was a valid Julia object at all or just some junk that somehow ended up being loaded from:
+Alright, so that's a load from `r10`. Luckily `r10` is recorded in the trace: `r10:0x1007f0490b784d0`. A seasoned debugger will quickly recognize this pointer as too wide. In particular, in general, for user space pointers, the high byte is `0x00`, but here it is `0x01` (gdb drops leading zeros). Sometimes unused pointer bits are used for extra information, but at least julia itself only uses the unused low bits for this purpose, not the high bits. That said, this trace included a significant number of external native libraries (including a full python environment), so it's certainly possible that some external library would have used such pointer tagging techniques. Let's do some more investigation. The first thing I tried to do was take a look at the pointer with the high bit manually cleared to see if it was a valid Julia object at all or just some junk that somehow ended up being loaded from:
 
 ```
 (rr) p jl_(0x7f0490b784d0)
@@ -193,7 +193,7 @@ $1 = void
 (rr)
 ```
 
-Ok, so this is actually a pointer to a julia object (the type `Array{Any, 1}`) with a mysteriously set high bit. It's not necessarily unexpected for junk to junk data to look like valid pointers. Junk data often comes from uninitialized re-use of memory, and could certainly pick up part of a valid pointer if such a pointer was previously at that memory location. To narrow things down further, let's gather some more information. We're still 10000 ticks away from the place where the segfault was supposed to occur, but let's see what's currently happening in the process:
+Ok, so this is actually a pointer to a julia object (the type `Array{Any, 1}`) with a mysteriously set high bit. It's not necessarily unexpected for junk data to look like valid pointers. Junk data often comes from uninitialized re-use of memory, and could certainly pick up part of a valid pointer if such a pointer was previously at that memory location. To narrow things down further, let's gather some more information. We're still 10000 ticks away from the place where the segfault was supposed to occur, but let's see what's currently happening in the process:
 
 ```
 (rr) bt
@@ -375,7 +375,10 @@ in time) to see if we find anything suspicious:
 Hardware access (read/write) watchpoint 6: *0x7f0478f5aa08
 
 (rr) command 6
-
+     when
+     when-ticks
+     c
+     end
 
 (rr) rc
 Continuing.
