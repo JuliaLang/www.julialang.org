@@ -8,8 +8,8 @@
    <div class="row">
      <div class="col-lg-4 col-md-3 language-features "><hr/></div>
      <div class="col-lg-4 col-md-6 language-features section-heading">
-       <h2 class="lead secondary-heading">
-         Community Standards
+       <h2 class="lead secondary-heading" id="community_standards">
+         <a href="#community_standards" class="link">Community Standards</a>
        </h2>
      </div>
      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
@@ -29,8 +29,8 @@
    <div class="row">
      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
-       <h2 class="lead secondary-heading">
-         Official Channels
+       <h2 class="lead secondary-heading" id="official_channels">
+         <a href="#official_channels" class="ecosystem">Official Channels</a>
        </h2>
      </div>
      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
@@ -95,7 +95,9 @@
      <div class="row">
        <div class="col-lg-4 col-md-3 language-features"><hr/></div>
        <div class="col-lg-4 col-md-6 language-features section-heading">
-         <h2 class="lead secondary-heading">Events</h2>
+         <h2 class="lead secondary-heading" id="events">
+          <a href="#events" class="link">Events</a>
+         </h2>
        </div>
        <div class="col-lg-4 col-md-3 language-features"><hr/></div>
      </div>
@@ -122,8 +124,10 @@
     <div class="row">
       <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
       <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
-        <h2 class="lead secondary-heading">
-          Julia User and Developer Survey
+        <h2 class="lead secondary-heading" id="julia_user_and_developer_survey">
+          <a href="#julia_user_and_developer_survey" class="ecosystem">
+            Julia User and Developer Survey
+          </a>
         </h2>
       </div>
       <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
@@ -148,7 +152,9 @@
      <div class="row">
        <div class="col-lg-4 col-md-3 language-features"><hr/></div>
        <div class="col-lg-4 col-md-6 language-features section-heading">
-         <h2 class="lead secondary-heading">Localization</h2>
+         <h2 class="lead secondary-heading" id="localization">
+          <a href="#localization" class="link">Localization</a>
+         </h2>
        </div>
        <div class="col-lg-4 col-md-3 language-features"><hr/></div>
      </div>
@@ -174,8 +180,8 @@
     <div class="row">
       <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
       <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
-        <h2 class="lead secondary-heading">
-          Julia GitHub Orgs
+        <h2 class="lead secondary-heading" id="julia_github_orgs">
+          <a href="#julia_github_orgs" class="ecosystem">Julia GitHub Orgs</a>
         </h2>
       </div>
       <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
