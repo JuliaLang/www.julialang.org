@@ -93,6 +93,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [EE103](https://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2014, Fall 2015
     * [CME 257](https://github.com/icme/cme257-advanced-julia/), Advanced Topics in Scientific Computing with Julia (Mr. [Brad Nelson](https://github.com/bnels)), Fall 2015
     * [EE266](http://ee266.stanford.edu/), Stochastic Control (Prof. Sanjay Lall), Spring 2016
+* Tec de Monterrey, Santa Fe Campus, Mexico City
+   * [IN2022](https://samp.itesm.mx/Materias/VistaPreliminarMateria?clave=IN2022&lang=ES), Modelos de Optimización (Prof. [Marzieh Khakifirooz](https://www.linkedin.com/in/marzieh-khakifirooz-a3b85643/)), Spring 2020
 * Tokyo Metropolitan University, Tokyo, Japan
     * L0407, [Exercises in Programming I for Mechanical Systems Engineering](https://github.com/hsugawa8651/mseprogOne) (Hiroharu Sugawara): Fall 2018, Fall 2019
 * [TU Dortmund / SFB 823](https://www.statistik.tu-dortmund.de/sfb823.html), Germany
