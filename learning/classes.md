@@ -30,8 +30,9 @@ If you know of other classes using Julia for teaching, please consider updating 
 * [Federal University of Alagoas](https://ufal.br) (_Universidade Federal de Alagoas_, UFAL)
     * COMP272, Distributed Systems ([Prof. André Lage-Freitas](https://sites.google.com/a/ic.ufal.br/andrelage)): 2015, 2016, and 2017
 * [Federal University of Paraná](https://www.ufpr.br/) (_Universidade Federal do Paraná_, UFPR)
-    * CM103, Mathematics Laboratory ([Prof. Abel Soares Siqueira](https://abelsiqueira.github.io/)): 2016, 2017, and 2018
-    * CM106, Nonlinear Optimization ([Prof. Abel Soares Siqueira](https://abelsiqueira.github.io/)): 2018
+    * [CM103](https://abelsiqueira.github.io/cm103-2019s2/), Laboratório de Matemática Aplicada (Prof. Abel Soares Siqueira), 2016, 2017, and 2018, 2019
+    * [CMM014](https://abelsiqueira.github.io/cmm014-2019s1/), Cálculo Numérico (Prof. Abel Soares Siqueira), 2019
+    * [CM106/CMI043/CMM204/MNUM7079](https://www.youtube.com/playlist?list=PLOOY0eChA1uyk_01nGJVmcQGvcJq9h6_6), Otimização Não Linear (Prof. Abel Soares Siqueira), 2018, 2020
 * Federal University of Uberlândia, Institute of Physics
     * [GFM050](https://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
 * Hadsel High School, Stokmarknes, Nordland, Norway
