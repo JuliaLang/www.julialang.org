@@ -56,6 +56,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
 * [JuMP (formerly JuliaOpt)](http://jump.dev) – JuMP is a modeling language and supporting packages for mathematical optimization in Julia
 * [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
+* [JuliaSmoothOptimizers](https://github.com/JuliaSmoothOptimizers) - Framework for the development of solvers for continuous nonlinear optimization
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
 * [SciML (formerly JuliaDiffEq)](https://github.com/SciML) – [Open source software for scientific machine learning](https://sciml.ai) ([Gitter](https://gitter.im/JuliaDiffEq/Lobby))
 * [JuliaNLSolvers](https://github.com/JuliaNLSolvers)
