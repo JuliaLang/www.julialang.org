@@ -16,7 +16,6 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 
 @@tight-list
 * [Julia-i18n](https://github.com/Julia-i18n) – Internationalization (i18n) and localization (L10n) for Julians ([Twitter](https://twitter.com/julia_i18n), [Gitter](https://gitter.im/Julia-i18n/julia-i18n))
-* [JuliaAttic](https://github.com/JuliaAttic) - Unmaintained/fully deprecated Julia packages/repositories
 * [JuliaCollections](https://github.com/JuliaCollections) - Collections, Data Structures, and Algorithms for Julia
 * [JuliaDebug](https://github.com/JuliaDebug)
 * [JuliaDocs](https://github.com/juliadocs) – Documentation-related packages for Julia ([Gitter](https://gitter.im/juliadocs/users))
