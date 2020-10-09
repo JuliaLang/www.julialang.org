@@ -54,7 +54,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaIntervals](https://github.com/JuliaIntervals) - Rigorous numerics with interval arithmetic & applications
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
-* [JuliaOpt](https://github.com/JuliaOpt) – [Optimization](http://www.juliaopt.org/) ([Gitter](https://gitter.im/JuliaOpt/home))
+* [JuMP.jl](http://jump.dev) – JuMP is a modeling language and supporting packages for mathematical optimization in Julia
 * [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
 * [SciML (formerly JuliaDiffEq)](https://github.com/SciML) – [Open source software for scientific machine learning](https://sciml.ai) ([Gitter](https://gitter.im/JuliaDiffEq/Lobby))
