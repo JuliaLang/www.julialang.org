@@ -113,6 +113,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [IE 572](https://www.chkwon.net/teaching/#ie-572-linear-programming/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
 * University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016
     * Computational Neuroscience (2070FBDBMW), Master of Biomedical Sciences, of Biochemistry, of Physics ([Michele Giugliano](https://www.uantwerpen.be/popup/opleidingsonderdeel.aspx?catalognr=2070FBDBMW&amp;taal=nl&amp;aj=2016))
+* University of Basel, Department of Physics
+    * [Classical Mechanics](https://www.quantumtheory-bruder.physik.unibas.ch) (Prof. Christoph Bruder), Fall 2020
 * University of California, Los Angeles (UCLA)
     * [Stat M230/Biomath 280/Biostat M280](https://hua-zhou.github.io/teaching/biostatm280-2017spring/), Statistical Computing, Spring 2017 (Prof. [Hua Zhou](https://github.com/Hua-Zhou))
 * University of Cologne, Institute for Theoretical Physics
