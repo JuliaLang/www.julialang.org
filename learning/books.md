@@ -1,6 +1,7 @@
 ## Books
 
 @@tight-list
+* Bogumił Kamiński and Paweł Prałat. [Train Your Brain - Challenging Yet Elementary Mathematics](https://www.ryerson.ca/train-your-brain/), December 2020.
 * Ahan Sengupta [The Little Book of Julia Algorithms](https://www.amazon.com/Little-Book-Julia-Algorithms-programming/dp/1838173609/). SAV Publishing, September 2020.
 * Zacharias Voulgaris. [Julia for Machine Learning](https://technicspub.com/julia/). Technics Publications, June 2020.
 * Tom Kwong. [Hands-on Design Patterns and Best Practices with Julia](https://www.packtpub.com/application-development/hands-design-patterns-julia-10).  Packt Publishing, January 2020.
