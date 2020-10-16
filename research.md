@@ -59,6 +59,7 @@ We welcome additions to this list in the form of [pull requests](https://github.
 ## 2020
 
 @@tight-list
+* **Scalable and Flexible Clustering of Grouped Data via Parallel and Distributed Sampling in Versatile Hierarchical Dirichlet Processes**. Or Dinari, Oren Freifeld. (2020) _In Conference on Uncertainty in Artificial Intelligence, pp. 231-240._ url: <http://www.auai.org/uai2020/proceedings/115_main_paper.pdf>. Package: [VersatileHDPMixtureModels.jl](https://github.com/BGU-CS-VIL/VersatileHDPMixtureModels.jl).
 * **Sequential Bayesian inference for vector autoregressions with stochastic volatility**. Mark Bognanni, John Zito. (2020) _Journal of Economic Dynamics and Control_, 113: 103851. doi: [10.1016/j.jedc.2020.103851](https://doi.org/10.1016/j.jedc.2020.103851). url: <http://www.sciencedirect.com/science/article/pii/S016518892030021X>.
 * **Automatic Differentiation for Solid Mechanics**. Andrea Vigliotti, Ferdinando Auricchio. (2020) _Archives of Computational Methods in Engineering_. doi: [10.1007/s11831-019-09396-y](https://doi.org/10.1007/s11831-019-09396-y). url: <https://link.springer.com/article/10.1007%2Fs11831-019-09396-y>. preprint: <https://arxiv.org/abs/2001.07366>
 @@
