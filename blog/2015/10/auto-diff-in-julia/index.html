@@ -94,7 +94,7 @@ julia&gt; deriv1 - deriv2
             exp(len_recip*sum_cos) + a + <span class=hljs-literal >e</span>)
 <span class=hljs-keyword >end</span></code></pre> <p>...and here&#39;s the corresponding Python definition:</p> <pre><code class="python hljs"><span class=hljs-function ><span class=hljs-keyword >def</span> <span class=hljs-title >ackley</span>(<span class=hljs-params >x</span>):</span>
     a, b, c = <span class=hljs-number >20.0</span>, <span class=hljs-number >-0.2</span>, <span class=hljs-number >2.0</span>*numpy.pi
-    len_recip = <span class=hljs-number >1.0</span>/len(x)
+    len_recip = <span class=hljs-number >1.0</span>/<span class=hljs-built_in >len</span>(x)
     sum_sqrs, sum_cos = <span class=hljs-number >0.0</span>, <span class=hljs-number >0.0</span>
     <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> x:
         sum_cos += algopy.cos(c*i)
