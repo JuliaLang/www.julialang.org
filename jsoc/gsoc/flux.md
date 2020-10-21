@@ -12,6 +12,19 @@ Develop a series of reinforcement learning environments, in the spirit of the [O
 
 Mentors: [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
 
+### Reinforcement Learning Algorithms
+
+Recent advances in reinforcement learning led to many breakthroughs in artificial intelligence. Some of the latest deep reinforcement learning algorithms have been implemented in [ReinforcementLearning.jl](https://github.com/JuliaReinforcementLearning/ReinforcementLearning.jl) with Flux. We'd like to have more interesting and practical algorithms added to enrich the whole community, including but not limited to the following directions:
+
+* Recurrent version of existing algorithms.
+* A general framework for scalable distributed reinforcement learning.
+* Offline reinforcement learning algorithms.
+* Algorithms for imperfect information environments.
+* Multi-agent reinforcement learning algorithms
+* Model-based reinforcement learning algorithms.
+
+Mentors: [Jun Tian](https://github.com/findmyway)
+
 ### NLP Tools and Models
 
 Build deep learning models for Natural Language Processing in Julia. [TextAnalysis](https://github.com/juliatext/TextAnalysis.jl)  and [WordTokenizers](https://github.com/JuliaText/WordTokenizers.jl) contains the basic algorithms and data structures to work with textual data in Julia. On top of that base, we want to build modern deep learning models based on recent research. The following tasks can span multiple students and projects.
