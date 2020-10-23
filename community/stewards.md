@@ -6,7 +6,7 @@ The spirit of community is crucial to free/open-source development. In the large
 
 ## Stewards of the Community Standards
 
-All members of the Julia community are expected to abide by the community standards and encourage others to do so. To ensure that some group has the obligation and authority to cope with conflicts, a group known as the “Julia Stewards” has been created. The current membership of this group is:
+All members of the Julia community are expected to abide by the community standards and encourage others to do so. To ensure that some group has the obligation and authority to cope with conflicts, a Google Group known as the “Julia Stewards” has been created. The current membership of this group is:
 
 @@tight-list
 * Milan Bouchet-Valat
