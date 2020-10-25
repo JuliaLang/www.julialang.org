@@ -1,0 +1,4 @@
+Sitemap: https://julialang.org/sitemap.xml
+
+User-agent: *
+Disallow:
