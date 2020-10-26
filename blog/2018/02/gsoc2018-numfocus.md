@@ -32,4 +32,4 @@ Happy coding!
 [apply]: /jsoc/guidelines/
 [nf-ann]: https://www.numfocus.org/blog/applications-are-open-for-google-summer-of-code-with-numfocus/
 [discourse]: https://discourse.julialang.org
-[slack]: http://slackinvite.julialang.org
+[slack]: http://julialang.org/slack/
