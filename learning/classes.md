@@ -13,7 +13,7 @@ If you know of other classes using Julia for teaching, please consider updating 
 * Brown University
     * [CSCI 1810](https://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael), Fall 2014
 * [Budapest University of Technology and Economics](https://www.bme.hu/)
-    * [Applications of Differential Equations and Vector Analysis for Engineers II.] ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
+    * [Applications of Differential Equations and Vector Analysis for Engineers II. (Brigitta Szilágyi)](https://sites.google.com/site/brszilagyi/)
 * City University of New York
     * [MTH 229](https://www.math.csi.cuny.edu/abhijit/229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](https://mth229.github.io) page.
 * Cornell University
