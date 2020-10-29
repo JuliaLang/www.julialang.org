@@ -65,10 +65,9 @@ To start running Julia from the Terminal, you can do the following:
 
 Navigate to `/usr/local/bin` and remove the `julia` file. Then type the following command:
 
-
-```
-ln -s /Applications/Julia-{{stable_release_short}}.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
-```
+~~~
+<pre><code class="language-shell">ln -s /Applications/Julia-{{stable_release_short}}.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia</code></pre>
+~~~
 
 which creates a symlink to a Julia version (here {{stable_release_short}}) of your choosing.
 Once that is done, you can close the shell profile page and quit Terminal. Now, just simply open Terminal again, type in `julia` in it, and it should run your version of Julia!
@@ -79,10 +78,10 @@ You can uninstall Julia by deleting Julia.app and the packages directory in `~/.
 
 It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following set of commands downloads the latest version of Julia into a directory named ~~~<code>julia-{{stable_release}}</code>~~~.
 
-```
-wget https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{ stable_release }}-linux-x86_64.tar.gz
-tar zxvf julia-{{ stable_release }}-linux-x86_64.tar.gz
-```
+~~~
+<pre><code class="language-shell">wget https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{ stable_release }}-linux-x86_64.tar.gz
+tar zxvf julia-{{ stable_release }}-linux-x86_64.tar.gz</code></pre>
+~~~
 
 ### Running Julia
 
