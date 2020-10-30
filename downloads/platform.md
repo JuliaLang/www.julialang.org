@@ -95,7 +95,7 @@ To run Julia, you can do any of the following:
 
 To add Julia's `bin` folder (with full path) to `PATH` environment variable, you can edit the `~/.bashrc` (or `~/.bash_profile`) file. Open the file in your favourite editor and add a new line as follows:
 
-```
+```shell
 export PATH="$PATH:/path/to/<Julia directory>/bin"
 ```
 
@@ -117,7 +117,7 @@ The following distribution-specific packages are community contributed. They may
 
 If you use Chocolatey for package management, you can install the latest Julia release by executing the following one-liner, in either a powershell or command prompt:
 
-```
+```shell
 choco install julia --confirm
 ```
 
@@ -129,7 +129,7 @@ Chocolatey automatically creates a shim for the Julia executable, so you simply 
 
 Julia can be installed using the [Homebrew package manager](https://brew.sh/) as follows:
 
-```
+```shell
 brew cask install julia
 ```
 
@@ -145,7 +145,7 @@ If you are using RHEL, CentOS, Scientific Linux or Oracle Enterprise Linux (vers
 
 If you are using Fedora (version 19 or higher), directly run:
 
-```
+```shell
 sudo dnf copr enable nalimilan/julia
 sudo yum install julia
 ```
@@ -165,14 +165,14 @@ Note that Fedora guidelines advise against uploading new breaking releases to of
 
 Recent Debian/ubuntu distributions include their own build of Julia, which can be installed in the usual way. Check the versions of Julia provided in [Ubuntu](https://packages.ubuntu.com/search?keywords=julia) and [Debian](https://packages.debian.org/search?keywords=julia). If this is not the version of Julia you want, you will need to use the official binaries.
 
-```
+```shell
 sudo apt install julia
 ```
 
 ## Arch Linux
 The Arch User Repository has [a package for Julia](https://aur.archlinux.org/packages/julia-bin) that is built from the official binaries of Julia. To install it run:
 
-```
+```shell
 sudo pacman -S base-devel git
 git clone https://aur.archlinux.org/julia-bin.git
 cd julia-bin
@@ -183,6 +183,6 @@ makepkg -si
 
 Julia is available in the [Ports Collection](https://svnweb.freebsd.org/ports/head/lang/julia/). To install from the FreeBSD binary package manager, `pkg`, run
 
-```
+```shell
 pkg install julia
 ```
