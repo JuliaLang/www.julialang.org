@@ -13,7 +13,7 @@ If you know of other classes using Julia for teaching, please consider updating 
 * Brown University
     * [CSCI 1810](https://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael), Fall 2014
 * [Budapest University of Technology and Economics](https://www.bme.hu/)
-    * [Applications of Differential Equations and Vector Analysis for Engineers II.] ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
+    * Applications of Differential Equations and Vector Analysis for Engineers II ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
 * City University of New York
     * [MTH 229](https://www.math.csi.cuny.edu/abhijit/229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](https://mth229.github.io) page.
 * Cornell University
@@ -30,8 +30,9 @@ If you know of other classes using Julia for teaching, please consider updating 
 * [Federal University of Alagoas](https://ufal.br) (_Universidade Federal de Alagoas_, UFAL)
     * COMP272, Distributed Systems ([Prof. André Lage-Freitas](https://sites.google.com/a/ic.ufal.br/andrelage)): 2015, 2016, and 2017
 * [Federal University of Paraná](https://www.ufpr.br/) (_Universidade Federal do Paraná_, UFPR)
-    * CM103, Mathematics Laboratory ([Prof. Abel Soares Siqueira](https://abelsiqueira.github.io/)): 2016, 2017, and 2018
-    * CM106, Nonlinear Optimization ([Prof. Abel Soares Siqueira](https://abelsiqueira.github.io/)): 2018
+    * [CM103](https://abelsiqueira.github.io/cm103-2019s2/), Laboratório de Matemática Aplicada (Prof. Abel Soares Siqueira), 2016, 2017, and 2018, 2019
+    * [CMM014](https://abelsiqueira.github.io/cmm014-2019s1/), Cálculo Numérico (Prof. Abel Soares Siqueira), 2019
+    * [CM106/CMI043/CMM204/MNUM7079](https://www.youtube.com/playlist?list=PLOOY0eChA1uyk_01nGJVmcQGvcJq9h6_6), Otimização Não Linear (Prof. Abel Soares Siqueira), 2018, 2020
 * Federal University of Uberlândia, Institute of Physics
     * [GFM050](https://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
 * Hadsel High School, Stokmarknes, Nordland, Norway
@@ -93,6 +94,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [EE103](https://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2014, Fall 2015
     * [CME 257](https://github.com/icme/cme257-advanced-julia/), Advanced Topics in Scientific Computing with Julia (Mr. [Brad Nelson](https://github.com/bnels)), Fall 2015
     * [EE266](http://ee266.stanford.edu/), Stochastic Control (Prof. Sanjay Lall), Spring 2016
+* Tec de Monterrey, Santa Fe Campus, Mexico City
+   * [IN2022](https://samp.itesm.mx/Materias/VistaPreliminarMateria?clave=IN2022&lang=ES), Modelos de Optimización (Prof. [Marzieh Khakifirooz](https://www.linkedin.com/in/marzieh-khakifirooz-a3b85643/)), Spring 2020
 * Tokyo Metropolitan University, Tokyo, Japan
     * L0407, [Exercises in Programming I for Mechanical Systems Engineering](https://github.com/hsugawa8651/mseprogOne) (Hiroharu Sugawara): Fall 2018, Fall 2019
 * [TU Dortmund / SFB 823](https://www.statistik.tu-dortmund.de/sfb823.html), Germany
@@ -110,6 +113,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [IE 572](https://www.chkwon.net/teaching/#ie-572-linear-programming/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
 * University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016
     * Computational Neuroscience (2070FBDBMW), Master of Biomedical Sciences, of Biochemistry, of Physics ([Michele Giugliano](https://www.uantwerpen.be/popup/opleidingsonderdeel.aspx?catalognr=2070FBDBMW&amp;taal=nl&amp;aj=2016))
+* University of Basel, Department of Physics
+    * [Classical Mechanics](https://www.quantumtheory-bruder.physik.unibas.ch) (Prof. Christoph Bruder), Fall 2020
 * University of California, Los Angeles (UCLA)
     * [Stat M230/Biomath 280/Biostat M280](https://hua-zhou.github.io/teaching/biostatm280-2017spring/), Statistical Computing, Spring 2017 (Prof. [Hua Zhou](https://github.com/Hua-Zhou))
 * University of Cologne, Institute for Theoretical Physics
@@ -130,8 +135,10 @@ If you know of other classes using Julia for teaching, please consider updating 
 *   University of Oulu
     *   Invited [Advanced Julia Workshop](https://github.com/crstnbr/JuliaOulu20) (MSc. Carsten Bauer, University of Cologne), Spring 2020
 * University of South Florida
-    * [ESI 6491](https://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon), Fall 2015
-    * [EIN 6945](https://www.chkwon.net/teaching/ein-6935/), Nonlinear Optimization and Game Theory (Prof. [Changhyun Kwon](https://www.chkwon.net/)), Spring 2016
+    * ESI 4312, Deterministic Operations Research (Prof. Changhyun Kwon), Fall 2017–Fall 2020
+    * ESI 6410, Optimization in O.R. (Prof. Changhyun Kwon), Spring 2021
+    * [ESI 6491](https://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon), Fall 2015–Fall 2020
+    * [EIN 6945](https://www.chkwon.net/teaching/ein-6935/), Nonlinear Optimization and Game Theory (Prof. [Changhyun Kwon](https://www.chkwon.net/)), Spring 2016, 2018, 2020
 * University of Sydney
     * [MATH3076/3976](https://www.maths.usyd.edu.au/u/olver/teaching/MATH3976/), Mathematical Computing (Assoc. Prof. [Sheehan Olver](https://www.maths.usyd.edu.au/u/olver/)), Fall 2016
 * Université Paul Sabatier, Toulouse

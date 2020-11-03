@@ -4,7 +4,7 @@
 
 Before you apply, it's a good idea to get in touch with the Julia community.
 Ask questions on [Discourse](https://discourse.julialang.org) or [join the
-Julia Slack](http://slackinvite.julialang.org/) to get connected with
+Julia Slack](https://julialang.org/slack/) to get connected with
 potential mentors to help find interesting projects. The Slack channel `#jsoc` is
 dedicated to helping students get the help they need. Additionally, you should
 make use of these connections to start making some small contributions and
@@ -37,7 +37,7 @@ The key questions we will ask ourselves when considering it are:
 * Is the plan a reasonable amount to do in three months?
 * Are there clear milestones we can use to assess progress (it should be easy
   to answer the question "Is the project done?").
-* Is the proposed mentor enthusiastic about the project? 
+* Is the proposed mentor enthusiastic about the project?
 * Does the applicant have previous Open Source contributions (preferably in Julia)?
 @@
 
@@ -81,5 +81,3 @@ In more detail, you may find it useful to consider the following questions:
 * **Logistics.**
   - What other time commitments, such as summer courses, other jobs, planned vacations, etc., will you have over the summer?
 @@
-
-

@@ -1,6 +1,7 @@
 ## Books
 
 @@tight-list
+* Bogumił Kamiński and Paweł Prałat. [Train Your Brain - Challenging Yet Elementary Mathematics](https://www.ryerson.ca/train-your-brain/), December 2020; a free on-line [Julia language companion](https://math.ryerson.ca/~pralat/train-your-brain.pdf) is available for download.
 * Ahan Sengupta [The Little Book of Julia Algorithms](https://www.amazon.com/Little-Book-Julia-Algorithms-programming/dp/1838173609/). SAV Publishing, September 2020.
 * Zacharias Voulgaris. [Julia for Machine Learning](https://technicspub.com/julia/). Technics Publications, June 2020.
 * Tom Kwong. [Hands-on Design Patterns and Best Practices with Julia](https://www.packtpub.com/application-development/hands-design-patterns-julia-10).  Packt Publishing, January 2020.
@@ -9,6 +10,7 @@
 * Bogumił Kamiński and Przemysław Szufel. [Julia プログラミングクックブック](https://www.oreilly.co.jp/books/9784873118895/). Japanese translation for Julia 1.2 by Hidemoto Nakada. Orairījapan, Tōkyo, October 2019.
 * Günter Faes. [Datenanalyse mit Julia: Einstieg in die Datenanalyse mit der Programmiersprache Julia](https://www.amazon.de/Datenanalyse-mit-Julia-Einstieg-Programmiersprache/dp/3749485089/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=Datenanalyse+mit+Julia&qid=1582912563&sr=8-3). Books on Demand, September 2019.
 * Hayden Klok and Yoni Nazarathy. [Statistics with julia: Fundamentals for data science, machine learning and artificial intelligence. September 2019. Draft](https://github.com/h-Klok/StatsWithJuliaBook)
+* Avik Sengupta. [Julia High Performance, 2nd Ed.](https://www.packtpub.com/product/julia-high-performance-second-edition/9781788298117). Packt Publishing, June  2019.
 * Ben Lauwens and Allen B. Downey. [Think Julia](https://www.oreilly.com/library/view/think-julia/9781492045021/). O&rsquo;Reilly Media, June 2019.
 * Giray Ökten. [First Semester in Numerical Analysis with Julia](https://purl.flvc.org/fsu/fd/FSU_libsubv1_scholarship_submission_1556028278_15938059). Florida State University Libraries, April 2019.
 * Changhyun Kwon. [Julia Programming for Operations Research](https://www.chkwon.net/julia/). March 2019.

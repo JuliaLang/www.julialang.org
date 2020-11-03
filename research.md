@@ -59,6 +59,8 @@ We welcome additions to this list in the form of [pull requests](https://github.
 ## 2020
 
 @@tight-list
+* **Optimizing Dynamic Trajectories for Robustness to Disturbances Using Polytopic Projections**. Henrique Ferrolho, Wolfgang Merkt, Vladimir Ivan, Wouter Wolfslag, Sethu Vijayakumar. (2020) _IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)_, pp. 7477–7484. arXiv: [2003.00609](https://arxiv.org/abs/2003.00609). url: https://ferrolho.github.io/research/publications/ferrolho2020optimizing/.
+* **Scalable and Flexible Clustering of Grouped Data via Parallel and Distributed Sampling in Versatile Hierarchical Dirichlet Processes**. Or Dinari, Oren Freifeld. (2020) _In Conference on Uncertainty in Artificial Intelligence, pp. 231-240._ url: <http://www.auai.org/uai2020/proceedings/115_main_paper.pdf>. Package: [VersatileHDPMixtureModels.jl](https://github.com/BGU-CS-VIL/VersatileHDPMixtureModels.jl).
 * **Sequential Bayesian inference for vector autoregressions with stochastic volatility**. Mark Bognanni, John Zito. (2020) _Journal of Economic Dynamics and Control_, 113: 103851. doi: [10.1016/j.jedc.2020.103851](https://doi.org/10.1016/j.jedc.2020.103851). url: <http://www.sciencedirect.com/science/article/pii/S016518892030021X>.
 * **Automatic Differentiation for Solid Mechanics**. Andrea Vigliotti, Ferdinando Auricchio. (2020) _Archives of Computational Methods in Engineering_. doi: [10.1007/s11831-019-09396-y](https://doi.org/10.1007/s11831-019-09396-y). url: <https://link.springer.com/article/10.1007%2Fs11831-019-09396-y>. preprint: <https://arxiv.org/abs/2001.07366>
 @@
@@ -66,6 +68,7 @@ We welcome additions to this list in the form of [pull requests](https://github.
 ## 2019
 
 @@tight-list
+* **Modern Machine Learning with Julia and Flux**. Dhairya Gandhi, Mike Innes, Elliot Saba, Keno Fischer, and Viral Shah. (2019). _Computação Brasil_ journal: 41-45. Publisher: Brazilian Computer Society. [Original version in English](https://docs.google.com/document/d/1n2HsIBod0mCW9ZEP40cYjci0cfdf12iYb7rw8V6gpOg). [Translated to Brazilian Portuguese (by André Lage-Freitas and Orivaldo Santana)](https://www.sbc.org.br/images/flippingbook/computacaobrasil/computa_39/pdf/CompBrasil_39_180.pdf)
 * **PDFIO: PDF Reader Library for native Julia**. Sambit Dash. (2019) _Journal of Open Source Software_. doi: [10.21105/joss.01453](https://doi.org/10.21105%2Fjoss.01453) Package: [PDFIO.jl](https://github.com/sambitdash/PDFIO.jl)
 * **Fast objective coupled planar illumination microscopy**. Cody Greer, Timothy E. Holy. (2019) _Nature Communications_, 10.1. doi: [10.1038/s41467-019-12340-0](https://dx.doi.org/10.1038/s41467-019-12340-0). url: <https://www.nature.com/articles/s41467-019-12340-0>. Package: [FastScanningAndDPI](https://github.com/HolyLab/FastScanningAndDPI).
 * **Sensory coding mechanisms revealed by optical tagging of physiologically defined neuronal types**. Donghoon Lee, Maiko Kume, Timothy E. Holy. (2019) _Science_, 366.6471. doi: [10.1126/science.aax8055](https://dx.doi.org/10.1126/science.aax8055). url: <https://science.sciencemag.org/content/366/6471/1384.abstract>. Packages: [BlockRegistration.jl](https://github.com/HolyLab/BlockRegistration.jl), [BlockRegistrationScheduler.jl](https://github.com/HolyLab/BlockRegistrationScheduler.jl).

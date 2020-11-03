@@ -81,13 +81,13 @@ researchers to better explore the problem domain. -->
 （註：如果你對這個工作有興趣，同時是大學或是研究所學生，
 我們有 [提供 Google Summer of Code 專案](/jsoc/)。
 並且 [暑假過後有豐厚的津貼補助](https://developers.google.com/open-source/gsoc/help/student-stipends)。
-請加入 [Julia Slack](http://slackinvite.julialang.org/) 的 #jsoc 頻道，
+請加入 [Julia Slack](http://julialang.org/slack/) 的 #jsoc 頻道，
 歡迎更進一步的細節討論。）
 
 <!-- (Note: If you are interested in this work and are an undergraduate or graduate
 student, we have [Google Summer of Code projects available in this area](/jsoc/). This
 [pays quite well over the summer](https://developers.google.com/open-source/gsoc/help/student-stipends).
-Please join the [Julia Slack](http://slackinvite.julialang.org/) and the #jsoc channel to discuss in more detail.) -->
+Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel to discuss in more detail.) -->
 
 
 \toc
