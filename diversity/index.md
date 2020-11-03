@@ -8,10 +8,11 @@ As a [NumFocus supported project](https://numfocus.org), we abide by their [Code
 
 We believe that maintaining and promoting diversity and inclusion is the only way we can have a strong and vibrant community. We have and will continue to make significant investments in making sure that we relentlessly push towards that goal.
 
-Below you will find a breakdown of our past and current diversity and inclusion initatives. If you have any ideas, feedback, or the like, feel free to send and email to `diversity@julialang.org` or drop by the [#diversity channel on Slack](https://julialang.org/slack/).
+Below you will find a links to the breakdown of our past, current, and ideas for future diversity and inclusion initiatives. If you have any ideas, feedback, or the like, feel free to send and email to `diversity@julialang.org` or drop by the [#diversity channel on Slack](https://julialang.org/slack/).
 
- When                   | What                        | Link                          
- :-----------------------| :--------------------------- | :---------------------------  
- January 2020 | JuliaAcademy Overhaul | [https://juliaacademy.com](https://juliaacademy.com)  
- January 2020 | JuliaCon 2020 Financial Assistance | [https://docs.google.com/forms/d/e/1FAIpQLSeb0gjPEGbSa6twHIImSfE-xtxoAlO9P0k_WgOv_wrG1eWgUQ/viewform](https://docs.google.com/forms/d/e/1FAIpQLSeb0gjPEGbSa6twHIImSfE-xtxoAlO9P0k_WgOv_wrG1eWgUQ/viewform)
- November 2018 | Julia Computing Awards Diversity and Inclusion Grants | [https://juliacomputing.com/blog/2018/11/30/DandI-grant-awards.html](https://juliacomputing.com/blog/2018/11/30/DandI-grant-awards.html)                   
+
+Find out more about our [current Initiatives](/diversity/current/)
+
+Find out more about our ideas for [future Initiatives](/diversity/ideas/)
+
+Find out more about our [past Initiatives](/diversity/past/)
