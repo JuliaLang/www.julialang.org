@@ -100,6 +100,13 @@ If you know of other classes using Julia for teaching, please consider updating 
     * L0407, [Exercises in Programming I for Mechanical Systems Engineering](https://github.com/hsugawa8651/mseprogOne) (Hiroharu Sugawara): Fall 2018, Fall 2019
 * [TU Dortmund / SFB 823](https://www.statistik.tu-dortmund.de/sfb823.html), Germany
     * One week introductory course into Julia with applications in statistics and economics ([Tileman Conring](https://www.statistik.tu-dortmund.de/conring.html)): Spring 2018
+* Universidad del Norte, Barranquilla, Colombia
+    * [ELP 4076](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ELP&crse_numb_in=4076), Ingeniería de Ríos y Costas (Prof. Germán Rivillas)
+    * [ICI 4083](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ICI&crse_numb_in=4083), Hidráulica (Prof. Germán Rivillas)
+    * [ICI 62016](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ICI&crse_numb_in=62016), Hidráulica Marítima (Prof. Germán Rivillas)
+    * [ICI 62017](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ICI&crse_numb_in=62017), Hidrodinámica (Prof. Germán Rivillas)
+    * [ICI 62019](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ICI&crse_numb_in=62019), Ingeniería Costera (Prof. Germán Rivillas)
+    * [ICI 62022](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ICI&crse_numb_in=62022), Tópicos Avanzados de Ingeniería Costera (Prof. Germán Rivillas)
 * Universidad Nacional Autónoma de México
     * [Física computacional](https://github.com/dpsanders/fisica_computacional) (Prof. David P. Sanders), Fall 2014
     * Métodos numéricos para sistemas dinámicos (Prof. Luis Benet), Fall 2014
