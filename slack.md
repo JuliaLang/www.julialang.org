@@ -7,3 +7,6 @@ The Julia Language has an active Slack workspace/community with over 7,000 membe
 
 ### Issues using the link above? 
 [Send us a note so we can fix that!](mailto:logan@julialang.org)
+
+
+<!-- To create a new Slack Invite Link, see https://slack.com/help/articles/201330256-Invite-new-members-to-your-workspace Note that the link above expires every 30 days (or after 2,000 participants join with it) so we will need to generate a new one. -->
