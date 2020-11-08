@@ -8,7 +8,7 @@ Welcome to the Julia language project! We’re excited to see you exploring Juli
 
 Julia was designed with technical and scientific users in mind.Many of it features are well suited for numerical analysis and computational science.Most of the programming languages that run very fast are also quite a bit trickier to use than some “high level” languages that you might have heard of, like Python or Matlab. For example, C and Fortran are known to be very fast,but they require that the user provides a lot of information to the computer about the program they are writing as they write it. This takes more time and often more programming experience than working in a language like Python.
 
-Few Years ago,It was a common notion that when choosing a language there is a tradeoff between code readibility/writing and performance.Julia was designed to solve this exact problem -to be relatively easy and quick to write programs in, but also to run code and perform calculations fast.
+Few Years ago, It was a common notion that when choosing a language there is a tradeoff between code readability/writing and performance.Julia was designed to solve this exact problem -to be relatively easy and quick to write programs in, but also to run code and perform calculations fast.
 
 ## Install Julia
 
@@ -20,22 +20,22 @@ Once you download Julia, and run the installer (Windows/Mac -- on linux you just
 
 ![Julia REPL](/assets/images/julia-repl.png)
 
-Julia Programs can be developed directly from REPL.History of all commands is stored even across restarts which can accessed using up-arrow key or ctrl-r for search.
+Julia can be worked with directly from REPL.History of all commands is stored even across restarts which can accessed using up-arrow key or ctrl-r for search.
 
-If you wish to keep your code more organised and wish to work on larger projects,there are many IDE/editor options available to explore:
+If you wish to keep your code more organized and wish to work on larger projects,there are many IDE/editor options available to explore:
 - [VS-code](https://code.visualstudio.com/)-Julia [Extension](https://www.julia-vscode.org/docs/dev/gettingstarted/#Installation-and-Configuration-1)
 - [Atom](https://atom.io/)- Julia Extension [Juno](http://docs.junolab.org/latest/man/installation/) Extension 
-- [Pluto](https://github.com/fonsp/Pluto.jl)- Interactive notebooks with similiar features as jupyter notebooks
+- [Pluto](https://github.com/fonsp/Pluto.jl)- Interactive notebooks with similar features as jupyter notebooks
 - **Jupyter Notebook**-Julia can be used in jupyter using IJulia
 - **Repl.it**-Online repl to start exploring Julia instantly
 
 ## *Hello world!* example
-We have two methods to to do this,we can write a julia script or we can use julia repl to print "Hello World!!" 
+We have two methods to do this,we can write a julia script or we can use julia repl to print "Hello World!!" 
 
 ### - Method-1
-Instructions for the julia developement environment in vs code can be found here:[Julia-VScode](https://www.julia-vscode.org/docs/dev/gettingstarted/#Installation-and-Configuration-1)
-1. create a new file and save it in your workspace as *hello.jl*:
-2. add the following source code in the *hello.jl*
+Instructions for the julia developement environment in Visual Studio Code can be found here:[Julia-VScode](https://www.julia-vscode.org/docs/dev/gettingstarted/#Installation-and-Configuration-1)
+1. Create a new file and save it in your workspace as *hello.jl*:
+2. Add the following source code in the *hello.jl*
 3. Run it,Output can be seen in terminal
 ![VSCODE-Example](/assets/images/vscode-helloworld.png)
 
