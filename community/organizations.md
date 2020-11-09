@@ -52,6 +52,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaGeometry](https://github.com/JuliaGeometry) – Computational Geometry
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaIntervals](https://github.com/JuliaIntervals) - Rigorous numerics with interval arithmetic & applications
+* [JuliaLinearAlgebra](https://github.com/JuliaLinearAlgebra) - Linear algebra in Julia
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
 * [JuliaNLSolvers](https://github.com/JuliaNLSolvers)
 * [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
