@@ -22,4 +22,5 @@ We have our project ideas organized roughly into the skill sets required:
 * [MLJ](/jsoc/gsoc/mlj/) – a Machine Learning Toolbox for Julia.
 * [Tabular Data](/jsoc/gsoc/tables/)
 * [Continuous time signal processing](/jsoc/gsoc/kalmanbucy/)
+* [DeepChem.jl](/jsoc/gsoc/deepchem/) – Machine learning for atomic systems in Julia
 @@
