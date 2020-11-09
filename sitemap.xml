@@ -170,12 +170,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/legal/data/index.html</loc>
-    <lastmod>2020-11-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2018/12/ml-language-compiler/index.html</loc>
     <lastmod>2020-11-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -807,6 +801,12 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2015/05/juliacon-preview/index.html</loc>
+    <lastmod>2020-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/legal/index.html</loc>
     <lastmod>2020-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
