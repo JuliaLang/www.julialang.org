@@ -92,6 +92,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaML](https://github.com/JuliaML) – [Machine Learning](https://juliaml.github.io/) ([Gitter](https://gitter.im/JuliaML/chat))
 * [JuliaStats](https://github.com/JuliaStats) – [Statistics](https://juliastats.github.io/)
 * [JuliaText](https://github.com/JuliaText) – Natural Language Processing (NLP), Computational Linguistics and (textual) Information Retrieval
+* [queryverse](https://github.com/queryverse) – Julia Packages for Data Science
 @@
 
 ### Visualizations
