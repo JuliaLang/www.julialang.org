@@ -70,6 +70,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaActuary](https://github.com/JuliaActuary) - Actuarial Science
 * [JuliaApproximation](https://github.com/JuliaApproximation)
 * [JuliaAstro](https://github.com/JuliaAstro) – [Astronomy](https://juliaastro.github.io/)
+* [JuliaControl](https://github.com/JuliaControl) - Control Systems Design in Julia
 * [JuliaCrypto](https://github.com/JuliaCrypto) - Cryptography made easy in Julia
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
 * [JuliaDynamics](https://github.com/JuliaDynamics) - [Dynamical systems](https://juliadynamics.github.io/DynamicalSystems.jl/latest/), nonlinear dynamics and chaos.
