@@ -80,6 +80,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
 * [JuliaReach](https://github.com/JuliaReach) - [Reachability Computations for Dynamical Systems](https://juliareach.github.io/JuliaReach-website/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
+* [JuliaTelecom](https://github.com/JuliaTelecom) – Julia packages for telecommunications
 * [JuliaText](https://github.com/JuliaText) - Natual Language Processing, (textual) Information Retrieval, and Computational Linguistics
 @@
 
