@@ -16,6 +16,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 
 @@tight-list
 * [Julia-i18n](https://github.com/Julia-i18n) – Internationalization (i18n) and localization (L10n) for Julians ([Twitter](https://twitter.com/julia_i18n), [Gitter](https://gitter.im/Julia-i18n/julia-i18n))
+* [JuliaAudio](https://github.com/JuliaAudio)
 * [JuliaCollections](https://github.com/JuliaCollections) – Collections, Data Structures, and Algorithms for Julia
 * [JuliaDebug](https://github.com/JuliaDebug)
 * [JuliaDocs](https://github.com/juliadocs) – Documentation-related packages for Julia ([Gitter](https://gitter.im/juliadocs/users))
@@ -70,21 +71,42 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [EcoJulia](https://github.com/EcoJulia) – Ecology
 * [JuliaActuary](https://github.com/JuliaActuary) – Actuarial Science
 * [JuliaApproximation](https://github.com/JuliaApproximation)
-* [JuliaAstro](https://github.com/JuliaAstro) – [Astronomy](https://juliaastro.github.io/)
+* [JuliaClimate](https://github.com/JuliaClimate)
 * [JuliaControl](https://github.com/JuliaControl) – Control Systems Design in Julia
 * [JuliaCrypto](https://github.com/JuliaCrypto) – Cryptography made easy in Julia
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
 * [JuliaDynamics](https://github.com/JuliaDynamics) – [Dynamical systems](https://juliadynamics.github.io/DynamicalSystems.jl/latest/), nonlinear dynamics and chaos.
+* [JuliaEarth](https://github.com/JuliaEarth) –  Fostering statistics research in Earth sciences
 * [JuliaFEM](https://github.com/JuliaFEM) –  Finite Element Method
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
 * [JuliaHealth](https://github.com/JuliaHealth) – [medicine, health care, public health](https://juliahealth.org/)
 * [JuliaMolSim](https://github.com/JuliaMolSim) – Molecular Simulation in Materials Science and Chemistry
-* [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
 * [JuliaReach](https://github.com/JuliaReach) – [Reachability Computations for Dynamical Systems](https://juliareach.github.io/JuliaReach-website/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
-* [JuliaTelecom](https://github.com/JuliaTelecom) – Julia packages for telecommunications
+* [JuliaRobotics](https://github.com/JuliaRobotics)
+* [JuliaTelecom](https://github.com/JuliaTelecom) [[🌐–page]](https://github.com/JuliaTelecom/SiteMap) – Telecommunications
 * [JuliaText](https://github.com/JuliaText) – Natual Language Processing, (textual) Information Retrieval, and Computational Linguistics
 * [ModiaSim](https://github.com/ModiaSim) – Physical systems modelling/simulation with differential & algebraic equations
+@@
+
+### Astronomy/Space
+
+@@tight-list
+* [JuliaAstro](https://github.com/JuliaAstro) [[🌐–page]](https://juliaastro.github.io/) – Astronomy
+* [JuliaAstrodynamics](https://github.com/JuliaAstrodynamics)
+* [juliahci](https://github.com/juliahci) – High-contrast imaging
+* [JuliaSpace](https://github.com/JuliaSpace)
+@@
+
+### Physics/Quantum mechanics
+
+@@tight-list
+* [JuliaAtoms](https://github.com/JuliaAtoms)
+* [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
+* [JuliaWaveScattering](https://github.com/JuliaWaveScattering) – Linear wave equations (acoustic, elastic, electromagnetic, quantum)
+* [JuliaQuantum](https://github.com/JuliaQuantum) – Quantum science and technology
+* [qojulia](https://github.com/qojulia) – QuantumOptics.jl related projects
+* [QuantumBFS](https://github.com/QuantumBFS)
 @@
 
 ### Data Science
@@ -97,6 +119,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaStats](https://github.com/JuliaStats) – [Statistics](https://juliastats.github.io/)
 * [JuliaText](https://github.com/JuliaText) – Natural Language Processing (NLP), Computational Linguistics and (textual) Information Retrieval
 * [queryverse](https://github.com/queryverse) – Julia Packages for Data Science
+* [TuringLang](https://github.com/TuringLang) – Bayesian inference with probabilistic programming
 @@
 
 ### Visualizations
