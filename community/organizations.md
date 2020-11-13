@@ -5,26 +5,27 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 ### Julia
 
 @@tight-list
-* [JuliaLang](https://github.com/JuliaLang) - A fresh approach to numerical computing
+* [JuliaLang](https://github.com/JuliaLang) – A fresh approach to numerical computing
 * [JuliaRegistries](https://github.com/JuliaRegistries)
-* [JuliaCon](https://github.com/JuliaCon) - The Julia Conference
-* [JuliaAcademy](https://github.com/JuliaAcademy) - The definitive source for learning all things Julia.
-* [JuliaCommunity](https://github.com/JuliaCommunity) - Organizing Julia Community Initiatives
+* [JuliaCon](https://github.com/JuliaCon) – The Julia Conference
+* [JuliaAcademy](https://github.com/JuliaAcademy) – The definitive source for learning all things Julia.
+* [JuliaCommunity](https://github.com/JuliaCommunity) – Organizing Julia Community Initiatives
 @@
 
 ### General
 
 @@tight-list
 * [Julia-i18n](https://github.com/Julia-i18n) – Internationalization (i18n) and localization (L10n) for Julians ([Twitter](https://twitter.com/julia_i18n), [Gitter](https://gitter.im/Julia-i18n/julia-i18n))
-* [JuliaCollections](https://github.com/JuliaCollections) - Collections, Data Structures, and Algorithms for Julia
+* [JuliaAudio](https://github.com/JuliaAudio)
+* [JuliaCollections](https://github.com/JuliaCollections) – Collections, Data Structures, and Algorithms for Julia
 * [JuliaDebug](https://github.com/JuliaDebug)
 * [JuliaDocs](https://github.com/juliadocs) – Documentation-related packages for Julia ([Gitter](https://gitter.im/juliadocs/users))
 * [JuliaEditorSupport](https://github.com/JuliaEditorSupport) – Extensions/Plugins for text editors and IDEs
-* [JuliaImages](https://github.com/JuliaImages) - Julia packages for image processing
+* [JuliaImages](https://github.com/JuliaImages) – Julia packages for image processing
 * [JuliaInterop](https://github.com/JuliaInterop)
-* [JuliaPackaging](https://github.com/JuliaPackaging) - Tooling for Julia's binary packages and dependencies
+* [JuliaPackaging](https://github.com/JuliaPackaging) – Tooling for Julia's binary packages and dependencies
 * [JuliaPraxis](https://github.com/JuliaPraxis) – Best practices ([Gitter](https://gitter.im/JuliaPraxis))
-* [JuliaPy](https://github.com/JuliaPy) - Software that connects the Julia and Python languages.
+* [JuliaPy](https://github.com/JuliaPy) – Software that connects the Julia and Python languages.
 * [JuliaStrings](https://github.com/JuliaStrings)
 * [JuliaTime](https://github.com/JuliaTime) – Date and time libraries
 * [Juno](https://github.com/JunoLab) – The Juno IDE for Atom ([Gitter](https://gitter.im/JunoLab/Juno))
@@ -37,7 +38,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaArrays](https://github.com/JuliaArrays) – Custom array types (and utilities for building array types)
 * [JuliaBerry](https://github.com/JuliaBerry) – [Julia resources for the Raspberry Pi](https://juliaberry.github.io/)
 * [JuliaCI](https://github.com/JuliaCI) – Continuous Integration Support for Julia packages
-* [JuliaCloud](https://github.com/juliacloud) - Cloud providers
+* [JuliaCloud](https://github.com/juliacloud) – Cloud providers
 * [JuliaGPU](https://github.com/JuliaGPU) – GPU computing
 * [JuliaInterop](https://github.com/JuliaInterop) – Easy interoperability between Julia and not-Julia
 * [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
@@ -52,12 +53,12 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](https://www.juliadiff.org/)
 * [JuliaGeometry](https://github.com/JuliaGeometry) – Computational Geometry
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
-* [JuliaIntervals](https://github.com/JuliaIntervals) - Rigorous numerics with interval arithmetic & applications
-* [JuliaLinearAlgebra](https://github.com/JuliaLinearAlgebra) - Linear algebra in Julia
+* [JuliaIntervals](https://github.com/JuliaIntervals) – Rigorous numerics with interval arithmetic & applications
+* [JuliaLinearAlgebra](https://github.com/JuliaLinearAlgebra) – Linear algebra in Julia
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
 * [JuliaNLSolvers](https://github.com/JuliaNLSolvers)
 * [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
-* [JuliaSmoothOptimizers](https://github.com/JuliaSmoothOptimizers) - Framework for the development of solvers for continuous nonlinear optimization
+* [JuliaSmoothOptimizers](https://github.com/JuliaSmoothOptimizers) – Framework for the development of solvers for continuous nonlinear optimization
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
 * [JuMP (formerly JuliaOpt)](http://jump.dev) – JuMP is a modeling language and supporting packages for mathematical optimization in Julia
 * [SciML (formerly JuliaDiffEq)](https://github.com/SciML) – [Open source software for scientific machine learning](https://sciml.ai) ([Gitter](https://gitter.im/JuliaDiffEq/Lobby))
@@ -68,23 +69,44 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 @@tight-list
 * [BioJulia](https://github.com/BioJulia) – [Biology, bioinformatics, computational biology](https://biojulia.net) ([Gitter](https://gitter.im/BioJulia/home))
 * [EcoJulia](https://github.com/EcoJulia) – Ecology
-* [JuliaActuary](https://github.com/JuliaActuary) - Actuarial Science
+* [JuliaActuary](https://github.com/JuliaActuary) – Actuarial Science
 * [JuliaApproximation](https://github.com/JuliaApproximation)
-* [JuliaAstro](https://github.com/JuliaAstro) – [Astronomy](https://juliaastro.github.io/)
-* [JuliaControl](https://github.com/JuliaControl) - Control Systems Design in Julia
-* [JuliaCrypto](https://github.com/JuliaCrypto) - Cryptography made easy in Julia
+* [JuliaClimate](https://github.com/JuliaClimate)
+* [JuliaControl](https://github.com/JuliaControl) – Control Systems Design in Julia
+* [JuliaCrypto](https://github.com/JuliaCrypto) – Cryptography made easy in Julia
 * [JuliaDSP](https://github.com/JuliaDSP) – Digital signal processing
-* [JuliaDynamics](https://github.com/JuliaDynamics) - [Dynamical systems](https://juliadynamics.github.io/DynamicalSystems.jl/latest/), nonlinear dynamics and chaos.
-* [JuliaFEM](https://github.com/JuliaFEM) -  Finite Element Method
+* [JuliaDynamics](https://github.com/JuliaDynamics) – [Dynamical systems](https://juliadynamics.github.io/DynamicalSystems.jl/latest/), nonlinear dynamics and chaos.
+* [JuliaEarth](https://github.com/JuliaEarth) –  Fostering statistics research in Earth sciences
+* [JuliaFEM](https://github.com/JuliaFEM) –  Finite Element Method
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
-* [JuliaHealth](https://github.com/JuliaHealth) - [medicine, health care, public health](https://juliahealth.org/)
+* [JuliaHealth](https://github.com/JuliaHealth) – [medicine, health care, public health](https://juliahealth.org/)
 * [JuliaMolSim](https://github.com/JuliaMolSim) – Molecular Simulation in Materials Science and Chemistry
-* [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
-* [JuliaReach](https://github.com/JuliaReach) - [Reachability Computations for Dynamical Systems](https://juliareach.github.io/JuliaReach-website/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
-* [JuliaTelecom](https://github.com/JuliaTelecom) – Julia packages for telecommunications
-* [JuliaText](https://github.com/JuliaText) - Natual Language Processing, (textual) Information Retrieval, and Computational Linguistics
+* [JuliaReach](https://github.com/JuliaReach) – [Reachability Computations for Dynamical Systems](https://juliareach.github.io/JuliaReach-website/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
+* [JuliaRobotics](https://github.com/JuliaRobotics)
+* [JuliaTelecom](https://github.com/JuliaTelecom) [[🌐–page]](https://github.com/JuliaTelecom/SiteMap) – Telecommunications
+* [JuliaText](https://github.com/JuliaText) – Natual Language Processing, (textual) Information Retrieval, and Computational Linguistics
 * [ModiaSim](https://github.com/ModiaSim) – Physical systems modelling/simulation with differential & algebraic equations
+@@
+
+### Astronomy/Space
+
+@@tight-list
+* [JuliaAstro](https://github.com/JuliaAstro) [[🌐–page]](https://juliaastro.github.io/) – Astronomy
+* [JuliaAstrodynamics](https://github.com/JuliaAstrodynamics)
+* [juliahci](https://github.com/juliahci) – High-contrast imaging
+* [JuliaSpace](https://github.com/JuliaSpace)
+@@
+
+### Physics/Quantum mechanics
+
+@@tight-list
+* [JuliaAtoms](https://github.com/JuliaAtoms)
+* [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
+* [JuliaWaveScattering](https://github.com/JuliaWaveScattering) – Linear wave equations (acoustic, elastic, electromagnetic, quantum)
+* [JuliaQuantum](https://github.com/JuliaQuantum) – Quantum science and technology
+* [qojulia](https://github.com/qojulia) – QuantumOptics.jl related projects
+* [QuantumBFS](https://github.com/QuantumBFS)
 @@
 
 ### Data Science
@@ -97,6 +119,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaStats](https://github.com/JuliaStats) – [Statistics](https://juliastats.github.io/)
 * [JuliaText](https://github.com/JuliaText) – Natural Language Processing (NLP), Computational Linguistics and (textual) Information Retrieval
 * [queryverse](https://github.com/queryverse) – Julia Packages for Data Science
+* [TuringLang](https://github.com/TuringLang) – Bayesian inference with probabilistic programming
 @@
 
 ### Visualizations
@@ -112,10 +135,10 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 
 ### Misc.
 @@tight-list
-* [Julia-Streamers](https://github.com/Julia-Streamers) - The official organization for the Julia Streaming community!
+* [Julia-Streamers](https://github.com/Julia-Streamers) – The official organization for the Julia Streaming community!
 * [JuliaCN](https://github.com/JuliaCN)
-* [JuliaGaming](https://github.com/JuliaGaming) - Open source games built in the Julia Programming Language.
-* [JuliaLangSlack](https://github.com/JuliaLangSlack) - Projects built to enable the Julia Lang community Slack workspace
+* [JuliaGaming](https://github.com/JuliaGaming) – Open source games built in the Julia Programming Language.
+* [JuliaLangSlack](https://github.com/JuliaLangSlack) – Projects built to enable the Julia Lang community Slack workspace
 * [QuantEcon](https://github.com/QuantEcon)
 @@
 
