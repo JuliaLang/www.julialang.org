@@ -19,7 +19,7 @@ We have our project ideas organized roughly into the skill sets required:
 * [General](/jsoc/gsoc/general/) – jack-of-all-trades projects that don't require special skills.
 * [Graphs](/jsoc/gsoc/graphs/) – extend the JuliaGraphs ecosystem with new algorithms and tools.
 * [Graphics](/jsoc/gsoc/graphics/) – projects ranging from low level OpenGL rendering to high level plotting.
-* [MLJ](/jsoc/gsoc/mlj/) – a Machine Learning Toolbox for Julia.
+* [MLJ](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
 * [Tabular Data](/jsoc/gsoc/tables/)
 * [Continuous time signal processing](/jsoc/gsoc/kalmanbucy/)
 * [DeepChem.jl](/jsoc/gsoc/deepchem/) – Machine learning for atomic systems in Julia
