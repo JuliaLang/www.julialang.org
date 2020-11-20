@@ -28,20 +28,20 @@ BenchmarkTools.Trial:
   ----------
   samples:          <span class=hljs-number >1328</span>
   evals/sample:     <span class=hljs-number >1</span></code></pre> <p>That&#39;s upwards of a <strong>450x performance gain</strong>.</p> <ul> <li><p>Broadcasted operations over ranges can now simply re-compute a new range instead of working element-wise if it&#39;s possible. For example, the expression <code>&#40;&#40;1:10000&#41; .&#43; 20&#41; .* 7</code> doesn&#39;t need to allocate a vector for 10,000 elements — it doesn&#39;t even need to do 10,000 computations. It can instead operate in terms of the start, stop, and step and return a new range that represents the result: <code>147:7:70140</code>. This new feature allows them to <strong>transform <em>O&#40;N&#41;</em> computations into <em>O&#40;1&#41;</em></strong>. On version 0.6, ranges were in this strange place where <code>&#40;1:10000&#41; &#43; 20</code> implemented the fast <em>O&#40;1&#41;</em> computation of a new range, but all other array types had deprecated addition with numbers in favor of explicit <code>.&#43;</code> broadcasting for clearer semantics and improved performance. Thanks to this new API, ranges can now identify these cases and fully support broadcasting in an efficient manner.</p> <li><p>The <a href="https://docs.julialang.org/en/latest/stdlib/LinearAlgebra/#Special-matrices-1">structured matrices</a> in the <a href="https://docs.julialang.org/en/latest/stdlib/LinearAlgebra/#Linear-Algebra-1"><code>LinearAlgebra</code> standard library</a> no longer return sparse arrays as the result of a broadcasted operation. They&#39;ll now either maintain an appropriate structure or return a dense array. For example:</p> </ul> <pre><code class="julia hljs">julia&gt; <span class=hljs-keyword >using</span> LinearAlgebra
-       d = <span class=hljs-built_in >Diagonal</span>(<span class=hljs-number >1</span>:<span class=hljs-number >3</span>)
-<span class=hljs-number >3</span>×<span class=hljs-number >3</span> <span class=hljs-built_in >Diagonal</span>{<span class=hljs-built_in >Int64</span>,<span class=hljs-built_in >UnitRange</span>{<span class=hljs-built_in >Int64</span>}}:
+       d = Diagonal(<span class=hljs-number >1</span>:<span class=hljs-number >3</span>)
+<span class=hljs-number >3</span>×<span class=hljs-number >3</span> Diagonal{<span class=hljs-built_in >Int64</span>,<span class=hljs-built_in >UnitRange</span>{<span class=hljs-built_in >Int64</span>}}:
  <span class=hljs-number >1</span>  ⋅  ⋅
  ⋅  <span class=hljs-number >2</span>  ⋅
  ⋅  ⋅  <span class=hljs-number >3</span>
 
 julia&gt; d ./ <span class=hljs-number >10</span>
-<span class=hljs-number >3</span>×<span class=hljs-number >3</span> <span class=hljs-built_in >Diagonal</span>{<span class=hljs-built_in >Float64</span>,<span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Float64</span>,<span class=hljs-number >1</span>}}:
+<span class=hljs-number >3</span>×<span class=hljs-number >3</span> Diagonal{<span class=hljs-built_in >Float64</span>,<span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Float64</span>,<span class=hljs-number >1</span>}}:
  <span class=hljs-number >0.1</span>   ⋅    ⋅
   ⋅   <span class=hljs-number >0.2</span>   ⋅
   ⋅    ⋅   <span class=hljs-number >0.3</span>
 
-julia&gt; t = d .+ <span class=hljs-built_in >LowerTriangular</span>(rand(<span class=hljs-number >3</span>,<span class=hljs-number >3</span>))
-<span class=hljs-number >3</span>×<span class=hljs-number >3</span> <span class=hljs-built_in >LowerTriangular</span>{<span class=hljs-built_in >Float64</span>,<span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Float64</span>,<span class=hljs-number >2</span>}}:
+julia&gt; t = d .+ LowerTriangular(rand(<span class=hljs-number >3</span>,<span class=hljs-number >3</span>))
+<span class=hljs-number >3</span>×<span class=hljs-number >3</span> LowerTriangular{<span class=hljs-built_in >Float64</span>,<span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Float64</span>,<span class=hljs-number >2</span>}}:
  <span class=hljs-number >1.5446</span>     ⋅         ⋅
  <span class=hljs-number >0.529211</span>  <span class=hljs-number >2.26095</span>    ⋅
  <span class=hljs-number >0.533674</span>  <span class=hljs-number >0.373702</span>  <span class=hljs-number >3.88408</span>

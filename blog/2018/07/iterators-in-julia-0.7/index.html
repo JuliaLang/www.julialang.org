@@ -140,7 +140,7 @@ val, wrapped_state = iter
 iter === <span class=hljs-literal >nothing</span> &amp;&amp; <span class=hljs-keyword >break</span>
 (x, s) = iter</code></pre>
 <p>Then this pattern can be applied by rote wherever it appears. Applying this and writing two <code>iterate</code> methods results in this</p>
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> iterate(it::Partition{<span class=hljs-literal >I</span>, N}, state) <span class=hljs-keyword >where</span> {<span class=hljs-literal >I</span>, N}
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> iterate(it::Partition{I, N}, state) <span class=hljs-keyword >where</span> {I, N}
     (xs_state, result) = state
     <span class=hljs-comment ># this @ifsomething call handles the 0.6 situation</span>
     <span class=hljs-comment ># where `done` is always called before `next`</span>
@@ -167,8 +167,8 @@ iter === <span class=hljs-literal >nothing</span> &amp;&amp; <span class=hljs-ke
     <span class=hljs-keyword >return</span> (tuple(result...), (xs_state, p))
 <span class=hljs-keyword >end</span>
 
-<span class=hljs-keyword >function</span> iterate(it::Partition{<span class=hljs-literal >I</span>, N}) <span class=hljs-keyword >where</span> {<span class=hljs-literal >I</span>, N}
-    result = <span class=hljs-built_in >Vector</span>{eltype(<span class=hljs-literal >I</span>)}(undef, N)
+<span class=hljs-keyword >function</span> iterate(it::Partition{I, N}) <span class=hljs-keyword >where</span> {I, N}
+    result = <span class=hljs-built_in >Vector</span>{eltype(I)}(<span class=hljs-literal >undef</span>, N)
 
     result[<span class=hljs-number >1</span>], xs_state = <span class=hljs-meta >@ifsomething</span> iterate(it.xs)
 
@@ -180,9 +180,9 @@ iter === <span class=hljs-literal >nothing</span> &amp;&amp; <span class=hljs-ke
 <span class=hljs-keyword >end</span></code></pre>
 <p>This works for almost every case, except when <code>N &#61;&#61; 1</code>&#33; In that case, we do need to start with <code>iterate&#40;it.xs&#41;</code>, but we have to return the first item before calling <code>iterate</code> again, so we have to skip the first iteration in the two-argument method. It would be nice to have the methods be this simple chain, but it looks like we need to combine them.</p>
 <p>Previously, we&#39;ve been able to come up with a sensible default state &#40;or a tuple we can splat&#41; for the combined method. We can&#39;t<sup id="fnref:cantorwont"><a href="#fndef:cantorwont" class=fnref >[3]</a></sup> do that here, as we need to have conditional behaviour for both cases. Luckily, we can add <code>nothing</code> as a sentinel and Julia will compile the check away. Making this change results in the version which appears in IterTool 1.0:</p>
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> iterate(it::Partition{<span class=hljs-literal >I</span>, N}, state=<span class=hljs-literal >nothing</span>) <span class=hljs-keyword >where</span> {<span class=hljs-literal >I</span>, N}
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> iterate(it::Partition{I, N}, state=<span class=hljs-literal >nothing</span>) <span class=hljs-keyword >where</span> {I, N}
     <span class=hljs-keyword >if</span> state === <span class=hljs-literal >nothing</span>
-        result = <span class=hljs-built_in >Vector</span>{eltype(<span class=hljs-literal >I</span>)}(undef, N)
+        result = <span class=hljs-built_in >Vector</span>{eltype(I)}(<span class=hljs-literal >undef</span>, N)
 
         result[<span class=hljs-number >1</span>], xs_state = <span class=hljs-meta >@ifsomething</span> iterate(it.xs)
 
@@ -212,7 +212,7 @@ iter === <span class=hljs-literal >nothing</span> &amp;&amp; <span class=hljs-ke
         p[i], xs_state = xs_iter
     <span class=hljs-keyword >end</span>
 
-    <span class=hljs-keyword >return</span> (tuple(result...)::eltype(Partition{<span class=hljs-literal >I</span>, N}), (xs_state, p))
+    <span class=hljs-keyword >return</span> (tuple(result...)::eltype(Partition{I, N}), (xs_state, p))
 <span class=hljs-keyword >end</span></code></pre>
 <h2 id=conclusion ><a href="#conclusion">Conclusion</a></h2>
 <p>These are the techniques that helped me in my work, but I&#39;d like to hear about more&#33; I&#39;m also curious which patterns improve or harm performance and why. IterTools will definitely accept pull requests, and I&#39;m interested in feedback on <a href="https://julialang.slack.com/">Slack</a> and <a href="https://discourse.julialang.org/">Discourse</a>.</p>

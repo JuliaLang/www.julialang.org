@@ -86,7 +86,7 @@ bindwheel(c.c, <span class=hljs-string >&quot;Shift&quot;</span>, (path,delta)-&
 <h3 id=the_rubber_band_region_selection ><a href="#the_rubber_band_region_selection">The rubber band &#40;region selection&#41;</a></h3>
 <p>Support for the rubber band is provided in the file <code>rubberband.jl</code>. Like <code>navigation.jl</code>, this is a stand-alone set of functions that you should be able to incorporate into other projects. It draws a dashed rectangle employing the same machinery we described at the top of this page, with slight modifications to create the dashes &#40;through the <code>set_dash</code> function&#41;. By now, this should all be fairly straightforward.</p>
 <p>However, these functions use one additional trick worth mentioning. Let&#39;s finally look at the Tk <code>Canvas</code> object:</p>
-<pre><code class="julia hljs"><span class=hljs-keyword >type</span> Canvas
+<pre><code class="julia hljs">type Canvas
     c::TkWidget
     front::CairoSurface  <span class=hljs-comment ># surface for window</span>
     back::CairoSurface   <span class=hljs-comment ># backing store</span>

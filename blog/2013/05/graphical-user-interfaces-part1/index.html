@@ -63,7 +63,7 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
 <h2 id=first_steps_the_navigation_frame ><a href="#first_steps_the_navigation_frame">First steps: the navigation frame</a></h2>
 <p>First, let me acknowledge that this GUI is built on the work of many people who have contributed to Julia&#39;s Cairo and Tk packages. For this step, we&#39;ll make particular use of John Verzani&#39;s contribution of a huge set of convenience wrappers for most of Tk&#39;s widget functionality. John wrote up a nice set of <a href="https://github.com/JuliaLang/Tk.jl/tree/master/examples">examples</a> that demonstrate many of the things you can do with it; this first installment is essentially just a &quot;longer&quot; example, and won&#39;t surprise anyone who has read his documentation.</p>
 <p>Let&#39;s create a couple of types to hold the data we&#39;ll need. We need a type that stores &quot;GUI state,&quot; which here consists of the currently-viewed location in the image and information needed to implement the &quot;play&quot; functionality:</p>
-<pre><code class="julia hljs"><span class=hljs-keyword >type</span> NavigationState
+<pre><code class="julia hljs">type NavigationState
     <span class=hljs-comment ># Dimensions:</span>
     zmax::<span class=hljs-built_in >Int</span>          <span class=hljs-comment ># number of frames in z, set to 1 if only 2 spatial dims</span>
     tmax::<span class=hljs-built_in >Int</span>          <span class=hljs-comment ># number of frames in t, set to 1 if only a single image</span>
@@ -74,7 +74,7 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
     fps::<span class=hljs-built_in >Float64</span>       <span class=hljs-comment ># playback speed in frames per second</span>
 <span class=hljs-keyword >end</span></code></pre>
 <p>Next, let&#39;s create a type to hold &quot;handles&quot; to all the widgets:</p>
-<pre><code class="julia hljs"><span class=hljs-keyword >type</span> NavigationControls
+<pre><code class="julia hljs">type NavigationControls
     stepup                            <span class=hljs-comment ># z buttons...</span>
     stepdown
     playup

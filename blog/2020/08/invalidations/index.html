@@ -38,13 +38,13 @@ Closest candidates are:
 ) =&gt; Union{}</code></pre> <p>where in this case the compiler knows that the call won&#39;t succeed. Calls annotated <code>::Union&#123;&#125;</code> do not return.</p> <h3 id=triggering_method_invalidation ><a href="#triggering_method_invalidation">Triggering method invalidation</a></h3> <p><strong>NOTE</strong>: This demo is being run on Julia&#39;s master branch &#40;which will become 1.6&#41;. Depending on your version of Julia, you might get different results and/or need to define more than one additional method for <code>f</code> to see the outcome shown here.</p> <p>Julia is interactive: we can define new methods on the fly and try them out. Having already run the above code in our session, let&#39;s see what happens when we define a new method for <code>f</code>:</p> <pre><code class="julia hljs">f(::<span class=hljs-built_in >Bool</span>) = <span class=hljs-number >2</span></code></pre>
 <p>While the <code>Vector&#123;Int&#125;</code>-typed version of <code>applyf</code> is not changed by this new definition &#40;try it and see&#41;, both the <code>Bool</code>-typed version and the untyped version are different than previously:</p>
 <pre><code class="julia hljs">julia&gt; <span class=hljs-meta >@code_typed</span> applyf([<span class=hljs-literal >true</span>])
-<span class=hljs-built_in >CodeInfo</span>(
+CodeInfo(
 <span class=hljs-number >1</span> ─     Base.arrayref(<span class=hljs-literal >true</span>, container, <span class=hljs-number >1</span>)::<span class=hljs-built_in >Bool</span>
 └──     <span class=hljs-keyword >return</span> <span class=hljs-number >2</span>
 ) =&gt; <span class=hljs-built_in >Int64</span>
 
 julia&gt; <span class=hljs-meta >@code_typed</span> applyf(<span class=hljs-built_in >Any</span>[<span class=hljs-literal >true</span>])
-<span class=hljs-built_in >CodeInfo</span>(
+CodeInfo(
 <span class=hljs-number >1</span> ─ %<span class=hljs-number >1</span> = Base.arrayref(<span class=hljs-literal >true</span>, container, <span class=hljs-number >1</span>)::<span class=hljs-built_in >Any</span>
 │   %<span class=hljs-number >2</span> = Main.f(%<span class=hljs-number >1</span>)::<span class=hljs-built_in >Int64</span>
 └──      <span class=hljs-keyword >return</span> %<span class=hljs-number >2</span>
@@ -58,7 +58,7 @@ julia&gt; f(::<span class=hljs-built_in >Dict</span>) = <span class=hljs-number 
 f (generic <span class=hljs-keyword >function</span> with <span class=hljs-number >4</span> methods)
 
 julia&gt; <span class=hljs-meta >@code_typed</span> applyf(<span class=hljs-built_in >Any</span>[<span class=hljs-literal >true</span>])
-<span class=hljs-built_in >CodeInfo</span>(
+CodeInfo(
 <span class=hljs-number >1</span> ─ %<span class=hljs-number >1</span> = Base.arrayref(<span class=hljs-literal >true</span>, container, <span class=hljs-number >1</span>)::<span class=hljs-built_in >Any</span>
 │   %<span class=hljs-number >2</span> = Main.f(%<span class=hljs-number >1</span>)::<span class=hljs-built_in >Any</span>
 └──      <span class=hljs-keyword >return</span> %<span class=hljs-number >2</span>

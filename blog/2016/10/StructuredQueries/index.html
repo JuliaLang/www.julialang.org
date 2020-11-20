@@ -202,11 +202,11 @@ ERROR: <span class=hljs-built_in >ArgumentError</span>: Undefined source: tbl. C
 <h3 id=the_hard_question_of_nullable_semantics ><a href="#the_hard_question_of_nullable_semantics">The hard question of nullable semantics</a></h3>
 <p>Recall the hard question of nullable semantics involves implementing a given lifting semantics – that is, a given behavior for <code>f&#40;x::Nullable&#123;T&#125;&#41;</code> given a defined method <code>f&#40;x::T&#41;</code>– in a &quot;general&quot; way.</p>
 <p>One solution – perhaps the most obvious, and which I have <a href="https://github.com/JuliaStats/NullableArrays.jl/commit/e3d68ab2502e3e8c2e9e6b7c299f9078b9154e3e#diff-04c6e90faac2675aa89e2176d2eec7d8R140">previously endorsed</a> – involves defining the method <code>f&#40;x::Nullable&#123;T&#125;&#41;</code> as something like</p>
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> f(x::<span class=hljs-built_in >Nullable</span>{T})
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> f(x::Nullable{T})
     <span class=hljs-keyword >if</span> isnull(x)
-        <span class=hljs-keyword >return</span> <span class=hljs-built_in >Nullable</span>{U}()
+        <span class=hljs-keyword >return</span> Nullable{U}()
     <span class=hljs-keyword >else</span>
-        <span class=hljs-keyword >return</span> <span class=hljs-built_in >Nullable</span>(f(x.value))
+        <span class=hljs-keyword >return</span> Nullable(f(x.value))
     <span class=hljs-keyword >end</span>
 <span class=hljs-keyword >end</span></code></pre>
 <p>with natural analogues for methods with n-ary arguments. This process is a bit cumbersome, but it would not be difficult to automate with a macro with which one could annotate the original definition <code>f&#40;x::T&#41;</code>. Call this approach the &quot;method extension lifting&quot; approach.</p>
@@ -217,10 +217,10 @@ ERROR: <span class=hljs-built_in >ArgumentError</span>: Undefined source: tbl. C
 <p>Another way to implement standard lifting semantics is by means of a higher-order function – that is, on Julia 0.5 where higher-order functions are performant. Such a function – call it <code>lift</code> – might look like the following:</p>
 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> lift(f, x)
     <span class=hljs-keyword >if</span> hasvalue(x)
-        <span class=hljs-keyword >return</span> <span class=hljs-built_in >Nullable</span>(f(x))
+        <span class=hljs-keyword >return</span> Nullable(f(x))
     <span class=hljs-keyword >else</span>
         U = Core.Inference.return_type(f, (typeof(x),))
-        <span class=hljs-keyword >return</span> <span class=hljs-built_in >Nullable</span>{U}()
+        <span class=hljs-keyword >return</span> Nullable{U}()
     <span class=hljs-keyword >end</span>
 <span class=hljs-keyword >end</span></code></pre>
 <p>This definition can naturally be extended to methods with more than one argument. The primary advantage of this approach over method extension lifting is its generality: one needs only to define one &#40;two, three&#41; higher-order <code>lift</code> method to support lifting of all functions of one &#40;two, <em>n</em>&#41; argument&#40;s&#41;, as opposed to having to define a lifted version for each such function. Note that as long as <code>hasvalue</code> has some generic fallback method for non-<code>Nullable</code> arguments, such <code>lift</code> functions cover both standard and mixed-signature lifting. &#40;Ideally one would ensure that the code is optimized for when types are non-<code>Nullable</code>; in particular, one would ensure that the dead branch is removed – cf. <a href="https://github.com/JuliaLang/julia/pull/18484">julia#18484</a>.&#41; Call this approach the &quot;higher-order lifting&quot; approach.</p>

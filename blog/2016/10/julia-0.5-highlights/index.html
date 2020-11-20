@@ -210,19 +210,19 @@ BenchmarkTools.Trial:
 <p>This avoids allocating a temporary array of sums entirely, instead computing the next tuple&#39;s sum only when the <code>extrema</code> function is ready to accept a new value. Using a generator reduces the memory overhead to 208 bytes – the size of the the return value. More importantly, the memory usage doesn&#39;t depend on the size of the <code>change</code> array anymore – it will always be just 208 bytes, even if <code>change</code> holds a trillion tuples. It&#39;s not hard to imagine situations where such a reduction in asymptotic memory usage is crucial. The similar syntax between array comprehensions and generator expressions makes it trivial to move back and forth between the two styles of computation as needed.</p>
 <h3 id=initializing_collections ><a href="#initializing_collections">Initializing collections</a></h3>
 <p>The new generator syntax dovetails particularly nicely with Julia&#39;s convention for constructing collections – to make a new collection, you call the constructor with a single iterable argument, which yields the values you want in the new collection. In its simplest form, this looks something like:</p>
-<pre><code class="julia hljs">julia&gt; <span class=hljs-built_in >IntSet</span>([<span class=hljs-number >1</span>, <span class=hljs-number >4</span>, <span class=hljs-number >9</span>, <span class=hljs-number >16</span>, <span class=hljs-number >25</span>, <span class=hljs-number >36</span>, <span class=hljs-number >49</span>, <span class=hljs-number >64</span>])
-<span class=hljs-built_in >IntSet</span>([<span class=hljs-number >1</span>, <span class=hljs-number >4</span>, <span class=hljs-number >9</span>, <span class=hljs-number >16</span>, <span class=hljs-number >25</span>, <span class=hljs-number >36</span>, <span class=hljs-number >49</span>, <span class=hljs-number >64</span>])</code></pre>
+<pre><code class="julia hljs">julia&gt; IntSet([<span class=hljs-number >1</span>, <span class=hljs-number >4</span>, <span class=hljs-number >9</span>, <span class=hljs-number >16</span>, <span class=hljs-number >25</span>, <span class=hljs-number >36</span>, <span class=hljs-number >49</span>, <span class=hljs-number >64</span>])
+IntSet([<span class=hljs-number >1</span>, <span class=hljs-number >4</span>, <span class=hljs-number >9</span>, <span class=hljs-number >16</span>, <span class=hljs-number >25</span>, <span class=hljs-number >36</span>, <span class=hljs-number >49</span>, <span class=hljs-number >64</span>])</code></pre>
 <p>In this expression, an array of integers is passed to the <code>IntSet</code> constructor to create an object representing that set, which in this case happen to be small squares. Once constructed, the <code>IntSet</code> object no longer refers to the original array of integers. Instead, it uses a bitmask to efficiently store and operate on sets. It displays itself as you would construct it from an array, but that&#39;s merely for convenience – there&#39;s no actual array anymore.</p>
 <p>Now, I&#39;m a human &#40;no blogbots here&#41; and I find typing out even short sequences of perfect squares tedious and error prone – despite a math degree, I&#39;m awful at arithmetic. It would be much easier to generate squares with an array comprehension:</p>
-<pre><code class="julia hljs">julia&gt; <span class=hljs-built_in >IntSet</span>([k^<span class=hljs-number >2</span> <span class=hljs-keyword >for</span> k = <span class=hljs-number >1</span>:<span class=hljs-number >8</span>])
-<span class=hljs-built_in >IntSet</span>([<span class=hljs-number >1</span>, <span class=hljs-number >4</span>, <span class=hljs-number >9</span>, <span class=hljs-number >16</span>, <span class=hljs-number >25</span>, <span class=hljs-number >36</span>, <span class=hljs-number >49</span>, <span class=hljs-number >64</span>])</code></pre>
+<pre><code class="julia hljs">julia&gt; IntSet([k^<span class=hljs-number >2</span> <span class=hljs-keyword >for</span> k = <span class=hljs-number >1</span>:<span class=hljs-number >8</span>])
+IntSet([<span class=hljs-number >1</span>, <span class=hljs-number >4</span>, <span class=hljs-number >9</span>, <span class=hljs-number >16</span>, <span class=hljs-number >25</span>, <span class=hljs-number >36</span>, <span class=hljs-number >49</span>, <span class=hljs-number >64</span>])</code></pre>
 <p>This comprehension produces the same array of integers that I typed manually above. As before, creating this array object is unnecessary – it would be even better to generate the desired squares as they are inserted into the new <code>IntSet</code>. Which, of course, is precisely what generator expressions allow:</p>
-<pre><code class="julia hljs">julia&gt; <span class=hljs-built_in >IntSet</span>(k^<span class=hljs-number >2</span> <span class=hljs-keyword >for</span> k = <span class=hljs-number >1</span>:<span class=hljs-number >8</span>)
-<span class=hljs-built_in >IntSet</span>([<span class=hljs-number >1</span>, <span class=hljs-number >4</span>, <span class=hljs-number >9</span>, <span class=hljs-number >16</span>, <span class=hljs-number >25</span>, <span class=hljs-number >36</span>, <span class=hljs-number >49</span>, <span class=hljs-number >64</span>])</code></pre>
+<pre><code class="julia hljs">julia&gt; IntSet(k^<span class=hljs-number >2</span> <span class=hljs-keyword >for</span> k = <span class=hljs-number >1</span>:<span class=hljs-number >8</span>)
+IntSet([<span class=hljs-number >1</span>, <span class=hljs-number >4</span>, <span class=hljs-number >9</span>, <span class=hljs-number >16</span>, <span class=hljs-number >25</span>, <span class=hljs-number >36</span>, <span class=hljs-number >49</span>, <span class=hljs-number >64</span>])</code></pre>
 <p>Using a generator here is just as clear, more concise, and significantly more efficient:</p>
 <pre><code class="julia hljs">julia&gt; <span class=hljs-keyword >using</span> BenchmarkTools
 
-julia&gt; <span class=hljs-meta >@benchmark</span> <span class=hljs-built_in >IntSet</span>([k^<span class=hljs-number >2</span> <span class=hljs-keyword >for</span> k = <span class=hljs-number >1</span>:<span class=hljs-number >8</span>])
+julia&gt; <span class=hljs-meta >@benchmark</span> IntSet([k^<span class=hljs-number >2</span> <span class=hljs-keyword >for</span> k = <span class=hljs-number >1</span>:<span class=hljs-number >8</span>])
 BenchmarkTools.Trial:
   memory estimate:  <span class=hljs-number >320.00</span> bytes
   minimum time:     <span class=hljs-number >163.00</span> ns (<span class=hljs-number >0.00</span>% GC)
@@ -230,7 +230,7 @@ BenchmarkTools.Trial:
   mean time:        <span class=hljs-number >245.18</span> ns (<span class=hljs-number >12.95</span>% GC)
   maximum time:     <span class=hljs-number >5.36</span> μs (<span class=hljs-number >92.47</span>% GC)
 
-julia&gt; <span class=hljs-meta >@benchmark</span> <span class=hljs-built_in >IntSet</span>(k^<span class=hljs-number >2</span> <span class=hljs-keyword >for</span> k = <span class=hljs-number >1</span>:<span class=hljs-number >8</span>)
+julia&gt; <span class=hljs-meta >@benchmark</span> IntSet(k^<span class=hljs-number >2</span> <span class=hljs-keyword >for</span> k = <span class=hljs-number >1</span>:<span class=hljs-number >8</span>)
 BenchmarkTools.Trial:
   memory estimate:  <span class=hljs-number >160.00</span> bytes
   minimum time:     <span class=hljs-number >114.00</span> ns (<span class=hljs-number >0.00</span>% GC)
@@ -364,7 +364,7 @@ julia&gt; M[<span class=hljs-number >1</span>,:] <span class=hljs-comment ># vec
  <span class=hljs-number >19</span>  <span class=hljs-number >26</span>
  <span class=hljs-number >20</span>  <span class=hljs-number >27</span></code></pre>
 <p>The result is a matrix since the leading and trailing slices are ranges, and the middle slice disappears since it is scalar, leaving a matrix. The 0.5 slicing behavior naturally generalizes to higher dimensional slices:</p>
-<pre><code class="julia hljs">julia&gt; <span class=hljs-literal >I</span> = [<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >1</span>; <span class=hljs-number >1</span> <span class=hljs-number >3</span> <span class=hljs-number >2</span>]
+<pre><code class="julia hljs">julia&gt; I = [<span class=hljs-number >1</span> <span class=hljs-number >2</span> <span class=hljs-number >1</span>; <span class=hljs-number >1</span> <span class=hljs-number >3</span> <span class=hljs-number >2</span>]
 <span class=hljs-number >2</span>×<span class=hljs-number >3</span> <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Int64</span>,<span class=hljs-number >2</span>}:
  <span class=hljs-number >1</span>  <span class=hljs-number >2</span>  <span class=hljs-number >1</span>
  <span class=hljs-number >1</span>  <span class=hljs-number >3</span>  <span class=hljs-number >2</span>
@@ -373,7 +373,7 @@ julia&gt; J = [<span class=hljs-number >4</span> <span class=hljs-number >2</spa
 <span class=hljs-number >1</span>×<span class=hljs-number >4</span> <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Int64</span>,<span class=hljs-number >2</span>}:
  <span class=hljs-number >4</span>  <span class=hljs-number >2</span>  <span class=hljs-number >1</span>  <span class=hljs-number >3</span>
 
-julia&gt; M[<span class=hljs-literal >I</span>,J]
+julia&gt; M[I,J]
 <span class=hljs-number >2</span>×<span class=hljs-number >3</span>×<span class=hljs-number >1</span>×<span class=hljs-number >4</span> <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Int64</span>,<span class=hljs-number >4</span>}:
 [:, :, <span class=hljs-number >1</span>, <span class=hljs-number >1</span>] =
  <span class=hljs-number >17</span>  <span class=hljs-number >18</span>  <span class=hljs-number >17</span>
@@ -391,7 +391,7 @@ julia&gt; M[<span class=hljs-literal >I</span>,J]
  <span class=hljs-number >10</span>  <span class=hljs-number >11</span>  <span class=hljs-number >10</span>
  <span class=hljs-number >10</span>  <span class=hljs-number >12</span>  <span class=hljs-number >11</span></code></pre>
 <p>Here we have the following natural identity on dimensions:</p>
-<pre><code class="julia hljs">size(M[<span class=hljs-literal >I</span>,J]) == (size(<span class=hljs-literal >I</span>,<span class=hljs-number >1</span>), size(<span class=hljs-literal >I</span>,<span class=hljs-number >2</span>), size(J,<span class=hljs-number >1</span>), size(J,<span class=hljs-number >2</span>))</code></pre>
+<pre><code class="julia hljs">size(M[I,J]) == (size(I,<span class=hljs-number >1</span>), size(I,<span class=hljs-number >2</span>), size(J,<span class=hljs-number >1</span>), size(J,<span class=hljs-number >2</span>))</code></pre>
 <p>In addition to being more systematic and symmetrical, this new behavior allows many complex indexing operations to be expressed concisely.</p>
 <p>Although the change to multidimensional slicing behavior is a significant breaking change, it has caused surprisingly little havoc in the Julia package ecosystem. It tends to primarily affect linear algebra code, and when code does break, it&#39;s usually fairly clear what is broken and what needs to be done to fix it. When updating your code, if you need to keep a dimension that is dropped under the new indexing behavior, you can write <code>M&#91;1:1,:&#93;</code>:</p>
 <pre><code class="julia hljs">julia&gt; M[<span class=hljs-number >1</span>:<span class=hljs-number >1</span>,:]
