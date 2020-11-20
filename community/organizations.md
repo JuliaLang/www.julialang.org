@@ -10,11 +10,13 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaCon](https://github.com/JuliaCon) – The Julia Conference
 * [JuliaAcademy](https://github.com/JuliaAcademy) – The definitive source for learning all things Julia.
 * [JuliaCommunity](https://github.com/JuliaCommunity) – Organizing Julia Community Initiatives
+* [Julia Lab](https://github.com/JuliaLabs) - Julia Lab at MIT CSAIL
 @@
 
 ### General
 
 @@tight-list
+* [Holy Lab](https://github.com/HolyLab)
 * [Julia-i18n](https://github.com/Julia-i18n) – Internationalization (i18n) and localization (L10n) for Julians ([Twitter](https://twitter.com/julia_i18n), [Gitter](https://gitter.im/Julia-i18n/julia-i18n))
 * [JuliaAudio](https://github.com/JuliaAudio)
 * [JuliaCollections](https://github.com/JuliaCollections) – Collections, Data Structures, and Algorithms for Julia
@@ -27,8 +29,10 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaPraxis](https://github.com/JuliaPraxis) – Best practices ([Gitter](https://gitter.im/JuliaPraxis))
 * [JuliaPy](https://github.com/JuliaPy) – Software that connects the Julia and Python languages.
 * [JuliaStrings](https://github.com/JuliaStrings)
+* [Julia Testing](https://github.com/JuliaTesting) - Testing tools for the Julia language
 * [JuliaTime](https://github.com/JuliaTime) – Date and time libraries
-* [Juno](https://github.com/JunoLab) – The Juno IDE for Atom ([Gitter](https://gitter.im/JunoLab/Juno))
+* [Julia Visual Studio Code](https://github.com/julia-vscode) - The Julia extension for Visual Studio Code provides rich support for the Julia programming language
+* [JunoLab](https://github.com/JunoLab) – The Juno IDE for Atom
 @@
 
 ### Computing
@@ -60,7 +64,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
 * [JuliaSmoothOptimizers](https://github.com/JuliaSmoothOptimizers) – Framework for the development of solvers for continuous nonlinear optimization
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
-* [JuMP (formerly JuliaOpt)](http://jump.dev) – JuMP is a modeling language and supporting packages for mathematical optimization in Julia
+* [JuMP-dev (formerly JuliaOpt)](http://jump.dev) – JuMP is a modeling language and supporting packages for mathematical optimization in Julia
 * [SciML (formerly JuliaDiffEq)](https://github.com/SciML) – [Open source software for scientific machine learning](https://sciml.ai) ([Gitter](https://gitter.im/JuliaDiffEq/Lobby))
 @@
 
@@ -68,6 +72,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 
 @@tight-list
 * [BioJulia](https://github.com/BioJulia) – [Biology, bioinformatics, computational biology](https://biojulia.net) ([Gitter](https://gitter.im/BioJulia/home))
+* [Climate Modeling Alliance (CliMA)](https://github.com/CliMA) - An alliance of scientists, engineers and applied mathematicians, dedicated to pioneering a new, data-informed approach to climate modelingf
 * [EcoJulia](https://github.com/EcoJulia) – Ecology
 * [JuliaActuary](https://github.com/JuliaActuary) – Actuarial Science
 * [JuliaApproximation](https://github.com/JuliaApproximation)
@@ -81,6 +86,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
 * [JuliaHealth](https://github.com/JuliaHealth) – [medicine, health care, public health](https://juliahealth.org/)
 * [JuliaMolSim](https://github.com/JuliaMolSim) – Molecular Simulation in Materials Science and Chemistry
+* [Julia POMDP](https://github.com/JuliaPOMDP) - POMDP packages for Julia
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
 * [JuliaReach](https://github.com/JuliaReach) – [Reachability Computations for Dynamical Systems](https://juliareach.github.io/JuliaReach-website/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
 * [JuliaRobotics](https://github.com/JuliaRobotics)
@@ -136,10 +142,14 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 
 ### Misc.
 @@tight-list
-* [Julia-Streamers](https://github.com/Julia-Streamers) – The official organization for the Julia Streaming community!
 * [JuliaCN](https://github.com/JuliaCN)
 * [JuliaGaming](https://github.com/JuliaGaming) – Open source games built in the Julia Programming Language.
+* [JuliaKorea](https://github.com/juliakorea) - Julia Korea organization
 * [JuliaLangSlack](https://github.com/JuliaLangSlack) – Projects built to enable the Julia Lang community Slack workspace
+* [JuliaStaging](https://github.com/JuliaStaging) - Utilities to analyze, generate and evaluate julia code for multi-stage scenarios
+* [JuliaSymbolics](https://github.com/JuliaSymbolics)
+* [JuliaTokyo](https://github.com/JuliaTokyo) - Yet another Julialang community.
+* [Julia-Streamers](https://github.com/Julia-Streamers) – The official organization for the Julia Streaming community!
 * [QuantEcon](https://github.com/QuantEcon)
 @@
 
