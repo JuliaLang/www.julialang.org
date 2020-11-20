@@ -112,6 +112,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 ### Data Science
 
 @@tight-list
+* [FluxML](https://github.com/FluxML) - Machine Learning and Differentiable Programming Framework
 * [JuliaData](https://github.com/JuliaData) – Data manipulation, storage, and I/O in Julia
 * [JuliaDatabases](https://github.com/JuliaDatabases) – Various database drivers for Julia
 * [JuliaImages](https://github.com/JuliaImages) – Image Processing
