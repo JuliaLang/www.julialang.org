@@ -23,4 +23,5 @@ We have our project ideas organized roughly into the skill sets required:
 * [Tabular Data](/jsoc/gsoc/tables/)
 * [Continuous time signal processing](/jsoc/gsoc/kalmanbucy/)
 * [DeepChem.jl](/jsoc/gsoc/deepchem/) – Machine learning for atomic systems in Julia
+* [DFTK.jl](/jsoc/gsoc/dftk/) – Density-functional theory in Julia
 @@
