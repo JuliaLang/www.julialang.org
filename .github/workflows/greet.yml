@@ -13,4 +13,4 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: "Hey, thank you for bringing this issue up and welcome to the Julia Language GitHub. We will review this and comment here. Welcome and thanks again!"
-        pr-message: "Thank you for opening your first pull request to this repo! The Julia Language website is community driven and relies on updates from community members like you. Welcome and thanks again."
+        pr-message: "Thank you for opening your first pull request to this repo! The Julia Language website is community driven and relies on updates from folks like you. Welcome and thanks again."
