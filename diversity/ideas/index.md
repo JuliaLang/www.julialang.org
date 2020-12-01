@@ -4,4 +4,4 @@ The current team working on D&I are hyper focused on ensuring our current projec
 
 If you are interested in helping out or leading any of the below initiatives, please free to send and email to `diversity@julialang.org` or drop by the [#diversity channel on Slack](http://julialang.org/slack/).
 
-[Live ASL interpretation for JuliaCon]()
+- Live ASL interpretation for JuliaCon
