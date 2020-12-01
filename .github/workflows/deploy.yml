@@ -44,10 +44,8 @@ jobs:
       # NOTE: the last line should be `optimize()`, you may want to give it
       # specific arguments, see the documentation or ?optimize in the REPL.
       - name: Build site
-        run: julia -e '
-              using Pkg;
-              Pkg.add("NodeJS");
-              Pkg.add(PackageSpec(name="Franklin",version="0.10"));
+        run: julia --project -e '
+              using Pkg; Pkg.instantiate();
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
               using Franklin; optimize();
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
