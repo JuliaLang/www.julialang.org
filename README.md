@@ -27,17 +27,11 @@ Build previews for each Pull Request are available at: https://julialang.netlify
 
 ## Making modifications and seeing the changes locally
 
-Start by installing Franklin: in Julia,
+Clone the repository and `cd` to it. Start julia with `julia --project` and do
 
 ```julia
-julia> using Pkg; Pkg.add("Franklin")
-```
+julia> using Pkg; Pkg.instantiate()
 
-(Note: _if you already have Franklin, make sure to update it to the latest version before proceeding_).
-
-then, clone the repository, `cd` to  it and do
-
-```julia
 julia> using Franklin
 
 julia> serve()

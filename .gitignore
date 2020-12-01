@@ -1,7 +1,5 @@
 .DS_Store
 __site
 node_modules/
-Manifest.toml
-Project.toml
 package-lock.json
 .__py_*
