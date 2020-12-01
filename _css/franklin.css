@@ -21,3 +21,26 @@
     font-size: 18px;
     margin-bottom: 1em;
 }
+
+.author-info {
+    text-align: center;
+    background-color: #F0F0F0;
+    padding: 20px;
+    padding-top: 30px;
+    margin-top: 2em;
+    border-radius: 5px;
+}
+
+.author-img {
+    border-radius: 50%;
+}
+.author-social {
+    margin-top: 1em;
+}
+.author-social ul {
+    list-style: none;
+}
+.author-social-icons {
+    margin: 0;
+    padding: 0;
+}

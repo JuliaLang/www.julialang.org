@@ -156,17 +156,57 @@ function hfun_redirect(url)
     return s
 end
 
-"""
-    {{author_twitter}}
-"""
-function hfun_author_twitter()
+function get_author_twitter()
     meta = locvar(:meta)
     if meta !== nothing
         for (kind, tag, value) in meta
             if kind == "name" && tag == "twitter:creator:id"
-                return " <a href=\"https://twitter.com/intent/user?user_id=$value\"><img src=\"/assets/infra/twitter_16.png\"/></a>"
+                return "https://twitter.com/intent/user?user_id=$value"
             end
         end
     end
     return ""
+end
+
+"""
+    {{author_twitter}}
+"""
+function hfun_author_twitter()
+    url = get_author_twitter()
+    isempty(url) && return ""
+    return "<a href=\"$url\"><img src=\"/assets/infra/twitter_16.png\"/></a>"
+end
+
+"""
+    {{about_the_author}}
+"""
+function hfun_about_the_author()
+	# verify that author_img and author_blurb are given
+    any(isnothing ∘ locvar, (:author_img, :author_blurb)) && return ""
+	img = "/assets/$(locvar(:author_img))"
+
+	twitter = get_author_twitter()
+    social = ""
+    if !isempty(twitter)
+        social *= """
+                  <li class="author-social-link-twitter">
+                    <a href=\"$twitter\"><i class="fa fa-twitter"></i></a>
+                  </li>
+                  """
+    end
+
+	html = """
+		<div class="author-info">
+          <img src="$img" class="author-img" alt="$(locvar(:author))" width="150px">
+		  <h3>$(locvar(:author))</h3>
+		  <div class="author-description">
+		    $(locvar(:author_blurb))
+		  </div>
+          <div class="author-social">
+            <ul class="author-social-icons">
+            $social
+            </ul>
+		</div>
+		"""
+    return html
 end
