@@ -354,4 +354,4 @@ The platforms currently supported by Julia are listed below. They are divided in
 
 ## JSON release feed
 
-The info above is also available as a [JSON file](https://julialang-s3.julialang.org/bin/versions.json) ([schema](https://github.com/SaschaMann/Julia-versions.json/blob/main/schema.json)). The file is updated once every 24 hours.
+The info above is also available as a [JSON file](https://julialang-s3.julialang.org/bin/versions.json) ([schema](https://julialang-s3.julialang.org/bin/versions-schema.json)). The file is updated once every 24 hours.
