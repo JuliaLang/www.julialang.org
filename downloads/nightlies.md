@@ -16,7 +16,7 @@ Most users are advised to use the latest official release version of Julia.
   <tr>
       <th> Windows Self-Extracting Archive (.exe) </th>
       <td> <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x64/julia-latest-win64.exe">64-bit (installer)</a>, <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x64/julia-latest-win64.zip">64-bit (portable) </td>
-      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.exe">32-bit</a>, <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.zip">32-bit (portable) </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.exe">32-bit (installer)</a>, <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.zip">32-bit (portable) </td>
   </tr>
   <tr>
       <th> macOS Package (.dmg) </th>
