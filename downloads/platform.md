@@ -154,8 +154,10 @@ sudo yum install julia
 
 If you are using CentOS (version 7 or higher), directly run:
 
-sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
+```shell
+sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
 sudo yum install julia
+```
 
 If both `dnf` and `yum-config-manager` are not available for your distribution, download the relevant `.repo` file from the Copr webpage, copy it to `/etc/yum.repos`, and run the second command.
 
