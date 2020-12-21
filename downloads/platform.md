@@ -155,7 +155,7 @@ sudo yum install julia
 If you are using CentOS (version 7 or higher), directly run:
 
 ```shell
-sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
+sudo yum-config-manager --add https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
 sudo yum install julia
 ```
 
