@@ -42,7 +42,8 @@ tar zxvf julia-1.5.3-linux-x86_64.tar.gz</code></pre>
 <pre><code class="shell hljs">sudo dnf copr enable nalimilan/julia
 sudo yum install julia</code></pre>
 <p>If you are using CentOS &#40;version 7 or higher&#41;, directly run:</p>
-<p>sudo yum-config-manager –add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo sudo yum install julia</p>
+<pre><code class="shell hljs">sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
+sudo yum install julia</code></pre>
 <p>If both <code>dnf</code> and <code>yum-config-manager</code> are not available for your distribution, download the relevant <code>.repo</code> file from the Copr webpage, copy it to <code>/etc/yum.repos</code>, and run the second command.</p>
 <p>Note that Fedora guidelines advise against uploading new breaking releases to official repositories: therefore your distribution will not provide the new major versions of Julia which were published after it. When reporting issues, please ensure you are using the latest available release by using one of the Copr repositories displayed on this page. In order to use nightly Julia builds, replace <code>nalimilan/julia</code> with <code>nalimilan/julia-nightlies</code> in the instructions above. These can then be updated with <code>yum upgrade julia</code>.</p>
 <h2 id=debianubuntu_linux ><a href="#debianubuntu_linux">Debian/Ubuntu Linux</a></h2>
