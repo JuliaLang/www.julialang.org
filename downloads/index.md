@@ -26,12 +26,12 @@ If you like Julia, please consider starring us [on GitHub](https://github.com/Ju
 
    <p>
    <div class="col-12" style="text-align: center">
-     <a id="DownloadButton" class="btn btn-lg btn-outline-primary" href="/downloads/other/">Unable to detect platform, click here to see all downloads</a>
+     <a id="DownloadButton" class="btn btn-success btn-lg" href="/downloads/other/">Unable to detect platform, click here to see all downloads</a>
    </div>
    <!-- <br><br> May want to add space-->
 
    <div class="col-12" style="text-align: center">
-     <a id="HelpButton" href="/downloads/other/">[Help]</a>  <a href="/downloads/other/">Other Platforms</a>
+     <a id="HelpButton" href="/downloads/other/">[Help]</a>  | <a href="/downloads/other/">Other Platforms</a> | <a href="https://docs.julialang.org/en/v1/NEWS/">Release Notes</a>
    </div>
    </p>
    <br><br>
