@@ -227,6 +227,18 @@ MethodInstance for double(::Float32)
 
 So now both concretely-inferred versions of `double` link all the way back to `calldouble2`, but only when the element type of the container is also concrete.
 
+### Exercise for the reader
+
+Does Julia ever compile methods, and introduce backedges, for abstract types? Start a fresh session, and instead of using the definitions above define `double` using `@nospecialize`:
+
+```julia
+double(@nospecialize(x::Real)) = 2x
+```
+
+Now compare what kind of backedges you get with `c64` and `cabs`.
+
+It may be most informative to quit your session and start fresh between trying these two different container types.  You'll see that Julia is quite the opportunist when it comes to specialization!
+
 ## Precompilation
 
 During *package precompilation*, Julia creates a `*.ji` file typically stored in `.julia/compiled/v1.x/`, where `1.x` is your version of Julia.
@@ -318,26 +330,26 @@ If we add
 precompile(*, (Int, Float16))
 ```
 
-to the definition of `SnoopCompileDemo.jl`, nothing happens:
+to the definition of `SnoopCompileDemo.jl`, start a fresh session, and reload the package, you'll see it's completely ineffective:
 
 ```julia
 julia> mi = methodinstance(*, (Int, Float16))
-        # nothing
+                                               # nothing
 ```
 
-because there is no "chain of ownership" to `SnoopCompileDemo`.
+This happens because there is no "chain of ownership" to `SnoopCompileDemo`.
 Consequently, we can't precompile methods defined in other modules in and of themselves; we can only do it if those methods are linked by backedges to this package.
 
 ### Time for a quiz!
 
-Add a type to `SnoopCompileDemo`:
+Add a new type to `SnoopCompileDemo`:
 
 ```
 export SCDType
 struct SCDType end
 ```
 
-and then a precompile statement for `Base.push!`:
+and a precompile directive for `Base.push!`:
 
 ```
 precompile(push!, (Vector{SCDType}, SCDType))
@@ -346,7 +358,7 @@ precompile(push!, (Vector{SCDType}, SCDType))
 Now load the package and check whether the corresponding `MethodInstance` exists. If not, can you think of a way to get that `MethodInstance` added to the `*.ji` file? (*Answer is at the bottom of this post*)
 
 
-### Synonyms and gotchas for `precompile`
+### Synonyms for `precompile`
 
 `precompile` can also be passed a complete `Tuple`-type: `precompile(calldouble2, (Vector{AbstractFloat},))` can alternatively be written
 
@@ -364,6 +376,8 @@ julia> mi.specTypes
 Tuple{typeof(SnoopCompileDemo.double), AbstractFloat}
 ```
 
+### Gotchas for `precompile`
+
 One thing we also haven't discussed is that when `precompile` fails, it does so "almost" silently:
 
 ```julia
@@ -375,13 +389,17 @@ julia> precompile(double, (String,))
 false
 ```
 
-Even though `double` can't be compiled for `String`, the corresponding `precompile` doesn't error, it only returns `false`.  As a consequence, if you want to monitor the utility of your `precompile` directives, sometimes it's useful to preface them with `@assert` so that you get an error if they "go bad" in some fashion.
+Even though `double` can't be compiled for `String`, the corresponding `precompile` doesn't error, it only returns `false`.
+If you want to monitor the utility of your `precompile` directives, sometimes it's useful to preface them with `@assert`; all's well if precompilation succeeds, but if changes to the package mean that the precompile directive has "gone bad," then you get an error.
+Hopefully, such errors would be caught before shipping the package to users!
 
 
 ## Summary
 
 In this tutorial, we've learned about `MethodInstance`s, backedges, inference, and precompilation.
-An important take-home message is that *precompilation works better when type inference succeeds.* For some packages, time invested in improving inferrability can make your `precompile` directives work better.
+An important take-home message is that *precompilation works better when type inference succeeds.*
+For some packages, time invested in improving inferrability can make your `precompile` directives work better.
+In future installments, we'll cover some new tools that make it easier than ever to analyzing inference failures.
 
 ### Answer to quiz
 
@@ -396,7 +414,7 @@ precompile(dopush, ())
 
 then the `MethodInstance` for `push!(::Vector{SCDType}, ::SCDType)` will be added to the package through the backedge to `dopush` (which you do own).
 
-Generally, it's not recommended to do this artifically as was done here; in useful cases, this happens organically through the functionality of your package.
+This was a pretty artifical example, but in more typical cases this happens organically through the functionality of your package.
 But, this only works when the call is inferrable.
 
 [MethodAnalysis]: https://github.com/timholy/MethodAnalysis.jl
