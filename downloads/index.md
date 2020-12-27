@@ -1,7 +1,5 @@
 
 
-# Download Julia
-
 If you like Julia, please consider starring us [on GitHub](https://github.com/JuliaLang/julia) and spreading the word!
 
 ~~~
@@ -25,16 +23,40 @@ If you like Julia, please consider starring us [on GitHub](https://github.com/Ju
    </div>
 
    <p>
-   <div class="col-12" style="text-align: center">
-     <a id="DownloadButton" class="btn btn-success btn-lg" href="/downloads/other/">Unable to detect platform, click here to see all downloads</a>
+   <div class="col-12" style="text-align: center; width: 100%;">
+     <a id="DownloadButton" class="btn btn-success btn-lg" href="/downloads/other/" style="font-size: 25px">See all downloads</a>
    </div>
    <!-- <br><br> May want to add space-->
 
-   <div class="col-12" style="text-align: center">
+   <div class="col-12" style="text-align: center; font-size: 20px">
      <a id="HelpButton" href="/downloads/other/">[Help]</a>  | <a href="/downloads/other/">Other Platforms</a> | <a href="https://docs.julialang.org/en/v1/NEWS/">Release Notes</a>
+   </div>
+   <div class="col-12" style="text-align: center; font-size: 15px">
+     <a href="/downloads/nightlies/">"Nightly" builds</a>  | <a class="md5" href="">MD5</a> or <a class="sha256" href="">SHA256</a> Checksums
    </div>
    </p>
    <br><br>
+  </div>
+
+  <!--
+        Containers: Why Julia?
+   -->
+   <div class="container pt-sm-2" style="font-size: 20px">
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features "><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading">
+            Why Julia?
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+      </div>
+      <p>
+       Julia is a fresh approach to technical computing. Built for speed, reproducibility, and ease of use. See what Julia users are saying on twitter with <a class="link extra-link" href="https://twitter.com/search?q=%23JuliaLang&src=typed_query" target="_blank" style="font-size: 20px">#JuliaLang</a>.
+      </p>
+     <br>
+     </div>
+
   </div>
 
 <script>
@@ -58,8 +80,8 @@ If you like Julia, please consider starring us [on GitHub](https://github.com/Ju
 
       } else if (iosPlatforms.indexOf(platform) !== -1) {
         os = 'iOS';
-        downloadlink = "";
-        downloadmsg = `You need to be on a Desktop to download Julia v${stable_release}`;
+        downloadlink = "/downloads/other/";
+        downloadmsg = "See all downloads";
         helplink = "/downloads/other/";
 
       } else if (windowsPlatforms.indexOf(platform) !== -1) {
@@ -77,20 +99,25 @@ If you like Julia, please consider starring us [on GitHub](https://github.com/Ju
           helplink = "/downloads/platform/#windows";
 
         } else {
-          <!-- We should render the other downloads page -->
-          console.log("TODO")
+          window.location.replace('/downloads/other/');
         }
 
 
       } else if (/Android/.test(userAgent)) {
-        os = 'iOS';
-        downloadlink = "";
-        downloadmsg = `You need to be on a Desktop to download Julia v${stable_release}`;
+        os = 'Android';
+        downloadlink = "/downloads/other/";
+        downloadmsg = "See all downloads";
         helplink = "/downloads/other/";
 
       } else if (!os && /Linux/.test(platform)) {
+        console.log("Your current platform has been detected as: ");
+        console.log(platform);
         os = 'Linux';
+        <!-- window.location.replace('/downloads/other/'); -->
       }
+
+      console.log("Your current platform has been detected as: ");
+      console.log(platform);
 
       return [os, downloadlink, downloadmsg, helplink];
     }
@@ -102,6 +129,12 @@ If you like Julia, please consider starring us [on GitHub](https://github.com/Ju
 
     let hbutton = document.querySelector("#HelpButton");
     hbutton.href = osDetails[3];
+
+    let checksumMD5 = document.querySelector(".md5");
+    checksumMD5.href = `https://julialang-s3.julialang.org/bin/checksums/julia-${stable_release}.md5`;
+
+    let checksumSHA256 = document.querySelector(".sha256");
+    checksumSHA256.href = `https://julialang-s3.julialang.org/bin/checksums/julia-${stable_release}.sha256`;
   });
 
 
