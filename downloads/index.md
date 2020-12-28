@@ -1,26 +1,18 @@
 
-
-If you like Julia, please consider starring us [on GitHub](https://github.com/JuliaLang/julia) and spreading the word!
-
-~~~
-<a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
-~~~
-
 ~~~
 <!--
-      Containers: Downloads
+      Containers: Download
  -->
- <div class="container-fluid alt-color packages">
-   <br><br>
+ <div class="container pt-sm-2" style="font-size: 20px">
    <div class="row">
-     <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
-     <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+     <div class="col-lg-4 col-md-3 language-features "><hr/></div>
+     <div class="col-lg-4 col-md-6 language-features section-heading">
        <h2 class="lead secondary-heading">
-         Download
+          Download
        </h2>
      </div>
-     <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
-   </div>
+     <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+    </div>
 
    <p>
    <div class="col-12" style="text-align: center; width: 100%;">
@@ -39,21 +31,27 @@ If you like Julia, please consider starring us [on GitHub](https://github.com/Ju
   </div>
 
   <!--
-        Containers: Why Julia?
+        Containers: Why Julia
    -->
-   <div class="container pt-sm-2" style="font-size: 20px">
+   <div class="container-fluid alt-color packages">
+     <br>
      <div class="row">
-       <div class="col-lg-4 col-md-3 language-features "><hr/></div>
-       <div class="col-lg-4 col-md-6 language-features section-heading">
+       <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+       <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
          <h2 class="lead secondary-heading">
-            Why Julia?
+           Why Julia
          </h2>
        </div>
-       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
-      </div>
+       <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+     </div>
+
       <p>
        Julia is a fresh approach to technical computing. Built for speed, reproducibility, and ease of use. See what Julia users are saying on twitter with <a class="link extra-link" href="https://twitter.com/search?q=%23JuliaLang&src=typed_query" target="_blank" style="font-size: 20px">#JuliaLang</a>.
       </p>
+      <p>
+      If you like Julia, please consider starring us <a href="https://github.com/JuliaLang/julia" >on GitHub</a> and spreading the word!
+      </p>
+      <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
      <br>
      </div>
 
