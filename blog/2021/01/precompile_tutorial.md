@@ -1,7 +1,7 @@
 @def title = "Tutorial on precompilation"
 @def authors = "Tim Holy"
-@def published = "28 December 2020"
-@def rss_pubdate = Date(2020, 12, 28)
+@def published = "5 January 2021"
+@def rss_pubdate = Date(2021, 1, 5)
 @def rss = """Tutorial on precompilation"""
 
 One of the main foci of development during Julia 1.6 has been to reduce *latency*, the delay between starting your session and getting useful work done.  This is sometimes called "time to first plot," although it applies to far more than just plotting.
