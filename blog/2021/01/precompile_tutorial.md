@@ -154,7 +154,7 @@ In this blog post, we take a big step backwards and start peering under the hood
 
 ## Type-inference, MethodInstances, and backedges
 
-We'll introduce these concepts via a simple demo (users are encourage to try this and follow along).  First, let's open the Julia REPL and define the following methods:
+We'll introduce these concepts via a simple demo (users are encouraged to try this and follow along).  First, let's open the Julia REPL and define the following methods:
 
 ```
 double(x::Real) = 2x
