@@ -16,7 +16,9 @@ This event's goals were to...
 > - ...provide promotional and technical benefits to the Julia community as whole.
 > - ...and have a huge amount of fun!
 
-Now, in 2021, I'm happy to report on all of the great contributions made by the wonderful folks at Beacon Biosignals, Invenia, TriScale innov, PumasAI, and RelationalAI (TODO: add links). All shapes and sizes of contribution were welcome at the event: we released whole packages, made PRs, caught bugs, started new projects, and planned out our OSS roadmaps/backlogs for future work. Here's a sampling of the standouts:
+Now, in 2021, I'm happy to report on all of the great contributions made by the wonderful folks at Beacon Biosignals, Invenia, TriScale innov, PumasAI, and RelationalAI (TODO: add links). 
+All shapes and sizes of contribution were welcome at the event: we released whole packages, made PRs, caught bugs, started new projects, and planned out our OSS roadmaps/backlogs for future work. 
+Here is a sampling of the standouts:
 
 - TODO: add items :)
 
