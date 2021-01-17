@@ -40,15 +40,14 @@ Here is a sampling of the standouts:
 
 ...and so many more issues/PRs/etc. that I couldn't fit here!
 
-## Stuff We Learned
+On top of the contributions themselves, this event taught us about (or in some cases, reminded us of) a few valuable points:
 
-TODO: flesh out + convert this section to prose
-
-- gather.town was fun; Beacon now has an internal one
-- cross-org collaboration was fun
 - Julia's package manager works seamlessly even when a single package's registered versions are split across private and public registries. In a lot of cases, this made it super easy to upgrade downstream internal packages to the now-open versions of their upstream dependencies - it just required a version bump!
-- the event was a great "OSS onboarding ramp" for awesome senior engineering staff that hadn't previously contributed to OSS, translating their internal impact into external impact
+- Having a well-documented, battle-tested internal process for safely open-sourcing private code drastically lowers the barrier to actually doing so.
+- [Gather](https://gather.town/) is actually a pretty useful platform for collaboration! Adding a spacial component to video chat really goes a long way towards recreating the vibe of a shared workspace. After having a great experience using it to host the event, we at Beacon Biosignals created our own internal Gather space that we hang out in daily.
+- Cross-org collaboration has always been a huge development driver in the Julia community, and this event was no different! It was fun to discover the various points of intersection between our orgs' tech stacks, and start working together directly on these tools. The JuliaCloud ecosystem (especially [AWS.jl](https://github.com/JuliaCloud/AWS.jl)) turned out to be of particular interest across participants.
+- There are a lot of amazing engineers out there who, before joining an OSS-friendly company, never had an opportunity to contribute to OSS as part of their day-job. This event served as a great OSS onboarding ramp by enabling these individuals to translate pre-existing internal work into impactful external contributions.
 
-Thanks to everybody that made this event so fun and productive!
+All in all, I'd say the Contributhon was a success, and established a few points of collaboration between industry Julia users that I suspect will carry on for quite some time. More importantly, it was a whole lot of fun. Thanks to everybody that attended, everybody that facilitated, and all the wonderful folks in OSS community whose projects support Julia's continued rise in industry!
 
-Have thoughts/questions about this blog post, the Contributhon, and/or the use of Julia in industry? Come join the discussion in [the Julia Slack's](https://julialang.slack.com/join/shared_invite/zt-ggsythg2-qYjdCBzGPeXceYCnCfpKsQ#/) `#industry-users` channel!
+Have thoughts/questions about this blog post and/or the use of Julia in industry? Come join the discussion in [the Julia Slack's](https://julialang.slack.com/join/shared_invite/zt-ggsythg2-qYjdCBzGPeXceYCnCfpKsQ#/) `#industry-users` channel!
