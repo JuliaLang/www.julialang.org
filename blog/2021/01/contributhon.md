@@ -32,7 +32,7 @@ Here is a sampling of the standouts:
 - [DateSelectors.jl](https://github.com/invenia/DateSelectors.jl), which provides utilities for partitioning dates into test/train/validation/etc. sets for time-series machine learning (Invenia)
 - [Cliquing.jl](https://github.com/invenia/Cliquing.jl), which implements various algorithms for finding a non-overlapping set of cliques in a graph (Invenia)
 - [Checkpoints.jl](https://github.com/invenia/Checkpoints.jl), which provides mechanisms for dynamically checkpointing Julia program state (Invenia)
-- [PDMatsExtras.jl](https://github.com/invenia/PDMatsExtras.jl), which extends [PDMats.jl](https://github.com/JuliaStats/PDMats.jl) with a couple different positive (semi-)definite matrix types that [nicely interopate with Distributions.jl](https://github.com/JuliaStats/Distributions.jl/issues/1219).
+- [PDMatsExtras.jl](https://github.com/invenia/PDMatsExtras.jl), which extends [PDMats.jl](https://github.com/JuliaStats/PDMats.jl) with a couple different positive (semi-)definite matrix types that [nicely interopate with Distributions.jl](https://github.com/JuliaStats/Distributions.jl/issues/1219) (Invenia)
 - [RegistryCLI.jl](https://github.com/triscale-innov/RegistryCLI.jl), a tool for easily managing private package registries directly from the command line (TriScale innov)
 - [XUnit.jl](https://github.com/RelationalAI-oss/XUnit.jl), a unit test framework with nice parallelization capabilities (RelationalAI)
 - Compiler support for compilation profiling during inference/LLVM optimization, [enabling cool new SnoopCompile.jl features](https://timholy.github.io/SnoopCompile.jl/stable/snoopi_deep/) (RelationalAI)
