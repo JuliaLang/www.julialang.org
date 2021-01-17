@@ -4,7 +4,9 @@
 @def rss_pubdate = TODO
 @def rss = """A Look Back At The 2020 Industry Julia Users Contributhon"""
 
-A few months ago, I wrote [a blog post](https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/) reflecting on an interesting JuliaCon 2020 discussion between a group of industry-focused Julia users that focused on the interplay between closed-source proprietary software development and Julia's OSS ecosystem. The blog post summarized a few key issues that our discussion group felt served as real hurdles to meaningful OSS contribution from within private organizations. The post concluded by announcing our attempt to jump these hurdles: the Industry Julia Users Contributhon, a hackathon where participating industry organizations could come together to contribute back to the Julia ecosystem.
+A few months ago, I wrote [a blog post](https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/) reflecting on an interesting JuliaCon 2020 discussion between a group of industry-focused Julia users that focused on the interplay between closed-source proprietary software development and Julia's open source software (OSS) ecosystem. 
+The blog post summarized a few key issues that our discussion group felt served as real hurdles to meaningful OSS contribution from within private organizations. 
+The post concluded by announcing our attempt to jump these hurdles: the Julia Industry Users Contributhon, a hackathon where participating industry organizations could come together to contribute back to the Julia ecosystem.
 
 This event's goals were to...
 
