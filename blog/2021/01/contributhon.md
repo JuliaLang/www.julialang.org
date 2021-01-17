@@ -38,12 +38,12 @@ Here is a sampling of the standouts:
 - Compiler support for compilation profiling during inference/LLVM optimization, [enabling cool new SnoopCompile.jl features](https://timholy.github.io/SnoopCompile.jl/stable/snoopi_deep/) (RelationalAI)
 - Various quality-of-life improvements to [PProf.jl](https://github.com/JuliaPerf/PProf.jl), including flame graph support. (RelationalAI)
 
-...and so many more issues/PRs/etc. that I couldn't fit here!
+...and so many more issues/PRs/etc. that I couldn't fit here - especially the important work that went into [public OSS backlog creation](https://docs.google.com/document/d/16Rwkr5u8WdPh-AHVJHs2D2e-0SrUHQS_ZTB0fiepsmU/edit).
 
 On top of the contributions themselves, this event taught us about (or in some cases, reminded us of) a few valuable points:
 
 - Julia's package manager works seamlessly even when a single package's registered versions are split across private and public registries. In a lot of cases, this made it super easy to upgrade downstream internal packages to the now-open versions of their upstream dependencies - it just required a version bump!
-- Having a well-documented, battle-tested internal process for safely open-sourcing private code drastically lowers the barrier to actually doing so.
+- Having a well-documented, battle-tested internal process for safely open-sourcing private code drastically lowers the barrier to actually doing so. Creating an explicit (and if possible, public) "OSS backlog" is a great way to kickstart the development of an internal process.
 - [Gather](https://gather.town/) is actually a pretty useful platform for collaboration! Adding a spacial component to video chat really goes a long way towards recreating the vibe of a shared workspace. After having a great experience using it to host the event, we at Beacon Biosignals created our own internal Gather space that we hang out in daily.
 - Cross-org collaboration has always been a huge development driver in the Julia community, and this event was no different! It was fun to discover the various points of intersection between our orgs' tech stacks, and start working together directly on these tools. The JuliaCloud ecosystem (especially [AWS.jl](https://github.com/JuliaCloud/AWS.jl)) turned out to be of particular interest across participants.
 - There are a lot of amazing engineers out there who, before joining an OSS-friendly company, never had an opportunity to contribute to OSS as part of their day-job. This event served as a great OSS onboarding ramp by enabling these individuals to translate pre-existing internal work into impactful external contributions.
