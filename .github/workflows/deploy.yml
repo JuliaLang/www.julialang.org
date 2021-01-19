@@ -2,10 +2,10 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - master # only trigger deployment upon pushes to master branch
+      - main # only trigger deployment upon pushes to main branch
   pull_request:
     branches:
-      - master
+      - main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
           SSH: true
           TARGET_FOLDER: "previews/PR${{ github.event.number }}"
       - name: Deploy (main)
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           SSH: true
