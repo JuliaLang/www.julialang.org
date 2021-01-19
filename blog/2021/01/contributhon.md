@@ -1,7 +1,7 @@
 @def title = "The 2020 Industry Julia Users Contributhon"
-@def authors = "TODO"
-@def published = "TODO"
-@def rss_pubdate = TODO
+@def authors = "Jarrett Revels"
+@def published = "20 January 2021"
+@def rss_pubdate = Date(2021, 1, 20)
 @def rss = """A Look Back At The 2020 Industry Julia Users Contributhon"""
 
 A few months ago, I wrote [a blog post](https://julialang.org/blog/2020/09/juliacon-2020-open-source-bof-follow-up/) reflecting on an interesting JuliaCon 2020 discussion between a group of industry-focused Julia users that focused on the interplay between closed-source proprietary software development and Julia's open source software (OSS) ecosystem.
@@ -16,7 +16,7 @@ This event's goals were to...
 > - ...provide promotional and technical benefits to the Julia community as whole.
 > - ...and have a huge amount of fun!
 
-Now, in 2021, I'm happy to report on all of the great contributions made by the wonderful folks at [Beacon Biosignals](https://beacon.bio/), [Invenia](https://www.invenia.ca/), [TriScale innov](https://www.triscale-innov.com/), [RelationalAI](https://www.relational.ai/), and [PumasAI](https://pumas.ai/).
+Now, in 2021, I'm happy to report on all of the great contributions made as part of the event last month by the wonderful folks at [Beacon Biosignals](https://beacon.bio/), [Invenia](https://www.invenia.ca/), [TriScale innov](https://www.triscale-innov.com/), [RelationalAI](https://www.relational.ai/), and [PumasAI](https://pumas.ai/).
 All shapes and sizes of contribution were welcome at the event: we released whole packages, made PRs, caught bugs, started new projects, and planned out our OSS roadmaps/backlogs for future work.
 
 Here is a sampling of the standouts:
