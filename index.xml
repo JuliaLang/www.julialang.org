@@ -6,6 +6,14 @@
   <link>https://julialang.org/</link>
   <atom:link href="https://julialang.org/feed.xml" rel="self" type="application/rss+xml" />
   <item>
+    <title>The 2020 Industry Julia Users Contributhon</title>
+    <link>https://julialang.org/blog/2021/01/contributhon/</link>
+    <description><![CDATA[A Look Back At The 2020 Industry Julia Users Contributhon
+<br><a href="https://julialang.org/blog/2021/01/contributhon/">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2021/01/contributhon/</guid>
+    <pubDate>Wed, 20 Jan 2021 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title>Tutorial on precompilation</title>
     <link>https://julialang.org/blog/2021/01/precompile_tutorial/</link>
     <description><![CDATA[Tutorial on precompilation
