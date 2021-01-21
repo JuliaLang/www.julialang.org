@@ -45,13 +45,13 @@ module SnoopDemo
 end
 ```
 
-The main call, `packintype`, stores the input in a `struct`, and then calls functions that extract the field value and performs arithmetic on the result.
+The main call, `domath_with_mytype`, stores the input in a `struct`, and then calls functions that extract the field value and performs arithmetic on the result.
 To profile inference on this call, we simply do the following:
 
 ```
 julia> using SnoopCompile
 
-julia> tinf = @snoopi_deep SnoopDemo.packintype(1)
+julia> tinf = @snoopi_deep SnoopDemo.domath_with_mytype(1)
 InferenceTimingNode: 0.009382/0.010515 on InferenceFrameInfo for Core.Compiler.Timings.ROOT() with 1 direct children
 ```
 
@@ -92,7 +92,7 @@ julia> using AbstractTrees
 
 julia> print_tree(tinf)
 InferenceTimingNode: 0.009382/0.010515 on InferenceFrameInfo for Core.Compiler.Timings.ROOT() with 1 direct children
-└─ InferenceTimingNode: 0.000355/0.001133 on InferenceFrameInfo for Main.SnoopDemo.packintype(::Int64) with 3 direct children
+└─ InferenceTimingNode: 0.000355/0.001133 on InferenceFrameInfo for Main.SnoopDemo.domath_with_mytype(::Int64) with 3 direct children
    ├─ InferenceTimingNode: 0.000122/0.000254 on InferenceFrameInfo for MyType(::Int64) with 1 direct children
    │  └─ InferenceTimingNode: 0.000132/0.000132 on InferenceFrameInfo for MyType{Int64}(::Int64) with 0 direct children
    ├─ InferenceTimingNode: 0.000071/0.000071 on InferenceFrameInfo for MyType(::Int64) with 0 direct children
@@ -134,7 +134,7 @@ julia> Core.MethodInstance(tinf)
 MethodInstance for ROOT()
 
 julia> Core.MethodInstance(tinf.children[1])
-MethodInstance for packintype(::Int64)
+MethodInstance for domath_with_mytype(::Int64)
 ```
 
 ## Visualizing the output
@@ -191,7 +191,7 @@ julia> flatten(tinf)
  InferenceTiming: 0.000122/0.000254 on InferenceFrameInfo for Main.SnoopDemo.MyType(::Int64)
  InferenceTiming: 0.000132/0.000132 on InferenceFrameInfo for Main.SnoopDemo.MyType{Int64}(::Int64)
  InferenceTiming: 0.000170/0.000170 on InferenceFrameInfo for Main.SnoopDemo.domath(::Int64)
- InferenceTiming: 0.000355/0.001133 on InferenceFrameInfo for Main.SnoopDemo.packintype(::Int64)
+ InferenceTiming: 0.000355/0.001133 on InferenceFrameInfo for Main.SnoopDemo.domath_with_mytype(::Int64)
  InferenceTiming: 0.009382/0.010515 on InferenceFrameInfo for Core.Compiler.Timings.ROOT()
 ```
 
@@ -209,7 +209,7 @@ julia> accumulate_by_source(flatten(tinf))
  (0.000132328, Main.SnoopDemo.MyType{T}(x) where T in Main.SnoopDemo at REPL[1]:2)
  (0.000170205, domath(x) in Main.SnoopDemo at REPL[1]:6)
  (0.000193107, Main.SnoopDemo.MyType(x::T) where T in Main.SnoopDemo at REPL[1]:2)
- (0.000354527, packintype(x) in Main.SnoopDemo at REPL[1]:13)
+ (0.000354527, domath_with_mytype(x) in Main.SnoopDemo at REPL[1]:13)
  (0.009381595, ROOT() in Core.Compiler.Timings at compiler/typeinfer.jl:75)
 ```
 
