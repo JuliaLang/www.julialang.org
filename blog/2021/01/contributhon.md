@@ -29,6 +29,7 @@ Here is a sampling of the standouts:
 - myriad JuliaPlots contributions (Beacon Biosignals): [AbstractPlotting.jl#569](https://github.com/JuliaPlots/AbstractPlotting.jl/pull/569), [AbstractPlotting.jl#570](https://github.com/JuliaPlots/AbstractPlotting.jl/pull/570), [WGLMakie.jl#71](https://github.com/JuliaPlots/WGLMakie.jl/pull/71), [JSServe.jl#76](https://github.com/SimonDanisch/JSServe.jl/pull/76)
 - improved [RegistryCI.jl support for private package registries](https://github.com/JuliaRegistries/RegistryCI.jl/pull/306) (Beacon Biosignals)
 - myriad AWS-related contributions (Invenia, Beacon Biosignals):, [AWSS3.jl#118](https://github.com/JuliaCloud/AWSS3.jl/pull/118), [AWSS3.jl#119](https://github.com/JuliaCloud/AWSS3.jl/pull/119), [AWSS3.jl#120](https://github.com/JuliaCloud/AWSS3.jl/pull/120), [AWSS3.jl#121](https://github.com/JuliaCloud/AWSS3.jl/pull/121), [AWSS3.jl#124](https://github.com/JuliaCloud/AWSS3.jl/pull/124), [AWS.jl#257](https://github.com/JuliaCloud/AWS.jl/pull/257), [AWS.jl#260](https://github.com/JuliaCloud/AWS.jl/pull/260), [AWS.jl#262](https://github.com/JuliaCloud/AWS.jl/pull/262), [AWS.jl#265](https://github.com/JuliaCloud/AWS.jl/pull/265)
+- [AWSTools.jl](https://github.com/JuliaCloud/AWSTools.jl), assortment of AWS utility functions (Invenia)
 - [DateSelectors.jl](https://github.com/invenia/DateSelectors.jl), which provides utilities for partitioning dates into test/train/validation/etc. sets for time-series machine learning (Invenia)
 - [Cliquing.jl](https://github.com/invenia/Cliquing.jl), which implements various algorithms for finding a non-overlapping set of cliques in a graph (Invenia)
 - [Checkpoints.jl](https://github.com/invenia/Checkpoints.jl), which provides mechanisms for dynamically checkpointing Julia program state (Invenia)
@@ -36,7 +37,7 @@ Here is a sampling of the standouts:
 - [RegistryCLI.jl](https://github.com/triscale-innov/RegistryCLI.jl), a tool for easily managing private package registries directly from the command line (TriScale innov)
 - [XUnit.jl](https://github.com/RelationalAI-oss/XUnit.jl), a unit test framework with nice parallelization capabilities (RelationalAI)
 - Compiler support for compilation profiling during inference/LLVM optimization, [enabling cool new SnoopCompile.jl features](https://timholy.github.io/SnoopCompile.jl/stable/snoopi_deep/) (RelationalAI)
-- Various quality-of-life improvements to [PProf.jl](https://github.com/JuliaPerf/PProf.jl), including interoperability with FlameGraphs.jl and SnoopCompile.jl. (RelationalAI)
+- Various quality-of-life improvements to [PProf.jl](https://github.com/JuliaPerf/PProf.jl), including interoperability with [FlameGraphs.jl](https://github.com/timholy/FlameGraphs.jl) and [SnoopCompile.jl](https://github.com/timholy/SnoopCompile.jl). (RelationalAI)
 
 ...and so many more issues/PRs/etc. that I couldn't fit here - especially the important work that went into [public OSS backlog creation](https://docs.google.com/document/d/16Rwkr5u8WdPh-AHVJHs2D2e-0SrUHQS_ZTB0fiepsmU/edit).
 
