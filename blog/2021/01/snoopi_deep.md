@@ -18,7 +18,7 @@ Julia 1.6 includes new changes that have permitted a far deeper look at what inf
 Appropriately enough, SnoopCompile calls this `@snoopi_deep`.
 
 The rich data collected by `@snoopi_deep` are useful for several different purposes.
-in this post, we'll describe the basic tool and show how it can be used to profile inference.
+In this post, we'll describe the basic tool and show how it can be used to profile inference.
 Later posts will show other ways to use the data to reduce the amount of type-inference or cache its results.
 
 ## Collecting the data
@@ -38,7 +38,7 @@ module SnoopDemo
 
     dostuff(y) = domath(extract(y))
 
-    function packintype(x)
+    function domath_with_mytype(x)
         y = MyType(x)
         return dostuff(y)
     end
@@ -110,6 +110,10 @@ the `getproperty(::MyType{Int64}, x::Symbol)` (note `x::Symbol` instead of just 
 @@note
 **Box 3** Generally we speak of [call graphs](https://en.wikipedia.org/wiki/Call_graph) rather than call trees.
 But because inference results are cached (a.k.a., we only "visit" each node once), we obtain a tree as a depth-first-search of the full call graph.
+
+Keep in mind that this can sometimes lead to surprising results when trying to improve inference times. You may delete a node in the graph, expecting to
+eliminate it and all of its children, only to find that the children are now sitting under a _different_ parent node, the next function to be inferred that calls
+your child, and was previously relying on it being cached.
 @@
 
 Each node in this tree is accompanied by a pair of numbers.
@@ -123,7 +127,7 @@ Almost all of that was code-generation, but it also includes the time needed to 
 Just 0.76ms was needed to run type-inference on this entire series of calls.
 As you will quickly discover as you use `@snoopi_deep`, inference takes much more time on more complicated code.
 
-You can extract the `MethodInstance` with
+You can extract the `MethodInstance` that was being inferred at each node with
 
 ```
 julia> Core.MethodInstance(tinf)
@@ -135,7 +139,7 @@ MethodInstance for packintype(::Int64)
 
 ## Visualizing the output
 
-We can also display this tree as a flame graph, using the [ProfileView](https://github.com/timholy/ProfileView.jl) package:
+We can also display this tree as a flame graph, using either the [ProfileView](https://github.com/timholy/ProfileView.jl) or [PProf](https://github.com/JuliaPerf/PProf.jl) packages:
 
 ```
 julia> fg = flamegraph(tinf)
@@ -170,7 +174,7 @@ This occurs when the method is owned by one module but the argument types are fr
 We'll see how to deal with these in later installments.
 
 You also see breaks in the flamegraph. During these periods, code generation and runtime create new objects and then call methods on those objects; if one of those calls requires a fresh entrance into inference, that triggers the creation of a new flame.
-Hence, the number of distinct flames (which is just equal to `length(tinf.children)`) gives you a rough indication of how frequently the chains of inference were broken.
+Hence, the number of distinct flames (which is just equal to `length(tinf.children)`) gives you a rough indication of how frequently the chains of inference were broken. This can be caused by type instability, separate top-level calls from the REPL during `@snoopi_deep`, calls to `eval` in your code, or some other cause for julia to start running type inference.
 
 ## Elementary analysis: `flatten` and `accumulate_by_source`
 
