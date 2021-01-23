@@ -2,6 +2,11 @@
 
 ~~~
 <!--
+From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-embedded-google-calendar
+ -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
+
+<!--
       Containers: Community Standards
  -->
  <div class="container pt-sm-2">
@@ -103,12 +108,11 @@
      </div>
 
      <br>
-
      <p>The Julia Community has a shared calendar for all upcoming global events. If you are an event organizer, please <a href="mailto:logan@julialang.org">email us</a>
      with the details so it can be added to the calendar. The Julia community also has <a href="https://www.meetup.com/topics/julia/all/">local meetups around the world.</a></p>
-
-     <iframe src="https://calendar.google.com/calendar/b/2/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=UTC&amp;src=anVsaWFsYW5nLm9yZ19rb21hdWFxZXQxNGVvZzlvaXYzcDZvN3BtZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%238E24AA" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-
+      <div id="calendar-container">
+           <iframe src="https://calendar.google.com/calendar/b/2/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=UTC&amp;src=anVsaWFsYW5nLm9yZ19rb21hdWFxZXQxNGVvZzlvaXYzcDZvN3BtZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%238E24AA" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+      </div>
      <br>
 
    </div>
@@ -192,4 +196,12 @@
   </div>
   <br>
 </div>
+
+<script type="text/javascript">
+  var timezone = jstz.determine();
+  var pref = '<iframe src="https://calendar.google.com/calendar/b/2/embed?mode=agenda&src=julialang.org_komauaqet14eog9oiv3p6o7pmg%40group.calendar.google.com&ctz=';
+  var suff = '" style=" border:solid 1px #777 " width="100%" height="600" frameborder="0" scrolling="no"></iframe>';
+  var iframe_html = pref + timezone.name() + suff;
+  document.getElementById('calendar-container').innerHTML = iframe_html;
+</script>
 ~~~
