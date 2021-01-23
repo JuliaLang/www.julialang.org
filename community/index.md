@@ -193,6 +193,10 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
     <br>
 
     <p>The Julia Language is proud to have fostered a diverse assortment of GitHub Organizations over the years. <a href="organizations">Find out more about our Ecosystem's GitHub Orgs.</a></p>
+    <img src="assets/orglogos.png" alt="All Julia Org Logos" class="img-fluid">
+    <!--
+    From: https://github.com/ViralBShah/JuliaOrgLogos
+  -->
   </div>
   <br>
 </div>
