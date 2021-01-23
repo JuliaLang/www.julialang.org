@@ -2,6 +2,8 @@
 author = "Keno Fischer"
 published = "24 September 2020"
 title = "Using time travel to remotely debug faulty DRAM"
+author_img = "authors/keno.png"
+author_blurb = "Co-Founder & CTO of JuliaComputing"
 rss = """The story of debugging a mysterious Julia segfault."""
 meta = [
     ("property", "og:image", "https://julialang.org/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg"),
@@ -521,3 +523,6 @@ cosmic rays or gremlins living under the floor. Here, we were able to fairly con
 conclude that that the issue must indeed be bad memory. I like to say that `rr` turns a
 debugging problem into a data analysis problem and here, as is so often the case, the most
 insightful piece is figuring out what data is missing.
+
+
+{{about_the_author}}
