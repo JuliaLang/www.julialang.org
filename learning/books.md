@@ -1,6 +1,7 @@
 ## Books
 
 @@tight-list
+* Raj Rao. [Applied Computational Linear Algebra for Everyone](https://mynerva.io/compla), December 2020; Interactive, experential computational book as described in [this JuliaCon  talk](https://www.youtube.com/watch?v=R84L-BQcjHw)  
 * Bogumił Kamiński and Paweł Prałat. [Train Your Brain - Challenging Yet Elementary Mathematics](https://www.ryerson.ca/train-your-brain/), December 2020; a free on-line [Julia language companion](https://math.ryerson.ca/~pralat/train-your-brain.pdf) is available for download.
 * Ahan Sengupta [The Little Book of Julia Algorithms](https://www.amazon.com/Little-Book-Julia-Algorithms-programming/dp/1838173609/). SAV Publishing, September 2020.
 * Zacharias Voulgaris. [Julia for Machine Learning](https://technicspub.com/julia/). Technics Publications, June 2020.

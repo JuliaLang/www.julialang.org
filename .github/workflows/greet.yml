@@ -2,9 +2,9 @@ name: Welcome first time contributors
 on:
   issues:
     types: [opened]
-  pull_request:
+  pull_request_target:
     branches:
-      - master
+      - main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
