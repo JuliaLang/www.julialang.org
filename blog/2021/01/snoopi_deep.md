@@ -200,6 +200,10 @@ Typing values into the search bar (without pressing enter) will highlight them i
 
 ![PProf Flamegraph filtered and highlighted](/assets/blog/2021-latency/pprof-flamepgraph-no-root-highlight.png)
 
+Here's a screenshot of the Top view, again with `ROOT()` hidden: `http://localhost:57599/ui/top?h=ROOT`
+
+![PProf Top view](/assets/blog/2021-latency/pprof-top-no-root.png)
+
 More details about using PProf are outside the scope of this post, but here are some things to keep in mind:
  - Sibling frames in pprof are _not ordered by time_, they are ordered alphabetically. `ProfileView`, above, is a much better tool for understanding what occurred when during a computation.
  - PProf is excellent for interactively exploring (potentially very large) profiles. It provides good high-level summary of the biggest offenders, and includes many tools for understanding their details, including the `source` view, `top` view, and filtering.
