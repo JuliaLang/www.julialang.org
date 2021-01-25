@@ -141,6 +141,7 @@ MethodInstance for domath_with_mytype(::Int64)
 
 We can also display this tree as a flame graph, using either the [ProfileView](https://github.com/timholy/ProfileView.jl) or [PProf](https://github.com/JuliaPerf/PProf.jl) packages:
 
+### ProfileView.jl
 ```
 julia> fg = flamegraph(tinf)
 Node(FlameGraphs.NodeData(ROOT() at typeinfer.jl:75, 0x00, 0:10080857))
@@ -175,6 +176,34 @@ We'll see how to deal with these in later installments.
 
 You also see breaks in the flamegraph. During these periods, code generation and runtime create new objects and then call methods on those objects; if one of those calls requires a fresh entrance into inference, that triggers the creation of a new flame.
 Hence, the number of distinct flames (which is just equal to `length(tinf.children)`) gives you a rough indication of how frequently the chains of inference were broken. This can be caused by type instability, separate top-level calls from the REPL during `@snoopi_deep`, calls to `eval` in your code, or some other cause for julia to start running type inference.
+
+### PProf.jl
+```
+julia> fg = flamegraph(tinf)
+Node(FlameGraphs.NodeData(ROOT() at typeinfer.jl:75, 0x00, 0:10080857))
+
+julia> using PProf
+
+julia> pprof(fg)
+Serving web UI on http://localhost:57599
+```
+
+For a detailed walkthrough of how to use PProf, see the [PProf.jl README](https://github.com/JuliaPerf/PProf.jl) and, for a more complete guide, the [google/pprof web interface README](https://github.com/google/pprof/blob/master/doc/README.md#web-interface).
+
+We have found the most useful views for inspecting an inference profile to be the `/flamegraph` and `/source` views. If you navigate to the Flamegraph view, via VIEW -> Flame Graph, this is what you should see:
+
+![PProf Flamegraph in full](/assets/blog/2021-latency/pprof-flamegraph-full-1.png)
+
+Of course, as above, in this example inference was only a small part of the total time. You can zoom-in on nodes by clicking on them, and hovering will display their full text and time. The nicest way to expand just the inference time is to filter out the _non-inference time_ by "hiding" the `ROOT()` node. To do this, type `ROOT()` in the `Search regexp` bar and click REFINE -> Hide, or add `?h=ROOT` to the URL. This works well if there are several top-level calls to inference, as discussed below. One benefit of hiding and filtering via the Search bar is that the percentages for all nodes will be recomputed as a percentage of the new total.
+
+Typing values into the search bar (without pressing enter) will highlight them in the graph, as displayed in the following image, and pressing enter will filter the graph to _only_ contain paths that match your search. These tools can be used to identify small functions that show up often, contributing large amounts of time when aggregated together.
+
+![PProf Flamegraph filtered and highlighted](/assets/blog/2021-latency/pprof-flamepgraph-no-root-highlight.png)
+
+More details about using PProf are outside the scope of this post, but here are some things to keep in mind:
+ - Sibling frames in pprof are _not ordered by time_, they are ordered alphabetically. `ProfileView`, above, is a much better tool for understanding what occurred when during a computation.
+ - PProf is excellent for interactively exploring (potentially very large) profiles. It provides good high-level summary of the biggest offenders, and includes many tools for understanding their details, including the `source` view, `top` view, and filtering.
+ - You can export profiles to a file via the `out=` parameter to `pprof()`, which are entirely self-contained and can be shared with collaborators for them to view with PProf.
 
 ## Elementary analysis: `flatten` and `accumulate_by_source`
 
