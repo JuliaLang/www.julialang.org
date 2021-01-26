@@ -202,8 +202,7 @@ Typing values into the search bar (without pressing enter) will highlight them i
 
 Here's a screenshot of the Top view, again with `ROOT()` hidden (`/top?h=ROOT()`):
 
-<img src="/assets/blog/2021-latency/pprof-top-no-root.png" width="600" title="PProf Top view" />
-
+![PProf Top view](/assets/blog/2021-latency/pprof-top-no-root.png)
 
 More details about using PProf are outside the scope of this post, but here are some things to keep in mind:
  - Sibling frames in pprof are _not ordered by time_, they are ordered alphabetically. `ProfileView`, above, is a much better tool for understanding what occurred when during a computation.
