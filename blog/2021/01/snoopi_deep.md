@@ -200,7 +200,7 @@ Typing values into the search bar (without pressing enter) will highlight them i
 
 ![PProf Flamegraph filtered and highlighted](/assets/blog/2021-latency/pprof-flamepgraph-no-root-highlight.png)
 
-Here's a screenshot of the Top view, again with `ROOT()` hidden: `http://localhost:57599/ui/top?h=ROOT`
+Here's a screenshot of the Top view, again with `ROOT()` hidden (`/top?h=ROOT()`):
 
 <img src="/assets/blog/2021-latency/pprof-top-no-root.png" width="600" title="PProf Top view" />
 
