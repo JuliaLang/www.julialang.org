@@ -11,9 +11,9 @@ We also pointed out that precompilation is closely tied to *type inference*:
 - precompilation allows you to cache the results of type inference, thus saving time when you start using methods defined in the package
 - caching becomes more effective when a higher proportion of calls are made with inferrable argument types (i.e., type-inference "succeeds"). Successful inference introduces links, in the form of `MethodInstance` backedges, that permit the entire call graph to be cached.
 
-As a consequence, anyone interested in precompilation needs to pay attention to type inference: how much time does it account for, where is it spending its time, and what can be done to improve caching.
+As a consequence, anyone interested in precompilation needs to pay attention to type inference: how much time does it account for, where is it spending its time, and what can be done to improve caching?
 Julia itself provides the internal infrastructure needed to "spy" on inference, and the user-space utilities are in the [SnoopCompile] package.
-Starting with Julia 1.2, it became possible to do a limited amount of "spying" on inference, and this infrastructure corresponds to SnoopCompile's `@snoopi` macro.
+Julia 1.2 provided limited facilities for "spying" on inference, and this infrastructure corresponds to SnoopCompile's `@snoopi` macro.
 Julia 1.6 includes new changes that have permitted a far deeper look at what inference is doing.
 Appropriately enough, SnoopCompile calls this `@snoopi_deep`.
 
@@ -45,7 +45,7 @@ module SnoopDemo
 end
 ```
 
-The main call, `domath_with_mytype`, stores the input in a `struct`, and then calls functions that extract the field value and performs arithmetic on the result.
+The main call, `domath_with_mytype`, stores the input in a `struct`, and then calls functions that extract the field value and perform arithmetic on the result.
 To profile inference on this call, we simply do the following:
 
 ```
@@ -67,7 +67,7 @@ julia> staleinstances(tinf)
 SnoopCompileCore.InferenceTiming[]
 ```
 
-`staleinstances` extracts `MethodInstances` that have some "stale" (no longer callable) generated code.
+`staleinstances` extracts `MethodInstances` that have some "stale" generated code (code that is no longer callable).
 In our case, it returns an empty list, meaning that it found no stale instances, which guarantees that no invalidation occurred.
 There's nothing "funny" going on behind the scenes that will influence our results.
 
@@ -125,7 +125,7 @@ The `ROOT` node is a bit different: its exclusive time measures the time spent o
 In this case, we see that the entire call took approximately 10ms, of which 9.3ms was spent on activities besides inference.
 Almost all of that was code-generation, but it also includes the time needed to run the code.
 Just 0.76ms was needed to run type-inference on this entire series of calls.
-As you will quickly discover as you use `@snoopi_deep`, inference takes much more time on more complicated code.
+As users of `@snoopi_deep` will quickly discover, inference takes much more time on more complicated code.
 
 You can extract the `MethodInstance` that was being inferred at each node with
 
