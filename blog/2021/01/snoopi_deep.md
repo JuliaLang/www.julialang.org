@@ -1,7 +1,7 @@
 @def title = "Profiling type-inference"
 @def authors = "Tim Holy and Nathan Daly"
-@def published = "20 January 2021"
-@def rss_pubdate = Date(2021, 1, 20)
+@def published = "28 January 2021"
+@def rss_pubdate = Date(2021, 1, 28)
 @def rss = """Profiling type-inference"""
 
 This is the second in a short series on what package developers can do to reduce the latency of Julia packages.
