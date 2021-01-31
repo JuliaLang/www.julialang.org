@@ -59,18 +59,23 @@ Uninstallation is preferably performed by using the Windows uninstaller. The dir
 
 ## macOS
 
-On macOS, a `Julia-<version>.dmg` file is provided, which contains `Julia-<version>.app`. Installation is the same as any other Mac software. Drag the `Julia-<version>.app` to Applications Folder's Shortcut. You can also run Julia from the disk image by opening the app. The Julia download runs on macOS 10.9 Mavericks and later releases. You can build from source for macOS 10.6 Snow Leopard, and possibly earlier, and 32-bit, but it is not supported.
+On macOS, a `Julia-<version>.dmg` file is provided, which contains `Julia-<version>.app`. Installation is the same as any other Mac software: drag the `Julia-<version>.app` to Applications Folder's Shortcut. The Julia download runs on macOS 10.9 Mavericks and later releases. You can build from source for macOS 10.6 Snow Leopard (possibly earlier versions as well) and 32-bit but neither are fully supported.
 
-To start running Julia from the Terminal, you can do the following:
+You can launch Julia by opening the Julia app [like any other application](https://www.howtogeek.com/409411/how-to-launch-applications-on-your-mac/).
 
-Navigate to `/usr/local/bin` and remove the `julia` file. Then type the following command:
+### Optional: Add Julia to PATH
+
+If you want to launch Julia from the command line, first [open a new terminal window](https://www.howtogeek.com/682770/how-to-open-the-terminal-on-a-mac/), then run the following snippet from your [shell](https://superuser.com/questions/144666/what-is-the-difference-between-shell-console-and-terminal) (e.g., using the Terminal app, not inside the Julia prompt).
 
 ~~~
-<pre><code class="language-shell">ln -s /Applications/Julia-{{stable_release_short}}.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia</code></pre>
+<pre><code class="language-shell">rm -f /usr/local/bin/julia
+ln -s /Applications/Julia-{{stable_release_short}}.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia</code></pre>
 ~~~
 
-which creates a symlink to a Julia version (here {{stable_release_short}}) of your choosing.
-Once that is done, you can close the shell profile page and quit Terminal. Now, just simply open Terminal again, type in `julia` in it, and it should run your version of Julia!
+This code creates a [symlink](https://en.wikipedia.org/wiki/Symbolic_link) to a Julia version (here {{stable_release_short}}) of your choosing.
+To launch Julia, simply type `julia` inside your shell and press return.
+
+### Uninstallation
 
 You can uninstall Julia by deleting Julia.app and the packages directory in `~/.julia`. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove `~/.julia/config/startup.jl` and `~/.julia/logs/repl_history.jl`.
 
