@@ -59,13 +59,13 @@ Uninstallation is preferably performed by using the Windows uninstaller. The dir
 
 ## macOS
 
-On macOS, a `Julia-<version>.dmg` file is provided, which contains `Julia-<version>.app`. Installation is the same as any other Mac software: drag the `Julia-<version>.app` to Applications Folder's Shortcut. The Julia download runs on macOS 10.9 Mavericks and later releases. You can build from source for macOS 10.6 Snow Leopard, and possibly earlier, and 32-bit, but it is not supported.
+On macOS, a `Julia-<version>.dmg` file is provided, which contains `Julia-<version>.app`. Installation is the same as any other Mac software: drag the `Julia-<version>.app` to Applications Folder's Shortcut. The Julia download runs on macOS 10.9 Mavericks and later releases. You can build from source for macOS 10.6 Snow Leopard (and possibly earlier versions) and 32-bit but neither are fully supported.
 
-You can launch Julia by opening the Julia app like any other application.
+You can launch Julia by opening the Julia app [like any other application](https://www.howtogeek.com/409411/how-to-launch-applications-on-your-mac/).
 
 ### Optional: Add Julia to PATH
 
-If you want to launch Julia from the command line (within an already open terminal or in a script), run the following snippet from your shell (e.g., using the Terminal app, not inside the Julia prompt).
+If you want to launch Julia from the command line, first [open a new terminal window](https://www.howtogeek.com/682770/how-to-open-the-terminal-on-a-mac/), then run the following snippet from your [shell](https://superuser.com/questions/144666/what-is-the-difference-between-shell-console-and-terminal) (e.g., using the Terminal app, not inside the Julia prompt).
 
 ~~~
 <pre><code class="language-shell">rm -f /usr/local/bin/julia
@@ -73,7 +73,7 @@ ln -s /Applications/Julia-{{stable_release_short}}.app/Contents/Resources/julia/
 ~~~
 
 This code creates a symlink to a Julia version (here {{stable_release_short}}) of your choosing.
-To launch Julia, simply execute the `julia` command from inside your shell.
+To launch Julia, simply type `julia` inside your shell and press return.
 
 ### Uninstallation
 
