@@ -72,7 +72,7 @@ If you want to launch Julia from the command line, first [open a new terminal wi
 ln -s /Applications/Julia-{{stable_release_short}}.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia</code></pre>
 ~~~
 
-This code creates a symlink to a Julia version (here {{stable_release_short}}) of your choosing.
+This code creates a [symlink](https://en.wikipedia.org/wiki/Symbolic_link) to a Julia version (here {{stable_release_short}}) of your choosing.
 To launch Julia, simply type `julia` inside your shell and press return.
 
 ### Uninstallation
