@@ -73,7 +73,11 @@ by setting the environment variable `JULIA_PKG_PRECOMPILE_AUTO=0`.
 <script id="asciicast-381203" src="https://asciinema.org/a/381203.js" async></script>
 ~~~
 
-For packages that are being developed, given that their code will be changed by other mechanisms than Pkg, this new workflow won’t automatically avoid encountering the standard code-load time precompilation. However non-dev-ed dependencies of those packages will be kept ready to load, so top-level precompilation at load time should remain lower for dev-ed packages.
+For packages that are being developed, given that their code will be changed by
+other mechanisms than Pkg, this new workflow won’t automatically avoid
+encountering the standard code-load time precompilation. However non-dev-ed
+dependencies of those packages will be kept ready to load, so top-level
+precompilation at load time should remain lower for dev-ed packages.
 
 ## Compile time percentage
 
@@ -98,7 +102,8 @@ speed improvements seen in subsequent calls. This change highlights that
 behavior, serving as both a reminder and a tool for rooting out unwanted
 compilation effort i.e. over-specialized code
 
-[^1]: Note that the time reported by @time does not include time spent in julia’s code interpreter, which may be significant.
+[^1]: Note that the time reported by @time does not include time spent in
+      julia’s code interpreter, which may be significant.
 
 ## Eliminating needless recompilation
 
@@ -174,7 +179,10 @@ while this did mostly work, there were some major drawbacks to this approach.
 2. **It’s inconsistent.** Since the exact way things got downloaded depended on
    what happens to be installed on your system, download behavior was terribly
    inconsistent. Downloads that work on one system might not work on another
-   one. Moreover, any issues someone might have, inevitably end up out of scope for Julia to fix — the typical answer is "fix your system `curl`/`wget`/whatever," which is not a very satifactory solution for someone using Julia who just wants to be able to download things and get on with their life.
+   one. Moreover, any issues someone might have, inevitably end up out of scope
+   for Julia to fix — the typical answer is "fix your system
+   `curl`/`wget`/whatever," which is not a very satifactory solution for someone
+   using Julia who just wants to be able to download things.
 
 3. **It’s inflexible.** The core requirements of downloading something are
    simple: URL in, file out. But maybe you need to pass some custom headers with
