@@ -29,18 +29,19 @@ time. In 1.6, this package precompilation is faster and happens before you leave
 `pkg>` mode. Until now, precompilation took place solely as a single-processed
 sequence, precompiling dependencies one-by-one when needed during the linear
 code loading process when a package is `using`/`import`-ed for the first time.
+
 The olden days of <= 1.5:
-```jl
+```julia-repl
 (v1.5) pkg> add DifferentialEquations
 ...
 julia> @time using DifferentialEquations
 [ Info: Precompiling DifferentialEquations [0c46a032-eb83-5123-abaf-570d42b7fbaa]
-  474.288251 seconds ...
+  474.288251 seconds …
 ```
 In 1.6, `pkg>` mode gains a heavily parallelized precompile operation that is
 auto-invoked after package actions, to keep the active environment ready to
 load.
-```jl
+```julia-repl
 (v1.6) pkg> add DifferentialEquations
 ...
 Precompiling project...
@@ -68,10 +69,11 @@ errored within the given environment and will not retry until it changes.
 Auto-precompilation can be gracefully interrupted with a `ctrl-c` and disabled
 by setting the environment variable `JULIA_PKG_PRECOMPILE_AUTO=0`.
 
+~~~
 <script id="asciicast-381203" src="https://asciinema.org/a/381203.js" async></script>
+~~~
 
 For packages that are being developed, given that their code will be changed by other mechanisms than Pkg, this new workflow won’t automatically avoid encountering the standard code-load time precompilation. However non-dev-ed dependencies of those packages will be kept ready to load, so top-level precompilation at load time should remain lower for dev-ed packages.
-[Insert table of example precomp speed improvements?]
 
 ## Compile time percentage
 
@@ -81,7 +83,7 @@ A small change that should help understanding of one of Julia’s quirks for
 newcomers is that the timing macro `@time` and its verbose friend `@timev` now
 report if any of the reported time has been spent on compilation.[^1]
 
-```jl
+```julia-repl
 julia> x = rand(10,10);
 
 julia> @time x * x;
@@ -96,8 +98,7 @@ speed improvements seen in subsequent calls. This change highlights that
 behavior, serving as both a reminder and a tool for rooting out unwanted
 compilation effort i.e. over-specialized code
 
-[^1]: Note that the time reported by @time does not include time spent in
-julia’s code interpreter, which may be significant.
+[^1]: Note that the time reported by @time does not include time spent in julia’s code interpreter, which may be significant.
 
 ## Eliminating needless recompilation
 
