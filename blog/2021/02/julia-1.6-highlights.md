@@ -70,7 +70,7 @@ Auto-precompilation can be gracefully interrupted with a `ctrl-c` and disabled
 by setting the environment variable `JULIA_PKG_PRECOMPILE_AUTO=0`.
 
 ~~~
-<script id="asciicast-381203" src="https://asciinema.org/a/381203.js" async></script>
+<script id="asciicast-381203" src="https://asciinema.org/a/381203.js" data-rows="25" data-cols="104" async></script>
 ~~~
 
 For packages that are being developed, given that their code will be changed by
