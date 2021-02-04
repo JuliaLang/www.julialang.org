@@ -170,7 +170,7 @@ reliability of installation came at a cost, however, which was _vastly_
 increased load times as compared to the bad old days when Julia packages would
 blindly `dlopen()` libraries and load whatever libraries happened to be sitting
 on the library search path.  To illustrate the issue, in Julia 1.4, loading the
-GTK+3 stack required **8 seconds** when it used to take around **500ms** on the
+GTK+3 stack required **7 seconds** when it used to take around **500ms** on the
 same machine.  Through many months of hard work and careful investigation, we
 are pleased to report that the same stack of libraries now takes less than
 **200ms** to load on Julia v1.6.
