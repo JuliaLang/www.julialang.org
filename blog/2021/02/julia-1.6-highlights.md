@@ -134,7 +134,7 @@ selective. Moreover, Julia and its standard libraries received a thorough
 makeover to help type inference arrive at a concrete answer more often. The
 result is a leaner, faster Julia that is far more impervious to method
 invalidation, and feels considerably more responsive and nimble in interactive
-sessions. Related blog post: https://julialang.org/blog/2020/08/invalidations/.
+sessions. Related blog post: <https://julialang.org/blog/2020/08/invalidations/>.
 
 ## Compiler latency reduction
 
