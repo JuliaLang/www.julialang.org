@@ -210,6 +210,10 @@ optimization puzzle was therefore to disable optimizations and use the new
 functionality to reduce the amount of time spent generating a very small
 amount of code, saving precious seconds.
 
+~~~
+<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~staticfloat/76.embed"></iframe>
+~~~
+
 The interplay between compiler improvements and the benefits that `JLLWrappers`
 affords were [well-recorded](https://github.com/JuliaGraphics/Gtk.jl/issues/466#issuecomment-716058685)
 during the development process, and showcase a speedup of load times for the
