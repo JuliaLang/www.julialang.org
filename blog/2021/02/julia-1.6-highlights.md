@@ -201,7 +201,14 @@ possible.  By limiting the number of backedges and datastructures, as well as
 centralizing the template pieces of code that each JLL package uses, we are
 able to not only vastly improve load times, but improve compile times as well!
 As an added bonus, improvements to JLL package APIs can now be made directly in
-`JLLWappers.jl` without needing to re-deploy hundreds of JLLs.
+`JLLWappers.jl` without needing to re-deploy hundreds of JLLs.  Because these
+JLL packages only define a thin wrapper around simple, lightweight functions
+that load libraries and return paths and such, they do not benefit from the
+heavy optimization that most Julia code undergoes.  One final piece of the
+optimization puzzle was therefore to disable optimizations and use the new
+[per-module optimization levels](https://julialang.org/blog/2020/08/julia-1.5-highlights/#per-module_optimization_levels)
+functionality to reduce the amount of time spent generating a very small
+amount of code, saving precious seconds.
 
 The interplay between compiler improvements and the benefits that `JLLWrappers`
 affords were [well-recorded](https://github.com/JuliaGraphics/Gtk.jl/issues/466#issuecomment-716058685)
