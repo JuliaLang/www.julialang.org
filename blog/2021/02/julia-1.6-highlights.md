@@ -182,7 +182,7 @@ Jeff's post in this blogpost.  Another major piece though was general overhead
 incurred by having so many small JLL packages providing bindings; there was
 significant overhead in the loading of each package.  In particular, there was
 code inferrence, code generation and datastructure loading that needed to be
-eliminated if the JLL packages were to be lightweight enough to not effect
+eliminated if the JLL packages were to be lightweight enough to not affect
 overall load times.  In our experiments, we found that one of the largest
 sources of package load times was in the deserialization of backedge
 information, the links from functions in `Base` back to our packages that would
