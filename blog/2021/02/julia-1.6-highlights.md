@@ -158,22 +158,23 @@ large majority of first-use latency.
 
 _Elliot Saba & Mosè Giordano_
 
-Binary packages have been a problematic part of the Julia world for its entire
-existence.  First, installation troubles plagued the ecosystem and conflicts
-due to system differences were common.  We addressed these issues through ever-
-increasingly isolated installation processes until we converged to the current
-standard installation procedure; namely installation of binaries as artifacts
-typically sourced from a [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl) cross-compilation recipe.  Libraries built from `BinaryBuilder.jl` are most
-often used through so-called JLL packages which provide a standardized API that
-Julia packages can use to access the provided binaries.  This ease of use and
-reliability of installation came at a cost, however, which was _vastly_
-increased load times as compared to the bad old days when Julia packages would
-blindly `dlopen()` libraries and load whatever libraries happened to be sitting
-on the library search path.  To illustrate the issue, in Julia 1.4, loading the
-GTK+3 stack required **7 seconds** when it used to take around **500ms** on the
-same machine.  Through many months of hard work and careful investigation, we
-are pleased to report that the same stack of libraries now takes less than
-**200ms** to load on Julia v1.6.
+Providing reliable, portable binaries to packages is a challenge that all
+packaging environments must face, and while Julia's strategy has always been to
+prioritize reliability and reproducibility over all other concerns, in the past
+it has come at a cost.  Our solution to the problems of reliability and
+reproducibility was to more fully isolate installed binaries and cross-compile
+them ourselves using the [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl)
+framework.  Libraries built from `BinaryBuilder.jl` are most often used through
+so-called JLL packages which provide a standardized API that Julia packages can
+use to access the provided binaries.  This ease of use and reliability of
+installation resulted in _vastly_ increased load times as compared to the bad
+old days when Julia packages would blindly `dlopen()` libraries and load
+whatever libraries happened to be sitting on the library search path.  To
+illustrate the issue, in Julia 1.4, loading the GTK+3 stack required **7
+seconds** when it used to take around **500ms** on the same machine.  Through
+many months of hard work and careful investigation, we are pleased to report
+that the same stack of libraries now takes less than **200ms** to load when
+using Julia v1.6 on the same machine.
 
 The cause of this slowdown was multi-faceted and spread across many different
 layers of the Julia ecosystem.  Part of the issue was general compiler latency,
@@ -211,7 +212,10 @@ functionality to reduce the amount of time spent generating a very small
 amount of code, saving precious seconds.
 
 ~~~
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~staticfloat/76.embed"></iframe>
+<div>
+    <a href="https://plotly.com/~staticfloat/76/?share_key=OO3EAHlACh6ayQYMKURbX0" target="_blank" title="Plot 76" style="display: block; text-align: center;"><img src="https://plotly.com/~staticfloat/76.png?share_key=OO3EAHlACh6ayQYMKURbX0" alt="Plot 76" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plotly.com/404.png';" /></a>
+    <script data-plotly="staticfloat:76" sharekey-plotly="OO3EAHlACh6ayQYMKURbX0" src="https://plotly.com/embed.js" async></script>
+</div>
 ~~~
 
 The interplay between compiler improvements and the benefits that `JLLWrappers`
