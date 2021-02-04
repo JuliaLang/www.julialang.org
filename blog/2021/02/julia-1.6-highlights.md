@@ -212,10 +212,7 @@ functionality to reduce the amount of time spent generating a very small
 amount of code, saving precious seconds.
 
 ~~~
-<div>
-    <a href="https://plotly.com/~staticfloat/76/?share_key=OO3EAHlACh6ayQYMKURbX0" target="_blank" title="Plot 76" style="display: block; text-align: center;"><img src="https://plotly.com/~staticfloat/76.png?share_key=OO3EAHlACh6ayQYMKURbX0" alt="Plot 76" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plotly.com/404.png';" /></a>
-    <script data-plotly="staticfloat:76" sharekey-plotly="OO3EAHlACh6ayQYMKURbX0" src="https://plotly.com/embed.js" async></script>
-</div>
+<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~staticfloat/76.embed"></iframe>
 ~~~
 
 The interplay between compiler improvements and the benefits that `JLLWrappers`
