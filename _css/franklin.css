@@ -71,3 +71,15 @@
     background-color: #d8ffd8;
     border-color: #404040;
 }
+
+/* Specific colours for code highlighting */
+
+.hljs-metaj, .hljs-metas, .hljs-metap { font-weight: bold; }
+
+.hljs-meta  { color: #b14e8f; } /* @... */
+.hljs-metaj { color: rgb(25, 179, 51); }  /* julia> */
+.hljs-metas { color: red; }               /* shell> */
+.hljs-metap { color: rgb(51, 131, 231); } /* pkg> */
+
+.hljs-string {color: #ca4418;}
+.hljs-subst { color: inherit;}

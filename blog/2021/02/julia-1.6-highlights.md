@@ -102,7 +102,7 @@ speed improvements seen in subsequent calls. This change highlights that
 behavior, serving as both a reminder and a tool for rooting out unwanted
 compilation effort i.e. over-specialized code
 
-[^1]: Note that the time reported by @time does not include time spent in
+[^1]: Note that the time reported by `@time` does not include time spent in
       julia’s code interpreter, which may be significant.
 
 ## Eliminating needless recompilation
