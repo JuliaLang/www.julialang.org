@@ -35,6 +35,10 @@ but it would also pave the road for computing even more involved properties
 using AD. In this final stage of the project it would be required to
 AD through the whole of DFTK (including several layers of solvers).
 
+**Project type:** Risky and exploratory (essentially a small research project)
+
+**Level of difficulty:** Hard
+
 **Recommended skills:** Interest to work on an multidisciplinary project
 bordering physics, mathematics and computer science with a good
 working knowledge of differential calculus and Julia.
