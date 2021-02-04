@@ -16,12 +16,11 @@ Mentors: [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
 
 Recent advances in reinforcement learning led to many breakthroughs in artificial intelligence. Some of the latest deep reinforcement learning algorithms have been implemented in [ReinforcementLearning.jl](https://github.com/JuliaReinforcementLearning/ReinforcementLearning.jl) with Flux. We'd like to have more interesting and practical algorithms added to enrich the whole community, including but not limited to the following directions:
 
-* Recurrent version of existing algorithms.
-* A general framework for scalable distributed reinforcement learning.
-* Offline reinforcement learning algorithms.
-* Algorithms for imperfect information environments.
-* Multi-agent reinforcement learning algorithms
-* Model-based reinforcement learning algorithms.
+* **[Easy] Recurrent version of existing algorithms**. Students with a basic understanding of Q-learning and recurrent neural networks are preferred. We'd like to have a general implementation to easily extend existing algorithms to the sequential version.
+* **[Medium] Offline reinforcement learning algorithms**. A bunch of offline reinforcement learning algorithms are proposed in recent years, including [BCQ](https://arxiv.org/pdf/1910.01708.pdf), [CRR](https://arxiv.org/abs/2006.15134), [CQL](https://arxiv.org/abs/2006.04779) and so on. The expected output is to have some typical offline reinforcement learning algorithms and experiments added into [ReinforcementLearningZoo.jl](https://github.com/JuliaReinforcementLearning/ReinforcementLearningZoo.jl).
+* **[Medium] Model-based reinforcement learning algorithms**. Students interested in this topic may refer [Model-based Reinforcement Learning: A Survey](https://arxiv.org/abs/2006.16712) and design some general interfaces to implement typical model based algorithms.
+* **[Medium] Multi-agent reinforcement learning algorithms**. Currently, we only have some CFR related algorithms implemented. We'd like to have more implemented, including [MADDPG](https://arxiv.org/abs/1706.02275v4), [COMA](https://arxiv.org/abs/1705.08926), [NFSP](https://arxiv.org/abs/1603.01121), [PSRO](https://arxiv.org/abs/1711.00832).
+* **[Hard] Distributed reinforcement learning framework**. Inspired by [Acme](https://arxiv.org/abs/2006.00979), a similar design is proposed in [DistributedReinforcementLearning.jl](https://github.com/JuliaReinforcementLearning/DistributedReinforcementLearning.jl). However, it is still in a very early stage. Students interested in this direction are required to have a basic understanding of distributed computing in Julia. Ideally we'd like to see some distributed reinforcement learning algorithms implemented under this framework, like [R2D2](https://openreview.net/forum?id=r1lyTjAqYX&utm_campaign=RL%20Weekly&utm_medium=email&utm_source=Revue%20newsletter), [D4PG](https://arxiv.org/abs/1804.08617v1).
 
 Mentors: [Jun Tian](https://github.com/findmyway)
 
