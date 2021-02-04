@@ -2,8 +2,6 @@
 
 # Numerical Projects – Summer of Code
 
-For all of these projects, potential mentors are [Steven Johnson](https://github.com/stevengj).
-
 \toc
 
 ## Numerical Linear Algebra
@@ -37,7 +35,7 @@ This project proposes to implement state of the art algorithms that extend the c
 
 **Expected Results**: New and faster methods for evaluating matrix functions.
 
-**Mentors:** [Jiahao Chen](https://github.com/jiahao)
+**Mentors:** [Jiahao Chen](https://github.com/jiahao), [Steven Johnson](https://github.com/stevengj).
 
 ## Interval arithmetic
 
@@ -202,5 +200,15 @@ and boundary cases.
 
 **Expected Results**: New and faster methods for evaluating properties of special functions.
 
-**Mentors:** Ask on Discourse or on slack
+**Mentors:** [Steven Johnson](https://github.com/stevengj). Ask on Discourse or on slack
+
+### A Julia-native CCSA optimization algorithm
+
+The CCSA algorithm by [Svanberg (2001)](https://epubs.siam.org/doi/10.1137/S1052623499362822) is an interior-point method widely used in [topology optimization](https://en.wikipedia.org/wiki/Topology_optimization) and for other large-scale optimization problems: it is a robust algorithm that can handle arbitrary nonlinear inequality constraints and huge numbers of degrees of freedom.  Moreover, the relative simplicity of the algorithm makes it possible to easily incorporate sparsity in the Jacobian matrix (for handling huge numbers of constraints), approximate-Hessian preconditioners, and as special-case optimizations for affine terms in the objective or constraints.  However, currently it is only available in Julia via the [NLopt.jl](https://github.com/JuliaOpt/NLopt.jl) interface to an external C implementation, which greatly limits its flexibility.
+
+**Recommended Skills**: Experience with nonlinear optimization algorithms and understanding of [Lagrange duality](https://en.wikipedia.org/wiki/Duality_(optimization)), familiarity with sparse matrices and other Julia data structures.
+
+**Expected Results**: A package implementing a native-Julia CCSA algorithm.
+
+**Mentors:** [Steven Johnson](https://github.com/stevengj).
 
