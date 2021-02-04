@@ -22,6 +22,10 @@ Recent advances in reinforcement learning led to many breakthroughs in artificia
 * **[Medium] Multi-agent reinforcement learning algorithms**. Currently, we only have some CFR related algorithms implemented. We'd like to have more implemented, including [MADDPG](https://arxiv.org/abs/1706.02275v4), [COMA](https://arxiv.org/abs/1705.08926), [NFSP](https://arxiv.org/abs/1603.01121), [PSRO](https://arxiv.org/abs/1711.00832).
 * **[Hard] Distributed reinforcement learning framework**. Inspired by [Acme](https://arxiv.org/abs/2006.00979), a similar design is proposed in [DistributedReinforcementLearning.jl](https://github.com/JuliaReinforcementLearning/DistributedReinforcementLearning.jl). However, it is still in a very early stage. Students interested in this direction are required to have a basic understanding of distributed computing in Julia. Ideally we'd like to see some distributed reinforcement learning algorithms implemented under this framework, like [R2D2](https://openreview.net/forum?id=r1lyTjAqYX&utm_campaign=RL%20Weekly&utm_medium=email&utm_source=Revue%20newsletter), [D4PG](https://arxiv.org/abs/1804.08617v1).
 
+#### Expected Outcomes
+
+For each new algorithm, at least two experiments are expected to be added into [ReinforcementLearningZoo.jl](https://github.com/JuliaReinforcementLearning/ReinforcementLearningZoo.jl). A simple one to make sure it works on some toy games with CPU only and another more practical one to produce comparable results on the original paper with GPU enabled. Besides, a technical report on the implementation details and speed/performance comparison with other baselines is preferred.
+
 Mentors: [Jun Tian](https://github.com/findmyway)
 
 ### NLP Tools and Models
