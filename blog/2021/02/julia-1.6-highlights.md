@@ -156,7 +156,66 @@ large majority of first-use latency.
 
 ## Binary loading speedups
 
-_Elliot Saba_
+_Elliot Saba & Mosè Giordano_
+
+Binary packages have been a problematic part of the Julia world for its entire
+existence.  First, installation troubles plagued the ecosystem and conflicts
+due to system differences were common.  We addressed these issues through ever-
+increasingly isolated installation processes until we converged to the current
+standard installation procedure; namely installation of binaries as artifacts
+typically sourced from a [`BinaryBuilder.jl`](https://github.com/JuliaPackaging/BinaryBuilder.jl) cross-compilation recipe.  Libraries built from `BinaryBuilder.jl` are most
+often used through so-called JLL packages which provide a standardized API that
+Julia packages can use to access the provided binaries.  This ease of use and
+reliability of installation came at a cost, however, which was _vastly_
+increased load times as compared to the bad old days when Julia packages would
+blindly `dlopen()` libraries and load whatever libraries happened to be sitting
+on the library search path.  To illustrate the issue, in Julia 1.4, loading the
+GTK+3 stack required **8 seconds** when it used to take around **500ms** on the
+same machine.  Through many months of hard work and careful investigation, we
+are pleased to report that the same stack of libraries now takes less than
+**200ms** to load on Julia v1.6.
+
+The cause of this slowdown was multi-faceted and spread across many different
+layers of the Julia ecosystem.  Part of the issue was general compiler latency,
+which has been a focus of the compiler team for some time now, as evidenced by
+Jeff's post in this blogpost.  Another major piece though was general overhead
+incurred by having so many small JLL packages providing bindings; there was
+significant overhead in the loading of each package.  In particular, there was
+code inferrence, code generation and datastructure loading that needed to be
+eliminated if the JLL packages were to be lightweight enough to not effect
+overall load times.  In our experiments, we found that one of the largest
+sources of package load times was in the deserialization of backedge
+information, the links from functions in `Base` back to our packages that would
+cause our functions to be recompiled if there was an invalidation effecting
+that `Base` function.  As counter-intuitive as it may seem, simply using
+a large number of functions from `Base` can very quickly balloon the
+precompilation cache files for your package, causing an increase in loading
+time!  While the increase itself is small, (`3-10ms` at the worst) when you are
+loading many dozens of JLL packages, this adds up quickly.
+
+Our work to slim JLL packages down resulted in the creation of a new package,
+[`JLLWrappers.jl`](https://github.com/JuliaPackaging/JLLWrappers.jl).  This
+package provides macros that auto-generate the bindings necessary for a JLL
+package, and do so by using the minimum number of functions and datastructures
+possible.  By limiting the number of backedges and datastructures, as well as
+centralizing the template pieces of code that each JLL package uses, we are
+able to not only vastly improve load times, but improve compile times as well!
+As an added bonus, improvements to JLL package APIs can now be made directly in
+`JLLWappers.jl` without needing to re-deploy hundreds of JLLs.
+
+The interplay between compiler improvements and the benefits that `JLLWrappers`
+affords were [well-recorded](https://github.com/JuliaGraphics/Gtk.jl/issues/466#issuecomment-716058685)
+during the development process, and showcase a speedup of load times for the
+original, non-JLLWrapperized `GTK3_jll` packge from its peak at `6.73` seconds
+on Julia v1.4 down to `2.34` seconds on Julia v1.6, purely from compiler
+improvements.  If you haven't thanked your local compiler team today, you
+probably should.  Using the slimmed-down JLLWrappers implementation of all
+relevant JLLWrappers packages results in a further lowering of load time down
+to a blistering `140ms`.  End-to-end, this means that this work effected a 
+roughly **`50x` speedup** in load times for large trees of binary artifacts.
+While there are some minor improvements for lazy loading of shared libraries
+and such in the pipeline, we are confident that this work will provide a strong
+foundation for Julia's binary packaging story for the forseeable future.
 
 ## Downloads & NetworkingOptions
 
