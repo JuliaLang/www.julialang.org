@@ -1,5 +1,5 @@
 @def title = "Julia 1.6 Highlights"
-@def authors = "Jeff Bezanson, Ian Butterworth, Nathan Daly, Keno Fischer, Tim Holy, Stefan Karpinski"
+@def authors = "Jeff Bezanson, Ian Butterworth, Nathan Daly, Keno Fischer, Tim Holy, Elliot Saba, Mosè Giordano, Stefan Karpinski"
 @def published = "28 February 2021"
 @def rss_pubdate = Date(2021, 2, 28)
 @def rss = """Some highlights of the Julia 1.6 release."""
@@ -133,7 +133,8 @@ selective. Moreover, Julia and its standard libraries received a thorough
 makeover to help type inference arrive at a concrete answer more often. The
 result is a leaner, faster Julia that is far more impervious to method
 invalidation, and feels considerably more responsive and nimble in interactive
-sessions. Related blog post: <https://julialang.org/blog/2020/08/invalidations/>.
+sessions. Related blog post: [Analyzing sources of compiler latency in Julia:
+method invalidations](https://julialang.org/blog/2020/08/invalidations/).
 
 ## Compiler latency reduction
 
@@ -150,8 +151,8 @@ particular package implementation choices interact with compilation time. Early
 adopters have used these tools to eliminate anywhere from a few percent to the
 large majority of first-use latency.
 
-- Related blog post: <https://julialang.org/blog/2021/01/precompile_tutorial/>
-- Documentation: <https://timholy.github.io/SnoopCompile.jl/stable/>
+- Related blog post: [Tutorial on precompilation](https://julialang.org/blog/2021/01/precompile_tutorial/)
+- [SnoopCompile.jl documentation](https://timholy.github.io/SnoopCompile.jl/stable/)
 
 ## Binary loading speedups
 
