@@ -212,7 +212,7 @@ functionality to reduce the amount of time spent generating a very small
 amount of code, saving precious seconds.
 
 ~~~
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~staticfloat/76.embed"></iframe>
+<iframe width="100%" height="450" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~staticfloat/76.embed"></iframe>
 ~~~
 
 The interplay between compiler improvements and the benefits that `JLLWrappers`
