@@ -218,7 +218,7 @@ amount of code, saving precious seconds.
 The interplay between compiler improvements and the benefits that `JLLWrappers`
 affords were [well-recorded](https://github.com/JuliaGraphics/Gtk.jl/issues/466#issuecomment-716058685)
 during the development process, and showcase a speedup of load times for the
-original, non-JLLWrapperized `GTK3_jll` packge from its peak at `6.73` seconds
+original, non-JLLWrapperized `GTK3_jll` package from its peak at `6.73` seconds
 on Julia v1.4 down to `2.34` seconds on Julia v1.6, purely from compiler
 improvements.  If you haven't thanked your local compiler team today, you
 probably should.  Using the slimmed-down JLLWrappers implementation of all
@@ -245,14 +245,14 @@ while this did mostly work, there were some major drawbacks to this approach.
    worse, those processes can’t share TCP connections or reuse already
    negotiated TLS connections, so every download needs to do the while TCP
    SYN/ACK song and dance and then also do the TLS secret handshake, all of
-   which which takes a lot of time.
+   which takes a lot of time.
 
 2. **It’s inconsistent.** Since the exact way things got downloaded depended on
    what happens to be installed on your system, download behavior was terribly
    inconsistent. Downloads that work on one system might not work on another
    one. Moreover, any issues someone might have, inevitably end up out of scope
    for Julia to fix — the typical answer is "fix your system
-   `curl`/`wget`/whatever," which is not a very satifactory solution for someone
+   `curl`/`wget`/whatever," which is not a very satisfactory solution for someone
    using Julia who just wants to be able to download things.
 
 3. **It’s inflexible.** The core requirements of downloading something are
