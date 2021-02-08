@@ -35,7 +35,7 @@ Mentors: [Valentin Churavy](https://github.com/vchuravy), [Tim Besard](https://g
 
 Add a distributed training API to Flux, possibly inspired by PyTorch's equivalent. Any distributed training algorithm could be used (ideally the foundations make it easy to experiment with different setups), though the easiest is likely to implement an MXNet-like parameter server. It should demonstrate training a Flux model with data distributed over multiple nodes, with benchmarks.
 
-Mentors: [Valentin Churavy](https://github.com/vchuravy), [Tim Besard](https://github.com/maleadt)
+Mentors: [Valentin Churavy](https://github.com/vchuravy), [Tim Besard](https://github.com/maleadt), [Julian Samaroo](https://github.com/jpsamaroo)
 
 ## Sparse GPU and ML support
 
