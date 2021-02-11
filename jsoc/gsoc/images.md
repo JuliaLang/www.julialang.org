@@ -37,7 +37,7 @@ OpenCV is one of the pre-eminent image-processing frameworks. During the summer 
 
 Expected outcomes: an OpenCV package that can be installed across all major platforms with `Pkg.add("OpenCV")`.
 
-## Contributions to a Stereo Matching Package
+## Contributions to a Stereo Matching Package (medium)
 
 When two images are taken of a scene with a calibrated stereo rig it is possible to construct a three-dimensional model of the scene provided that one can determine the coordinates of corresponding points in the two images. The task of determining the coordinates of corresponding points is frequently called *stereo matching* or *disparity estimation*. Numerous algorithms for this task have been proposed over the years and new ones continue to be developed.
 
@@ -50,6 +50,21 @@ Example algorithms:
   2. Hirschmuller, Heiko. "Accurate and efficient stereo processing by semi-global matching and mutual information." Computer Vision and Pattern Recognition, 2005. CVPR 2005. IEEE Computer Society Conference on. Vol. 2. IEEE, 2005.
   3. Gehrig, Stefan K., and Clemens Rabe. "Real-time semi-global matching on the CPU." Computer Vision and Pattern Recognition Workshops (CVPRW), 2010 IEEE Computer Society Conference on. IEEE, 2010.
 @@
+
+Expected outcomes: a library of stereo matching algorithms with usage tutorials and documentation.
+
+## Contributions to a Calibration Target package (medium)
+Camera calibration involves determining a camera's intrinsic parameters from a series of images of a so-called "calibration target". Knowledge of the intrinsic parameters facilitates three-dimensional reconstruction from images or video. The most frequently used calibration target is a checkerboard pattern. A key step in camera calibration involves automatically detecting the checkerboard and identifying landmarks such as the corners of each checkeboard square. 
+
+This project will implement a recent automatic checkerboard detection and feature extraction algorithm. 
+
+Example algorithm:
+
+@@tight-list
+  1. Y. Yan, P. Yang, L. Yan, J. Wan, Y. Sun, and K. Tansey, “Automatic checkerboard detection for camera calibration using self-correlation,” Journal of Electronic Imaging, vol. 27, no. 03, p. 1, May 2018.
+@@
+
+Expected outcomes: a checkeboard detection algorithm which can provide the necessary inputs to a camera calibration routine. 
 
 ### Where to go for discussion and to find mentors
 
