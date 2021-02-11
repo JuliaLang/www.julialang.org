@@ -100,7 +100,7 @@ Given Julia’s Just In Time (JIT) / Just Ahead Of Time (JAOT) compilation, the
 first time code is run the compilation overhead is often substantial, with big
 speed improvements seen in subsequent calls. This change highlights that
 behavior, serving as both a reminder and a tool for rooting out unwanted
-compilation effort i.e. over-specialized code
+compilation effort i.e. over-specialized code.
 
 [^1]: Note that the time reported by `@time` does not include time spent in julia’s code interpreter, which may be significant.
 
