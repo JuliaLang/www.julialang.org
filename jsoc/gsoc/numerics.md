@@ -108,9 +108,9 @@ Some groundwork for this has been laid in the `TaylorModels.jl` package.
 
 ## Better Bignums Integration
 
-Julia currently supports big integers, rationals and floats, making use of the GMP and MPFR libraries. However, GMP currently doesn't permit good integration with a garbage collector.
+Julia currently supports big integers and rationals, making use of the GMP. However, GMP currently doesn't permit good integration with a garbage collector.
 
-This project therefore involves exploring ways to improve bignums, possibly including:
+This project therefore involves exploring ways to improve BigInt, possibly including:
 
 @@tight-list
 * Modifying GMP to support high-performance garbage-collection
@@ -120,7 +120,7 @@ This project therefore involves exploring ways to improve bignums, possibly incl
 
 This experimentation could be carried out as a package with a new implementation, or as patches over the existing implementation in Base.
 
-**Expected Results**: An implementation of BigNums in Julia with increased performance over the current one.
+**Expected Results**: An implementation of BigInt in Julia with increased performance over the current one.
 
 **Require Skills**: Familiarity with extended precision numerics OR performance considerations. Familiarity either with Julia or GMP.
 
