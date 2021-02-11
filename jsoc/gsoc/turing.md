@@ -3,67 +3,67 @@
 
 [Turing](https://turing.ml/) is a universal probabilistic programming language embedded in Julia. Turing allows the user to write models in standard Julia syntax, and provide a wide range of sampling-based inference methods for solving problems across probabilistic machine learning, Bayesian statistics and data science etc. Since Turing is implemented in pure Julia code, its compiler and inference methods are amenable to hacking: new model families and inference methods can be easily added. Below is a list of ideas for potential projects, though you are welcome to propose your own to the Turing team.
 
-Project mentors are [Hong Ge](https://github.com/yebai), [Cameron Pfiffer](https://github.com/cpfiffer), [Martin Trapp](https://github.com/trappmartin), [Will Tebbutt](https://github.com/willtebbutt), [Mohamed Tarek](https://github.com/mohamed82008) and [Kai Xu](https://github.com/xukai92).
+If you are interested in exploring any of these projects, please reach out to the listed project mentors. You can find their contact information at [turing.ml/team](https://turing.ml/team).
 
-## Benchmarking
+## MCMCChains improvements
 
-Turing's performance has been sporadically benchmarked against various other probabilistic programming languages (e.g. Turing, Stan, PyMC3, TensorFlow Prob), but a systemic approach to studying where Turing excels and where it falls short would be useful. A GSoC student would implement identical models in many PPLs and build tools to benchmark all PPLs against one another.
+**Mentors**: Cameron Pfiffer, Hong Ge
 
-**Recommended skills:** An interest in Julia and Turing, as well as experience or desire to learn about various other PPLs. Some experience with automated tasks is useful, but not necessary at the outset.
+**Project difficulty**: Easy
 
-**Expected output:** A suite of auto-updating benchmarks that track Turing's performance on models implemented in various languages.
+**Description**: MCMCChains is a key component of the Turing.jl ecosystem. It is the package that determines how to analyze and store MCMC samples provided by packages like Turing. It's also used outside of Turing.
 
-## Nested sampling integration
+For this project, a student might improve the performance of the various statistical functions provided by MCMCChains, changing the back end to use a data storage format that maintains the shape of parameter samples, or improve the general plotting functionality of the package.
 
-Turing focuses on modularity in inference methods, and the development team would like to see more inference methods, particularly the popular nested sampling method. A Julia package ([NestedSamplers.jl](https://github.com/mileslucas/NestedSamplers.jl)) but it is not hooked up to Turing and does not currently have a stable API. A GSoC student would either integrate that package or construct their own nested sampling method and build it into Turing.
+There's lots of fun little things to do for MCMCChains. Check out this [meta-issue](https://github.com/TuringLang/MCMCChains.jl/issues/246) for more details and dicussions.
 
-**Recommended skills:** Understanding of inference methods and general probability theory. Nested sampler knowledge useful but not required.
+## Particle filtering methods
 
-**Expected output:** A nested sampler that can be used with Turing models.
+**Mentors**: Hong Ge, Cameron Pfiffer
 
-## Automated function memoization by model annotation
+**Project difficulty**: Medium
 
-Function memoization is a way to reduce costly function evaluation by caching the output when the same inputs are given. Turing's Gibbs sampler often ends up [rerunning expensive functions](https://turing.ml/dev/docs/using-turing/performancetips#reuse-computations-in-gibbs-sampling) multiple times, and it would be a significant performance improvement to allow Turing's model compiler to automatically memoize functions where appropriate. A student working on this project would become intimately familiar with Turing's model compiler and build in various automated improvements.
+**Description**: Turing's support for particle sampling methods is slowing being improved with the addition of [AdvancedPS.jl](https://github.com/TuringLang/AdvancedPS.jl). If you're interested in implementing or improving particle sampling methods, this is a great project for you!
 
-**Recommended skills:** General programming skills, hopefully with an understanding of what makes code perform efficiently.
 
-**Expected output:** Additions to the Turing compiler that automatically memoize functions where appropriate.
+## Nested Sampling
 
-## Making Distributions GPU compatible
-Julia's GPU tooling is generally quite good, but currently Turing is not able to reliably use GPUs while sampling because [Distributions.jl](https://github.com/JuliaStats/Distributions.jl) is not GPU compatible. A student on this project would work with the Turing developers and the Distributions developers to allow the use of GPU parallelism where possible in Turing.
+**Mentors**: Miles Lucas, Cameron Pfiffer, Hong Ge
 
-**Recommended skills:** GPU computing. Understanding of various statistical distributions is useful but not required.
+**Project difficulty**: Hard
 
-**Expected output:** A set of Distributions.jl objects where `logpdf` calls can be easily run through a GPU.
+**Description**: [NestedSamplers.jl](https://github.com/TuringLang/NestedSamplers.jl) is an excellent package which implements nested sampling methods. As of yet, it is not connected to Turing.jl. For this project, a student would connect the NestedSamplers.jl library to Turing.jl.
 
-## GPnet extensions
-One of Turing's satellite packages, [GPnet](https://github.com/TuringLang/GPnet.jl), is designed to provide a comprehensive suite of Gaussian process tools. See [this issue](https://github.com/TuringLang/GPnet.jl/issues/2) for potential tasks -- there's a lot of interesting stuff going on with GPs, and this task in particular may have some creative freedom to it.
+## GPU acceleration
 
-**Recommended skills:** Gaussian processes. Some Python required, as GPnet uses PyCall.
+**Mentors**: Mohamed Tarek, Hong Ge, Kai Xu
 
-**Expected output:** Improved GP support. The output is variable depending on the student.
+**Project difficulty**: Medium
 
-## Model comparison tools
+**Description**: Turing's native GPU support is limited in that the Metropolis-Hastings and HMC samplers do not implement GPU sampling methods. This can and should be done -- GPU methods are awesome! If you are interested with working on parallelism and GPUs, this project is for you.
 
-Turing and its satellite packages do not currently provide a comprehensive suite of model comparison tools, a critical tool for the applied statistician. A student who worked on this project would implement various model comparison tools like [LOO and WAIC](https://mc-stan.org/loo/), among others.
+Students will work with the code at [AdvancedMH](https://github.com/TuringLang/AdvancedMH.jl) or [AdvancedHMC](https://github.com/TuringLang/AdvancedHMC.jl), depending on their interests.
 
-**Recommended skills:** General statistics. Bayesian inference and model comparison. Some Julia programming.
+## Documentation and tutorial improvements
 
-**Expected output:** An easy-to-use set of model comparison tools that allows Turing users to effortlessly compare multiple models on a variety of metrics.
+**Mentors**: Cameron Pfiffer, Martin Trapp
 
-## MLE/MAP tools
+**Project difficulty**: Easy
 
-[Maximum likelihood estimates](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) (MLE) and [maximum a posteriori](https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation) (MAP) estimates can currently only be done by users through a [clunky set of workarounds](https://turing.ml/dev/docs/using-turing/advanced#maximum-a-posteriori-estimation). A streamlined function like `mle(model)` or `map(model)` would be very useful for many of Turing's users who want to see what the MLE or MAP estimates look like, and it may be valuable to allow for functionality that allows MCMC sampling to begin from the MLE or MAP estimates. Students working on this project will work with optimization packages such as [Optim.jl](https://github.com/JuliaNLSolvers/Optim.jl) to make MLE and MAP estimation straightforward for Turing models.
+**Description**: Turing's documentation and tutorials need a bit of an overhaul. Turing has changed significantly since the last time the documentation was written, and it's beginning to show. Students would use their knowledge of probabilistic programming languages and Turing to shore-up or rewrite documentation and tutorials.
 
-**Recommended skills:** Optimization, familiarity with maximum likelihood or MAP.
+## Iterative Methods for Inference in Gaussian Processes
 
-**Expected output:** `map` and `mle` (names pending) functions for Turing that yield maximum likelihood and maximum a posteriori estimates of a model, and potentially statistics about the estimate such as the standard errors.
+**Mentors**: Will Tebbutt, S. T. John, Theo Galy-Fajou
 
-## Static distributions
+**Project difficulty**: Medium
 
-Small, fixed-size vectors and matrices are fairly common in Turing models. This means that sampling in Turing can probably benefit from using statically sized vectors and matrices from StaticArrays.jl instead of normal, dynamic Julia arrays. Beside the often superior performance of small static vectors and matrices, static arrays are also automatically compatible with the GPU stack in Julia. Currently, the main obstacle to using StaticArrays.jl is that distributions in Distributions.jl are not compatible with StaticArrays. A GSoC student would adapt the multivariate and matrix-variate distributions as well as the univariate distribution with vector parameters in Distributions.jl to make a spin-off package called StaticDistributions.jl. The student would then benchmark StaticDistributions.jl against Distributions.jl and showcase an example of using StaticDistributions.jl together with CuArrays.jl and/or CUDAnative.jl for GPU-acceleration.
+**Description**: There has recently been quite a bit of work on inference methods for GPs that use iterative methods rather than the Cholesky factorisation. They look quite promising, but no one has implemented any of these within the Julia GP ecosystem yet, but they should fit nicely within the AbstractGPs framework. If you're interested in improving the GP ecosystem in Julia, this project might be for you!
 
-**Recommended skills:** An understanding of generated functions in Julia. Some knowledge of random number generators and probability distributions. An interest in performance optimization and micro-optimization as well as general-purpose GPU programming.
+## Implement advanced variational Gaussian process models
 
-**Expected output:** A package StaticDistributions.jl containing implementations of non-allocating multivariate and matrix-variate distributions with vectorized logpdf support, a benchmarking of StaticDistributions.jl against Distributions.jl, and tutorials on how to use StaticDistributions together with CuArrays and the Julia GPU stack.
+***Mentors***: ST John, Will Tebbutt, Theo Galy-Fajou
 
+***Project difficulty***: Easy to Medium
+
+***Description***:  Sparse variational Gaussian process models provide the flexibility to scale to large datasets, handle arbitrary (non-conjugate) likelihoods, and to be used as building blocks for composite models such as deep GPs. This project is about making such models more readily available within the Julia GP ecosystem - depending on your interests you can focus on making it easier for end users and providing good tutorials, or on the implementations of these models to give us the same or better performance as with established Python packages such as GPflow, integrating with Flux.jl, etc.
