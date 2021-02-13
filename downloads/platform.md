@@ -137,7 +137,7 @@ Chocolatey automatically creates a shim for the Julia executable, so you simply 
 Julia can be installed using the [Homebrew package manager](https://brew.sh/) as follows:
 
 ```shell
-brew cask install julia
+brew install julia
 ```
 
 This automatically puts the binary into a directory in the user's PATH, so you can simply type `julia` to run Julia in the terminal.
