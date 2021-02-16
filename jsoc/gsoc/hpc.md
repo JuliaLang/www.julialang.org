@@ -39,9 +39,7 @@ Add a distributed training API for Flux models built on top of [Dagger.jl](https
 
 **Skills:** Familiarity with UCX, representing execution models as DAGs, Flux.jl, and data/model parallelism in machine learning
 
-**Mentors:** [Kyle Daruwalla](https://github.com/darsnack) and [Julian Samaroo](https://github.com/jpsamaroo)
-
-Mentors: [Valentin Churavy](https://github.com/vchuravy), [Tim Besard](https://github.com/maleadt), [Julian Samaroo](https://github.com/jpsamaroo)
+**Mentors:** [Kyle Daruwalla](https://github.com/darsnack), [Julian Samaroo](https://github.com/jpsamaroo), and [Brian Chen](https://github.com/ToucheSir)
 
 ## Sparse GPU and ML support
 
