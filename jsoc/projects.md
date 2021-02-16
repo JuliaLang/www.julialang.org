@@ -16,7 +16,6 @@ We have our project ideas organized roughly into the skill sets required:
 * [Tooling](/jsoc/gsoc/tooling/) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
 * [General](/jsoc/gsoc/general/) – jack-of-all-trades projects that don't require special skills.
-* [Graphs](/jsoc/gsoc/graphs/) – extend the JuliaGraphs ecosystem with new algorithms and tools.
 * [Graphics](/jsoc/gsoc/graphics/) – projects ranging from low level OpenGL rendering to high level plotting.
 * [MLJ](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
 * [Pythia](/jsoc/gsoc/pythia/) - scalable time series for Julia.
