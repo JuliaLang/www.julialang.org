@@ -62,8 +62,8 @@ Students will work with the code at [AdvancedMH](https://github.com/TuringLang/A
 
 ## Implement advanced variational Gaussian process models
 
-***Mentors***: ST John, Will Tebbutt, Theo Galy-Fajou
+**Mentors**: ST John, Will Tebbutt, Theo Galy-Fajou
 
-***Project difficulty***: Easy to Medium
+**Project difficulty**: Easy to Medium
 
-***Description***:  Sparse variational Gaussian process models provide the flexibility to scale to large datasets, handle arbitrary (non-conjugate) likelihoods, and to be used as building blocks for composite models such as deep GPs. This project is about making such models more readily available within the Julia GP ecosystem - depending on your interests you can focus on making it easier for end users and providing good tutorials, or on the implementations of these models to give us the same or better performance as with established Python packages such as GPflow, integrating with Flux.jl, etc.
+**Description**:  Sparse variational Gaussian process models provide the flexibility to scale to large datasets, handle arbitrary (non-conjugate) likelihoods, and to be used as building blocks for composite models such as deep GPs. This project is about making such models more readily available within the Julia GP ecosystem - depending on your interests you can focus on making it easier for end users and providing good tutorials, or on the implementations of these models to give us the same or better performance as with established Python packages such as GPflow, integrating with Flux.jl, etc.
