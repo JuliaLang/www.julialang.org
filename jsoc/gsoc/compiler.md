@@ -69,6 +69,33 @@ Another related side-project might be to explore adding Type information to the 
 
 **Contact:** [Jameson Nash](https://github.com/vtjnash)
 
+## Multi-threading Improvement Projects
+
+A few ideas to get you started, in brief:
+
+- Make better use of threads for GC (and particularly, make the page-allocator multi-threaded)
+
+- Improve granularity of codegen JIT for multi-threading
+
+- Improve granularity of IO operations for multi-threading (and set up a worker thread for running
+  the main libuv event loop)
+
+- Measure and optimize the performance of the `partr` algorithm, and add the ability to dynamically
+  scale it by workload size
+
+- Automatic insertion of GC safe-points/regions, particularly around loops
+
+- Work towards supporting a dynamic number of threads
+
+Join the regularly scheduled multithreading call for discussion of any of these at [#multithreading
+BoF calendar invite][threadcall] on the Julia Language Public Events calendar.
+
+[threadcall]: https://calendar.google.com/event?action=TEMPLATE&tmeid=MzQ1MnZxMGNucGt2NGQwYW1zZjA4MzM5dGtfMjAyMTAyMTdUMTYzMDAwWiBqdWxpYWxhbmcub3JnX2tvbWF1YXFldDE0ZW9nOW9pdjNwNm83cG1nQGc&tmsrc=julialang.org_komauaqet14eog9oiv3p6o7pmg%40group.calendar.google.com&scp=ALL
+
+**Recommended Skills**: Varies by project
+
+**Contact:** [Jameson Nash](https://github.com/vtjnash)
+
 
 ## Automated performance measurements
 
