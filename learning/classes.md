@@ -68,6 +68,8 @@ If you know of other classes using Julia for teaching, please consider updating 
 * Pennsylvania State University
     * [ASTRO 585](https://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2014 - [github repo](https://github.com/eford/Astro585_2014_Spring)
     * [ASTRO 585](https://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
+* [Polytech Nice Sophia](http://polytech-nice-sophia.fr)
+    * [Mathematics for the engineer](https://gitlab.polytech.unice.fr/MAM/mi2) (Prof. J.-B. Caillau), spring 2020
 * Pontifical Catholic University of Rio de Janeiro (PUC-Rio)
     * Programming in Julia (Prof. [Thuener Silva](https://github.com/Thuener)), Summer 2017
     * Linear Optimization (Prof. [Alexandre Street](https://alexandrestreet.wordpress.com/)), Spring 2017
