@@ -33,9 +33,13 @@ Mentors: [Valentin Churavy](https://github.com/vchuravy), [Tim Besard](https://g
 
 ## Distributed Training
 
-Add a distributed training API to Flux, possibly inspired by PyTorch's equivalent. Any distributed training algorithm could be used (ideally the foundations make it easy to experiment with different setups), though the easiest is likely to implement an MXNet-like parameter server. It should demonstrate training a Flux model with data distributed over multiple nodes, with benchmarks.
+**Difficulty:** Hard
 
-Mentors: [Valentin Churavy](https://github.com/vchuravy), [Tim Besard](https://github.com/maleadt), [Julian Samaroo](https://github.com/jpsamaroo)
+Add a distributed training API for Flux models built on top of [Dagger.jl](https://github.com/JuliaParallel/Dagger.jl). More detailed milestones include building Dagger.jl abstractions for [UCX.jl](https://github.com/JuliaParallel/UCX.jl), then building tools to map Flux models into data parallel Dagger DAGs. The final result should demonstrate a Flux model training with multiple devices in parallel via the Dagger.jl APIs. A stretch goal will include mapping operations with a model to a DAG to facilitate model parallelism as well.
+
+**Skills:** Familiarity with UCX, representing execution models as DAGs, Flux.jl, and data/model parallelism in machine learning
+
+**Mentors:** [Kyle Daruwalla](https://github.com/darsnack), [Julian Samaroo](https://github.com/jpsamaroo), and [Brian Chen](https://github.com/ToucheSir)
 
 ## Sparse GPU and ML support
 
