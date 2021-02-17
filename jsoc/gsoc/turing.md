@@ -36,7 +36,7 @@ There's lots of fun little things to do for MCMCChains. Check out this [meta-iss
 
 ## GPU acceleration
 
-**Mentors**: Mohamed Tarek, Hong Ge, Kai Xu
+**Mentors**: Mohamed Tarek, Hong Ge, Kai Xu, Tor Fjelde
 
 **Project difficulty**: Medium
 
