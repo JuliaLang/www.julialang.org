@@ -111,7 +111,7 @@ A stretch goal can include extending FastAI.jl beyond its Python-equivalent by l
 
 **Skills:** Familiarity with deep learning pipelines, common practices, Flux.jl, and MLDataPattern.jl
 
-**Mentors:** [Kyle Daruwalla](https://github.com/darsnack) and [Lorenz Ohly](https://github.com/lorenzoh)
+**Mentors:** [Kyle Daruwalla](https://github.com/darsnack)
 
 ## Deep Learning for 3D Computer Vision
 
