@@ -95,13 +95,23 @@ Some experience with implementing deep learning models would be ideal for this p
 
 Mentors: [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
 
-### Port the Fast.ai book:"Deep Learning for Coders with fastai and PyTorch" to Julia
+### FastAI.jl Development
 
-In this task, you will be porting the "Deep Learning for Coders with fastai and PyTorch" into Julia using Flux.jl
+**Difficulty:** Medium
 
-Experience with implementing machine learning and Julia's Flux.jl package are required in order to be successful on this project. You will also likley work with others in the community on this since it's a 19 chapter book. Feel free to check out the `#fast-ai-port` channel on Slack for more details.
+In this project, you will assist the [ML community team](https://julialang.zulipchat.com/#narrow/stream/237432-ml-ecosystem-coordination) with building FastAI.jl on top of the existing JuliaML + FluxML ecosystem packages. The primary goal is to create an equivalent to [docs.fast.ai](https://docs.fast.ai). This will require building the APIs, documenting them, and creating the appropriate tutorials. Some familiarity with the following Julia packages is preferred, but it is not required:
 
-Please post in the `#fast-ai-port` channel on Slack to get a preview of the book for a better idea of the projects scope.
+@@tight-list
+* [MLDataPattern.jl](https://github.com/JuliaML/MLDataPattern.jl.git)
+* [FluxTraining.jl](https://github.com/lorenzoh/FluxTraining.jl.git)
+* [DataAugmentation.jl](https://github.com/lorenzoh/DataAugmentation.jl)
+@@
+
+A stretch goal can include extending FastAI.jl beyond its Python-equivalent by leveraging the flexibility in the underlying Julia packages. For example, creating and designing abstractions for distributed data parallel training.
+
+**Skills:** Familiarity with deep learning pipelines, common practices, Flux.jl, and MLDataPattern.jl
+
+**Mentors:** [Kyle Daruwalla](https://github.com/darsnack)
 
 ## Deep Learning for 3D Computer Vision
 
