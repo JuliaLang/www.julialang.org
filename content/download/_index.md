@@ -1,4 +1,0 @@
----
-layout: redirect
-target: downloads
----
