@@ -12,7 +12,7 @@ Given a series of measurements observed over time, containing statistical noise
 and other inaccuracies, the task is to produce an estimate of the unknown trajectory of the system that led to
 the observations.
 
-*Linear* continuous-time systems are smoothed with the fixed-lag Kalman-Bucy smoother (related related to the [Kalman–Bucy_filter](https://en.wikipedia.org/wiki/Kalman_filter#Kalman–Bucy_filter)). It relies on coupled ODEs describing how mean and covariance of the conditional distribution of the latent system state evolve over time. A versatile implementation in Julia is missing.
+*Linear* continuous-time systems are smoothed with the fixed-lag Kalman-Bucy smoother (related to the [Kalman–Bucy_filter](https://en.wikipedia.org/wiki/Kalman_filter#Kalman–Bucy_filter)). It relies on coupled ODEs describing how mean and covariance of the conditional distribution of the latent system state evolve over time. A versatile implementation in Julia is missing.
 
 **Expected Results**: Build efficient implementation of non-linear smoothing of continuous stochastic dynamical systems.
 
