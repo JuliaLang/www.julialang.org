@@ -12,14 +12,31 @@ Develop a series of reinforcement learning environments, in the spirit of the [O
 
 Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/).
 
-### NLP Tools and Models
+### Reinforcement Learning Algorithms
+
+Recent advances in reinforcement learning led to many breakthroughs in artificial intelligence. Some of the latest deep reinforcement learning algorithms have been implemented in [ReinforcementLearning.jl](https://github.com/JuliaReinforcementLearning/ReinforcementLearning.jl) with Flux. We'd like to have more interesting and practical algorithms added to enrich the whole community, including but not limited to the following directions:
+
+* **[Easy] Recurrent version of existing algorithms**. Students with a basic understanding of Q-learning and recurrent neural networks are preferred. We'd like to have a general implementation to easily extend existing algorithms to the sequential version.
+* **[Medium] Offline reinforcement learning algorithms**. A bunch of offline reinforcement learning algorithms are proposed in recent years, including [BCQ](https://arxiv.org/pdf/1910.01708.pdf), [CRR](https://arxiv.org/abs/2006.15134), [CQL](https://arxiv.org/abs/2006.04779) and so on. The expected output is to have some typical offline reinforcement learning algorithms and experiments added into [ReinforcementLearningZoo.jl](https://github.com/JuliaReinforcementLearning/ReinforcementLearningZoo.jl).
+* **[Medium] Model-based reinforcement learning algorithms**. Students interested in this topic may refer [Model-based Reinforcement Learning: A Survey](https://arxiv.org/abs/2006.16712) and design some general interfaces to implement typical model based algorithms.
+* **[Medium] Multi-agent reinforcement learning algorithms**. Currently, we only have some CFR related algorithms implemented. We'd like to have more implemented, including [MADDPG](https://arxiv.org/abs/1706.02275v4), [COMA](https://arxiv.org/abs/1705.08926), [NFSP](https://arxiv.org/abs/1603.01121), [PSRO](https://arxiv.org/abs/1711.00832).
+* **[Hard] Distributed reinforcement learning framework**. Inspired by [Acme](https://arxiv.org/abs/2006.00979), a similar design is proposed in [DistributedReinforcementLearning.jl](https://github.com/JuliaReinforcementLearning/DistributedReinforcementLearning.jl). However, it is still in a very early stage. Students interested in this direction are required to have a basic understanding of distributed computing in Julia. Ideally we'd like to see some distributed reinforcement learning algorithms implemented under this framework, like [R2D2](https://openreview.net/forum?id=r1lyTjAqYX&utm_campaign=RL%20Weekly&utm_medium=email&utm_source=Revue%20newsletter), [D4PG](https://arxiv.org/abs/1804.08617v1).
+
+#### Expected Outcomes
+
+For each new algorithm, at least two experiments are expected to be added into [ReinforcementLearningZoo.jl](https://github.com/JuliaReinforcementLearning/ReinforcementLearningZoo.jl). A simple one to make sure it works on some toy games with CPU only and another more practical one to produce comparable results on the original paper with GPU enabled. Besides, a technical report on the implementation details and speed/performance comparison with other baselines is preferred.
+
+Mentors: [Jun Tian](https://github.com/findmyway)
+
+### NLP Tools and Models 
+
+**Difficulty**: Medium to Hard
 
 Build deep learning models for Natural Language Processing in Julia. [TextAnalysis](https://github.com/juliatext/TextAnalysis.jl)  and [WordTokenizers](https://github.com/JuliaText/WordTokenizers.jl) contains the basic algorithms and data structures to work with textual data in Julia. On top of that base, we want to build modern deep learning models based on recent research. The following tasks can span multiple students and projects.
 
 It is important to note that we want practical, usable solutions to be created, not just research models. This implies that a large part of the effort will need to be in finding and using training data, and testing the models over a wide variety of domains. Pre-trained models must be available to users, who should be able to start using these without supplying their own training data.
 
-* Implement [ELMo](https://allennlp.org/elmo) in Julia
-* Implement [ALBERT](https://ai.googleblog.com/2019/12/albert-lite-bert-for-self-supervised.html) in Julia
+@@tight-list
 * Implement GPT/GPT-2 in Julia
 * Implement [extractive summarisation based on Transformers](https://arxiv.org/abs/1909.03186)
 * Implement practical models for
@@ -29,10 +46,13 @@ It is important to note that we want practical, usable solutions to be created, 
 * Indic language support -- validate and test all models for Indic languages
   * ULMFiT models for Indic languages
 * Chinese tokenisation and parsing
+@@
 
 **Mentors**: [Avik Sengupta](https://github.com/aviks/)
 
-### Automated music generation
+### Automated music generation 
+
+**Difficulty**: Hard
 
 Neural network based models can be used for music analysis and music generation (composition). A suite
 of tools in Julia to enable research in this area would be useful. This is a large, complex project that
@@ -43,7 +63,7 @@ exciting project if you are interested in both music and machine learning.
 
 **Recommended Skills**: Music notation, some basic music theory, MIDI format, Transformer and LSTM architectures
 
-**Resources**: [Music Transformer](https://magenta.tensorflow.org/music-transformer), [Wave2MIDI2Wave](https://magenta.tensorflow.org/maestro-wave2midi2wave)
+**Resources**: [Music Transformer](https://magenta.tensorflow.org/music-transformer), [Wave2MIDI2Wave](https://magenta.tensorflow.org/maestro-wave2midi2wave), [MIDI.jl](https://github.com/JuliaMusic/MIDI.jl), [Mplay.jl](https://github.com/JuliaMusic/Mplay.jl)
 
 **Mentors**: [Avik Sengupta](https://github.com/aviks/)
 
@@ -59,13 +79,11 @@ There are many high-quality open-source tutorials and learning materials availab
 
 Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/).
 
-### Port the Fast.ai book:"Deep Learning for Coders with fastai and PyTorch" to Julia
+### FermiNets: Generative Synthesis for Automating the Choice of Neural Architectures
 
-In this task, you will be porting the "Deep Learning for Coders with fastai and PyTorch" into Julia using Flux.jl
+The application of machine learning requires an understanding a practictioner to optimize a neural architecture for a given problem, or does it? Recently techniques in automated machine learning, also known as AutoML, have dropped this requirement by allowing for good architectures to be found automatically. One such method is the [FermiNet](https://arxiv.org/abs/1809.05989) which employs generative synthesis to give a neural architecture which respects certain operational requirements. The goal of this project is to implement the FermiNet in Flux to allow for automated sythesis of neural networks.
 
-Experience with implementing machine learning and Julia's Flux.jl package are required in order to be successful on this project. You will also likley work with others in the community on this since it's a 19 chapter book. Feel free to check out the `#fast-ai-port` channel on Slack for more details.
-
-Please post in the `#fast-ai-port` channel on Slack to get a preview of the book for a better idea of the projects scope.
+Mentors: [Chris Rackauckas](https://github.com/ChrisRackauckas) and [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
 
 ### Differentiable Rendering [HARD]
 
@@ -87,6 +105,24 @@ Skills: GPU Programming, Deep Learning, familiarity with defining (a lot of) Cus
 
 Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/)
 
+### FastAI.jl Development
+
+**Difficulty:** Medium
+
+In this project, you will assist the [ML community team](https://julialang.zulipchat.com/#narrow/stream/237432-ml-ecosystem-coordination) with building FastAI.jl on top of the existing JuliaML + FluxML ecosystem packages. The primary goal is to create an equivalent to [docs.fast.ai](https://docs.fast.ai). This will require building the APIs, documenting them, and creating the appropriate tutorials. Some familiarity with the following Julia packages is preferred, but it is not required:
+
+@@tight-list
+* [MLDataPattern.jl](https://github.com/JuliaML/MLDataPattern.jl.git)
+* [FluxTraining.jl](https://github.com/lorenzoh/FluxTraining.jl.git)
+* [DataAugmentation.jl](https://github.com/lorenzoh/DataAugmentation.jl)
+@@
+
+A stretch goal can include extending FastAI.jl beyond its Python-equivalent by leveraging the flexibility in the underlying Julia packages. For example, creating and designing abstractions for distributed data parallel training.
+
+**Skills:** Familiarity with deep learning pipelines, common practices, Flux.jl, and MLDataPattern.jl
+
+**Mentors:** [Kyle Daruwalla](https://github.com/darsnack)
+
 ### Differentiable Computer Vision [HARD]
 
 Expected Outcome:
@@ -96,3 +132,20 @@ Create a library of utliity functions that can consume Julia's Imaging libraries
 Skills: Familiarity with automatic differentiation, deep learning, and defining (a lot of) Custom Adjoints
 
 Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/)
+
+## Deep Learning for source code analysis 
+
+**Difficulty**: Easy to Medium
+
+The use of deep learning tools to source code is an active area of research. With the runtime being able to easily introspect into Julia code (for example, with a clean, accesible AST format), using theses techniques on Julia code would be a fruitful exercise.  
+
+@@tight-list
+* Use of RNNs for syntax error correction: https://arxiv.org/abs/1603.06129
+* Implement Code2Vec for Julia: https://arxiv.org/abs/1803.09473
+@@
+
+**Recommended Skills:** Familiarity with compiler techniques as well as deep learning tools will be required. The "domain expertise" in this task is Julia programming, so it will need someone who has a reasonable experience of the Julia programming language. 
+
+**Expected Outcome:**  Packages for each technique that is usable by general programmers. 
+
+**Mentors**: [Avik Sengupta](https://github.com/aviks/)

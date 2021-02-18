@@ -2,7 +2,7 @@
 
 The spirit of community is crucial to free/open-source development. In the large majority of cases, interactions are naturally constructive, but in rare cases conflict can arise. This document explains the mechanisms for conflict reporting and resolution within the Julia community, to handle violations of the [Julia Community Standards](/community/standards/).
 
-(Our procedures were informed in part by the [Complaint Resolution Policies and Procedures at the Massachusetts Institute of Technology](https://web.mit.edu/policies/9/9.6.html), but are necessarily more informal given the loose nature of the Julia community.)
+(Our procedures were informed in part by the [Complaint Resolution Policies and Procedures at the Massachusetts Institute of Technology](https://policies.mit.edu/policies-procedures/90-relations-and-responsibilities-within-mit-community/98-complaint-resolution), but are necessarily less formal given the loose nature of the Julia community.)
 
 ## Stewards of the Community Standards
 

@@ -2,7 +2,7 @@
 @def rss = """ An introduction to ParallelAccelerator.jl | The High Performance Scripting team at Intel Labs recently released... """
 @def published = "1 March 2016"
 @def title = "An introduction to ParallelAccelerator.jl"
-@def authors = """<a href="https://www.cs.indiana.edu/~lkuper/">Lindsey Kuper</a>"""  
+@def authors = """<a href="https://users.soe.ucsc.edu/~lkuper/">Lindsey Kuper</a>"""  
 @def hascode = true
 
 The High Performance Scripting team at Intel Labs recently released
@@ -289,12 +289,12 @@ data-parallel reduce operations when they are called on arrays.
 ### Array comprehension
 
 Julia supports
-[array comprehensions](https://docs.julialang.org/en/release-0.4/manual/arrays/#comprehensions),
+[array comprehensions](https://docs.julialang.org/en/v0.4/manual/arrays/#comprehensions),
 a convenient and concise way to construct arrays.  For example, the
 expressions that initialize the five input arrays in the Black-Scholes
 example above are all array comprehensions.  As a more sophisticated
 example, the following `avg` function, taken from
-[the Julia manual](https://docs.julialang.org/en/release-0.4/manual/arrays/#comprehensions),
+[the Julia manual](https://docs.julialang.org/en/v0.4/manual/arrays/#comprehensions),
 takes a one-dimensional input array `x` of length *n* and uses an
 array comprehension to construct an output array of length *n*-2, in
 which each element is a weighted average of the corresponding element
@@ -347,7 +347,7 @@ on a 2D array of `Float32`s: the pixels of the source image.  It's
 easy to obtain such an array using, for instance, the `load` function
 from the [Images.jl](https://github.com/timholy/Images.jl) library,
 followed by a call to
-[`convert`](https://docs.julialang.org/en/release-0.4/manual/conversion-and-promotion/#conversion)
+[`convert`](https://docs.julialang.org/en/v0.4/manual/conversion-and-promotion/#conversion)
 to get an array of type `Array{Float32,2}`.  (For simplicity, we're
 assuming that the input image is a grayscale image, so each pixel has
 just one value instead of red, green, and blue values.  However, it
@@ -422,7 +422,7 @@ runStencil(kernel :: Function, buffer1, buffer2, ..., iteration :: Int, boundary
 ```
 
 In `blur`, the call to `runStencil` uses Julia's
-[`do`-block syntax for function arguments](https://docs.julialang.org/en/release-0.4/manual/functions/#do-block-syntax-for-function-arguments),
+[`do`-block syntax for function arguments](https://docs.julialang.org/en/v0.4/manual/functions/#do-block-syntax-for-function-arguments),
 so the `do b, a ... end` block is actually the first argument to the
 `runStencil` call.  The `do` block creates an anonymous function that
 binds the variables `b` and `a`.  The arguments `buffer1, buffer2,
@@ -510,7 +510,7 @@ process:
 ![The ParallelAccelerator compiler pipeline](/assets/blog/parallelaccelerator_figures/compiler-pipeline.png?raw=true)
 
 As many readers of this blog will know, Julia has good support for
-[inspecting and manipulating its own ASTs](https://docs.julialang.org/en/release-0.4/devdocs/reflection/).
+[inspecting and manipulating its own ASTs](https://docs.julialang.org/en/v0.4/devdocs/reflection/).
 Its built-in `code_typed` function will return the AST of any function
 after Julia's type inference has taken place.  This is very convenient
 for ParallelAccelerator, which is able to use the output from

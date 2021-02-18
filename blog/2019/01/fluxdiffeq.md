@@ -4,7 +4,7 @@
 @def title = "DiffEqFlux.jl – A Julia Library for Neural Differential Equations"
 @def authors = """Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit"""  
 
-Translations: [Traditional Chinese](/blog/2019/04/fluxdiffeq-zh_tw/]Traditional Chinese)
+Translations: [Traditional Chinese](/blog/2019/04/fluxdiffeq-zh_tw)
 
 In this blog post we will show you how to easily, efficiently, and
 robustly use differential equation (DiffEq) solvers with neural networks in Julia.
@@ -51,7 +51,7 @@ researchers to better explore the problem domain.
 (Note: If you are interested in this work and are an undergraduate or graduate
 student, we have [Google Summer of Code projects available in this area](/soc/ideas-page). This
 [pays quite well over the summer](https://developers.google.com/open-source/gsoc/help/student-stipends).
-Please join the [Julia Slack](https://slackinvite.julialang.org/) and the #jsoc channel to discuss in more detail.)
+Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel to discuss in more detail.)
 
 \toc
 
@@ -197,9 +197,11 @@ prob = ODEProblem(lotka_volterra,u0,tspan,p)
 Then to solve the differential equations, you can simply call `solve` on the
 `prob`:
 
-    sol = solve(prob)
-    using Plots
-    plot(sol)
+```julia
+sol = solve(prob)
+using Plots
+plot(sol)
+```
 
 ![LV Solution Plot](https://user-images.githubusercontent.com/1814174/51388169-9a07f300-1af6-11e9-8c6c-83c41e81d11c.png)
 
@@ -258,34 +260,26 @@ scatter!(t,A)
 
 ![Data points plot](https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png)
 
-The most basic differential equation layer is `concrete_solve`, which does the same
-thing with a slightly altered syntax. `concrete_solve` takes in the initial condition
-`u0`, the parameters `p` for the integrand, puts these in the differential equation defined
-by `prob`, and solves it with the chosen arguments (solver, tolerance, etc). For example:
-
-```julia
-using Flux, DiffEqFlux
-concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)
-```
-
-The nice thing about `concrete_solve` is that it takes care of the type handling
+The nice thing about `solve` is that it takes care of the type handling
 necessary to make it compatible with the neural network framework (here Flux). To show this,
 let's define a neural network with the function as our single layer, and then a loss
 function that is the squared distance of the output values from `1`. In Flux, this looks like:
 
 ```julia
+using Flux, DiffEqFlux
 p = [2.2, 1.0, 2.0, 0.4] # Initial Parameter Vector
 params = Flux.params(p)
 
-function predict_rd() # Our 1-layer neural network
-  concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)[1,:]
+function predict_rd() # Our 1-layer "neural network"
+  solve(prob,Tsit5(),p=p,saveat=0.1)[1,:] # override with new parameters
 end
 
 loss_rd() = sum(abs2,x-1 for x in predict_rd()) # loss function
 ```
 
 Now we tell Flux to train the neural network by running a 100 epoch
-to minimise our loss function (`loss_rd()`) and thus obtain the optimized parameters:
+to minimize our loss function (`loss_rd()`) and thus obtain the
+optimized parameters:
 
 ```julia
 data = Iterators.repeated((), 100)
@@ -329,7 +323,7 @@ we can stick it right in there:
 m = Chain(
   Dense(28^2, 32, relu),
   # this would require an ODE of 32 parameters
-  p -> concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)[1,:],
+  p -> solve(prob,Tsit5(),p=p,saveat=0.1)[1,:],
   Dense(32, 10),
   softmax)
 ```
@@ -344,7 +338,7 @@ m = Chain(
   Conv((2,2), 16=>8, relu),
   x -> maxpool(x, (2,2)),
   x -> reshape(x, :, size(x, 4)),
-  x -> concrete_solve(prob,Tsit5(),x,p,saveat=0.1)[1,:],
+  x -> solve(prob,Tsit5(),u0=x,saveat=0.1)[1,:],
   Dense(288, 10), softmax) |> gpu
 ```
 
@@ -437,8 +431,10 @@ prob = DDEProblem(delay_lotka_volterra,[1.0,1.0],h,(0.0,10.0),constant_lags=[0.1
 
 p = [2.2, 1.0, 2.0, 0.4]
 params = Flux.params(p)
+
+using DiffEqSensitivity
 function predict_rd_dde()
-  concrete_solve(prob,MethodOfSteps(Tsit5()),u0,p,sensealg=TrackerAdjoint(),saveat=0.1)[1,:]
+  solve(prob,MethodOfSteps(Tsit5()),p=p,sensealg=TrackerAdjoint(),saveat=0.1)[1,:]
 end
 loss_rd_dde() = sum(abs2,x-1 for x in predict_rd_dde())
 loss_rd_dde()
@@ -461,14 +457,15 @@ function lotka_volterra_noise(du,u,p,t)
   du[1] = 0.1u[1]
   du[2] = 0.1u[2]
 end
-prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[1.0,1.0],(0.0,10.0))
+prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[1.0,1.0],(0.0,5.0))
 
 p = [2.2, 1.0, 2.0, 0.4]
 params = Flux.params(p)
-function predict_rd_sde()
-  concrete_solve(prob,SOSRI(),u0,p,saveat=0.1)[1,:]
+function predict_sde()
+  solve(prob,SOSRI(),p=p,sensealg=TrackerAdjoint(),saveat=0.1,
+                     abstol=1e-1,reltol=1e-1)[1,:]
 end
-loss_rd_sde() = sum(abs2,x-1 for x in predict_fd_sde())
+loss_rd_sde() = sum(abs2,x-1 for x in predict_sde())
 loss_rd_sde()
 ```
 
@@ -558,11 +555,11 @@ better animation!):
 dudt = Chain(x -> x.^3,
              Dense(2,50,tanh),
              Dense(50,2))
-ps = Flux.params(dudt)
 n_ode = NeuralODE(dudt,tspan,Tsit5(),saveat=t,reltol=1e-7,abstol=1e-9)
+ps = Flux.params(n_ode)
 ```
 
-Notice that the `neural_ode` has the same timespan and `saveat` as the solution
+Notice that the `NeuralODE` has the same timespan and `saveat` as the solution
 that generated the data. This means that given an `x` (and initial value), it
 will generate a guess for what it thinks the time series will be where the
 dynamics (the structure) is predicted by the internal neural network. Let's see
@@ -573,7 +570,7 @@ The code for the plot is:
 ```julia
 pred = n_ode(u0) # Get the prediction using the correct initial condition
 scatter(t,ode_data[1,:],label="data")
-scatter!(t,Flux.data(pred[1,:]),label="prediction")
+scatter!(t,pred[1,:],label="prediction")
 ```
 
 ![Neural ODE Start](https://user-images.githubusercontent.com/1814174/51585822-d9449400-1ea8-11e9-8665-956a16e95207.png)
@@ -626,8 +623,8 @@ unevenly spaced at time points `t`, just pass in `saveat=t` and the
 ODE solver takes care of it.
 
 As you could probably guess by now, the DiffEqFlux.jl has all kinds of
-extra related goodies like Neural SDEs (`neural_msde`) for you to explore in your
-applications.
+extra related goodies like Neural SDEs (`NeuralSDE`) for you to
+explore in your applications.
 
 ## The core technical challenge: backpropagation through differential equation solvers
 

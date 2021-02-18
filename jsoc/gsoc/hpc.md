@@ -3,21 +3,15 @@
 
 Julia is emerging as a serious tool for technical computing and is ideally suited for the ever-growing needs of big data analytics. This set of proposed projects addresses specific areas for improvement in analytics algorithms and distributed data management.
 
-## General High-performance networking using UCX
-
-An important missing piece in Julia's parallelism story is the ability to use fast interconnects without sacrificing programming model. Right now, you can either use `Distributed.remotecall` for a flexible programming model, but `MPI` is necessary if you are serious about performance on cutting-edge clusters and supercomputers. Can this situation be assuaged? Write a fast communication library that can make use of any interconnect by way of wrapping the [UCX networking library](https://www.openucx.org/). Show improvements on a sizable benchmark.
-
-Mentors: [Shashi Gowda](https://github.com/shashi), [Valentin Churavy](https://github.com/vchuravy)
-
 ## Simple persistent distributed storage
 
 This project proposes to implement a very simple persistent storage mechanism for Julia variables so that data can be saved to and loaded from disk with a consistent interface that is agnostic of the underlying storage layer. Data will be tagged with a minimal amount of metadata by default to support type annotations, time-stamped versioning and other user-specifiable tags, not unlike the `git stash` mechanism for storing blobs. The underlying engine for persistent storage should be generic and interoperable with any reasonable choice of binary blob storage mechanism, e.g. MongoDB, ODBC, or HDFS. Of particular interest will be persistent storage for distributed objects such as `DArray`s, and making use of the underlying storage engine's mechanisms for data movement and redundant storage for such data.
 
-## Dynamic distributed execution for data parallel tasks in Julia
+## Scheduling algorithms for Distributed algorithms
 
-Distributed computation frameworks like Hadoop/MapReduce have demonstrated the usefulness of an abstraction layer that takes care of low level concurrency concerns such as atomicity and fine-grained synchronization, thus allowing users to concentrate on task-level decomposition of extremely large problems such as massively distributed text processing. However, the tree-based scatter/gather design of MapReduce limits its usefulness for general purpose data parallelism, and in particular poses significant restrictions on the implementation of iterative algorithms.
+Dagger.jl is a native Julia framework and scheduler for distributed execution of Julia code and general purpose data parallelism, using dynamic, runtime-generated task graphs which are flexible enough to describe multiple classes of parallel algorithms. This project proposes to implement different scheduling algorithms for Dagger to optimize scheduling of certain classes of distributed algorithms, such as MapReduce and MergeSort, and properly utilizing heterogeneous compute resources. Students will be expected to find published distributed scheduling algorithms and implement them on top of the Dagger framework, benchmarking scheduling performance on a variety of micro-benchmarks and real problems.
 
-This project proposal is to implement a native Julia framework for distributed execution for general purpose data parallelism, using dynamic, runtime-generated general task graphs which are flexible enough to describe multiple classes of parallel algorithms. Students will be expected to weave together native Julia parallelism constructs such as the `ClusterManager` for massively parallel execution, and automate the handling of data dependencies using native Julia `RemoteRefs` as remote data futures and handles. Students will also be encouraged to experiment with novel scheduling algorithms.
+Mentors: [Julian Samaroo](https://github.com/jpsamaroo), [Valentin Churavy](https://github.com/vchuravy)
 
 ## Model Zoo on TPU
 
@@ -39,9 +33,13 @@ Mentors: [Valentin Churavy](https://github.com/vchuravy), [Tim Besard](https://g
 
 ## Distributed Training
 
-Add a distributed training API to Flux, possibly inspired by PyTorch's equivalent. Any distributed training algorithm could be used (ideally the foundations make it easy to experiment with different setups), though the easiest is likely to implement an MXNet-like parameter server. It should demonstrate training a Flux model with data distributed over multiple nodes, with benchmarks.
+**Difficulty:** Hard
 
-Mentors: [Valentin Churavy](https://github.com/vchuravy), [Tim Besard](https://github.com/maleadt)
+Add a distributed training API for Flux models built on top of [Dagger.jl](https://github.com/JuliaParallel/Dagger.jl). More detailed milestones include building Dagger.jl abstractions for [UCX.jl](https://github.com/JuliaParallel/UCX.jl), then building tools to map Flux models into data parallel Dagger DAGs. The final result should demonstrate a Flux model training with multiple devices in parallel via the Dagger.jl APIs. A stretch goal will include mapping operations with a model to a DAG to facilitate model parallelism as well.
+
+**Skills:** Familiarity with UCX, representing execution models as DAGs, Flux.jl, and data/model parallelism in machine learning
+
+**Mentors:** [Kyle Daruwalla](https://github.com/darsnack), [Julian Samaroo](https://github.com/jpsamaroo), and [Brian Chen](https://github.com/ToucheSir)
 
 ## Sparse GPU and ML support
 

@@ -81,13 +81,13 @@ researchers to better explore the problem domain. -->
 （註：如果你對這個工作有興趣，同時是大學或是研究所學生，
 我們有 [提供 Google Summer of Code 專案](/jsoc/)。
 並且 [暑假過後有豐厚的津貼補助](https://developers.google.com/open-source/gsoc/help/student-stipends)。
-請加入 [Julia Slack](https://slackinvite.julialang.org/) 的 #jsoc 頻道，
+請加入 [Julia Slack](http://julialang.org/slack/) 的 #jsoc 頻道，
 歡迎更進一步的細節討論。）
 
 <!-- (Note: If you are interested in this work and are an undergraduate or graduate
 student, we have [Google Summer of Code projects available in this area](/jsoc/). This
 [pays quite well over the summer](https://developers.google.com/open-source/gsoc/help/student-stipends).
-Please join the [Julia Slack](https://slackinvite.julialang.org/) and the #jsoc channel to discuss in more detail.) -->
+Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel to discuss in more detail.) -->
 
 
 \toc
@@ -412,26 +412,11 @@ scatter!(t,A)
 
 ![Data points plot](https://user-images.githubusercontent.com/1814174/51388173-9c6a4d00-1af6-11e9-9878-3c585d3cfffe.png)
 
-最基礎的微分方程層是 `concrete_solve`，它會做相同的事，只有一點語法上的改變。
-`concrete_solve` 會接受被積函數的參數 `p`，並且把它放進由 `prob` 定義好的微分方程中，
-然後根據挑選好的程式參數（解算器、容忍度...等等）解方程式。
-範例如下：
-
-<!-- The most basic differential equation layer is `concrete_solve`, which does the same
-thing with a slightly altered syntax. `concrete_solve` takes in parameters `p` for
-the integrand, puts it in the differential equation defined by `prob`, and
-solves it with the chosen arguments (solver, tolerance, etc). For example: -->
-
-```julia
-using Flux, DiffEqFlux
-concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)
-```
-
-在 `concrete_solve` 中的一個好的設計是，它會處理型別的相容性，讓它可以相容於神經網路框架（Flux）。
+在 `solve` 中的一個好的設計是，它會處理型別的相容性，讓它可以相容於神經網路框架（Flux）。
 要證明這個，我們來用函數定義一層神經網路，然後還有一個損失函數，是輸出值相對 `1` 距離的平方。
 在 Flux 中，他看起來像這樣：
 
-<!-- The nice thing about `concrete_solve` is that it takes care of the type handling
+<!-- The nice thing about `solve` is that it takes care of the type handling
 necessary to make it compatible with the neural network framework (here Flux). To show this,
 let's define a neural network with the function as our single layer, and then a loss
 function that is the squared distance of the output values from `1`. In Flux, this looks like: -->
@@ -441,7 +426,7 @@ p = [2.2, 1.0, 2.0, 0.4] # 初始參數向量
 params = Flux.params(p)
 
 function predict_rd() # 我們的單層神經網路
-  concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)[1,:]
+  solve(prob,Tsit5(),p=p,saveat=0.1)[1,:]
 end
 
 loss_rd() = sum(abs2,x-1 for x in predict_rd()) # 損失函數
@@ -508,7 +493,7 @@ we can stick it right in there: -->
 m = Chain(
   Dense(28^2, 32, relu),
   # this would require an ODE of 32 parameters
-  p -> concrete_solve(prob,Tsit5(),u0,p,saveat=0.1)[1,:],
+  p -> solve(prob,Tsit5(),p=p,saveat=0.1)[1,:],
   Dense(32, 10),
   softmax)
 ```
@@ -524,7 +509,7 @@ m = Chain(
   Conv((2,2), 16=>8, relu),
   x -> maxpool(x, (2,2)),
   x -> reshape(x, :, size(x, 4)),
-  x -> concrete_solve(prob,Tsit5(),x,p,saveat=0.1)[1,:],
+  x -> solve(prob,Tsit5(),x=x,saveat=0.1)[1,:],
   Dense(288, 10), softmax) |> gpu
 ```
 
@@ -638,8 +623,10 @@ prob = DDEProblem(delay_lotka_volterra,u0,h,(0.0,10.0),constant_lags=[0.1])
 
 p = [2.2, 1.0, 2.0, 0.4]
 params = Flux.params(p)
+
+using DiffEqSensitivity
 function predict_rd_dde()
-  concrete_solve(prob,MethodOfSteps(Tsit5()),u0,p,saveat=0.1,sensealg=TrackerAdjoint())[1,:]
+  solve(prob,MethodOfSteps(Tsit5()),p=p,saveat=0.1,sensealg=TrackerAdjoint())[1,:]
 end
 loss_rd_dde() = sum(abs2,x-1 for x in predict_rd_dde())
 loss_rd_dde()
@@ -672,10 +659,11 @@ prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[1.0,1.0],(0.0,10.0))
 
 p = param([2.2, 1.0, 2.0, 0.4])
 params = Flux.params(p)
-function predict_fd_sde()
-  concrete_solve(prob,SOSRI(),u0,p,saveat=0.1,sensealg=TrackerAdjoint())[1,:]
+function predict_sde()
+  solve(prob,SOSRI(),p=p,sensealg=TrackerAdjoint(),saveat=0.1,
+                     abstol=1e-1,reltol=1e-1)[1,:]
 end
-loss_fd_sde() = sum(abs2,x-1 for x in predict_fd_sde())
+loss_fd_sde() = sum(abs2,x-1 for x in predict_sde())
 loss_fd_sde()
 ```
 
@@ -775,8 +763,8 @@ better animation!): -->
 dudt = Chain(x -> x.^3,
              Dense(2,50,tanh),
              Dense(50,2))
-ps = Flux.params(dudt)
 n_ode = NeuralODE(dudt,tspan,Tsit5(),saveat=t,reltol=1e-7,abstol=1e-9)
+ps = Flux.params(n_ode)
 ```
 
 注意到，`neural_ode` 中使用和產生資料的常微分方程解相同的時間跨度與 `saveat`，所以它會在每個時間點針對神經網路預測的動態系統狀態來產生一個預測值。讓我們來看看最初這個神經網路會給出怎樣的時間序列。由於這個常微分方程有兩個應變數，為了簡化畫圖的作業，我們只畫出第一個應變數。程式碼如下：

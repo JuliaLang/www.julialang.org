@@ -56,26 +56,23 @@ All this doesn't seem like too much to ask for, does it?
 
 Even though we recognize that we are inexcusably greedy, we still want to have it all.
 About two and a half years ago, we set out to create the language of our greed.
-It's not complete, but it's time for a 1.0 release — the language we've created is called [Julia](https://julialang.org).
+It's not complete, but it's time for an initial[^1] release — the language we've created is called [Julia](https://julialang.org).
 It already delivers on 90% of our ungracious demands, and now it needs the ungracious demands of others to shape it further.
 So, if you are also a greedy, unreasonable, demanding programmer, we want you to give it a try.
 
-trackbacks:
+Trackbacks:
 - [Reddit](https://www.reddit.com/r/programming/comments/pv3k9/why_we_created_julia_a_new_programming_language/)
 - [Hacker News](https://news.ycombinator.com/item?id=3606380)
 - [Lambda-the-Ultimate](http://lambda-the-ultimate.org/node/4452)
 - [Phoronix](https://www.phoronix.com/scan.php?page=news_item&px=MTA2ODg)
 - [The Endeavor (John D. Cook)](https://www.johndcook.com/blog/2012/02/22/julia-random-number-generation/)
-- [Walking Randomly](http://www.walkingrandomly.com/?p=87)
-- [Miguel Bazdresch](http://2pif.info/op/julia.html)
-- [Douglas Bates](https://dmbates.blogspot.in/2012/03/julia-version-of-multinomial-sampler_12.html)
+- [Walking Randomly (Mike Croucher)](http://www.walkingrandomly.com/?p=87)
+- [Douglas Bates](https://www.r-bloggers.com/a-julia-version-of-the-multinomial-sampler-2/)
 - [Vince Buffalo](https://vincebuffalo.com/blog/2012/03/07/thoughts-on-julia-and-r.html)
 - [John Myles White](https://www.johnmyleswhite.com/notebook/2012/03/31/julia-i-love-you/)
-- [Shane Conway](https://www.statalgo.com/2012/03/24/statistics-with-julia/)
-- [Tim Salimans](http://timsalimans.com/gibbs-sampling-with-julia/)
-- [Twitter trackbacks](https://topsy.com/julialang.org/)
-- [Russian translation](https://habrahabr.ru/blogs/programming/138577/)
-- [Linux.org.ru blog post (Russian)](https://www.linux.org.ru/news/opensource/7440863)
-- [Simplified Chinese translation](https://sd.csdn.net/a/20120223/312315.html)
-- [Traditional Chinese translation](http://www.hellogcc.org/?p=20)
-- [Linuxfr.org blog post (French)](https://linuxfr.org/news/version-1-0-de-julia)
+- [Habrahabr.ru (Russian)](https://habrahabr.ru/blogs/programming/138577/)
+- [Linux.org.ru (Russian)](https://www.linux.org.ru/news/opensource/7440863)
+- [hellogcc.org (Chinese)](http://www.hellogcc.org/?p=20)
+- [Linuxfr.org (French)](https://linuxfr.org/news/version-1-0-de-julia)
+
+[^1]: This was originally written as being "time for a 1.0 release" but it turns out this was a bit too greedy: Julia 1.0 wasn't released until [considerably later](https://julialang.org/blog/2018/08/one-point-zero/).
