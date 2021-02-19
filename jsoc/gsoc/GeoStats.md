@@ -14,6 +14,8 @@ The goal of this project is to implement a geospatial clustering method from the
 
 **Desired skills:** Statistics, Clustering, Graph Theory
 
+**Difficulty level:** Medium
+
 **References:**
 @@tight-list
 - [A hierarchical clustering method for multivariate geostatistical data](https://www.sciencedirect.com/science/article/abs/pii/S2211675316300367)
