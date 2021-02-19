@@ -6,6 +6,7 @@
 
 ## Numerical Linear Algebra
 
+<!--- Commented out since it was not updated for Summer 2021. 
 ### Efficient Sparse linear algebra routines
 
 Modern data-intensive computations, such as Google's PageRank algorithm, can often be cast as operations involving sparse matrices of extremely large nominal dimensions. Unlike dense matrices, which decompose naturally into many homogeneous tiles, efficient algorithms for working with sparse matrices must be fully cognizant of the sparsity pattern of specific matrices at hand, which oftentimes reduce to efficiently computing partitions of extremely large graphs.
@@ -24,6 +25,7 @@ Native Julia algorithms will be generic and support different numeric types, as 
 **Expected Results**: A native Julia package for parallel sparse linear algebra methods.
 
 **Mentors**: [Dominique Orban](https://dpo.github.io)
+-->
 
 ### Matrix functions
 
@@ -36,6 +38,10 @@ This project proposes to implement state of the art algorithms that extend the c
 **Expected Results**: New and faster methods for evaluating matrix functions.
 
 **Mentors:** [Jiahao Chen](https://github.com/jiahao), [Steven Johnson](https://github.com/stevengj).
+
+**Difficulty:** Hard
+
+<!--- Commented out since it was not updated for Summer 2021. 
 
 ## Interval arithmetic
 
@@ -104,7 +110,7 @@ Some groundwork for this has been laid in the `TaylorModels.jl` package.
 **Expected results**: A state-of-the-art library for Taylor models.
 
 **Mentors:** [David P. Sanders](https://github.com/dpsanders), [Luis Benet](https://github.com/lbenet), [Marcelo Forets](https://github.com/mforets)
-
+-->
 
 ## Better Bignums Integration
 
@@ -126,6 +132,10 @@ This experimentation could be carried out as a package with a new implementation
 
 **Mentors**: [Jameson Nash](https://github.com/vtjnash)
 
+**Difficulty:** Hard
+
+<!--- Commented out since it was not updated for Summer 2021 and don't have specific mentors.
+
 ### PETSc integration for scalable technical computing
 
 [PETSc](https://www.mcs.anl.gov/petsc) is a widely used framework of data structures and computational routines suitable for massively scaling scientific computations. Many of these algorithms are also ideally suited for big data applications such as computing principal components of very large sparse matrices and solving complicated forecasting models with distributed methods for solving partial differential equations.
@@ -136,6 +146,8 @@ This project proposal is to develop a new Julia package to interface with PETsc,
 **Expected Results**: New wrappers for PETSc functions in the [PETSc.jl](https://github.com/JuliaParallel/PETSc.jl) package.
 
 **Mentors:** **Mentors:** Ask on Discourse or the linear-algebra channel on slack
+
+**Difficulty:** Medium
 
 ### Parallel dense linear algebra routines
 
@@ -149,6 +161,8 @@ This project proposal is for implementing native Julia algorithms involving effi
 
 **Mentors:** Ask on Discourse or the linear-algebra channel on slack
 
+**Difficulty:** Medium
+
 ### Parallel sparse linear algebra routines
 
 Modern data-intensive computations, such as Google's PageRank algorithm, can often be cast as operations involving sparse matrices of extremely large nominal dimensions. Unlike dense matrices, which decompose naturally into many homogeneous tiles, efficient algorithms for working with sparse matrices must be fully cognizant of the sparsity pattern of specific matrices at hand, which oftentimes reduce to efficiently computing partitions of extremely large graphs.
@@ -160,6 +174,8 @@ This project proposal is for implementing native Julia algorithms for massively 
 **Expected Results**: A native Julia package for parallel sparse linear algebra methods.
 
 **Mentors:** **Mentors:** Ask on Discourse or the linear-algebra channel on slack
+
+**Difficulty:** Medium
 
 ### Generic linear algebra
 
@@ -181,6 +197,8 @@ The focus of this project will be to improve this functionality. Potential tasks
 **Expected results**: Linear algebra routines which work on different numeric types, and corresponding tests.
 
 **Mentors:** Ask on Discourse or the linear-algebra channel on slack
+
+-->
 
 ### Special functions
 
