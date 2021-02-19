@@ -13,6 +13,7 @@ We have our project ideas organized roughly into the skill sets required:
 * [GeoStats.jl](/jsoc/gsoc/GeoStats/) - An extensible framework for high-performance geostatistics in Julia.
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
+* [Javis](/jsoc/gsoc/javis/) - **J**ulia **a**nimations and **vis**ualizations for teaching, communication, and beyond!
 * [Machine Learning](/jsoc/gsoc/flux/) for machine learning.
 * [MLJ](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
 * [Numerics](/jsoc/gsoc/numerics/) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
