@@ -35,7 +35,7 @@ The goal of this project is to implement a geostatistical simulation method from
 **Difficulty level:** Hard
 
 **References:**
-@tight-list
+@@tight-list
 - [Conditional Simulation of Complex Geological Structures Using Multiple-Point Statistics](https://link.springer.com/article/10.1023/A:1014009426274)
 - [The Direct Sampling method to perform multiple‐point geostatistical simulations](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008WR007621)
 @@
