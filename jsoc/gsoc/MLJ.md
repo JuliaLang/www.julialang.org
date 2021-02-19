@@ -10,6 +10,7 @@
 * [Time series forecasting at scale - speed up via Julia](#Time-series-forecasting-at-scale---speed-up-via-Julia)
 * [Interpretable Machine Learning in Julia](#Interpretable-Machine-Learning-in-Julia)
 * [Model visualization in MLJ](#Model-visualization-in-MLJ)
+* [Deeper integration with Bayseian methods and Bayesian Stacking](#Deeper-Bayes)
 * [MLJ and MLFlow integration](#MLJ-and-MLFlow-integration)
 
 # MLJ Projects – Summer of Code
@@ -277,6 +278,24 @@ You will enhance your visualisation skills as well as your ability to "debug" an
 * [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl)
 
 **Mentors**: [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer), [Diego Arenas](https://github.com/darenasc).
+
+## Deeper Bayesian Intergration
+Bayesian methods and probabilistic supervised learning provide uncertainty quantification. This project aims increasing integration to combine Bayeisan and non-Bayesian methods using Turing.
+
+### Description
+As an initial step reproduce (SOSSMLJ)[https://github.com/cscherrer/SossMLJ.jl] in Turing. The bulk of the project is to implement methods that combine multiple predictive distributinons.
+
+### Your contributions
+- Interface between Turing and MLJ
+- Comparisons of ensambling, stacking of predictive distribution
+- reproducible benchmarks across various settings.
+
+### References 
+[Bayesian Stacking](http://www.stat.columbia.edu/~gelman/research/published/stacking_paper_discussion_rejoinder.pdf)
+[SKpro](https://github.com/alan-turing-institute/skpro/blob/master/README.md)
+### Difficulty: Medium to Hard
+
+**Mentors**: [Hong Ge](https://github.com/yebai) [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer) 
 
 ## MLJ and MLFlow integration
 Integrate MLJ with [MLFlow](https://mlflow.org). 
