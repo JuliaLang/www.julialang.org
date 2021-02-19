@@ -61,30 +61,19 @@ The aim of this project is to implement one or more variants of PSO
 algorithm, for use in the MLJ machine learning platform, for the purpose of optimizing hyper-parameters. *Integration* with MLJ is crucial, so there will be opportunity to spend time familiarizing yourself with this popular tool. 
 
 Specifically, you will:
-
-@@tight-list
-
-- familiarize yourself with the training, evaluation and tuning of
-machine learning models in MLJ
-- learn about the PSO algorithm and its variants, conducting a short
-survey of some of the literature and existing implementations in
-Julia and other languages, and preparing a short summary
+- familiarize yourself with the training, evaluation and tuning of machine learning models in MLJ
+- learn about the PSO algorithm and its variants, conducting a short survey of some of the literature and existing implementations in Julia and other languages, and preparing a short summary
 - familiarize yourself intimately with the  [MLJ tuning
 API](https://github.com/alan-turing-institute/MLJTuning.jl#how-do-i-implement-a-new-tuning-strategy)
 - implement a simple PSO variant, complete with testing and documentation
-- experiment with the variant to learn more about its shortcomings
-and advantages, help recommend default parameter settings
+- experiment with the variant to learn more about its shortcomings and advantages, help recommend default parameter settings
 - add variants, as time permits
-@@
 
 ### References
-
-@@tight-list
 - [Wiki entry on PSO](https://en.wikipedia.org/wiki/Particle_swarm_optimization)
 - [Zhang et al. (2015): A Comprehensive Survey on Particle Swarm Optimization Algorithm and Its Applications](https://www.hindawi.com/journals/mpe/2015/931256/)
 - [Elbes et al. (2015): A survey on particle swarm optimization with emphasis on engineering and network applications](https://link.springer.com/article/10.1007/s12065-019-00210-z)
 - [The MLJ tuning API](https://github.com/alan-turing-institute/MLJTuning.jl#how-do-i-implement-a-new-tuning-strategy)
-@@
 
 
 ## Fairness - Inprocessing and other mitigations
@@ -105,12 +94,9 @@ This project looks at:
 3. Implement fairness algorithms and metrics for individual fairness (refer [https://arxiv.org/abs/2006.11439](https://arxiv.org/abs/2006.11439) )
 
 ### Prerequisites
-
-@@tight-list
 - Julia language fluency essential. 
 - Git-workflow familiarity strongly preferred. 
 - Desirable: Experience with flux and autodiff
-@@
 
 ### References:
 
@@ -129,12 +115,10 @@ This project looks at adding counterfactual and "what-if" reasoning to Fairness.
 
 ### Prerequisites
 
-@@tight-list
 - Julia language fluency essential. 
 - Git-workflow familiarity strongly preferred. 
 - Some prior contact with graphical models or causal inference
 - Desirable: Experience in Causal Inference
-@@
 
 ### Description
 
@@ -165,10 +149,8 @@ Is it resulting in equitable outcomes for different groups recieved a treatment?
 
 ## Time series forecasting at scale - speed up via Julia
 Time series are ubiquitous - stocks, sensor reading, vital signs. This projects aims at adding time series forecasting to MLJ and perform benchmark comparisons to [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
+
 **Difficulty.** Easy - moderate. 
-
-### Description 
-
 
 ### Prerequisites
 - Julia language fluency essential. 
@@ -182,7 +164,6 @@ MLJ is so far focused on tabular data and time series classification. This proje
 Time series are everywhere in real-world applications and there has been an increase in interest in time series frameworks recently (see e.g. [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
 
 But there are still very few principled time-series libraries out there, so you would be working on something that could be very useful for a large number of people. To find out more, check out this [paper](http://learningsys.org/neurips19/assets/papers/sktime_ml_systems_neurips2019.pdf) on sktime.
-
 
 **Mentors**: [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer), [Markus Löning](https://github.com/mloning) (sktime developer).
 
@@ -200,20 +181,23 @@ Interpreting and explaining black box interpretation crucial to estabilish trust
 **Difficulty.** Easy - moderate. 
 
 ### Description
+It is important to have mechanisms in place to interpret the results of machine learning models. Identify the relevant factors of a decision or scoring of a model. 
 
-**Mentors.** [Diego Arenas](https://github.com/darenasc), [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
+This project will implement methods for model and feature interpretability.
+
+**Mentors.** [Diego Arenas](https://github.com/darenasc), [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer).
 
 ### Prerequisites
 - Julia language fluency essential. 
 - Git-workflow familiarity strongly preferred. 
-- Some prior contact with optimization algorithms of some kind
+- Some prior contact with explainable AI/ML methods is desirable.
 - A passing familiarity with machine learning goals and workflow preferred
 
 ### Your contribution
 
 The aim of this project is to implement multiple  variants implementation algorithms such as:
 
-- Feature importance
+- Implement methods to show feature importance
 - Partial dependence plots
 - Tree surrogate
 - LocalModel: Local Interpretable Model-agnostic Explanations
@@ -223,14 +207,11 @@ The aim of this project is to implement multiple  variants implementation algori
 - Glue code to SHAP package 
 
 Specifically you will
-- familiarize yourself with MLJ
-- survey of some of the literature and existing implementations in
-Julia and other languages, and preparing a short summary
-- implement visualisations of explanations
-- use cases
-
-
-You will learn about the benefits and short comings of model interpretation and how to use them. 
+- Familiarize yourself with MLJ
+- Survey of some of the literature and existing implementations in Julia and other languages, and preparing a short summary
+- Implement visualisations of explanations
+- Implement use cases
+- You will learn about the benefits and short comings of model interpretation and how to use them. 
 
 ### References
 - [Interpretable Machine Learning - A Guide for Making Black Box Models Explainable by Christoph Molnalr](https://christophm.github.io/interpretable-ml-book/)
@@ -240,8 +221,6 @@ You will learn about the benefits and short comings of model interpretation and 
 Tutorials
 - [AI explainability 360: hands-on tutorial](https://dl.acm.org/doi/abs/10.1145/3351095.3375667)
 - [IML tutorial](https://mlr3book.mlr-org.com/iml.html)
-
-
 
 ## Model visualization in MLJ
 
@@ -278,14 +257,21 @@ You will enhance your visualisation skills as well as your ability to "debug" an
 **Mentors**: [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer), [Diego Arenas](https://github.com/darenasc).
 
 ## MLJ and MLFlow integration
-Integrate MLJ with [MLFlow](https://mlflow.org). MLFlow is a flexible model management tool. The project consists of writing the necessary functions to integrate MLJ with [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html) so models built using MLJ can keep track of its runs, evaluation metrics, parameters, and can be registered and monitored using MLFlow.
+Integrate MLJ with [MLFlow](https://mlflow.org). 
 
 ### Description
 
+MLFlow is a flexible model management tool. The project consists of writing the necessary functions to integrate MLJ with [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html) so models built using MLJ can keep track of its runs, evaluation metrics, parameters, and can be registered and monitored using MLFlow.
+
 ### Prerequisites
+- Julia language fluency essential.
+- Git-workflow familiarity strongly preferred.
 
 ### Your contribution
+* Provide to MLJ users a way to keep track of their machine learning models using MLflow, as a local or remote server.
+* Implement a reproducible way to store and load machine learning models.
+* Implement functions wraping the REST API calls that makes possible the use of MLflow.
 
 ### References
 * [MLFlow](https://mlflow.org) website.
-* [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html)
+* [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html).
