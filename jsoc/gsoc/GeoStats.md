@@ -32,6 +32,8 @@ The goal of this project is to implement a geostatistical simulation method from
 
 **Desired skills:** Geostatistics, Stochastics, HPC
 
+**Difficulty level:** Hard
+
 **References:**
 @tight-list
 - [Conditional Simulation of Complex Geological Structures Using Multiple-Point Statistics](https://link.springer.com/article/10.1023/A:1014009426274)
