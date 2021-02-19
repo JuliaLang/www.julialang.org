@@ -11,7 +11,6 @@ We have our project ideas organized roughly into the skill sets required:
 * [DFTK.jl](/jsoc/gsoc/dftk/) – Density-functional theory in Julia
 * [Differential Equations](/jsoc/gsoc/diffeq/) - Numerical methods for high-performance solving of differential equation models.
 * [General](/jsoc/gsoc/general/) – jack-of-all-trades projects that don't require special skills.
-* [Graphics](/jsoc/gsoc/graphics/) – projects ranging from low level OpenGL rendering to high level plotting.
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
 * [Machine Learning](/jsoc/gsoc/flux/) for machine learning.
@@ -22,5 +21,4 @@ We have our project ideas organized roughly into the skill sets required:
 * [Tabular Data](/jsoc/gsoc/tables/)
 * [Tooling](/jsoc/gsoc/tooling/) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
 * [Turing projects](/jsoc/gsoc/turing/) for probabilistic modelling and probabilistic programming.
-* [Web Platform](/jsoc/gsoc/wasm/) – work on the Julia wasm backend or other aspects of julia in the browser.
 @@
