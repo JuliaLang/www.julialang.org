@@ -5,8 +5,8 @@
 # Titles & possible mentors 
 
 * [Particle swarm optimization of machine learning models](#Particle-swarm-optimization-of-machine-learning-models)
-* [Fairness - Inprocessing and other mitigations](#Fairness---Inprocessing-and-other-mitigations)
-* [Counterfactual analysis in Fairness.jl and MLJ](#Counterfactual-analysis-in-Fairness.jl-and-MLJ)
+* [In-processing methods for fairness in machine learning](#In-processing-methods-for-fairness-in-machine-learning)
+* [Causal and counterfactual methods for fairness in machine learning](#Causal-and-counterfactual-methods-for-fairness-in-machine-learning)
 * [Time series forecasting at scale - speed up via Julia](#Time-series-forecasting-at-scale---speed-up-via-Julia)
 * [Interpretable Machine Learning in Julia](#Interpretable-Machine-Learning-in-Julia)
 * [Model visualization in MLJ](#Model-visualization-in-MLJ)
@@ -76,76 +76,98 @@ API](https://github.com/alan-turing-institute/MLJTuning.jl#how-do-i-implement-a-
 - [The MLJ tuning API](https://github.com/alan-turing-institute/MLJTuning.jl#how-do-i-implement-a-new-tuning-strategy)
 
 
-## Fairness - Inprocessing and other mitigations
 
-[Fairness.jl](https://github.com/ashryaagr/Fairness.jl) provides via MLJ and otherwise to possibility to audit and mitigate bias. To this end some preprocessing and postprocessing methods are implemented. You shouldn't cut corners about fairness - thus more mitigation techniques need to be provided. In processing is a big class of mitigation strategies currently missing.
 
-*Difficulty* Moderate likely Hard.
+## In-processing methods for fairness in machine learning
 
-### Description
-From hiring decisions to granting loans, every crucial decision involves ML decision support tools. The data used to train these decision support tools can be biased against a specific race or gender or ethnic group. Suppose people of race A had been historically unprivileged due to oppression and thus were unable to repay loans. So, my dataset would naturally be biased and the ML model would tend to learn “People of race A should be denied loan; It is less likely for them to repay loan”. But should one’s race, ethnicity, gender negatively affect such crucial decisions like granting loan? Is this fair? Upon reading this, you would definitely question “why not remove the race, gender, ethnicity attributes from dataset”. You will find the answer to this in references mentioned, but to get intuition, ask yourself “Can name, city or country be an indicator for one’s religion/race/gender?”.
+Mentors: [Jiahao Chen](https://jiahao.github.io/), [Moritz Schauer](https://github.com/mschauer), and [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
 
-To mitigate the bias (enhance fairness), we can either alter the biased dataset, make changes to ML model (or training process) or alter predictions. The first and third approach treat the ML model as black-box and have a fundamental limit to enhance fairness as shown in [our work](https://arxiv.org/abs/2011.02407). These two approaches have been implemented and studied in the Fairness.jl project. In this project, we aim to implement as well as develop algorithms (in-processing algorithms) that alter the training process or alter ML model.
+[Fairness.jl](https://github.com/ashryaagr/Fairness.jl) is a package to audit and mitigate bias, using the MLJ machine learning framework and other tools. It has implementations of some preprocessing and postprocessing methods for improving fairness in classification models, but could use more implementations of other methods, especially inprocessing algorithms like adversarial debiasing.
 
-This project looks at:
-
-1. Using [Flux.jl](https://github.com/FluxML/Flux.jl) or [MLJFlux.jl](https://github.com/alan-turing-institute/MLJFlux.jl), develop In-processing algorithms
-2. Study research papers proposing in-processing algorithms and implement them
-3. Implement fairness algorithms and metrics for individual fairness (refer [https://arxiv.org/abs/2006.11439](https://arxiv.org/abs/2006.11439) )
+*Difficulty* Hard.
 
 ### Prerequisites
-- Julia language fluency essential. 
-- Git-workflow familiarity strongly preferred. 
-- Desirable: Experience with flux and autodiff
 
-### References:
+@@tight-list
+- Essential: working knowledge of the Julia language
+- Strongly preferred: git workflow familiarity
+- Desirable: Experience with flux and autodiff
+@@
+
+### Description
+
+Machine learning models are developed to support and make high-impact decisions like who to hire or who to give a loan to. However, available training data can exhibit bias against race, age, gender, or other prohibited bases, reflecting a complex social and economic history of systemic injustic. For example, women in the United Kingdom, United States and other countries were only allowed to have their own bank accounts and lines of credit in the 1970s! That means that training a credit decisioning model on historical data would encode implicit biases, that women are less credit-worthy because few of them had lines of credit in the past. Surely we would want to be fair and not hinder an applicant's ability to get a loan on the basis of their race, gender and age?
+
+So how can we fix data and models that are unfair? A common first reaction is to remove the race, gender and age attributes from the training data, and then say we are done. But as described in detail in the references, we cam have to consider if other features like one's name or address could encode such prohibited bases too. To mitigate bias and improve fairness in models, we can change the training data (pre-processing), the way we define and train the model (in-processing), and/or alter the predictions made (post-processing). Some algorithms for the first and third approaches have already been implemented in Fairness.jl, which have the advantage of treating the ML model as a black box. However, our latest resarch [(arXiv:2011.02407)](https://arxiv.org/abs/2011.02407) shows that pur black box methods have fundamental limitations in their ability to mitigate bias.
+
+### Your contribution
+
+This project is to implement more bias mitigation algorithms and invent new ones too. We will focus on in-processing algorithms that alter the training process or alter ML model. Some specific stages are to:
+
+1. Use [Flux.jl](https://github.com/FluxML/Flux.jl) or [MLJFlux.jl](https://github.com/alan-turing-institute/MLJFlux.jl) to develop in-processing algorithms,
+2. Study research papers proposing in-processing algorithms and implement them, and
+3. Implement fairness algorithms and metrics for individual fairness as described in papers like [arXiv:2006.11439](https://arxiv.org/abs/2006.11439).
+
+### References
 
 1. High-level overview: [https://towardsdatascience.com/a-tutorial-on-fairness-in-machine-learning-3ff8ba1040cb](https://julialang.org/jsoc/gsoc/MLJ/)
 2. [https://nextjournal.com/ashryaagr/fairness](https://nextjournal.com/ashryaagr/fairness) 
 3. IBM’s AIF360 resources: [https://aif360.mybluemix.net/](https://aif360.mybluemix.net/) 
-4. AIF360 Inprocessing algorithms: Available [here](https://aif360.readthedocs.io/en/latest/modules/algorithms.html#module-aif360.algorithms.inprocessing).
-5. [https://dssg.github.io/fairness_tutorial/](https://dssg.github.io/fairness_tutorial/) 
+
+    AIF360 Inprocessing algorithms: Available [here](https://aif360.readthedocs.io/en/latest/modules/algorithms.html#module-aif360.algorithms.inprocessing).
+
+4. [https://dssg.github.io/fairness_tutorial/](https://dssg.github.io/fairness_tutorial/) 
 
 
-## Counterfactual analysis in Fairness.jl and MLJ
+## Causal and counterfactual methods for fairness in machine learning
 
-This project looks at adding counterfactual and "what-if" reasoning to Fairness.jl and MLJ.jl.
+Mentors: [Jiahao Chen](https://jiahao.github.io/), [Moritz Schauer](https://github.com/mschauer), [Zenna Tavares](https://github.com/zenna), and [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
 
-*Difficulty* Moderate likely Hard.
+[Fairness.jl](https://github.com/ashryaagr/Fairness.jl) is a package to audit and mitigate bias, using the MLJ machine learning framework and other tools. This project is to implement algorithms for counterfactual ("what if") reasoning and causal analysis to Fairness.jl and MLJ.jl, integrating and extending Julia packages for causal analysis.
+
+*Difficulty* Hard.
 
 ### Prerequisites
 
-- Julia language fluency essential. 
-- Git-workflow familiarity strongly preferred. 
-- Some prior contact with graphical models or causal inference
-- Desirable: Experience in Causal Inference
+@@tight-list
+- Essential: working knowledge of the Julia language
+- Strongly preferred: git workflow familiarity
+- Desirable: Experience in causal inference
+- Desirable: Experience with graphical models
+@@
+
 
 ### Description
 
-Granting parole to accepting credit applications decision support tools guide human decision making with the aim to improve outcomes.
-In the latter often without any human in the loop. It is important that these decisions are fair.
-But what does fair mean?
-Basic auditing and bias reduction e.g. for false-positive-rate or false-negative rate are available in Fairness.jl. 
-A causal model for the features allows to consider Causal fairness for predictive models, see [Equality of Opportunity in Classification: A Causal Approach](https://causalai.net/r37.pdf). 
+Machine learning models are developed to support and make high-impact decisions like who to hire or who to give a loan to. However, available training data can exhibit bias against race, age, gender, or other prohibited bases, reflecting a complex social and economic history of systemic injustic. For example, women in the United Kingdom, United States and other countries were only allowed to have their own bank accounts and lines of credit in the 1970s! That means that training a credit decisioning model on historical data would encode implicit biases, that women are less credit-worthy because few of them had lines of credit in the past. Surely we would want to be fair and not hinder an applicant's ability to get a loan on the basis of their race, gender and age?
 
-
-Many predictions drive interventions thus an important point to consider is outcome:
-Is it resulting in equitable outcomes for different groups recieved a treatment? This question can only be addressed using causal inference.
-
+So how can we fix unfairness in models? Arguably, we should first identify the underlying _causes_ of bias, and only then can we actually remediate bias successfully.
+However, one major challenge is that a proper evaluation often requires data that we don't have. For this reason, we also need counterfactual analysis, to identify actions we can take that can mitigate fairness not just in our training data, but also in situations we haven't seen yet but could encounter in the future. Ideas for identifying and mitigating bias using such causal interventions have been proposed in papers such as [Equality of Opportunity in Classification: A Causal Approach](https://causalai.net/r37.pdf) and the references below.
+    
 ### Your contribution
 
-- Implementing counterfactual methods to understand causal effects. These methods will be used to better understand causality on studied events.
-- Strengthen links between julias causal inference packages and MLJ e.g. using MLJ base models for causal inference e.g. in [Omega.jl](https://github.com/zenna/Omega.jl)
-- Benchmark the existing fainress-causal methods across different use cases
+This project is to implement algorithms for counterfactual ("what if") reasoning and causal analysis to Fairness.jl and MLJ.jl, integrating and extending Julia packages for causal analysis. Some specific stages are:
 
+@@tight-list
+1. Implement interfaces in MLJ.jl for Julia packages for causal inference and probabilistic programming such as [Omega.jl](https://github.com/zenna/Omega.jl) and CausalInference.jl](https://github.com/mschauer/CausalInference.jl)
+2. Implement and benchmark causal and counterfactual definitons for measuring unfairness
+3. Implement and benchmark causal and counterfactual approaches to mitigate bias
 
-### References:
+@@
+
+### References
+@@tight-list
 - [Repository of Causal-Fairness links](https://github.com/yongkaiwu/Causal-Fairness) 
 - [Causal fairness for predictive models](https://causalai.net/r37.pdf)
 - [High-level overview: Fair Multiple Decision Making Through Soft Interventions](https://papers.nips.cc/paper/2020/file/d0921d442ee91b896ad95059d13df618-Paper.pdf)
 - [Fairness in Decision-Making — The Causal Explanation Formula](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16949/15911)
 - [CausalML tool from Uber](https://causalml.readthedocs.io/en/latest/methodology.html#t-learner)
 - [end-to-end causal](https://www2.slideshare.net/AmitSharma315/dowhy-an-endtoend-library-for-causal-inference)
+- [Equality of Opportunity in Classification: A Causal Approach](https://causalai.net/r37.pdf).
+@@
+
+
+
 
 ## Time series forecasting at scale - speed up via Julia
 Time series are ubiquitous - stocks, sensor reading, vital signs. This projects aims at adding time series forecasting to MLJ and perform benchmark comparisons to [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
