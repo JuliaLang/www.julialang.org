@@ -12,9 +12,9 @@ The Summer of Code Javis projects aims at simplifying the creation of animations
 Below you can find a list of potential projects that can be tackled during Google Summer of Code.
 If interested in exploring any of these projects, please reach out to:
 
-- **Jacob Zelko** - [email](mailto:jacobszelko@gmail.com), [Slack](https://julialang.org/slack/) (username: TheCedarPrince), or [Zulip](https://julialang.zulipchat.com/) (username: TheCedarPrince)
+- **[Jacob Zelko](http://jacobzelko.com/)** - [email](mailto:jacobszelko@gmail.com), [Slack](https://julialang.org/slack/) (username: TheCedarPrince), or [Zulip](https://julialang.zulipchat.com/) (username: TheCedarPrince)
 
-- **Ole Kröger** - [Slack](https://julialang.org/slack/) (username: Wikunia), or [Zulip](https://julialang.zulipchat.com/) (username: Wikunia)
+- **[Ole Kröger](https://opensourc.es/about/)** - [Slack](https://julialang.org/slack/) (username: Wikunia), or [Zulip](https://julialang.zulipchat.com/) (username: Wikunia)
 
 Thanks for your interest! :tada:
 
