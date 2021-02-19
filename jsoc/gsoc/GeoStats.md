@@ -3,7 +3,7 @@
 [GeoStats.jl](https://github.com/JuliaEarth/GeoStats.jl) is an extensible framework for high-performance geostatistics in Julia.
 It is a project that aims to redefine the way statistics is done with geospatial data (e.g. data on geographics maps, 3D meshes).
 
-Project mentors: [Júlio Hoffimann](https://github.com/juliohm)
+Project mentors: [Júlio Hoffimann](https://github.com/juliohm), [Rafael Caixeta](https://github.com/rmcaixeta)
 
 ## New geostatistical clustering methods
 
