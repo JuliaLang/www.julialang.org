@@ -49,6 +49,8 @@ The goal of this project is to migrate all plot recipes from Plots.jl to Makie.j
 
 **Desired skills:** Visualization, Plotting, Geometry, HPC, GPU
 
+**Difficulty level:** Medium
+
 ## How to get started?
 
 Get familiar with the framework by reading the [documentation](https://juliaearth.github.io/GeoStats.jl/stable) and [tutorials](https://github.com/JuliaEarth/GeoStatsTutorials).
