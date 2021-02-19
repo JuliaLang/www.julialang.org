@@ -46,6 +46,7 @@
 
 **Mentors:** [Shashi Gowda](https://github.com/shashi), [Tanmay Mohapatra](https://github.com/tanmaykm)
 
+<!--- Commented out for Summer 2021 since the projects were not updated.
 ## GPU support in JuliaDB
 
 JuliaDB is a distributed analytical database. It uses Julia’s multi-processing for parallelism at the moment. GPU implementations of some operations may allow relational algebra with low latency. In this project, you will be required to add basic GPU support in JuliaDB.
@@ -92,4 +93,6 @@ julia code.
 competitive performance for all the packages listed above.
 
 **Mentors**: [David Anthoff](https://github.com/davidanthoff)
+
+-->
 
