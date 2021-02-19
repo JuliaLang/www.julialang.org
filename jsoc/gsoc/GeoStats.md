@@ -26,7 +26,7 @@ The goal of this project is to implement a geospatial clustering method from the
 Geostatistical simulation consists of generating multiple alternative realizations of geospatial data according to a given geospatial distribution.
 The litetaure on simulation methods is vast, but a few of them are particularly useful.
 
-The goal of this project is to implement geostatistical simulation method from the geostatistics literature using the GeoStats.jl API.
+The goal of this project is to implement a geostatistical simulation method from the geostatistics literature using the GeoStats.jl API.
 
 **Desired skills:** Geostatistics, Stochastics, HPC
 
