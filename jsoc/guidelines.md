@@ -81,3 +81,7 @@ In more detail, you may find it useful to consider the following questions:
 * **Logistics.**
   - What other time commitments, such as summer courses, other jobs, planned vacations, etc., will you have over the summer?
 @@
+
+## Words of Encouragement
+
+Confidence can sometimes hold someone back from applying for an opportunity. But, we will let you in on a secret: there's no such thing as a 'perfect' candidate. Open Source (and specifially the Julia Language) is a place where anyone and everyone can grow. So however you identify and regardless of your background, please apply if this is a program that gets you excited.
