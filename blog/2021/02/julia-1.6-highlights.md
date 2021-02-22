@@ -102,7 +102,9 @@ speed improvements seen in subsequent calls. This change highlights that
 behavior, serving as both a reminder and a tool for rooting out unwanted
 compilation effort i.e. over-specialized code.
 
-[^1]: Note that the time reported by `@time` does not include time spent in julia’s code interpreter, which may be significant.
+[^1]: Note that in some cases the system will look inside the `@time` expression
+and compile some of the called code before execution of the top-level expression begins.
+When that happens, some compilation time will not be counted.
 
 ## Eliminating needless recompilation
 
@@ -140,9 +142,9 @@ method invalidations](https://julialang.org/blog/2020/08/invalidations/).
 
 _Jameson Nash and Jeff Bezanson_
 
-Load times and compilation pauses continue to be a significant nuissance for
-Julia users, and one of our main technical challenges. We try to make at least
-a little progress on it in every release. This time, there aren't any major
+In addition to making our library code more compiler-friendly, we continue
+to try to speed up the compiler itself. This remains one of our main
+technical challenges. In this release there aren't any major
 breakthroughs, but we do have some modest improvements due to work on the
 method table data structure.
 
@@ -161,9 +163,8 @@ But the key is that the vast majority of queries are for specific enough
 types that most possible matches can be eliminated easily, leaving
 many fewer inputs to the most expensive steps.
 
-The main visible improvement here is to package loading, which is now often
-significantly faster. For example, `using Plots` goes from about 6 seconds to
-about 3 seconds for me (after precompilation).
+The main visible improvement here is to package loading, adding a bit of
+extra speed on top of the gains from addressing invalidations.
 
 ## Tooling to help optimize packages for latency
 
