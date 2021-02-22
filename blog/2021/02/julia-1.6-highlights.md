@@ -138,7 +138,32 @@ method invalidations](https://julialang.org/blog/2020/08/invalidations/).
 
 ## Compiler latency reduction
 
-_Jeff Bezanson_
+_Jameson Nash and Jeff Bezanson_
+
+Load times and compilation pauses continue to be a significant nuissance for
+Julia users, and one of our main technical challenges. We try to make at least
+a little progress on it in every release. This time, there aren't any major
+breakthroughs, but we do have some modest improvements due to work on the
+method table data structure.
+
+Method specificity is a partial order, and prior to 1.6 we stored methods in
+sorted order. We also attempted to identify ambiguous methods on insertion,
+hoping to avoid repeating the work for each future query.
+Unfortunately, sorting a partial order requires quadratic time, and this time
+began to show up prominently during package loading (when a package's methods
+need to be inserted into the currently-active method tables).
+
+We improved things by making the process lazier, moving sorting and ambiguity
+detection into the algorithm for finding matching methods.
+This algorithm runs very often, so it was not at first intuitive that this
+change would help.
+But the key is that the vast majority of queries are for specific enough
+types that most possible matches can be eliminated easily, leaving
+many fewer inputs to the most expensive steps.
+
+The main visible improvement here is to package loading, which is now often
+significantly faster. For example, `using Plots` goes from about 6 seconds to
+about 3 seconds for me (after precompilation).
 
 ## Tooling to help optimize packages for latency
 
@@ -319,7 +344,7 @@ options across the entire Julia ecosystem.
 
 ## CI Robustness
 
-_Jeff Bezanson & Keno Fischer_
+_Jeff Bezanson, Keno Fischer, and Jameson Nash_
 
 This release cycle we spent quite a bit of time paying down technical debt in
 the form of intermittent test failures in our continuous integration (CI)
@@ -334,14 +359,32 @@ failed, usually with just a single obscure test case failing.
 
 Several factors contributed to this predicament. First, the base Julia test
 suite is quite large and covers a wide range of functionality, from parsing and
-compiling to linear algebra, package management, sockets, handling file system
+compiling to linear algebra, package management, sockets, threads, handling file system
 events, and more. With that much surface area, we were likely to end up with a
 handful of rare bugs, or failures due to overly-fragile tests. We run easily
-over a hundred builds per day, so even failure rates of 0.1% would appear often
-enough to cause problems. Timing-sensitive tests are a classic example, e.g.
+over a hundred builds per day, so even failures with a rate of 0.1% would appear often
+enough to be disruptive. Timing-sensitive tests are a classic example, e.g.
 testing that a one-second timeout indeed happens after approximately one second.
 On hosted VMs in particular, timing can be far more variable than what you would
 ever see on dedicated hardware. A one-second timeout can, unfortunately, take
 more than 60 seconds on a heavily loaded VM.
+
+After much debugging, including infrastructure work to run tests under
+[rr](https://julialang.org/blog/2020/05/rr) by default, we were able to
+identify and fix a significant number of issues. Here is a representative sample:
+
+- [Close a race condition in the FileWatching tests](https://github.com/JuliaLang/julia/pull/38407)
+- [Disarm watchdog timer after Sockets test finishes](https://github.com/JuliaLang/julia/pull/38586)
+- [Remove some overhead to reduce timing variation in Channels test](https://github.com/JuliaLang/julia/pull/38662)
+- [Fix a test for `mktemp` to prevent occasional duplicate names](https://github.com/JuliaLang/julia/pull/38779)
+- [Fix a calling convention issue causing occasional failures on FreeBSD](https://github.com/JuliaLang/julia/pull/38882)
+- [Fix a libunwind issue causing Profile test failures](https://github.com/JuliaLang/julia/pull/39553)
+- [Fix a race in AsyncCondition test](https://github.com/JuliaLang/julia/pull/39583)
+- [Fix occasional deadlock in REPL test](https://github.com/JuliaLang/julia/pull/39482)
+- [Port reuse issue causing occasional Distributed test failure on Darwin](https://github.com/JuliaLang/julia/pull/38901)
+- [Lock leak causing occasional test failure](https://github.com/JuliaLang/julia/pull/38246)
+
+As a result, the proportion of "green check" PRs is noticeably higher.
+We are not yet at 100%, but CI can now generally be expected to pass.
 
 ## Conclusion
