@@ -125,8 +125,8 @@ Julia, the combination of these effects made invalidation widespread: just
 loading certain packages led to invalidation of up to 10% of Julia’s precompiled
 code. The delay for recompilation could sometimes make interactive sessions feel
 sluggish. When invalidation occurred in Julia’s package-loading code, it also
-delayed loading of the next package, contributing to long waits for using
-SomePkg when SomePkg depends on other packages.
+delayed loading of the next package, contributing to long waits for `using
+SomePkg` when `SomePkg` depends on other packages.
 
 In 1.6, the scheme for invalidating old code has been made more accurate and
 selective. Moreover, Julia and its standard libraries received a thorough
@@ -371,7 +371,7 @@ more than 60 seconds on a heavily loaded VM.
 
 After much debugging, including infrastructure work to run tests under
 [rr](https://julialang.org/blog/2020/05/rr) by default, we were able to
-identify and fix a significant number of issues. Here is a representative sample:
+identify and fix many issues. Here is a representative sample:
 
 - [Close a race condition in the FileWatching tests](https://github.com/JuliaLang/julia/pull/38407)
 - [Disarm watchdog timer after Sockets test finishes](https://github.com/JuliaLang/julia/pull/38586)
