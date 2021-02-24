@@ -3,7 +3,7 @@
 
 [Pythia](https://github.com/ababii/Pythia.jl) is a package for scalable machine learning time series forecasting and nowcasting in Julia.
 
-The project mentor is [Andrii Babii](https://ababii.bitbucket.io/).
+The project mentors are [Andrii Babii](https://ababii.github.io/) and [Sebastian Vollmer](https://www.turing.ac.uk/people/researchers/sebastian-vollmer/).
 
 ## Machine learning for nowcasting and forecasting
 
@@ -17,7 +17,7 @@ The following functions are of interest: in-sample and out-of sample forecasts/n
 
 **Expected output:** The student is expected to produce code, documentation, visualization, and real-data examples.
 
-**References:** Email the project mentor for references.
+**References:** Contact project mentors for references.
 
 ## Time series forecasting at scales
 
@@ -29,4 +29,4 @@ The following  functionality is of interest: forecasting intermittent demand (Cr
 
 **Expected output:** The student is expected to produce code, documentation, visualization, and real-data examples.
 
-**References:** Email the project mentor for references.
+**References:** Contact project mentors for references.
