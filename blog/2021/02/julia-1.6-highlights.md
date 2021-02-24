@@ -102,9 +102,7 @@ speed improvements seen in subsequent calls. This change highlights that
 behavior, serving as both a reminder and a tool for rooting out unwanted
 compilation effort i.e. over-specialized code.
 
-[^1]: Note that in some cases the system will look inside the `@time` expression
-and compile some of the called code before execution of the top-level expression begins.
-When that happens, some compilation time will not be counted.
+[^1]: Note that in some cases the system will look inside the `@time` expression and compile some of the called code before execution of the top-level expression begins. When that happens, some compilation time will not be counted. To include this time you can run `@time @eval ...`
 
 ## Eliminating needless recompilation
 
