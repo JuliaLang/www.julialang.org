@@ -1,6 +1,7 @@
 ## Books
 
 @@tight-list
+* Lee Phillips. [Applied Julia](https://lee-phillips.org/juliabook/), Late 2021. Comments welcome.
 * Mykel J. Kochenderfer, Tim A. Wheeler, and Kyle H. Wray. [Algorithms for Decision Making](https://algorithmsbook.com/), December 2020.
 * Christopher P. Adams. [Learning Microeconometrics with R](https://www.routledge.com/Learning-Microeconometrics-with-R/Adams/p/book/9780367255381), December 2020; Has [Julia code](https://sites.google.com/view/microeconometricswithr/home?authuser=0) for all [12 chapters](https://sites.google.com/view/microeconometricswithr/table-of-contents?authuser=0).
 * Raj Rao. [Applied Computational Linear Algebra for Everyone](https://mynerva.io/compla), December 2020; Interactive, experential computational book as described in [this JuliaCon  talk](https://www.youtube.com/watch?v=R84L-BQcjHw)  
