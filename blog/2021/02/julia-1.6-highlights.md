@@ -54,7 +54,7 @@ julia> @time using DifferentialEquations
 Whereas the previous code loading precompilation process took ~8 minutes to
 precompile and load without indicating progress while doing so, the new
 mechanism took a little over 1 minute to precompile while showing progress through the
-dependencies, then the first time the package is loaded it happens at full
+dependencies. Then the first time the package is loaded, it loads at full
 speed. The new parallel precompilation process takes a depth-first approach of
 working through the dependency tree in the manifest, first precompiling the
 packages with no dependencies and working upward to the packages listed in the
