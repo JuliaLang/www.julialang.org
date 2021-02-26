@@ -48,10 +48,12 @@ range of hyper-parameter optimization problems.
 **Mentors.** [Anthony Blaom](https://ablaom.github.io), [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
 
 ### Prerequisites
+@@tight-list
 - Julia language fluency essential. 
 - Git-workflow familiarity strongly preferred. 
 - Some prior contact with optimization algorithms of some kind
 - A passing familiarity with machine learning goals and workflow preferred
+@@
 
 ### Your contribution
 
