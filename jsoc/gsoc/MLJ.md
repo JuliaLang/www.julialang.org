@@ -12,6 +12,7 @@
 * [Model visualization in MLJ](#Model-visualization-in-MLJ)
 * [Deeper integration with Bayseian methods and Bayesian Stacking](#Deeper-Bayes)
 * [MLJ and MLFlow integration](#MLJ-and-MLFlow-integration)
+* [Speed demons only need apply](#Speed-demons-only-need-apply)
 
 # MLJ Projects – Summer of Code
 
@@ -47,13 +48,11 @@ range of hyper-parameter optimization problems.
 **Mentors.** [Anthony Blaom](https://ablaom.github.io), [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
 
 ### Prerequisites
-
 @@tight-list
 - Julia language fluency essential. 
 - Git-workflow familiarity strongly preferred. 
 - Some prior contact with optimization algorithms of some kind
-- A passing familiarity with machine learning goals and
-workflow preferred
+- A passing familiarity with machine learning goals and workflow preferred
 @@
 
 ### Your contribution
@@ -300,6 +299,8 @@ As an initial step reproduce (SOSSMLJ)[https://github.com/cscherrer/SossMLJ.jl] 
 ## MLJ and MLFlow integration
 Integrate MLJ with [MLFlow](https://mlflow.org). 
 
+**Difficulty.** Easy. 
+
 ### Description
 
 MLFlow is a flexible model management tool. The project consists of writing the necessary functions to integrate MLJ with [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html) so models built using MLJ can keep track of its runs, evaluation metrics, parameters, and can be registered and monitored using MLFlow.
@@ -316,3 +317,38 @@ MLFlow is a flexible model management tool. The project consists of writing the 
 ### References
 * [MLFlow](https://mlflow.org) website.
 * [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html).
+
+## Speed demons only need apply
+
+Diagnose and exploit opportunities for speeding up common MLJ
+workflows.
+
+**Difficulty.** Moderate. 
+
+### Description
+
+In addition to investigating a number of known performance bottlenecks, you will have some free reign in this to identify opportunities to speed up common MLJ workflows, as well as making better use of memory resources.
+
+### Prerequisites
+- Julia language fluency essential. 
+- Experience with multi-threading and multi-processor computing essential, preferably in Julia.
+- Git-workflow familiarity strongly preferred. 
+- Familiarity with machine learning goals and  workflow preferred
+
+### Your contribution
+In this project you will:
+- familiarize yourself with the training, evaluation and tuning of machine learning models in MLJ
+- work towards addressing a number of known performance issues, including:
+- limitations of the generic Tables.jl interface for interacting with tabular data which, in common cases (DataFrames), has extra functionality that can be exploited
+- rolling out new data front-end for models to avoid unnecessary copying of data
+- in conjuction with your mentor, identify best design for introducing better sparse data support to MLJ models (e.g., naive Bayes) 
+- implement a multi-threading and/or multi-processor parallelism to the current learning networks scheduler
+- benchmark and profile common workflows to identify opportunities for further code optimizations
+- implement some of these optimizations
+  
+### References
+- [MLJ Roadmap](https://github.com/alan-turing-institute/MLJ.jl/blob/dev/ROADMAP.md#scalability). See, in particular "Scalability" section.
+- [Taking performance more seriously GitHub issue](https://github.com/alan-turing-institute/MLJBase.jl/issues/309)
+- [Data front end](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/#Implementing-a-data-front-end-1) for MLJ models.
+
+**Mentors.** [Anthony Blaom](https://ablaom.github.io)
