@@ -92,7 +92,6 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaReach](https://github.com/JuliaReach) – [Reachability Computations for Dynamical Systems](https://juliareach.github.io/JuliaReach-website/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
 * [JuliaRobotics](https://github.com/JuliaRobotics)
 * [JuliaTelecom](https://github.com/JuliaTelecom) [[🌐–page]](https://github.com/JuliaTelecom/SiteMap) – Telecommunications
-* [JuliaText](https://github.com/JuliaText) – Natual Language Processing, (textual) Information Retrieval, and Computational Linguistics
 * [ModiaSim](https://github.com/ModiaSim) – Physical systems modelling/simulation with differential & algebraic equations
 @@
 
