@@ -1,7 +1,7 @@
 @def title = "Julia 1.6 Highlights"
 @def authors = "Jeff Bezanson, Ian Butterworth, Nathan Daly, Keno Fischer, Tim Holy, Elliot Saba, Mosè Giordano, Stefan Karpinski"
-@def published = "28 February 2021"
-@def rss_pubdate = Date(2021, 2, 28)
+@def published = "2 March 2021"
+@def rss_pubdate = Date(2021, 3, 2)
 @def rss = """Some highlights of the Julia 1.6 release."""
 
 Julia version 1.6 has been released. Most Julia releases are timed and hence not
@@ -203,10 +203,11 @@ using Julia v1.6 on the same machine.
 The cause of this slowdown was multi-faceted and spread across many different
 layers of the Julia ecosystem.  Part of the issue was general compiler latency,
 which has been a focus of the compiler team for some time now, as evidenced by
-Jeff's post in this blogpost.  Another major piece though was general overhead
+the compiler latency reduction section in this blog post.  Another major piece
+though was general overhead
 incurred by having so many small JLL packages providing bindings; there was
 significant overhead in the loading of each package.  In particular, there was
-code inferrence, code generation and datastructure loading that needed to be
+code inference, code generation and data-structure loading that needed to be
 eliminated if the JLL packages were to be lightweight enough to not affect
 overall load times.  In our experiments, we found that one of the largest
 sources of package load times was in the deserialization of backedge
@@ -251,7 +252,7 @@ to a blistering `140ms`.  End-to-end, this means that this work effected a
 roughly **`50x` speedup** in load times for large trees of binary artifacts.
 While there are some minor improvements for lazy loading of shared libraries
 and such in the pipeline, we are confident that this work will provide a strong
-foundation for Julia's binary packaging story for the forseeable future.
+foundation for Julia's binary packaging story for the foreseeable future.
 
 ## Downloads & NetworkingOptions
 
