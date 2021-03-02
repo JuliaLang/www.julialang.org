@@ -164,6 +164,33 @@ many fewer inputs to the most expensive steps.
 The main visible improvement here is to package loading, adding a bit of
 extra speed on top of the gains from addressing invalidations.
 
+There has been substantial effort put into refining our inference quality
+characteristics, both in stopping analysis quickly when it is perceived to not
+be of benefit, and extracting more precise information when possible. Both
+sides of this can have significant benefit for complex code, such as plotting
+libraries, which branch over large numbers of different configuration options.
+
+Much of this benefit should simply be available without doing anything to your
+code except updating Julia version! To go even further, there is now also a
+general framework for profiling compilation times, for investigating what
+functions contribute most heavily to execution latency. This is described in
+more detail by others. But with each release, you may just find that an old
+code pattern, which you used to need to avoid for performance, now works great!
+
+We applied many micro-optimizations to several internal data-structures also.
+These again won't affect how your code works, but should improve how it
+performs dynamically. For example, `invokelatest` is now faster than `try`, and
+nearly as fast as dynamic dispatch. Several complex internal data-structures
+that were trees also became simple hash-tables, improving both their scaling
+performance and making them more cheaply thread-safe. This affects some key
+areas such as type allocations (`apply_type` and `tuple`), method optimization
+lookup (`MethodInstance`), and dispatch (`jl_apply_generic`).
+
+While we haven't yet reached our target performance levels (but, really, can we
+ever get that fast?), we hope this release is a great step forward. There's
+already other work completed in preparation for getting latency down even more
+in the future!
+
 ## Tooling to help optimize packages for latency
 
 _Nathan Daly & Tim Holy_
