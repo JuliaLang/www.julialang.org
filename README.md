@@ -33,8 +33,6 @@ julia> using Pkg; Pkg.instantiate()
 
 julia> using Franklin
 
-julia> newsite("mySite", template="pure-sm")
-
 julia> serve()
 → Initial full pass...
 → evaluating code [...] (learning/code-examples.md)
