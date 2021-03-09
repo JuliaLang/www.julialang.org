@@ -44,3 +44,13 @@ Note that:
 * Long-term bans shall only be undertaken in response to the recommendations of a formal investigation by the Julia stewards as described above. (A temporary ban may be imposed by Julia admins in response to an urgent situation, but shall be followed by a formal investigation if the ban is to continue.)
 * After a predetermined period, not to exceed six months, the banned individual may request that the ban be lifted, by acknowledging his/her past violations and providing a written plan to avoid such violations in the future. This request will typically be considered by the same committee that recommended the initial ban.
 @@
+
+## Becoming a Steward
+
+The Julia Stewards were originally chosen for their long term commitment and quality contributions to the Julia community. Stewards currently serve at will and do not have a pre-defined appointment term. If a steward decides to give up their role and move on, the other stewards may seek out an individual whom they know has been a long term contributor to the Julia community. This is a high trust role given the implications mentioned above, which is generally why there is a need for folks to be trusted in the community before they become a steward. 
+
+In additional to the stewards seeking out folks to add to the committee, you can also nominate someone (including yourself) to join the committee, even if there is not a vacancy. Nominations are accepted on a rolling basis and will be reviewed if/when the current stewards determine they need to bring on additional support. Nominations are reviewed on the axis of long term commitment and contributions to the Julia community (which need not be technical in nature). 
+
+The nomination form can be found here: 
+
+Please contact the stewards: [stewards@julialang.org](mailto:stewards@julialang.org) if you have questions about this process. 
