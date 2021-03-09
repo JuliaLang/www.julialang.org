@@ -5,7 +5,6 @@ The repository for the source code of the language itself can be found at [githu
 
 The Julia website is generated using GitHub pages and [Franklin.jl](https://github.com/tlienart/Franklin.jl), a Julia native package for building static websites.
 
-
 ## Making Simple Changes
 
 To suggest a change to the website, you can simply navigate to the page with the content you think should be changed, and edit it.
@@ -34,6 +33,8 @@ julia> using Pkg; Pkg.instantiate()
 
 julia> using Franklin
 
+julia> newsite("mySite", template="pure-sm")
+
 julia> serve()
 → Initial full pass...
 → evaluating code [...] (learning/code-examples.md)
@@ -55,13 +56,13 @@ Navigate to `localhost:8000` in a browser and you should see a preview of any mo
 Follow the blueprint of the many other blog posts in terms of folder structure and file structure.
 One important thing to bear in mind is that RSS is a bit picky in terms of what it can accept so be careful for what goes in
 
-* `@def rss = ...`
-* `@def title = ...`
+- `@def rss = ...`
+- `@def title = ...`
 
 In particular:
 
-* avoid the use of `&`, for instance change `ML&PL` to `ML-PL`,
-* only use plain text in `rss`, no links, no markup, no HTML entities.
+- avoid the use of `&`, for instance change `ML&PL` to `ML-PL`,
+- only use plain text in `rss`, no links, no markup, no HTML entities.
 
 If in doubt, after running Franklin's server, copy the content of `__site/feed.xml` into [the w3 feed validator](https://validator.w3.org/feed/check.cgi), it should show "Valid RSS feed".
 
