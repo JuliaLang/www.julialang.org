@@ -22,3 +22,6 @@ This could also be extended by having metadata about the package, such as a read
 **Recommended Skills**: Familiarity with TypeScript and Julia development.
 
 **Mentors**: [Sebastian Pfitzner](https://github.com/pfitzseb)
+
+
+_Also take a look at [Pluto - VS Code integration](https://julialang.org/jsoc/gsoc/pluto/)!_

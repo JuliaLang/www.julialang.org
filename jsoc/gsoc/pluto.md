@@ -10,6 +10,8 @@ VS Code is an extensible editor, and one of its most recent features is a notebo
 
 **Mentors:** [Sebastian Pfitzner](https://github.com/pfitzseb) (core maintainer of julia-vscode), [Fons van der Plas](https://github.com/fonsp) (core maintainer of Pluto.jl) and friends
 
+_Also see the other [VS Code projects](https://julialang.org/jsoc/gsoc/vscode/)!_
+
 ## Macro support
 
 [Macros](https://docs.julialang.org/en/v1/manual/metaprogramming/#man-macros) are a core feature of Julia, and many important packages (Flux, JuMP, DiffEq, …) use them in creative ways. Pluto's reactivity is based on _syntax analysis_ to find the assigned and referenced variables of each cell. This powers not just reactive evaluation, but also Pluto's global scope management, and `@bind` interactivity. (See the [JuliaCon presentation](https://www.youtube.com/watch?v=IAF8DjrQSSk) for more info.)
