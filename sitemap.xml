@@ -332,6 +332,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/jsoc/gsoc/pluto/index.html</loc>
+    <lastmod>2021-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2013/04/put-this-in-your-pipe/index.html</loc>
     <lastmod>2021-03-10</lastmod>
     <changefreq>monthly</changefreq>
@@ -411,6 +417,12 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/09/julia-workshop-beijing/index.html</loc>
+    <lastmod>2021-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/jsoc/gsoc/documenter/index.html</loc>
     <lastmod>2021-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1065,6 +1077,12 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2018/02/gsoc2018-numfocus/index.html</loc>
+    <lastmod>2021-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/jsoc/gsoc/vscode/index.html</loc>
     <lastmod>2021-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
