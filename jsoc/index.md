@@ -35,6 +35,12 @@ The total allocated funding from NumFOCUS was USD 20,000 in previous cycles, mea
 This total amount is adjusted depending on the number and quality of proposals this may be adjusted up or down.
 
 
+## Program Admins
+
+The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibilities including, but not limited too, reviewing student applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final student selections and more. 
+
+[Find out more about our program admins](jsoc/admins/). 
+
 ## Questions?
 
 For any questions, please consult the program administrators at `jsoc@julialang.org`. Note that if you are a prospective applicant for one of the programs above, your first step should be to check out the resources for the project you are interested.
