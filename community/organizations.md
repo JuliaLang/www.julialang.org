@@ -89,7 +89,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaMolSim](https://github.com/JuliaMolSim) – Molecular Simulation in Materials Science and Chemistry
 * [Julia POMDP](https://github.com/JuliaPOMDP) - POMDP packages for Julia
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
-* [JuliaReach](https://github.com/JuliaReach) – [Reachability Computations for Dynamical Systems](https://juliareach.github.io/JuliaReach-website/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
+* [JuliaReach](https://github.com/JuliaReach) – [Reachability analysis, set propagation techniques, hybrid systems](https://juliareach.github.io/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
 * [JuliaRobotics](https://github.com/JuliaRobotics)
 * [JuliaTelecom](https://github.com/JuliaTelecom) [[🌐–page]](https://github.com/JuliaTelecom/SiteMap) – Telecommunications
 * [ModiaSim](https://github.com/ModiaSim) – Physical systems modelling/simulation with differential & algebraic equations
