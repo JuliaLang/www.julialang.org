@@ -39,7 +39,7 @@ This total amount is adjusted depending on the number and quality of proposals t
 
 The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibilities including, but not limited too, reviewing student applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final student selections and more. 
 
-[Find out more about our program admins](jsoc/admins/). 
+[Find out more about our program admins](/jsoc/admins/). 
 
 ## Questions?
 
