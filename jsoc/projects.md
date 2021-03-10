@@ -20,6 +20,6 @@ We have our project ideas organized roughly into the skill sets required:
 * [Pythia](/jsoc/gsoc/pythia/) - scalable time series for Julia.
 * [Scientific Machine Learning](/jsoc/gsoc/sciml/)
 * [Tabular Data](/jsoc/gsoc/tables/)
-* [Tooling](/jsoc/gsoc/tooling/) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
+* [Web and IDE Development](/jsoc/gsoc/tooling/) – The projects that make the people that make Julia go, go. Help us make a really amazing IDE!
 * [Turing projects](/jsoc/gsoc/turing/) for probabilistic modelling and probabilistic programming.
 @@
