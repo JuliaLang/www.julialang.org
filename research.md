@@ -60,6 +60,7 @@ We welcome additions to this list in the form of [pull requests](https://github.
 
 @@tight-list
 * **Inverse Dynamics vs. Forward Dynamics in Direct Transcription Formulations for Trajectory Optimization**. Henrique Ferrolho, Vladimir Ivan, Wolfgang Merkt, Ioannis Havoutis, Sethu Vijayakumar. (2021) _IEEE International Conference on Robotics and Automation (ICRA)_. arXiv: [2010.05359](https://arxiv.org/abs/2010.05359). url: <https://ferrolho.github.io/research/publications/ferrolho2021inverse/>. Packages: [TORA.jl](https://github.com/JuliaRobotics/TORA.jl), [RigidBodyDynamics.jl](https://github.com/JuliaRobotics/RigidBodyDynamics.jl), [MeshCat.jl](https://github.com/rdeits/MeshCat.jl).
+* **On Property (T) for Aut(Fₙ) and SLₙ(ℤ)**. Marek Kaluba, Dawid Kielak, and Piotr W. Nowak. _Annals of Mathematics 193_, no. 2 (2021). doi: [10.4007/annals.2021.193.2.3](https://doi.org/10.4007/annals.2021.193.2.3). arXiv: [1812.03456](https://arxiv.org/abs/1812.03456). Packages: [Groups.jl](https://github.com/kalmarek/Groups.jl), [GroupRings.jl](https://github.com/kalmarek/GroupRings.jl), [PropertyT.jl](https://github.com/kalmarek/PropertyT.jl).
 @@
 
 ## 2020
