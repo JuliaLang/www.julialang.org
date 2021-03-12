@@ -66,4 +66,4 @@ Here are a few issues related to tasks that could be worked on to bring about th
 
 - Vectors are foundational to linear algebra, help Javis visualize them! [Issue #31](https://github.com/Wikunia/Javis.jl/issues/31)
 
-- Drawing backgrounds such as grids can assist in easy viewing of complicated mathematical operations such as rotations. [Issue #38](https://github.com/Wikunia/Javis.jl/issues/31)
+- Drawing backgrounds such as grids can assist in easy viewing of complicated mathematical operations such as rotations. [Issue #38](https://github.com/Wikunia/Javis.jl/issues/38)
