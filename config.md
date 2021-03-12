@@ -10,9 +10,9 @@
 @def author = ""
 
 <!-- Templating of the Downloads -->
-@def stable_release = "1.5.3"
+@def stable_release = "1.5.4"
 @def stable_release_short = "1.5"
-@def stable_release_date = "Nov 9, 2020"
+@def stable_release_date = "March 11, 2021"
 @def lts_release = "1.0.5"
 @def lts_release_short = "1.0"
 @def lts_release_date = "Sep 9, 2019"
@@ -21,6 +21,6 @@
 If the following lines are commented, the "upcoming release" section
 in `downloads/index.md` will not be shown.
 -->
-@def upcoming_release = "1.6.0-rc1"
+@def upcoming_release = "1.6.0-rc2"
 @def upcoming_release_short = "1.6"
-@def upcoming_release_date = "February 6, 2021"
+@def upcoming_release_date = "March 11, 2021"
