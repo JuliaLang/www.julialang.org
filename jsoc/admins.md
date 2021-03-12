@@ -5,7 +5,7 @@ The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibiliti
 The current JSoC admins are: 
 - [Avik Sengupta](https://twitter.com/aviksengupta)
 - [Chris Rackauckas](https://twitter.com/ChrisRackauckas)
-    - (Currently leads SciML under NumFocus as well)
+    - (Currently leads [SciML under NumFocus](https://sciml.ai/dev/#google_summer_of_code) as well)
 - [Logan Kilpatrick](https://twitter.com/OfficialLoganK)
 - [Viral Shah](https://twitter.com/Viral_B_Shah)
 	
