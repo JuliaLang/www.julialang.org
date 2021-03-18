@@ -53,9 +53,8 @@ Examples include but are are not limited to:
 and many more.
 
 
-**Necessary Skills**: Familiarity nonlinear dynamics and/or differential equations and the Julia language.
+**Recommended Skills**: Familiarity with nonlinear dynamics and/or differential equations and the Julia language.
 
 **Expected Results**: Well-documented, well-tested new algorithms for DynamicalSystems.jl.
 
 **Mentors**: [George Datseris](https://github.com/Datseris)
-
