@@ -23,4 +23,5 @@ We have our project ideas organized roughly into the skill sets required:
 * [Tabular Data](/jsoc/gsoc/tables/) - Working with data
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [VS Code](/jsoc/gsoc/vscode/) - Improving Julia's VS Code IDE experience
+* [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
 @@
