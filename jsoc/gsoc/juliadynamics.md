@@ -3,6 +3,8 @@
 
 ## Agents.jl
 
+**Difficulty**: Easy to Medium.
+
 [Agents.jl](https://juliadynamics.github.io/Agents.jl/stable/) is a pure Julia framework for agent-based modeling (ABM). 
 It has an extensive list of features, excellent performance and is
 easy to learn, use, and extend. Comparisons with other popular
@@ -32,6 +34,8 @@ Background in complex systems, sociology, or nonlinear dynamics is not required.
 
 
 ## DynamicalSystems.jl
+
+**Difficulty:** Easy to Hard, depending on the algorithm chosen
 
 [DynamicalSystems.jl](https://juliadynamics.github.io/DynamicalSystems.jl/latest/) is an [award-winning](https://dsweb.siam.org/The-Magazine/Article/winners-of-the-dsweb-2018-software-contest)
 Julia software library for dynamical systems, nonlinear dynamics, deterministic chaos and nonlinear timeseries analysis.
