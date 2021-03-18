@@ -1,4 +1,4 @@
-# JSoC Program Admins
+# Julia Season of Contributions Program Admins
 
 The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibilities including, but not limited too, reviewing student applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final student selections and more. 
 
