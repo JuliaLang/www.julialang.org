@@ -4,7 +4,7 @@ The primary online discussion venue for Julia is the [Discourse forum](https://d
 
 @@tight-list
 * **Keep up to date** on important Julia announcements like language releases and JuliaCon.
-* **Ask a question** about any aspect of using or developing Julia or its associated packages and tools. The Discourse forum is the best place to get a fast, high-quality answer to your Julia question. There are subcategories for various Julia application domains such as machine learning, finance, visualisation and GPUs. Questions from newcomers are always welcome: you can use the “first steps” tag to highlight your question as one that would benefit other new users.
+* **Ask a question** about any aspect of using or developing Julia or its associated packages and tools. The Discourse forum is the best place to get a fast, high-quality answer to your Julia question. There are subcategories for various Julia application domains such as machine learning, finance, visualization and GPUs. Questions from newcomers are always welcome: you can use the “first steps” tag to highlight your question as one that would benefit other new users.
 * **Respond to others’ questions**: our community thrives when people share their knowledge and experience.
 * **Announce a new package** or solicit feedback about something you have been developing.
 * **Advertise** Julia-related jobs and community events.
