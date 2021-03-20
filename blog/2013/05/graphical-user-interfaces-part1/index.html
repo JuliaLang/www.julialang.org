@@ -1,10 +1,16 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Building GUIs with Julia, Tk, and Cairo, Part I</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Building GUIs with Julia, Tk, and Cairo, Part I"> <meta property="og:description" content=" Building GUIs with Julia, Tk, and Cairo, Part I | This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia.... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Building GUIs with Julia, Tk, and Cairo, Part I <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 23 May 2013 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"> <a href="http://holylab.wustl.edu">Timothy E. Holy</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/05/graphical-user-interfaces-part1.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia. Those following Julia development will know that plotting in Julia is still evolving, and one could therefore expect that it might be premature to build GUIs with Julia. My own recent experience has taught me that this expectation is wrong: compared with building GUIs in Matlab &#40;my only previous GUI-writing experience&#41;, Julia already offers a number of quite compelling advantages. We&#39;ll see some of these advantages on display below.</p> <p>We&#39;ll go through the highlights needed to create an image viewer GUI. Before getting into how to write this GUI, first let&#39;s play with it to get a sense for how it works. It&#39;s best if you just try these commands yourself, because it&#39;s difficult to capture things like interactivity with static text and pictures.</p> <p>You&#39;ll need the <code>ImageView</code> package:</p> <pre><code class="julia hljs">Pkg.add(<span class=hljs-string >&quot;ImageView&quot;</span>)</code></pre>
+<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Building GUIs with Julia, Tk, and Cairo, Part I</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Building GUIs with Julia, Tk, and Cairo, Part I"> <meta property="og:description" content=" Building GUIs with Julia, Tk, and Cairo, Part I | This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia.... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Building GUIs with Julia, Tk, and Cairo, Part I <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 23 May 2013 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"> <a href="http://holylab.wustl.edu">Timothy E. Holy</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/05/graphical-user-interfaces-part1.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia. Those following Julia development will know that plotting in Julia is still evolving, and one could therefore expect that it might be premature to build GUIs with Julia. My own recent experience has taught me that this expectation is wrong: compared with building GUIs in Matlab &#40;my only previous GUI-writing experience&#41;, Julia already offers a number of quite compelling advantages. We&#39;ll see some of these advantages on display below.</p> <p>We&#39;ll go through the highlights needed to create an image viewer GUI. Before getting into how to write this GUI, first let&#39;s play with it to get a sense for how it works. It&#39;s best if you just try these commands yourself, because it&#39;s difficult to capture things like interactivity with static text and pictures.</p> <p>You&#39;ll need the <code>ImageView</code> package:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs">Pkg.add(<span class=hljs-string >&quot;ImageView&quot;</span>)</code></pre>
 <p>It&#39;s worth pointing out that this package is expected to evolve over time; however, if things have changed from what&#39;s described in this blog, try checking out the &quot;blog&quot; branch directly from the <a href="https://github.com/timholy/ImageView.jl">repository</a>. I should also point out that this package was developed on the author&#39;s Linux system, and it&#39;s possible that things may not work as well on other platforms.</p>
 <p>First let&#39;s try it with a photograph. Load one this way:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Images
 <span class=hljs-keyword >using</span> ImageView
 img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></pre>
 <p>Any typical image format should be fine, it doesn&#39;t have to be a jpg. Now display the image this way:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">display(img, pixelspacing = [<span class=hljs-number >1</span>,<span class=hljs-number >1</span>])</code></pre>
 <p>The basic command to view the image is <code>display</code>. The optional <code>pixelspacing</code> input tells <code>display</code> that this image has a fixed aspect ratio, and that this needs to be honored when displaying the image. &#40;Alternatively, you could set <code>img&#91;&quot;pixelspacing&quot;&#93; &#61; &#91;1,1&#93;</code> and then you wouldn&#39;t have to tell this to the <code>display</code> function.&#41;</p>
 <p>You should get a window with your image:</p>
@@ -12,6 +18,9 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
 <p>OK, nice. But we can start to have some fun if we resize the window, which causes the image to get bigger or smaller:</p>
 <p><img src="/assets/blog/GUI_figures/photo2.jpg?raw&#61;true" alt=photo  /></p>
 <p>Note the black perimeter; that&#39;s because we&#39;ve specified the aspect ratio through the <code>pixelspacing</code> input, and when the window doesn&#39;t have the same aspect ratio as the image you&#39;ll have a perimeter either horizontally or vertically. Try it without specifying <code>pixelspacing</code>, and you&#39;ll see that the image stretches to fill the window, but it looks distorted:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">display(img)</code></pre>
 <p><img src="/assets/blog/GUI_figures/photo3.jpg?raw&#61;true" alt=photo  /></p>
 <p>&#40;This won&#39;t work if you&#39;ve already defined <code>&quot;pixelspacing&quot;</code> for <code>img</code>; if necessary, use <code>delete&#33;&#40;img, &quot;pixelspacing&quot;&#41;</code> to remove that setting.&#41;</p>
@@ -30,8 +39,14 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
 </ul>
 <p>These already give a taste of some of the features we can achieve quite easily in Julia.</p>
 <p>However, there&#39;s more to this GUI than meets the eye. You can display the image upside-down with</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">display(img, pixelspacing = [<span class=hljs-number >1</span>,<span class=hljs-number >1</span>], flipy=<span class=hljs-literal >true</span>)</code></pre>
 <p>or switch the <code>x</code> and <code>y</code> axes with</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">display(img, pixelspacing = [<span class=hljs-number >1</span>,<span class=hljs-number >1</span>], xy=[<span class=hljs-string >&quot;y&quot;</span>,<span class=hljs-string >&quot;x&quot;</span>])</code></pre>
 <p><img src="/assets/blog/GUI_figures/photo6.jpg?raw&#61;true" alt=photo  /> <img src="/assets/blog/GUI_figures/photo7.jpg?raw&#61;true" alt=photo  /></p>
 <p>To experience the full functionality, you&#39;ll need a &quot;4D  image,&quot; a movie &#40;time sequence&#41; of 3D images. If you don&#39;t happen to have one lying around, you can create one via <code>include&#40;&quot;test/test4d.jl&quot;&#41;</code>, where <code>test</code> means the test directory in <code>ImageView</code>. &#40;Assuming you installed <code>ImageView</code> via the package manager, you can say <code>include&#40;joinpath&#40;Pkg.dir&#40;&#41;, &quot;ImageView&quot;, &quot;test&quot;, &quot;test4d.jl&quot;&#41;&#41;</code>.&#41; This creates a solid cone that changes color over time, again in the variable <code>img</code>. Then, type <code>display&#40;img&#41;</code>. You should see something like this:</p>
@@ -45,6 +60,9 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
 <br />
 
 <p>By default, <code>display</code> will show you slices in the <code>xy</code>-plane. You might want to see a different set of slices from the 4d image:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">display(img, xy=[<span class=hljs-string >&quot;x&quot;</span>,<span class=hljs-string >&quot;z&quot;</span>])</code></pre>
 <p>Initially you&#39;ll see nothing, but that&#39;s because this edge of the image is black. Type 151 into the <code>y:</code> entry box &#40;note its name has changed&#41; and hit enter, or move the &quot;y&quot; slider into the middle of its range; now you&#39;ll see the cone from the side.</p>
 <p><img src="/assets/blog/GUI_figures/display_GUI2.jpg?raw&#61;true" alt="GUI snapshot" /></p>
@@ -63,6 +81,9 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
 <h2 id=first_steps_the_navigation_frame ><a href="#first_steps_the_navigation_frame">First steps: the navigation frame</a></h2>
 <p>First, let me acknowledge that this GUI is built on the work of many people who have contributed to Julia&#39;s Cairo and Tk packages. For this step, we&#39;ll make particular use of John Verzani&#39;s contribution of a huge set of convenience wrappers for most of Tk&#39;s widget functionality. John wrote up a nice set of <a href="https://github.com/JuliaLang/Tk.jl/tree/master/examples">examples</a> that demonstrate many of the things you can do with it; this first installment is essentially just a &quot;longer&quot; example, and won&#39;t surprise anyone who has read his documentation.</p>
 <p>Let&#39;s create a couple of types to hold the data we&#39;ll need. We need a type that stores &quot;GUI state,&quot; which here consists of the currently-viewed location in the image and information needed to implement the &quot;play&quot; functionality:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">type NavigationState
     <span class=hljs-comment ># Dimensions:</span>
     zmax::<span class=hljs-built_in >Int</span>          <span class=hljs-comment ># number of frames in z, set to 1 if only 2 spatial dims</span>
@@ -74,6 +95,9 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
     fps::<span class=hljs-built_in >Float64</span>       <span class=hljs-comment ># playback speed in frames per second</span>
 <span class=hljs-keyword >end</span></code></pre>
 <p>Next, let&#39;s create a type to hold &quot;handles&quot; to all the widgets:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">type NavigationControls
     stepup                            <span class=hljs-comment ># z buttons...</span>
     stepdown
@@ -94,6 +118,9 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
 <p>It might not be strictly necessary to hold handles to all the widgets &#40;you could do everything with callbacks&#41;, but having them available is convenient. For example, if you don&#39;t like the icons I created, you can easily initialize the GUI and replace, using the handles, the icons with something better.</p>
 <p>We&#39;ll talk about initialization later; for now, assume that we have a variable <code>state</code> of type <code>NavigationState</code> that holds the current position in the &#40;possibly&#41; 4D image, and <code>ctrls</code> which contains a fully-initialized set of widget handles.</p>
 <p>Each button needs a callback function to be executed when it is clicked. Let&#39;s go through the functions for controlling <code>t</code>. First there is a general utility not tied to any button, but it affects many of the controls:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> updatet(ctrls, state)
     set_value(ctrls.editt, string(state.t))
     set_value(ctrls.scalet, state.t)
@@ -106,6 +133,9 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
 <span class=hljs-keyword >end</span></code></pre>
 <p>The first two lines synchronize the entry box and slider to the current value of <code>state.t</code>; the currently-selected time can change by many different mechanisms &#40;one of the buttons, typing into the entry box, or moving the slider&#41;, so we make <code>state.t</code> be the &quot;authoritative&quot; value and synchronize everything to it. The remaining lines of this function control which of the <code>t</code> navigation buttons are enabled &#40;if <code>t&#61;&#61;1</code>, we can&#39;t go any earlier in the movie, so we gray out the backwards buttons&#41;.</p>
 <p>A second utility function modifies <code>state.t</code>:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> incrementt(inc, ctrls, state, showframe)
     state.t += inc
     updatet(ctrls, state)
@@ -113,6 +143,9 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
 <span class=hljs-keyword >end</span></code></pre>
 <p>Note the call to <code>updatet</code> described above. The new part of this is the <code>showframe</code> function, whose job it is to display the image frame &#40;or any other visual information&#41; to the user. Typically, the actual <code>showframe</code> function will need additional information such as where to render the image, but you can provide this information using anonymous functions. We&#39;ll see how that works in the next installment; below we&#39;ll just create a simple &quot;stub&quot; function.</p>
 <p>Now we get to callbacks which we&#39;ll &quot;bind&quot; to the step and play buttons:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> stept(inc, ctrls, state, showframe)
     <span class=hljs-keyword >if</span> <span class=hljs-number >1</span> &lt;= state.t+inc &lt;= state.tmax
         incrementt(inc, ctrls, state, showframe)
@@ -131,6 +164,9 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
     start_timer(state.timer, iround(<span class=hljs-number >1000</span>*dt), iround(<span class=hljs-number >1000</span>*dt))
 <span class=hljs-keyword >end</span></code></pre>
 <p><code>stept&#40;&#41;</code> increments the <code>t</code> frame by the specified amount &#40;typically 1 or -1&#41;, while <code>playt&#40;&#41;</code> starts a timer that will call <code>stept</code> at regular intervals. The timer is stopped if play reaches the beginning or end of the movie. The <code>stop_playing&#33;</code> function checks to see whether we have an active timer, and if so stops it:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> stop_playing!(state::NavigationState)
     <span class=hljs-keyword >if</span> !is(state.timer, <span class=hljs-literal >nothing</span>)
         stop_timer(state.timer)
@@ -138,6 +174,9 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
     <span class=hljs-keyword >end</span>
 <span class=hljs-keyword >end</span></code></pre>
 <p>An alternative way to handle playback without a timer would be in a loop, like this:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> stept(inc, ctrls, state, showframe)
     <span class=hljs-keyword >if</span> <span class=hljs-number >1</span> &lt;= state.t+inc &lt;= state.tmax
         incrementt(inc, ctrls, state, showframe)
@@ -154,6 +193,9 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
 <span class=hljs-keyword >end</span></code></pre>
 <p>With this version we would use a single Boolean value to signal whether there is active playback. A key point here is the call to <code>tcl_doevent&#40;&#41;</code>, which allows Tk to interrupt the execution of the loop to handle user interaction &#40;in this case, clicking the stop button&#41;. But with the timer that&#39;s not necessary, and moreover the timer gives us control over the speed of playback.</p>
 <p>Finally, there are callbacks for the entry and slider widgets:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> sett(ctrls,state, showframe)
     tstr = get_value(ctrls.editt)
     <span class=hljs-keyword >try</span>
@@ -177,29 +219,47 @@ img = imread(<span class=hljs-string >&quot;my_photo.jpg&quot;</span>)</code></p
 <h4 id=creating_the_buttons ><a href="#creating_the_buttons">Creating the buttons</a></h4>
 <p>You can use image files &#40;e.g., .png files&#41; for your icons, but the ones here are created programmatically. To do this, specify two colors, the &quot;foreground&quot; and &quot;background&quot;, as strings. One also needs the <code>data</code> array &#40;of type <code>Bool</code>&#41; for the pixels that should be colored by the foreground color, and false for the ones to be set to the background. There&#39;s also the <code>mask</code> array, which can prevent the <code>data</code> array from taking effect in any pixels marked as false in the <code>mask</code>.</p>
 <p>Given suitable <code>data</code> and <code>mask</code> arrays &#40;here we just set the mask to <code>trues</code>&#41;, and color strings, we create the icon and assign it to a button like this:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">icon = Tk.image(data, mask, <span class=hljs-string >&quot;gray70&quot;</span>, <span class=hljs-string >&quot;black&quot;</span>)  <span class=hljs-comment ># background=gray70, foreground=black</span>
 ctrls.stop = Button(f, icon)</code></pre>
 <p>Here <code>f</code> is the &quot;parent frame&quot; that the navigation controller will be rendered in. A frame is a container that organizes a collection of related GUI elements. Later we&#39;ll find out how to create one.</p>
 <h4 id=assigning_callbacks_to_widgets ><a href="#assigning_callbacks_to_widgets">Assigning callbacks to widgets</a></h4>
 <p>The &quot;stop&quot; and &quot;play backwards&quot; buttons look like this:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">bind(ctrls.stop, <span class=hljs-string >&quot;command&quot;</span>, path -&gt; stop_playing!(state))
 bind(ctrls.playback, <span class=hljs-string >&quot;command&quot;</span>, path -&gt; playt(-<span class=hljs-number >1</span>, ctrls, state, showframe)</code></pre>
 <p>The <code>path</code> input is generated by Tk/Tcl, but we don&#39;t have to use it. Instead, we use anonymous functions to pass the arguments relavant to this particular GUI instantiation. Note that these two buttons share <code>state</code>; that means that any changes made by one callback will have impact on the other.</p>
 <h4 id=placing_the_buttons_in_the_frame_layout_management ><a href="#placing_the_buttons_in_the_frame_layout_management">Placing the buttons in the frame &#40;layout management&#41;</a></h4>
 <p>Here our layout needs are quite simple, but I recommend that you read the <a href="https://www.tkdocs.com/tutorial/concepts.html#geometry">excellent</a> <a href="https://www.tkdocs.com/tutorial/grid.html">tutorial</a> on Tk&#39;s <code>grid</code> layout engine. <code>grid</code> provides a great deal of functionality missing in Matlab, and in particular allows flexible and polished GUI behavior when resizing the window.</p>
 <p>We position the stop button this way:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">grid(ctrls.stop, <span class=hljs-number >1</span>, stopindex, padx=<span class=hljs-number >3</span>*pad, pady=pad)</code></pre>
 <p>After the handle for the button itself, the next two inputs determine the row, column position of the widget. Here the column position is set using a variable &#40;an integer&#41; whose value will depend on whether the z controls are present. The <code>pad</code> settings just apply a bit of horizontal and vertical padding around the button.</p>
 <p>To position the slider widgets, we could do something like this:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">ctrls.scalez = Slider(f, <span class=hljs-number >1</span>:state.zmax)
 grid(ctrls.scalez, <span class=hljs-number >2</span>, start:stop, sticky=<span class=hljs-string >&quot;we&quot;</span>, padx=pad)</code></pre>
 <p>This positions them in row 2 of the frame&#39;s grid, and has them occupy the range of columns &#40;indicated by <code>start:stop</code>&#41; used by the button controls for the same <code>z</code> or <code>t</code> axis. The <code>sticky</code> setting means that it will stretch to fill from West to East &#40;left to right&#41;.</p>
 <p>In the main GUI we&#39;ll use one more feature of <code>grid</code>, so let&#39;s cover it now. This feature controls how regions of the window expand or shrink when the window is resized:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">grid_rowconfigure(win, <span class=hljs-number >1</span>, weight=<span class=hljs-number >1</span>)
 grid_columnconfigure(win, <span class=hljs-number >1</span>, weight=<span class=hljs-number >1</span>)</code></pre>
 <p>This says that row 1, column 1 will expand at a rate of <code>1</code> when the figure is made larger. You can set different weights for different GUI components. The default value is 0, indicating that it shouldn&#39;t expand at all. That&#39;s what we want for this navigation frame, so that the buttons keep their size when the window is resized. Larger weight values indicate that the given component should expand &#40;or shrink&#41; at faster rates.</p>
 <h3 id=putting_it_all_together_and_testing_it_out ><a href="#putting_it_all_together_and_testing_it_out">Putting it all together and testing it out</a></h3>
 <p>We&#39;ll place the navigation controls inside a Tk frame. Let&#39;s create one from the command line:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs"><span class=hljs-keyword >using</span> Tk
 win = Toplevel()
 f = Frame(win)
@@ -207,12 +267,21 @@ pack(f, expand=<span class=hljs-literal >true</span>, fill=<span class=hljs-stri
 <p>The first three lines create the window and the frame. <code>pack</code> is an alternative layout engine to <code>grid</code>, and slightly more convenient when all you want is to place a single item so that it fills its container. &#40;You can mix <code>pack</code> and <code>grid</code> as long as they are operating on separate containers. Here we&#39;ll have a frame <code>pack</code>ed in the window, and the widgets will be <code>grid</code>ded inside the frame.&#41; After that fourth line, the window is rather tiny; the call to <code>pack</code> causes the frame to fill to expand the whole window, but at the moment the frame has no contents, so the window is as small as it can be.</p>
 <p><img src="/assets/blog/GUI_figures/navigation1.jpg?raw&#61;true" alt="GUI snapshot" /></p>
 <p>We need a <code>showframe</code> callback; for now let&#39;s create a very simple one that will help in testing:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">showframe = x -&gt; println(<span class=hljs-string >&quot;showframe z=&quot;</span>, x.z, <span class=hljs-string >&quot;, t=&quot;</span>, x.t)</code></pre>
 <p>Next, load the GUI code &#40;<code>using ImageView.Navigation</code>&#41; and create the <code>NavigationState</code> and <code>NavigationControls</code> objects:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">ctrls = NavigationControls()
 state = NavigationState(<span class=hljs-number >40</span>, <span class=hljs-number >1000</span>, <span class=hljs-number >2</span>, <span class=hljs-number >5</span>)</code></pre>
 <p>Here we&#39;ve set up a fake movie with 40 image slices in <code>z</code>, and 1000 image stacks in <code>t</code>.</p>
 <p>Finally, we initialize the widgets:</p>
+Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
+Deprecated as of 10.7.0. Please use highlight(code, options) instead.
+https://github.com/highlightjs/highlight.js/issues/2277
 <pre><code class="julia hljs">init_navigation!(f, ctrls, state, showframe)</code></pre>
 <p><img src="/assets/blog/GUI_figures/navigation2.jpg?raw&#61;true" alt="GUI snapshot" /></p>
 <p>Now when you click on buttons, or change the text in the entry boxes, you&#39;ll see the GUI in action. You can tell from the command line output, generated by <code>showframe</code>, what&#39;s happening internally:</p>
