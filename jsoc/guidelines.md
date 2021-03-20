@@ -42,7 +42,7 @@ The key questions we will ask ourselves when considering it are:
 @@
 
 __Based on analyzing hundreds of GSoC applications, the most common reason(s) someone is not picked for GSoC are__:
- - The indvidual did not contact the proposed mentor prior to applying. (It is in your best interest to communicate with the proposed mentor as early on as possible. They are your advocate and first point of contact for this program!)
+ - The individual did not contact the proposed mentor prior to applying. (It is in your best interest to communicate with the proposed mentor as early on as possible. They are your advocate and first point of contact for this program!)
  - No or minimal Open Source Julia contributions. (Given the high quality of applicants each year, we usually choose individuals who have have Julia contributions before GSoC. Start making quality contributions as early on as possible and include links to those in your application.)
 
 In more detail, you may find it useful to consider the following questions:
@@ -84,4 +84,4 @@ In more detail, you may find it useful to consider the following questions:
 
 ## Words of Encouragement
 
-Confidence can sometimes hold someone back from applying for an opportunity. But, we will let you in on a secret: there's no such thing as a 'perfect' candidate. Open Source (and specifially the Julia Language) is a place where anyone and everyone can grow. So however you identify and regardless of your background, please apply if this is a program that gets you excited.
+Confidence can sometimes hold someone back from applying for an opportunity. But, we will let you in on a secret: there's no such thing as a 'perfect' candidate. Open Source (and specifically the Julia Language) is a place where anyone and everyone can grow. So however you identify and regardless of your background, please apply if this is a program that gets you excited.
