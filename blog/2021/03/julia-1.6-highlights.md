@@ -250,8 +250,8 @@ loading many dozens of JLL packages, this adds up quickly.
 Our work to slim JLL packages down resulted in the creation of a new package,
 [`JLLWrappers.jl`](https://github.com/JuliaPackaging/JLLWrappers.jl).  This
 package provides macros that auto-generate the bindings necessary for a JLL
-package, and do so by using the minimum number of functions and datastructures
-possible.  By limiting the number of backedges and datastructures, as well as
+package, and do so by using the minimum number of functions and data structures
+possible.  By limiting the number of backedges and data structures, as well as
 centralizing the template pieces of code that each JLL package uses, we are
 able to not only vastly improve load times, but improve compile times as well!
 As an added bonus, improvements to JLL package APIs can now be made directly in
