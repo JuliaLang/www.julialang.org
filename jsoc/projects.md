@@ -21,6 +21,7 @@ We have our project ideas organized roughly into the skill sets required:
 * [Pythia](/jsoc/gsoc/pythia/) - scalable time series for Julia.
 * [SciML](/jsoc/gsoc/sciml/) - Scientific Machine Learning
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
+* [Symbolic computation](/jsoc/gsoc/symbolics/) - User friendly symbolic programming
 * [Tabular Data](/jsoc/gsoc/tables/) - Working with data
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [VS Code](/jsoc/gsoc/vscode/) - Improving Julia's VS Code IDE experience
