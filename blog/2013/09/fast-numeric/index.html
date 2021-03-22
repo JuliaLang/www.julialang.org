@@ -1,29 +1,26 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Fast Numeric Computation in Julia</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Fast Numeric Computation in Julia"> <meta property="og:description" content=" Fast Numeric Computation in Julia | Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality.... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Fast Numeric Computation in Julia <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 4 September 2013 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://dahua.me">Dahua Lin</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/09/fast-numeric.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality. With Julia, you can focus on your problem, keep your codes clean, and more importantly, write fast codes without diving into lower level languages such as C or Fortran even when performance is critical.</p> <p>However, you should not take this potential speed for granted. To get your codes fast, you should keep performance in mind and follow general best practice guidelines. Here, I would like to share with you my experience in writing efficient codes for numerical computation.</p> <h2 id=first_make_it_correct ><a href="#first_make_it_correct">First, make it correct</a></h2> <p>As in any language, the foremost goal when you implement your algorithm is to <em>make it correct</em>. An algorithm that doesn&#39;t work correctly is useless no matter how fast it runs. One can always optimize the codes afterwards when necessary. When there are different approaches to a problem, you should choose the one that is <em>asymptotically more efficient</em>. For example, an unoptimized quick-sort implementation can easily beat a carefully optimized bubble-sort when sorting even moderately large arrays. Given a particular choice of algorithm, however, implementing it carefully and observing common performance guidelines can still make a big difference in performance – I will focus on this in the remaining part.</p> <h2 id=devectorize_expressions ><a href="#devectorize_expressions">Devectorize expressions</a></h2> <p>Users of other high level languages such as MATLAB® or Python are often advised to <em>vectorize</em> their codes as much as possible to get performance, because loops are slow in those languages. In Julia, on the other hand, loops can run as fast as those written in C and you no longer have to count on vectorization for speed. Actually, turning vectorized expressions into loops, which we call <em>devectorization</em>, often results in even higher performance.</p> <p>Consider the following:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs">r = exp(-abs(x-y))</code></pre>
+<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Fast Numeric Computation in Julia</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Fast Numeric Computation in Julia"> <meta property="og:description" content=" Fast Numeric Computation in Julia | Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality.... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Fast Numeric Computation in Julia <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 4 September 2013 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://dahua.me">Dahua Lin</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/09/fast-numeric.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality. With Julia, you can focus on your problem, keep your codes clean, and more importantly, write fast codes without diving into lower level languages such as C or Fortran even when performance is critical.</p> <p>However, you should not take this potential speed for granted. To get your codes fast, you should keep performance in mind and follow general best practice guidelines. Here, I would like to share with you my experience in writing efficient codes for numerical computation.</p> <h2 id=first_make_it_correct ><a href="#first_make_it_correct">First, make it correct</a></h2> <p>As in any language, the foremost goal when you implement your algorithm is to <em>make it correct</em>. An algorithm that doesn&#39;t work correctly is useless no matter how fast it runs. One can always optimize the codes afterwards when necessary. When there are different approaches to a problem, you should choose the one that is <em>asymptotically more efficient</em>. For example, an unoptimized quick-sort implementation can easily beat a carefully optimized bubble-sort when sorting even moderately large arrays. Given a particular choice of algorithm, however, implementing it carefully and observing common performance guidelines can still make a big difference in performance – I will focus on this in the remaining part.</p> <h2 id=devectorize_expressions ><a href="#devectorize_expressions">Devectorize expressions</a></h2> <p>Users of other high level languages such as MATLAB® or Python are often advised to <em>vectorize</em> their codes as much as possible to get performance, because loops are slow in those languages. In Julia, on the other hand, loops can run as fast as those written in C and you no longer have to count on vectorization for speed. Actually, turning vectorized expressions into loops, which we call <em>devectorization</em>, often results in even higher performance.</p> <p>Consider the following:</p> <pre><code class=language-julia >r &#61; exp&#40;-abs&#40;x-y&#41;&#41;</code></pre>
 <p>Very simple expression, right? Behind the scenes, however, it takes a lot of steps and temporary arrays to get you the results of this expression. The following sequence of temporary array constructions is what is done to compute the above expression:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">n = length(x)
+<pre><code class=language-julia >n &#61; length&#40;x&#41;
 
-tmp1 = <span class=hljs-built_in >Array</span>(<span class=hljs-built_in >Float64</span>, n)
-<span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:n
-    tmp1[i] = x[i]-y[i]
-<span class=hljs-keyword >end</span>
+tmp1 &#61; Array&#40;Float64, n&#41;
+for i &#61; 1:n
+    tmp1&#91;i&#93; &#61; x&#91;i&#93;-y&#91;i&#93;
+end
 
-tmp2 = <span class=hljs-built_in >Array</span>(<span class=hljs-built_in >Float64</span>, n)
-<span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:n
-    tmp2[i] = abs(tmp1[i])
-<span class=hljs-keyword >end</span>
+tmp2 &#61; Array&#40;Float64, n&#41;
+for i &#61; 1:n
+    tmp2&#91;i&#93; &#61; abs&#40;tmp1&#91;i&#93;&#41;
+end
 
-tmp3 = <span class=hljs-built_in >Array</span>(<span class=hljs-built_in >Float64</span>, n)
-<span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:n
-    tmp3[i] = -tmp2[i]
-<span class=hljs-keyword >end</span>
+tmp3 &#61; Array&#40;Float64, n&#41;
+for i &#61; 1:n
+    tmp3&#91;i&#93; &#61; -tmp2&#91;i&#93;
+end
 
-r = <span class=hljs-built_in >Array</span>(<span class=hljs-built_in >Float64</span>, n)
-<span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:n
-    r[i] = exp(tmp3[i])
-<span class=hljs-keyword >end</span></code></pre>
+r &#61; Array&#40;Float64, n&#41;
+for i &#61; 1:n
+    r&#91;i&#93; &#61; exp&#40;tmp3&#91;i&#93;&#41;
+end</code></pre>
 <p>We can see that this procedure creates three temporary arrays and it takes four passes to complete the computation. This introduces significant overhead:</p>
 <ul>
 <li><p>It takes time to allocate memory for the temporary arrays;</p>
@@ -34,51 +31,36 @@ r = <span class=hljs-built_in >Array</span>(<span class=hljs-built_in >Float64</
 
 </ul>
 <p>Such overhead is significant in practice, often leading to 2x to 3x slow down. To get optimal performance, one should <em>devectorize</em> this code like so:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">r = similar(x)
-<span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:length(x)
-    r[i] = exp(-abs(x[i]-y[i]))
-<span class=hljs-keyword >end</span></code></pre>
+<pre><code class=language-julia >r &#61; similar&#40;x&#41;
+for i &#61; 1:length&#40;x&#41;
+    r&#91;i&#93; &#61; exp&#40;-abs&#40;x&#91;i&#93;-y&#91;i&#93;&#41;&#41;
+end</code></pre>
 <p>This version finishes the computation in one pass, without introducing any temporary arrays. Moreover, if <code>r</code> is pre-allocated, one can even omit the statment that creates <code>r</code>. The <a href="https://github.com/lindahua/Devectorize.jl"><em>Devectorize.jl</em></a> package provides a macro <code>@devec</code> that can automatically translate vectorized expressions into loops:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >using</span> Devectorize
+<pre><code class=language-julia >using Devectorize
 
-<span class=hljs-meta >@devec</span> r = exp(-abs(x-y))</code></pre>
+@devec r &#61; exp&#40;-abs&#40;x-y&#41;&#41;</code></pre>
 <p>The comprehension syntax also provides a concise syntax for devectorized computation:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">r = [exp(-abs(x[i]-y[i])) <span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:length(x)]</code></pre>
+<pre><code class=language-julia >r &#61; &#91;exp&#40;-abs&#40;x&#91;i&#93;-y&#91;i&#93;&#41;&#41; for i &#61; 1:length&#40;x&#41;&#93;</code></pre>
 <p>Note that comprehension always creates new arrays to store the results. Hence, to write results to pre-allocated arrays, you still have to devectorize the computation manually or use the <code>@devec</code> macro.</p>
 <h2 id=merge_computations_into_a_single_loop ><a href="#merge_computations_into_a_single_loop">Merge computations into a single loop</a></h2>
 <p>Traversing arrays, especially large ones, may incur cache misses or even page faults, both of which can cause significant latency. Thus, it is desirable to minimize the number of round trips to memory as much as possible. For example, you may compute multiple maps with one loop:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:length(x)
-    a[i] = x[i] + y[i]
-    b[i] = x[i] - y[i]
-<span class=hljs-keyword >end</span></code></pre>
+<pre><code class=language-julia >for i &#61; 1:length&#40;x&#41;
+    a&#91;i&#93; &#61; x&#91;i&#93; &#43; y&#91;i&#93;
+    b&#91;i&#93; &#61; x&#91;i&#93; - y&#91;i&#93;
+end</code></pre>
 <p>This is usually faster than writing <code>a &#61; x &#43; y; b &#61; x - y</code>.</p>
 <p>The following example shows how you can compute multiple statistics &#40;e.g. sum, max, and min&#41; over a dataset efficiently.</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">n = length(x)
-rsum = rmax = rmin = x[<span class=hljs-number >1</span>]
-<span class=hljs-keyword >for</span> i = <span class=hljs-number >2</span>:n
-    xi = x[i]
-    rsum += xi
-    <span class=hljs-keyword >if</span> xi &gt; rmax
-        rmax = xi
-    <span class=hljs-keyword >elseif</span> xi &lt; rmin
-        rmin = xi
-    <span class=hljs-keyword >end</span>
-<span class=hljs-keyword >end</span></code></pre>
+<pre><code class=language-julia >n &#61; length&#40;x&#41;
+rsum &#61; rmax &#61; rmin &#61; x&#91;1&#93;
+for i &#61; 2:n
+    xi &#61; x&#91;i&#93;
+    rsum &#43;&#61; xi
+    if xi &gt; rmax
+        rmax &#61; xi
+    elseif xi &lt; rmin
+        rmin &#61; xi
+    end
+end</code></pre>
 <h2 id=write_cache-friendly_codes ><a href="#write_cache-friendly_codes">Write cache-friendly codes</a></h2>
 <p>Modern computer systems have a complicated heterogeneous memory structure that combines registers, multiple levels of caches, and RAM. Data are accessed through the cache hierarchy – a smaller and much faster memory that stores copies of frequently used data.</p>
 <p>Most systems do not provide ways to directly control the cache system. However, you can take steps to make it much easier for the automated cache management system to help you if you write <em>cache-friendly</em> codes. In general, you don&#39;t have to understand every detail about how a cache system works. It is often sufficient to observe the simple rule below:</p>
@@ -87,130 +69,100 @@ rsum = rmax = rmin = x[<span class=hljs-number >1</span>]
 </blockquote>
 <p>This is sometimes referred to as the <em>principle of locality</em>. For example, if <code>x</code> is a contiguous array, then after reading <code>x&#91;i&#93;</code>, it is much more likely that <code>x&#91;i&#43;1&#93;</code> is already in the cache than it is that <code>x&#91;i&#43;1000000&#93;</code> is, in which case it will be <em>much</em> faster to access <code>x&#91;i&#43;1&#93;</code> than <code>x&#91;i&#43;1000000&#93;</code>.</p>
 <p>Julia arrays are stored in column-major order, which means that the rows of a column are contiguous, but the columns of a row are generally not. It is therefore generally more efficient to access data column-by-column than row-by-row. Consider the problem of computing the sum of each row in a matrix. It is natural to implement this as follows:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">m, n = size(a)
-r = <span class=hljs-built_in >Array</span>(<span class=hljs-built_in >Float64</span>, m)
+<pre><code class=language-julia >m, n &#61; size&#40;a&#41;
+r &#61; Array&#40;Float64, m&#41;
 
-<span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:m
-    s = <span class=hljs-number >0.</span>
-    <span class=hljs-keyword >for</span> j = <span class=hljs-number >1</span>:n
-        s += a[i,j]
-    <span class=hljs-keyword >end</span>
-    r[i] = s
-<span class=hljs-keyword >end</span></code></pre>
+for i &#61; 1:m
+    s &#61; 0.
+    for j &#61; 1:n
+        s &#43;&#61; a&#91;i,j&#93;
+    end
+    r&#91;i&#93; &#61; s
+end</code></pre>
 <p>The loop here accesses the elements row-by-row, as <code>a&#91;i,1&#93;, a&#91;i,2&#93;, ..., a&#91;i,n&#93;</code>. The interval between these elements is <code>m</code>. Intuitively, it jumps at the stride of length <code>m</code> from the begining of each row to the end in each inner loop, and then jumps back to the begining of next row. This is not very efficient, especially when <code>m</code> is large.</p>
 <p>This procedure can be made much more cache-friendly by changing the order of computation:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:m
-    r[i] = a[i,<span class=hljs-number >1</span>]
-<span class=hljs-keyword >end</span>
+<pre><code class=language-julia >for i &#61; 1:m
+    r&#91;i&#93; &#61; a&#91;i,1&#93;
+end
 
-<span class=hljs-keyword >for</span> j = <span class=hljs-number >2</span>:n, i = <span class=hljs-number >1</span>:m
-    r[i] += a[i,j]
-<span class=hljs-keyword >end</span></code></pre>
+for j &#61; 2:n, i &#61; 1:m
+    r&#91;i&#93; &#43;&#61; a&#91;i,j&#93;
+end</code></pre>
 <p>Some benchmarking shows that this version can be <em>5-10 times</em> faster than the one above for large matrices.</p>
 <h2 id=avoid_creating_arrays_in_loops ><a href="#avoid_creating_arrays_in_loops">Avoid creating arrays in loops</a></h2>
 <p>Creating arrays requires memory allocation and adds to the workload of the garbage collector. Reusing the same array is a good way to reduce the cost of memory management.</p>
 <p>It is not uncommon that you want to update arrays in an iterative algorithm. For example, in K-means, you may want to update both the cluster means and distances in each iteration. A straightforward way to do this might look like:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >while</span> !converged &amp;&amp; t &lt; maxiter
-    means = compute_means(x, labels)
-    dists = compute_distances(x, means)
-    labels = assign_labels(dists)
+<pre><code class=language-julia >while &#33;converged &amp;&amp; t &lt; maxiter
+    means &#61; compute_means&#40;x, labels&#41;
+    dists &#61; compute_distances&#40;x, means&#41;
+    labels &#61; assign_labels&#40;dists&#41;
     ...
-<span class=hljs-keyword >end</span></code></pre>
+end</code></pre>
 <p>In this implementation of K-means, the arrays <code>means</code>, <code>dists</code>, and <code>labels</code> are recreated at each iteration. This reallocation of memory on each step is unnecessary. The sizes of these arrays are fixed, and their storage can be reused across iterations. The following alternative code is a more efficient way to implement the same algorithm:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">d, n = size(x)
+<pre><code class=language-julia >d, n &#61; size&#40;x&#41;
 
-<span class=hljs-comment ># pre-allocate storage</span>
-means = <span class=hljs-built_in >Array</span>(<span class=hljs-built_in >Float64</span>, d, K)
-dists = <span class=hljs-built_in >Array</span>(<span class=hljs-built_in >Float64</span>, K, n)
-labels = <span class=hljs-built_in >Array</span>(<span class=hljs-built_in >Int</span>, n)
+# pre-allocate storage
+means &#61; Array&#40;Float64, d, K&#41;
+dists &#61; Array&#40;Float64, K, n&#41;
+labels &#61; Array&#40;Int, n&#41;
 
-<span class=hljs-keyword >while</span> !converged &amp;&amp; t &lt; maxiter
-    update_means!(means, x, labels)
-    update_distances!(dists, x, means)
-    update_labels!(labels, dists)
+while &#33;converged &amp;&amp; t &lt; maxiter
+    update_means&#33;&#40;means, x, labels&#41;
+    update_distances&#33;&#40;dists, x, means&#41;
+    update_labels&#33;&#40;labels, dists&#41;
     ...
-<span class=hljs-keyword >end</span></code></pre>
+end</code></pre>
 <p>In this version, the functions invoked in the loop updates pre-allocated arrays in-place.</p>
 <p>If you are writing a package, it is recommended that you provide two versions for each function that outputs arrays: one that performs the update in-place, and another that returns a new array. The former can usually be implemented as a light-weight wrapper of the latter that copies the input array before modifying it. A good example is the <a href="https://github.com/JuliaStats/Distributions.jl"><em>Distributions.jl</em></a> package, which provides both <code>logpdf</code> and <code>logpdf&#33;</code>, so that one can write <code>lp &#61; logpdf&#40;d,x&#41;</code> when a new array is needed, or <code>logpdf&#33;&#40;lp,d,x&#41;</code> when <code>lp</code> has been pre-allocated.</p>
 <h2 id=identify_opportunities_to_use_blas ><a href="#identify_opportunities_to_use_blas">Identify opportunities to use BLAS</a></h2>
 <p>Julia wraps a large number of <a href="https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms">BLAS</a> routines for linear algebraic computation. These routines are the result of decades of research and optimization by many of the world&#39;s top experts in fast numerical computation. As a result, using them where possible can provide performance boosts that seem almost magical – BLAS routines are often orders of magnitude faster than the simple loop implementations they replace.</p>
 <p>For example, consider accumulating weighted versions of vectors as follows:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">r = zeros(size(x,<span class=hljs-number >1</span>))
-<span class=hljs-keyword >for</span> j = <span class=hljs-number >1</span>:size(x,<span class=hljs-number >2</span>)
-    r += x[:,j] * w[j]
-<span class=hljs-keyword >end</span></code></pre>
+<pre><code class=language-julia >r &#61; zeros&#40;size&#40;x,1&#41;&#41;
+for j &#61; 1:size&#40;x,2&#41;
+    r &#43;&#61; x&#91;:,j&#93; * w&#91;j&#93;
+end</code></pre>
 <p>You can replace the statement <code>r &#43;&#61; x&#91;:,j&#93; * w&#91;j&#93;</code> with a call to the BLAS <code>axpy&#33;</code> function to get better performance:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >for</span> j = <span class=hljs-number >1</span>:size(x,<span class=hljs-number >2</span>)
-    axpy!(w[j], x[:,j], r)
-<span class=hljs-keyword >end</span></code></pre>
+<pre><code class=language-julia >for j &#61; 1:size&#40;x,2&#41;
+    axpy&#33;&#40;w&#91;j&#93;, x&#91;:,j&#93;, r&#41;
+end</code></pre>
 <p>This, however, is still far from being optimal. If you are familiar with linear algebra, you may have probably found that this is just matrix-vector multiplication, and can be written as <code>r &#61; x * w</code>, which is not only shorter, simpler and clearer than either of the above loops – it also runs much faster than either versions.</p>
 <p>Our next example is a subtler application of BLAS routines to computing pairwise Euclidean distances between columns in two matrices. Below is a straightforward implementation that directly computes pairwise distances:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">m, n = size(a)
-r = <span class=hljs-built_in >Array</span>(<span class=hljs-built_in >Float64</span>, m, n)
+<pre><code class=language-julia >m, n &#61; size&#40;a&#41;
+r &#61; Array&#40;Float64, m, n&#41;
 
-<span class=hljs-keyword >for</span> j = <span class=hljs-number >1</span>:n, i = <span class=hljs-number >1</span>:m
-    r[i,j] = sqrt(sum(abs2(a[:,i] - b[:,j])))
-<span class=hljs-keyword >end</span></code></pre>
+for j &#61; 1:n, i &#61; 1:m
+    r&#91;i,j&#93; &#61; sqrt&#40;sum&#40;abs2&#40;a&#91;:,i&#93; - b&#91;:,j&#93;&#41;&#41;&#41;
+end</code></pre>
 <p>This is clearly suboptimal – a lot of temporary arrays are created in evaluating the expression in the inner loop. To speed this up, we can devectorize the inner expression:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">d, m = size(a)
-n = size(b,<span class=hljs-number >2</span>)
-r = <span class=hljs-built_in >Array</span>(<span class=hljs-built_in >Float64</span>, m, n)
+<pre><code class=language-julia >d, m &#61; size&#40;a&#41;
+n &#61; size&#40;b,2&#41;
+r &#61; Array&#40;Float64, m, n&#41;
 
-<span class=hljs-keyword >for</span> j = <span class=hljs-number >1</span>:n, i = <span class=hljs-number >1</span>:m
-        s = <span class=hljs-number >0.</span>
-        <span class=hljs-keyword >for</span> k = <span class=hljs-number >1</span>:d
-            s += abs2(a[k,i] - b[k,j])
-        <span class=hljs-keyword >end</span>
-        r[i,j] = sqrt(s)
-    <span class=hljs-keyword >end</span>
-<span class=hljs-keyword >end</span></code></pre>
+for j &#61; 1:n, i &#61; 1:m
+        s &#61; 0.
+        for k &#61; 1:d
+            s &#43;&#61; abs2&#40;a&#91;k,i&#93; - b&#91;k,j&#93;&#41;
+        end
+        r&#91;i,j&#93; &#61; sqrt&#40;s&#41;
+    end
+end</code></pre>
 <p>This version is much more performant than the vectorized form. But is it the best we can do? By employing an alternative strategy, we can write a even faster algorithm for computing pairwise distances. The trick is that the squared Euclidean distance between two vectors can be expanded as:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">sum(abs2(x-y)) == sum(abs2(x)) + sum(abs2(y)) - <span class=hljs-number >2</span>*dot(x,y)</code></pre>
+<pre><code class=language-julia >sum&#40;abs2&#40;x-y&#41;&#41; &#61;&#61; sum&#40;abs2&#40;x&#41;&#41; &#43; sum&#40;abs2&#40;y&#41;&#41; - 2*dot&#40;x,y&#41;</code></pre>
 <p>If we evaluate these three terms separately, the computation can be mapped to BLAS routines perfectly. Below, we have a new implementation of pairwise distances written using only BLAS routines, including the norm calls that are wrapped by the <a href="https://github.com/lindahua/NumericExtensions.jl"><em>NumericExtensions.jl</em></a> package:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >using</span> NumericExtensions   <span class=hljs-comment ># for sqsum</span>
-<span class=hljs-keyword >using</span> Base.LinAlg.BLAS    <span class=hljs-comment ># for gemm!</span>
+<pre><code class=language-julia >using NumericExtensions   # for sqsum
+using Base.LinAlg.BLAS    # for gemm&#33;
 
-m, n = size(a)
+m, n &#61; size&#40;a&#41;
 
-sa = sqsum(a, <span class=hljs-number >1</span>)   <span class=hljs-comment ># sum(abs2(x)) for each column in a</span>
-sb = sqsum(b, <span class=hljs-number >1</span>)   <span class=hljs-comment ># sum(abs2(y)) for each column in b</span>
+sa &#61; sqsum&#40;a, 1&#41;   # sum&#40;abs2&#40;x&#41;&#41; for each column in a
+sb &#61; sqsum&#40;b, 1&#41;   # sum&#40;abs2&#40;y&#41;&#41; for each column in b
 
-r = sa .+ reshape(sb, <span class=hljs-number >1</span>, n)          <span class=hljs-comment ># first two terms</span>
-gemm!(<span class=hljs-string >&#x27;T&#x27;</span>, <span class=hljs-string >&#x27;N&#x27;</span>, -<span class=hljs-number >2.0</span>, a, b, <span class=hljs-number >1.0</span>, r)  <span class=hljs-comment ># add (-2.0) * a&#x27; * b to r</span>
+r &#61; sa .&#43; reshape&#40;sb, 1, n&#41;          # first two terms
+gemm&#33;&#40;&#39;T&#39;, &#39;N&#39;, -2.0, a, b, 1.0, r&#41;  # add &#40;-2.0&#41; * a&#39; * b to r
 
-<span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:length(r)
-    r[i] = sqrt(r[i])
-<span class=hljs-keyword >end</span></code></pre>
+for i &#61; 1:length&#40;r&#41;
+    r&#91;i&#93; &#61; sqrt&#40;r&#91;i&#93;&#41;
+end</code></pre>
 <p>This version is over <em>100 times</em> faster than our original implementation — the <code>gemm</code> function in BLAS has been optimized to the extreme by many talented developers and engineers over the past few decades.</p>
 <p>We should mention that you don&#39;t have to implement this yourself if you really want to compute pairwise distances: the <a href="https://github.com/lindahua/Distance.jl"><em>Distance.jl</em></a> package provides optimized implementations of a broad variety of distance metrics, including this one. We presented this optimization trick as an example to illustrate the substantial performance gains that can be achieved by writing code that uses BLAS routines wherever possible.</p>
 <h2 id=explore_available_packages ><a href="#explore_available_packages">Explore available packages</a></h2>
@@ -227,8 +179,8 @@ gemm!(<span class=hljs-string >&#x27;T&#x27;</span>, <span class=hljs-string >&#
 
     
     
-        
-
+        <script src="/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
 
     
 

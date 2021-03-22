@@ -1,33 +1,27 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Profiling tool wins and woes</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Profiling tool wins and woes"> <meta property="og:description" content=" Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](http://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports. ![Instruments.app bad result](/assets/blog/2019-09-16-profilers/profile-instruments-bad.png)"> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Profiling tool wins and woes <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 16 September 2019 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://github.com/vtjnash/">Jameson Nash</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2019/09/profilers.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: <a href="http://www.brendangregg.com/flamegraphs.html">brendangregg&#39;s often cloned flamegraphs tool</a> was created in 2011&#33; So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.</p> <h2 id=learn_more ><a href="#learn_more">Learn more&#33;</a></h2> <p>If you want to learn how they are supposed to work, I suggest looking at other resources first, such as:</p> <ul> <li><p>Julia Evans on learning to be a wizard: <a href="https://wizardzines.com/zines/perf/">https://wizardzines.com/zines/perf/</a></p> <li><p>Julia Evans taking a sabbatical to write a profiler tool: <a href="https://jvns.ca/categories/ruby-profiler/">https://jvns.ca/categories/ruby-profiler/</a></p> <li><p>Brendan Gregg on perf: <a href="https://www.brendangregg.com/perf.html">https://www.brendangregg.com/perf.html</a></p> <li><p>Brendan Gregg on flamegraphs: <a href="http://www.brendangregg.com/flamegraphs.html">http://www.brendangregg.com/flamegraphs.html</a></p> </ul> <p>Then come back here to dive deeper&#33;</p> <h2 id=deep_dive_into_deeper_stacks ><a href="#deep_dive_into_deeper_stacks">Deep Dive into Deeper Stacks</a></h2> <p>I wanted to look into a couple profilers to see how they would handle recursion. This is a tricky area, both in getting compilers to output useful benchmarks, and in getting profiling tools to summarize the interpretation of it. And since I work on Julia, I can try to fix problems I find there, making the world a better place&#33; For the other tools I tested, I&#39;m hoping this collection of observations may help those projects learn ways to improve from other projects. So if it seems I&#39;m just enjoying finding problems, that&#39;s true, but I also am also actively making fixes and improvements through this effort.</p> <h2 id=unit_under_test ><a href="#unit_under_test">Unit Under Test</a></h2> <p>We&#39;re going to use recursive Fibonacci as our test function, since it&#39;s dead simple to write in most languages, but we don&#39;t see compilers getting &quot;too clever&quot; and eliminating the recursion. Here&#39;s the basic formulation we&#39;ll use:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs">fib(n) :
-    n &gt; <span class=hljs-number >1</span> =&gt; fib(n - <span class=hljs-number >1</span>) + fib(n - <span class=hljs-number >2</span>)
-    <span class=hljs-keyword >else</span>  =&gt; <span class=hljs-number >1</span></code></pre> <p>Furthermore, we&#39;ll also try making each of those recursive calls actually indirect through another function to give a slightly more complex backtrace:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs">fib_r(n) : fib(n)</code></pre>
+<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Profiling tool wins and woes</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Profiling tool wins and woes"> <meta property="og:description" content=" Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](http://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports. ![Instruments.app bad result](/assets/blog/2019-09-16-profilers/profile-instruments-bad.png)"> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Profiling tool wins and woes <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 16 September 2019 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://github.com/vtjnash/">Jameson Nash</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2019/09/profilers.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: <a href="http://www.brendangregg.com/flamegraphs.html">brendangregg&#39;s often cloned flamegraphs tool</a> was created in 2011&#33; So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.</p> <h2 id=learn_more ><a href="#learn_more">Learn more&#33;</a></h2> <p>If you want to learn how they are supposed to work, I suggest looking at other resources first, such as:</p> <ul> <li><p>Julia Evans on learning to be a wizard: <a href="https://wizardzines.com/zines/perf/">https://wizardzines.com/zines/perf/</a></p> <li><p>Julia Evans taking a sabbatical to write a profiler tool: <a href="https://jvns.ca/categories/ruby-profiler/">https://jvns.ca/categories/ruby-profiler/</a></p> <li><p>Brendan Gregg on perf: <a href="https://www.brendangregg.com/perf.html">https://www.brendangregg.com/perf.html</a></p> <li><p>Brendan Gregg on flamegraphs: <a href="http://www.brendangregg.com/flamegraphs.html">http://www.brendangregg.com/flamegraphs.html</a></p> </ul> <p>Then come back here to dive deeper&#33;</p> <h2 id=deep_dive_into_deeper_stacks ><a href="#deep_dive_into_deeper_stacks">Deep Dive into Deeper Stacks</a></h2> <p>I wanted to look into a couple profilers to see how they would handle recursion. This is a tricky area, both in getting compilers to output useful benchmarks, and in getting profiling tools to summarize the interpretation of it. And since I work on Julia, I can try to fix problems I find there, making the world a better place&#33; For the other tools I tested, I&#39;m hoping this collection of observations may help those projects learn ways to improve from other projects. So if it seems I&#39;m just enjoying finding problems, that&#39;s true, but I also am also actively making fixes and improvements through this effort.</p> <h2 id=unit_under_test ><a href="#unit_under_test">Unit Under Test</a></h2> <p>We&#39;re going to use recursive Fibonacci as our test function, since it&#39;s dead simple to write in most languages, but we don&#39;t see compilers getting &quot;too clever&quot; and eliminating the recursion. Here&#39;s the basic formulation we&#39;ll use:</p> <pre><code class=language-julia >fib&#40;n&#41; :
+    n &gt; 1 &#61;&gt; fib&#40;n - 1&#41; &#43; fib&#40;n - 2&#41;
+    else  &#61;&gt; 1</code></pre> <p>Furthermore, we&#39;ll also try making each of those recursive calls actually indirect through another function to give a slightly more complex backtrace:</p> <pre><code class=language-julia >fib_r&#40;n&#41; : fib&#40;n&#41;</code></pre>
 <h2 id=profiling_c_code ><a href="#profiling_c_code">Profiling C code</a></h2>
 <p>First, let&#39;s look at a sample C program:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="c hljs"><span class=hljs-function ><span class=hljs-keyword >int</span> <span class=hljs-title >fib</span><span class=hljs-params >(<span class=hljs-keyword >int</span> n)</span></span>;
-<span class=hljs-function ><span class=hljs-keyword >int</span> <span class=hljs-title >fib_r</span><span class=hljs-params >(<span class=hljs-keyword >int</span> n)</span> </span>{
-    <span class=hljs-keyword >return</span> fib(n);
-}
-<span class=hljs-function ><span class=hljs-keyword >int</span> <span class=hljs-title >fib</span><span class=hljs-params >(<span class=hljs-keyword >int</span> n)</span> </span>{
-    <span class=hljs-keyword >return</span> n &gt; <span class=hljs-number >1</span> ? fib_r(n - <span class=hljs-number >1</span>) + fib_r(n - <span class=hljs-number >2</span>) : <span class=hljs-number >1</span>;
-}
-<span class=hljs-function ><span class=hljs-keyword >int</span> <span class=hljs-title >main</span><span class=hljs-params >(<span class=hljs-keyword >void</span>)</span> </span>{
-    <span class=hljs-keyword >return</span> fib(<span class=hljs-number >40</span>);
-}</code></pre>
+<pre><code class=language-c >int fib&#40;int n&#41;;
+int fib_r&#40;int n&#41; &#123;
+    return fib&#40;n&#41;;
+&#125;
+int fib&#40;int n&#41; &#123;
+    return n &gt; 1 ? fib_r&#40;n - 1&#41; &#43; fib_r&#40;n - 2&#41; : 1;
+&#125;
+int main&#40;void&#41; &#123;
+    return fib&#40;40&#41;;
+&#125;</code></pre>
 <p>On my macOS machine, this takes on the order of one second, so that&#39;s usually a good number of samples. I&#39;m going to use a few options to prevent certain stack optimizations, and otherwise let the compiler do it&#39;s best. The <code>-fno-optimize-sibling-calls</code> option prohibits the compiler from using a tailcall, which ensures <code>fib_r</code> stays in the stacktrace recording and that <code>fib</code> can&#39;t be partially optimized into a loop. The <code>-fno-inline</code> is there to help preserve the predictability of the record.</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="bash hljs">$ clang -Wall -Werror -pedantic -std=c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c -o fib
-$ time ./fib
+<pre><code class=language-bash >&#36; clang -Wall -Werror -pedantic -std&#61;c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c -o fib
+&#36; time ./fib
 real    0m0.723s
 user    0m0.717s
 sys     0m0.003s
-$ instruments -t <span class=hljs-string >&quot;Time Profiler&quot;</span> ./fib
+&#36; instruments -t &quot;Time Profiler&quot; ./fib
 Instruments Trace Complete: instrumentscli0.trace
-$ open instrumentscli0.trace</code></pre>
+&#36; open instrumentscli0.trace</code></pre>
 <p>In <code>Instruments.app</code>, this does quite well, except for one peculiar combination of options.</p>
 <p><img src="/assets/blog/2019-09-16-profilers/profile-instruments-bad.png" alt="Instruments.app bad result" /></p>
 <p>I don&#39;t know how it computed those numbers, but note that the total runtime was 738 ms, so all those numbers that are some multiple of that &#40;1.47 s, 1.15 s, 230 ms&#41; are wrong.</p>
@@ -35,192 +29,174 @@ $ open instrumentscli0.trace</code></pre>
 <p><img src="/assets/blog/2019-09-16-profilers/profile-instruments-good.png" alt="Instruments.app good result" /></p>
 <p>The only problem I can identify here is that all of the self-weights are zero in this view. In the source code view, the lines are properly annotated with counts.</p>
 <p>On Linux, with the <code>perf</code> tool, this is pretty similar to use:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="bash hljs">$ gcc -Wall -Werror -pedantic -std=c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c
-$ perf record --call-graph dwarf ./a.out
-[ perf record: Woken up 153 <span class=hljs-built_in >times</span> to write data ]
-[ perf record: Captured and wrote 38.221 MB perf.data (4748 samples) ]</code></pre>
+<pre><code class=language-bash >&#36; gcc -Wall -Werror -pedantic -std&#61;c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c
+&#36; perf record --call-graph dwarf ./a.out
+&#91; perf record: Woken up 153 times to write data &#93;
+&#91; perf record: Captured and wrote 38.221 MB perf.data &#40;4748 samples&#41; &#93;</code></pre>
 <p>But I couldn&#39;t get this to generate a satisfactory report. I think the fault is with the dwarf implementation, so it seems you should be careful when using it to make decisions.</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="bash hljs">$ perf report --stdio --call-graph=none
-<span class=hljs-comment ># Total Lost Samples: 0</span>
-<span class=hljs-comment >#</span>
-<span class=hljs-comment ># Samples: 4K of event &#x27;cycles:uppp&#x27;</span>
-<span class=hljs-comment ># Event count (approx.): 3344003009</span>
-<span class=hljs-comment >#</span>
-<span class=hljs-comment ># Children      Self  Command  Shared Object     Symbol</span>
-<span class=hljs-comment ># ........  ........  .......  ................  ..................................</span>
-<span class=hljs-comment >#</span>
-    64.22%    64.22%  a.out    a.out             [.] fib
-    43.30%    35.77%  a.out    a.out             [.] fib_r
-     8.75%     0.00%  a.out    [unknown]         [.] 0x00007ffc2454634f
-     7.52%     0.00%  a.out    a.out             [.] _start
-     7.52%     0.00%  a.out    a.out             [.] main</code></pre>
+<pre><code class=language-bash >&#36; perf report --stdio --call-graph&#61;none
+# Total Lost Samples: 0
+#
+# Samples: 4K of event &#39;cycles:uppp&#39;
+# Event count &#40;approx.&#41;: 3344003009
+#
+# Children      Self  Command  Shared Object     Symbol
+# ........  ........  .......  ................  ..................................
+#
+    64.22&#37;    64.22&#37;  a.out    a.out             &#91;.&#93; fib
+    43.30&#37;    35.77&#37;  a.out    a.out             &#91;.&#93; fib_r
+     8.75&#37;     0.00&#37;  a.out    &#91;unknown&#93;         &#91;.&#93; 0x00007ffc2454634f
+     7.52&#37;     0.00&#37;  a.out    a.out             &#91;.&#93; _start
+     7.52&#37;     0.00&#37;  a.out    a.out             &#91;.&#93; main</code></pre>
 <p>I tried various options including <code>-gdwarf-2</code>, <code>-gdwarf-4</code>, <code>-fno-omit-frame-pointer</code><sup id="fnref:1"><a href="#fndef:1" class=fnref >[1]</a></sup>, and switching to <code>clang</code>. None of those helped much. With FPO disabled, the clang results were much better than with gcc &#40;both improved&#41;, but clang&#39;s output was also a smidgen slower running, so that might be a contributing factor &#40;more overhead&#41;.</p>
 <p>But combining the compiler option <code>-fno-omit-frame-pointer</code> with the perf option <code>--call-graph fp</code> worked.</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="bash hljs">$ perf report --stdio --call-graph=none
-<span class=hljs-comment ># Total Lost Samples: 0</span>
-<span class=hljs-comment >#</span>
-<span class=hljs-comment ># Samples: 4K of event &#x27;cycles:uppp&#x27;</span>
-<span class=hljs-comment ># Event count (approx.): 2752040208</span>
-<span class=hljs-comment >#</span>
-<span class=hljs-comment ># Children      Self  Command  Shared Object     Symbol</span>
-<span class=hljs-comment ># ........  ........  .......  ................  ..........................</span>
-<span class=hljs-comment >#</span>
-    99.99%    65.02%  a.out    a.out             [.] fib
-    99.99%    34.97%  a.out    a.out             [.] fib_r
-    99.99%     0.00%  a.out    a.out             [.] main
-    99.99%     0.00%  a.out    libc-2.27.so      [.] __libc_start_main
-    99.99%     0.00%  a.out    [unknown]         [.] 0x077e258d4c544155</code></pre>
+<pre><code class=language-bash >&#36; perf report --stdio --call-graph&#61;none
+# Total Lost Samples: 0
+#
+# Samples: 4K of event &#39;cycles:uppp&#39;
+# Event count &#40;approx.&#41;: 2752040208
+#
+# Children      Self  Command  Shared Object     Symbol
+# ........  ........  .......  ................  ..........................
+#
+    99.99&#37;    65.02&#37;  a.out    a.out             &#91;.&#93; fib
+    99.99&#37;    34.97&#37;  a.out    a.out             &#91;.&#93; fib_r
+    99.99&#37;     0.00&#37;  a.out    a.out             &#91;.&#93; main
+    99.99&#37;     0.00&#37;  a.out    libc-2.27.so      &#91;.&#93; __libc_start_main
+    99.99&#37;     0.00&#37;  a.out    &#91;unknown&#93;         &#91;.&#93; 0x077e258d4c544155</code></pre>
 <p>Here we see it&#39;s got the right children &#40;total&#41; and self weights&#33;</p>
 <p>There&#39;s also a bunch of other options for <code>--call-graph</code>, but all of them spewed vast amounts of &#40;mis&#41;information, so I&#39;ve opted not to try to fit that in here.</p>
 <h2 id=profiling_julialang_code ><a href="#profiling_julialang_code">Profiling JuliaLang code</a></h2>
 <p>Now let&#39;s see how JuliaLang &#40;v1.3&#41; does:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@noinline</span> <span class=hljs-keyword >function</span> fib(n)
-         <span class=hljs-keyword >return</span> n &gt; <span class=hljs-number >1</span> ? fib_r(n - <span class=hljs-number >1</span>) + fib_r(n - <span class=hljs-number >2</span>) : <span class=hljs-number >1</span>
-       <span class=hljs-keyword >end</span>
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@noinline</span> fib_r(n) = fib(n)
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> fib(<span class=hljs-number >40</span>)
-</span>  0.738735 seconds (3.16 k allocations: 176.626 KiB)
+<pre><code class=language-julia-repl >julia&gt; @noinline function fib&#40;n&#41;
+         return n &gt; 1 ? fib_r&#40;n - 1&#41; &#43; fib_r&#40;n - 2&#41; : 1
+       end
+
+julia&gt; @noinline fib_r&#40;n&#41; &#61; fib&#40;n&#41;
+
+julia&gt; @time fib&#40;40&#41;
+  0.738735 seconds &#40;3.16 k allocations: 176.626 KiB&#41;
 165580141
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >using</span> Profile
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@profile</span> fib(<span class=hljs-number >40</span>)
-</span>165580141
+julia&gt; using Profile
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > Profile.print(format=:flat, sortedby=:count)
-</span> Count File      Line Function
+julia&gt; @profile fib&#40;40&#41;
+165580141
+
+julia&gt; Profile.print&#40;format&#61;:flat, sortedby&#61;:count&#41;
+ Count File      Line Function
     12 int.jl      52 -
-    14 int.jl      53 +
+    14 int.jl      53 &#43;
    212 boot.jl    330 eval
-  5717 REPL[2]      1 fib_r
-  6028 REPL[1]      2 fib
+  5717 REPL&#91;2&#93;      1 fib_r
+  6028 REPL&#91;1&#93;      2 fib
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > count(==(<span class=hljs-number >0</span>), Profile.fetch())
-</span>585</code></pre>
+julia&gt; count&#40;&#61;&#61;&#40;0&#41;, Profile.fetch&#40;&#41;&#41;
+585</code></pre>
 <p>So that&#39;s pretty bad—we appear to have about 212 samples, going by the counts on the <code>eval</code> function at the top of the stack. And we&#39;re told that about 2000&#37; of the time was in <code>fib</code>. Clearly not true. What happened here? We computed that <code>fib</code> &#40;and <code>fib_r</code>&#41; each appeared an average of 10-20 times in every backtrace, so we over-represent them in our flat-format output. OK, so first thing to do is to fix that: each frame should only be counted once towards each output line.</p>
 <p>But there&#39;s also the recursive option, which doesn&#39;t suffer from this particular issue. So how does it fare:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Profile.print(format=:tree)
-</span>260 REPL[1]:2; fib(::Int64)
-112 REPL[1]:1; fib_r(::Int64)
+<pre><code class=language-julia-repl >julia&gt; Profile.print&#40;format&#61;:tree&#41;
+260 REPL&#91;1&#93;:2; fib&#40;::Int64&#41;
+112 REPL&#91;1&#93;:1; fib_r&#40;::Int64&#41;
 212 task.jl:333; REPL.var&quot;##26#27&quot;
  212 REPL.jl:118; macro expansion
   212 REPL.jl:86; eval_user_input
    212 boot.jl:330; eval
-  ╎ 210 REPL[1]:2; fib
-  ╎  210 REPL[1]:1; fib_r
-  ╎   210 REPL[1]:2; fib
-  ╎    210 REPL[1]:1; fib_r
-  ╎     210 REPL[1]:2; fib
-  ╎    ╎ 210 REPL[1]:1; fib_r
-  ╎    ╎  210 REPL[1]:2; fib
-  ╎    ╎   210 REPL[1]:1; fib_r
-  ╎    ╎    210 REPL[1]:2; fib
-  ╎    ╎     210 REPL[1]:1; fib_r
-  ╎    ╎    ╎ 210 REPL[1]:2; fib
-  ╎    ╎    ╎  210 REPL[1]:1; fib_r
-  ╎    ╎    ╎   210 REPL[1]:2; fib
-  ╎    ╎    ╎    210 REPL[1]:1; fib_r
-  ╎    ╎    ╎     210 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎ 210 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎  210 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎   210 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    210 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎     210 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎ 210 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎  210 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎   210 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    210 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎     210 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎ 210 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎  210 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎   210 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    210 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎     210 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎ 210 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎  210 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎   209 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    208 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎     208 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 208 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  208 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   208 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    208 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     206 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 205 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  203 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   201 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    199 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     199 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 196 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  194 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   190 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    187 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     1   REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     175 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 170 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  4   REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  151 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   143 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    2   REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    120 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     109 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 85 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  76 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   56 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    48 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     3  REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     28 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 26 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  10 REPL[1]:1; fib_r
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   7 REPL[1]:2; fib
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    2 REPL[1]:1; fib_r
+  ╎ 210 REPL&#91;1&#93;:2; fib
+  ╎  210 REPL&#91;1&#93;:1; fib_r
+  ╎   210 REPL&#91;1&#93;:2; fib
+  ╎    210 REPL&#91;1&#93;:1; fib_r
+  ╎     210 REPL&#91;1&#93;:2; fib
+  ╎    ╎ 210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎  210 REPL&#91;1&#93;:2; fib
+  ╎    ╎   210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    210 REPL&#91;1&#93;:2; fib
+  ╎    ╎     210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎ 210 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎  210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎   210 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎     210 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎ 210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎  210 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎   210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    210 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎     210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎ 210 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎  210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎   210 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎     210 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎ 210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎  210 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎   210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    210 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎     210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎ 210 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎  210 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎   209 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    208 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎     208 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 208 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  208 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   208 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    208 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     206 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 205 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  203 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   201 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    199 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     199 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 196 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  194 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   190 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    187 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     1   REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     175 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 170 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  4   REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  151 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   143 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    2   REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    120 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     109 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 85 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  76 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   56 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    48 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     3  REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     28 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 26 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  10 REPL&#91;1&#93;:1; fib_r
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   7 REPL&#91;1&#93;:2; fib
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    2 REPL&#91;1&#93;:1; fib_r
   ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    1 int.jl:52; -
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  1  int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  1  int.jl:53; &#43;
   ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  1  int.jl:52; -
   ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   1  int.jl:52; -
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 1  int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 1  int.jl:53; &#43;
   ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 4  int.jl:52; -
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    5   int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    5   int.jl:53; &#43;
   ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    2   int.jl:52; -
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  2   int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  2   int.jl:53; &#43;
   ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  2   int.jl:52; -
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     1   int.jl:53; +
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎     1   int.jl:53; &#43;
   ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎   1   int.jl:52; -
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 1   int.jl:53; +
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    1   int.jl:53; +
-  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  2   int.jl:53; +</code></pre>
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎ 1   int.jl:53; &#43;
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    1   int.jl:53; &#43;
+  ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  2   int.jl:53; &#43;</code></pre>
 <p>We also see this has issues with identifying the stack in many cases &#40;almost 40&#37; failed&#33;&#41;, similar to <code>perf</code>. One way to improve that &#40;reducing to ~10&#37; failure rate&#41; is to disable the omit-frame-pointer option, like we did before. Currently this requires this source code change:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="diff hljs"><span class=hljs-comment >diff --git a/src/jitlayers.cpp b/src/jitlayers.cpp</span>
-<span class=hljs-comment >index cf339d8a4b..f6e9c08e2c 100644</span>
-<span class=hljs-comment >--- a/src/jitlayers.cpp</span>
-<span class=hljs-comment >+++ b/src/jitlayers.cpp</span>
-<span class=hljs-meta >@@ -3,9 +3,7 @@</span>
+<pre><code class=language-diff >diff --git a/src/jitlayers.cpp b/src/jitlayers.cpp
+index cf339d8a4b..f6e9c08e2c 100644
+--- a/src/jitlayers.cpp
+&#43;&#43;&#43; b/src/jitlayers.cpp
+@@ -3,9 &#43;3,7 @@
  #include &quot;llvm-version.h&quot;
  #include &quot;platform.h&quot;
  #include &quot;options.h&quot;
-<span class=hljs-deletion >-#if defined(_OS_WINDOWS_) || defined(_OS_FREEBSD_)</span>
+-#if defined&#40;_OS_WINDOWS_&#41; || defined&#40;_OS_FREEBSD_&#41;
  #  define JL_DISABLE_FPO
-<span class=hljs-deletion >-#endif</span>
+-#endif
 
  #include &lt;iostream&gt;
  #include &lt;sstream&gt;</code></pre>
@@ -229,16 +205,13 @@ https://github.com/highlightjs/highlight.js/issues/2277
 <p>However, none of these option are helpful for our tree above. We need more tools in our toolbox&#33;</p>
 <p>Let&#39;s now examine how we can try to consolidate the recursive frames somehow. One option is the flat reports we looked at earlier.</p>
 <p>Here&#39;s that same flat report above with the counts corrected &#40;in Julia v1.4-dev&#41;, and some extra information also now compiled for it:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Profile.print(format=:flat, sortedby=:counts)
-</span> Count  Overhead File      Line Function
+<pre><code class=language-julia-repl >julia&gt; Profile.print&#40;format&#61;:flat, sortedby&#61;:counts&#41;
+ Count  Overhead File      Line Function
    228         2 ./boot.jl  330 eval
      2         2 ./int.jl    52 -
-    25        25 ./int.jl    53 +
-   321       155 ./REPL[2]    1 fib_r
-   514       426 ./REPL[1]    2 fib
+    25        25 ./int.jl    53 &#43;
+   321       155 ./REPL&#91;2&#93;    1 fib_r
+   514       426 ./REPL&#91;1&#93;    2 fib
 Total snapshots: 610</code></pre>
 <p>That&#39;s better, and now the information matches the tree&#33; But unlike the tree view, this flat view doesn&#39;t show context. Some of those functions are very common, like <code>&#43;</code>, and it might not be sufficient to see them in aggregate like this. Can we combine the benefits of both views somehow?</p>
 <h2 id=better_recursion_handling ><a href="#better_recursion_handling">Better recursion handling</a></h2>
@@ -252,55 +225,49 @@ Total snapshots: 610</code></pre>
 <p><img src="/assets/blog/2019-09-16-profilers/profile-pprof.png" alt=PProf  /></p>
 <p>This is nice&#33; We get to visualize the static functions call tree simultaneously with the weight each function contributes to the time. However, this format can be a bit limited on the total quantity of information it can fit, so it might not always help. The <code>pprof</code> tool automatically filters out smaller frames to aid the user in seeing the important ones, and provides several options for adding and removing functions from the view.</p>
 <p>In addition, the <code>pprof</code> tool has a sandwich text report that summarizes the caller and callee list around each profile sample:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="bash hljs">Type: events
-Showing nodes accounting <span class=hljs-keyword >for</span> 632, 100% of 632 total
-----------------------------------------------------------+-------------
-      flat  flat%   sum%        cum   cum%   calls calls% + context
-----------------------------------------------------------+-------------
-                                               273 52.20% |   fib REPL:-1
-                                               273 52.20% |   fib_r REPL:1
-       417 65.98% 65.98%        523 82.75%                | fib REPL:2
-                                               273 52.20% |   fib_r REPL:1
-----------------------------------------------------------+-------------
-                                               273 72.03% |   fib REPL:2
-       178 28.16% 94.15%        379 59.97%                | fib_r REPL:1
-                                               273 72.03% |   fib REPL:2
-                                                33  8.71% |   + ./int.jl:2
-                                                 1  0.26% |   - ./int.jl:2
-----------------------------------------------------------+-------------
-                                                33   100% |   + ./int.jl:2 (inline)
-        33  5.22% 99.37%         33  5.22%                | + ./int.jl:53
-----------------------------------------------------------+-------------
-                                                 1   100% |   - ./int.jl:2 (inline)
-         1  0.16% 99.53%          1  0.16%                | - ./int.jl:52
-----------------------------------------------------------+-------------</code></pre>
+<pre><code class=language-bash >Type: events
+Showing nodes accounting for 632, 100&#37; of 632 total
+----------------------------------------------------------&#43;-------------
+      flat  flat&#37;   sum&#37;        cum   cum&#37;   calls calls&#37; &#43; context
+----------------------------------------------------------&#43;-------------
+                                               273 52.20&#37; |   fib REPL:-1
+                                               273 52.20&#37; |   fib_r REPL:1
+       417 65.98&#37; 65.98&#37;        523 82.75&#37;                | fib REPL:2
+                                               273 52.20&#37; |   fib_r REPL:1
+----------------------------------------------------------&#43;-------------
+                                               273 72.03&#37; |   fib REPL:2
+       178 28.16&#37; 94.15&#37;        379 59.97&#37;                | fib_r REPL:1
+                                               273 72.03&#37; |   fib REPL:2
+                                                33  8.71&#37; |   &#43; ./int.jl:2
+                                                 1  0.26&#37; |   - ./int.jl:2
+----------------------------------------------------------&#43;-------------
+                                                33   100&#37; |   &#43; ./int.jl:2 &#40;inline&#41;
+        33  5.22&#37; 99.37&#37;         33  5.22&#37;                | &#43; ./int.jl:53
+----------------------------------------------------------&#43;-------------
+                                                 1   100&#37; |   - ./int.jl:2 &#40;inline&#41;
+         1  0.16&#37; 99.53&#37;          1  0.16&#37;                | - ./int.jl:52
+----------------------------------------------------------&#43;-------------</code></pre>
 <p>Let&#39;s combine all those ideas to make a new option for our Julia plain-text tree view: flattened recursion. Here&#39;s the docstring for the new argument to <code>Profile.print</code>:</p>
 <ul>
 <li><p><code>recur</code> – Controls the recursion handling in <code>:tree</code> format. <code>:off</code> &#40;default&#41; prints the tree as normal. <code>:flat</code> instead compresses any recursion &#40;by ip&#41;, showing the approximate effect of converting any self-recursion into an iterator. <code>:flatc</code> does the same but also includes collapsing of C frames &#40;may do odd things around <code>jl_apply</code>&#41;.</p>
 
 </ul>
 <p>So this will no longer be a literal interpretation of the stack, but will show a particular linearization where each recursive call was re-written as a loop. This has a few secondary implications. It means that we may now see counts that sum to greater than their parent. For example, 100&#37; &#40;236/236&#41; of the time inside the parent <code>fib</code> was spent inside the child <code>fib_r</code>, and additionally, 4&#37; &#40;9/236&#41; were recorded as being part of a direct call to <code>fib</code> from <code>fib</code> &#40;an artifact caused by unreliable stack recording&#41;. Additionally, if you recall the definition of <code>fib</code> above, <code>fib</code> has two distinct calls to <code>fib_r</code>. Since the goal was to rearrange recursive calls, and not recursive lines, we expect to see those two calls reflected exactly in the profile shape too. However, there&#39;s no distinction made between <em>which</em> call each was from &#40;unless you also pass <code>collapse&#61;false</code><sup id="fnref:2"><a href="#fndef:2" class=fnref >[2]</a></sup>&#41;.</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Profile.print(format=:tree, recur=:flat)
-</span>94  ./REPL[1]:1; fib_r(::Int64)
-260 ./REPL[2]:2; fib(::Int64)
-275 ./task.jl:333; (::REPL.var&quot;##26#27&quot;{REPL.REPLBackend})()
+<pre><code class=language-julia-repl >julia&gt; Profile.print&#40;format&#61;:tree, recur&#61;:flat&#41;
+94  ./REPL&#91;1&#93;:1; fib_r&#40;::Int64&#41;
+260 ./REPL&#91;2&#93;:2; fib&#40;::Int64&#41;
+275 ./task.jl:333; &#40;::REPL.var&quot;##26#27&quot;&#123;REPL.REPLBackend&#125;&#41;&#40;&#41;
  275 ./REPL.jl:118; macro expansion
-  275 ./REPL.jl:86; eval_user_input(::Any, ::REPL.REPLBackend)
-   275 ./boot.jl:330; eval(::Module, ::Any)
-  ╎ 273 ./REPL[2]:2; fib(::Int64)
-  ╎  273 ./REPL[1]:1; fib_r(::Int64)
-  ╎   273 ./REPL[2]:2; fib(::Int64)
-  ╎    49 ./REPL[1]:1; fib_r(::Int64)
-  ╎    1  ./REPL[2]:2; fib(::Int64)
-  ╎    39 ./int.jl:53; +
+  275 ./REPL.jl:86; eval_user_input&#40;::Any, ::REPL.REPLBackend&#41;
+   275 ./boot.jl:330; eval&#40;::Module, ::Any&#41;
+  ╎ 273 ./REPL&#91;2&#93;:2; fib&#40;::Int64&#41;
+  ╎  273 ./REPL&#91;1&#93;:1; fib_r&#40;::Int64&#41;
+  ╎   273 ./REPL&#91;2&#93;:2; fib&#40;::Int64&#41;
+  ╎    49 ./REPL&#91;1&#93;:1; fib_r&#40;::Int64&#41;
+  ╎    1  ./REPL&#91;2&#93;:2; fib&#40;::Int64&#41;
+  ╎    39 ./int.jl:53; &#43;
   ╎    3  ./int.jl:52; -
-  ╎  1   ./REPL[2]:2; fib(::Int64)
+  ╎  1   ./REPL&#91;2&#93;:2; fib&#40;::Int64&#41;
 Total snapshots: 629</code></pre>
 <p>I think this looks cool, and vaguely even shows how I would conceptualize the functions in my head. This is availble right now only on <a href="https://github.com/JuliaLang/julia/tree/jn/profile-recurflat">my jn/profile-recurflat</a> branch, but should be a PR soon, and show up in the JuliaLang v1.4 release.</p>
 <h2 id=final_thoughts ><a href="#final_thoughts">Final thoughts</a></h2>
@@ -320,30 +287,24 @@ Total snapshots: 629</code></pre>
     
 </table>
 </p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs">@noinline function fib(n)
+<pre><code class=language-julia-repl >@noinline function fib&#40;n&#41;
     if n &gt; 1
-        n -= 1
-        x1 = fib_r(n)
-        n -= 1
-        x2 = fib_r(n)
-        y = x1 + x2
+        n -&#61; 1
+        x1 &#61; fib_r&#40;n&#41;
+        n -&#61; 1
+        x2 &#61; fib_r&#40;n&#41;
+        y &#61; x1 &#43; x2
     else
-        y = 1
+        y &#61; 1
     end
     return y
 end</code></pre>
 <p>Post-note: There was also an off-by-one lookup error in Profile.jl too that will soon be resolved. This is almost never an issue, but we can sometimes notice it as bogus information showing some frame that should never have been reached. For example, we can profile a call to the expensive <code>cpuid</code> instruction, and see that there&#39;s a bogus frame that makes it appear we used some code that happened to be located outside the target function was somehow getting used.</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > testf() = <span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>^<span class=hljs-number >7</span>; <span class=hljs-keyword >ccall</span>(:jl_cpuid, <span class=hljs-built_in >Cvoid</span>, (<span class=hljs-built_in >Ref</span>{<span class=hljs-built_in >NTuple</span>{<span class=hljs-number >4</span>,<span class=hljs-built_in >Int32</span>}}, <span class=hljs-built_in >Int32</span>), (<span class=hljs-number >0</span>,<span class=hljs-number >0</span>,<span class=hljs-number >0</span>,<span class=hljs-number >0</span>), <span class=hljs-number >0</span>); <span class=hljs-keyword >end</span>
-</span><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@profile</span> testf()
-</span><span class=hljs-meta >julia&gt;</span><span class=julia > Profile.print(C=<span class=hljs-literal >true</span>)
-</span>201 ./REPL[2]:1; testf()
- 199 ./REPL[1]:1; cpuid
+<pre><code class=language-julia-repl >julia&gt; testf&#40;&#41; &#61; for i &#61; 1:10^7; ccall&#40;:jl_cpuid, Cvoid, &#40;Ref&#123;NTuple&#123;4,Int32&#125;&#125;, Int32&#41;, &#40;0,0,0,0&#41;, 0&#41;; end
+julia&gt; @profile testf&#40;&#41;
+julia&gt; Profile.print&#40;C&#61;true&#41;
+201 ./REPL&#91;2&#93;:1; testf&#40;&#41;
+ 199 ./REPL&#91;1&#93;:1; cpuid
   3   ./processor_x86.cpp:8; jl_cpuid
   192 ./processor_x86.cpp:12; jl_cpuid
   1   ./libjulia.1.4.dylib:?; _GLOBAL__sub_I_runtime_ccall.cpp</code></pre>
@@ -352,8 +313,8 @@ https://github.com/highlightjs/highlight.js/issues/2277
 
     
     
-        
-
+        <script src="/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
 
     
 

@@ -1,74 +1,68 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Analyzing sources of compiler latency in Julia: method invalidations</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Analyzing sources of compiler latency in Julia: method invalidations"> <meta property="og:description" content="Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation, tools for detecting and eliminating its causes, and the impact this effort has had on latency."> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Analyzing sources of compiler latency in Julia: method invalidations <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 26 August 2020 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Tim Holy, Jeff Bezanson, and Jameson Nash </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2020/08/invalidations.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><div class=franklin-toc ><ol><li><a href="#method_invalidation_what_is_it_and_when_does_it_happen">Method invalidation: what is it and when does it happen?</a><ol><li><a href="#an_example_compilation_for_containers_with_unknown_element_types">An example: compilation for containers with unknown element types</a><li><a href="#triggering_method_invalidation">Triggering method invalidation</a></ol><li><a href="#how_common_is_method_invalidation">How common is method invalidation?</a><li><a href="#what_are_the_impacts_of_method_invalidation">What are the impacts of method invalidation?</a><li><a href="#can_and_should_this_be_fixed">Can and should this be fixed?</a><li><a href="#changes_in_julia_that_have_reduced_the_number_of_invalidations">Changes in Julia that have reduced the number of invalidations</a><li><a href="#tools_for_analyzing_and_fixing_invalidations">Tools for analyzing and fixing invalidations</a><li><a href="#summary">Summary</a><ol><li><a href="#impacts_of_progress_to_date">Impacts of progress to date</a><li><a href="#outlook_for_the_future">Outlook for the future</a></ol></ol></div> <p><a href="https://julialang.org/">The Julia programming language</a> has wonderful flexibility with types, and this allows you to combine packages in unanticipated ways to solve new kinds of problems. Crucially, it achieves this flexibility without sacrificing runtime performance. It does this by running versions of code or algorithms that have been &quot;specialized&quot; for the specific types you are using. Creating these specializations is compilation, and when done on the fly &#40;as is common in Julia&#41; this is called &quot;just in time&quot; &#40;JIT&#41; compilation. Unfortunately, JIT-compilation takes time, and this contributes to <em>latency</em> when you first run Julia code. This problem is often summarized as &quot;time-to-first-plot,&quot; though there is nothing specific about plotting other than the fact that plotting libraries tend to involve large code bases, and these must be JIT-compiled.</p> <p>Many people have spent a lot of time analyzing and reducing Julia&#39;s latency. These efforts have met with considerable success: Julia 1.5 feels snappier than any version in memory, and benchmarks support that impression. But the job of reducing latency is not over yet. Recent work on Julia&#39;s master branch has made considerable progress in significantly reducing a specific source of latency, method invalidation. This post will answer questions such as:</p> <ul> <li><p>What is method invalidation?</p> <li><p>How can I diagnose why my code is being invalidated?</p> <li><p>How can I fix my code to prevent invalidation?</p> <li><p>What impact have the efforts so far had on latency to load and use packages?</p> </ul> <h2 id=method_invalidation_what_is_it_and_when_does_it_happen ><a href="#method_invalidation_what_is_it_and_when_does_it_happen">Method invalidation: what is it and when does it happen?</a></h2> <h3 id=an_example_compilation_for_containers_with_unknown_element_types ><a href="#an_example_compilation_for_containers_with_unknown_element_types">An example: compilation for containers with unknown element types</a></h3> <p>When Julia compiles a method for specific types, it saves the resulting code so that it can be used by any caller. This is crucial to performance, because it means that compilation generally has to be done only once for a specific type. To keep things really simple, we&#39;ll use a very artificial example.</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs">f(x::<span class=hljs-built_in >Int</span>) = <span class=hljs-number >1</span>
-applyf(container) = f(container[<span class=hljs-number >1</span>])</code></pre> <p>Here we&#39;ve defined two functions; <code>f</code> supports <code>Int</code>, and <code>applyf</code> supports <code>Any</code> argument at all. When you call <code>applyf</code>, Julia will compile <em>specialized</em> versions on demand for the particular types of <code>container</code> that you&#39;re using at that moment, even though there isn&#39;t any type annotation in its definition. These versions that have been specialized for particular input types are <code>MethodInstance</code>s, an internal type in <code>Core.Compiler</code>.</p> <p>If you call <code>applyf&#40;&#91;100&#93;&#41;</code>, Julia will compile and use a version of <code>applyf</code> specifically created for <code>Vector&#123;Int&#125;</code>. Since the element type &#40;<code>Int</code>&#41; is a part of the <code>container</code>&#39;s type, it will compile this specialization knowing that only <code>f&#40;::Int&#41;</code> will be used: the call will be &quot;hard-wired&quot; into the code that Julia produces. You can see this using <code>@code_typed</code>:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > applyf([<span class=hljs-number >100</span>])
-</span>1
+<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Analyzing sources of compiler latency in Julia: method invalidations</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Analyzing sources of compiler latency in Julia: method invalidations"> <meta property="og:description" content="Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation, tools for detecting and eliminating its causes, and the impact this effort has had on latency."> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Analyzing sources of compiler latency in Julia: method invalidations <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 26 August 2020 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Tim Holy, Jeff Bezanson, and Jameson Nash </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2020/08/invalidations.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><div class=franklin-toc ><ol><li><a href="#method_invalidation_what_is_it_and_when_does_it_happen">Method invalidation: what is it and when does it happen?</a><ol><li><a href="#an_example_compilation_for_containers_with_unknown_element_types">An example: compilation for containers with unknown element types</a><li><a href="#triggering_method_invalidation">Triggering method invalidation</a></ol><li><a href="#how_common_is_method_invalidation">How common is method invalidation?</a><li><a href="#what_are_the_impacts_of_method_invalidation">What are the impacts of method invalidation?</a><li><a href="#can_and_should_this_be_fixed">Can and should this be fixed?</a><li><a href="#changes_in_julia_that_have_reduced_the_number_of_invalidations">Changes in Julia that have reduced the number of invalidations</a><li><a href="#tools_for_analyzing_and_fixing_invalidations">Tools for analyzing and fixing invalidations</a><li><a href="#summary">Summary</a><ol><li><a href="#impacts_of_progress_to_date">Impacts of progress to date</a><li><a href="#outlook_for_the_future">Outlook for the future</a></ol></ol></div> <p><a href="https://julialang.org/">The Julia programming language</a> has wonderful flexibility with types, and this allows you to combine packages in unanticipated ways to solve new kinds of problems. Crucially, it achieves this flexibility without sacrificing runtime performance. It does this by running versions of code or algorithms that have been &quot;specialized&quot; for the specific types you are using. Creating these specializations is compilation, and when done on the fly &#40;as is common in Julia&#41; this is called &quot;just in time&quot; &#40;JIT&#41; compilation. Unfortunately, JIT-compilation takes time, and this contributes to <em>latency</em> when you first run Julia code. This problem is often summarized as &quot;time-to-first-plot,&quot; though there is nothing specific about plotting other than the fact that plotting libraries tend to involve large code bases, and these must be JIT-compiled.</p> <p>Many people have spent a lot of time analyzing and reducing Julia&#39;s latency. These efforts have met with considerable success: Julia 1.5 feels snappier than any version in memory, and benchmarks support that impression. But the job of reducing latency is not over yet. Recent work on Julia&#39;s master branch has made considerable progress in significantly reducing a specific source of latency, method invalidation. This post will answer questions such as:</p> <ul> <li><p>What is method invalidation?</p> <li><p>How can I diagnose why my code is being invalidated?</p> <li><p>How can I fix my code to prevent invalidation?</p> <li><p>What impact have the efforts so far had on latency to load and use packages?</p> </ul> <h2 id=method_invalidation_what_is_it_and_when_does_it_happen ><a href="#method_invalidation_what_is_it_and_when_does_it_happen">Method invalidation: what is it and when does it happen?</a></h2> <h3 id=an_example_compilation_for_containers_with_unknown_element_types ><a href="#an_example_compilation_for_containers_with_unknown_element_types">An example: compilation for containers with unknown element types</a></h3> <p>When Julia compiles a method for specific types, it saves the resulting code so that it can be used by any caller. This is crucial to performance, because it means that compilation generally has to be done only once for a specific type. To keep things really simple, we&#39;ll use a very artificial example.</p> <pre><code class=language-julia >f&#40;x::Int&#41; &#61; 1
+applyf&#40;container&#41; &#61; f&#40;container&#91;1&#93;&#41;</code></pre> <p>Here we&#39;ve defined two functions; <code>f</code> supports <code>Int</code>, and <code>applyf</code> supports <code>Any</code> argument at all. When you call <code>applyf</code>, Julia will compile <em>specialized</em> versions on demand for the particular types of <code>container</code> that you&#39;re using at that moment, even though there isn&#39;t any type annotation in its definition. These versions that have been specialized for particular input types are <code>MethodInstance</code>s, an internal type in <code>Core.Compiler</code>.</p> <p>If you call <code>applyf&#40;&#91;100&#93;&#41;</code>, Julia will compile and use a version of <code>applyf</code> specifically created for <code>Vector&#123;Int&#125;</code>. Since the element type &#40;<code>Int</code>&#41; is a part of the <code>container</code>&#39;s type, it will compile this specialization knowing that only <code>f&#40;::Int&#41;</code> will be used: the call will be &quot;hard-wired&quot; into the code that Julia produces. You can see this using <code>@code_typed</code>:</p> <pre><code class=language-julia-repl >julia&gt; applyf&#40;&#91;100&#93;&#41;
+1
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@code_typed</span> applyf([<span class=hljs-number >100</span>])
-</span>CodeInfo(
-1 ─     Base.arrayref(true, container, 1)::Int64
+julia&gt; @code_typed applyf&#40;&#91;100&#93;&#41;
+CodeInfo&#40;
+1 ─     Base.arrayref&#40;true, container, 1&#41;::Int64
 └──     return 1
-) =&gt; Int64</code></pre> <p>The compiler knows that the answer will be 1, as long as the input array has an element indexable by 1. &#40;That <code>arrayref</code> statement enforces bounds-checking, and ensure that Julia will throw an appropriate error if you pass <code>applyf</code> an empty container.&#41;</p> <p>For the purpose of this blog post, things start to get especially interesting if we use a container that can store elements with different types &#40;here, type <code>Any</code>&#41;:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > c = <span class=hljs-built_in >Any</span>[<span class=hljs-number >100</span>];
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > applyf(c)
-</span>1
+&#41; &#61;&gt; Int64</code></pre> <p>The compiler knows that the answer will be 1, as long as the input array has an element indexable by 1. &#40;That <code>arrayref</code> statement enforces bounds-checking, and ensure that Julia will throw an appropriate error if you pass <code>applyf</code> an empty container.&#41;</p> <p>For the purpose of this blog post, things start to get especially interesting if we use a container that can store elements with different types &#40;here, type <code>Any</code>&#41;:</p> <pre><code class=language-julia-repl >julia&gt; c &#61; Any&#91;100&#93;;
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@code_typed</span> applyf(c)
-</span>CodeInfo(
-1 ─ %1 = Base.arrayref(true, container, 1)::Any
-│   %2 = (isa)(%1, Int64)::Bool
-└──      goto #3 if not %2
+julia&gt; applyf&#40;c&#41;
+1
+
+julia&gt; @code_typed applyf&#40;c&#41;
+CodeInfo&#40;
+1 ─ &#37;1 &#61; Base.arrayref&#40;true, container, 1&#41;::Any
+│   &#37;2 &#61; &#40;isa&#41;&#40;&#37;1, Int64&#41;::Bool
+└──      goto #3 if not &#37;2
 2 ─      goto #4
-3 ─ %5 = Main.f(%1)::Core.Const(1, false)
+3 ─ &#37;5 &#61; Main.f&#40;&#37;1&#41;::Core.Const&#40;1, false&#41;
 └──      goto #4
-4 ┄ %7 = φ (#2 =&gt; 1, #3 =&gt; %5)::Core.Const(1, false)
-└──      return %7
-) =&gt; Int64</code></pre> <p>This may seem a lot more complicated, but the take-home message is actually quite simple. First, look at that <code>arrayref</code> statement: it is annotated <code>::Any</code>, meaning that Julia can&#39;t predict in advance what it will return. Immediately after the reference, notice the <code>isa</code> statement followed by a <code>φ</code>; including the final return, all of this is essentially equivalent to:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs"><span class=hljs-keyword >if</span> <span class=hljs-keyword >isa</span>(x, <span class=hljs-built_in >Int</span>)
-    value = <span class=hljs-number >1</span>
-<span class=hljs-keyword >else</span>
-    value = f(x)::<span class=hljs-built_in >Int</span>
-<span class=hljs-keyword >end</span>
-<span class=hljs-keyword >return</span> value</code></pre> <p>The compiler might not know in advance what type <code>container&#91;1&#93;</code> will have, but it knows there&#39;s a method of <code>f</code> specialized for <code>Int</code>. To improve performance, it checks &#40;as efficiently as possible at runtime&#41; whether that method might be applicable, and if so calls the method it knows. In this case, <code>f</code> just returns a constant, so when applicable the compiler even hard-wires in the return value for you.</p> <p>However, the compiler also acknowledges the possiblity that <code>container&#91;1&#93;</code><em>won&#39;t</em> be an <code>Int</code>. That allows the above code to throw a MethodError:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > applyf(<span class=hljs-built_in >Any</span>[<span class=hljs-literal >true</span>])
-</span>ERROR: MethodError: no method matching f(::Type{Bool})
+4 ┄ &#37;7 &#61; φ &#40;#2 &#61;&gt; 1, #3 &#61;&gt; &#37;5&#41;::Core.Const&#40;1, false&#41;
+└──      return &#37;7
+&#41; &#61;&gt; Int64</code></pre> <p>This may seem a lot more complicated, but the take-home message is actually quite simple. First, look at that <code>arrayref</code> statement: it is annotated <code>::Any</code>, meaning that Julia can&#39;t predict in advance what it will return. Immediately after the reference, notice the <code>isa</code> statement followed by a <code>φ</code>; including the final return, all of this is essentially equivalent to:</p> <pre><code class=language-julia >if isa&#40;x, Int&#41;
+    value &#61; 1
+else
+    value &#61; f&#40;x&#41;::Int
+end
+return value</code></pre> <p>The compiler might not know in advance what type <code>container&#91;1&#93;</code> will have, but it knows there&#39;s a method of <code>f</code> specialized for <code>Int</code>. To improve performance, it checks &#40;as efficiently as possible at runtime&#41; whether that method might be applicable, and if so calls the method it knows. In this case, <code>f</code> just returns a constant, so when applicable the compiler even hard-wires in the return value for you.</p> <p>However, the compiler also acknowledges the possiblity that <code>container&#91;1&#93;</code><em>won&#39;t</em> be an <code>Int</code>. That allows the above code to throw a MethodError:</p> <pre><code class=language-julia-repl >julia&gt; applyf&#40;Any&#91;true&#93;&#41;
+ERROR: MethodError: no method matching f&#40;::Type&#123;Bool&#125;&#41;
 Closest candidates are:
-  f(::Int64) at REPL[1]:1
-[...]</code></pre> <p>That&#39;s similar to what happens if we see how a well-typed call gets inferred:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@code_typed</span> applyf([<span class=hljs-literal >true</span>])
-</span>CodeInfo(
-1 ─ %1 = Base.getindex(container, 1)::Bool
-│        Main.f(%1)::Union{}
+  f&#40;::Int64&#41; at REPL&#91;1&#93;:1
+&#91;...&#93;</code></pre> <p>That&#39;s similar to what happens if we see how a well-typed call gets inferred:</p> <pre><code class=language-julia-repl >julia&gt; @code_typed applyf&#40;&#91;true&#93;&#41;
+CodeInfo&#40;
+1 ─ &#37;1 &#61; Base.getindex&#40;container, 1&#41;::Bool
+│        Main.f&#40;&#37;1&#41;::Union&#123;&#125;
 └──      unreachable
-) =&gt; Union{}</code></pre> <p>where in this case the compiler knows that the call won&#39;t succeed. Calls annotated <code>::Union&#123;&#125;</code> do not return.</p> <h3 id=triggering_method_invalidation ><a href="#triggering_method_invalidation">Triggering method invalidation</a></h3> <p><strong>NOTE</strong>: This demo is being run on Julia&#39;s master branch &#40;which will become 1.6&#41;. Depending on your version of Julia, you might get different results and/or need to define more than one additional method for <code>f</code> to see the outcome shown here.</p> <p>Julia is interactive: we can define new methods on the fly and try them out. Having already run the above code in our session, let&#39;s see what happens when we define a new method for <code>f</code>:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs">f(::<span class=hljs-built_in >Bool</span>) = <span class=hljs-number >2</span></code></pre>
+&#41; &#61;&gt; Union&#123;&#125;</code></pre> <p>where in this case the compiler knows that the call won&#39;t succeed. Calls annotated <code>::Union&#123;&#125;</code> do not return.</p> <h3 id=triggering_method_invalidation ><a href="#triggering_method_invalidation">Triggering method invalidation</a></h3> <p><strong>NOTE</strong>: This demo is being run on Julia&#39;s master branch &#40;which will become 1.6&#41;. Depending on your version of Julia, you might get different results and/or need to define more than one additional method for <code>f</code> to see the outcome shown here.</p> <p>Julia is interactive: we can define new methods on the fly and try them out. Having already run the above code in our session, let&#39;s see what happens when we define a new method for <code>f</code>:</p> <pre><code class=language-julia >f&#40;::Bool&#41; &#61; 2</code></pre>
 <p>While the <code>Vector&#123;Int&#125;</code>-typed version of <code>applyf</code> is not changed by this new definition &#40;try it and see&#41;, both the <code>Bool</code>-typed version and the untyped version are different than previously:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">julia&gt; <span class=hljs-meta >@code_typed</span> applyf([<span class=hljs-literal >true</span>])
-CodeInfo(
-<span class=hljs-number >1</span> ─     Base.arrayref(<span class=hljs-literal >true</span>, container, <span class=hljs-number >1</span>)::<span class=hljs-built_in >Bool</span>
-└──     <span class=hljs-keyword >return</span> <span class=hljs-number >2</span>
-) =&gt; <span class=hljs-built_in >Int64</span>
+<pre><code class=language-julia >julia&gt; @code_typed applyf&#40;&#91;true&#93;&#41;
+CodeInfo&#40;
+1 ─     Base.arrayref&#40;true, container, 1&#41;::Bool
+└──     return 2
+&#41; &#61;&gt; Int64
 
-julia&gt; <span class=hljs-meta >@code_typed</span> applyf(<span class=hljs-built_in >Any</span>[<span class=hljs-literal >true</span>])
-CodeInfo(
-<span class=hljs-number >1</span> ─ %<span class=hljs-number >1</span> = Base.arrayref(<span class=hljs-literal >true</span>, container, <span class=hljs-number >1</span>)::<span class=hljs-built_in >Any</span>
-│   %<span class=hljs-number >2</span> = Main.f(%<span class=hljs-number >1</span>)::<span class=hljs-built_in >Int64</span>
-└──      <span class=hljs-keyword >return</span> %<span class=hljs-number >2</span>
-) =&gt; <span class=hljs-built_in >Int64</span></code></pre>
+julia&gt; @code_typed applyf&#40;Any&#91;true&#93;&#41;
+CodeInfo&#40;
+1 ─ &#37;1 &#61; Base.arrayref&#40;true, container, 1&#41;::Any
+│   &#37;2 &#61; Main.f&#40;&#37;1&#41;::Int64
+└──      return &#37;2
+&#41; &#61;&gt; Int64</code></pre>
 <p>This shows that defining a new method for <code>f</code> forced <em>recompilation</em> of these <code>MethodInstance</code>s.</p>
 <p>You can see that Julia no longer uses that optimization checking whether <code>container&#91;1&#93;</code> happens to be an <code>Int</code>. Experience has shown that once a method has a couple of specializations, it may accumulate yet more, and to reduce the amount of recompilation needed Julia quickly abandons attempts to optimize the case handling containers with unknown element types. If you look carefully, you&#39;ll notice one remaining optimization: the call to <code>Main.f</code> is type-asserted as <code>Int</code>, since both known methods of <code>f</code> return an <code>Int</code>. This can be a very useful performance optimization for any code that uses the output of <code>applyf</code>. But define two additional methods of <code>f</code>,</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">julia&gt; f(::<span class=hljs-built_in >String</span>) = <span class=hljs-number >3</span>
-f (generic <span class=hljs-keyword >function</span> with <span class=hljs-number >4</span> methods)
+<pre><code class=language-julia >julia&gt; f&#40;::String&#41; &#61; 3
+f &#40;generic function with 4 methods&#41;
 
-julia&gt; f(::<span class=hljs-built_in >Dict</span>) = <span class=hljs-number >4</span>
-f (generic <span class=hljs-keyword >function</span> with <span class=hljs-number >4</span> methods)
+julia&gt; f&#40;::Dict&#41; &#61; 4
+f &#40;generic function with 4 methods&#41;
 
-julia&gt; <span class=hljs-meta >@code_typed</span> applyf(<span class=hljs-built_in >Any</span>[<span class=hljs-literal >true</span>])
-CodeInfo(
-<span class=hljs-number >1</span> ─ %<span class=hljs-number >1</span> = Base.arrayref(<span class=hljs-literal >true</span>, container, <span class=hljs-number >1</span>)::<span class=hljs-built_in >Any</span>
-│   %<span class=hljs-number >2</span> = Main.f(%<span class=hljs-number >1</span>)::<span class=hljs-built_in >Any</span>
-└──      <span class=hljs-keyword >return</span> %<span class=hljs-number >2</span>
-) =&gt; <span class=hljs-built_in >Any</span></code></pre>
+julia&gt; @code_typed applyf&#40;Any&#91;true&#93;&#41;
+CodeInfo&#40;
+1 ─ &#37;1 &#61; Base.arrayref&#40;true, container, 1&#41;::Any
+│   &#37;2 &#61; Main.f&#40;&#37;1&#41;::Any
+└──      return &#37;2
+&#41; &#61;&gt; Any</code></pre>
 <p>and you&#39;ll see that even this optimization is now abandoned. This is because checking lots of methods to see if they all return <code>Int</code> is too costly an operation to be worth doing in all cases.</p>
 <p>Altogether, <code>apply&#40;::Vector&#123;Any&#125;&#41;</code> has been compiled three times: once when <code>f&#40;::Int&#41;</code> was the only method for <code>f</code>, once where there were two methods, and once when there were four. Had Julia known in advance that we&#39;d end up here, it never would have bothered to compile those intermediate versions; recompilation takes time, and we&#39;d rather avoid spending that time if it&#39;s not absolutely necessary. Fortunately, from where we are now Julia has stopped making assumptions about how many methods of <code>f</code> there will be, so from this point forward we won&#39;t need to recompile <code>applyf</code> for a <code>Vector&#123;Any&#125;</code> even if we define further methods of <code>f</code>.</p>
 <p>Recompilation is triggered by two events:</p>
@@ -87,35 +81,23 @@ CodeInfo(
 <p>You can see that key packages used by large portions of the Julia ecosystem have historically invalidated hundreds or thousands of <code>MethodInstance</code>s, sometimes more than 10&#37; of the total number of <code>MethodInstance</code>s present before loading the package. The situation has been dramatically improved on Julia 1.6, but there remains more work left to do, especially for particular packages.</p>
 <h2 id=what_are_the_impacts_of_method_invalidation ><a href="#what_are_the_impacts_of_method_invalidation">What are the impacts of method invalidation?</a></h2>
 <p>The next time you want to call functionality that gets invalidated, you have to wait for recompilation. We can illustrate this on Julia 1.5 using everyone&#39;s favorite example, plotting:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >using</span> Plots
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> display(plot(rand(<span class=hljs-number >5</span>)))
-</span>  7.717729 seconds (15.27 M allocations: 797.207 MiB, 3.59% gc time)</code></pre>
+<pre><code class=language-julia-repl >julia&gt; using Plots
+
+julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
+  7.717729 seconds &#40;15.27 M allocations: 797.207 MiB, 3.59&#37; gc time&#41;</code></pre>
 <p>As is well known, it&#39;s much faster the second time, because it&#39;s already compiled:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> display(plot(rand(<span class=hljs-number >5</span>)))
-</span>  0.311226 seconds (19.93 k allocations: 775.055 KiB)</code></pre>
+<pre><code class=language-julia-repl >julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
+  0.311226 seconds &#40;19.93 k allocations: 775.055 KiB&#41;</code></pre>
 <p>Moreover, if you decide you want some additional functionality via</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >using</span> StaticArrays
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> display(plot(rand(<span class=hljs-number >5</span>)))
-</span>  0.305394 seconds (19.96 k allocations: 781.836 KiB)</code></pre>
+<pre><code class=language-julia-repl >julia&gt; using StaticArrays
+
+julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
+  0.305394 seconds &#40;19.96 k allocations: 781.836 KiB&#41;</code></pre>
 <p>you can see it&#39;s essentially as fast again.  However, StaticArrays was already present because it gets loaded internally by Plots–-all the invalidations it causes have already happened before we issued that second plotting command.  Let&#39;s contrast that with what happens if you load a package that does a lot of <em>new</em> invalidation &#40;again, this is on Julia versions 1.5 and below&#41;:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >using</span> SIMD
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> display(plot(rand(<span class=hljs-number >5</span>)))
-</span>  7.238336 seconds (26.50 M allocations: 1.338 GiB, 7.88% gc time)</code></pre>
+<pre><code class=language-julia-repl >julia&gt; using SIMD
+
+julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
+  7.238336 seconds &#40;26.50 M allocations: 1.338 GiB, 7.88&#37; gc time&#41;</code></pre>
 <p>Because so much got invalidated by loading SIMD, Julia had to recompile many methods before it could once again produce a plot, so that &quot;time to second plot&quot; was nearly as bad as &quot;time to first plot.&quot;</p>
 <p>This doesn&#39;t just affect plotting or packages. For example, loading packages could transiently make the REPL, the next Pkg update, or the next call to a distributed worker lag for several seconds.</p>
 <p>You can minimize some of the costs of invalidation by loading all packages at the outset–if all invalidations happen before you start compiling very much code, then the first compilation already takes the full suite of methods into account.</p>
@@ -132,11 +114,8 @@ https://github.com/highlightjs/highlight.js/issues/2277
 <p>Recently, the <a href="https://github.com/timholy/SnoopCompile.jl">SnoopCompile</a> package gained the ability to analyze invalidations and help developers fix them. Because these tools will likely change over time, this blog post will only scratch the surface; people who want to help fix invalidations are encouraged to read <a href="https://timholy.github.io/SnoopCompile.jl/stable/snoopr/">SnoopCompile&#39;s documentation</a> for further detail. There is also a <a href="https://www.youtube.com/watch?v&#61;7VbXbI6OmYo">video</a> available with a live-session fixing a real-world invalidation, which might serve as a useful example.</p>
 <p>But to give you a taste of what this looks like, here are a couple of screenshots. These were taken in Julia&#39;s REPL, but you can also use these tools in <a href="https://www.julia-vscode.org/">vscode</a> or other environments.</p>
 <p>First, let&#39;s look at a simple way &#40;one that is not always precisely accurate, see SnoopCompile&#39;s documentation&#41; to collect data on a package:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >using</span> SnoopCompile
-trees = invalidation_trees(<span class=hljs-meta >@snoopr</span> <span class=hljs-keyword >using</span> SIMD)</code></pre>
+<pre><code class=language-julia >using SnoopCompile
+trees &#61; invalidation_trees&#40;@snoopr using SIMD&#41;</code></pre>
 <p>which in the REPL looks like this:</p>
 <p><img src="/assets/blog/2020-invalidations/SIMD_invalidations.png" alt=snoopr_simd  /></p>
 <p>This prints out a list of method definitions &#40;shown in light purple&#41; that triggered invalidations &#40;shown in yellow&#41;. In very rough terms, you can tell how &quot;important&quot; these are by the number of children; the ones with more children are listed last. You can gain more insight into exactly what happened, and what the consequences were, with <code>ascend</code>:</p>
@@ -147,39 +126,33 @@ trees = invalidation_trees(<span class=hljs-meta >@snoopr</span> <span class=hlj
 <h2 id=summary ><a href="#summary">Summary</a></h2>
 <h3 id=impacts_of_progress_to_date ><a href="#impacts_of_progress_to_date">Impacts of progress to date</a></h3>
 <p>The cumulative impact of these and other changes over the course of the development &#40;so far&#41; of Julia 1.6 is noticeable. For example, on Julia 1.5 we have extra latencies to load the next package &#40;due to the loading code being invalidated&#41; and to execute already-compiled code if it gets invalidated by loading other packages:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> <span class=hljs-keyword >using</span> Plots
-</span>  7.252560 seconds (13.27 M allocations: 792.701 MiB, 3.19% gc time)
+<pre><code class=language-julia-repl >julia&gt; @time using Plots
+  7.252560 seconds &#40;13.27 M allocations: 792.701 MiB, 3.19&#37; gc time&#41;
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> <span class=hljs-keyword >using</span> Example
-</span>  0.698413 seconds (1.60 M allocations: 79.200 MiB, 4.90% gc time)
+julia&gt; @time using Example
+  0.698413 seconds &#40;1.60 M allocations: 79.200 MiB, 4.90&#37; gc time&#41;
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> display(plot(rand(<span class=hljs-number >5</span>)))
-</span>  6.605240 seconds (11.02 M allocations: 568.698 MiB, 1.75% gc time)
+julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
+  6.605240 seconds &#40;11.02 M allocations: 568.698 MiB, 1.75&#37; gc time&#41;
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >using</span> SIMD
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> display(plot(rand(<span class=hljs-number >5</span>)))
-</span>  5.724359 seconds (16.36 M allocations: 825.491 MiB, 7.77% gc time)</code></pre>
+julia&gt; using SIMD
+
+julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
+  5.724359 seconds &#40;16.36 M allocations: 825.491 MiB, 7.77&#37; gc time&#41;</code></pre>
 <p>In contrast, on the current development branch of Julia pre-1.6 &#40;commit 1c9c24170c53273832088431de99fe19247af172&#41;, we have</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> <span class=hljs-keyword >using</span> Plots
-</span>  3.133783 seconds (7.49 M allocations: 526.797 MiB, 6.90% gc time)
+<pre><code class=language-julia-repl >julia&gt; @time using Plots
+  3.133783 seconds &#40;7.49 M allocations: 526.797 MiB, 6.90&#37; gc time&#41;
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> <span class=hljs-keyword >using</span> Example
-</span>  0.002499 seconds (2.69 k allocations: 193.344 KiB)
+julia&gt; @time using Example
+  0.002499 seconds &#40;2.69 k allocations: 193.344 KiB&#41;
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> display(plot(rand(<span class=hljs-number >5</span>)))
-</span>  5.481113 seconds (9.71 M allocations: 562.839 MiB, 2.28% gc time)
+julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
+  5.481113 seconds &#40;9.71 M allocations: 562.839 MiB, 2.28&#37; gc time&#41;
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >using</span> SIMD
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-meta >@time</span> display(plot(rand(<span class=hljs-number >5</span>)))
-</span>  0.115085 seconds (395.11 k allocations: 22.646 MiB)</code></pre>
+julia&gt; using SIMD
+
+julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
+  0.115085 seconds &#40;395.11 k allocations: 22.646 MiB&#41;</code></pre>
 <p>You can see that the first load is dramatically faster, an effect that is partly but not completely due to reduction in invalidations &#40;reducing invalidations helped by preventing sequential invalidation of the loading code itself as Julia loads the sequence of packages needed for Plots&#41;.  This effect is illustrated clearly by the load of <code>Example</code>, which on Julia 1.5 led to another 0.7s worth of recompilation due to invalidations triggered by loading Plots; on Julia&#39;s master branch, this cost is gone because Plots does not invalidate the loading code.</p>
 <p>Likewise, the second call to <code>display&#40;plot&#40;...&#41;&#41;</code> is much faster, because loading SIMD did not extensively invalidate crucial code compiled for plotting.</p>
 <p>Perhaps the biggest mystery is, why is the first usage faster? There likely to be several contributions:</p>
@@ -203,8 +176,8 @@ https://github.com/highlightjs/highlight.js/issues/2277
 
     
     
-        
-
+        <script src="/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
 
     
 

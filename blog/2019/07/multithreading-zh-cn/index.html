@@ -1,167 +1,134 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Julia将支持可组合的多线程并行机制</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Julia将支持可组合的多线程并行机制"> <meta property="og:description" content=" Julia将支持可组合的多线程并行机制 | 摩尔定律带来的免费性能提升（free lunch） free lunch 几近结束，... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Julia将支持可组合的多线程并行机制 <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 30 July 2019 </span> | <span style="font-weight: bold;">Jeff Bezanson (Julia Computing), Jameson Nash (Julia Computing), Kiran Pamnany (Intel)</span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2019/07/multithreading-zh-cn.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>摩尔定律带来的<a href="http://www.gotw.ca/publications/concurrency-ddj.htm">免费性能提升（free lunch）</a>几近结束， 软件性能越来越依赖于利用多个处理器核心。 Julia社区一直以对计算性能的关注而出名。 为了追求性能，我们已经为多进程、分布式编程和 GPU 构建了许多功能， 但多年来，我们一直知道我们还需要一个可组合的多线程支持。 今天，我们很高兴地宣布这一方向的重要进展。 我们将发布一个全新的Julia线程接口： 一个受到<a href="http://supertech.csail.mit.edu/cilk/">Cilk</a>，<a href="https://software.intel.com/en-us/intel-tbb/">Intel Threading Building Blocks</a><a href=TBB ></a> 以及 <a href="https://tour.golang.org/concurrency/1">Go</a>等启发的 通用任务并行（general task parallelism）机制。 任务并行现在已在 v1.3.0-alpha 版本中提供，Julia 1.3.0 的早期预览版预计将在几个月内发布。 您可以在下载页面上找到具有此功能的二进制文件，或者从源代码<a href="https://github.com/JuliaLang/julia">主分支</a>构建。</p> <p>在这个例子中，程序的任何部分都可以标记为并行执行， 并将启动一个“任务”在可用线程上自动运行该代码。 动态调度程序会处理所有决策和细节。 下面是一个并行代码示例，现在您可以在 Julia 中如此编写:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs"><span class=hljs-keyword >import</span> Base.Threads.<span class=hljs-meta >@spawn</span>
+<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Julia将支持可组合的多线程并行机制</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Julia将支持可组合的多线程并行机制"> <meta property="og:description" content=" Julia将支持可组合的多线程并行机制 | 摩尔定律带来的免费性能提升（free lunch） free lunch 几近结束，... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Julia将支持可组合的多线程并行机制 <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 30 July 2019 </span> | <span style="font-weight: bold;">Jeff Bezanson (Julia Computing), Jameson Nash (Julia Computing), Kiran Pamnany (Intel)</span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2019/07/multithreading-zh-cn.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>摩尔定律带来的<a href="http://www.gotw.ca/publications/concurrency-ddj.htm">免费性能提升（free lunch）</a>几近结束， 软件性能越来越依赖于利用多个处理器核心。 Julia社区一直以对计算性能的关注而出名。 为了追求性能，我们已经为多进程、分布式编程和 GPU 构建了许多功能， 但多年来，我们一直知道我们还需要一个可组合的多线程支持。 今天，我们很高兴地宣布这一方向的重要进展。 我们将发布一个全新的Julia线程接口： 一个受到<a href="http://supertech.csail.mit.edu/cilk/">Cilk</a>，<a href="https://software.intel.com/en-us/intel-tbb/">Intel Threading Building Blocks</a><a href=TBB ></a> 以及 <a href="https://tour.golang.org/concurrency/1">Go</a>等启发的 通用任务并行（general task parallelism）机制。 任务并行现在已在 v1.3.0-alpha 版本中提供，Julia 1.3.0 的早期预览版预计将在几个月内发布。 您可以在下载页面上找到具有此功能的二进制文件，或者从源代码<a href="https://github.com/JuliaLang/julia">主分支</a>构建。</p> <p>在这个例子中，程序的任何部分都可以标记为并行执行， 并将启动一个“任务”在可用线程上自动运行该代码。 动态调度程序会处理所有决策和细节。 下面是一个并行代码示例，现在您可以在 Julia 中如此编写:</p> <pre><code class=language-julia >import Base.Threads.@spawn
 
-<span class=hljs-keyword >function</span> fib(n::<span class=hljs-built_in >Int</span>)
-    <span class=hljs-keyword >if</span> n &lt; <span class=hljs-number >2</span>
-        <span class=hljs-keyword >return</span> n
-    <span class=hljs-keyword >end</span>
-    t = <span class=hljs-meta >@spawn</span> fib(n - <span class=hljs-number >2</span>)
-    <span class=hljs-keyword >return</span> fib(n - <span class=hljs-number >1</span>) + fetch(t)
-<span class=hljs-keyword >end</span></code></pre> <p>当然，这是斐波那契序列的非常低效的经典树型递归实现。 但，它可以在任意数量的处理器核心上运行！ 这一行 <code>t &#61; @spawn fib&#40;n - 2&#41;</code> 启动一个计算 <code>fib&#40;n - 2&#41;</code> 的任务， 该任务与计算 <code>fib&#40;n - 1&#41;</code> 的代码并行运行。 而 <code>fetch&#40;t&#41;</code> 将等待任务 <code>t</code> 完成并获取其返回值。</p> <p>这一并行模型有许多奇妙的特性。我们认为它有点像垃圾回收（GC）： 使用 GC，你可以自由分配对象而无需担心何时以及如何释放对象。 而使用任务并行，您可以自由生成任务（可能多达数百万个），而无需担心它们在哪运行。</p> <p>这一模型非常轻量，且不用关心底层细节。 您无需显式启动和结束线程，甚至不需要知道有多少处理器或线程（尽管仍可以按需得知）。</p> <p>该模型是可嵌套，可组合的： 您可以启动并行任务，这些任务调用库函数，而这些函数本身也可以启动并行任务，一切都会正常运行。 您的 CPU 不会因线程过多而饱和。 此特性对于高级语言至关重要，因为它们由库函数完成大量工作。 您只需要自由编写所需的任何代码（包括并行代码），而无需担心它调用的库是如何实现的 （目前仅适用于 Julia 代码，但将来我们计划将其扩展到 native 库（如 BLAS））。</p> <p>事实上，这是此次发布令人兴奋的主要原因： 从现在开始，整个 Julia 生态系统都将能添加多核并行的能力。</p> <div class=franklin-toc ><ol><li><a href="#一些历史">一些历史</a><li><a href="#如何使用">如何使用</a><li><a href="#如何迁移到并行世界">如何迁移到并行世界</a><ol><li><a href="#任务调度和同步">任务调度和同步</a><li><a href="#线程局部状态">线程局部状态</a><li><a href="#随机数生成">随机数生成</a></ol><li><a href="#深入底层">深入底层</a><ol><li><a href="#分配和切换任务堆栈">分配和切换任务堆栈</a><li><a href="#io">I/O</a><li><a href="#跨系统线程的任务迁移">跨系统线程的任务迁移</a><li><a href="#休眠空闲线程">休眠空闲线程</a><li><a href="#调度器在哪运行">调度器在哪运行？</a><li><a href="#经典错误">经典错误</a></ol><li><a href="#展望">展望</a><li><a href="#致谢">致谢</a></ol></div> <h2 id="一些历史"><a href="#一些历史">一些历史</a></h2> <p>这一新功能最令人惊讶的方面之一是它极长的开发历史。 从非常早期（甚至从 0.1 版本之前）开始，Julia 就提供对称协程的<code>Task</code>类型，该类型用于基于事件的 I/O。 因此，我们始终在语言中具有<em>并发</em>单元（独立的执行流），只是它不是并行的（同时的执行流）。 我们需要基于线程的并行性，因此在 2014 年（大致是 0.3 版本），我们着手进行漫长的重构过程来使代码线程安全。 Yichao Yu在垃圾回收器和线程局部存储性能方面投入了一些特别令人印象深刻的工作。 作者之一（Kiran）设计了一些基础结构，用于调度多个线程和管理原子数据结构。</p> <p>大约两年后，在版本 0.5 中，我们发布了具有“实验”性质的宏 <code>@threads for</code> ， 该宏可以处理在所有核心上运行的简单并行循环。 尽管这不是我们想要的最终设计，但它做了两项重要的工作： 它让 Julia 程序员可以利用多个核心，并提供测试用例来清除运行时中与线程相关的Bug。 然而，这个早期版本的 <code>@threads</code> 有一些巨大限制： <code>@threads</code> 循环不能嵌套：如果调用的函数递归调用<code>@threads</code>，这些内部循环将只能使用调用它们的CPU； 它还与我们的 <code>Task</code> 和 I/O 系统不兼容：您无法在线程循环内进行任何 I/O 或在 <code>Task</code> 间切换。</p> <p>因此，逻辑上接下来应该将 <code>Task</code> 和线程系统合并， 并且“简单地”（此处应有笑声）允许 <code>Task</code> 在线程池上同时运行。 我们与 Arch Robison（当时在英特尔公司）进行了许多早期讨论， 并得出结论：这就是我们语言的最佳模式。 在版本 0.5（2016 年左右）之后，Kiran 开始基于深度优先调度尝试新的并行任务调度器<a href="https://github.com/kpamnany/partr">partr</a>。 他用一些漂亮的动画幻灯片向我们所有人推销它，不过他愿意做一些工作也没什么坏处。 计划是首先将 partr 开发为独立的 C 库，以便可以自行进行测试和性能测试， 然后将其与 Julia 运行时集成。</p> <p>在 Kiran 完成独立版本的 Partr 之后， 我们中的一些人（本文的作者，以及Keno Fischer和英特尔的Anton Malakhov）开始了一系列面对面的工作， 以研究如何进行集成。Julia 运行时带来了许多额外的功能，如垃圾回收和基于事件的 I/O，因此这一工作并不简单。 有点令人失望的是，搞定新系统的时间比预期的要长得多——将近两年，尽管对于一个复杂的软件项目来说这一周期并不罕见。 这篇文章的稍后部分将为好奇的人解释一些内部细节和涉及的难点，但首先让我们把它搁在一边。</p> <h2 id="如何使用"><a href="#如何使用">如何使用</a></h2> <p>要在 Julia 中使用多线程，请设置环境变量：JULIA<em>NUM</em>THREADS</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="bash hljs">$ JULIA_NUM_THREADS=4 ./julia</code></pre>
+function fib&#40;n::Int&#41;
+    if n &lt; 2
+        return n
+    end
+    t &#61; @spawn fib&#40;n - 2&#41;
+    return fib&#40;n - 1&#41; &#43; fetch&#40;t&#41;
+end</code></pre> <p>当然，这是斐波那契序列的非常低效的经典树型递归实现。 但，它可以在任意数量的处理器核心上运行！ 这一行 <code>t &#61; @spawn fib&#40;n - 2&#41;</code> 启动一个计算 <code>fib&#40;n - 2&#41;</code> 的任务， 该任务与计算 <code>fib&#40;n - 1&#41;</code> 的代码并行运行。 而 <code>fetch&#40;t&#41;</code> 将等待任务 <code>t</code> 完成并获取其返回值。</p> <p>这一并行模型有许多奇妙的特性。我们认为它有点像垃圾回收（GC）： 使用 GC，你可以自由分配对象而无需担心何时以及如何释放对象。 而使用任务并行，您可以自由生成任务（可能多达数百万个），而无需担心它们在哪运行。</p> <p>这一模型非常轻量，且不用关心底层细节。 您无需显式启动和结束线程，甚至不需要知道有多少处理器或线程（尽管仍可以按需得知）。</p> <p>该模型是可嵌套，可组合的： 您可以启动并行任务，这些任务调用库函数，而这些函数本身也可以启动并行任务，一切都会正常运行。 您的 CPU 不会因线程过多而饱和。 此特性对于高级语言至关重要，因为它们由库函数完成大量工作。 您只需要自由编写所需的任何代码（包括并行代码），而无需担心它调用的库是如何实现的 （目前仅适用于 Julia 代码，但将来我们计划将其扩展到 native 库（如 BLAS））。</p> <p>事实上，这是此次发布令人兴奋的主要原因： 从现在开始，整个 Julia 生态系统都将能添加多核并行的能力。</p> <div class=franklin-toc ><ol><li><a href="#一些历史">一些历史</a><li><a href="#如何使用">如何使用</a><li><a href="#如何迁移到并行世界">如何迁移到并行世界</a><ol><li><a href="#任务调度和同步">任务调度和同步</a><li><a href="#线程局部状态">线程局部状态</a><li><a href="#随机数生成">随机数生成</a></ol><li><a href="#深入底层">深入底层</a><ol><li><a href="#分配和切换任务堆栈">分配和切换任务堆栈</a><li><a href="#io">I/O</a><li><a href="#跨系统线程的任务迁移">跨系统线程的任务迁移</a><li><a href="#休眠空闲线程">休眠空闲线程</a><li><a href="#调度器在哪运行">调度器在哪运行？</a><li><a href="#经典错误">经典错误</a></ol><li><a href="#展望">展望</a><li><a href="#致谢">致谢</a></ol></div> <h2 id="一些历史"><a href="#一些历史">一些历史</a></h2> <p>这一新功能最令人惊讶的方面之一是它极长的开发历史。 从非常早期（甚至从 0.1 版本之前）开始，Julia 就提供对称协程的<code>Task</code>类型，该类型用于基于事件的 I/O。 因此，我们始终在语言中具有<em>并发</em>单元（独立的执行流），只是它不是并行的（同时的执行流）。 我们需要基于线程的并行性，因此在 2014 年（大致是 0.3 版本），我们着手进行漫长的重构过程来使代码线程安全。 Yichao Yu在垃圾回收器和线程局部存储性能方面投入了一些特别令人印象深刻的工作。 作者之一（Kiran）设计了一些基础结构，用于调度多个线程和管理原子数据结构。</p> <p>大约两年后，在版本 0.5 中，我们发布了具有“实验”性质的宏 <code>@threads for</code> ， 该宏可以处理在所有核心上运行的简单并行循环。 尽管这不是我们想要的最终设计，但它做了两项重要的工作： 它让 Julia 程序员可以利用多个核心，并提供测试用例来清除运行时中与线程相关的Bug。 然而，这个早期版本的 <code>@threads</code> 有一些巨大限制： <code>@threads</code> 循环不能嵌套：如果调用的函数递归调用<code>@threads</code>，这些内部循环将只能使用调用它们的CPU； 它还与我们的 <code>Task</code> 和 I/O 系统不兼容：您无法在线程循环内进行任何 I/O 或在 <code>Task</code> 间切换。</p> <p>因此，逻辑上接下来应该将 <code>Task</code> 和线程系统合并， 并且“简单地”（此处应有笑声）允许 <code>Task</code> 在线程池上同时运行。 我们与 Arch Robison（当时在英特尔公司）进行了许多早期讨论， 并得出结论：这就是我们语言的最佳模式。 在版本 0.5（2016 年左右）之后，Kiran 开始基于深度优先调度尝试新的并行任务调度器<a href="https://github.com/kpamnany/partr">partr</a>。 他用一些漂亮的动画幻灯片向我们所有人推销它，不过他愿意做一些工作也没什么坏处。 计划是首先将 partr 开发为独立的 C 库，以便可以自行进行测试和性能测试， 然后将其与 Julia 运行时集成。</p> <p>在 Kiran 完成独立版本的 Partr 之后， 我们中的一些人（本文的作者，以及Keno Fischer和英特尔的Anton Malakhov）开始了一系列面对面的工作， 以研究如何进行集成。Julia 运行时带来了许多额外的功能，如垃圾回收和基于事件的 I/O，因此这一工作并不简单。 有点令人失望的是，搞定新系统的时间比预期的要长得多——将近两年，尽管对于一个复杂的软件项目来说这一周期并不罕见。 这篇文章的稍后部分将为好奇的人解释一些内部细节和涉及的难点，但首先让我们把它搁在一边。</p> <h2 id="如何使用"><a href="#如何使用">如何使用</a></h2> <p>要在 Julia 中使用多线程，请设置环境变量：JULIA<em>NUM</em>THREADS</p> <pre><code class=language-bash >&#36; JULIA_NUM_THREADS&#61;4 ./julia</code></pre>
 <p><a href="https://junolab.org/">Juno IDE</a> 可根据可用处理器核心数自动设置线程数，还提供用于更改线程数的图形界面，因此在该环境中不需要手动设置环境变量。</p>
 <p><code>Base</code> 的子模块 <code>Threads</code> 包含大多数线程特定的功能，例如查询线程数和当前线程的ID：</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Threads.nthreads()
-</span>4
+<pre><code class=language-julia-repl >julia&gt; Threads.nthreads&#40;&#41;
+4
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > Threads.threadid()
-</span>1</code></pre>
+julia&gt; Threads.threadid&#40;&#41;
+1</code></pre>
 <p>现有的 <code>@threads for</code> 仍然可用，而且现在完全支持 I/O：</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > Threads.<span class=hljs-meta >@threads</span> <span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:<span class=hljs-number >10</span>
-           println(<span class=hljs-string >&quot;i = <span class=hljs-variable >$i</span> on thread <span class=hljs-subst >$(Threads.threadid()</span>)&quot;</span>)
-       <span class=hljs-keyword >end</span>
-</span>i = 1 on thread 1
-i = 7 on thread 3
-i = 2 on thread 1
-i = 8 on thread 3
-i = 3 on thread 1
-i = 9 on thread 4
-i = 10 on thread 4
-i = 4 on thread 2
-i = 5 on thread 2
-i = 6 on thread 2</code></pre>
+<pre><code class=language-julia-repl >julia&gt; Threads.@threads for i &#61; 1:10
+           println&#40;&quot;i &#61; &#36;i on thread &#36;&#40;Threads.threadid&#40;&#41;&#41;&quot;&#41;
+       end
+i &#61; 1 on thread 1
+i &#61; 7 on thread 3
+i &#61; 2 on thread 1
+i &#61; 8 on thread 3
+i &#61; 3 on thread 1
+i &#61; 9 on thread 4
+i &#61; 10 on thread 4
+i &#61; 4 on thread 2
+i &#61; 5 on thread 2
+i &#61; 6 on thread 2</code></pre>
 <p>废话少说，让我们尝试一下嵌套并行。 一个经典示例是并归排序，它将其输入分成两部分，并递归地对各部分排序。 这两部分可以独立排序，自然带来了并行的可能。 下面是代码:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >import</span> Base.Threads.<span class=hljs-meta >@spawn</span>
+<pre><code class=language-julia >import Base.Threads.@spawn
 
-<span class=hljs-comment ># sort the elements of `v` in place, from indices `lo` to `hi` inclusive</span>
-<span class=hljs-keyword >function</span> psort!(v, lo::<span class=hljs-built_in >Int</span>=<span class=hljs-number >1</span>, hi::<span class=hljs-built_in >Int</span>=length(v))
-    <span class=hljs-keyword >if</span> lo &gt;= hi                       <span class=hljs-comment ># 1 或 0 个元素，无需操作</span>
-        <span class=hljs-keyword >return</span> v
-    <span class=hljs-keyword >end</span>
-    <span class=hljs-keyword >if</span> hi - lo &lt; <span class=hljs-number >100000</span>               <span class=hljs-comment ># 低于下限则串行运行</span>
-        sort!(view(v, lo:hi), alg = <span class=hljs-literal >MergeSort</span>)
-        <span class=hljs-keyword >return</span> v
-    <span class=hljs-keyword >end</span>
+# sort the elements of &#96;v&#96; in place, from indices &#96;lo&#96; to &#96;hi&#96; inclusive
+function psort&#33;&#40;v, lo::Int&#61;1, hi::Int&#61;length&#40;v&#41;&#41;
+    if lo &gt;&#61; hi                       # 1 或 0 个元素，无需操作
+        return v
+    end
+    if hi - lo &lt; 100000               # 低于下限则串行运行
+        sort&#33;&#40;view&#40;v, lo:hi&#41;, alg &#61; MergeSort&#41;
+        return v
+    end
 
-    mid = (lo+hi)&gt;&gt;&gt;<span class=hljs-number >1</span>                 <span class=hljs-comment ># 找到中点</span>
+    mid &#61; &#40;lo&#43;hi&#41;&gt;&gt;&gt;1                 # 找到中点
 
-    half = <span class=hljs-meta >@spawn</span> psort!(v, lo, mid)  <span class=hljs-comment ># 排序前半部分的任务将会与</span>
-    psort!(v, mid+<span class=hljs-number >1</span>, hi)              <span class=hljs-comment ># 当前排序后半部分的代码并行运行</span>
-                                      <span class=hljs-comment >#</span>
-    wait(half)                        <span class=hljs-comment ># 等待前半部分完成</span>
+    half &#61; @spawn psort&#33;&#40;v, lo, mid&#41;  # 排序前半部分的任务将会与
+    psort&#33;&#40;v, mid&#43;1, hi&#41;              # 当前排序后半部分的代码并行运行
+                                      #
+    wait&#40;half&#41;                        # 等待前半部分完成
 
-    temp = v[lo:mid]                  <span class=hljs-comment ># 用于合并的空间</span>
+    temp &#61; v&#91;lo:mid&#93;                  # 用于合并的空间
 
-    i, k, j = <span class=hljs-number >1</span>, lo, mid+<span class=hljs-number >1</span>            <span class=hljs-comment ># 合并两个已排序的子数组</span>
-    <span class=hljs-meta >@inbounds</span> <span class=hljs-keyword >while</span> k &lt; j &lt;= hi
-        <span class=hljs-keyword >if</span> v[j] &lt; temp[i]
-            v[k] = v[j]
-            j += <span class=hljs-number >1</span>
-        <span class=hljs-keyword >else</span>
-            v[k] = temp[i]
-            i += <span class=hljs-number >1</span>
-        <span class=hljs-keyword >end</span>
-        k += <span class=hljs-number >1</span>
-    <span class=hljs-keyword >end</span>
-    <span class=hljs-meta >@inbounds</span> <span class=hljs-keyword >while</span> k &lt; j
-        v[k] = temp[i]
-        k += <span class=hljs-number >1</span>
-        i += <span class=hljs-number >1</span>
-    <span class=hljs-keyword >end</span>
+    i, k, j &#61; 1, lo, mid&#43;1            # 合并两个已排序的子数组
+    @inbounds while k &lt; j &lt;&#61; hi
+        if v&#91;j&#93; &lt; temp&#91;i&#93;
+            v&#91;k&#93; &#61; v&#91;j&#93;
+            j &#43;&#61; 1
+        else
+            v&#91;k&#93; &#61; temp&#91;i&#93;
+            i &#43;&#61; 1
+        end
+        k &#43;&#61; 1
+    end
+    @inbounds while k &lt; j
+        v&#91;k&#93; &#61; temp&#91;i&#93;
+        k &#43;&#61; 1
+        i &#43;&#61; 1
+    end
 
-    <span class=hljs-keyword >return</span> v
-<span class=hljs-keyword >end</span></code></pre>
+    return v
+end</code></pre>
 <p>这只是一个标准的并归排序实现，和 Julia <code>Base</code>库中的实现大体相同， 仅对其中一个递归调用添加了一个小小的 <code>@spawn</code>。 Julia 的 <code>Distributed</code> 标准库在相当长的一段时间内也导出了宏<code>@spawn</code>，但我们计划将其弃用， 以支持新的线程语义（尽管它仍将在 1.x 版本中提供，用于提供向前兼容性）。 这种表达并行的方式在共享内存中更有用，在任务并行 API 中，&quot;spawn&quot;是一个相当标准的术语（如在 Cilk 和 TBB 中就均被使用）。</p>
 <p><code>wait</code> 只需等待指定任务完成。代码通过修改其输入来工作，因此我们不需要任务的返回值。 与前面的 <code>fib</code> 示例中使用的 <code>fetch</code> 的唯一区别是不需要返回值。 请注意，我们在调用 Julia 的标准 <code>sort&#33;</code> 时明确要求使用 <code>MergeSort</code>, 以确保我们进行公平地比较——默认情况下，我们使用快速排序对数字进行排序， 对于随机数据来说，这往往更快。 让我们在 <code>JULIA_NUM_THREADS&#61;2</code> 的前提下运行代码并计时：</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > a = rand(<span class=hljs-number >20000000</span>);
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> sort!(b, alg = <span class=hljs-literal >MergeSort</span>);   <span class=hljs-comment ># 单线程</span>
-</span>  2.589243 seconds (11 allocations: 76.294 MiB, 0.17% gc time)
+<pre><code class=language-julia-repl >julia&gt; a &#61; rand&#40;20000000&#41;;
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> sort!(b, alg = <span class=hljs-literal >MergeSort</span>);
-</span>  2.582697 seconds (11 allocations: 76.294 MiB, 2.25% gc time)
+julia&gt; b &#61; copy&#40;a&#41;; @time sort&#33;&#40;b, alg &#61; MergeSort&#41;;   # 单线程
+  2.589243 seconds &#40;11 allocations: 76.294 MiB, 0.17&#37; gc time&#41;
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> psort!(b);    <span class=hljs-comment ># two threads</span>
-</span>  1.770902 seconds (3.78 k allocations: 686.935 MiB, 4.25% gc time)
+julia&gt; b &#61; copy&#40;a&#41;; @time sort&#33;&#40;b, alg &#61; MergeSort&#41;;
+  2.582697 seconds &#40;11 allocations: 76.294 MiB, 2.25&#37; gc time&#41;
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> psort!(b);
-</span>  1.741141 seconds (3.78 k allocations: 686.935 MiB, 4.16% gc time)</code></pre>
+julia&gt; b &#61; copy&#40;a&#41;; @time psort&#33;&#40;b&#41;;    # two threads
+  1.770902 seconds &#40;3.78 k allocations: 686.935 MiB, 4.25&#37; gc time&#41;
+
+julia&gt; b &#61; copy&#40;a&#41;; @time psort&#33;&#40;b&#41;;
+  1.741141 seconds &#40;3.78 k allocations: 686.935 MiB, 4.16&#37; gc time&#41;</code></pre>
 <p>虽然运行时间有些许波动，但我们看到使用两个线程的确会加速。 我们运行此代码的笔记本有四个超线程，如果我们添加第三个线程， 性能将继续提高，这尤其令人惊异:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > b = copy(a); <span class=hljs-meta >@time</span> psort!(b);
-</span>  1.511860 seconds (3.77 k allocations: 686.935 MiB, 6.45% gc time)</code></pre>
+<pre><code class=language-julia-repl >julia&gt; b &#61; copy&#40;a&#41;; @time psort&#33;&#40;b&#41;;
+  1.511860 seconds &#40;3.77 k allocations: 686.935 MiB, 6.45&#37; gc time&#41;</code></pre>
 <p>考虑在三个线程上运行的这种双路分治算法会让人有点头疼，但我们认为，这有助于强调此接口的“自动”并行能力。</p>
 <p>让我们尝试一台单线程性能稍低但 CPU 核心较多的机器:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="bash hljs">$ <span class=hljs-keyword >for</span> n <span class=hljs-keyword >in</span> 1 2 4 8 16; <span class=hljs-keyword >do</span>    JULIA_NUM_THREADS=<span class=hljs-variable >$n</span> ./julia psort.jl; <span class=hljs-keyword >done</span>
-  2.949212 seconds (3.58 k allocations: 686.932 MiB, 4.70% gc time)
-  1.861985 seconds (3.77 k allocations: 686.935 MiB, 9.32% gc time)
-  1.112285 seconds (3.78 k allocations: 686.935 MiB, 4.45% gc time)
-  0.787816 seconds (3.80 k allocations: 686.935 MiB, 2.08% gc time)
-  0.655762 seconds (3.79 k allocations: 686.935 MiB, 4.62% gc time)</code></pre>
+<pre><code class=language-bash >&#36; for n in 1 2 4 8 16; do    JULIA_NUM_THREADS&#61;&#36;n ./julia psort.jl; done
+  2.949212 seconds &#40;3.58 k allocations: 686.932 MiB, 4.70&#37; gc time&#41;
+  1.861985 seconds &#40;3.77 k allocations: 686.935 MiB, 9.32&#37; gc time&#41;
+  1.112285 seconds &#40;3.78 k allocations: 686.935 MiB, 4.45&#37; gc time&#41;
+  0.787816 seconds &#40;3.80 k allocations: 686.935 MiB, 2.08&#37; gc time&#41;
+  0.655762 seconds &#40;3.79 k allocations: 686.935 MiB, 4.62&#37; gc time&#41;</code></pre>
 <p><code>psort.jlpsort&#33;</code>脚本只定义了函数<code>psort&#33;</code>，调用它一次以避免测量编译开销， 然后运行与上面的命令相同的命令。</p>
 <p>请注意，尽管并行代码分配的内存比标准程序<em>多得多</em>，但仍然有加速效果。 分配有两个来源：<code>Task</code> 对象和在每次调用上分配的临时 <code>temp</code> 数组。 参考排序程序在所有递归调用中重用了单个临时缓冲区。 但使用并行，重用临时数组比较困难，但仍然是可能的, 稍后将详细介绍。</p>
 <h2 id="如何迁移到并行世界"><a href="#如何迁移到并行世界">如何迁移到并行世界</a></h2>
 <p>在 1.3 系列中，新线程运行时仍视为处于 beta 测试阶段。 “正式”版将出现在之后的版本中，以便有充足的时间用来确定可长期维护的 API。 如果要在此时间段内升级代码，您需要了解以下内容。</p>
 <h3 id="任务调度和同步"><a href="#任务调度和同步">任务调度和同步</a></h3>
 <p>为了兼容性，默认情况下，代码将仍在单个线程中运行。 当使用现有原语 &#40;<code>schedule</code>, <code>@async</code>&#41; 启动任务时，它们将仅在启动它们的线程中运行。 同样，<code>Condition</code> 条件对象（用于在事件发生时向任务发出信号）也只能在创建它的线程中使用。 尝试在其他线程等待或通知 <code>Condition</code> 将引发错误。 独立的线程安全的条件变量 <code>Threads.Condition</code> 现已引入。 这需要是一个独立的类型，因为使用线程安全的条件变量需要获取锁。 在 Julia 中，锁与条件捆绑在一起，因此 <code>lock</code> 只能在条件本身上调用：</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">lock(cond::Threads.<span class=hljs-built_in >Condition</span>)
-<span class=hljs-keyword >try</span>
-    <span class=hljs-keyword >while</span> !ready
-        wait(cond)
-    <span class=hljs-keyword >end</span>
-<span class=hljs-keyword >finally</span>
-    unlock(cond)
-<span class=hljs-keyword >end</span></code></pre>
+<pre><code class=language-julia >lock&#40;cond::Threads.Condition&#41;
+try
+    while &#33;ready
+        wait&#40;cond&#41;
+    end
+finally
+    unlock&#40;cond&#41;
+end</code></pre>
 <p>与以前的版本一样，用于保护临界区的标准锁 <code>ReentrantLock</code> 现已线程安全（以前仅用于同步任务）。 有一些其他类型的锁（<code>Threads.SpinLock</code> 和 <code>Threads.Mutex</code>）主要为内部目的而定义。 它们只用于极少数情况：&#40;1&#41; 只有线程需要同步，而不是任务，&#40;2&#41; 已知锁将只持有很短的时间。</p>
 <p><code>Threads</code> 模块还提供 <code>Semaphore</code>（信号量）和 <code>Event</code>（事件）类型，它们都遵循其标准定义。</p>
 <h3 id="线程局部状态"><a href="#线程局部状态">线程局部状态</a></h3>
 <p>Julia 代码一般倾向于纯函数式（没有副作用或可变性），或者只使用局部可变性， 因此，在许多情况下迁移到完全线程安全的代码应该很容易。 但是，如果代码使用共享状态且希望使其线程安全，则有一些工作要做。 到目前为止，我们在 Julia 的标准库中使用了两种方法：同步&#40;锁&#41;和线程或任务局部状态。 锁适用于不经常访问的共享资源，或无法让每个线程都持有副本的资源。</p>
 <p>但对于高性能代码，我们建议采用线程局部状态。 上面的 <code>psort&#33;</code> 程序可以这样改进。以下是具体步骤： 首先，我们修改函数签名以接受预分配的缓冲区， 当调用方不提供预分配缓冲区时使用默认参数自动分配空间:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> psort!(v, lo::<span class=hljs-built_in >Int</span>=<span class=hljs-number >1</span>, hi::<span class=hljs-built_in >Int</span>=length(v), temps=[similar(v, <span class=hljs-number >0</span>) <span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:Threads.nthreads()])</code></pre>
+<pre><code class=language-julia >function psort&#33;&#40;v, lo::Int&#61;1, hi::Int&#61;length&#40;v&#41;, temps&#61;&#91;similar&#40;v, 0&#41; for i &#61; 1:Threads.nthreads&#40;&#41;&#93;&#41;</code></pre>
 <p>我们只需要为每个线程分配一个初始空数组。接下来，我们将修改递归调用以重用这一空间:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">half = <span class=hljs-meta >@spawn</span> psort!(v, lo, mid, temps)
-    psort!(v, mid+<span class=hljs-number >1</span>, hi, temps)</code></pre>
+<pre><code class=language-julia >half &#61; @spawn psort&#33;&#40;v, lo, mid, temps&#41;
+    psort&#33;&#40;v, mid&#43;1, hi, temps&#41;</code></pre>
 <p>最后，使用为当前线程预留的数组（而不是分配一个新的）并根据需要调整其大小:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">temp = temps[Threads.threadid()]
-    length(temp) &lt; m-lo+<span class=hljs-number >1</span> &amp;&amp; resize!(temp, m-lo+<span class=hljs-number >1</span>)
-    copyto!(temp, <span class=hljs-number >1</span>, v, lo, m-lo+<span class=hljs-number >1</span>)</code></pre>
+<pre><code class=language-julia >temp &#61; temps&#91;Threads.threadid&#40;&#41;&#93;
+    length&#40;temp&#41; &lt; m-lo&#43;1 &amp;&amp; resize&#33;&#40;temp, m-lo&#43;1&#41;
+    copyto&#33;&#40;temp, 1, v, lo, m-lo&#43;1&#41;</code></pre>
 <p>经过这些细微的修改后，让我们测试一下程序在大规模机器上的性能:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="bash hljs">$ <span class=hljs-keyword >for</span> n <span class=hljs-keyword >in</span> 1 2 4 8 16; <span class=hljs-keyword >do</span>    JULIA_NUM_THREADS=<span class=hljs-variable >$n</span> ./julia psort.jl; <span class=hljs-keyword >done</span>
-  2.813555 seconds (3.08 k allocations: 153.448 MiB, 1.44% gc time)
-  1.731088 seconds (3.28 k allocations: 192.195 MiB, 0.37% gc time)
-  1.028344 seconds (3.30 k allocations: 221.997 MiB, 0.37% gc time)
-  0.750888 seconds (3.31 k allocations: 267.298 MiB, 0.54% gc time)
-  0.620054 seconds (3.38 k allocations: 298.295 MiB, 0.77% gc time)</code></pre>
+<pre><code class=language-bash >&#36; for n in 1 2 4 8 16; do    JULIA_NUM_THREADS&#61;&#36;n ./julia psort.jl; done
+  2.813555 seconds &#40;3.08 k allocations: 153.448 MiB, 1.44&#37; gc time&#41;
+  1.731088 seconds &#40;3.28 k allocations: 192.195 MiB, 0.37&#37; gc time&#41;
+  1.028344 seconds &#40;3.30 k allocations: 221.997 MiB, 0.37&#37; gc time&#41;
+  0.750888 seconds &#40;3.31 k allocations: 267.298 MiB, 0.54&#37; gc time&#41;
+  0.620054 seconds &#40;3.38 k allocations: 298.295 MiB, 0.77&#37; gc time&#41;</code></pre>
 <h3 id="随机数生成"><a href="#随机数生成">随机数生成</a></h3>
 <p>对于 Julia 的默认全局随机数生成器（<code>rand&#40;&#41;</code> 和相关函数），我们采取的策略是将它独立于特定线程。 首次使用时，每个线程将从系统熵创建一个默认 RNG 类型&#40;当前为<code>MersenneTwister</code>&#41;的独立随机种子实例。 然后，影响随机数状态（<code>rand</code>、<code>randn</code>、<code>seed&#33;</code>等）的所有操作将仅对当前线程的 RNG 进行操作。 这样，随机种子和使用随机数的多个独立代码序列将按预期独立工作。</p>
 <h2 id="深入底层"><a href="#深入底层">深入底层</a></h2>
@@ -220,8 +187,8 @@ https://github.com/highlightjs/highlight.js/issues/2277
 
     
     
-        
-
+        <script src="/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
 
     
 

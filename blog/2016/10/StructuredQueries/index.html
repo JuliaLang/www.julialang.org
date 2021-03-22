@@ -1,46 +1,37 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>StructuredQueries.jl - A generic data manipulation framework</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="StructuredQueries.jl - A generic data manipulation framework"> <meta property="og:description" content=" StructuredQueries.jl - A generic data manipulation framework | This post describes my work conducted this summer at the Julia Lab (https://julia.mit.edu/) to develop StructuredQueries.jl (https://github.com/davidagold/StructuredQueries.jl/), a generic data manipulation framework for Julia.... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>StructuredQueries.jl - A generic data manipulation framework <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 3 October 2016 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://github.com/davidagold">David Gold</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/10/StructuredQueries.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>This post describes my work conducted this summer at the <a href="https://julia.mit.edu/">Julia Lab</a> to develop <a href="https://github.com/davidagold/StructuredQueries.jl/">StructuredQueries.jl</a>, a generic data manipulation framework for <a href="/">Julia</a>.</p> <p>Our initial vision for this work was much inspired by Hadley Wickham&#39;s <a href="https://github.com/hadley/dplyr">dplyr</a> R package, which provides data manipulation verbs that are generic over in-memory R tabular data structures and SQL databases, and <a href="https://github.com/JuliaStats/DataFramesMeta.jl">DataFramesMeta</a> &#40;begun by <a href="https://github.com/tshort">Tom Short</a>&#41;, which provides metaprogramming facilities for working with Julia <code>DataFrame</code>s.</p> <p>While a generic querying interface is a worthwhile end in itself &#40;and has been discussed <a href="https://groups.google.com/d/topic/julia-dev/jL2FSL4EneE/discussion">elsewhere</a>&#41;, it may also be useful for solving problems specific to in-memory Julia tabular data structures. We will discuss how a query interface suggests solutions to two important problems facing the development of tabular data structures in Julia: the <em>column-indexing</em> and <em>nullable semantics</em> problems. So, the present post will describe both the progress of my work and also discuss a wider scope of issues concerning support for tabular data structures in Julia. I will provide some context for these issues; the reader should feel free to skip over any uninteresting details.</p> <p>Recall that the primary shortcoming of <a href="https://travis-ci.org/JuliaStats/DataArrays.jl">DataArrays.jl</a> is that it does not allow for type-inferable indexing. That is, the means by which missing values are represented in <code>DataArray</code>s – i.e. with a token <code>NA::NAtype</code> object – entails that the most specific return type inferable from <code>Base.getindex&#40;df::DataArray&#123;T&#125;, i&#41;</code> is <code>Union&#123;T, NAtype&#125;</code>. This means that until Julia&#39;s compiler can better handle small <code>Union</code> types, code that naively indexes into a <code>DataArray</code> will perform unnecessarily poorly.</p> <p><a href="https://github.com/JuliaStats/NullableArrays.jl">NullableArrays.jl</a> <a href="/blog/2015/10/nullablearrays/">remedied</a> this shortcoming by representing both missing and present values of type <code>T</code> as objects of type <code>Nullable&#123;T&#125;</code>. However, this solution has limitations in other respects. First, use of <code>NullableArray</code>s does nothing to support type inference in column-indexing of <code>DataFrame</code>s. That is, the return type of <code>Base.getindex&#40;df::DataFrame, field::Symbol&#41;</code> is not straightforwardly inferable, even if <code>DataFrame</code>s are built over <code>NullableArray</code>s. Call this first problem the <em>column-indexing problem</em>. Second, NullableArrays introduces certain difficulties centered around the <code>Nullable</code> type. Call this second problem the <em>nullable semantics problem</em>.</p> <p>The column-indexing problem is <a href="https://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/">well-documented</a>. To see the difficulty, consider the following function</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> f(df::DataFrame)
-    A = df[:A]
-    x = zero(eltype(A))
-    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> eachindex(A)
-        x += A[i]
-    <span class=hljs-keyword >end</span>
-    <span class=hljs-keyword >return</span> x
-<span class=hljs-keyword >end</span></code></pre> <p>where <code>df&#91;:A&#93;</code> retrieves the column named <code>:A</code> from <code>df</code>. A user might reasonably expect the above to be idiomatic Julia: the work is written in a <code>for</code> loop that is wrapped inside a function. However, this code will not be &#40;ahead-of-time&#41; compiled to efficient machine instructions because the type of the object that <code>df&#91;:A&#93;</code> returns cannot be inferred during static analysis. This is because there is nothing the <code>DataFrame</code> type can do to communicate the <code>eltype</code>s of its columns to the compiler.</p> <p>The nullable semantics problem is described throughout a dispersed series of GitHub issues &#40;the interested reader can start <a href="https://github.com/JuliaStats/NullableArrays.jl/issues/95">here</a> and <a href="https://github.com/JuliaStats/NullableArrays.jl/pull/85">here</a>&#41; &#40;and <a href="https://groups.google.com/d/topic/julia-dev/WD7-vQeweJE/discussion">at least one</a> mailing list post&#41;. To my knowledge, a self-contained treatment has not been given &#40;I don&#39;t necessarily claim to be giving one now&#41;. The problem has two parts, which I&#39;ll call the &quot;easy question&quot; and the &quot;hard question&quot;, respectively:</p> <ol> <li><p>What should the semantics of <code>f&#40;x::Nullable&#123;T&#125;&#41;</code> be given a definition of <code>f&#40;x::T&#41;</code>?</p> <li><p>How should we implement these semantics in a sufficiently general and user-friendly way?</p> </ol> <p>In most cases, the answer to the easy question is clear: <code>f&#40;x::Nullable&#123;T&#125;&#41;</code> should return an empty <code>Nullable&#123;U&#125;</code> if <code>x</code> is null and <code>Nullable&#40;f&#40;x.value&#41;&#41;</code> if <code>x</code> is not null. There is a question of how to choose the type parameter <code>U</code>, but a solution involving Julia&#39;s type inference facilities seems to be about right. &#40;The discussion of <a href="https://github.com/JuliaLang/julia/pull/16622">0.5-style comprehensions</a> and <a href="https://github.com/JuliaLang/julia/issues/7258">one</a> or <a href="https://github.com/JuliaLang/julia/pull/11034">two</a> discussions about the return type of <code>map</code> over an empty array, were all influential on this matter.&#41; We will refer to these semantics as the <em>standard lifting semantics</em>. It is worth noting that there is at least one considerable alternative to standard lifting semantics, at least in the realm of binary operators on <code>Nullable&#123;Bool&#125;</code> arguments: <a href="https://en.wikipedia.org/wiki/Three-valued_logic">three-valued logic</a>. But whether to use three-valued logic or standard lifting semantics is usually clear from the context of the program and the intention of the programmer.</p> <p>On the other hand, the hard question is still unresolved. There are a number of possible solutions, and it&#39;s difficult to know how to weigh their costs and benefits.</p> <p>We&#39;ll return to the column-indexing problem and the hard question of nullable semantics after we&#39;ve described the present query interface. Before we dive in, I want to emphasize that this blog post is a status update, not a release notice &#40;though StructuredQueries is registered so that you can play with it if you like&#41;. StructuredQueries &#40;SQ&#41; is a work in progress, and it will likely remain that way for some time. I hope to convince the reader that SQ nonetheless represents an interesting and worthwhile direction for the development of tabular data facilities in Julia.</p> <h2 id=the_query_framework ><a href="#the_query_framework">The query framework</a></h2> <p>The StructuredQueries package provides a framework for representing the <em>structure</em> of a query without assuming any specific corresponding <em>semantics</em>. By the structure of a query, we mean the series of particular manipulation verbs invoked and the respective arguments passed to these verbs. By the semantics of a query, we mean the actual behavior of executing a query with a particular structure against a particular data source. A query semantics thus depends both on the structure of the query and on the type of the data source against which the query is executed. We will refer to the implementation of a particular query semantics as a <em>collection machinery</em>.</p> <p>Decoupling the representation of a query&#39;s structure from the collection machinery helps to make the present query framework</p> <ul> <li><p>generic – the framework should be able to support multiple backends.</p> <li><p>modular – the framework should encourage modularity of collection machinery.</p> <li><p>extensible – the framework should be easily extensible to represent &#40;relatively&#41; arbitrary manipulations.</p> </ul> <p>These desiderata are interrelated. For instance, modularity of collection machinery allows the latter to be re-used in support for different data backends, thereby supporting generality as well.</p> <p>In this section we&#39;ll describe how SQ represents query structures. In the following sections we&#39;ll see how SQ&#39;s query representation framework suggests solutions to the column-indexing and nullable semantics problems described above.</p> <p>To express a query in SQ, one uses the <code>@query</code> macro:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs"><span class=hljs-meta >@query</span> qry</code></pre>
+<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>StructuredQueries.jl - A generic data manipulation framework</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="StructuredQueries.jl - A generic data manipulation framework"> <meta property="og:description" content=" StructuredQueries.jl - A generic data manipulation framework | This post describes my work conducted this summer at the Julia Lab (https://julia.mit.edu/) to develop StructuredQueries.jl (https://github.com/davidagold/StructuredQueries.jl/), a generic data manipulation framework for Julia.... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>StructuredQueries.jl - A generic data manipulation framework <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 3 October 2016 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://github.com/davidagold">David Gold</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/10/StructuredQueries.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>This post describes my work conducted this summer at the <a href="https://julia.mit.edu/">Julia Lab</a> to develop <a href="https://github.com/davidagold/StructuredQueries.jl/">StructuredQueries.jl</a>, a generic data manipulation framework for <a href="/">Julia</a>.</p> <p>Our initial vision for this work was much inspired by Hadley Wickham&#39;s <a href="https://github.com/hadley/dplyr">dplyr</a> R package, which provides data manipulation verbs that are generic over in-memory R tabular data structures and SQL databases, and <a href="https://github.com/JuliaStats/DataFramesMeta.jl">DataFramesMeta</a> &#40;begun by <a href="https://github.com/tshort">Tom Short</a>&#41;, which provides metaprogramming facilities for working with Julia <code>DataFrame</code>s.</p> <p>While a generic querying interface is a worthwhile end in itself &#40;and has been discussed <a href="https://groups.google.com/d/topic/julia-dev/jL2FSL4EneE/discussion">elsewhere</a>&#41;, it may also be useful for solving problems specific to in-memory Julia tabular data structures. We will discuss how a query interface suggests solutions to two important problems facing the development of tabular data structures in Julia: the <em>column-indexing</em> and <em>nullable semantics</em> problems. So, the present post will describe both the progress of my work and also discuss a wider scope of issues concerning support for tabular data structures in Julia. I will provide some context for these issues; the reader should feel free to skip over any uninteresting details.</p> <p>Recall that the primary shortcoming of <a href="https://travis-ci.org/JuliaStats/DataArrays.jl">DataArrays.jl</a> is that it does not allow for type-inferable indexing. That is, the means by which missing values are represented in <code>DataArray</code>s – i.e. with a token <code>NA::NAtype</code> object – entails that the most specific return type inferable from <code>Base.getindex&#40;df::DataArray&#123;T&#125;, i&#41;</code> is <code>Union&#123;T, NAtype&#125;</code>. This means that until Julia&#39;s compiler can better handle small <code>Union</code> types, code that naively indexes into a <code>DataArray</code> will perform unnecessarily poorly.</p> <p><a href="https://github.com/JuliaStats/NullableArrays.jl">NullableArrays.jl</a> <a href="/blog/2015/10/nullablearrays/">remedied</a> this shortcoming by representing both missing and present values of type <code>T</code> as objects of type <code>Nullable&#123;T&#125;</code>. However, this solution has limitations in other respects. First, use of <code>NullableArray</code>s does nothing to support type inference in column-indexing of <code>DataFrame</code>s. That is, the return type of <code>Base.getindex&#40;df::DataFrame, field::Symbol&#41;</code> is not straightforwardly inferable, even if <code>DataFrame</code>s are built over <code>NullableArray</code>s. Call this first problem the <em>column-indexing problem</em>. Second, NullableArrays introduces certain difficulties centered around the <code>Nullable</code> type. Call this second problem the <em>nullable semantics problem</em>.</p> <p>The column-indexing problem is <a href="https://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/">well-documented</a>. To see the difficulty, consider the following function</p> <pre><code class=language-julia >function f&#40;df::DataFrame&#41;
+    A &#61; df&#91;:A&#93;
+    x &#61; zero&#40;eltype&#40;A&#41;&#41;
+    for i in eachindex&#40;A&#41;
+        x &#43;&#61; A&#91;i&#93;
+    end
+    return x
+end</code></pre> <p>where <code>df&#91;:A&#93;</code> retrieves the column named <code>:A</code> from <code>df</code>. A user might reasonably expect the above to be idiomatic Julia: the work is written in a <code>for</code> loop that is wrapped inside a function. However, this code will not be &#40;ahead-of-time&#41; compiled to efficient machine instructions because the type of the object that <code>df&#91;:A&#93;</code> returns cannot be inferred during static analysis. This is because there is nothing the <code>DataFrame</code> type can do to communicate the <code>eltype</code>s of its columns to the compiler.</p> <p>The nullable semantics problem is described throughout a dispersed series of GitHub issues &#40;the interested reader can start <a href="https://github.com/JuliaStats/NullableArrays.jl/issues/95">here</a> and <a href="https://github.com/JuliaStats/NullableArrays.jl/pull/85">here</a>&#41; &#40;and <a href="https://groups.google.com/d/topic/julia-dev/WD7-vQeweJE/discussion">at least one</a> mailing list post&#41;. To my knowledge, a self-contained treatment has not been given &#40;I don&#39;t necessarily claim to be giving one now&#41;. The problem has two parts, which I&#39;ll call the &quot;easy question&quot; and the &quot;hard question&quot;, respectively:</p> <ol> <li><p>What should the semantics of <code>f&#40;x::Nullable&#123;T&#125;&#41;</code> be given a definition of <code>f&#40;x::T&#41;</code>?</p> <li><p>How should we implement these semantics in a sufficiently general and user-friendly way?</p> </ol> <p>In most cases, the answer to the easy question is clear: <code>f&#40;x::Nullable&#123;T&#125;&#41;</code> should return an empty <code>Nullable&#123;U&#125;</code> if <code>x</code> is null and <code>Nullable&#40;f&#40;x.value&#41;&#41;</code> if <code>x</code> is not null. There is a question of how to choose the type parameter <code>U</code>, but a solution involving Julia&#39;s type inference facilities seems to be about right. &#40;The discussion of <a href="https://github.com/JuliaLang/julia/pull/16622">0.5-style comprehensions</a> and <a href="https://github.com/JuliaLang/julia/issues/7258">one</a> or <a href="https://github.com/JuliaLang/julia/pull/11034">two</a> discussions about the return type of <code>map</code> over an empty array, were all influential on this matter.&#41; We will refer to these semantics as the <em>standard lifting semantics</em>. It is worth noting that there is at least one considerable alternative to standard lifting semantics, at least in the realm of binary operators on <code>Nullable&#123;Bool&#125;</code> arguments: <a href="https://en.wikipedia.org/wiki/Three-valued_logic">three-valued logic</a>. But whether to use three-valued logic or standard lifting semantics is usually clear from the context of the program and the intention of the programmer.</p> <p>On the other hand, the hard question is still unresolved. There are a number of possible solutions, and it&#39;s difficult to know how to weigh their costs and benefits.</p> <p>We&#39;ll return to the column-indexing problem and the hard question of nullable semantics after we&#39;ve described the present query interface. Before we dive in, I want to emphasize that this blog post is a status update, not a release notice &#40;though StructuredQueries is registered so that you can play with it if you like&#41;. StructuredQueries &#40;SQ&#41; is a work in progress, and it will likely remain that way for some time. I hope to convince the reader that SQ nonetheless represents an interesting and worthwhile direction for the development of tabular data facilities in Julia.</p> <h2 id=the_query_framework ><a href="#the_query_framework">The query framework</a></h2> <p>The StructuredQueries package provides a framework for representing the <em>structure</em> of a query without assuming any specific corresponding <em>semantics</em>. By the structure of a query, we mean the series of particular manipulation verbs invoked and the respective arguments passed to these verbs. By the semantics of a query, we mean the actual behavior of executing a query with a particular structure against a particular data source. A query semantics thus depends both on the structure of the query and on the type of the data source against which the query is executed. We will refer to the implementation of a particular query semantics as a <em>collection machinery</em>.</p> <p>Decoupling the representation of a query&#39;s structure from the collection machinery helps to make the present query framework</p> <ul> <li><p>generic – the framework should be able to support multiple backends.</p> <li><p>modular – the framework should encourage modularity of collection machinery.</p> <li><p>extensible – the framework should be easily extensible to represent &#40;relatively&#41; arbitrary manipulations.</p> </ul> <p>These desiderata are interrelated. For instance, modularity of collection machinery allows the latter to be re-used in support for different data backends, thereby supporting generality as well.</p> <p>In this section we&#39;ll describe how SQ represents query structures. In the following sections we&#39;ll see how SQ&#39;s query representation framework suggests solutions to the column-indexing and nullable semantics problems described above.</p> <p>To express a query in SQ, one uses the <code>@query</code> macro:</p> <pre><code class=language-julia >@query qry</code></pre>
 <p>where <code>qry</code> is Julia code that follows a certain structure that we will describe below. <code>qry</code> is parsed according to what we&#39;ll call a <em>query context</em>. By a <em>context</em> we mean a general semantics for Julia code that may differ from the semantics of the standard Julia environment. That is to say: though <code>qry</code> must be valid Julia syntax, the code is not run as it would were it executed outside of the <code>@query</code> macro. Rather, code such as <code>qry</code> that occurs inside of a query context is subject to a number of transformations before it is run. <code>@query</code> uses these transformations to produce a graphical representation of the structure of <code>qry</code>. An <code>@query qry</code> invocation returns a <code>Query</code> object, which wraps the query graph produced as a result of processing <code>qry</code>.</p>
 <p>We said above that SQ represents queries in terms of their structure but does not itself guarantee any particular semantics. This allows packages to implement their own semantics for a given query structure. To demonstrate this design, I&#39;ve put together &#40;i&#41; an <a href="https://github.com/davidagold/AbstractTables.jl">abstract tabular data type</a>, <code>AbstractTable</code>; &#40;ii&#41; an <a href="https://github.com/davidagold/AbstractTables.jl#column-indexable-interface">interface</a> to support a collection machinery against what I call <em>column-indexable</em> types <code>T &lt;: AbstractTable</code>; and &#40;iii&#41; a <a href="https://github.com/davidagold/TablesDemo.jl">concrete tabular data type</a>, <code>Table &lt;: AbstractTable</code> that satisfies the column-indexable interface and therefore inherits a collection machinery to support SQ queries.</p>
 <p>This following behavior mimics that which one would expect from querying against a <code>DataFrame</code>. The main reason for putting together a demonstration using <code>Table</code>s and not <code>DataFrame</code>s has to do with ease of experimentation. I can more easily modify the <code>AbstractTable</code>/<code>Table</code> types and interfaces more easily than I can the <code>DataFrame</code> type and interface. Indeed, this project has become just as much about designing an in-memory Julia tabular data type that is most compatible with a Julia query framework as it is about designing a query framework compatible with an in-memory Julia tabular data type. Fortunately, the implementation of backend support for <code>Table</code>s will be straightforward to port to support for <code>DataFrame</code>s once we decide where such support should live.</p>
 <p>Let&#39;s dive into the query interface by considering examples using the iris data set. &#40;Though the package TablesDemo.jl is intended solely as a demonstration, it is registered so that readers can easily install it with <code>Pkg.add&#40;&quot;TablesDemo.jl&quot;&#41;</code> and follow along.&#41;</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">julia&gt; iris = Table(CSV.Source(joinpath(Pkg.dir(<span class=hljs-string >&quot;Tables&quot;</span>), <span class=hljs-string >&quot;csv/iris.csv&quot;</span>)))
+<pre><code class=language-julia >julia&gt; iris &#61; Table&#40;CSV.Source&#40;joinpath&#40;Pkg.dir&#40;&quot;Tables&quot;&#41;, &quot;csv/iris.csv&quot;&#41;&#41;&#41;
 Tables.Table
 │ Row │ sepal_length │ sepal_width │ petal_length │ petal_width │ species  │
 ├─────┼──────────────┼─────────────┼──────────────┼─────────────┼──────────┤
-│ <span class=hljs-number >1</span>   │ <span class=hljs-number >5.1</span>          │ <span class=hljs-number >3.5</span>         │ <span class=hljs-number >1.4</span>          │ <span class=hljs-number >0.2</span>         │ <span class=hljs-string >&quot;setosa&quot;</span> │
-│ <span class=hljs-number >2</span>   │ <span class=hljs-number >4.9</span>          │ <span class=hljs-number >3.0</span>         │ <span class=hljs-number >1.4</span>          │ <span class=hljs-number >0.2</span>         │ <span class=hljs-string >&quot;setosa&quot;</span> │
-│ <span class=hljs-number >3</span>   │ <span class=hljs-number >4.7</span>          │ <span class=hljs-number >3.2</span>         │ <span class=hljs-number >1.3</span>          │ <span class=hljs-number >0.2</span>         │ <span class=hljs-string >&quot;setosa&quot;</span> │
-│ <span class=hljs-number >4</span>   │ <span class=hljs-number >4.6</span>          │ <span class=hljs-number >3.1</span>         │ <span class=hljs-number >1.5</span>          │ <span class=hljs-number >0.2</span>         │ <span class=hljs-string >&quot;setosa&quot;</span> │
-│ <span class=hljs-number >5</span>   │ <span class=hljs-number >5.0</span>          │ <span class=hljs-number >3.6</span>         │ <span class=hljs-number >1.4</span>          │ <span class=hljs-number >0.2</span>         │ <span class=hljs-string >&quot;setosa&quot;</span> │
-│ <span class=hljs-number >6</span>   │ <span class=hljs-number >5.4</span>          │ <span class=hljs-number >3.9</span>         │ <span class=hljs-number >1.7</span>          │ <span class=hljs-number >0.4</span>         │ <span class=hljs-string >&quot;setosa&quot;</span> │
-│ <span class=hljs-number >7</span>   │ <span class=hljs-number >4.6</span>          │ <span class=hljs-number >3.4</span>         │ <span class=hljs-number >1.4</span>          │ <span class=hljs-number >0.3</span>         │ <span class=hljs-string >&quot;setosa&quot;</span> │
-│ <span class=hljs-number >8</span>   │ <span class=hljs-number >5.0</span>          │ <span class=hljs-number >3.4</span>         │ <span class=hljs-number >1.5</span>          │ <span class=hljs-number >0.2</span>         │ <span class=hljs-string >&quot;setosa&quot;</span> │
-│ <span class=hljs-number >9</span>   │ <span class=hljs-number >4.4</span>          │ <span class=hljs-number >2.9</span>         │ <span class=hljs-number >1.4</span>          │ <span class=hljs-number >0.2</span>         │ <span class=hljs-string >&quot;setosa&quot;</span> │
-│ <span class=hljs-number >10</span>  │ <span class=hljs-number >4.9</span>          │ <span class=hljs-number >3.1</span>         │ <span class=hljs-number >1.5</span>          │ <span class=hljs-number >0.1</span>         │ <span class=hljs-string >&quot;setosa&quot;</span> │
+│ 1   │ 5.1          │ 3.5         │ 1.4          │ 0.2         │ &quot;setosa&quot; │
+│ 2   │ 4.9          │ 3.0         │ 1.4          │ 0.2         │ &quot;setosa&quot; │
+│ 3   │ 4.7          │ 3.2         │ 1.3          │ 0.2         │ &quot;setosa&quot; │
+│ 4   │ 4.6          │ 3.1         │ 1.5          │ 0.2         │ &quot;setosa&quot; │
+│ 5   │ 5.0          │ 3.6         │ 1.4          │ 0.2         │ &quot;setosa&quot; │
+│ 6   │ 5.4          │ 3.9         │ 1.7          │ 0.4         │ &quot;setosa&quot; │
+│ 7   │ 4.6          │ 3.4         │ 1.4          │ 0.3         │ &quot;setosa&quot; │
+│ 8   │ 5.0          │ 3.4         │ 1.5          │ 0.2         │ &quot;setosa&quot; │
+│ 9   │ 4.4          │ 2.9         │ 1.4          │ 0.2         │ &quot;setosa&quot; │
+│ 10  │ 4.9          │ 3.1         │ 1.5          │ 0.1         │ &quot;setosa&quot; │
 ⋮
-with <span class=hljs-number >140</span> more rows.</code></pre>
+with 140 more rows.</code></pre>
 <p>We can then use <code>@query</code> to express a query against this data set – say, filtering rows according to a condition on <code>sepal_length</code>:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">julia&gt; q = <span class=hljs-meta >@query</span> filter(iris, sepal_length &gt; <span class=hljs-number >5.0</span>)
+<pre><code class=language-julia >julia&gt; q &#61; @query filter&#40;iris, sepal_length &gt; 5.0&#41;
 Query with Tables.Table source</code></pre>
 <p>This produces a <code>Query&#123;S&#125;</code> object, where <code>S</code> is the type of the data source</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">julia&gt; typeof(q)
-StructuredQueries.Query{Tables.Table}</code></pre>
+<pre><code class=language-julia >julia&gt; typeof&#40;q&#41;
+StructuredQueries.Query&#123;Tables.Table&#125;</code></pre>
 <p>The structure of the query passed to <code>@query</code> consists of a <em>manipulation verb</em> &#40;e.g. <code>filter</code>&#41; that in turn takes a <em>data source</em> &#40;e.g. <code>iris</code>&#41; for its first argument and any number of <em>query arguments</em> &#40;e.g. <code>sepal_length &gt; 5.0</code>&#41; for its latter arguments. These are the three different &quot;parts&quot; of a query: &#40;1&#41; data sources &#40;or just &quot;sources&quot;&#41;, &#40;2&#41; manipulation verbs &#40;or just &quot;verbs&quot;&#41;, and &#40;3&#41; query arguments.</p>
 <p>Each part of a query induces its own context in which code is evaluated. The most significant aspect of such contexts is name resolution. That is to say, names resolve differently depending on which part of a query they appear in and in what capacity they appear:</p>
 <ol>
@@ -54,29 +45,20 @@ StructuredQueries.Query{Tables.Table}</code></pre>
 
 </ol>
 <p>One can pipe arguments to verbs inside an <code>@query</code> context. For instance, the <code>Query</code> above is equivalent to that produced by</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-meta >@query</span> iris |&gt; filter(sepal_length &gt; <span class=hljs-number >5.0</span>)</code></pre>
+<pre><code class=language-julia >@query iris |&gt; filter&#40;sepal_length &gt; 5.0&#41;</code></pre>
 <p>In this case, the first argument &#40;<code>sepal_length &gt; 5.0</code>&#41; to the verb <code>filter</code> is not a data source specification &#40;<code>iris</code>&#41;, which is instead the first argument to <code>|&gt;</code>, but is rather a query argument &#40;<code>sepal_length &gt; 5.0</code>&#41;.</p>
 <p><code>Query</code> objects represent the structure of a query composed of the three building blocks above. To see how, lets take a look at the internals of a <code>Query</code>:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">julia&gt; fieldnames(q)
-<span class=hljs-number >2</span>-element <span class=hljs-built_in >Array</span>{<span class=hljs-built_in >Symbol</span>,<span class=hljs-number >1</span>}:
+<pre><code class=language-julia >julia&gt; fieldnames&#40;q&#41;
+2-element Array&#123;Symbol,1&#125;:
  :source
  :graph</code></pre>
 <p>The first field, <code>:source</code>, just contains the data source specified in the query – in this case, the <code>Table</code> object that was bound to the name <code>iris</code> when the query was specified. The second field, <code>:graph</code> contains a&#40;n admittedly not very interesting&#41; graphical representation of the query structure:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">julia&gt; q.graph
+<pre><code class=language-julia >julia&gt; q.graph
 FilterNode
   arguments:
-      <span class=hljs-number >1</span>)  sepal_length &gt; <span class=hljs-number >5.0</span>
+      1&#41;  sepal_length &gt; 5.0
   inputs:
-      <span class=hljs-number >1</span>)  DataNode
+      1&#41;  DataNode
             source:  unset source</code></pre>
 <p>The <code>filter</code> verb from the original <code>qry</code> expression passed to <code>@query</code> is represented in the graph by a <code>FilterNode</code> object and that the data source is represented by a <code>DataNode</code> object. Both <code>FilterNode</code> and <code>DataNode</code> are leaf subtypes of the abstract <code>QueryNode</code> type. The <code>FilterNode</code> is connected to the <code>DataNode</code> via the <code>:input</code> field of the former. In general, these connections constitute directed acyclic graphs. We may refer to such graphs as <code>QueryNode</code> graphs or query graphs.</p>
 <p>SQ currently recognizes the following verbs out of the box – that is, it properly incorporates them into a <code>QueryNode</code> graph:</p>
@@ -101,142 +83,118 @@ FilterNode
 
 </ul>
 <p>One uses <code>collect&#40;q::Query&#41;</code> to materialize <code>q</code> as a concrete set results set – hence the term &quot;collection machinery&quot;. Note that the set of verbs that receive support from the column-indexable interface – that is, the verbs that may be <code>collect</code>ed against a column-indexable data source – currently only includes the first four: <code>select</code>, <code>filter</code>, <code>groupby</code>, and <code>summarize</code>. This is what such support currently looks like:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">julia&gt; q = <span class=hljs-meta >@query</span> iris |&gt;
-           filter(sepal_length &gt; <span class=hljs-number >5.0</span>) |&gt;
-           groupby(species, log(petal_length) &gt; <span class=hljs-number >.5</span>) |&gt;
-           summarize(avg = mean(digamma(petal_width)))
+<pre><code class=language-julia >julia&gt; q &#61; @query iris |&gt;
+           filter&#40;sepal_length &gt; 5.0&#41; |&gt;
+           groupby&#40;species, log&#40;petal_length&#41; &gt; .5&#41; |&gt;
+           summarize&#40;avg &#61; mean&#40;digamma&#40;petal_width&#41;&#41;&#41;
 Query with Tables.Table source
 
 julia&gt; q.graph
 SummarizeNode
   arguments:
-      <span class=hljs-number >1</span>)  avg=mean(digamma(petal_width))
+      1&#41;  avg&#61;mean&#40;digamma&#40;petal_width&#41;&#41;
   inputs:
-      <span class=hljs-number >1</span>)  GroupbyNode
+      1&#41;  GroupbyNode
             arguments:
-                <span class=hljs-number >1</span>)  species
-                <span class=hljs-number >2</span>)  log(petal_length) &gt; <span class=hljs-number >0.5</span>
+                1&#41;  species
+                2&#41;  log&#40;petal_length&#41; &gt; 0.5
             inputs:
-                <span class=hljs-number >1</span>)  FilterNode
+                1&#41;  FilterNode
                       arguments:
-                          <span class=hljs-number >1</span>)  sepal_length &gt; <span class=hljs-number >5.0</span>
+                          1&#41;  sepal_length &gt; 5.0
                       inputs:
-                          <span class=hljs-number >1</span>)  DataNode
+                          1&#41;  DataNode
                                 source:  unset source
 
 
-julia&gt; collect(q)
+julia&gt; collect&#40;q&#41;
 Grouped Tables.Table
 Groupings by:
     species
-    log(petal_length) &gt; <span class=hljs-number >0.5</span> (with alias :pred_1)
+    log&#40;petal_length&#41; &gt; 0.5 &#40;with alias :pred_1&#41;
 
 Source: Tables.Table
 │ Row │ species      │ pred_1 │ avg       │
 ├─────┼──────────────┼────────┼───────────┤
-│ <span class=hljs-number >1</span>   │ <span class=hljs-string >&quot;virginica&quot;</span>  │ <span class=hljs-literal >true</span>   │ <span class=hljs-number >0.428644</span>  │
-│ <span class=hljs-number >2</span>   │ <span class=hljs-string >&quot;setosa&quot;</span>     │ <span class=hljs-literal >true</span>   │ -<span class=hljs-number >3.17557</span>  │
-│ <span class=hljs-number >3</span>   │ <span class=hljs-string >&quot;versicolor&quot;</span> │ <span class=hljs-literal >true</span>   │ -<span class=hljs-number >0.136551</span> │
-│ <span class=hljs-number >4</span>   │ <span class=hljs-string >&quot;setosa&quot;</span>     │ <span class=hljs-literal >false</span>  │ -<span class=hljs-number >4.7391</span>   │</code></pre>
+│ 1   │ &quot;virginica&quot;  │ true   │ 0.428644  │
+│ 2   │ &quot;setosa&quot;     │ true   │ -3.17557  │
+│ 3   │ &quot;versicolor&quot; │ true   │ -0.136551 │
+│ 4   │ &quot;setosa&quot;     │ false  │ -4.7391   │</code></pre>
 <p>We hope to include support for the other verbs in the near future.</p>
 <p>Again we emphasize that this collection machinery is provided by the AbstractTables package, not StructuredQueries. As we see above, the latter provides a framework for representing a query structure, whereas packages such as AbstractTables &#40;i&#41; decide what it means to execute a query with a particular structure against a particular backend, and &#40;ii&#41; provide the implementation of the behavior in &#40;i&#41;.</p>
 <p>We provide a convenience macro, <code>@collect&#40;qry&#41;</code>, which is equivalent to <code>collect&#40;@query&#40;qry&#41;&#41;</code>, for when one wishes to query and collect in the same command:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">julia&gt; <span class=hljs-meta >@collect</span> iris |&gt;
-           filter(erf(petal_length) / petal_length &gt; log(sepal_width) / <span class=hljs-number >1.5</span>) |&gt;
-           summarize(sum = sum(ifelse(rand() &gt; <span class=hljs-number >.5</span>, sin(petal_width), <span class=hljs-number >0.0</span>)))
+<pre><code class=language-julia >julia&gt; @collect iris |&gt;
+           filter&#40;erf&#40;petal_length&#41; / petal_length &gt; log&#40;sepal_width&#41; / 1.5&#41; |&gt;
+           summarize&#40;sum &#61; sum&#40;ifelse&#40;rand&#40;&#41; &gt; .5, sin&#40;petal_width&#41;, 0.0&#41;&#41;&#41;
 Tables.Table
 │ Row │ sum       │
 ├─────┼───────────┤
-│ <span class=hljs-number >1</span>   │ <span class=hljs-number >0.0998334</span> │</code></pre>
+│ 1   │ 0.0998334 │</code></pre>
 <p>Again, note the patterns of name resolution: names of functions &#40;e.g. <code>erf</code>&#41; invoked within the context of a query argument are evaluated within the enclosing scope of the <code>@query</code> invocation, whereas names in the arguments of such functions &#40;e.g. <code>petal_length</code>&#41; are taken to be attributes of the data source &#40;i.e., <code>iris</code>&#41;.</p>
 <h3 id=dummy_sources ><a href="#dummy_sources">Dummy sources</a></h3>
 <p>We saw above how there are three parts to a query structure: verbs, sources and query arguments. A <code>Query</code> object represents the verbs and query arguments together in the <code>QueryNode</code> graph and wraps the data source separately. This suggests that one ought to be able to generate query graphs using <code>@query</code> even if one does not specify a particular data source. One can do precisely this by using <em>dummy sources</em>, which are essentially placeholders that can be &quot;filled in&quot; with particular data sources later, when one calls <code>collect</code>. To indicate a source as a dummy source, simply prepend it with a <code>:</code>. For instance:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">julia&gt; q = <span class=hljs-meta >@query</span> select(:src, twice_sepal_length = <span class=hljs-number >2</span> * sepal_length)
+<pre><code class=language-julia >julia&gt; q &#61; @query select&#40;:src, twice_sepal_length &#61; 2 * sepal_length&#41;
 Query with dummy source src
 
-julia&gt; collect(q, src = iris)
+julia&gt; collect&#40;q, src &#61; iris&#41;
 Tables.Table
 │ Row │ twice_sepal_length │
 ├─────┼────────────────────┤
-│ <span class=hljs-number >1</span>   │ <span class=hljs-number >10.2</span>               │
-│ <span class=hljs-number >2</span>   │ <span class=hljs-number >9.8</span>                │
-│ <span class=hljs-number >3</span>   │ <span class=hljs-number >9.4</span>                │
-│ <span class=hljs-number >4</span>   │ <span class=hljs-number >9.2</span>                │
-│ <span class=hljs-number >5</span>   │ <span class=hljs-number >10.0</span>               │
-│ <span class=hljs-number >6</span>   │ <span class=hljs-number >10.8</span>               │
-│ <span class=hljs-number >7</span>   │ <span class=hljs-number >9.2</span>                │
-│ <span class=hljs-number >8</span>   │ <span class=hljs-number >10.0</span>               │
-│ <span class=hljs-number >9</span>   │ <span class=hljs-number >8.8</span>                │
-│ <span class=hljs-number >10</span>  │ <span class=hljs-number >9.8</span>                │
+│ 1   │ 10.2               │
+│ 2   │ 9.8                │
+│ 3   │ 9.4                │
+│ 4   │ 9.2                │
+│ 5   │ 10.0               │
+│ 6   │ 10.8               │
+│ 7   │ 9.2                │
+│ 8   │ 10.0               │
+│ 9   │ 8.8                │
+│ 10  │ 9.8                │
 ⋮
-with <span class=hljs-number >140</span> more rows.</code></pre>
+with 140 more rows.</code></pre>
 <p>Whatever the name of the dummy source &#40;minus the <code>:</code>&#41; was in the query must be the key in the kwarg passed to <code>collect</code>. Otherwise, the method will fail:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">julia&gt; collect(q, tbl = iris)
-ERROR: <span class=hljs-built_in >ArgumentError</span>: Undefined source: tbl. Check spelling <span class=hljs-keyword >in</span> query.
- <span class=hljs-keyword >in</span> <span class=hljs-comment >#collect#5(::Array{Any,1}, ::Function, ::StructuredQueries.Query{Symbol}) at /Users/David/.julia/v0.6/StructuredQueries/src/query/collect.jl:23</span>
- <span class=hljs-keyword >in</span> (::Base.<span class=hljs-comment >#kw##collect)(::Array{Any,1}, ::Base.#collect, ::StructuredQueries.Query{Symbol}) at ./&lt;missing&gt;:0</span></code></pre>
+<pre><code class=language-julia >julia&gt; collect&#40;q, tbl &#61; iris&#41;
+ERROR: ArgumentError: Undefined source: tbl. Check spelling in query.
+ in #collect#5&#40;::Array&#123;Any,1&#125;, ::Function, ::StructuredQueries.Query&#123;Symbol&#125;&#41; at /Users/David/.julia/v0.6/StructuredQueries/src/query/collect.jl:23
+ in &#40;::Base.#kw##collect&#41;&#40;::Array&#123;Any,1&#125;, ::Base.#collect, ::StructuredQueries.Query&#123;Symbol&#125;&#41; at ./&lt;missing&gt;:0</code></pre>
 <h2 id=the_two_problems ><a href="#the_two_problems">The two problems</a></h2>
 <p>Now that we&#39;ve seen what the SQ query framework itself consists of, we can discuss how such a framework may help to solve the column-indexing and nullable semantics problems.</p>
 <h3 id=type-inferability ><a href="#type-inferability">Type-inferability</a></h3>
 <p>Recall that the column-indexing problem consists in the inability of type inference to detect the return type of</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> f(df::DataFrame)
-    A = df[:A]
-    x = zero(eltype(A))
-    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> eachindex(A)
-        x += A[i]
-    <span class=hljs-keyword >end</span>
-    <span class=hljs-keyword >return</span> x
-<span class=hljs-keyword >end</span></code></pre>
+<pre><code class=language-julia >function f&#40;df::DataFrame&#41;
+    A &#61; df&#91;:A&#93;
+    x &#61; zero&#40;eltype&#40;A&#41;&#41;
+    for i in eachindex&#40;A&#41;
+        x &#43;&#61; A&#91;i&#93;
+    end
+    return x
+end</code></pre>
 <p>What <em>would</em> make <code>f</code> above amenable to type inference is to pass <code>A &#61; df&#91;:A&#93;</code> above to an inner function that executes the loop, for instance</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">f_inner(A)
-    x = zero(eltype(A))
-    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:length(A)
-        x += A[i]
-    <span class=hljs-keyword >end</span>
-    <span class=hljs-keyword >return</span> x
-<span class=hljs-keyword >end</span></code></pre>
+<pre><code class=language-julia >f_inner&#40;A&#41;
+    x &#61; zero&#40;eltype&#40;A&#41;&#41;
+    for i in 1:length&#40;A&#41;
+        x &#43;&#61; A&#91;i&#93;
+    end
+    return x
+end</code></pre>
 <p>As long as <code>f_inner</code> does not get inlined, type inference will run &quot;at&quot; the point at which the body of <code>f</code> calls <code>f_inner</code> and will have access to the <code>eltype</code> of <code>df&#91;:A&#93;</code>, since the latter is passed as an argument to <code>f_inner</code>.</p>
 <p>This strategy of introducing a function barrier also works when one requires multiple columns. For instance, suppose I wanted to generate a new column <code>C</code> where <code>C&#91;i&#93; &#61; g&#40;A&#91;i&#93;, B&#91;i&#93;&#41;</code>. The following solution is type-inferable since the type parameters of the zipped iterator <code>zip&#40;A, B&#41;</code> reflects the <code>eltype</code>s of <code>A</code> and <code>B</code>:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> f(g, df)
-    A, B = df[:A], df[:B]
-    C = similar(A)
-    f_inner!(C, g, zip(A, B))
-    <span class=hljs-keyword >return</span> DataFrame(C = C)
-<span class=hljs-keyword >end</span>
+<pre><code class=language-julia >function f&#40;g, df&#41;
+    A, B &#61; df&#91;:A&#93;, df&#91;:B&#93;
+    C &#61; similar&#40;A&#41;
+    f_inner&#33;&#40;C, g, zip&#40;A, B&#41;&#41;
+    return DataFrame&#40;C &#61; C&#41;
+end
 
-<span class=hljs-keyword >function</span> f_inner!(C, g, itr) <span class=hljs-comment ># bang because mutates C</span>
-    <span class=hljs-keyword >for</span> (a, b) <span class=hljs-keyword >in</span> itr
-        C[i] = g(a, b)
-    <span class=hljs-keyword >end</span>
-    <span class=hljs-keyword >return</span> C
-<span class=hljs-keyword >end</span></code></pre>
+function f_inner&#33;&#40;C, g, itr&#41; # bang because mutates C
+    for &#40;a, b&#41; in itr
+        C&#91;i&#93; &#61; g&#40;a, b&#41;
+    end
+    return C
+end</code></pre>
 <p>In other words: If one intends to iterate over the rows of some subset of columns of a <code>DataFrame</code>, then at some point there must be a function barrier through which is passed an argument whose signature reflects the <code>eltype</code>s of the relevant columns.</p>
 <p>The manipulation described above could be expressed for a column-indexable table &#40;e.g. a <code>Table</code> object&#41; as</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-meta >@query</span> select(tbl, C = A * B)</code></pre>
+<pre><code class=language-julia >@query select&#40;tbl, C &#61; A * B&#41;</code></pre>
 <p>The <a href="https://github.com/davidagold/AbstractTables.jl/tree/master/src/column_indexable/query">collection machinery</a> that supports this query against, say, a <code>Table</code> source essentially <a href="https://github.com/davidagold/AbstractTables.jl/blob/master/src/column_indexable/query/select.jl">follows</a> the above pattern of <code>f</code> and <code>f_inner</code>. That is, an outer function passes a &quot;scalar kernel&quot; &#40;here, <code>row -&gt; row&#91;1&#93; * row&#91;2&#93;</code>&#41; that reflects the structure of <code>A * B</code> and a &quot;row iterator&quot; &#40;here <code>zip&#40;tbl&#91;:A&#93;, tbl&#91;:B&#93;&#41;</code>&#41; to an inner function that computes the value of the scalar kernel applied to the &quot;rows&quot; returned by iterating over the row iterator. &#40;Note that the argument to the scalar kernel is assumed to be a <code>Tuple</code> whose individual elements assume the positions of named attributes &#40;such as <code>A</code> and <code>B</code>&#41; in the body of the &quot;value expression&quot; &#40;here <code>A * B</code>&#41; from which the scalar kernel is generated&#41;.</p>
 <p>The scalar kernel and the information about which column to extract from <code>tbl</code> and <code>zip</code> together are all stored in the <code>QueryNode</code> graph produced by <code>@query</code>. Much of the work in producing such a graph consists in extracting such information from the <code>qry</code> expression &#40;here <code>select&#40;tbl, C &#61; A * B&#41;</code>&#41; and processing it to produce &#40;i&#41; a lambda that captures the form of the transformation &#40;<code>A * B</code>&#41;, &#40;ii&#41; a <code>Symbol</code> that names the resultant column &#40;<code>C</code>&#41; and a <code>Vector&#123;Symbol&#125;</code> that lists the relevant argument column names &#40;<code>&#91;:A, :B&#93;</code>&#41; in the order they are encountered during the production of the lambda.</p>
 <p>Note that these data &#40;a scalar kernel and result and argument fields&#41; are not necessary to generate SQL code from a raw query argument, say the <code>Expr</code> object <code>:&#40; C &#61; A * B &#41;</code>. Thus, one might argue that it is somewhat wasteful to compute such data and store it in the <code>QueryNode</code> graph when one might be able to compute the data at run-time dispatch of <code>collect</code> on a <code>Query&#123;S&#125;</code> where <code>S</code> is a type that satisfies the column-indexable interface. This is a good point, but there are two considerations to account. The first is that computing the scalar kernel and extracting the result and argument fields from the query argument is probably not prohibitively expensive. The second is that generating the scalar kernel at run-time &#40;i&#41; involves use of <code>eval</code>, which is to be avoided, and &#40;ii&#41; may involve a lot of work to re-incorporate the module information of names appearing in expression to be <code>eval</code>&#39;d into a scalar kernel. For now, it is easiest to generate scalar kernels at macroexpand-time and let them come along for the ride in the <code>QueryNode</code> graph even if the latter is to be collected against a data source &#40;e.g. a SQL connection&#41; that doesn&#39;t need such data.</p>
@@ -244,52 +202,37 @@ https://github.com/highlightjs/highlight.js/issues/2277
 <h3 id=the_hard_question_of_nullable_semantics ><a href="#the_hard_question_of_nullable_semantics">The hard question of nullable semantics</a></h3>
 <p>Recall the hard question of nullable semantics involves implementing a given lifting semantics – that is, a given behavior for <code>f&#40;x::Nullable&#123;T&#125;&#41;</code> given a defined method <code>f&#40;x::T&#41;</code>– in a &quot;general&quot; way.</p>
 <p>One solution – perhaps the most obvious, and which I have <a href="https://github.com/JuliaStats/NullableArrays.jl/commit/e3d68ab2502e3e8c2e9e6b7c299f9078b9154e3e#diff-04c6e90faac2675aa89e2176d2eec7d8R140">previously endorsed</a> – involves defining the method <code>f&#40;x::Nullable&#123;T&#125;&#41;</code> as something like</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> f(x::Nullable{T})
-    <span class=hljs-keyword >if</span> isnull(x)
-        <span class=hljs-keyword >return</span> Nullable{U}()
-    <span class=hljs-keyword >else</span>
-        <span class=hljs-keyword >return</span> Nullable(f(x.value))
-    <span class=hljs-keyword >end</span>
-<span class=hljs-keyword >end</span></code></pre>
+<pre><code class=language-julia >function f&#40;x::Nullable&#123;T&#125;&#41;
+    if isnull&#40;x&#41;
+        return Nullable&#123;U&#125;&#40;&#41;
+    else
+        return Nullable&#40;f&#40;x.value&#41;&#41;
+    end
+end</code></pre>
 <p>with natural analogues for methods with n-ary arguments. This process is a bit cumbersome, but it would not be difficult to automate with a macro with which one could annotate the original definition <code>f&#40;x::T&#41;</code>. Call this approach the &quot;method extension lifting&quot; approach.</p>
 <p>The method extension lifting approach is very flexible. However, it does face some difficulties. One must somehow decide which functions should be lifted in this manner, and it&#39;s not clear how this line &#40;between lifted and non-lifted functions&#41; ought to be drawn. And if one cannot edit the definition of a function then a macro is of no use; one must manually introduce the lifted variant.</p>
 <p>There is a further problem. If one wants to support lifting over arguments with &quot;mixed&quot; signatures – i.e. signatures in which some argument types are <code>Nullable</code> and some are not – then one has either to extend the promotion machinery or to define methods for mixed signatures, e.g. <code>&#43;&#123;T&#125;&#40;x, y::Nullable&#123;T&#125;&#41;</code>. That may end up being a lot of methods. Even if their definition can be automated with metaprogramming, the compilation costs associated with method proliferation may be considerable &#40;but I haven&#39;t tested this&#41;.</p>
 <p>Finally, there is the problem described in <a href="https://github.com/JuliaStats/NullableArrays.jl/issues/148#issuecomment-249335994">NullableArrays.jl#148</a>. I won&#39;t repeat the entire argument here. The summary of this problem is: if one is going to rely on a minimal set of lifted operators to support generic lifting of user-defined functions, those user-defined functions essentially have to give up much of multiple dispatch.</p>
 <p>The difficulties associated with method extension lifting are not insurmountable, but the solution – namely, keeping a repository of lifted methods – requires an undetermined amount of maintenance and coordination.</p>
 <p>Another way to implement standard lifting semantics is by means of a higher-order function – that is, on Julia 0.5 where higher-order functions are performant. Such a function – call it <code>lift</code> – might look like the following:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> lift(f, x)
-    <span class=hljs-keyword >if</span> hasvalue(x)
-        <span class=hljs-keyword >return</span> Nullable(f(x))
-    <span class=hljs-keyword >else</span>
-        U = Core.Inference.return_type(f, (typeof(x),))
-        <span class=hljs-keyword >return</span> Nullable{U}()
-    <span class=hljs-keyword >end</span>
-<span class=hljs-keyword >end</span></code></pre>
+<pre><code class=language-julia >function lift&#40;f, x&#41;
+    if hasvalue&#40;x&#41;
+        return Nullable&#40;f&#40;x&#41;&#41;
+    else
+        U &#61; Core.Inference.return_type&#40;f, &#40;typeof&#40;x&#41;,&#41;&#41;
+        return Nullable&#123;U&#125;&#40;&#41;
+    end
+end</code></pre>
 <p>This definition can naturally be extended to methods with more than one argument. The primary advantage of this approach over method extension lifting is its generality: one needs only to define one &#40;two, three&#41; higher-order <code>lift</code> method to support lifting of all functions of one &#40;two, <em>n</em>&#41; argument&#40;s&#41;, as opposed to having to define a lifted version for each such function. Note that as long as <code>hasvalue</code> has some generic fallback method for non-<code>Nullable</code> arguments, such <code>lift</code> functions cover both standard and mixed-signature lifting. &#40;Ideally one would ensure that the code is optimized for when types are non-<code>Nullable</code>; in particular, one would ensure that the dead branch is removed – cf. <a href="https://github.com/JuliaLang/julia/pull/18484">julia#18484</a>.&#41; Call this approach the &quot;higher-order lifting&quot; approach.</p>
 <p>So, with the higher-order lifting approach we might better avoid method proliferation and generality worries, which is nice. However, now we require users to invoke <code>lift</code> everywhere. In particular, to lift <code>f&#40;g&#40;x&#41;&#41;</code> over a <code>Nullable</code> argument <code>x</code>, one needs to write <code>lift&#40;f, lift&#40;g, x&#41;&#41;</code>. The least we could do in this case is provide an <code>@lift</code> macro that, say, traverses the AST of <code>f&#40;g&#40;x&#41;&#41;</code> and replaces each function call <code>f&#40;...&#41;</code> by an invocation of <code>lift&#40;f, ...&#41;</code>. That might be reasonable, but it&#39;s still an artifact of implementation details of support for missing values, and ideally it would not be exposed to users.</p>
 <p>Recall that the present query framework extracts the &quot;value expression&quot; of a query argument &#40;for instance, <code>B * C</code> in the query argument <code>C &#61; A * B</code>&#41; and generates a lambda that mimics the former&#39;s structure &#40;in this case, <code>row -&gt; row&#91;1&#93; * row&#91;2&#93;</code>&#41;. A proposed modification &#40;see <a href="https://github.com/davidagold/_AbstractTables.jl/issues/2">AbstractTables#2</a>&#41; to this process is to modify the AST of the value expression &#40;<code>A * B</code>&#41; by appropriately inserting calls to <code>lift</code>, e.g.</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">row -&gt; lift(*, row[<span class=hljs-number >1</span>], row[<span class=hljs-number >2</span>])</code></pre>
+<pre><code class=language-julia >row -&gt; lift&#40;*, row&#91;1&#93;, row&#91;2&#93;&#41;</code></pre>
 <p>While there is a simpler way to achieve standard lifting semantics, this approach &#40;which is currently employed by the column-indexing collection machinery&#41; does not easily support non-standard lifting semantics such as three-valued logic.</p>
 <p>The higher-order lifting approach is not without its own drawbacks. Most notably, non-standard lifting semantics, such as three-valued logic, are more difficult to implement and are subject to restrictions that do not apply to the method extension lifting approach. The details of this difficulty is the proper subject of another blog post. The summary of the problem is: higher-order lifting &#40;via code transformation, such as within <code>@query</code>&#41; can only give non-standard lifting semantics to methods called explicitly within the expression passed to <code>@query</code>. That is,</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-meta >@query</span> filter(tbl, A | B)</code></pre>
+<pre><code class=language-julia >@query filter&#40;tbl, A | B&#41;</code></pre>
 <p>can be given, say, three-valued logic semantics via higher-order lifting, but</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">f(x, y) = x | y
-<span class=hljs-meta >@query</span> filter(tbl, f(A, B))</code></pre>
+<pre><code class=language-julia >f&#40;x, y&#41; &#61; x | y
+@query filter&#40;tbl, f&#40;A, B&#41;&#41;</code></pre>
 <p>cannot.</p>
 <p>Which approach to solving the hard question of <code>Nullable</code> semantics is better? It really is not clear. Right now, the Julia statistics community is trying out both solutions. I am hopeful time and experimentation will yield new insights.</p>
 <h2 id=sql_backends ><a href="#sql_backends">SQL backends</a></h2>
@@ -298,11 +241,8 @@ https://github.com/highlightjs/highlight.js/issues/2277
 <h2 id=roadmap_and_open_questions ><a href="#roadmap_and_open_questions">Roadmap and open questions</a></h2>
 <p>There is a general roadmap available at  <a href="https://github.com/davidagold/StructuredQueries.jl/issues/19">structuredQueries.jl#19</a>. I&#39;ll briefly describe some of what I believe are the most pressing/interesting open questions.</p>
 <p>Interpolation syntax and implementation are both significant open questions. Suppose I wish to refer to a name in the enclosing scope of an <code>@query</code> invocation. A straightforward syntax would be to prepend the interpolated variable with <code>&#36;</code>, as in</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">c = <span class=hljs-number >.5</span>
-q = <span class=hljs-meta >@query</span> filter(tbl, A &gt; $c)</code></pre>
+<pre><code class=language-julia >c &#61; .5
+q &#61; @query filter&#40;tbl, A &gt; &#36;c&#41;</code></pre>
 <p>How should this be implemented? For full generality, we would like to be able to &quot;capture&quot; <code>c</code> from the enclosing scope and store it <code>q</code>. One way to do so is to include <code>c</code> in the closure of a lambda <code>&#40;&#41; -&gt; c</code> that we store in <code>q</code>. However, there is the question of how to deal with <a href="https://github.com/davidagold/StructuredQueries.jl/issues/22#issuecomment-244995697">problems of type-inferability</a>. Solving this problem may either require or strongly suggest some sort of &quot;parametrized queries&quot; API by which one can designate a name inside of a query argument context a <em>parameter</em> that can then be bound after the <code>@query</code> invocation, e.g. specified as kwargs to <code>collect</code> or to a function like <code>bind&#33;&#40;q::Query&#91;; kwargs...&#93;&#41;</code>.</p>
 <p>We are also still deciding what the general syntax within a query context should look like. A big part of this decision concerns how aliasing and related functionality ought to work. See <a href="https://github.com/davidagold/StructuredQueries.jl/issues/21">StructuredQueries.jl#21</a> for more details. This issue is similar to that of interpolation syntax insofar as both involve name resolution within different query contexts &#40;e.g. in a data source specification context vs. a query argument context&#41;.</p>
 <p>Finally, extensibility of not only <code>collect</code> but also of the graph generation facilities is an important issue, of which we hope to say more in a later post.</p>
@@ -316,8 +256,8 @@ q = <span class=hljs-meta >@query</span> filter(tbl, A &gt; $c)</code></pre>
 
     
     
-        
-
+        <script src="/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
 
     
 

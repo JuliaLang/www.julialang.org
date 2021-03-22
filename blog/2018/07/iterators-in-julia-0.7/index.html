@@ -1,33 +1,33 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Writing Iterators in Julia 0.7</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Writing Iterators in Julia 0.7"> <meta property="og:description" content=" Writing Iterators in Julia 0.7 | This post originally appeared on the Invenia blog.... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Writing Iterators in Julia 0.7 <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 8 July 2018 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"> <a href="https://github.com/iamed2">Eric Davies</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2018/07/iterators-in-julia-0.7.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><h3 id=with_the_upcoming_07_release_julia_has_simplified_its_iteration_interface ><a href="#with_the_upcoming_07_release_julia_has_simplified_its_iteration_interface">With the upcoming 0.7 release, Julia has simplified its iteration interface.</a></h3> <p>This post originally appeared on the <a href="https://invenia.github.io/blog/2018/07/06/iteratorsinjulia07/">Invenia blog</a>.</p> <p>With the upcoming 0.7 release, Julia has simplified its iteration interface. The <a href="/downloads/">0.7-beta</a> release is available for download. This was a <a href="https://github.com/JuliaLang/julia/pull/25261">huge undertaking</a> which mostly fell to the prolific <a href="https://github.com/Keno">Keno Fischer</a>, who wrote an entirely new optimizer for the language to accomplish it&#33; As the most active maintainer of the <a href="https://github.com/JuliaCollections/IterTools.jl">IterTools</a> package, I decided to spend a week rewriting its iterators for the new interface. I&#39;d like to share that experience with you to introduce the new interface and assist in transitioning to Julia 0.7.</p> <h2 id=iteration_in_julia_06 ><a href="#iteration_in_julia_06">Iteration in Julia 0.6</a></h2> <p>Previously, Julia&#39;s iteration interface consisted of three methods: <code>start</code>, <code>next</code>, and <code>done</code>. A good way to demonstrate how these work together is to show the transformation from a <code>for</code> loop to the equivalent <code>while</code> loop using those functions. I&#39;ve taken this from the <a href="https://docs.julialang.org/en/release-0.6/manual/interfaces/#man-interface-iteration-1">Julia Interfaces documentation</a>, written by <a href="https://github.com/mbauman">Matt Bauman</a> and others.</p> <p>A simple <code>for</code> loop like this:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs"><span class=hljs-keyword >for</span> element <span class=hljs-keyword >in</span> iterable
-    <span class=hljs-comment ># body</span>
-<span class=hljs-keyword >end</span></code></pre> <p>was equivalent to this <code>while</code> loop:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs">state = start(iterable)
-<span class=hljs-keyword >while</span> !done(iterable, state)
-    (element, state) = next(iterable, state)
-    <span class=hljs-comment ># body</span>
-<span class=hljs-keyword >end</span></code></pre> <p>A simple example is a range iterator which yields every nth element up to some number of elements:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >struct</span> EveryNth
-           n::<span class=hljs-built_in >Int</span>
-           start::<span class=hljs-built_in >Int</span>
-           length::<span class=hljs-built_in >Int</span>
-       <span class=hljs-keyword >end</span>
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > Base.start(iter::EveryNth) = (iter.start, <span class=hljs-number >0</span>)
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >function</span> Base.next(iter::EveryNth, state)
-           element, count = state
-           <span class=hljs-keyword >return</span> (element, (element + iter.n, count + <span class=hljs-number >1</span>))
-       <span class=hljs-keyword >end</span>
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >function</span> Base.done(iter::EveryNth, state)
-           _, count = state
-           <span class=hljs-keyword >return</span> count &gt;= iter.length
-       <span class=hljs-keyword >end</span>
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > Base.length(iter::EveryNth) = iter.length
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > Base.eltype(iter::EveryNth) = <span class=hljs-built_in >Int</span></span></code></pre> <p>Then we can iterate:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >for</span> element <span class=hljs-keyword >in</span> EveryNth(<span class=hljs-number >2</span>, <span class=hljs-number >0</span>, <span class=hljs-number >10</span>)
-           println(element)
-       <span class=hljs-keyword >end</span>
-</span>0
+<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <!-- --> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto'); ga('send', 'pageview'); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <title>Writing Iterators in Julia 0.7</title> <style> .container ul li p {margin-bottom: 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Writing Iterators in Julia 0.7"> <meta property="og:description" content=" Writing Iterators in Julia 0.7 | This post originally appeared on the Invenia blog.... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Writing Iterators in Julia 0.7 <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 8 July 2018 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"> <a href="https://github.com/iamed2">Eric Davies</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2018/07/iterators-in-julia-0.7.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><h3 id=with_the_upcoming_07_release_julia_has_simplified_its_iteration_interface ><a href="#with_the_upcoming_07_release_julia_has_simplified_its_iteration_interface">With the upcoming 0.7 release, Julia has simplified its iteration interface.</a></h3> <p>This post originally appeared on the <a href="https://invenia.github.io/blog/2018/07/06/iteratorsinjulia07/">Invenia blog</a>.</p> <p>With the upcoming 0.7 release, Julia has simplified its iteration interface. The <a href="/downloads/">0.7-beta</a> release is available for download. This was a <a href="https://github.com/JuliaLang/julia/pull/25261">huge undertaking</a> which mostly fell to the prolific <a href="https://github.com/Keno">Keno Fischer</a>, who wrote an entirely new optimizer for the language to accomplish it&#33; As the most active maintainer of the <a href="https://github.com/JuliaCollections/IterTools.jl">IterTools</a> package, I decided to spend a week rewriting its iterators for the new interface. I&#39;d like to share that experience with you to introduce the new interface and assist in transitioning to Julia 0.7.</p> <h2 id=iteration_in_julia_06 ><a href="#iteration_in_julia_06">Iteration in Julia 0.6</a></h2> <p>Previously, Julia&#39;s iteration interface consisted of three methods: <code>start</code>, <code>next</code>, and <code>done</code>. A good way to demonstrate how these work together is to show the transformation from a <code>for</code> loop to the equivalent <code>while</code> loop using those functions. I&#39;ve taken this from the <a href="https://docs.julialang.org/en/release-0.6/manual/interfaces/#man-interface-iteration-1">Julia Interfaces documentation</a>, written by <a href="https://github.com/mbauman">Matt Bauman</a> and others.</p> <p>A simple <code>for</code> loop like this:</p> <pre><code class=language-julia >for element in iterable
+    # body
+end</code></pre> <p>was equivalent to this <code>while</code> loop:</p> <pre><code class=language-julia >state &#61; start&#40;iterable&#41;
+while &#33;done&#40;iterable, state&#41;
+    &#40;element, state&#41; &#61; next&#40;iterable, state&#41;
+    # body
+end</code></pre> <p>A simple example is a range iterator which yields every nth element up to some number of elements:</p> <pre><code class=language-julia-repl >julia&gt; struct EveryNth
+           n::Int
+           start::Int
+           length::Int
+       end
+
+julia&gt; Base.start&#40;iter::EveryNth&#41; &#61; &#40;iter.start, 0&#41;
+
+julia&gt; function Base.next&#40;iter::EveryNth, state&#41;
+           element, count &#61; state
+           return &#40;element, &#40;element &#43; iter.n, count &#43; 1&#41;&#41;
+       end
+
+julia&gt; function Base.done&#40;iter::EveryNth, state&#41;
+           _, count &#61; state
+           return count &gt;&#61; iter.length
+       end
+
+julia&gt; Base.length&#40;iter::EveryNth&#41; &#61; iter.length
+
+julia&gt; Base.eltype&#40;iter::EveryNth&#41; &#61; Int</code></pre> <p>Then we can iterate:</p> <pre><code class=language-julia-repl >julia&gt; for element in EveryNth&#40;2, 0, 10&#41;
+           println&#40;element&#41;
+       end
+0
 2
 4
 6
@@ -36,13 +36,13 @@
 12
 14
 16
-18</code></pre> <p>Which is equivalent to:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >let</span> iterable = EveryNth(<span class=hljs-number >2</span>, <span class=hljs-number >0</span>, <span class=hljs-number >10</span>), state = start(iterable)
-           <span class=hljs-keyword >while</span> !done(iterable, state)
-               (element, state) = next(iterable, state)
-               println(element)
-           <span class=hljs-keyword >end</span>
-       <span class=hljs-keyword >end</span>
-</span>0
+18</code></pre> <p>Which is equivalent to:</p> <pre><code class=language-julia-repl >julia&gt; let iterable &#61; EveryNth&#40;2, 0, 10&#41;, state &#61; start&#40;iterable&#41;
+           while &#33;done&#40;iterable, state&#41;
+               &#40;element, state&#41; &#61; next&#40;iterable, state&#41;
+               println&#40;element&#41;
+           end
+       end
+0
 2
 4
 6
@@ -51,190 +51,169 @@
 12
 14
 16
-18</code></pre> <p>Notice that our <code>EveryNth</code> struct is immutable and we never mutate the state information.</p> <p>As an aside, the <code>length</code> and <code>eltype</code> method definitions are not necessary. Instead, we could use the <code>IteratorSize</code> and <code>IteratorEltype</code> traits to say that we don&#39;t implement those functions and Julia&#39;s Base functions will not try to call them when iterating. <a href="https://docs.julialang.org/en/latest/base/collections/#Base.collect-Tuple&#123;Any&#125;"><code>collect</code></a> is notable for specializing on both of these traits to provide optimizations for different kinds of iterators.</p> <h2 id=iteration_in_julia_07 ><a href="#iteration_in_julia_07">Iteration in Julia 0.7</a></h2> <p>In Julia 0.7, the iteration interface is now just one function: <code>iterate</code>. The <code>while</code> loop above would now be written as:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs">iter_result = iterate(iterable)
-<span class=hljs-keyword >while</span> iter_result !== <span class=hljs-literal >nothing</span>
-    (element, state) = iter_result
-    <span class=hljs-comment ># body</span>
-    iter_result = iterate(iterable, state)
-<span class=hljs-keyword >end</span></code></pre> <p>The <code>iterate</code> function has two methods. The first is called once, to begin iteration &#40;like the old <code>start</code>&#41; and <em>also</em> perform the first iteration step. The second is called repeatedly to iterate, like <code>next</code> in Julia 0.6.</p> <p>The <code>EveryNth</code> example now looks like this:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia-repl hljs"><span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >struct</span> EveryNth
-           n::<span class=hljs-built_in >Int</span>
-           start::<span class=hljs-built_in >Int</span>
-           length::<span class=hljs-built_in >Int</span>
-       <span class=hljs-keyword >end</span>
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > <span class=hljs-keyword >function</span> Base.iterate(iter::EveryNth, state=(iter.start, <span class=hljs-number >0</span>))
-           element, count = state
-</span>
-           if count &gt;= iter.length
+18</code></pre> <p>Notice that our <code>EveryNth</code> struct is immutable and we never mutate the state information.</p> <p>As an aside, the <code>length</code> and <code>eltype</code> method definitions are not necessary. Instead, we could use the <code>IteratorSize</code> and <code>IteratorEltype</code> traits to say that we don&#39;t implement those functions and Julia&#39;s Base functions will not try to call them when iterating. <a href="https://docs.julialang.org/en/latest/base/collections/#Base.collect-Tuple&#123;Any&#125;"><code>collect</code></a> is notable for specializing on both of these traits to provide optimizations for different kinds of iterators.</p> <h2 id=iteration_in_julia_07 ><a href="#iteration_in_julia_07">Iteration in Julia 0.7</a></h2> <p>In Julia 0.7, the iteration interface is now just one function: <code>iterate</code>. The <code>while</code> loop above would now be written as:</p> <pre><code class=language-julia >iter_result &#61; iterate&#40;iterable&#41;
+while iter_result &#33;&#61;&#61; nothing
+    &#40;element, state&#41; &#61; iter_result
+    # body
+    iter_result &#61; iterate&#40;iterable, state&#41;
+end</code></pre> <p>The <code>iterate</code> function has two methods. The first is called once, to begin iteration &#40;like the old <code>start</code>&#41; and <em>also</em> perform the first iteration step. The second is called repeatedly to iterate, like <code>next</code> in Julia 0.6.</p> <p>The <code>EveryNth</code> example now looks like this:</p> <pre><code class=language-julia-repl >julia&gt; struct EveryNth
+           n::Int
+           start::Int
+           length::Int
+       end
+
+julia&gt; function Base.iterate&#40;iter::EveryNth, state&#61;&#40;iter.start, 0&#41;&#41;
+           element, count &#61; state
+
+           if count &gt;&#61; iter.length
                return nothing
            end
 
-           return (element, (element + iter.n, count + 1))
+           return &#40;element, &#40;element &#43; iter.n, count &#43; 1&#41;&#41;
        end
 
-<span class=hljs-meta >julia&gt;</span><span class=julia > Base.length(iter::EveryNth) = iter.length
-</span>
-<span class=hljs-meta >julia&gt;</span><span class=julia > Base.eltype(iter::EveryNth) = <span class=hljs-built_in >Int</span></span></code></pre> <p>In our <code>iterate</code> function we define a default value for <code>state</code> which is used when <code>iterate</code> is called with one argument. <sup id="fnref:defaults"><a href="#fndef:defaults" class=fnref >[1]</a></sup></p> <p>This is already less code than the old interface required, but we can reduce it further using another new <a href="https://github.com/JuliaLang/julia/pull/23337">feature</a> of Julia 0.7.</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs"><span class=hljs-keyword >function</span> Base.iterate(it::EveryNth, (el, i)=(it.start, <span class=hljs-number >0</span>))
-	<span class=hljs-keyword >return</span> i &gt;= it.length ? <span class=hljs-literal >nothing</span> : (el, (el + it.n, i + <span class=hljs-number >1</span>))
-<span class=hljs-keyword >end</span></code></pre> <p>I personally prefer verbosity when it increases readability, but some people prefer shorter code, and that&#39;s easier than ever to achieve.</p> <h3 id=a_note_on_compatibility ><a href="#a_note_on_compatibility">A Note on Compatibility</a></h3> <p>To assist with transitioning between versions, Julia 0.7 includes fallback definitions of <code>iterate</code> which call <code>start</code>, <code>next</code>, and <code>done</code>. If you want code to work on both 0.6 and 0.7, I recommend keeping your iterators defined in those terms, as there isn&#39;t a good way to use the <code>iterate</code> interface on Julia 0.6. Julia 1.0 will remove those fallback definitions and all usage of the old iteration interface.</p> <h2 id=common_strategies ><a href="#common_strategies">Common Strategies</a></h2> <p>The above example was constructed to be as straightforward as possible, but not all iteration is that easy to express. Luckily, the new interface was designed to assist with situations which were previously difficult or inefficient, and in some cases &#40;like the <code>EveryNth</code> example&#41; reduces the amount of code necessary. While <a href="https://github.com/JuliaCollections/IterTools.jl/pull/35">updating</a> <a href="https://github.com/JuliaCollections/IterTools.jl">IterTools.jl</a>, I came across a few patterns which repeatedly proved useful.</p> <h3 id=wrapping_another_iterable ><a href="#wrapping_another_iterable">Wrapping Another Iterable</a></h3> <p>In many cases, the iterable we want to create is a transformation applied to a caller-supplied iterable. Many of the useful patterns apply specifically to this situation.</p> <h4 id=early_return ><a href="#early_return">Early Return</a></h4> <p>When wrapping an iterable, we usually want to terminate when the wrapped iterable terminates, i.e., return <code>nothing</code> when the wrapped call to <code>iterate</code> returns <code>nothing</code>. If the call to <code>iterate</code> doesn&#39;t return <code>nothing</code>, we want to apply some operations before returning. This pattern was common and simple enough to justify a macro which in IterTools I&#39;ve called <code>@ifsomething</code> </p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs"><span class=hljs-keyword >macro</span> ifsomething(ex)
-    <span class=hljs-keyword >quote</span>
-        result = $(esc(ex))
-        result === <span class=hljs-literal >nothing</span> &amp;&amp; <span class=hljs-keyword >return</span> <span class=hljs-literal >nothing</span>
+julia&gt; Base.length&#40;iter::EveryNth&#41; &#61; iter.length
+
+julia&gt; Base.eltype&#40;iter::EveryNth&#41; &#61; Int</code></pre> <p>In our <code>iterate</code> function we define a default value for <code>state</code> which is used when <code>iterate</code> is called with one argument. <sup id="fnref:defaults"><a href="#fndef:defaults" class=fnref >[1]</a></sup></p> <p>This is already less code than the old interface required, but we can reduce it further using another new <a href="https://github.com/JuliaLang/julia/pull/23337">feature</a> of Julia 0.7.</p> <pre><code class=language-julia >function Base.iterate&#40;it::EveryNth, &#40;el, i&#41;&#61;&#40;it.start, 0&#41;&#41;
+	return i &gt;&#61; it.length ? nothing : &#40;el, &#40;el &#43; it.n, i &#43; 1&#41;&#41;
+end</code></pre> <p>I personally prefer verbosity when it increases readability, but some people prefer shorter code, and that&#39;s easier than ever to achieve.</p> <h3 id=a_note_on_compatibility ><a href="#a_note_on_compatibility">A Note on Compatibility</a></h3> <p>To assist with transitioning between versions, Julia 0.7 includes fallback definitions of <code>iterate</code> which call <code>start</code>, <code>next</code>, and <code>done</code>. If you want code to work on both 0.6 and 0.7, I recommend keeping your iterators defined in those terms, as there isn&#39;t a good way to use the <code>iterate</code> interface on Julia 0.6. Julia 1.0 will remove those fallback definitions and all usage of the old iteration interface.</p> <h2 id=common_strategies ><a href="#common_strategies">Common Strategies</a></h2> <p>The above example was constructed to be as straightforward as possible, but not all iteration is that easy to express. Luckily, the new interface was designed to assist with situations which were previously difficult or inefficient, and in some cases &#40;like the <code>EveryNth</code> example&#41; reduces the amount of code necessary. While <a href="https://github.com/JuliaCollections/IterTools.jl/pull/35">updating</a> <a href="https://github.com/JuliaCollections/IterTools.jl">IterTools.jl</a>, I came across a few patterns which repeatedly proved useful.</p> <h3 id=wrapping_another_iterable ><a href="#wrapping_another_iterable">Wrapping Another Iterable</a></h3> <p>In many cases, the iterable we want to create is a transformation applied to a caller-supplied iterable. Many of the useful patterns apply specifically to this situation.</p> <h4 id=early_return ><a href="#early_return">Early Return</a></h4> <p>When wrapping an iterable, we usually want to terminate when the wrapped iterable terminates, i.e., return <code>nothing</code> when the wrapped call to <code>iterate</code> returns <code>nothing</code>. If the call to <code>iterate</code> doesn&#39;t return <code>nothing</code>, we want to apply some operations before returning. This pattern was common and simple enough to justify a macro which in IterTools I&#39;ve called <code>@ifsomething</code> </p> <pre><code class=language-julia >macro ifsomething&#40;ex&#41;
+    quote
+        result &#61; &#36;&#40;esc&#40;ex&#41;&#41;
+        result &#61;&#61;&#61; nothing &amp;&amp; return nothing
         result
-    <span class=hljs-keyword >end</span>
-<span class=hljs-keyword >end</span></code></pre> <p>Putting this code in a multiline macro allows us to simplify code which would usually require multiple lines. This code:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs">iter = iterate(wrapped, wrapped_state)
+    end
+end</code></pre> <p>Putting this code in a multiline macro allows us to simplify code which would usually require multiple lines. This code:</p> <pre><code class=language-julia >iter &#61; iterate&#40;wrapped, wrapped_state&#41;
 
-<span class=hljs-keyword >if</span> iter === <span class=hljs-literal >nothing</span>
-    <span class=hljs-keyword >return</span> <span class=hljs-literal >nothing</span>
-<span class=hljs-keyword >end</span>
+if iter &#61;&#61;&#61; nothing
+    return nothing
+end
 
-val, wrapped_state = iter
+val, wrapped_state &#61; iter
 
-<span class=hljs-comment ># continue processing</span></code></pre> <p>becomes this:</p> Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated. Deprecated as of 10.7.0. Please use highlight(code, options) instead. https://github.com/highlightjs/highlight.js/issues/2277 <pre><code class="julia hljs">val, wrapped_state = <span class=hljs-meta >@ifsomething</span> iterate(wrapped, wrapped_state)</code></pre>
+# continue processing</code></pre> <p>becomes this:</p> <pre><code class=language-julia >val, wrapped_state &#61; @ifsomething iterate&#40;wrapped, wrapped_state&#41;</code></pre>
 <p>Conveniently &#40;since it would otherwise error&#41;, the value returned from <code>iterate</code> will only be unpacked if it&#39;s not <code>nothing</code>.</p>
 <h4 id=slurping_and_splatting ><a href="#slurping_and_splatting">Slurping and Splatting</a></h4>
 <p>The iteration interface requires two methods of <code>iterate</code>, but it&#39;s handy to use default arguments <sup id="fnref:defaults"><a href="#fndef:defaults" class=fnref >[1]</a></sup> to only write out one function. However, sometimes there is no clear initial value for <code>state</code>, e.g., if it requires you to start iterating over the wrapped iterable. In this case it&#39;s helpful to use &quot;slurping&quot; and &quot;splatting&quot; <sup id="fnref:slurpsplat"><a href="#fndef:slurpsplat" class=fnref >[2]</a></sup> to refer to either zero or one function argument—the presence or absence of the <code>state</code> argument.</p>
 <p>A simple example is the <code>TakeNth</code> iterator from <a href="https://juliacollections.github.io/IterTools.jl/latest/#takenth&#40;xs,-n&#41;-1">IterTools.jl</a>. Its implementation of the <code>iterate</code> function looks like this:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> iterate(it::TakeNth, state...)
-    xs_iter = <span class=hljs-literal >nothing</span>
+<pre><code class=language-julia >function iterate&#40;it::TakeNth, state...&#41;
+    xs_iter &#61; nothing
 
-    <span class=hljs-keyword >for</span> i = <span class=hljs-number >1</span>:it.interval
-        xs_iter = <span class=hljs-meta >@ifsomething</span> iterate(it.xs, state...)
-        state = Base.tail(xs_iter)
-    <span class=hljs-keyword >end</span>
+    for i &#61; 1:it.interval
+        xs_iter &#61; @ifsomething iterate&#40;it.xs, state...&#41;
+        state &#61; Base.tail&#40;xs_iter&#41;
+    end
 
-    <span class=hljs-keyword >return</span> xs_iter
-<span class=hljs-keyword >end</span></code></pre>
+    return xs_iter
+end</code></pre>
 <p>When you first call <code>iterate&#40;::TakeNth&#41;</code>, <code>state</code> starts out as an empty tuple. Splatting this empty tuple into <code>iterate</code> produces the call <code>iterate&#40;it.xs&#41;</code>. In all further calls, the actual state returned from iterating over the wrapped iterable will be wrapped in a 1-tuple, and unwrapped in each call.</p>
 <p>One of the other tools we use here is the unexported function <code>Base.tail&#40;::Tuple&#41;</code>. This function performs the equivalent of slurping on tuples, or <code>xs_iter&#91;2:end&#93;</code>. No matter the size of the input tuple, it will always return at least an empty tuple. This is especially useful in the next, slightly more complicated example.</p>
 <p>For <code>TakeNth</code>, we were only passing around the wrapped iterable&#39;s state, but sometimes we need to carry some state of our own as well. For the <code>TakeStrict</code> iterator from <a href="https://juliacollections.github.io/IterTools.jl/latest/#takestrict&#40;xs,-n&#41;-1">IterTools.jl</a> we want to iterate over exactly <code>n</code> elements from the wrapped iterable, so we need to carry a counter as well.</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> iterate(it::TakeStrict, state=(it.n,))
-    n, xs_state = first(state), Base.tail(state)
-    n &lt;= <span class=hljs-number >0</span> &amp;&amp; <span class=hljs-keyword >return</span> <span class=hljs-literal >nothing</span>
-    xs_iter = iterate(it.xs, xs_state...)
+<pre><code class=language-julia >function iterate&#40;it::TakeStrict, state&#61;&#40;it.n,&#41;&#41;
+    n, xs_state &#61; first&#40;state&#41;, Base.tail&#40;state&#41;
+    n &lt;&#61; 0 &amp;&amp; return nothing
+    xs_iter &#61; iterate&#40;it.xs, xs_state...&#41;
 
-    <span class=hljs-keyword >if</span> xs_iter === <span class=hljs-literal >nothing</span>
-        throw(<span class=hljs-built_in >ArgumentError</span>(<span class=hljs-string >&quot;In takestrict(xs, n), xs had fewer than n items to take.&quot;</span>))
-    <span class=hljs-keyword >end</span>
+    if xs_iter &#61;&#61;&#61; nothing
+        throw&#40;ArgumentError&#40;&quot;In takestrict&#40;xs, n&#41;, xs had fewer than n items to take.&quot;&#41;&#41;
+    end
 
-    v, xs_state = xs_iter
-    <span class=hljs-keyword >return</span> v, (n - <span class=hljs-number >1</span>, xs_state)
-<span class=hljs-keyword >end</span></code></pre>
+    v, xs_state &#61; xs_iter
+    return v, &#40;n - 1, xs_state&#41;
+end</code></pre>
 <p>Here we use <code>Base.tail</code> to slurp the rest of the input after our counter, so <code>xs_state</code> is either an empty tuple &#40;on the initial <code>iterate</code> call&#41; or a 1-tuple containing the state for the wrapped iterable.</p>
 <h4 id=look-ahead_iterators ><a href="#look-ahead_iterators">Look-ahead Iterators</a></h4>
 <p>Occasionally we may want to write an iterable that requires advancing the wrapped iterable before returning a value, such as some kind of generic Fibonnaci iterator, or the simplest example, a &quot;peekable&quot; iterator that can look ahead to the next value. This exists in <a href="https://juliacollections.github.io/IterTools.jl/latest/#peekiter&#40;xs&#41;-1">IterTools.jl</a> as <code>PeekIter</code>.</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> iterate(pit::PeekIter, state=iterate(pit.it))
-    val, it_state = <span class=hljs-meta >@ifsomething</span> state
-    <span class=hljs-keyword >return</span> (val, iterate(pit.it, it_state))
-<span class=hljs-keyword >end</span></code></pre>
+<pre><code class=language-julia >function iterate&#40;pit::PeekIter, state&#61;iterate&#40;pit.it&#41;&#41;
+    val, it_state &#61; @ifsomething state
+    return &#40;val, iterate&#40;pit.it, it_state&#41;&#41;
+end</code></pre>
 <p>In this case, the work needed for the initial <code>iterate</code> call is just a superset of the regular <code>iterate</code> call, so it&#39;s very simple to implement. In general, the code for look-ahead iterators is just as easy to write in Julia 0.7, but usually more compact.</p>
 <h3 id=piecewise_development_approach ><a href="#piecewise_development_approach">Piecewise Development Approach</a></h3>
 <p>Having to write many new <code>iterate</code> methods led me to discover some helpful strategies for writing <code>iterate</code> methods when unsure of the best approach. The most helpful thing I did was to write the two-argument method for <code>iterate</code> first, then write the one-argument method, then try to simplify them into a single method. Remember that the one-argument method is a combination of the <code>start</code> and <code>next</code> methods from the old iteration interface. I also realized that it was sometimes easier to apply patterns like the ones above in order to translate from the old to the new iteration interface without attempting to understand the initial version completely.</p>
 <p>Let&#39;s look at one of the more complicated iterators in <a href="https://juliacollections.github.io/IterTools.jl/latest/#partition&#40;xs,-n,-&#91;step&#93;&#41;-1">IterTools.jl</a>: <code>Partition</code>. Something that immediately jumps out about the <a href="https://github.com/JuliaCollections/IterTools.jl/commit/66d1951c2634d06ab629fcf35ea227ddbe9a2342?diff&#61;split#diff-bd068feabf42c1d394ba76bc98a4d738L407">original</a> is this pattern:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >if</span> done(it.xs, s)
-    <span class=hljs-keyword >break</span>
-<span class=hljs-keyword >end</span>
-(x, s) = next(it.xs, s)</code></pre>
+<pre><code class=language-julia >if done&#40;it.xs, s&#41;
+    break
+end
+&#40;x, s&#41; &#61; next&#40;it.xs, s&#41;</code></pre>
 <p>If there are more items, this advances the wrapped iterable, otherwise it breaks out of the surrounding loop. In the new interface this requires just one call instead of two:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs">iter = iterate(it.xs, s)
-iter === <span class=hljs-literal >nothing</span> &amp;&amp; <span class=hljs-keyword >break</span>
-(x, s) = iter</code></pre>
+<pre><code class=language-julia >iter &#61; iterate&#40;it.xs, s&#41;
+iter &#61;&#61;&#61; nothing &amp;&amp; break
+&#40;x, s&#41; &#61; iter</code></pre>
 <p>Then this pattern can be applied by rote wherever it appears. Applying this and writing two <code>iterate</code> methods results in this</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> iterate(it::Partition{I, N}, state) <span class=hljs-keyword >where</span> {I, N}
-    (xs_state, result) = state
-    <span class=hljs-comment ># this @ifsomething call handles the 0.6 situation</span>
-    <span class=hljs-comment ># where `done` is always called before `next`</span>
-    result[<span class=hljs-keyword >end</span>], xs_state = <span class=hljs-meta >@ifsomething</span> iterate(it.xs, xs_state)
+<pre><code class=language-julia >function iterate&#40;it::Partition&#123;I, N&#125;, state&#41; where &#123;I, N&#125;
+    &#40;xs_state, result&#41; &#61; state
+    # this @ifsomething call handles the 0.6 situation
+    # where &#96;done&#96; is always called before &#96;next&#96;
+    result&#91;end&#93;, xs_state &#61; @ifsomething iterate&#40;it.xs, xs_state&#41;
 
-    p = similar(result)
-    overlap = max(<span class=hljs-number >0</span>, N - it.step)
-    p[<span class=hljs-number >1</span>:overlap] .= result[it.step .+ (<span class=hljs-number >1</span>:overlap)]
+    p &#61; similar&#40;result&#41;
+    overlap &#61; max&#40;0, N - it.step&#41;
+    p&#91;1:overlap&#93; .&#61; result&#91;it.step .&#43; &#40;1:overlap&#41;&#93;
 
-    <span class=hljs-comment ># when step &gt; n, skip over some elements</span>
-    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:max(<span class=hljs-number >0</span>, it.step - N)
-        xs_iter = iterate(it.xs, xs_state)
-        xs_iter === <span class=hljs-literal >nothing</span> &amp;&amp; <span class=hljs-keyword >break</span>
-        _, xs_state = xs_iter
-    <span class=hljs-keyword >end</span>
+    # when step &gt; n, skip over some elements
+    for i in 1:max&#40;0, it.step - N&#41;
+        xs_iter &#61; iterate&#40;it.xs, xs_state&#41;
+        xs_iter &#61;&#61;&#61; nothing &amp;&amp; break
+        _, xs_state &#61; xs_iter
+    end
 
-    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> (overlap + <span class=hljs-number >1</span>):(N - <span class=hljs-number >1</span>)
-        xs_iter = iterate(it.xs, xs_state)
-        xs_iter === <span class=hljs-literal >nothing</span> &amp;&amp; <span class=hljs-keyword >break</span>
+    for i in &#40;overlap &#43; 1&#41;:&#40;N - 1&#41;
+        xs_iter &#61; iterate&#40;it.xs, xs_state&#41;
+        xs_iter &#61;&#61;&#61; nothing &amp;&amp; break
 
-        p[i], xs_state = xs_iter
-    <span class=hljs-keyword >end</span>
+        p&#91;i&#93;, xs_state &#61; xs_iter
+    end
 
-    <span class=hljs-keyword >return</span> (tuple(result...), (xs_state, p))
-<span class=hljs-keyword >end</span>
+    return &#40;tuple&#40;result...&#41;, &#40;xs_state, p&#41;&#41;
+end
 
-<span class=hljs-keyword >function</span> iterate(it::Partition{I, N}) <span class=hljs-keyword >where</span> {I, N}
-    result = <span class=hljs-built_in >Vector</span>{eltype(I)}(<span class=hljs-literal >undef</span>, N)
+function iterate&#40;it::Partition&#123;I, N&#125;&#41; where &#123;I, N&#125;
+    result &#61; Vector&#123;eltype&#40;I&#41;&#125;&#40;undef, N&#41;
 
-    result[<span class=hljs-number >1</span>], xs_state = <span class=hljs-meta >@ifsomething</span> iterate(it.xs)
+    result&#91;1&#93;, xs_state &#61; @ifsomething iterate&#40;it.xs&#41;
 
-    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >2</span>:(N - <span class=hljs-number >1</span>)
-        result[i], xs_state = <span class=hljs-meta >@ifsomething</span> iterate(it.xs, xs_state)
-    <span class=hljs-keyword >end</span>
+    for i in 2:&#40;N - 1&#41;
+        result&#91;i&#93;, xs_state &#61; @ifsomething iterate&#40;it.xs, xs_state&#41;
+    end
 
-    <span class=hljs-keyword >return</span> iterate(it, (xs_state, result))
-<span class=hljs-keyword >end</span></code></pre>
+    return iterate&#40;it, &#40;xs_state, result&#41;&#41;
+end</code></pre>
 <p>This works for almost every case, except when <code>N &#61;&#61; 1</code>&#33; In that case, we do need to start with <code>iterate&#40;it.xs&#41;</code>, but we have to return the first item before calling <code>iterate</code> again, so we have to skip the first iteration in the two-argument method. It would be nice to have the methods be this simple chain, but it looks like we need to combine them.</p>
 <p>Previously, we&#39;ve been able to come up with a sensible default state &#40;or a tuple we can splat&#41; for the combined method. We can&#39;t<sup id="fnref:cantorwont"><a href="#fndef:cantorwont" class=fnref >[3]</a></sup> do that here, as we need to have conditional behaviour for both cases. Luckily, we can add <code>nothing</code> as a sentinel and Julia will compile the check away. Making this change results in the version which appears in IterTool 1.0:</p>
-Deprecated as of 10.7.0. highlight(lang, code, ...args) has been deprecated.
-Deprecated as of 10.7.0. Please use highlight(code, options) instead.
-https://github.com/highlightjs/highlight.js/issues/2277
-<pre><code class="julia hljs"><span class=hljs-keyword >function</span> iterate(it::Partition{I, N}, state=<span class=hljs-literal >nothing</span>) <span class=hljs-keyword >where</span> {I, N}
-    <span class=hljs-keyword >if</span> state === <span class=hljs-literal >nothing</span>
-        result = <span class=hljs-built_in >Vector</span>{eltype(I)}(<span class=hljs-literal >undef</span>, N)
+<pre><code class=language-julia >function iterate&#40;it::Partition&#123;I, N&#125;, state&#61;nothing&#41; where &#123;I, N&#125;
+    if state &#61;&#61;&#61; nothing
+        result &#61; Vector&#123;eltype&#40;I&#41;&#125;&#40;undef, N&#41;
 
-        result[<span class=hljs-number >1</span>], xs_state = <span class=hljs-meta >@ifsomething</span> iterate(it.xs)
+        result&#91;1&#93;, xs_state &#61; @ifsomething iterate&#40;it.xs&#41;
 
-        <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >2</span>:N
-            result[i], xs_state = <span class=hljs-meta >@ifsomething</span> iterate(it.xs, xs_state)
-        <span class=hljs-keyword >end</span>
-    <span class=hljs-keyword >else</span>
-        (xs_state, result) = state
-        result[<span class=hljs-keyword >end</span>], xs_state = <span class=hljs-meta >@ifsomething</span> iterate(it.xs, xs_state)
-    <span class=hljs-keyword >end</span>
+        for i in 2:N
+            result&#91;i&#93;, xs_state &#61; @ifsomething iterate&#40;it.xs, xs_state&#41;
+        end
+    else
+        &#40;xs_state, result&#41; &#61; state
+        result&#91;end&#93;, xs_state &#61; @ifsomething iterate&#40;it.xs, xs_state&#41;
+    end
 
-    p = similar(result)
-    overlap = max(<span class=hljs-number >0</span>, N - it.step)
-    p[<span class=hljs-number >1</span>:overlap] .= result[it.step .+ (<span class=hljs-number >1</span>:overlap)]
+    p &#61; similar&#40;result&#41;
+    overlap &#61; max&#40;0, N - it.step&#41;
+    p&#91;1:overlap&#93; .&#61; result&#91;it.step .&#43; &#40;1:overlap&#41;&#93;
 
-    <span class=hljs-comment ># when step &gt; n, skip over some elements</span>
-    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:max(<span class=hljs-number >0</span>, it.step - N)
-        xs_iter = iterate(it.xs, xs_state)
-        xs_iter === <span class=hljs-literal >nothing</span> &amp;&amp; <span class=hljs-keyword >break</span>
-        _, xs_state = xs_iter
-    <span class=hljs-keyword >end</span>
+    # when step &gt; n, skip over some elements
+    for i in 1:max&#40;0, it.step - N&#41;
+        xs_iter &#61; iterate&#40;it.xs, xs_state&#41;
+        xs_iter &#61;&#61;&#61; nothing &amp;&amp; break
+        _, xs_state &#61; xs_iter
+    end
 
-    <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> (overlap + <span class=hljs-number >1</span>):(N - <span class=hljs-number >1</span>)
-        xs_iter = iterate(it.xs, xs_state)
-        xs_iter === <span class=hljs-literal >nothing</span> &amp;&amp; <span class=hljs-keyword >break</span>
+    for i in &#40;overlap &#43; 1&#41;:&#40;N - 1&#41;
+        xs_iter &#61; iterate&#40;it.xs, xs_state&#41;
+        xs_iter &#61;&#61;&#61; nothing &amp;&amp; break
 
-        p[i], xs_state = xs_iter
-    <span class=hljs-keyword >end</span>
+        p&#91;i&#93;, xs_state &#61; xs_iter
+    end
 
-    <span class=hljs-keyword >return</span> (tuple(result...)::eltype(Partition{I, N}), (xs_state, p))
-<span class=hljs-keyword >end</span></code></pre>
+    return &#40;tuple&#40;result...&#41;::eltype&#40;Partition&#123;I, N&#125;&#41;, &#40;xs_state, p&#41;&#41;
+end</code></pre>
 <h2 id=conclusion ><a href="#conclusion">Conclusion</a></h2>
 <p>These are the techniques that helped me in my work, but I&#39;d like to hear about more&#33; I&#39;m also curious which patterns improve or harm performance and why. IterTools will definitely accept pull requests, and I&#39;m interested in feedback on <a href="https://julialang.slack.com/">Slack</a> and <a href="https://discourse.julialang.org/">Discourse</a>.</p>
 <h2 id=footnotes ><a href="#footnotes">Footnotes</a></h2>
@@ -262,8 +241,8 @@ https://github.com/highlightjs/highlight.js/issues/2277
 
     
     
-        
-
+        <script src="/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
 
     
 
