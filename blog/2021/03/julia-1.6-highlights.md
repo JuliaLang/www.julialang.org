@@ -30,7 +30,8 @@ time. In 1.6, this package precompilation is faster and happens before you leave
 sequence, precompiling dependencies one-by-one when needed during the linear
 code loading process when a package is `using`/`import`-ed for the first time.
 
-The olden days of <= 1.5:
+The olden days of <= 1.5, taking as an example `DifferentialEquations`; a popular
+package with a particularly high number of dependencies:
 ```julia-repl
 (v1.5) pkg> add DifferentialEquations
 ...
@@ -52,9 +53,9 @@ julia> @time using DifferentialEquations
   4.995477 seconds …
 ```
 Whereas the previous code loading precompilation process took ~8 minutes to
-precompile and load without indicating progress while doing so, the new
-mechanism took a little over 1 minute to precompile while showing progress through the
-dependencies. Then the first time the package is loaded, it loads at full
+precompile and load `DifferentialEquations` without indicating progress while doing so,
+the new mechanism took a little over 1 minute to precompile while showing progress
+through the dependencies. Then the first time the package is loaded, it loads at full
 speed. The new parallel precompilation process takes a depth-first approach of
 working through the dependency tree in the manifest, first precompiling the
 packages with no dependencies and working upward to the packages listed in the
@@ -275,7 +276,7 @@ on Julia v1.4 down to `2.34` seconds on Julia v1.6, purely from compiler
 improvements.  If you haven't thanked your local compiler team today, you
 probably should.  Using the slimmed-down JLLWrappers implementation of all
 relevant JLLWrappers packages results in a further lowering of load time down
-to a blistering `140ms`.  End-to-end, this means that this work effected a 
+to a blistering `140ms`.  End-to-end, this means that this work effected a
 roughly **`50x` speedup** in load times for large trees of binary artifacts.
 While there are some minor improvements for lazy loading of shared libraries
 and such in the pipeline, we are confident that this work will provide a strong
