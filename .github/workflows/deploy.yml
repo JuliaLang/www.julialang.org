@@ -47,7 +47,7 @@ jobs:
         run: julia --project -e '
               using Pkg; Pkg.instantiate();
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
-              using Franklin; optimize();
+              using Franklin; optimize(prerender=false);
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))'
       - name: Deploy (preview)
         if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name # if this build is a PR build and the PR is NOT from a fork
