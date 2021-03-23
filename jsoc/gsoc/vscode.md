@@ -9,7 +9,7 @@ We have a long list of open issues, and some of them amount to significant proje
 
 **Expected Results**: Depends on the specific projects we would agree on.
 
-**Mentors**: [David Anthoff](https://github.com/davidanthoff)
+**Mentors**: [David Anthoff](https://github.com/davidanthoff) [Rahul Chandra ](https://github.com/irahulcse )
 
 ## Package installation UI
 
