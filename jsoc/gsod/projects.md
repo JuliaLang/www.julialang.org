@@ -10,14 +10,6 @@ We at the Julia Language are committed to making the application process and par
 
 Here are some possible projects:
 
-- ### Updated Documentation and Doc Testing
-
-  DifferentialEquations.jl's documentation at [DiffEqDocs.jl](https://github.com/SciML/DiffEqDocs.jl) was one of the first [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) projects, and as such much of its internals are in dire need of updates. Notably, automated reference handling would fix issues with deadlinks that are not uncommon. Additionally, none of the examples run doc tests, and thus currently the organization relies on user issues to find out when to update the pages. Lastly, there are many requests for a PDF form of this documentation since many of the materials are only featured in this form, yet sadly there is currently no PDF builder associated with DiffEqDocs.jl even though Documenter.jl has recently gained this functionality.
-
-- ### Conversion of READMEs to full Documentation
-
-  There are many areas in the SciML which have READMEs but not full documentation. One prominent example is [DiffEqFlux.jl](https://github.com/SciML/DiffEqFlux.jl) which has had [multiple blog posts written on it](https://julialang.org/blog/2019/01/fluxdiffeq/) but still has just a README! Changing from the README to proper documentation, utilizing the same information but re-styling the writing into the proper tutorial and reference portions, would be a major win. Global sensitivity analysis is another area where it would be useful to restyle towards full documentation.
-
 - ### Unified Organization Documentation
 
 [SciML](https://sciml.ai/) is the scientific machine learning organization. However, its documentation is spread amongst many different fairly large packages:
@@ -33,10 +25,6 @@ Just to name a few. One project would be to create a unified scientific machine 
 
   The JuliaDiffEq organization hosts the [DiffEqTutorials.jl](https://github.com/SciML/DiffEqTutorials.jl) repository which auto-builds websites and pdfs from tutorials. Tutorials generally center on features of DifferentialEquations.jl or on application domains. Technical writers who have expertise in areas like biological modeling may wish to contribute tutorials that showcase how to use DifferentialEquations.jl to solve problems arising in their discipline.
 
-- ### Automated Benchmarks and Performance Regression Flagging
-
-  The organization hosts the [DiffEqBenchmarks.jl](https://github.com/SciML/DiffEqBenchmarks.jl) repository which generates websites and pdfs describing the performance relationships not only between the native Julia differential equation solvers but also between the commonly used C++ and Fortran methods, making it the most comprehensive set of differential equation solver benchmarks. These benchmarking scripts utilize [Weave.jl](https://github.com/mpastell/Weave.jl) to automate the process. Technical writers can contribute benchmarks that cover new areas and types of differential equations and add explanatory details and summaries to help with the interpretation of benchmarks. Additionally, skilled technical writers may wish to help set up systems to update the benchmarks in some semi-automated form, along with detection and flagging whenever performance regressions are found (i.e. the benchmark equivalent to doc tests).
-  
 ### Potential Impact
 
   Many university classes use the SciML ecosystem for its teaching, and thus classrooms all over the world will be improved. Tutorials that capture more domains will allow professors teaching biological modeling courses to not have to manually rewrite physics-based tutorials to match their curriculum, and conversion of READMEs to documentation will help such professors link to reference portions for these tools in their lecture notes.
@@ -63,14 +51,14 @@ Just to name a few. One project would be to create a unified scientific machine 
   - Success for this project could be quantified by keeping track of the number of issues raised on the parts of the docs that were audited and updated. 
 
 
-### Updating contributing guide
+### Updating contributing guide (main project we will be applying for)
 
   The [Julia contributing guide](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md) provides details on how one who is either a new Julia contributor or returning contributor, can make a change to the Julia docs or the core Julia codebase. 
   
    __This project would/could include the following:__
    - Auditing the existing contributing guide to ensure it covers developer use-cases correctly. 
    - Moving the guide to a more robust and user-friendly section of the [Julia Website](https://julialang.org) (potentially making a "contributing" folder and then having details on different use-cases rather than just one long doc). 
-   - Optionally, making a contributing guide template so that all of the 3,000+ Julia Packages also have guidelines for contributors. 
+   - Optionally, making a contributing guide template so that all of the 5,000+ Julia Packages also have guidelines for contributors. 
    - If time allows, making a step by step "first-time contributor" guide which highlights common first-time contributions, where to find potential things to contribute/change, and how to contribute those. 
    
    __Potential impact and the Why?:__
@@ -79,63 +67,10 @@ Just to name a few. One project would be to create a unified scientific machine 
    - Success for this project could be quantified by keeping track of whether or not the number of first-time contributors goes up and if they can open a Pull Request that follows the suggestions in the contributing guide successfully. 
 
   
-## JuliaGraphs
-
-[JuliaGraphs](https://github.com/JuliaGraphs) provides a set of abstractions, reference implementations, and essential algorithms to build and work on graphs. The mentors for this project are [Seth Bromberger](https://github.com/sbromberger) and [Katharine Hyatt](https://github.com/kshyatt). This project could include one or more of the following documentation efforts:
-
-#### Central website
-
-  The central website of [JuliaGraphs](https://juliagraphs.github.io/) offers an overview of the ecosystem's packages and is still mostly a description. It can be improved to become the first resource for people getting started with graphs in Julia.
-   - This includes highlighting features of various packages in the ecosystem. 
-   - Visual explanations of the algorithms used in Graphs
-   - Beginner guides for those taking their first step into the world of using graphs in Julia. 
-   
-   __This project would/could include the following:__
- - Performing an audit of the existing website to make sure the features highlighted are still relevant and supported.  
- - Highlighting features of various packages in the ecosystem such that one will know what is possible with JuliaGraphs. 
- - Including use cases and potential examples to highlight the functionality without overwhelming visitors with technical jargon. 
- - Creating a section which highlights the different uses of the various packages in different domains (Healthcare, Education, Etc.)
- - Optionally, creating beginner guides for those taking their first step into the world of using graphs in Julia. 
- - If time allows, researching visual explanations of the algorithms used in Graphs
-
-#### LightGraphs 2.0 documentation
-
-  The upcoming version 2.0 of LightGraphs, due later this summer, represents a fundamental change in the LightGraphs API. Assistance is needed to make sure the documentation represents the latest and greatest features.
-  
-  __This project would/could include the following:__
- - Performing an audit of the existing API docs to see what documentation can stay the same.  
- - Analyzing the changes made in the 2.0 release to ensure they are properly documented with examples. 
- - Writing a blog post/discourse post which highlights major changes in the 2.0 release. 
- - Optionally, creating beginner guides for those taking their first step into the world of using graphs in Julia. 
- - If time allows, creating a template of materials to support future major version releases. 
- 
-#### Tutorials
-
-  The documentation of all JuliaGraphs packages, such as [LightGraphs](https://juliagraphs.github.io/LightGraphs.jl/latest/) is developer-oriented, showing the API of the different types and functions of the packages.
-  Some step-by-step examples and motivation for the use of each feature can be added, making it more accessible for users of the package.
-  
-  __This project would/could include the following:__
- - Performing an audit of the existing tutorials to see what materials exist already.  
- - Working with maintainers to document motivation for various features. 
- - Integrating the motivation into the existing tutorials to further learners' understanding. 
- - Optionally, creating beginner guides to fill any gaps left by existing tutorials (this would be more in-depth and technical). 
- - If time allows, creating a template for tutorials across all packages in the LightGraphs ecosystem. 
-
-### Potential Impact
-  The JuliaGraphs ecosystem is used by end-users and library developers alike. Each of these communities requires a different type of documentation: end-users need to understand how to use the functions to solve scientific/technical problems; library developers need to understand how to integrate the APIs into their code. 
-
-  The potential impact of the GSOD effort – that is, the development of comprehensive, easy-to-understand documentation for one or both of these communities – would be the increased adoption of LightGraphs as one of the fastest single-language open-source graph analytic toolkits. From a well-regulated corpus of developer documentation, we should expect an increase in the number of contributors to the JuliaGraphs ecosystem and increased interest in the development of new packages that incorporate JuliaGraphs libraries, while a thorough set of end-user documentation would increase the usage of LightGraphs in scientific research. Furthermore, general awareness of JuliaGraphs and the Julia Programming Language would be improved with a revamp of the main JuliaGraphs website, which could serve as the central landing point for all graph-related activity in Julia.
-  
-  The impact can be quantified by monitoring the number of users who visit the main JuliaGraphs website pre and post update. 
 
 ## Flux (Machine Learning)
 
 [Flux.jl](https://github.com/FluxML/Flux.jl) is an elegant approach to machine learning in Julia. It is designed to be hackable and flexible, extendable, and exposes powerful AD tools. It also provides abstractions over the popular layers and optimizers used in neural networks. It is built with differentiable programming in mind. The mentors for this project are [Dhairya Gandhi](https://github.com/dhairyagandhi96) and [Mike Innes](https://github.com/MikeInnes).
-
-- ### Reinventing the FluxML Website
-
-  As a part of this project, the content on the main landing page <https://fluxml.ai> can be revamped to highlight some of the interesting progress. The website could use some polish with regards to further clarify the messaging without overwhelming a newcomer while showing off some of the finer-grained details to a veteran eye.
-  Tools developed by FluxML are widely used by many projects, from Graph Neural Network libraries [Mill.jl](https://github.com/pevnak/Mill.jl), [GeometricFlux.jl](https://github.com/yuehhua/GeometricFlux.jl) and Probabilistic Programming libraries [Turing.jl](https://github.com/TuringLang/Turing.jl) to Scientific ML projects [DiffEqFlux.jl](https://github.com/SciML/DiffEqFlux.jl) and modern large scale Transformer networks [Transformers.jl](https://github.com/chengchingwen/Transformers.jl). We would like to show off the flexibility and use cases that we fit in.
 
 - ### Tutorials
 
