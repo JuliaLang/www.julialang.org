@@ -442,7 +442,10 @@ Some improvements are worth pointing out explicitly:
 - The module where the method is defined is now shown and the modules are also color coded.
 - Paths to the method were de-emphasized since they usually have lower importance.
 - Paths were made shorter by showing `~` instead of the full path to the home directory.
+
+
 ## Conclusion
 
-In the words of Daft Punk
-  "Harder better faster stronger, please submit any issues to [github.com/JuliaLang/julia/issues](https://github.com/JuliaLang/julia/issues)”
+Please enjoy the release, and as always [let us know](https://github.com/JuliaLang/julia/issues)
+if you encounter any problems or have any suggestions.
+We hope to be back in about four months to report on even more progress in version 1.7!
