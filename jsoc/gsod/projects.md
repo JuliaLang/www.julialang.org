@@ -4,7 +4,13 @@ Below are the projects which have been proposed for Google Season of Docs under 
 
 We at the Julia Language are committed to making the application process and participation in GSoD with Julia accessible to everyone. If you have questions or requests, please do reach out and we will do our best to accommodate you. 
 
-## Scientific Machine Learning (SciML) and Differential Equations
+### The Julia Language has [submitted a proposal for GSoD 2021](/gsod/proposal2021/). If this project is of interest to you, please reach out via Slack, email, or Discourse.
+
+## Project Ideas
+
+Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reachout to the respetive mentor(s).
+
+### Scientific Machine Learning (SciML) and Differential Equations
 
 [DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl) is a widely used Julia library for solving ordinary, stochastic, delay, and many more types of differential equations. Below are the proposed projects in this area. Technical writers may wish to do a combination of these projects. The mentors for the JuliaDiffEq projects are [Chris Rackauckas](https://github.com/ChrisRackauckas), [Kanav Gupta](https://github.com/kanav99), and [Sam Isaacson](https://github.com/isaacsas).
 
@@ -25,17 +31,17 @@ Just to name a few. One project would be to create a unified scientific machine 
 
   The JuliaDiffEq organization hosts the [DiffEqTutorials.jl](https://github.com/SciML/DiffEqTutorials.jl) repository which auto-builds websites and pdfs from tutorials. Tutorials generally center on features of DifferentialEquations.jl or on application domains. Technical writers who have expertise in areas like biological modeling may wish to contribute tutorials that showcase how to use DifferentialEquations.jl to solve problems arising in their discipline.
 
-### Potential Impact
+#### Potential Impact
 
   Many university classes use the SciML ecosystem for its teaching, and thus classrooms all over the world will be improved. Tutorials that capture more domains will allow professors teaching biological modeling courses to not have to manually rewrite physics-based tutorials to match their curriculum, and conversion of READMEs to documentation will help such professors link to reference portions for these tools in their lecture notes.
   
   Additionally, these benchmarks are a widely referenced cross-language benchmark of differential equations, which gives a standard between Python, R, Julia, MATLAB, and many C++ and Fortran packages. Improving the technical writing around the benchmarks can make this set of documents more widely accessible, and enlarging the scope of topics will help individuals of all programming languages better assess the methods they should be choosing for their problems.
 
-## Julia (Main Documentation)
+### Julia (Main Documentation)
 
 [The Julia docs](https://docs.julialang.org/en/v1/) provide a robust set of examples and context for the available functionality in the Julia Programming Language. The mentors for this project are [Logan Kilpatrick](https://github.com/logankilpatrick) and [Avik Sengupta](https://github.com/aviks) with support from [other Julia Language members](https://github.com/orgs/JuliaLang/people). 
 
-### Audit the existing documentation
+#### Audit the existing documentation
 
   While the [Julia documentation](https://docs.julialang.org/en/v1/) is robust, it has been written and worked on by hundreds of contributors over many years. This has led to potential instances where the docs do not represent a singular voice and may not be as clear as they can be. 
   
@@ -51,7 +57,7 @@ Just to name a few. One project would be to create a unified scientific machine 
   - Success for this project could be quantified by keeping track of the number of issues raised on the parts of the docs that were audited and updated. 
 
 
-### Updating contributing guide (main project we will be applying for)
+#### Updating contributing guide (main project we will be applying for)
 
   The [Julia contributing guide](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md) provides details on how one who is either a new Julia contributor or returning contributor, can make a change to the Julia docs or the core Julia codebase. 
   
@@ -68,11 +74,11 @@ Just to name a few. One project would be to create a unified scientific machine 
 
   
 
-## Flux (Machine Learning)
+### Flux (Machine Learning)
 
 [Flux.jl](https://github.com/FluxML/Flux.jl) is an elegant approach to machine learning in Julia. It is designed to be hackable and flexible, extendable, and exposes powerful AD tools. It also provides abstractions over the popular layers and optimizers used in neural networks. It is built with differentiable programming in mind. The mentors for this project are [Dhairya Gandhi](https://github.com/dhairyagandhi96) and [Mike Innes](https://github.com/MikeInnes).
 
-- ### Tutorials
+- #### Tutorials
 
   Flux is in dire need of complete tutorials in the [model-zoo](https://github.com/FluxML/model-zoo.git) as well as on the website. We can take inspiration from many existing projects that publish their tutorials, that take a look at common design patterns. This includes writing custom adjoints, new optimizers, transfer learning, and writing performance-sensitive code for many common kinds of networks that many people would be interested in writing.
   This could also include cases that help users write custom loss functions, and even putting Flux models behind a web server.
@@ -82,13 +88,13 @@ Just to name a few. One project would be to create a unified scientific machine 
   Flux documentation needs a lot of rework since our generic approach to development means there are many general use cases that we support but might be a bit subtle to discover. So in that case, we need to highlight such common cases and make them known in the documentation.
   We would like to use doc tests to also increase our coverage of and documentation of many of the common patterns we see in differentiating Julia code.
 
-### Potential Impact
+#### Potential Impact
 
   Flux is an innovative approach to machine learning. This also means that not all the same patterns and assumptions truly hold when translating from a different framework. It also needs a way to communicate a compelling description of how to implement many of the user-facing niceties that one might need in the course of completing an ML project. Through this, we want to also find areas of improvement where we could offer a better user experience.
 
   This would also greatly benefit the adoption of Flux in the larger ML ecosystem, which we feel is currently held back due to not having enough of these simple patterns documented in an approachable form. We want to see an increase in the number of contributors to the various packages too since that would help us improve our stack better. Flux also utilizes simple to understand and performant code, made possible by Julia, and through this, we also want to bring awareness to how our ecosystem has matured, and increase its adoption in research and industry.
 
-## VS Code extension
+### VS Code extension
 
 The [Julia VS Code extension](https://github.com/JuliaEditorSupport/julia-vscode) currently has hardly any documentation. We are looking for someone to flesh out the docs and the [homepage](https://www.julia-vscode.org/) for the extension. The mentors for this project are [David Anthoff](https://github.com/davidanthoff) and [Zac Nugent](https://github.com/ZacLN).
 
@@ -103,7 +109,7 @@ __Potential impact and the Why?:__
 
  - The impact of this project can be quantified by assessing potential increases in the usage of the extension and by soliciting feedback from the community on the docs after they have been updated. 
 
-## Turing (Probabilistic Machine Learning)
+### Turing (Probabilistic Machine Learning)
 
 [Turing.jl](https://turing.ml/dev/) is a probabilistic programming language written in Julia. The team is looking for help with several projects. Mentors for this project would be [Cameron Pfiffer](https://github.com/cpfiffer/), [Martin Trapp](https://github.com/trappmartin/), [Kai Xu](https://github.com/xukai92), or [Hong Ge](https://github.com/yebai/).
 
@@ -117,12 +123,12 @@ Here are some ideas:
 
 - Documentation and manuals for [MCMCChains](https://github.com/TuringLang/MCMCChains.jl), [AdvancedHMC](https://github.com/TuringLang/AdvancedHMC.jl), and [Bijectors](https://github.com/TuringLang/Bijectors.jl). Turing maintains several separate packages, all of which have some documentation, but each of these could be improved dramatically. Technical writers would review current documentation, meet with the development team for each package to determine the package goals, and assess whether current documentation meets those goals. AdvancedHMC, for example, requires a much more detailed guide that explores all of AdvancedHMC's functionality.
 
-### Potential impact
+#### Potential impact
 
 Turing is a rapidly developing probabilistic programming language, used by machine learning researchers, data scientists, statisticians, and economists. Improving any measure of the informational tools in Turing will allow those communities to integrate better with the Julia community, which will, in turn, improve the rest of Julia's ecosystem. Better documentation and guides will attract new learners and help to transition more experienced people from tools that do not meet their needs.
 
 
-## JuliaIntervals (Interval arithmetic methods)
+### JuliaIntervals (Interval arithmetic methods)
 
 The [JuliaIntervals organization](https://github.com/JuliaIntervals) develops a suite of packages based on [interval arithmetic](https://github.com/JuliaIntervals/IntervalArithmetic.jl) for performing numerical computations with guaranteed results.
 We are looking for help with several projects, with
@@ -137,7 +143,7 @@ The documentation has not kept pace with the development of the package; e.g. me
 
 - Design a web page for the [`JuliaIntervals`](https://github.com/JuliaIntervals) suite of packages. This web page should provide information about the various packages in the suite, as well as related packages in the Julia ecosystem, showing what they can be used for and exhibiting interesting examples. The web page should also contain a guide to orient a user towards the relevant package for their needs, for example using some kind of decision tree.
 
-### Potential impact
+#### Potential impact
 
 [`IntervalArithmetic.jl`](https://github.com/JuliaIntervals/IntervalArithmetic.jl) is heading towards full compliance with the international standard IEEE-1788. Once compliance is reached we will release v1.0 of the package and will advertise the package to the wider interval arithmetic community.
 
@@ -145,7 +151,7 @@ We anticipate that there may be significant interest and adoption by new users a
 
 Furthermore, since there are now an increasing number of packages built on top of [`IntervalArithmetic.jl`](https://github.com/JuliaIntervals/IntervalArithmetic.jl) which will also be of interest to these users, a guide to both which package is suitable for which application and how to use them correctly is required.
 
-## Julia GPU programming
+### Julia GPU programming
 
 Julia has several GPU back-ends, like CUDA.jl and AMDGPUnative.jl, that aim to provide a flexible and high-performance GPU programming environment in a high-level, productive programming language. These back-ends are organized under the JuliaGPU organization, with a landing page at https://juliagpu.org/. There are several possible projects to improve documentation for the JuliaGPU organization, guided by mentors [Tim Besard](https://github.com/maleadt) and [Valentin Churavy](https://github.com/vchuravy).
 
@@ -161,11 +167,11 @@ CUDA.jl is currently the most popular back-end of the JuliaGPU ecosystem, and it
 
 - API documentation: Many of CUDA's APIs are available in CUDA.jl via high-level wrappers, but that is not always obvious to users. The documentation of these wrappers should be checked for completeness, and presented in a structured manner so that users can easily consult it and do not need to consult the documentation of the underlying C APIs.
 
-### Potential impact 
+#### Potential impact 
 
 Julia's GPU programming capabilities are widely used, but users currently are all but required to already have GPU programming experience in order to know how to navigate the Julia GPU back-ends. Improving the technical documentation for the JuliaGPU organization and the CUDA.jl back-end would make it possible to skip this step, and make it possible for users to program GPUs without previous experience, greatly democratizing the ever-increasing compute capabilities that GPUs have to offer.
 
-## Towards DeepChem.jl: Combining Machine Learning with Chemical Knowledge
+### Towards DeepChem.jl: Combining Machine Learning with Chemical Knowledge
 
 We have been developing the AtomicGraphNets.jl package, which began modestly as a Julia port of [CGCNN](https://github.com/txie-93/cgcnn), but now has plans to expand to a variety of more advanced graph-based methods for state-of-the-art ML performance making predictions on atomic systems. In support of this package, we are also developing ChemistryFeaturization.jl, which contains functions for building and featurizing atomic graphs from a variety of standard input files. ChemistryFeaturization will eventually form the bedrock of a DeepChem.jl umbrella organization to host a Julia-based port of the popular [Deepchem](http://deepchem.io) Python package.
 
