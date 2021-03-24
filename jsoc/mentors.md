@@ -6,7 +6,7 @@ Mentors for Google Summer of Code (GSoC) are an integral part of the process and
 
 There a few ways to become a GSoC mentor with the Julia Language:
 - Join an [existing project](https://julialang.org/jsoc/projects/) as a co-mentor. Each project should have at least two mentors.
-- Propose a new GSoC project inspired by [the existing projects](https://julialang.org/jsoc/projects/). You can simply [opening a PR](https://github.com/JuliaLang/www.julialang.org/blob/main/jsoc/projects.md).
+- Propose a new GSoC project inspired by [the existing projects](https://julialang.org/jsoc/projects/). You can simply [open a PR](https://github.com/JuliaLang/www.julialang.org/blob/main/jsoc/projects.md) and add your project.
 
 Mentors will be the main point of contact for students during all stages of the project life cycle. You can read more about the [mentor expectations from Google on their website](https://google.github.io/gsocguides/mentor/).
 
