@@ -1,7 +1,7 @@
 @def title = "Julia 1.6 Highlights"
-@def authors = "Jeff Bezanson, Ian Butterworth, Nathan Daly, Keno Fischer, Tim Holy, Elliot Saba, Mosè Giordano, Stefan Karpinski, Kristoffer Carlsson"
-@def published = "2 March 2021"
-@def rss_pubdate = Date(2021, 3, 2)
+@def authors = "Jeff Bezanson, Ian Butterworth, Nathan Daly, Keno Fischer, Jameson Nash, Tim Holy, Elliot Saba, Mosè Giordano, Stefan Karpinski, Kristoffer Carlsson"
+@def published = "24 March 2021"
+@def rss_pubdate = Date(2021, 3, 24)
 @def rss = """Some highlights of the Julia 1.6 release."""
 
 Julia version 1.6 has been released. Most Julia releases are timed and hence not
