@@ -13,7 +13,7 @@ Also the release was tested for regressions against all open source packages on
 GitHub and issues were tracked down and fixed (unless the issues were tied to 
 non-exported APIs not meant for external use).  The
 final decision about whether Julia 1.6 will become the new LTS will be made
-after it has been battle tested in the field, around the time of the 1.7 release enters stabilization.  
+after it has been battle-tested in the field, around the time of the 1.7 release enters stabilization.  
 The full list of changes can be found in
 the [NEWS file](https://github.com/JuliaLang/julia/blob/release-1.6/NEWS.md),
 but here we'll give a more in-depth overview of some of the release highlights.
