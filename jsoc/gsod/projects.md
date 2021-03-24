@@ -4,7 +4,7 @@ Below are the projects which have been proposed for Google Season of Docs under 
 
 We at the Julia Language are committed to making the application process and participation in GSoD with Julia accessible to everyone. If you have questions or requests, please do reach out and we will do our best to accommodate you. 
 
-### The Julia Language has [submitted a proposal for GSoD 2021](/gsod/proposal2021/). If this project is of interest to you, please reach out via Slack, email, or Discourse.
+### The Julia Language has [submitted a proposal for GSoD 2021](/jsoc/gsod/proposal2021/). If this project is of interest to you, please reach out via Slack, email, or Discourse.
 
 ## Project Ideas
 
