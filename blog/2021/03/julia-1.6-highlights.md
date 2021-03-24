@@ -416,3 +416,6 @@ As a result, the proportion of "green check" PRs is noticeably higher.
 We are not yet at 100%, but CI can now generally be expected to pass.
 
 ## Conclusion
+
+In the words of Daft Punk
+  "Harder better faster stronger, please submit any issues to [github.com/JuliaLang/julia/issues](https://github.com/JuliaLang/julia/issues)”
