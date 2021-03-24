@@ -1,5 +1,5 @@
 @def title = "Julia 1.6 Highlights"
-@def authors = "Jeff Bezanson, Ian Butterworth, Nathan Daly, Keno Fischer, Tim Holy, Elliot Saba, Mosè Giordano, Stefan Karpinski"
+@def authors = "Jeff Bezanson, Ian Butterworth, Nathan Daly, Keno Fischer, Tim Holy, Elliot Saba, Mosè Giordano, Stefan Karpinski, Kristoffer Carlsson"
 @def published = "2 March 2021"
 @def rss_pubdate = Date(2021, 3, 2)
 @def rss = """Some highlights of the Julia 1.6 release."""
@@ -415,6 +415,33 @@ identify and fix many issues. Here is a representative sample:
 As a result, the proportion of "green check" PRs is noticeably higher.
 We are not yet at 100%, but CI can now generally be expected to pass.
 
+
+## Improved stacktrace formatting
+
+_Kristoffer Carlsson_
+
+For Julia release 0.6, formatting of stacktraces [went through an overhaul](https://julialang.org/blog/2017/04/repl-0.6-highlights/#printing_of_stack_traces)
+and in this release [`@jkrumbiegel`](https://github.com/jkrumbiegel) made further improvements on this area (implemented in [#36134](https://github.com/JuliaLang/julia/pull/36134)).
+Let's look at an example of the old stacktrace printing and compare it to the new one:
+
+**Old stacktrace**:
+
+![Stacktrace in 1.0](/assets/blog/2021-1.6-highlights/julia-1.0-stacktrace.png)
+
+
+**New stacktrace**:
+
+![Stacktrace in 1.6](/assets/blog/2021-1.6-highlights/julia-1.6-stacktrace.png)
+
+-------------------------
+
+Some improvements are worth pointing out explicitly:
+
+- Argument names in methods are now shown.
+- The function name was made to be more emphasized compared to the surrounding text, since that information tends to be the most important.
+- The module where the method is defined is now shown and the modules are also color coded.
+- Paths to the method were de-emphasized since they usually have lower importance.
+- Paths were made shorter by showing `~` instead of the full path to the home directory.
 ## Conclusion
 
 In the words of Daft Punk
