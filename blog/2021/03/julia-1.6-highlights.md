@@ -9,8 +9,8 @@ planned around specific features, but this release was an exception since it is
 likely to become the next long-term support (LTS) release of Julia. Because of
 this, we took extra time developing the release to make sure that features which
 are needed for the future health of the ecosystem made it into the release. 
-Also the release was tested for regressions against all open source packages on 
-GitHub and issues were tracked down and fixed (unless the issues were tied to 
+Also the release was tested for regressions against all registered open source packages on 
+GitHub (and some on GitLab) and issues were tracked down and fixed (unless the issues were tied to 
 non-exported APIs not meant for external use).  The
 final decision about whether Julia 1.6 will become the new LTS will be made
 after it has been battle-tested in the field, around the time of the 1.7 release enters stabilization.  
