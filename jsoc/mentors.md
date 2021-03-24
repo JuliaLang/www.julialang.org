@@ -14,6 +14,8 @@ Mentors usually communicate with one another via a private `#jsoc-mentors` chann
 
 ## Project Selection Process
 
+Mentors are encouraged to check out the [official GSoC Timeline](https://summerofcode.withgoogle.com/how-it-works/#timeline) to make sure they are aware of what stage GSoC is currently in.
+
 Before the student application period opens up, mentors are expected to communicate with students and help them get started with the project. Depending on the amount of interest in the project, mentors may want to write up “Getting Started Guides” to avoid duplicating efforts. 
 
 During the student application window, mentors are expected to communicate with prospective students and give feedback on project proposals. 
