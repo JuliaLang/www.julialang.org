@@ -11,7 +11,7 @@ In 2020, we are grateful to Google and the GSoC program for funding [16 awesome 
 
 ## GSoC 2019
 
-In 2019, we received an even larger number of very high quality applications but could only fulfill 15 slots through GSoC. Not wanting to lose some very impressive students and their exciting projects, we decided to supplement the program with the Julia Season of Contributions (JSoC), using some community funds. Details on the program were announced here: https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc/23922
+In 2019, we received an even larger number of very high quality applications but could only fulfill 15 slots through GSoC. Not wanting to lose some very impressive students and their exciting projects, we decided to supplement the program with the Julia Season of Contributions (JSoC), using some community funds. Details on the program were announced here: [https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc/23922](https://discourse.julialang.org/t/julia-seasons-of-contributions-to-supplement-gsoc/23922)
 
 [Here is a list of all the projects for GSoC and JSoC 2019](/blog/2019/05/jsoc19).
 
