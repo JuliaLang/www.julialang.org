@@ -12,7 +12,7 @@ If this sounds like something you would be interested in, head over to the [Proj
 
 Check out the [application guidelines](/jsoc/guidelines/) once you have a project in mind.
 
-You can see previous Summer of Code projects at the [Archive page](/jsoc/archive/).
+You can see previous Summer of Code projects at the [Archive page](/jsoc/archive/) and details around the mentoring process on the [Mentors page](/jsoc/mentors/).
 
 ## Google Season of Docs (GSoD)
 
