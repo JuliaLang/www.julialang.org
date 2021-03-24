@@ -6,6 +6,8 @@ We at the Julia Language are committed to making the application process and par
 
 ### The Julia Language has [submitted a proposal for GSoD 2021](/jsoc/gsod/proposal/). If this project is of interest to you, please reach out via Slack, email, or Discourse.
 
+[GSoD 2021 Proposal](/jsoc/gsod/proposal/)
+
 ## Project Ideas
 
 Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reachout to the respetive mentor(s).
