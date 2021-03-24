@@ -48,7 +48,7 @@ Budget item                   | Amount                        | Running Total   
 Technical writer audit and creation of a comprehensive contributor guide. | 6000.00 | 6000.00
 Volunteer Mentor stipends | 400.00 | 6800.00 | 2 volunteer stipends x 400 each
 
-__TOTAL: $6800.00 USD__
+__TOTAL: 6800.00 USD__
 
 ### Additional information
 > Include here any additional information that is relevant to your proposal.
