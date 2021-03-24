@@ -8,12 +8,13 @@ Julia version 1.6 has been released. Most Julia releases are timed and hence not
 planned around specific features, but this release was an exception since it is
 likely to become the next long-term support (LTS) release of Julia. Because of
 this, we took extra time developing the release to make sure that features which
-are needed for the future health of the ecosystem made it into the release. The
-final decision about whether Julia 1.6 will become the new LTS will not be made
-until around the time that the 1.7 release enters stabilization, at which point
-we'll have a much better sense of how good of a release it was — like baked
-goods, some releases just come out better than others and you can't always tell
-until after they are baked and eaten. The full list of changes can be found in
+are needed for the future health of the ecosystem made it into the release. 
+Also the release was tested for regressions against all open source packages on 
+GitHub and issues were tracked down and fixed (unless the issues were tied to 
+non-exported APIs not meant for external use).  The
+final decision about whether Julia 1.6 will become the new LTS will be made
+after it has been battle tested in the field, around the time of the 1.7 release enters stabilization.  
+The full list of changes can be found in
 the [NEWS file](https://github.com/JuliaLang/julia/blob/release-1.6/NEWS.md),
 but here we'll give a more in-depth overview of some of the release highlights.
 
