@@ -418,7 +418,7 @@ We are not yet at 100%, but CI can now generally be expected to pass.
 
 _Kristoffer Carlsson_
 
-For Julia release 0.6, formatting of stacktraces [went through an overhaul](https://julialang.org/blog/2017/04/repl-0.6-highlights/#printing_of_stack_traces)
+Way back in Julia release 0.6, formatting of stacktraces [went through an overhaul](https://julialang.org/blog/2017/04/repl-0.6-highlights/#printing_of_stack_traces)
 and in this release [`@jkrumbiegel`](https://github.com/jkrumbiegel) made further improvements on this area (implemented in [#36134](https://github.com/JuliaLang/julia/pull/36134)).
 Let's look at an example of the old stacktrace printing and compare it to the new one:
 
