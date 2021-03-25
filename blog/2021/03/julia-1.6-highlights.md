@@ -187,10 +187,9 @@ performance and making them more cheaply thread-safe. This affects some key
 areas such as type allocations (`apply_type` and `tuple`), method optimization
 lookup (`MethodInstance`), and dispatch (`jl_apply_generic`).
 
-While we haven't yet reached our target performance levels (but, really, can we
-ever get that fast?), we hope this release is a great step forward. There's
-already other work completed in preparation for getting latency down even more
-in the future!
+While we haven't yet reached our target performance levels), we hope this
+release is a great step forward. There's already other work completed in
+preparation for getting latency down even more in the future!
 
 ## Tooling to help optimize packages for latency
 
