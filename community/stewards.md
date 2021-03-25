@@ -51,6 +51,6 @@ The Julia Stewards were originally chosen for their long term commitment and qua
 
 In addition to the stewards seeking out folks to add to the committee, you can also nominate someone (including yourself) to join the committee, even if there is not a vacancy. Nominations are accepted on a rolling basis and will be reviewed if/when the current stewards determine they need to bring on additional support. Nominations are reviewed on the axis of long term commitment and contributions to the Julia community (which need not be technical in nature). 
 
-The nomination form can be found here: 
+The nomination form can be found here: [Julia Steward Nomination Form](https://forms.gle/7R8X7dpDh4DpWsJ1A)
 
 Please contact the stewards: [stewards@julialang.org](mailto:stewards@julialang.org) if you have questions about this process. 
