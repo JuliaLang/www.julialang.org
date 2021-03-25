@@ -30,3 +30,8 @@ After the applications have been submitted and the window closed, mentors are ex
 After all of the projects are evaluated by the respective mentors (usually via a trello board), the JSoC Admins will send Google a minimum number of slots and a max number of slots. Historically, we are allocated less than our minimum number which means we have to make hard decisions around which proposals to move forward with. After Google tells us how many slots we are allocated, the JSoC Admins usually go through the proposals which were put forth by mentors to further evaluate them. The admins are looking at the proposals to determine the overall impact of the project on the Julia Community, how enthusiastic the mentor(s) are about the project, and more.
 
 After that, the JSoC Admins allocate slots to fill up the spots given by Google. If there are more high quality applicants with enthusiastic mentors then slots, which is usually the case, the Julia Language may choose to fund certain projects directly with our own money, but following the same timeline and expectations as GSoC. 
+
+Find out more about how we base project selections:
+~~~
+<iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/KJ9UL6DSsr0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+~~~
