@@ -296,7 +296,7 @@ while this did mostly work, there were some major drawbacks to this approach.
 
 1. **It’s slow.** Starting a new process for each download is expensive; but
    worse, those processes can’t share TCP connections or reuse already
-   negotiated TLS connections, so every download needs to do the while TCP
+   negotiated TLS connections, so every download needs to do the TCP
    SYN/ACK song and dance and then also do the TLS secret handshake, all of
    which takes a lot of time.
 
