@@ -3,13 +3,15 @@
 <head>
 	<!-- parts for all pages -->
 	{{insert meta.html}}
-	{{insert head_scripts.html}}
 
 	<link rel="icon" href="/assets/infra/julia.ico">
 
   <!-- Franklin stylesheets for generated pages -->
   {{if hasmath}} {{insert head_katex.html }}      {{end}}
   {{if hascode}} {{insert head_highlight.html }}  {{end}}
+
+	{{insert head_scripts.html}}
+
   {{isdef title}} <title>{{fill title}}</title>   {{end}}
 
   {{ispage /blog/* /jsoc/gsoc/*}}
