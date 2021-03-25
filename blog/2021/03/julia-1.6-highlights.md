@@ -264,9 +264,7 @@ optimization puzzle was therefore to disable optimizations and use the new
 functionality to reduce the amount of time spent generating a very small
 amount of code, saving precious seconds.
 
-~~~
-<iframe width="100%" height="450" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~staticfloat/76.embed"></iframe>
-~~~
+![Loading time of GTK3_jll](/assets/blog/2021-1.6-highlights/gtk3-jll.png)
 
 The interplay between compiler improvements and the benefits that `JLLWrappers`
 affords were [well-recorded](https://github.com/JuliaGraphics/Gtk.jl/issues/466#issuecomment-716058685)
