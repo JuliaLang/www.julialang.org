@@ -20,8 +20,8 @@ _If you have accessibility needs with respect to submitting your application, pl
 
 ## Application Instructions
 
-- GSoD applications must be submitted to https://developers.google.com/season-of-docs/.
-- GSoC applications must be submitted to https://summerofcode.withgoogle.com.
+- GSoD applications must be submitted to [https://developers.google.com/season-of-docs/](https://developers.google.com/season-of-docs/).
+- GSoC applications must be submitted to [https://summerofcode.withgoogle.com](https://summerofcode.withgoogle.com).
 
 ## Application Format
 
