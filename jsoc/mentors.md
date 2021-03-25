@@ -12,6 +12,11 @@ Mentors will be the main point of contact for students during all stages of the 
 
 Mentors usually communicate with one another via a private `#jsoc-mentors` channel on the [Julia Language's Slack](https://julialang.org/slack).
 
+Mentors are encouraged to watch this video to give them a better idea how to be a great GSoC mentor:
+~~~
+<iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/3J_eBuYxcyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+~~~
+
 ## Project Selection Process
 
 Mentors are encouraged to check out the [official GSoC Timeline](https://summerofcode.withgoogle.com/how-it-works/#timeline) to make sure they are aware of what stage GSoC is currently in.
