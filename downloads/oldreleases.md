@@ -6,7 +6,7 @@ Old releases are available should you need to use them to run Julia
 code written for those releases.  Note that these are not actively developed
 nor maintained anymore.
 
-## v1.5.4 (March 24, 2021)
+## v1.5.4 (March 11, 2021)
 
 ~~~
 <table class="downloads table table-hover table-bordered">
