@@ -86,6 +86,11 @@ In more detail, you may find it useful to consider the following questions:
   - What other time commitments, such as summer courses, other jobs, planned vacations, etc., will you have over the summer?
 @@
 
+## Tips and Tricks from former GSoC Students
+~~~
+<iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/YPO9ew6EkkU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+~~~
+
 ## Words of Encouragement
 
 Confidence can sometimes hold someone back from applying for an opportunity. But, we will let you in on a secret: there's no such thing as a 'perfect' candidate. Open Source (and specifically the Julia Language) is a place where anyone and everyone can grow. So however you identify and regardless of your background, please apply if this is a program that gets you excited.
