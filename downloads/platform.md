@@ -170,9 +170,15 @@ If you are using CentOS (version 8), directly run:
 sudo dnf install julia
 ```
 
-If both `dnf` and `yum-config-manager` are not available for your distribution, download the relevant `.repo` file from the Copr webpage, copy it to `/etc/yum.repos`, and run the second command.
+If both `dnf` and `yum-config-manager` are not available for your distribution, download the relevant `.repo` file from the Copr webpage, copy it to `/etc/yum.repos`, and run the install command.
 
-Note that Fedora guidelines advise against uploading new breaking releases to official repositories: therefore your distribution will not provide the new major versions of Julia which were published after it. When reporting issues, please ensure you are using the latest available release by using one of the Copr repositories displayed on this page. In order to use nightly Julia builds, replace `nalimilan/julia` with `nalimilan/julia-nightlies` in the instructions above. These can then be updated with `yum upgrade julia`.
+Note that Fedora guidelines advise against uploading new breaking releases to official repositories: therefore your distribution may not provide the new major versions of Julia. When reporting issues, please ensure you are using the latest available release, and if it is not available using one of the Copr repositories displayed on this page. In order to use nightly Julia builds, use
+
+```shell
+sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan-nightlies/julia/repo/epel-7/nalimilan-julia-epel-7.repo
+sudo yum install julia
+```
+These can then be updated with `yum upgrade julia`.
 
 ## Debian/Ubuntu Linux
 
