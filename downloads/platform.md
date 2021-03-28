@@ -146,29 +146,33 @@ This automatically puts the binary into a directory in the user's PATH, so you c
 
 ## Fedora/RHEL/CentOS/SL/OEL Linux
 
-A [Copr repository](https://copr.fedoraproject.org/coprs/nalimilan/julia/) is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest stable version of Julia.
+A [Copr repository](https://copr.fedoraproject.org/coprs/nalimilan/julia/) is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest stable version of Julia.  On Fedora and CentOS 8, Julia is available in 
+the main repositories, and you do not need to use the Copr repository.
 
 If you are using RHEL, CentOS, Scientific Linux or Oracle Enterprise Linux (version 5 or higher), first [enable EPEL](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F) for your distribution version. Then follow the steps below.
 
-If you are using Fedora (version 19 or higher), directly run:
+If you are using Fedora (version 32 or higher), directly run:
 
 ```shell
-sudo dnf copr enable nalimilan/julia
-sudo yum install julia
+sudo dnf install julia
 ```
 
-If you are using CentOS (version 7 or higher), directly run:
+If you are using CentOS (version 7), directly run:
 
 ```shell
 sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
 sudo yum install julia
 ```
 
+If you are using CentOS (version 8), directly run:
+
+```shell
+sudo dnf install julia
+```
+
 If both `dnf` and `yum-config-manager` are not available for your distribution, download the relevant `.repo` file from the Copr webpage, copy it to `/etc/yum.repos`, and run the second command.
 
 Note that Fedora guidelines advise against uploading new breaking releases to official repositories: therefore your distribution will not provide the new major versions of Julia which were published after it. When reporting issues, please ensure you are using the latest available release by using one of the Copr repositories displayed on this page. In order to use nightly Julia builds, replace `nalimilan/julia` with `nalimilan/julia-nightlies` in the instructions above. These can then be updated with `yum upgrade julia`.
-
-
 
 ## Debian/Ubuntu Linux
 
