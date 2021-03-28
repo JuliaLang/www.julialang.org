@@ -330,12 +330,32 @@ end
       <div class="col-lg-8 col-md-8 video">
         <meta name="description" content="Watch what unfolded at JuliaCon 2020 here. The latest developments, optimizations, and features happen right here, at JuliaCon."/>
 
-         <script type="text/javascript">
-          var src = 'https://www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Tl2UHTrm4jnIYrLkIcAROR';
-          var index = Math.floor(Math.random() * 163);
-          var videoUrl = src + '&index=' + index;
-          document.write('<div class="embed-responsive embed-responsive-16by9"><iframe src="' + videoUrl + '" frameborder="0" allowfullscreen></iframe></div>')
-         </script>
+        <div class="embed-responsive embed-responsive-16by9"><div id="player"></div></div>
+        <script type="text/javascript">
+          var tag = document.createElement('script');
+          tag.src = "https://www.youtube.com/iframe_api";
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+          var player;
+          function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+              playerVars: {
+                list: 'PLP8iPy9hna6Tl2UHTrm4jnIYrLkIcAROR',
+                listType: 'playlist',
+              },
+              events: {
+                'onReady': onPlayerReady,
+              }
+            });
+          }
+
+          function onPlayerReady(event) {
+            player.cuePlaylist({
+              index: Math.floor(Math.random() * player.getPlaylist().length)
+            });
+          }
+        </script>
       </div>
     </div>
 
