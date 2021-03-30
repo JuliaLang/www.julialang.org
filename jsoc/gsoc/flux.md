@@ -4,13 +4,13 @@
 
 Are you a performance nut? Help us implement cutting-edge CUDA kernels in Julia for operations important across deep learning, scientific computing and more. We also need help developing our wrappers for machine learning, sparse matrices and more, as well as CI and infrastructure. Contact us to develop a project plan.
 
-Mentors: [Tim Besard](https://github.com/maleadt), [Mike Innes](https://github.com/MikeInnes).
+Mentors: [Tim Besard](https://github.com/maleadt), [Dhairya Gandhi](https://github.com/DhairyaLGandhi).
 
 ### Reinforcement Learning Environments
 
 Develop a series of reinforcement learning environments, in the spirit of the [OpenAI Gym](https://gym.openai.com). Although we have wrappers for the gym available, it is hard to install (due to the Python dependency) and, since it's written in Python and C code, we can't do more interesting things with it (such as differentiate through the environments). A pure-Julia version that supports a similar API and visualisation options would be valuable to anyone doing RL with Flux.
 
-Mentors: [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
+Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/).
 
 ### NLP Tools and Models
 
@@ -57,7 +57,7 @@ Flux projects are typically very competitive; we encourage you to get started ea
 
 There are many high-quality open-source tutorials and learning materials available, for example from PyTorch and fast.ai. We'd like to have Flux ports of these that we can add to the model zoo, and eventually publish to the Flux website.
 
-Mentors: [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
+Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/).
 
 ### Model Zoo Examples
 
@@ -67,7 +67,7 @@ Some experience with implementing deep learning models would be ideal for this p
 
 *Note that this project is quite popular; students who show skills and interests in other parts of the stack may have an easier time distinguishing themselves.*
 
-Mentors: [Dhairya Gandhi](https://github.com/dhairyagandhi96/).
+Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/).
 
 ### Port the Fast.ai book:"Deep Learning for Coders with fastai and PyTorch" to Julia
 
