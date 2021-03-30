@@ -3,18 +3,18 @@
 This is the GitHub repository for the Julia Programming Language's main website, [julialang.org](https://julialang.org/).
 The repository for the source code of the language itself can be found at [github.com/JuliaLang/julia](https://github.com/JuliaLang/julia).
 
-The Julia website is generated using GitHub pages and [Franklin.jl](https://github.com/tlienart/Franklin.jl), a Julia native package for building websites.
+The Julia website is generated using GitHub pages and [Franklin.jl](https://github.com/tlienart/Franklin.jl), a Julia native package for building static websites.
 
 
 ## Making Simple Changes
 
 To suggest a change to the website, you can simply navigate to the page with the content you think should be changed, and edit it.
-You will be prompted to fork the repo (if you haven't already) and then open a Pull Request. Once the Pull Request is open, Netlify will build a preview of the site with the changes you made.
-You can click the link there to validate that the changes appear as you would expect.
-
+You will be prompted to fork the repo (if you haven't already) and then open a Pull Request.
 Once your Pull Request is merged, you should see your changes show up on the website in a few minutes or less.
 
-Build previews for each Pull Request are available at: https://julialang.netlify.app (note that given the GitHub Actions design, build previews are only available for those who have write access to the repo). 
+Build previews for each Pull Request will be linked in the comment section of the PR once the site has been successfully build.
+
+**Note**: please only use _fenced_ code blocks (i.e. code blocks delimited by backticks) and not indented code blocks.
 
 ## Making More Complex Changes
 
@@ -23,21 +23,15 @@ You can do this by simply forking the base repo, cloning it locally onto your de
 
 Once you have validated that everything looks good, you can open a Pull Request and check the Deploy Preview from Netlify as a final sanity check.
 
-Build previews for each Pull Request are available at: https://julialang.netlify.app (note that given the GitHub Actions design, build previews are only available for those who have write access to the repo). 
+Build previews for each Pull Request are available at: https://julialang.netlify.app (note that given the GitHub Actions design, build previews are only available for those who have write access to the repo).
 
 ## Making modifications and seeing the changes locally
 
-Start by installing Franklin: in Julia,
+Clone the repository and `cd` to it. Start julia with `julia --project` and do
 
-```
-julia> using Pkg; Pkg.add("Franklin")
-```
+```julia
+julia> using Pkg; Pkg.instantiate()
 
-(Note: _if you already have Franklin, make sure to update it to the latest version before proceeding_).
-
-then, clone the repository, `cd` to  it and do
-
-```
 julia> using Franklin
 
 julia> serve()
@@ -66,10 +60,20 @@ One important thing to bear in mind is that RSS is a bit picky in terms of what 
 
 In particular:
 
-* avoid the use of `&` for instance change `ML&PL` for `ML-PL`,
+* avoid the use of `&`, for instance change `ML&PL` to `ML-PL`,
 * only use plain text in `rss`, no links, no markup, no HTML entities.
 
 If in doubt, after running Franklin's server, copy the content of `__site/feed.xml` into [the w3 feed validator](https://validator.w3.org/feed/check.cgi), it should show "Valid RSS feed".
+
+### Metadata
+
+In order to add `<meta aaa="bbb" content="ccc">` tags on your blog post, add
+
+```julia
+@def meta =[("aaa", "bbb", "ccc"),]
+```
+
+(you can specify multiple tags of course). See for instance [Keno's recent blog post](https://raw.githubusercontent.com/JuliaLang/www.julialang.org/master/blog/2020/05/rr.md).
 
 ## Looking for broken links
 

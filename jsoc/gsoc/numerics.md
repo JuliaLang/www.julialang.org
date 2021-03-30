@@ -2,12 +2,11 @@
 
 # Numerical Projects – Summer of Code
 
-For all of these projects, potential mentors are [Steven Johnson](https://github.com/stevengj).
-
 \toc
 
 ## Numerical Linear Algebra
 
+<!--- Commented out since it was not updated for Summer 2021. 
 ### Efficient Sparse linear algebra routines
 
 Modern data-intensive computations, such as Google's PageRank algorithm, can often be cast as operations involving sparse matrices of extremely large nominal dimensions. Unlike dense matrices, which decompose naturally into many homogeneous tiles, efficient algorithms for working with sparse matrices must be fully cognizant of the sparsity pattern of specific matrices at hand, which oftentimes reduce to efficiently computing partitions of extremely large graphs.
@@ -26,6 +25,7 @@ Native Julia algorithms will be generic and support different numeric types, as 
 **Expected Results**: A native Julia package for parallel sparse linear algebra methods.
 
 **Mentors**: [Dominique Orban](https://dpo.github.io)
+-->
 
 ### Matrix functions
 
@@ -37,7 +37,11 @@ This project proposes to implement state of the art algorithms that extend the c
 
 **Expected Results**: New and faster methods for evaluating matrix functions.
 
-**Mentors:** [Jiahao Chen](https://github.com/jiahao)
+**Mentors:** [Jiahao Chen](https://github.com/jiahao), [Steven Johnson](https://github.com/stevengj).
+
+**Difficulty:** Hard
+
+<!--- Commented out since it was not updated for Summer 2021. 
 
 ## Interval arithmetic
 
@@ -106,13 +110,13 @@ Some groundwork for this has been laid in the `TaylorModels.jl` package.
 **Expected results**: A state-of-the-art library for Taylor models.
 
 **Mentors:** [David P. Sanders](https://github.com/dpsanders), [Luis Benet](https://github.com/lbenet), [Marcelo Forets](https://github.com/mforets)
-
+-->
 
 ## Better Bignums Integration
 
-Julia currently supports big integers, rationals and floats, making use of the GMP and MPFR libraries. However, GMP currently doesn't permit good integration with a garbage collector.
+Julia currently supports big integers and rationals, making use of the GMP. However, GMP currently doesn't permit good integration with a garbage collector.
 
-This project therefore involves exploring ways to improve bignums, possibly including:
+This project therefore involves exploring ways to improve BigInt, possibly including:
 
 @@tight-list
 * Modifying GMP to support high-performance garbage-collection
@@ -122,11 +126,15 @@ This project therefore involves exploring ways to improve bignums, possibly incl
 
 This experimentation could be carried out as a package with a new implementation, or as patches over the existing implementation in Base.
 
-**Expected Results**: An implementation of BigNums in Julia with increased performance over the current one.
+**Expected Results**: An implementation of BigInt in Julia with increased performance over the current one.
 
 **Require Skills**: Familiarity with extended precision numerics OR performance considerations. Familiarity either with Julia or GMP.
 
 **Mentors**: [Jameson Nash](https://github.com/vtjnash)
+
+**Difficulty:** Hard
+
+<!--- Commented out since it was not updated for Summer 2021 and don't have specific mentors.
 
 ### PETSc integration for scalable technical computing
 
@@ -138,6 +146,8 @@ This project proposal is to develop a new Julia package to interface with PETsc,
 **Expected Results**: New wrappers for PETSc functions in the [PETSc.jl](https://github.com/JuliaParallel/PETSc.jl) package.
 
 **Mentors:** **Mentors:** Ask on Discourse or the linear-algebra channel on slack
+
+**Difficulty:** Medium
 
 ### Parallel dense linear algebra routines
 
@@ -151,6 +161,8 @@ This project proposal is for implementing native Julia algorithms involving effi
 
 **Mentors:** Ask on Discourse or the linear-algebra channel on slack
 
+**Difficulty:** Medium
+
 ### Parallel sparse linear algebra routines
 
 Modern data-intensive computations, such as Google's PageRank algorithm, can often be cast as operations involving sparse matrices of extremely large nominal dimensions. Unlike dense matrices, which decompose naturally into many homogeneous tiles, efficient algorithms for working with sparse matrices must be fully cognizant of the sparsity pattern of specific matrices at hand, which oftentimes reduce to efficiently computing partitions of extremely large graphs.
@@ -162,6 +174,8 @@ This project proposal is for implementing native Julia algorithms for massively 
 **Expected Results**: A native Julia package for parallel sparse linear algebra methods.
 
 **Mentors:** **Mentors:** Ask on Discourse or the linear-algebra channel on slack
+
+**Difficulty:** Medium
 
 ### Generic linear algebra
 
@@ -184,6 +198,8 @@ The focus of this project will be to improve this functionality. Potential tasks
 
 **Mentors:** Ask on Discourse or the linear-algebra channel on slack
 
+-->
+
 ### Special functions
 
 As a technical computing language, Julia provides a huge number of
@@ -202,5 +218,15 @@ and boundary cases.
 
 **Expected Results**: New and faster methods for evaluating properties of special functions.
 
-**Mentors:** Ask on Discourse or on slack
+**Mentors:** [Steven Johnson](https://github.com/stevengj). Ask on Discourse or on slack
+
+### A Julia-native CCSA optimization algorithm
+
+The CCSA algorithm by [Svanberg (2001)](https://epubs.siam.org/doi/10.1137/S1052623499362822) is a [nonlinear programming algorithm](https://en.wikipedia.org/wiki/Nonlinear_programming) widely used in [topology optimization](https://en.wikipedia.org/wiki/Topology_optimization) and for other large-scale optimization problems: it is a robust algorithm that can handle arbitrary nonlinear inequality constraints and huge numbers of degrees of freedom.  Moreover, the relative simplicity of the algorithm makes it possible to easily incorporate sparsity in the Jacobian matrix (for handling huge numbers of constraints), approximate-Hessian preconditioners, and as special-case optimizations for affine terms in the objective or constraints.  However, currently it is only available in Julia via the [NLopt.jl](https://github.com/JuliaOpt/NLopt.jl) interface to an external C implementation, which greatly limits its flexibility.
+
+**Recommended Skills**: Experience with nonlinear optimization algorithms and understanding of [Lagrange duality](https://en.wikipedia.org/wiki/Duality_(optimization)), familiarity with sparse matrices and other Julia data structures.
+
+**Expected Results**: A package implementing a native-Julia CCSA algorithm.
+
+**Mentors:** [Steven Johnson](https://github.com/stevengj).
 

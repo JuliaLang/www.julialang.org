@@ -1,12 +1,52 @@
 
 # Tabular Data – Summer of Code
 
-## Parquet.jl enhancements and JuliaDB
+## Implement Flashfill in Julia 
 
-[Apache Parquet](https://parquet.apache.org/) is a binary data format for tabular data. It has features for compression and memory-mapping of datasets on disk. A decent implementation of Parquet in Julia is likely to be highly performant. It will be useful as a standard format for distributing tabular data in a binary format. JuliaDB (submodule [MemPool](https://github.com/JuliaComputing/MemPool.jl/blob/master/src/io.jl)) currently requires a binary format for efficient storage and data transfer, but right now resorts to a custom but fast implementation. Users are asked not to take it seriously because it breaks from release to release. Having a Parquet reader and writer will solve this problem by standardizing the format. Prior work includes [Parquet.jl](https://github.com/JuliaIO/Parquet.jl) which only has a Parquet reader. Having written a basic Parquet reader and writer, you will need to shift your focus to performance-oriented array types in JuliaDB: namely PooledArrays, and StringArrays (from WeakRefStrings.jl), StructArrays, and finally tables. You will also need to make sure that bits-types such as Dates, Rational numbers etc. are efficiently stored and memory-mapped on load. Then you will make Parquet the default format for loading, saving and (possibly) _communicating data between processes_ in JuliaDB. By doing this project you will learn about the performance engineering of a distributed, out-of-core analytical database.
+**Difficulty**: Medium
+
+*FlashFill* is mechanism for creating data manipulation pipelines using programming by example (PBE). As an example see this [implementation in Microsoft Excel](https://support.microsoft.com/en-us/office/using-flash-fill-in-excel-3f9bcf1e-db93-4890-94a0-1578341f73f7). We want a version of Flashfill that can work against Julia tabular data structures, such as DataFrames and Tables. 
+
+**Resources**:
+@@tight-list
+* A [presentation](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/04/pldi16-tutorial.pptx) by Sumit Gulwani of Microsoft Research
+* A [video](https://youtu.be/X1YXge3C8RI)
+* [MSR Prose research group](https://www.microsoft.com/en-us/research/group/prose/)
+* [Papers](https://www.microsoft.com/en-us/research/group/prose/#!publications)
+@@
+
+**Recommended Skills**: Compiler techniques, DSL generation, Program synthesis
+
+**Expected Output**: A practical flashfill implementation that can be used on any tablular data structure in Julia
+
+**Mentors**: [Avik Sengupta](https://github.com/aviks/)
+
+## Parquet.jl enhancements
+
+**Difficulty**: Medium
+
+[Apache Parquet](https://parquet.apache.org/) is a binary data format for tabular data. It has features for compression and memory-mapping of datasets on disk. A decent implementation of Parquet in Julia is likely to be highly performant. It will be useful as a standard format for distributing tabular data in a binary format. There exists a Parquet.jl package that has a Parquet reader and a writer. It currently conforms to the Julia Tabular file IO interface at a very basic level. It needs more work to add support for critical elements that would make Parquet.jl usable for fast large scale parallel data processing. One or more of the following goals can be targeted:
+@@tight-list
+* Lazy loading and support for out-of-core processing, with Arrow.jl and Tables.jl integration. Improved usability and performace of Parquet reader and writer for large files.
+* Reading from and writing data on to cloud data stores, including support for partitioned data.
+* Support for missing data types and encodings making the Julia implementation fully featured.
+@@
+
+**Resources:**
+@@tight-list
+* The [Parquet](https://parquet.apache.org/documentation/latest/) file format (also are many articles and talks on the Parquet storage format on the internet)
+* [A tour of the data ecosystem in Julia](https://quinnj.home.blog/2019/07/21/a-tour-of-the-data-ecosystem-in-julia/)
+* [Tables.jl](https://github.com/JuliaData/Tables.jl)
+* [Arrow.jl](https://github.com/JuliaData/Arrow.jl)
+@@
+
+**Recommended skills:** Good knowledge of Julia language, Julia data stack and writing performant Julia code.
+
+**Expected Results:** Depends on the specific projects we would agree on.
 
 **Mentors:** [Shashi Gowda](https://github.com/shashi), [Tanmay Mohapatra](https://github.com/tanmaykm)
 
+<!--- Commented out for Summer 2021 since the projects were not updated.
 ## GPU support in JuliaDB
 
 JuliaDB is a distributed analytical database. It uses Julia’s multi-processing for parallelism at the moment. GPU implementations of some operations may allow relational algebra with low latency. In this project, you will be required to add basic GPU support in JuliaDB.
@@ -53,4 +93,6 @@ julia code.
 competitive performance for all the packages listed above.
 
 **Mentors**: [David Anthoff](https://github.com/davidanthoff)
+
+-->
 

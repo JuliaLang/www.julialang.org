@@ -1,3 +1,5 @@
 .DS_Store
 __site
 node_modules/
+package-lock.json
+.__py_*

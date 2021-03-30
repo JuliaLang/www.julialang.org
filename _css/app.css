@@ -2,34 +2,67 @@
   background-color: #fff !important;
   padding: 0;
 }
-#main-menu li.nav-item {
+#main-menu .nav-item {
   padding: 16px;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid transparent;
 }
-#main-menu li.nav-item:hover {
+#main-menu .nav-item:hover {
   background-color: #eee;
-  border-bottom: 2px solid #CA3C32;
 }
-#main-menu li.nav-item.donate:hover {
+#main-menu .nav-item.donate:hover {
   background-color: #fff;
   border-bottom: 0;
 }
-#main-menu li.nav-item.active {
-  border-bottom: 2px solid #CA3C32;
+#main-menu .nav-item.active,
+#main-menu .nav-item:hover {
+  border-bottom-color: #ca3c32;
 }
-#logo {
-  padding: 0 20px 0 0;
+.navbar-light .navbar-nav .nav-link {
+  color: inherit;
 }
-#logo img {
-  width: 85px;
-  height: 55px;
+
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .nav-item:hover .nav-link {
+  color: #ca3c32;
+}
+.navbar-brand {
+  margin-left: 0.25rem;
+  margin-right: 0;
+  padding-bottom: 1rem;
+}
+.navbar-brand img {
+  height: 50px;
+}
+.navbar-right {
+  margin-right: 0.25rem;
+}
+
+#menu li {
+    list-style-type: none;
+    padding: 4px 4px;
+    text-decoration: none;
+    background-color: none;
+    display: block;
+    text-align: left;
+}
+
+#menu a{
+  color:white;
+  display: block;
+}
+
+#menu ul{
+    width: 100%;
+    background: #cacaca;
+    margin: 0;
+    padding: 0;
 }
 
 .main-heading {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
   font-weight: 100;
-  font-size: 48px;
+  font-size: 46px;
 }
 .secondary-heading {
   /* font-family: "Futura LT Medium"; */
@@ -37,12 +70,6 @@
   font-weight: 400;
   font-size: 18px;
   margin-bottom: 50px;
-}
-
-.page-heading a {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
 }
 
 .extra-link {
@@ -135,7 +162,7 @@
   background-color: #CA3C32;
 }
 
-.ide, .blog, .video {
+.ide, .blog {
   background-color: #F2F2F2;
   border-left: 20px solid #fff;
   border-right: 20px solid #fff;
@@ -167,6 +194,11 @@
 .packages {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
+}
+
+.rss-icon {
+  color: #e2802f;
+  float: right;
 }
 
 .blog {
@@ -241,29 +273,14 @@
 }
 
 .video {
-  text-align: left;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  background-color: #fff;
-}
-.video img {
-  width: 100%;
-}
-.video h6 {
-  padding: 10px;
-  background-color: #F2F2F2;
-}
-.video a {
-  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
 }
 
 .btn {
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
-}
-
-.btn-success {
-	background-color: #008a00;
 }
 
 .btn-outline-primary {
@@ -274,37 +291,46 @@
 	color: #d91b35;
 }
 
-.footer-menu {
-  background-color: #394059;
-  color: #fff;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-}
-.footer-menu h6 {
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-}
-.footer-menu ul.nav li a {
-  padding: 3px 0;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-size: 13px;
-  color: #fff;
-}
-
 .footer-copy {
-  background-color: #2C2F3E;
+  background-color: #2c2f3e;
   color: #fff;
-  /* font-family: "Futura LT Medium"; */
-  font-family: "Roboto", sans-serif;
-  font-size: 12px;
-  padding: 10px 0;
+  padding-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
 }
 .footer-copy p {
   padding: 0;
   margin: 0;
+}
+.footer-copy ul {
+  display: inline-block;
+  list-style: none;
+}
+.footer-copy ul a {
+  font-size: 95%;
+  color: #fff;
+}
+
+.footer-copy li:first-child a {
+  font-size: 110%;
+  font-weight: bold;
+  color: #7a95dd;
+}
+.footer-copy #footer-bottom {
+  font-size: 90%;
+}
+.footer-copy #footer-bottom a {
+  color: #7a95dd;
+}
+
+.footrow ul {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 800px) {
+  .footrow ul {
+    width: 20%;
+  }
 }
 
 h4.card-title {
@@ -374,16 +400,16 @@ h4.card-title {
   }
 }
 
-.btn-primary {
-  background-color: #4D64AE;
-  border-color: #4D64AE;
-}
-.link {
-  color: #4D64AE;
+.page-heading .btn-success,
+.page-heading .btn-primary {
+  border-color: transparent;
+  box-shadow: 0px 0px 0px 2px #0a0a0a;
+  text-shadow: 1px 1px 2px #0a0a0a;
 }
 
-.footer-menu-item {
-  margin-top: 30px;
+
+.link {
+  color: #4D64AE;
 }
 
 #ecosystem-tab-content div.tab-pane {
@@ -408,26 +434,49 @@ img.ecosystem-image {
   margin-right: 20px;
 }
 
-.jumbotron {
-  background-image: url('../assets/infra/splash-img.png');
+.page-heading {
+  color: #fff;
+  padding: 2rem;
+  background-image: url('../assets/infra/backsplash-min-0.5.svg');
   background-repeat: repeat-x;
   background-size: auto 100%;
 }
 
-img {
-  max-width: 100%;
-}
-
 .page-heading .main-heading {
-  color: #fff;
   font-weight: 100;
 }
+
 .page-heading .secondary-heading {
-  color: #ccc;
+  font-size: 28px;
+  margin-bottom: 2rem;
 }
 
-.jumbotron a.link {
-  color: #ccc;
+.page-heading .main-heading,
+.page-heading .secondary-heading {
+  text-shadow: 3px 3px 3px #0a0a0a;
+}
+
+.page-heading p {
+  line-height: 3.5;
+  margin-bottom: 0;
+}
+
+.page-heading span.btn {
+  padding-top: 18px;
+  padding-left: 0;
+  padding-right: 0;
+  vertical-align: middle;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+img {
+  max-width: 100%;
 }
 
 h1 {
@@ -458,6 +507,7 @@ a {
 	color: #005bc0;
 }
 
+
 table th {
   background-color: #eee;
 }
@@ -477,7 +527,6 @@ blockquote:before {
   vertical-align: -0.4em;
 }
 blockquote p {
-  display: inline;
   font-style: italic;
 }
 
@@ -486,14 +535,11 @@ blockquote p {
   padding-right: 0;
 }
 #top-alert .alert {
+  border-radius: 0;
   margin-bottom: 0.2rem;
 }
 #top-alert p {
   margin-bottom: 0;
-}
-
-#main-jumbo {
-  padding: 3rem 2rem;
 }
 
 code, table.benchmarks tbody {
@@ -525,9 +571,6 @@ pre {
 	}
 }
 
-.navbar-light .navbar-nav .nav-link {
-	color: #767676;
-}
 
 @media (max-width: 575px) {
 	.main-heading {
@@ -598,4 +641,23 @@ table th[class*="col-"] {
 
 table tr td {
     hyphens: auto;
+}
+
+@media only screen and (min-width: 970px){
+  .edit-float {
+    background-image: url("../assets/infra/edit_icon.svg");
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+  	position:fixed;
+  	width:45px;
+  	height:45px;
+  	bottom:40px;
+  	right:30px;
+  	background-color: #e6eeff;
+  	border-radius:40px;
+  	text-align:center;
+  	box-shadow: 2px 2px 3px #999;
+
+  }
 }

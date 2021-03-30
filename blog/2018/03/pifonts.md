@@ -1,10 +1,6 @@
-@def rss_pubdate = Date(2018, 3, 14)
-@def rss = """ Some &pi;-ography | Although we've known about "Archimedes' constant" for a few millennia, we've been referring to it as the Greek letter π only since the 1700s. Patricia Rothman [suggested](https://www.historytoday.com/patricia-rothman/william-jones-and-his-circle-man-who-invented-pi) that the following page *could* c... """
-@def published = "14 March 2018"
-@def title = "Some &#928;-ography"
+@def title = "Some π-ography"
 @def author = "Cormullion"
-@def hascode = true
-
+@def published = "14 March 2018"
 
 Although we've known about "Archimedes' constant" for a few millennia, we've been referring to it as the Greek letter π only since the 1700s. Patricia Rothman [suggested](https://www.historytoday.com/patricia-rothman/william-jones-and-his-circle-man-who-invented-pi) that the following page *could* contain one of the earliest uses of the Greek character to indicate the concept. It's from a mathematics text book written by William Jones and published in 1706:
 
@@ -22,14 +18,14 @@ But although Jones was one of the first, he wasn't influential enough to inspire
 
 Julia embraces the Unicode standard [enthusiastically](https://docs.julialang.org/en/latest/manual/unicode-input/), so it's very easy to use the appropriate Greek (and other Unicode) letters in your code. In the REPL, for example, type `\pi TAB` to insert the Unicode character `U+03C0`:
 
-```
+```julia-repl
 julia> π
 π = 3.1415926535897...
 ```
 
 and you can use it freely in expressions:
 
-```
+```julia
 @test kepler_solver.([π/4, π/6, 8π/3], 0) ≈ [π/4, π/6, 2π/3]
 ```
 
@@ -37,7 +33,7 @@ and you can use it freely in expressions:
 
 As always in Julia, you can usually see how the magic is performed:
 
-```
+```julia-repl
 julia> Base.REPLCompletions.latex_symbols["\\pi"]
 "π"
 ```
@@ -46,7 +42,7 @@ julia> Base.REPLCompletions.latex_symbols["\\pi"]
 
 We usually use the `U+03C0` π from the Unicode block for Greek and Coptic text glyphs (Coptic was the Greek-based script adopted by the Egyptians to replace hieroglyphs), but there are other π symbols intended mainly for mathematical use. The following snippet of Julia code tries to show all the lower-case Unicode π symbols:
 
-```
+```julia
 morepi = [
 (0x3c0,    "\\pi",           "GREEK SMALL LETTER PI")
 (0x213c,   "\\bbpi",         "DOUBLE-STRUCK SMALL PI") # v0.7
@@ -81,9 +77,11 @@ Some tedious experimentation suggests that the search is to some extent alphabet
 
 By the way, these alternative symbols for π such as `\mitpi` don't evaluate as 3.14..., so you can use them—as William Jones did—as general purpose symbols. For example, if you work with prime numbers you could use one of them to indicate the [prime-counting function](https://en.wikipedia.org/wiki/Prime-counting_function). Or you could just confuse yourself with the following:
 
-    julia> 𝜋 = 3
-    julia> 2𝜋
-    6
+```julia-repl
+julia> 𝜋 = 3
+julia> 2𝜋
+6
+```
 
 ### The phonogram symbol Ⓟ
 
@@ -95,52 +93,55 @@ Not all fonts contain a suitable Greek π at `U+03C0`. A few expensive fonts suc
 
 Can we use Julia to find all the different designs of π? My first attempt at this challenge uses [Fontconfig.jl](https://github.com/JuliaGraphics/Fontconfig.jl) to produce a list of installed fonts, and [Luxor.jl](https://github.com/JuliaGraphics/Luxor.jl) to draw them in a table. It at least gives a glimpse of the variety of designs available, and illustrates some of the issues. Fonts that provide a zero-width glyph are skipped, meaning the table winds up being smaller than originally planned.
 
-    using Fontconfig, Luxor
+```julia
+using Fontconfig, Luxor
 
-    function buildfontlist()
-        fonts = []
-        for font in Fontconfig.list()
-            families = Fontconfig.format(font, "%{family}")
-            for family in split(families, ",")
-                push!(fonts, family)
+function buildfontlist()
+    fonts = []
+    for font in Fontconfig.list()
+        families = Fontconfig.format(font, "%{family}")
+        for family in split(families, ",")
+            push!(fonts, family)
+        end
+    end
+    filter!(f -> !ismatch(r".LastResort|Agenda|Topaz|Bodoni Ornaments|System",
+        f), fonts)
+    return sort(unique(fonts))
+end
+
+function tabulatepi()
+    fonts = buildfontlist()
+    ncols = 25
+    nrows = convert(Int, ceil(length(fonts))) ÷ ncols
+    @svg begin
+        background("ivory")
+        setopacity(1)
+        t = Table(nrows, ncols, 30, 25)
+        sethue("black")
+        cellnumber = 1
+        for n in 1:length(fonts)
+            fontface(fonts[n])
+            te = textextents("π")
+            if te[3] > 0.0
+                fontsize(18)
+                text("π", t[cellnumber], halign=:center)
+                setfont("Lucida-Sans", 3)
+                settext(fonts[n], t[cellnumber] + (0, isodd(cellnumber) ? 6 : 10), halign="center")
+                cellnumber += 1
             end
         end
-        filter!(f -> !ismatch(r".LastResort|Agenda|Topaz|Bodoni Ornaments|System",
-            f), fonts)
-        return sort(unique(fonts))
-    end
+    end 800 1200
+end
 
-    function tabulatepi()
-        fonts = buildfontlist()
-        ncols = 25
-        nrows = convert(Int, ceil(length(fonts))) ÷ ncols
-        @svg begin
-            background("ivory")
-            setopacity(1)
-            t = Table(nrows, ncols, 30, 25)
-            sethue("black")
-            cellnumber = 1
-            for n in 1:length(fonts)
-                fontface(fonts[n])
-                te = textextents("π")
-                if te[3] > 0.0
-                    fontsize(18)
-                    text("π", t[cellnumber], halign=:center)
-                    setfont("Lucida-Sans", 3)
-                    settext(fonts[n], t[cellnumber] + (0, isodd(cellnumber) ? 6 : 10), halign="center")
-                    cellnumber += 1
-                end
-            end
-        end 800 1200
-    end
+tabulatepi()
+```
 
-    tabulatepi()
 
 You probably won't have to manually remove oddments like Bodoni Ornaments or Topaz from the font list as I had to...
 
-<!-- ![tabulating pi - PNG fallback](/assets/blog/2018-04-13-pifonts/tabulate-pi.png) -->
+![tabulating pi - PNG fallback](/assets/blog/2018-04-13-pifonts/tabulate-pi.png)
 
-![tabulating pi - SVG image](/assets/blog/2018-04-13-pifonts/tabulate-pi.svg)
+<!-- ![tabulating pi - SVG image](/assets/blog/2018-04-13-pifonts/tabulate-pi.svg) -->
 
 It would be better if I manually curated the candidates rather than used this automatically-generated font list: there are way too many "default" designs from various system and language-specific fonts that simply fill the slot with a basic design, rather than interpret the shape according to the font's theme. And the font list produced by `fontconfig` doesn't look in all the font libraries, so it's an incomplete list.
 
@@ -154,35 +155,37 @@ I like the small version from Dalliance; it's nicely old-school, where "old-scho
 
 It occurred to me to ask "what is the average of π?", or "what would it look like if all the πs were displayed at the same time?". Using the same font list generation as before, I ran this:
 
-    function textstroke(s, pos, action)
-        @layer begin
-            translate(pos)
-            te = textextents(s)
-            move(-te[3]/2, te[4]/2)
-            textpath(s)
-            tp = pathtopoly()
-            poly.(tp, action, close=true)
-        end
+```julia
+function textstroke(s, pos, action)
+    @layer begin
+        translate(pos)
+        te = textextents(s)
+        move(-te[3]/2, te[4]/2)
+        textpath(s)
+        tp = pathtopoly()
+        poly.(tp, action, close=true)
     end
+end
 
-    function accumulatepi()
-        fonts = buildfontlist()
-        @png begin
-            background("midnightblue")
-            sethue("lightgoldenrod2")
-            setline(0.2)
-            fontsize(560)
-            setopacity(0.3)
-            for n in 1:length(fonts)
-                fontface(fonts[n])
-                te = textextents("π")
-                if te[3] > 0.0
-                    textstroke("π", O, :stroke)
-                end
+function accumulatepi()
+    fonts = buildfontlist()
+    @png begin
+        background("midnightblue")
+        sethue("lightgoldenrod2")
+        setline(0.2)
+        fontsize(560)
+        setopacity(0.3)
+        for n in 1:length(fonts)
+            fontface(fonts[n])
+            te = textextents("π")
+            if te[3] > 0.0
+                textstroke("π", O, :stroke)
             end
         end
     end
-    accumulatepi()
+end
+accumulatepi()
+```
 
 ![accumulating pi](/assets/blog/2018-04-13-pifonts/accumulate-pi.png)
 

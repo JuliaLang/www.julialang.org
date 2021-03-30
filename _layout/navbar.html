@@ -1,8 +1,8 @@
 <div class="container py-3 py-lg-0">
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
     <!-- LOGO -->
-    <a class="navbar-brand" href="/" id="logo">
-      <img src="/assets/infra/logo.svg" height="55" width="85" alt="JuliaLang Logo"/>
+    <a class="navbar-brand" href="/">
+      <img src="/assets/infra/logo.svg" alt="JuliaLang Logo">
     </a>
 
     <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,7 @@
 
       <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mx-auto">
         <li class="nav-item  {{ispage /downloads/*}}active{{end}} flex-md-fill text-md-center">
           <a class="nav-link" href="/downloads/">Download</a>
         </li>
@@ -25,7 +25,7 @@
           <a class="nav-link" href="/community/">Community</a>
         </li>
         <li class="nav-item  {{ispage /learning/*}}active{{end}} flex-md-fill text-md-center">
-          <a class="nav-link" href="/learning/">Learning</a>
+          <a class="nav-link" href="/learning/">Learn</a>
         </li>
         <li class="nav-item  {{ispage /research/*}}active{{end}} flex-md-fill text-md-center">
           <a class="nav-link" href="/research/">Research</a>
@@ -33,10 +33,10 @@
         <li class="nav-item  {{ispage /jsoc/*}}active{{end}} flex-md-fill text-md-center">
           <a class="nav-link" href="/jsoc/">JSoC</a>
         </li>
-        <li class="nav-item donate flex-md-fill text-md-center">
-          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
-        </li>
       </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
     </div>
 
   </nav>

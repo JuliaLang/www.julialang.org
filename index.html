@@ -3,15 +3,24 @@
 <head>
   {{insert meta.html}}
   {{insert head_scripts.html}}
-  <title>The Julia Language</title>
-	<link rel="icon" href="/assets/infra/julia.ico">
+  <title>The Julia Programming Language</title>
+  <meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" />
+  <meta name="p:domain_verify" content="6a650661a1683e503c6331daf1155d17"/>
+  <link rel="icon" href="/assets/infra/julia.ico">
 </head>
 
 <body>
   <div class="container-fluid" id="top-alert">
-    <div class="alert alert-dark mb-0" role="alert">
+    <div class="alert alert-dark alert-dismissible mb-0" role="alert">
+	    
+      <!-- Only this <p> element should be changed in an alert -->
       <p class="text-center">
-        Alan Edelman's <a href="https://www.youtube.com/watch?v=nwdGsz4rc3Q">Power of Language</a> talk at the IEEE-CS Sidney Fernbach Award Presentation
+	      JuliaCon 2021 registration <a href="https://juliacon.org/2021/tickets/">is live</a>! Submit a <a href="https://pretalx.com/juliacon2021/cfp">talk</a>.
+      </p>
+     
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	<span aria-hidden="true">&times;</span>
+      </button>
     </div>
   </div>
 
@@ -21,30 +30,18 @@
        Splash 'THE JULIA PROGRAMMING LANGUAGE'
   -->
   <div class="container">
-    <div class="jumbotron" style="text-align: center;" id="main-jumbo">
-      <div class="container page-heading">
-        <h1 class="display-5 main-heading">
-          The Julia Programming Language
-        </h1>
-        <br>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col-lg-auto col-md-auto col-sm-auto">
-            <a class="btn btn-success btn-lg btn-block" href="/downloads/" role="button">Download v{{stable_release_short}}</a>
-          <br>
-          </div>
-          <div class="col-lg-auto col-md-auto col-sm-auto docs">
-            <a class="btn btn-primary btn-lg btn-block" href="https://docs.julialang.org" role="button">Documentation</a>
-          <br>
-          </div>
-          <div class="col"></div>
-        </div>
-        <div class="row">
-          <div class="col"></div>
-          <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
-          <div class="col"></div>
-        </div>
-      </div>
+    <div class="jumbotron page-heading">
+      <h1 class="main-heading">
+        The Julia Programming Language
+      </h1>
+      <p>
+      <a class="btn btn-success btn-lg" href="/downloads/" role="button">Download v{{stable_release}}</a>
+      &nbsp;
+      <a class="btn btn-primary btn-lg" href="https://docs.julialang.org" role="button">Documentation</a>
+      <span class="btn float-md-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+      </span>
+      </p>
     </div>
   </div>
 
@@ -67,7 +64,7 @@
     <div class="row">
       <!-- 1 -->
       <div class="col-lg-4 col-md-6 feature">
-        <h3>Julia is fast!</h3>
+        <h3>Fast</h3>
         <p>Julia was designed from the beginning for <a href="/benchmarks/">high performance</a>.
         Julia programs compile to efficient native code for <a href="/downloads/#support_tiers">multiple platforms</a> via LLVM.</p>
       </div>
@@ -75,27 +72,27 @@
       <div class="col-lg-4 col-md-6 feature">
         <h3>Dynamic</h3>
         <p>Julia is <a href="https://docs.julialang.org/en/v1/manual/types/">dynamically typed</a>, feels like a scripting language, and has good support for <a href="https://docs.julialang.org/en/v1/stdlib/REPL/">interactive</a> use.</p>
+</p>
       </div>
       <!-- 3 -->
       <div class="col-lg-4 col-md-6 feature">
-        <h3>Optionally typed</h3>
-        <p>Julia has a <a href="https://docs.julialang.org/en/v1/manual/types/">rich language of descriptive datatypes</a>, and type declarations can be used to clarify and solidify programs.</p>
+        <h3>Reproducible</h3>
+        <p><a href="https://julialang.github.io/Pkg.jl/v1/environments/">Reproducible environments</a> make it possible to recreate the same Julia environment every time, across platforms, with <a href="https://binarybuilder.org">pre-built binaries</a>.</p>
       </div>
       <!-- 4 -->
       <div class="col-lg-4 col-md-6 feature">
-        <h3>General</h3>
-        <p>Julia uses <a href="https://docs.julialang.org/en/v1/manual/methods/">multiple dispatch</a> as a paradigm, making it easy to express many object-oriented and <a href="https://docs.julialang.org/en/v1/manual/metaprogramming/">functional</a> programming patterns.
-        It provides <a href="https://docs.julialang.org/en/v1/manual/networking-and-streams/">asynchronous I/O</a>, <a href="https://github.com/JuliaDebug/Debugger.jl">debugging</a>, <a href="https://docs.julialang.org/en/v1/stdlib/Logging/">logging</a>, <a href="https://docs.julialang.org/en/v1/manual/profile/">profiling</a>, a <a href="https://docs.julialang.org/en/v1/stdlib/Pkg/index.html">package manager</a>, and more.</p>
+        <h3>Composable</h3>
+        <p>Julia uses <a href="https://docs.julialang.org/en/v1/manual/methods/">multiple dispatch</a> as a paradigm, making it easy to express many object-oriented and <a href="https://docs.julialang.org/en/v1/manual/functions/">functional</a> programming patterns. The talk on the <a href="https://www.youtube.com/watch?v=kc9HwsxE1OY">Unreasonable Effectiveness of Multiple Dispatch</a> explains why it works so well.
       </div>
       <!-- 5 -->
       <div class="col-lg-4 col-md-6 feature">
-        <h3>Easy to use</h3>
-        <p>Julia has high-level syntax, making it an accessible language for programmers from any background or experience level. <a href="https://github.com/JuliaLang/Microbenchmarks/blob/master/perf.jl">Browse the Julia microbenchmarks</a> to get a feel for the language.</p>
+        <h3>General</h3>
+        Julia provides <a href="https://docs.julialang.org/en/v1/manual/networking-and-streams/">asynchronous I/O</a>, <a href="https://docs.julialang.org/en/v1/manual/metaprogramming/">metaprogramming</a>, <a href="https://github.com/JuliaDebug/Debugger.jl">debugging</a>, <a href="https://docs.julialang.org/en/v1/stdlib/Logging/">logging</a>, <a href="https://docs.julialang.org/en/v1/manual/profile/">profiling</a>, a <a href="https://docs.julialang.org/en/v1/stdlib/Pkg/index.html">package manager</a>, and more. One can build entire <a href="https://www.youtube.com/watch?v=uLhXgt_gKJc">Applications and Microservices</a> in Julia.</p>
       </div>
       <!-- 6 -->
       <div class="col-lg-4 col-md-6 feature">
         <h3>Open source</h3>
-        <p>Julia is provided under the <a href="https://github.com/JuliaLang/julia/blob/master/LICENSE.md">MIT license</a>, free for everyone to use. All <a href="https://github.com/JuliaLang/julia">source code</a> is publicly viewable on GitHub.</p>
+        <p>Julia is an open source project with over 1,000 contributors. It is made available under the <a href="https://github.com/JuliaLang/julia/blob/master/LICENSE.md">MIT license</a>. The <a href="https://github.com/JuliaLang/julia">source code</a> is available on GitHub.</p>
       </div>
     </div>
 
@@ -104,6 +101,7 @@
       <div class="row">
         <div class="col-12" style="text-align: center">
           <a class="btn btn-sm btn-outline-primary" href="/learning/code-examples/">See Julia Code Examples</a>
+          <a class="btn btn-sm btn-outline-primary" href="/learning/tryjulia">Try Julia In Your Browser</a>
         </div>
       </div>
   </div>
@@ -165,12 +163,12 @@
           <div class="container-fluid">
             <h4>Build, Deploy or Embed Your Code</h4>
             <p>
-              Julia lets you <a href="https://github.com/JuliaGizmos/WebIO.jl">write UIs</a>, <a href="https://github.com/JuliaLang/PackageCompiler.jl">statically compile</a> your code, or even deploy it on a <a href="https://github.com/JuliaWeb/HTTP.jl">webserver</a>. It also has powerful shell-like capabilities for <a href="https://docs.julialang.org/en/v1/manual/running-external-programs/">managing other processes</a>. It provides Lisp-like macros and other <a href="https://docs.julialang.org/en/v1/manual/metaprogramming/">metaprogramming</a> facilities.
+              Julia makes it possible to build complete applications. Write web UIs with <a href="https://github.com/plotly/Dash.jl">Dash.jl</a> or native UIs with <a href="https://github.com/barche/QML.jl">QML.jl</a> and <a href="https://github.com/JuliaGraphics/Gtk.jl">GTK.jl</a>. Build shared libraries and executables with <a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler</a>. Deploy on a webserver with <a href="https://github.com/JuliaWeb/HTTP.jl">HTTP.jl</a> or embedded devices using ARM binaries. Powerful shell integration make it easy to <a href="https://docs.julialang.org/en/v1/manual/running-external-programs/">managing other processes</a>. 
             </p>
             <p>
               Julia has foreign function interfaces for
-                <a href = "https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/">C/Fortran</a>,
-                <a href = "https://github.com/Keno/Cxx.jl">C++</a>,
+                <a href = "https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/">C, Fortran</a>,
+                <a href = "https://github.com/JuliaInterop/CxxWrap.jl">C++</a>,
                 <a href = "https://github.com/JuliaPy/PyCall.jl">Python</a>,
                 <a href = "https://github.com/JuliaInterop/RCall.jl">R</a>,
                 <a href = "https://github.com/JuliaInterop/JavaCall.jl">Java</a>,
@@ -191,13 +189,15 @@
                 </h4>
                 <p>
                 Julia is designed for parallelism, and provides built-in primitives for parallel computing at every level:
-                <b><a href = "https://docs.julialang.org/en/v1/base/simd-types/"> instruction level parallelism</a></b>,
-                <b><a href = "https://docs.julialang.org/en/v1/manual/parallel-computing/#Multi-Threading-(Experimental)-1">multi-threading</a></b> and
-                <b><a href = "https://docs.julialang.org/en/v1/manual/parallel-computing/">distributed computing</a></b>.
+                <a href = "https://github.com/chriselrod/LoopVectorization.jl"> instruction level parallelism</a>,
+                <a href = "https://docs.julialang.org/en/v1/manual/multi-threading/">multi-threading</a>,
+		<a href = "https://juliagpu.org">GPU computing</a>, and
+                <a href = "https://docs.julialang.org/en/v1/manual/distributed-computing/">distributed computing</a>.
                 The <a href="https://github.com/jeff-regier/Celeste.jl">Celeste.jl </a> project <a href = "https://arxiv.org/pdf/1801.10277.pdf" title = "PDF paper on Cataloging the Visible Universe through Bayesian Inference at Petascale hosted on arxiv.org"> achieved 1.5 PetaFLOP/s</a> on the <a href="https://cs.lbl.gov/news-media/news/2016/celeste-enhancements-create-new-opportunities-in-sky-surveys/">Cori supercomputer at NERSC</a> using 650,000 cores.
                 </p>
                 <p>
-                The Julia compiler can also generate native code for various hardware accelerators, such as <a href = "https://github.com/JuliaGPU/CUDAnative.jl">GPUs</a> and Xeon Phis. Packages such as <a href="https://github.com/JuliaParallel/DistributedArrays.jl">DistributedArrays.jl</a> and <a href="https://github.com/JuliaParallel/Dagger.jl">Dagger.jl</a> provide higher levels of abstraction for parallelism.
+                The Julia compiler can also generate native code for <a href="https://juliagpu.org">GPUs</a>. Packages such as <a href="https://github.com/JuliaParallel/DistributedArrays.jl">DistributedArrays.jl</a> and <a href="https://github.com/JuliaParallel/Dagger.jl">Dagger.jl</a> provide higher levels of abstraction for parallelism.
+		Distributed Linear Algebra is provided by packages like <a href="https://github.com/JuliaParallel/Elemental.jl">Elemental.jl</a> and <a href="https://github.com/JuliaLinearAlgebra/TSVD.jl">TSVD.jl</a>. MPI style parallelism is also available through <a href="https://github.com/JuliaParallel/MPI.jl">MPI.jl</a>.
                 </p>
               </div>
             </div>
@@ -215,19 +215,11 @@
                   Scalable Machine Learning
                 </h4>
                 <p>
-                  Julia provides powerful tools for deep learning
-                  (<a href = "https://github.com/FluxML/Flux.jl">Flux.jl</a> and
-                  <a href = "https://github.com/denizyuret/Knet.jl">Knet.jl</a>),
-                  <a href = "https://juliaml.github.io"> machine learning </a> and AI. Julia’s mathematical syntax makes it an ideal way to express algorithms just as they are written in papers, build trainable models with
-                  <a href = "https://www.juliadiff.org">automatic differentiation</a>,
-                  <a href = "https://github.com/JuliaGPU/CuArrays.jl">GPU acceleration</a> and support for terabytes of data with <a href="https://juliadb.org">JuliaDB</a>.
-                </p>
-                <p>
-                  Julia's rich machine learning and statistics ecosystem includes capabilities for
-                  <a href = "https://github.com/JuliaStats/GLM.jl">generalized linear models</a>,
-                  <a href = "https://github.com/bensadeghi/DecisionTree.jl">decision trees</a>, and <a href = "https://github.com/JuliaStats/Clustering.jl">clustering</a>. You can also find packages for
-                  <a href = "https://github.com/sisl/BayesNets.jl">Bayesian Networks</a> and
-                  <a href = "https://github.com/TuringLang/Turing.jl">Markov Chain Monte Carlo</a>.
+		  The <a href="https://github.com/alan-turing-institute/MLJ.jl">MLJ.jl</a> package provides a unified interface to common machine learning algorithms, which include 
+                  <a href = "https://github.com/JuliaStats/GLM.jl">generalized linear models</a>, <a href = "https://github.com/dmlc/XGBoost.jl">decision trees</a>, and <a href = "https://github.com/JuliaStats/Clustering.jl">clustering</a>.			
+                  <a href = "https://github.com/FluxML/Flux.jl">Flux.jl</a> and <a href = "https://github.com/denizyuret/Knet.jl">Knet.jl</a> are powerful packages for Deep Learning. 
+		  Packages such as <a href="https://github.com/FluxML/Metalhead.jl">Metalhead</a>, <a href="https://github.com/r3tex/ObjectDetector.jl">ObjectDetector</a>, and <a href="https://github.com/JuliaText/TextAnalysis.jl">TextAnalysis.jl</a> provide ready to use pre-trained models for common tasks. 
+       		  <a href="https://github.com/jonathan-laurent/AlphaZero.jl">AlphaZero.jl</a> provides a high peformance implementation of the reinforcement learning algorithms from AlphaZero. <a href="https://turing.ml">Turing.jl</a> is a best in class package for probabilistic programming.
                 </p>
               </div>
             </div>
@@ -245,8 +237,8 @@
                   Rich Ecosystem for Scientific Computing
                 </h4>
                 <p>Julia is designed from the ground up to be very good at numerical and scientific computing.
-                This can be seen in the abundance of scientific tooling written in Julia, such as the state-of-the-art differential equations ecosystem <a href = "https://sciml.ai/">(DifferentialEquations.jl)</a>, optimization tools (<a href = "https://github.com/JuliaOpt/JuMP.jl">JuMP.jl</a> and <a href = "https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a>), iterative linear solvers <a href = "https://github.com/JuliaMath/IterativeSolvers.jl">(IterativeSolvers.jl)</a>, a robust framework for Fourier transforms <a href = "https://github.com/JuliaMath/AbstractFFTs.jl">(AbstractFFTs.jl)</a>, a general purpose quantum simulation framework <a href = "https://github.com/QuantumBFS/Yao.jl">(Yao.jl)</a>, and many more, that can drive all your simulations.</p>
-                <p>Julia also offers a number of domain-specific ecosystems, such as in biology <a href = "https://github.com/BioJulia"> (BioJulia)</a>, operations research <a href = "http://www.juliaopt.org/"> (JuliaOpt)</a>, image processing <a href = "https://juliaimages.github.io/latest/">(JuliaImages)</a>, quantum physics (<a href = "https://github.com/QuantumBFS">QuantumBFS</a>, <a href = "https://github.com/qojulia/QuantumOptics.jl">QuantumOptics</a>), nonlinear dynamics <a href = "https://github.com/JuliaDynamics"> (JuliaDynamics)</a>, quantitative economics <a href = "https://github.com/QuantEcon">(QuantEcon)</a>, astronomy <a href = "https://juliaastro.github.io"> (JuliaAstro)</a> and ecology <a href = "https://github.com/EcoJulia">(EcoJulia)</a>. With a set of highly enthusiastic developers and maintainers from various parts of the scientific community, this ecosystem will only continue to get bigger and bigger. </p>
+                This can be seen in the abundance of scientific tooling written in Julia, such as the state-of-the-art differential equations ecosystem <a href = "https://github.com/SciML/DifferentialEquations.jl">(DifferentialEquations.jl)</a>, optimization tools (<a href = "https://github.com/jump-dev/JuMP.jl">JuMP.jl</a> and <a href = "https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a>), iterative linear solvers <a href = "https://github.com/JuliaMath/IterativeSolvers.jl">(IterativeSolvers.jl)</a>, Fast Fourier transforms <a href = "https://github.com/JuliaMath/AbstractFFTs.jl">(AbstractFFTs.jl)</a>, and much more. General purpose simulation frameworks are available for <a href="https://sciml.ai">Scientific Machine Learning</a>, <a href = "https://github.com/QuantumBFS/Yao.jl">Quantum computing</a> and much more.</p>
+                <p>Julia also offers a number of domain-specific ecosystems, such as in biology <a href = "https://github.com/BioJulia"> (BioJulia)</a>, operations research <a href = "https://jump.dev"> (JuMP Dev)</a>, image processing <a href = "https://juliaimages.github.io/latest/">(JuliaImages)</a>, quantum physics <a href = "https://github.com/QuantumBFS">(QuantumBFS)</a>, nonlinear dynamics <a href = "https://github.com/JuliaDynamics"> (JuliaDynamics)</a>, quantitative economics <a href = "https://github.com/QuantEcon">(QuantEcon)</a>, astronomy <a href = "https://juliaastro.github.io"> (JuliaAstro)</a> and ecology <a href = "https://github.com/EcoJulia">(EcoJulia)</a>. With a set of highly enthusiastic developers and maintainers, the scientific ecosystem in Julia continues to grow rapidly. </p>
               </div>
             </div>
           </div>
@@ -260,9 +252,9 @@
               <img src="/assets/infra/onlinestats.gif" class="pb-2 ecosystem-image" style="width: 400px;" alt="Visualization of weighted data changing as more data is plotted" />
               <div class="container">
                 <h4>Interact with your Data</h4>
-                <p>The Julia data ecosystem lets you load multidimensional datasets quickly, perform aggregations, joins and preprocessing operations in parallel, and save them to disk in efficient formats. You can also perform online computations on streaming data with <a href = "https://github.com/joshday/OnlineStats.jl">OnlineStats.jl</a>. Whether you're looking for the convenient and familiar <a href = "https://juliadata.github.io/DataFrames.jl/stable/">DataFrames</a>, or a new approach with <a href = "https://juliadb.org">JuliaDB</a>, Julia provides you a rich variety of tools.
+                <p>The Julia data ecosystem provides <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> to work with datasets, and perform common data manipulations. <a href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> is a fast multi-threaded package to read CSV files and integration with the Arrow ecosystem is in the works with <a href="https://github.com/JuliaData/Arrow.jl">Arrow.jl</a>. Online computations on streaming data can be performed with <a href = "https://github.com/joshday/OnlineStats.jl">OnlineStats.jl</a>.
                 The <a href = "https://www.queryverse.org/">Queryverse</a> provides query, file IO and visualization functionality. In addition to working with tabular data, the <a href = "https://juliagraphs.github.io">JuliaGraphs</a> packages make it easy to work with combinatorial data.</p>
-                <p>Julia can work with almost all databases using <a href = "https://github.com/JuliaDatabases/JDBC.jl">JDBC.jl</a> and <a href = "https://github.com/JuliaDatabases/ODBC.jl">ODBC.jl</a> drivers. In addition, it also integrates with the Hadoop ecosystem using <a href = "https://github.com/dfdx/Spark.jl">Spark.jl</a>, <a href = "https://github.com/JuliaParallel/HDFS.jl">HDFS.jl</a>, and <a href = "https://github.com/JuliaDatabases/Hive.jl"> Hive.jl</a>.</p>
+                <p>Julia can work with almost all databases using <a href = "https://github.com/JuliaDatabases/JDBC.jl">JDBC.jl</a> and <a href = "https://github.com/JuliaDatabases/ODBC.jl">ODBC.jl</a> drivers. In addition, it also integrates with the Spark ecosystem through <a href = "https://github.com/dfdx/Spark.jl">Spark.jl</a>.</p>
               </div>
             </div>
           </div>
@@ -277,7 +269,7 @@
                 <img src="/assets/infra/waves.gif" class="pb-2 ecosystem-image" style="width: 400px;" alt="Visualization of waves in 3D, as a heatmap, and on the x y axis" />
                 <h4>Data Visualization and Plotting</h4>
                 <p>Data visualization has a complicated history. Plotting software makes trade-offs between features and simplicity, speed and beauty, and a static and dynamic interface. Some packages make a display and never change it, while others make updates in real-time.</p>
-                <p><a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It provides a common API across various <a href="https://docs.juliaplots.org/latest/backends/">backends</a>, like <a href="https://github.com/jheinen/GR.jl">GR.jl</a>, <a href="https://github.com/JuliaPy/PyPlot.jl">PyPlot.jl</a>, and <a href="https://github.com/sglyon/PlotlyJS.jl">PlotlyJS.jl</a>. Users who prefer a more grammar of graphics style API might like the pure Julia <a href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a> plotting package. <a href="https://github.com/fredo-dedup/VegaLite.jl">VegaLite.jl</a> provides the <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> grammar of interactive graphics interface as a Julia package. For those who do not wish to leave the comfort of the terminal, there is also <a href="https://docs.juliaplots.org/latest/backends/">UnicodePlots.jl</a>.</p>
+                <p><a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It provides a common API across various <a href="https://docs.juliaplots.org/latest/backends/">backends</a>, like <a href="https://github.com/jheinen/GR.jl">GR.jl</a>, <a href="https://github.com/JuliaPy/PyPlot.jl">PyPlot.jl</a>, and <a href="https://github.com/JuliaPlots/PlotlyJS.jl">PlotlyJS.jl</a>. <a href="https://github.com/JuliaPlots/Makie.jl">Makie.jl</a> is a sophisticated package for complex graphics and animations. Users who are used to "grammar of graphics" plotting APIs should take a look at <a href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a>. <a href="https://github.com/queryverse/VegaLite.jl">VegaLite.jl</a> provides the <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> grammar of interactive graphics interface as a Julia package. For those who do not wish to leave the comfort of the terminal, there is also <a href="https://github.com/Evizero/UnicodePlots.jl">UnicodePlots.jl</a>.</p>
               </div>
             </div>
           </div>
@@ -321,68 +313,56 @@ end
     </div>
   </div> <!-- END OF ECOSYSTEM -->
 
-
-  <!--
-       Containers: JULIA CON 2019
+<!--
+       Containers: JULIA CON 2020
   -->
   <div class="container">
     <br><br>
     <div class="row">
       <div class="col-lg-4 col-md-3 language-features "><hr/></div>
       <div class="col-lg-4 col-md-6 language-features section-heading">
-        <h2 class="lead secondary-heading">JuliaCon 2019</h2>
+        <h2 class="lead secondary-heading">JuliaCon 2020</h2>
       </div>
       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
     </div>
 
-    <div class="row alt-color">
-      <div class="col-lg-12 col-md-12 video">
-        <meta name="description" content="Watch what unfolded at JuliaCon 2019 here. The latest developments, optimizations, and features happen right here, at JuliaCon."/>
+    <div class="row">
+      <div class="col-lg-8 col-md-8 video">
+        <meta name="description" content="Watch what unfolded at JuliaCon 2020 here. The latest developments, optimizations, and features happen right here, at JuliaCon."/>
 
+        <div class="embed-responsive embed-responsive-16by9"><div id="player"></div></div>
         <script type="text/javascript">
-          var playlist2019 = 'PLP8iPy9hna6StY9tIJIUN3F_co9A0zh0H';
-          var videos2019 = [
-            "mSgXWpvQEHE", "IE39JoVIaEw", "dXrponYshxo", "RcdzunYjgpI",
-            "b_743P8XuvA", "ez-KVi0leOw", "m3c8Z6HBn48", "qf9oA09wxXY",
-            "HfiRnfKxI64", "RRY0OXc52Ns", "_bvb8X4DT90", "OO3BBkGEMV8",
-            "yx6lBSHqGfc", "Jr6HcyHK_Q4", "m33xrN50W3g", "i8LGmT0mKnE",
-            "kc9HwsxE1OY", "Z1ikOmEuM8w", "JCFej--XER0", "igd1tuS2OVM",
-            "zJbj2cBRDTM", "bGYSae90hA0", "C4vlq647DC4", "7z2_1GdFtL0",
-            "BjMgo3liDZ8", "5ZgEp36E71Y", "MF6K5ihilZc", "LMWefEzsbOk",
-            "TPuJsgyu87U", "K8rPZVotroY", "gXDI4DSp04c", "BnGBX_DV3xY",
-            "8vijCXQIQX0", "QeG1IWeVKek", "Et-5AncK8TU", "JazJ9Y1AvaU",
-            "-ZeJXpCewew", "NOJbXnCVryM", "p--assaV64g", "N7YHAcv8DEk",
-            "SU0SmQnnGys", "b90qqbYJ58Q", "nXBZZ0bxIwY", "kT1pTnqQebI",
-            "OcUXjk7DFvU", "cTmqmPcroFo", "lTR6IPjDPlo", "4mZmlSNnsrI",
-            "WGT9_cEImAk", "brbzbxV_OiY", "NrHZQaobhDM", "UlAew_s6KS0",
-            "FGfx8CQHdQA", "K5VNr2o9Qpk", "M6hl2si20NE", "1TipY6g9IzE",
-            "oxIsFUfaOqU", "jj8Iy7FFMeM", "8srePpkofIU", "EbJuaF3A9Kw",
-            "VT8RAEdMoAk", "eQjDN0JQ6-s", "fzy7yNfJVBo", "gSiQpKHZk7I",
-            "ByFglWPqNlg", "WJneK7OjqMQ", "kC8LKQ_YjyM", "2Cd4T0EzYKQ",
-            "A2ypJkA26co", "SWE-weSlAj8", "zr4D3-rf-jg", "MaSEGFsLW-c",
-            "ofWy5kaZU3g", "vZyv9Mb7SQE", "8Zfv9bySFBw", "NM2jhQm5Adk",
-            "8wsPzS-wY28", "1_S3aU3P3rE", "c5UKzeTXd6c", "15xJg13wTbE",
-            "cdwLJCb45Kk", "9cedY6zyo8I", "C65vYWeN7-k", "wxN4lKR3kFw",
-            "vUxrtqY84AM", "A3_vpuFqb-0", "f-CaQMTqjPk", "QdGrR0inYj8",
-            "q-LV4zoxc-E", "b3WfqXZRKpA", "tMhzQDVMFuc", "UPIKafShwFw",
-            "tldyDnjLozo", "GfRSPEhewwM", "29dGlzzC6SI", "dIcdilBeSxo",
-            "B7mc1wXPZR8", "o8UBszD_zn4", "JsVSHeGAwGY", "Tfp1WEdYfqk",
-            "IJqnx9ShRlM", "HHjvv5yWMmc", "QyW6iS8L9ug", "_B1Qmp980SY",
-            "Z2yT1ZdOor8", "xzNetCWBSIc", "gD5U_U9kZk8", "bnKX2uATrzA",
-            "NB_XjatEWyw", "Ed6LklkKL6c", "SVsA55h8pdg", "OMBda8jjXT0",
-            "12z5MzoFQOM", "H-Oof2wS-0A", "YbLZceTKhZ4", "AzVnUlrZqNs"
-          ];
-          var index = Math.floor(Math.random() * videos2019.length);
-          var videoUrl = 'https://www.youtube.com/embed/' + videos2019[index] + '?list=' + playlist2019;
-          document.write('<div style="text-align: center" class="embed-responsive embed-responsive-16by9"><iframe width="700" height="400" src="' + videoUrl + '" frameborder="0" allowfullscreen></iframe></div>')
+          var tag = document.createElement('script');
+          tag.src = "https://www.youtube.com/iframe_api";
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+          var player;
+          function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+              playerVars: {
+                list: 'PLP8iPy9hna6Tl2UHTrm4jnIYrLkIcAROR',
+                listType: 'playlist',
+              },
+              events: {
+                'onReady': onPlayerReady,
+              }
+            });
+          }
+
+          function onPlayerReady(event) {
+            player.cuePlaylist({
+              index: Math.floor(Math.random() * player.getPlaylist().length)
+            });
+          }
         </script>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-12" style="text-align: center">
+      <div class="col-12 text-center">
         <a class="btn btn-sm btn-outline-primary" href="https://www.youtube.com/user/JuliaLanguage">Julia Channel on YouTube</a>
-        <a class="btn btn-sm btn-outline-primary" href="https://www.youtube.com/playlist?list=PLP8iPy9hna6StY9tIJIUN3F_co9A0zh0H">JuliaCon 2019 videos</a>
+        <a class="btn btn-sm btn-outline-primary" href="https://www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Tl2UHTrm4jnIYrLkIcAROR">JuliaCon 2020 videos</a>
       </div>
     </div>
           <br>
@@ -397,22 +377,22 @@ end
       <div class="row">
         <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
         <div class="col-lg-4 col-md-6 ecosystem section-heading">
-          <h2 class="lead secondary-heading">Packages</h2>
+          <h2 class="lead secondary-heading"><a href="/packages/">Packages</a></h2>
         </div>
         <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
       </div>
 
       <br>
 
-      <p>Julia has been downloaded over 13 million times and the Julia community has registered over 3,000 Julia packages for community use.
+      <p>Julia has been downloaded over 25 million times and the Julia community has registered <a href="https://juliahub.com">over 5,000 Julia packages</a> for community use.
       These include various mathematical libraries, data manipulation tools, and packages for general purpose computing. In addition to these, you can easily use libraries from <a href="https://github.com/JuliaPy/PyCall.jl">Python</a>, <a href="https://github.com/JuliaInterop/RCall.jl">R</a>, <a href="https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#Calling-C-and-Fortran-Code-1">C/Fortran</a>, <a href="https://github.com/Keno/Cxx.jl">C++</a>, and <a href="https://github.com/JuliaInterop/JavaCall.jl">Java</a>.
-      If you do not find what you are looking for, ask on <a href="https://discourse.julialang.org">Discourse</a>, or even better, contribute!</p>
+      If you do not find what you are looking for, ask on <a href="https://discourse.julialang.org">Discourse</a>, or even better, <a href="https://julialang.github.io/Pkg.jl/v1/">contribute one</a>!</p>
 
       <br><br>
 
       <div class="row">
         <div class="col-12" style="text-align: center">
-          <a class="btn btn-sm btn-outline-danger" href="https://pkg.julialang.org">Package Docs</a>
+          <a class="btn btn-sm btn-outline-danger" href="https://juliahub.com">JuliaHub: Ecosystem Pulse</a>
           <a class="btn btn-sm btn-outline-danger" href="https://juliaobserver.com/">Julia Observer</a>
         </div>
       </div>
@@ -441,23 +421,7 @@ end
     where the inserted element would be a generated file-->
 
     <div class="row">
-        <!-- Recent blog post 1 -->
-        <div class="col-lg-4 col-md-12 blog">
-          <h3><a href="/blog/2020/02/gci-summary/" class="title" data-proofer-ignore>Google&#39;s Code-In Contest Wrap up</a>
-          </h3><span class="article-date">10 February 2020</span> <p>Over the last couple of months, 212 young people have completed over 690 tasks using Julia as part … </p>
-        </div>
-        <!-- Recent blog post 2 -->
-        <div class="col-lg-4 col-md-12 blog">
-          <h3><a href="/blog/2019/12/yao-differentiable-quantum-programming/" class="title" data-proofer-ignore>Yao.jl - Differentiable Quantum Programming In Julia</a></h3>
-          <span class="article-date">28 December 2019</span>
-          <p>We introduce Yao (check our latest paper), an open-source Julia package for solving practical …</p>
-        </div>
-        <!-- Recent blog post 3 -->
-        <div class="col-lg-4 col-md-12 blog">
-          <h3><a href="/blog/2019/12/artifacts-zh_cn/" class="title" data-proofer-ignore>为 Julia 包设计的可靠、可复现的二进制工件系统</a></h3>
-          <span class="article-date">18 December 2019</span>
-          <p>在过去的几个月里，我们在持续迭代和完善一个 Julia 1.3+ 中 Pkg 的设计方案，它用来处理不是 Julia 包的二进制对象。这项工作当初的动机是改善用 BinaryBuilder.jl 构建 …</p>
-        </div>
+        {{recentblogposts}}
     </div>
 
     <br>
@@ -480,6 +444,7 @@ end
     <br><br>
 
     <!-- Talk to us -->
+	<div class="container" style="max-width:1140px;">
     <div class="row">
       <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
         <div class="col-lg-4 col-md-6 ecosystem section-heading">
@@ -487,6 +452,7 @@ end
         </div>
       <div class="col-lg-4 col-md-3 ecosystem"><hr/></div>
     </div>
+
 
     <br>
 
@@ -518,16 +484,53 @@ end
       </div>
       <div class="col-lg-3 col-md-6" style="text-align:center">
         <h3>Twitter</h3>
-		<a href="https://twitter.com/search?q=%23julialang" target="_blank">
+		<a href="https://twitter.com/JuliaLanguage" target="_blank">
         <img src="/assets/infra/twitter.svg" height="85" width="85" alt="Twitter Logo" /></a>
         <h4 class="outer-link">
-          <a class="link extra-link" href="https://twitter.com/search?q=%23julialang" target="_blank">#JuliaLang</a>
+          <a class="link extra-link" href="https://twitter.com/JuliaLanguage" target="_blank">#JuliaLang</a>
         </h4>
       </div>
     </div>
 
-    <br><br>
+    <!-- Row Facebook-LinkedIn-Insagram-Twitch -->
+    <div class="row">
+      <div class="col-lg-3 col-md-6" style="text-align:center;">
+        <h3>Facebook</h3>
+		<a href="https://www.facebook.com/julialanguage" target="_blank">
+        <img src="/assets/infra/facebook.png" height="85" width="85" alt="Facebook Logo" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="https://www.facebook.com/julialanguage" target="_blank">Facebook</a>
+        </h4>
+      </div>
+      <div class="col-lg-3 col-md-6" style="text-align:center;">
+        <h3>LinkedIn</h3>
+		<a href="https://www.linkedin.com/company/the-julia-language" target="_blank">
+        <img src="/assets/infra/linkedin.png" height="85" width="85" alt="LinkedIn Logo" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="https://www.linkedin.com/company/the-julia-language" target="_blank">LinkedIn</a>
+        </h4>
+      </div>
+      <div class="col-lg-3 col-md-6" style="text-align:center">
+        <h3>Instagram</h3>
+		<a href="https://www.instagram.com/julia.language/" target="_blank">
+        <img src="/assets/infra/instagram.png" height="85" width="85" alt="Instagram Logo" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="https://www.instagram.com/julia.language/" target="_blank">Instagram</a>
+        </h4>
+      </div>
+      <div class="col-lg-3 col-md-6" style="text-align:center">
+        <h3>Twitch</h3>
+		<a href="https://www.twitch.tv/JuliaLanguage" target="_blank">
+        <img src="/assets/infra/twitch.png" height="85" width="85" alt="Twitch Logo" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="https://www.twitch.tv/JuliaLanguage" target="_blank">Twitch</a>
+        </h4>
+      </div>
+    </div>
 
+
+    <br><br>
+	</div>
   </div> <!-- end of talk to us container -->
 
   <!--
@@ -572,11 +575,11 @@ end
           </h4>
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
-          <h3>JetBrains</h3>
-		  	<a href="https://github.com/JuliaEditorSupport/julia-intellij" target="_blank">
-            <img src="/assets/infra/jetbrains.png" height="85" width="85" alt="JetBrains Logo" /></a>
+          <h3>Pluto.jl</h3>
+		  	<a href="https://github.com/fonsp/Pluto.jl" target="_blank">
+            <img src="/assets/infra/pluto_jl.svg" height="85" width="85" alt="Pluto.jl Logo" /></a>
           <h4 class="outer-link">
-            <a class="link extra-link" href="https://github.com/JuliaEditorSupport/julia-intellij" target="_blank">IntelliJ IDEA Plugin</a>
+            <a class="link extra-link" href="https://github.com/fonsp/Pluto.jl" target="_blank">Simple reactive notebooks</a>
           </h4>
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
@@ -657,10 +660,10 @@ end
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>GPUs</h3>
-		  	<a href="https://github.com/JuliaGPU" target="_blank">
+		  	<a href="https://juliagpu.org/" target="_blank">
             <img src="/assets/infra/gpu.png" height="85" width="85" alt="Julia GPU Logo" /></a>
           <h4 class="outer-link">
-            <a class="link extra-link" href="https://github.com/JuliaGPU" target="_blank">JuliaGPU</a>
+            <a class="link extra-link" href="https://juliagpu.org/" target="_blank">JuliaGPU</a>
           </h4>
         </div>
       </div>
@@ -671,6 +674,16 @@ end
 <!-- FOOT -->
 
 {{insert foot_general.html}}
-
+<script>
+  $topAlert = $('#top-alert .alert');
+  const alertText = $('#top-alert p').html().trim();
+  const alertClosed = JSON.parse(localStorage.getItem(alertText));
+  if (alertClosed) {
+    $topAlert.alert('close');
+  }
+  $topAlert.on('close.bs.alert', function () {
+    localStorage.setItem(alertText, true);
+  });
+</script>
 </body>
 </html>

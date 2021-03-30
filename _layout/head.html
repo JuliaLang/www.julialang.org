@@ -3,13 +3,15 @@
 <head>
 	<!-- parts for all pages -->
 	{{insert meta.html}}
-	{{insert head_scripts.html}}
 
 	<link rel="icon" href="/assets/infra/julia.ico">
 
   <!-- Franklin stylesheets for generated pages -->
   {{if hasmath}} {{insert head_katex.html }}      {{end}}
   {{if hascode}} {{insert head_highlight.html }}  {{end}}
+
+	{{insert head_scripts.html}}
+
   {{isdef title}} <title>{{fill title}}</title>   {{end}}
 
   {{ispage /blog/* /jsoc/gsoc/*}}
@@ -17,6 +19,27 @@
 	  .container ul li p {margin-bottom: 0;}
   </style>
   {{end}}
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  {{ispage /blog/*}}{{isnotpage /blog/index}}
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  {{end}}{{end}}
+
+  <!-- OGP Metadata -->
+	{{meta}}
 
 </head>
 
@@ -30,18 +53,23 @@
 <div class="container blog-title">
   {{isdef title}}<h1>{{fill title}}
     <a type="application/rss+xml" href="https://julialang.org/feed.xml">
-      <i style="color:#e2802f" class="fa fa-rss-square"></i>
+      <i class="fa fa-rss-square rss-icon"></i>
     </a>
   </h1>{{end}}
   <h3>
   {{isdef published}} <span style="font-weight: lighter;"> {{fill published}} </span>
 	|
 	{{end}}
-	{{isdef author}} <span style="font-weight: bold;">{{fill author}}</span> {{end}}
+	{{isdef author}} <span style="font-weight: bold;">{{fill author}}{{author_twitter}}</span> {{end}}
   <!-- assumption that only one of the two is defined -->
   {{isdef authors}} <span style="font-weight: bold;">{{fill authors}} </span> {{end}}
   </h3>
 </div>
+{{end}}
+
+{{isnotpage /index.html /blog/index.html}}
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/{{fd_rpath}}" title="Edit this page on GitHub" class="edit-float">
+</a>
 {{end}}
 
 <!-- Content appended here -->

@@ -1,6 +1,6 @@
 @def rss_pubdate = Date(2019, 9, 7)
 @def rss = """从事软件开发的行家里手们对版本发布流程与节奏如此了若指掌，以至于他们将其精髓**内化**（internalize）并以为人人都懂得这些“浅显的道理”。可是事实恰好相反，外行一眼望去如同雾里看花。所以为了整个Julia社区，乃至于其它编程语言社区，我觉得有必要将Julia的开发过程白纸黑字地写下来。在本文中，我将阐述..."""
-@def published = "7 Sepember 2019"
+@def published = "7 September 2019"
 @def title = "Julia的版本发布流程"
 @def authors = "Stefan Karpinski (Julia Computing)"  
 
@@ -15,7 +15,7 @@
 - 根据风险承受力决定使用哪种版本
 - 发布流程中的各阶段与标志性事件
 
-这些文字材料是从[discourse](https://discourse.julialang.org/)论坛和[Slack](https://slackinvite.julialang.org/)协作交流群中摘录而来。
+这些文字材料是从[discourse](https://discourse.julialang.org/)论坛和[Slack](http://julialang.org/slack/)协作交流群中摘录而来。
 所有资料都是现成的，我只是将其归纳在一处。
 如果大家觉得这篇文章颇有益处，我们会考虑将其变成一份官方文档。
 宏观上来说，Julia遵循[SemVer](https://semver.org/)标准制定的“语义化版本”。
