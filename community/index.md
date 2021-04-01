@@ -55,7 +55,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      </div>
      <!-- 2 -->
      <div class="col-lg-4 col-md-6 feature">
-       <h3>Discourse</h3>
+       <h3>Questions?</h3>
        <p>The primary online discussion venue for Julia is the <a href="https://discourse.julialang.org/">Discourse forum</a>. Learn more about our Discourse site and what it is best used for <a href="discourse/">here</a>.
        </p>
      </div>
