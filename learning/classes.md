@@ -68,6 +68,10 @@ If you know of other classes using Julia for teaching, please consider updating 
 * Pennsylvania State University
     * [ASTRO 585](https://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2014 - [github repo](https://github.com/eford/Astro585_2014_Spring)
     * [ASTRO 585](https://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
+* [Politecnico di Torino](http://polito.it) (Torino, Italy)
+    * [Algorithms for Optimization, Inference and Learning - AOIL](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=01SPOPF&p_a_acc=2021&p_header=S&p_lang=EN), (Prof. A. Braunstein), starting from Spring 2018
+    * [Inference in Biological Systems](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=01TYLPF&p_a_acc=2021&p_header=S&p_lang=EN), (Prof. A. Gamba), starting from Fall 2018
+    * [Stochastic Simulation Methods In Physics](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=01SPNPF&p_a_acc=2021&p_header=S&p_lang=EN), (Prof. A. Pagnani), starting from Fall 2018
 * [Polytech Nice Sophia](http://polytech-nice-sophia.fr)
     * [Mathematics for the engineer](https://gitlab.polytech.unice.fr/MAM/mi2) (Prof. J.-B. Caillau), spring 2020
 * Pontifical Catholic University of Rio de Janeiro (PUC-Rio)
