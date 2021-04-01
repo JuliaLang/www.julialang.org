@@ -59,7 +59,7 @@ Uninstallation is preferably performed by using the Windows uninstaller. The dir
 
 ## macOS
 
-On macOS, a `julia-<version>-mac64.dmg` file is provided, which contains `Julia-<version>.app`. Installation is the same as any other Mac software: drag the `Julia-<version>.app` to Applications Folder's Shortcut. The Julia download runs on macOS 10.9 Mavericks and later releases. You can build from source for macOS 10.6 Snow Leopard (possibly earlier versions as well) and 32-bit but neither are fully supported.
+On macOS, a ~~~<code>julia-{{stable_release}}-mac64.dmg</code>~~~ file is provided, which contains ~~~<code>Julia-{{stable_release_short}}.app</code>~~~. Installation is the same as any other Mac software: drag the ~~~<code>Julia-{{stable_release_short}}.app</code>~~~ to Applications Folder's Shortcut. The Julia download runs on macOS 10.9 Mavericks and later releases. You can build from source for macOS 10.6 Snow Leopard (possibly earlier versions as well) and 32-bit but neither are fully supported.
 
 You can launch Julia by opening the Julia app [like any other application](https://www.howtogeek.com/409411/how-to-launch-applications-on-your-mac/).
 
