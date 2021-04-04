@@ -47,6 +47,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaInterop](https://github.com/JuliaInterop) – Easy interoperability between Julia and not-Julia
 * [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
 * [JuliaParallel](https://github.com/JuliaParallel) – [Parallel programming in Julia](https://github.com/JuliaParallel)
+* [JuliaPerf](https://github.com/JuliaPerf) - Performance tools
 * [JuliaWeb](https://github.com/JuliaWeb) – Web stack
 @@
 
