@@ -6,6 +6,13 @@ author_img = "authors/logan.png"
 author_blurb = "Julia Language Community Manager"
 rss = """Google Season of Docs 2020-2021 Wrap-Up."""
 
+meta = [
+    ("property", "og:image", "https://1.bp.blogspot.com/-lp5QS2n9-Tk/Xt_dEWSO5kI/AAAAAAAAAdU/R7W-LQrnX-8HCS1yOBJEXw1cBiDOfkoMACLcBGAsYHQ/s1600/SeasonofDocs_Logo_MainGrey_300ppi.png"),
+    ("name", "twitter:creator:id", "284333988"),
+    ("name", "twitter:card", "summary_large_image")
+    ]
++++
+
 @def rss_pubdate = Date(2021, 4, 04)
 
 ![82606204-8c8bce80-9b6b-11ea-9847-6a4b28a0761d](https://user-images.githubusercontent.com/35577566/113520086-96c97800-9545-11eb-9599-ee0528acc48b.png)
