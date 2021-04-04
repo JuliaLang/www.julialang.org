@@ -2,7 +2,7 @@
 author = "Logan Kilpatrick"
 published = "4 April 2021"
 title = "Google Season of Docs 2020-2021 Wrap-Up"
-author_img = "_assets/blog/Logan.JPG"
+author_img = "assets/blog/Logan.JPG"
 author_blurb = "Julia Language Community Manager"
 rss = """Google Season of Docs 2020-2021 Wrap-Up."""
 
