@@ -48,6 +48,6 @@ It is always worth acknowledging that without the hard work of our mentors, none
 
 ### Closing Thoughts
 
-Thank you to all of the technical writers and mentors mentioned above who made this GSoD a success. We are also happy to share that we have submitted our application for the GSoD 2021-2022 Season and are anticipating a decsion by mid-april. You can find our [proposal on the Julia Language Website under the JSoC Tab](https://julialang.org/jsoc/gsod/proposal/).
+Thank you to all of the technical writers and mentors mentioned above who made this GSoD a success. We are also happy to share that we have submitted our application for the GSoD 2021-2022 Season and are anticipating a decsion by mid-April. You can find our [proposal on the Julia Language Website under the JSoC Tab](https://julialang.org/jsoc/gsod/proposal/).
 
 {{about_the_author}}
