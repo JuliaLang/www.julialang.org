@@ -2,7 +2,7 @@
 author = "Logan Kilpatrick"
 published = "4 April 2021"
 title = "Google Season of Docs 2020-2021 Wrap-Up"
-author_img = "assets/blog/Logan.JPG"
+author_img = "./assets/blog/Logan.JPG"
 author_blurb = "Julia Language Community Manager"
 rss = """Google Season of Docs 2020-2021 Wrap-Up."""
 
@@ -23,23 +23,23 @@ We are proud to share the following projects that were successfully completed:
 
 ## [Elizaveta Semenova](https://github.com/elizavetasemenova): Gaussian Processes in Julia and Turing
 
-Initial Proposal: [https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-liza](https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-liza)
-Final writeup: [https://github.com/elizavetasemenova/gp_turing](https://github.com/elizavetasemenova/gp_turing)
+- Initial Proposal: [https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-liza](https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-liza)
+- Final writeup: [https://github.com/elizavetasemenova/gp_turing](https://github.com/elizavetasemenova/gp_turing)
 
 ## [Maja Gwóźdź](https://github.com/mkg33): The unified documentation of Scientific Machine Learning
 
-Initial Proposal: [https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-mkg33](https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-mkg33)
-Final writeup: [https://drive.google.com/file/d/1HHW-cSVOl1oUfqu4jTXZnTg8Z0LjuDd7/view](https://drive.google.com/file/d/1HHW-cSVOl1oUfqu4jTXZnTg8Z0LjuDd7/view)
+- Initial Proposal: [https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-mkg33](https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-mkg33)
+- Final writeup: [https://drive.google.com/file/d/1HHW-cSVOl1oUfqu4jTXZnTg8Z0LjuDd7/view](https://drive.google.com/file/d/1HHW-cSVOl1oUfqu4jTXZnTg8Z0LjuDd7/view)
 
 ## [Liliana Badillo](https://github.com/lilianabs): Reinventing the FluxML Website
 
-Initial Proposal: [https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-sophb](https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-sophb)
-Final writeup: [https://docs.google.com/document/d/1qbadTHNhTZN1WJY9uVY4iGIOI7ciFixk1mMcNYZcpNM/edit#](https://docs.google.com/document/d/1qbadTHNhTZN1WJY9uVY4iGIOI7ciFixk1mMcNYZcpNM/edit#)
+- Initial Proposal: [https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-sophb](https://developers.google.com/season-of-docs/docs/2020/participants/project-julialang-sophb)
+- Final writeup: [https://docs.google.com/document/d/1qbadTHNhTZN1WJY9uVY4iGIOI7ciFixk1mMcNYZcpNM/edit#](https://docs.google.com/document/d/1qbadTHNhTZN1WJY9uVY4iGIOI7ciFixk1mMcNYZcpNM/edit#)
 
 ## [Luca Ferranti](https://github.com/lucaferranti): Developing JuliaIntervals documentation
 
-Initial Proposal: [https://discourse.julialang.org/t/the-julia-language-x-gsod-x-jsod-2020/45216](https://discourse.julialang.org/t/the-julia-language-x-gsod-x-jsod-2020/45216)
-Final writeup: [https://lucaferranti.github.io/posts/2021/03/jsod/](https://lucaferranti.github.io/posts/2021/03/jsod/)
+- Initial Proposal: [https://discourse.julialang.org/t/the-julia-language-x-gsod-x-jsod-2020/45216](https://discourse.julialang.org/t/the-julia-language-x-gsod-x-jsod-2020/45216)
+- Final writeup: [https://lucaferranti.github.io/posts/2021/03/jsod/](https://lucaferranti.github.io/posts/2021/03/jsod/)
 
 
 ### Our Mentors
