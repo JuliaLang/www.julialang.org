@@ -46,5 +46,8 @@ We are proud to share the following projects that were successfully completed:
 
 It is always worth acknowledging that without the hard work of our mentors, none of the programs we run and participate in would be possible. Thank you to Cameron Pfiffer, Hong Ge, Martin Trapp, Chris Rackauckas, Dhairya Gandhi, David P Sanders, and the rest of the Julia community who supported these writers.
 
+### Closing Thoughts
+
+Thank you to all of the technical writers and mentors mentioned above who made this GSoD a success. We are also happy to share that we have submitted our application for the GSoD 2021-2022 Season and are anticipating a decsion by mid-april. You can find our [proposal on the Julia Language Website under the JSoC Tab](https://julialang.org/jsoc/gsod/proposal/).
 
 {{about_the_author}}
