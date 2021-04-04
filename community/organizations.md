@@ -48,6 +48,7 @@ The following is a non-comprehensive list of Julia GitHub groups grouped by doma
 * [JuliaIO](https://github.com/JuliaIO) – IO-related functionality, such as serialization
 * [JuliaParallel](https://github.com/JuliaParallel) – [Parallel programming in Julia](https://github.com/JuliaParallel)
 * [JuliaPerf](https://github.com/JuliaPerf) - Performance tools
+* [JuliaSIMD](https://github.com/JuliaSIMD) - SIMD vectorization in Julia
 * [JuliaWeb](https://github.com/JuliaWeb) – Web stack
 @@
 
