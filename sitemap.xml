@@ -428,6 +428,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/privacy/index.html</loc>
+    <lastmod>2021-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2019/09/julia-workshop-beijing/index.html</loc>
     <lastmod>2021-04-05</lastmod>
     <changefreq>monthly</changefreq>
