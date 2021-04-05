@@ -685,5 +685,17 @@ end
     localStorage.setItem(alertText, true);
   });
 </script>
+
+<!-- Feedback collection tool -->
+<script>
+  window.onUsersnapCXLoad = function(api) {
+    api.init();
+  }
+  var script = document.createElement('script');
+  script.defer = 1;
+  script.src = 'https://widget.usersnap.com/global/load/95c0bce8-ed57-4f62-aae4-b97598e40c99?onload=onUsersnapCXLoad';
+  document.getElementsByTagName('head')[0].appendChild(script);
+</script>
+
 </body>
 </html>
