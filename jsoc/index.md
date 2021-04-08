@@ -42,14 +42,15 @@ This total amount is adjusted depending on the number and quality of proposals.
 
 Impotant dates for upcoming Small Development Grants in 2021:
 
-May 7th, 2021 - Round 2 call for proposals goes live.
-June 4th, 2021 - Round 2 proposal deadline. 
-July 15th, 2021 - Round 2 notification of application status.
+@@tight-list
+* May 7th, 2021 - Round 2 call for proposals goes live.
+* June 4th, 2021 - Round 2 proposal deadline. 
+* July 15th, 2021 - Round 2 notification of application status.
 
-August 6th, 2021 - Round 3 call for proposals goes live.
-September 3rd, 2021 - Round 3 proposal deadline. 
-October 15th, 2021 - Round 3 notification of application status.
-
+* August 6th, 2021 - Round 3 call for proposals goes live.
+* September 3rd, 2021 - Round 3 proposal deadline. 
+* October 15th, 2021 - Round 3 notification of application status.
+@@
 Questions about NumFocus Small Development Grants? [Send us an email](mailto:logan@julialang.org)!
 
 ## Program Admins
