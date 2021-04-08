@@ -2,7 +2,7 @@
 
 This page lists a bunch of project ideas, meant to serve as starting points as you develop your own plan. You're free to modify them to your tastes, or propose something totally different in an area you're interested in.
 
-We have our project ideas organized roughly into the skill sets required:
+We have our project ideas organized below roughly by domain but you can also see a [single page with all our projects together](/jsoc/allprojects):
 
 @@tight-list
 * [Compiler](/jsoc/gsoc/compiler/) – work on the Julia compiler's internals to make things better for everyone.
