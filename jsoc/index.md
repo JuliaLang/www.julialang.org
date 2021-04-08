@@ -34,12 +34,23 @@ Semi-quarterly NumFOCUS puts out a call for small development grants.
 The Julia language organization puts out a call for proposals from the community for grant proposals.
 There are no restrictions on what the funding can be used for. Code development, documentation work, educational, sustainability, and diversity initiatives, or other types of projects are all eligible.
 Since only one application can be put in for the Julia project, an internal selection process is used to determine which proposals will be submitted to NumFOCUS.
-For examples of grants that were funded in the first round, [previous awards](https://www.numfocus.org/blog/numfocus-awards-development-grants-to-open-source-projects-spring-2018).
+For examples of grants that were funded in the first round, [previous awards](https://numfocus.org/programs/sustainability#sdg).
 
-Up to USD 3,000 is available per proposal.
-The total allocated funding from NumFOCUS was USD 20,000 in previous cycles, meaning that not every project will be able to receive a grant.
-This total amount is adjusted depending on the number and quality of proposals this may be adjusted up or down.
+Usually, around USD 3,000 - 5,000 is available per proposal.
+The total allocated funding from NumFOCUS is around USD 20,000 - 50,000 in previous cycles, meaning that not every project will be able to receive a grant.
+This total amount is adjusted depending on the number and quality of proposals.
 
+Impotant dates for upcoming Small Development Grants in 2021:
+
+May 7th, 2021 - Round 2 call for proposals goes live.
+June 4th, 2021 - Round 2 proposal deadline. 
+July 15th, 2021 - Round 2 notification of application status.
+
+August 6th, 2021 - Round 3 call for proposals goes live.
+September 3rd, 2021 - Round 3 proposal deadline. 
+October 15th, 2021 - Round 3 notification of application status.
+
+Questions about NumFocus Small Development Grants? [Send us an email](mailto:logan@julialang.org)!
 
 ## Program Admins
 
