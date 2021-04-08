@@ -27,3 +27,10 @@ We have our project ideas organized roughly into the skill sets required:
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [VS Code](/jsoc/gsoc/vscode/) - Improving Julia's VS Code IDE experience
 @@
+
+We also have Julia project's available under other organizations:
+@@tight-list
+* [Gridap - NumFocus](https://github.com/numfocus/gsoc#gridap)
+* [JuMP - NumFoucs](https://github.com/numfocus/gsoc#jump)
+* [SciML - NumFoucs](https://github.com/numfocus/gsoc#sciml)
+@@
