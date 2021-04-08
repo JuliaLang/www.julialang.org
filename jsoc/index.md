@@ -4,6 +4,8 @@ The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding 
 
 ## Google Summer of Code (GSoC)
 
+![GSoC logo horizontal](https://user-images.githubusercontent.com/35577566/114047087-43ee0a00-983e-11eb-80ba-878d8701659a.png)
+
 The Julia organization is a participant in Google Summer of Code.
 The Julia organization generally fields a large number of students (&gt;20) mentored by open source developers and university professors at leading institutions from all around the world.
 Students who are accepted into this prestigious program are paid a summer stipend to contribute to the open source tooling around Julia and its package ecosystem.
@@ -16,6 +18,8 @@ You can see previous Summer of Code projects at the [Archive page](/jsoc/archive
 
 ## Google Season of Docs (GSoD)
 
+![Google Season of Docs](https://user-images.githubusercontent.com/35577566/114047222-5e27e800-983e-11eb-86fd-c8df3490634d.png)
+
 The Julia organization is applying to participate in [Google's Season of Docs](https://developers.google.com/season-of-docs).
 The Julia organization generally fields a large number of students mentored by open source developers, university professors at leading institutions from all around the world, and technical writers in the Julia Community. 
 Students who are accepted into this prestigious program are paid a stipend to contribute open source documentation to Julia and its package ecosystem.
@@ -23,6 +27,8 @@ Students who are accepted into this prestigious program are paid a stipend to co
 If this sounds like something you would be interested in, head over to the [Projects page](/jsoc/gsod/projects/) to see a list of all the available technical writing projects.
 
 ## NumFOCUS Small Development Grants
+
+![NumFocus Logo](https://user-images.githubusercontent.com/35577566/114047420-87487880-983e-11eb-83f1-2820cfe17942.png)
 
 Semi-quarterly NumFOCUS puts out a call for small development grants.
 The Julia language organization puts out a call for proposals from the community for grant proposals.
@@ -44,5 +50,3 @@ The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibiliti
 ## Questions?
 
 For any questions, please consult the program administrators at `jsoc@julialang.org`. Note that if you are a prospective applicant for one of the programs above, your first step should be to check out the resources for the project you are interested.
-
-
