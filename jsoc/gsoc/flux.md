@@ -91,7 +91,7 @@ Expected Outcome: This is motivated to create SoftRasterizer/DiB-R based project
 
 Skills: GPU Programming, Deep Learning, (deep) familiarity with the literature, familiarity with defining (a lot of) Custom Adjoints
 
-Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/), [Avik Pal](https://github.com/avik-pal)
+Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/), [Julian Samaroo](https://github.com/jpsamaroo), [Avik Pal](https://github.com/avik-pal)
 
 ### Core Development [MEDIUM]
 
