@@ -28,6 +28,19 @@ For each new algorithm, at least two experiments are expected to be added into [
 
 Mentors: [Jun Tian](https://github.com/findmyway)
 
+### AlphaZero.jl
+
+The philosophy of the [AlphaZero.jl](https://github.com/jonathan-laurent/AlphaZero.jl) project is to provide an implementation of AlphaZero that is simple enough to be widely accessible for students and researchers, while also being sufficiently powerful and fast to enable meaningful experiments on limited computing resources (our latest release is consistently between one and two orders of magnitude faster than competing Python implementations).
+
+Here are a few project ideas that build on AlphaZero.jl. Please contact us for additional details and let us know about your experience and interests so that we can build a project that best suits your profile.
+
+- [Easy] Integrate AlphaZero.jl with the [OpenSpiel](https://github.com/JuliaReinforcementLearning/OpenSpiel.jl) game library and benchmark it on a series of simple board games.
+- [Medium] Use AlphaZero.jl to train a chess agent. In order to save computing resources and allow faster bootstrapping, you may train an initial policy using supervised learning.
+- [Hard] Build on AlphaZero.jl to implement the [MuZero](https://deepmind.com/blog/article/muzero-mastering-go-chess-shogi-and-atari-without-rules) algorithm.
+- [Hard] Explore applications of AlphaZero beyond board games (e.g. theorem proving, chip design, chemical synthesis...).
+
+**Mentors**: [Jonathan Laurent](https://github.com/jonathan-laurent)
+
 ### NLP Tools and Models 
 
 **Difficulty**: Medium to Hard
