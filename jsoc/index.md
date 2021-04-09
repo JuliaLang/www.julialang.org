@@ -16,6 +16,13 @@ Check out the [application guidelines](/jsoc/guidelines/) once you have a projec
 
 You can see previous Summer of Code projects at the [Archive page](/jsoc/archive/) and details around the mentoring process on the [Mentors page](/jsoc/mentors/).
 
+### Why do GSoC with the Julia Language
+
+See what our former students have to say!
+~~~
+<iframe width="100%" height="500" src="https://www.youtube-nocookie.com/embed/8lSB666bigw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+~~~
+
 ## Google Season of Docs (GSoD)
 
 ![Google Season of Docs](https://user-images.githubusercontent.com/35577566/114047222-5e27e800-983e-11eb-86fd-c8df3490634d.png)
