@@ -4,17 +4,17 @@ This page is designed to improve discoverability of projects. You can, for examp
 
 ## Projects
 
-\textinput{/jsoc/gsoc/GeoStats}
+\textinput{/gsoc/GeoStats}
 
-\textinput{/jsoc/gsoc/MLJ}
+\textinput{/gsoc/MLJ}
 
-\textinput{/jsoc/gsoc/compiler}
+\textinput{/gsoc/compiler}
 
-\textinput{/jsoc/gsoc/dftk}
+\textinput{/gsoc/dftk}
 
-\textinput{/jsoc/gsoc/diffeq}
+\textinput{/gsoc/diffeq}
 
-\textinput{/jsoc/gsoc/documenter}
+\textinput{/gsoc/documenter}
 
 \textinput{/jsoc/gsoc/flux}
 
