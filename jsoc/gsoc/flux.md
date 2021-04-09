@@ -39,6 +39,14 @@ Here are a few project ideas that build on AlphaZero.jl. Please contact us for a
 - [Hard] Build on AlphaZero.jl to implement the [MuZero](https://deepmind.com/blog/article/muzero-mastering-go-chess-shogi-and-atari-without-rules) algorithm.
 - [Hard] Explore applications of AlphaZero beyond board games (e.g. theorem proving, chip design, chemical synthesis...).
 
+#### Expected Outcomes
+
+In all these projects, the goal is not only to showcase the current Julia ecosystem and test its limits, but also to push it forward through concrete contributions that other people can build on. Such contributions include:
+
+- Improvements to existing Julia packages (e.g. AlphaZero, ReinforcementLearning, CommonRLInterface, Dagger, Distributed, CUDA...) through code, documentation or benchmarks.
+- A well-documented and replicable artifact to be added to [AlphaZero.Examples](https://github.com/jonathan-laurent/AlphaZero.jl/tree/master/games), [ReinforcementLearningZoo](https://github.com/JuliaReinforcementLearning/ReinforcementLearningZoo.jl) or released in its own package.
+- A blog post that details your experience, discusses the challenges you went through and identifies promising areas for future work.
+
 **Mentors**: [Jonathan Laurent](https://github.com/jonathan-laurent)
 
 ### NLP Tools and Models 
