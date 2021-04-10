@@ -31,6 +31,6 @@ We also have Julia project's available under other organizations. If you are app
 * [Gridap - NumFocus](https://github.com/numfocus/gsoc#gridap)
 * [JuMP - NumFoucs](https://github.com/numfocus/gsoc#jump)
 * [SciML - NumFoucs](https://github.com/numfocus/gsoc#sciml)
-* - [SciML](/jsoc/gsoc/sciml/) - Scientific Machine Learning
-* - [Differential Equations](/jsoc/gsoc/diffeq/) - Numerical methods for high-performance solving of differential equation models.
+  - [SciML](/jsoc/gsoc/sciml/) - Scientific Machine Learning
+  - [Differential Equations](/jsoc/gsoc/diffeq/) - Numerical methods for high-performance solving of differential equation models.
 @@
