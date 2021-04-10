@@ -8,7 +8,6 @@ We have our project ideas organized roughly into the skill sets required:
 * [Compiler](/jsoc/gsoc/compiler/) – work on the Julia compiler's internals to make things better for everyone.
 * [DeepChem.jl](/jsoc/gsoc/deepchem/) – Machine learning for atomic systems in Julia
 * [DFTK.jl](/jsoc/gsoc/dftk/) – Density-functional theory in Julia
-* [Differential Equations](/jsoc/gsoc/diffeq/) - Numerical methods for high-performance solving of differential equation models.
 * [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.
 * [Flux.jl](/jsoc/gsoc/flux/) - A flexible deep learning library.
 * [GeoStats.jl](/jsoc/gsoc/GeoStats/) - An extensible framework for high-performance geostatistics in Julia.
@@ -20,7 +19,6 @@ We have our project ideas organized roughly into the skill sets required:
 * [Numerics](/jsoc/gsoc/numerics/) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
 * [Pluto](/jsoc/gsoc/pluto/) - Pluto notebooks and tools for teaching
 * [Pythia](/jsoc/gsoc/pythia/) - scalable time series for Julia.
-* [SciML](/jsoc/gsoc/sciml/) - Scientific Machine Learning
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
 * [Symbolic computation](/jsoc/gsoc/symbolics/) - User friendly symbolic programming
 * [Tabular Data](/jsoc/gsoc/tables/) - Working with data
@@ -28,9 +26,11 @@ We have our project ideas organized roughly into the skill sets required:
 * [VS Code](/jsoc/gsoc/vscode/) - Improving Julia's VS Code IDE experience
 @@
 
-We also have Julia project's available under other organizations:
+We also have Julia project's available under other organizations. If you are applying for those projects, make sure your application is for that organization and NOT the Julia Language:
 @@tight-list
 * [Gridap - NumFocus](https://github.com/numfocus/gsoc#gridap)
 * [JuMP - NumFoucs](https://github.com/numfocus/gsoc#jump)
 * [SciML - NumFoucs](https://github.com/numfocus/gsoc#sciml)
+* - [SciML](/jsoc/gsoc/sciml/) - Scientific Machine Learning
+* - [Differential Equations](/jsoc/gsoc/diffeq/) - Numerical methods for high-performance solving of differential equation models.
 @@
