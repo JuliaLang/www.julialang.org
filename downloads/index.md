@@ -277,7 +277,7 @@ The platforms currently supported by Julia are listed below. They are divided in
     </tr>
     <tr>
       <td rowspan="2"> macOS </td>
-      <td> 10.9+ </td>
+      <td> 10.10+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
     </tr>
