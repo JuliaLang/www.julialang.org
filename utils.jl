@@ -210,3 +210,17 @@ function hfun_about_the_author()
 		"""
     return html
 end
+
+function hfun_all_gsoc_projects()
+	base_dir = joinpath("jsoc", "gsoc")
+	all_projects = readdir(base_dir)
+	md = IOBuffer()
+	for project in all_projects
+		project in ("general.md", "tooling.md", "graphics.md") && continue
+		endswith(project, ".md") || continue
+		write(md, read(joinpath(base_dir, project)))
+		write(md, "\n\n")
+	end
+	allmd = String(take!(md))
+	return fd2html(allmd, internal=true)
+end
