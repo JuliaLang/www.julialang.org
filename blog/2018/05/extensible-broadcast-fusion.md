@@ -224,13 +224,13 @@ operate directly upon the `Broadcasted` lazy wrapper instead of allocating the i
 array in an expression like `sum(X.^2 .+ Y.^2)`.
 
 
-[Broadcasting]: https://docs.julialang.org/en/latest/manual/arrays/#Broadcasting-1
+[Broadcasting]: https://docs.julialang.org/en/v1/manual/arrays/#Broadcasting
 
 ["fusing"]: /blog/2017/01/moredots
 
 [hacks]: https://github.com/MikeInnes/TakingBroadcastSeriously.jl
 
-[documented and available to packages]: https://docs.julialang.org/en/latest/manual/interfaces/#man-interfaces-broadcasting-1
+[documented and available to packages]: https://docs.julialang.org/en/v1/manual/interfaces/#man-interfaces-broadcasting
 
 [`BitArray`s]: https://docs.julialang.org/en/latest/base/arrays/#Base.BitArray
 

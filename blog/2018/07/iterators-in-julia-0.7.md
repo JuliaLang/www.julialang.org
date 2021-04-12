@@ -107,7 +107,7 @@ Notice that our `EveryNth` struct is immutable and we never mutate the state inf
 
 As an aside, the `length` and `eltype` method definitions are not necessary.
 Instead, we could use the `IteratorSize` and `IteratorEltype` traits to say that we don't implement those functions and Julia's Base functions will not try to call them when iterating.
-[`collect`](https://docs.julialang.org/en/latest/base/collections/#Base.collect-Tuple{Any}) is notable for specializing on both of these traits to provide optimizations for different kinds of iterators.
+[`collect`](https://docs.julialang.org/en/v1/base/collections/#Base.collect-Tuple{Any}) is notable for specializing on both of these traits to provide optimizations for different kinds of iterators.
 
 ## Iteration in Julia 0.7
 
@@ -413,7 +413,7 @@ IterTools will definitely accept pull requests, and I'm interested in feedback o
 
 [^macroname]: This name is definitely up for debate!
 
-[^slurpsplat]: Slurping refers to  how using `args...` in a function definition "slurps" up the trailing arguments, and splatting is the inverse operation. The [Julia docs](https://docs.julialang.org/en/latest/manual/functions/#Varargs-Functions-1) say more on this.
+[^slurpsplat]: Slurping refers to  how using `args...` in a function definition "slurps" up the trailing arguments, and splatting is the inverse operation. The [Julia docs](https://docs.julialang.org/en/v1/manual/functions/#Varargs-Functions) say more on this.
 
 [^respell]: All other changes here are renaming or respelling something that appears in the original, for clarity's sake.
 

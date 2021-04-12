@@ -534,7 +534,7 @@ julia> s .= replace.(lowercase.(s), r"\s+", "-")
 ```
 
 Here, we take an array `s` of strings, we convert each string to
-lower case, and then we replace any sequence of whitespace (the [regular expression](https://docs.julialang.org/en/latest/manual/strings.html#Regular-Expressions-1)
+lower case, and then we replace any sequence of whitespace (the [regular expression](https://docs.julialang.org/en/v1/manual/strings/#Regular-Expressions)
 `r"\s+"`) with a hyphen `"-"`.  Since these two dot calls are nested,
 they are fused into a single loop over `s` and are written in-place in `s`
 thanks to the `s .= ...` (temporary *strings* are allocated in this process,
