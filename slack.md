@@ -11,10 +11,10 @@ The Julia Language has an active Slack workspace/community with over 8,000 membe
 ### Admins
 The [Julia Community Standards](https://julialang.org/community/standards/) are enforced on Slack by our Slack Admins. 
 
-**If you see or experience any violation of those standards, or feel unsafe or upset, please contact us by sending a private message to one of the following folks listed below.** All communications will be treated confidentially but may be shared with other admins and/or the Julia Stewards.
+**If you see or experience any violation of those standards, or feel unsafe or upset, please contact us by sending an email to [slackadmins@julialang.org](mailto:slackadmins@julialang.org).** All communications will be treated confidentially but incidents may be shared the Julia Stewards.
 
 You can also contact the [Julia Stewards](https://julialang.org/community/stewards/) by emailing [stewards@julialang.org](mailto:stewards@julialang.org), in particular if your concern or conflict involves the admins and/or you would prefer a third party to resolve it.
 
-Slack lacks adequate moderations tools so at the present moment, you will have to ping one of the following moderators directly if you think the Julia Community Standards have been violated or otherwise need the support of an Admin. See [the list of our current Slack Admins](https://julialang.slack.com/account/workspace-settings#admins) (Slack sign-in required)
+Slack lacks adequate moderations tools so at the present moment, you will have to [email the moderators](mailto:slackadmins@julialang.org) if you think the Julia Community Standards have been violated or otherwise need the support of an Admin. See [the list of our current Slack Admins](https://julialang.slack.com/account/workspace-settings#admins) (Slack sign-in required)
 
 <!-- To create a new Slack Invite Link, see https://slack.com/help/articles/201330256-Invite-new-members-to-your-workspace Note that the link above expires every 30 days (or after 2,000 participants join with it) so we will need to generate a new one. (as of 2021, this seems to have changed...)-->
