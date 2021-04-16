@@ -10,7 +10,7 @@ We at the Julia Language are committed to making the application process and par
 
 ## Project Ideas
 
-Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reachout to the respetive mentor(s).
+Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reachout to the respective mentor(s).
 
 ### Scientific Machine Learning (SciML) and Differential Equations
 
