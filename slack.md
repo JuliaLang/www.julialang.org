@@ -15,6 +15,6 @@ The [Julia Community Standards](https://julialang.org/community/standards/) are 
 
 You can also contact the [Julia Stewards](https://julialang.org/community/stewards/) by emailing [stewards@julialang.org](mailto:stewards@julialang.org), in particular if your concern or conflict involves the admins and/or you would prefer a third party to resolve it.
 
-Slack lacks adequate moderations tools so at the present moment, you will have to ping one of the following moderators directly if you think the Julia Community Standards have been violated or otherwise need the support of an Admin. You can find a list of our current Admins here (Slack sign-in required): [https://julialang.slack.com/account/workspace-settings#admins](https://julialang.slack.com/account/workspace-settings#admins)
+Slack lacks adequate moderations tools so at the present moment, you will have to ping one of the following moderators directly if you think the Julia Community Standards have been violated or otherwise need the support of an Admin. See [the list of our current Slack Admins](https://julialang.slack.com/account/workspace-settings#admins) (Slack sign-in required)
 
 <!-- To create a new Slack Invite Link, see https://slack.com/help/articles/201330256-Invite-new-members-to-your-workspace Note that the link above expires every 30 days (or after 2,000 participants join with it) so we will need to generate a new one. (as of 2021, this seems to have changed...)-->
