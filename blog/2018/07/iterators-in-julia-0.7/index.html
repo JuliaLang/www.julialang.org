@@ -51,7 +51,7 @@ julia&gt; Base.eltype&#40;iter::EveryNth&#41; &#61; Int</code></pre> <p>Then we 
 12
 14
 16
-18</code></pre> <p>Notice that our <code>EveryNth</code> struct is immutable and we never mutate the state information.</p> <p>As an aside, the <code>length</code> and <code>eltype</code> method definitions are not necessary. Instead, we could use the <code>IteratorSize</code> and <code>IteratorEltype</code> traits to say that we don&#39;t implement those functions and Julia&#39;s Base functions will not try to call them when iterating. <a href="https://docs.julialang.org/en/latest/base/collections/#Base.collect-Tuple&#123;Any&#125;"><code>collect</code></a> is notable for specializing on both of these traits to provide optimizations for different kinds of iterators.</p> <h2 id=iteration_in_julia_07 ><a href="#iteration_in_julia_07">Iteration in Julia 0.7</a></h2> <p>In Julia 0.7, the iteration interface is now just one function: <code>iterate</code>. The <code>while</code> loop above would now be written as:</p> <pre><code class=language-julia >iter_result &#61; iterate&#40;iterable&#41;
+18</code></pre> <p>Notice that our <code>EveryNth</code> struct is immutable and we never mutate the state information.</p> <p>As an aside, the <code>length</code> and <code>eltype</code> method definitions are not necessary. Instead, we could use the <code>IteratorSize</code> and <code>IteratorEltype</code> traits to say that we don&#39;t implement those functions and Julia&#39;s Base functions will not try to call them when iterating. <a href="https://docs.julialang.org/en/v1/base/collections/#Base.collect-Tuple&#123;Any&#125;"><code>collect</code></a> is notable for specializing on both of these traits to provide optimizations for different kinds of iterators.</p> <h2 id=iteration_in_julia_07 ><a href="#iteration_in_julia_07">Iteration in Julia 0.7</a></h2> <p>In Julia 0.7, the iteration interface is now just one function: <code>iterate</code>. The <code>while</code> loop above would now be written as:</p> <pre><code class=language-julia >iter_result &#61; iterate&#40;iterable&#41;
 while iter_result &#33;&#61;&#61; nothing
     &#40;element, state&#41; &#61; iter_result
     # body
@@ -226,7 +226,7 @@ end</code></pre>
   <table class=fndef  id="fndef:slurpsplat">
     <tr>
         <td class=fndef-backref ><a href="#fnref:slurpsplat">[2]</a>
-        <td class=fndef-content >Slurping refers to  how using <code>args...</code> in a function definition &quot;slurps&quot; up the trailing arguments, and splatting is the inverse operation. The <a href="https://docs.julialang.org/en/latest/manual/functions/#Varargs-Functions-1">Julia docs</a> say more on this.
+        <td class=fndef-content >Slurping refers to  how using <code>args...</code> in a function definition &quot;slurps&quot; up the trailing arguments, and splatting is the inverse operation. The <a href="https://docs.julialang.org/en/v1/manual/functions/#Varargs-Functions">Julia docs</a> say more on this.
     
 </table>
   <table class=fndef  id="fndef:cantorwont">
