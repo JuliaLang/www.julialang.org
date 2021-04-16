@@ -16,7 +16,7 @@ But although Jones was one of the first, he wasn't influential enough to inspire
 
 (Original online [here](https://archive.org/details/euler-e059).)
 
-Julia embraces the Unicode standard [enthusiastically](https://docs.julialang.org/en/latest/manual/unicode-input/), so it's very easy to use the appropriate Greek (and other Unicode) letters in your code. In the REPL, for example, type `\pi TAB` to insert the Unicode character `U+03C0`:
+Julia embraces the Unicode standard [enthusiastically](https://docs.julialang.org/en/v1/manual/unicode-input/), so it's very easy to use the appropriate Greek (and other Unicode) letters in your code. In the REPL, for example, type `\pi TAB` to insert the Unicode character `U+03C0`:
 
 ```julia-repl
 julia> π

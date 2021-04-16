@@ -231,7 +231,7 @@ Naturally, functions defined based on those listed above inherit their behavior.
 `findall(isequal(1), [1, missing, 2])` returns `[1]`, but `findall(==(1), [1, missing, 2])`
 throws an error when encountering a missing value.
 
-See the [manual](https://docs.julialang.org/en/latest/manual/missing/) for more details
+See the [manual](https://docs.julialang.org/en/v1/manual/missing/) for more details
 and illustrations about these rules. As noted above, they are generally consistent with
 those implemented by SQL's `NULL` and R's `NA`.
 

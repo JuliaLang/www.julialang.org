@@ -442,5 +442,5 @@ One might hope that the next period of Julia's development might see significant
 [union-splitting]: https://julialang.org/blog/2018/08/union-splitting/
 [MethodAnalysis]: https://github.com/timholy/MethodAnalysis.jl
 [SnoopCompile]: https://github.com/timholy/SnoopCompile.jl
-[performance tips]: https://docs.julialang.org/en/latest/manual/performance-tips/
+[performance tips]: https://docs.julialang.org/en/v1/manual/performance-tips/
 [vscode]: https://www.julia-vscode.org/
