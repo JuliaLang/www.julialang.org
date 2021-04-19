@@ -206,6 +206,7 @@ function hfun_about_the_author()
             <ul class="author-social-icons">
             $social
             </ul>
+		  </div>
 		</div>
 		"""
     return html
