@@ -78,7 +78,7 @@ Just to name a few. One project would be to create a unified scientific machine 
 
 ### Flux (Machine Learning)
 
-[Flux.jl](https://github.com/FluxML/Flux.jl) is an elegant approach to machine learning in Julia. It is designed to be hackable and flexible, extendable, and exposes powerful AD tools. It also provides abstractions over the popular layers and optimizers used in neural networks. It is built with differentiable programming in mind. The mentors for this project are [Dhairya Gandhi](https://github.com/dhairyagandhi96) and [Mike Innes](https://github.com/MikeInnes).
+[Flux.jl](https://github.com/FluxML/Flux.jl) is an elegant approach to machine learning in Julia. It is designed to be hackable and flexible, extendable, and exposes powerful AD tools. It also provides abstractions over the popular layers and optimizers used in neural networks. It is built with differentiable programming in mind. The mentors for this project are [Dhairya Gandhi](https://github.com/DhairyaLGandhi).
 
 - #### Tutorials
 
