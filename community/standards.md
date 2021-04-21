@@ -18,6 +18,10 @@ If you believe one of these standards has been violated, you can either file an 
 
 Constructive criticism and suggestions are welcome, but high-traffic forums do not generally have the bandwidth for extensive discourse. Consider writing a blog post if you feel that you have enough to say on a particular subject.
 
+### For Researchers
+
+We welcome the participation of researchers of all kinds in the Julia community. However, please remember that open source developmnent is a social process and that the participants on the other side of any interaction are (obviously) humans. If you are doing research *on the community or its processes*, you are likely performing Human Subject Research (HSR) and are expected to abide by the highest standards of ethics and professional practice. Meeting this expectation is your responsibility. In particular, please be aware that Institutional Review Boards (IRBs) or other review committees may not have sufficient context or experience to understand the social processes of an open source community. We consider engaging in unethical research (human-subject or otherwise) to be a cause for bans or other sanctions from the community.
+
 ### Get involved
 
 The Julia community is built on a foundation of reciprocity and collaboration. Be aware that most community members contribute on a voluntary basis, so ideas and bug reports are ok, but demands are not. Pull requests are always welcomed – see the [guidelines for contributing](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md) to read about how to get started.
