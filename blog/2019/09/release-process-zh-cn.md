@@ -264,7 +264,7 @@ Bug修复在任何时间在任何分支上都是允许的。
 ## 结论
 
 但愿你读完这篇关于Julia版本发布流程和政策的综述后有所启迪。
-我们最想看到的是你们当中的某些人读完之后参与到Julia的事业中，同时也希望通过揭秘Julia的发布流程，我们降低了成为Julia开发人员的门槛[^translate]。
+我们最想看到的是你们当中的某些人读完之后参与到Julia的事业中，同时也希望通过揭秘Julia的发布流程，我们降低了成为Julia开发人员的门槛。
 
-[^translate]: Translator: [Wenjie Zheng](https://github.com/WenjieZ)
+*Translator: [Wenjie Zheng](https://github.com/WenjieZ)*
 
