@@ -60,7 +60,7 @@ Impotant dates for upcoming Small Development Grants in 2021:
 @@
 Questions about NumFocus Small Development Grants? [Send us an email](mailto:logan@julialang.org)!
 
-## Summer 2021 of Open Source Promotion Plan
+## Summer 2021 Open Source Promotion Plan
 
 [![](https://summer.iscas.ac.cn/static/media/logo_n.6c7b788d.svg)](https://summer.iscas.ac.cn/#/homepage)
 
