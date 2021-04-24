@@ -60,6 +60,12 @@ Impotant dates for upcoming Small Development Grants in 2021:
 @@
 Questions about NumFocus Small Development Grants? [Send us an email](mailto:logan@julialang.org)!
 
+## Summer 2021 Open Source Promotion Plan
+
+[![](https://summer.iscas.ac.cn/static/media/logo_n.6c7b788d.svg)](https://summer.iscas.ac.cn/#/homepage)
+
+Similar to GSoC, the Open Source Promotion Plan aims to promote the development of open source software and facilitate the construction of excellent open source software community. The Julia community is also a partner this year. Students who are interested in this program can take look at the Julia related [project list](https://summer.iscas.ac.cn/#/org/orgdetail/julia) and contact the mentor. For project owners who would like to submit new proposals, please contact [Jun Tian](mailto:tianjun.cpp@gmail.com).
+
 ## Program Admins
 
 The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibilities including, but not limited too, reviewing student applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final student selections and more. 
