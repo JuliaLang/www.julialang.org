@@ -8,7 +8,45 @@ The BLAS and LAPACK libraries have been a corner stone of technical computing fo
 
 Julia 1.7 will ship with [libblastrampoline](https://github.com/staticfloat/libblastrampoline) (LBT). A famous aphorism of Butler Lampson goes: "All problems in computer science can be solved by another level of indirection". Using [PLT trampolines](https://en.wikipedia.org/wiki/Trampoline_(computing)) to provide a BLAS and LAPACK demuxing library. Essentially, going forward, Julia is linked against LBT. LBT in turn will call a user configured BLAS and LAPACK library. By default, Julia will ship with OpenBLAS, which LBT will forward calls to - but with a simple configuration, any other BLAS or LAPACK library can be used.
 
-In order to use `MKL` now, all a user has to do is `Pkg.add("MKL")` and `using MKL`, which will initialize LBT to forward all BLAS and LAPACK calls to MKL. This works on all the OSes where MKL is available (and yes the MKL package automatically installs the `MKL_jll` package containing the MKL binaries).
+In order to use `MKL` now, all a user has to do is `Pkg.add("MKL")` and `using MKL`, which will initialize LBT to forward all BLAS and LAPACK calls to MKL. This works on all the OSes where MKL is available (and yes the MKL package automatically installs the `MKL_jll` package containing the MKL binaries). Here, we show how swapping in MKL provides faster matrix multiplication on a mac:
+
+```
+➜  ~ ./julia/julia
+               _
+   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+  (_)     | (_) (_)    |
+   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 1.7.0-DEV.971 (2021-04-20)
+ _/ |\__'_|_|_|\__'_|  |  Commit 592db5886f* (5 days old master)
+|__/                   |
+
+julia> peakflops()
+8.662873977420143e10
+
+(@v1.7) pkg> add MKL
+    Updating registry at `~/.julia/registries/General`
+    Updating git-repo `https://github.com/JuliaRegistries/General.git`
+   Resolving package versions...
+   Installed MKL ───────────── v0.4.0
+   Installed PackageCompiler ─ v1.2.5
+    Updating `~/.julia/environments/v1.7/Project.toml`
+  [33e6dc65] + MKL v0.4.0
+    Updating `~/.julia/environments/v1.7/Manifest.toml`
+  [33e6dc65] + MKL v0.4.0
+  [9b87118b] + PackageCompiler v1.2.5
+  [1d5cc7b8] + IntelOpenMP_jll v2018.0.3+2
+  [856f044c] + MKL_jll v2021.1.1+1
+  [4af54fe1] + LazyArtifacts
+    Building MKL → `~/.julia/scratchspaces/44cfe95a-1eb2-52ea-b672-e2afdf69b78f/52c39a2b156743873c3919cd8ce83ac6075cc45f/build.log`
+Precompiling project...
+  4 dependencies successfully precompiled in 45 seconds (106 already precompiled)
+
+julia> using MKL
+
+julia> peakflops()
+9.742296587986519e10
+```
 
 ## Basic usage of LBT
 
