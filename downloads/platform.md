@@ -144,6 +144,18 @@ This automatically puts the binary into a directory in the user's PATH, so you c
 
 
 
+## MacPorts on Mac
+
+Julia can also be installed using the [MacPorts package manager](https://ports.macports.org/port/julia/summary) as follows:
+
+```shell
+sudo port install julia
+```
+
+The installed binary will reside in `/opt/local/bin` by default, so you need to make sure that this directory is in the user's PATH.
+
+
+
 ## Fedora/RHEL/CentOS/SL/OEL Linux
 
 A [Copr repository](https://copr.fedoraproject.org/coprs/nalimilan/julia/) is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest stable version of Julia.  On Fedora and CentOS 8, Julia is available in 
