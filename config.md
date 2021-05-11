@@ -17,6 +17,9 @@
 @def lts_release_short = "1.0"
 @def lts_release_date = "Sep 9, 2019"
 
+<!-- plotly -->
+@def hasplotly = false
+
 <!--
 If the following lines are commented, the "upcoming release" section
 in `downloads/index.md` will not be shown.

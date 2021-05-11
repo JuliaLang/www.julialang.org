@@ -3,16 +3,17 @@
 @def published = "24 March 2021"
 @def rss_pubdate = Date(2021, 3, 24)
 @def rss = """Some highlights of the Julia 1.6 release."""
+@def hasplotly = true
 
 Julia version 1.6 has been released. Most Julia releases are timed and hence not
 planned around specific features, but this release was an exception since it is
 likely to become the next long-term support (LTS) release of Julia. Because of
 this, we took extra time developing the release to make sure that features which
-are needed for the future health of the ecosystem made it into the release. 
-Also, the release was tested for regressions against all registered open source packages 
+are needed for the future health of the ecosystem made it into the release.
+Also, the release was tested for regressions against all registered open source packages
 and issues were tracked down and fixed.  The
 final decision about whether Julia 1.6 will become the new LTS will be made
-after it has been battle-tested in the field, around the time of the 1.7 release enters stabilization.  
+after it has been battle-tested in the field, around the time of the 1.7 release enters stabilization.
 The full list of changes can be found in
 the [NEWS file](https://github.com/JuliaLang/julia/blob/release-1.6/NEWS.md),
 but here we'll give a more in-depth overview of some of the release highlights.
@@ -263,7 +264,11 @@ optimization puzzle was therefore to disable optimizations and use the new
 functionality to reduce the amount of time spent generating a very small
 amount of code, saving precious seconds.
 
-![Loading time of GTK3_jll](/assets/blog/2021-1.6-highlights/gtk3-jll.png)
+~~~
+<div id="547edea6-9564-4613-b3c3-1b2e6d1c58c5" style="width: 100%; height: 450px;" class="plotly-graph-div"></div>
+
+<script type="text/javascript" src="/assets/blog/2021-1.6-highlights/gtk3-jll.js"></script>
+~~~
 
 The interplay between compiler improvements and the benefits that `JLLWrappers`
 affords were [well-recorded](https://github.com/JuliaGraphics/Gtk.jl/issues/466#issuecomment-716058685)
