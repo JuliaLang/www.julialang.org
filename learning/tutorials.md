@@ -1,12 +1,11 @@
 ## Tutorials
-
-@@tight-list
+@@tight-lis
 * [Zero2Hero intensive workshop](https://www.youtube.com/watch?v=Fi7Pf2NveH0) by [George Datseris](https://github.com/Datseris). An intensive workshop targeting an audience familiar with programming that wants to transition to Julia and use Julia like a pro.
 * [From zero to Julia!](https://techytok.com/from-zero-to-julia/) by [Aurelio Amerio](https://github.com/aurelio-amerio). An expanding series of short tutorials about Julia, starting from the beginner level and going up to deal with the more advanced topics.
 *   [Julia Workshop for Physicists](https://github.com/crstnbr/JuliaOulu20) by [Carsten Bauer](https://github.com/crstnbr) (see also [JuliaWorkshop19](https://github.com/crstnbr/JuliaWorkshop19)).
 * [ThinkJulia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html)
 * [A Deep Introduction to Julia for Data Science and Scientific Computing](https://ucidatascienceinitiative.github.io/IntroToJulia/) by [Chris Rackauckas](https://chrisrackauckas.com/)
-* [The Julia Express](https://github.com/bkamins/The-Julia-Express) (featuring Julia 1.0) by [Bogumił Kamiński](https://bogumilkaminski.pl)
+* [The Julia Express](https://github.com/bkamins/The-Julia-Express) by [Bogumił Kamiński](https://bogumilkaminski.pl)
 * [Programming in Julia (Quantitative Economics)](https://lectures.quantecon.org/jl/) - by [Jesse Perla](http://jesseperla.com), [Thomas J. Sargent](http://www.tomsargent.com), and [John Stachurski](https://johnstachurski.net). Along with being a complete textbook with Julia code for macroeconomics, this also is a very good introduction to Julia.
 * [Introducing Julia wikibook](https://en.wikibooks.org/wiki/Introducing_Julia)
 * [A Comprehensive Tutorial to Learn Data Science with Julia from Scratch](https://www.analyticsvidhya.com/blog/2017/10/comprehensive-tutorial-learn-data-science-julia-from-scratch/) by [Mohd Sanad Zaki Rizvi](https://www.analyticsvidhya.com/blog/author/mohdsanadzakirizvigmail-com/)
