@@ -281,6 +281,11 @@ The platforms currently supported by Julia are listed below. They are divided in
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
+      <td> 11.4+ </td>
+      <td> ARMv8 (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
       <td> 10.6+ </td>
       <td> i686 (32-bit) / x86-64 (64-bit) </td>
       <td> <font color="crimson">Tier 3</font> </td>
