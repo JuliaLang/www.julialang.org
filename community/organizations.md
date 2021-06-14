@@ -123,6 +123,7 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 
 @@tight-list
 * [FluxML](https://github.com/FluxML) - Machine Learning and Differentiable Programming Framework
+* [JuliaAI](https://github.com/JuliaAI) - Home for repositories in the MLJ (Machine Learning in Julia) project
 * [JuliaData](https://github.com/JuliaData) – Data manipulation, storage, and I/O in Julia
 * [JuliaDatabases](https://github.com/JuliaDatabases) – Various database drivers for Julia
 * [JuliaImages](https://github.com/JuliaImages) – Image Processing
