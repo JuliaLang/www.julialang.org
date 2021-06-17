@@ -79,6 +79,7 @@ We welcome additions to this list in the form of [pull requests](https://github.
 * **Automatic Differentiation for Solid Mechanics**. Andrea Vigliotti, Ferdinando Auricchio. (2020) _Archives of Computational Methods in Engineering_. doi: [10.1007/s11831-019-09396-y](https://doi.org/10.1007/s11831-019-09396-y). url: <https://link.springer.com/article/10.1007%2Fs11831-019-09396-y>. preprint: <https://arxiv.org/abs/2001.07366>
 * **BioStructures.jl: read, write and manipulate macromolecular structures in Julia**. Joe G Greener, Joel Selvaraj, Ben J Ward. (2020) _Bioinformatics_, 36(14):4206-4207. doi: [10.1093/bioinformatics/btaa502](https://doi.org/10.1093/bioinformatics/btaa502). Package: [BioStructures.jl](https://github.com/BioJulia/BioStructures.jl).
 * **Polymake.jl: A New Interface to polymake**. Marek Kaluba, Benjamin Lorenz, Sascha Timme. (2020) _Mathematical Software – ICMS 2020_. doi: [10.1007/978-3-030-52200-1_37](https://doi.org/10.1007/978-3-030-52200-1_37). Package: [Polymake.jl](https://github.com/oscar-system/Polymake.jl)
+* **Predicting permeability via statistical learning on higher-order microstructural information**. M. Röding, Z. Ma, S. Torquato. (2020) _Scientific Reports_, 10: 15239. doi: [10.1038/s41598-020-72085-5](https://doi.org/10.1038/s41598-020-72085-5).
 @@
 
 ## 2019
