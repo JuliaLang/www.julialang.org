@@ -884,12 +884,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/legal/index.html</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2019/08/release-process/index.html</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>monthly</changefreq>
