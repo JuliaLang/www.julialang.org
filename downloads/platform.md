@@ -132,7 +132,7 @@ Chocolatey automatically creates a shim for the Julia executable, so you simply 
 
 
 
-## HomeBrew on Mac
+## Homebrew on macOS
 
 Julia can be installed using the [Homebrew package manager](https://formulae.brew.sh/cask/julia) as follows:
 
