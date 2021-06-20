@@ -103,7 +103,7 @@ If you know of other classes using Julia for teaching, please consider updating 
 * Tec de Monterrey, Santa Fe Campus, Mexico City
    * [IN2022](https://samp.itesm.mx/Materias/VistaPreliminarMateria?clave=IN2022&lang=ES), Modelos de Optimización (Prof. [Marzieh Khakifirooz](https://www.linkedin.com/in/marzieh-khakifirooz-a3b85643/)), Spring 2020
 * Tokyo Metropolitan University, Tokyo, Japan
-    * L0407, [Exercises in Programming I for Mechanical Systems Engineering](https://github.com/hsugawa8651/mseprogOne) (Hiroharu Sugawara): Fall 2018, Fall 2019
+    * L0407, [Exercises in Programming I for Mechanical Systems Engineering](https://github.com/hsugawa8651/mseprogOne) (Hiroharu Sugawara): Fall 2018, Fall 2019, Fall 2020, Fall 2021 (scheduled), in Japanese
 * [TU Dortmund / SFB 823](https://www.statistik.tu-dortmund.de/sfb823.html), Germany
     * One week introductory course into Julia with applications in statistics and economics ([Tileman Conring](https://www.statistik.tu-dortmund.de/conring.html)): Spring 2018
 * Universidad Adolfo Ibáñez, Chile
