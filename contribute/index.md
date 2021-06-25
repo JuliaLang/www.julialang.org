@@ -40,11 +40,14 @@ Your next step is to identify which kind of contributor you are. There are multi
 @@tight-list
 -   Discover
 -   Connect
+	@@tight-list
 	-   read code of conduct
 	-   ask questions on Slack or Discourse
 	-   engage on Twitter
+	@@
 -   Learn
 -   Build
+	@@tight-list
 	-   write a blogpost
 	-   cite Julia
 	-   report a bug
@@ -54,9 +57,12 @@ Your next step is to identify which kind of contributor you are. There are multi
 	-   share a use case
 	-   develop and submit a library
 	-   include future pans for your library
+	@@
 -   Help
+	@@tight-list
 	-   spread a word about Julia's Ecosystem
 	-   submit a use case
 	-   answer questions on Slack and Discourse
 	-   contribute something that isn't addressed in this guide!
+	@@
 @@
