@@ -17,7 +17,7 @@
 
 **Recommended Skills**: Compiler techniques, DSL generation, Program synthesis
 
-**Expected Output**: A practical flashfill implementation that can be used on any tablular data structure in Julia
+**Expected Output**: A practical flashfill implementation that can be used on any tabular data structure in Julia
 
 **Mentors**: [Avik Sengupta](https://github.com/aviks/)
 
@@ -27,7 +27,7 @@
 
 [Apache Parquet](https://parquet.apache.org/) is a binary data format for tabular data. It has features for compression and memory-mapping of datasets on disk. A decent implementation of Parquet in Julia is likely to be highly performant. It will be useful as a standard format for distributing tabular data in a binary format. There exists a Parquet.jl package that has a Parquet reader and a writer. It currently conforms to the Julia Tabular file IO interface at a very basic level. It needs more work to add support for critical elements that would make Parquet.jl usable for fast large scale parallel data processing. One or more of the following goals can be targeted:
 @@tight-list
-* Lazy loading and support for out-of-core processing, with Arrow.jl and Tables.jl integration. Improved usability and performace of Parquet reader and writer for large files.
+* Lazy loading and support for out-of-core processing, with Arrow.jl and Tables.jl integration. Improved usability and performance of Parquet reader and writer for large files.
 * Reading from and writing data on to cloud data stores, including support for partitioned data.
 * Support for missing data types and encodings making the Julia implementation fully featured.
 @@
@@ -95,4 +95,3 @@ competitive performance for all the packages listed above.
 **Mentors**: [David Anthoff](https://github.com/davidanthoff)
 
 -->
-
