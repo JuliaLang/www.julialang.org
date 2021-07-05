@@ -14,16 +14,16 @@ For new or occasional users, JuliaImages would benefit from a large collection o
 Notes:
 
 - This "project" might also be split among multiple students who contribute demos as part of their work in a focused area of JuliaImages.
-- Each demo is a mini blog that includes the usage, explainations and (optional) best practices. A direct copy from the function references is not allowed.
+- Each demo is a mini blog that includes the usage, explanations and (optional) best practices. A direct copy from the function references is not allowed.
 - Copy or modify from existing open-source projects should meet their license requirements.
 
 ### Skills
 
-The applicant should be familar with JuliaImages, and should be able to write good technical blogs in English.
+The applicant should be familiar with JuliaImages, and should be able to write good technical blogs in English.
 
 ### Expected outcomes
 
-- A significant expansion of the number of democards with detailed explainantions.
+- A significant expansion of the number of democards with detailed explanations.
 - (Preferred) adding more missing functionalities to JuliaImages ecosystem.
 - (Optional) improve [DemoCards.jl](https://github.com/johnnychen94/DemoCards.jl), which is the build tool for the demos.
 
@@ -33,7 +33,7 @@ The applicant should be familar with JuliaImages, and should be able to write go
 
 ## Benchmarking against other frameworks (medium)
 
-### Descriptsion
+### Description
 
 JuliaImages provides high-quality implementations of many algorithms; however, as yet there is no set of benchmarks that compare our code against that of other image-processing frameworks.  Developing such benchmarks would allow us to advertise our strengths and/or identify opportunities for further improvement.  See also the OpenCV project below.
 
@@ -132,7 +132,7 @@ and [MosaicViews.jl](https://github.com/JuliaArrays/MosaicViews.jl). Improving t
 ### Skills
 
 For [ImageViews.jl](https://github.com/JuliaImages/ImageView.jl) and similar GUI projects, familiarity with GUI programming is
-required. For non-GUI projects, familarity with Julia array interfaces are preferred.
+required. For non-GUI projects, familiarity with Julia array interfaces are preferred.
 
 ### Mentors
 
@@ -189,9 +189,9 @@ A library of stereo matching algorithms with usage tutorials and documentation.
 
 ### Description
 
-Camera calibration involves determining a camera's intrinsic parameters from a series of images of a so-called "calibration target". Knowledge of the intrinsic parameters facilitates three-dimensional reconstruction from images or video. The most frequently used calibration target is a checkerboard pattern. A key step in camera calibration involves automatically detecting the checkerboard and identifying landmarks such as the corners of each checkeboard square. 
+Camera calibration involves determining a camera's intrinsic parameters from a series of images of a so-called "calibration target". Knowledge of the intrinsic parameters facilitates three-dimensional reconstruction from images or video. The most frequently used calibration target is a checkerboard pattern. A key step in camera calibration involves automatically detecting the checkerboard and identifying landmarks such as the corners of each checkerboard square.
 
-This project will implement a recent automatic checkerboard detection and feature extraction algorithm. 
+This project will implement a recent automatic checkerboard detection and feature extraction algorithm.
 
 Example algorithm:
 
@@ -206,7 +206,7 @@ Experiences in JuliaImages are required. Familiarity with the algorithms are pre
 
 ### Expected outcomes
 
-A checkeboard detection algorithm which can provide the necessary inputs to a camera calibration routine. 
+A checkeboard detection algorithm which can provide the necessary inputs to a camera calibration routine.
 
 ### Mentors
 
@@ -214,6 +214,6 @@ A checkeboard detection algorithm which can provide the necessary inputs to a ca
 
 ### Where to go for discussion and to find mentors
 
-Interested students are encouraged to [open an discussion in Images.jl](https://github.com/JuliaImages/Images.jl/discussions/new) to 
-introduce themselves and discuss the detailed project ideas. To increase the chance of getting useful feeback, please provide detailed
+Interested students are encouraged to [open an discussion in Images.jl](https://github.com/JuliaImages/Images.jl/discussions/new) to
+introduce themselves and discuss the detailed project ideas. To increase the chance of getting useful feedback, please provide detailed
 plans and ideas (don't just copy the contents here).
