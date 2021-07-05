@@ -15,7 +15,7 @@ If you are interested in exploring any of these projects, please reach out to th
 
 For this project, a student might improve the performance of the various statistical functions provided by MCMCChains, changing the back end to use a data storage format that maintains the shape of parameter samples, or improve the general plotting functionality of the package.
 
-There's lots of fun little things to do for MCMCChains. Check out this [meta-issue](https://github.com/TuringLang/MCMCChains.jl/issues/246) for more details and dicussions.
+There's lots of fun little things to do for MCMCChains. Check out this [meta-issue](https://github.com/TuringLang/MCMCChains.jl/issues/246) for more details and discussions.
 
 ## Particle filtering methods
 
