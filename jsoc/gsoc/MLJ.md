@@ -2,7 +2,7 @@
 
 # 2021 Ideas
 
-# Titles & possible mentors 
+# Titles & possible mentors
 
 * [Particle swarm optimization of machine learning models](#Particle-swarm-optimization-of-machine-learning-models)
 * [In-processing methods for fairness in machine learning](#In-processing-methods-for-fairness-in-machine-learning)
@@ -10,7 +10,7 @@
 * [Time series forecasting at scale - speed up via Julia](#Time-series-forecasting-at-scale---speed-up-via-Julia)
 * [Interpretable Machine Learning in Julia](#Interpretable-Machine-Learning-in-Julia)
 * [Model visualization in MLJ](#Model-visualization-in-MLJ)
-* [Deeper integration with Bayseian methods and Bayesian Stacking](#Deeper-Bayes)
+* [Deeper integration with Bayesian methods and Bayesian Stacking](#Deeper-Bayes)
 * [MLJ and MLFlow integration](#MLJ-and-MLFlow-integration)
 * [Speed demons only need apply](#Speed-demons-only-need-apply)
 
@@ -23,9 +23,9 @@ MLJ is released under the MIT license and sponsored by the Alan Turing Institute
 ## Particle swarm optimization of machine learning models
 
 Bring particle swarm optimization to the MLJ machine learning
-platform to help users tune machine learning models. 
+platform to help users tune machine learning models.
 
-**Difficulty.** Easy - moderate. 
+**Difficulty.** Easy - moderate.
 
 ### Description
 
@@ -49,8 +49,8 @@ range of hyper-parameter optimization problems.
 
 ### Prerequisites
 @@tight-list
-- Julia language fluency essential. 
-- Git-workflow familiarity strongly preferred. 
+- Julia language fluency essential.
+- Git-workflow familiarity strongly preferred.
 - Some prior contact with optimization algorithms of some kind
 - A passing familiarity with machine learning goals and workflow preferred
 @@
@@ -58,7 +58,7 @@ range of hyper-parameter optimization problems.
 ### Your contribution
 
 The aim of this project is to implement one or more variants of PSO
-algorithm, for use in the MLJ machine learning platform, for the purpose of optimizing hyper-parameters. *Integration* with MLJ is crucial, so there will be opportunity to spend time familiarizing yourself with this popular tool. 
+algorithm, for use in the MLJ machine learning platform, for the purpose of optimizing hyper-parameters. *Integration* with MLJ is crucial, so there will be opportunity to spend time familiarizing yourself with this popular tool.
 
 Specifically, you will:
 - familiarize yourself with the training, evaluation and tuning of machine learning models in MLJ
@@ -111,12 +111,12 @@ This project is to implement more bias mitigation algorithms and invent new ones
 ### References
 
 1. High-level overview: [https://towardsdatascience.com/a-tutorial-on-fairness-in-machine-learning-3ff8ba1040cb](https://julialang.org/jsoc/gsoc/MLJ/)
-2. [https://nextjournal.com/ashryaagr/fairness](https://nextjournal.com/ashryaagr/fairness) 
-3. IBM’s AIF360 resources: [https://aif360.mybluemix.net/](https://aif360.mybluemix.net/) 
+2. [https://nextjournal.com/ashryaagr/fairness](https://nextjournal.com/ashryaagr/fairness)
+3. IBM’s AIF360 resources: [https://aif360.mybluemix.net/](https://aif360.mybluemix.net/)
 
     AIF360 Inprocessing algorithms: Available [here](https://aif360.readthedocs.io/en/latest/modules/algorithms.html#module-aif360.algorithms.inprocessing).
 
-4. [https://dssg.github.io/fairness_tutorial/](https://dssg.github.io/fairness_tutorial/) 
+4. [https://dssg.github.io/fairness_tutorial/](https://dssg.github.io/fairness_tutorial/)
 
 
 ## Causal and counterfactual methods for fairness in machine learning
@@ -143,7 +143,7 @@ Machine learning models are developed to support and make high-impact decisions 
 
 So how can we fix unfairness in models? Arguably, we should first identify the underlying _causes_ of bias, and only then can we actually remediate bias successfully.
 However, one major challenge is that a proper evaluation often requires data that we don't have. For this reason, we also need counterfactual analysis, to identify actions we can take that can mitigate fairness not just in our training data, but also in situations we haven't seen yet but could encounter in the future. Ideas for identifying and mitigating bias using such causal interventions have been proposed in papers such as [Equality of Opportunity in Classification: A Causal Approach](https://causalai.net/r37.pdf) and the references below.
-    
+
 ### Your contribution
 
 This project is to implement algorithms for counterfactual ("what if") reasoning and causal analysis to Fairness.jl and MLJ.jl, integrating and extending Julia packages for causal analysis. Some specific stages are:
@@ -157,7 +157,7 @@ This project is to implement algorithms for counterfactual ("what if") reasoning
 
 ### References
 @@tight-list
-- [Repository of Causal-Fairness links](https://github.com/yongkaiwu/Causal-Fairness) 
+- [Repository of Causal-Fairness links](https://github.com/yongkaiwu/Causal-Fairness)
 - [Causal fairness for predictive models](https://causalai.net/r37.pdf)
 - [High-level overview: Fair Multiple Decision Making Through Soft Interventions](https://papers.nips.cc/paper/2020/file/d0921d442ee91b896ad95059d13df618-Paper.pdf)
 - [Fairness in Decision-Making — The Causal Explanation Formula](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16949/15911)
@@ -172,12 +172,12 @@ This project is to implement algorithms for counterfactual ("what if") reasoning
 ## Time series forecasting at scale - speed up via Julia
 Time series are ubiquitous - stocks, sensor reading, vital signs. This projects aims at adding time series forecasting to MLJ and perform benchmark comparisons to [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
 
-**Difficulty.** Easy - moderate. 
+**Difficulty.** Easy - moderate.
 
 ### Prerequisites
-- Julia language fluency essential. 
-- Git-workflow essebtial 
-- Some prior contact with time series forecasting 
+- Julia language fluency essential.
+- Git-workflow essebtial
+- Some prior contact with time series forecasting
 - HPC in julia is a desirable
 
 ### Your contribution
@@ -200,18 +200,18 @@ But there are still very few principled time-series libraries out there, so you 
 
 Interpreting and explaining black box interpretation crucial to estabilish trust and improve performance
 
-**Difficulty.** Easy - moderate. 
+**Difficulty.** Easy - moderate.
 
 ### Description
-It is important to have mechanisms in place to interpret the results of machine learning models. Identify the relevant factors of a decision or scoring of a model. 
+It is important to have mechanisms in place to interpret the results of machine learning models. Identify the relevant factors of a decision or scoring of a model.
 
 This project will implement methods for model and feature interpretability.
 
 **Mentors.** [Diego Arenas](https://github.com/darenasc), [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer).
 
 ### Prerequisites
-- Julia language fluency essential. 
-- Git-workflow familiarity strongly preferred. 
+- Julia language fluency essential.
+- Git-workflow familiarity strongly preferred.
 - Some prior contact with explainable AI/ML methods is desirable.
 - A passing familiarity with machine learning goals and workflow preferred
 
@@ -223,17 +223,17 @@ The aim of this project is to implement multiple  variants implementation algori
 - Partial dependence plots
 - Tree surrogate
 - LocalModel: Local Interpretable Model-agnostic Explanations
-- Add Dataset loaders for standard interpretability datasetss. 
+- Add Dataset loaders for standard interpretability datasetss.
 - Add performance metrics for interpretability
 - Add interpretability algorithms
-- Glue code to SHAP package 
+- Glue code to SHAP package
 
 Specifically you will
 - Familiarize yourself with MLJ
 - Survey of some of the literature and existing implementations in Julia and other languages, and preparing a short summary
 - Implement visualisations of explanations
 - Implement use cases
-- You will learn about the benefits and short comings of model interpretation and how to use them. 
+- You will learn about the benefits and short comings of model interpretation and how to use them.
 
 ### References
 - [Interpretable Machine Learning - A Guide for Making Black Box Models Explainable by Christoph Molnalr](https://christophm.github.io/interpretable-ml-book/)
@@ -252,7 +252,7 @@ Design and implement a data visualization module for MLJ.
 
 ### Description
 
-Design and implement a data visualization module for MLJ to visualize numeric and categorical features (histograms, boxplots, correlations, frequencies), intermediate results, and metrics generated by MLJ machines. 
+Design and implement a data visualization module for MLJ to visualize numeric and categorical features (histograms, boxplots, correlations, frequencies), intermediate results, and metrics generated by MLJ machines.
 
 Using a suitable Julia package for data visualization.
 
@@ -278,28 +278,28 @@ You will enhance your visualisation skills as well as your ability to "debug" an
 
 **Mentors**: [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer), [Diego Arenas](https://github.com/darenasc).
 
-## Deeper Bayesian Intergration
+## Deeper Bayesian Integration
 Bayesian methods and probabilistic supervised learning provide uncertainty quantification. This project aims increasing integration to combine Bayeisan and non-Bayesian methods using Turing.
 
 ### Description
-As an initial step reproduce (SOSSMLJ)[https://github.com/cscherrer/SossMLJ.jl] in Turing. The bulk of the project is to implement methods that combine multiple predictive distributinons.
+As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) in Turing. The bulk of the project is to implement methods that combine multiple predictive distributinons.
 
 ### Your contributions
 - Interface between Turing and MLJ
 - Comparisons of ensambling, stacking of predictive distribution
 - reproducible benchmarks across various settings.
 
-### References 
+### References
 [Bayesian Stacking](http://www.stat.columbia.edu/~gelman/research/published/stacking_paper_discussion_rejoinder.pdf)
 [SKpro](https://github.com/alan-turing-institute/skpro/blob/master/README.md)
 ### Difficulty: Medium to Hard
 
-**Mentors**: [Hong Ge](https://github.com/yebai) [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer) 
+**Mentors**: [Hong Ge](https://github.com/yebai) [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
 
 ## MLJ and MLFlow integration
-Integrate MLJ with [MLFlow](https://mlflow.org). 
+Integrate MLJ with [MLFlow](https://mlflow.org).
 
-**Difficulty.** Easy. 
+**Difficulty.** Easy.
 
 ### Description
 
@@ -323,16 +323,16 @@ MLFlow is a flexible model management tool. The project consists of writing the 
 Diagnose and exploit opportunities for speeding up common MLJ
 workflows.
 
-**Difficulty.** Moderate. 
+**Difficulty.** Moderate.
 
 ### Description
 
 In addition to investigating a number of known performance bottlenecks, you will have some free reign in this to identify opportunities to speed up common MLJ workflows, as well as making better use of memory resources.
 
 ### Prerequisites
-- Julia language fluency essential. 
+- Julia language fluency essential.
 - Experience with multi-threading and multi-processor computing essential, preferably in Julia.
-- Git-workflow familiarity strongly preferred. 
+- Git-workflow familiarity strongly preferred.
 - Familiarity with machine learning goals and  workflow preferred
 
 ### Your contribution
@@ -341,11 +341,11 @@ In this project you will:
 - work towards addressing a number of known performance issues, including:
 - limitations of the generic Tables.jl interface for interacting with tabular data which, in common cases (DataFrames), has extra functionality that can be exploited
 - rolling out new data front-end for models to avoid unnecessary copying of data
-- in conjuction with your mentor, identify best design for introducing better sparse data support to MLJ models (e.g., naive Bayes) 
+- in conjuction with your mentor, identify best design for introducing better sparse data support to MLJ models (e.g., naive Bayes)
 - implement a multi-threading and/or multi-processor parallelism to the current learning networks scheduler
 - benchmark and profile common workflows to identify opportunities for further code optimizations
 - implement some of these optimizations
-  
+
 ### References
 - [MLJ Roadmap](https://github.com/alan-turing-institute/MLJ.jl/blob/dev/ROADMAP.md#scalability). See, in particular "Scalability" section.
 - [Taking performance more seriously GitHub issue](https://github.com/alan-turing-institute/MLJBase.jl/issues/309)

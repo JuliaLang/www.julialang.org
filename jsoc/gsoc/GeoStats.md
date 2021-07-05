@@ -43,7 +43,7 @@ The goal of this project is to implement a geostatistical simulation method from
 ## Migrate from Plots.jl to Makie.jl recipes
 
 The project currently relies on Plots.jl recipes to visualize geospatial data sets as well as many other objects defined in the framework.
-However, very large data sets (e.g. 3D volumes) cannot be visualized easily. The Makie.jl project is a promissing alternative.
+However, very large data sets (e.g. 3D volumes) cannot be visualized easily. The Makie.jl project is a promising alternative.
 
 The goal of this project is to migrate all plot recipes from Plots.jl to Makie.jl.
 
