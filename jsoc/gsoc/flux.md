@@ -49,7 +49,7 @@ In all these projects, the goal is not only to showcase the current Julia ecosys
 
 **Mentors**: [Jonathan Laurent](https://github.com/jonathan-laurent)
 
-### NLP Tools and Models 
+### NLP Tools and Models
 
 **Difficulty**: Medium to Hard
 
@@ -61,9 +61,9 @@ It is important to note that we want practical, usable solutions to be created, 
 * Implement GPT/GPT-2 in Julia
 * Implement [extractive summarisation based on Transformers](https://arxiv.org/abs/1909.03186)
 * Implement practical models for
-  * Dependency Tree Parsing  
-  * Morphological extractions  
-  * Translations (using Transformers)  
+  * Dependency Tree Parsing
+  * Morphological extractions
+  * Translations (using Transformers)
 * Indic language support -- validate and test all models for Indic languages
   * ULMFiT models for Indic languages
 * Chinese tokenisation and parsing
@@ -71,7 +71,7 @@ It is important to note that we want practical, usable solutions to be created, 
 
 **Mentors**: [Avik Sengupta](https://github.com/aviks/)
 
-### Automated music generation 
+### Automated music generation
 
 **Difficulty**: Hard
 
@@ -102,7 +102,7 @@ Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/).
 
 ### FermiNets: Generative Synthesis for Automating the Choice of Neural Architectures
 
-The application of machine learning requires an understanding a practictioner to optimize a neural architecture for a given problem, or does it? Recently techniques in automated machine learning, also known as AutoML, have dropped this requirement by allowing for good architectures to be found automatically. One such method is the [FermiNet](https://arxiv.org/abs/1809.05989) which employs generative synthesis to give a neural architecture which respects certain operational requirements. The goal of this project is to implement the FermiNet in Flux to allow for automated sythesis of neural networks.
+The application of machine learning requires an understanding a practitioner to optimize a neural architecture for a given problem, or does it? Recently techniques in automated machine learning, also known as AutoML, have dropped this requirement by allowing for good architectures to be found automatically. One such method is the [FermiNet](https://arxiv.org/abs/1809.05989) which employs generative synthesis to give a neural architecture which respects certain operational requirements. The goal of this project is to implement the FermiNet in Flux to allow for automated synthesis of neural networks.
 
 Mentors: [Chris Rackauckas](https://github.com/ChrisRackauckas) and [Dhairya Gandhi](https://github.com/DhairyaLGandhi/).
 
@@ -148,25 +148,25 @@ A stretch goal can include extending FastAI.jl beyond its Python-equivalent by l
 
 Expected Outcome:
 
-Create a library of utliity functions that can consume Julia's Imaging libraries to make them differentiable. With Zygote.jl, we have the platform to take a general purpose package and apply automatic differentiation to it. This project is motivated to use existing libraries that offer perform computer vision tasks, and augment them with AD to perform tasks such as homography regression.
+Create a library of utility functions that can consume Julia's Imaging libraries to make them differentiable. With Zygote.jl, we have the platform to take a general purpose package and apply automatic differentiation to it. This project is motivated to use existing libraries that offer perform computer vision tasks, and augment them with AD to perform tasks such as homography regression.
 
 Skills: Familiarity with automatic differentiation, deep learning, and defining (a lot of) Custom Adjoints
 
 Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/)
 
-## Deep Learning for source code analysis 
+## Deep Learning for source code analysis
 
 **Difficulty**: Easy to Medium
 
-The use of deep learning tools to source code is an active area of research. With the runtime being able to easily introspect into Julia code (for example, with a clean, accesible AST format), using theses techniques on Julia code would be a fruitful exercise.  
+The use of deep learning tools to source code is an active area of research. With the runtime being able to easily introspect into Julia code (for example, with a clean, accessible AST format), using theses techniques on Julia code would be a fruitful exercise.
 
 @@tight-list
 * Use of RNNs for syntax error correction: https://arxiv.org/abs/1603.06129
 * Implement Code2Vec for Julia: https://arxiv.org/abs/1803.09473
 @@
 
-**Recommended Skills:** Familiarity with compiler techniques as well as deep learning tools will be required. The "domain expertise" in this task is Julia programming, so it will need someone who has a reasonable experience of the Julia programming language. 
+**Recommended Skills:** Familiarity with compiler techniques as well as deep learning tools will be required. The "domain expertise" in this task is Julia programming, so it will need someone who has a reasonable experience of the Julia programming language.
 
-**Expected Outcome:**  Packages for each technique that is usable by general programmers. 
+**Expected Outcome:**  Packages for each technique that is usable by general programmers.
 
 **Mentors**: [Avik Sengupta](https://github.com/aviks/)
