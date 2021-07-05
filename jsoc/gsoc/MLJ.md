@@ -36,7 +36,7 @@ a swarm of bees. Introduce communication between the bees about their
 success so far, and you introduce the possibility of the bees
 ultimately converging on good candidate for the best model.
 
-PSO (particle swarm optimization) is a large, promising, and active
+PSO (Particle Swarm Optimization) is a large, promising, and active
 area of research, but also one that is used in real data science
 practice. The method is based on a very simple idea inspired by nature
 and makes essentially no assumptions about the nature of the cost
@@ -96,9 +96,9 @@ Mentors: [Jiahao Chen](https://jiahao.github.io/), [Moritz Schauer](https://gith
 
 ### Description
 
-Machine learning models are developed to support and make high-impact decisions like who to hire or who to give a loan to. However, available training data can exhibit bias against race, age, gender, or other prohibited bases, reflecting a complex social and economic history of systemic injustic. For example, women in the United Kingdom, United States and other countries were only allowed to have their own bank accounts and lines of credit in the 1970s! That means that training a credit decisioning model on historical data would encode implicit biases, that women are less credit-worthy because few of them had lines of credit in the past. Surely we would want to be fair and not hinder an applicant's ability to get a loan on the basis of their race, gender and age?
+Machine learning models are developed to support and make high-impact decisions like who to hire or who to give a loan to. However, available training data can exhibit bias against race, age, gender, or other prohibited bases, reflecting a complex social and economic history of systemic injustice. For example, women in the United Kingdom, United States and other countries were only allowed to have their own bank accounts and lines of credit in the 1970s! That means that training a credit decisioning model on historical data would encode implicit biases, that women are less credit-worthy because few of them had lines of credit in the past. Surely we would want to be fair and not hinder an applicant's ability to get a loan on the basis of their race, gender and age?
 
-So how can we fix data and models that are unfair? A common first reaction is to remove the race, gender and age attributes from the training data, and then say we are done. But as described in detail in the references, we cam have to consider if other features like one's name or address could encode such prohibited bases too. To mitigate bias and improve fairness in models, we can change the training data (pre-processing), the way we define and train the model (in-processing), and/or alter the predictions made (post-processing). Some algorithms for the first and third approaches have already been implemented in Fairness.jl, which have the advantage of treating the ML model as a black box. However, our latest resarch [(arXiv:2011.02407)](https://arxiv.org/abs/2011.02407) shows that pur black box methods have fundamental limitations in their ability to mitigate bias.
+So how can we fix data and models that are unfair? A common first reaction is to remove the race, gender and age attributes from the training data, and then say we are done. But as described in detail in the references, we cam have to consider if other features like one's name or address could encode such prohibited bases too. To mitigate bias and improve fairness in models, we can change the training data (pre-processing), the way we define and train the model (in-processing), and/or alter the predictions made (post-processing). Some algorithms for the first and third approaches have already been implemented in Fairness.jl, which have the advantage of treating the ML model as a black box. However, our latest research [(arXiv:2011.02407)](https://arxiv.org/abs/2011.02407) shows that pur black box methods have fundamental limitations in their ability to mitigate bias.
 
 ### Your contribution
 
@@ -139,7 +139,7 @@ Mentors: [Jiahao Chen](https://jiahao.github.io/), [Moritz Schauer](https://gith
 
 ### Description
 
-Machine learning models are developed to support and make high-impact decisions like who to hire or who to give a loan to. However, available training data can exhibit bias against race, age, gender, or other prohibited bases, reflecting a complex social and economic history of systemic injustic. For example, women in the United Kingdom, United States and other countries were only allowed to have their own bank accounts and lines of credit in the 1970s! That means that training a credit decisioning model on historical data would encode implicit biases, that women are less credit-worthy because few of them had lines of credit in the past. Surely we would want to be fair and not hinder an applicant's ability to get a loan on the basis of their race, gender and age?
+Machine learning models are developed to support and make high-impact decisions like who to hire or who to give a loan to. However, available training data can exhibit bias against race, age, gender, or other prohibited bases, reflecting a complex social and economic history of systemic injustice. For example, women in the United Kingdom, United States and other countries were only allowed to have their own bank accounts and lines of credit in the 1970s! That means that training a credit decisioning model on historical data would encode implicit biases, that women are less credit-worthy because few of them had lines of credit in the past. Surely we would want to be fair and not hinder an applicant's ability to get a loan on the basis of their race, gender and age?
 
 So how can we fix unfairness in models? Arguably, we should first identify the underlying _causes_ of bias, and only then can we actually remediate bias successfully.
 However, one major challenge is that a proper evaluation often requires data that we don't have. For this reason, we also need counterfactual analysis, to identify actions we can take that can mitigate fairness not just in our training data, but also in situations we haven't seen yet but could encounter in the future. Ideas for identifying and mitigating bias using such causal interventions have been proposed in papers such as [Equality of Opportunity in Classification: A Causal Approach](https://causalai.net/r37.pdf) and the references below.
@@ -176,7 +176,7 @@ Time series are ubiquitous - stocks, sensor reading, vital signs. This projects 
 
 ### Prerequisites
 - Julia language fluency essential.
-- Git-workflow essebtial
+- Git-workflow essential
 - Some prior contact with time series forecasting
 - HPC in julia is a desirable
 
@@ -198,7 +198,7 @@ But there are still very few principled time-series libraries out there, so you 
 
 ## Interpretable Machine Learning in Julia
 
-Interpreting and explaining black box interpretation crucial to estabilish trust and improve performance
+Interpreting and explaining black box interpretation crucial to establish trust and improve performance
 
 **Difficulty.** Easy - moderate.
 
@@ -223,7 +223,7 @@ The aim of this project is to implement multiple  variants implementation algori
 - Partial dependence plots
 - Tree surrogate
 - LocalModel: Local Interpretable Model-agnostic Explanations
-- Add Dataset loaders for standard interpretability datasetss.
+- Add Dataset loaders for standard interpretability datasets.
 - Add performance metrics for interpretability
 - Add interpretability algorithms
 - Glue code to SHAP package
@@ -264,7 +264,7 @@ The idea is to implement a similar resource to what [mlr3viz](https://github.com
 * Some prior work on data visualization is desirable
 
 ### Your contribution
-So far visualizing data or features in MLJ is an ad-hoc task. Defined by the user case by case. You will be implementing a standard way to visualize model performance, residuals, benchmarks and predictions  for MLJ users.
+So far visualizing data or features in MLJ is an ad-hoc task. Defined by the user case by case. You will be implementing a standard way to visualize model performance, residuals, benchmarks and predictions for MLJ users.
 
 The structures and metrics will be given from the results of models or data sets used; your task will be to implement the right visualizations depending on the data type of the features.
 
@@ -279,10 +279,10 @@ You will enhance your visualisation skills as well as your ability to "debug" an
 **Mentors**: [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer), [Diego Arenas](https://github.com/darenasc).
 
 ## Deeper Bayesian Integration
-Bayesian methods and probabilistic supervised learning provide uncertainty quantification. This project aims increasing integration to combine Bayeisan and non-Bayesian methods using Turing.
+Bayesian methods and probabilistic supervised learning provide uncertainty quantification. This project aims increasing integration to combine Bayesian and non-Bayesian methods using Turing.
 
 ### Description
-As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) in Turing. The bulk of the project is to implement methods that combine multiple predictive distributinons.
+As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) in Turing. The bulk of the project is to implement methods that combine multiple predictive distributions.
 
 ### Your contributions
 - Interface between Turing and MLJ
@@ -312,7 +312,7 @@ MLFlow is a flexible model management tool. The project consists of writing the 
 ### Your contribution
 * Provide to MLJ users a way to keep track of their machine learning models using MLflow, as a local or remote server.
 * Implement a reproducible way to store and load machine learning models.
-* Implement functions wraping the REST API calls that makes possible the use of MLflow.
+* Implement functions wrapping the REST API calls that makes possible the use of MLflow.
 
 ### References
 * [MLFlow](https://mlflow.org) website.
@@ -341,7 +341,7 @@ In this project you will:
 - work towards addressing a number of known performance issues, including:
 - limitations of the generic Tables.jl interface for interacting with tabular data which, in common cases (DataFrames), has extra functionality that can be exploited
 - rolling out new data front-end for models to avoid unnecessary copying of data
-- in conjuction with your mentor, identify best design for introducing better sparse data support to MLJ models (e.g., naive Bayes)
+- in conjunction with your mentor, identify best design for introducing better sparse data support to MLJ models (e.g., naive Bayes)
 - implement a multi-threading and/or multi-processor parallelism to the current learning networks scheduler
 - benchmark and profile common workflows to identify opportunities for further code optimizations
 - implement some of these optimizations
