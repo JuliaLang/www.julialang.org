@@ -35,7 +35,7 @@ Types of contributions vary depending on your experience, background, and the na
 and more.
 
 ## Chose your path
-Your next step is to identify which kind of contributor you are. There are multiple paths, some of which cross. Do you want to ... 
+Your next step is to identify which kind of contributor you are. There are multiple paths, some of which cross. Here is a high level overlview of how you might want to contribut. The question is: do you want to ... 
 
 @@tight-list
 -   Discover
@@ -66,3 +66,6 @@ Your next step is to identify which kind of contributor you are. There are multi
 	-   contribute something that isn't addressed in this guide!
 	@@
 @@
+
+
+
