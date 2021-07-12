@@ -4,9 +4,7 @@ We also have an unofficial [Gitter](https://gitter.im/JuliaLang/julia) channel. 
 
 The Julia Language is also present and active on the following platforms in order to engage the widest audience possible:
 
-@@tight-list
 * **[LinkedIn](https://www.linkedin.com/company/the-julia-language/)**
 * **[Facebook](https://www.facebook.com/TheJuliaLanguage/)**
 * **[Pinterest](https://www.pinterest.com/JuliaLanguage/)**
 * **[Instagram](https://www.instagram.com/Julia.language/)**
-@@
