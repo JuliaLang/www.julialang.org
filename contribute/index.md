@@ -50,7 +50,7 @@ The question is: do you want to ...
   - develop and submit a library
   - include future pans for your library
 - Help
-	- spread a word about Julia's Ecosystem
-	- submit a use case
-	- answer questions on Slack and Discourse
-	- contribute something that isn't addressed in this guide!
+  - spread a word about Julia's Ecosystem
+  - submit a use case
+  - answer questions on Slack and Discourse
+  - contribute something that isn't addressed in this guide!
