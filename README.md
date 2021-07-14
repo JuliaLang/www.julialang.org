@@ -87,3 +87,11 @@ blc https://julialang.org -ro
 ```
 
 (it takes a while, and may require you to do it in several steps).
+
+## FAQ
+
+### tight lists
+
+This is mostly a legacy item. If lists look wrong on the page, please open an issue. You should not have to use `@@tight-list ... @@` anymore.
+
+If you want nested lists, make sure the indentation for the nested list is made with _spaces_ and not with tabs.

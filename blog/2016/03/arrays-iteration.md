@@ -44,12 +44,10 @@ diverse collection of concrete arrays in mind.
 
 In core julia, some types we support fairly well are:
 
-@@tight-list
 - `Array`: the prototype for all arrays
 - `Range`s: a good example of what I often consider a "computed" array, where essentially none of the values are stored in memory. Since there is no storage, these are immutable containers: you can't set values in individual slots.
 - `BitArray`s: arrays that can only store 0 or 1 (`false` or `true`), and for which the internal storage is packed so that each entry requires only one bit.
 - `SubArray`s: the problems this type introduced, and the resolution we adopted, probably serves as the best model for the generalizations considered here. Therefore, this case is discussed in greater detail below.
-@@
 
 Another important class of array types in Base are sparse arrays:
 `SparseMatrixCSC` and `SparseVector`, as well as other sparse
@@ -71,11 +69,9 @@ operations.
 Outside of Base, there are some other mind-stretching examples of
 arrays, including:
 
-@@tight-list
 - `DataFrames`: indexing arrays with symbols rather than integers. Other related types include `NamedArrays`, `AxisArrays`.
 - `Interpolations`: indexing arrays with non-integer floating-point numbers
 - `DistributedArrays`: another great example of a case in which you need to think through access patterns carefully
-@@
 
 ## SubArrays: a case study
 
@@ -117,10 +113,8 @@ types useful in generic programming.
 
 It's also worth pointing out some problems:
 
-@@tight-list
 - Most importantly, it requires that one adopt a slightly different programming style. Despite being well into another release cycle, this transition is still [not complete, even in Base](https://github.com/JuliaLang/julia/pull/15434#issuecomment-194991739).
 - For algorithms that involve two or more arrays, there's a possibility that their "best" iterators will be of different types. *In principle*, this is a big problem. Consider matrix-vector multiplication, `A[i,j]*v[j]`, where `j` needs to be in-sync for both `A` and `v`, yet you'd also like all of these accesses to be maximally-efficient.  *In practice*, right now this isn't a burning problem: even if our arrays don't all have efficient linear indexing, to my knowledge all of our (dense) array types have efficient cartesian indexing. Since indexing by `N` integers (where `N` is equal to the dimensionality of the array) is always performant, this serves as a reliable default for generic code. (It's worth noting that this isn't true for sparse arrays, and the lack of a corresponding generic solution is probably the main reason we lack a generic API for writing sparse algorithms.)
-@@
 
 Unfortunately, I suspect that if we want to add support for certain
 new operations or types (specific examples below), it will force us to
@@ -358,12 +352,10 @@ stored in `dest[1]`.
 
 These examples suggest a formalization of `AbstractArray`:
 
-@@tight-list
 - `AbstractArray`s are specialized associative containers, in that the allowable "keys" may be restricted by more than just their julia type.  Specifically, the allowable keys must be representable as a cartesian product of one-dimensional lists of values.  The allowed keys may depend not just on the array type but also the specific array (e.g., its size).  Attempted access by keys that cannot be converted to one of the allowed keys, for that specific array, result in `BoundsError`s.
 - For any given array, one must be able to generate a finite-dimensional parametrization of the full domain of valid keys from the array itself.  This might only require knowledge of the array size, or the keys might depend on some internal storage (think `DataFrames` and `OffsetArrays`).  In some cases, just the array type might be sufficient (e.g., `FixedSizeArrays`).  By this definition, note that a `Dict{ASCII5,Int}`, where `ASCII5` is a type that means an ASCII string with 5 characters, would qualify as a 5-dimensional (sparse) array, but that a `Dict{ASCIIString,Int}` would not (because there is no length limit to an `ASCIIString`, and hence no finite dimensionality).
 - An array may be indexed by more than one key type (i.e., keys may have multiple parametrizations).  Different key parametrizations are equivalent when they refer to the same element of a given array. Linear indexes and cartesian indexes are simple examples of interconvertable representations, but specialized iterators can produce other key types as well.
 - Arrays may support multiple iterators that produce non-equivalent key sequences.  In other words, a row-major matrix may support both `CartesianRange` and `RowMajorRange` iterators that access elements in different orders.
-@@
 
 # Finding a way forward
 
