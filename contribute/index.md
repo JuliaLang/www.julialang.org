@@ -88,8 +88,7 @@ A great place to both post and find questions is on [Discourse](https://discours
 
 	
 ### Find open issues of packages
-- pre-requisites: GitHub account, development tools ([installed Julia](#how-to-install-julia), an [IDE](#what-are-the-ide-options?
-))
+- pre-requisites: GitHub account, development tools ([installed Julia](#how-to-install-julia), an [IDE](#what-are-the-ide-options?))
 - estimated time: from ~1h to days or months (try starting with simpler issues)
 - steps:
  	- [pick a Julia package](#how-to-find-julia-packages) and open its GitHub page
@@ -104,6 +103,9 @@ The list of Julia packages, organized *thematically*, can be found at https://ju
 
 The list of packages all registered, organized *alphabetically*, can be found at https://github.com/JuliaRegistries/General
 
+## What are the IDE options?
+
+An integrated development environment (IDE) can help make software development easier. Some options include [Juno](https://junolab.org/), [VSCode](https://code.visualstudio.com/download), [Atom](https://atom.io/) and [Jupyter notebooks](https://jupyter.org/install).
 
 ## How to cite Julia?
 
