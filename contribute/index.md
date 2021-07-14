@@ -67,9 +67,9 @@ There are plenty of documentation files in the Julia-verse on GitHub, and typos 
 - pre-requisites: GitHub account, text editor with spell checking (e.g. MS Word, Google docs)
 - estimated time: 1h
 - steps:
-	- [pick a Julia package](#how-to-find-julia-packages)
-	- find a typo to fix (e.g. paste the text into Google docs for a spell-check)
-	- go through a few green buttons on GitHub to submit your contribution
+  - [pick a Julia package](#how-to-find-julia-packages)
+  - find a typo to fix (e.g. paste the text into Google docs for a spell-check)
+  - go through a few green buttons on GitHub to submit your contribution
 	
 ### Find questions to answer: StackOverflow
 - pre-requisites: you do not need an account to find a question, but you will need a StackOverflow account to answer one
@@ -91,10 +91,10 @@ A great place to both post and find questions is on [Discourse](https://discours
 - pre-requisites: GitHub account, development tools ([installed Julia](#how-to-install-julia), an [IDE](#what-are-the-ide-options?))
 - estimated time: from ~1h to days or months (try starting with simpler issues)
 - steps:
- 	- [pick a Julia package](#how-to-find-julia-packages) and open its GitHub page
-	- on GitHub, open the 'Issues' tab
-	- open an issue and read through the existing discussion
-	- participate in the discussion and/or solve the issue
+  - [pick a Julia package](#how-to-find-julia-packages) and open its GitHub page
+  - on GitHub, open the 'Issues' tab
+  - open an issue and read through the existing discussion
+  - participate in the discussion and/or solve the issue
 
 
 ### How to find Julia packages
