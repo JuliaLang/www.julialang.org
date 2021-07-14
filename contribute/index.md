@@ -50,7 +50,7 @@ The question is: do you want to ...
   - develop and submit a library
   - include future pans for your library
 - Help
-  - spread a word about Julia's Ecosystem
+  - spread the word about Julia's Ecosystem
   - submit a use case
   - answer questions on Slack and Discourse
   - contribute something that isn't addressed in this guide!
@@ -62,7 +62,7 @@ If by this point you are convinced that contributing is for you, but don't know 
 
 ### Find a README file to edit
 
-There is plenty of documentation files in the Julia-verse of GitHub, and typos are so easy to make! You can help clean up documentation by correcting typos or errors which you find. 
+There are plenty of documentation files in the Julia-verse on GitHub, and typos are so easy to make! You can help clean up documentation by correcting typos or errors which you find. 
 
 - pre-requisites: GitHub account, text editor with spell checking (e.g. MS Word, Google docs)
 - estimated time: 1h
@@ -90,7 +90,7 @@ A great place to both post and find questions is on [Discourse](https://discours
 ### Find open issues of packages
 - pre-requisites: GitHub account, development tools ([installed Julia](#how-to-install-julia), an [IDE](#what-are-the-ide-options?
 ))
-- estimated time: from 1h to days and months
+- estimated time: from ~1h to days or months (try starting with simpler issues)
 - steps:
  	- [pick a Julia package](#how-to-find-julia-packages) and open its GitHub page
 	- on GitHub, open the 'Issues' tab
@@ -100,13 +100,15 @@ A great place to both post and find questions is on [Discourse](https://discours
 
 ### How to find Julia packages
 
-The list of Julia packages, organized *thematically*, can be found at https://juliapackages.com. Click on the name of the package to discover its website, GitHub repository, and further details. 
+The list of Julia packages, organized *thematically*, can be found at https://juliahub.com/ui/Packages. Click on the name of the package to discover its website, GitHub repository, and further details. 
 
-The list of packages, organized *alphabetically*, can be found at https://github.com/JuliaRegistries/General
+The list of packages all registered, organized *alphabetically*, can be found at https://github.com/JuliaRegistries/General
 
 
 ## How to cite Julia?
 
-For citations, please refer to the [research](https://julialang.org/research/) page of Julia.
+For citations, please refer to the [research](https://julialang.org/research/) page on the Julia website.
 
 ## Contributing to core Julia
+
+Coming soon!
