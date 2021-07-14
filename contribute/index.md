@@ -30,7 +30,7 @@ and more.
 
 ## Chose your path
 Your next step is to identify which kind of contributor you are.
-There are multiple paths, some of which cross. Here is a high level overview of how you might want to contribute.
+There are multiple paths, some of which cross. Here is a high-level overview of how you might want to contribute.
 The question is: do you want to ...
 
 - Discover
@@ -43,8 +43,8 @@ The question is: do you want to ...
   - write a blogpost
   - cite Julia
   - report a bug
-  - make feature request
-  - make pull request
+  - make a feature request
+  - make a pull request
   - review documentation
   - share a use case
   - develop and submit a library
@@ -57,12 +57,12 @@ The question is: do you want to ...
 
 ## How do I find contributing opportunities?
 
-If by this point you are convinced that contributing is for you, but don't know where and how to find contributing opportunities, we have collated a couple of ideas for you. For each idea we have provided a list of *prerequisites* and *estimated time* to make the contribution.
+If by this point you are convinced that contributing is for you, but don't know where and how to find contributing opportunities, we have collated a couple of ideas for you. For each idea, we have provided a list of *prerequisites* and *estimated time* to make the contribution.
 
 
 ### Find a README file to edit
 
-There is plenty of documentation files in the Julia-verse of GitHub, and typos are so easy to make! You can help cleaning up documentation by correcting typos or errors which you find. 
+There is plenty of documentation files in the Julia-verse of GitHub, and typos are so easy to make! You can help clean up documentation by correcting typos or errors which you find. 
 
 - pre-requisites: GitHub account, text editor with spell checking (e.g. MS Word, Google docs)
 - estimated time: 1h
@@ -72,17 +72,17 @@ There is plenty of documentation files in the Julia-verse of GitHub, and typos a
 	- go through a few green buttons on GitHub to submit your contribution
 	
 ### Find questions to answer: StackOverflow
-- pre-requisites: you do not need an acocunt to find a question, but you will need a StackOverflow account to answer one
-- estimated time: depends on the question and your experience with the topc
-- steps: open [Stackoverflow](https://stackoverflow.com/) and search for questions, tagged `[julia]`. For this, enter in the search box tag `[julia]`. You will see a list of most recent questions related to Julia. Surely, if you are interested in a more specific question, e.g. the Plots library, substitute the search term with `[Plots.jl]`
+- pre-requisites: you do not need an account to find a question, but you will need a StackOverflow account to answer one
+- estimated time: depends on the question and your experience with the topic
+- steps: open [Stackoverflow](https://stackoverflow.com/) and search for questions, tagged `[julia]`. For this, enter in the search box tag `[julia]`. You will see a list of the most recent questions related to Julia. Surely, if you are interested in a more specific question, e.g. the Plots library, substitute the search term with `[Plots.jl]`
 	
-To stay up-to-date on StackOverflow questions related to Julia, you can also join #stackoverflow-feed channel on [Slack](https://julialang.slack.com). If something they you know how to answer comes up - thats' an immediate change to help!
+To stay up-to-date on StackOverflow questions related to Julia, you can also join #stackoverflow-feed channel on [Slack](https://julialang.slack.com). If something you know how to answer comes up - thats' an immediate chance to help!
 
 
 ### Find questions to answer: Discourse
 A great place to both post and find questions is on [Discourse](https://discourse.julialang.org/)
 
-- pre-requisites: you do not need an acocunt to find a question, but you will need and account to answer a question
+- pre-requisites: you do not need an account to find a question, but you will need an account to answer a question
 - estimated time: depends on the question and your experience with the topic
 - steps: click the 'Reply' button under a question on the Discourse page, and share your knowledge
 
@@ -100,7 +100,7 @@ A great place to both post and find questions is on [Discourse](https://discours
 
 ### How to find Julia packages
 
-The list of Julia packages, organized *thematically*, can be found at https://juliapackages.com. Click on the name of the package to discover its website, GitHub repository and further details. 
+The list of Julia packages, organized *thematically*, can be found at https://juliapackages.com. Click on the name of the package to discover its website, GitHub repository, and further details. 
 
 The list of packages, organized *alphabetically*, can be found at https://github.com/JuliaRegistries/General
 
