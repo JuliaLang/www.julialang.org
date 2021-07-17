@@ -15,42 +15,35 @@ Julia is available for Windows 7 and later for both 32 bit and 64 bit versions.
 
 
 ### Installation Notes
-@@tight-list
+
 1.  Download the Windows Julia installer from https://julialang.org/downloads/. Note, the 32-bit Julia binaries work on both 32-bit and 64-bit Windows  (x86 and x86\_64), but the 64-bit Julia binaries only run on 64-bit Windows (x86\_64).
 2. Run the installer and note the installation directory. The installation directory should look something like \winpath, *please note this path*.
-@@
 
 To invoke Julia by simply typing `julia` in the command line, the Julia executable directory needs to be added to PATH. Perform the following steps to add Julia to PATH.
 
 
 #### Adding Julia to PATH on Windows 10,
 
-@@tight-list
 1.  Open Run (Windows Key + R),  type in `rundll32 sysdm.cpl,EditEnvironmentVariables` and hit enter.
 2.  Under either the "User Variables" or "System Variables" section, find the row with "Path", and click edit.
 3.  The "Edit environment variable" UI will appear. Here, click "New", and paste in the directory noted from the installation stage. This should look something like \winpathbin.
 4.  Click OK. You can now run Julia from the command line, by typing `julia`!
-@@
 
 #### Adding Julia to PATH on Windows 7 or 8
 
-@@tight-list
 1.  Open Run (Windows Key + R),  type in `rundll32 sysdm.cpl,EditEnvironmentVariables` and hit enter.
 2.  In the System Variables window, highlight Path, and click Edit.
 3.  In the Edit System Variables window, move the cursor to the end of the field.
 4.  If there is no semicolon at the end, add it and paste in the path to the `bin` folder within the installation directory noted earlier. This path should look something like \winpathbin.
 5.  Click OK. You can now run Julia from the command line, by typing `julia`!
-@@
 
 
 ### Windows 7 / Windows Server 2012 Installation Notes
 
 Windows 7 / Windows Server 2012 users also need to install:
 
-@@tight-list
 *   the [TLS easy\_fix](https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in) for the package manager to work, see [this Discourse thread](https://discourse.julialang.org/t/errors-for-git-pkg/9351) for more details.
 *   [Windows Management Framework 3.0 or later](https://docs.microsoft.com/en-us/powershell/scripting/wmf/overview) to include PowerShell 3.0 or later.
-@@
 
 ### Uninstallation
 
@@ -146,7 +139,7 @@ This automatically puts the binary into a directory in the user's PATH, so you c
 
 ## Fedora/RHEL/CentOS/SL/OEL Linux
 
-A [Copr repository](https://copr.fedoraproject.org/coprs/nalimilan/julia/) is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest stable version of Julia.  On Fedora and CentOS 8, Julia is available in 
+A [Copr repository](https://copr.fedoraproject.org/coprs/nalimilan/julia/) is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest stable version of Julia.  On Fedora and CentOS 8, Julia is available in
 the main repositories, and you do not need to use the Copr repository.
 
 If you are using RHEL, CentOS, Scientific Linux or Oracle Enterprise Linux (version 5 or higher), first [enable EPEL](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F) for your distribution version. Then follow the steps below.
