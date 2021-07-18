@@ -27,7 +27,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
 </div>
 
 <!--
-      Containers: Official Channels
+      Containers: Community Channels
  -->
  <div class="container-fluid alt-color packages">
    <br><br>
