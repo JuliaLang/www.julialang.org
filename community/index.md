@@ -35,7 +35,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
        <h2 class="lead secondary-heading" id="official_channels">
-         <a href="#official_channels" class="ecosystem">Official Channels</a>
+         <a href="#community_channels" class="ecosystem">Community Channels</a>
        </h2>
      </div>
      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
