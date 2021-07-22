@@ -52,6 +52,7 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 
 * [AlgebraicJulia](https://github.com/AlgebraicJulia) – Applied Category Theory
 * [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](https://www.juliadiff.org/)
+* [JuliaFirstOrder](https://github.com/JuliaFirstOrder) - First-order optimization and proximal algorithms
 * [JuliaGeometry](https://github.com/JuliaGeometry) – Computational Geometry
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaIntervals](https://github.com/JuliaIntervals) – Rigorous numerics with interval arithmetic & applications
