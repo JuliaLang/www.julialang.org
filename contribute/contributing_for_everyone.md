@@ -28,9 +28,9 @@ and more.
 
 ## Where to get help?
 
-- [Julia Slack](https://julialang.org/slack/) is a space for informal commuincation with other Julia users and developers. A great way to reach out to people and exchange messages. But bear in mind, that messages will disappear over time. Plus, if you think that other users might be experienceing same issues as yourself, it is better to use Discourse.
+- [The Julia Slack](https://julialang.org/slack/) is a space for informal communication with other Julia users and developers. A great way to reach out to people and exchange messages. But bear in mind that messages will disappear over time. It is generally best to ask technical questions on Discourse.
 
-- Julia [Discourse Forum](https://discourse.julialang.org/) is a place where people discuss development. Questions and answers posted on Discourse remain on the web and public indefinitely. Which is a good thing, as by posting your question there, you are helping a wider community.
+- The Julia [Discourse Forum](https://discourse.julialang.org/) is a place where people discuss development. Questions and answers posted on Discourse remain on the web and public indefinitely. When you post your question there, you are helping a wider community!
 
 
 ## Chose your path
