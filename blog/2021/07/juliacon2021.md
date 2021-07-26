@@ -1,4 +1,6 @@
 +++
+author = "Logan Kilpatrick"
+published = "26 July 2021"
 title = "JuliaCon 2021, the largest Julia Programming event in history"
 author_img = "blog/Logan.JPG"
 author_blurb = "Julia Language Community Manager"
