@@ -1,7 +1,8 @@
++++
 title = "JuliaCon 2021, the largest Julia Programming event in history"
 author_img = "blog/Logan.JPG"
 author_blurb = "Julia Language Community Manager"
-rss = """JuliaCon 2021, the largest Julia Programming event in history"""
+rss = """JuliaCon 2021, the largest Julia Programming event ever"""
 
 meta = [
      ("property", "og:image", "https://media-exp1.licdn.com/dms/image/C560BAQFjhRdbE2Mbzw/company-logo_200_200/0/1611003674426?e=2159024400&v=beta&t=ICjmwSKSAAgH3fqbHwoUOSaNRqdSVyi9rQY5Sk9J5Bg"),
@@ -9,7 +10,7 @@ meta = [
      ("name", "twitter:card", "summary_large_image")
      ]
 rss_pubdate = Date(2021, 07, 26)
- +++
++++
 
 The JuliaCon 2021 [organizing committee](https://juliacon.org/2021/committee/) is proud to share that JuliaCon is off to an incredible start this year with workshops commencing on Tuesday July 20th and going until the conference talks begin on Wednesday July 28th.
 
