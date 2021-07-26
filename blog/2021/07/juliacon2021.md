@@ -22,7 +22,7 @@ Some important links which you may find helpful as the core conference kicks off
 - [The workshop schedule](https://juliacon.org/2021/workshops/), all workshops were recorded and are still available.
 - [The poster Schedule](https://juliacon.org/2021/posters/), this is the largest ever poster session with a hybrid async/sync approach we hope will foster great conversations on Gathertown (link will be available to those who [register for free](https://juliacon.org/2021/tickets/)
 - [The full talk schedule](https://pretalx.com/juliacon2021/schedule/), boasting the most talks we have ever had at a JuliaCon!
-- [JuliaCon Tshirts and Stickers(https://discourse.julialang.org/t/juliacon-2021-t-shirts-and-stickers-on-sale-now/62060?u=logankilpatrick), support the Julia Language by getting an awesome tshirt or sticker!
+- [JuliaCon Tshirts and Stickers](https://discourse.julialang.org/t/juliacon-2021-t-shirts-and-stickers-on-sale-now/62060?u=logankilpatrick), support the Julia Language by getting an awesome tshirt or sticker!
 
 This years JuliaCon is truly one for the books. By all metrics available to us, this years conference is already much larger than last year! Make sure to [register for free](https://juliacon.org/2021/tickets/) so you can stay up to date with all of the community meetups, event details, and more. You can also follow the [JuliaConOrg account on Twitter](https://twitter.com/JuliaConOrg) for in the moment updates and content. See you online!
 
