@@ -63,6 +63,7 @@ function hfun_blogposts()
                 url = "/blog/$ys/$ms/$ps/"
                 surl = strip(url, '/')
                 title = pagevar(surl, :title)
+				title === nothing && (title = "Untitled")
                 pubdate = pagevar(surl, :published)
                 if isnothing(pubdate)
                     date    = "$ys-$ms-01"
@@ -125,6 +126,7 @@ function hfun_recentblogposts()
     for (surl, date) in recent
         url   = "/$surl/"
         title = pagevar(surl, :title)
+		title === nothing && (title = "Untitled")
         sdate = "$(day(date)) $(monthname(date)) $(year(date))"
         blurb = pagevar(surl, :rss)
         write(io, """
