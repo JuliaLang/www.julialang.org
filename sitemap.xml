@@ -206,12 +206,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/JuliaCon/index.html</loc>
-    <lastmod>2021-07-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2017/04/offset-arrays/index.html</loc>
     <lastmod>2021-07-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -369,6 +363,12 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/gsoc/pluto/index.html</loc>
+    <lastmod>2021-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/juliacon/index.html</loc>
     <lastmod>2021-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
