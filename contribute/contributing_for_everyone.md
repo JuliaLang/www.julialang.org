@@ -1,28 +1,28 @@
-# Contributing is for everyone
+# Everyone can contribute
 
 You don't need to be a seasoned developer to help Julia grow and improve. Anyone willing to contribute will find here a roadmap from zero to hero (or from a hundred to one thousand, if you are a pro contributor already). Both code and non-code contributions are welcome, no matter your level of experience or background. This document aims to help you find out:
 
-- how you can contribute to match your skills and interests
-- what tools and resources can help you contribute confidently
-- where you can find ideas for fixes to propose in your first contribution
+- How you can contribute to match your skills and interests.
+- Which tools and resources can help you contribute confidently.
+- Where you can find ideas for fixes to propose in your first contribution.
 
-## Why contribute?
+## Why should you contribute to Julia?
 There is a spectrum of benefits to contributing - some more obvious than others. Open source projects rely on contributions from volunteers, enabling them to grow and develop. You will be making a difference to one of the most quickly growing languages, and the future of open-source software as a whole. Benefits of contributing:  
 
-- engage with the community
-- build a track record of public contributions (e.g.. GitHub) which will help your career
-- build confidence with the language and the libraries
-- gain exposure for your library
+- engage with the community,
+- build a track record of public contributions (such as on GitHub) which will help your career,
+- build confidence with the language and the libraries,
+- gain exposure for your library.
 
-Types of contributions vary depending on your experience, background, and the nature of your interest in Julia. Types of contributions  
+Types of contributions vary depending on your experience, background, and the nature of your interest in Julia. You can contribute in one or more of the following ways:
 
-- improving documentation
-- [sharing your (new) package](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/creating_package.md)
-- [review a package](https://github.com/JuliaRegistries/General/labels/new%20package) submitted to the Julia Registry
-- file a bug report
-- write tests
-- [contributing to core Julia](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/index.md#contributing-to-core-julia)
-- contributing to other libraries
+- improve documentation,
+- [share a new package you created](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/creating_package.md),
+- [review a package](https://github.com/JuliaRegistries/General/labels/new%20package) submitted to the Julia Registry,
+- file a bug report,
+- write tests,
+- [contribute to core Julia](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/index.md#contributing-to-core-julia),
+- contribute to other libraries,
 
 and more.
 
