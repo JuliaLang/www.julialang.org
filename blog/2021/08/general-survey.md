@@ -224,7 +224,7 @@ Here are our main findings:
   * documentation is not as popular; only 49% of packages have docs in the
     repository.
   * most packages either have a README or docs (88% have at least twenty lines
-	of one or the other)
+    of one or the other)
 * in March 2021 the General registry started enforcing the presence of an
   OSI-approved license in order to register new packages or new versions: the
   fraction of packages with a license steadily increased since then
