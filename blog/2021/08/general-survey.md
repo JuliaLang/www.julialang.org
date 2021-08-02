@@ -227,6 +227,10 @@ Here are our main findings:
   on GitHub
 * most packages are **developed by one or at most two developers**: low [bus
   factor](https://en.wikipedia.org/wiki/Bus_factor)!
+* a strong culture of collaboration is shown by the fact the repositories of
+  **42%** of packages on GitHub are **part of organizations**, so that multiple
+  people have write access to them, instead of only their authors, which reduces
+  the risk packages will be completely abandoned
 * **583 packages have at least 10 contributors**, while only **11 packages**
   have **more than 100**
 * **470 users** contributed to at least **10 different packages**, and **26
