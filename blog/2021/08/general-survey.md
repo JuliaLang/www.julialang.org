@@ -40,7 +40,7 @@ and code.
 ![Word cloud of packages in the General registry by number of lines of code](/assets/blog/2021-08-general-survey/wordcloud.png)
 
 The following table shows the 14 largest packages in the registry, by number of
-lines of code in their `src` directories.  We should note that most of these
+lines of code in their `src` directories.  We should note that many of these
 packages have their source code automatically generated from the API of the
 external libraries or web services they wrap.
 
