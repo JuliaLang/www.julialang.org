@@ -191,14 +191,6 @@ contributors, and about 1% have more than 40.
 
 ![Reverse cumulative distribution of number of contributors per package](/assets/blog/2021-08-general-survey/rev-cdf-contributors.png)
 
-<!-- The number of commits per package follow a log-normal distribution, with median -->
-<!-- of 59 commits.  About 35% of packages have at least 100 commits, while 2% have -->
-<!-- more than 1000. -->
-
-<!-- ![Distribution of numbers of commits per package](/assets/blog/2021-08-general-survey/distribution-commits.png) -->
-
-<!-- ![Reverse cumulative distribution of number of commits per package](/assets/blog/2021-08-general-survey/rev-cdf-commits.png) -->
-
 It's also interesting to see how likely Julia users are to contribute to
 multiple packages: 52% of users have contributed to a single package, a bit less than
 10% contributed to at least 10 different packages, while 26 super active people
@@ -218,27 +210,27 @@ Here are our main findings:
 
 * most packages do follow good programming practices (documentation, testing,
   continuous integration)! In particular:
-  * high fraction of packages with any tests (96%), and at least 10% of code as
-    tests (76%)
-  * almost all packages have setup for continuous integration (95%)
-  * documentation is not as popular; only 49% of packages have docs in the
-    repository.
-  * most packages either have a README or docs (88% have at least twenty lines
-    of one or the other)
+  * high fraction of packages with **any tests** (**96%**), and **at least 10%
+    of code as tests** (**76%**)
+  * almost all packages have setup for **continuous integration** (**95%**)
+  * documentation is not as popular; only **49% of packages have docs** in the
+    repository
+  * most packages either have a **README or docs** (**88% have at least twenty
+    lines** of one or the other)
 * in March 2021 the General registry started enforcing the presence of an
-  OSI-approved license in order to register new packages or new versions: the
-  fraction of packages with a license steadily increased since then
-  (97%). Enforcing the rules work!
-* the median package has 507 lines of code, and the distribution looks
-  log-normal
-* there are at least 4931 Julia users who contributed to registered packages on
-  GitHub
-* most packages are developed by one or at most two developers: low [bus
+  **OSI-approved license** in order to register new packages or new versions:
+  the fraction of packages with a license steadily increased since then
+  (**97%**). Enforcing the rules work!
+* the median package has **507 lines of code**, and the distribution looks
+  **log-normal**
+* there are at least **4931 Julia users** who contributed to registered packages
+  on GitHub
+* most packages are **developed by one or at most two developers**: low [bus
   factor](https://en.wikipedia.org/wiki/Bus_factor)!
-* 583 packages have at least 10 contributors, while only 11 packages have more
-  than 100
-* 470 users contributed to at least 10 different packages, and 26 people have
-  commits in at least 100 different packages
+* **583 packages have at least 10 contributors**, while only **11 packages**
+  have **more than 100**
+* **470 users** contributed to at least **10 different packages**, and **26
+  people** have commits in at least **100 different packages**
 
 We want to highlight some caveats:
 
