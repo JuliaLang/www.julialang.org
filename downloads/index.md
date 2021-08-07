@@ -304,12 +304,12 @@ The platforms currently supported by Julia are listed below. They are divided in
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
-      <td> 7+ </td>
+      <td> 8+ </td>
       <td> i686 (32-bit) / x86-64 (64-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
+      <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
-      <td rowspan="7"> Linux (Glibc)</td>
+      <td rowspan="7"> Linux (Glibc) </td>
       <td rowspan="7"> 2.6.18+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
@@ -328,7 +328,7 @@ The platforms currently supported by Julia are listed below. They are divided in
     </tr>
     <tr>
       <td> ARMv8 (64-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
+      <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
       <td> ARMv7 (32-bit) </td>
@@ -348,7 +348,7 @@ The platforms currently supported by Julia are listed below. They are divided in
       <td rowspan="2"> FreeBSD </td>
       <td rowspan="2"> 12.0+ </td>
       <td> x86-64 (64-bit) </td>
-      <td> <font color="green">Tier 1</font> </td>
+      <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
       <td> i686 (32-bit) </td>
