@@ -55,7 +55,7 @@ The package called "tiddlywinks" can now be created using the template `t` by ru
 t("tiddlywinks")
 ```
 
-As we have not specified the folder, the package has been created at `~/.julia/dev` on Linux, and at `username/julia/dev` in Windows. If this is not the repository we want to be working from, let's move the files to the original repo which we have created. Now in `tiddlywinks.jl` we have
+As the folder has not been specified, the package has been created at `~/.julia/dev` on Linux, and at `username/julia/dev` in Windows. If this is not the repository you want to be working from, move the files to the original repo which you have created. Now in `tiddlywinks.jl` you should have
 
 - LICENSE (the MIT license which we have chosen),
 - Manifest.toml (includes ifnormation on dependencies, very useful for reproducibility, see [mode details](http://pkgdocs.julialang.org/v1/toml-files/) about Project annd Manifest files),
