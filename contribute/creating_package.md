@@ -16,17 +16,22 @@ In case of any issues, remember that [help](https://github.com/elizavetasemenova
 
 ## Starting a package
 
-- create a folder to store your package. We use Atom as an Editor. We created a folder called 'tiddlywinks.jl'. In Atom, we open the GitHub panel, and opt to 'initialize and publish on GitHub'. Now we can go to our GitHub page and see that 'tiddlywinks.jl' has appeared there, as well as locally.
+1. You need to create a folder to store a new package. For example, if you use Atom as an IDE, create a new folder called `tiddlywinks.jl`. Then, open the GitHub panel and select **Initialize and publish on GitHub**. Now, you can go to your GitHub page and see that 'tiddlywinks.jl' has appeared there, as well as locally.
 
-- inside this folder, in the Julia REPL install PkgTemplate.jl with
-```
-using Pkg
-Pkg.add("PkgTemplates")
-```
+2. In your terminal application, use the change directory (cd) command to change the current working directory to the location of your package.
+
+3. In the Julia REPL, install `PkgTemplate.jl` as follows:
+   
+   ```
+    using Pkg
+    Pkg.add("PkgTemplates")
+   ```
+
 
 ## Creating package template
 
-Now `PkgTemplates` has been installed and we want to use it to create a template for a package.
+Now `PkgTemplates.jl` has been installed and we want to use it to create a template for a package.
+
 ```
 using PkgTemplates
 
