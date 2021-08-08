@@ -50,7 +50,7 @@ t = Template(;
        )
 ```
 
-The package called "tiddlywinks" can now be created using the template `t`:
+The package called "tiddlywinks" can now be created using the template `t` by running the following line in Julia REPL:
 ```
 t("tiddlywinks")
 ```
