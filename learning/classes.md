@@ -132,7 +132,7 @@ If you know of other classes using Julia for teaching, please consider updating 
 * University of Basel, Department of Physics
     * [Classical Mechanics](https://www.quantumtheory-bruder.physik.unibas.ch) (Prof. Christoph Bruder), Fall 2020
 * University of California, Los Angeles (UCLA)
-    * [Stat M230/Biomath 280/Biostat M280](https://hua-zhou.github.io/teaching/biostatm280-2017spring/), Statistical Computing, Spring 2017 (Prof. [Hua Zhou](https://github.com/Hua-Zhou))
+    * [Biostat 257](https://ucla-biostat-257-2021spring.github.io), Computational Methods for Biostatistical Research, Spring 2021 (Prof. [Hua Zhou](http://hua-zhou.github.io))
 * University of Cologne, Institute for Theoretical Physics
     * [Computational Physics](https://www.thp.uni-koeln.de/trebst/Lectures/2016-CompPhys.shtml) (Prof. Simon Trebst), Summer 2016
     * [Computational Physics](https://www.thp.uni-koeln.de/~bulla/cp-ss17.html) (Prof. Ralf Bulla), Summer 2017
