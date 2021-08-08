@@ -9,7 +9,7 @@ Here we provide a step-by-step example, using [PkgTemplates.jl](https://juliahub
 
 In case of any issues, remember that [help](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/contributing_for_everyone.md#where-to-get-help) is available.
 
-## What you need before you start
+## Prerequisites
 
 - an [IDE](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/contributing_for_everyone.md#what-are-the-ide-options)
 - a GitHub account
