@@ -32,6 +32,8 @@ In case of any issues, remember that [help](https://github.com/elizavetasemenova
 
 Now `PkgTemplates.jl` has been installed and we want to use it to create a template for a package.
 
+Run the following commands in the Julia REPL to create the template:
+
 ```
 using PkgTemplates
 
@@ -46,7 +48,10 @@ t = Template(;
                AppVeyor(),
            ],
        )
+```
 
+The package called "tiddlywinks" can now be created using the template `t`:
+```
 t("tiddlywinks")
 ```
 
