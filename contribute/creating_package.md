@@ -90,8 +90,11 @@ end
 ```
 
 ## Running tests
+
+To run tests on your package:
+
 - in your REPL, check that you are still in the repository of the project by running `pwd()`
-- typre `]` which will get you into the "package mode"
+- type `]` which will get you into the "package mode"
 - run `activate .` to activate the environment from Project.toml
 - run `test` to perform tests
 
