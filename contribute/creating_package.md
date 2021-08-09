@@ -53,7 +53,7 @@ t("Tidlywinks")
 ```
 
 Last line in the REPL shows where the new package has been created:
-`Info: New package is at *package_repo*`. As the folder has not been specified, the package has been created at `~/.julia/dev` on Linux, and at `username/julia/dev` on Windows. If this is not the repository you want to be working from, move the files to the original repo which you have created. Now in `Tidlywinks.jl` you should have
+`Info: New package is at *package_repo*`. As the folder has not been specified, the package has been created at `~/.julia/dev` on Linux, and at `%USERNAME%/.julia/dev` on Windows. If this is not the repository you want to be working from, move the files to the original repo which you have created. Now in `Tidlywinks.jl` you should have
 
 - LICENSE (the MIT license which we have chosen),
 - Manifest.toml (includes information on dependencies, very useful for reproducibility, see [mode details](http://pkgdocs.julialang.org/v1/toml-files/) about Project and Manifest files),
