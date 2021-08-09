@@ -16,7 +16,7 @@ In case of any issues, remember that [help](https://github.com/elizavetasemenova
 
 ## Starting a package
 
-1. You need to create a folder to store a new package. For example, if you use Atom as an IDE, create a new folder called `Tidlywinks.jl` (packages in Julia generally have a capital first letter). Then, open the GitHub panel and select **Initialize and publish on GitHub**. Now, you can go to your GitHub page and see that 'Tidlywinks.jl' has appeared there, as well as locally.
+1. You need to create a folder to store a new package. For example, if you use Atom as an IDE, create a new folder called `Tiddlywinks.jl` (packages in Julia generally have a capital first letter). Then, open the GitHub panel and select **Initialize and publish on GitHub**. Now, you can go to your GitHub page and see that 'Tiddlywinks.jl' has appeared there, as well as locally.
 
 2. In your terminal application, use the change directory (cd) command to change the current working directory to the location of your package.
 
@@ -49,42 +49,42 @@ t = Template(;
 
 The package called "" can now be created using the template `t` by running the following line in Julia REPL:
 ```
-t("Tidlywinks")
+t("Tiddlywinks")
 ```
 
 Last line in the REPL shows where the new package has been created:
-`Info: New package is at *package_repo*`. As the folder has not been specified, the package has been created at `~/.julia/dev` on Linux, and at `%USERNAME%/.julia/dev` on Windows. If this is not the repository you want to be working from, move the files to the original repo which you have created. Now in `Tidlywinks.jl` you should have
+`Info: New package is at *package_repo*`. As the folder has not been specified, the package has been created at `~/.julia/dev` on Linux, and at `%USERNAME%/.julia/dev` on Windows. If this is not the repository you want to be working from, move the files to the original repo which you have created. Now in `Tiddlywinks.jl` you should have
 
 - LICENSE (the MIT license which we have chosen),
 - Manifest.toml (includes information on dependencies, very useful for reproducibility, see [mode details](http://pkgdocs.julialang.org/v1/toml-files/) about Project and Manifest files),
 - Project.toml (contains high level information about the project),
 - README.md,
-- `src` folder with the file `Tidlywinks.jl` in it (here we will write the code for the package),
+- `src` folder with the file `Tiddlywinks.jl` in it (here we will write the code for the package),
 - `test` folder with the file `runtests.jl` in it (here we will be placing tests).
 - `.travis.yml` (will create a badge with Travis for [continuous integration](#continuous-integration))
 
 ## Writing code
-Everything is ready for you to write code. Folder `/src` already contains a file with the same name as the name of the package (`Tidlywinks.jl`). You may not want to write all of the code in this file directly. Instead, you can create various pieces in external files within the `/src` directory, and then assemble them in the main file with the `include` command. Here are the steps to follow:
+Everything is ready for you to write code. Folder `/src` already contains a file with the same name as the name of the package (`Tiddlywinks.jl`). You may not want to write all of the code in this file directly. Instead, you can create various pieces in external files within the `/src` directory, and then assemble them in the main file with the `include` command. Here are the steps to follow:
 
 - create a file called `functions.jl` and in this file define a function
 ```
 function tiddly_greet()
-    println("Tidlywinks")
+    println("Tiddlywinks")
 end
 ```
-- include the file with functions into the main file `Tidlywinks.jl` using the command `include("functions.jl")`
+- include the file with functions into the main file `Tiddlywinks.jl` using the command `include("functions.jl")`
 - export the function to be available to users with `export tiddly_greet`
 
 
 ## Writing tests
 Tests are necessary to make sure that the code is working correctly. There is never enough testing. The `/test` folder already has a starter. We edit it to call the newly implemented function:
 ```
-using Tidlywinks
+using Tiddlywinks
 using Test
 
-@testset "Tidlywinks.jl" begin
-    @test Tidlywinks.tiddly_greet() == "Tidlywinks is working"
-    @test Tidlywinks.tiddly_greet() != "hello world"
+@testset "Tiddlywinks.jl" begin
+    @test Tiddlywinks.tiddly_greet() == "Tiddlywinks is working"
+    @test Tiddlywinks.tiddly_greet() != "hello world"
 end
 ```
 
@@ -95,7 +95,7 @@ To run tests on your package:
 - in your REPL, check that you are still in the repository of the project by running `pwd()`
 - type `]` which will get you into the "package mode"
 - run `activate .` to activate the environment from Project.toml
-- run `test`, or, alternatively `test Tidlywinks` to perform tests. Test summary will provide you with the number of passed tests out of the total number of tests.
+- run `test`, or, alternatively `test Tiddlywinks` to perform tests. Test summary will provide you with the number of passed tests out of the total number of tests.
 
 ## Continuous integration
 
@@ -118,7 +118,7 @@ describes a case when you would like to add more testing options to your package
 
 - create a new branch of the project
 
-Example: create a branch of `Tidlywinks.jl` called `more_testing_options`
+Example: create a branch of `Tiddlywinks.jl` called `more_testing_options`
 
 - make and save changes on the new branch
 
