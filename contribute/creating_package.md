@@ -95,7 +95,7 @@ To run tests on your package:
 - in your REPL, check that you are still in the repository of the project by running `pwd()`
 - type `]` which will get you into the "package mode"
 - run `activate .` to activate the environment from Project.toml
-- run `test`, or, alternatively `test Tidlywinks.jl` to perform tests. Test summary will provide you with the number of passed tests out of the total number of tests.
+- run `test`, or, alternatively `test Tidlywinks` to perform tests. Test summary will provide you with the number of passed tests out of the total number of tests.
 
 ## Continuous integration
 
