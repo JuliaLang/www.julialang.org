@@ -109,18 +109,15 @@ This is also known as a rootfinding problem, where the forward and adjoint metho
 in the scientific computing literature since at least the 90's. For example, Steven Johnson's 
 [Notes on Adjoint Methods for 18.335 from 2006](https://math.mit.edu/~stevenj/18.336/adjoint.pdf) shows a
 clean derivation of an adjoint equation ("backpropagation" equation) for a rootfinding solver. 
+## Mixing DEQs and Neural ODEs
 
-$$
-f(u) - u = du = 0
-$$
-
-Reaching a fixed point of the iterative layer application is much like solving for the final
-value in a converging sequence. To put it simply, we set the current value equal to the next,
-and obtain a solution for this recursion problem. As we show above, if we use `u` to represent
-the current layer and `f(u)` to represent the next layer, we can sloppily denote the fixed point
-equation as `f(u)-u=0`. Crucially, this can also be converted into a steady state problem
-by defining an ODE layer `f(u)-u=du` and solving
-that ODE in its steady state. This gives us equality among all three components.
+From the viewpoint of Julia and the DiffEqFlux.jl library, it is also natural to look at DEQ from
+a differential equations perspective. Thanks to NeuralODE, the machine learning community is now able
+to put on the glasses of differential equations, and see through a new perspective. Instead of viewing the
+dynamical system as a discrete process $x_{n+1} = x_n + f(x_n)$, we can equivalently view the system as evolving
+continuously, i.e. $x' = f(x)$. In this sense, convergence is when the change is zero, or $x'=0$, which again
+happens when $f(x)=0$ and is a rootfinding problem. But this view is insightful: a DEQ is a neural ODE where
+time goes to infinity.
 
 ## Let us implement a simple DEQ Model
 
