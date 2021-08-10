@@ -16,7 +16,7 @@ There is a spectrum of benefits to contributing - some more obvious than others.
 
 Types of contributions vary depending on your experience, background, and the nature of your interest in Julia. You can contribute in one or more of the following ways:
 
-- improve documentation (this includes [fixing typos](#find-a-readme-file-to-edit)),
+- improve documentation (this includes [fixing typos](#find-a-readme-file-to-edit) and broken links),
 - [create a new package](/contribute/creating_package/#creating-a-julia-package),
 - [review a package](https://github.com/JuliaRegistries/General/labels/new%20package) submitted to the Julia Registry,
 - file a bug report (by creating a [pull request](/contribute/creating_package/#propose-changes-via-pull-requests)),
@@ -67,7 +67,7 @@ If by this point you are convinced that contributing is for you, but don't know 
 
 ### Find a README file to edit
 
-There are plenty of documentation files in the Julia-verse on GitHub, and typos are so easy to make! You can help clean up documentation by correcting typos or errors which you find.
+There are plenty of documentation files in the Julia-verse on GitHub, and typos are so easy to make! You can help clean up documentation by correcting typos, fixing broken links, replacing the mentions of outdated packages and legacy code by their updated and working versions. 
 
 - pre-requisites: GitHub account, text editor with spell checking (e.g. MS Word, Google docs)
 - estimated time: 1h
