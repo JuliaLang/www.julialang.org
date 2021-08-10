@@ -40,7 +40,7 @@ Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel
 
 ## What is a Neural Ordinary Differential Equation?
 
-To put it simply, NeuralODE simply uses a neural network to parameterize what ODE we are
+To put it simply, NeuralODE uses a neural network to parameterize what ODE we are
 solving. This is exactly what I was referring to when I noted that the discovery of NeuralODE
 allowed the differential equations community to shift from using explicit definitions to
 black-box solvers. Instead of having to specify the exact position-momentum relations of a
