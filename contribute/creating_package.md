@@ -111,6 +111,8 @@ Using the second badge, you can make use of Appveyor. Click on the badge, sign i
 
 ## Propose changes via Pull Requests
 
+To make your first Julia pull request, we recommend reading the detailed [guide](https://kshyatt.github.io/post/firstjuliapr/) by Katharine Hyatt. Here we provide the summary of required steps, using the example package from above.
+
 To propose a change to an existing repository, you need to create a pull request (PR). Follow the steps below. The example
 describes a case when you would like to add more testing options to your package:
 
