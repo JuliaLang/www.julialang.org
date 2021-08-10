@@ -1,7 +1,7 @@
 @def rss_pubdate = Date(2021, 1, 18)
 @def rss = """ Implementing Deep Equilibrium Models in Julia... """
 @def published = "18 January 2021"
-@def title = "Implementing Deep Equilibrium Models in Julia"
+@def title = "Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"
 @def authors = """Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit"""  
 
 <!-- Translations: [Traditional Chinese](/blog/2019/04/fluxdiffeq-zh_tw) -->
