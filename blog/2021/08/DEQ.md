@@ -97,19 +97,18 @@ $$
 
 The idea of DEQ is, in a sense, insanely simple! We assume there are infinitely many
 compositions of identical layers (equivalently an infinitely deep network), and
-directly solve for the fixed point described by this equation. Clearly, naively iterating
-for the fixed point would take an enormous amount of time. Thanks to the Implicit Function
-Theorem, DEQ shows that it is possible to train an infinitely-deep neural network using the
-gradient optimization toolbox. For more reference, please see
-[Deep Implicit Layers](http://implicit-layers-tutorial.org)
+directly solve for the fixed point described by this equation. 
 
-From the viewpoint of Julia and the DiffEqFlux.jl library, it is also natural to look at DEQ from
-a differential equations perspective. Thanks to NeuralODE, the machine learning community is now able
-to put on the glasses of differential equations, and see through a new perspective.
-If we perceive the iterating layer of the network as an ODE, DEQ is solving nothing but the
-well-known "Steady State Problem", defined as the final converging state of the ODE as time
-goes to infinity. This line of work is well-studied in the scientific machine learning
-literature, see for example [Notes on Adjoint Methods for 18.335](https://math.mit.edu/~stevenj/18.336/adjoint.pdf)
+Clearly, naively iterating for the fixed point would take an enormous amount of time. However,
+classical dynamical systems theory relates this infinite process to a simple mathematical problem.
+If we perceive the iterating layer of the network as a dynamical system, DEQ is solving nothing but the
+well-known "Steady State Problem", defined as the final converging state of the system as time
+goes to infinity. For an update equation $x_{n+1} = x_n + f(x_n)$, "the equation is not changing anymore
+is equivalent to saying $x_{n+1} = x_n$ which reduces the problem to finding the $x$ such that $f(x) = 0$.
+This is also known as a rootfinding problem, where the forward and adjoint methods have been well-studied
+in the scientific computing literature since at least the 90's. For example, Steven Johnson's 
+[Notes on Adjoint Methods for 18.335 from 2006](https://math.mit.edu/~stevenj/18.336/adjoint.pdf) shows a
+clean derivation of an adjoint equation ("backpropagation" equation) for a rootfinding solver. 
 
 $$
 f(u) - u = du = 0
