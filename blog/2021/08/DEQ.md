@@ -63,17 +63,23 @@ this property of NeuralODE that allows it to approximate an "infinitely deep" mo
 as each network layer tends to zero in size.
 
 
-As it turns out, there is a line of work following [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377)
-that explores the notion of infinitely-deep neural networks in an explicit manner. It borrows
+## Deep Equilibrium Models and Infinitely Deep Networks
+
+There is a line of work following [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377)
+that explores direct representations of infinitely-deep neural networks. It borrows
 much of the ideas from the NeuralODE line of research, and allows neural network structures
 to be viewed as repeated applications of layered computations. This is often very accurate,
 for example when we apply convolution filters on images---the network can essentially
 be viewed as a convolutional feature extractor consisting of repetitive blocks, and one
-linear output layer at the very end. When there is an infinite number of these repeated
-blocks, the network might explode off to infinity. If it doesn't, however, it reaches an
-equilibrium points and converges, hence the name.
+linear output layer at the very end. 
 
-## DEQ Models and Infinitely Deep Networks
+However, there are caveats to consider when taking the repetition to the limit. 
+When there is an infinite number of these repeated blocks, the value being
+pushed forward might continually increase until it explodes to infinity. But under
+certain conditions, this repetition `x_n+1 = x_n + f(x_n)` does not diverge but
+rather converges to a stable equilibrium. The central idea behind Deep Equilibrium
+Models (DEQs) is to capture the space of convergent dynamical systems using a
+neural network representation of the residual `f`.
 
 Let us begin by looking at an instantiation of the equations for DEQ models.
 $$
