@@ -48,7 +48,7 @@ pendulum using Hamiltonian equations, one could simply train a neural network to
 implicitly the differential equations that describe the system. In the case where we know
 exactly the differential equations from physics, we should rarely expect the neural network
 to outperform human knowledge. Nevertheless, this method crowns itself as an implicit
-modelling technique, especially when we only observe input and output data of the system
+modelling technique which can work when we only observe input and output data of the system
 without possessing knowledge of what happens inside.
 
 
