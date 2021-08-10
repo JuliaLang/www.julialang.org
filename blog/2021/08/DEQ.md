@@ -55,8 +55,8 @@ without possessing knowledge of what happens inside.
 It is well known in literature that NeuralODE can be seen as a continuous version
 of ResNets. This is exactly what I was referring to when I noted that NeuralODE caused
 a shift in perspective for the machine learning community from discrete to continuous. We
-have always known that powerful techniques such as gradient optimization combined with
-discretized computation gives us the great inference engine that is "deep learning".
+have always known that powerful techniques such as gradient-based optimization combined with
+discrete models gives us the great inference engine that is "standard deep learning".
 With the addition of NeuralODE, we can take a look at what happens when we take infinitely
 small steps in adjustment, effectively resulting in a differential equation. It is precisely
 this property of NeuralODE that allows it to approximate an "infinitely deep" model
