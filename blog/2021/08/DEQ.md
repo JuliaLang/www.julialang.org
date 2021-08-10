@@ -45,7 +45,7 @@ solving. This is exactly what I was referring to when I noted that the discovery
 allowed the differential equations community to shift from using explicit definitions to
 black-box solvers. Instead of having to specify the exact position-momentum relations of a
 pendulum using Hamiltonian equations, one can train a neural network to implicitly represent
-implicitly the differential equations that describe the system. In the case where we know
+the differential equations that describe the system. In the case where we know
 exactly the differential equations from physics, we should rarely expect the neural network
 to outperform human knowledge. Nevertheless, this method crowns itself as an implicit
 modelling technique which can work when we only observe input and output data of the system
