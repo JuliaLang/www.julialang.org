@@ -120,6 +120,16 @@ happens when $f(x)=0$ and is a rootfinding problem. But this view is insightful:
 time goes to infinity.
 
 ## Let us implement a simple DEQ Model
+There are many ways that one can solve a rootfinding problem with different characteristics.
+One can directly use Newton's method, but this can require a good guess and may not distinguish
+between stable and unstable equilibrium. Bifurcation tools like [BifurcationKit.jl](https://rveltz.github.io/BifurcationKit.jl/dev/) give a whole host of other methods. But for our demonstration,
+we will focus on showcasing the evolving ODE approach. This is similar to the fixed point method of running
+$x_{n+1} = x_n + f(x_n)$, but we can instead allow the ODE solver to adaptively change its steps along the
+trajectory to better facilitate convergence. We can define "convergence" as a tolerance where for $x' = f(x)$,
+we want $x'$ to be sufficiently small (in absolute and relative tolerance). It turns out that a method for
+doing this, along with its backpropogation, is already defined in Julia as the 
+[steady state problem](https://diffeq.sciml.ai/stable/types/steady_state_types/) which will automatically
+detect when the ODE has converged and halt the integration. So let's demonstrate a DEQ via SteadyStateProblem.
 
 The following code block creates a DEQ model. The acute will notice that this code looks
 awfully similar to typical NeuralODEs implemented in Julia. The connection is well
