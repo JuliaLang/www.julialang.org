@@ -96,7 +96,7 @@ z^{\star}=\tanh \left(W z^{\star}+x\right)
 $$
 
 The idea of DEQ is, in a sense, insanely simple! We assume there are infinitely many
-compositions of identical layers (equivalently an infinitely deep network), and
+compositions of this kind of layer and
 directly solve for the fixed point described by this equation. 
 
 Clearly, naively iterating for the fixed point would take an enormous amount of time. However,
