@@ -53,7 +53,7 @@ without possessing knowledge of what happens inside.
 
 
 It is well known in literature that NeuralODE can be seen as a continuous version
-of ResNets. This is exactly what I was referring to when I noted that NeuralODE caused
+of ResNets. This is what I was referring to when I noted that NeuralODE caused
 a shift in perspective for the machine learning community from discrete to continuous. We
 have always known that powerful techniques such as gradient-based optimization combined with
 discrete models gives us the great inference engine that is "standard deep learning".
