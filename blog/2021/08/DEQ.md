@@ -119,7 +119,7 @@ continuously, i.e. $x' = f(x)$. In this sense, convergence is when the change is
 happens when $f(x)=0$ and is a rootfinding problem. But this view is insightful: a DEQ is a neural ODE where
 time goes to infinity.
 
-## Let us implement a simple DEQ Model
+## Let us implement a simple DEQ Model via ODE Solvers
 There are many ways that one can solve a rootfinding problem with different characteristics.
 One can directly use Newton's method, but this can require a good guess and may not distinguish
 between stable and unstable equilibrium. Bifurcation tools like [BifurcationKit.jl](https://rveltz.github.io/BifurcationKit.jl/dev/) give a whole host of other methods. But for our demonstration,
