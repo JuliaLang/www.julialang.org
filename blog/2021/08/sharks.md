@@ -17,10 +17,10 @@ updated result is updated here too.
 
 +++
 author = "Gabriel D Weymouth"
-published = "15 August 2021"
+published = "12 August 2021"
 
 title = "Simulation of a swimming dogfish shark"
-author_img = "blog/2021-08-15-sharks/GWeymouth.jpg"
+author_img = "blog/2021-08-sharks/GWeymouth.jpg"
 author_blurb = """
     Associate Professor of Marine Hydrodynamics at University of Southampton
     """
@@ -28,7 +28,7 @@ author_blurb = """
 rss = """
     Simulation of a swimming dogfish shark
     """
-rss_pubdate = Date(2021, 8, 15)
+rss_pubdate = Date(2021, 8, 12)
 
 meta = [
     ("property", "og:image", "{{base}}slenderfish.jpg"),
@@ -36,7 +36,7 @@ meta = [
     ("name", "twitter:card", "summary_large_image")
     ]
 
-base = "/assets/blog/2021-08-15-sharks/"
+base = "/assets/blog/2021-08-sharks/"
 +++
 
 This post will demonstrate how to set up and simulate a model of a swimming dogfish shark using [Julia](https://julialang.org/) and [WaterLily.jl](https://www.youtube.com/watch?v=YsPkfZqbNSQ).
