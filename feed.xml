@@ -6,6 +6,14 @@
   <link>https://julialang.org/</link>
   <atom:link href="https://julialang.org/feed.xml" rel="self" type="application/rss+xml" />
   <item>
+    <title><![CDATA[Simulation of a swimming dogfish shark]]></title>
+    <link>https://julialang.org/blog/2021/08/sharks/</link>
+    <description><![CDATA[Simulation of a swimming dogfish shark
+<br><a href="https://julialang.org/blog/2021/08/sharks/">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2021/08/sharks/</guid>
+    <pubDate>Thu, 12 Aug 2021 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title><![CDATA[Code, docs, and tests: what's in the General registry?]]></title>
     <link>https://julialang.org/blog/2021/08/general-survey/</link>
     <description><![CDATA[Code, docs, and tests: what&#39;s in the General registry?
