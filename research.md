@@ -13,6 +13,7 @@ Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Ste
 Researchers contributing to Julia have been awarded various prizes:
 
 @@tight-list
+* [2021: Julia Community Prizes](https://juliacon.org/2021/prize/): Bogumił Kamiński & Milan Bouchet-Valat, Fons van der Plas, and Dilum Aluthge
 * [2020: Julia Community Prizes](https://juliacon.org/2020/prize/): Huda Nassar, Mosè Giordano, and Chris Elrod
 * [2019: NumFOCUS Awards and New Contributor Recognition](https://numfocus.org/blog/2019-numfocus-awards): Logan Kilpatrick, Mosè Giordano
 * [2019: IEEE Computer Society Sidney Fernbach Award](https://www.computer.org/press-room/2019-news/2019-ieee-fernbach-award-edelman): Alan Edelman
