@@ -44,6 +44,13 @@ These include speed increases for CSV.jl and DataFrames.jl, packages reaching 1.
 
 The third annual [Julia User & Developer Survey](https://www.youtube.com/watch?v=0XSk5zybfic) was presented. 2,660 Julia users and developers from 104 countries participated, and explained how much and why they love Julia and the Julia community, as well as their biggest pain points and areas for improvement. Click here for the [video presentation](https://www.youtube.com/watch?v=0XSk5zybfic) and [slides](https://julialang.org/assets/2021-julia-user-developer-survey.pdf).
 
+## Sponsors
+
+As always, we want to thank our sponsors for making JuliaCon possible. You can find our list of JuliaCon 2021 sponsors below: 
+
+<img width="792" alt="JuliaCon2021Sponsors" src="https://user-images.githubusercontent.com/35577566/130253763-58b8ab78-dc86-4148-ba08-ef191895976b.png">
+
+
 ## Beyond JuliaCon 2021
 
 As you might be able to tell, this years conference was another massive leap for the Julia community. The work required to put on a conference of this size cannot be understated. If you would be interested in helping with future iterations of JuliaCon, we would love to hear from you! Please see this [Volunteer form](https://forms.gle/2KnYko7HnGKLvHJB7) and do reachout if you want to help. 
