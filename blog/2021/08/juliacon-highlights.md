@@ -12,17 +12,17 @@ We extend a heartfelt congratulations and thank you to all of the volunteers, pr
 
 Congratulations to the winners of the [Julia Community Prize](https://juliacon.org/2021/prize/). [The presentation is available here](https://www.youtube.com/watch?v=MIFJT6Zt_yk&list=PLP8iPy9hna6Q343_8sSq4f306VGLW4TLK&index=227). The winners are:
 
-*   **Bogumił Kamiński & Milan Bouchet-Valat**, for their custodianship of DataFrames.jl and the data ecosystem
-*   **Fons van der Plas**, for his work on Pluto.jl
-*   **Dilum Aluthge**, for his contributions to our community infrastructure and community building
+ - **Bogumił Kamiński & Milan Bouchet-Valat**, for their custodianship of DataFrames.jl and the data ecosystem
+ - **Fons van der Plas**, for his work on Pluto.jl
+ - **Dilum Aluthge**, for his contributions to our community infrastructure and community building
 
 ## Keynotes 
 
 This year’s keynotes were stellar, as always, and among the most viewed presentations of the conference.  
 
-*   **Jan Vitek**, Professor of Computer Science at Northeastern University presented [Julia: Great Language, or The Greatest Language?](https://www.youtube.com/watch?v=LT4AP7CUMAw)
-*   **Xiaoye (Sherry) Li**, Senior Scientist at Lawrence Berkeley National Laboratory presented [Interplay of Linear Algebra, Machine Learning, and HPC](https://www.youtube.com/watch?v=sUyddZQaeyg)
-*   **Soumith Chintala**, Distinguished Engineer at Facebook AI Research presented [PyTorch and My Journey in Open Source](https://www.youtube.com/watch?v=6V6jk_OdH-w)
+ - **Jan Vitek**, Professor of Computer Science at Northeastern University presented [Julia: Great Language, or The Greatest Language?](https://www.youtube.com/watch?v=LT4AP7CUMAw)
+ - **Xiaoye (Sherry) Li**, Senior Scientist at Lawrence Berkeley National Laboratory presented [Interplay of Linear Algebra, Machine Learning, and HPC](https://www.youtube.com/watch?v=sUyddZQaeyg)
+ - **Soumith Chintala**, Distinguished Engineer at Facebook AI Research presented [PyTorch and My Journey in Open Source](https://www.youtube.com/watch?v=6V6jk_OdH-w)
 
 ## JuMP-Dev 2021
 
@@ -30,7 +30,7 @@ We were excited to have the JuMP-dev conference co-located within JuliaCon for t
 
 ## Code, Docs and Tests: What’s In the General Registry?
 
-Mosè Giordano and Eric P. Hanson presented [Code, Docs and Tests: What’s In the General Registry?](https://live.juliacon.org/talk/HVSAW9)  
+Mosè Giordano and Eric P. Hanson presented [Code, Docs and Tests: What’s In the General Registry?](https://live.juliacon.org/talk/HVSAW9).
 
 The General registry is the collection of open source packages that makes up the Julia package ecosystem. The Julia General registry has **11.8 million lines of code** (including docs and tests). More than 96% of packages have an Open Source Initiative approved license, 88% have at least 20 lines of readme or docs, 96% have run tests, 95% have setup for continuous integration, 58% of packages have at least 2 contributors, 93% have at least 10 commits, 48% of contributors have contributed to two or more packages and 60% of contributors have made at least 5 commits. There are 4,931 Julia contributors who have contributed to packages in the General registry. You can read more in depth on the [blog post by Mosè and Eric](https://julialang.org/blog/2021/08/general-survey/) on the Julia Language's blog.
 
@@ -48,7 +48,9 @@ The third annual [Julia User & Developer Survey](https://www.youtube.com/watch?v
 
 As always, we want to thank our sponsors for making JuliaCon possible. You can find our list of JuliaCon 2021 sponsors below: 
 
+~~~
 <img width="792" alt="JuliaCon2021Sponsors" src="https://user-images.githubusercontent.com/35577566/130253763-58b8ab78-dc86-4148-ba08-ef191895976b.png">
+~~~
 
 ## JuliaCon T-shirt and Mug
 
