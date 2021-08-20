@@ -26,7 +26,7 @@ This year’s keynotes were stellar, as always, and among the most viewed presen
 
 ## JuMP-Dev 2021
 
-We were excited to have the JuMP-dev conference co-located within JuliaCon for the first time this year. It was an awesome oppurtunity to get the users and developers from the JuMP-dev community engaged with the greator Julia community. You can check out the JuMP videos from conference in [this JuMP dedicated playlist](https://youtube.com/playlist?list=PLP8iPy9hna6Rf8_oh9oR2bNeBO-Rw8pzc).
+We were excited to have the JuMP-dev conference co-located within JuliaCon for the first time this year. It was an awesome opportunity to get the users and developers from the JuMP-dev community engaged with the greater Julia community. You can check out the JuMP videos from conference in [this JuMP dedicated playlist](https://youtube.com/playlist?list=PLP8iPy9hna6Rf8_oh9oR2bNeBO-Rw8pzc).
 
 ## Code, Docs and Tests: What’s In the General Registry?
 
@@ -65,8 +65,8 @@ You might want to check out some of the other awesome blog posts folks have writ
 
 ## Beyond JuliaCon 2021
 
-As you might be able to tell, this years conference was another massive leap for the Julia community. The work required to put on a conference of this size cannot be understated. If you would be interested in helping with future iterations of JuliaCon, we would love to hear from you! Please see this [Volunteer form](https://forms.gle/2KnYko7HnGKLvHJB7) and do reachout if you want to help. 
+As you might be able to tell, this years conference was another massive leap for the Julia community. The work required to put on a conference of this size cannot be understated. If you would be interested in helping with future iterations of JuliaCon, we would love to hear from you! Please see this [Volunteer form](https://forms.gle/2KnYko7HnGKLvHJB7) and do reach out if you want to help. 
 
 We also still have a [general JuliaCon 2021 feedback form](https://forms.gle/7w9q1MBow5u9kUGY7) live. Please feel free to send over any feedback on the conference as we are always interested in improving the experience.
 
-Again, huge thank you to the conference speakers, attendees, and volunteers for making this year such a huge success! We look forward to seeing you all again soon.
+Again, a huge thank you to the conference speakers, attendees, and volunteers for making this year such a huge success! We look forward to seeing you all again soon.
