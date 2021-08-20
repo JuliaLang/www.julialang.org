@@ -54,7 +54,7 @@ As always, we want to thank our sponsors for making JuliaCon possible. You can f
 
 ## JuliaCon T-shirt and Mug
 
-Thank you to everyone who purchased the JuliaCon 2021 T-shirt or Mug this year. We had a set of incredible designs which folks seemed to really like given we sold more than 700 shirts this year, raising ~$4,000! If you missed the initial batch, it is not too late, check out our [Bonfire shop](https://www.bonfire.com/store/the-julia-language/) to order yours today.
+Thank you to everyone who purchased the JuliaCon 2021 T-shirt or Mug this year. We had a set of incredible designs which folks seemed to really like given we sold more than 700 shirts this year, raising ~\$4,000! If you missed the initial batch, it is not too late, check out our [Bonfire shop](https://www.bonfire.com/store/the-julia-language/) to order yours today.
 
 ## Other JuliaCon Blog posts
 
