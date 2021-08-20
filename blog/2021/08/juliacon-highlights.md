@@ -1,5 +1,5 @@
 @def title =  "JuliaCon 2021 Highlights"
-@def authors = "Jan Vitek, Xiaoye (Sherry) Li, Soumith Chintala"
+@def authors = "The JuliaCon committee"
 @def published = "20 August 2021"
 @def rss_pubdate = Date(2021, 8, 20)
 @def rss = """JuliaCon 2021 Highlights"""
