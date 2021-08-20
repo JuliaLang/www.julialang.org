@@ -54,6 +54,15 @@ As always, we want to thank our sponsors for making JuliaCon possible. You can f
 
 Thank you to everyone who purchased the JuliaCon 2021 T-shirt or Mug this year. We had a set of incredible designs which folks seemed to really like given we sold more than 700 shirts this year, raising ~$4,000! If you missed the initial batch, it is not too late, check out our [Bonfire shop](https://www.bonfire.com/store/the-julia-language/) to order yours today.
 
+## Other JuliaCon Blog posts
+
+You might want to check out some of the other awesome blog posts folks have written about JuliaCon 2021:
+- [Julia Computing](https://juliacomputing.com/blog/2021/08/juliacon/)
+- [Julia for Data Science](https://www.juliafordatascience.com/best-data-science-talks-of-juliacon-2021/)
+- [Invenia at JuliaCon](https://invenia.github.io/blog/2021/08/10/juliacon2021/)
+- [SciML at JuliaCon](https://sciml.ai/news/2021/08/16/juliacon2021/)
+- [Soumith Chintala at JuliaCon](https://soumith.ch/posts/2021/02/growing-opensource/)
+
 ## Beyond JuliaCon 2021
 
 As you might be able to tell, this years conference was another massive leap for the Julia community. The work required to put on a conference of this size cannot be understated. If you would be interested in helping with future iterations of JuliaCon, we would love to hear from you! Please see this [Volunteer form](https://forms.gle/2KnYko7HnGKLvHJB7) and do reachout if you want to help. 
