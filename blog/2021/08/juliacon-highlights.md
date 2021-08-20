@@ -16,9 +16,9 @@ Congratulations to the winners of the [Julia Community Prize](https://juliacon.o
 *   **Fons van der Plas** for his work on Pluto.jl
 *   **Dilum Aluthge** for his contributions to our community infrastructure and community building
 
-**Keynote Speeches**  
+**Keynotes**  
 
-This year’s keynote speeches were stellar, and among the most viewed presentations of the conference.  
+This year’s keynotes were stellar, as always, and among the most viewed presentations of the conference.  
 
 *   **Jan Vitek**, Professor of Computer Science at Northeastern University presented [Julia: Great Language, or The Greatest Language?](https://www.youtube.com/watch?v=LT4AP7CUMAw)
 *   **Xiaoye (Sherry) Li**, Senior Scientist at Lawrence Berkeley National Laboratory presented [Interplay of Linear Algebra, Machine Learning and HPC](https://www.youtube.com/watch?v=sUyddZQaeyg)
