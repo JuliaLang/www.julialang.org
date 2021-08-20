@@ -6,7 +6,7 @@
 
 This year’s [JuliaCon](https://www.youtube.com/playlist?list=PLP8iPy9hna6Q343_8sSq4f306VGLW4TLK) was the biggest and best ever, with [more than 300 presentations available for free on YouTube](https://www.youtube.com/playlist?list=PLP8iPy9hna6Q343_8sSq4f306VGLW4TLK), more than 20,000 registrations, and more than 43,000 unique YouTube viewers during the conference, up from 162, 10,000, and 28,900 respectively. You can read more about last years conference in our [wrap-up post](https://julialang.org/blog/2020/08/juliacon-2020-wrapup/).
 
-We extend a heartfelt congratulations and thank you to all of the organizers, presenters, and participants.
+We extend a heartfelt congratulations and thank you to all of the volunteers, presenters, and participants.
 
 ## Julia Community Prize Winners
 
