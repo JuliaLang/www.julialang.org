@@ -1,36 +1,36 @@
 @def rss_pubdate = Date(2021, 8, 18)
-@def rss = """ Implementing Deep Equilibrium Models in Julia... """
+@def rss = """ Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"""
 @def published = "18 August 2021"
 @def title = "Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"
-@def authors = """Chris Rackauckas, Mike Innes, Yingbo Ma, Jesse Bettencourt, Lyndon White, Vaibhav Dixit"""  
+@def authors = """Quiyo Wei, Frank Schäfer, Chris Rackauckas"""  
 <!-- authors waiting to be updated -->
 
 <!-- Translations: [Traditional Chinese](/blog/2019/04/fluxdiffeq-zh_tw) -->
 
+The [SciML Common Interface](https://scimlbase.sciml.ai/dev/) defines a complete
+set of equation solving techniques, from differential equations and optimization
+to nonlinear solves and integration (quadrature), in a way that is made to
+naturally mix with machine learning. In this sense, there is no difference
+between the optimized libraries being used for physical modeling and
+the techniques used in machine learning: in the composable ecosystem of Julia,
+these are one and the same. The same differential equation solvers that are
+being carefully inspected for speed and accuracy by the FDA and Moderna [for clinical trial analysis](https://pumas.ai/)
+are what's [mixed with neural networks for neural ODEs](https://julialang.org/blog/2019/01/fluxdiffeq/). 
+The same [computer algebra system](https://symbolics.juliasymbolics.org/dev/)
+that is [used to accelerate NASA launch simulations by 15,000x](https://www.youtube.com/watch?v=tQpqsmwlfY0)
+is the same one that is used in [automatically discovering physical equations](https://datadriven.sciml.ai/dev/).
+With a composable package ecosystem, the only thing holding you back is the ability to
+figure out new ways to compose the parts.
+
 In this blog post we will show you how to easily, efficiently, and
-robustly use steady state solvers with neural networks in Julia. This
-blog assumes certain familiarity with Neural ODE research.
-
-<!-- ![Flux ODE Training Animation](https://user-images.githubusercontent.com/1814174/51399500-1f4dd080-1b14-11e9-8c9d-144f93b6eac2.gif) -->
-
-The combination of differential equations and neural networks has aroused wide-spread interest
-since 2017. For more on the history of this field, please see the seminal work
-[Neural Ordinary Differential Equations](https://arxiv.org/abs/1806.07366) and our previous
-blog post [DiffEqFlux.jl – A Julia Library for Neural Differential Equations](https://julialang.org/blog/2019/01/fluxdiffeq/).
-This is a great example of interweaving machine learning with another field of research.
-In doing so, not only do we get to reap the benefits of centuries of research in the
-differential equations community, we also shift our perspective from the discrete to the
-continuous for machine learning, and from the explicit to the black-box for differential
-equations.
-
-What follows in recent years is a surge of algorithms expanding the frontiers of applying
-Neural ODEs to physical problems, as well as studies exploring the theoretical implications
-of this new-born area of research. For the former, one can refer to a flurry of works in the
-scientific machine learning (SciML) community, many of which based on the flexible structure
-of the Julia programming language. Among the latter direction, Deep Equilibrium Models (DEQ)
-stand out as an extension of Neural ODE theory, in particular making the notion of infinite-depth
-neural networks explicit in the algorithm. This blog post will be aimed at exploring the
-properties of DEQ models.
+robustly use steady state nonlinear solvers with neural networks in Julia. We will
+showcase the relationship between steady states and ODEs and use this
+to connect the methods for Deep Equilibrium Models (DEQs) to Neural ODEs.
+We will then show how [DiffEqFlux.jl](https://diffeqflux.sciml.ai/dev/)
+can be used as a method for DEQs, showing how the composability of the
+Julia ecosystem naturally lends itself to extensions and generalizations
+of methods in machine learning literature. For background on DiffEqFlux,
+please see the previous blog post [DiffEqFlux.jl – A Julia Library for Neural Differential Equations](https://julialang.org/blog/2019/01/fluxdiffeq/).
 
 (Note: If you are interested in this work and are an undergraduate or graduate
 student, we have [Google Summer of Code projects available in this area](/soc/ideas-page). This
@@ -39,117 +39,110 @@ Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel
 
 \toc
 
+## Deep Equilibrium Models (DEQs) and Infinitely Deep Networks
 
-## What is a Neural Ordinary Differential Equation?
+Neural network structures can be viewed as repeated applications of layered computations. For 
+example, when we apply convolution filters on images the network can be viewed as a feature 
+extractor consisting of repetitive blocks of convolutional layers, and one linear output layer 
+at the very end. It's $f(f(f(...f(x))...))$ where $f$ is the neural network, where we call this
+"deep" because of the layers of composition. But what if we make this composition go to infinity?
 
-To put it simply, Neural ODE uses a neural network to parameterize what ODE we are
-solving. This is exactly what I was referring to when I noted that the discovery of Neural ODE
-allowed the differential equations community to shift from using explicit definitions to
-black-box solvers. Instead of having to specify the exact position-momentum relations of a
-pendulum using Hamiltonian equations, one can train a neural network to implicitly represent
-the differential equations that describe the system. In the case where we know
-exactly the differential equations from physics, we should rarely expect the neural network
-to outperform human knowledge. Nevertheless, this method crowns itself as an implicit
-modeling technique which can work when we only observe input and output data of the system
-without possessing knowledge of what happens inside. Then, one of the biggest pros is to
-just fit the terms which you don't know exactly. There are a bunch of differential equations
-in fluid dynamics for example, which would almost fall under "we know exactly the
-differential equations" after many approximations, and in realistic systems some additional terms might pop up as well.
+Now, we cannot practically do infinite computation, so instead we need some sense of what "going
+close enough to infinity" really means. Fortunately, we can pull a few ideas from the mathematics
+of dynamical systems to make this definition. We can think of this as an iterative process as a
+dynamical system $x_{n+1} = f(x_n)$, where the literature catagorizes all of the behaviors that
+can happen as you go to infinity: it can oscillate, it can go to infinity, it can do something
+that looks almost random (this is the natorious chaos theory), or importantly, it can "stabilize"
+to something known as a steady state or equilibria value. This last behavior happens when
+$x = f(x)$, where once it settles in to this pattern it will repeat the pattern ad infinitum, and
+thus solving to infinity is equivalent to finding a steady state. An entire literature characterizes
+the properties of $f$ which cause values to converge to a single repeating value in this sense,
+and we would refer you to Strogatz's Nonlinear Dynamics and Chaos as an accessible introduction
+to this topic.
 
+If you take a random $f$, it turns out one of the most likely behaviors is for $f$ to either
+converge to such steady states or diverge to infinity. If you think about it as just a scalar
+linear system $x_{n+1} = a x_n$, if $a<1$ then the value keeps decreasing to zero making the
+system head to a steady state, while $a>1$ heads to infinity. Thus if our choice of $a$ is
+"tame" enough, we can cause these systems to generally be convergent models. Likewise, if we
+used an affine system $x_{n+1} = a x_n + b$, the steady state would be defined as $x_{ss} = ax_{ss} + b$
+which we can solve to be $x_{ss} = b/(1-a)$. This is now a parameterized model of an infinite
+process where, if $a<1$, then iterating $f(x) = ax+b$ infinitely many times will go to a solution
+defined by the parameters.
 
-It is well known in literature that Neural ODE can be seen as a continuous version
-of ResNets. This is what I was referring to when I noted that Neural ODE caused
-a shift in perspective for the machine learning community from discrete to continuous. We
-have always known that powerful techniques such as gradient-based optimization combined with
-discrete neural network models gives us the great inference engine that is "standard deep learning".
-With the addition of Neural ODE, we can take a look at what happens when we take infinitely
-small steps in adjustment (think learning rate $\lim _{\lambda \rightarrow 0}$), effectively resulting in a differential equation.
-For our purpose, we will take inspiration from this property of Neural ODE, and
-approximate an "infinitely deep" model as each network layer tends to zero in size.
+**What if $f$ is a neural network and the parameters are weights of the neural network?**
 
+That is the intuition that defines the [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377),
+where $x_{ss}$ is the prediction from the model. Now, if the weights are such that $x_{ss}$ is 
+divergent towards infinity, those weights would have a very large cost in their predictions and
+thus the weights will naturally be driven away from such solutions. This makes such a structure
+$x_{n+1} = NN(x_n)$ naturally inclined to learn convergent steady state behavior.
 
-## Deep Equilibrium Models and Infinitely Deep Networks
+[though this line of thought leaves open some interesting alternatives: what neural networks prevent oscillations
+and chaos? Or new loss functions? Etc. We'll leave that for you to figure out.]
 
-There is a line of work following [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377)
-that explores direct representations of infinitely-deep neural networks. It borrows
-much of the ideas from the Neural ODE line of research, and allows neural network structures
-to be viewed as repeated applications of layered computations. This is often very accurate,
-for example when we apply convolution filters on images---the network can essentially
-be viewed as a feature extractor consisting of repetitive blocks of convolutional layers, and one
-linear output layer at the very end. Naturally, DEQ models constitute data-efficient solutions
-to popular problems in computer vision such as object segmentation in works like [MDEQ](https://arxiv.org/abs/2006.08656).
+## But why are DEQs interesting for machine learning?
 
-However, there are caveats to consider when taking the repetition to the limit. 
-When there is an infinite number of these repeated blocks, the value being
-pushed forward might continually increase until it explodes to infinity. But under
-certain conditions, this repetition $x_{n+1} = x_n + f(x_n)$ does not diverge but
-rather converges to a stable equilibrium. The central idea behind Deep Equilibrium
-Models (DEQs) is to capture the space of convergent dynamical systems using a
-neural network representation of the residual `f`.
+Before continuing to some examples, we must be bridge from "beautiful math" to why you should care.
+Why should a practicing machine learning engineer care about this structure? The answer is simple:
+with a DEQ, you never have to wonder if you've chosen enough layers. Your number of layers is effectively
+infinity, so it's always enough. Indeed, if $x_{ss}$ is the value that comes out of the DEQ, since it's
+approximately the solution to this infinite process $x_{n+1} = NN(x_n)$, by definition one more application
+leaves the prediction essentially unchanged: $x_{ss} = NN(x_{ss})$. Therefore you're done hyperparameter
+optimizing: a DEQ does not have a number of layers to choose. You of course still have to choose an architecture
+for $NN$, but this decreases the space of what could go wrong in your training process.
 
-Let us begin by looking at equations representing repeated compounding of the same layer
-$$
-\begin{array}{l}
-z:=0\\
-\text { Repeat until convergence: }\\
-z:=\tanh (W z+x)
-\end{array}
-$$
+Another interesting detail is that, surprisingly, backpropogation of a DEQ is cheaper than doing a big number
+of iterations! How is this possible? It's actually due to a very old mathematical theorem known as the
+[Implicit Function Theorem](https://en.wikipedia.org/wiki/Implicit_function_theorem). Let's take a quick
+look at the simplified example we wrote before, where $x_{n+1} = a x_n + b$ abd thus $x_{ss} = b/(1-a)$.
+Essentially the DEQ is the function that gives the solution to a nonlinear system, i.e. $DEQ(x) = x_ss$.
+What is the derivative of the DEQ's output with respect to the parameters of $a$ and $b$? It turns out this
+derivative is easy to calculate and does not require differentiating through the infinite iteration
+proceess $x_{n+1} = a x_n + b$: you can directly differentiate $x_{ss} = b/(1-a)$. The Implicit Function
+Theorem says that this generally holds: you can always differentiate the steady state without having to
+go back through the iterative process. Why this is important is because "backpropogation" or "adjoints"
+are simply the derivative of the output with respect to the parameter weights of the neural network. What this
+is saying is that, if you have a deep neural network with $n$ a big number of layers, you need to backpropogate
+through $n$ neural networks. **But if $n$ is infinite, you only need to backpropogate through 1!** The details
+of this have been well-studied in the scientific computing literature since at least the 90's. For example, 
+Steven Johnson's [Notes on Adjoint Methods for 18.335 from 2006](https://math.mit.edu/~stevenj/18.336/adjoint.pdf) 
+shows a well-written derivation of an adjoint equation ("backpropagation" equation) for a rootfinding solver,
+along with a [liteny](https://link.springer.com/content/pdf/10.1007%2F3-540-45718-6_20.pdf) of 
+[papers](http://www.jcomputers.us/vol5/jcp0503-11.pdf) [using](https://ieeexplore.ieee.org/document/4724607) this
+[result](https://www.computer.org/csdl/proceedings-article/cis/2008/3508a020/12OmNz61djv) in the 90's and 00's
+to mix neural networks and nonlinear solving. We note very briefly that solving for a steady state is equivalent
+to solving a system of nonlinear algebraic equations $NN(x) - x = 0$, since finding this solution would give
+$x_{ss} = NN(x_{ss})$ the steady state.
 
-Which eventually brings us to
-$$
-z^{\star}=\tanh \left(W z^{\star}+x\right)
-$$
+But everything in this world is a differential equation, so let's take a turn and twist this into an ODE!
 
-(Equations credit: [Deep Implicit Layers Tutorial](http://implicit-layers-tutorial.org/introduction/))
-
-The idea of DEQ is, in a sense, insanely simple! We assume there are infinitely many
-compositions of this kind of layer and directly solve for the fixed point described by the dynamical system.
-I should emphasize again that DEQ models, similar to Neural ODEs, are usually parametrized using
-neural networks (`W`). The power of implicitly defining a model lies in the fact that
-we can choose whatever solution methods we wish.
-
-Clearly, naively iterating for the fixed point would take an enormous amount of time. However,
-classical dynamical systems theory relates this infinite process to a simple mathematical problem.
-If we perceive the iterating layer of the network as a dynamical system, DEQ is solving nothing but the
-well-known "Steady State Problem", defined as the final converging state of the system as time
-goes to infinity. It is apparent that steady state problems are "special cases" of differential equations
----for an update equation $x_{n+1} = x_n + f(x_n)$, "the equation is not changing anymore"
-is equivalent to saying $x_{n+1} = x_n$ which reduces the problem to finding the $x$ such that $f(x) = 0$.
-This is also known as a rootfinding problem, where the forward and adjoint methods have been well-studied
-in the scientific computing literature since at least the 90's. For example, Steven Johnson's 
-[Notes on Adjoint Methods for 18.335 from 2006](https://math.mit.edu/~stevenj/18.336/adjoint.pdf) shows a
-well-written derivation of an adjoint equation ("backpropagation" equation) for a rootfinding solver. 
-
-
-## Mixing DEQs and Neural ODEs
+## Mixing DEQs and Neural Ordinary Differential Equations (Neural ODEs)
 
 From the viewpoint of Julia and the DiffEqFlux.jl library, it is also natural to look at DEQ from
-a differential equations perspective. Instead of viewing the
-dynamical system as a discrete process $x_{n+1} = x_n + f(x_n)$, we can equivalently view the system as evolving
-continuously, i.e. $x' = f(x)$. In this sense, convergence is when the change is zero, or $x'=0$, which again
-happens when $f(x)=0$ and is a rootfinding problem. But this view is insightful: a DEQ is a neural ODE where
-time goes to infinity. The connection is well justified, once one notices that steady state problems are
-"special cases" of differential equations. As we will see in the next section, this observation makes implementing
-DEQ models in Julia insanely simple. The model can be summed up as a steady state layer on top of the neural network.
+a differential equations perspective. Instead of viewing the dynamical system as a discrete process 
+$x_{n+1} = f(x_n)$, we can equivalently view the system as evolving
+continuously, i.e. $x' = f(x)$. If we think about $dx/dt = f(x)$, by Euler's method we approximate $dx = x_{n+1} - x_n$
+and simplify to get $x_{n+1} = x_n + dt f(x_n) = g(x_n)$ which relates us back to our original definition with a
+slight change to the function. However, in this ODE sense, convergence is when the change is zero, 
+or $x'=0$, which again happens when $f(x)=0$ and is a rootfinding problem. But this view is insightful: 
+a DEQ is a neural ODE where time goes to infinity. But now, instead of taking 1 step at a time, we can take $dt$
+steps at a time towards the steady state. This means an adaptive ODE solver can notice we are converging and take
+larger and larger steps to get to that equilibrium a bit quicker. But also, given DiffEqFlux, this observation makes implementing
+DEQ models in Julia insanely simple. Let's go for it!
 
 ## Let us implement a simple DEQ Model via ODE Solvers
-There are many ways that one can solve a rootfinding problem with different characteristics.
-One can directly use Newton's method, but this can require a good guess and may not distinguish
-between stable and unstable equilibrium. Julia packages like 
-[NLsolve.jl](https://github.com/JuliaNLSolvers/NLsolve.jl) provide many feasible solutions, and
-Bifurcation tools like [BifurcationKit.jl](https://rveltz.github.io/BifurcationKit.jl/dev/) give a whole host of other methods. But for our demonstration,
-we will focus on showcasing the evolving ODE approach. This is similar to the fixed point method of running
-$x_{n+1} = x_n + f(x_n)$, but we can instead allow the ODE solver to adaptively change its steps along the
-trajectory to better facilitate convergence. We can define "convergence" as a tolerance where for $x' = f(x)$,
-we want $x'$ to be sufficiently small (in absolute and relative tolerance). It turns out that a method for
-doing this, along with its backpropogation, is already defined in Julia as the 
-[steady state problem](https://diffeq.sciml.ai/stable/types/steady_state_types/) which will automatically
-detect when the ODE has converged and halt the integration. So let's demonstrate a DEQ via SteadyStateProblem.
+
+The Julia [DifferentialEquations.jl](https://diffeq.sciml.ai/stable/) library has a problem type known as
+[SteadyStateProblem](https://diffeq.sciml.ai/stable/types/steady_state_types/) which automatically solves
+until $x'$ is sufficiently small (below tolerance), in which case it will automatically use a
+[terminating callback](https://diffeq.sciml.ai/stable/features/callback_functions/#Example-2:-Terminating-an-Integration)
+to exit the iteration at the (approximately) found steady state. Because the [SciML Organization's Packages](https://sciml.ai/)
+are differentiable, we can stick neural networks inside of this "steady states of ODEs" problem, and that
+will generate a training mechanism for this continuous-stepping DEQ procedure.
 
 The following code block creates a DEQ model. The acute will notice that this code looks
-awfully similar to typical Neural ODEs implemented in Julia. By now this should not come
-as a surprise, as DEQ models fall under the umbrella of the line of work involving Neural ODEs.
+awfully similar to typical [Neural ODEs implemented in Julia](https://julialang.org/blog/2019/01/fluxdiffeq/).
 Therefore, the DEQ implementation simply adds an extra steady state layer on top
 of the ODE function, and as long as we use the correct sensitivity corresponding to
 steady state problems, we are covered.
@@ -203,6 +196,31 @@ for i in 1:epochs
     println(solve_ss([-5])) # Print model prediction
 end
 ```
+
+Tada, we now have a valid machine-learned model for solving the regression problem where the
+predictions are given by steady states of an ODE solver, where the ODE is defined by a neural network!
+
+**The general composability of the Julia ecosystem means that there is no "Github repository for DEQs",
+instead this is just the ODE solver mixed with the ML library, the AD package, the GPU package, etc.
+and when put together you get a DEQ!**
+
+## Generalizing to other Solution Techniques
+
+There are many ways that one can solve a rootfinding problem with different characteristics.
+One can directly use Newton's method, but this can require a good guess and may not distinguish
+between stable and unstable equilibrium. Julia packages like 
+[NLsolve.jl](https://github.com/JuliaNLSolvers/NLsolve.jl) provide many feasible solutions, and
+Bifurcation tools like [BifurcationKit.jl](https://rveltz.github.io/BifurcationKit.jl/dev/) give a whole host of other methods. 
+Given the importance of solving nonlinear algebraic systems and their differentiability, the SciML organization
+has put together a common interface package [NonlinearSolve.jl](https://nonlinearsolve.sciml.ai/dev/) that weaves
+together all of the techniques throughout the package ecosystem (bringing together methods from SUNDIALS, MINPACK,
+etc.) and generally defines its differentiability. As such, this package gives a "one-stop shop" for weaving both new
+implementations and classical FORTRAN implementations with machine learning without having to worry
+about the training details.
+
+Let's see this in action!
+
+(Demodemodemo)
 
 ## We can also convert well-known architectures into DEQ Models
 
@@ -352,38 +370,8 @@ end
 train()
 ```
 
-
-
 ## Conclusion
 
-In this blog post, we have witnessed the flexibility of Julia. Progress in
-differential equation and deep learning packages seamlessly integrate, making it
-virtually effortless to implement new algorithms like DEQ models.
-DEQ models open up ample opportunities for theoretical research when we consider
-more advanced rootfinding methods. We also look forward to future work that push
-the application of new algorithms to real-world physics problems. We are very
-excited to witness the potential of the Julia programming language, and what it
-will bring at the crossroads of differential equation and machine learning research.
-
-Note: a citable version of this post is published on [Arxiv](https://arxiv.org/abs/1902.02376).
-<!-- Still waiting to be changed -->
-```
-@article{DBLP:journals/corr/abs-1902-02376,
-  author    = {Christopher Rackauckas and
-               Mike Innes and
-               Yingbo Ma and
-               Jesse Bettencourt and
-               Lyndon White and
-               Vaibhav Dixit},
-  title     = {DiffEqFlux.jl - {A} Julia Library for Neural Differential Equations},
-  journal   = {CoRR},
-  volume    = {abs/1902.02376},
-  year      = {2019},
-  url       = {https://arxiv.org/abs/1902.02376},
-  archivePrefix = {arXiv},
-  eprint    = {1902.02376},
-  timestamp = {Tue, 21 May 2019 18:03:36 +0200},
-  biburl    = {https://dblp.org/rec/bib/journals/corr/abs-1902-02376},
-  bibsource = {dblp computer science bibliography, https://dblp.org}
-}
-```
+The world is your oyster, and composability of the [SciML ecosystem](https://sciml.ai/)
+is there to fascilitate doing machine learning with your wildest creations. Mix and match
+things at will. We're excited to see what you come up with.
