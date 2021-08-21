@@ -4,7 +4,7 @@
 @def rss_pubdate = Date(2021, 8, 20)
 @def rss = """JuliaCon 2021 Highlights"""
 
-This year’s [JuliaCon](https://www.youtube.com/playlist?list=PLP8iPy9hna6Q343_8sSq4f306VGLW4TLK) was the biggest and best ever, with [more than 300 presentations available for free on YouTube](https://www.youtube.com/playlist?list=PLP8iPy9hna6Q343_8sSq4f306VGLW4TLK), more than 20,000 registrations, and more than 43,000 unique YouTube viewers during the conference, up from 162, 10,000, and 28,900 respectively. You can read more about last years conference in our [wrap-up post](https://julialang.org/blog/2020/08/juliacon-2020-wrapup/).
+This year’s [JuliaCon](https://www.youtube.com/playlist?list=PLP8iPy9hna6Q343_8sSq4f306VGLW4TLK) was the biggest and best ever, with [more than 300 presentations available for free on YouTube](https://www.youtube.com/playlist?list=PLP8iPy9hna6Q343_8sSq4f306VGLW4TLK), more than 20,000 registrations, and more than 43,000 unique YouTube viewers during the conference, up from 162 presentations, 10,000 registrations, and 28,900 unique YouTube viewers during last year's conference. You can read more about last year's conference in our [wrap-up post](https://julialang.org/blog/2020/08/juliacon-2020-wrapup/).
 
 We extend a heartfelt congratulations and thank you to all of the volunteers, presenters, and participants.
 
@@ -30,9 +30,9 @@ We were excited to have the JuMP-dev conference co-located within JuliaCon for t
 
 ## Code, Docs and Tests: What’s In the General Registry?
 
-Mosè Giordano and Eric P. Hanson presented [Code, Docs and Tests: What’s In the General Registry?](https://live.juliacon.org/talk/HVSAW9).
+Mosè Giordano and Eric P. Hanson presented [Code, Docs and Tests: What’s In the General Registry?](https://live.juliacon.org/talk/HVSAW9)
 
-The General registry is the collection of open source packages that makes up the Julia package ecosystem. The Julia General registry has **11.8 million lines of code** (including docs and tests). More than 96% of packages have an Open Source Initiative approved license, 88% have at least 20 lines of readme or docs, 96% have run tests, 95% have setup for continuous integration, 58% of packages have at least 2 contributors, 93% have at least 10 commits, 48% of contributors have contributed to two or more packages and 60% of contributors have made at least 5 commits. There are 4,931 Julia contributors who have contributed to packages in the General registry. You can read more in depth on the [blog post by Mosè and Eric](https://julialang.org/blog/2021/08/general-survey/) on the Julia Language's blog.
+The General registry is the collection of open source packages that makes up the Julia package ecosystem. The Julia General registry has **11.8 million lines of code** (including docs and tests). More than 96% of packages have an Open Source Initiative approved license, 88% have at least 20 lines of readme or docs, 96% have run tests, 95% have setup for continuous integration, 58% of packages have at least 2 contributors, 93% have at least 10 commits, 48% of contributors have contributed to two or more packages and 60% of contributors have made at least 5 commits. There are more than 5,000 Julia contributors who have contributed to packages in the General registry. You can read more in this [blog post by Mosè and Eric](https://julialang.org/blog/2021/08/general-survey/).
 
 ## State of Julia
 
@@ -52,9 +52,9 @@ As always, we want to thank our sponsors for making JuliaCon possible. You can f
 <img width="792" alt="JuliaCon2021Sponsors" src="https://user-images.githubusercontent.com/35577566/130253763-58b8ab78-dc86-4148-ba08-ef191895976b.png">
 ~~~
 
-## JuliaCon T-shirt and Mug
+## JuliaCon T-Shirt and Mug
 
-Thank you to everyone who purchased the JuliaCon 2021 T-shirt or Mug this year. We had a set of incredible designs which folks seemed to really like given we sold more than 700 shirts this year, raising almost 4,000 USD! If you missed the initial batch, it is not too late, check out our [Bonfire shop](https://www.bonfire.com/store/the-julia-language/) to order yours today.
+Thank you to everyone who purchased the JuliaCon 2021 T-shirt or mug this year. We had a set of incredible designs which folks seemed to really like given we sold more than 700 shirts this year, raising almost 4,000 USD! If you missed the initial batch, it is not too late, check out our [Bonfire shop](https://www.bonfire.com/store/the-julia-language/) to order yours today.
 
 ## Other JuliaCon Blog posts
 
@@ -67,7 +67,7 @@ You might want to check out some of the other awesome blog posts folks have writ
 
 ## Beyond JuliaCon 2021
 
-As you might be able to tell, this years conference was another massive leap for the Julia community. The work required to put on a conference of this size cannot be understated. If you would be interested in helping with future iterations of JuliaCon, we would love to hear from you! Please see this [Volunteer form](https://forms.gle/2KnYko7HnGKLvHJB7) and do reach out if you want to help. 
+As you might be able to tell, this year's conference was another massive leap for the Julia community. The work required to put on a conference of this size cannot be understated. If you would be interested in helping with future iterations of JuliaCon, we would love to hear from you! Please see this [Volunteer form](https://forms.gle/2KnYko7HnGKLvHJB7) and do reach out if you want to help. 
 
 We also still have a [general JuliaCon 2021 feedback form](https://forms.gle/7w9q1MBow5u9kUGY7) live. Please feel free to send over any feedback on the conference as we are always interested in improving the experience.
 
