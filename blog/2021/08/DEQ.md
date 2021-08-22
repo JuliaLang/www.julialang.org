@@ -2,7 +2,7 @@
 @def rss = """ Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"""
 @def published = "18 August 2021"
 @def title = "Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"
-@def authors = """Quiyo Wei, Frank Schäfer, Chris Rackauckas"""  
+@def authors = """Qiyao Wei, Frank Schäfer, Chris Rackauckas"""  
 <!-- authors waiting to be updated -->
 
 <!-- Translations: [Traditional Chinese](/blog/2019/04/fluxdiffeq-zh_tw) -->
@@ -24,12 +24,12 @@ figure out new ways to compose the parts.
 
 In this blog post we will show you how to easily, efficiently, and
 robustly use steady state nonlinear solvers with neural networks in Julia. We will
-showcase the relationship between steady states and ODEs and use this
-to connect the methods for Deep Equilibrium Models (DEQs) to Neural ODEs.
+showcase the relationship between steady states and ODEs, thus making a connection
+between the methods for Deep Equilibrium Models (DEQs) and Neural ODEs.
 We will then show how [DiffEqFlux.jl](https://diffeqflux.sciml.ai/dev/)
-can be used as a method for DEQs, showing how the composability of the
+can be used as a package for DEQs, showing how the composability of the
 Julia ecosystem naturally lends itself to extensions and generalizations
-of methods in machine learning literature. For background on DiffEqFlux,
+of methods in machine learning literature. For background on DiffEqFlux and Neural ODEs,
 please see the previous blog post [DiffEqFlux.jl – A Julia Library for Neural Differential Equations](https://julialang.org/blog/2019/01/fluxdiffeq/).
 
 (Note: If you are interested in this work and are an undergraduate or graduate
@@ -44,26 +44,26 @@ Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel
 Neural network structures can be viewed as repeated applications of layered computations. For 
 example, when we apply convolution filters on images the network can be viewed as a feature 
 extractor consisting of repetitive blocks of convolutional layers, and one linear output layer 
-at the very end. It's $f(f(f(...f(x))...))$ where $f$ is the neural network, where we call this
+at the very end. It's essentially $f(f(f(...f(x))...))$ where $f$ is the neural network, and we call this
 "deep" because of the layers of composition. But what if we make this composition go to infinity?
 
 Now, we cannot practically do infinite computation, so instead we need some sense of what "going
 close enough to infinity" really means. Fortunately, we can pull a few ideas from the mathematics
-of dynamical systems to make this definition. We can think of this as an iterative process as a
-dynamical system $x_{n+1} = f(x_n)$, where the literature catagorizes all of the behaviors that
+of dynamical systems to make this definition. We can think of this iterative process as a
+dynamical system $x_{n+1} = f(x_n)$, where the literature categorizes all of the behaviors that
 can happen as you go to infinity: it can oscillate, it can go to infinity, it can do something
-that looks almost random (this is the natorious chaos theory), or importantly, it can "stabilize"
+that looks almost random (this is the notorious chaos theory), or importantly, it can "stabilize"
 to something known as a steady state or equilibria value. This last behavior happens when
-$x = f(x)$, where once it settles in to this pattern it will repeat the pattern ad infinitum, and
-thus solving to infinity is equivalent to finding a steady state. An entire literature characterizes
+$x_{ss} = f(x_{ss})$, where once it settles in to this pattern it will repeat the pattern ad infinitum, and
+thus solving the infinity problem is equivalent to finding a steady state. An entire literature characterizes
 the properties of $f$ which cause values to converge to a single repeating value in this sense,
-and we would refer you to Strogatz's Nonlinear Dynamics and Chaos as an accessible introduction
+and we would refer you to the book "Nonlinear Dynamics and Chaos" by Strogatz as an accessible introduction
 to this topic.
 
 If you take a random $f$, it turns out one of the most likely behaviors is for $f$ to either
 converge to such steady states or diverge to infinity. If you think about it as just a scalar
-linear system $x_{n+1} = a x_n$, if $a<1$ then the value keeps decreasing to zero making the
-system head to a steady state, while $a>1$ heads to infinity. Thus if our choice of $a$ is
+linear system $x_{n+1} = a x_n$, when $a<1$ the value keeps decreasing to zero making the
+system head to a steady state, while $a>1$ leads to infinity. Thus if our choice of $a$ is
 "tame" enough, we can cause these systems to generally be convergent models. Likewise, if we
 used an affine system $x_{n+1} = a x_n + b$, the steady state would be defined as $x_{ss} = ax_{ss} + b$
 which we can solve to be $x_{ss} = b/(1-a)$. This is now a parameterized model of an infinite
@@ -73,7 +73,8 @@ defined by the parameters.
 **What if $f$ is a neural network and the parameters are weights of the neural network?**
 
 That is the intuition that defines the [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377),
-where $x_{ss}$ is the prediction from the model. Now, if the weights are such that $x_{ss}$ is 
+where $x_{ss}$ is the prediction from the model. That is also why DEQs are analogous to infinitely-deep
+networks. Now, if the weights are such that $x_{ss}$ is 
 divergent towards infinity, those weights would have a very large cost in their predictions and
 thus the weights will naturally be driven away from such solutions. This makes such a structure
 $x_{n+1} = NN(x_n)$ naturally inclined to learn convergent steady state behavior.
@@ -83,8 +84,8 @@ and chaos? Or new loss functions? Etc. We'll leave that for you to figure out.]
 
 ## But why are DEQs interesting for machine learning?
 
-Before continuing to some examples, we must be bridge from "beautiful math" to why you should care.
-Why should a practicing machine learning engineer care about this structure? The answer is simple:
+Before continuing to some examples, we must bridge from "beautiful math" to why you should care.
+Why should a machine learning engineer care about this structure? The answer is simple:
 with a DEQ, you never have to wonder if you've chosen enough layers. Your number of layers is effectively
 infinity, so it's always enough. Indeed, if $x_{ss}$ is the value that comes out of the DEQ, since it's
 approximately the solution to this infinite process $x_{n+1} = NN(x_n)$, by definition one more application
@@ -95,7 +96,7 @@ for $NN$, but this decreases the space of what could go wrong in your training p
 Another interesting detail is that, surprisingly, backpropogation of a DEQ is cheaper than doing a big number
 of iterations! How is this possible? It's actually due to a very old mathematical theorem known as the
 [Implicit Function Theorem](https://en.wikipedia.org/wiki/Implicit_function_theorem). Let's take a quick
-look at the simplified example we wrote before, where $x_{n+1} = a x_n + b$ abd thus $x_{ss} = b/(1-a)$.
+look at the simplified example we wrote before, where $x_{n+1} = a x_n + b$ and thus $x_{ss} = b/(1-a)$.
 Essentially the DEQ is the function that gives the solution to a nonlinear system, i.e. $DEQ(x) = x_ss$.
 What is the derivative of the DEQ's output with respect to the parameters of $a$ and $b$? It turns out this
 derivative is easy to calculate and does not require differentiating through the infinite iteration
@@ -103,17 +104,17 @@ proceess $x_{n+1} = a x_n + b$: you can directly differentiate $x_{ss} = b/(1-a)
 Theorem says that this generally holds: you can always differentiate the steady state without having to
 go back through the iterative process. Why this is important is because "backpropogation" or "adjoints"
 are simply the derivative of the output with respect to the parameter weights of the neural network. What this
-is saying is that, if you have a deep neural network with $n$ a big number of layers, you need to backpropogate
+is saying is that, if you have a deep neural network with $n$ very large layers, you need to backpropogate
 through $n$ neural networks. **But if $n$ is infinite, you only need to backpropogate through 1!** The details
 of this have been well-studied in the scientific computing literature since at least the 90's. For example, 
 Steven Johnson's [Notes on Adjoint Methods for 18.335 from 2006](https://math.mit.edu/~stevenj/18.336/adjoint.pdf) 
 shows a well-written derivation of an adjoint equation ("backpropagation" equation) for a rootfinding solver,
 along with a [liteny](https://link.springer.com/content/pdf/10.1007%2F3-540-45718-6_20.pdf) of 
-[papers](http://www.jcomputers.us/vol5/jcp0503-11.pdf) [using](https://ieeexplore.ieee.org/document/4724607) this
+[papers](http://www.jcomputers.us/vol5/jcp0503-11.pdf) that [use](https://ieeexplore.ieee.org/document/4724607) this
 [result](https://www.computer.org/csdl/proceedings-article/cis/2008/3508a020/12OmNz61djv) in the 90's and 00's
 to mix neural networks and nonlinear solving. We note very briefly that solving for a steady state is equivalent
 to solving a system of nonlinear algebraic equations $NN(x) - x = 0$, since finding this solution would give
-$x_{ss} = NN(x_{ss})$ the steady state.
+$x_{ss} = NN(x_{ss})$ ,or the steady state.
 
 But everything in this world is a differential equation, so let's take a turn and twist this into an ODE!
 
@@ -125,8 +126,8 @@ $x_{n+1} = f(x_n)$, we can equivalently view the system as evolving
 continuously, i.e. $x' = f(x)$. If we think about $dx/dt = f(x)$, by Euler's method we approximate $dx = x_{n+1} - x_n$
 and simplify to get $x_{n+1} = x_n + dt f(x_n) = g(x_n)$ which relates us back to our original definition with a
 slight change to the function. However, in this ODE sense, convergence is when the change is zero, 
-or $x'=0$, which again happens when $f(x)=0$ and is a rootfinding problem. But this view is insightful: 
-a DEQ is a neural ODE where time goes to infinity. But now, instead of taking 1 step at a time, we can take $dt$
+or $x'=0$, which again happens when $f(x)=0$ and is a rootfinding problem. **But this view is insightful: 
+a DEQ is a neural ODE where time goes to infinity.** Now, instead of taking 1 step at a time, we can take $dt$
 steps at a time towards the steady state. This means an adaptive ODE solver can notice we are converging and take
 larger and larger steps to get to that equilibrium a bit quicker. But also, given DiffEqFlux, this observation makes implementing
 DEQ models in Julia insanely simple. Let's go for it!
@@ -138,7 +139,7 @@ The Julia [DifferentialEquations.jl](https://diffeq.sciml.ai/stable/) library ha
 until $x'$ is sufficiently small (below tolerance), in which case it will automatically use a
 [terminating callback](https://diffeq.sciml.ai/stable/features/callback_functions/#Example-2:-Terminating-an-Integration)
 to exit the iteration at the (approximately) found steady state. Because the [SciML Organization's Packages](https://sciml.ai/)
-are differentiable, we can stick neural networks inside of this "steady states of ODEs" problem, and that
+are differentiable, we can stick neural networks inside of this "steady state of ODEs" problem, and that
 will generate a training mechanism for this continuous-stepping DEQ procedure.
 
 The following code block creates a DEQ model. The acute will notice that this code looks
@@ -372,6 +373,8 @@ train()
 
 ## Conclusion
 
-The world is your oyster, and composability of the [SciML ecosystem](https://sciml.ai/)
+In this blog post we have demonstrated a new perspective for studying DEQ models. Coupled with the
+flexible Julia language structure, we have implemented DEQ models by only changing two lines of code
+compared to Neural ODEs! The world is your oyster, and composability of the [SciML ecosystem](https://sciml.ai/)
 is there to fascilitate doing machine learning with your wildest creations. Mix and match
 things at will. We're excited to see what you come up with.
