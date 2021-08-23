@@ -169,7 +169,7 @@ function solve_ss(x)
         re(_p)(u+xg) - u
     end
     ss = SteadyStateProblem(ODEProblem(dudt_, gpu(z), tspan, p))
-    x = solve(ss, DynamicSS(Tsit5()), u0 = z, abstol = 1e-5, reltol = 1e-5).u
+    x = solve(ss, DynamicSS(Tsit5()), u0 = z, abstol = 1f-5, reltol = 1f-5).u
 end
 ```
 
