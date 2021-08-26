@@ -132,7 +132,7 @@ steps at a time towards the steady state. This means an adaptive ODE solver can 
 larger and larger steps to get to that equilibrium a bit quicker. But also, given DiffEqFlux, this observation makes implementing
 DEQ models in Julia insanely simple. Let's go for it!
 
-## Let us implement a simple DEQ Model via ODE Solvers
+## Let us implement a simple DEQ Model via ODE Solvers with Event Handling
 
 The Julia [DifferentialEquations.jl](https://diffeq.sciml.ai/stable/) library has a problem type known as
 [SteadyStateProblem](https://diffeq.sciml.ai/stable/types/steady_state_types/) which automatically solves
