@@ -102,7 +102,7 @@ Theorem says that this generally holds: you can always differentiate the steady 
 go back through the iterative process. Why this is important is because "backpropagation" or "adjoints"
 are simply the derivative of the output with respect to the parameter weights of the neural network. What this
 is saying is that, if you have a deep neural network with $n$ very large layers, you need to backpropagate
-through $n$ layers. **But if $n$ is infinite, you only need to backpropogate through 1!** The details
+through $n$ layers. **But if $n$ is infinite, you only need to backpropagate through 1!** The details
 of this have been well-studied in the scientific computing literature since at least the 90's. For example, 
 Steven Johnson's [Notes on Adjoint Methods for 18.335 from 2006](https://math.mit.edu/~stevenj/18.336/adjoint.pdf) 
 shows a well-written derivation of an adjoint equation ("backpropagation" equation) for a rootfinding solver,
