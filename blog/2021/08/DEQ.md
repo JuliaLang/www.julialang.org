@@ -114,7 +114,7 @@ along with a [liteny](https://link.springer.com/content/pdf/10.1007%2F3-540-4571
 [result](https://www.computer.org/csdl/proceedings-article/cis/2008/3508a020/12OmNz61djv) in the 90's and 00's
 to mix neural networks and nonlinear solving. We note very briefly that solving for a steady state is equivalent
 to solving a system of nonlinear algebraic equations $NN(x) - x = 0$, since finding this solution would give
-$x_{ss} = NN(x_{ss})$ ,or the steady state.
+$x_{ss} = NN(x_{ss})$, or the steady state.
 
 But everything in this world is a differential equation, so let's take a turn and twist this into an ODE!
 
