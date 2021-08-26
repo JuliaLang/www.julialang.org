@@ -6,7 +6,7 @@ on:
     branches:
       - main
 jobs:
-  build-and-deploy:
+  welcome:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/first-interaction@v1
