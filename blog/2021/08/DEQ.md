@@ -377,5 +377,5 @@ train()
 In this blog post we have demonstrated a new perspective for studying DEQ models. Coupled with the
 flexible Julia language structure, we have implemented DEQ models by only changing two lines of code
 compared to Neural ODEs! The world is your oyster, and composability of the [SciML ecosystem](https://sciml.ai/)
-is there to fascilitate doing machine learning with your wildest creations. Mix and match
+is there to facilitate doing machine learning with your wildest creations. Mix and match
 things at will. We're excited to see what you come up with.
