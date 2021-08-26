@@ -42,7 +42,7 @@ jobs:
       - name: Install Julia
         uses: julia-actions/setup-julia@v1
         with:
-          version: 1.5
+          version: 1.6
 
       # This ensures that NodeJS and Franklin are loaded then it installs
       # highlight.js which is needed for the prerendering step.
@@ -52,7 +52,7 @@ jobs:
       # specific arguments, see the documentation or ?optimize in the REPL.
       - name: Build site
         run: |
-          julia --project -e '
+          julia --color=yes --project -e '
               using Pkg; Pkg.instantiate();
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
               using Franklin; optimize(prerender=false);
