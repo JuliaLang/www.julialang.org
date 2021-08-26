@@ -120,7 +120,7 @@ But everything in this world is a differential equation, so let's take a turn an
 
 ## Mixing DEQs and Neural Ordinary Differential Equations (Neural ODEs)
 
-From the viewpoint of Julia and the DiffEqFlux.jl library, it is also natural to look at DEQ from
+From the viewpoint of Julia and the DiffEqFlux.jl library, it is also natural to look at DEQs from
 a differential equations perspective. Instead of viewing the dynamical system as a discrete process 
 $x_{n+1} = f(x_n)$, we can equivalently view the system as evolving
 continuously, i.e. $x' = f(x)$. If we think about $dx/dt = f(x)$, by Euler's method we approximate $dx = x_{n+1} - x_n$
