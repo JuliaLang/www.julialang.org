@@ -57,7 +57,7 @@ the properties of $f$ which cause values to converge to a single repeating value
 and we refer you to the book "Nonlinear Dynamics and Chaos" by Strogatz as an accessible introduction
 to this topic.
 
-If you take a random $f$, it turns out one of the most likely behaviors is for $f$ to either
+If you take a random $f$, it turns out one of the most likely behaviors for $f$ is to either
 converge to such steady states or diverge to infinity. If you think about it as just a scalar
 linear system $x_{n+1} = a x_n$, when $a<1$ the value keeps decreasing to zero making the
 system head to a steady state, while $a>1$ leads to infinity. Thus if our choice of $a$ is
