@@ -140,7 +140,11 @@ until $x'$ is sufficiently small (below tolerance), in which case it will automa
 [terminating callback](https://diffeq.sciml.ai/stable/features/callback_functions/#Example-2:-Terminating-an-Integration)
 to exit the iteration at the (approximately) found steady state. Because the [SciML Organization's Packages](https://sciml.ai/)
 are differentiable, we can stick neural networks inside of this "steady state of ODEs" problem, and that
-will generate a training mechanism for this continuous-stepping DEQ procedure.
+will generate a training mechanism for this continuous-stepping DEQ procedure. This `SteadyStateProblem`
+solution then uses the [Nonlinear Solve Adjoint](https://math.mit.edu/~stevenj/18.336/adjoint.pdf) to calculate
+the backpropagation in the efficient manner without requiring backpropagation of the iterations. This thus
+gives an efficient implementation of a DEQ without requiring any new tooling or packages, but can also 
+outperform the fixed-point iteration approaches by taking multiple steps at a time.
 
 The following code block creates a DEQ model. The acute will notice that this code looks
 awfully similar to typical [Neural ODEs implemented in Julia](https://julialang.org/blog/2019/01/fluxdiffeq/).
