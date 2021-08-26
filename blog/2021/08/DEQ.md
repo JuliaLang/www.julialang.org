@@ -3,9 +3,6 @@
 @def published = "18 August 2021"
 @def title = "Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"
 @def authors = """Qiyao Wei, Frank Schäfer, Chris Rackauckas"""  
-<!-- authors waiting to be updated -->
-
-<!-- Translations: [Traditional Chinese](/blog/2019/04/fluxdiffeq-zh_tw) -->
 
 The [SciML Common Interface](https://scimlbase.sciml.ai/dev/) defines a complete
 set of equation solving techniques, from differential equations and optimization
@@ -22,7 +19,7 @@ is the same one that is used in [automatically discovering physical equations](h
 With a composable package ecosystem, the only thing holding you back is the ability to
 figure out new ways to compose the parts.
 
-In this blog post we will show you how to easily, efficiently, and
+In this blog post we will show how to easily, efficiently, and
 robustly use steady state nonlinear solvers with neural networks in Julia. We will
 showcase the relationship between steady states and ODEs, thus making a connection
 between the methods for Deep Equilibrium Models (DEQs) and Neural ODEs.
@@ -42,8 +39,8 @@ Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel
 ## Deep Equilibrium Models (DEQs) and Infinitely Deep Networks
 
 Neural network structures can be viewed as repeated applications of layered computations. For 
-example, when we apply convolution filters on images the network can be viewed as a feature 
-extractor consisting of repetitive blocks of convolutional layers, and one linear output layer 
+example, when we apply convolution filters on images the network consists of repetitive blocks 
+of convolutional layers, and one linear output layer 
 at the very end. It's essentially $f(f(f(...f(x))...))$ where $f$ is the neural network, and we call this
 "deep" because of the layers of composition. But what if we make this composition go to infinity?
 
@@ -55,9 +52,9 @@ can happen as you go to infinity: it can oscillate, it can go to infinity, it ca
 that looks almost random (this is the notorious chaos theory), or importantly, it can "stabilize"
 to something known as a steady state or equilibria value. This last behavior happens when
 $x_{ss} = f(x_{ss})$, where once it settles in to this pattern it will repeat the pattern ad infinitum, and
-thus solving the infinity problem is equivalent to finding a steady state. An entire literature characterizes
+thus solving the infinity problem can be equivalent to finding a steady state. An entire literature characterizes
 the properties of $f$ which cause values to converge to a single repeating value in this sense,
-and we would refer you to the book "Nonlinear Dynamics and Chaos" by Strogatz as an accessible introduction
+and we refer you to the book "Nonlinear Dynamics and Chaos" by Strogatz as an accessible introduction
 to this topic.
 
 If you take a random $f$, it turns out one of the most likely behaviors is for $f$ to either
@@ -73,13 +70,13 @@ defined by the parameters.
 **What if $f$ is a neural network and the parameters are weights of the neural network?**
 
 That is the intuition that defines the [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377),
-where $x_{ss}$ is the prediction from the model. That is also why DEQs are analogous to infinitely-deep
+where $x_{ss}$ is the prediction from the model. This is why DEQs are referred to as infinitely-deep
 networks. Now, if the weights are such that $x_{ss}$ is 
 divergent towards infinity, those weights would have a very large cost in their predictions and
 thus the weights will naturally be driven away from such solutions. This makes such a structure
 $x_{n+1} = NN(x_n)$ naturally inclined to learn convergent steady state behavior.
 
-[though this line of thought leaves open some interesting alternatives: what neural networks prevent oscillations
+[Note: this line of thought leaves open some interesting alternatives: what neural networks prevent oscillations
 and chaos? Or new loss functions? Etc. We'll leave that for you to figure out.]
 
 ## But why are DEQs interesting for machine learning?
@@ -105,11 +102,11 @@ Theorem says that this generally holds: you can always differentiate the steady 
 go back through the iterative process. Why this is important is because "backpropogation" or "adjoints"
 are simply the derivative of the output with respect to the parameter weights of the neural network. What this
 is saying is that, if you have a deep neural network with $n$ very large layers, you need to backpropogate
-through $n$ neural networks. **But if $n$ is infinite, you only need to backpropogate through 1!** The details
+through $n$ layers. **But if $n$ is infinite, you only need to backpropogate through 1!** The details
 of this have been well-studied in the scientific computing literature since at least the 90's. For example, 
 Steven Johnson's [Notes on Adjoint Methods for 18.335 from 2006](https://math.mit.edu/~stevenj/18.336/adjoint.pdf) 
 shows a well-written derivation of an adjoint equation ("backpropagation" equation) for a rootfinding solver,
-along with a [liteny](https://link.springer.com/content/pdf/10.1007%2F3-540-45718-6_20.pdf) of 
+along with a [litany](https://link.springer.com/content/pdf/10.1007%2F3-540-45718-6_20.pdf) of 
 [papers](http://www.jcomputers.us/vol5/jcp0503-11.pdf) that [use](https://ieeexplore.ieee.org/document/4724607) this
 [result](https://www.computer.org/csdl/proceedings-article/cis/2008/3508a020/12OmNz61djv) in the 90's and 00's
 to mix neural networks and nonlinear solving. We note very briefly that solving for a steady state is equivalent
@@ -214,7 +211,7 @@ and when put together you get a DEQ!**
 There are many ways that one can solve a rootfinding problem with different characteristics.
 One can directly use Newton's method, but this can require a good guess and may not distinguish
 between stable and unstable equilibrium. Julia packages like 
-[NLsolve.jl](https://github.com/JuliaNLSolvers/NLsolve.jl) provide many feasible solutions, and
+[NLsolve.jl](https://github.com/JuliaNLSolvers/NLsolve.jl) provide many good algorithms, and
 Bifurcation tools like [BifurcationKit.jl](https://rveltz.github.io/BifurcationKit.jl/dev/) give a whole host of other methods. 
 Given the importance of solving nonlinear algebraic systems and their differentiability, the SciML organization
 has put together a common interface package [NonlinearSolve.jl](https://nonlinearsolve.sciml.ai/dev/) that weaves
