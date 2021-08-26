@@ -97,7 +97,7 @@ Another interesting detail is that, surprisingly, backpropogation of a DEQ is ch
 of iterations! How is this possible? It's actually due to a very old mathematical theorem known as the
 [Implicit Function Theorem](https://en.wikipedia.org/wiki/Implicit_function_theorem). Let's take a quick
 look at the simplified example we wrote before, where $x_{n+1} = a x_n + b$ and thus $x_{ss} = b/(1-a)$.
-Essentially the DEQ is the function that gives the solution to a nonlinear system, i.e. $DEQ(x) = x_ss$.
+Essentially the DEQ is the function that gives the solution to a nonlinear system, i.e. $DEQ(x) = x_{ss}$.
 What is the derivative of the DEQ's output with respect to the parameters of $a$ and $b$? It turns out this
 derivative is easy to calculate and does not require differentiating through the infinite iteration
 proceess $x_{n+1} = a x_n + b$: you can directly differentiate $x_{ss} = b/(1-a)$. The Implicit Function
