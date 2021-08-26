@@ -90,7 +90,7 @@ leaves the prediction essentially unchanged: $x_{ss} = NN(x_{ss})$. Therefore yo
 optimizing: a DEQ does not have a number of layers to choose. You of course still have to choose an architecture
 for $NN$, but this decreases the space of what could go wrong in your training process.
 
-Another interesting detail is that, surprisingly, backpropogation of a DEQ is cheaper than doing a big number
+Another interesting detail is that, surprisingly, backpropagation of a DEQ is cheaper than doing a big number
 of iterations! How is this possible? It's actually due to a very old mathematical theorem known as the
 [Implicit Function Theorem](https://en.wikipedia.org/wiki/Implicit_function_theorem). Let's take a quick
 look at the simplified example we wrote before, where $x_{n+1} = a x_n + b$ and thus $x_{ss} = b/(1-a)$.
