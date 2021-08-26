@@ -48,7 +48,7 @@ Now, we cannot practically do infinite computation, so instead we need some sens
 close enough to infinity" really means. Fortunately, we can pull a few ideas from the mathematics
 of dynamical systems to make this definition. We can think of this iterative process as a
 dynamical system $x_{n+1} = f(x_n)$, where the literature categorizes all of the behaviors that
-can happen as you go to infinity: it can oscillate, it can go to infinity, it can do something
+can happen as $n$ goes to infinity: $x$ can oscillate, it can go to infinity, it can do something
 that looks almost random (this is the notorious chaos theory), or importantly, it can "stabilize"
 to something known as a steady state or equilibria value. This last behavior happens when
 $x_{ss} = f(x_{ss})$, where once it settles in to this pattern it will repeat the pattern ad infinitum, and
