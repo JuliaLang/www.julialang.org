@@ -4,6 +4,8 @@ Something unique about the Julia Language is the way [the community self organiz
 
 The following is a non-comprehensive list of Julia GitHub Organizations, grouped by domain:
 
+One dollar plus one dollar equals $2
+
 ### Julia
 
 * [JuliaLang](https://github.com/JuliaLang) – A fresh approach to numerical computing
