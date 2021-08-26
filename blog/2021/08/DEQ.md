@@ -97,7 +97,7 @@ look at the simplified example we wrote before, where $x_{n+1} = a x_n + b$ and 
 Essentially the DEQ is the function that gives the solution to a nonlinear system, i.e. $DEQ(x) = x_{ss}$.
 What is the derivative of the DEQ's output with respect to the parameters of $a$ and $b$? It turns out this
 derivative is easy to calculate and does not require differentiating through the infinite iteration
-proceess $x_{n+1} = a x_n + b$: you can directly differentiate $x_{ss} = b/(1-a)$. The Implicit Function
+process $x_{n+1} = a x_n + b$: you can directly differentiate $x_{ss} = b/(1-a)$. The Implicit Function
 Theorem says that this generally holds: you can always differentiate the steady state without having to
 go back through the iterative process. Why this is important is because "backpropagation" or "adjoints"
 are simply the derivative of the output with respect to the parameter weights of the neural network. What this
