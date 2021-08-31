@@ -4,7 +4,6 @@ The Julia ecosystem contains over 4,000 packages that are registered in the [Gen
 
 @@tight-list
 * [JuliaHub](https://juliahub.com/ui/Packages) — a [Julia Computing](https://juliacomputing.com) service that includes search of all registered open source package documentation, code search, and navigation by tags/keywords.
-* [Julia Observer](https://juliaobserver.com) — see what packages are popular and/or trending, navigate by package categories.
 * [Julia Packages](https://juliapackages.com) — browse Julia packages, filter by categories, and sort them by popularity, creation date or date of last update. Also supports browsing package developers.
 * [Julia.jl](https://github.com/svaksha/Julia.jl) — a manually curated taxonomy of Julia packages (category information for JuliaPackages is derived from this as well).
 @@
