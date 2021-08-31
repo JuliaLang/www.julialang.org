@@ -60,6 +60,7 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
 * [JuliaMatrices](https://github.com/JuliaMatrices)
 * [JuliaNLSolvers](https://github.com/JuliaNLSolvers)
+* [JuliaNonconvex](https://github.com/JuliaNonconvex) – Non-convex constrained optimization
 * [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
 * [JuliaSmoothOptimizers](https://github.com/JuliaSmoothOptimizers) – Framework for the development of solvers for continuous nonlinear optimization
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
