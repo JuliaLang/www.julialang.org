@@ -300,6 +300,11 @@ The platforms currently supported by Julia are listed below. They are divided in
     </tr>
     <tr>
       <td> 10+ </td>
+      <td> <a href="https://juliagpu.org">Nvidia PTX (64-bit)</a> </td>
+      <td> <font color="green">Tier 1</font> </a> </td>
+    </tr>
+    <tr>
+      <td> 10+ </td>
       <td> i686 (32-bit) </td>
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
