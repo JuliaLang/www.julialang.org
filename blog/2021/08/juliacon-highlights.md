@@ -20,6 +20,7 @@ Congratulations to the winners of the [Julia Community Prize](https://juliacon.o
 
 This year’s keynotes were stellar, as always, and among the most viewed presentations of the conference.  
 
+ - **William Kahan**, Professor Emeritus of Mathematics, and of Electrical Engineering and Computer Science presented [Debugging Tools for Floating-Point Programs](https://www.youtube.com/watch?v=qHddEkfQBrA)
  - **Jan Vitek**, Professor of Computer Science at Northeastern University presented [Julia: Great Language, or The Greatest Language?](https://www.youtube.com/watch?v=LT4AP7CUMAw)
  - **Xiaoye (Sherry) Li**, Senior Scientist at Lawrence Berkeley National Laboratory presented [Interplay of Linear Algebra, Machine Learning, and HPC](https://www.youtube.com/watch?v=sUyddZQaeyg)
  - **Soumith Chintala**, Distinguished Engineer at Facebook AI Research presented [PyTorch and My Journey in Open Source](https://www.youtube.com/watch?v=6V6jk_OdH-w)
