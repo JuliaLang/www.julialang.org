@@ -294,7 +294,7 @@ The platforms currently supported by Julia are listed below. They are divided in
     </tr>
     <tr>
       <td rowspan="4"> Windows </td>
-      <td> 10+ </td>
+      <td rowspan="3"> 10+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
     </tr>
