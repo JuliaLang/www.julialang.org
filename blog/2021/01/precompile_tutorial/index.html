@@ -300,14 +300,14 @@ MethodInstance for double&#40;::AbstractFloat&#41;
 
 julia&gt; mi.specTypes
 Tuple&#123;typeof&#40;BackedgeDemo.double&#41;, AbstractFloat&#125;</code></pre></div>
-<div class=note ><p><strong>Box 5</strong> One other topic we&#39;ve not yet discussed is that when <code>precompile</code> fails, it does so &quot;almost&quot; silently:</p>
+<div class=note ><p><strong>Box 5</strong> One other topic we&#39;ve not yet discussed is that when <code>precompile</code> fails, historically &#40;prior to Julia 1.7&#41; it did so &quot;almost&quot; silently:</p>
 <pre><code class=language-julia >julia&gt; methods&#40;double&#41;
 # 1 method for generic function &quot;double&quot;:
 &#91;1&#93; double&#40;x::Real&#41; in BackedgeDemo at /tmp/BackedgeDemo/src/BackedgeDemo.jl:3
 
 julia&gt; precompile&#40;double, &#40;String,&#41;&#41;
 false</code></pre>
-<p>Even though <code>double</code> can&#39;t be compiled for <code>String</code>, the corresponding <code>precompile</code> doesn&#39;t error, it only returns <code>false</code>. If you want to monitor the utility of your <code>precompile</code> directives, sometimes it&#39;s useful to preface them with <code>@assert</code>; all&#39;s well if precompilation succeeds, but if changes to the package mean that the precompile directive has &quot;gone bad,&quot; then you get an error. Hopefully, such errors would be caught before shipping the package to users&#33;</p></div>
+<p>Even though <code>double</code> can&#39;t be compiled for <code>String</code>, the corresponding <code>precompile</code> doesn&#39;t error, it only returns <code>false</code>. Julia 1.7 will warn about inactive precompile directives.</p></div>
 <h2 id=summary ><a href="#summary">Summary</a></h2>
 <p>In this tutorial, we&#39;ve learned about <code>MethodInstance</code>s, backedges, inference, and precompilation. Some important take-home messages are:</p>
 <ul>
