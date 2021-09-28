@@ -125,6 +125,13 @@ Chocolatey automatically creates a shim for the Julia executable, so you simply 
 
 
 
+## Juliaup on Windows
+
+A MSIX installer and version manager for Julia called [Juliaup](https://github.com/JuliaLang/juliaup) is available in the [Microsoft Store](https://www.microsoft.com/store/apps/9NJNWW8PVKMN).
+It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.
+
+
+
 ## Homebrew on macOS
 
 Julia can be installed using the [Homebrew package manager](https://formulae.brew.sh/cask/julia) as follows:
