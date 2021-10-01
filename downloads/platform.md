@@ -105,6 +105,11 @@ Julia installs all its files in a single directory. Deleting the directory where
 
 [Jill.py](https://github.com/johnnychen94/jill.py) is a community-maintained command-line tool that automates the installation workflow for all platforms. After installing this using `pip install jill -U`, you can then use `jill install` to install the current stable release, and `jill install latest` to install the nightly builds.
 
+## Juliaup
+
+An installer and version manager for Julia called [juliaup](https://github.com/JuliaLang/juliaup) is available in the [Microsoft Store](https://www.microsoft.com/store/apps/9NJNWW8PVKMN).
+It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.
+
 # Platform Specific Instructions for Unofficial Binaries
 
 
