@@ -6,7 +6,6 @@
 <!-- authors waiting to be updated -->
 
 <!-- Translations: [Traditional Chinese](/blog/2019/04/fluxdiffeq-zh_tw) -->
->>>>>>> Update visualization code
 
 The [SciML Common Interface](https://scimlbase.sciml.ai/dev/) defines a complete
 set of equation solving techniques, from differential equations and optimization
