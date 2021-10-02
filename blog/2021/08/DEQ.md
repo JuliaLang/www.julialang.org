@@ -240,16 +240,16 @@ end
 
 function generate_model_trajectory(deq, x, max_depth::Int,
                                   abstol::T = 1e-8, reltol::T = 1e-8) where {T}
-deq_func = construct_iterator(deq, x)
-values = [x, deq_func()]
-for i = 2:max_depth
-       sol = deq_func()
-       push!(values, sol)
-       if (norm(sol .- values[end - 1]) ≤ abstol) || (norm(sol .- values[end - 1]) / norm(values[end - 1]) ≤ reltol)
-           return values
-       end
-end
-return values
+    deq_func = construct_iterator(deq, x)
+    values = [x, deq_func()]
+    for i = 2:max_depth
+           sol = deq_func()
+           push!(values, sol)
+           if (norm(sol .- values[end - 1]) ≤ abstol) || (norm(sol .- values[end - 1]) / norm(values[end - 1]) ≤ reltol)
+               return values
+           end
+    end
+    return values
 end
 
 traj = generate_model_trajectory(deq, rand(1, 10) .* 10 |> gpu, 100)
