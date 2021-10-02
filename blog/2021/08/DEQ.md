@@ -2,7 +2,11 @@
 @def rss = """ Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"""
 @def published = "18 August 2021"
 @def title = "Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"
-@def authors = """Qiyao Wei, Frank Schäfer, Chris Rackauckas"""  
+@def authors = """Qiyao Wei, Frank Schäfer, Avik Pal, Chris Rackauckas"""  
+<!-- authors waiting to be updated -->
+
+<!-- Translations: [Traditional Chinese](/blog/2019/04/fluxdiffeq-zh_tw) -->
+>>>>>>> Update visualization code
 
 The [SciML Common Interface](https://scimlbase.sciml.ai/dev/) defines a complete
 set of equation solving techniques, from differential equations and optimization
@@ -153,25 +157,43 @@ steady state problems, we are covered.
 using Flux
 using DiffEqSensitivity
 using SteadyStateDiffEq
-using DiffEqFlux
 using OrdinaryDiffEq
 using CUDA
+using Plots
+using LinearAlgebra
 CUDA.allowscalar(false)
 
-ann = Chain(Dense(1, 2), Dense(2, 1)) |> gpu
-p,re = Flux.destructure(ann)
-tspan = (0.0f0, 1.0f0)
-
-function solve_ss(x)
-    xg = gpu(x)
-    z = re(p)(xg) |> gpu
-    function dudt_(u, _p, t)
-        # Solving the equation f(u) - u = du = 0
-        re(_p)(u+xg) - u
-    end
-    ss = SteadyStateProblem(ODEProblem(dudt_, gpu(z), tspan, p))
-    x = solve(ss, DynamicSS(Tsit5()), u0 = z, abstol = 1f-5, reltol = 1f-5).u
+struct DeepEquilibriumNetwork{M,P,RE,A,K}
+    model::M
+    p::P
+    re::RE
+    args::A
+    kwargs::K
 end
+
+
+Flux.@functor DeepEquilibriumNetwork
+
+function DeepEquilibriumNetwork(model, args...; kwargs...)
+    p, re = Flux.destructure(model)
+    return DeepEquilibriumNetwork(model, p, re, args, kwargs)
+end
+
+Flux.trainable(deq::DeepEquilibriumNetwork) = (deq.p,)
+
+function (deq::DeepEquilibriumNetwork)(x::AbstractArray{T},
+                                       p = deq.p) where {T}
+    z = deq.re(p)(x)
+    # Solving the equation f(u) - u = du = 0
+    dudt(u, _p, t) = deq.re(_p)(u .+ x) .- u
+    ssprob = SteadyStateProblem(ODEProblem(dudt, z, (zero(T), one(T)), p))
+    return solve(ssprob, deq.args...; u0 = z, deq.kwargs...).u
+end
+
+ann = Chain(Dense(1, 5), Dense(5, 1)) |> gpu
+
+deq = DeepEquilibriumNetwork(ann,
+                             DynamicSS(Tsit5(), abstol = 1f-2, reltol = 1f-2))
 ```
 
 Afterwards, we can test our DEQ model on a simple regression problem $y=2x$. When one runs this,
@@ -182,25 +204,62 @@ model completes this regression problem perfectly.
 
 ```julia
 # Let's run a DEQ model on linear regression for y = 2x
-X = [1;2;3;4;5;6;7;8;9;10]
-Y = [2;4;6;8;10;12;14;16;18;20]
-data = Flux.Data.DataLoader(gpu.(collect.((X, Y))), batchsize=1,shuffle=true)
+X = reshape(Float32[1;2;3;4;5;6;7;8;9;10], 1, :) |> gpu
+Y = 2 .* X
 opt = ADAM(0.05)
 
-function loss(x, y)
-  ŷ = solve_ss(x)
-  sum(abs2,y .- ŷ)
-end
+loss(x, y) = sum(abs2, y .- deq(x))
 
-epochs = 100
+epochs = 1000
 for i in 1:epochs
-    Flux.train!(loss, Flux.params(p), data, opt)
-    println(solve_ss([-5])) # Print model prediction
+    Flux.train!(loss, Flux.params(deq), ((X, Y),), opt)
+    println(deq([-5] |> gpu)) # Print model prediction
 end
 ```
 
 Tada, we now have a valid machine-learned model for solving the regression problem where the
 predictions are given by steady states of an ODE solver, where the ODE is defined by a neural network!
+
+Before proceeding to a more realistic usecase, we want to visualize the trajectory followed by
+the neural network. We will evaluate our model till a maximum depth of `100`
+(or till it converges to a steady state).
+
+```julia
+# Visualizing
+function construct_iterator(deq::DeepEquilibriumNetwork, x, p = deq.p)
+executions = 1
+model = deq.re(p)
+previous_value = nothing
+function iterator()
+       z = model((executions == 1 ? zero(x) : previous_value) .+ x)
+       executions += 1
+       previous_value = z
+       return z
+end
+return iterator
+end
+
+function generate_model_trajectory(deq, x, max_depth::Int,
+                                  abstol::T = 1e-8, reltol::T = 1e-8) where {T}
+deq_func = construct_iterator(deq, x)
+values = [x, deq_func()]
+for i = 2:max_depth
+       sol = deq_func()
+       push!(values, sol)
+       if (norm(sol .- values[end - 1]) ≤ abstol) || (norm(sol .- values[end - 1]) / norm(values[end - 1]) ≤ reltol)
+           return values
+       end
+end
+return values
+end
+
+traj = generate_model_trajectory(deq, rand(1, 10) .* 10 |> gpu, 100)
+
+plot(0:(length(traj) - 1), cpu(vcat(traj...)), xlabel = "Depth",
+    ylabel = "Value", legend = false)
+```
+
+![Imgur](https://i.imgur.com/dDckk8A.png)
 
 **The general composability of the Julia ecosystem means that there is no "Github repository for DEQs",
 instead this is just the ODE solver mixed with the ML library, the AD package, the GPU package, etc.
@@ -222,8 +281,6 @@ about the training details.
 
 Let's see this in action!
 
-(Demodemodemo)
-
 ## We can also convert well-known architectures into DEQ Models
 
 <!-- DEQ models cannot vary in input and output size, and that is an active field of research -->
@@ -239,58 +296,56 @@ import MLDatasets
 using CUDA
 using DiffEqSensitivity
 using SteadyStateDiffEq
-using DiffEqFlux
 using OrdinaryDiffEq
+using LinearAlgebra
+using Plots
+using MultivariateStats
 CUDA.allowscalar(false)
 
+struct DeepEquilibriumNetwork{M,P,RE,A,K}
+    model::M
+    p::P
+    re::RE
+    args::A
+    kwargs::K
+end
 
-function Net() 
+Flux.@functor DeepEquilibriumNetwork
 
-    down = Chain(
-        x -> reshape(x, (784, 8)) |> f32,
-        Dense(784, 200, tanh) |> f32,
-        Dense(200, 20, tanh) |> f32,
-    ) |> f32
-    deq = Chain(
-        Dense(20, 10, tanh) |> f32,
-        Dense(10, 10, tanh) |> f32,
-        Dense(10, 20, tanh) |> f32,
-    ) |> f32
-    p, re = Flux.destructure(deq)
-    fc = Chain(
-        Dense(20, 15, tanh) |> f32,
-        Dense(15, 10, tanh) |> f32,
-    ) |> f32
+function DeepEquilibriumNetwork(model, args...; kwargs...)
+    p, re = Flux.destructure(model)
+    return DeepEquilibriumNetwork(model, p, re, args, kwargs)
+end
 
-    tspan = (0.0f0, 1.0f0)
-    function solve_ss(x)
+Flux.trainable(deq::DeepEquilibriumNetwork) = (deq.p,)
 
-        z = re(p)(x)
-        function dudt_(u, _p, t)
-        # Solving the equation f(u) - u = du = 0
-            re(_p)(u + x) - u
-        end
-        ss = SteadyStateProblem(ODEProblem(dudt_, z, tspan, p))
-        x = solve(ss, DynamicSS(Tsit5()), u0=z, abstol=Float32(1e-2), reltol=Float32(1e-2), tspan=1.0f0).u
-    end
-  # Build our over-all model topology
-    m = Chain(
-        down,               # (28,28,1,BS) -> (6,6,64,BS)
-        solve_ss,           # (6,6,64,BS) -> (6,6,64,BS)
-        fc,                 # (6,6,64,BS) -> (10, BS)
+function (deq::DeepEquilibriumNetwork)(x::AbstractArray{T},
+                                       p = deq.p) where {T}
+    z = deq.re(p)(x)
+    # Solving the equation f(u) - u = du = 0
+    dudt(u, _p, t) = deq.re(_p)(u .+ x) .- u
+    ssprob = SteadyStateProblem(ODEProblem(dudt, z, (zero(T), one(T)), p))
+    return solve(ssprob, deq.args...; u0 = z, deq.kwargs...).u
+end
+
+function Net()
+    return Chain(
+        Flux.flatten,
+        DeepEquilibriumNetwork(Chain(Dense(784, 100, tanh), Dense(100, 784)),
+                               DynamicSS(Tsit5(), abstol = 1f-1, reltol = 1f-1)),
+        Dense(784, 10)
     )
-
-    return m
 end
 
 function get_data(args)
     xtrain, ytrain = MLDatasets.MNIST.traindata(Float32)
     xtest, ytest = MLDatasets.MNIST.testdata(Float32)
 
-    xtrain = reshape(xtrain, 28, 28, 1, :)
-    xtest = reshape(xtest, 28, 28, 1, :)
-
-    ytrain, ytest = onehotbatch(ytrain, 0:9), onehotbatch(ytest, 0:9)
+    device = args.use_cuda ? gpu : cpu
+    xtrain = reshape(xtrain, 28, 28, 1, :) |> device
+    xtest = reshape(xtest, 28, 28, 1, :) |> device
+    ytrain = onehotbatch(ytrain, 0:9) |> device
+    ytest = onehotbatch(ytest, 0:9) |> device
 
     train_loader = DataLoader((xtrain, ytrain), batchsize=args.batchsize, shuffle=true)
     test_loader = DataLoader((xtest, ytest),  batchsize=args.batchsize)
@@ -298,7 +353,7 @@ function get_data(args)
     return train_loader, test_loader
 end
 
-loss(ŷ, y) = logitcrossentropy(ŷ, y)
+
 
 function eval_loss_accuracy(loader, model, device)
     l = 0f0
@@ -307,7 +362,7 @@ function eval_loss_accuracy(loader, model, device)
     for (x, y) in loader
         x, y = x |> device, y |> device
         ŷ = model(x)
-        l += loss(ŷ, y) * size(x)[end]        
+        l += Flux.Losses.logitcrossentropy(ŷ, y) * size(x)[end]        
         acc += sum(onecold(ŷ |> cpu) .== onecold(y |> cpu))
         ntot += size(x)[end]
     end
@@ -324,52 +379,81 @@ Base.@kwdef mutable struct Args
     batchsize = 8      # batch size
     epochs = 10          # number of epochs
     seed = 0             # set seed > 0 for reproducibility
-    use_cuda = false      # if true use cuda (if available)
-    infotime = 1 	     # report every `infotime` epochs
-    checktime = 5        # Save the model every `checktime` epochs. Set to 0 for no checkpoints.
-    tblogger = true      # log training with tensorboard
-    savepath = "runs/"    # results path
+    use_cuda = true      # if true use cuda (if available)
 end
 
 function train(; kws...)
-    args = Args(; kws...)
-    args.seed > 0 && Random.seed!(args.seed)
-    use_cuda = args.use_cuda && CUDA.functional()
-    
-    if use_cuda
-        device = gpu
-        @info "Training on GPU"
-    else
-        device = cpu
-        @info "Training on CPU"
-    end
 
-    ## DATA
-    train_loader, test_loader = get_data(args)
-    @info "Dataset MNIST: $(train_loader.nobs) train and $(test_loader.nobs) test examples"
-
-    ## MODEL AND OPTIMIZER
-    model = Net() |> device  
-    
-    ps = Flux.params(model)
-    opt = ADAM(args.η)
     
     ## TRAINING
     @info "Start Training"
     for epoch in 1:args.epochs
         @showprogress for (x, y) in train_loader
             x, y = x |> device, y |> device
-            gs = Flux.gradient(ps) do
-                ŷ = model(x)
-                loss(ŷ, y)
-            end
-
-            Flux.Optimise.update!(opt, ps, gs)
+            gs = Flux.gradient(
+                () -> Flux.Losses.logitcrossentropy(model(x), y), ps
+            )
+             Flux.Optimise.update!(opt, ps, gs)
         end
+        loss, accuracy = eval_loss_accuracy(test_loader, model, device)
+        println("Epoch: $epoch || Test Loss: $loss || Test Accuracy: $accuracy")
     end
+
+    return model, train_loader, test_loader
 end
 
-train()
+model, train_loader, test_loader = train(batchsize = 8,
+                                         epochs = 100);
+```
+
+```julia
+function construct_iterator(deq::DeepEquilibriumNetwork, x, p = deq.p)
+    executions = 1
+    model = deq.re(p)
+    previous_value = nothing
+    function iterator()
+        z = model((executions == 1 ? zero(x) : previous_value) .+ x)
+        executions += 1
+        previous_value = z
+        return z
+    end
+    return iterator
+end
+
+function generate_model_trajectory(deq, x, max_depth::Int,
+                                   abstol::T = 1e-8, reltol::T = 1e-8) where {T}
+    deq_func = construct_iterator(deq, x)
+    values = [x, deq_func()]
+    for i = 2:max_depth
+        sol = deq_func()
+        push!(values, sol)
+        if (norm(sol .- values[end - 1]) ≤ abstol) || (norm(sol .- values[end - 1]) / norm(values[end - 1]) ≤ reltol)
+            return values
+        end
+    end
+    return values
+end
+
+function dim_reduce(traj)
+    pca = fit(PCA, cpu(hcat(traj...)), maxoutdim = 2)
+    return [transform(pca, cpu(t)) for t in traj]
+end
+
+X, Y = first(train_loader);
+
+traj = generate_model_trajectory(model[2], model[1](X), 100, 1e-3, 1e-3)
+traj = dim_reduce(traj)
+Y = Flux.onecold(Y) |> cpu
+
+xmin, ymin = minimum(hcat(minimum.(traj, dims = 2)...), dims = 2)
+xmax, ymax = maximum(hcat(maximum.(traj, dims = 2)...), dims = 2)
+
+anim = @animate for (i, t) in enumerate(traj)
+    scatter(t[1, :], t[2, :], color = Y, title = "Depth $i", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+end
+ 
+
+gif(anim, "trajectory.gif", fps = 4)
 ```
 
 ## Conclusion
