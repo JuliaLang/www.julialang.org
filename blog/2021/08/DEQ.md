@@ -226,16 +226,16 @@ the neural network. We will evaluate our model till a maximum depth of `100`
 ```julia
 # Visualizing
 function construct_iterator(deq::DeepEquilibriumNetwork, x, p = deq.p)
-executions = 1
-model = deq.re(p)
-previous_value = nothing
-function iterator()
-       z = model((executions == 1 ? zero(x) : previous_value) .+ x)
-       executions += 1
-       previous_value = z
-       return z
-end
-return iterator
+    executions = 1
+    model = deq.re(p)
+    previous_value = nothing
+    function iterator()
+           z = model((executions == 1 ? zero(x) : previous_value) .+ x)
+           executions += 1
+           previous_value = z
+           return z
+    end
+    return iterator
 end
 
 function generate_model_trajectory(deq, x, max_depth::Int,
