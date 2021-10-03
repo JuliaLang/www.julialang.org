@@ -174,7 +174,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{upcoming_release_short}}/julia-{{upcoming_release}}-win32.exe">32-bit (installer)</a>,  <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{upcoming_release_short}}/julia-{{upcoming_release}}-win32.zip">32-bit (portable)</a> </td> </td>
     </tr>
     <tr>
-      <th> macOS x86 <a href="/downloads/platform/#macos">[help]</a></th>
+      <th> macOS x86 (Intel or Rosetta) <a href="/downloads/platform/#macos">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-mac64.dmg">64-bit</a> </td>
       <td colspan="3"> </td>
     </tr>
@@ -200,8 +200,8 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-aarch64.tar.gz">64-bit (AArch64)</a>
         (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-aarch64.tar.gz.asc">GPG</a>)
       </td>
-      <td colspan="3"> <!--<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
-                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz.asc">GPG</a>) -->
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
+                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz.asc">GPG</a>)
       </td>
       </td>
     </tr>
@@ -293,13 +293,16 @@ The platforms currently supported by Julia are listed below. They are divided in
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
-      <td rowspan="3"> Windows </td>
-      <td> 10+ </td>
+      <td rowspan="4"> Windows </td>
+      <td rowspan="3"> 10+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> 10+ </td>
+      <td> <a href="https://juliagpu.org">Nvidia PTX (64-bit)</a> </td>
+      <td> <font color="green">Tier 1</font> </a> </td>
+    </tr>
+    <tr>
       <td> i686 (32-bit) </td>
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
