@@ -89,9 +89,9 @@ If you know of other classes using Julia for teaching, please consider updating 
 * [Sciences Po Paris](https://www.sciencespo.fr), [Department of Economics](https://www.sciencespo.fr/department-economics/en), Spring 2016.
     * [Computational Economics for PhDs](https://github.com/ScPo-CompEcon/Syllabus) ([Florian Oswald](https://floswald.github.io))
 * SGH Warsaw School of Economics, Poland
-    * 223490-0286, Statistical Learning Methods ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): Fall 2017, Spring 2018, Fall 2018
-    * 234900-0286, Agent-Based Modeling ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): Fall 2017, Spring 2018, Fall 2018
-    * 239420-0553, _Introduction to Deep Learning_ module ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): Spring 2018
+    * 223490-0286, Statistical Learning Methods ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): since 2017
+    * 234900-0286, Agent-Based Modeling ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): since 2017
+    * 239420-0553, _Introduction to Deep Learning_ module ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): since 2018
 * Southcentral Kentucky Community and Technical College
     * CIT 120 Computational Thinking (Inst. [Bryan Knowles](https://github.com/snotskie/)), Online, Fall 2017
 * Stanford University
