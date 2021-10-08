@@ -63,8 +63,7 @@ algorithm, for use in the MLJ machine learning platform, for the purpose of opti
 Specifically, you will:
 - familiarize yourself with the training, evaluation and tuning of machine learning models in MLJ
 - learn about the PSO algorithm and its variants, conducting a short survey of some of the literature and existing implementations in Julia and other languages, and preparing a short summary
-- familiarize yourself intimately with the  [MLJ tuning
-API](https://github.com/alan-turing-institute/MLJTuning.jl#how-do-i-implement-a-new-tuning-strategy)
+- familiarize yourself intimately with the  [MLJ tuning API](https://github.com/alan-turing-institute/MLJTuning.jl#how-do-i-implement-a-new-tuning-strategy)
 - implement a simple PSO variant, complete with testing and documentation
 - experiment with the variant to learn more about its shortcomings and advantages, help recommend default parameter settings
 - add variants, as time permits
