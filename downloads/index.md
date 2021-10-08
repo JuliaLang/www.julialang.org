@@ -21,8 +21,6 @@ You should *only* be using the long-term support (LTS) version of Julia if you w
 If you need newer functionality in the language or packages, then you are not in this category of highly risk-averse user:
 using new language features and newer versions of packages is inherently risky and therefore at odds with the kind of risk aversion that dictates using the LTS version of the language.
 See this description of ["Risk Personas"](https://julialang.org/blog/2019/08/release-process/#risk_tolerance_personas) for more detail on who should be using what versions of Julia based on their risk tolerance.
-Package maintainers may want to support the current LTS version, but it's also perfectly reasonable to pick a more recent older release that has features your package needs and maintain support for that version for a duration.
-For example, even when 1.0 was the LTS version, there were many packages which only worked on 1.3+ because that version introduced a number of package-management and multithreading features.
 
 ---
 
