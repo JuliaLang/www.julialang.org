@@ -4,7 +4,7 @@ Below are the projects which have been proposed for Google Season of Docs under 
 
 We at the Julia Language are committed to making the application process and participation in GSoD with Julia accessible to everyone. If you have questions or requests, please do reach out and we will do our best to accommodate you. 
 
-### The GSoD experince with the Julia Language
+### The GSoD experience with The Julia Language
 
 Learn from one of our technical writers about their experience with GSoD:
 ~~~
