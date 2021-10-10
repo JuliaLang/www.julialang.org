@@ -13,7 +13,6 @@
 * [Julia language: a concise tutorial](https://syl1.gitbook.io/julia-language-a-concise-tutorial/) by Antonello Lobianco. A basic introduction that includes the main packages.
 * [Basics of Projects Example](https://github.com/robbyriverside/ModulePlay) by Rob Farrow. Fast start for using Julia Project and associated tools.
 * [Just the Julia you need to get started in Data Science and ML](https://mynerva.io/courses/register/) by Raj Rao -- use code **JULIACON2020** to access after registering. 
-* ['Hands-on Data Science with Julia'](https://www.manning.com/bundles/data-science-with-julia-ser). A set of data science projects available through Manning liveProject platform.
 @@
 
 
