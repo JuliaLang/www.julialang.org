@@ -109,7 +109,7 @@ This project is to implement more bias mitigation algorithms and invent new ones
 
 ### References
 
-1. High-level overview: [https://towardsdatascience.com/a-tutorial-on-fairness-in-machine-learning-3ff8ba1040cb](https://julialang.org/jsoc/gsoc/MLJ/)
+1. High-level overview: [https://towardsdatascience.com/a-tutorial-on-fairness-in-machine-learning-3ff8ba1040cb](https://towardsdatascience.com/a-tutorial-on-fairness-in-machine-learning-3ff8ba1040cb)
 2. [https://nextjournal.com/ashryaagr/fairness](https://nextjournal.com/ashryaagr/fairness)
 3. IBM’s AIF360 resources: [https://aif360.mybluemix.net/](https://aif360.mybluemix.net/)
 
