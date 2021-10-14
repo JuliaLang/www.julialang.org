@@ -112,4 +112,4 @@ It can be used to install specific Julia versions or update to the latest releas
 
 # A Brief Note about Unofficial Binaries
 
-There are a variety of distribution-specific packages that are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. All these distributions are community maintained, and hence they may not always have the latest versions of Julia, and sometimes, the instructions may not work. In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.
+There are a variety of distribution-specific packages that are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. All such distributions are community maintained, and hence they may not always have the latest versions of Julia, and sometimes, the instructions may not work. In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.
