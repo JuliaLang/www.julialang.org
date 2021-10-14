@@ -110,6 +110,6 @@ Julia installs all its files in a single directory. Deleting the directory where
 An installer and version manager for Julia called [juliaup](https://github.com/JuliaLang/juliaup) is available in the [Microsoft Store](https://www.microsoft.com/store/apps/9NJNWW8PVKMN).
 It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.
 
-# A Brief Note about Unofficial Binaries
+# A Brief Note About Unofficial Binaries
 
 There are a variety of distribution-specific packages that are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. All such distributions are community maintained, and hence they may not always have the latest versions of Julia, and sometimes, the instructions may not work. In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.
