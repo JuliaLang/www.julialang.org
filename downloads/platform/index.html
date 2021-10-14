@@ -7,43 +7,8 @@ tar zxvf julia-1.6.3-linux-x86_64.tar.gz</code></pre> <h3 id=running_julia ><a h
 <p><a href="https://github.com/johnnychen94/jill.py">Jill.py</a> is a community-maintained command-line tool that automates the installation workflow for all platforms. After installing this using <code>pip install jill -U</code>, you can then use <code>jill install</code> to install the current stable release, and <code>jill install latest</code> to install the nightly builds.</p>
 <h2 id=juliaup ><a href="#juliaup">Juliaup</a></h2>
 <p>An installer and version manager for Julia called <a href="https://github.com/JuliaLang/juliaup">juliaup</a> is available in the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a>. It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.</p>
-<h1 id=platform_specific_instructions_for_unofficial_binaries ><a href="#platform_specific_instructions_for_unofficial_binaries">Platform Specific Instructions for Unofficial Binaries</a></h1>
-<p>The following distribution-specific packages are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. All these distributions are community maintained, and hence they may not always have the latest versions of Julia, and sometimes, the instructions may not work. In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.</p>
-<h2 id=chocolatey_on_windows ><a href="#chocolatey_on_windows">Chocolatey on Windows</a></h2>
-<p>If you use Chocolatey for package management, you can install the latest Julia release by executing the following one-liner, in either a powershell or command prompt:</p>
-<pre><code class=language-shell >choco install julia --confirm</code></pre>
-<p>Chocolatey automatically creates a shim for the Julia executable, so you simply type <code>julia</code> to run Julia in the terminal. When a new version is released simply execute <code>choco upgrade julia --confirm</code>. If you want to uninstall Julia run <code>choco uninstall julia --confirm</code>.</p>
-<h2 id=homebrew_on_macos ><a href="#homebrew_on_macos">Homebrew on macOS</a></h2>
-<p>Julia can be installed using the <a href="https://formulae.brew.sh/cask/julia">Homebrew package manager</a> as follows:</p>
-<pre><code class=language-shell >brew install --cask julia</code></pre>
-<p>This automatically puts the binary into a directory in the user&#39;s PATH, so you can simply type <code>julia</code> to run Julia in the terminal.</p>
-<h2 id=fedorarhelcentossloel_linux ><a href="#fedorarhelcentossloel_linux">Fedora/RHEL/CentOS/SL/OEL Linux</a></h2>
-<p>A <a href="https://copr.fedoraproject.org/coprs/nalimilan/julia/">Copr repository</a> is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest stable version of Julia.  On Fedora and CentOS 8, Julia is available in the main repositories, and you do not need to use the Copr repository.</p>
-<p>If you are using RHEL, CentOS, Scientific Linux or Oracle Enterprise Linux &#40;version 5 or higher&#41;, first <a href="https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F">enable EPEL</a> for your distribution version. Then follow the steps below.</p>
-<p>If you are using Fedora &#40;version 32 or higher&#41;, directly run:</p>
-<pre><code class=language-shell >sudo dnf install julia</code></pre>
-<p>If you are using CentOS &#40;version 7&#41;, directly run:</p>
-<pre><code class=language-shell >sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
-sudo yum install julia</code></pre>
-<p>If you are using CentOS &#40;version 8&#41;, directly run:</p>
-<pre><code class=language-shell >sudo dnf install julia</code></pre>
-<p>If both <code>dnf</code> and <code>yum-config-manager</code> are not available for your distribution, download the relevant <code>.repo</code> file from the Copr webpage, copy it to <code>/etc/yum.repos</code>, and run the install command.</p>
-<p>Note that Fedora guidelines advise against uploading new breaking releases to official repositories: therefore your distribution may not provide the new major versions of Julia. When reporting issues, please ensure you are using the latest available release, and if it is not available using one of the Copr repositories displayed on this page. In order to use nightly Julia builds, use</p>
-<pre><code class=language-shell >sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan-nightlies/julia/repo/epel-7/nalimilan-julia-epel-7.repo
-sudo yum install julia</code></pre>
-<p>These can then be updated with <code>yum upgrade julia</code>.</p>
-<h2 id=debianubuntu_linux ><a href="#debianubuntu_linux">Debian/Ubuntu Linux</a></h2>
-<p>Recent Debian/ubuntu distributions include their own build of Julia, which can be installed in the usual way. Check the versions of Julia provided in <a href="https://packages.ubuntu.com/search?keywords&#61;julia">Ubuntu</a> and <a href="https://packages.debian.org/search?keywords&#61;julia">Debian</a>. If this is not the version of Julia you want, you will need to use the official binaries.</p>
-<pre><code class=language-shell >sudo apt install julia</code></pre>
-<h2 id=arch_linux ><a href="#arch_linux">Arch Linux</a></h2>
-<p>The Arch User Repository has <a href="https://aur.archlinux.org/packages/julia-bin">a package for Julia</a> that is built from the official binaries of Julia. To install it run:</p>
-<pre><code class=language-shell >sudo pacman -S base-devel git
-git clone https://aur.archlinux.org/julia-bin.git
-cd julia-bin
-makepkg -si</code></pre>
-<h2 id=freebsd_ports ><a href="#freebsd_ports">FreeBSD Ports</a></h2>
-<p>Julia is available in the <a href="https://svnweb.freebsd.org/ports/head/lang/julia/">Ports Collection</a>. To install from the FreeBSD binary package manager, <code>pkg</code>, run</p>
-<pre><code class=language-shell >pkg install julia</code></pre>
+<h1 id=a_brief_note_about_unofficial_binaries ><a href="#a_brief_note_about_unofficial_binaries">A Brief Note About Unofficial Binaries</a></h1>
+<p>There are a variety of distribution-specific packages that are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. All such distributions are community maintained, and hence they may not always have the latest versions of Julia, and sometimes, the instructions may not work. In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.</p>
 </div><br><br>
 
 
