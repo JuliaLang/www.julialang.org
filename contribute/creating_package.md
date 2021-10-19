@@ -44,7 +44,6 @@ t = Template(;
            license="MIT",
            authors=["your name"],
            plugins=[
-               TravisCI(),
            ],
        )
 ```
