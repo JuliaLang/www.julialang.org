@@ -109,6 +109,8 @@ If you know of other classes using Julia for teaching, please consider updating 
 * Universidad Adolfo Ibáñez, Chile
    * ING747, Integer programming, Fall 2018-2019 (Diego Morán and Rodolfo Carvajal)
    * DIIIO06, Advanced linear optimization, Spring 2020 (Diego Morán)
+* Universidad Alberto Hurtado, Chile
+    * [Métodos Cuantitativos, Introducción a la Programación con Julia](https://mauriciotejada.com/programacionjulia), Magister en Economía (Prof. [Mauricio Tejada](https://mauriciotejada.com))
 * Universidad del Norte, Barranquilla, Colombia
     * [ELP 4076](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ELP&crse_numb_in=4076), Ingeniería de Ríos y Costas (Prof. Germán Rivillas)
     * [ICI 4083](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ICI&crse_numb_in=4083), Hidráulica (Prof. Germán Rivillas)
