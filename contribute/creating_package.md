@@ -62,7 +62,6 @@ Last line in the REPL shows where the new package has been created:
 - README.md,
 - `src` folder with the file `Tiddlywinks.jl` in it (here we will write the code for the package),
 - `test` folder with the file `runtests.jl` in it (here we will be placing tests).
-- `.travis.yml` (will create a badge with Travis for [continuous integration](#continuous-integration))
 
 ## Writing code
 Everything is ready for you to write code. Folder `/src` already contains a file with the same name as the name of the package (`Tiddlywinks.jl`). You may not want to write all of the code in this file directly. Instead, you can create various pieces in external files within the `/src` directory, and then assemble them in the main file with the `include` command. Here are the steps to follow:
@@ -100,15 +99,7 @@ To run tests on your package:
 
 ## Continuous integration
 
-Continuous integration (CI) is a software development practice of merging all working copies into a mainline repository. CI tools can help you test the package on various versions of Julia, as well as various operating systems (those options are governed by the file `.travis.yml` in the case of using Travis CI).
-
-To enable CI, make sure to have pushed all of the changes to GitHub. Click on the badge in the README file in the GitHub repository of the package, and sign in with Travis CI. If you have not set up CI with Travis before, follow these steps:
-
-- on the left tab, click the `+` sign
-- on the left tab, press `Synch account`
-- on the right tab, search for the name of your newly created package. A `Settings` button should appear in front of the name of your package.
-
-Using the second badge, you can make use of Appveyor. Click on the badge, sign in with your GitHub account, authorize repositories. On the list of authorised repositories, find the name of your package, and click `Add`. You are all set to monitor changes in the package.
+Continuous integration (CI) is a software development practice of merging all working copies into a mainline repository. CI tools can help you test the package on various versions of Julia, as well as various operating systems. We recommend using [Github Actions](https://docs.github.com/en/actions).
 
 ## Propose changes via Pull Requests
 
@@ -124,16 +115,6 @@ describes a case when you would like to add more testing options to your package
 Example: create a branch of `Tiddlywinks.jl` called `more_testing_options`
 
 - make and save changes on the new branch
-
-Example: edit file `.travis.yml` to contain more Julia versions to test
-
-```
-julia:
-  - 1.0
-  - 1.3
-  - 1.6
-  - nightly
-```
 
 - push the changes to your GitHub repository
 
