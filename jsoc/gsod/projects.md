@@ -4,9 +4,12 @@ Below are the projects which have been proposed for Google Season of Docs under 
 
 We at the Julia Language are committed to making the application process and participation in GSoD with Julia accessible to everyone. If you have questions or requests, please do reach out and we will do our best to accommodate you. 
 
-### The Julia Language has [submitted a proposal for GSoD 2021](/jsoc/gsod/proposal/) and been accepted.
+### The GSoD experience with The Julia Language
 
-In 2021, we will be moving forward with a single GSoD project: [GSoD 2021 Proposal](/jsoc/gsod/proposal/). Stay tuned for more details on applying.
+Learn from one of our technical writers about their experience with GSoD:
+~~~
+<iframe width="100%" height="450" src="https://www.youtube-nocookie.com/embed/6s9J-ObQaAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+~~~
 
 # Project Ideas for 2022
 

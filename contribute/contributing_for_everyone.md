@@ -1,6 +1,6 @@
 # Everyone can contribute
 
-You don't need to be a seasoned developer to help Julia grow and improve. Anyone willing to contribute will find here a roadmap from zero to hero (or from a hundred to one thousand, if you are a pro contributor already). Both code and non-code contributions are welcome, no matter your level of experience or background. This document aims to help you find out:
+You don't need to be a seasoned developer to help Julia grow and improve. Anyone willing to contribute can use this page as a roadmap from zero to hero (or from a hundred to one thousand, if you are a pro contributor already). Both code and non-code contributions are welcome, no matter your level of experience or background. This document aims to help you find out:
 
 - How you can contribute to match your skills and interests.
 - Which tools and resources can help you contribute confidently.
@@ -43,9 +43,13 @@ The question is: do you want to ...
   - read the [code of conduct](https://julialang.org/community/standards/)
   - ask questions on Slack or [Discourse](https://discourse.julialang.org/)
   - engage on [Twitter](https://twitter.com/JuliaLanguage)
-- [Learn](https://julialang.org/learning/)
+- Learn
+  - take a course on [Julia Academy](https://juliaacademy.com/courses?preview=logged_out)
+  - do exercises with support from a mentor on [Exercism.io](https://exercism.io/tracks/julia)
+  - watch [YouTube tutorials/workshops](https://www.youtube.com/user/JuliaLanguage/playlists)
+  - read a [book written by the Julia community](https://julialang.org/learning/books/)
 - Build
-  - write a blogpost
+  - write a blogpost and [submit it to Julia Bloggers](https://www.juliabloggers.com/julia-bloggers-submit-feed/)
   - cite Julia
   - report a bug
   - make a feature request
@@ -75,6 +79,14 @@ There are plenty of documentation files in the Julia-verse on GitHub, and typos 
   - [pick a Julia package](#how-to-find-julia-packages)
   - find a typo to fix (e.g. paste the text into Google docs for a spell-check)
   - go through a few green buttons on GitHub to submit your contribution
+
+### Ask a question on: StackOverflow
+- pre-requisites: you do not need an account to find a question, but you will need a StackOverflow account to answer or ask one
+- estimated time: depends on the question and your experience with the topic
+- steps: open [Stackoverflow](https://stackoverflow.com/) and search for questions which are similar to your current question. Make sure the question is not already answered before proceeding! Next, check out the video below which will guide you on asking questions and how this can improve your learning/understanding:
+~~~
+<iframe width="100%" height="450" src="https://www.youtube-nocookie.com/embed/gHuU7ewLep8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+~~~
 
 ### Find questions to answer: StackOverflow
 - pre-requisites: you do not need an account to find a question, but you will need a StackOverflow account to answer one
@@ -115,3 +127,4 @@ An integrated development environment (IDE) can help make software development e
 - [VSCode](https://code.visualstudio.com/download)
 - [Atom](https://atom.io/)
 - [Jupyter notebooks](https://jupyter.org/install)
+- [Pluto.jl](https://plutojl.org)

@@ -13,6 +13,7 @@ Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Ste
 Researchers contributing to Julia have been awarded various prizes:
 
 @@tight-list
+* [2021: Julia Community Prizes](https://juliacon.org/2021/prize/): Bogumił Kamiński & Milan Bouchet-Valat, Fons van der Plas, and Dilum Aluthge
 * [2020: Julia Community Prizes](https://juliacon.org/2020/prize/): Huda Nassar, Mosè Giordano, and Chris Elrod
 * [2019: NumFOCUS Awards and New Contributor Recognition](https://numfocus.org/blog/2019-numfocus-awards): Logan Kilpatrick, Mosè Giordano
 * [2019: IEEE Computer Society Sidney Fernbach Award](https://www.computer.org/press-room/2019-news/2019-ieee-fernbach-award-edelman): Alan Edelman
@@ -59,6 +60,7 @@ We welcome additions to this list in the form of [pull requests](https://github.
 ## 2021
 
 @@tight-list
+* **Distributions.jl: Definition and Modeling of Probability Distributions in the JuliaStats Ecosystem**. Mathieu Besançon, Theodore Papamarkou, David Anthoff, Alex Arslan, Simon Byrne, Dahua Lin, John Pearson. _Journal of Statistical Software 98_ no. 16 (2021). doi: [10.18637/jss.v098.i16](https://www.jstatsoft.org/article/view/v098i16). Packages: [Distributions.jl](https://github.com/JuliaStats/Distributions.jl) 
 * **Supply and Demand in a Two-Sector Matching Model**. Paweł Gola. _Journal of Political Economy 126_ no. 3 (2021). doi: [doi.org/10.1086/712507](https://www.journals.uchicago.edu/doi/10.1086/712507). Preprint: [author's webpage](http://www.pawelgola.com/SupplyDemandGola.pdf). Codes: [author's webpage](http://www.pawelgola.com/SupplyDemandCode)
 * **Neutral Vortex Necklace in a Trapped Planar Superfluid**. M. M. Cawte, M. T. Reeves, and A. S. Bradley. Journal of Low Temperature Physics 2021. [10.1007/s10909-020-02547-7](https://doi.org/10.1007/s10909-020-02547-7). Packages: [DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl), [VortexDistributions.jl](https://github.com/AshtonSBradley/VortexDistributions.jl)
 * **Steady states, squeezing, and entanglement in intracavity triplet down conversion**. M. D. E. Denys, M. K. Olsen, L. S. Trainor, H. G. L. Schwefel, A. S. Bradley. Optics Communications 2021. [10.1016/j.optcom.2020.126699](https://doi.org/10.1016/j.optcom.2020.126699). Packages: [DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl), [QuantumOptics.jl](https://github.com/qojulia/QuantumOptics.jl)
