@@ -7,4 +7,4 @@ Below you will find a curated list of Organizations and Packages with robust con
 - [Write Machine Learning tutorials to improve the adoption of Flux.jl](https://github.com/FluxML/Flux.jl/blob/master/CONTRIBUTING.md)
 - [Image processing with Julia](https://github.com/JuliaImages/Images.jl/blob/master/CONTRIBUTING.md)
 
-Are you a package maintainer with a great contributing guide? Open a pull request to have your package featured here!
+Are you a package maintainer with a contributing guide that has a list or ways folks can begin contributing to the ecosystem? Open a pull request to have your package featured here! We are specifially looking for packages where the guide has ways to contribute with varying difficulty enabling first time and veteran contributors to see what their options are. 
