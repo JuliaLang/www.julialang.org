@@ -16,13 +16,13 @@ There is a spectrum of benefits to contributing - some more obvious than others.
 
 Types of contributions vary depending on your experience, background, and the nature of your interest in Julia. You can contribute in one or more of the following ways:
 
-- improve documentation,
-- [share a new package you created](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/creating_package.md),
+- improve documentation (this includes [fixing typos](#find-a-readme-file-to-edit) and broken links),
+- [create a new package](/contribute/creating_package/#creating-a-julia-package),
 - [review a package](https://github.com/JuliaRegistries/General/labels/new%20package) submitted to the Julia Registry,
-- file a bug report,
-- write tests,
+- file a bug report (by creating a [pull request](/contribute/creating_package/#propose-changes-via-pull-requests)),
+- [write tests](/contribute/creating_package/#writing-tests),
 - [contribute to core Julia](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/index.md#contributing-to-core-julia),
-- contribute to other libraries,
+- contribute to other packages (by creating a [pull request](/contribute/creating_package/#propose-changes-via-pull-requests)),
 
 and more.
 
@@ -40,9 +40,9 @@ The question is: do you want to ...
 
 - Discover
 - Connect
-  - read the code of conduct
-  - ask questions on Slack or Discourse
-  - engage on Twitter
+  - read the [code of conduct](https://julialang.org/community/standards/)
+  - ask questions on Slack or [Discourse](https://discourse.julialang.org/)
+  - engage on [Twitter](https://twitter.com/JuliaLanguage)
 - Learn
   - take a course on [Julia Academy](https://juliaacademy.com/courses?preview=logged_out)
   - do exercises with support from a mentor on [Exercism.io](https://exercism.io/tracks/julia)
@@ -56,7 +56,8 @@ The question is: do you want to ...
   - make a pull request
   - review documentation
   - share a use case
-  - develop and submit a library
+  - develop and submit a package
+  - include future pans for your package
 - Help
   - spread the word about Julia's Ecosystem
   - submit a use case
@@ -70,7 +71,7 @@ If by this point you are convinced that contributing is for you, but don't know 
 
 ### Find a README file to edit
 
-There are plenty of documentation files in the Julia-verse on GitHub, and typos are so easy to make! You can help clean up documentation by correcting typos or errors which you find. 
+There are plenty of documentation files in the Julia-verse on GitHub, and typos are so easy to make! You can help clean up documentation by correcting typos, fixing broken links, replacing the mentions of outdated packages and legacy code by their updated and working versions. 
 
 - pre-requisites: GitHub account, text editor with spell checking (e.g. MS Word, Google docs)
 - estimated time: 1h
@@ -91,7 +92,7 @@ There are plenty of documentation files in the Julia-verse on GitHub, and typos 
 - pre-requisites: you do not need an account to find a question, but you will need a StackOverflow account to answer one
 - estimated time: depends on the question and your experience with the topic
 - steps: open [Stackoverflow](https://stackoverflow.com/) and search for questions, tagged `[julia]`. For this, enter in the search box tag `[julia]`. You will see a list of the most recent questions related to Julia. Surely, if you are interested in a more specific question, e.g. the Plots library, substitute the search term with `[Plots.jl]`
-	
+
 To stay up-to-date on StackOverflow questions related to Julia, you can also join #stackoverflow-feed channel on [Slack](https://julialang.slack.com). If something you know how to answer comes up - thats' an immediate chance to help!
 
 
@@ -102,7 +103,7 @@ A great place to both post and find questions is on [Discourse](https://discours
 - estimated time: depends on the question and your experience with the topic
 - steps: click the 'Reply' button under a question on the Discourse page, and share your knowledge
 
-	
+
 ### Find open issues of packages
 - pre-requisites: GitHub account, development tools ([installed Julia](#how-to-install-julia), an [IDE](#what-are-the-ide-options?))
 - estimated time: from ~1h to days or months (try starting with simpler issues)
@@ -115,14 +116,14 @@ A great place to both post and find questions is on [Discourse](https://discours
 
 ### How to find Julia packages
 
-The list of Julia packages, organized *thematically*, can be found at https://juliahub.com/ui/Packages. Click on the name of the package to discover its website, GitHub repository, and further details. 
+The list of Julia packages, organized *thematically*, can be found at https://juliahub.com/ui/Packages. Click on the name of the package to discover its website, GitHub repository, and further details.
 
 The list of packages all registered, organized *alphabetically*, can be found at https://github.com/JuliaRegistries/General
 
 ## What are the IDE options?
 
 An integrated development environment (IDE) can help make software development easier. Some options include
-- [Juno](https://junolab.org/) 
+- [Juno](https://junolab.org/)
 - [VSCode](https://code.visualstudio.com/download)
 - [Atom](https://atom.io/)
 - [Jupyter notebooks](https://jupyter.org/install)

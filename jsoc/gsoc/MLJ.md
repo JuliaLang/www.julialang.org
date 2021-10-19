@@ -63,8 +63,7 @@ algorithm, for use in the MLJ machine learning platform, for the purpose of opti
 Specifically, you will:
 - familiarize yourself with the training, evaluation and tuning of machine learning models in MLJ
 - learn about the PSO algorithm and its variants, conducting a short survey of some of the literature and existing implementations in Julia and other languages, and preparing a short summary
-- familiarize yourself intimately with the  [MLJ tuning
-API](https://github.com/alan-turing-institute/MLJTuning.jl#how-do-i-implement-a-new-tuning-strategy)
+- familiarize yourself intimately with the  [MLJ tuning API](https://github.com/alan-turing-institute/MLJTuning.jl#how-do-i-implement-a-new-tuning-strategy)
 - implement a simple PSO variant, complete with testing and documentation
 - experiment with the variant to learn more about its shortcomings and advantages, help recommend default parameter settings
 - add variants, as time permits
@@ -98,7 +97,7 @@ Mentors: [Jiahao Chen](https://jiahao.github.io/), [Moritz Schauer](https://gith
 
 Machine learning models are developed to support and make high-impact decisions like who to hire or who to give a loan to. However, available training data can exhibit bias against race, age, gender, or other prohibited bases, reflecting a complex social and economic history of systemic injustice. For example, women in the United Kingdom, United States and other countries were only allowed to have their own bank accounts and lines of credit in the 1970s! That means that training a credit decisioning model on historical data would encode implicit biases, that women are less credit-worthy because few of them had lines of credit in the past. Surely we would want to be fair and not hinder an applicant's ability to get a loan on the basis of their race, gender and age?
 
-So how can we fix data and models that are unfair? A common first reaction is to remove the race, gender and age attributes from the training data, and then say we are done. But as described in detail in the references, we cam have to consider if other features like one's name or address could encode such prohibited bases too. To mitigate bias and improve fairness in models, we can change the training data (pre-processing), the way we define and train the model (in-processing), and/or alter the predictions made (post-processing). Some algorithms for the first and third approaches have already been implemented in Fairness.jl, which have the advantage of treating the ML model as a black box. However, our latest research [(arXiv:2011.02407)](https://arxiv.org/abs/2011.02407) shows that pur black box methods have fundamental limitations in their ability to mitigate bias.
+So how can we fix data and models that are unfair? A common first reaction is to remove the race, gender and age attributes from the training data, and then say we are done. But as described in detail in the references, we have to consider if other features like one's name or address could encode such prohibited bases too. To mitigate bias and improve fairness in models, we can change the training data (pre-processing), the way we define and train the model (in-processing), and/or alter the predictions made (post-processing). Some algorithms for the first and third approaches have already been implemented in Fairness.jl, which have the advantage of treating the ML model as a black box. However, our latest research [(arXiv:2011.02407)](https://arxiv.org/abs/2011.02407) shows that pur black box methods have fundamental limitations in their ability to mitigate bias.
 
 ### Your contribution
 
@@ -110,7 +109,7 @@ This project is to implement more bias mitigation algorithms and invent new ones
 
 ### References
 
-1. High-level overview: [https://towardsdatascience.com/a-tutorial-on-fairness-in-machine-learning-3ff8ba1040cb](https://julialang.org/jsoc/gsoc/MLJ/)
+1. High-level overview: [https://towardsdatascience.com/a-tutorial-on-fairness-in-machine-learning-3ff8ba1040cb](https://towardsdatascience.com/a-tutorial-on-fairness-in-machine-learning-3ff8ba1040cb)
 2. [https://nextjournal.com/ashryaagr/fairness](https://nextjournal.com/ashryaagr/fairness)
 3. IBM’s AIF360 resources: [https://aif360.mybluemix.net/](https://aif360.mybluemix.net/)
 
