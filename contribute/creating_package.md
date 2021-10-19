@@ -5,7 +5,9 @@ A detailed page on Julia packages is available [here](http://pkgdocs.julialang.o
 Julia packages consist of modules. Hence, before creating a package, make sure to understand how [modules](https://docs.julialang.org/en/v1/manual/modules/) work in Julia.
 
 
-Here we provide a step-by-step example, using [PkgTemplates.jl](https://juliahub.com/docs/PkgTemplates/IGiQL/0.6.4/), inspired by the [video](https://www.youtube.com/watch?v=QVmU29rCjaA&t=112s) of Chris Rackauckas (please note that the video uses Travis as a Continuous Integration tool which we no longer encourage, and prefer [Github Actions](https://docs.github.com/en/actions)).
+Here we provide a step-by-step example, using [PkgTemplates.jl](https://juliahub.com/docs/PkgTemplates/IGiQL/0.6.4/), inspired by a videoof Chris Rackauckas (please note that the video uses Travis as a Continuous Integration tool which we no longer encourage, and prefer [Github Actions](https://docs.github.com/en/actions) instead). Here is the video:
+
+[![IMAGE ALT TEXT HERE](VideoFakeImage.png)](https://www.youtube.com/watch?v=QVmU29rCjaA&t=112s)
 
 In case of any issues, remember that [help](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/contributing_for_everyone.md#where-to-get-help) is available.
 
