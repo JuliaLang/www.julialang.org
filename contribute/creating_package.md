@@ -11,11 +11,11 @@ Here we provide a step-by-step example, using [PkgTemplates.jl](https://juliahub
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QVmU29rCjaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
-In case of any issues, remember that [help](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/contributing_for_everyone.md#where-to-get-help) is available.
+In case of any issues, remember that [help](/contribute/contributing_for_everyone.md#where-to-get-help) is available.
 
 ## Prerequisites
 
-- an [IDE](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/contributing_for_everyone.md#what-are-the-ide-options)
+- an [IDE](/contribute/contributing_for_everyone.md#what-are-the-ide-options)
 - a GitHub account
 
 ## Starting a package
