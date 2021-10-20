@@ -1,6 +1,6 @@
-@def rss_pubdate = Date(2021, 8, 18)
+@def rss_pubdate = Date(2021, 10, 14)
 @def rss = """ Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"""
-@def published = "18 August 2021"
+@def published = "14 Oct 2021"
 @def title = "Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"
 @def authors = """Qiyao Wei, Frank Schäfer, Avik Pal, Chris Rackauckas"""  
 <!-- authors waiting to be updated -->
@@ -278,13 +278,14 @@ etc.) and generally defines its differentiability. As such, this package gives a
 implementations and classical FORTRAN implementations with machine learning without having to worry
 about the training details.
 
-Let's see this in action!
+<!-- Let's see this in action! should we include another example here? (non-linear problem)-->
 
 ## We can also convert well-known architectures into DEQ Models
 
 <!-- DEQ models cannot vary in input and output size, and that is an active field of research -->
 
 ```julia
+using Zygote
 using Flux
 using Flux.Data:DataLoader
 using Flux.Optimise: Optimiser
@@ -299,7 +300,9 @@ using OrdinaryDiffEq
 using LinearAlgebra
 using Plots
 using MultivariateStats
+using Statistics
 CUDA.allowscalar(false)
+
 
 struct DeepEquilibriumNetwork{M,P,RE,A,K}
     model::M
@@ -330,9 +333,10 @@ end
 function Net()
     return Chain(
         Flux.flatten,
-        DeepEquilibriumNetwork(Chain(Dense(784, 100, tanh), Dense(100, 784)),
+        Dense(784, 100),
+        DeepEquilibriumNetwork(Chain(Dense(100, 500, tanh), Dense(500, 100)),
                                DynamicSS(Tsit5(), abstol = 1f-1, reltol = 1f-1)),
-        Dense(784, 10)
+        Dense(100, 10),
     )
 end
 
@@ -360,9 +364,9 @@ function eval_loss_accuracy(loader, model, device)
     ntot = 0
     for (x, y) in loader
         x, y = x |> device, y |> device
-        ŷ = model(x)
-        l += Flux.Losses.logitcrossentropy(ŷ, y) * size(x)[end]        
-        acc += sum(onecold(ŷ |> cpu) .== onecold(y |> cpu))
+        ŷ = model(x)
+        l += Flux.Losses.logitcrossentropy(ŷ, y) * size(x)[end]        
+        acc += sum(onecold(ŷ |> cpu) .== onecold(y |> cpu))
         ntot += size(x)[end]
     end
     return (loss = l / ntot |> round4, acc = acc / ntot * 100 |> round4)
@@ -376,14 +380,38 @@ Base.@kwdef mutable struct Args
     η = 3e-4             # learning rate
     λ = 0                # L2 regularizer param, implemented as weight decay
     batchsize = 8      # batch size
-    epochs = 10          # number of epochs
+    epochs = 1          # number of epochs
     seed = 0             # set seed > 0 for reproducibility
     use_cuda = true      # if true use cuda (if available)
 end
 
 function train(; kws...)
 
+    args = Args(; kws...)
+    args.seed > 0 && Random.seed!(args.seed)
+    use_cuda = args.use_cuda && CUDA.functional()
+    if use_cuda
+        device = gpu
+        @info "Training on GPU"
+    else
+        device = cpu
+        @info "Training on CPU"
+    end
+
+    ## DATA
+    train_loader, test_loader = get_data(args)
+    @info "Dataset MNIST: $(train_loader.nobs) train and $(test_loader.nobs) test examples"
+
+    ## MODEL AND OPTIMIZER
+    model = Net() |> device
     
+    ps = Flux.params(model)
+
+    opt = ADAM(args.η) 
+    if args.λ > 0 # add weight decay, equivalent to L2 regularization
+        opt = Optimiser(opt, WeightDecay(args.λ))
+    end
+
     ## TRAINING
     @info "Start Training"
     for epoch in 1:args.epochs
@@ -401,11 +429,10 @@ function train(; kws...)
     return model, train_loader, test_loader
 end
 
-model, train_loader, test_loader = train(batchsize = 8,
-                                         epochs = 100);
-```
+# Here we start training the model
+model, train_loader, test_loader = train(batchsize = 128, epochs = 1);
 
-```julia
+# This function iterates through the DEQ solver
 function construct_iterator(deq::DeepEquilibriumNetwork, x, p = deq.p)
     executions = 1
     model = deq.re(p)
@@ -419,13 +446,15 @@ function construct_iterator(deq::DeepEquilibriumNetwork, x, p = deq.p)
     return iterator
 end
 
+#This functions records the values over all timesteps
 function generate_model_trajectory(deq, x, max_depth::Int,
-                                   abstol::T = 1e-8, reltol::T = 1e-8) where {T}
+                                    abstol::T = 1e-8, reltol::T = 1e-8) where {T}
     deq_func = construct_iterator(deq, x)
     values = [x, deq_func()]
     for i = 2:max_depth
         sol = deq_func()
         push!(values, sol)
+        # We end early if the tolerances are met
         if (norm(sol .- values[end - 1]) ≤ abstol) || (norm(sol .- values[end - 1]) / norm(values[end - 1]) ≤ reltol)
             return values
         end
@@ -433,27 +462,111 @@ function generate_model_trajectory(deq, x, max_depth::Int,
     return values
 end
 
+# This function performs PCA
+# It reduces an array of size (feature, batchsize) to (2, batchsize) so we could plot it
 function dim_reduce(traj)
     pca = fit(PCA, cpu(hcat(traj...)), maxoutdim = 2)
     return [transform(pca, cpu(t)) for t in traj]
 end
 
-X, Y = first(train_loader);
+# In order to obtain a nice visualization, we loop through the entire test dataset
+function loop(; kws...)
 
-traj = generate_model_trajectory(model[2], model[1](X), 100, 1e-3, 1e-3)
-traj = dim_reduce(traj)
-Y = Flux.onecold(Y) |> cpu
+    args = Args(; kws...)
+    
+    # variables for plotting
+    xmin = 0
+    xmax = 0
+    ymin = 0
+    ymax = 0
 
-xmin, ymin = minimum(hcat(minimum.(traj, dims = 2)...), dims = 2)
-xmax, ymax = maximum(hcat(maximum.(traj, dims = 2)...), dims = 2)
+    # Arbitrarily, we choose the first data sample as the depth reference
+    X, color = first(test_loader);
+    traj = generate_model_trajectory(model[3], model[1:2](X), 100, 1e-3, 1e-3) |> cpu
+    traj = dim_reduce(traj)
+    color = Flux.onecold(color) |> cpu
+    #Here we have the compressed features and labels of one data sample
+    #In order to show that learned features are meaningful, we plot features that end at the same depth
+    for (X, Y) in test_loader
+        trajj = generate_model_trajectory(model[3], model[1:2](X), 100, 1e-3, 1e-3) |> cpu
+        
+        #Because we might terminate early by meeting the tolerance requirement, different
+        #data samples have different number of iterations and varying-length trajectories
+        #we arbitrarily control for depth according to our first sample
+        #and don't plot for any data whose iterator ends at a different depth
+        if length(trajj) == length(traj)
+            trajj = dim_reduce(trajj)
 
-anim = @animate for (i, t) in enumerate(traj)
-    scatter(t[1, :], t[2, :], color = Y, title = "Depth $i", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+            #again, for plotting later
+            xminn, yminn = minimum(hcat(minimum.(trajj, dims = 2)...), dims = 2)
+            xmaxx, ymaxx = maximum(hcat(maximum.(trajj, dims = 2)...), dims = 2)
+
+            if xminn < xmin
+                xmin = xminn
+            end
+            if yminn < ymin
+                ymin = yminn
+            end
+            if xmaxx > xmax
+                xmax = xmaxx
+            end
+            if ymaxx > ymax
+                ymax = ymaxx
+            end
+
+            #this should always evaluate to true, just a sanity check
+            if size(trajj[2]) == (2,args.batchsize)
+            
+                #we concatenate the two feature vectors for easier plotting
+                for i in 1:length(traj)
+                    traj[i] = cat(traj[i], trajj[i], dims=2)
+                end
+                Y = Flux.onecold(Y) |> cpu
+                color = cat(color, Y, dims=1)
+            end
+        end
+    end
+    return traj, color, xmin, xmax, ymin, ymax
 end
- 
+traj, color, xmin, xmax, ymin, ymax = loop()
 
-gif(anim, "trajectory.gif", fps = 4)
+# A collection of all the allowed shapes
+shape = [:circle, :rect, :star5, :diamond, :hexagon, :cross, :xcross, :utriangle, :dtriangle, :ltriangle, :rtriangle, :pentagon, :heptagon, :octagon, :star4, :star6, :star7, :star8, :vline, :hline, :+, :x]
+
+# Here we only visualize the features learned at the end of the trajectory
+# We label the features depending on which class it belongs to (which digit it is)
+# And at the end we see DEQ learning a good cluster for all the digits
+t = traj[end]
+plot()
+        if (color[i] - 1) % 10 == 0
+            scatter!([t[1, i]],[t[2, i]], color="black", markershape=shape[1], alpha=0.5, title = "DEQ Feature Cluster", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        elseif (color[i] - 2) % 10 == 0
+            scatter!([t[1, i]],[t[2, i]], color="blue", markershape=shape[2], alpha=0.5, title = "DEQ Feature Cluster", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        elseif (color[i] - 3) % 10 == 0
+            scatter!([t[1, i]],[t[2, i]], color="brown", markershape=shape[3], alpha=0.5, title = "DEQ Feature Cluster", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        elseif (color[i] - 4) % 10 == 0
+            scatter!([t[1, i]],[t[2, i]], color="cyan", markershape=shape[4], alpha=0.5, title = "DEQ Feature Cluster", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        elseif (color[i] - 5) % 10 == 0
+            scatter!([t[1, i]],[t[2, i]], color="gold", markershape=shape[5], alpha=0.5, title = "DEQ Feature Cluster", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        elseif (color[i] - 6) % 10 == 0
+            scatter!([t[1, i]],[t[2, i]], color="gray", markershape=shape[6], alpha=0.5, title = "DEQ Feature Cluster", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        elseif (color[i] - 7) % 10 == 0
+            scatter!([t[1, i]],[t[2, i]], color="magenta", markershape=shape[7], alpha=0.5, title = "DEQ Feature Cluster", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        elseif (color[i] - 8) % 10 == 0
+            scatter!([t[1, i]],[t[2, i]], color="orange", markershape=shape[8], alpha=0.5, title = "DEQ Feature Cluster", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        elseif (color[i] - 9) % 10 == 0
+            scatter!([t[1, i]],[t[2, i]], color="red", markershape=shape[9], alpha=0.5, title = "DEQ Feature Cluster", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        elseif (color[i] - 10) % 10 == 0
+            scatter!([t[1, i]],[t[2, i]], color="yellow", markershape=shape[10], alpha=0.5, title = "DEQ Feature Cluster", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+        end
+    end
+xlabel!("PCA Dimension 1")
+ylabel!("PCA Dimension 2")
+plot!()
+savefig("DEQ Feature Cluster")
 ```
+
+![Imgur](https://imgur.com/a/Re2XcWn)
 
 ## Conclusion
 
