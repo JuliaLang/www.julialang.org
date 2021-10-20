@@ -218,6 +218,8 @@ end
 
 Tada, we now have a valid machine-learned model for solving the regression problem where the
 predictions are given by steady states of an ODE solver, where the ODE is defined by a neural network!
+GPU compatible? Check. Fast adjoints? Check. Did you do any work? Ehh, not really. Composability did
+that work for us.
 
 Before proceeding to a more realistic usecase, we want to visualize the trajectory followed by
 the neural network. We will evaluate our model till a maximum depth of `100`
