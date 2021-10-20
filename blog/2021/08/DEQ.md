@@ -146,7 +146,7 @@ the backpropagation in the efficient manner without requiring backpropagation of
 gives an efficient implementation of a DEQ without requiring any new tooling or packages, but can also 
 outperform the fixed-point iteration approaches by taking multiple steps at a time.
 
-The following code block creates a DEQ model. The acute will notice that this code looks
+The following code block creates a DEQ model. The acute reader will notice that this code looks
 awfully similar to typical [Neural ODEs implemented in Julia](https://julialang.org/blog/2019/01/fluxdiffeq/).
 Therefore, the DEQ implementation simply adds an extra steady state layer on top
 of the ODE function, and as long as we use the correct sensitivity corresponding to
