@@ -1,7 +1,7 @@
 @def rss_pubdate = Date(2021, 10, 14)
-@def rss = """ Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"""
+@def rss = """ Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs"""
 @def published = "14 Oct 2021"
-@def title = "Composability in Julia: Implement Deep Equilibrium Models via Neural ODEs"
+@def title = "Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs"
 @def authors = """Qiyao Wei, Frank Schäfer, Avik Pal, Chris Rackauckas"""  
 <!-- authors waiting to be updated -->
 
@@ -280,7 +280,9 @@ about the training details.
 
 <!-- Let's see this in action! should we include another example here? (non-linear problem)-->
 
-## We can also convert well-known architectures into DEQ Models
+## Full example: DEQ for learning MNIST from scratch
+
+Now let's do a full scale example: training a DEQ to clasify digits of MNIST. First we define our DEQ structures:
 
 <!-- DEQ models cannot vary in input and output size, and that is an active field of research -->
 
@@ -339,7 +341,11 @@ function Net()
         Dense(100, 10),
     )
 end
+```
 
+Next we define our training loops and our data handling:
+
+```julia
 function get_data(args)
     xtrain, ytrain = MLDatasets.MNIST.traindata(Float32)
     xtest, ytest = MLDatasets.MNIST.testdata(Float32)
@@ -529,7 +535,12 @@ function loop(; kws...)
     return traj, color, xmin, xmax, ymin, ymax
 end
 traj, color, xmin, xmax, ymin, ymax = loop()
+```
 
+Now let's see what we got. We'll do a visualization of the values that come out of the neural network. If the neural network
+successfully trained to be a classifier, then we should see distinct clusters for the various digits.
+
+```julia
 # A collection of all the allowed shapes
 shape = [:circle, :rect, :star5, :diamond, :hexagon, :cross, :xcross, :utriangle, :dtriangle, :ltriangle, :rtriangle, :pentagon, :heptagon, :octagon, :star4, :star6, :star7, :star8, :vline, :hline, :+, :x]
 
@@ -568,10 +579,15 @@ savefig("DEQ Feature Cluster")
 
 ![Imgur](https://i.imgur.com/2OuvoiA.png)
 
+Tada, clusters! 
+
 ## Conclusion
 
 In this blog post we have demonstrated a new perspective for studying DEQ models. Coupled with the
 flexible Julia language structure, we have implemented DEQ models by only changing two lines of code
 compared to Neural ODEs! The world is your oyster, and composability of the [SciML ecosystem](https://sciml.ai/)
-is there to facilitate doing machine learning with your wildest creations. Mix and match
+is there to facilitate doing machine learning with your wildest creations. While pre-built DEQ structures
+will soon be found in [DiffEqFlux.jl](https://github.com/SciML/DiffEqFlux.jl), the larger point is that the
+composability of the Julia ecosystem makes building such a tool simple, and makes getting the optimal algorithm
+with Krylov linear solvers, quasi-Newton methods, etc. free due to composability. Mix and match
 things at will. We're excited to see what you come up with.
