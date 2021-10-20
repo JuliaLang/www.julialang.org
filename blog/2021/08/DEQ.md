@@ -276,9 +276,10 @@ Bifurcation tools like [BifurcationKit.jl](https://rveltz.github.io/BifurcationK
 Given the importance of solving nonlinear algebraic systems and their differentiability, the SciML organization
 has put together a common interface package [NonlinearSolve.jl](https://nonlinearsolve.sciml.ai/dev/) that weaves
 together all of the techniques throughout the package ecosystem (bringing together methods from SUNDIALS, MINPACK,
-etc.) and generally defines its differentiability. As such, this package gives a "one-stop shop" for weaving both new
-implementations and classical FORTRAN implementations with machine learning without having to worry
-about the training details.
+etc.) and generally defines its differentiability, connection to acceleration techniques like 
+Jacobian-Free Newton Krylov, and more. As such, this package gives a "one-stop shop" for weaving both 
+new implementations and classical FORTRAN implementations with machine learning without having to 
+worry about the training details.
 
 <!-- Let's see this in action! should we include another example here? (non-linear problem)-->
 
