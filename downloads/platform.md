@@ -62,7 +62,7 @@ If you want to launch Julia from the command line, first [open a new terminal wi
 
 ~~~
 <pre><code class="language-shell">rm -f /usr/local/bin/julia
-ln -s /Applications/Julia-{{stable_release_short}}.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia</code></pre>
+sudo ln -s /Applications/Julia-{{stable_release_short}}.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia</code></pre>
 ~~~
 
 This code creates a [symlink](https://en.wikipedia.org/wiki/Symbolic_link) to a Julia version (here {{stable_release_short}}) of your choosing.
@@ -105,96 +105,11 @@ Julia installs all its files in a single directory. Deleting the directory where
 
 [Jill.py](https://github.com/johnnychen94/jill.py) is a community-maintained command-line tool that automates the installation workflow for all platforms. After installing this using `pip install jill -U`, you can then use `jill install` to install the current stable release, and `jill install latest` to install the nightly builds.
 
-# Platform Specific Instructions for Unofficial Binaries
+## Juliaup
 
+An installer and version manager for Julia called [juliaup](https://github.com/JuliaLang/juliaup) is available in the [Microsoft Store](https://www.microsoft.com/store/apps/9NJNWW8PVKMN).
+It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.
 
+# A Brief Note About Unofficial Binaries
 
-The following distribution-specific packages are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. All these distributions are community maintained, and hence they may not always have the latest versions of Julia, and sometimes, the instructions may not work. In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.
-
-
-
-## Chocolatey on Windows
-
-If you use Chocolatey for package management, you can install the latest Julia release by executing the following one-liner, in either a powershell or command prompt:
-
-```shell
-choco install julia --confirm
-```
-
-Chocolatey automatically creates a shim for the Julia executable, so you simply type `julia` to run Julia in the terminal. When a new version is released simply execute `choco upgrade julia --confirm`. If you want to uninstall Julia run `choco uninstall julia --confirm`.
-
-
-
-## Homebrew on macOS
-
-Julia can be installed using the [Homebrew package manager](https://formulae.brew.sh/cask/julia) as follows:
-
-```shell
-brew install --cask julia
-```
-
-This automatically puts the binary into a directory in the user's PATH, so you can simply type `julia` to run Julia in the terminal.
-
-
-
-## Fedora/RHEL/CentOS/SL/OEL Linux
-
-A [Copr repository](https://copr.fedoraproject.org/coprs/nalimilan/julia/) is provided for Fedora, RHEL, CentOS, Scientific Linux and Oracle Enterprise Linux systems to allow for automatic updating to the latest stable version of Julia.  On Fedora and CentOS 8, Julia is available in
-the main repositories, and you do not need to use the Copr repository.
-
-If you are using RHEL, CentOS, Scientific Linux or Oracle Enterprise Linux (version 5 or higher), first [enable EPEL](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F) for your distribution version. Then follow the steps below.
-
-If you are using Fedora (version 32 or higher), directly run:
-
-```shell
-sudo dnf install julia
-```
-
-If you are using CentOS (version 7), directly run:
-
-```shell
-sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan/julia/repo/epel-7/nalimilan-julia-epel-7.repo
-sudo yum install julia
-```
-
-If you are using CentOS (version 8), directly run:
-
-```shell
-sudo dnf install julia
-```
-
-If both `dnf` and `yum-config-manager` are not available for your distribution, download the relevant `.repo` file from the Copr webpage, copy it to `/etc/yum.repos`, and run the install command.
-
-Note that Fedora guidelines advise against uploading new breaking releases to official repositories: therefore your distribution may not provide the new major versions of Julia. When reporting issues, please ensure you are using the latest available release, and if it is not available using one of the Copr repositories displayed on this page. In order to use nightly Julia builds, use
-
-```shell
-sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/nalimilan-nightlies/julia/repo/epel-7/nalimilan-julia-epel-7.repo
-sudo yum install julia
-```
-These can then be updated with `yum upgrade julia`.
-
-## Debian/Ubuntu Linux
-
-Recent Debian/ubuntu distributions include their own build of Julia, which can be installed in the usual way. Check the versions of Julia provided in [Ubuntu](https://packages.ubuntu.com/search?keywords=julia) and [Debian](https://packages.debian.org/search?keywords=julia). If this is not the version of Julia you want, you will need to use the official binaries.
-
-```shell
-sudo apt install julia
-```
-
-## Arch Linux
-The Arch User Repository has [a package for Julia](https://aur.archlinux.org/packages/julia-bin) that is built from the official binaries of Julia. To install it run:
-
-```shell
-sudo pacman -S base-devel git
-git clone https://aur.archlinux.org/julia-bin.git
-cd julia-bin
-makepkg -si
-```
-
-## FreeBSD Ports
-
-Julia is available in the [Ports Collection](https://svnweb.freebsd.org/ports/head/lang/julia/). To install from the FreeBSD binary package manager, `pkg`, run
-
-```shell
-pkg install julia
-```
+There are a variety of distribution-specific packages that are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. All such distributions are community maintained, and hence they may not always have the latest versions of Julia, and sometimes, the instructions may not work. In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.

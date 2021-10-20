@@ -52,6 +52,7 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 
 * [AlgebraicJulia](https://github.com/AlgebraicJulia) – Applied Category Theory
 * [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](https://www.juliadiff.org/)
+* [JuliaFirstOrder](https://github.com/JuliaFirstOrder) - First-order optimization and proximal algorithms
 * [JuliaGeometry](https://github.com/JuliaGeometry) – Computational Geometry
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaIntervals](https://github.com/JuliaIntervals) – Rigorous numerics with interval arithmetic & applications
@@ -59,6 +60,7 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
 * [JuliaMatrices](https://github.com/JuliaMatrices)
 * [JuliaNLSolvers](https://github.com/JuliaNLSolvers)
+* [JuliaNonconvex](https://github.com/JuliaNonconvex) – Non-convex constrained optimization
 * [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
 * [JuliaSmoothOptimizers](https://github.com/JuliaSmoothOptimizers) – Framework for the development of solvers for continuous nonlinear optimization
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
