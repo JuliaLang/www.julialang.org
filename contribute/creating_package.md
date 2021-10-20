@@ -7,13 +7,15 @@ Julia packages consist of modules. Hence, before creating a package, make sure t
 
 Here we provide a step-by-step example, using [PkgTemplates.jl](https://juliahub.com/docs/PkgTemplates/IGiQL/0.6.4/), inspired by a videoof Chris Rackauckas (please note that the video uses Travis as a Continuous Integration tool which we no longer encourage, and prefer [Github Actions](https://docs.github.com/en/actions) instead). Here is the video:
 
-[<img src="VideoFakeImage.png" width="200" class="center">](https://www.youtube.com/watch?v=QVmU29rCjaA&t=112s)
+~~~
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QVmU29rCjaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+~~~
 
-In case of any issues, remember that [help](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/contributing_for_everyone.md#where-to-get-help) is available.
+In case of any issues, remember that [help](/contribute/contributing_for_everyone.md#where-to-get-help) is available.
 
 ## Prerequisites
 
-- an [IDE](https://github.com/elizavetasemenova/www.julialang.org/blob/main/contribute/contributing_for_everyone.md#what-are-the-ide-options)
+- an [IDE](/contribute/contributing_for_everyone.md#what-are-the-ide-options)
 - a GitHub account
 
 ## Starting a package
