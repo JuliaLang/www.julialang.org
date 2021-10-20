@@ -262,6 +262,7 @@ plot(0:(length(traj) - 1), cpu(vcat(traj...)), xlabel = "Depth",
 
 ![Imgur](https://i.imgur.com/dDckk8A.png)
 
+Notice that by the end the dynamics have leveled off to a final point, and the integration cuts off when it gets "sufficiently close to infinity". This value at the end is the prediction of the DEQ for $y=2x$.
 **The general composability of the Julia ecosystem means that there is no "Github repository for DEQs",
 instead this is just the ODE solver mixed with the ML library, the AD package, the GPU package, etc.
 and when put together you get a DEQ!**
