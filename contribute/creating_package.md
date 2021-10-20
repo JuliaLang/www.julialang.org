@@ -8,7 +8,7 @@ Julia packages consist of modules. Hence, before creating a package, make sure t
 Here we provide a step-by-step example, using [PkgTemplates.jl](https://juliahub.com/docs/PkgTemplates/IGiQL/0.6.4/), inspired by a videoof Chris Rackauckas (please note that the video uses Travis as a Continuous Integration tool which we no longer encourage, and prefer [Github Actions](https://docs.github.com/en/actions) instead). Here is the video:
 
 ~~~
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QVmU29rCjaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QVmU29rCjaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
 In case of any issues, remember that [help](/contribute/contributing_for_everyone.md#where-to-get-help) is available.
