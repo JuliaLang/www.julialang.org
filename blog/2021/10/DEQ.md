@@ -7,7 +7,7 @@
 The [SciML Common Interface](https://scimlbase.sciml.ai/dev/) defines a complete
 set of equation solving techniques, from differential equations and optimization
 to nonlinear solves and integration (quadrature), in a way that is made to
-naturally mix with machine learning. In this sense, there is no difference
+mix with machine learning naturally. In this sense, there is no difference
 between the optimized libraries being used for physical modeling and
 the techniques used in machine learning: in the composable ecosystem of Julia,
 these are one and the same. The same differential equation solvers that are
@@ -19,10 +19,10 @@ is the same one that is used in [automatically discovering physical equations](h
 With a composable package ecosystem, the only thing holding you back is the ability to
 figure out new ways to compose the parts.
 
-In this blog post we will show how to easily, efficiently, and
+In this blog post, we will show how to easily, efficiently, and
 robustly use steady state nonlinear solvers with neural networks in Julia. We will
-showcase the relationship between steady states and ODEs, thus making a connection
-between the methods for Deep Equilibrium Models (DEQs) and Neural ODEs.
+showcase the relationship between steady states and ODEs, thus connecting
+the methods for Deep Equilibrium Models (DEQs) and Neural ODEs.
 We will then show how [DiffEqFlux.jl](https://diffeqflux.sciml.ai/dev/)
 can be used as a package for DEQs, showing how the composability of the
 Julia ecosystem naturally lends itself to extensions and generalizations
@@ -51,7 +51,7 @@ dynamical system $x_{n+1} = f(x_n)$, where the literature categorizes all of the
 can happen as $n$ goes to infinity: $x$ can oscillate, it can go to infinity, it can do something
 that looks almost random (this is the notorious chaos theory), or importantly, it can "stabilize"
 to something known as a steady state or equilibria value. This last behavior happens when
-$x_{ss} = f(x_{ss})$, where once it settles in to this pattern it will repeat the pattern ad infinitum, and
+$x_{ss} = f(x_{ss})$, where once it settles into this pattern it will repeat the pattern ad infinitum, and
 thus solving the infinity problem can be equivalent to finding a steady state. An entire literature characterizes
 the properties of $f$ which cause values to converge to a single repeating value in this sense,
 and we refer you to the book "Nonlinear Dynamics and Chaos" by Strogatz as an accessible introduction
@@ -87,7 +87,7 @@ with a DEQ, you never have to wonder if you've chosen enough layers. Your number
 infinity, so it's always enough. Indeed, if $x_{ss}$ is the value that comes out of the DEQ, since it's
 approximately the solution to this infinite process $x_{n+1} = NN(x_n)$, by definition one more application
 leaves the prediction essentially unchanged: $x_{ss} = NN(x_{ss})$. Therefore you're done hyperparameter
-optimizing: a DEQ does not have a number of layers to choose. You of course still have to choose an architecture
+optimizing: a DEQ does not have a number of layers to choose. Of course, you still have to choose an architecture
 for $NN$, but this decreases the space of what could go wrong in your training process.
 
 Another interesting detail is that, surprisingly, backpropagation of a DEQ is cheaper than doing a big number
@@ -99,7 +99,7 @@ What is the derivative of the DEQ's output with respect to the parameters of $a$
 derivative is easy to calculate and does not require differentiating through the infinite iteration
 process $x_{n+1} = a x_n + b$: you can directly differentiate $x_{ss} = b/(1-a)$. The Implicit Function
 Theorem says that this generally holds: you can always differentiate the steady state without having to
-go back through the iterative process. Why this is important is because "backpropagation" or "adjoints"
+go back through the iterative process. This is important because "backpropagation" or "adjoints"
 are simply the derivative of the output with respect to the parameter weights of the neural network. What this
 is saying is that, if you have a deep neural network with $n$ very large layers, you need to backpropagate
 through $n$ layers. **But if $n$ is infinite, you only need to backpropagate through 1!** The details
@@ -135,7 +135,7 @@ The Julia [DifferentialEquations.jl](https://diffeq.sciml.ai/stable/) library ha
 [SteadyStateProblem](https://diffeq.sciml.ai/stable/types/steady_state_types/) which automatically solves
 until $x'$ is sufficiently small (below tolerance), in which case it will automatically use a
 [terminating callback](https://diffeq.sciml.ai/stable/features/callback_functions/#Example-2:-Terminating-an-Integration)
-to exit the iteration at the (approximately) found steady state. Because the [SciML Organization's Packages](https://sciml.ai/)
+to exit the integration at the (approximately) found steady state. Because the [SciML Organization's Packages](https://sciml.ai/)
 are differentiable, we can stick neural networks inside of this "steady state of ODEs" problem, and that
 will generate a training mechanism for this continuous-stepping DEQ procedure. This `SteadyStateProblem`
 solution then uses the [Nonlinear Solve Adjoint](https://math.mit.edu/~stevenj/18.336/adjoint.pdf) to calculate
@@ -146,7 +146,7 @@ outperform the fixed-point iteration approaches by taking multiple steps at a ti
 The following code block creates a DEQ model. An astute reader will notice that this code looks
 awfully similar to typical [Neural ODEs implemented in Julia](https://julialang.org/blog/2019/01/fluxdiffeq/).
 Therefore, the DEQ implementation simply adds an extra steady state layer on top
-of the ODE function, and as long as we use the correct sensitivity corresponding to
+of the ODE function, and as long as we use the correct (automatically chosen) sensitivity corresponding to
 steady state problems, we are covered.
 
 ```julia
@@ -193,11 +193,10 @@ deq = DeepEquilibriumNetwork(ann,
                              DynamicSS(Tsit5(), abstol = 1f-2, reltol = 1f-2))
 ```
 
-Afterwards, we can test our DEQ model on a simple regression problem $y=2x$. When one runs this,
+With these definitions, we are prepared to test our DEQ model on a simple regression problem $y=2x$. When one runs the following code snippet,
 the model will print out $-10$, which is the expected answer for this regression problem.
-Also note that it is clearly not necessary to use GPU in training, and one can easily
-move to CPU execution by removing all the "gpu" calls. As a sanity check, our small DEQ
-model completes this regression problem perfectly.
+Remarkably, switching from GPU to CPU execution is easily accomplished by removing all the "gpu" calls.
+As a sanity check, our small DEQ model completes this regression problem perfectly.
 
 ```julia
 # Let's run a DEQ model on linear regression for y = 2x
@@ -219,9 +218,9 @@ predictions are given by steady states of an ODE solver, where the ODE is define
 GPU compatible? Check. Fast adjoints? Check. Did you do any work? Ehh, not really. Composability did
 that work for us.
 
-Before proceeding to a more realistic use case, we want to visualize the trajectory followed by
-the neural network. We will evaluate our model till a maximum depth of `100`
-(or till it converges to a steady state).
+Before proceeding to a more realistic use case, we visualize the trajectory followed by
+the neural network. Thereby, we will evaluate our model to a maximum depth of `100`
+(or until it converges to a steady state).
 
 ```julia
 # Visualizing
@@ -260,7 +259,9 @@ plot(0:(length(traj) - 1), cpu(vcat(traj...)), xlabel = "Depth",
 
 ![Imgur](https://i.imgur.com/dDckk8A.png)
 
-Notice that by the end the dynamics have leveled off to a final point, and the integration cuts off when it gets "sufficiently close to infinity". This value at the end is the prediction of the DEQ for $y=2x$.
+The figure above shows ten such trajectories starting from uniformly distributed random numbers between 0 and 10. 
+Notice that by the end, the dynamics have leveled off to a final point, and the integration cuts off when it gets
+"sufficiently close to infinity". This value at the end is the prediction of the DEQ for $y=2x$.
 **The general composability of the Julia ecosystem means that there is no "Github repository for DEQs",
 instead this is just the ODE solver mixed with the ML library, the AD package, the GPU package, etc.
 and when put together you get a DEQ!**
@@ -284,7 +285,7 @@ worry about the training details.
 
 ## Full example: DEQ for learning MNIST from scratch
 
-Now let's do a full scale example: training a DEQ to classify digits of MNIST. First we define our DEQ structures:
+Let us consider a full-scale example: training a DEQ to classify digits of MNIST. First, we define our DEQ structures:
 
 <!-- DEQ models cannot vary in input and output size, and that is an active field of research -->
 
@@ -477,7 +478,7 @@ function generate_model_trajectory(deq, x, max_depth::Int,
 end
 
 # This function performs PCA
-# It reduces an array of size (feature, batchsize) to (2, batchsize) so we could plot it
+# It reduces an array of size (feature, batchsize) to (2, batchsize) so we can plot it
 function dim_reduce(traj)
     pca = fit(PCA, cpu(hcat(traj...)), maxoutdim = 2)
     return [transform(pca, cpu(t)) for t in traj]
@@ -548,7 +549,7 @@ traj, color, xmin, xmax, ymin, ymax = loop()
 
 Now let's see what we got. We'll do a visualization of the values that come out of the neural network.
 The neural network acts on a very high dimensional space, so we will need to project that to a visualization
-in a two dimensional space. If the neural network successfully trained to be a classifier, then we should see
+in a two dimensional space. If the neural network was successfully trained to be a classifier, then we should see
 relatively distinct clusters for the various digits, noting that they will not be fully separated in two
 dimensions due to potential distance warping in the projection.
 
@@ -638,7 +639,7 @@ Tada, clusters in the equilibrium!
 
 ## Conclusion
 
-In this blog post we have demonstrated a new perspective for studying DEQ models. Coupled with the
+In this blog post, we have demonstrated a new perspective for studying DEQ models. Coupled with the
 flexible Julia language structure, we have implemented DEQ models by only changing two lines of code
 compared to Neural ODEs! The world is your oyster, and composability of the [SciML ecosystem](https://sciml.ai/)
 is there to facilitate doing machine learning with your wildest creations. While pre-built DEQ structures
