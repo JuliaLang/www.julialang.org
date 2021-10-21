@@ -632,7 +632,7 @@ plot!()
 savefig("DEQ Feature Cluster")
 ```
 
-![Imgur](https://imgur.com/gallery/uE1Gwi7)
+![Imgur](https://i.imgur.com/K411ddI.gif)
 
 ![Imgur](https://i.imgur.com/2OuvoiA.png)
 
