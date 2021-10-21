@@ -27,8 +27,8 @@ In case of any issues, remember that [help](/contribute/contributing_for_everyon
 3. In the Julia REPL, install `PkgTemplate.jl` as follows:
 
    ```
-    using Pkg
-    Pkg.add("PkgTemplates")
+   using Pkg
+   Pkg.add("PkgTemplates")
    ```
 
 
