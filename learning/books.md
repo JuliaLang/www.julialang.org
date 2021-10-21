@@ -1,6 +1,7 @@
 ## Books
 
 @@tight-list
+* Sambit Kumar Dash. [Hands-on Julia Programming](https://in.bpbonline.com/products/hands-on-julia-programming), Bpb Publications, October 2021
 * Erik Engheim. [Julia for Beginners](https://leanpub.com/julia-for-beginners), January 2021.
 * Lee Phillips. [Applied Julia](https://lee-phillips.org/juliabook/), Late 2021. Comments welcome.
 * Mykel J. Kochenderfer, Tim A. Wheeler, and Kyle H. Wray. [Algorithms for Decision Making](https://algorithmsbook.com/), December 2020.
