@@ -3,9 +3,6 @@
 @def published = "21 Oct 2021"
 @def title = "Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs"
 @def authors = """Qiyao Wei, Frank Schäfer, Avik Pal, Chris Rackauckas"""  
-<!-- authors waiting to be updated -->
-
-<!-- Translations: [Traditional Chinese](/blog/2019/04/fluxdiffeq-zh_tw) -->
 
 The [SciML Common Interface](https://scimlbase.sciml.ai/dev/) defines a complete
 set of equation solving techniques, from differential equations and optimization
@@ -15,7 +12,7 @@ between the optimized libraries being used for physical modeling and
 the techniques used in machine learning: in the composable ecosystem of Julia,
 these are one and the same. The same differential equation solvers that are
 being carefully inspected for speed and accuracy by the FDA and Moderna [for clinical trial analysis](https://pumas.ai/)
-are what's [mixed with neural networks for neural ODEs](https://julialang.org/blog/2019/01/fluxdiffeq/). 
+are what's [mixed with neural networks for neural ODEs](https://julialang.org/blog/2019/01/fluxdiffeq/).
 The same [computer algebra system](https://symbolics.juliasymbolics.org/dev/)
 that is [used to accelerate NASA launch simulations by 15,000x](https://www.youtube.com/watch?v=tQpqsmwlfY0)
 is the same one that is used in [automatically discovering physical equations](https://datadriven.sciml.ai/dev/).
@@ -41,9 +38,9 @@ Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel
 
 ## Deep Equilibrium Models (DEQs) and Infinitely Deep Networks
 
-Neural network structures can be viewed as repeated applications of layered computations. For 
-example, when we apply convolution filters on images the network consists of repetitive blocks 
-of convolutional layers, and one linear output layer 
+Neural network structures can be viewed as repeated applications of layered computations. For
+example, when we apply convolution filters on images the network consists of repetitive blocks
+of convolutional layers, and one linear output layer
 at the very end. It's essentially $f(f(f(...f(x))...))$ where $f$ is the neural network, and we call this
 "deep" because of the layers of composition. But what if we make this composition go to infinity?
 
@@ -74,7 +71,7 @@ defined by the parameters.
 
 That is the intuition that defines the [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377),
 where $x_{ss}$ is the prediction from the model. This is why DEQs are referred to as infinitely-deep
-networks. Now, if the weights are such that $x_{ss}$ is 
+networks. Now, if the weights are such that $x_{ss}$ is
 divergent towards infinity, those weights would have a very large cost in their predictions and
 thus the weights will naturally be driven away from such solutions. This makes such a structure
 $x_{n+1} = NN(x_n)$ naturally inclined to learn convergent steady state behavior.
@@ -106,10 +103,10 @@ go back through the iterative process. Why this is important is because "backpro
 are simply the derivative of the output with respect to the parameter weights of the neural network. What this
 is saying is that, if you have a deep neural network with $n$ very large layers, you need to backpropagate
 through $n$ layers. **But if $n$ is infinite, you only need to backpropagate through 1!** The details
-of this have been well-studied in the scientific computing literature since at least the 90's. For example, 
-Steven Johnson's [Notes on Adjoint Methods for 18.335 from 2006](https://math.mit.edu/~stevenj/18.336/adjoint.pdf) 
+of this have been well-studied in the scientific computing literature since at least the 90's. For example,
+Steven Johnson's [Notes on Adjoint Methods for 18.335 from 2006](https://math.mit.edu/~stevenj/18.336/adjoint.pdf)
 shows a well-written derivation of an adjoint equation ("backpropagation" equation) for a rootfinding solver,
-along with a [litany](https://link.springer.com/content/pdf/10.1007%2F3-540-45718-6_20.pdf) of 
+along with a [litany](https://link.springer.com/content/pdf/10.1007%2F3-540-45718-6_20.pdf) of
 [papers](http://www.jcomputers.us/vol5/jcp0503-11.pdf) that [use](https://ieeexplore.ieee.org/document/4724607) this
 [result](https://www.computer.org/csdl/proceedings-article/cis/2008/3508a020/12OmNz61djv) in the 90's and 00's
 to mix neural networks and nonlinear solving. We note very briefly that solving for a steady state is equivalent
@@ -121,12 +118,12 @@ But everything in this world is a differential equation, so let's take a turn an
 ## Mixing DEQs and Neural Ordinary Differential Equations (Neural ODEs)
 
 From the viewpoint of Julia and the DiffEqFlux.jl library, it is also natural to look at DEQs from
-a differential equations perspective. Instead of viewing the dynamical system as a discrete process 
+a differential equations perspective. Instead of viewing the dynamical system as a discrete process
 $x_{n+1} = f(x_n)$, we can equivalently view the system as evolving
 continuously, i.e. $x' = f(x)$. If we think about $dx/dt = f(x)$, by Euler's method we approximate $dx = x_{n+1} - x_n$
 and simplify to get $x_{n+1} = x_n + dt f(x_n) = g(x_n)$ which relates us back to our original definition with a
-slight change to the function. However, in this ODE sense, convergence is when the change is zero, 
-or $x'=0$, which again happens when $f(x)=0$ and is a rootfinding problem. **But this view is insightful: 
+slight change to the function. However, in this ODE sense, convergence is when the change is zero,
+or $x'=0$, which again happens when $f(x)=0$ and is a rootfinding problem. **But this view is insightful:
 a DEQ is a neural ODE where time goes to infinity.** Now, instead of taking 1 step at a time, we can take $dt$
 steps at a time towards the steady state. This means an adaptive ODE solver can notice we are converging and take
 larger and larger steps to get to that equilibrium a bit quicker. But also, given DiffEqFlux, this observation makes implementing
@@ -143,7 +140,7 @@ are differentiable, we can stick neural networks inside of this "steady state of
 will generate a training mechanism for this continuous-stepping DEQ procedure. This `SteadyStateProblem`
 solution then uses the [Nonlinear Solve Adjoint](https://math.mit.edu/~stevenj/18.336/adjoint.pdf) to calculate
 the backpropagation in the efficient manner without requiring backpropagation of the iterations. This thus
-gives an efficient implementation of a DEQ without requiring any new tooling or packages, but can also 
+gives an efficient implementation of a DEQ without requiring any new tooling or packages, but can also
 outperform the fixed-point iteration approaches by taking multiple steps at a time.
 
 The following code block creates a DEQ model. An astute reader will notice that this code looks
@@ -151,7 +148,7 @@ awfully similar to typical [Neural ODEs implemented in Julia](https://julialang.
 Therefore, the DEQ implementation simply adds an extra steady state layer on top
 of the ODE function, and as long as we use the correct sensitivity corresponding to
 steady state problems, we are covered.
- 
+
 ```julia
 using Flux
 using DiffEqSensitivity
@@ -271,15 +268,15 @@ and when put together you get a DEQ!**
 
 There are many ways that one can solve a rootfinding problem with different characteristics.
 One can directly use Newton's method, but this can require a good guess and may not distinguish
-between stable and unstable equilibrium. Julia packages like 
+between stable and unstable equilibrium. Julia packages like
 [NLsolve.jl](https://github.com/JuliaNLSolvers/NLsolve.jl) provide many good algorithms, and
-Bifurcation tools like [BifurcationKit.jl](https://rveltz.github.io/BifurcationKit.jl/dev/) give a whole host of other methods. 
+Bifurcation tools like [BifurcationKit.jl](https://rveltz.github.io/BifurcationKit.jl/dev/) give a whole host of other methods.
 Given the importance of solving nonlinear algebraic systems and their differentiability, the SciML organization
 has put together a common interface package [NonlinearSolve.jl](https://nonlinearsolve.sciml.ai/dev/) that weaves
 together all of the techniques throughout the package ecosystem (bringing together methods from SUNDIALS, MINPACK,
-etc.) and generally defines its differentiability, connection to acceleration techniques like 
-Jacobian-Free Newton Krylov, and more. As such, this package gives a "one-stop shop" for weaving both 
-new implementations and classical FORTRAN implementations with machine learning without having to 
+etc.) and generally defines its differentiability, connection to acceleration techniques like
+Jacobian-Free Newton Krylov, and more. As such, this package gives a "one-stop shop" for weaving both
+new implementations and classical FORTRAN implementations with machine learning without having to
 worry about the training details.
 
 <!-- Let's see this in action! should we include another example here? (non-linear problem)-->
@@ -362,7 +359,7 @@ function get_data(args)
 
     train_loader = DataLoader((xtrain, ytrain), batchsize=args.batchsize, shuffle=true)
     test_loader = DataLoader((xtest, ytest),  batchsize=args.batchsize)
-    
+
     return train_loader, test_loader
 end
 
@@ -385,7 +382,7 @@ end
 # utility functions
 round4(x) = round(x, digits=4)
 
-# arguments for the `train` function 
+# arguments for the `train` function
 Base.@kwdef mutable struct Args
     η = 3e-4             # learning rate
     λ = 0                # L2 regularizer param, implemented as weight decay
@@ -414,10 +411,10 @@ function train(; kws...)
 
     ## MODEL AND OPTIMIZER
     model = Net() |> device
-    
+
     ps = Flux.params(model)
 
-    opt = ADAM(args.η) 
+    opt = ADAM(args.η)
     if args.λ > 0 # add weight decay, equivalent to L2 regularization
         opt = Optimiser(opt, WeightDecay(args.λ))
     end
@@ -483,7 +480,7 @@ end
 function loop(; kws...)
 
     args = Args(; kws...)
-    
+
     # variables for plotting
     xmin = 0
     xmax = 0
@@ -499,7 +496,7 @@ function loop(; kws...)
     #In order to show that learned features are meaningful, we plot features that end at the same depth
     for (X, Y) in test_loader
         trajj = generate_model_trajectory(model[3], model[1:2](X), 100, 1e-3, 1e-3) |> cpu
-        
+
         #Because we might terminate early by meeting the tolerance requirement, different
         #data samples have different number of iterations and varying-length trajectories
         #we arbitrarily control for depth according to our first sample
@@ -526,7 +523,7 @@ function loop(; kws...)
 
             #this should always evaluate to true, just a sanity check
             if size(trajj[2]) == (2,args.batchsize)
-            
+
                 #we concatenate the two feature vectors for easier plotting
                 for i in 1:length(traj)
                     traj[i] = cat(traj[i], trajj[i], dims=2)
@@ -541,9 +538,9 @@ end
 traj, color, xmin, xmax, ymin, ymax = loop()
 ```
 
-Now let's see what we got. We'll do a visualization of the values that come out of the neural network. 
+Now let's see what we got. We'll do a visualization of the values that come out of the neural network.
 The neural network acts on a very high dimensional space, so we will need to project that to a visualization
-in a two dimensional space. If the neural network successfully trained to be a classifier, then we should see 
+in a two dimensional space. If the neural network successfully trained to be a classifier, then we should see
 relatively distinct clusters for the various digits, noting that they will not be fully separated in two
 dimensions due to potential distance warping in the projection.
 
@@ -586,7 +583,7 @@ savefig("DEQ Feature Cluster")
 
 ![Imgur](https://i.imgur.com/2OuvoiA.png)
 
-Tada, clusters! 
+Tada, clusters!
 
 ## Conclusion
 
