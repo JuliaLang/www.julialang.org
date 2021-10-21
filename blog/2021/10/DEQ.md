@@ -443,7 +443,7 @@ end
 model, train_loader, test_loader = train(batchsize = 128, epochs = 1);
 ```
 
-Finally, we visualize what the model has learned.
+Finally, here is the code to create an iterator for DEQ values.
 
 ```
 # This function iterates through the DEQ solver
