@@ -1,0 +1,399 @@
+<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/katex/katex.min.css"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs"> <meta property="og:description" content="Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs"> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/research/">Research</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 21 October 2021 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Qiyao Wei, Frank Schäfer, Avik Pal, Chris Rackauckas </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2021/10/DEQ.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>The <a href="https://scimlbase.sciml.ai/dev/">SciML Common Interface</a> defines a complete set of equation solving techniques, from differential equations and optimization to nonlinear solves and integration &#40;quadrature&#41;, in a way that is made to naturally mix with machine learning. In this sense, there is no difference between the optimized libraries being used for physical modeling and the techniques used in machine learning: in the composable ecosystem of Julia, these are one and the same. The same differential equation solvers that are being carefully inspected for speed and accuracy by the FDA and Moderna <a href="https://pumas.ai/">for clinical trial analysis</a> are what&#39;s <a href="https://julialang.org/blog/2019/01/fluxdiffeq/">mixed with neural networks for neural ODEs</a>. The same <a href="https://symbolics.juliasymbolics.org/dev/">computer algebra system</a> that is <a href="https://www.youtube.com/watch?v&#61;tQpqsmwlfY0">used to accelerate NASA launch simulations by 15,000x</a> is the same one that is used in <a href="https://datadriven.sciml.ai/dev/">automatically discovering physical equations</a>. With a composable package ecosystem, the only thing holding you back is the ability to figure out new ways to compose the parts.</p> <p>In this blog post we will show how to easily, efficiently, and robustly use steady state nonlinear solvers with neural networks in Julia. We will showcase the relationship between steady states and ODEs, thus making a connection between the methods for Deep Equilibrium Models &#40;DEQs&#41; and Neural ODEs. We will then show how <a href="https://diffeqflux.sciml.ai/dev/">DiffEqFlux.jl</a> can be used as a package for DEQs, showing how the composability of the Julia ecosystem naturally lends itself to extensions and generalizations of methods in machine learning literature. For background on DiffEqFlux and Neural ODEs, please see the previous blog post <a href="https://julialang.org/blog/2019/01/fluxdiffeq/">DiffEqFlux.jl – A Julia Library for Neural Differential Equations</a>.</p> <p>&#40;Note: If you are interested in this work and are an undergraduate or graduate student, we have <a href="/soc/ideas-page">Google Summer of Code projects available in this area</a>. This <a href="https://developers.google.com/open-source/gsoc/help/student-stipends">pays quite well over the summer</a>. Please join the <a href="http://julialang.org/slack/">Julia Slack</a> and the #jsoc channel to discuss in more detail.&#41;</p> <div class=franklin-toc ><ol><li><a href="#deep_equilibrium_models_deqs_and_infinitely_deep_networks">Deep Equilibrium Models &#40;DEQs&#41; and Infinitely Deep Networks</a><li><a href="#but_why_are_deqs_interesting_for_machine_learning">But why are DEQs interesting for machine learning?</a><li><a href="#mixing_deqs_and_neural_ordinary_differential_equations_neural_odes">Mixing DEQs and Neural Ordinary Differential Equations &#40;Neural ODEs&#41;</a><li><a href="#let_us_implement_a_simple_deq_model_via_ode_solvers_with_event_handling">Let us implement a simple DEQ Model via ODE Solvers with Event Handling</a><li><a href="#generalizing_to_other_solution_techniques">Generalizing to other Solution Techniques</a><li><a href="#full_example_deq_for_learning_mnist_from_scratch">Full example: DEQ for learning MNIST from scratch</a><li><a href="#conclusion">Conclusion</a></ol></div> <h2 id=deep_equilibrium_models_deqs_and_infinitely_deep_networks ><a href="#deep_equilibrium_models_deqs_and_infinitely_deep_networks">Deep Equilibrium Models &#40;DEQs&#41; and Infinitely Deep Networks</a></h2> <p>Neural network structures can be viewed as repeated applications of layered computations. For example, when we apply convolution filters on images the network consists of repetitive blocks of convolutional layers, and one linear output layer at the very end. It&#39;s essentially \(f(f(f(...f(x))...))\) where \(f\) is the neural network, and we call this &quot;deep&quot; because of the layers of composition. But what if we make this composition go to infinity?</p> <p>Now, we cannot practically do infinite computation, so instead we need some sense of what &quot;going close enough to infinity&quot; really means. Fortunately, we can pull a few ideas from the mathematics of dynamical systems to make this definition. We can think of this iterative process as a dynamical system \(x_{n+1} = f(x_n)\), where the literature categorizes all of the behaviors that can happen as \(n\) goes to infinity: \(x\) can oscillate, it can go to infinity, it can do something that looks almost random &#40;this is the notorious chaos theory&#41;, or importantly, it can &quot;stabilize&quot; to something known as a steady state or equilibria value. This last behavior happens when \(x_{ss} = f(x_{ss})\), where once it settles in to this pattern it will repeat the pattern ad infinitum, and thus solving the infinity problem can be equivalent to finding a steady state. An entire literature characterizes the properties of \(f\) which cause values to converge to a single repeating value in this sense, and we refer you to the book &quot;Nonlinear Dynamics and Chaos&quot; by Strogatz as an accessible introduction to this topic.</p> <p>If you take a random \(f\), it turns out one of the most likely behaviors for \(f\) is to either converge to such steady states or diverge to infinity. If you think about it as just a scalar linear system \(x_{n+1} = a x_n\), when the scalar \(a<1\) the value keeps decreasing to zero making the system head to a steady state, while \(a>1\) leads to infinity. Thus if our choice of \(a\) is &quot;tame&quot; enough, we can cause these systems to generally be convergent models. Likewise, if we used an affine system \(x_{n+1} = a x_n + b\), the steady state would be defined as \(x_{ss} = ax_{ss} + b\) which we can solve to be \(x_{ss} = b/(1-a)\). This is now a parameterized model of an infinite process where, if \(a<1\), then iterating \(f(x) = ax+b\) infinitely many times will go to a solution defined by the parameters.</p> <p><strong>What if \(f\) is a neural network and the parameters are weights of the neural network?</strong></p> <p>That is the intuition that defines the <a href="https://arxiv.org/abs/1909.01377">Deep Equilibrium Models</a>, where \(x_{ss}\) is the prediction from the model. This is why DEQs are referred to as infinitely-deep networks. Now, if the weights are such that \(x_{ss}\) is divergent towards infinity, those weights would have a very large cost in their predictions and thus the weights will naturally be driven away from such solutions. This makes such a structure \(x_{n+1} = NN(x_n)\) naturally inclined to learn convergent steady state behavior.</p> <p>&#91;Note: this line of thought leaves open some interesting alternatives: what neural networks prevent oscillations and chaos? Or new loss functions? Etc. We&#39;ll leave that for you to figure out.&#93;</p> <h2 id=but_why_are_deqs_interesting_for_machine_learning ><a href="#but_why_are_deqs_interesting_for_machine_learning">But why are DEQs interesting for machine learning?</a></h2> <p>Before continuing to some examples, we must bridge from &quot;beautiful math&quot; to why you should care. Why should a machine learning engineer care about this structure? The answer is simple: with a DEQ, you never have to wonder if you&#39;ve chosen enough layers. Your number of layers is effectively infinity, so it&#39;s always enough. Indeed, if \(x_{ss}\) is the value that comes out of the DEQ, since it&#39;s approximately the solution to this infinite process \(x_{n+1} = NN(x_n)\), by definition one more application leaves the prediction essentially unchanged: \(x_{ss} = NN(x_{ss})\). Therefore you&#39;re done hyperparameter optimizing: a DEQ does not have a number of layers to choose. You of course still have to choose an architecture for \(NN\), but this decreases the space of what could go wrong in your training process.</p> <p>Another interesting detail is that, surprisingly, backpropagation of a DEQ is cheaper than doing a big number of iterations&#33; How is this possible? It&#39;s actually due to a very old mathematical theorem known as the <a href="https://en.wikipedia.org/wiki/Implicit_function_theorem">Implicit Function Theorem</a>. Let&#39;s take a quick look at the simplified example we wrote before, where \(x_{n+1} = a x_n + b\) and thus \(x_{ss} = b/(1-a)\). Essentially the DEQ is the function that gives the solution to a nonlinear system, i.e. \(DEQ(x) = x_{ss}\). What is the derivative of the DEQ&#39;s output with respect to the parameters of \(a\) and \(b\)? It turns out this derivative is easy to calculate and does not require differentiating through the infinite iteration process \(x_{n+1} = a x_n + b\): you can directly differentiate \(x_{ss} = b/(1-a)\). The Implicit Function Theorem says that this generally holds: you can always differentiate the steady state without having to go back through the iterative process. Why this is important is because &quot;backpropagation&quot; or &quot;adjoints&quot; are simply the derivative of the output with respect to the parameter weights of the neural network. What this is saying is that, if you have a deep neural network with \(n\) very large layers, you need to backpropagate through \(n\) layers. <strong>But if \(n\) is infinite, you only need to backpropagate through 1&#33;</strong> The details of this have been well-studied in the scientific computing literature since at least the 90&#39;s. For example, Steven Johnson&#39;s <a href="https://math.mit.edu/~stevenj/18.336/adjoint.pdf">Notes on Adjoint Methods for 18.335 from 2006</a> shows a well-written derivation of an adjoint equation &#40;&quot;backpropagation&quot; equation&#41; for a rootfinding solver, along with a <a href="https://link.springer.com/content/pdf/10.1007&#37;2F3-540-45718-6_20.pdf">litany</a> of <a href="http://www.jcomputers.us/vol5/jcp0503-11.pdf">papers</a> that <a href="https://ieeexplore.ieee.org/document/4724607">use</a> this <a href="https://www.computer.org/csdl/proceedings-article/cis/2008/3508a020/12OmNz61djv">result</a> in the 90&#39;s and 00&#39;s to mix neural networks and nonlinear solving. We note very briefly that solving for a steady state is equivalent to solving a system of nonlinear algebraic equations \(NN(x) - x = 0\), since finding this solution would give \(x_{ss} = NN(x_{ss})\), or the steady state.</p> <p>But everything in this world is a differential equation, so let&#39;s take a turn and twist this into an ODE&#33;</p> <h2 id=mixing_deqs_and_neural_ordinary_differential_equations_neural_odes ><a href="#mixing_deqs_and_neural_ordinary_differential_equations_neural_odes">Mixing DEQs and Neural Ordinary Differential Equations &#40;Neural ODEs&#41;</a></h2> <p>From the viewpoint of Julia and the DiffEqFlux.jl library, it is also natural to look at DEQs from a differential equations perspective. Instead of viewing the dynamical system as a discrete process \(x_{n+1} = f(x_n)\), we can equivalently view the system as evolving continuously, i.e. \(x' = f(x)\). If we think about \(dx/dt = f(x)\), by Euler&#39;s method we approximate \(dx = x_{n+1} - x_n\) and simplify to get \(x_{n+1} = x_n + dt f(x_n) = g(x_n)\) which relates us back to our original definition with a slight change to the function. However, in this ODE sense, convergence is when the change is zero, or \(x'=0\), which again happens when \(f(x)=0\) and is a rootfinding problem. <strong>But this view is insightful: a DEQ is a neural ODE where time goes to infinity.</strong> Now, instead of taking 1 step at a time, we can take \(dt\) steps at a time towards the steady state. This means an adaptive ODE solver can notice we are converging and take larger and larger steps to get to that equilibrium a bit quicker. But also, given DiffEqFlux, this observation makes implementing DEQ models in Julia insanely simple. Let&#39;s go for it&#33;</p> <h2 id=let_us_implement_a_simple_deq_model_via_ode_solvers_with_event_handling ><a href="#let_us_implement_a_simple_deq_model_via_ode_solvers_with_event_handling">Let us implement a simple DEQ Model via ODE Solvers with Event Handling</a></h2> <p>The Julia <a href="https://diffeq.sciml.ai/stable/">DifferentialEquations.jl</a> library has a problem type known as <a href="https://diffeq.sciml.ai/stable/types/steady_state_types/">SteadyStateProblem</a> which automatically solves until \(x'\) is sufficiently small &#40;below tolerance&#41;, in which case it will automatically use a <a href="https://diffeq.sciml.ai/stable/features/callback_functions/#Example-2:-Terminating-an-Integration">terminating callback</a> to exit the iteration at the &#40;approximately&#41; found steady state. Because the <a href="https://sciml.ai/">SciML Organization&#39;s Packages</a> are differentiable, we can stick neural networks inside of this &quot;steady state of ODEs&quot; problem, and that will generate a training mechanism for this continuous-stepping DEQ procedure. This <code>SteadyStateProblem</code> solution then uses the <a href="https://math.mit.edu/~stevenj/18.336/adjoint.pdf">Nonlinear Solve Adjoint</a> to calculate the backpropagation in the efficient manner without requiring backpropagation of the iterations. This thus gives an efficient implementation of a DEQ without requiring any new tooling or packages, but can also outperform the fixed-point iteration approaches by taking multiple steps at a time.</p> <p>The following code block creates a DEQ model. An astute reader will notice that this code looks awfully similar to typical <a href="https://julialang.org/blog/2019/01/fluxdiffeq/">Neural ODEs implemented in Julia</a>. Therefore, the DEQ implementation simply adds an extra steady state layer on top of the ODE function, and as long as we use the correct sensitivity corresponding to steady state problems, we are covered.</p> <pre><code class=language-julia >using Flux
+using DiffEqSensitivity
+using SteadyStateDiffEq
+using OrdinaryDiffEq
+using CUDA
+using Plots
+using LinearAlgebra
+CUDA.allowscalar&#40;false&#41;
+
+struct DeepEquilibriumNetwork&#123;M,P,RE,A,K&#125;
+    model::M
+    p::P
+    re::RE
+    args::A
+    kwargs::K
+end
+
+
+Flux.@functor DeepEquilibriumNetwork
+
+function DeepEquilibriumNetwork&#40;model, args...; kwargs...&#41;
+    p, re &#61; Flux.destructure&#40;model&#41;
+    return DeepEquilibriumNetwork&#40;model, p, re, args, kwargs&#41;
+end
+
+Flux.trainable&#40;deq::DeepEquilibriumNetwork&#41; &#61; &#40;deq.p,&#41;
+
+function &#40;deq::DeepEquilibriumNetwork&#41;&#40;x::AbstractArray&#123;T&#125;,
+                                       p &#61; deq.p&#41; where &#123;T&#125;
+    z &#61; deq.re&#40;p&#41;&#40;x&#41;
+    # Solving the equation f&#40;u&#41; - u &#61; du &#61; 0
+    # The key part of DEQ is similar to that of NeuralODEs
+    dudt&#40;u, _p, t&#41; &#61; deq.re&#40;_p&#41;&#40;u .&#43; x&#41; .- u
+    ssprob &#61; SteadyStateProblem&#40;ODEProblem&#40;dudt, z, &#40;zero&#40;T&#41;, one&#40;T&#41;&#41;, p&#41;&#41;
+    return solve&#40;ssprob, deq.args...; u0 &#61; z, deq.kwargs...&#41;.u
+end
+
+ann &#61; Chain&#40;Dense&#40;1, 5&#41;, Dense&#40;5, 1&#41;&#41; |&gt; gpu
+
+deq &#61; DeepEquilibriumNetwork&#40;ann,
+                             DynamicSS&#40;Tsit5&#40;&#41;, abstol &#61; 1f-2, reltol &#61; 1f-2&#41;&#41;</code></pre> <p>Afterwards, we can test our DEQ model on a simple regression problem \(y=2x\). When one runs this, the model will print out \(-10\), which is the expected answer for this regression problem. Also note that it is clearly not necessary to use GPU in training, and one can easily move to CPU execution by removing all the &quot;gpu&quot; calls. As a sanity check, our small DEQ model completes this regression problem perfectly.</p> <pre><code class=language-julia ># Let&#39;s run a DEQ model on linear regression for y &#61; 2x
+X &#61; reshape&#40;Float32&#91;1;2;3;4;5;6;7;8;9;10&#93;, 1, :&#41; |&gt; gpu
+Y &#61; 2 .* X
+opt &#61; ADAM&#40;0.05&#41;
+
+loss&#40;x, y&#41; &#61; sum&#40;abs2, y .- deq&#40;x&#41;&#41;
+
+epochs &#61; 1000
+for i in 1:epochs
+    Flux.train&#33;&#40;loss, Flux.params&#40;deq&#41;, &#40;&#40;X, Y&#41;,&#41;, opt&#41;
+    println&#40;deq&#40;&#91;-5&#93; |&gt; gpu&#41;&#41; # Print model prediction
+end</code></pre> <p>Tada, we now have a valid machine-learned model for solving the regression problem where the predictions are given by steady states of an ODE solver, where the ODE is defined by a neural network&#33; GPU compatible? Check. Fast adjoints? Check. Did you do any work? Ehh, not really. Composability did that work for us.</p> <p>Before proceeding to a more realistic use case, we want to visualize the trajectory followed by the neural network. We will evaluate our model till a maximum depth of <code>100</code> &#40;or till it converges to a steady state&#41;.</p> <pre><code class=language-julia ># Visualizing
+function construct_iterator&#40;deq::DeepEquilibriumNetwork, x, p &#61; deq.p&#41;
+    executions &#61; 1
+    model &#61; deq.re&#40;p&#41;
+    previous_value &#61; nothing
+    function iterator&#40;&#41;
+           z &#61; model&#40;&#40;executions &#61;&#61; 1 ? zero&#40;x&#41; : previous_value&#41; .&#43; x&#41;
+           executions &#43;&#61; 1
+           previous_value &#61; z
+           return z
+    end
+    return iterator
+end
+
+function generate_model_trajectory&#40;deq, x, max_depth::Int,
+                                  abstol::T &#61; 1e-8, reltol::T &#61; 1e-8&#41; where &#123;T&#125;
+    deq_func &#61; construct_iterator&#40;deq, x&#41;
+    values &#61; &#91;x, deq_func&#40;&#41;&#93;
+    for i &#61; 2:max_depth
+           sol &#61; deq_func&#40;&#41;
+           push&#33;&#40;values, sol&#41;
+           if &#40;norm&#40;sol .- values&#91;end - 1&#93;&#41; ≤ abstol&#41; || &#40;norm&#40;sol .- values&#91;end - 1&#93;&#41; / norm&#40;values&#91;end - 1&#93;&#41; ≤ reltol&#41;
+               return values
+           end
+    end
+    return values
+end
+
+traj &#61; generate_model_trajectory&#40;deq, rand&#40;1, 10&#41; .* 10 |&gt; gpu, 100&#41;
+
+plot&#40;0:&#40;length&#40;traj&#41; - 1&#41;, cpu&#40;vcat&#40;traj...&#41;&#41;, xlabel &#61; &quot;Depth&quot;,
+    ylabel &#61; &quot;Value&quot;, legend &#61; false&#41;</code></pre> <p><img src="https://i.imgur.com/dDckk8A.png" alt=Imgur  /></p> <p>Notice that by the end the dynamics have leveled off to a final point, and the integration cuts off when it gets &quot;sufficiently close to infinity&quot;. This value at the end is the prediction of the DEQ for \(y=2x\). <strong>The general composability of the Julia ecosystem means that there is no &quot;Github repository for DEQs&quot;, instead this is just the ODE solver mixed with the ML library, the AD package, the GPU package, etc. and when put together you get a DEQ&#33;</strong></p> <h2 id=generalizing_to_other_solution_techniques ><a href="#generalizing_to_other_solution_techniques">Generalizing to other Solution Techniques</a></h2> <p>There are many ways that one can solve a rootfinding problem with different characteristics. One can directly use Newton&#39;s method, but this can require a good guess and may not distinguish between stable and unstable equilibrium. Julia packages like <a href="https://github.com/JuliaNLSolvers/NLsolve.jl">NLsolve.jl</a> provide many good algorithms, and Bifurcation tools like <a href="https://rveltz.github.io/BifurcationKit.jl/dev/">BifurcationKit.jl</a> give a whole host of other methods. Given the importance of solving nonlinear algebraic systems and their differentiability, the SciML organization has put together a common interface package <a href="https://nonlinearsolve.sciml.ai/dev/">NonlinearSolve.jl</a> that weaves together all of the techniques throughout the package ecosystem &#40;bringing together methods from SUNDIALS, MINPACK, etc.&#41; and generally defines its differentiability, connection to acceleration techniques like Jacobian-Free Newton Krylov, and more. As such, this package gives a &quot;one-stop shop&quot; for weaving both new implementations and classical FORTRAN implementations with machine learning without having to worry about the training details.</p> <h2 id=full_example_deq_for_learning_mnist_from_scratch ><a href="#full_example_deq_for_learning_mnist_from_scratch">Full example: DEQ for learning MNIST from scratch</a></h2> <p>Now let&#39;s do a full scale example: training a DEQ to classify digits of MNIST. First we define our DEQ structures:</p> <pre><code class=language-julia >using Zygote
+using Flux
+using Flux.Data:DataLoader
+using Flux.Optimise: Optimiser
+using Flux: onehotbatch, onecold
+using Flux.Losses:logitcrossentropy
+using ProgressMeter:@showprogress
+import MLDatasets
+using CUDA
+using DiffEqSensitivity
+using SteadyStateDiffEq
+using OrdinaryDiffEq
+using LinearAlgebra
+using Plots
+using MultivariateStats
+using Statistics
+using PyCall
+using ColorSchemes
+CUDA.allowscalar&#40;false&#41;
+
+
+struct DeepEquilibriumNetwork&#123;M,P,RE,A,K&#125;
+    model::M
+    p::P
+    re::RE
+    args::A
+    kwargs::K
+end
+
+Flux.@functor DeepEquilibriumNetwork
+
+function DeepEquilibriumNetwork&#40;model, args...; kwargs...&#41;
+    p, re &#61; Flux.destructure&#40;model&#41;
+    return DeepEquilibriumNetwork&#40;model, p, re, args, kwargs&#41;
+end
+
+Flux.trainable&#40;deq::DeepEquilibriumNetwork&#41; &#61; &#40;deq.p,&#41;
+
+function &#40;deq::DeepEquilibriumNetwork&#41;&#40;x::AbstractArray&#123;T&#125;,
+                                       p &#61; deq.p&#41; where &#123;T&#125;
+    z &#61; deq.re&#40;p&#41;&#40;x&#41;
+    # Solving the equation f&#40;u&#41; - u &#61; du &#61; 0
+    dudt&#40;u, _p, t&#41; &#61; deq.re&#40;_p&#41;&#40;u .&#43; x&#41; .- u
+    ssprob &#61; SteadyStateProblem&#40;ODEProblem&#40;dudt, z, &#40;zero&#40;T&#41;, one&#40;T&#41;&#41;, p&#41;&#41;
+    return solve&#40;ssprob, deq.args...; u0 &#61; z, deq.kwargs...&#41;.u
+end
+
+function Net&#40;&#41;
+    return Chain&#40;
+        Flux.flatten,
+        Dense&#40;784, 100&#41;,
+        DeepEquilibriumNetwork&#40;Chain&#40;Dense&#40;100, 500, tanh&#41;, Dense&#40;500, 100&#41;&#41;,
+                               DynamicSS&#40;Tsit5&#40;&#41;, abstol &#61; 1f-1, reltol &#61; 1f-1&#41;&#41;,
+        Dense&#40;100, 10&#41;,
+    &#41;
+end</code></pre> <p>Next we define our data handling and training loops:</p> <pre><code class=language-julia >function get_data&#40;args&#41;
+    xtrain, ytrain &#61; MLDatasets.MNIST.traindata&#40;Float32&#41;
+    xtest, ytest &#61; MLDatasets.MNIST.testdata&#40;Float32&#41;
+
+    device &#61; args.use_cuda ? gpu : cpu
+    xtrain &#61; reshape&#40;xtrain, 28, 28, 1, :&#41; |&gt; device
+    xtest &#61; reshape&#40;xtest, 28, 28, 1, :&#41; |&gt; device
+    ytrain &#61; onehotbatch&#40;ytrain, 0:9&#41; |&gt; device
+    ytest &#61; onehotbatch&#40;ytest, 0:9&#41; |&gt; device
+
+    train_loader &#61; DataLoader&#40;&#40;xtrain, ytrain&#41;, batchsize&#61;args.batchsize, shuffle&#61;true&#41;
+    test_loader &#61; DataLoader&#40;&#40;xtest, ytest&#41;,  batchsize&#61;args.batchsize&#41;
+
+    return train_loader, test_loader
+end
+
+
+
+function eval_loss_accuracy&#40;loader, model, device&#41;
+    l &#61; 0f0
+    acc &#61; 0
+    ntot &#61; 0
+    for &#40;x, y&#41; in loader
+        x, y &#61; x |&gt; device, y |&gt; device
+        ŷ &#61; model&#40;x&#41;
+        l &#43;&#61; Flux.Losses.logitcrossentropy&#40;ŷ, y&#41; * size&#40;x&#41;&#91;end&#93;        
+        acc &#43;&#61; sum&#40;onecold&#40;ŷ |&gt; cpu&#41; .&#61;&#61; onecold&#40;y |&gt; cpu&#41;&#41;
+        ntot &#43;&#61; size&#40;x&#41;&#91;end&#93;
+    end
+    return &#40;loss &#61; l / ntot |&gt; round4, acc &#61; acc / ntot * 100 |&gt; round4&#41;
+end
+
+# utility functions
+round4&#40;x&#41; &#61; round&#40;x, digits&#61;4&#41;
+
+# arguments for the &#96;train&#96; function
+Base.@kwdef mutable struct Args
+    η &#61; 3e-4             # learning rate
+    λ &#61; 0                # L2 regularizer param, implemented as weight decay
+    batchsize &#61; 8      # batch size
+    epochs &#61; 1          # number of epochs
+    seed &#61; 0             # set seed &gt; 0 for reproducibility
+    use_cuda &#61; true      # if true use cuda &#40;if available&#41;
+end
+
+function train&#40;; kws...&#41;
+
+    args &#61; Args&#40;; kws...&#41;
+    args.seed &gt; 0 &amp;&amp; Random.seed&#33;&#40;args.seed&#41;
+    use_cuda &#61; args.use_cuda &amp;&amp; CUDA.functional&#40;&#41;
+    if use_cuda
+        device &#61; gpu
+        @info &quot;Training on GPU&quot;
+    else
+        device &#61; cpu
+        @info &quot;Training on CPU&quot;
+    end
+
+    ## DATA
+    train_loader, test_loader &#61; get_data&#40;args&#41;
+    @info &quot;Dataset MNIST: &#36;&#40;train_loader.nobs&#41; train and &#36;&#40;test_loader.nobs&#41; test examples&quot;
+
+    ## MODEL AND OPTIMIZER
+    model &#61; Net&#40;&#41; |&gt; device
+
+    ps &#61; Flux.params&#40;model&#41;
+
+    opt &#61; ADAM&#40;args.η&#41;
+    if args.λ &gt; 0 # add weight decay, equivalent to L2 regularization
+        opt &#61; Optimiser&#40;opt, WeightDecay&#40;args.λ&#41;&#41;
+    end
+
+    ## TRAINING
+    @info &quot;Start Training&quot;
+    for epoch in 1:args.epochs
+        @showprogress for &#40;x, y&#41; in train_loader
+            x, y &#61; x |&gt; device, y |&gt; device
+            gs &#61; Flux.gradient&#40;
+                &#40;&#41; -&gt; Flux.Losses.logitcrossentropy&#40;model&#40;x&#41;, y&#41;, ps
+            &#41;
+             Flux.Optimise.update&#33;&#40;opt, ps, gs&#41;
+        end
+        loss, accuracy &#61; eval_loss_accuracy&#40;test_loader, model, device&#41;
+        println&#40;&quot;Epoch: &#36;epoch || Test Loss: &#36;loss || Test Accuracy: &#36;accuracy&quot;&#41;
+    end
+
+    return model, train_loader, test_loader
+end
+
+# Here we start training the model
+model, train_loader, test_loader &#61; train&#40;batchsize &#61; 128, epochs &#61; 1&#41;;</code></pre> <p>Finally, here is the code to create an iterator for DEQ values.</p> <pre><code class=language-julia ># This function iterates through the DEQ solver
+function construct_iterator&#40;deq::DeepEquilibriumNetwork, x, p &#61; deq.p&#41;
+    executions &#61; 1
+    model &#61; deq.re&#40;p&#41;
+    previous_value &#61; nothing
+    function iterator&#40;&#41;
+        z &#61; model&#40;&#40;executions &#61;&#61; 1 ? zero&#40;x&#41; : previous_value&#41; .&#43; x&#41;
+        executions &#43;&#61; 1
+        previous_value &#61; z
+        return z
+    end
+    return iterator
+end
+
+#This functions records the values over all timesteps
+function generate_model_trajectory&#40;deq, x, max_depth::Int,
+                                    abstol::T &#61; 1e-8, reltol::T &#61; 1e-8&#41; where &#123;T&#125;
+    deq_func &#61; construct_iterator&#40;deq, x&#41;
+    values &#61; &#91;x, deq_func&#40;&#41;&#93;
+    for i &#61; 2:max_depth
+        sol &#61; deq_func&#40;&#41;
+        push&#33;&#40;values, sol&#41;
+        # We end early if the tolerances are met
+        if &#40;norm&#40;sol .- values&#91;end - 1&#93;&#41; ≤ abstol&#41; || &#40;norm&#40;sol .- values&#91;end - 1&#93;&#41; / norm&#40;values&#91;end - 1&#93;&#41; ≤ reltol&#41;
+            return values
+        end
+    end
+    return values
+end
+
+# This function performs PCA
+# It reduces an array of size &#40;feature, batchsize&#41; to &#40;2, batchsize&#41; so we could plot it
+function dim_reduce&#40;traj&#41;
+    pca &#61; fit&#40;PCA, cpu&#40;hcat&#40;traj...&#41;&#41;, maxoutdim &#61; 2&#41;
+    return &#91;transform&#40;pca, cpu&#40;t&#41;&#41; for t in traj&#93;
+end
+
+# In order to obtain a nice visualization, we loop through the entire test dataset
+function loop&#40;; kws...&#41;
+
+    args &#61; Args&#40;; kws...&#41;
+
+    # variables for plotting
+    xmin &#61; 0
+    xmax &#61; 0
+    ymin &#61; 0
+    ymax &#61; 0
+
+    # Arbitrarily, we choose the first data sample as the depth reference
+    X, color &#61; first&#40;test_loader&#41;;
+    traj &#61; generate_model_trajectory&#40;model&#91;3&#93;, model&#91;1:2&#93;&#40;X&#41;, 100, 1e-3, 1e-3&#41; |&gt; cpu
+    traj &#61; dim_reduce&#40;traj&#41;
+    color &#61; Flux.onecold&#40;color&#41; |&gt; cpu
+    #Here we have the compressed features and labels of one data sample
+    #In order to show that learned features are meaningful, we plot features that end at the same depth
+    for &#40;X, Y&#41; in test_loader
+        trajj &#61; generate_model_trajectory&#40;model&#91;3&#93;, model&#91;1:2&#93;&#40;X&#41;, 100, 1e-3, 1e-3&#41; |&gt; cpu
+
+        #Because we might terminate early by meeting the tolerance requirement, different
+        #data samples have different number of iterations and varying-length trajectories
+        #we arbitrarily control for depth according to our first sample
+        #and don&#39;t plot for any data whose iterator ends at a different depth
+        if length&#40;trajj&#41; &#61;&#61; length&#40;traj&#41;
+            trajj &#61; dim_reduce&#40;trajj&#41;
+
+            #again, for plotting later
+            xminn, yminn &#61; minimum&#40;hcat&#40;minimum.&#40;trajj, dims &#61; 2&#41;...&#41;, dims &#61; 2&#41;
+            xmaxx, ymaxx &#61; maximum&#40;hcat&#40;maximum.&#40;trajj, dims &#61; 2&#41;...&#41;, dims &#61; 2&#41;
+
+            if xminn &lt; xmin
+                xmin &#61; xminn
+            end
+            if yminn &lt; ymin
+                ymin &#61; yminn
+            end
+            if xmaxx &gt; xmax
+                xmax &#61; xmaxx
+            end
+            if ymaxx &gt; ymax
+                ymax &#61; ymaxx
+            end
+
+            #this should always evaluate to true, just a sanity check
+            if size&#40;trajj&#91;2&#93;&#41; &#61;&#61; &#40;2,args.batchsize&#41;
+
+                #we concatenate the two feature vectors for easier plotting
+                for i in 1:length&#40;traj&#41;
+                    traj&#91;i&#93; &#61; cat&#40;traj&#91;i&#93;, trajj&#91;i&#93;, dims&#61;2&#41;
+                end
+                Y &#61; Flux.onecold&#40;Y&#41; |&gt; cpu
+                color &#61; cat&#40;color, Y, dims&#61;1&#41;
+            end
+        end
+    end
+    return traj, color, xmin, xmax, ymin, ymax
+end
+traj, color, xmin, xmax, ymin, ymax &#61; loop&#40;&#41;</code></pre> <p>Now let&#39;s see what we got. We&#39;ll do a visualization of the values that come out of the neural network. The neural network acts on a very high dimensional space, so we will need to project that to a visualization in a two dimensional space. If the neural network successfully trained to be a classifier, then we should see relatively distinct clusters for the various digits, noting that they will not be fully separated in two dimensions due to potential distance warping in the projection.</p> <pre><code class=language-julia ># A collection of all the allowed shapes
+shape &#61; &#91;:circle, :rect, :star5, :diamond, :hexagon, :cross, :xcross, :utriangle, :dtriangle, :ltriangle, :rtriangle, :pentagon, :heptagon, :octagon, :star4, :star6, :star7, :star8, :vline, :hline, :&#43;, :x&#93;
+
+# This is for plotting shapes of different clusters
+# The way Julia handles this requires mapping different colors to shapes
+# i.e. creating a shape array of size color
+shapesvec &#61; &#91;&#93;
+for i in color
+    if i &#61;&#61; 1
+        push&#33;&#40;shapesvec, shape&#91;1&#93;&#41;
+    elseif i &#61;&#61; 2
+        push&#33;&#40;shapesvec, shape&#91;2&#93;&#41;
+    elseif i &#61;&#61; 3
+        push&#33;&#40;shapesvec, shape&#91;3&#93;&#41;
+    elseif i &#61;&#61; 4
+        push&#33;&#40;shapesvec, shape&#91;4&#93;&#41;
+    elseif i &#61;&#61; 5
+        push&#33;&#40;shapesvec, shape&#91;5&#93;&#41;
+    elseif i &#61;&#61; 6
+        push&#33;&#40;shapesvec, shape&#91;6&#93;&#41;
+    elseif i &#61;&#61; 7
+        push&#33;&#40;shapesvec, shape&#91;7&#93;&#41;
+    elseif i &#61;&#61; 8
+        push&#33;&#40;shapesvec, shape&#91;8&#93;&#41;
+    elseif i &#61;&#61; 9
+        push&#33;&#40;shapesvec, shape&#91;9&#93;&#41;
+    elseif i &#61;&#61; 10
+        push&#33;&#40;shapesvec, shape&#91;10&#93;&#41;
+    end
+end
+
+# We visualize the evolution of learned features according to iterator depth
+# So we see iterator values converging to 10 clusters with time
+anim &#61; Plots.Animation&#40;&#41;
+for &#40;i, t&#41; in enumerate&#40;traj&#41;
+    colorsvec &#61; get&#40;ColorSchemes.tab10, color, :extrema&#41;
+    plot&#40;legend&#61;false,axis&#61;false,grid&#61;false&#41;
+    tsneplot &#61; scatter&#33;&#40;t&#91;1, :&#93;, t&#91;2, :&#93;,
+                            background_color&#61;:white,
+                            color&#61;colorsvec,
+                            markershape&#61;shapesvec,
+                            title&#61;&quot;Depth &#36;i&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
+    Plots.frame&#40;anim&#41;
+end
+
+# Here we only visualize the features learned at the end of the trajectory
+# We label the features depending on which class it belongs to &#40;which digit it is&#41;
+# And at the end we see DEQ learning a good cluster for all the digits
+t &#61; traj&#91;end&#93;
+plot&#40;&#41;
+        if &#40;color&#91;i&#93; - 1&#41; &#37; 10 &#61;&#61; 0
+            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;black&quot;, markershape&#61;shape&#91;1&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
+        elseif &#40;color&#91;i&#93; - 2&#41; &#37; 10 &#61;&#61; 0
+            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;blue&quot;, markershape&#61;shape&#91;2&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
+        elseif &#40;color&#91;i&#93; - 3&#41; &#37; 10 &#61;&#61; 0
+            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;brown&quot;, markershape&#61;shape&#91;3&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
+        elseif &#40;color&#91;i&#93; - 4&#41; &#37; 10 &#61;&#61; 0
+            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;cyan&quot;, markershape&#61;shape&#91;4&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
+        elseif &#40;color&#91;i&#93; - 5&#41; &#37; 10 &#61;&#61; 0
+            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;gold&quot;, markershape&#61;shape&#91;5&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
+        elseif &#40;color&#91;i&#93; - 6&#41; &#37; 10 &#61;&#61; 0
+            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;gray&quot;, markershape&#61;shape&#91;6&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
+        elseif &#40;color&#91;i&#93; - 7&#41; &#37; 10 &#61;&#61; 0
+            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;magenta&quot;, markershape&#61;shape&#91;7&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
+        elseif &#40;color&#91;i&#93; - 8&#41; &#37; 10 &#61;&#61; 0
+            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;orange&quot;, markershape&#61;shape&#91;8&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
+        elseif &#40;color&#91;i&#93; - 9&#41; &#37; 10 &#61;&#61; 0
+            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;red&quot;, markershape&#61;shape&#91;9&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
+        elseif &#40;color&#91;i&#93; - 10&#41; &#37; 10 &#61;&#61; 0
+            scatter&#33;&#40;&#91;t&#91;1, i&#93;&#93;,&#91;t&#91;2, i&#93;&#93;, color&#61;&quot;yellow&quot;, markershape&#61;shape&#91;10&#93;, alpha&#61;0.5, title &#61; &quot;DEQ Feature Cluster&quot;, legend &#61; false, xlim &#61; &#40;xmin, xmax&#41;, ylim &#61; &#40;ymin, ymax&#41;&#41;
+        end
+    end
+xlabel&#33;&#40;&quot;PCA Dimension 1&quot;&#41;
+ylabel&#33;&#40;&quot;PCA Dimension 2&quot;&#41;
+plot&#33;&#40;&#41;
+savefig&#40;&quot;DEQ Feature Cluster&quot;&#41;</code></pre> <p><img src="https://i.imgur.com/K411ddI.gif" alt=Imgur  /></p> <p>Tada, clusters in the equilibrium&#33;</p> <h2 id=conclusion ><a href="#conclusion">Conclusion</a></h2> <p>In this blog post we have demonstrated a new perspective for studying DEQ models. Coupled with the flexible Julia language structure, we have implemented DEQ models by only changing two lines of code compared to Neural ODEs&#33; The world is your oyster, and composability of the <a href="https://sciml.ai/">SciML ecosystem</a> is there to facilitate doing machine learning with your wildest creations. While pre-built DEQ structures will soon be found in <a href="https://github.com/SciML/DiffEqFlux.jl">DiffEqFlux.jl</a>, the larger point is that the composability of the Julia ecosystem makes building such a tool simple, and makes getting the optimal algorithm with Krylov linear solvers, quasi-Newton methods, etc. free due to composability. Mix and match things at will. We&#39;re excited to see what you come up with.</p> </div><br><br> <script src="/libs/katex/katex.min.js"></script> <script src="/libs/katex/auto-render.min.js"></script> <script>renderMathInElement(document.body)</script> <script src="/libs/highlight/highlight.pack.js"></script> <script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: ' '});</script> <footer class="container-fluid footer-copy"> <div class=container > <div class="row footrow"> <ul> <li><a href="/project">About</a> <li><a href="/about/help">Get Help</a> <li><a href="/blog/2019/02/julia-entities/">Governance</a> <li><a href="/research/#publications">Publications</a> <li><a href="/research/#sponsors">Sponsors</a> </ul> <ul> <li><a href="/downloads/">Downloads</a> <li><a href="/downloads/">All Releases</a> <li><a href="https://github.com/JuliaLang/julia">Source Code</a> <li><a href="/downloads/#current_stable_release">Current Stable Release</a> <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a> <li><a href="https://status.julialang.org/">PkgServer Status</a> </ul> <ul> <li><a href="https://docs.julialang.org/en/v1/">Documentation</a> <li><a href="https://juliaacademy.com">JuliaAcademy</a> <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a> <li><a href="/learning/getting-started/">Getting Started</a> <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a> <li><a href="/learning/books">Books</a> </ul> <ul> <li><a href="/community/">Community</a> <li><a href="/community/standards/">Code of Conduct</a> <li><a href="/diversity/">Diversity</a> <li><a href="https://juliacon.org">JuliaCon</a> <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a> <li><a href="/shop/">Shop Merchandise</a> </ul> <ul> <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a> <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a> <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a> <li><a href="https://github.com/issues?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a> <li><a href="https://github.com/issues?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22+">Good First Issue</a> <li><a href="https://docs.julialang.org/en/v1/devdocs/reflection/">Dev Docs</a> </ul> </div> <div id=footer-bottom  class=row > <div class="col-md-10 py-2"> <p>Built with <a href="https://franklinjl.org">Franklin.jl</a> and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p> <p>©2021 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>. </div> <div class="col-md-2 py-2"> <span class=float-sm-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </div> </div> </footer> <script src="/libs/jquery/jquery.min.js"></script> <script src="/libs/bootstrap/bootstrap.min.js"></script>

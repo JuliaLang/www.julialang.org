@@ -1016,6 +1016,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/blog/2021/10/DEQ/index.html</loc>
+    <lastmod>2021-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2013/05/graphical-user-interfaces-part1/index.html</loc>
     <lastmod>2021-10-21</lastmod>
     <changefreq>monthly</changefreq>
