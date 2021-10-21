@@ -59,7 +59,7 @@ to this topic.
 
 If you take a random $f$, it turns out one of the most likely behaviors for $f$ is to either
 converge to such steady states or diverge to infinity. If you think about it as just a scalar
-linear system $x_{n+1} = a x_n$, when $a<1$ the value keeps decreasing to zero making the
+linear system $x_{n+1} = a x_n$, when the scalar $a<1$ the value keeps decreasing to zero making the
 system head to a steady state, while $a>1$ leads to infinity. Thus if our choice of $a$ is
 "tame" enough, we can cause these systems to generally be convergent models. Likewise, if we
 used an affine system $x_{n+1} = a x_n + b$, the steady state would be defined as $x_{ss} = ax_{ss} + b$
@@ -181,6 +181,7 @@ function (deq::DeepEquilibriumNetwork)(x::AbstractArray{T},
                                        p = deq.p) where {T}
     z = deq.re(p)(x)
     # Solving the equation f(u) - u = du = 0
+    # The key part of DEQ is similar to that of NeuralODEs
     dudt(u, _p, t) = deq.re(_p)(u .+ x) .- u
     ssprob = SteadyStateProblem(ODEProblem(dudt, z, (zero(T), one(T)), p))
     return solve(ssprob, deq.args...; u0 = z, deq.kwargs...).u
@@ -283,7 +284,7 @@ worry about the training details.
 
 ## Full example: DEQ for learning MNIST from scratch
 
-Now let's do a full scale example: training a DEQ to clasify digits of MNIST. First we define our DEQ structures:
+Now let's do a full scale example: training a DEQ to classify digits of MNIST. First we define our DEQ structures:
 
 <!-- DEQ models cannot vary in input and output size, and that is an active field of research -->
 
@@ -304,6 +305,8 @@ using LinearAlgebra
 using Plots
 using MultivariateStats
 using Statistics
+using PyCall
+using ColorSchemes
 CUDA.allowscalar(false)
 
 
@@ -344,7 +347,7 @@ function Net()
 end
 ```
 
-Next we define our training loops and our data handling:
+Next we define our data handling and training loops:
 
 ```julia
 function get_data(args)
@@ -438,7 +441,11 @@ end
 
 # Here we start training the model
 model, train_loader, test_loader = train(batchsize = 128, epochs = 1);
+```
 
+Finally, we visualize what the model has learned.
+
+```
 # This function iterates through the DEQ solver
 function construct_iterator(deq::DeepEquilibriumNetwork, x, p = deq.p)
     executions = 1
@@ -538,15 +545,59 @@ end
 traj, color, xmin, xmax, ymin, ymax = loop()
 ```
 
+
 Now let's see what we got. We'll do a visualization of the values that come out of the neural network.
 The neural network acts on a very high dimensional space, so we will need to project that to a visualization
 in a two dimensional space. If the neural network successfully trained to be a classifier, then we should see
 relatively distinct clusters for the various digits, noting that they will not be fully separated in two
 dimensions due to potential distance warping in the projection.
 
+
 ```julia
 # A collection of all the allowed shapes
 shape = [:circle, :rect, :star5, :diamond, :hexagon, :cross, :xcross, :utriangle, :dtriangle, :ltriangle, :rtriangle, :pentagon, :heptagon, :octagon, :star4, :star6, :star7, :star8, :vline, :hline, :+, :x]
+
+# This is for plotting shapes of different clusters
+# The way Julia handles this requires mapping different colors to shapes
+# i.e. creating a shape array of size color
+shapesvec = []
+for i in color
+    if i == 1
+        push!(shapesvec, shape[1])
+    elseif i == 2
+        push!(shapesvec, shape[2])
+    elseif i == 3
+        push!(shapesvec, shape[3])
+    elseif i == 4
+        push!(shapesvec, shape[4])
+    elseif i == 5
+        push!(shapesvec, shape[5])
+    elseif i == 6
+        push!(shapesvec, shape[6])
+    elseif i == 7
+        push!(shapesvec, shape[7])
+    elseif i == 8
+        push!(shapesvec, shape[8])
+    elseif i == 9
+        push!(shapesvec, shape[9])
+    elseif i == 10
+        push!(shapesvec, shape[10])
+    end
+end
+
+# We visualize the evolution of learned features according to iterator depth
+# So we see iterator values converging to 10 clusters with time
+anim = Plots.Animation()
+for (i, t) in enumerate(traj)
+    colorsvec = get(ColorSchemes.tab10, color, :extrema)
+    plot(legend=false,axis=false,grid=false)
+    tsneplot = scatter!(t[1, :], t[2, :],
+                            background_color=:white,
+                            color=colorsvec,
+                            markershape=shapesvec,
+                            title="Depth $i", legend = false, xlim = (xmin, xmax), ylim = (ymin, ymax))
+    Plots.frame(anim)
+end
 
 # Here we only visualize the features learned at the end of the trajectory
 # We label the features depending on which class it belongs to (which digit it is)
@@ -580,6 +631,8 @@ ylabel!("PCA Dimension 2")
 plot!()
 savefig("DEQ Feature Cluster")
 ```
+
+![Imgur](https://imgur.com/gallery/uE1Gwi7)
 
 ![Imgur](https://i.imgur.com/2OuvoiA.png)
 
