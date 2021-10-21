@@ -541,8 +541,11 @@ end
 traj, color, xmin, xmax, ymin, ymax = loop()
 ```
 
-Now let's see what we got. We'll do a visualization of the values that come out of the neural network. If the neural network
-successfully trained to be a classifier, then we should see distinct clusters for the various digits.
+Now let's see what we got. We'll do a visualization of the values that come out of the neural network. 
+The neural network acts on a very high dimensional space, so we will need to project that to a visualization
+in a two dimensional space. If the neural network successfully trained to be a classifier, then we should see 
+relatively distinct clusters for the various digits, noting that they will not be fully separated in two
+dimensions due to potential distance warping in the projection.
 
 ```julia
 # A collection of all the allowed shapes
