@@ -1,6 +1,6 @@
-@def rss_pubdate = Date(2021, 10, 14)
+@def rss_pubdate = Date(2021, 10, 21)
 @def rss = """ Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs"""
-@def published = "14 Oct 2021"
+@def published = "21 Oct 2021"
 @def title = "Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs"
 @def authors = """Qiyao Wei, Frank Schäfer, Avik Pal, Chris Rackauckas"""  
 <!-- authors waiting to be updated -->
