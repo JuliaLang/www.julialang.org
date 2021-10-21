@@ -634,9 +634,7 @@ savefig("DEQ Feature Cluster")
 
 ![Imgur](https://i.imgur.com/K411ddI.gif)
 
-![Imgur](https://i.imgur.com/2OuvoiA.png)
-
-Tada, clusters!
+Tada, clusters in the equilibrium!
 
 ## Conclusion
 
