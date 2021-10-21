@@ -1,6 +1,6 @@
 # Creating a Julia package
 
-A detailed page on Julia packages is available [here](http://pkgdocs.julialang.org/v1/). Including the part on [creating packages](http://pkgdocs.julialang.org/v1/creating-packages/).
+Julia comes with a built-in package manager, you can read [its detailed documentation](http://pkgdocs.julialang.org/v1/), including [how to create packages](http://pkgdocs.julialang.org/v1/creating-packages/).
 
 Julia packages consist of modules. Hence, before creating a package, make sure to understand how [modules](https://docs.julialang.org/en/v1/manual/modules/) work in Julia.
 
@@ -50,7 +50,7 @@ t = Template(;
        )
 ```
 
-The package called "" can now be created using the template `t` by running the following line in Julia REPL:
+The package called "Tiddlywinks" can now be created using the template `t` by running the following line in Julia REPL:
 ```
 t("Tiddlywinks")
 ```
