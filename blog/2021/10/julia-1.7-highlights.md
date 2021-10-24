@@ -13,7 +13,7 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 6. [Better path printing for standard libraries in errors](#Better-path-printing-for-standard-libraries-in-errors)
 8. [Inference improvements](#Inference-improvements)
 9. [Libblastrampoline + MKL.jl](#libblastrampoline--MKLjl)
-10. [Escaping newlines inside strings with \`\\`](#Escaping-newlines-inside-strings-with-)
+10. [Escaping newlines inside strings with `` `\\` ``](#Escaping-newlines-inside-strings-with-)
 11. [Multidimensional Array Literals](#Multidimensional-Array-Literals)
 
 
