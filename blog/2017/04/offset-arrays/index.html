@@ -130,7 +130,7 @@ Stacktrace:
 <p>Note that this object is a <em>conventional</em> <code>SubArray</code> &#40;it&#39;s not an <code>OffsetArray</code>&#41;, but because it was passed <code>IdentityRange</code> indices it preserves the indices of the indices.</p>
 <h2 id=a_second_application_arrayimage_filtering_convolution ><a href="#a_second_application_arrayimage_filtering_convolution">A second application: array/image filtering &#40;convolution&#41;</a></h2>
 <p>As illustrated above for the image rotation example, a recent release &#40;v0.6.0&#41; of the Images package put both the power and responsibility for dealing with arrays with custom indices into the hands of users. One of the key functions in this package is <code>imfilter</code> which can be used to smooth or otherwise &quot;filter&quot; arrays. The idea is that starting from an array <code>A</code>, each local neighborhood is weighted by a &quot;kernel&quot; <code>kern</code>, producing an output value according to the following formula:</p>
-\[ F[I] = \sum_J A[I+J] kern[J] \]
+<span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy=false >[</mo><mi>I</mi><mo stretchy=false >]</mo><mo>=</mo><munder><mo>∑</mo><mi>J</mi></munder><mi>A</mi><mo stretchy=false >[</mo><mi>I</mi><mo>+</mo><mi>J</mi><mo stretchy=false >]</mo><mi>k</mi><mi>e</mi><mi>r</mi><mi>n</mi><mo stretchy=false >[</mo><mi>J</mi><mo stretchy=false >]</mo></mrow><annotation encoding="application/x-tex"> F[I] = \sum_J A[I+J] kern[J] </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class=mopen >[</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class=mclose >]</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:2.344341em;vertical-align:-1.294336em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.0500050000000003em;"><span style="top:-1.855664em;margin-left:0em;"><span class=pstrut  style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.09618em;">J</span></span></span><span style="top:-3.050005em;"><span class=pstrut  style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:1.294336em;"><span></span></span></span></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class=mopen >[</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >+</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class=mclose >]</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">n</span><span class=mopen >[</span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class=mclose >]</span></span></span></span></span>
 <p>This is the formula for <a href="https://en.wikipedia.org/wiki/Cross-correlation">correlation</a>; the formula for another operation, <a href="https://en.wikipedia.org/wiki/Convolution">convolution</a>, is very similar.</p>
 <p>Let&#39;s start with a trivial example: let&#39;s filter with a &quot;delta function&quot; kernel, meaning it has value <code>1</code> at location 0 and is zero everywhere else. According to the correlation formula, because <code>kern&#91;J&#93;</code> is 1 at <code>J&#61;&#61;0</code>, this should simply give us a copy of our original array:</p>
 <pre><code class=language-julia >julia&gt; using Images
@@ -334,13 +334,13 @@ julia&gt; length&#40;indices&#40;afft,1&#41;&#41;   # but we still know how big 
 
 
     
-        <script src="/libs/katex/katex.min.js"></script>
-<script src="/libs/katex/auto-render.min.js"></script>
-<script>renderMathInElement(document.body)</script>
+        
+
+
 
     
     
-        <script src="/libs/highlight/highlight.pack.js"></script>
+        <script src="/libs/highlight/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
 
     

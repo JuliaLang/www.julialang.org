@@ -37,7 +37,7 @@ amp &#61; fit&#40;envelope&#41;</code></pre>
 <li><p>The wavelength of the traveling wave is a bit longer than the body length</p>
 
 </ul>
-<p>In the code below, you can change the value of \(\lambda\) to control the wavelength of the traveling wave to see the impact it has on the backbone over the motion cycle.</p>
+<p>In the code below, you can change the value of <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span> to control the wavelength of the traveling wave to see the impact it has on the backbone over the motion cycle.</p>
 <pre><code class=language-julia >λ &#61; 1.4
 scatter&#40;0:0.2:1, envelope&#41;
 colors &#61; palette&#40;:cyclic_wrwbw_40_90_c42_n256&#41;
@@ -49,7 +49,7 @@ plot&#33;&#40;ylim&#61;&#40;-1.4,1.4&#41;, legend&#61;false&#41;</code></pre>
 <p><img src="/assets/blog/2021-08-sharks/wavelength.svg" alt="" /></p>
 <h2 id=setting_up_the_simulation ><a href="#setting_up_the_simulation">Setting up the simulation</a></h2>
 <p>Now the thickness and motion are defined, but how will we apply these to a fluid simulation? <code>WaterLily</code> uses an <a href="https://eprints.soton.ac.uk/369635/">immersed boundary method</a> and <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> to embed a body into the flow. The upshot is that we don&#39;t need to do any meshing; all we need is a signed distance function &#40;SDF&#41; to the surface.</p>
-<p>Let&#39;s start by defining the SDF to the &quot;backbone&quot;, which is a line segment from \(x=0\ldots 1\). <a href="https://www.youtube.com/watch?v&#61;PMltMdi1Wzg">See this great video from Inigo Quilez for a derivation of this sdf.</a>. The plot below shows the sdf and the zero contour, which is ... just a line segment.</p>
+<p>Let&#39;s start by defining the SDF to the &quot;backbone&quot;, which is a line segment from <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn><mo>…</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=0\ldots 1</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.64444em;vertical-align:0em;"></span><span class=mord >0</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=minner >…</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mord >1</span></span></span></span>. <a href="https://www.youtube.com/watch?v&#61;PMltMdi1Wzg">See this great video from Inigo Quilez for a derivation of this sdf.</a>. The plot below shows the sdf and the zero contour, which is ... just a line segment.</p>
 <p>Simple adjustments to the SDF give us more control of the shape and position. By shifting the y offset as <code>y &#61; y-shift</code>, we can move the body laterally. And by subtracting a thickness from the distance as <code>sdf &#61; sdf-thickness</code>, we can give the line some width. This is all we need to model the shark.</p>
 <pre><code class=language-julia >shift &#61; 0.5
 T &#61; 0.5
@@ -192,13 +192,13 @@ scatter&#40;cycle./period, &#91;first.&#40;forces&#41;, last.&#40;forces&#41;&#9
 
 
     
-        <script src="/libs/katex/katex.min.js"></script>
-<script src="/libs/katex/auto-render.min.js"></script>
-<script>renderMathInElement(document.body)</script>
+        
+
+
 
     
     
-        <script src="/libs/highlight/highlight.pack.js"></script>
+        <script src="/libs/highlight/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
 
     
