@@ -77,13 +77,13 @@ What made me fail to see the correct solution was, that Julia can actually do be
 since we can directly pass an array of strings to the command.
 So this actually works:
 
-```Julia
+```julia
 run(Cmd(["julia", "-e", "println(\"hello world\")"]))
 ```
 
 Note that the above is equivalent to:
 
-```Julia
+```julia
 run(`julia $(["-e", """println("hello world")"""])`)
 ```
 So we can in fact have better interpolation, since we just need to insert a new string into the array.
