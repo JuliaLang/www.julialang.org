@@ -46,7 +46,7 @@ adopted.
 
 ## Package Manager
 
-### Automatic package installation 
+### Automatic package installation
 
 *Ian Butterworth*
 
@@ -73,9 +73,9 @@ Foo
 can now be achieved with just
 ```julia
 julia> using Foo
- │ Package Foo not found, but a package named Foo is available from a registry. 
+ │ Package Foo not found, but a package named Foo is available from a registry.
  │ Install package?
- │   (@v1.7) pkg> add Foo 
+ │   (@v1.7) pkg> add Foo
  └ (y/n) [y]: y
  ...
 julia> Foo
@@ -93,13 +93,13 @@ In order to issue such a warning, Pkg would need to know what Julia version gene
 What was done in version 1.7 was to change this manifest format so that all dependecies are instead put under a common `[deps]` key. This frees up the global namespace so that a `julia_version` entry can be added. It also opens up for the possibility of adding future useful data to the manifest. The ability to read such manifests will also be backported to Julia 1.6 and thus be in Julia 1.6.2 and forward. Pkg will also keep the format of an existing manifest so only new manifests will have the new manifest format going forward.
 
 
-### Improved performance for handling registries on Windows and NFSs 
+### Improved performance for handling registries on Windows and NFSs
 
 *Kristoffer Carlsson*
 
 We noticed some complaints about the speed of the Julia package manager (Pkg) on Windows and on Network File Systems (NFSs). What is common between these is that these are systems where file operations tend to be significantly more expensive. In Julia 1.7 we have spent some time identifying and improving the situation.
 
-[The General registry](https://github.com/JuliaRegistries/General) is the default registry that Pkg uses to look up information about packages. It is structured such that each package has four different TOML files. As of writing, General contains 5761 packages which means that it contains approximately 23 000 files. There are two ways for Pkg to get updates for a registry, either via the git-protocol or via HTTPS using something called the "Pkg Server", which is a community-driven way of hosting packages and registries where the registry is downloaded as a compressed tarball. There were reports that on Windows the initial download of the General registry would take on the order of minutes while on Linux and macOS it typically takes a few seconds. The main cause of the slow down was diagnosed to be Windows Defender causing slowdowns upon closing files which hits very hard when extracting 23 000 small files. The Rust community [faces a similar issue](https://github.com/rust-lang/rustup/issues/1540) when it comes to uncompressing their documentation. This problem is described in more detail [in this blog post](https://gregoryszorc.com/blog/2021/04/06/surprisingly-slow/) and suggests that using a thread pool just for closing files can significantly improve performance. 
+[The General registry](https://github.com/JuliaRegistries/General) is the default registry that Pkg uses to look up information about packages. It is structured such that each package has four different TOML files. As of writing, General contains 5761 packages which means that it contains approximately 23 000 files. There are two ways for Pkg to get updates for a registry, either via the git-protocol or via HTTPS using something called the "Pkg Server", which is a community-driven way of hosting packages and registries where the registry is downloaded as a compressed tarball. There were reports that on Windows the initial download of the General registry would take on the order of minutes while on Linux and macOS it typically takes a few seconds. The main cause of the slow down was diagnosed to be Windows Defender causing slowdowns upon closing files which hits very hard when extracting 23 000 small files. The Rust community [faces a similar issue](https://github.com/rust-lang/rustup/issues/1540) when it comes to uncompressing their documentation. This problem is described in more detail [in this blog post](https://gregoryszorc.com/blog/2021/04/06/surprisingly-slow/) and suggests that using a thread pool just for closing files can significantly improve performance.
 
 Instead of using a thread pool to speed up closing files, we decided to take a different route.
 Julia comes bundled with [p7zip](http://p7zip.sourceforge.net/) and together with the standard library [`Tar.jl`](https://github.com/JuliaIO/Tar.jl) it is possible to directly read the compressed tarball into memory without materializing any files at all. By doing so the problem of materializing files is obliviated which significantly improves the performance of the registry on Windows and NFS.
@@ -202,10 +202,10 @@ julia> code_typed((Union{Nothing,Int},); optimize=false) do x
 
 Another remarkable improvement is more eager constant-propagations.
 Julia v1.7 can substitute more runtime computations with pre-computed constants, and eliminate dead code by resolving conditional branches at compile-time.
-As an example, on v1.7, computations of special-functions can be done at compile-time:
+As an example, on v1.7, computations of special-functions can be fully folded at compile-time:
 ```julia-repl
 julia> code_typed((Int,)) do n
-           n + sin(sum(sincos(42)))
+           n + sin(sum(sincos(42))) # no runtime computation of `sum(sincos(42))` on v1.7 !
        end |> first
 ```
 ```diff
@@ -234,7 +234,11 @@ For those interested, here is the list of specific PRs that implement main infer
 - more conditional constraint propagation ([#39936](https://github.com/JuliaLang/julia/pull/39936), [#40832](https://github.com/JuliaLang/julia/pull/40832))
 
 Actually these inference improvements were motivated by the need for [JET.jl](https://github.com/aviatesk/JET.jl), a static analyzer for Julia, that is powered by Julia compiler's type inference implementation.
-With the inference improvements of v1.7, JET can analyze your program more correctly and faster – as a simple measurement, [when analyzing JET itself](https://gist.github.com/aviatesk/e2ffa4bfaee60f939ef4b65449fa394b), JET takes **90** seconds to report **93** false positive errors on v1.6, but on v1.7 and higher, JET can finish the analysis within **40** seconds and the number of false positives is reduced to **27**, thanks to both the type inference improvements and [several inferrability improvements of Julia Base](https://github.com/JuliaLang/julia/pulls?q=is%3Apr+is%3Amerged+inferrability).
+These inference improvements of v1.7 allow JET to analyze your program more correctly and faster –
+as a simple measurement, [when analyzing JET itself](https://gist.github.com/aviatesk/e2ffa4bfaee60f939ef4b65449fa394b),
+JET took `90` seconds to reported `93` false positive errors on v1.6,
+but on v1.7 and higher, JET can finish the analysis within `40` seconds and the number of false positives is reduced to `27`,
+thanks to both the type inference improvements and [several inferrability improvements of Julia Base](https://github.com/JuliaLang/julia/pulls?q=is%3Apr+is%3Amerged+inferrability).
 
 ## `libblastrampoline` + `MKL.jl`
 
@@ -263,7 +267,7 @@ Most users will never need to directly interact with LBT, however for those that
 ```julia
 julia> LinearAlgebra.BLAS.lbt_get_config()
 LinearAlgebra.BLAS.LBTConfig
-Libraries: 
+Libraries:
 └ [ILP64] libopenblas64_.so
 ```
 
@@ -276,7 +280,7 @@ julia> LinearAlgebra.BLAS.lbt_forward(OpenBLAS32_jll.libopenblas_path)
 
 julia> LinearAlgebra.BLAS.lbt_get_config()
 LinearAlgebra.BLAS.LBTConfig
-Libraries: 
+Libraries:
 ├ [ILP64] libopenblas64_.so
 └ [ LP64] libopenblas.so
 ```
@@ -367,7 +371,7 @@ julia> [1 2 ; 3 4]
 2×2 Matrix{Int64}:
  1  2
  3  4
- 
+
 julia> [1 2 ;;; 3 4]
 1×2×2 Array{Int64, 3}:
 [:, :, 1] =
@@ -375,7 +379,7 @@ julia> [1 2 ;;; 3 4]
 
 [:, :, 2] =
  3  4
- 
+
 julia> [1 2 ;;;; 3 4]
 1×2×1×2 Array{Int64, 4}:
 [:, :, 1, 1] =
@@ -383,7 +387,7 @@ julia> [1 2 ;;;; 3 4]
 
 [:, :, 1, 2] =
  3  4
- 
+
 julia> using BenchmarkTools
 
 julia> @btime [1 2 ;;;; 3 4];
@@ -489,7 +493,7 @@ julia> [1; 2; 3;;]
  1
  2
  3
- 
+
 julia> [1;;;]
 1×1×1 Array{Int64, 3}:
 [:, :, 1] =
