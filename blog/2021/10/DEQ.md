@@ -30,7 +30,7 @@ of methods in machine learning literature. For background on DiffEqFlux and Neur
 please see the previous blog post [DiffEqFlux.jl – A Julia Library for Neural Differential Equations](https://julialang.org/blog/2019/01/fluxdiffeq/).
 
 (Note: If you are interested in this work and are an undergraduate or graduate
-student, we have [Google Summer of Code projects available in this area](/soc/ideas-page). This
+student, we have [Google Summer of Code projects available in this area](/jsoc/gsoc/diffeq/). This
 [pays quite well over the summer](https://developers.google.com/open-source/gsoc/help/student-stipends).
 Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel to discuss in more detail.)
 
