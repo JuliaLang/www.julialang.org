@@ -55,7 +55,9 @@ jobs:
           julia --color=yes --project -e '
               using Pkg; Pkg.instantiate();
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
-              using Franklin; optimize(prerender=false);
+              using Franklin;
+              Franklin.HIGHLIGHTJS[] = abspath(joinpath("_libs", "highlight", "highlight.min.js"));
+              Franklin.optimize(prerender=true);
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))' > build.log
           cat build.log
 
