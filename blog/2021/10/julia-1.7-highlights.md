@@ -47,7 +47,7 @@ adopted.
 If a package exists in a registry but is not installed, install is now offered when load is attempted in the REPL.
 
 What used to be
-```julia
+```julia-repl
 julia> using Foo
 ERROR: ArgumentError: Package Foo not found in current path:
 - Run `import Pkg; Pkg.add("Foo")` to install the Foo package.
@@ -65,7 +65,7 @@ julia> Foo
 Foo
 ```
 can now be achieved with just
-```julia
+```julia-repl
 julia> using Foo
  │ Package Foo not found, but a package named Foo is available from a registry.
  │ Install package?
@@ -124,7 +124,7 @@ julia> @time Pkg.add("Example")
 
 The path for a Julia method is set when the method is defined. This means that when one is using a Julia installation that has been compiled somewhere else (for example the official Julia installations) paths for methods shipped with Julia will refer to some cloud server that did the compilation. As an example, below the path to the "buildworker" that compiled Julia is shown:
 
-```julia
+```julia-repl
 julia> using Random; Random.seed!("seed")
 ERROR: MethodError: no method matching seed!(::String)
 Closest candidates are:
@@ -134,7 +134,7 @@ Closest candidates are:
 
 Some editors have support for opening files by clicking paths in the terminal but this does not work in cases like this. In v1.7, this has been fixed to instead print paths that are valid locally:
 
-```julia
+```julia-repl
 julia> using Random; Random.seed!("seed")
 ERROR: MethodError: no method matching seed!(::String)
 Closest candidates are:
@@ -258,7 +258,7 @@ Finally, LBT manages some vendor-specific APIs such as setting the number of thr
 
 Most users will never need to directly interact with LBT, however for those that are interested, you can start with looking at the metadata LBT tracks on what libraries are currently loaded:
 
-```julia
+```julia-repl
 julia> LinearAlgebra.BLAS.lbt_get_config()
 LinearAlgebra.BLAS.LBTConfig
 Libraries:
@@ -268,7 +268,7 @@ Libraries:
 This shows that a single ILP64 library is currently loaded, and that library is `libopenblas64_.so`.
 Loading an LP64 library (such as the one provided by [OpenBLAS32_jll](https://github.com/JuliaBinaryWrappers/OpenBLAS32_jll.jl)) changes the result somewhat:
 
-```julia
+```julia-repl
 julia> LinearAlgebra.BLAS.lbt_forward(OpenBLAS32_jll.libopenblas_path)
 4860
 
@@ -316,7 +316,7 @@ end
 
 This feature has also been implemented for command literals, so that the behavior is more consistent with other POSIX-like shells:
 
-````julia
+````julia-repl
 julia> run(```
            echo foo\
            bar```);
@@ -325,7 +325,7 @@ foobar
 
 Note that this change otherwise only affects non-custom/non-raw string literals to avoid breaking code that relies on the existing behavior and to allow more control over how such cases should be handled by custom string literals:
 
-```julia
+```julia-repl
 julia> raw"""
        a\
        b"""
@@ -360,7 +360,7 @@ array(c(1, 3, 2, 4, 5, 7, 6, 8), dim = c(2, 2, 2))
 ```
 
 The syntax is a straightforward extension of the current syntax: one additional semicolon == one additional dimension:
-```julia
+```julia-repl
 julia> [1 2 ; 3 4]
 2×2 Matrix{Int64}:
  1  2
@@ -397,7 +397,7 @@ julia (v1.6)> @btime reshape([1; 2; 3; 4], (1, 2, 1, 2)); # fast, but intent les
 This is a substantial improvement in performance for this basic operation, and the differential improves greatly as more dimensions become invovled.
 
 For ease of reading a larger array expression, line breaks are of course tolerated:
-```julia
+```julia-repl
 julia> [ 1 2
          3 4
          ;;;
@@ -414,7 +414,7 @@ julia> [ 1 2
 ```
 
 This syntax also makes it possible to write arrays in column-first order instead of row-first order, using `;;` instead of spaces for rows:
-```julia
+```julia-repl
 julia> [1 ; 2 ;; 3 ; 4 ;;; 5 ; 6 ;; 7 ; 8]
 2×2×2 Array{Int64, 3}:
 [:, :, 1] =
@@ -427,14 +427,14 @@ julia> [1 ; 2 ;; 3 ; 4 ;;; 5 ; 6 ;; 7 ; 8]
 ```
 
 Lower numbers of semicolons take precedence over higher numbers of semicolons, so the above expression is equivalent to:
-```julia
+```julia-repl
 julia> [[[1 ; 2] ;; [3 ; 4]] ;;; [[5 ; 6] ;; [7 ; 8]]];
 ```
 
 Note however that writing that form will allocate each intermediate array, as brackets always do in Julia.
 
 Spaces and double semicolons cannot be mixed in the same expression, generally. However, you *can* use double semicolons to insert a line break within a row, which wasn't possible before:
-```julia
+```julia-repl
 julia> [1 2 3 4;;
         5 6 7 8]
 1×8 Matrix{Int64}:
@@ -442,7 +442,7 @@ julia> [1 2 3 4;;
 ```
 
 Powerfully, this syntax may also be used to concatenate multidimensional arrays along arbitrary dimensions with minimal overhead:
-```julia
+```julia-repl
 julia> const a, b, c = fill(1, 1, 2, 1, 2), fill(2, 2, 2, 1, 2), fill(3, 3, 2, 1, 3);
 
 julia> [a ; b ;;;; c] == [1 1 ; 2 2 ; 2 2 ;;;;
@@ -481,7 +481,7 @@ Here is how the syntax is lowered:
 ```
 
 Last, but certainly not least, this syntax makes it very easy to write a one-column matrix or a 2+ dimension single-element array, a highly requested feature:
-```julia
+```julia-repl
 julia> [1; 2; 3;;]
 3×1 Matrix{Int64}:
  1
