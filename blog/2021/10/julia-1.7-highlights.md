@@ -1,20 +1,15 @@
++++
+mintoclevel = 2
+maxtoclevel = 2
++++
+
 # Julia 1.7 highlights
 
 After 4 betas and 2 release candidates, Julia version 1.7 has finally been released. We would like to thank all the contributors to this release and all the testers that helped with finding regressions and issues in the pre-releases. Without you, this release would not have been possible.
 
 The full list of changes can be found in the [NEWS file](https://github.com/JuliaLang/julia/blob/release-1.7/NEWS.md), but here we'll give a more in-depth overview of some of the release highlights.
 
-
-1. [New atomic support](#New-atomic-support)
-2. [New RNG (reproducible RNG in tasks)](#New-RNG-reproducible-RNG-in-tasks)
-3. [Automatic package installation ](#Automatic-package-installation)
-4. [New manifest format ](#New-manifest-format)
-5. [Improved performance for handling registries on Windows and NFSs](#Improved-performance-for-handling-registries-on-Windows-and-NFSs)
-6. [Better path printing for standard libraries in errors](#Better-path-printing-for-standard-libraries-in-errors)
-8. [Inference improvements](#Inference-improvements)
-9. [Libblastrampoline + MKL.jl](#libblastrampoline--MKLjl)
-10. [Escaping newlines inside strings](#Escaping-newlines-inside-strings-with-)
-11. [Multidimensional Array Literals](#Multidimensional-Array-Literals)
+\toc
 
 
 ## New atomic support
