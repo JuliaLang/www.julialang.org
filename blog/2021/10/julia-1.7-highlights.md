@@ -290,7 +290,7 @@ It is possible to create truly complex setups (e.g. layering a library that prov
 Note that Julia's choice to use ILP64 or LP64 _is_ still a compile-time decision, and that even if you load `OpenBLAS32_jll` to provide LP64 symbols, Julia will still use ILP64 on 64-bit platforms by default.
 The main reason to support LP64 on 64-bit platforms at all is to provide the symbols for other programs that may be linked into Julia's namespace, such as using [`PyCall`](https://github.com/JuliaPy/PyCall.jl) to load `numpy`.
 
-
+For more information you can watch the talk "[Runtime-switchable BLAS/LAPACK backends via libblastrampoline](https://www.youtube.com/watch?v=t6hptekOR7s)" from JuliaCon 2021.
 
 ## Escaping newlines inside strings
 
