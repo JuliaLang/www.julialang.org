@@ -491,6 +491,48 @@ For fun, here's an example of how you could use this syntax to generate a Sudoku
  rand(1:9, 3, 3);;; rand(1:9, 3, 3);;; rand(1:9, 3, 3);;;;]
 ```
 
+## Property Destructuring
+
+*Simeon Schaub*
+
+One fairly simple but hopefully useful new syntax addition is support for destructuring objects not only by iteration, but also by property name. This is modeled after the `(; a b)` syntax added in 1.5 for constructing `NamedTuple`s whose field names correspond to the used variable names.
+
+A simple example of how this syntax can be used:
+
+```julia-repl
+julia> nt = (a=1, b=2)
+(a = 1, b = 2)
+
+julia> (; a, b) = nt
+(a = 1, b = 2)
+
+julia> a
+1
+
+julia> b
+2
+```
+
+`(; a, b) = nt` is simply equivalent to `a = nt.a; b = nt.b`, so it can be used not just for `NamedTuple`s, but for destructuring the properties of any object and will also work with `DataFrame`s for example. It can also be used inside function arguments just like regular destructuring. A `myreal` function which just extracts the real part of a complex number could now be written as follows:
+
+```julia-repl
+julia> myreal((; re)::Complex) = re
+myreal (generic function with 1 method)
+
+julia> myreal(2 + 3im)
+2
+```
+
+This syntax is also compatible with type annotations (note that these don't play any role in dispatch when used inside function arguments though):
+
+```julia-repl
+julia> let
+           (; a::UInt, b::Float64) = (a=1, b=2)
+           b = 5
+           a, b
+       end
+(0x0000000000000001, 5.0)
+```
 
 ## Conclusion
 
