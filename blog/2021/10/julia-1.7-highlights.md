@@ -138,7 +138,7 @@ Some editors have support for opening files by clicking paths in the terminal bu
 julia> using Random; Random.seed!("seed")
 ERROR: MethodError: no method matching seed!(::String)
 Closest candidates are:
-  seed!() at ~/Downloads/julia/share/julia/stdlib/v1.8/Random/src/RNGs.jl:387
+  seed!() at ~/Downloads/julia/share/julia/stdlib/v1.7/Random/src/RNGs.jl:387
 ...
 ```
 
