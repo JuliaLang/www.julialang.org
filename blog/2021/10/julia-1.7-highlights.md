@@ -296,23 +296,13 @@ One small but hopefully useful new feature is the ability to break up long lines
 function foo(x)
     if isbad(x)
         error("This is a long error message describing exactly why `x` is bad, \
-but that means it exceeds our desired column width.""")
+               but that means it exceeds our desired column width.")
     end
     return bar(x)
 end
 ```
 
-This works inside triple quotes as well, where it also handles indentation as expected:
-
-```julia
-function foo(x)
-    if isbad(x)
-        error("""This is a long error message describing exactly why `x` is bad, \
-            but that means it exceeds our desired column width.""")
-    end
-    return bar(x)
-end
-```
+which also works inside triple quotes as you would expect.
 
 This feature has also been implemented for command literals, so that the behavior is more consistent with other POSIX-like shells:
 
