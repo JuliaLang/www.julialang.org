@@ -44,7 +44,7 @@ adopted.
 
 *Ian Butterworth*
 
-If a package exists in a registry but is not installed, install is now offered when load is attempted in the REPL.
+If a package exists in a registry but is not installed, an automatic install is now offered when a package load is attempted in the REPL.
 
 What used to be
 ```julia-repl
@@ -75,16 +75,16 @@ julia> using Foo
 julia> Foo
 Foo
 ```
-By default the package will be installed into the current active environment, selected via `y` or a single `return` key press. To cancel select `n` or use `ctrl-c`.
+By default, the package will be installed into the current active environment, selected via `y` or a single `return` key press. To cancel select `n` or use `Ctrl-c`.
 
 ### New manifest format
 *Kristoffer Carlsson*, *Ian Butterworth*
 
 Whenever a user adds a package in Julia, the package manager (Pkg) writes out a TOML file called the "manifest" with the exact version of all the dependencies of that package. Different package versions might be compatible with different Julia versions and the output of the "resolver" (the algorithm that computes a set of compatible versions for all packages and dependencies in the project) is therefore dependent on the Julia version. It is therefore not recommended to use a manifest created in one Julia version with another Julia version. It would be convenient if Pkg could warn you when this is happening.
 
-In order to issue such a warning, Pkg would need to know what Julia version generated a given manifest. However, the current format (or schema) of the manifest makes adding such information hard. The reason for that is that the format is such that the top-level keys in the TOML file are the package names of the dependencies. This means that there isn't any space to add something like a `julia_version` entry. Of course, it would be possible to special case an entry with this name (with the assumption that no one will name a package exactly `julia_version`) but it would much nicer to not have the same "structural" entry refer to two completely different things.
+In order to issue such a warning, Pkg would need to know what Julia version generated a given manifest. However, the current format (or schema) of the manifest makes adding such information hard. The reason for that is that the format is such that the top-level keys in the TOML file are the package names of the dependencies. This means that there isn't any space to add something like a `julia_version` entry. Of course, it would be possible to special case an entry with this name (with the assumption that no one will name a package exactly `julia_version`) but it would be much nicer to not have the same "structural" entry refer to two completely different things.
 
-What was done in version 1.7 was to change this manifest format so that all dependecies are instead put under a common `[deps]` key. This frees up the global namespace so that a `julia_version` entry can be added. It also opens up for the possibility of adding future useful data to the manifest. The ability to read such manifests will also be backported to Julia 1.6 and thus be in Julia 1.6.2 and forward. Pkg will also keep the format of an existing manifest so only new manifests will have the new manifest format going forward.
+What was done in version 1.7 was to change this manifest format so that all dependencies are instead put under a common `[deps]` key. This frees up the global namespace so that a `julia_version` entry can be added. It also opens up the possibility of adding future useful data to the manifest. The ability to read such manifests will also be backported to Julia 1.6 and thus be in Julia 1.6.2 and forward. Pkg will also keep the format of an existing manifest so only new manifests will have the new manifest format going forward.
 
 
 ### Improved performance for handling registries on Windows and NFSs
@@ -152,7 +152,7 @@ The example above was for a `MethodError` but the same improvement also applies 
 This release comes with many type inference improvements.
 With these improvements, Julia 1.7 will more "smartly" infer types of your program and improve performance for free!
 
-Most notably, 1.7 is able to propagate type constraints that can be derived from `isa` and `===` conditions _inter-procedurally_ (i.e. across any function calls).
+Most notably, 1.7 can propagate type constraints that can be derived from `isa` and `===` conditions _inter-procedurally_ (i.e. across any function calls).
 Certain Julia programs are written in a way that their behavior changes depending on runtime types, and such programs may run much faster by the inferrability gain of this improvement. For example, now there is no inferrability difference between `x === nothing` and `isnothing(x)` (and so you no longer need to remember [this performance tip](https://docs.julialang.org/en/v1.6/manual/performance-tips/#Checking-for-equality-with-a-singleton)):
 ```julia-repl
 julia> code_typed((Union{Nothing,Int},); optimize=false) do x
@@ -227,10 +227,10 @@ For those interested, here is the list of specific PRs that implement the main i
 - constant propagation for `invoke` callsite ([#41383](https://github.com/JuliaLang/julia/pull/41383))
 - more conditional constraint propagation ([#39936](https://github.com/JuliaLang/julia/pull/39936), [#40832](https://github.com/JuliaLang/julia/pull/40832))
 
-These inference improvements were initially motivated by the needs of [JET.jl](https://github.com/aviatesk/JET.jl), a static analyzer for Julia, that is powered by Julia compiler's type inference implementation.
+These inference improvements were initially motivated by the needs of [JET.jl](https://github.com/aviatesk/JET.jl), a static analyzer for Julia, that is powered by the Julia compiler's type inference implementation.
 These inference improvements in 1.7 allow JET to analyze your program more correctly and faster –
 as a simple measurement, [when analyzing JET itself](https://gist.github.com/aviatesk/e2ffa4bfaee60f939ef4b65449fa394b),
-JET took `90` seconds to reported `93` false positive errors in 1.6,
+JET took `90` seconds to report `93` false-positive errors in 1.6,
 but in 1.7 and higher, JET can finish the analysis within `40` seconds and the number of false positives is reduced to `27`,
 thanks to both the type inference improvements and [several inferrability improvements of Julia Base](https://github.com/JuliaLang/julia/pulls?q=is%3Apr+is%3Amerged+inferrability).
 
@@ -238,25 +238,25 @@ thanks to both the type inference improvements and [several inferrability improv
 
 *Elliot Saba*, *Viral B Shah*,  *Mosè Giordano*
 
-Julia v1.7 introduces a new BLAS demuxing library called [libblastrampoline (LBT)](https://github.com/staticfloat/libblastrampoline), that provides a flexible and efficient way to switch backing BLAS libraries at runtime.
+Julia v1.7 introduces a new BLAS demuxing library called [libblastrampoline (LBT)](https://github.com/staticfloat/libblastrampoline), that provides a flexible and efficient way to switch the backing BLAS library at runtime.
 Because the BLAS/LAPACK API is "pure" (e.g. each BLAS/LAPACK invocation is separate from any other; there is no carryover state from one API call to another) it is possible to switch which BLAS backend actually services a particular client API call, such as a [DGEMM](http://www.netlib.org/lapack/explore-html/d1/d54/group__double__blas__level3_gaeda3cbd99c8fb834a60a6412878226e1.html) call for a `Float64` `Matrix`-`Matrix` multiplication.
 This statelessness enables us to easily switch from one BLAS backend to another without needing to modify client code, and combining this with a flexible wrapper implementation, we are able to provide a single, coherent API that automatically adjusts for a variety of BLAS/LAPACK providers across all the platforms that Julia itself supports.
 
 The wrapper itself consists of assembly routines to jump to a stored function pointer, using the same assembly chunks that the [Procedure Linkage Table (PLT)](https://www.technovelty.org/linux/plt-and-got-the-key-to-code-sharing-and-dynamic-libraries.html) uses in every dynamic library on your operating system.
 These small, efficient assembly routines act as a "trampoline", bouncing a call to its true destination within OpenBLAS, MKL, etc...
 
-The story doesn't end with just writing high-performance forwarding routines however; we also must deal with the complexity of differing BLAS/LAPACK ABIs.
+The story doesn't end with just writing high-performance forwarding routines, however; we also must deal with the complexity of differing BLAS/LAPACK ABIs.
 The most user-visible ABI difference is that of BLAS libraries that are built to use 64-bit indices (ILP64) rather than 32-bit indices (LP64).
-Mixing and matching client libraries that pass an index to a BLAS backend that expects indices of a different bitwidth can have disastrous consequences, from silently computing the wrong result, to outright segfaulting.
+Mixing and matching client libraries that pass an index to a BLAS backend that expects indices of a different bitwidth can have disastrous consequences, from silently computing the wrong result to outright segfaulting.
 The Julia project has long been a proponent of namespacing these two ABIs separately, by suffixing ILP64 BLAS symbols to differentiate them from the rest of the world and thereby avoid fatal confusion, renaming e.g. `dgemm_` to `dgemm_64_` (note the trailing underscore is a `gfortran` convention that we follow to maintain ABI compatibility).
 To deal with this, LBT exports two sets of symbols; an LP64 set with the names that most software expects, and an ILP64 set with the names that many pieces of software in the Julia world already expect (e.g. suffixed with `64_`).
 Internally, LBT maintains forwarding tables for the LP64 and ILP64 exported functions separately, allowing for a great degree of flexibility in managing BLAS/LAPACK backends.
 
 Another possible ABI difference is the naming of the symbols themselves (`dgemm`, `dgemm_`, `dgemm__`, `_dgemm_` and `myblas_dgemm` are all BLAS symbol names that have been seen in the wild) and so LBT performs a simple search over different possible manglings when loading a BLAS/LAPACK backend.
 Apple's Accelerate backend uses a slightly different ABI than the default `gfortran` ABI as related to passing character arguments (such as the `'U'` parameter to certain LAPACK routines marking something as an "upper" triangular matrix), and LBT automatically converts to/from this other ABI.
-Finally, LBT manages some vendor-specific APIs such as setting the number of threads of the backend libraries through a single entrypoint.
+Finally, LBT manages some vendor-specific APIs such as setting the number of threads of the backend libraries through a single entry-point.
 
-Most users will never need to directly interact with LBT, however for those that are interested, you can start with looking at the metadata LBT tracks on what libraries are currently loaded:
+Most users will never need to directly interact with LBT, however, for those that are interested, you can start with looking at the metadata LBT tracks on what libraries are currently loaded:
 
 ```julia-repl
 julia> LinearAlgebra.BLAS.lbt_get_config()
@@ -290,7 +290,7 @@ For more information you can watch the talk "[Runtime-switchable BLAS/LAPACK bac
 
 *Simeon Schaub*
 
-One small but hopefully useful new feature is the ability to break up long lines inside string literals. Whereas strings with long lines such as in error messages had to be split up manually into multiple strings before in order to conform to a maximum line width, the newline can now be escaped by simply preceding it with a backslash inside the string:
+One small but hopefully useful new feature is the ability to break up long lines inside string literals. Whereas strings with long lines such as in error messages had to be split up manually into multiple strings before, in order to conform to a maximum line width, the newline can now be escaped by simply preceding it with a backslash inside the string:
 
 ```julia
 function foo(x)
@@ -330,7 +330,7 @@ Multidimensional arrays, especially with 3 or more dimensions, are useful constr
 
 Julia has had first-class methods to work with multidimensional arrays. However, through v1.6, there was no way to create them with pure syntax and minimal allocation overhead. You would have to first allocate 1- or 2-dimensional arrays and then `reshape()` it, or `cat()` them together one dimension at a time. It was also awkward to create a one-column matrix and single-element higher-dimensional arrays.
 
-With Julia v1.7, we have added syntax to enable you to write a literal for multidimensional arrays. This new syntax makes multidimensional arrays much easier to manipulate in Julia than they were before, and we believe it compares favorably with creation of multidimensional arrays in other languages:
+With Julia v1.7, we have added syntax to enable you to write a literal for multidimensional arrays. This new syntax makes multidimensional arrays much easier to manipulate in Julia than they were before, and we believe it compares favorably with the creation of multidimensional arrays in other languages:
 ```
 Julia v1.7:
 [1 2 ; 3 4 ;;; 5 6 ; 7 8]
