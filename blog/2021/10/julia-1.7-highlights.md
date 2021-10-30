@@ -150,10 +150,10 @@ The example above was for a `MethodError` but the same improvement also applies 
 *Shuhei Kadowaki*
 
 This release comes with many type inference improvements.
-With these improvements, Julia v1.7 will more "smartly" infer types of your program and improve the performance for free !
+With these improvements, Julia 1.7 will more "smartly" infer types of your program and improve performance for free!
 
-Mostly notably, v1.7 is able to propagate type constraints that can be derived from `isa` and `===` conditions _inter-procedurally_ (i.e. across any function calls).
-Certain Julia programs are written in a way that it changes the behavior depending on runtime type, and such programs may run much faster by the inferrability gain of this improvement. For example, now there is no inferrability difference between `x === nothing` and `isnothing(x)` (and so you no longer need to remember [this performance tip](https://docs.julialang.org/en/v1.6/manual/performance-tips/#Checking-for-equality-with-a-singleton)):
+Most notably, 1.7 is able to propagate type constraints that can be derived from `isa` and `===` conditions _inter-procedurally_ (i.e. across any function calls).
+Certain Julia programs are written in a way that their behavior changes depending on runtime types, and such programs may run much faster by the inferrability gain of this improvement. For example, now there is no inferrability difference between `x === nothing` and `isnothing(x)` (and so you no longer need to remember [this performance tip](https://docs.julialang.org/en/v1.6/manual/performance-tips/#Checking-for-equality-with-a-singleton)):
 ```julia-repl
 julia> code_typed((Union{Nothing,Int},); optimize=false) do x
            return isnothing(x) ? 0 : x
@@ -194,12 +194,12 @@ julia> code_typed((Union{Nothing,Int},); optimize=false) do x
 +) => Int64
 ```
 
-Another remarkable improvement is more eager constant-propagations.
-Julia v1.7 can substitute more runtime computations with pre-computed constants, and eliminate dead code by resolving conditional branches at compile-time.
-As an example, on v1.7, computations of special-functions can be fully folded at compile-time:
+Another remarkable improvement is more eager constant propagation.
+Julia 1.7 can substitute more runtime computations with pre-computed constants, and eliminate dead code by resolving conditional branches at compile time.
+As an example, in 1.7, computations of special functions can be fully folded at compile time:
 ```julia-repl
 julia> code_typed((Int,)) do n
-           n + sin(sum(sincos(42))) # no runtime computation of `sum(sincos(42))` on v1.7 !
+           n + sin(sum(sincos(42))) # no runtime computation of `sum(sincos(42))` in 1.7!
        end |> first
 ```
 ```diff
@@ -221,17 +221,17 @@ julia> code_typed((Int,)) do n
  ) => Float64
 ```
 
-For those interested, here is the list of specific PRs that implement main inference improvements of this release:
+For those interested, here is the list of specific PRs that implement the main inference improvements of this release:
 - inter-procedural conditional constraint propagation ([#38905](https://github.com/JuliaLang/julia/pull/38905))
-- constant-propagation for union-split callsite ([#39305](https://github.com/JuliaLang/julia/pull/39305))
-- constant-propagation for `invoke` callsite ([#41383](https://github.com/JuliaLang/julia/pull/41383))
+- constant propagation for union-split callsite ([#39305](https://github.com/JuliaLang/julia/pull/39305))
+- constant propagation for `invoke` callsite ([#41383](https://github.com/JuliaLang/julia/pull/41383))
 - more conditional constraint propagation ([#39936](https://github.com/JuliaLang/julia/pull/39936), [#40832](https://github.com/JuliaLang/julia/pull/40832))
 
-Actually these inference improvements were motivated by the need for [JET.jl](https://github.com/aviatesk/JET.jl), a static analyzer for Julia, that is powered by Julia compiler's type inference implementation.
-These inference improvements of v1.7 allow JET to analyze your program more correctly and faster –
+These inference improvements were initially motivated by the needs of [JET.jl](https://github.com/aviatesk/JET.jl), a static analyzer for Julia, that is powered by Julia compiler's type inference implementation.
+These inference improvements in 1.7 allow JET to analyze your program more correctly and faster –
 as a simple measurement, [when analyzing JET itself](https://gist.github.com/aviatesk/e2ffa4bfaee60f939ef4b65449fa394b),
-JET took `90` seconds to reported `93` false positive errors on v1.6,
-but on v1.7 and higher, JET can finish the analysis within `40` seconds and the number of false positives is reduced to `27`,
+JET took `90` seconds to reported `93` false positive errors in 1.6,
+but in 1.7 and higher, JET can finish the analysis within `40` seconds and the number of false positives is reduced to `27`,
 thanks to both the type inference improvements and [several inferrability improvements of Julia Base](https://github.com/JuliaLang/julia/pulls?q=is%3Apr+is%3Amerged+inferrability).
 
 ## `libblastrampoline` + `MKL.jl`
