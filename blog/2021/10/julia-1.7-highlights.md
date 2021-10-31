@@ -11,10 +11,6 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 \toc
 
 
-## New atomic support
-*Jameson Nash*
-
-
 ## New RNG (reproducible RNG in tasks)
 *Jeff Bezanson*
 
@@ -37,6 +33,11 @@ It took a bit of debate for all of us to be comfortable spending precious bytes 
 objects this way, but we are huge fans of reproducibility and so the proposal was eventually
 adopted.
 
+## New atomic support
+Jameson Nash
+
+Atomic accessors support have been expanded to provide more efficient build-blocks for working with threads.
+A summary of the new functionalities was presented at JuliaCon and can be found [here](https://www.youtube.com/watch?v=2rBv6sV4Xts)
 
 ## Package Manager
 
