@@ -34,7 +34,7 @@ objects this way, but we are huge fans of reproducibility and so the proposal wa
 adopted.
 
 ## New atomic support
-Jameson Nash
+*Jameson Nash*
 
 Atomic accessors support have been expanded to provide more efficient build-blocks for working with threads.
 A summary of the new functionalities was presented at JuliaCon and can be found [here](https://www.youtube.com/watch?v=2rBv6sV4Xts)
