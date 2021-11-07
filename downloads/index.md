@@ -4,7 +4,7 @@
 <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
 ~~~
 
-Do star us [on GitHub](https://github.com/JuliaLang/julia) and consider [sponsoring](https://github.com/sponsors/julialang) us. If you use Julia in your research, please do [cite us](https://julialang.org/research/).
+Do star us [on GitHub](https://github.com/JuliaLang/julia) and consider [sponsoring](https://github.com/sponsors/julialang) us. If you use Julia in your research, do [cite us](https://julialang.org/research/).
 
 We provide several ways for you to download and run Julia:
 
