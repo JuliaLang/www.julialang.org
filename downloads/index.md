@@ -1,29 +1,19 @@
 # Download Julia
 
-If you like Julia, please consider starring us [on GitHub](https://github.com/JuliaLang/julia) and spreading the word!
-
 ~~~
 <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
 ~~~
+
+Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia for your research, please do [cite us](https://julialang.org/research/).
 
 We provide several ways for you to run Julia:
 
 * In the terminal using the built-in Julia command line using the binaries provided below.
 * Using [Docker](https://docs.docker.com/) images from [Docker Hub](https://hub.docker.com/_/julia) maintained by the [Docker Community](https://github.com/docker-library/julia).
 
-Please see [platform specific instructions](/downloads/platform/) for further installation instructions and if you have trouble installing Julia.
-If the provided download files do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
-Different OSes and architectures have varying [tiers of support](/downloads/#currently_supported_platforms), and are listed at the bottom of this page.
-
 Almost everyone should be downloading and using the latest stable release of Julia.
 Great care is taken not to break compatibility with older Julia versions, so older code should continue to work with the latest stable Julia release.
 You should *only* be using the long-term support (LTS) version of Julia if you work at an organization where implementing or certifying upgrades is prohibitively expensive and there is no need for new language features or packages. See this description of ["Risk Personas"](https://julialang.org/blog/2019/08/release-process/#risk_tolerance_personas) for more detail on who should be using what versions of Julia based on their risk tolerance. See this blog post on [Julia's Release Process](https://julialang.org/blog/2019/08/release-process/) for more information on different kinds of releases.
-
----
-
-**Note:** Julia comes with a built-in package manager which downloads and installs packages from the Internet. In doing so, it necessarily reveals your public [IP address](https://en.wikipedia.org/wiki/IP_address) to any server you connect to, and service providers may log your IP address. In Julia versions 1.5 and higher, by default the package manager connects to <https://pkg.julialang.org>, a free public service operated by the Julia project to serve open source package resources to Julia users. This service retains IP address logs for up to 30 days.
-
----
 
 ~~~
 <h2 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h2>
@@ -252,19 +242,19 @@ Most Linux users should use the glibc binaries unless you know that your system 
 
 Older releases of Julia for all platforms are available on the [Older releases page](/downloads/oldreleases/). Only the LTS and Stable releases are maintained.
 
-
-
 ## "Nightly" builds
 
 Builds of the current unstable development version of Julia are available on the [nightlies page](/downloads/nightlies/). Built after each update to master, these are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current release version of Julia, above.
-
-
 
 ## Download verification
 
 All Julia binary releases are cryptographically secured using the traditional methods on each platform. macOS and Windows releases are codesigned with certificates that are verified by the operating system during installation. Linux and source tarballs are signed with GPG using [this key](/assets/juliareleases.asc).
 
+## Platform specific instructions
 
+Please see [platform specific instructions](/downloads/platform/) for further installation instructions and if you have trouble installing Julia.
+If the provided download files do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
+Different OSes and architectures have varying [tiers of support](/downloads/#currently_supported_platforms), and are listed at the bottom of this page.
 
 ## Currently supported platforms
 
@@ -379,7 +369,11 @@ The platforms currently supported by Julia are listed below. They are divided in
 ~~~
 @@ @@
 
+---
 
+**Note:** Julia comes with a built-in package manager which downloads and installs packages from the Internet. In doing so, it necessarily reveals your public [IP address](https://en.wikipedia.org/wiki/IP_address) to any server you connect to, and service providers may log your IP address. In Julia versions 1.5 and higher, by default the package manager connects to <https://pkg.julialang.org>, a free public service operated by the Julia project to serve open source package resources to Julia users. This service retains IP address logs for up to 30 days.
+
+---
 
 ## JSON release feed
 
