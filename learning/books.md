@@ -2,6 +2,7 @@
 
 @@tight-list
 * Jose Storopoli, Rik Huijzer and Lazaro Alonso. [Julia Data Science](https://amazon.com/dp/B09KMRKQ96), October 2021. The book is also available freely as static HTML and PDF at [juliadatascience.io](https://juliadatascience.io).
+* Stanley H. Chan. [Intro to Probability for Data Science](https://www.amazon.com/Introduction-Probability-Data-Science-Stanley/dp/1607857464/), November 2021. The book is also available freely as HTML and PDF at [probability4datascience.com](https://probability4datascience.com/index.html). Code is in Julia/Python/R/Matlab.
 * Sambit Kumar Dash. [Hands-on Julia Programming](https://in.bpbonline.com/products/hands-on-julia-programming), Bpb Publications, October 2021.
 * Erik Engheim. [Julia for Beginners](https://leanpub.com/julia-for-beginners), January 2021.
 * Lee Phillips. [Applied Julia](https://lee-phillips.org/juliabook/), Late 2021. Comments welcome.
