@@ -4,9 +4,9 @@
 <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
 ~~~
 
-Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia for your research, please do [cite us](https://julialang.org/research/).
+Do star us [on GitHub](https://github.com/JuliaLang/julia) and consider [sponsoring](https://github.com/sponsors/julialang) us. If you use Julia in your research, please do [cite us](https://julialang.org/research/).
 
-We provide several ways for you to run Julia:
+We provide several ways for you to download and run Julia:
 
 * In the terminal using the built-in Julia command line using the binaries provided below.
 * Using [Docker](https://docs.docker.com/) images from [Docker Hub](https://hub.docker.com/_/julia) maintained by the [Docker Community](https://github.com/docker-library/julia).
