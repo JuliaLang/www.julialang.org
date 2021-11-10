@@ -537,4 +537,4 @@ julia> let
 
 ## Conclusion
 
-Please enjoy the release, and as always [let us know](https://github.com/JuliaLang/julia/issues) if you encounter any problems or have any suggestions. We hope to be back in about four months to report on even more progress in version 1.8!
+Please enjoy the release, and as always [let us know](https://github.com/JuliaLang/julia/issues) if you encounter any problems or have any suggestions. We hope to be back in a few months to report on even more progress in version 1.8!
