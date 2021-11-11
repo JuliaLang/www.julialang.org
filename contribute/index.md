@@ -1,11 +1,13 @@
 
-![](../_assets/images/open_source_contribute.png)
-
 # Julia Ecosystem Contributor's Guide
+
+\fig{open_source_contribute.png}
+
+
 
 Welcome to the Julia Ecosystem Contributor’s Guide and to the community! 
 
-The purpose of this guide is **to help you get started** contributing to the Julia ecosystem. It contains information on the [benefits of becoming a Julia contributor](#why-contribute-to-the-julia-ecosystem) and the [tools](#tools) you need to get started. Also, you can find the different [contribution pathways](#contribution-pathways) that you can take and how to get [help](#get-help) from the community.
+The purpose of this guide is **to help you get started** contributing to the Julia ecosystem. It contains information on the [benefits of becoming a Julia contributor](#why_contribute_to_the_julia_ecosystem) and the [tools](#tools) you need to get started. Also, you can find the different [contribution pathways](#contribution_pathways) that you can take and how to get [help](#get_help) from the community.
 
 We **welcome** both **technical** and **nontechnical** contributions. Whether you are a **beginner** or a **seasoned developer**, you can always find a way to contribute to the Julia Ecosystem. 
 
@@ -50,7 +52,7 @@ We suggest the following paths as a starting point in your contribution journey:
      * [Contribute to an existing package](https://julialang.org/contribute/opportunities/).
        * Find a [help wanted](https://github.com/issues?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22) issue. 
        * Find a [good first](https://github.com/issues?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22+) issue.
-     * [Develop a new package](). kjdfsklfjdakflala
+     * [Develop a new package](/contribute/developing_package).
      * [Review a package submitted](https://github.com/JuliaRegistries/General/blob/master/CONTRIBUTING.md) to the [Julia Registry](https://github.com/JuliaRegistries/General).
      * File a bug report.
      * [Write tests](https://kshyatt.github.io/post/firstjuliapr/).
@@ -59,7 +61,7 @@ We suggest the following paths as a starting point in your contribution journey:
      * Create new documents: Write new sections of existing documentation, docstrings, and tutorials.
      * Improve existing documents: Update outdated documentation, fix typos and broken links.
 * **Help:** You can help spread the word about the Julia ecosystem:
-   * Read the [Julia Community - Standards](https://julialang.org/community/standards/).
+   * Read the [Code of Conduct](https://julialang.org/community/standards/).
    * Share a use case.
    * Write a blog post and submit it to the [Julia Language Blog Aggregator](https://www.juliabloggers.com/julia-bloggers-submit-feed/).
    * [Ask and answer questions](#ask-and-answer-questions) on Slack or Discourse.
