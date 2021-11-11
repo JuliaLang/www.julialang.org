@@ -1,6 +1,5 @@
 # How to develop a Julia package
-
-You can share your code with the community by developing a package. A package extends core Julia functionality. It contains modules, tests, and documentation. In this tutorial, you’ll learn how to develop a Julia package and register it to the [Julia General Registry](https://github.com/JuliaRegistries/General).  
+A package contains modules, tests, and documentation. It extends core Julia functionality. You can share your code with the community by developing a package. In this tutorial, you’ll learn how to develop a Julia package and register it to the [Julia General Registry](https://github.com/JuliaRegistries/General).  
 
 You can create a Julia package using the built-in package manager [PkgDev.jl](https://github.com/JuliaLang/PkgDev.jl) or the package [PkgTemplates.jl](https://invenia.github.io/PkgTemplates.jl/stable/). This example uses `PkgTemplates.jl` and is inspired in the video below:
 
@@ -8,7 +7,7 @@ You can create a Julia package using the built-in package manager [PkgDev.jl](ht
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QVmU29rCjaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
-Note that in the video, Chris Rackauckas uses Travis as a Continuous Integration (CI) tool. For this tutorial, we use [GitHub Actions](https://github.com/features/actions) instead which is the current preferred method.
+In the video, Chris Rackauckas uses Travis as a Continuous Integration (CI) tool. For this tutorial, we use [GitHub Actions](https://github.com/features/actions) instead which is the current preferred method.
 
 Moreover, this is a summary of the video above. If you want to see more details, we suggest that you watch the full video. To find further information on developing packages and contributing to existing ones, see the timestamps in the description of the video.
 
@@ -21,7 +20,7 @@ Before you begin developing a package, make sure you perform the following steps
 3. [Understand how modules work in Julia](https://docs.julialang.org/en/v1/manual/modules/).
 4. [Create a GitHub account](https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account) if you don’t have one already.
 
-**Note:** In case of any issues, remember you can [get help](..//contribute/#get_help) from the community.
+**Note:** In case of any issues, remember you can [get help](/contribute/#get_help) from the community.
 
 ## Step 1: Create your package
 
