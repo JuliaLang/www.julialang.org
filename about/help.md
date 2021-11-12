@@ -25,6 +25,8 @@
  - Check out the [packages page](/packages/) to browse the complete list of all registered Julia Packages.
 
 ## Want to contribute?
+
+ - To learn how to get started, see the [Contributor's Guide](/contribute).
  - To report a bug in core Julia, use the [Julia issue tracker on GitHub](https://github.com/JuliaLang/julia/issues).
  - To report a problem with this website, see the [issues section for the website repository](https://github.com/JuliaLang/www.julialang.org). 
  - To contribute a bug fix or other patch to core Julia, see the [Julia Developer's Guide](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md).
