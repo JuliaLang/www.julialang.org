@@ -26,7 +26,7 @@ Contributing to the Julia ecosystem brings the following benefits:
 ## Tools
 Before you start contributing to the Julia ecosystem, you need the following tools:
 
-* **Julia:** For more information on how to install Julia, see [Download Julia](https://julialang.org/downloads/).
+* **Julia:** For more information on how to install Julia, see [Download Julia](https://julialang.org/downloads/) or watch [Download Julia (in under 2.5 minutes)](https://www.youtube.com/watch?v=t67TGcf4SmM).
 * **IDE:** You can set one of the following IDEs as well as their extensions for developing in Julia:
    * [Julia for Visual Studio Code](https://www.julia-vscode.org/) (reccomended)
    * [IJulia](https://github.com/JuliaLang/IJulia.jl)
