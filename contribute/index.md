@@ -71,7 +71,6 @@ Contributing to the Julia ecosystem brings the following benefits:
  -->
   <div class="container pt-sm-2">
    <br><br>
-   <div class="container">
      <div class="row">
        <div class="col-lg-4 col-md-3 language-features"><hr/></div>
        <div class="col-lg-4 col-md-6 language-features section-heading">
@@ -107,7 +106,6 @@ Before you start contributing to the Julia ecosystem, you need the following too
   -->
 <div class="container-fluid alt-color packages">
   <br><br>
-  <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
       <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
@@ -159,7 +157,6 @@ We are also open to any suggestions or ideas that you might have. You can sugges
 
 ~~~
   <br>
-  </div>
  </div>
 ~~~
 
@@ -169,7 +166,6 @@ We are also open to any suggestions or ideas that you might have. You can sugges
  -->
  <div class="container pt-sm-2">
   <br>
-   <div class="container">
      <div class="row">
        <div class="col-lg-4 col-md-3 language-features"><hr/></div>
        <div class="col-lg-4 col-md-6 language-features section-heading">
@@ -207,7 +203,6 @@ A lot of documentation in the Julia-verse needs to be updated or fixed. You can 
 Some Julia organizations and packages are looking for help from the community. We have set up a curated list of Julia packages, organizations, and projects which have robust contributor guides. If you are interested in jumping in and contributing, then see the [Organizations and Packages](/contribute/opportunities) section.
 
 ~~~
-  </div>
  </div>
 <br>
 ~~~
@@ -218,7 +213,6 @@ Some Julia organizations and packages are looking for help from the community. W
   -->
 <div class="container-fluid alt-color packages">
   <br><br>
-  <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
       <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
@@ -240,7 +234,6 @@ The Julia community is more than happy to help you with any questions related to
 
 ~~~
   <br>
-  </div>
  </div>
 <br>
 ~~~
@@ -251,7 +244,6 @@ The Julia community is more than happy to help you with any questions related to
   -->
  <div class="container pt-sm-2">
   <br>
-   <div class="container">
      <div class="row">
        <div class="col-lg-4 col-md-3 language-features"><hr/></div>
        <div class="col-lg-4 col-md-6 language-features section-heading">
@@ -267,8 +259,6 @@ If you find this guide helpful, we would be grateful for a citation! (DOI to com
 
 ~~~
   <br>
-  </div>
  </div>
 <br>
-</div>
 ~~~
