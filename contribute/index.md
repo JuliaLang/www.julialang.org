@@ -245,6 +245,30 @@ The Julia community is more than happy to help you with any questions related to
 <br>
 ~~~
 
-## Citing this guide
+~~~
+<!--
+    Containers: Citing This Guide
+  -->
+ <div class="container pt-sm-2">
+  <br>
+   <div class="container">
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading" id="citing_this_guide">
+          <a href="#citing_this_guide" class="link">Citing This Guide</a>
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     </div>
+~~~
 
 If you find this guide helpful, we would be grateful for a citation! (DOI to come soon)
+
+~~~
+  <br>
+  </div>
+ </div>
+<br>
+</div>
+~~~
