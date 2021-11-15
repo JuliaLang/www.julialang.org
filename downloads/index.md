@@ -8,8 +8,8 @@ Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia
 
 We provide several ways to download and run Julia:
 
-* In the terminal using the built-in Julia command line using the binaries provided below.
-* Using [Docker](https://docs.docker.com/) images from [Docker Hub](https://hub.docker.com/_/julia) maintained by the [Docker Community](https://github.com/docker-library/julia).
+* In the terminal using the built-in Julia command line using the binaries provided on this page. [Video](https://www.youtube.com/watch?v=t67TGcf4SmM)
+* [Docker](https://docs.docker.com/) images from [Docker Hub](https://hub.docker.com/_/julia) maintained by the [Docker Community](https://github.com/docker-library/julia).
 
 Almost everyone should be downloading and using the latest stable release of Julia.
 Great care is taken not to break compatibility with older Julia versions, so older code should continue to work with the latest stable Julia release.
