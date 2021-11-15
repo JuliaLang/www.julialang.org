@@ -28,12 +28,11 @@ Before you start contributing to the Julia ecosystem, you need the following too
 
 * **Julia:** For more information on how to install Julia, see [Download Julia](https://julialang.org/downloads/).
 * **IDE:** You can set one of the following IDEs as well as their extensions for developing in Julia:
-   * [Julia for Visual Studio Code](https://www.julia-vscode.org/)
+   * [Julia for Visual Studio Code](https://www.julia-vscode.org/) (reccomended)
    * [IJulia](https://github.com/JuliaLang/IJulia.jl)
    * [Pluto.jl](https://github.com/fonsp/Pluto.jl)
    * [Julia-vim](https://github.com/JuliaEditorSupport/julia-vim)
    * [Emacs major mode for the Julia programming language](https://github.com/JuliaEditorSupport/julia-emacs)
-   * [Julia language support for Notepad++](https://github.com/JuliaEditorSupport/julia-NotepadPlusPlus)
 * **Knowledge of Git and how to create a pull request:** For more information on getting started with Git, see [Making a first Julia pull request](https://kshyatt.github.io/post/firstjuliapr/).
 
 ## Contribution Pathways
@@ -52,9 +51,10 @@ We suggest the following paths as a starting point in your contribution journey:
      * [Contribute to an existing package](https://julialang.org/contribute/opportunities/).
        * Find a [help wanted](https://github.com/issues?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22) issue. 
        * Find a [good first](https://github.com/issues?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22+) issue.
+       * Find a [hacktoberfest issue](https://juliacommunity.github.io/your-first-julia-pr/).
      * [Develop a new package](/contribute/developing_package).
      * [Review a package submitted](https://github.com/JuliaRegistries/General/blob/master/CONTRIBUTING.md) to the [Julia Registry](https://github.com/JuliaRegistries/General).
-     * File a bug report.
+     * [File a bug report](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md#how-to-file-a-bug-report).
      * [Write tests](https://kshyatt.github.io/post/firstjuliapr/).
      * Make a feature request.
    * **Documentation** 
