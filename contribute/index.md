@@ -1,9 +1,24 @@
 
-# Julia Ecosystem Contributor's Guide
-
 \fig{open_source_contribute.png}
 
-
+~~~
+<!--
+      Containers: Getting Started Section
+-->
+<br>
+ <br>
+ <div class="container pt-sm-2">
+   <div class="row">
+     <div class="col-lg-4 col-md-3 language-features "><hr/></div>
+     <div class="col-lg-4 col-md-6 language-features section-heading">
+       <h2 class="lead secondary-heading" id="getting_started">
+         <a href="#getting_started" class="link">Getting Started</a>
+       </h2>
+     </div>
+     <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+   </div>
+   <br>
+~~~
 
 Welcome to the Julia Ecosystem Contributor’s Guide and to the community! 
 
@@ -11,7 +26,29 @@ The purpose of this guide is **to help you get started** contributing to the Jul
 
 We **welcome** both **technical** and **nontechnical** contributions. Whether you are a **beginner** or a **seasoned developer**, you can always find a way to contribute to the Julia Ecosystem. 
 
-## Why contribute to the Julia Ecosystem?
+~~~
+   <br>
+</div>
+~~~
+
+~~~
+<!--
+      Containers: Why Contribute
+ -->
+ <div class="container-fluid alt-color packages">
+   <br><br>
+   <div class="row">
+     <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+     <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+       <h2 class="lead secondary-heading" id="why_contribute">
+         <a href="#why_contribute" class="ecosystem">Why contribute to the Julia Ecosystem?</a>
+       </h2>
+     </div>
+     <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+   </div>
+
+   <br>
+~~~
 
 You can make a difference to one of the most quickly growing languages and the future of open-source software as a whole. Open source projects rely on contributions from volunteers. Contributions enable both the project and volunteers to grow and develop. No matter how you contribute to the Julia ecosystem, it will be a great experience for you.
 
@@ -23,7 +60,31 @@ Contributing to the Julia ecosystem brings the following benefits:
 * Gain visibility for your package.
 * Help others level up their Julia skills.
 
-## Tools
+~~~
+   <br>
+ </div>
+~~~
+
+~~~
+ <!--
+      Containers: Tools
+ -->
+  <div class="container pt-sm-2">
+   <br><br>
+   <div class="container">
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading" id="tools">
+          <a href="#tools" class="link">Tools</a>
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     </div>
+
+     <br>
+~~~
+
 Before you start contributing to the Julia ecosystem, you need the following tools:
 
 * **Julia:** For more information on how to install Julia, see [Download Julia](https://julialang.org/downloads/) or watch [Download Julia (in under 2.5 minutes)](https://www.youtube.com/watch?v=t67TGcf4SmM).
@@ -34,6 +95,32 @@ Before you start contributing to the Julia ecosystem, you need the following too
    * [Julia-vim](https://github.com/JuliaEditorSupport/julia-vim)
    * [Emacs major mode for the Julia programming language](https://github.com/JuliaEditorSupport/julia-emacs)
 * **Knowledge of Git and how to create a pull request:** For more information on getting started with Git, see [Making a first Julia pull request](https://kshyatt.github.io/post/firstjuliapr/).
+
+~~~
+ </div>
+<br>
+~~~
+
+~~~
+<!--
+    Containers: Contribution Pathways
+  -->
+<div class="container-fluid alt-color packages">
+  <br><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+        <h2 class="lead secondary-heading" id="contribution_pathways">
+          <a href="#contribution_pathways" class="ecosystem">
+            Contribution Pathways
+          </a>
+        </h2>
+      </div>
+      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+    </div>
+    <br>
+~~~
 
 ## Contribution Pathways
 
@@ -70,7 +157,31 @@ We suggest the following paths as a starting point in your contribution journey:
 
 We are also open to any suggestions or ideas that you might have. You can suggest your ideas to the community. We will do our best to help you bring it to life!
 
-### Contribution Ideas
+~~~
+  <br>
+  </div>
+ </div>
+~~~
+
+~~~
+<!--
+      Containers: Contribution Ideas
+ -->
+ <div class="container pt-sm-2">
+  <br>
+   <div class="container">
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading" id="contribution_ideas">
+          <a href="#contribution_ideas" class="link">Contribution Ideas</a>
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     </div>
+
+     <br>
+~~~
 
 If you are still unsure how to get started, then you can have a look at the following list of ideas for your first contribution.
 
@@ -95,13 +206,44 @@ A lot of documentation in the Julia-verse needs to be updated or fixed. You can 
 
 Some Julia organizations and packages are looking for help from the community. We have set up a curated list of Julia packages, organizations, and projects which have robust contributor guides. If you are interested in jumping in and contributing, then see the [Organizations and Packages](/contribute/opportunities) section.
 
-## Get Help
+~~~
+  </div>
+ </div>
+<br>
+~~~
+
+~~~
+<!--
+    Containers: Get Help
+  -->
+<div class="container-fluid alt-color packages">
+  <br><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+        <h2 class="lead secondary-heading" id="get_help">
+          <a href="#get_help" class="ecosystem">Get Help</a>
+        </h2>
+      </div>
+      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+    </div>
+    <br>
+~~~
+
 The Julia community is more than happy to help you with any questions related to your contribution. You can get help in any of the following channels:
 
 * [Official Julia Slack](https://julialang.org/slack/): The community uses Julia Slack for informal communications. However, bear in mind that messages disappear over time because of the limits of the free version of Slack.  
 * [Julia Discourse forum](https://discourse.julialang.org/): The community discusses Julia development in the Discourse forum. In general, we recommend asking technical questions on Discourse. Questions and answers posted on Discourse remain on the web and public indefinitely. 
 * [Julia FAQ](https://docs.julialang.org/en/v1/manual/faq/): In the Frequently Asked Questions section of the [Julia Documentation](https://docs.julialang.org/en/v1/), you can find answers to the most common questions from Julia beginners. 
 * [StackOverflow](https://stackoverflow.com/questions/tagged/julia): It has a growing number of Julia questions and answers.
+
+~~~
+  <br>
+  </div>
+ </div>
+<br>
+~~~
 
 ## Citing this guide
 
