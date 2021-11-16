@@ -23,7 +23,6 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 * [JuliaDocs](https://github.com/juliadocs) – Documentation-related packages for Julia ([Gitter](https://gitter.im/juliadocs/users))
 * [JuliaEditorSupport](https://github.com/JuliaEditorSupport) – Extensions/Plugins for text editors and IDEs
 * [JuliaImages](https://github.com/JuliaImages) – Julia packages for image processing
-* [JuliaInterop](https://github.com/JuliaInterop)
 * [JuliaPackaging](https://github.com/JuliaPackaging) – Tooling for Julia's binary packages and dependencies
 * [JuliaPraxis](https://github.com/JuliaPraxis) – Best practices ([Gitter](https://gitter.im/JuliaPraxis))
 * [JuliaPy](https://github.com/JuliaPy) – Software that connects the Julia and Python languages.
