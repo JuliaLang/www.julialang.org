@@ -194,6 +194,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
       </td>
       </td>
     </tr>
+    <!--
     <tr>
       <th> Generic Linux on PowerPC <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-ppc64le.tar.gz">64-bit (little endian)</a>
@@ -202,6 +203,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
       <td colspan="3">
       </td>
     </tr>
+    -->
     <tr>
       <th> Generic FreeBSD on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-freebsd-x86_64.tar.gz">64-bit</a>
