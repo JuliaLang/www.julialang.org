@@ -88,7 +88,7 @@ In order to issue such a warning, Pkg would need to know what Julia version gene
 What was done in version 1.7 was to change this manifest format so that all dependencies are instead put under a common `[deps]` key. This frees up the global namespace so that a `julia_version` entry can be added. It also opens up the possibility of adding future useful data to the manifest. The ability to read such manifests will also be backported to Julia 1.6 and thus be in Julia 1.6.2 and forward. Pkg will also keep the format of an existing manifest so only new manifests will have the new manifest format going forward.
 
 
-### Improved performance for handling registries on Windows and NFSs
+### Improved performance for handling registries on Windows and distributed file systems
 
 *Kristoffer Carlsson*
 
@@ -97,7 +97,7 @@ We noticed some complaints about the speed of the Julia package manager (Pkg) on
 [The General registry](https://github.com/JuliaRegistries/General) is the default registry that Pkg uses to look up information about packages. It is structured such that each package has four different TOML files. As of writing, General contains 5761 packages which means that it contains approximately 23 000 files. There are two ways for Pkg to get updates for a registry, either via the git-protocol or via HTTPS using something called the "Pkg Server", which is a community-driven way of hosting packages and registries where the registry is downloaded as a compressed tarball. There were reports that on Windows the initial download of the General registry would take on the order of minutes while on Linux and macOS it typically takes a few seconds. The main cause of the slow down was diagnosed to be Windows Defender causing slowdowns upon closing files which hits very hard when extracting 23 000 small files. The Rust community [faces a similar issue](https://github.com/rust-lang/rustup/issues/1540) when it comes to uncompressing their documentation. This problem is described in more detail [in this blog post](https://gregoryszorc.com/blog/2021/04/06/surprisingly-slow/) and suggests that using a thread pool just for closing files can significantly improve performance.
 
 Instead of using a thread pool to speed up closing files, we decided to take a different route.
-Julia comes bundled with [p7zip](http://p7zip.sourceforge.net/) and together with the standard library [`Tar.jl`](https://github.com/JuliaIO/Tar.jl) it is possible to directly read the compressed tarball into memory without materializing any files at all. By doing so the problem of materializing files is obliviated which significantly improves the performance of the registry on Windows and NFS.
+Julia comes bundled with [p7zip](http://p7zip.sourceforge.net/) and together with the standard library [`Tar.jl`](https://github.com/JuliaIO/Tar.jl) it is possible to directly read the compressed tarball into memory without materializing any files at all. By doing so the problem of materializing files is obliviated which significantly improves the performance of the registry on Windows, NFS and other distributed file systems, such as those typically employed in HPC systems.
 
 As an example, we can see the effect on a "clean" system when installing the Example package from scratch. First, with the old methods of uncompressing all files (~30 seconds):
 
