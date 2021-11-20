@@ -7,7 +7,7 @@ You don't need to be a seasoned developer to help Julia grow and improve. Anyone
 - Where you can find ideas for fixes to propose in your first contribution.
 
 ## Why should you contribute to Julia?
-There is a spectrum of benefits to contributing - some more obvious than others. Open source projects rely on contributions from volunteers, enabling them to grow and develop. You will be making a difference to one of the most quickly growing languages, and the future of open-source software as a whole. Benefits of contributing:  
+There is a spectrum of benefits to contributing - some more obvious than others. Open source projects rely on contributions from volunteers, enabling them to grow and develop. You will be making a difference to one of the most quickly growing languages, and the future of open-source software as a whole. Benefits of contributing:
 
 - engage with the community,
 - build a track record of public contributions (such as on GitHub) which will help your career,
@@ -71,7 +71,7 @@ If by this point you are convinced that contributing is for you, but don't know 
 
 ### Find a README file to edit
 
-There are plenty of documentation files in the Julia-verse on GitHub, and typos are so easy to make! You can help clean up documentation by correcting typos, fixing broken links, replacing the mentions of outdated packages and legacy code by their updated and working versions. 
+There are plenty of documentation files in the Julia-verse on GitHub, and typos are so easy to make! You can help clean up documentation by correcting typos, fixing broken links, replacing the mentions of outdated packages and legacy code by their updated and working versions.
 
 - pre-requisites: GitHub account, text editor with spell checking (e.g. MS Word, Google docs)
 - estimated time: 1h
@@ -122,9 +122,4 @@ The list of packages all registered, organized *alphabetically*, can be found at
 
 ## What are the IDE options?
 
-An integrated development environment (IDE) can help make software development easier. Some options include
-- [Juno](https://junolab.org/)
-- [VSCode](https://code.visualstudio.com/download)
-- [Atom](https://atom.io/)
-- [Jupyter notebooks](https://jupyter.org/install)
-- [Pluto.jl](https://plutojl.org)
+See the Editors and IDEs section on [Julialang.org](https://julialang.org).

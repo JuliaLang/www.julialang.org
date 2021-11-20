@@ -88,6 +88,19 @@ blc https://julialang.org -ro
 
 (it takes a while, and may require you to do it in several steps).
 
+## Add languages for syntax highlighting
+
+Franklin uses [highlight.js](https://highlightjs.org/) for syntax highlighting. To add a
+new language to the library used by this webpage, recompile the library add add a the new
+language to the list. From the root of the highlight.js repo:
+
+```
+$ node tools/build.js bash c diff javascript json julia julia-repl plaintext python ruby shell ini yaml
+```
+
+Copy the library from `build/highlight.min.js` to `_libs/highlight/highlight.min.js` in this repository.
+
+
 ## FAQ
 
 ### tight lists
