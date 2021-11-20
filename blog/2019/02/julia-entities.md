@@ -2,7 +2,7 @@
 @def rss = """ The Julia Project and Its Entities | There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. It’s pretty hard to know about these things without being in the thick of it. In this blog post I’ll... """
 @def published = "12 February 2019"
 @def title = "The Julia Project and Its Entities"
-@def authors = """<a href="https://github.com/StefanKarpinski">Stefan Karpinski</a>"""  
+@def authors = """<a href="https://github.com/StefanKarpinski">Stefan Karpinski</a>"""
 
 There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. It’s pretty hard to know about these things without being in the thick of it. In this blog post I’ll give an overview of these groups and how they’re related to the project.
 
@@ -10,7 +10,7 @@ There are a number of entities surrounding the Julia programming language. Under
 
 ## Julia
 
-The Julia project was founded by [Jeff Bezanson](https://github.com/JeffBezanson), [Alan Edelman](https://en.wikipedia.org/wiki/Alan_Edelman), [Viral Shah](https://en.wikipedia.org/wiki/Viral_B._Shah) and myself ([Stefan Karpinski](https://en.wikipedia.org/wiki/Stefan_Karpinski)). It consists of some code and a community of people who work on that code. The most clear cut line that can be drawn is that there is a set of people who have commit access to the [JuliaLang](https://github.com/JuliaLang) GitHub organization: there are currently 67 committers (36 active and 31 dormant). This set of people doesn’t really define the project, however, since there are many people who are prolific contributors to the Julia ecosystem but who do not have “commit bit.” The communal nature of open source makes it difficult to precisely define where the Julia project ends and the greater community begins, which is exactly how we like it.
+The Julia project was founded by [Jeff Bezanson](https://github.com/JeffBezanson) ([GitHub](https://github.com/JeffBezanson), [Twitter](https://twitter.com/JeffBezanson)), [Alan Edelman](https://en.wikipedia.org/wiki/Alan_Edelman), [Viral B. Shah](https://en.wikipedia.org/wiki/Viral_B._Shah) ([Github](https://github.com/ViralBShah), [Twitter](https://twitter.com/Viral_B_Shah)) and [Stefan Karpinski](https://en.wikipedia.org/wiki/Stefan_Karpinski) ([Github](https://github.com/StefanKarpinski), [Twitter](https://twitter.com/StefanKarpinski)). It consists of some code and a community of people who work on that code. The most clear cut line that can be drawn is that there is a set of people who have commit access to the [JuliaLang](https://github.com/JuliaLang) GitHub organization: there are currently 67 committers (36 active and 31 dormant). This set of people doesn’t really define the project, however, since there are many people who are prolific contributors to the Julia ecosystem but who do not have “commit bit.” The communal nature of open source makes it difficult to precisely define where the Julia project ends and the greater community begins, which is exactly how we like it.
 
 ## Julia Stewards
 
