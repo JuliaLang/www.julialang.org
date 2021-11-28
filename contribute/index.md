@@ -22,7 +22,7 @@
 
 Welcome to the Julia Ecosystem Contributor’s Guide and to the community! 
 
-The purpose of this guide is **to help you get started** contributing to the Julia ecosystem. It contains information on the [benefits of becoming a Julia contributor](#why_contribute_to_the_julia_ecosystem) and the [tools](#tools) you need to get started. Also, you can find the different [contribution pathways](#contribution_pathways) that you can take and how to get [help](#get_help) from the community.
+The purpose of this guide is **to help you get started** contributing to the Julia ecosystem. It contains information on the [benefits of becoming a Julia contributor](#why_contribute) and the [tools](#tools) you need to get started. Also, you can find the different [contribution pathways](#contribution_pathways) that you can take and how to get [help](#get_help) from the community.
 
 We **welcome** both **technical** and **nontechnical** contributions. Whether you are a **beginner** or a **seasoned developer**, you can always find a way to contribute to the Julia Ecosystem. 
 
