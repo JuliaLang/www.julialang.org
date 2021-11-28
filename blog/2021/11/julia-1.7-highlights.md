@@ -33,11 +33,20 @@ It took a bit of debate for all of us to be comfortable spending precious bytes 
 objects this way, but we are huge fans of reproducibility and so the proposal was eventually
 adopted.
 
-## New atomic support
+## New Threading Capabilities
 *Jameson Nash*
 
-Atomic accessors support have been expanded to provide more efficient build-blocks for working with threads.
-A summary of the new functionalities was presented at JuliaCon and can be found [here](https://www.youtube.com/watch?v=2rBv6sV4Xts)
+The last few releases have been big ones for multithreading-demanding programs in Julia. This release is no exception: we've addressed numerous race conditions in the runtime, chased down synchronization mistakes, refined support for scheduling workloads on multiple threads, made the default random number generator more thread-friendly, and added atomics as a primitive language feature!
+
+Support for atomic access to mutable struct fields has been added to provide more efficient build-blocks for working with threads via a set of `@atomic` macros, and their corresponding generic functions. A summary of the new functionalities was presented at JuliaCon and can be found [on youtube](https://www.youtube.com/watch?v=2rBv6sV4Xts). This work is based on the "Atomics Manifesto" that described how we envisioned threading to be a key part of the language's future, links to which can be found in the [Julia manual on multi-threading with per-field atomics](https://docs.julialang.org/en/v1.7/manual/multi-threading/#man-atomics)
+
+We are very excited about this. We've already seen some packages in the ecosystem building about this foundation to provide thread-safe abstractions:
+
+* [JuliaConcurrent/ConcurrentCollections.jl](https://github.com/JuliaConcurrent/ConcurrentCollections.jl): queues and dictionaries for shared state.
+* [JuliaActors/Actors.jl](https://github.com/JuliaActors/Actors.jl/blob/master/README.md): patterns for making concurrency easy to understand and reason about.
+* [tkf/ThreadsX.jl](https://github.com/tkf/ThreadsX.jl): Parallelized versions of some Base functions.
+* [JuliaFolds/Transducers.jl](https://juliafolds.github.io/Transducers.jl/dev/parallelism/#overview-parallel): thread-based (foldxt) and process-based (foldxd) parallelisms with the same composable API; i.e. transducers.
+* [JuliaFolds/FLoops.jl](https://github.com/JuliaFolds/FLoops.jl/blob/master/README.md): generates a fast generic sequential and parallel iteration over complex collections.
 
 ## Package Manager
 
