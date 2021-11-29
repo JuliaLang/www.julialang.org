@@ -10,9 +10,9 @@
 @def author = ""
 
 <!-- Templating of the Downloads -->
-@def stable_release = "1.6.4"
-@def stable_release_short = "1.6"
-@def stable_release_date = "Nov 19, 2021"
+@def stable_release = "1.7.0"
+@def stable_release_short = "1.7"
+@def stable_release_date = "Dec ??, 2021"
 @def lts_release = "1.0.5"
 @def lts_release_short = "1.0"
 @def lts_release_date = "Sep 9, 2019"
