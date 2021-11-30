@@ -61,7 +61,8 @@ You can launch Julia by opening the Julia app [like any other application](https
 If you want to launch Julia from the command line, first [open a new terminal window](https://www.howtogeek.com/682770/how-to-open-the-terminal-on-a-mac/), then run the following snippet from your [shell](https://superuser.com/questions/144666/what-is-the-difference-between-shell-console-and-terminal) (e.g., using the Terminal app, not inside the Julia prompt).
 
 ~~~
-<pre><code class="language-shell">rm -f /usr/local/bin/julia
+<pre><code class="language-shell">mkdir -p /usr/local/bin
+rm -f /usr/local/bin/julia
 sudo ln -s /Applications/Julia-{{stable_release_short}}.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia</code></pre>
 ~~~
 
