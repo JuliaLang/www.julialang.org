@@ -2,6 +2,10 @@
 mintoclevel = 2
 maxtoclevel = 2
 title = "Julia 1.7 Highlights"
+authors = "..."
+published = "30 November 2021"
+rss_pubdate = Date(2021, 11, 30)
+rss = """Some highlights of the Julia 1.7 release."""
 +++
 
 After 4 betas and 3 release candidates, Julia version 1.7 has finally been released. We would like to thank all the contributors to this release and all the testers that helped with finding regressions and issues in the pre-releases. Without you, this release would not have been possible.
