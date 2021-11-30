@@ -255,7 +255,7 @@ The Julia community is more than happy to help you with any questions related to
      </div>
 ~~~
 
-If you find this guide helpful, we would be grateful if you would tag us in any contribution on GitHub that this guide helped youy make: `@JuliaContributorBot` or in any papers this helped you write: `DOI: 10.13140/RG.2.2.24478.46407`
+If you find this guide helpful, we would be grateful if you would tag us in any contribution on GitHub that this guide helped you make: `@JuliaContributorBot` or in any papers this helped you write: `DOI: 10.13140/RG.2.2.24478.46407`
 
 ~~~
   <br>
