@@ -2,7 +2,7 @@
 mintoclevel = 2
 maxtoclevel = 2
 title = "Julia 1.7 Highlights"
-authors = "..."
+authors = "Jeff Bezanson, Jameson Nash, Ian Butterworth, Kristoffer Carlsson, Shuhei Kadowaki, Elliot Saba, Viral B Shah, Mosè Giordano, Simeon Schaub, Nicholas Bauer, Keno Fischer"
 published = "30 November 2021"
 rss_pubdate = Date(2021, 11, 30)
 rss = """Some highlights of the Julia 1.7 release."""
