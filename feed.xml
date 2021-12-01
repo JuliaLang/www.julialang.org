@@ -6,6 +6,14 @@
   <link>https://julialang.org/</link>
   <atom:link href="https://julialang.org/feed.xml" rel="self" type="application/rss+xml" />
   <item>
+    <title><![CDATA[Julia 1.7 Highlights]]></title>
+    <link>https://julialang.org/blog/2021/11/julia-1.7-highlights/</link>
+    <description><![CDATA[Some highlights of the Julia 1.7 release.
+<br><a href="https://julialang.org/blog/2021/11/julia-1.7-highlights/">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2021/11/julia-1.7-highlights/</guid>
+    <pubDate>Tue, 30 Nov 2021 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title><![CDATA[Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs]]></title>
     <link>https://julialang.org/blog/2021/10/DEQ/</link>
     <description><![CDATA[Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs
