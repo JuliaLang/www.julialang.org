@@ -276,6 +276,60 @@ nor maintained anymore.
 </table>
 ~~~
 
+## v1.0.5 (Sep 9, 2019)
+
+~~~
+<table class="downloads table table-hover table-bordered">
+  <tbody>
+    <tr>
+      <th> Windows <a href="/downloads/platform/#windows">[help]</a></th>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.0/julia-1.0.5-win64.exe">64-bit (installer)</a> </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.0/julia-1.0.5-win32.exe">32-bit (installer)</a> </td>
+    </tr>
+    <tr>
+      <th> macOS <a href="/downloads/platform/#macos">[help]</a></th>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.0/julia-1.0.5-mac64.dmg">64-bit</a> </td>
+      <td colspan="3"> </td>
+    </tr>
+    <tr>
+      <th> Generic Linux on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.5-linux-x86_64.tar.gz">64-bit</a>
+          (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.5-linux-x86_64.tar.gz.asc">GPG</a>)
+      </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.0/julia-1.0.5-linux-i686.tar.gz">32-bit</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.0/julia-1.0.5-linux-i686.tar.gz.asc">GPG</a>)
+      </td>
+    </tr>
+    <tr>
+      <th> Generic Linux on ARM <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.0/julia-1.0.5-linux-aarch64.tar.gz">64-bit (AArch64)</a>
+          (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.0/julia-1.0.5-linux-aarch64.tar.gz.asc">GPG</a>)
+      </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.0/julia-1.0.5-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.0/julia-1.0.5-linux-armv7l.tar.gz.asc">GPG</a>)
+      </td>
+    </tr>
+    <tr>
+      <th> Generic FreeBSD on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.0/julia-1.0.5-freebsd-x86_64.tar.gz">64-bit</a>
+          (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.0/julia-1.0.5-freebsd-x86_64.tar.gz.asc">GPG</a>)
+      </td>
+      <td colspan="3"> </td>
+    </tr>
+    <tr>
+      <th> Source </th>
+      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v1.0.5/julia-1.0.5.tar.gz">Tarball</a>
+            (<a href="https://github.com/JuliaLang/julia/releases/download/v1.0.5/julia-1.0.5.tar.gz.asc">GPG</a>)
+      </td>
+      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v1.0.5/julia-1.0.5-full.tar.gz">Tarball with dependencies</a>
+        (<a href="https://github.com/JuliaLang/julia/releases/download/v1.0.5/julia-1.0.5-full.tar.gz.asc">GPG</a>)
+      </td>
+      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/v1.0.5">GitHub</a> </td>
+    </tr>
+  </tbody>
+</table>
+~~~
+
 ## v0.7.0 (Aug 8, 2018)
 
 Julia v0.7.0 is a transitional release, intended to aid users in transitioning from 0.6 to 1.0.
