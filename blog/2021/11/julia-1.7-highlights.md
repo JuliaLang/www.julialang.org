@@ -509,7 +509,7 @@ For fun, here's an example of how you could use this syntax to generate a Sudoku
 
 *Simeon Schaub*
 
-One fairly simple but hopefully useful new syntax addition is support for destructuring objects not only by iteration, but also by property name. This is modeled after the `(; a b)` syntax added in 1.5 for constructing `NamedTuple`s whose field names correspond to the used variable names.
+Another new syntax addition is support for destructuring objects not only by iteration, but also by property name. This is modeled after the `(; a b)` syntax added in 1.5 for constructing `NamedTuple`s whose field names correspond to the used variable names.
 
 A simple example of how this syntax can be used:
 
