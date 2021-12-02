@@ -218,7 +218,7 @@ and boundary cases.
 
 **Expected Results**: New and faster methods for evaluating properties of special functions.
 
-**Mentors:** [Steven Johnson](https://github.com/stevengj). Ask on Discourse or on slack
+**Mentors:** [Steven Johnson](https://github.com/stevengj), [Oscar Smith](https://github.com/oscardssmith). Ask on Discourse or on slack
 
 ### A Julia-native CCSA optimization algorithm
 
