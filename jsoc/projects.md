@@ -9,6 +9,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [DeepChem.jl](/jsoc/gsoc/deepchem/) – Machine learning for atomic systems in Julia
 * [DFTK.jl](/jsoc/gsoc/dftk/) – Density-functional theory in Julia
 * [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.
+* [Loop Optimization](/jsoc/gsoc/loopopt/) - Loop analysis and optimization
 * [Flux.jl](/jsoc/gsoc/flux/) - A flexible deep learning library.
 * [GeoStats.jl](/jsoc/gsoc/GeoStats/) - An extensible framework for high-performance geostatistics in Julia.
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
