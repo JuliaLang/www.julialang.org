@@ -6,19 +6,11 @@
 
 Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](https://julialang.org/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
 
-Almost everyone should be downloading and using the latest stable release of Julia.
-Great care is taken not to break compatibility with older Julia versions, so older code should continue to work with the latest stable Julia release.
-You should *only* be using the long-term support (LTS) version of Julia if you work at an organization where implementing or certifying upgrades is prohibitively expensive and there is no need for new language features or packages. See this description of ["Risk Personas"](https://julialang.org/blog/2019/08/release-process/#risk_tolerance_personas) for more detail on who should be using what versions of Julia based on their risk tolerance. See this blog post on [Julia's Release Process](https://julialang.org/blog/2019/08/release-process/) for more information on different kinds of releases.
-
 ---
 
 <!--
 IF YOU'RE THINKING ABOUT REMOVING THIS NOTE, DON'T. ACCORDING TO OUR LAWYERS, THIS NEEDS TO BE HERE TO COMPLY WITH THE GDPR. YES, IT'S STUPID. I DON'T MAKE THE RULES.
 -->
-
-**Note:** Julia comes with a built-in package manager which downloads and installs packages from the Internet. In doing so, it necessarily reveals your public [IP address](https://en.wikipedia.org/wiki/IP_address) to any server you connect to, and service providers may log your IP address. In Julia versions 1.5 and higher, by default the package manager connects to <https://pkg.julialang.org>, a free public service operated by the Julia project to serve open source package resources to Julia users. This service retains IP address logs for up to 31 days.
-
----
 
 ~~~
 <h2 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h2>
@@ -98,6 +90,11 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
 </table>
 ~~~
 @@ @@
+
+Almost everyone should be downloading and using the latest stable release of Julia.
+Great care is taken not to break compatibility with older Julia versions, so older code should continue to work with the latest stable Julia release.
+You should *only* be using the long-term support (LTS) version of Julia if you work at an organization where implementing or certifying upgrades is prohibitively expensive and there is no need for new language features or packages. See this description of ["Risk Personas"](https://julialang.org/blog/2019/08/release-process/#risk_tolerance_personas) for more detail on who should be using what versions of Julia based on their risk tolerance. See this blog post on [Julia's Release Process](https://julialang.org/blog/2019/08/release-process/) for more information on different kinds of releases.
+
 
 
 ~~~
@@ -329,7 +326,7 @@ The platforms currently supported by Julia are listed below. They are divided in
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
-      <td> 8+ </td>
+      <td> 8.1+ </td>
       <td> i686 (32-bit) / x86-64 (64-bit) </td>
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
@@ -400,3 +397,7 @@ The platforms currently supported by Julia are listed below. They are divided in
 ## JSON release feed
 
 The info above is also available as a [JSON file](https://julialang-s3.julialang.org/bin/versions.json) ([schema](https://julialang-s3.julialang.org/bin/versions-schema.json)). It may take up to two hours after the release of a new version for it to be included in the JSON file.
+
+---
+
+**Note:** Julia comes with a built-in package manager which downloads and installs packages from the Internet. In doing so, it necessarily reveals your public [IP address](https://en.wikipedia.org/wiki/IP_address) to any server you connect to, and service providers may log your IP address. In Julia versions 1.5 and higher, by default the package manager connects to <https://pkg.julialang.org>, a free public service operated by the Julia project to serve open source package resources to Julia users. This service retains IP address logs for up to 31 days.
