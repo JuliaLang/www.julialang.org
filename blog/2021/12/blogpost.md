@@ -242,10 +242,9 @@ For more details, please visit the [Dagger documentation](https://juliaparallel.
 
 # Some caveats
 
-There are some pending PRs that haven't been merged into Julia yet that improve the thread safety of `Distributed`, which directly affects `Dagger.jl` stability. The user experience may be interrupted when extensively using the `DTable` in a threaded or mixed environment by occasional hangs or crashes.
+There are some pending PRs that haven't been merged into Julia yet that improve the thread safety of `Distributed`, which directly affects `Dagger.jl` stability. The user experience may occasionally be interrupted when extensively using the `DTable` in a threaded or mixed environment by occasional hangs or crashes.
 
-For best experience we recommend using Julia master, but
-we hope to include all the necessary fixes in future patches to Julia 1.7.
+We hope to include all the necessary fixes in future patches to Julia 1.7.
 
 # Conclusion
 
