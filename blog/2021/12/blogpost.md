@@ -1,7 +1,7 @@
 
-@def rss_pubdate = Date(2021, 12, 01)
+@def rss_pubdate = Date(2021, 12, 04)
 @def rss = """DTable – an early performance assessment of a new distributed table implementation"""
-@def published = "01 December 2021"
+@def published = "04 December 2021"
 @def title = "DTable – an early performance assessment of a new distributed table implementation"
 @def authors = """Krystian Guliński""" 
 
@@ -96,7 +96,7 @@ Benchmarks were performed on a desktop with the following specifications:
 
 All configurations were ran using an environment with 1 worker and 16 threads.
 
-The data used for the experiments were prepared as follows:
+The data used for the experiments was prepared as follows:
 - column count: $4$ (to allow for a distinction between single and all column benchmarks)
 - row count: $n$
 - row value type: `Int32`
@@ -172,7 +172,7 @@ DTable command: `reduce(fit!, d, init=Variance())`
 
 A table shuffle is definitely one of the most demanding operations that can be performed on a table, so that's why it was tackled early to evaluate whether the current technology stack makes it feasible to run such operations.
 
-In the following benchmarks, the performance of `groupby` (shuffle) and grouped `reduce` are put to the test. Other operations like `map` and `filter` are also available for the `GDTable` (grouped `DTable`), but they work in the same way if they were performed on a `DTable`, so previously shown benchmarks still apply.
+In the following benchmarks, the performance of `groupby` (shuffle) and grouped `reduce` are put to the test. Other operations like `map` and `filter` are also available for the `GDTable` (grouped `DTable`), but they work in the same way as if they were performed on a `DTable`, so previously shown benchmarks still apply.
 
 The following benchmarks include results obtained in tests with varying `unique_values` counts, since the number of them directly affects the number of groups generated through the grouping operation.
 
@@ -244,7 +244,8 @@ For more details, please visit the [Dagger documentation](https://juliaparallel.
 
 There are some pending PRs that haven't been merged into Julia yet that improve the thread safety of `Distributed`, which directly affects `Dagger.jl` stability. The user experience may be interrupted when extensively using the `DTable` in a threaded or mixed environment by occasional hangs or crashes.
 
-We hope to include all the necessary fixes in the upcoming Julia 1.7 release.
+For best experience we recommend using Julia master, but
+we hope to include all the necessary fixes in future patches to Julia 1.7.
 
 # Conclusion
 
