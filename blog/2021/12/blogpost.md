@@ -89,7 +89,9 @@ Negative values mean a slowdown versus the competitor, by that percentage.
 
 ## Benchmark configuration
 
-Benchmarks were performed on a desktop with the following specifications:
+Benchmark code and raw results can be found in [this repository](https://github.com/krynju/dtable_benchmarks).
+
+All benchmark runs were performed on a desktop with the following specifications:
 - CPU: Ryzen 5800X 8 cores / 16 threads
 - Memory: 32 GB DDR4 RAM
 - Julia: master/1.8 (custom branch)
