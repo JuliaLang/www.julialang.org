@@ -3,7 +3,7 @@
 @def rss = """DTable – an early performance assessment of a new distributed table implementation"""
 @def published = "06 December 2021"
 @def title = "DTable – an early performance assessment of a new distributed table implementation"
-@def authors = """Krystian Guliński""" 
+@def authors = """Krystian Guliński"""
 
 In a recent survey conducted within the Julia community, the functionality to process tabular data larger than available RAM came out on top,
 above all other priorities.
