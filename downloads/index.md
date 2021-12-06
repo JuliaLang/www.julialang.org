@@ -269,7 +269,7 @@ Older releases of Julia for all platforms are available on the [Older releases p
 
 ## Nightly Builds
 
-Builds of the current unstable development version of Julia are available on the [nightlies page](/downloads/nightlies/). Built after each update to master, these are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current release version of Julia, above.
+Builds of the current unstable development version of Julia are available on the [nightlies page](/downloads/nightlies/). While the name suggests that they are built every night, they are not strictly nightly. At times, due to broken builds, or CI infrastructure issues, nightlies may not be produced. These are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current stable release version of Julia.
 
 ## Download verification
 
@@ -324,7 +324,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#cur
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
-      <td> CUDA </td>
+      <td> CUDA 10.1</td>
       <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
       <td> <font color="green">Tier 1</font> </a> </td>
     </tr>
@@ -351,7 +351,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#cur
       <td> <font color="crimson">Tier 3</font>  </td>
     </tr>
     <tr>
-      <td> CUDA </td>
+      <td> CUDA 10.1</td>
       <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
       <td> <font color="green">Tier 1</font> </a> </td>
     </tr>
@@ -361,8 +361,8 @@ Different OSes and architectures have varying [tiers of support](/downloads/#cur
       <td> <font color="crimson">Tier 3</font> </a> </td>
     </tr>
     <tr>
-      <td> OneAPI </td>
-      <td> <a href="https://juliagpu.org/oneapi">Intel OneAPI (64-bit)</a> </td>
+      <td> oneAPI </td>
+      <td> <a href="https://juliagpu.org/oneapi">Intel oneAPI (64-bit)</a> </td>
       <td> <font color="crimson">Tier 3</font> </a> </td>
     </tr>
     <tr>
