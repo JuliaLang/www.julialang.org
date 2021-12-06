@@ -310,7 +310,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#cur
     </tr>
     <tr>
       <td rowspan="4"> Windows </td>
-      <td rowspan="3"> 10+ </td>
+      <td rowspan="2"> 10+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
     </tr>
@@ -319,17 +319,18 @@ Different OSes and architectures have varying [tiers of support](/downloads/#cur
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
-      <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
-      <td> <font color="green">Tier 1</font> </a> </td>
-    </tr>
-    <tr>
       <td> 8.1+ </td>
       <td> i686 (32-bit) / x86-64 (64-bit) </td>
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
-      <td rowspan="7"> Linux (Glibc) </td>
-      <td rowspan="7"> 2.6.18+ </td>
+      <td> CUDA </td>
+      <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
+      <td> <font color="green">Tier 1</font> </a> </td>
+    </tr>
+    <tr>
+      <td rowspan="8"> Linux (Glibc) </td>
+      <td rowspan="5"> 2.6.18+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
     </tr>
@@ -350,16 +351,19 @@ Different OSes and architectures have varying [tiers of support](/downloads/#cur
       <td> <font color="crimson">Tier 3</font>  </td>
     </tr>
     <tr>
+      <td> CUDA </td>
       <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
       <td> <font color="green">Tier 1</font> </a> </td>
     </tr>
     <tr>
+      <td> ROCM </td>
       <td> <a href="https://juliagpu.org/rocm">AMD ROCM (64-bit)</a> </td>
       <td> <font color="crimson">Tier 3</font> </a> </td>
     </tr>
     <tr>
+      <td> OneAPI </td>
       <td> <a href="https://juliagpu.org/oneapi">Intel OneAPI (64-bit)</a> </td>
-      <td> <font color="green">Tier 3</font> </a> </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
     </tr>
     <tr>
       <td rowspan="1"> Linux (Musl) </td>
