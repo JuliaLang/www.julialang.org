@@ -263,11 +263,11 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 ~~~
 Most Linux users should use the glibc binaries unless you know that your system uses musl as its libc.
 
-## Older Releases
+## Older releases
 
 Older releases of Julia for all platforms are available on the [Older releases page](/downloads/oldreleases/). Only the LTS and Stable releases are maintained.
 
-## "Nightly" builds
+## Nightly builds
 
 Builds of the current unstable development version of Julia are available on the [nightlies page](/downloads/nightlies/). Built after each update to master, these are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current release version of Julia, above.
 
@@ -275,15 +275,12 @@ Builds of the current unstable development version of Julia are available on the
 
 All Julia binary releases are cryptographically secured using the traditional methods on each platform. macOS and Windows releases are codesigned with certificates that are verified by the operating system during installation. Linux and source tarballs are signed with GPG using [this key](/assets/juliareleases.asc).
 
-## Platform specific instructions
+---
 
-Please see [platform specific instructions](/downloads/platform/) for further installation instructions and if you have trouble installing Julia.
-If the provided download files do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
-Different OSes and architectures have varying [tiers of support](/downloads/#currently_supported_platforms), and are listed at the bottom of this page.
+## Supported platforms
 
-## Currently supported platforms
+Different OSes and architectures have varying [tiers of support](/downloads/#currently_supported_platforms). Please see [platform specific instructions](/downloads/platform/) for further installation instructions and if you have trouble installing Julia. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
 
-The platforms currently supported by Julia are listed below. They are divided into a tier system that ranks them based on level of support.
 
 @@row @@col-12
 ~~~
