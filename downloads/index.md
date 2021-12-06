@@ -315,12 +315,12 @@ Different OSes and architectures have varying [tiers of support](/downloads/#cur
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> <a href="https://juliagpu.org">Nvidia PTX (64-bit)</a> </td>
-      <td> <font color="green">Tier 1</font> </a> </td>
-    </tr>
-    <tr>
       <td> i686 (32-bit) </td>
       <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
+      <td> <font color="green">Tier 1</font> </a> </td>
     </tr>
     <tr>
       <td> 8.1+ </td>
@@ -338,14 +338,6 @@ Different OSes and architectures have varying [tiers of support](/downloads/#cur
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> <a href="https://juliagpu.org">Nvidia PTX (64-bit)</a> </td>
-      <td> <font color="green">Tier 1</font> </a> </td>
-    </tr>
-    <tr>
-      <td> <a href="https://juliagpu.org">AMD GPUs (64-bit)</a> </td>
-      <td> <font color="crimson">Tier 3</font> </a> </td>
-    </tr>
-    <tr>
       <td> ARMv8 (64-bit) </td>
       <td> <font color="orange">Tier 2</font> </td>
     </tr>
@@ -356,6 +348,18 @@ Different OSes and architectures have varying [tiers of support](/downloads/#cur
     <tr>
       <td> PowerPC (64-bit)  </td>
       <td> <font color="crimson">Tier 3</font>  </td>
+    </tr>
+    <tr>
+      <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
+      <td> <font color="green">Tier 1</font> </a> </td>
+    </tr>
+    <tr>
+      <td> <a href="https://juliagpu.org/rocm">AMD ROCM (64-bit)</a> </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
+    </tr>
+    <tr>
+      <td> <a href="https://juliagpu.org/oneapi">Intel OneAPI (64-bit)</a> </td>
+      <td> <font color="green">Tier 3</font> </a> </td>
     </tr>
     <tr>
       <td rowspan="1"> Linux (Musl) </td>
