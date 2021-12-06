@@ -263,11 +263,11 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 ~~~
 Most Linux users should use the glibc binaries unless you know that your system uses musl as its libc.
 
-## Older releases
+## Older Releases
 
 Older releases of Julia for all platforms are available on the [Older releases page](/downloads/oldreleases/). Only the LTS and Stable releases are maintained.
 
-## Nightly builds
+## Nightly Builds
 
 Builds of the current unstable development version of Julia are available on the [nightlies page](/downloads/nightlies/). Built after each update to master, these are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current release version of Julia, above.
 
