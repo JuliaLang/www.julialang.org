@@ -6,6 +6,14 @@
   <link>https://julialang.org/</link>
   <atom:link href="https://julialang.org/feed.xml" rel="self" type="application/rss+xml" />
   <item>
+    <title><![CDATA[DTable – an early performance assessment of a new distributed table implementation]]></title>
+    <link>https://julialang.org/blog/2021/12/dtable-performance-assessment/</link>
+    <description><![CDATA[DTable – an early performance assessment of a new distributed table implementation
+<br><a href="https://julialang.org/blog/2021/12/dtable-performance-assessment/">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2021/12/dtable-performance-assessment/</guid>
+    <pubDate>Mon, 6 Dec 2021 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title><![CDATA[Julia 1.7 Highlights]]></title>
     <link>https://julialang.org/blog/2021/11/julia-1.7-highlights/</link>
     <description><![CDATA[Some highlights of the Julia 1.7 release.
