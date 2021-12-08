@@ -1,7 +1,6 @@
-
-@def rss_pubdate = Date(2021, 12, 06)
+@def rss_pubdate = Date(2021, 12, 08)
 @def rss = """DTable – an early performance assessment of a new distributed table implementation"""
-@def published = "06 December 2021"
+@def published = "08 December 2021"
 @def title = "DTable – an early performance assessment of a new distributed table implementation"
 @def authors = """Krystian Guliński"""
 
@@ -10,7 +9,7 @@ above all other priorities.
 While Julia already has some tools for so-called "out-of-core processing", they are not very popular within the community,
 and have been mostly left unmaintained (e.g. `JuliaDB`).
 
-The `DTable` plans to address this popular use case in a composable manner by leveraging the current Julia data ecosystem and our existing distributed computing and memory management capabilities. 
+The `DTable` plans to address this popular use case in a composable manner by leveraging the current Julia data ecosystem and our existing distributed computing and memory management capabilities.
 We hope it's a major step towards a native Julia tool that will handle the out-of-core tabular data processing needs of the Julia community!
 
 \toc
@@ -158,7 +157,7 @@ DTable command: `reduce(fit!, d, cols=[:a1], init=Variance())`
 ![](/assets/blog/2021-dtable/reduce_single_col.svg)
 
 ## Reduce (all columns)
- 
+
 Similarly to the previous benchmark, the `DTable` is performing very well here by offering a ~2.7 times speedup over `DataFrames.jl`,
 and a ~26 times speedup over `Dask`.
 
