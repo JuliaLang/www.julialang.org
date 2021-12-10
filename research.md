@@ -89,8 +89,7 @@ We welcome additions to this list in the form of [pull requests](https://github.
 ## 2019
 
 @@tight-list
-* **Snell’s Law for a vortex dipole in a Bose-Einstein condensate**. 
-M. M. Cawte, X. Yu, B. P. Anderson, A. S. Bradley. SciPost Physics 2019. [10.21468/SciPostPhys.6.3.032](https://doi.org/10.21468/SciPostPhys.6.3.032). Packages: [DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl), [VortexDistributions.jl](https://github.com/AshtonSBradley/VortexDistributions.jl)
+* **Snell’s Law for a vortex dipole in a Bose-Einstein condensate**. M. M. Cawte, X. Yu, B. P. Anderson, A. S. Bradley. SciPost Physics 2019. [10.21468/SciPostPhys.6.3.032](https://doi.org/10.21468/SciPostPhys.6.3.032). Packages: [DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl), [VortexDistributions.jl](https://github.com/AshtonSBradley/VortexDistributions.jl)
 * **Modern Machine Learning with Julia and Flux**. Dhairya Gandhi, Mike Innes, Elliot Saba, Keno Fischer, and Viral Shah. (2019). _Computação Brasil_ journal: 41-45. Publisher: Brazilian Computer Society. [Original version in English](https://docs.google.com/document/d/1n2HsIBod0mCW9ZEP40cYjci0cfdf12iYb7rw8V6gpOg). [Translated to Brazilian Portuguese (by André Lage-Freitas and Orivaldo Santana)](https://www.sbc.org.br/images/flippingbook/computacaobrasil/computa_39/pdf/CompBrasil_39_180.pdf)
 * **PDFIO: PDF Reader Library for native Julia**. Sambit Dash. (2019) _Journal of Open Source Software_. doi: [10.21105/joss.01453](https://doi.org/10.21105%2Fjoss.01453) Package: [PDFIO.jl](https://github.com/sambitdash/PDFIO.jl)
 * **Fast objective coupled planar illumination microscopy**. Cody Greer, Timothy E. Holy. (2019) _Nature Communications_, 10.1. doi: [10.1038/s41467-019-12340-0](https://dx.doi.org/10.1038/s41467-019-12340-0). url: <https://www.nature.com/articles/s41467-019-12340-0>. Package: [FastScanningAndDPI](https://github.com/HolyLab/FastScanningAndDPI).
