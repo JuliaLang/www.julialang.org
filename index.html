@@ -10,20 +10,21 @@
 </head>
 
 <body>
+<!--
   <div class="container-fluid" id="top-alert">
     <div class="alert alert-dark alert-dismissible mb-0" role="alert">
-	    
-      <!-- Only this <p> element should be changed in an alert -->
+
       <p class="text-center">
-	      <a href="https://juliacon.org/2021/workshops/">Check out the JuliaCon 2021 Workshop schedule (July 20th - 27th)</a>! | Order your <a href="https://discourse.julialang.org/t/juliacon-2021-t-shirts-and-stickers-on-sale-now/62060?u=logankilpatrick">limited edition JuliaCon T-shirt</a>
+	ALERT TEXT HERE
       </p>
-     
+
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	<span aria-hidden="true">&times;</span>
       </button>
     </div>
   </div>
-
+-->
+	
   {{insert navbar.html}}
 
   <!--
@@ -35,7 +36,7 @@
         The Julia Programming Language
       </h1>
       <p>
-      <a class="btn btn-success btn-lg" href="/downloads/" role="button">Download v{{stable_release}}</a>
+      <a class="btn btn-success btn-lg" href="/downloads/" role="button">Download</a>
       &nbsp;
       <a class="btn btn-primary btn-lg" href="https://docs.julialang.org" role="button">Documentation</a>
       <span class="btn float-md-right">
@@ -87,7 +88,7 @@
       <!-- 5 -->
       <div class="col-lg-4 col-md-6 feature">
         <h3>General</h3>
-        Julia provides <a href="https://docs.julialang.org/en/v1/manual/networking-and-streams/">asynchronous I/O</a>, <a href="https://docs.julialang.org/en/v1/manual/metaprogramming/">metaprogramming</a>, <a href="https://github.com/JuliaDebug/Debugger.jl">debugging</a>, <a href="https://docs.julialang.org/en/v1/stdlib/Logging/">logging</a>, <a href="https://docs.julialang.org/en/v1/manual/profile/">profiling</a>, a <a href="https://docs.julialang.org/en/v1/stdlib/Pkg/index.html">package manager</a>, and more. One can build entire <a href="https://www.youtube.com/watch?v=uLhXgt_gKJc">Applications and Microservices</a> in Julia.</p>
+        <p>Julia provides <a href="https://docs.julialang.org/en/v1/manual/networking-and-streams/">asynchronous I/O</a>, <a href="https://docs.julialang.org/en/v1/manual/metaprogramming/">metaprogramming</a>, <a href="https://github.com/JuliaDebug/Debugger.jl">debugging</a>, <a href="https://docs.julialang.org/en/v1/stdlib/Logging/">logging</a>, <a href="https://docs.julialang.org/en/v1/manual/profile/">profiling</a>, a <a href="https://docs.julialang.org/en/v1/stdlib/Pkg/index.html">package manager</a>, and more. One can build entire <a href="https://www.youtube.com/watch?v=uLhXgt_gKJc">Applications and Microservices</a> in Julia.</p>
       </div>
       <!-- 6 -->
       <div class="col-lg-4 col-md-6 feature">
@@ -163,7 +164,7 @@
           <div class="container-fluid">
             <h4>Build, Deploy or Embed Your Code</h4>
             <p>
-              Julia makes it possible to build complete applications. Write web UIs with <a href="https://github.com/plotly/Dash.jl">Dash.jl</a> or native UIs with <a href="https://github.com/barche/QML.jl">QML.jl</a> and <a href="https://github.com/JuliaGraphics/Gtk.jl">GTK.jl</a>. Pull data from <a href="https://juliadatabases.org">a variety of databases</a>. Build shared libraries and executables with <a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler</a>. Deploy on a webserver with <a href="https://github.com/JuliaWeb/HTTP.jl">HTTP.jl</a> or embedded devices. Powerful shell integration make it easy to <a href="https://docs.julialang.org/en/v1/manual/running-external-programs/">managing other processes</a>. 
+              Julia makes it possible to build complete applications. Write web UIs with <a href="https://github.com/plotly/Dash.jl">Dash.jl</a> or native UIs with <a href="https://github.com/barche/QML.jl">QML.jl</a> and <a href="https://github.com/JuliaGraphics/Gtk.jl">GTK.jl</a>. Pull data from <a href="https://juliadatabases.org">a variety of databases</a>. Build shared libraries and executables with <a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler</a>. Deploy on a webserver with <a href="https://github.com/JuliaWeb/HTTP.jl">HTTP.jl</a> or embedded devices. Powerful shell integration make it easy to <a href="https://docs.julialang.org/en/v1/manual/running-external-programs/">managing other processes</a>.
             </p>
             <p>
               Julia has foreign function interfaces for
@@ -215,10 +216,10 @@
                   Scalable Machine Learning
                 </h4>
                 <p>
-		  The <a href="https://github.com/alan-turing-institute/MLJ.jl">MLJ.jl</a> package provides a unified interface to common machine learning algorithms, which include 
-                  <a href = "https://github.com/JuliaStats/GLM.jl">generalized linear models</a>, <a href = "https://github.com/dmlc/XGBoost.jl">decision trees</a>, and <a href = "https://github.com/JuliaStats/Clustering.jl">clustering</a>.			
-                  <a href = "https://github.com/FluxML/Flux.jl">Flux.jl</a> and <a href = "https://github.com/denizyuret/Knet.jl">Knet.jl</a> are powerful packages for Deep Learning. 
-		  Packages such as <a href="https://github.com/FluxML/Metalhead.jl">Metalhead</a>, <a href="https://github.com/r3tex/ObjectDetector.jl">ObjectDetector</a>, and <a href="https://github.com/JuliaText/TextAnalysis.jl">TextAnalysis.jl</a> provide ready to use pre-trained models for common tasks. 
+		  The <a href="https://github.com/alan-turing-institute/MLJ.jl">MLJ.jl</a> package provides a unified interface to common machine learning algorithms, which include
+                  <a href = "https://github.com/JuliaStats/GLM.jl">generalized linear models</a>, <a href = "https://github.com/dmlc/XGBoost.jl">decision trees</a>, and <a href = "https://github.com/JuliaStats/Clustering.jl">clustering</a>.
+                  <a href = "https://github.com/FluxML/Flux.jl">Flux.jl</a> and <a href = "https://github.com/denizyuret/Knet.jl">Knet.jl</a> are powerful packages for Deep Learning.
+		  Packages such as <a href="https://github.com/FluxML/Metalhead.jl">Metalhead</a>, <a href="https://github.com/r3tex/ObjectDetector.jl">ObjectDetector</a>, and <a href="https://github.com/JuliaText/TextAnalysis.jl">TextAnalysis.jl</a> provide ready to use pre-trained models for common tasks.
        		  <a href="https://github.com/jonathan-laurent/AlphaZero.jl">AlphaZero.jl</a> provides a high peformance implementation of the reinforcement learning algorithms from AlphaZero. <a href="https://turing.ml">Turing.jl</a> is a best in class package for probabilistic programming.
                 </p>
               </div>
@@ -321,14 +322,14 @@ end
     <div class="row">
       <div class="col-lg-4 col-md-3 language-features "><hr/></div>
       <div class="col-lg-4 col-md-6 language-features section-heading">
-        <h2 class="lead secondary-heading">JuliaCon 2020</h2>
+        <h2 class="lead secondary-heading">JuliaCon 2021</h2>
       </div>
       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
     </div>
 
     <div class="row">
       <div class="col-lg-8 col-md-8 video">
-        <meta name="description" content="Watch what unfolded at JuliaCon 2020 here. The latest developments, optimizations, and features happen right here, at JuliaCon."/>
+        <meta name="description" content="Watch what unfolded at JuliaCon 2021 here. The latest developments, optimizations, and features happen right here, at JuliaCon."/>
 
         <div class="embed-responsive embed-responsive-16by9"><div id="player"></div></div>
         <script type="text/javascript">
@@ -341,7 +342,7 @@ end
           function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
               playerVars: {
-                list: 'PLP8iPy9hna6Tl2UHTrm4jnIYrLkIcAROR',
+                list: 'PLP8iPy9hna6Q343_8sSq4f306VGLW4TLK',
                 listType: 'playlist',
               },
               events: {
@@ -362,7 +363,7 @@ end
     <div class="row">
       <div class="col-12 text-center">
         <a class="btn btn-sm btn-outline-primary" href="https://www.youtube.com/user/JuliaLanguage">Julia Channel on YouTube</a>
-        <a class="btn btn-sm btn-outline-primary" href="https://www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Tl2UHTrm4jnIYrLkIcAROR">JuliaCon 2020 videos</a>
+        <a class="btn btn-sm btn-outline-primary" href="https://www.youtube.com/embed/videoseries?list=PLP8iPy9hna6Tl2UHTrm4jnIYrLkIcAROR">JuliaCon 2021 videos</a>
       </div>
     </div>
           <br>
@@ -384,7 +385,7 @@ end
 
       <br>
 
-      <p>Julia has been downloaded over 25 million times and the Julia community has registered <a href="https://juliahub.com">over 5,000 Julia packages</a> for community use.
+      <p>Julia has been downloaded over 25 million times and the Julia community has registered <a href="https://juliahub.com/ui/Packages">over 5,000 Julia packages</a> for community use.
       These include various mathematical libraries, data manipulation tools, and packages for general purpose computing. In addition to these, you can easily use libraries from <a href="https://github.com/JuliaPy/PyCall.jl">Python</a>, <a href="https://github.com/JuliaInterop/RCall.jl">R</a>, <a href="https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#Calling-C-and-Fortran-Code-1">C/Fortran</a>, <a href="https://github.com/Keno/Cxx.jl">C++</a>, and <a href="https://github.com/JuliaInterop/JavaCall.jl">Java</a>.
       If you do not find what you are looking for, ask on <a href="https://discourse.julialang.org">Discourse</a>, or even better, <a href="https://julialang.github.io/Pkg.jl/v1/">contribute one</a>!</p>
 
@@ -392,8 +393,8 @@ end
 
       <div class="row">
         <div class="col-12" style="text-align: center">
-          <a class="btn btn-sm btn-outline-danger" href="https://juliahub.com">JuliaHub: Ecosystem Pulse</a>
-          <a class="btn btn-sm btn-outline-danger" href="https://juliaobserver.com/">Julia Observer</a>
+          <a class="btn btn-sm btn-outline-danger" href="https://juliahub.com/ui/Packages">JuliaHub: Package Search</a>
+          <a class="btn btn-sm btn-outline-danger" href="https://juliapackages.com/trending">JuliaPackages: Trending</a>
         </div>
       </div>
 
@@ -456,71 +457,71 @@ end
 
     <br>
 
-    <!-- Row Discourse-Github-Videos-Twitter -->
+    <!-- Row Discourse-Github-Slack-Zulip -->
     <div class="row">
       <div class="col-lg-3 col-md-6" style="text-align:center;">
         <h3>Discourse</h3>
-		<a href="https://discourse.julialang.org/" target="_blank">
+		    <a href="https://discourse.julialang.org/" target="_blank">
         <img src="/assets/infra/discourse.svg" height="85" width="85" alt="Discourse Logo" /></a>
         <h4 class="outer-link">
-          <a class="link extra-link" href="https://discourse.julialang.org/" target="_blank">Discourse (English)</a>
+          <a class="link extra-link" href="https://discourse.julialang.org/" target="_blank">Discourse</a>
         </h4>
       </div>
       <div class="col-lg-3 col-md-6" style="text-align:center;">
         <h3>GitHub</h3>
-		<a href="https://github.com/JuliaLang/julia" target="_blank">
+	    	<a href="https://github.com/JuliaLang/julia" target="_blank">
         <img src="/assets/infra/github.svg" height="85" width="85" alt="GitHub Logo" /></a>
         <h4 class="outer-link">
           <a class="link extra-link" href="https://github.com/JuliaLang/julia" target="_blank">Source code</a>
         </h4>
       </div>
-      <div class="col-lg-3 col-md-6" style="text-align:center">
-        <h3>Videos</h3>
-		<a href="https://www.youtube.com/user/JuliaLanguage" target="_blank">
-        <img src="/assets/infra/youtube.svg" height="85" width="85" alt="YouTube Logo" /></a>
+      <div class="col-lg-3 col-md-6" style="text-align:center;">
+        <h3>Slack</h3>
+		    <a href="https://julialang.org/slack/" target="_blank">
+        <img src="/assets/infra/slack.png" height="85" width="85" alt="Slack Logo" /></a>
         <h4 class="outer-link">
-          <a class="link extra-link" href="https://www.youtube.com/user/JuliaLanguage" target="_blank">YouTube</a>
+          <a class="link extra-link" href="https://julialang.org/slack/" target="_blank">Slack</a>
         </h4>
       </div>
       <div class="col-lg-3 col-md-6" style="text-align:center">
+        <h3>Zulip</h3>
+	    	<a href="https://julialang.zulipchat.com/" target="_blank">
+        <img src="/assets/infra/zulip.svg" height="85" width="85" alt="Zulip Logo" /></a>
+        <h4 class="outer-link">
+          <a class="link extra-link" href="https://julialang.zulipchat.com/" target="_blank">Zulip</a>
+        </h4>
+      </div>
+    </div>
+
+    <!-- Row -Twitter-Videos-LinkedIn-Twitch -->
+    <div class="row">
+      <div class="col-lg-3 col-md-6" style="text-align:center">
         <h3>Twitter</h3>
-		<a href="https://twitter.com/JuliaLanguage" target="_blank">
+		    <a href="https://twitter.com/JuliaLanguage" target="_blank">
         <img src="/assets/infra/twitter.svg" height="85" width="85" alt="Twitter Logo" /></a>
         <h4 class="outer-link">
           <a class="link extra-link" href="https://twitter.com/JuliaLanguage" target="_blank">#JuliaLang</a>
         </h4>
       </div>
-    </div>
-
-    <!-- Row Facebook-LinkedIn-Insagram-Twitch -->
-    <div class="row">
-      <div class="col-lg-3 col-md-6" style="text-align:center;">
-        <h3>Facebook</h3>
-		<a href="https://www.facebook.com/julialanguage" target="_blank">
-        <img src="/assets/infra/facebook.png" height="85" width="85" alt="Facebook Logo" /></a>
+      <div class="col-lg-3 col-md-6" style="text-align:center">
+        <h3>Videos</h3>
+		    <a href="https://www.youtube.com/user/JuliaLanguage" target="_blank">
+        <img src="/assets/infra/youtube.svg" height="85" width="85" alt="YouTube Logo" /></a>
         <h4 class="outer-link">
-          <a class="link extra-link" href="https://www.facebook.com/julialanguage" target="_blank">Facebook</a>
+          <a class="link extra-link" href="https://www.youtube.com/user/JuliaLanguage" target="_blank">YouTube</a>
         </h4>
       </div>
       <div class="col-lg-3 col-md-6" style="text-align:center;">
         <h3>LinkedIn</h3>
-		<a href="https://www.linkedin.com/company/the-julia-language" target="_blank">
+		    <a href="https://www.linkedin.com/company/the-julia-language" target="_blank">
         <img src="/assets/infra/linkedin.png" height="85" width="85" alt="LinkedIn Logo" /></a>
         <h4 class="outer-link">
           <a class="link extra-link" href="https://www.linkedin.com/company/the-julia-language" target="_blank">LinkedIn</a>
         </h4>
       </div>
       <div class="col-lg-3 col-md-6" style="text-align:center">
-        <h3>Instagram</h3>
-		<a href="https://www.instagram.com/julia.language/" target="_blank">
-        <img src="/assets/infra/instagram.png" height="85" width="85" alt="Instagram Logo" /></a>
-        <h4 class="outer-link">
-          <a class="link extra-link" href="https://www.instagram.com/julia.language/" target="_blank">Instagram</a>
-        </h4>
-      </div>
-      <div class="col-lg-3 col-md-6" style="text-align:center">
         <h3>Twitch</h3>
-		<a href="https://www.twitch.tv/JuliaLanguage" target="_blank">
+	    	<a href="https://www.twitch.tv/JuliaLanguage" target="_blank">
         <img src="/assets/infra/twitch.png" height="85" width="85" alt="Twitch Logo" /></a>
         <h4 class="outer-link">
           <a class="link extra-link" href="https://www.twitch.tv/JuliaLanguage" target="_blank">Twitch</a>
@@ -550,14 +551,6 @@ end
       <br>
 
       <div class="row ides">
-        <div class="col-lg-3 col-md-6 ide ide-feature">
-          <h3>Juno</h3>
-		  	<a href="https://junolab.org/" target="_blank">
-            <img src="/assets/infra/atom.png" height="85" width="85" alt="Atom Logo" /></a>
-          <h4 class="outer-link">
-            <a class="link extra-link" href="https://junolab.org/" target="_blank">Atom Plugin</a>
-          </h4>
-        </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">
           <h3>VS Code</h3>
 		  	<a href="https://www.julia-vscode.org/" target="_blank">
@@ -596,14 +589,6 @@ end
             <img src="/assets/infra/emacs.png" height="85" width="85" alt="Emacs Logo" /></a>
           <h4 class="outer-link">
             <a class="link extra-link" href="https://github.com/JuliaEditorSupport/julia-emacs" target="_blank">Emacs plugin</a>
-          </h4>
-        </div>
-        <div class="col-lg-3 col-md-6 ide ide-feature">
-          <h3>SublimeText</h3>
-		  	<a href="https://github.com/JuliaEditorSupport/Julia-sublime" target="_blank">
-            <img src="/assets/infra/sublime.png" height="85" width="85" alt="Sublime logo" /></a>
-          <h4 class="outer-link">
-            <a class="link extra-link" href="https://github.com/JuliaEditorSupport/Julia-sublime" target="_blank">Sublime Text</a>
           </h4>
         </div>
         <div class="col-lg-3 col-md-6 ide ide-feature">

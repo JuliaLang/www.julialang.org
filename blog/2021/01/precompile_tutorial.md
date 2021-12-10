@@ -613,7 +613,7 @@ Tuple{typeof(BackedgeDemo.double), AbstractFloat}
 @@
 
 @@note
-**Box 5** One other topic we've not yet discussed is that when `precompile` fails, it does so "almost" silently:
+**Box 5** One other topic we've not yet discussed is that when `precompile` fails, historically (prior to Julia 1.7) it did so "almost" silently:
 
 ```julia
 julia> methods(double)
@@ -625,8 +625,7 @@ false
 ```
 
 Even though `double` can't be compiled for `String`, the corresponding `precompile` doesn't error, it only returns `false`.
-If you want to monitor the utility of your `precompile` directives, sometimes it's useful to preface them with `@assert`; all's well if precompilation succeeds, but if changes to the package mean that the precompile directive has "gone bad," then you get an error.
-Hopefully, such errors would be caught before shipping the package to users!
+Julia 1.7 will warn about inactive precompile directives.
 @@
 
 ## Summary

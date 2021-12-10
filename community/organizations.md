@@ -23,7 +23,6 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 * [JuliaDocs](https://github.com/juliadocs) – Documentation-related packages for Julia ([Gitter](https://gitter.im/juliadocs/users))
 * [JuliaEditorSupport](https://github.com/JuliaEditorSupport) – Extensions/Plugins for text editors and IDEs
 * [JuliaImages](https://github.com/JuliaImages) – Julia packages for image processing
-* [JuliaInterop](https://github.com/JuliaInterop)
 * [JuliaPackaging](https://github.com/JuliaPackaging) – Tooling for Julia's binary packages and dependencies
 * [JuliaPraxis](https://github.com/JuliaPraxis) – Best practices ([Gitter](https://gitter.im/JuliaPraxis))
 * [JuliaPy](https://github.com/JuliaPy) – Software that connects the Julia and Python languages.
@@ -52,6 +51,7 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 
 * [AlgebraicJulia](https://github.com/AlgebraicJulia) – Applied Category Theory
 * [JuliaDiff](https://github.com/JuliaDiff/) – [Differentiation tools](https://www.juliadiff.org/)
+* [JuliaFirstOrder](https://github.com/JuliaFirstOrder) - First-order optimization and proximal algorithms
 * [JuliaGeometry](https://github.com/JuliaGeometry) – Computational Geometry
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaIntervals](https://github.com/JuliaIntervals) – Rigorous numerics with interval arithmetic & applications
@@ -59,6 +59,7 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
 * [JuliaMatrices](https://github.com/JuliaMatrices)
 * [JuliaNLSolvers](https://github.com/JuliaNLSolvers)
+* [JuliaNonconvex](https://github.com/JuliaNonconvex) – Non-convex constrained optimization
 * [JuliaPolyhedra](https://github.com/JuliaPolyhedra) – [Polyhedral computation](https://juliapolyhedra.github.io/)
 * [JuliaSmoothOptimizers](https://github.com/JuliaSmoothOptimizers) – Framework for the development of solvers for continuous nonlinear optimization
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers

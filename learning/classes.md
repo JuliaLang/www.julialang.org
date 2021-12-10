@@ -66,8 +66,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [Intelligent Development Tools (English)]
     * [Fundamental Mathematical Methods (English)]
 * Pennsylvania State University
-    * [ASTRO 585](https://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Spring 2014 - [github repo](https://github.com/eford/Astro585_2014_Spring)
-    * [ASTRO 585](https://www.personal.psu.edu/~ebf11/teach/astro585/), High-Performance Scientific Computing for Astrophysics (Prof. Eric B. Ford), Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
+    * [ASTRO 585](https://www.personal.psu.edu/~ebf11/teach/astro585/), Seminar: High-Performance Scientific Computing for Astrophysics (Prof. [Eric B. Ford](https://personal.psu.edu/~ebf11)), Spring 2014 - [github repo](https://github.com/eford/Astro585_2014_Spring) & Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
+    * [ASTRO 528](https://psuastro528.github.io/), High-Performance Scientific Computing for Astrophysics (Prof. [Eric B. Ford](https://personal.psu.edu/~ebf11)), Spring 2019 - [github repo](https://github.com/PsuAstro528/Spring2019-website-src) & Fall 2021 [github repo](https://github.com/PsuAstro528/Fall2021-website-src)
 * [Politecnico di Torino](http://polito.it) (Torino, Italy)
     * [Algorithms for Optimization, Inference and Learning - AOIL](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=01SPOPF&p_a_acc=2021&p_header=S&p_lang=EN), (Prof. A. Braunstein), starting from Spring 2018
     * [Inference in Biological Systems](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=01TYLPF&p_a_acc=2021&p_header=S&p_lang=EN), (Prof. A. Gamba), starting from Fall 2018
@@ -89,9 +89,9 @@ If you know of other classes using Julia for teaching, please consider updating 
 * [Sciences Po Paris](https://www.sciencespo.fr), [Department of Economics](https://www.sciencespo.fr/department-economics/en), Spring 2016.
     * [Computational Economics for PhDs](https://github.com/ScPo-CompEcon/Syllabus) ([Florian Oswald](https://floswald.github.io))
 * SGH Warsaw School of Economics, Poland
-    * 223490-0286, Statistical Learning Methods ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): Fall 2017, Spring 2018, Fall 2018
-    * 234900-0286, Agent-Based Modeling ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): Fall 2017, Spring 2018, Fall 2018
-    * 239420-0553, _Introduction to Deep Learning_ module ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): Spring 2018
+    * 223490-0286, Statistical Learning Methods ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): since 2017
+    * 234900-0286, Agent-Based Modeling ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): since 2017
+    * 239420-0553, _Introduction to Deep Learning_ module ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): since 2018
 * Southcentral Kentucky Community and Technical College
     * CIT 120 Computational Thinking (Inst. [Bryan Knowles](https://github.com/snotskie/)), Online, Fall 2017
 * Stanford University
@@ -109,6 +109,8 @@ If you know of other classes using Julia for teaching, please consider updating 
 * Universidad Adolfo Ibáñez, Chile
    * ING747, Integer programming, Fall 2018-2019 (Diego Morán and Rodolfo Carvajal)
    * DIIIO06, Advanced linear optimization, Spring 2020 (Diego Morán)
+* Universidad Alberto Hurtado, Chile
+    * [Métodos Cuantitativos, Introducción a la Programación con Julia](https://mauriciotejada.com/programacionjulia), Magister en Economía (Prof. [Mauricio Tejada](https://mauriciotejada.com))
 * Universidad del Norte, Barranquilla, Colombia
     * [ELP 4076](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ELP&crse_numb_in=4076), Ingeniería de Ríos y Costas (Prof. Germán Rivillas)
     * [ICI 4083](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ICI&crse_numb_in=4083), Hidráulica (Prof. Germán Rivillas)
@@ -132,7 +134,7 @@ If you know of other classes using Julia for teaching, please consider updating 
 * University of Basel, Department of Physics
     * [Classical Mechanics](https://www.quantumtheory-bruder.physik.unibas.ch) (Prof. Christoph Bruder), Fall 2020
 * University of California, Los Angeles (UCLA)
-    * [Stat M230/Biomath 280/Biostat M280](https://hua-zhou.github.io/teaching/biostatm280-2017spring/), Statistical Computing, Spring 2017 (Prof. [Hua Zhou](https://github.com/Hua-Zhou))
+    * [Biostat 257](https://ucla-biostat-257-2021spring.github.io), Computational Methods for Biostatistical Research, Spring 2021 (Prof. [Hua Zhou](http://hua-zhou.github.io))
 * University of Cologne, Institute for Theoretical Physics
     * [Computational Physics](https://www.thp.uni-koeln.de/trebst/Lectures/2016-CompPhys.shtml) (Prof. Simon Trebst), Summer 2016
     * [Computational Physics](https://www.thp.uni-koeln.de/~bulla/cp-ss17.html) (Prof. Ralf Bulla), Summer 2017
@@ -146,6 +148,8 @@ If you know of other classes using Julia for teaching, please consider updating 
 * University of Edinburgh
     * Spring 2017, [MATH11146](https://www.drps.ed.ac.uk/16-17/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/index.html))
     * Spring 2016, [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/index.html))
+* University of Florida
+    * COT 5615, Math for Intelligent Systems (Prof. Kejun Huang), 2021
 * University of Glasgow, School of Mathematics and Statistics
     * An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](https://www.gla.ac.uk/postgraduate/taught/dataanalytics/)), September 2017
 *   University of Oulu

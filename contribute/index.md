@@ -1,116 +1,264 @@
-# Julia Ecosystem Contributor's guide
 
-## Welcome!
-The purpose of this document is to help YOU contribute to the Julia Ecosystem. You don't need to be a seasoned developer to help Julia grow and improve.  
-Anyone willing to contribute will find here a roadmap from zero to hero (or from a hundred to one thousand, if you are a pro contributor already). Both code and non-code contributions are welcome, no matter your level of experience or background. This document aims to help you find out:
+\fig{open_source_contribute.png}
 
-- how you can contribute to match your skills and interests
-- what tools and resources can help you contribute confidently
-- where you can find ideas for fixes to propose in your first contribution
+~~~
+<!--
+      Containers: Getting Started Section
+-->
+<br>
+ <br>
+ <div class="container pt-sm-2">
+   <div class="row">
+     <div class="col-lg-4 col-md-3 language-features "><hr/></div>
+     <div class="col-lg-4 col-md-6 language-features section-heading">
+       <h2 class="lead secondary-heading" id="getting_started">
+         <a href="#getting_started" class="link">Getting Started</a>
+       </h2>
+     </div>
+     <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+   </div>
+   <br>
+~~~
 
-## Why contribute?
-There is a spectrum of benefits to contributing - some more obvious than others. Open source projects rely on contributions from volunteers, enabling them to grow and develop. You will be making a difference to one of the most quickly growing languages, and the future of open-source software as a whole. Benefits of contributing:  
+Welcome to the Julia Ecosystem Contributor’s Guide and to the community! 
 
-- engage with the community
-- build a track record of public contributions (e.g.. GitHub) which will help your career
-- build confidence with the language and the libraries
-- gain exposure for your library
+The purpose of this guide is **to help you get started** contributing to the Julia ecosystem. It contains information on the [benefits of becoming a Julia contributor](#why_contribute) and the [tools](#tools) you need to get started. Also, you can find the different [contribution pathways](#contribution_pathways) that you can take and how to get [help](#get_help) from the community.
 
-Types of contributions vary depending on your experience, background, and the nature of your interest in Julia. Types of contributions  
+We **welcome** both **technical** and **nontechnical** contributions. Whether you are a **beginner** or a **seasoned developer**, you can always find a way to contribute to the Julia Ecosystem. 
 
-- improving documentation
-- sharing your (new) package
-- review a package submitted to the Julia Registry
-- file a bug report
-- write tests
-- contributing to core Julia
-- contributing to other libraries
+~~~
+   <br>
+</div>
+~~~
 
-and more.
+~~~
+<!--
+      Containers: Why Contribute
+ -->
+ <div class="container-fluid alt-color packages">
+   <br><br>
+   <div class="row">
+     <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+     <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+       <h2 class="lead secondary-heading" id="why_contribute">
+         <a href="#why_contribute" class="ecosystem">Why contribute to the Julia Ecosystem?</a>
+       </h2>
+     </div>
+     <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+   </div>
 
-## Chose your path
-Your next step is to identify which kind of contributor you are.
-There are multiple paths, some of which cross. Here is a high-level overview of how you might want to contribute.
-The question is: do you want to ...
+   <br>
+~~~
 
-- Discover
-- Connect
-  - read the code of conduct
-  - ask questions on Slack or Discourse
-  - engage on Twitter
-- Learn
-- Build
-  - write a blogpost
-  - cite Julia
-  - report a bug
-  - make a feature request
-  - make a pull request
-  - review documentation
-  - share a use case
-  - develop and submit a library
-  - include future pans for your library
-- Help
-  - spread the word about Julia's Ecosystem
-  - submit a use case
-  - answer questions on Slack and Discourse
-  - contribute something that isn't addressed in this guide!
+You can make a difference to one of the most quickly growing languages and the future of open-source software as a whole. Open source projects rely on contributions from volunteers. Contributions enable both the project and volunteers to grow and develop. No matter how you contribute to the Julia ecosystem, it will be a great experience for you.
 
-## How do I find contributing opportunities?
+Contributing to the Julia ecosystem brings the following benefits:
 
-If by this point you are convinced that contributing is for you, but don't know where and how to find contributing opportunities, we have collated a couple of ideas for you. For each idea, we have provided a list of *prerequisites* and *estimated time* to make the contribution.
+* Become a member of a community that’s excited about open source and sharing knowledge.
+* Build a track record of public contributions which will help build your career.
+* Build confidence with Julia.
+* Gain visibility for your package.
+* Help others level up their Julia skills.
+
+~~~
+   <br>
+ </div>
+~~~
+
+~~~
+ <!--
+      Containers: Tools
+ -->
+  <div class="container pt-sm-2">
+   <br><br>
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading" id="tools">
+          <a href="#tools" class="link">Tools</a>
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     </div>
+
+     <br>
+~~~
+
+Before you start contributing to the Julia ecosystem, you need the following tools:
+
+* **Julia:** For more information on how to install Julia, see [Download Julia](https://julialang.org/downloads/) or watch [Download Julia (in under 2.5 minutes)](https://www.youtube.com/watch?v=t67TGcf4SmM).
+* **IDE:** You can set one of the following IDEs as well as their extensions for developing in Julia:
+   * [Julia for Visual Studio Code](https://www.julia-vscode.org/) (recommended)
+   * [IJulia](https://github.com/JuliaLang/IJulia.jl)
+   * [Pluto.jl](https://github.com/fonsp/Pluto.jl)
+   * [Julia-vim](https://github.com/JuliaEditorSupport/julia-vim)
+   * [Emacs major mode for the Julia programming language](https://github.com/JuliaEditorSupport/julia-emacs)
+* **Knowledge of Git and how to create a pull request:** For more information on getting started with Git, see [Making a first Julia pull request](https://kshyatt.github.io/post/firstjuliapr/).
+
+~~~
+ </div>
+<br>
+~~~
+
+~~~
+<!--
+    Containers: Contribution Pathways
+  -->
+<div class="container-fluid alt-color packages">
+  <br><br>
+    <div class="row">
+      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+        <h2 class="lead secondary-heading" id="contribution_pathways">
+          <a href="#contribution_pathways" class="ecosystem">
+            Contribution Pathways
+          </a>
+        </h2>
+      </div>
+      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+    </div>
+    <br>
+~~~
+
+## Contribution Pathways
+
+Your **first step** is to identify how you want to start contributing to the Julia ecosystem. For example, you can start by writing a blog post about how you used Julia to solve a problem. Then, you can create a new package or improve one that you have used. You can take multiple paths, some of which might cross. 
+
+If you are a **complete beginner** to the Julia language or programming in general, then you can consider going through any of the resources that the community has created to [help you get started](https://julialang.org/learning/). 
+
+We suggest the following paths as a starting point in your contribution journey:
+
+* **Build:** You can write code or documentation:
+   * **Code**
+     * [Contribute to core Julia](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md#submitting-contributions).
+       * Find an [open issue](https://github.com/JuliaLang/julia/issues).
+       * Report a [security issue](https://github.com/JuliaLang/julia/security/policy).
+     * [Contribute to an existing package](https://julialang.org/contribute/opportunities/).
+       * Find a [help wanted](https://github.com/issues?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22) issue. 
+       * Find a [good first](https://github.com/issues?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22+) issue.
+       * Find a [hacktoberfest issue](https://juliacommunity.github.io/your-first-julia-pr/).
+     * [Develop a new package](/contribute/developing_package).
+     * [Review a package submitted](https://github.com/JuliaRegistries/General/blob/master/CONTRIBUTING.md) to the [Julia Registry](https://github.com/JuliaRegistries/General).
+     * [File a bug report](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md#how-to-file-a-bug-report).
+     * [Write tests](https://kshyatt.github.io/post/firstjuliapr/).
+     * Make a feature request.
+   * **Documentation** 
+     * Create new documents: Write new sections of existing documentation, docstrings, and tutorials.
+     * Improve existing documents: Update outdated documentation, fix typos and broken links.
+* **Help:** You can help spread the word about the Julia ecosystem:
+   * Read the [Code of Conduct](https://julialang.org/community/standards/).
+   * Share a use case.
+   * Write a blog post and submit it to the [Julia Language Blog Aggregator](https://www.juliabloggers.com/julia-bloggers-submit-feed/).
+   * [Ask and answer questions](#ask-and-answer-questions) on Slack or Discourse.
+   * Engage on [Twitter](https://twitter.com/JuliaLanguage).
+   * Attend a [Julia event](https://julialang.org/community/#events).
+
+We are also open to any suggestions or ideas that you might have. You can suggest your ideas to the community. We will do our best to help you bring it to life!
+
+~~~
+  <br>
+ </div>
+~~~
+
+~~~
+<!--
+      Containers: Contribution Ideas
+ -->
+ <div class="container pt-sm-2">
+  <br>
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading" id="contribution_ideas">
+          <a href="#contribution_ideas" class="link">Contribution Ideas</a>
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     </div>
+
+     <br>
+~~~
+
+If you are still unsure how to get started, then you can have a look at the following list of ideas for your first contribution.
+
+#### Ask and answer questions
+
+You can ask or answer questions on both [StackOverflow](https://stackoverflow.com/questions/tagged/julia) and [Discourse](https://discourse.julialang.org/). It not only helps to expand your knowledge but to spread the word about the Julia ecosystem. 
+
+The following video contains information on how to ask questions on StackOverflow and how this can improve your learning (and understanding):
+
+~~~
+<iframe width="100%" height="450" src="https://www.youtube-nocookie.com/embed/gHuU7ewLep8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+~~~
 
 
-### Find a README file to edit
+If you know how to answer a question on StackOverflow or Discourse thats' an immediate chance to help!  Search for questions tagged [**[julia]**](https://stackoverflow.com/questions/tagged/julia) on StackOverflow or use a more specific term. Moreover, you can join ´#stackoverflow-feed´ channel on the official [Julia Slack](https://julialang.org/slack/) to stay up-to-date on StackOverflow questions related to Julia. 
 
-There are plenty of documentation files in the Julia-verse on GitHub, and typos are so easy to make! You can help clean up documentation by correcting typos or errors which you find. 
+#### Edit the README file of a Julia package 
 
-- pre-requisites: GitHub account, text editor with spell checking (e.g. MS Word, Google docs)
-- estimated time: 1h
-- steps:
-  - [pick a Julia package](#how-to-find-julia-packages)
-  - find a typo to fix (e.g. paste the text into Google docs for a spell-check)
-  - go through a few green buttons on GitHub to submit your contribution
-	
-### Find questions to answer: StackOverflow
-- pre-requisites: you do not need an account to find a question, but you will need a StackOverflow account to answer one
-- estimated time: depends on the question and your experience with the topic
-- steps: open [Stackoverflow](https://stackoverflow.com/) and search for questions, tagged `[julia]`. For this, enter in the search box tag `[julia]`. You will see a list of the most recent questions related to Julia. Surely, if you are interested in a more specific question, e.g. the Plots library, substitute the search term with `[Plots.jl]`
-	
-To stay up-to-date on StackOverflow questions related to Julia, you can also join #stackoverflow-feed channel on [Slack](https://julialang.slack.com). If something you know how to answer comes up - thats' an immediate chance to help!
+A lot of documentation in the Julia-verse needs to be updated or fixed. You can help clean up documentation by correcting typos, fixing broken links, or replacing the mentions of outdated packages. To search for Julia packages and their README file or documentation, go to the [JuliaHub](https://juliahub.com/ui/Packages) website. Then, click the name of the package to discover its website, GitHub repository, and further details.
 
+#### Contribute to an existing Julia package
 
-### Find questions to answer: Discourse
-A great place to both post and find questions is on [Discourse](https://discourse.julialang.org/)
+Some Julia organizations and packages are looking for help from the community. We have set up a curated list of Julia packages, organizations, and projects which have robust contributor guides. If you are interested in jumping in and contributing, then see the [Organizations and Packages](/contribute/opportunities) section.
 
-- pre-requisites: you do not need an account to find a question, but you will need an account to answer a question
-- estimated time: depends on the question and your experience with the topic
-- steps: click the 'Reply' button under a question on the Discourse page, and share your knowledge
+~~~
+ </div>
+<br>
+~~~
 
-	
-### Find open issues of packages
-- pre-requisites: GitHub account, development tools ([installed Julia](#how-to-install-julia), an [IDE](#what-are-the-ide-options?))
-- estimated time: from ~1h to days or months (try starting with simpler issues)
-- steps:
-  - [pick a Julia package](#how-to-find-julia-packages) and open its GitHub page
-  - on GitHub, open the 'Issues' tab
-  - open an issue and read through the existing discussion
-  - participate in the discussion and/or solve the issue
+~~~
+<!--
+    Containers: Get Help
+  -->
+<div class="container-fluid alt-color packages">
+  <br><br>
+    <div class="row">
+      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+        <h2 class="lead secondary-heading" id="get_help">
+          <a href="#get_help" class="ecosystem">Get Help</a>
+        </h2>
+      </div>
+      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+    </div>
+    <br>
+~~~
 
+The Julia community is more than happy to help you with any questions related to your contribution. You can get help in any of the following channels:
 
-### How to find Julia packages
+* [Official Julia Slack](https://julialang.org/slack/): The community uses Julia Slack for informal communications. However, bear in mind that messages disappear over time because of the limits of the free version of Slack.  
+* [Julia Discourse forum](https://discourse.julialang.org/): The community discusses Julia development in the Discourse forum. In general, we recommend asking technical questions on Discourse. Questions and answers posted on Discourse remain on the web and public indefinitely. 
+* [Julia FAQ](https://docs.julialang.org/en/v1/manual/faq/): In the Frequently Asked Questions section of the [Julia Documentation](https://docs.julialang.org/en/v1/), you can find answers to the most common questions from Julia beginners. 
+* [StackOverflow](https://stackoverflow.com/questions/tagged/julia): It has a growing number of Julia questions and answers.
 
-The list of Julia packages, organized *thematically*, can be found at https://juliahub.com/ui/Packages. Click on the name of the package to discover its website, GitHub repository, and further details. 
+~~~
+  <br>
+ </div>
+<br>
+~~~
 
-The list of packages all registered, organized *alphabetically*, can be found at https://github.com/JuliaRegistries/General
+~~~
+<!--
+    Containers: Citing This Guide
+  -->
+ <div class="container pt-sm-2">
+  <br>
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading" id="citing_this_guide">
+          <a href="#citing_this_guide" class="link">Citing This Guide</a>
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     </div>
+~~~
 
-## What are the IDE options?
+If you find this guide helpful, we would be grateful if you would tag us in any contribution on GitHub that this guide helped you make: [`@JuliaContributorBot`](https://github.com/JuliaContributorBot) or in any papers this helped you write: `DOI: 10.13140/RG.2.2.24478.46407`
 
-An integrated development environment (IDE) can help make software development easier. Some options include [Juno](https://junolab.org/), [VSCode](https://code.visualstudio.com/download), [Atom](https://atom.io/) and [Jupyter notebooks](https://jupyter.org/install).
-
-## How to cite Julia?
-
-For citations, please refer to the [research](https://julialang.org/research/) page on the Julia website.
-
-## Contributing to core Julia
-
-Coming soon!
+~~~
+  <br>
+ </div>
+<br>
+~~~
