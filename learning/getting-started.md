@@ -12,7 +12,7 @@ People used to think that you had to choose between a programming language that 
 
 ## Installing
 
-The first thing to do is [download Julia](/downloads/). Pre-built versions are available from our website. Download the version for your operating system. If you are on Linux, we would still recommend downloading the “Generic Linux Binaries” from our website. If you have more experience working with Linux or with programming generally, another option on a Linux machine is to download Julia using your system package manager, like yup, apt-get etc. A system package manager is a tool that keeps track of all your downloads and helps make sure they don’t conflict with one another.
+The first thing to do is [download Julia](/downloads/). Pre-built versions are available from our website. Download the version for your operating system. If you are on Linux, we would still recommend downloading the “Generic Linux Binaries” from our website. If you have more experience working with Linux or with programming generally, another option on a Linux machine is to download Julia using your system package manager, like yum, apt-get etc. A system package manager is a tool that keeps track of all your downloads and helps make sure they don’t conflict with one another.
 
 Once you download Julia, and run the installer (Windows/Mac -- on linux you just unzip the downloaded file), you will get a `julia` binary in the _bin_ directory where your install lives. Running that program will leave you in a textual prompt, which is usually called a REPL - Read-Eval-Print-Loop.
 
