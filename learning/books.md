@@ -45,6 +45,7 @@ _Julia 1.0 was released on 8 August 2018_
 * Ivo Balbaert. [Getting Started with Julia Programming Language](https://www.packtpub.com/application-development/getting-started-julia). Packt Publishing, 2015.
 * Malcolm Sherrington. [Mastering Julia](https://www.packtpub.com/application-development/mastering-julia). Packt Publishing, 2015.
 * Bruce Tate, Ian Dees, Frederic Daoud, and Jack Moffit. [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks). The Pragmatic Programmers, December 2014.
+* Noel Kalicharan. [Julia - Bit by Bit](https://link.springer.com/book/10.1007/978-3-030-73936-2). Springer, 2021.
 @@
 
 Have a Julia book you want added to this list? Please [open an issue or pull request](https://github.com/JuliaLang/www.julialang.org/issues).
