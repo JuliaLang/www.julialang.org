@@ -1,6 +1,7 @@
 ## Books
 
 @@tight-list
+* Noel Kalicharan. [Julia - Bit by Bit](https://link.springer.com/book/10.1007/978-3-030-73936-2). Springer, 2021.
 * Jose Storopoli, Rik Huijzer and Lazaro Alonso. [Julia Data Science](https://amazon.com/dp/B09KMRKQ96), October 2021. The book is also available freely as static HTML and PDF at [juliadatascience.io](https://juliadatascience.io).
 * Stanley H. Chan. [Intro to Probability for Data Science](https://www.amazon.com/Introduction-Probability-Data-Science-Stanley/dp/1607857464/), November 2021. The book is also available freely as HTML and PDF at [probability4datascience.com](https://probability4datascience.com/index.html). Code is in Julia/Python/R/Matlab.
 * Sambit Kumar Dash. [Hands-on Julia Programming](https://in.bpbonline.com/products/hands-on-julia-programming), Bpb Publications, October 2021.
@@ -45,7 +46,6 @@ _Julia 1.0 was released on 8 August 2018_
 * Ivo Balbaert. [Getting Started with Julia Programming Language](https://www.packtpub.com/application-development/getting-started-julia). Packt Publishing, 2015.
 * Malcolm Sherrington. [Mastering Julia](https://www.packtpub.com/application-development/mastering-julia). Packt Publishing, 2015.
 * Bruce Tate, Ian Dees, Frederic Daoud, and Jack Moffit. [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks). The Pragmatic Programmers, December 2014.
-* Noel Kalicharan. [Julia - Bit by Bit](https://link.springer.com/book/10.1007/978-3-030-73936-2). Springer, 2021.
 @@
 
 Have a Julia book you want added to this list? Please [open an issue or pull request](https://github.com/JuliaLang/www.julialang.org/issues).
