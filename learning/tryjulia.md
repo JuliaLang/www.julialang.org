@@ -3,5 +3,7 @@
 Check out this web based interactive Julia shell:
 
 ~~~
-<iframe height="700px" width="100%" src="https://repl.it/@logankilpatrick/TryJulia?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<iframe height="700px" width="100%" src="https://replit.com/@logankilpatrick/TryJuliaToday?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 ~~~
+
+<!-- Append lite=true to the URL to get the view with the code and REPL session together -->
