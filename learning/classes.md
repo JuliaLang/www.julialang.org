@@ -83,6 +83,8 @@ If you know of other classes using Julia for teaching, please consider updating 
 * Royal Military Academy (Brussels)
     * ES123, Computer Algorithms and Programming Project (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Spring 2018
     * ES313, Mathematical modelling and Computer Simulation (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Fall 2018
+* [RWTH Aachen University](https://www.rwth-aachen.de/cms/~a/root/?lidx=1), Germany
+    * [Introduction to Programming for Business Analytics](https://www.dpo.rwth-aachen.de/cms/DPO/Studium/Lehre/~puyhc/Introduction-to-Programming-for-Business/?lidx=1), since Fall 2021
 * “Sapienza” University of Rome, Italy
     * [Operations Research](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2015
     * [Optimization for Complex Systems](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2016
