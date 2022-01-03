@@ -129,6 +129,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * Julia: el lenguaje del futuro, [Semana de Integración de Ingeniería Electrónica](https://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro), (Oscar William Neciosup Vera), Spring 2015
 * Universidad Veracruzana, México
     * [Algoritmos Evolutivos y de Inteligencia Colectiva](https://github.com/jmejia8/julia-python) (Jesús A. Mejía-de-Dios), Fall 2019
+* Universidade Nove de Julho (UNINOVE), Brazil
+    * [Ciência de Dados e Computação Científica com Julia](https://storopoli.io/Computacao-Cientifica/) ([Jose Storopoli](https://storopoli.io)), Fall 2011
 * University at Buffalo
     * [IE 572](https://www.chkwon.net/teaching/#ie-572-linear-programming/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
 * University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016
