@@ -83,6 +83,8 @@ If you know of other classes using Julia for teaching, please consider updating 
 * Royal Military Academy (Brussels)
     * ES123, Computer Algorithms and Programming Project (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Spring 2018
     * ES313, Mathematical modelling and Computer Simulation (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Fall 2018
+* [RWTH Aachen University](https://www.rwth-aachen.de/cms/~a/root/?lidx=1), Germany
+    * [Introduction to Programming for Business Analytics](https://www.dpo.rwth-aachen.de/cms/DPO/Studium/Lehre/~puyhc/Introduction-to-Programming-for-Business/?lidx=1), since Fall 2021
 * “Sapienza” University of Rome, Italy
     * [Operations Research](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2015
     * [Optimization for Complex Systems](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2016
@@ -150,6 +152,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * Spring 2016, [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/index.html))
 * University of Florida
     * COT 5615, Math for Intelligent Systems (Prof. Kejun Huang), 2021
+    * CIS 4390, Abstraction, Composition, and Computation ([Prof. James Fairbanks](https://www.cise.ufl.edu/fairbanks-james/)), Fall 2021 
+    * COT 4501, Numerical Analysis: A Computational Approach ([Prof. James Fairbanks](https://www.cise.ufl.edu/fairbanks-james/)), Spring 2022 
 * University of Glasgow, School of Mathematics and Statistics
     * An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](https://www.gla.ac.uk/postgraduate/taught/dataanalytics/)), September 2017
 *   University of Oulu
