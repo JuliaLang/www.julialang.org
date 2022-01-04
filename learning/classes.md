@@ -130,7 +130,7 @@ If you know of other classes using Julia for teaching, please consider updating 
 * Universidad Veracruzana, México
     * [Algoritmos Evolutivos y de Inteligencia Colectiva](https://github.com/jmejia8/julia-python) (Jesús A. Mejía-de-Dios), Fall 2019
 * Universidade Nove de Julho (UNINOVE), Brazil
-    * [Ciência de Dados e Computação Científica com Julia](https://storopoli.io/Computacao-Cientifica/) ([Jose Storopoli](https://storopoli.io)), Fall 2011
+    * [Ciência de Dados e Computação Científica com Julia](https://storopoli.io/Computacao-Cientifica/) ([Jose Storopoli](https://storopoli.io)), Fall 2021
 * University at Buffalo
     * [IE 572](https://www.chkwon.net/teaching/#ie-572-linear-programming/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
 * University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016
