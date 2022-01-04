@@ -139,6 +139,10 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [Classical Mechanics](https://www.quantumtheory-bruder.physik.unibas.ch) (Prof. Christoph Bruder), Fall 2020
 * University of California, Los Angeles (UCLA)
     * [Biostat 257](https://ucla-biostat-257-2021spring.github.io), Computational Methods for Biostatistical Research, Spring 2021 (Prof. [Hua Zhou](http://hua-zhou.github.io))
+* University of Canterbury, Christchurch, New Zealand
+    * DATA201/DATA422 [Data Wrangling](https://www.canterbury.ac.nz/courseinfo/GetCourseDetails.aspx?course=DATA201&occurrence=22S2(C)&year=2022) (Dr. Giulio Valentino Dalla Riva, Dr. Thomas Li), since S2 2018, 2019, 2020, 2021, 2022
+    * DATA419 [Social Networks and Online Communities](https://www.canterbury.ac.nz/courseinfo/GetCourseDetails.aspx?course=DATA419&occurrence=22S1(C)&year=2022) (Dr. Giulio Valentino Dalla Riva), S2 2018, 2019, 2020, 2021, 2022
+    * DATA417 [The Trustworthy Data Scientist](https://www.canterbury.ac.nz/courseinfo/GetCourseDetails.aspx?course=DATA417&occurrence=22S2(C)&year=2022) (Dr. Giulio Valentino Dalla Riva), S2 2018, 2019, 2020, 2021, 2022
 * University of Cologne, Institute for Theoretical Physics
     * [Computational Physics](https://www.thp.uni-koeln.de/trebst/Lectures/2016-CompPhys.shtml) (Prof. Simon Trebst), Summer 2016
     * [Computational Physics](https://www.thp.uni-koeln.de/~bulla/cp-ss17.html) (Prof. Ralf Bulla), Summer 2017
