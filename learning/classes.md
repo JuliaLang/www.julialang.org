@@ -14,6 +14,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [CSCI 1810](https://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael), Fall 2014
 * [Budapest University of Technology and Economics](https://www.bme.hu/)
     * Applications of Differential Equations and Vector Analysis for Engineers II ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
+* [Central European University](https://economics.ceu.edu/)
+    * [Advanced Macroeconomics](https://github.com/CEU-Economics-and-Business/ECBS-6001-Advanced-Macroeconomics/blob/master/ECBS-6001-Advanced-Macroeconomics.md) ([Miklós Koren](http://koren.mk/))
 * City University of New York
     * [MTH 229](https://www.math.csi.cuny.edu/abhijit/229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](https://mth229.github.io) page.
 * Cornell University
