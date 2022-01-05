@@ -14,10 +14,15 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [CSCI 1810](https://cs.brown.edu/courses/csci1810/), Computational Molecular Biology (Prof. Benjamin J. Raphael), Fall 2014
 * [Budapest University of Technology and Economics](https://www.bme.hu/)
     * Applications of Differential Equations and Vector Analysis for Engineers II ([Brigitta Szilágyi](https://sites.google.com/site/brszilagyi/))
+* [Central European University](https://economics.ceu.edu/)
+    * [Advanced Macroeconomics](https://github.com/CEU-Economics-and-Business/ECBS-6001-Advanced-Macroeconomics/blob/master/ECBS-6001-Advanced-Macroeconomics.md) ([Miklós Koren](http://koren.mk/))
 * City University of New York
     * [MTH 229](https://www.math.csi.cuny.edu/abhijit/229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](https://mth229.github.io) page.
 * Cornell University
     * [CS 5220](https://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel), Spring 2014
+* [Czech Technical University in Prague](https://www.cvut.cz/en), Czech Republic
+    * [Julia for Optimization and Learning](https://juliateachingctu.github.io/Julia-for-Optimization-and-Learning/stable/)
+    * [Scientific Programming in Julia](https://juliateachingctu.github.io/Scientific-Programming-in-Julia/stable)
 * École Polytechnique Fédérale de Lausanne
     * [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
 * [Einaudi Institute for Economics and Finance, Rome](http://www.eief.it/eief/)
@@ -129,6 +134,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * Julia: el lenguaje del futuro, [Semana de Integración de Ingeniería Electrónica](https://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro), (Oscar William Neciosup Vera), Spring 2015
 * Universidad Veracruzana, México
     * [Algoritmos Evolutivos y de Inteligencia Colectiva](https://github.com/jmejia8/julia-python) (Jesús A. Mejía-de-Dios), Fall 2019
+* Universidade Nove de Julho (UNINOVE), Brazil
+    * [Ciência de Dados e Computação Científica com Julia](https://storopoli.io/Computacao-Cientifica/) ([Jose Storopoli](https://storopoli.io)), Fall 2021
 * University at Buffalo
     * [IE 572](https://www.chkwon.net/teaching/#ie-572-linear-programming/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
 * University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016
@@ -137,6 +144,10 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [Classical Mechanics](https://www.quantumtheory-bruder.physik.unibas.ch) (Prof. Christoph Bruder), Fall 2020
 * University of California, Los Angeles (UCLA)
     * [Biostat 257](https://ucla-biostat-257-2021spring.github.io), Computational Methods for Biostatistical Research, Spring 2021 (Prof. [Hua Zhou](http://hua-zhou.github.io))
+* University of Canterbury, Christchurch, New Zealand
+    * DATA201/DATA422 [Data Wrangling](https://www.canterbury.ac.nz/courseinfo/GetCourseDetails.aspx?course=DATA201&occurrence=22S2(C)&year=2022) (Dr. Giulio Valentino Dalla Riva, Dr. Thomas Li), since S2 2018, 2019, 2020, 2021, 2022
+    * DATA419 [Social Networks and Online Communities](https://www.canterbury.ac.nz/courseinfo/GetCourseDetails.aspx?course=DATA419&occurrence=22S1(C)&year=2022) (Dr. Giulio Valentino Dalla Riva), S2 2018, 2019, 2020, 2021, 2022
+    * DATA417 [The Trustworthy Data Scientist](https://www.canterbury.ac.nz/courseinfo/GetCourseDetails.aspx?course=DATA417&occurrence=22S2(C)&year=2022) (Dr. Giulio Valentino Dalla Riva), S2 2018, 2019, 2020, 2021, 2022
 * University of Cologne, Institute for Theoretical Physics
     * [Computational Physics](https://www.thp.uni-koeln.de/trebst/Lectures/2016-CompPhys.shtml) (Prof. Simon Trebst), Summer 2016
     * [Computational Physics](https://www.thp.uni-koeln.de/~bulla/cp-ss17.html) (Prof. Ralf Bulla), Summer 2017
@@ -172,6 +183,9 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [MATH0461](https://www.programmes.uliege.be/cocoon/20192020/cours/MATH0461-2.html), Introduction to Numerical Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
     * [MATH0462](http://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2015-2016-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2015
 * Université de Montréal
+    * [BIO6032](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6032/), Biologie computationnelle et modélisation (Prof. [Timothée Poisot](https://poisotlab.io/)), Winter 2021-
+    * [BIO3033](https://admission.umontreal.ca/cours-et-horaires/cours/bio-3033/) & [BIO6033](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6033/), Méthodes Quantitatives en Biologie (Prof. [Timothée Poisot](https://poisotlab.io/)), Fall 2017-
+    * [BIO3043](https://admission.umontreal.ca/cours-et-horaires/cours/bio-3043/) & [BIO6037](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6037/), Analyse des Réseaux Écologiques (Prof. [Timothée Poisot](https://poisotlab.io/)), Fall 2018- 
     * [IFT1575](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-1575/), Modèles de recherche opérationnelle (Prof. [Bernard Gendron](https://www.iro.umontreal.ca/~gendron/)), Fall 2017
     * [IFT3245](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3245/), Simulation et modèles (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Fall 2017
     * [IFT3515](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3515/), Optimisation non linéaire (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2017-2018
