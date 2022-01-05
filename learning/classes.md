@@ -183,6 +183,9 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [MATH0461](https://www.programmes.uliege.be/cocoon/20192020/cours/MATH0461-2.html), Introduction to Numerical Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
     * [MATH0462](http://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2015-2016-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2015
 * Université de Montréal
+    * [BIO6032](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6032/), Biologie computationnelle et modélisation (Prof. [Timothée Poisot](https://poisotlab.io/)), Winter 2021-
+    * [BIO3033](https://admission.umontreal.ca/cours-et-horaires/cours/bio-3033/) & [BIO6033](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6033/), Méthodes Quantitatives en Biologie (Prof. [Timothée Poisot](https://poisotlab.io/)), Fall 2017-
+    * [BIO3043](https://admission.umontreal.ca/cours-et-horaires/cours/bio-3043/) & [BIO6037](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6037/), Analyse des Réseaux Écologiques (Prof. [Timothée Poisot](https://poisotlab.io/)), Fall 2018- 
     * [IFT1575](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-1575/), Modèles de recherche opérationnelle (Prof. [Bernard Gendron](https://www.iro.umontreal.ca/~gendron/)), Fall 2017
     * [IFT3245](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3245/), Simulation et modèles (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Fall 2017
     * [IFT3515](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3515/), Optimisation non linéaire (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2017-2018
