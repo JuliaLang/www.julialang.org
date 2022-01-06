@@ -70,6 +70,10 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [Intelligent Development Tools (Hungarian)]
     * [Intelligent Development Tools (English)]
     * [Fundamental Mathematical Methods (English)]
+* Oregon State University
+    * CHE 599, Introduction to Data Science for Engineers (taught by [Cory Simon](https://simonensemble.github.io/))
+    * CHE 361, Process Dynamics & Simulation taught by ([Cory Simon](https://simonensemble.github.io/), using [`Controlz.jl`](https://github.com/SimonEnsemble/Controlz.jl))
+    * CHE 461, Process Control ([Cory Simon](https://simonensemble.github.io/), using [`Controlz.jl`](https://github.com/SimonEnsemble/Controlz.jl))
 * Pennsylvania State University
     * [ASTRO 585](https://www.personal.psu.edu/~ebf11/teach/astro585/), Seminar: High-Performance Scientific Computing for Astrophysics (Prof. [Eric B. Ford](https://personal.psu.edu/~ebf11)), Spring 2014 - [github repo](https://github.com/eford/Astro585_2014_Spring) & Fall 2015 - [github repo](https://github.com/eford/Astro585_2015_Fall_Public)
     * [ASTRO 528](https://psuastro528.github.io/), High-Performance Scientific Computing for Astrophysics (Prof. [Eric B. Ford](https://personal.psu.edu/~ebf11)), Spring 2019 - [github repo](https://github.com/PsuAstro528/Spring2019-website-src) & Fall 2021 [github repo](https://github.com/PsuAstro528/Fall2021-website-src)
