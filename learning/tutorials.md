@@ -14,6 +14,7 @@
 * [Julia language: a concise tutorial](https://syl1.gitbook.io/julia-language-a-concise-tutorial/) by Antonello Lobianco. A basic introduction that includes the main packages.
 * [Basics of Projects Example](https://github.com/robbyriverside/ModulePlay) by Rob Farrow. Fast start for using Julia Project and associated tools.
 * [Just the Julia you need to get started in Data Science and ML](https://mynerva.io/courses/register/) by Raj Rao -- use code **JULIACON2020** to access after registering. 
+* [Programación básica en Julia](https://hedero.webs.upv.es/julia-basico/) and [Claves para programar en Julia](https://hedero.webs.upv.es/julia-claves/) by Helios De Rosario. Two guides in Spanish to get started on Julia.
 @@
 
 
