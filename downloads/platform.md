@@ -14,22 +14,28 @@ Julia is available for Windows 7 and later for both 32 bit and 64 bit versions.
 \newcommand{\winpathbin}{~~~<code>C:\Users\JohnDoe\AppData\Local\Programs\Julia {{stable_release}}\bin</code>~~~}
 
 
-### Installation Notes
+### Install Julia in 4 simple steps!
 
 1.  Download the Windows Julia installer from https://julialang.org/downloads/. Note, the 32-bit Julia binaries work on both 32-bit and 64-bit Windows  (x86 and x86\_64), but the 64-bit Julia binaries only run on 64-bit Windows (x86\_64).
-2. Run the installer and note the installation directory. The installation directory should look something like \winpath, *please note this path*.
+2. Run the installer
+3. Check the `Add Julia To PATH` to automatically add Julia to Environment Variables
+![image](https://user-images.githubusercontent.com/32921645/146406045-8d9cdd74-9625-44fa-9636-c49db0cb551b.png)
+4. Invoke Julia by simply typing `julia` in your preferred terminal
 
-To invoke Julia by simply typing `julia` in the command line, the Julia executable directory needs to be added to PATH. Perform the following steps to add Julia to PATH.
+#### Adding Julia to path for older releases
+For older (<= Julia 1.5.4) downloads, note the installation directory at the time of installation. The installation directory should look something like \winpath, *please note this path*.
+
+Then add the Julia executable directory to PATH by performing the following steps.
 
 
-#### Adding Julia to PATH on Windows 10,
+##### Adding Julia to PATH on Windows 10,
 
 1.  Open Run (Windows Key + R),  type in `rundll32 sysdm.cpl,EditEnvironmentVariables` and hit enter.
 2.  Under either the "User Variables" or "System Variables" section, find the row with "Path", and click edit.
 3.  The "Edit environment variable" UI will appear. Here, click "New", and paste in the directory noted from the installation stage. This should look something like \winpathbin.
 4.  Click OK. You can now run Julia from the command line, by typing `julia`!
 
-#### Adding Julia to PATH on Windows 7 or 8
+##### Adding Julia to PATH on Windows 7 or 8
 
 1.  Open Run (Windows Key + R),  type in `rundll32 sysdm.cpl,EditEnvironmentVariables` and hit enter.
 2.  In the System Variables window, highlight Path, and click Edit.
