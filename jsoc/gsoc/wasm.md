@@ -35,12 +35,6 @@ Several Julia libraries (e.g. WebIO.jl, Escher.jl) provide input and output capa
 
 **Recommended Skills**: Experience with writing libraries in Julia.
 
-## Iodide notebook integration
-
-Experimental support exists for running Julia/wasm inside [Iodide](https://github.com/iodide-project/iodide) notebooks. There are a number of possible improvements to this integration, such as improving the quality of output and allowing interactive exploration of Julia objects from the iodide frontend. In addition, iodide notebooks should have support for specifying Julia manifest files in order to allow reproducibility in the face of changing package versions.
-
-**Recommended Skills**: Experience with JavaScript.
-
 ## Native dependencies for the web
 
 The Julia project uses [BinaryBuilder](https://github.com/JuliaPackaging/BinaryBuilder.jl) to provide binaries of native dependencies of julia packages. Experimental support exists to extend this support to the wasm platform, but few packages have been ported. This project would consist of attempting to port a significant fraction of the binary dependencies of the julia ecosystem to the web platform by improving the toolchain support in BinaryBuilder or (if necessary), porting upstream packages to fix assumptions not applicable on the wasm platform.
