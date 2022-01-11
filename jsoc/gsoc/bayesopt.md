@@ -2,7 +2,7 @@
 
 Bayesian optimization is a global optimization strategy for (potentially noisy) functions with unknown derivatives.
 With well-chosen priors, it can find optima with fewer function evaluations than alternatives, making it well suited for the optimization of costly objective functions.
-Well known examples include hyper-parameter tuning of machine learning models (see e.g. [Taking the Human Out of the Loop: A Review of BayeRecommended Skills:sian Optimization](https://www.cs.ox.ac.uk/people/nando.defreitas/publications/BayesOptLoop.pdf)).
+Well known examples include hyper-parameter tuning of machine learning models (see e.g. [Taking the Human Out of the Loop: A Review of Bayesian Optimization](https://www.cs.ox.ac.uk/people/nando.defreitas/publications/BayesOptLoop.pdf)).
 The Julia package [BayesianOptimization.jl](https://github.com/jbrea/BayesianOptimization.jl) currently supports only basic Bayesian optimization methods.
 There are multiple directions to improve the package, including (but not limited to)
 
