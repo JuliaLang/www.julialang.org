@@ -5,6 +5,7 @@ This page lists a bunch of project ideas, meant to serve as starting points as y
 We have our project ideas organized below roughly by domain but you can also see a [single page with all our projects together](/jsoc/allprojects):
 
 @@tight-list
+* [BayesianOptimization.jl](/jsoc/gsoc/bayesopt/) - a package for global optimization of black-box functions
 * [Compiler](/jsoc/gsoc/compiler/) – work on the Julia compiler's internals to make things better for everyone.
 * [DeepChem.jl](/jsoc/gsoc/deepchem/) – Machine learning for atomic systems in Julia
 * [DFTK.jl](/jsoc/gsoc/dftk/) – Density-functional theory in Julia
