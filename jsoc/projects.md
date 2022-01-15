@@ -24,6 +24,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
 * [Symbolic computation](/jsoc/gsoc/symbolics/) - User friendly symbolic programming
 * [Tabular Data](/jsoc/gsoc/tables/) - Working with data
+* [TableTransforms.jl](/jsoc/gsoc/tabletransforms/) - Tabular transforms used in statistics and machine learning
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [VS Code](/jsoc/gsoc/vscode/) - Improving Julia's VS Code IDE experience
 @@
