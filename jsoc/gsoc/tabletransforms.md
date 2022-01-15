@@ -33,6 +33,8 @@ utility transforms available in other languages (e.g. Janitor package in R, pyja
 
 **Difficulty level:** Easy
 
+**Expected duration:** 175hrs
+
 **References:**
 @@tight-list
 - [Janitor R](https://garthtarr.github.io/meatR/janitor.html)
