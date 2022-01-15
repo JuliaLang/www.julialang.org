@@ -16,6 +16,8 @@ learn how to implement advanced transforms such as PPMT and other transforms for
 
 **Difficulty level:** Medium
 
+**Expected duration:** 350hrs
+
 **References:**
 @@tight-list
 - [Project Pursuit Multivariate Transform](https://geostatisticslessons.com/lessons/ppmt)
