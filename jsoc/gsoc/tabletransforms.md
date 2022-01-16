@@ -45,4 +45,4 @@ utility transforms available in other languages (e.g. Janitor package in R, pyja
 
 Address [open issues in the package](https://github.com/JuliaML/TableTransforms.jl).
 
-Please contact me on [Zulip](https://julialang.zulipchat.com) if you have any questions.
+Please contact [Júlio Hoffimann](https://github.com/juliohm) on [Zulip](https://julialang.zulipchat.com) if you have any questions.
