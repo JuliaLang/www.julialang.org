@@ -15,25 +15,26 @@ context of DFT we recently started the [density functional toolkit
 (DFTK)](https://dftk.org), a DFT package written in pure Julia.
 
 Employing GPUs to bring speed improvements to DFT simulations
-is an established idea. However, in most established DFT simulation
-packages the GPU version of the solution algorithm is implemented
+is an established idea. However, in state-of-the-art DFT simulation
+packages the GPU version of the solution algorithm is usually implemented
 in a separate code base. In other words the CPU and the GPU version
 co-exist, which has the drawback of the duplicated effort to fix bugs or
-simply keeping both code bases in sync when novel models or algorithms
-become available. Since conventional GPU programming frameworks feature
+for keeping both code bases in sync whenever a novel method or algorithm
+becomes available. Since conventional GPU programming frameworks feature
 a steep learning curve for newcomers, oftentimes the GPU version is
 lagging behind and features an increased code complexity making the
-investigation of novel algorithms challenging.
+investigation of novel GPU algorithms challenging.
 
 In this project we want to build on the extensive GPU programming capabilities of the
-Julia ecosystem to allow DFTK to offload computations to a local GPU. Key aim of will
-be to minimise the code which needs to be adapted from the present CPU code base
+Julia ecosystem to enable DFTK to offload computations to a local GPU. Key aim will
+be to minimise the code which needs to be adapted from the present CPU code base in DFTK
 to achieve this. Since GPU counterparts already exist for most computational bottlenecks
-in DFTK, the key challenge of this project will be to handle the overall orchestration
-of the computational workflow as well as the data transfer between the CPU and the GPU.
-To keep the task manageable we will not directly tackle the full DFT problem (a non-linear
-eigenvalue problem), but restrict ourselves to the reduced setting of linear problems.
-Expanding from there towards the full DFT setting will be the overall stretch goal.
+of a DFT computation, the key challenge of this project will be to handle the overall
+orchestration of the computational workflow as well as the data transfer between the
+CPU and the GPU. To keep the task manageable we will not directly tackle the full DFT
+problem (a non-linear eigenvalue problem), but restrict ourselves to the reduced setting
+of linear eigenvalue problems. Expanding from there towards the full DFT is an optional
+stretch goal of the project.
 
 **Level of difficulty:** Medium to difficult
 
@@ -47,7 +48,7 @@ or about GPU programming is not required,
 but be prepared to take a closer look at these domains during the project.
 
 **Expected results:** Use Julias GPU programming ecosystem to implement
-an algorithm for solving the type of non-linear eigenvalue problems arising
+an algorithm for solving the type of eigenvalue problems arising
 in density-functional theory.
 
 **Mentors:** Valentin Churavy, Michael F. Herbst, Antoine Levitt
