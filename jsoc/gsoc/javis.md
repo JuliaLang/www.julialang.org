@@ -38,4 +38,7 @@ Thanks for your interest! :tada:
 	- See if JObjects can be improved upon?
 	- Further improvements to morphing
 	- Profile and increase the speed of core Javis
-
+- Enable more interactive development of Javis animations
+	- Overhaul JavisViewer
+	- Move away from GTK to Genie
+	- Create debugging options
