@@ -26,6 +26,8 @@ The purpose of this guide is **to help you get started** contributing to the Jul
 
 We **welcome** both **technical** and **nontechnical** contributions. Whether you are a **beginner** or a **seasoned developer**, you can always find a way to contribute to the Julia Ecosystem. 
 
+\toc
+
 ~~~
    <br>
 </div>
