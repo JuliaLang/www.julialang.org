@@ -100,6 +100,9 @@ $ node tools/build.js bash c diff javascript json julia julia-repl plaintext pyt
 
 Copy the library from `build/highlight.min.js` to `_libs/highlight/highlight.min.js` in this repository.
 
+## Build Previews on Netlify
+
+Currently, the build previews are run through [Logan Kilpatrick's](https://github.com/logankilpatrick) Netlify account. If the account goes offline and the previews are no longer availabe, all you need to do to restore them is sign up for Netlify, import a git repisitory (this repo), select the "gh-preview" branch, and then make the custom sub-domain "julialang.netlify.com". You should then be able to build the previews accordingly.
 
 ## FAQ
 
