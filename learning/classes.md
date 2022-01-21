@@ -89,6 +89,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * Decision and Risk Analysis (Prof. [Davi Valladão](https://www.ind.puc-rio.br/en/equipe/davi-michel-valladao/)), Fall 2015
 * Purdue University
     * [CS51400](https://www.cs.purdue.edu/homes/dgleich/cs514-2016/), Numerical Analysis (Prof. [David Gleich](https://www.cs.purdue.edu/homes/dgleich/)), Spring 2016
+* Rice University
+    * [CEVE 543](https://jdossgollin.github.io/environmental-data-science/), Environmental Data Science (Prof. [James Doss-Gollin](https://jdossgollin.github.io/)), Spring semesters starting in 2022
 * Royal Military Academy (Brussels)
     * ES123, Computer Algorithms and Programming Project (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Spring 2018
     * ES313, Mathematical modelling and Computer Simulation (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Fall 2018

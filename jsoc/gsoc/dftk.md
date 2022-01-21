@@ -1,6 +1,6 @@
 # DFTK.jl development projects – Summer of Code
 
-## Automatic differentiation in density-functional theory
+## Bringing DFTK to graphics-processing units (GPUs)
 
 Density-functional theory (DFT) is probably the most widespread method
 for simulating the quantum-chemical behaviour of electrons in matter
@@ -14,51 +14,53 @@ performance. For tackling these aspects in the multidisciplinary
 context of DFT we recently started the [density functional toolkit
 (DFTK)](https://dftk.org), a DFT package written in pure Julia.
 
-Aside from computing the DFT energy itself, most applications of DFT
-require also derivatives of the energy with respect to various
-computational parameters. Examples are the forces (derivative energy
-with respect to atomic positions) and stresses (derivative energy with
-respect to lattice parameters). While the expressions of these
-derivatives are well-known for the standard DFT approaches implementing
-these is still a laborious (and sometimes boring) task. Additionally
-deriving these forces and stresses expressions for novel models
-currently boils down to manually doing so on pen and paper, which for
-the more involved models can be non-trivial.
+Employing GPUs to bring speed improvements to DFT simulations
+is an established idea. However, in state-of-the-art DFT simulation
+packages the GPU version of the solution algorithm is usually implemented
+in a separate code base. In other words the CPU and the GPU version
+co-exist, which has the drawback of the duplicated effort to fix bugs or
+for keeping both code bases in sync whenever a novel method or algorithm
+becomes available. Since conventional GPU programming frameworks feature
+a steep learning curve for newcomers, oftentimes the GPU version is
+lagging behind and features an increased code complexity making the
+investigation of novel GPU algorithms challenging.
 
-As an alternative we want to take a look at combining the
-automatic-differentiation (AD) capabilities of the Julia ecosystem with
-DFTK in order to compute stresses without implementing the derivatives
-by hand. Instead we want to make DFTK suitable for AD, such that stresses
-for our current (and future) DFT models can be computed automatically.
-Being able to combine DFTK and AD would not only give us stresses,
-but it would also pave the road for computing even more involved properties
-using AD. In this final stage of the project it would be required to
-AD through the whole of DFTK (including several layers of solvers).
+In this project we want to build on the extensive GPU programming capabilities of the
+Julia ecosystem to enable DFTK to offload computations to a local GPU. Key aim will
+be to minimise the code which needs to be adapted from the present CPU code base in DFTK
+to achieve this. Since GPU counterparts already exist for most computational bottlenecks
+of a DFT computation, the key challenge of this project will be to handle the overall
+orchestration of the computational workflow as well as the data transfer between the
+CPU and the GPU. To keep the task manageable we will not directly tackle the full DFT
+problem (a non-linear eigenvalue problem), but restrict ourselves to the reduced setting
+of linear eigenvalue problems. Expanding from there towards the full DFT is an optional
+stretch goal of the project.
 
-**Project type:** Risky and exploratory (essentially a small research project)
+**Level of difficulty:** Medium to difficult
 
-**Level of difficulty:** Hard
+**Project size:** large, i.e. 12 weeks a 30 hours
 
 **Recommended skills:** Interest to work on an multidisciplinary project
 bordering physics, mathematics and computer science with a good
-working knowledge of differential calculus and Julia.
+working knowledge of numerical linear algebra and Julia.
 Detailed knowledge in the physical background (electrostatics, material science)
-or about automatic differentiation is not required,
+or about GPU programming is not required,
 but be prepared to take a closer look at these domains during the project.
 
-**Expected results:** Use automatic differentiation to implement
-stresses (derivatives of the total energy with respect to lattice
-parameters) into DFTK.
+**Expected results:** Use Julias GPU programming ecosystem to implement
+an algorithm for solving the type of eigenvalue problems arising
+in density-functional theory.
 
-**Mentors:** Keno Fischer, Michael F. Herbst, Antoine Levitt
+**Mentors:** Valentin Churavy, Michael F. Herbst, Antoine Levitt
 
 **References:** For a nice intro to DFT and DFTK.jl see [Michael's talk
 at JuliaCon 2020](https://www.youtube.com/watch?v=-RomkxjlIcQ) and the
 literature given in the [DFTK
 documentation](https://docs.dftk.org/stable/guide/density_functional_theory/).
-A concise introduction into AD are [Antoine's notes on the adjoint
-trick](http://antoine.levitt.fr/adjoint.pdf).
+For an introduction to GPU computing in Julia, see [the GPU workshop
+at JuliaCon 2021](https://www.youtube.com/watch?v=Hz9IMJuW5hU)
+by Tim Besard, Julian Samaroo and Valentin.
 
 **Contact:** For any questions, feel free to email
 [@mfherbst](https://github.com/mfherbst), [@antoine-levitt](https://github.com/antoine-levitt)
-or write us on [our gitter chat](https://gitter.im/DFTK-jl/community).
+or write us on the [JuliaMolSim slack](https://join.slack.com/t/juliamolsim/shared_invite/zt-tc060co0-HgiKApazzsQzBHDlQ58A7g).
