@@ -98,6 +98,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/jsoc/gsoc/molly/index.html</loc>
+    <lastmod>2022-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2012/03/shelling-out-sucks/index.html</loc>
     <lastmod>2022-01-21</lastmod>
     <changefreq>monthly</changefreq>
