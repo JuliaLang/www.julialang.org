@@ -94,7 +94,8 @@ You should *only* be using the long-term support (LTS) version of Julia if you w
 ~~~
 <sup>[1]</sup>
 ~~~
-For venturers we provide a technical preview of Julia built for macOS ARM (M-series Processor): <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg">64-bit</a>
+For venturers we provide a technical preview of Julia built for macOS ARM (M-series Processor): [Download Julia for macOS ARM](https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg) 
+(as a technical preview this build is prone to crashes and should not be used for serious work).
 
 
 ~~~
