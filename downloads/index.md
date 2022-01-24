@@ -28,13 +28,8 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{stable_release_short}}/julia-{{stable_release}}-win32.exe">32-bit (installer)</a>,  <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{stable_release_short}}/julia-{{stable_release}}-win32.zip">32-bit (portable)</a> </td> </td>
     </tr>
     <tr>
-      <th> macOS x86 (Intel or Rosetta) <a href="/downloads/platform/#macos">[help]</a></th>
+      <th> macOS x86 (Intel or Rosetta)<sup>[<a href=#armm1-fn>1</a>]</sup> <a href="/downloads/platform/#macos">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.dmg">64-bit</a> </td>
-      <td colspan="3"> </td>
-    </tr>
-    <tr>
-      <th> macOS ARM (M-series Processor) <a href="/downloads/platform/#macos">[help]</a></th>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg">64-bit</a> </td>
       <td colspan="3"> </td>
     </tr>
     <tr>
@@ -42,7 +37,7 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
       <td colspan="3">
         <a href="https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{stable_release}}-linux-x86_64.tar.gz">64-bit (glibc)</a>
         (<a href="https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{stable_release}}-linux-x86_64.tar.gz.asc">GPG</a>),
-        <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{stable_release_short}}/julia-{{stable_release}}-musl-x86_64.tar.gz">64-bit (musl)</a><sup>[<a href=#musl-fn>1</a>]</sup>
+        <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{stable_release_short}}/julia-{{stable_release}}-musl-x86_64.tar.gz">64-bit (musl)</a><sup>[<a href=#musl-fn>2</a>]</sup>
         (<a href="https://julialang-s3.julialang.org/bin/musl/x64/{{stable_release_short}}/julia-{{stable_release}}-musl-x86_64.tar.gz.asc">GPG</a>)
       </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/{{stable_release_short}}/julia-{{stable_release}}-linux-i686.tar.gz">32-bit</a>
@@ -95,6 +90,11 @@ Almost everyone should be downloading and using the latest stable release of Jul
 Great care is taken not to break compatibility with older Julia versions, so older code should continue to work with the latest stable Julia release.
 You should *only* be using the long-term support (LTS) version of Julia if you work at an organization where implementing or certifying upgrades is prohibitively expensive and there is no need for new language features or packages. See this description of ["Risk Personas"](https://julialang.org/blog/2019/08/release-process/#risk_tolerance_personas) for more detail on who should be using what versions of Julia based on their risk tolerance. See this blog post on [Julia's Release Process](https://julialang.org/blog/2019/08/release-process/) for more information on different kinds of releases.
 
+\label{armm1-fn}
+~~~
+<sup>[1]</sup>
+~~~
+For venturers we provide a technical preview of Julia built for macOS ARM (M-series Processor): <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg">64-bit</a>
 
 
 ~~~
@@ -123,7 +123,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
       <td colspan="3">
         <a href="https://julialang-s3.julialang.org/bin/linux/x64/{{lts_release_short}}/julia-{{lts_release}}-linux-x86_64.tar.gz">64-bit</a>
           (<a href="https://julialang-s3.julialang.org/bin/linux/x64/{{lts_release_short}}/julia-{{lts_release}}-linux-x86_64.tar.gz.asc">GPG</a>),
-        <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{lts_release_short}}/julia-{{lts_release}}-musl-x86_64.tar.gz">64-bit (musl)</a><sup>[<a href=#musl-fn>1</a>]</sup>
+        <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{lts_release_short}}/julia-{{lts_release}}-musl-x86_64.tar.gz">64-bit (musl)</a><sup>[<a href=#musl-fn>2</a>]</sup>
         (<a href="https://julialang-s3.julialang.org/bin/musl/x64/{{lts_release_short}}/julia-{{lts_release}}-musl-x86_64.tar.gz.asc">GPG</a>)
       </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/{{lts_release_short}}/julia-{{lts_release}}-linux-i686.tar.gz">32-bit</a>
@@ -196,16 +196,11 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
       <td colspan="3"> </td>
     </tr>
     <tr>
-      <th> macOS ARM (M-series Processor) <a href="/downloads/platform/#macos">[help]</a></th>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{upcoming_release_short}}/julia-{{upcoming_release}}-macaarch64.dmg">64-bit</a> </td>
-      <td colspan="3"> </td>
-    </tr>
-    <tr>
       <th> Generic Linux on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3">
         <a href="https://julialang-s3.julialang.org/bin/linux/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-x86_64.tar.gz">64-bit (glibc)</a>
         (<a href="https://julialang-s3.julialang.org/bin/linux/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-x86_64.tar.gz.asc">GPG</a>),
-        <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-musl-x86_64.tar.gz">64-bit (musl)</a><sup>[<a href=#musl-fn>1</a>]</sup>
+        <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-musl-x86_64.tar.gz">64-bit (musl)</a><sup>[<a href=#musl-fn>2</a>]</sup>
         (<a href="https://julialang-s3.julialang.org/bin/musl/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-musl-x86_64.tar.gz.asc">GPG</a>)
       </td>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-i686.tar.gz">32-bit</a>
@@ -259,7 +254,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 
 \label{musl-fn}
 ~~~
-<sup>[1]</sup>
+<sup>[2]</sup>
 ~~~
 Most Linux users should use the glibc binaries unless you know that your system uses musl as its libc.
 
