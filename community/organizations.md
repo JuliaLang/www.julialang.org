@@ -83,6 +83,7 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 * [JuliaFEM](https://github.com/JuliaFEM) –  Finite Element Method
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
 * [JuliaHealth](https://github.com/JuliaHealth) – [medicine, health care, public health](https://juliahealth.org/)
+* [JuliaIBM](https://github.com/JuliaIBPM) - Immersed boundary methods and other tools for solving partial differential equations
 * [JuliaMolSim](https://github.com/JuliaMolSim) – Molecular Simulation in Materials Science and Chemistry
 * [Julia POMDP](https://github.com/JuliaPOMDP) - POMDP packages for Julia
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
