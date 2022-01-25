@@ -615,6 +615,10 @@ Instead, what we are learning is the tiny ODE system from which the ODE
 solution is generated. I.e., the neural network inside the neural_ode
 layer learns this function:
 
+```math
+u' = A*u^3
+```
+
 Thus **it learned a compact representation of how the
 time series works**, and it can easily extrapolate to what would happen with
 different starting conditions. Not only that, it's a very flexible
