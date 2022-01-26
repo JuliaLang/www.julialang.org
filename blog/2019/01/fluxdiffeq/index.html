@@ -154,6 +154,7 @@ Flux.train&#33;&#40;loss_n_ode, ps, data, opt, cb &#61; cb&#41;</code></pre>
 <p><img src="https://user-images.githubusercontent.com/1814174/51585825-dc3f8480-1ea8-11e9-8498-18cf55fba3e6.gif" alt="Neural ODE Train" /></p>
 <p><a href="https://github.com/FluxML/model-zoo/blob/da4156b4a9fb0d5907dcb6e21d0e78c72b6122e0/other/diffeq/neural_ode.jl">This code can be found in the model-zoo</a></p>
 <p>Notice that we are not learning a solution to the ODE. Instead, what we are learning is the tiny ODE system from which the ODE solution is generated. I.e., the neural network inside the neural_ode layer learns this function:</p>
+<pre><code class=language-math >u&#39; &#61; A*u^3</code></pre>
 <p>Thus <strong>it learned a compact representation of how the time series works</strong>, and it can easily extrapolate to what would happen with different starting conditions. Not only that, it&#39;s a very flexible method for learning such representations. For example, if your data is unevenly spaced at time points <code>t</code>, just pass in <code>saveat&#61;t</code> and the ODE solver takes care of it.</p>
 <p>As you could probably guess by now, the DiffEqFlux.jl has all kinds of extra related goodies like Neural SDEs &#40;<code>NeuralSDE</code>&#41; for you to explore in your applications.</p>
 <h2 id=the_core_technical_challenge_backpropagation_through_differential_equation_solvers ><a href="#the_core_technical_challenge_backpropagation_through_differential_equation_solvers">The core technical challenge: backpropagation through differential equation solvers</a></h2>
