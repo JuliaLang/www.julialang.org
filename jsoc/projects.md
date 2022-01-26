@@ -13,6 +13,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Loop Optimization](/jsoc/gsoc/loopopt/) - Loop analysis and optimization
 * [Flux.jl](/jsoc/gsoc/flux/) - A flexible deep learning library.
 * [GeoStats.jl](/jsoc/gsoc/GeoStats/) - An extensible framework for high-performance geostatistics in Julia.
+* [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
 * [Javis](/jsoc/gsoc/javis/) - **J**ulia **a**nimations and **vis**ualizations for teaching, communication, and beyond!
