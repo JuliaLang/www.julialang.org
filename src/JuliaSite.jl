@@ -1,7 +1,10 @@
 module JuliaSite
 
+using Artifacts: @artifact_str
 using NodeJS
 using Franklin
+
+artifact"JuliaMono"
 
 export build_site
 
