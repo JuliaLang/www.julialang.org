@@ -1,3 +1,4 @@
+using Artifacts: @artifact_str
 using Dates
 
 """
@@ -227,3 +228,27 @@ function hfun_all_gsoc_projects()
 	allmd = String(take!(md))
 	return fd2html(allmd, internal=true)
 end
+
+"""
+    hfun_artifact(params::Vector{String})::String
+
+Return a (relative) URL to an artifact.
+For example, for JuliaMono, use
+```
+{{artifact JuliaMono juliamono-0.042 webfonts JuliaMono-Regular.woff2}}
+```
+where JuliaMono is the name of the Artifact in Artifacts.toml.
+This method copies the artifact, puts it into `_assets` and returns a relative URL.
+"""
+function hfun_artifact(params::Vector{String})::String
+    name = params[1]
+    dir = @artifact_str(name)
+    from = joinpath(dir, params[2:end]...)
+    @assert isfile(from)
+    location = params[2:end]
+    to = joinpath(@__DIR__, "__site", "assets", name, location...)
+    mkpath(dirname(to))
+    cp(from, to; force=true)
+    return string('/', join(["assets"; name; location], '/'))
+end
+

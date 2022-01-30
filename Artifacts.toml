@@ -1,0 +1,13 @@
+[JuliaMono]
+git-tree-sha1 = "8730bd1d8cbb19f36e0ca10236011fd72083746f"
+
+    [[JuliaMono.download]]
+    sha256 = "255b4960fa61ccc58660603c3b8ae19f1cd9d10ecb34ea32967bb32381962931"
+    url = "https://github.com/cormullion/juliamono/archive/v0.042.tar.gz"
+
+[Highlight]
+git-tree-sha1 = "74d0a953af18dcd657e32a9cd95e77d791882528"
+
+    [[Highlight.download]]
+    sha256 = "ba979bd14d82065aebea450ed77e4b3fe217ca3a7876cc69606147b85d8fb3ce"
+    url = "https://github.com/highlightjs/cdn-release/archive/refs/tags/11.4.0.tar.gz"

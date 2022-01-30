@@ -542,7 +542,7 @@ blockquote p {
   margin-bottom: 0;
 }
 
-code, table.benchmarks tbody {
+table.benchmarks tbody {
   font: 9pt Monaco, 'Consolas', monospace;
 }
 
