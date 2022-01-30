@@ -42,7 +42,7 @@ jobs:
       - name: Install Julia
         uses: julia-actions/setup-julia@v1
         with:
-          version: 1.6
+          version: 1.7
 
       - uses: julia-actions/cache@v1
       - uses: julia-actions/julia-buildpkg@v1
