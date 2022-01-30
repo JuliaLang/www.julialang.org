@@ -17,7 +17,7 @@ function build_site()
     highlight_path = abspath(joinpath("_libs", "highlight", "highlight.min.js"))
     Franklin.HIGHLIGHTJS[] = highlight_path
     Franklin.optimize(; prerender=true)
-    cp(joinpath("__site", "feed.xml"), joinpath("__size", "index.xml"))
+    cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))
 end
 
 end # module
