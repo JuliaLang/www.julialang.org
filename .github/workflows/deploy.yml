@@ -45,6 +45,7 @@ jobs:
           version: 1.6
 
       - uses: julia-actions/cache@v1
+      - uses: julia --color=yes --project -e 'using Pkg; Pkg.instantiate()'
 
       # This ensures that NodeJS and Franklin are loaded then it installs
       # highlight.js which is needed for the prerendering step.
@@ -55,7 +56,6 @@ jobs:
       - name: Build site
         run: |
           julia --color=yes --project -e '
-              using Pkg; Pkg.instantiate();
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
               using Franklin;
               Franklin.HIGHLIGHTJS[] = abspath(joinpath("_libs", "highlight", "highlight.min.js"));
