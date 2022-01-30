@@ -13,11 +13,11 @@ for the prerendering step. Then the environment is activated and instantiated to
 Julia packages which may be required to successfully build your site.
 """
 function build_site()
-    run(`$(npm_cmd()) install highlight.js`)
+    # run(`$(npm_cmd()) install highlight.js`)
     highlight_path = abspath(joinpath("_libs", "highlight", "highlight.min.js"))
     Franklin.HIGHLIGHTJS[] = highlight_path
     Franklin.optimize(; prerender=true)
-    cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))
+    cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"); force=true)
 end
 
 end # module

@@ -12,7 +12,7 @@ variable should be given as an iterable of 3-tuples like so:
 ```
 A full example can be found in `blog/2020/05/rr.md`.
 """
-function hfun_meta()
+@delay function hfun_meta()
     title = locvar(:title)
     isnothing(title) && (title = "The Julia Language")
     descr = locvar(:rss)
@@ -46,7 +46,7 @@ end
 
 Plug in the list of blog posts contained in the `/blog/` folder.
 """
-function hfun_blogposts()
+@delay function hfun_blogposts()
     curyear = year(Dates.today())
     io = IOBuffer()
     for year in curyear:-1:2012
@@ -64,7 +64,7 @@ function hfun_blogposts()
                 url = "/blog/$ys/$ms/$ps/"
                 surl = strip(url, '/')
                 title = pagevar(surl, :title)
-				title === nothing && (title = "Untitled")
+                title === nothing && (title = "Untitled")
                 pubdate = pagevar(surl, :published)
                 if isnothing(pubdate)
                     date    = "$ys-$ms-01"
@@ -90,7 +90,7 @@ end
 
 Input the 3 latest blog posts.
 """
-function hfun_recentblogposts()
+@delay function hfun_recentblogposts()
     curyear = Dates.Year(Dates.today()).value
     ntofind = 3
     nfound  = 0
@@ -127,7 +127,7 @@ function hfun_recentblogposts()
     for (surl, date) in recent
         url   = "/$surl/"
         title = pagevar(surl, :title)
-		title === nothing && (title = "Untitled")
+        title === nothing && (title = "Untitled")
         sdate = "$(day(date)) $(monthname(date)) $(year(date))"
         blurb = pagevar(surl, :rss)
         write(io, """
@@ -183,7 +183,7 @@ end
 """
     {{about_the_author}}
 """
-function hfun_about_the_author()
+@delay function hfun_about_the_author()
 	# verify that author_img and author_blurb are given
     any(isnothing ∘ locvar, (:author_img, :author_blurb)) && return ""
 	img = "/assets/$(locvar(:author_img))"
@@ -215,7 +215,7 @@ function hfun_about_the_author()
     return html
 end
 
-function hfun_all_gsoc_projects()
+@delay function hfun_all_gsoc_projects()
 	base_dir = joinpath("jsoc", "gsoc")
 	all_projects = readdir(base_dir)
 	md = IOBuffer()
