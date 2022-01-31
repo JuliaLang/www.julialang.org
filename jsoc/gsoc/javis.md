@@ -29,15 +29,30 @@ Thanks for your interest! :tada:
 - Explore possible integrations with Makie?
 	- Creating 3D animations in Javis
 	- Support plotting integration if possible
-- Graph network interaces for Javis
-	- The LinearAlgebra and Graphs stuff?
-- General improvements to JuliaAnimators ecosystem
+
+- Interfaces for Javis
+	- The LinearAlgebra
+
+- Interface improvements Javis 
+	- Coordinate systems
 	- Move parts of Javis in separate packages to make it smaller and more modular
 	- Clearing up the layers feature
 		- Adding support for nested layers
 	- See if JObjects can be improved upon?
+
+- Improve performance of Javis (3 months; Mentors: Ole Kroger, Arsh Sharma)
+	- Create Profiling scheme for Javis
+		- Measuring allocations
+		- Identifying bottlenecks
+	- Identify types of rendering with FFMPEG 
+		- Low memory mode
+		- Examine options for Fast-mode
+			- Caching
+		- Partial rendering
+	- Complete LaTeX Rendering
+	- Create fully live streaming
 	- Further improvements to morphing
-	- Profile and increase the speed of core Javis
+
 - Enable more interactive development of Javis animations
 	- Overhaul JavisViewer
 	- Move away from GTK to Genie
