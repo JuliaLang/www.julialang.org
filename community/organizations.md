@@ -1,8 +1,8 @@
-## Julia GitHub Groups
+## Julia GitHub Organizations
 
-Something unique about the Julia Language is the way [the community self organizes into GitHub Organizations](https://youtu.be/cLFfTE2KWrk?t=644). This allows for a higher degree of collaboration and structure that ultimatly enables each of these communitites to be self sustaining.
+Something unique about the Julia Language is the way [the community self organizes into GitHub Organizations](https://youtu.be/cLFfTE2KWrk?t=644). This allows for a higher degree of collaboration and structure that ultimately enables each of these communitites to be self sustaining.
 
-The following is a non-comprehensive list of Julia GitHub Organizations, grouped by domain:
+The following is a non-comprehensive list of Julia GitHub organizations, grouped by domain. If you know of an organization not shown here, please open a pull request so that we can keep the list up to date.
 
 ### Julia
 
@@ -89,12 +89,12 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 * [JuliaQuant](https://github.com/JuliaQuant) – Finance
 * [JuliaReach](https://github.com/JuliaReach) – [Reachability analysis, set propagation techniques, hybrid systems](https://juliareach.github.io/) ([Gitter](https://gitter.im/JuliaReach/Lobby))
 * [JuliaRobotics](https://github.com/JuliaRobotics)
-* [JuliaTelecom](https://github.com/JuliaTelecom) [[🌐–page]](https://github.com/JuliaTelecom/SiteMap) – Telecommunications
+* [JuliaTelecom](https://github.com/JuliaTelecom) – [Telecommunications](https://github.com/JuliaTelecom/SiteMap)
 * [ModiaSim](https://github.com/ModiaSim) – Physical systems modelling/simulation with differential & algebraic equations
 
 ### Astronomy/Space
 
-* [JuliaAstro](https://github.com/JuliaAstro) [[🌐–page]](https://juliaastro.github.io/) – Astronomy
+* [JuliaAstro](https://github.com/JuliaAstro) – [Astronomy](https://juliaastro.github.io/)
 * [JuliaAstrodynamics](https://github.com/JuliaAstrodynamics)
 * [juliahci](https://github.com/juliahci) – High-contrast imaging
 * [JuliaSpace](https://github.com/JuliaSpace)
@@ -141,6 +141,3 @@ The following is a non-comprehensive list of Julia GitHub Organizations, grouped
 * [JuliaTokyo](https://github.com/JuliaTokyo) - Yet another Julialang community.
 * [Julia-Streamers](https://github.com/Julia-Streamers) – The official organization for the Julia Streaming community!
 * [QuantEcon](https://github.com/QuantEcon)
-
-
-If you know of a Julia GitHub org not shown here, please open a Pull Request so we can keep this up to date.
