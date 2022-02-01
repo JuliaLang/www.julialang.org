@@ -130,7 +130,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaPlots](https://github.com/JuliaPlots) – [Data visualization](https://juliaplots.github.io/)
 
 
-### Misc.
+### Miscellaneous
 
 * [JuliaCN](https://github.com/JuliaCN)
 * [JuliaGaming](https://github.com/JuliaGaming) – Open source games built in the Julia Programming Language.
