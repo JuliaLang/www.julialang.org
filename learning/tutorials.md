@@ -8,7 +8,7 @@
 * [ThinkJulia](https://benlauwens.github.io/ThinkJulia.jl/latest/book.html)
 * [A Deep Introduction to Julia for Data Science and Scientific Computing](https://ucidatascienceinitiative.github.io/IntroToJulia/) by [Chris Rackauckas](https://chrisrackauckas.com/)
 * [The Julia Express](https://github.com/bkamins/The-Julia-Express) by [Bogumił Kamiński](https://bogumilkaminski.pl)
-* [Programming in Julia (Quantitative Economics)](https://lectures.quantecon.org/jl/) - by [Jesse Perla](http://jesseperla.com), [Thomas J. Sargent](http://www.tomsargent.com), and [John Stachurski](https://johnstachurski.net). Along with being a complete textbook with Julia code for macroeconomics, this also is a very good introduction to Julia.
+* [Programming in Julia (Quantitative Economics)](https://julia.quantecon.org/) - by [Jesse Perla](http://jesseperla.com), [Thomas J. Sargent](http://www.tomsargent.com), and [John Stachurski](https://johnstachurski.net). Along with being a complete textbook with Julia code for macroeconomics, this also is a very good introduction to Julia.
 * [Introducing Julia wikibook](https://en.wikibooks.org/wiki/Introducing_Julia)
 * [A Comprehensive Tutorial to Learn Data Science with Julia from Scratch](https://www.analyticsvidhya.com/blog/2017/10/comprehensive-tutorial-learn-data-science-julia-from-scratch/) by [Mohd Sanad Zaki Rizvi](https://www.analyticsvidhya.com/blog/author/mohdsanadzakirizvigmail-com/)
 * [Julia language: a concise tutorial](https://syl1.gitbook.io/julia-language-a-concise-tutorial/) by Antonello Lobianco. A basic introduction that includes the main packages.
