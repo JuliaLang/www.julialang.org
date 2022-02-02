@@ -584,6 +584,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/jsoc/gsoc/interop/index.html</loc>
+    <lastmod>2022-02-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/index.html</loc>
     <lastmod>2022-02-02</lastmod>
     <changefreq>monthly</changefreq>
@@ -639,6 +645,12 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2017/12/ml-pl/index.html</loc>
+    <lastmod>2022-02-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/jsoc/gsoc/gui/index.html</loc>
     <lastmod>2022-02-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
