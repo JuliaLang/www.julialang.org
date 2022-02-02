@@ -12,3 +12,7 @@ At a minimum that would include [Pauli-Pauli products](https://github.com/Krasta
 **Recommended skills:** Basic knowledge of the [stabilizer formalism](https://krastanov.github.io/QuantumClifford.jl/dev/references/) used for simulating Clifford circuits. Familiarity with performance profiling tools in Julia and Julia's GPU stack, including [KernelAbstractions](https://github.com/JuliaGPU/KernelAbstractions.jl) and [Tullio](https://github.com/mcabbott/Tullio.jl).
 
 **Mentors:** [Stefan Krastanov](https://github.com/Krastanov)
+
+**Expected duration:** 175 hours (but applicants can scope it to a longer project by including work on GPU-accelerated Gaussian elimination used in the canonicalization routines)
+
+**Difficulty:** Easy/medium if the applicant is familiar with Julia, even without understanding of Quantum Information Science (but applicants can scope it to "hard" by including the afforementioned additional topics)
