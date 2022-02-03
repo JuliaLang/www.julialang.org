@@ -34,6 +34,8 @@ The aim of this project is to streamline that process via the following steps:
 
 **Desired skills.** Familiarity with HTML, JavaScript, and CSS, as well as reactive programming. Experience with the Julia visualization and UI ecosystem.
 
+**Duration.** 350h.
+
 **Difficulty.** Medium.
 
-**Mentors.** [Pietro Vertechi](https://github.com/piever) and [Simon Danisch](https://github.com/SimonDanisch/).
+**Mentors.** [Pietro Vertechi](https://github.com/piever) and [Simon Danisch](https://github.com/SimonDanisch).
