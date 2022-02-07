@@ -74,7 +74,7 @@ Tape caching often leads to significant performance improvements for gradient-ba
 **Project length**: 350 hrs
 
 **Description**: 
-Although KernelFunctions.jl has extensive correctness testing, our performance testing is lacking. This project aims to resolve this, and resolve performance issues wherever they are found. The student would first need to extend our existing benchmarking coverage, and debug any obvious performance problems. The next phase of the work would be to construct end-to-end examples of KernelFunctions being used in practice, profile them to determine where performance problems lie, and fix them.```
+Although KernelFunctions.jl has extensive correctness testing, our performance testing is lacking. This project aims to resolve this, and resolve performance issues wherever they are found. The student would first need to extend our existing benchmarking coverage, and debug any obvious performance problems. The next phase of the work would be to construct end-to-end examples of KernelFunctions being used in practice, profile them to determine where performance problems lie, and fix them.
 
 ## Iterative methods for inference in Gaussian Processes
 
