@@ -67,14 +67,14 @@ Tape caching often leads to significant performance improvements for gradient-ba
 
 ## Benchmarking & improving performance of the JuliaGaussianProcesses libraries
 
-**Mentors**: Cameron Pfiffer, Martin Trapp
+**Mentors**: Theo Galy-Fajou, Will Tebbutt, ST John
 
 **Project difficulty**: Medium
 
 **Project length**: 350 hrs
 
 **Description**: 
-Turing's documentation and tutorials need a bit of an overhaul. Turing has changed significantly since the last time the documentation was written, and it's beginning to show. Students would use their knowledge of probabilistic programming languages and Turing to shore-up or rewrite documentation and tutorials.
+Although KernelFunctions.jl has extensive correctness testing, our performance testing is lacking. This project aims to resolve this, and resolve performance issues wherever they are found. The student would first need to extend our existing benchmarking coverage, and debug any obvious performance problems. The next phase of the work would be to construct end-to-end examples of KernelFunctions being used in practice, profile them to determine where performance problems lie, and fix them.```
 
 ## Iterative methods for inference in Gaussian Processes
 
@@ -102,7 +102,7 @@ Adding [approximate inference](https://github.com/JuliaGaussianProcesses/JuliaGa
 
 **Mentors**: Ross Viljoen, Theo Galy-Fajou, Will Tebbutt
 
-**Project difficulty**: Easy to Medium
+**Project difficulty**: Medium
 
 **Project length**: 350 hrs
 
