@@ -192,3 +192,11 @@ A checkeboard detection algorithm which can provide the necessary inputs to a ca
 Interested students are encouraged to [open an discussion in Images.jl](https://github.com/JuliaImages/Images.jl/discussions/new) to
 introduce themselves and discuss the detailed project ideas. To increase the chance of getting useful feedback, please provide detailed
 plans and ideas (don't just copy the contents here).
+
+### Expected working hours
+
+As per [GSoC
+guideline](https://developers.google.com/open-source/gsoc/faq#how_much_time_does_gsoc_participation_take)
+indicates, projects with medium difficulty are expected to be finished within 175 hours and that
+with hard difficulty 350 hours. However, this is a quite rough estimation. Applicants are expected
+to discuss this and other details with their potential mentors before submitting their proposal.
