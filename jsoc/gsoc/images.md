@@ -3,33 +3,7 @@
 
 [JuliaImages](https://github.com/JuliaImages) (see the [documentation](https://juliaimages.github.io)) is a framework in Julia for multidimensional arrays, image processing, and computer vision (CV). It has an active development community and offers many features that unify CV and biomedical 3D/4D image processing, support big data, and promote interactive exploration.
 
-Often the best ideas are the ones that candidate SoC students come up with on their own. We are happy to [discuss such ideas](https://github.com/JuliaImages/Images.jl/issues/new) and help you refine your proposal.  Below are some potential project ideas that might help spur some thoughts.  See the bottom of this page for information about mentors.
-
-## Wide-ranging demos (easy)
-
-### Description
-
-For new or occasional users, JuliaImages would benefit from a large collection of complete worked examples organized by topic. While the current documentation contains many "mini-demos," they are scattered; an organized page would help users quickly find what they need. We have [set up a landing page](https://juliaimages.org/latest/examples/), but many more demos are needed. [Scikit-image](https://scikit-image.org/docs/stable/auto_examples/) is one potential model.
-
-Notes:
-
-- This "project" might also be split among multiple students who contribute demos as part of their work in a focused area of JuliaImages.
-- Each demo is a mini blog that includes the usage, explanations and (optional) best practices. A direct copy from the function references is not allowed.
-- Copy or modify from existing open-source projects should meet their license requirements.
-
-### Skills
-
-The applicant should be familiar with JuliaImages, and should be able to write good technical blogs in English.
-
-### Expected outcomes
-
-- A significant expansion of the number of democards with detailed explanations.
-- (Preferred) adding more missing functionalities to JuliaImages ecosystem.
-- (Optional) improve [DemoCards.jl](https://github.com/johnnychen94/DemoCards.jl), which is the build tool for the demos.
-
-### Mentors
-
-[Johnny Chen](https://github.com/johnnychen94) and [Tim Holy](https://github.com/timholy)
+Often the best ideas are the ones that candidate SoC students come up with on their own. We are happy to [discuss such ideas](https://github.com/JuliaImages/Images.jl/discussions/new?category=jsoc) and help you refine your proposal.  Below are some potential project ideas that might help spur some thoughts. In general, anything that is missing in JuliaImages, and worths three-months' development can be considered as potential GSoC ideas. See the bottom of this page for information about mentors.
 
 ## Benchmarking against other frameworks (medium)
 
@@ -43,7 +17,7 @@ JuliaImages experiences is required. Some familiarities with other image process
 
 ### Expected outcomes
 
-Benchmarks for several performance-sensitive packages (e.g., ImageFiltering, ImageTransformations, ImageMorphology, ImageContrastAdjustment, ImageEdgeDetection, ImageFeatures, and/or ImageSegmentation) against frameworks like Scikit-image and OpenCV, and optionally others like ITK, ImageMagick, and Matlab/Octave.
+Benchmarks for several performance-sensitive packages (e.g., ImageFiltering, ImageTransformations, ImageMorphology, ImageContrastAdjustment, ImageEdgeDetection, ImageFeatures, and/or ImageSegmentation) against frameworks like Scikit-image and OpenCV, and optionally others like ITK, ImageMagick, and Matlab/Octave. See also the [image benchmarks](https://github.com/JuliaImages/image_benchmarks) repository.
 
 This task splits into at least two pieces:
 
@@ -76,40 +50,18 @@ Fairly widespread GPU support for a single nontrivial package. [ImageFiltering](
 
 [Tim Holy](https://github.com/timholy) and [Johnny Chen](https://github.com/johnnychen94)
 
-## Better ImageMagick supports (medium)
+## Better ImageIO supports (medium/hard)
 
 ### Description
 
-ImageMagick is a widely used low-level image io and processing library, it also has its Julia frontend [ImageMagick.jl](https://github.com/JuliaIO/ImageMagick.jl), which is used widely in the entire Julia ecosystem. However, ImageMagick.jl project is not under active maintenance; it lacks of the necessary documentation and has few test coverage. The potential applicant needs to revisit and upgrade
-the ImageMagick.jl codebase to enhance the ImageMagick.jl package.
+ImageIO is the default IO backend shipped with Images.jl. It already supports a lot of image formats, yet there still exists
+some formats that are missing (e.g., GIF, JPEG 2000). Potential applicant needs to support new formats by either 1) wrapping available C libraries via
+BinaryBuilder, or 2) re-implement the functionality with pure Julia. See also the EXIF project below.
 
 ### Skills
 
-Experiences with Linux cross-compiling, C and Julia is required. Familiarity with ImageMagick library is preferred.
-
-### Expected outcomes
-
-- fix legacy ImageMagick.jl issues
-- improve the reliability
-- add a complete reference documentation for ImageMagick.jl
-- (Optional) port more ImageMagick features to ImageMagick.jl
-
-### Mentors
-
-[Tim Holy](https://github.com/timholy) and [Johnny Chen](https://github.com/johnnychen94)
-
-## Better ImageIO supports (medium)
-
-### Description
-
-Besides the gigantic ImageMagick library, Julia also provides a lighter [ImageIO](https://github.com/JuliaIO/ImageIO.jl) package
-for PNG, TIFF and Netpbm image formats. However, there are more widely-used image formats (e.g., JPEG, GIF) that are not supported
-by ImageIO yet. Potential applicant needs to support the IO of new image format by either 1) wrapping available C libraries via
-BinaryBuilder, or 2) re-implement the functionality with pure Julia.
-
-### Skills
-
-Experiences with Julia is required. For library wrapping projects, experiences with cross-compiling in Linux system is required, and familiarity with the source language (e.g., C) is preferred.
+Experiences with Julia is required. For library wrapping projects, experiences with cross-compiling in Linux system is required, and familiarity with the source language (e.g., C) is preferred. The difficulty almost totally depends on how the complicate the format is, and if there exists
+an easy-to-wrap C library.
 
 ### Expected Outcomes
 
@@ -117,7 +69,17 @@ Add at least one image format support.
 
 ### Mentors
 
-[Ian Butterworth](https://github.com/IanButterworth), [Johnny Chen](https://github.com/johnnychen94) and [Tim Holy](https://github.com/timholy)
+[Johnny Chen](https://github.com/johnnychen94), [Yupei Qi](https://github.com/Gnimuc) and [Ian Butterworth](https://github.com/IanButterworth)
+
+## EXIF viewer (medium)
+
+[Exchangeable image file format (EXIF)](https://en.wikipedia.org/wiki/Exif) is a widely used specification to store
+camera information. Potential applicant needs to provide a package to support read/write EXIF data of image file.
+This can be implemented in pure Julia, or wrapping the C package [libexif](https://github.com/libexif/libexif).
+
+### Mentors
+
+[Johnny Chen](https://github.com/johnnychen94) and [Yupei Qi](https://github.com/Gnimuc)
 
 ## Interactivity and visualization tools (open-ended)
 
@@ -138,11 +100,24 @@ required. For non-GUI projects, familiarity with Julia array interfaces are pref
 
 [Tim Holy](https://github.com/timholy). For non-GUI projects, [Johnny Chen](https://github.com/johnnychen94) is also available.
 
-## Integration of OpenCV and JuliaImages (hard)
+## Better QR Code support (medium)
+
+[QRCode.jl](https://github.com/jiegillet/QRCode.jl) is a legacy package that supports encoding data to QR code. Students are required
+to revive this package to co-exist with the latest JuliaImages ecosystem, and also adding support to decode QR code into julia data.
+
+### Skills
+
+Experiences in JuliaImages are required. The ability to read and understand the QR code specification.
+
+### Mentors
+
+[Johnny Chen](https://github.com/johnnychen94)
+
+## Integration of OpenCV and JuliaImages (medium)
 
 ### Description
 
-OpenCV is one of the pre-eminent image-processing frameworks. During the summer of 2020, significant progress was made on a [Julia wrapper](https://docs.opencv.org/master/d8/da4/tutorial_julia.html). An important remaining task is to integrate the wrapper with [Julia's binary packaging system](https://docs.binarybuilder.org/stable/).
+OpenCV is one of the pre-eminent image-processing frameworks. During the summer of 2020 and 2021, significant progress was made on a [Julia wrapper](https://docs.opencv.org/master/d8/da4/tutorial_julia.html) and [OpenCV.jl](https://github.com/archit120/OpenCV.jl). An important remaining task is to fill the missing documentation, testset, and also benchmark results.
 
 ### Skills
 
@@ -217,3 +192,11 @@ A checkeboard detection algorithm which can provide the necessary inputs to a ca
 Interested students are encouraged to [open an discussion in Images.jl](https://github.com/JuliaImages/Images.jl/discussions/new) to
 introduce themselves and discuss the detailed project ideas. To increase the chance of getting useful feedback, please provide detailed
 plans and ideas (don't just copy the contents here).
+
+### Expected working hours
+
+As per [GSoC
+guideline](https://developers.google.com/open-source/gsoc/faq#how_much_time_does_gsoc_participation_take)
+indicates, projects with medium difficulty are expected to be finished within 175 hours and that
+with hard difficulty 350 hours. However, this is a quite rough estimation. Applicants are expected
+to discuss this and other details with their potential mentors before submitting their proposal.

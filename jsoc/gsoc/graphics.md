@@ -88,17 +88,6 @@ This will enable us to generate webgl shaders and opengl shaders from the same J
 **Recommended skills**: Some OpenGL and Web (specifically ThreeJS) knowledge will be required.
 **Mentors**: [Simon Danisch](https://github.com/SimonDanisch/)
 
-
-## QML.jl Improvements
-
-The [QML.jl](https://github.com/barche/QML.jl) package provides Julia bindings for [Qt QML](https://doc.qt.io/qt-5/qtqml-index.html) on Windows, OS X and Linux. In the current state, basic functionality is available, but there is room for improvement regarding integration with [GLVisualize](https://github.com/JuliaGL/GLVisualize.jl) and plotting packages such as [GR](https://github.com/jheinen/GR.jl) (see also [issue 23](https://github.com/barche/QML.jl/issues/23)) or [Plots](https://github.com/JuliaPlots/Plots.jl). Another area of work is supporting more elaborate data models.
-
-**Expected Results**: Improvements to the QML.jl package along one of these lines.
-
-**Recommended Skills**: Familiarity with both Julia and the QT framework.
-
-**Mentors**: [Bart Janssens](https://github.com/barche)
-
 ## VegaLite.jl Improvements
 
 The [VegaLite.jl](https://github.com/queryverse/VegaLite.jl) package provides a Julia wrapper for [vega-lite](https://vega.github.io/vega-lite/) and [vega](https://vega.github.io/vega/). There are many areas that could be improved: 1) provide a more powerful [vega](https://vega.github.io/vega/) API that is similar to the existing [vega-lite](https://vega.github.io/vega-lite/) API, 2) complete the [vega-lite](https://vega.github.io/vega-lite/) API (there are many corner cases that are not ideally handled right now), 3) make things work better for large datasets, 4) come up with a way to auto-convert/integrate the comprehensive vega-lite documentation into the VegaLite.jl documentation, 5) write more documentation, 6) increase test coverage or 7) add a simple non-grammar of graphics API.
