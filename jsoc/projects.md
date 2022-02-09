@@ -24,6 +24,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Numerics](/jsoc/gsoc/numerics/) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
 * [Pluto](/jsoc/gsoc/pluto/) - Pluto notebooks and tools for teaching
 * [Pythia](/jsoc/gsoc/pythia/) - scalable time series for Julia.
+* [QuantumClifford](/jsoc/gsoc/quantumclifford) - Quantum circuits with Clifford gates
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
 * [Symbolic computation](/jsoc/gsoc/symbolics/) - User friendly symbolic programming
 * [Tabular Data](/jsoc/gsoc/tables/) - Working with data
