@@ -16,7 +16,7 @@ That way, we can tailor your project to better suit your interests and skillset.
 - **LLVM:**
   As previously mentioned, the Julia language utilizes LLVM as a backend for code generation. This means that there are plenty of opportunities for those with knowledge of or interest in LLVM to contribute via working on Julia's code generation process. Together, we can figure out an appropriate task if you would like to work in this area. Below are some LLVM-related projects that may be of interest.
 
-  - ***Investigating OrcJIT v2 improvements:***
+  - Investigating OrcJIT v2 improvements:
 
     The LLVM JIT has gained many new features. This project would involve finding out what they are
     and making use of them. Some examples include better resource tracking, parallel compilation, a
