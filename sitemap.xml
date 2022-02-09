@@ -1250,6 +1250,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/jsoc/gsoc/quantumclifford/index.html</loc>
+    <lastmod>2022-02-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/jsoc/gsoc/vscode/index.html</loc>
     <lastmod>2022-02-09</lastmod>
     <changefreq>monthly</changefreq>
