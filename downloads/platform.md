@@ -4,6 +4,10 @@ All official Julia binaries produce portable installations.
 Once installed, the directory in which Julia was installed can be moved to a
 different location on the same computer, or even to a different computer.
 
+The instructions here refer to the latest stable release of Julia. If you are
+using the LTS version or an older version, please substitute the appropriate
+version number in the instructions.
+
 ## Windows
 
 Julia is available for Windows 7 and later for both 32 bit and 64 bit versions.
