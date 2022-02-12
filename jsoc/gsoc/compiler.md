@@ -1,33 +1,27 @@
 # Compiler Projects – Summer of Code
 
-I have a number of other compiler projects I'm currently working on. Please contact me for
-additional details and let me know what specifically interests you about this area of contribution
-and we can tailor your project to suit you together.
+There are a number of compiler projects that are currently being worked on. Please contact Ian Atol or Jameson Nash for
+additional details and let us know what specifically interests you about this area of contribution.
+That way, we can tailor your project to better suit your interests and skillset.
 
-- **Escape analysis:**
+- **Julia Optimization Passes:**
 
-  A classic problem in compiler analysis! We have an existing AbstractInterpreter framework for
-  managing inter-procedural analysis of type through data-flow analysis. However, for escape
-  information, currently we only do very limited, local inference, which greatly limits optimization
-  potential to places with inlining. The schedule for the project would be to start by writing some
-  example programs that would most benefit from this. Next, you would identify what information is
-  required to optimize those, and together we'll design a framework to compute that information.
-  Finally, you'll get to the easy part: actually coding and putting those plans into practice. Along
-  the way, you'll be mentored in submitting many smaller PRs to fix any issues you notice along the
-  journey.
-
-- **Optimization passes:**
-
-  Another classic compiler challenge! We have some basic optimization passes (inlining, basic DCE,
-  SROA), but currently many other interesting passes simply don't yet exist, or have a partial PR,
-  but need significant effort to finish. For this proposal, we can work together to define which
+  The Julia compiler performs optimizations at two distinct times during native code generation: first at the "Julia level", and then at the "LLVM level".
+  At the Julia level, we have some basic optimization passes (inlining, basic DCE,
+  SROA), but currently many other interesting passes simply don't yet exist, or have a partial PR
+  but need significant effort to finish. We see potential for many future optimizations at this phase of compilation, especially with some new analyses that have been recently added. For this proposal, we can work together to define which
   optimizations we could tackle next.
 
-- **Investigating OrcJIT v2 improvements:**
 
-  The LLVM JIT has gained many new features. This project would involve finding out what they are
-  and making use of them. Some examples include better resource tracking, parallel compilation, a
-  new linker (which may need upstream work too), and fine-grained tracking of relocations.
+- **LLVM:**
+  As previously mentioned, the Julia language utilizes LLVM as a backend for code generation. This means that there are plenty of opportunities for those with knowledge of or interest in LLVM to contribute via working on Julia's code generation process. Together, we can figure out an appropriate task if you would like to work in this area. Below are some LLVM-related projects that may be of interest.
+
+  - Investigating OrcJIT v2 improvements:
+
+    The LLVM JIT has gained many new features. This project would involve finding out what they are
+    and making use of them. Some examples include better resource tracking, parallel compilation, a
+    new linker (which may need upstream work too), and fine-grained tracking of relocations.
+
 
 - **Parser error messages (and other parts):**
 
@@ -53,7 +47,7 @@ and we can tailor your project to suit you together.
 **Recommended Skills**: Most of these projects involve algorithms work, requiring
 a willingness and interest in seeing how to integrate with a large system.
 
-**Mentors**: [Jameson Nash](https://github.com/vtjnash)
+**Mentors**: [Jameson Nash](https://github.com/vtjnash), [Ian Atol](https://github.com/ianatol)
 
 ## Improving test coverage
 
@@ -97,7 +91,7 @@ BoF calendar invite][threadcall] on the Julia Language Public Events calendar.
 **Contact:** [Jameson Nash](https://github.com/vtjnash)
 
 
-## Automated performance measurements
+## Automation of testing / performance benchmarking
 
 The Nanosoldier.jl project (and related <https://github.com/JuliaCI/BaseBenchmarks.jl>) tests for
 performance impacts of some changes. However, there remains many areas that are not covered (such as

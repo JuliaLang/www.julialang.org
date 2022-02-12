@@ -85,7 +85,7 @@ is helpful but not required.
 **Expected Results**: Library functions for performing surrogate optimization
 with tests on differential equation models.
 
-**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas)
+**Mentors**: [Chris Rackauckas](https://github.com/ChrisRackauckas), [Francesco Martinuzzi](https://github.com/MartinuzziFrancesco)
 
 ### Parameter estimation for nonlinear dynamical models
 

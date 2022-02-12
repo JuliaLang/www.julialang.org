@@ -13,20 +13,25 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Loop Optimization](/jsoc/gsoc/loopopt/) - Loop analysis and optimization
 * [Flux.jl](/jsoc/gsoc/flux/) - A flexible deep learning library.
 * [GeoStats.jl](/jsoc/gsoc/GeoStats/) - An extensible framework for high-performance geostatistics in Julia.
+* [GUI](/jsoc/gsoc/gui/) - Projects related to Graphical User Interface toolkits
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
 * [Javis](/jsoc/gsoc/javis/) - **J**ulia **a**nimations and **vis**ualizations for teaching, communication, and beyond!
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
+* [Language interoperability](/jsoc/gsoc/interop/) - Projects related to interfacing between Julia and other programming languages
 * [MLJ.jl](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
+* [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
 * [Numerics](/jsoc/gsoc/numerics/) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
 * [Pluto](/jsoc/gsoc/pluto/) - Pluto notebooks and tools for teaching
 * [Pythia](/jsoc/gsoc/pythia/) - scalable time series for Julia.
+* [QuantumClifford](/jsoc/gsoc/quantumclifford) - Quantum circuits with Clifford gates
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
 * [Symbolic computation](/jsoc/gsoc/symbolics/) - User friendly symbolic programming
 * [Tabular Data](/jsoc/gsoc/tables/) - Working with data
 * [TableTransforms.jl](/jsoc/gsoc/tabletransforms/) - Tabular transforms used in statistics and machine learning
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [VS Code](/jsoc/gsoc/vscode/) - Improving Julia's VS Code IDE experience
+* [Topology optimisation](/jsoc/gsoc/topopt/) - improving topology optimisation tools in Julia.
 @@
 
 We also have Julia project's available under other organizations. If you are applying for those projects, make sure your application is for that organization and NOT the Julia Language:
