@@ -177,7 +177,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
 <br>
 
 <!--
-    Containers: Julia GitHub Orgs
+    Containers: Julia GitHub Organizations
   -->
 <div class="container-fluid alt-color packages">
   <br><br>
@@ -185,15 +185,15 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
     <div class="row">
       <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
       <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
-        <h2 class="lead secondary-heading" id="julia_github_orgs">
-          <a href="#julia_github_orgs" class="ecosystem">Julia GitHub Orgs</a>
+        <h2 class="lead secondary-heading" id="julia_github_organizations">
+          <a href="#julia_github_organizations" class="ecosystem">Julia GitHub Organizations</a>
         </h2>
       </div>
       <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
     </div>
     <br>
 
-    <p>The Julia Language is proud to have fostered a diverse assortment of GitHub Organizations over the years. <a href="organizations">Find out more about our Ecosystem's GitHub Orgs.</a></p>
+    <p>The Julia Language is proud to have fostered a diverse assortment of GitHub Organizations over the years. <a href="organizations">Find out more about our Ecosystem's GitHub Organizations.</a></p>
     <img src="assets/orglogos.png" alt="All Julia Org Logos" class="img-fluid">
     <!--
     From: https://github.com/ViralBShah/JuliaOrgLogos
@@ -201,6 +201,30 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
   </div>
   <br>
 </div>
+
+<!--
+   Containers: Working Groups
+ -->
+<div class="container-fluid alt-color packages">
+ <br><br>
+ <div class="container">
+   <div class="row">
+     <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+     <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+       <h2 class="lead secondary-heading" id="working_groups">
+         <a href="#working_groups" class="ecosystem">Working Groups</a>
+       </h2>
+     </div>
+     <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+   </div>
+   <br>
+
+   <p>A working group is a group of people that are interested in working on a common topic. Working groups are informal and have no official authority. <a href="working-groups">Find out more about Working Groups.</a></p>
+ </div>
+ <br>
+</div>
+
+
 
 <script type="text/javascript">
   var timezone = jstz.determine();
