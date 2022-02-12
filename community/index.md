@@ -219,7 +219,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
    </div>
    <br>
 
-   <p>A working group is a group of people that are interested in working on a common topic. Working groups are informal and have no official authority. <a href="working-groups">Find out more about Working Groups.</a></p>
+   <p>A working group is a group of people that are interested in working on a common topic. Working groups are informal and have no official authority. <a href="working-groups">Find out more about Working Groups</a>.</p>
  </div>
  <br>
 </div>
