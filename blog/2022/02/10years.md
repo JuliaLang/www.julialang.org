@@ -7,7 +7,7 @@
 @def maxtoclevel=3
 
 ~~~
-<img src="https://user-images.githubusercontent.com/35577566/153906824-4c719e96-496e-473c-9771-9fec177d9b5b.png" width="80%" alt="Why We Use Julia, 10 Years Later">
+<img src="https://user-images.githubusercontent.com/35577566/153917389-f9e3cbbf-8c14-47f7-a8ae-a3dcbd60f4a8.png" width="80%" alt="Why We Use Julia, 10 Years Later">
 ~~~
 
 
