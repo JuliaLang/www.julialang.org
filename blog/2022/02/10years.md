@@ -6,6 +6,10 @@
 @def mintoclevel=2 
 @def maxtoclevel=3
 
+~~~
+<img src="https://user-images.githubusercontent.com/35577566/153906824-4c719e96-496e-473c-9771-9fec177d9b5b.png" width="80%" alt="Why We Use Julia, 10 Years Later">
+~~~
+
 # Foreword
 
 Exactly 10 years ago today, on this very blog, we published ["Why We Created Julia"](https://julialang.org/blog/2012/02/why-we-created-julia/), introducing the Julia project to the world. At this point, we are well on our way to meeting the ambitious goals set out in the original blog post. From vaccines to climate modeling, material science, macroeconomics, and many leading edge scientific collaborations, the Julia community today is at the forefront of human discovery. Lines of code in a git repository give an open source project form, but a community gives it life. We continue to be impressed every day by the breadth of knowledge and kindness of spirit of the many members our community. Because of that, we wanted to give this space to them. Below we collate the stories of some of the members of the Julia community (both old and new) in a shared reflection on the past 10 years.
