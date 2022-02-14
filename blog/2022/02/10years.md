@@ -18,7 +18,7 @@ meta = [ ("property", "og:image", "https://user-images.githubusercontent.com/355
 Exactly ten years ago today, we published "[Why We Created Julia](https://julialang.org/blog/2012/02/why-we-created-julia/)", introducing the Julia project to the world.
 At this point, we have moved well past the ambitious goals set out in the original blog post.
 Julia is now used by hundreds of thousands of people.
-It is taught in hundreds of universities and entire companies are being formed that build their software stacks on Julia.
+It is taught at hundreds of universities and entire companies are being formed that build their software stacks on Julia.
 From personalized medicine to climate modeling, novel materials and even space mission planning — everywhere you look, the Julia community is pushing the boundaries of human discovery.
 Some lines of code in a git repository give an open source project its form, but a community gives it life.
 We continue to be impressed every day by the breadth of knowledge and kindness of spirit of the people who have gravitated to Julia.
