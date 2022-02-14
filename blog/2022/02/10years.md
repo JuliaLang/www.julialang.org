@@ -3,7 +3,7 @@
 @def published = "14 February 2022"
 @def title = "Why We Use Julia, 10 Years Later"
 @def authors = """The Julia Community"""
-@def mintoclevel=2 
+@def mintoclevel=2
 @def maxtoclevel=3
 
 +++
@@ -32,7 +32,7 @@ Ten years ago, when "Why we created Julia" was published, I was just finishing m
 
 ## Avik Sengupta [(@aviks)](https://github.com/aviks)
 
-My first reaction on seeing the headline on Hacker News that day was a decidedly lukewarm "oh, do we really need yet another programming language". Reading the blog post however piqued my interest -- "it surely can't deliver on all that it promises, can it?". It was a slow day at work, so I downloaded the source, and was surprised to see that it built successfully on the first try. My [first PR](https://github.com/JuliaLang/julia/pull/471) came two weeks later. In adding a new numerical type, it proved to me that easy and performant numerical computing was certainly possible. In the years since, I've been privileged to be part of this amazing community, as well as being able to write Julia everyday at work. Julia has without doubt changed my life, and I reckon it's already changed the world in a small way. 
+My first reaction on seeing the headline on Hacker News that day was a decidedly lukewarm "oh, do we really need yet another programming language". Reading the blog post however piqued my interest -- "it surely can't deliver on all that it promises, can it?". It was a slow day at work, so I downloaded the source, and was surprised to see that it built successfully on the first try. My [first PR](https://github.com/JuliaLang/julia/pull/471) came two weeks later. In adding a new numerical type, it proved to me that easy and performant numerical computing was certainly possible. In the years since, I've been privileged to be part of this amazing community, as well as being able to write Julia everyday at work. Julia has without doubt changed my life, and I reckon it's already changed the world in a small way.
 
 ## Chris Rackauckas [(@chrisrackauckas)](https://github.com/chrisrackauckas)
 
@@ -70,9 +70,9 @@ I think we can do it in 9.
 
 ## Eric Davies [(@iamed2)](https://github.com/iamed2)
 
-2011 was my first year at Invenia, where we were maintaining a fairly elaborate production system written in MATLAB 2007b. Python had begun to replace Perl in our helper scripts and web services, and several of us were keen to move to a language with a healthy community that made modern software development possible. My first experiments were disheartening, though; how could I expect a researcher to be happy moving from `A'*A` to `np.matmul(A.conj().T, A)`? 
+2011 was my first year at Invenia, where we were maintaining a fairly elaborate production system written in MATLAB 2007b. Python had begun to replace Perl in our helper scripts and web services, and several of us were keen to move to a language with a healthy community that made modern software development possible. My first experiments were disheartening, though; how could I expect a researcher to be happy moving from `A'*A` to `np.matmul(A.conj().T, A)`?
 
-In 2012 a coworker shared the Julia blog post with me. To my surprise, the first examples of Julia I encountered were concise, readable, highly performant, and even valid MATLAB code! This language was new and unstable but clearly aimed to fit our needs exactly, without expensive and closed-source license terms or buggy Neural Network Toolboxes. I became active on the mailing lists, watching for new developments and continuously evaluating its feature set against our needs. In 2014 Invenia sent two of us to the first JuliaCon and we have been present every year since, growing alongside each other. It was in 2014 that the first package groundwork was laid for our system to fully transition to Julia, which completed several years later. 
+In 2012 a coworker shared the Julia blog post with me. To my surprise, the first examples of Julia I encountered were concise, readable, highly performant, and even valid MATLAB code! This language was new and unstable but clearly aimed to fit our needs exactly, without expensive and closed-source license terms or buggy Neural Network Toolboxes. I became active on the mailing lists, watching for new developments and continuously evaluating its feature set against our needs. In 2014 Invenia sent two of us to the first JuliaCon and we have been present every year since, growing alongside each other. It was in 2014 that the first package groundwork was laid for our system to fully transition to Julia, which completed several years later.
 
 Those first years on the mailing lists set the tone for the community to come. Core developers were happy to explain how the language worked and the detailed and thoughtful reasoning behind design decisions. Every month brought new and exciting features (Keyword arguments! A package manager! Inline arrays of immutables!). Newcomers could quickly get help, collaborate, and contribute. While the community has grown immensely since the early days (it's much more challenging to bait Jeff Bezanson into fixing your pet compiler bug), this community attitude is alive and well, distributed through the hundreds of active community contributors.
 
@@ -109,7 +109,7 @@ I first saw julia in a blog post about S4TF and differential programming. The co
 I had kept it on the backburner for a little while but when I saw Grant from 3b1b mention it I decided it was time to give it an actual go in a project, and doing that project I fell in love with the language, and with the language came the community and now I keep getting nerd sniped from every side thanks to the interesting things people do with julia. I now use it everyday and hope to help lots of people use it too :).
 
 ## Logan Kilpatrick [(@logankilpatrick)](https://github.com/logankilpatrick)
-Back in 2018, I was lucky enough to join a team at NASA that was using Julia. I had the chance to work through the 0.6 to 1.0 transition. This led to me getting involved in open source and ultimately helping out on getting the community momentum behind Stack Overflow. After that, I was lucky enough to help lead Google Code-in for the Julia community in 2019 where we mentored 212 high school students. 
+Back in 2018, I was lucky enough to join a team at NASA that was using Julia. I had the chance to work through the 0.6 to 1.0 transition. This led to me getting involved in open source and ultimately helping out on getting the community momentum behind Stack Overflow. After that, I was lucky enough to help lead Google Code-in for the Julia community in 2019 where we mentored 212 high school students.
 
 What has kept me involved in the Julia community for all these years is the opportunity to give back. There are so many amazing opportunities to do work that has a real impact and it keeps me motivated to continue helping!
 
@@ -137,7 +137,7 @@ Being inspired by [SciML](https://sciml.ai/), I decided to use Julia help with n
 
 It’s very nice to see Julia community is growing bigger, what will happen in next decade? Let us witness together;)
 
-## Kirill Zubov [(@KirillZubov)](https://github.com/KirillZubov) 
+## Kirill Zubov [(@KirillZubov)](https://github.com/KirillZubov)
 
 The first time, I heard about Julia language, was in 2016, I was then studying for a master's degree at the department of Computational physics. One of my  professors by numerical methods said in a lecture something like “Julia is a new and interesting programming language, pay attention to it.” I said to myself - well, ok, I will know, but did not pay much attention. And already a couple of years later, in 2019, I learned about a new direction in computational science - solving differential equations using deep learning methods. I've thought it had great prospects and I would be very interested in doing it. I firmly decided to move in this direction. It so happened that this is what the [SciML](https://sciml.ai/) was actively doing. Well, then it started, first I participated in the Julia Season Of Contribution, then I was a mentor at Google Code-in and then participated in Google Summer of Code, where we started implementing [Physics-informed neural networks(PINNs)](https://nextjournal.com/kirill_zubov/physics-informed-neural-networks-pinns-solver-on-julia-gsoc-2020-final-report) at [NeuralPDE.jl](https://neuralpde.sciml.ai/stable/).
 At first, I just liked the Julia language - syntax, simplicity, convenience, understandability, and sure, a great people and community, and after some time of use, learning, and immersion in details. I began to be more sure that Julia is the best way for all fresh directions of computational science, where need to work with complex mathematical models in a symbolic and numeric way and combine it together with experimental data and new deep-learning methods, and high-speed calculations, so it is one of reason why I guess that JuliaLang is the future of numerical computing.
@@ -178,7 +178,7 @@ I first heard of Julia around the time of the 1.0 release during my master’s d
 
 Like probably many others, I found Julia while searching for a replacement to Python to help with my code not having the performance I needed. At that point, I did not have much coding experience and I had not really contributed to any open source project. After I started doing some small contributions to Julia it just escalated and now, five years later, I have worked on package managers, debuggers, sparse linear algebra, SIMD, managing releases, and all kinds of diverse projects and even managed to make contributing to Julia a part of my day job. So for me, discovering Julia had a tremendous impact on my life and what is exciting is that I feel that things are just getting started. Every Julia release has a lot of new awesome things in it and I can only imaging how Julia 10 years in the future will look.
 
-## Alan Edelman [(@alanedelman)](https://github.com/alanedelman)
+## Alan Edelman [Website](https://https://math.mit.edu/~edelman/)
 
 Ten years. Wow.  In some ways it feels like yesterday, but then when I think of all the progress that the community has brought to Julia, and the resulting high quality reputation Julia enjoys today, I am humbled by what is possible. I just reminisced by checking my [MIT graduate course 18.337](http://courses.csail.mit.edu/18.337/2011/)  in 2011 (2011!) just to remember where we were a decade ago. Thank you everyone.  No stopping Julia now.
 
@@ -218,16 +218,16 @@ Even more exciting than the software itself was the vibrant open source communit
 
 ## Francesco Martinuzzi [(@MartinuzziFrancesco)](https://github.com/MartinuzziFrancesco)
 
-I encountered Julia when I was looking for an alternative to Python to use for my master thesis. At the time I was mainly a Fortran user, as many physics students still are, and Python felt unbelievably slow. I stumbled into Julia almost by chance in looking for something in beetween these two languages. What most amazes me about the language is not the technical feats in itself, but it is how much Julia and its community are intertwined. Coming from a world in which code is handed down from supervisor to student, with little to no explanation or comments, this was something I valued incredibly. 
+I encountered Julia when I was looking for an alternative to Python to use for my master thesis. At the time I was mainly a Fortran user, as many physics students still are, and Python felt unbelievably slow. I stumbled into Julia almost by chance in looking for something in beetween these two languages. What most amazes me about the language is not the technical feats in itself, but it is how much Julia and its community are intertwined. Coming from a world in which code is handed down from supervisor to student, with little to no explanation or comments, this was something I valued incredibly.
 
-I was lucky enough to start contributing to the [SciML](https://sciml.ai/) organization in the summer of 2020 as part of the [Google Summer of Code](https://summerofcode.withgoogle.com/) program working on [ReservoirComputing.jl](https://github.com/SciML/ReservoirComputing.jl). This also was the start of my personal journey into contributing to open source software, and the Julia language made that an incredibly easy transition. 
+I was lucky enough to start contributing to the [SciML](https://sciml.ai/) organization in the summer of 2020 as part of the [Google Summer of Code](https://summerofcode.withgoogle.com/) program working on [ReservoirComputing.jl](https://github.com/SciML/ReservoirComputing.jl). This also was the start of my personal journey into contributing to open source software, and the Julia language made that an incredibly easy transition.
 
 
 ## Pamela Alejandra Bustamante Faúndez
 
 I first started using Julia while doing a research internship at GERAD research center (Montreal, Canada), in the context of my master and bachelor’s thesis on Mathematical Optimization. Some years have passed since then, I am now a PhD candidate in Engineering, I will do an internship at INRIA (France), but one thing remains constant… my love for the Julia Language. I always promote Julia among friends and colleagues in Latin America, even when it has been difficult to convince them because of the scarce resources of Julia in Spanish. I firmly believe in open access knowledge without barriers (either language barriers, accessibility, or others), and I will always advocate for that.
 
-I am honored to have been part of the translation of one of the first books of Julia in Spanish [“Intro a Julia”](https://introajulia.org/), in order to facilitate the use of Julia in the Hispanic community. 
+I am honored to have been part of the translation of one of the first books of Julia in Spanish [“Intro a Julia”](https://introajulia.org/), in order to facilitate the use of Julia in the Hispanic community.
 
 I hope to continue being part of this awesome community for the years to come. Let’s make it 20 years!
 
@@ -236,18 +236,18 @@ Greeting from Concepción, Chile!
 
 ## Ranjan Anantharaman [(@ranjanan)](https://github.com/ranjanan)
 
-I was first introduced to Julia in 2015, while I was still an undergraduate who had no idea what scientific computing was. Then, I joined a research lab that wrote very low-level scientific code in C. Once I saw the time and the effort required to write and maintain that code, I understood Julia's promise. In my opinion, if you want to write fast scalable numerical code but do not want to write C/C++/Fortran, Julia is probably your only option. 
+I was first introduced to Julia in 2015, while I was still an undergraduate who had no idea what scientific computing was. Then, I joined a research lab that wrote very low-level scientific code in C. Once I saw the time and the effort required to write and maintain that code, I understood Julia's promise. In my opinion, if you want to write fast scalable numerical code but do not want to write C/C++/Fortran, Julia is probably your only option.
 
-Julia wasn't the only solution people turned to for productive scientific computing. C/C++ libraries with Python interfaces were becoming popular too, but through the [Circuitscape](https://circuitscape.org) project, we showed that pure Julia code all the way down can outperform those libraries while being as easy to develop and maintain as a scripting language. Julia also brings exciting new ideas to scientific computing too! Using the Julia compiler to reason about and manipulate code lets you leverage old numerical tricks that used to have to be hardcoded, and invent new tricks such as automatic differentiation to make scientific code differentiable. 
+Julia wasn't the only solution people turned to for productive scientific computing. C/C++ libraries with Python interfaces were becoming popular too, but through the [Circuitscape](https://circuitscape.org) project, we showed that pure Julia code all the way down can outperform those libraries while being as easy to develop and maintain as a scripting language. Julia also brings exciting new ideas to scientific computing too! Using the Julia compiler to reason about and manipulate code lets you leverage old numerical tricks that used to have to be hardcoded, and invent new tricks such as automatic differentiation to make scientific code differentiable.
 
-The Julia community is open, unassuming and inclusive, and works hard everyday to welcome new contributors and reduce the barrier to entry for students. It is one of Julia's biggest strengths. I personally owe my entire career so far to the relationships I have established through the community. 
+The Julia community is open, unassuming and inclusive, and works hard everyday to welcome new contributors and reduce the barrier to entry for students. It is one of Julia's biggest strengths. I personally owe my entire career so far to the relationships I have established through the community.
 
-I am confident the language will get better and better and grow even faster. I [would not be surprised](https://www.nature.com/articles/d41586-019-02310-3), if, within the next 10 years, Julia is dubbed "the language of science". 
+I am confident the language will get better and better and grow even faster. I [would not be surprised](https://www.nature.com/articles/d41586-019-02310-3), if, within the next 10 years, Julia is dubbed "the language of science".
 
 
 ## Sharan Yalburgi [(@sharanry)](https://github.com/sharanry)
 
-My first interaction with Julia was in early 2019 when I was looking for alternative deep learning ecosystems as an undergrad and came across Flux. Having been scarred by unreliable pip/conda installs of Python and the mess of CUDA/cuDNN installations, I was amazed by the ease of setup and how soon I was able to get a network training. Judging the ecosystem by its 0.x status and easy to grasp syntax, I was almost certain the performance would be terrible -- but the competitive speed of training was a pleasant surprise and got me hooked. 
+My first interaction with Julia was in early 2019 when I was looking for alternative deep learning ecosystems as an undergrad and came across Flux. Having been scarred by unreliable pip/conda installs of Python and the mess of CUDA/cuDNN installations, I was amazed by the ease of setup and how soon I was able to get a network training. Judging the ecosystem by its 0.x status and easy to grasp syntax, I was almost certain the performance would be terrible -- but the competitive speed of training was a pleasant surprise and got me hooked.
 
 This motivated me to participate in JSoC 2019 working with [TuringLang](https://github.com/TuringLang) and GSoC 2020 by helping build [JuliaGaussianProcesses](https://github.com/JuliaGaussianProcesses/AbstractGPs.jl/) ecosystem. The experience was so good that it convinced me to use Julia for my thesis at MIT-ProbComp and later join Julia Computing full-time to contribute to the development of the [SciML](https://github.com/SciML) ecosystem.
 
@@ -265,7 +265,7 @@ The summer between junior and senior year I did 3D printing research with one fo
 
 ## Jeremie Desgagne-Bouchard [(@jeremiedb)](https://github.com/jeremiedb)
 
-I first hear of Julia around 2017. I had then been mainly a R user and got increasingly exposed to Python, yet it didn’t appear like a satisfactory expansion of my toolkit. Then came Julia, which first showed its potential as a substitute for a simple Rcpp routine. Julia educative documentation was an eye-opener on computing best practices. This opened the door of Julia’s promise, a highly productive language with compiled performance. Fast-forward into an investment firm start up, Julia makes its way as a centerpiece of our predictive modeling toolkit as we expand boosted trees functionalities with a lightweight codebase and implement new gradient-based methods thanks to ChainRules. Taking advantage of its expanding package ecosystem such as Genie, Julia became pivotal to our infrastructure, from new algorithmic development to accounting system, data monitoring and client facing visualisation. Building core company components out of a newer language sure brought its insecurities, yet has been fully rewarded so far. 
+I first hear of Julia around 2017. I had then been mainly a R user and got increasingly exposed to Python, yet it didn’t appear like a satisfactory expansion of my toolkit. Then came Julia, which first showed its potential as a substitute for a simple Rcpp routine. Julia educative documentation was an eye-opener on computing best practices. This opened the door of Julia’s promise, a highly productive language with compiled performance. Fast-forward into an investment firm start up, Julia makes its way as a centerpiece of our predictive modeling toolkit as we expand boosted trees functionalities with a lightweight codebase and implement new gradient-based methods thanks to ChainRules. Taking advantage of its expanding package ecosystem such as Genie, Julia became pivotal to our infrastructure, from new algorithmic development to accounting system, data monitoring and client facing visualisation. Building core company components out of a newer language sure brought its insecurities, yet has been fully rewarded so far.
 
 ## Micah Halter [(@mehalter)](https://github.com/mehalter)
 
@@ -278,15 +278,15 @@ I came across julia while trying to find an open source project of interest to p
 
 ## Krishna Bhogaonker [(@00krishna)](https://github.com/00krishna)
 
-I was not an immediate convert to Julia. I first heard about the language while in grad school around 2014 through a series of blog posts. Julia looked like python and was supposed to be faster, so I thought I might use it to accelerate some geostatistical models that I was trying to compute. I don't come from a strong numerical computing background, so I was a bit intimidated, at first, by all of the unfamiliar vocabulary. Back then there were a lot of blog posts about how wonderful Julia was, but few resources on writing julia code or interacting with Python/R, so I went back to R and Python and decided to keep an eye on Julia. 
+I was not an immediate convert to Julia. I first heard about the language while in grad school around 2014 through a series of blog posts. Julia looked like python and was supposed to be faster, so I thought I might use it to accelerate some geostatistical models that I was trying to compute. I don't come from a strong numerical computing background, so I was a bit intimidated, at first, by all of the unfamiliar vocabulary. Back then there were a lot of blog posts about how wonderful Julia was, but few resources on writing julia code or interacting with Python/R, so I went back to R and Python and decided to keep an eye on Julia.
 
-A few years later I watched Chris Rackaukas give some youtube tutorials on how to solve differential equations in Julia and how to create packages in julia, and was impressed at just how easy it looked. Not only had all of the packages advanced, but there were also people who were willing to help others learn how to use the language. So I started to incorporate more julia code into my projects whenever I could. Now Julia is my first choice when starting a new project, though I still rely on Python for some deep learning work. 
+A few years later I watched Chris Rackaukas give some youtube tutorials on how to solve differential equations in Julia and how to create packages in julia, and was impressed at just how easy it looked. Not only had all of the packages advanced, but there were also people who were willing to help others learn how to use the language. So I started to incorporate more julia code into my projects whenever I could. Now Julia is my first choice when starting a new project, though I still rely on Python for some deep learning work.
 
-The best thing about julia--besides the language itself--are the julia users. I have never found a group so willing to provide informal mentoring and support to new users at all levels of ability. 
+The best thing about julia--besides the language itself--are the julia users. I have never found a group so willing to provide informal mentoring and support to new users at all levels of ability.
 
 ## Gregory Wagner
 
-I first encountered Julia around 2017, when I was working on a pet project to write a "general purpose" code for solving two-dimensional PDEs with psuedospectral methods. I tried writing my software --- which consists mainly of broadcasted array operations and FFTs --- in MATLAB (clunky) and python (slow!) until finally turning to Julia, which yielded a 30% speed up! Even more importantly, I discovered the support and brilliance of the Julia community, and a love for software engineering I never knew I had. A year or two later, the Climate Modeling Alliance decided to use Julia as the language for their new climate model, and I signed up right away. 
+I first encountered Julia around 2017, when I was working on a pet project to write a "general purpose" code for solving two-dimensional PDEs with psuedospectral methods. I tried writing my software --- which consists mainly of broadcasted array operations and FFTs --- in MATLAB (clunky) and python (slow!) until finally turning to Julia, which yielded a 30% speed up! Even more importantly, I discovered the support and brilliance of the Julia community, and a love for software engineering I never knew I had. A year or two later, the Climate Modeling Alliance decided to use Julia as the language for their new climate model, and I signed up right away.
 
 ## Frames Catherine White [(@oxinabox)](https://github.com/oxinabox)
 
@@ -303,7 +303,7 @@ In 2015, I was a Senior Lecturer at Brunel University in the UK, teaching contro
 
 ## Prem Chintalapudi [(@pchintalapudi)](https://github.com/pchintalapudi)
 
-I first learned about Julia in 2019, where as part of my linear algebra course we used Julia to explore the effects of various matrix operations. Jumping from there to 2021, I developed an interest in performance optimization, and met Valentin Churavy, which lead naturally to my work on the Julia backend to improve the speed of code generation and the performance of the generated code itself. 
+I first learned about Julia in 2019, where as part of my linear algebra course we used Julia to explore the effects of various matrix operations. Jumping from there to 2021, I developed an interest in performance optimization, and met Valentin Churavy, which lead naturally to my work on the Julia backend to improve the speed of code generation and the performance of the generated code itself.
 
 ## Sari S. Dalum
 
@@ -311,7 +311,7 @@ I started with Julia back in 2017, when the version number was still 0.5.  I ini
 
 ## Ronny Bergmann [(@kellertuer)](https://github.com/kellertuer)
 
-I went through several programming languages during my studies and my PhD. I first learned about Julia somewhen in 2014 or 2015 but did not get to use it much. In 2016 I was annoyed by both the 2 language barrier as well as the coding style for objects in Matlab. So I decided to try whether this would work better with Julia. I was overwelmed by the constructive and helpful community from the beginning and endet up starting [Manopt.jl](https://manoptjl.org/). What then really surprised me was that the first feedback when annoncing the package endet up in a second package with two co-developers, which these days has a much larger code base than my first package. [Manifolds.jl](https://juliamanifolds.github.io/Manifolds.jl/stable/) is developed by people that never met in real life. Besides the code style and possibility to easily combine different packages, I like best that while the code still looks very simple and is easy to use, the speed is still astonishing. I am still amazed how nice and helpful the community is in the forum or any of the channels discussions take place. Both these aspects – code style and speed as well as the community – is why I think using Julia is one of the best choices I made concerning my numerics and code development. 
+I went through several programming languages during my studies and my PhD. I first learned about Julia somewhen in 2014 or 2015 but did not get to use it much. In 2016 I was annoyed by both the 2 language barrier as well as the coding style for objects in Matlab. So I decided to try whether this would work better with Julia. I was overwelmed by the constructive and helpful community from the beginning and endet up starting [Manopt.jl](https://manoptjl.org/). What then really surprised me was that the first feedback when annoncing the package endet up in a second package with two co-developers, which these days has a much larger code base than my first package. [Manifolds.jl](https://juliamanifolds.github.io/Manifolds.jl/stable/) is developed by people that never met in real life. Besides the code style and possibility to easily combine different packages, I like best that while the code still looks very simple and is easy to use, the speed is still astonishing. I am still amazed how nice and helpful the community is in the forum or any of the channels discussions take place. Both these aspects – code style and speed as well as the community – is why I think using Julia is one of the best choices I made concerning my numerics and code development.
 
 ## Tom Kwong [(@tk3369)](https://github.com/tk3369)
 
@@ -321,7 +321,7 @@ In 2017, I was looking for a technology that I can use to replace a slow SAS-bas
 - Performance: 10-100x performance improvement over Python's SAS reader after applying some simple changes e.g. using concrete types in structs
 
 In order to replace an enterprise-class system with Julia, I had to do more prototypes, which involves:
-- Reading/writing SAS datasets 
+- Reading/writing SAS datasets
 - Running Oracle queries and perform inserts/updates
 - Integrate with a financial C-library (FINCAD)
 
@@ -354,7 +354,7 @@ My first *real* introduction to Julia was thanks to [18.S191](https://ocw.mit.ed
 That's when I saw 18.S191. It caught my eye for two reasons. One, I knew that there was an previous version of this course that was taught in Python, which made me very curious as to why they would switch to another language. Two, more imporantly, I saw that Grant Sanderson was one of the lecturers taking the course?!? What was the man behind 3B1B doing in an MIT course?! It might not have been clickbait, but it sure got my attention.
 
 I followed the course a bit, really liked how easy and fluid-like everything seemed.I wanted to try things out. I headed over to the website, downloaded Julia and set things up. I really liked how easily I could get up and running and how intuitive it felt to me. I felt like for the first time ever, a language *actually* clicked with me. I still feel the same way.
-I browsed some projects and packages in Julia. I understood very little. I hadn't even heard of some of these words before. I was *much more* excited now, by the prospect of being able to discover so much more that I had absolutely no idea about. 
+I browsed some projects and packages in Julia. I understood very little. I hadn't even heard of some of these words before. I was *much more* excited now, by the prospect of being able to discover so much more that I had absolutely no idea about.
 I ended up doing a Google Summer of Code with The Julia Language, which was honestly one of the best experiences I've ever had. I use Julia on a daily basis now and I genuinely look forward to doing so for a very long time.
 
 I continue to discover so much more that I have absolutely no idea about, all thanks to Julia, and the *wonderful* community and ecosystem built around it.
@@ -389,7 +389,7 @@ In 2014 I was writing C and Python code for running simulations and doing calcul
 
 ## Anas Abdelrehim [(@AnasAbdelR)](https://github.com/AnasAbdelR)
 
-I first stumbled across Julia when I was looking to build a high performance digital twin simulator for industrial systems. It took me a day to build an end-to-end differentiable simulator that was 1000x faster, and seamlessly integrated a mix of differential equations and machine learning models. In comparison to using python, which up to that point was my go to programming language for over 5 years, I was 3 weeks in, and still wasn't finished. I was in such awe, that I became certain that this was where the future of real, safety critical engineering applications augmented with machine learning would happen. From there on, I knew I was never turning back, and that I was going to be apart of the journey of making it happen. 
+I first stumbled across Julia when I was looking to build a high performance digital twin simulator for industrial systems. It took me a day to build an end-to-end differentiable simulator that was 1000x faster, and seamlessly integrated a mix of differential equations and machine learning models. In comparison to using python, which up to that point was my go to programming language for over 5 years, I was 3 weeks in, and still wasn't finished. I was in such awe, that I became certain that this was where the future of real, safety critical engineering applications augmented with machine learning would happen. From there on, I knew I was never turning back, and that I was going to be apart of the journey of making it happen.
 
 ## Andreas Noack [(@andreasnoack)](https://github.com/andreasnoack)
 
@@ -438,9 +438,9 @@ The following semester I forced my poor computational physics students to use Ju
 
 ## Tyler Thomas [(@tylerjthomas9)](https://github.com/tylerjthomas9)
 
-I first worked with Julia when v1.4 (March 2020) was released. The early pandemic gave me some extra time to actually explore this new language that I kept hearing great things about. I was just starting research on my dissertation and loved the idea of using one language instead of switching between Python and C++/Rust (I hadn’t decided at the time which one I was going to go with). At first, the most interesting thing about the language was the speed. However, I quickly became obsessed language design (type system, multiple dispatch …) and it has been my primary language ever since. The Julia Discourse, slack and zulip chats have allowed me to learn a lot about the inner workings of the language while feeling like a part of this passionate, talented community. 
+I first worked with Julia when v1.4 (March 2020) was released. The early pandemic gave me some extra time to actually explore this new language that I kept hearing great things about. I was just starting research on my dissertation and loved the idea of using one language instead of switching between Python and C++/Rust (I hadn’t decided at the time which one I was going to go with). At first, the most interesting thing about the language was the speed. However, I quickly became obsessed language design (type system, multiple dispatch …) and it has been my primary language ever since. The Julia Discourse, slack and zulip chats have allowed me to learn a lot about the inner workings of the language while feeling like a part of this passionate, talented community.
 
-## [Bernie Wang](http://mit.edu/~ywang02/www)
+## Bernie Wang [Website](http://mit.edu/~ywang02/www)
 
 From the first time I heard about Julia in Alan’s office in 2011, Julia has brought so much joy and excitement over the last decade, and has become the key companion in my academic and professional life. A repeated theme of what leaves in me in awe about Julia is “it just works,” beyond anything I could have imagined! I would never forget the trill of running massive scale numerical experiments to explore what’s beyond universality laws of random matrix theory. Nor did I forget the magic seeing the ForwardDiff “just gets” the correct answer for the Jacobian of random matrix factorizations. A unprecedented feat that Julia has achieved, is successfully bridging the gap between computational science and computer science, not just the technical side, it brings different communities together! That, in my opinion, is really the foundation of solving big problems of our current and future times.
 
@@ -451,8 +451,8 @@ I was introduced to Julia by the MIT - Computational Thinking course. That was s
 
 ## Huda Nassar [(@nassarhuda)](https://github.com/nassarhuda)
 
-I first heard about Julia in Spring 2015 from an email from my PhD advisor. The task: try and install Julia from source and port some Matlab code. That occurred during my first year of my Ph.D. and this was for my very first project with my advisor. Initially, I needed to generate some very large graphs to validate a certain property on them but my entire pipeline beforehand (which consisted of a combination of C++ and Matlab code) was taking a few hours. With Julia, that same pipeline went down to less than an hour. 
+I first heard about Julia in Spring 2015 from an email from my PhD advisor. The task: try and install Julia from source and port some Matlab code. That occurred during my first year of my Ph.D. and this was for my very first project with my advisor. Initially, I needed to generate some very large graphs to validate a certain property on them but my entire pipeline beforehand (which consisted of a combination of C++ and Matlab code) was taking a few hours. With Julia, that same pipeline went down to less than an hour.
 
-This first experience set the trajectory for my entire PhD, and we quickly knew that I would be doing the rest of my research projects using Julia. That summer, I predominantly worked on [MatrixNetworks.jl](https://github.com/JuliaGraphs/MatrixNetworks.jl), which included most of the graph algorithms that I and the rest of our research team would later need. It was fascinating and thrilling at the same time. It was fascinating to create something written with such simple and easy to understand code, yet have the performance of C or C++. To realize that you have the power to drill deeper, go into Julia internals, and squeeze every ounce of performance out of your code was a thrill ride. It was like, finally, there’s a language that allows you to express any algorithmic idea, without the language posing barriers. 
+This first experience set the trajectory for my entire PhD, and we quickly knew that I would be doing the rest of my research projects using Julia. That summer, I predominantly worked on [MatrixNetworks.jl](https://github.com/JuliaGraphs/MatrixNetworks.jl), which included most of the graph algorithms that I and the rest of our research team would later need. It was fascinating and thrilling at the same time. It was fascinating to create something written with such simple and easy to understand code, yet have the performance of C or C++. To realize that you have the power to drill deeper, go into Julia internals, and squeeze every ounce of performance out of your code was a thrill ride. It was like, finally, there’s a language that allows you to express any algorithmic idea, without the language posing barriers.
 
 At a certain point (probably around JuliaCon 2016), I realized that Julia had become more than just a programming language to me. It gave me a community where I met some of my most favorite humans in this world and a community I learn from every day. I am so grateful that Julia exists today!
