@@ -7,7 +7,7 @@
 @def maxtoclevel=3
 
 +++
-meta = [ ("property", "og:image", "https://user-images.githubusercontent.com/35577566/153918544-6f2fe98e-9019-43ba-ab4a-d922441688cb.png"), ("name", "twitter:creator", "@JuliaLanguage"), ("name", "twitter:card", "summary_large_image") ]
+meta = [ ("property", "og:image", "https://user-images.githubusercontent.com/35577566/153917389-f9e3cbbf-8c14-47f7-a8ae-a3dcbd60f4a8.png"), ("name", "twitter:creator", "@JuliaLanguage"), ("name", "twitter:card", "summary_large_image") ]
 +++
 
 ~~~
