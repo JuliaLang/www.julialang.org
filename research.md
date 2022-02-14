@@ -57,6 +57,10 @@ For example, see the [CITATION.bib](https://github.com/JuliaLang/julia/blob/mast
 
 We welcome additions to this list in the form of [pull requests](https://github.com/JuliaLang/www.julialang.org/blob/master/research.md)
 
+## 2022
+
+* **The JuliaConnectoR: A Functionally-Oriented Interface for Integrating Julia in R**. Stefan Lenz, Maren Hackenberg, Harald Binder. _Journal of Statistical Software 101_ no. 16 (2022). doi: [10.18637/jss.v101.i06](https://www.jstatsoft.org/article/view/v101i06). Packages: [JuliaConnectoR](https://cran.r-project.org/web/packages/JuliaConnectoR/index.html) 
+
 ## 2021
 
 @@tight-list
