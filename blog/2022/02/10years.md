@@ -462,3 +462,21 @@ At a certain point (probably around JuliaCon 2016), I realized that Julia had be
 My first experience with Julia was back in the v0.2 days when I tried to use it for a higher productivity environment for high performance computing in a course project. It wasn't quite ready and the momentum in scientific computing was shifting to Python as people said "Numpy is fast enough." My research projects involved some C/OpenMP code and according to established researchers in HPC said, "OpenMP is easy enough." So, I went back to a combination of C/OpenMP and Python and started working on developing new numerical methods for spectral clustering. Eventually, I needed access to an ARPACK feature for accessing unconverged Ritz vectors that wasn't exposed through the Scipy API, which led me to read the ARPACK source code. There I found a TODO note to add the feature that I needed. Rich LeHoucq knew it was important, but didn't get around to it after taking note in 1996. Fortunately by that point Jiahao Chen and Andreas Noack were working on a pure Julia implementation of the Arnoldi method. I picked that up and got to work. That year, Jiahao, Andreas, Rich, and I met at a conference. I presented my first research results obtained with Julia and never looked back.
 
 I'm thankful for everyone in the Julia community that has put in the work to build Julia and its amazing package ecosystem. Thankfully we never let "X is fast enough" or "Y is easy enough" prevent us from building the language, ecosystem, and community that we have today.
+
+## Michael Savastio [(@ExpandingMan)](https://gitlab.com/ExpandingMan)
+In early 2016 I had recently finished my PhD in high energy physics having worked mostly in C++
+during that time.  I was in my new job as a data scientist and looking for a language, particularly
+after experiencing the unmitigated disaster that was trying to work with large-scale constrained
+convex optimization in Python.  There didn't seem to be many good options (there was a lot of hype
+about Scala at the time).  I had discovered Julia, a new language focused on scientific and
+numerical computing.  The language had some interesting new ideas, particularly multiple dispatch as
+its central paradigm, but was in a very early development phase (I think v0.4 had recently come
+out), and there was *no way* I was going to wind up using it, especially in my new job, right?
+
+6 years later, I have used Julia almost exclusively both at my job and individually ever since.  It
+is still far and away my favoriate language.  It has been a significant part of my life and I'm
+pleased to have made some small contribution to a large number of projects.  The Julia community
+seems to be a natural niche for a lot of interesting people, especially those who have some aptitude
+simultaneously for computing and for the physical sciences, a fact to which Julia owes many of its
+wise design choices.  I anticipate continuing to use Julia and to be involved with open source Julia
+projects for the foreseeable future.
