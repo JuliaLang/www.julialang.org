@@ -178,7 +178,7 @@ I first heard of Julia around the time of the 1.0 release during my master’s d
 
 Like probably many others, I found Julia while searching for a replacement to Python to help with my code not having the performance I needed. At that point, I did not have much coding experience and I had not really contributed to any open source project. After I started doing some small contributions to Julia it just escalated and now, five years later, I have worked on package managers, debuggers, sparse linear algebra, SIMD, managing releases, and all kinds of diverse projects and even managed to make contributing to Julia a part of my day job. So for me, discovering Julia had a tremendous impact on my life and what is exciting is that I feel that things are just getting started. Every Julia release has a lot of new awesome things in it and I can only imaging how Julia 10 years in the future will look.
 
-## Alan Edelman [Website](https://https://math.mit.edu/~edelman/)
+## Alan Edelman [(Website)](https://https://math.mit.edu/~edelman/)
 
 Ten years. Wow.  In some ways it feels like yesterday, but then when I think of all the progress that the community has brought to Julia, and the resulting high quality reputation Julia enjoys today, I am humbled by what is possible. I just reminisced by checking my [MIT graduate course 18.337](http://courses.csail.mit.edu/18.337/2011/)  in 2011 (2011!) just to remember where we were a decade ago. Thank you everyone.  No stopping Julia now.
 
@@ -440,7 +440,7 @@ The following semester I forced my poor computational physics students to use Ju
 
 I first worked with Julia when v1.4 (March 2020) was released. The early pandemic gave me some extra time to actually explore this new language that I kept hearing great things about. I was just starting research on my dissertation and loved the idea of using one language instead of switching between Python and C++/Rust (I hadn’t decided at the time which one I was going to go with). At first, the most interesting thing about the language was the speed. However, I quickly became obsessed language design (type system, multiple dispatch …) and it has been my primary language ever since. The Julia Discourse, slack and zulip chats have allowed me to learn a lot about the inner workings of the language while feeling like a part of this passionate, talented community.
 
-## Bernie Wang [Website](http://mit.edu/~ywang02/www)
+## Bernie Wang [(Website)](http://mit.edu/~ywang02/www)
 
 From the first time I heard about Julia in Alan’s office in 2011, Julia has brought so much joy and excitement over the last decade, and has become the key companion in my academic and professional life. A repeated theme of what leaves in me in awe about Julia is “it just works,” beyond anything I could have imagined! I would never forget the trill of running massive scale numerical experiments to explore what’s beyond universality laws of random matrix theory. Nor did I forget the magic seeing the ForwardDiff “just gets” the correct answer for the Jacobian of random matrix factorizations. A unprecedented feat that Julia has achieved, is successfully bridging the gap between computational science and computer science, not just the technical side, it brings different communities together! That, in my opinion, is really the foundation of solving big problems of our current and future times.
 
