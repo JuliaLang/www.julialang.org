@@ -497,3 +497,14 @@ seems to be a natural niche for a lot of interesting people, especially those wh
 simultaneously for computing and for the physical sciences, a fact to which Julia owes many of its
 wise design choices.  I anticipate continuing to use Julia and to be involved with open source Julia
 projects for the foreseeable future.
+
+## Douglas Bates [(@dmbates)](https://github.com/dmbates/)
+
+Recently I wrote in a slack discussion
+
+> This is why I found Julia so attractive when I stumbled across it late in 2011.  It is a dynamically-typed, REPL-based, language for technical computing built on a hideously efficient implementation of multiple dispatch plus a JIT compiler and designed by very talented people with a comprehensive knowledge of all aspects of programming.  And these developers think very carefully about any feature before incorporating it in the language.  It has been and continues to be a wonderful experience working with the Julia community.
+
+Today I was working on a new package, [Wordlegames.jl](https://github.com/dmbates/Wordlegames.jl). 
+I thought how the combination of [juliaup](https://github.com/JuliaLang/juliaup),  [PkgTemplates.jl](https://github.com/invenia/PkgTemplates.jl), the [VSCode extension](https://www.julia-vscode.org/) for Julia , [Pkg.jl](https://github.com/JuliaLang/Pkg.jl) and so many other tools make doing this so much easier.
+It is a pleasure to work with such talented and generous people.
+
