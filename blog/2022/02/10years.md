@@ -1,3 +1,8 @@
+@def rss_pubdate = Date(2021, 2, 14)
+@def rss = """10 years ago today, we published 'Why we Created Julia' ..."""
+@def published = "14 February 2021"
+@def title = "Why We Use Julia, 10 Years Later"
+@def authors = """The Julia Community"""
 
 # Foreword
 
