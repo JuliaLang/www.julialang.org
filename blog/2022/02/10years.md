@@ -4,7 +4,11 @@
 @def title = "Why We Use Julia, 10 Years Later"
 @def authors = """The Julia Community"""
 @def mintoclevel=2 
-@def maxtoclevel=3
+@def maxtoclevel=3!
+
++++
+meta = [ ("property", "og:image", "https://user-images.githubusercontent.com/35577566/153918544-6f2fe98e-9019-43ba-ab4a-d922441688cb.png"), ("name", "twitter:creator:id", "194427250"), ("name", "twitter:card", "summary_large_image") ]
++++
 
 ~~~
 <img src="https://user-images.githubusercontent.com/35577566/153917389-f9e3cbbf-8c14-47f7-a8ae-a3dcbd60f4a8.png" width="80%" alt="Why We Use Julia, 10 Years Later">
