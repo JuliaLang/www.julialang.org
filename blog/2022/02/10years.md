@@ -466,7 +466,7 @@ I'm thankful for everyone in the Julia community that has put in the work to bui
 ## Michael Savastio [(@ExpandingMan)](https://gitlab.com/ExpandingMan)
 In early 2016 I had recently finished my PhD in high energy physics having worked mostly in C++
 during that time.  I was in my new job as a data scientist and looking for a language, particularly
-after experiencing the unmitigated disaster that was trying to work with large-scale constrained
+after experiencing challenges trying to work with large-scale constrained
 convex optimization in Python.  There didn't seem to be many good options (there was a lot of hype
 about Scala at the time).  I had discovered Julia, a new language focused on scientific and
 numerical computing.  The language had some interesting new ideas, particularly multiple dispatch as
