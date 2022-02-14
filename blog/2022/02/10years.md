@@ -497,3 +497,20 @@ seems to be a natural niche for a lot of interesting people, especially those wh
 simultaneously for computing and for the physical sciences, a fact to which Julia owes many of its
 wise design choices.  I anticipate continuing to use Julia and to be involved with open source Julia
 projects for the foreseeable future.
+
+## Alexandre A. Renchon [(@AlexisRenchon)](https://github.com/AlexisRenchon)
+I discovered programming during my bioengineer Master studies, in a class about informatics and algorithms, with visual basic. I quickly became excited about the 
+creative potential of coding. I created a few GUIs in VB, for mechanical engineer stuff and environmental sensing, the process was full of reflection and excitement,
+I loved it. I was later introduced to MATLAB, also during my Master, and that became my main language for the next 10 years. I did my entire PhD in MATLAB, creating more 
+GUIs for interactive visualisation of data analysis, many plots with complex layouts, and analysis with big datasets. When I transitioned to a postdoc position after my 
+PhD, I had to switch to an open-source language as they didn't have a MATLAB license. That was a good oportunity as I wanted to go open-source anyway. I considered Python and R, 
+but eventually opted for Julia. As a climate scientist, [this article](https://www.nature.com/articles/d41586-019-02310-3) was key. Also, after writing code in Python, R and 
+julia, I fell in love with the Julia REPL, whereas I wasn't very excited by anything about Python or R. It was also an opportunity to learn more about personal IDE (instead of 
+just using R studio, or MATLAB built-in IDE). I tried all sort of IDE, and opted for VIM + vimteractive in the end. I also switched from Windows to Linux, and started using
+GitHub more actively. I joined the Julia slack channel, tried Plots.jl, and discovered Makie.jl which became my favorite plotting package. I then discovered Franklin.jl, and
+WGLMakie + JSServe. I discovered the possibility of doing so much in Julia. On top of it, I am convinced that it can solve the "2 language problem" that we have in environmental
+science, where empiricists use scripting languages (R mostly), as they need simplicity and don't care about speed, and modelers use compiled languages (FORTRAN mostly), as they
+need speed. By allowing both fields to use the same language, this creates new collaboration opportunities. This goes even beyond this, with the potential of creating super
+modular Earth System Models with Multiple Dispatch, from empiricists and modelers. Machine learning is yet another aspect. I anticipate that Julia will grow rapidly in the
+coming decades for Earth System Modelling work, so it makes total sense to use it as a young researcher in that field. I am always excited to see what new Julia releases, new
+Julia packages of version will bring, and I created my first package [DAMMmodel.jl](https://github.com/CUPofTEAproject/DAMMmodel.jl) recently.
