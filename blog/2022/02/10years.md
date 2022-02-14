@@ -457,7 +457,7 @@ This first experience set the trajectory for my entire PhD, and we quickly knew 
 
 At a certain point (probably around JuliaCon 2016), I realized that Julia had become more than just a programming language to me. It gave me a community where I met some of my most favorite humans in this world and a community I learn from every day. I am so grateful that Julia exists today!
 
-## [James Fairbanks](https://www.github.com/jpfairbanks)
+## James Fairbanks [(@jpfairbanks)](https://www.github.com/jpfairbanks)
 
 My first experience with Julia was back in the v0.2 days when I tried to use it for a higher productivity environment for high performance computing in a course project. It wasn't quite ready and the momentum in scientific computing was shifting to Python as people said "Numpy is fast enough." My research projects involved some C/OpenMP code and according to established researchers in HPC said, "OpenMP is easy enough." So, I went back to a combination of C/OpenMP and Python and started working on developing new numerical methods for spectral clustering. Eventually, I needed access to an ARPACK feature for accessing unconverged Ritz vectors that wasn't exposed through the Scipy API, which led me to read the ARPACK source code. There I found a TODO note to add the feature that I needed. Rich LeHoucq knew it was important, but didn't get around to it after taking note in 1996. Fortunately by that point Jiahao Chen and Andreas Noack were working on a pure Julia implementation of the Arnoldi method. I picked that up and got to work. That year, Jiahao, Andreas, Rich, and I met at a conference. I presented my first research results obtained with Julia and never looked back.
 
