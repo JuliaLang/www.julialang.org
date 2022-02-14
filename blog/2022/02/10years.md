@@ -463,7 +463,7 @@ My first experience with Julia was back in the v0.2 days when I tried to use it 
 
 I'm thankful for everyone in the Julia community that has put in the work to build Julia and its amazing package ecosystem. Thankfully we never let "X is fast enough" or "Y is easy enough" prevent us from building the language, ecosystem, and community that we have today.
 
-## [Tobias Knopp](https://github.com/tknopp)
+## Tobias Knopp [(@tknopp)](https://github.com/tknopp)
 
 I learned about Julia in 2012 some weeks after the famous blog post. My reaction was: Yet another project that makes great promises but cannot compete with my Numpy-optimized workflow. Tested it a little bit, but gave up soon. One year later the project was still alive and I gave it another try on what later became the NFFT.jl package. I compared my Julia NFFT implementation to a C implementation and it was slow. Opened  issue 4832 and Jeff and Tim Holy helped me fixing the type instabilities. Bam, I was sold. This language is awesome.
 
@@ -474,3 +474,26 @@ Then I had my famous Julia moment that is summarized in the PR 6741 called "WIP:
 Then my live switched completely since I went back to academia and got the opportunity to become a professor for biomedical imaging. I based my entire software infrastructure on Julia which was somewhat risky at that time but it was one of the best decisions I made. Follow your heart. I always get positive feedback by my colleagues that Julia made them very productive. Putting our research code into packages and publishing them as open source also made the code much more sustainable, which is a key in an academic career.
 
 10 years, what a great time, what a great technology, what great people. But the time is now: I am looking forward to the next 10 years of exciting developments and the moment where the numerics students ask me what "Matlab" is, since they never heard about it.
+
+## George Datseris [(@Datseris)](https://github.com/Datseris)
+My first contact with Julia came to me at 2016, around the first semester of my PhD. I was initially a pure C coder, did some basic work with self-coded iterative map and Runge-Kutta ODE solvers for my Bachelor thesis. For my PhD I started using Python, and I was completely mindblown. Having only used C so far, I thought to myself "WOW, I can do science _interactively_ and see the output of any line of code _on the spot_?" I couldn't believe it. Well, sadly for me, I was solving 10000s of ODEs for my project, so I soon came to the dreadful realization that Python is just too slow and I have to go back to C... At the time a colleague (Rainer Engelken, fellow Julian) was going around offices "preaching" Julia: "It is as interactive as Python, but as fast as C!". Sounded like exactly what I wanted. I started with 0.4.7, and the prophecy was true. So I've stuck with it, and now I'm the guy that goes around offices and preaches Julia.
+
+I am tremendously grateful to have come across the language, as well as its community and all the wonderful people that have helped me on this journey. It is not an exaggeration to say that much of my career successes I owe to the language. The code I was writing for my PhD became my very first Julia package: [DynamicalBilliards.jl](https://juliadynamics.github.io/DynamicalBilliards.jl/stable/). Making this package taught me a lot about writing good code, but also showed me how unbelievably easy to is to create a high quality package with Julia. Tutoring a course for nonlinear dynamics made me realize, in total frustration, that no general purpose library existed for nonlinear dynamics. Given my experience with DynamicalBilliards.jl, I thought "Well, I'll make it myself, shouldn't be so hard!". It took some time, but Julia made it as seamless as possible, and this gave birth to [DynamicalSystems.jl](https://juliadynamics.github.io/DynamicalSystems.jl/dev/), which went on to win an international award for software on nonlinear dynamics, and to compose a full introductory textbook about nonlinear dynamics [published by Springer-Nature](https://link.springer.com/book/9783030910334) that [explicitly includes Julia code snippets](https://www.youtube.com/watch?v=04HAQXl5aj4) in every chapter! Now, the JuliaDynamics organization has grown up to be composed of many contributors and packages, and I can't even wait for all that is to come in the next years!
+
+## Michael Savastio [(@ExpandingMan)](https://gitlab.com/ExpandingMan)
+In early 2016 I had recently finished my PhD in high energy physics having worked mostly in C++
+during that time.  I was in my new job as a data scientist and looking for a language, particularly
+after experiencing challenges trying to work with large-scale constrained
+convex optimization in Python.  There didn't seem to be many good options (there was a lot of hype
+about Scala at the time).  I had discovered Julia, a new language focused on scientific and
+numerical computing.  The language had some interesting new ideas, particularly multiple dispatch as
+its central paradigm, but was in a very early development phase (I think v0.4 had recently come
+out), and there was *no way* I was going to wind up using it, especially in my new job, right?
+
+6 years later, I have used Julia almost exclusively both at my job and individually ever since.  It
+is still far and away my favoriate language.  It has been a significant part of my life and I'm
+pleased to have made some small contribution to a large number of projects.  The Julia community
+seems to be a natural niche for a lot of interesting people, especially those who have some aptitude
+simultaneously for computing and for the physical sciences, a fact to which Julia owes many of its
+wise design choices.  I anticipate continuing to use Julia and to be involved with open source Julia
+projects for the foreseeable future.
