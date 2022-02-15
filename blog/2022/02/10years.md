@@ -622,3 +622,9 @@ that it's time to move on and use the right tool for the scientific computing
 instead of trying to bend Python and putting energy in huge amounts of software
 packages to compensate it's weaknesses while creating an immense load of
 complexity, maintenance and skill requirement.
+
+## Gabriel Birnbaum [(@killah-t-cell)](https://github.com/killah-t-cell)
+
+I started to interact with Julia in 2020 when a friend at MIT suggested I take 18.337 – a scientific machine learning lecture taught by Chris Rackauckas. As I started to learn Julia, I thought it had a certain aura to it. It felt so well-designed and robust. Like something that was made to advance scientific computing. Not long after finishing that lecture, I started to get involved with the SciML community. I contributed with some PRs and eventually created my own package (Plasma.jl) – which is something I had always wanted to do. Doing it in Julia – with its strong metaprogramming structures, was fun and much easier than I had expected.
+
+What fascinates me most about Julia is the community of smart, interesting individuals that has formed around it. It is incredible that we have a place where top scientists and engineers can gather and exchange ideas, help each other, and form connections. It is awesome to be in a Slack channel with Chris Rackauckas or in a discord server with Tom Kwong (whose book "Design Patterns and Best Practices with Julia" I highly recommend). I am thankful that Julia has created an environment and language where users can do great things and learn a ton doing so.
