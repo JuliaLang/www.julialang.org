@@ -223,7 +223,7 @@ I encountered Julia when I was looking for an alternative to Python to use for m
 I was lucky enough to start contributing to the [SciML](https://sciml.ai/) organization in the summer of 2020 as part of the [Google Summer of Code](https://summerofcode.withgoogle.com/) program working on [ReservoirComputing.jl](https://github.com/SciML/ReservoirComputing.jl). This also was the start of my personal journey into contributing to open source software, and the Julia language made that an incredibly easy transition.
 
 
-## Pamela Alejandra Bustamante Faúndez
+## Pamela Alejandra Bustamante Faúndez [(@pambus)](https://github.com/pambus)
 
 I first started using Julia while doing a research internship at GERAD research center (Montreal, Canada), in the context of my master and bachelor’s thesis on Mathematical Optimization. Some years have passed since then, I am now a PhD candidate in Engineering, I will do an internship at INRIA (France), but one thing remains constant… my love for the Julia Language. I always promote Julia among friends and colleagues in Latin America, even when it has been difficult to convince them because of the scarce resources of Julia in Spanish. I firmly believe in open access knowledge without barriers (either language barriers, accessibility, or others), and I will always advocate for that.
 
@@ -305,7 +305,7 @@ In 2015, I was a Senior Lecturer at Brunel University in the UK, teaching contro
 
 I first learned about Julia in 2019, where as part of my linear algebra course we used Julia to explore the effects of various matrix operations. Jumping from there to 2021, I developed an interest in performance optimization, and met Valentin Churavy, which lead naturally to my work on the Julia backend to improve the speed of code generation and the performance of the generated code itself.
 
-## Sari S. Dalum
+## Sari S. Dalum [(@dalum)](https://github.com/dalum)
 
 I started with Julia back in 2017, when the version number was still 0.5.  I initially made contact with the community through the IRC channel, then got pulled over to Gitter, where I was immediately met with an extremely positive and inclusive atmosphere.  Within few days, I was encouraged to open PRs and take part in discussions surrounding the language, in particular related to linear algebra and generic programming.  I have always felt that the community structure has been very flat, and the distance to the core developers short.  Everyone I have communicated with have been open-minded and willing to discuss proposals and include users, both new and old, in the decisions.  The community events I have participated in have also been very warm and welcoming, which is without doubt the most important aspect of any programming language to me.  I now work with Julia full-time in a private company, and unfortunately have very little time to engage with the community, but I thought I'd put a few words here anyway, and hope to be able to join JuliaCon one day!
 
@@ -650,3 +650,15 @@ Here is to another exciting decade, then...
 
 One final thought: As a mechanical engineer, I would have never expected to be able to contribute to the development of a programming languages.
 Hence, my tiny patches to base Julia make me insanely proud and show that Julia is tearing down barriers and that the Two-Language Problem truly has been solved.
+<<<<<<< HEAD
+=======
+
+## Gaël Forget [(@gaelforget)](https://github.com/gaelforget/)
+
+Back in 2017 when I got started with Julia, I had been doing a lot of Fortran for HPC, automatic differentiation for model optimization, and Matlab for results analysis. All of it open source over a period of 10 years with a focus on global ocean model simulations, geospatial statistics, and so on. A couple years before that, I had decided to take a pass on learning Python or R, and wait for something that would suit me better and be a definite upgrade. Julia was it! 
+
+I got going with [MeshArrays.jl](https://github.com/JuliaClimate/MeshArrays.jl) that I needed to handle climate model grids and presented at JuliaCon2018. Eighteen months later, just after doing my first Julia workshop at Ocean Sciences 2020, covid 19 disrupted all of our plans a bit (ok, a lot ...). But soon enough I realized that doing more Julia was a good way for me to cope and get some joy throughout this whole situation. And so I set out with the goal of coming out of the pandemic with tools I would use in my research moving forward. [ClimateModels.jl](https://github.com/gaelforget/ClimateModels.jl) and [OceanRobots.jl](https://github.com/gaelforget/OceanRobots.jl) , which I introduced at JuliaCon2021, are two examples. 
+
+Funny that I can credit Julia and the pandemic for bringing me back to coding more and with enthousiam! Five years in, I certainly have no regrets and feel pretty excited to see what's coming next. Hurrah to the Julia community!
+
+>>>>>>> 96db83470013afd279d9f0a8361067b6841d1f33
