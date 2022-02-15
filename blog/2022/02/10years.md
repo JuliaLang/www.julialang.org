@@ -648,3 +648,12 @@ Here is to another exciting decade, then...
 
 One final thought: As a mechanical engineer, I would have never expected to be able to contribute to the development of a programming languages.
 Hence, my tiny patches to base Julia make me insanely proud and show that Julia is tearing down barriers and that the Two-Language Problem truly has been solved.
+
+## Gaël Forget [(@gaelforget)](https://github.com/gaelforget/)
+
+Back in 2017 when I got started with Julia, I had been doing a lot of Fortran for HPC, automatic differentiation for model optimization, and Matlab for results analysis. All of it open source over a period of 10 years with a focus on global ocean model simulations, geospatial statistics, and so on. A couple years before that, I had decided to take a pass on learning Python or R, and wait for something that would suit me better and be a definite upgrade. Julia was it! 
+
+I got going with [MeshArrays.jl](https://github.com/JuliaClimate/MeshArrays.jl) that I needed to handle climate model grids and presented at JuliaCon2018. Eighteen months later, just after doing my first Julia workshop at Ocean Sciences 2020, covid 19 disrupted all of our plans a bit (ok, a lot ...). But soon enough I realized that doing more Julia was a good way for me to cope and get some joy throughout this whole situation. And so I set out with the goal of coming out of the pandemic with tools I would use in my research moving forward. [ClimateModels.jl](https://github.com/gaelforget/ClimateModels.jl) and [OceanRobots.jl](https://github.com/gaelforget/OceanRobots.jl) , which I introduced at JuliaCon2021, are two examples. 
+
+Funny that I can credit Julia and the pandemic for bringing me back to coding more and with enthousiam! Five years in, I certainly have no regrets and feel pretty excited to see what's coming next. Hurrah to the Julia community!
+
