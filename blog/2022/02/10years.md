@@ -568,10 +568,85 @@ I have first heard of Julia in 2015 but I was happy with Python and R at that ti
 
 I liked Julia a lot that I even created an online course in Udemy about Julia: [Programming with Julia](https://bit.ly/3BkILRj). Nowadays, my close friends are tired of my "One Julia rules all" jokes.
 
+## Nikhil Yewale [(@yewalenikhil65)](https://github.com/yewalenikhil65)
+
+I was introduced to Julia(very late) by my friend and colleague [Mr. Gaurav](https://github.com/GKUCHANKAR) around 2019. I was happy with MATLAB and C++ and I did not pay much heed untill the pandemic started in 2020, when I saw the power of SciML using Julia explained by [Dr Christopher Rackauckas](https://github.com/ChrisRackauckas) in one of his online workshops of universal differential equations. I was amazed at the ease, elegance and speed of [DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl) package. I have since then adopted Julia as my scientific programming language for most of the science I do. I also admire the transparency and very helpful nature of Julialang community in their discussion forums such as discourse and slack channels. I enjoy exploring Julialang packages now, and have succesfully merged some of my implmentations in few SciML julia packages. Virtual JuliaCon's in last couple of years have also made life easier by aiding to catch up with the progress of scientific programming. I have a feeling Julia programmers are on constant watch for **whats new and novel published**, so that they can provide us with the implmentation quickly.
+
+## Mykel Kochenderfer [(@mykelk)](https://github.com/mykelk/)
+
+In 2012, as mentioned in my [JuliaCon 2017 talk](https://youtu.be/rj-WhTL_VXE), we were working on the algorithm specification for the ACAS X collision avoidance system. We did a first cut of it using pseudocode based on our C++ experimental implementation. Despite our best efforts, ambiguities were found by our collaborators at the Johns Hopkins Applied Physics Laboratory (JHUAPL) who were working on a hardware prototype of the system. I was about to translate the pseudocode to Python because it was still high-level but still executable. But, our friends at JHUAPL suggested Julia because it was high-level, fast, and more amenable to some of the formal methods they were exploring for validation. I pushed back heavily. After all, this suggestion came on December 13, 2012. Julia v0.1 was not released until February 13, 2013. Anyway, our experiments found a very early version of Julia to be 50 times faster than Python for a critical part of the code. We hired Jeff Bezanson to join Lincoln Lab one day per week to work on the project. The next version of the specification released on September 30, 2013 used Julia. Julia v0.2 was released the next month, and I started at Stanford University. At Stanford, I started teaching classes on optimization and decision making under uncertainty where we used Julia. I used it mostly because the language is so nice and clean, though there was sometimes some pushback from students about having to learn another language. At a university, we can afford to be a little more forward looking---and we followed Julia through the series of significant improvements that came with every version. We released two textbooks that use Julia instead of pseudocode: [Algorithms for Optimization](https://algorithmsbook.com/optimization/) (2019) and [Algorithms for Decision Making](https://algorithmsbook.com/) (2022), both from MIT Press with PDFs available for free. I am betting on the continued growth of Julia.
 
 ## Jorge Vieyra [(@el-oso)](https://github.com/el-oso/)
 
-The first time I heard about Julia a got furious, I thought: "What do we need another programming language?!". I thought that this new language was just diluting resources and wasting effort. Effort better spent making Python better, improving Numba and the python ecosystem. I was well versed in python, when things got too slow I would reimplement things in Cython or look for a C library that I could wrap. I was hoping that Numba would get better over time to get LLVM compilation without having to reimplement things, but in the meantime my python + C fu was all what I needed.
-Some time later (2015) iPython notebook was renamed to Jupyter for some "random" reason and I heard this Julia thing again! Then I thought that perhaps I should give it a try. Oh boy! I was wrong, it is much better than python and all the hoops that I needed to jump to make things fast. Still Julia was not where I needed it to be seems that it just transitioned from v0.4 to v0.5 and things were breaking a bit. So, I took a "wait and see" stand, I watched all YouTube videos from the Julia community and read all the discourse posts when I could. I was just using Julia as a side tool to when python and MATLAB failed me, which was quite often. When Julia reached 1.0 on 2018 I got very excited because then I could start recommending it to other people. Now I am actively trying to get other people at work to use it as well so that I can use Julia fulltime now. I hindsight I regret to getting more involved with the community early on but that is changing.
+The first time I heard about Julia a got furious, I thought: "Why do we need another programming language?!". I thought that this new language was just diluting resources and wasting effort. Effort better spent making Python better, improving Numba and the python ecosystem. I was well versed in python, when things got too slow I would reimplement things in Cython or look for a C library that I could wrap. I was hoping that Numba would get better over time to get LLVM compilation without having to reimplement things, but in the meantime my (python + C)-fu was all what I needed.
+
+Some time later (2015) iPython notebook was renamed to Jupyter for some reason that I can't recall and I saw this Julia "thing" again! Then I thought that perhaps I should give it a try. Oh boy! I was wrong, it is much better than python and all the hoops that I needed to jump to make things fast. Still at the time Julia was not where I needed it to be seems that it just transitioned from v0.4 to v0.5 and things were breaking a bit. So, I took a "wait and see" stand, I watched all YouTube videos from the Julia community and read all the discourse posts when I could. I was just using Julia as a side tool to when python and MATLAB failed me, which was quite often. When Julia reached 1.0 on 2018 I got very excited because then I could start recommending it to other people. Now I am actively trying to get other people at work to use it as well so that I can use Julia fulltime now. In hindsight I regret not getting more involved with the community early on but that is changing. In the coming years I am confident that many people from the scientific computing community will use it as lingua franca.
 
 
+## Gunnar Farnebäck [(@GunnarFarneback)](https://github.com/GunnarFarneback/)
+
+In 2012 we had a three language situation at ContextVision. Algorithm development was done in Matlab with C Mex files sprinkled here and there for performance, and the algorithms were rewritten as C++ libraries to make products. We were not satisfied with Matlab. Cost and license management was an annoyance, speed was borderline tolerable, but the real pain point was the software engineering shortcomings.
+
+I looked at Octave, made some PR, but it was becoming clear that it would not solve our problems. Then one day someone asked on their mailing list what people thought about this new Julia language. I headed over to read [Why we created Julia](https://julialang.org/blog/2012/02/why-we-created-julia/) and it matched very much what I was looking for. I started a proof of concept implementation with literal translations of Matlab and C code alike. It turned out just slightly faster, but it was one language instead of two, no Mex boilerplate, much better optimization potential, and greatly improved maintainability, already at that time.
+
+What really impressed me personally though was that it was so much more fun to program in. Being a new language there were also a lot of exciting things to explore. I realized that parametric types were a [perfect fit for compound SI units](https://groups.google.com/g/julia-dev/c/FjkHPK5XJdE/m/H8D1RT2I0WIJ). Well, actually it didn't fully work. It turned out that negative parameter values were doubling up for some other piece of information, but Jeff fixed that right away and the idea eventually developed into the [Unitful](https://github.com/PainterQubits/Unitful.jl.git) package.
+
+Fast forward to 2022. The early years are long past but Julia is still a fun and productive language. Moreover the package manager, package servers, and artifact system provides a level of "it just works" that I hadn't even started dreaming about ten years ago. At ContextVision a two language problem still remains but the speed difference between algorithm and product code is much reduced and when (I'm not saying if) static compilation becomes a reality it might be Julia all the way to the customer.
+
+## Tamas Gal [(@tamasgal)](https://github.com/tamasgal/)
+
+I am an astroparticle physicist and discovered Julia around 2015 when it was
+right between v0.3 and v0.4. I immediately recognised its great power and used
+it for my own scientific projects. Nowadays, all of my scientific calculations
+are done exclusively in Julia: there is nothing I cannot do.
+
+In the past decade however, I have also spent several hundreds of hours on
+creating and maintaining Python based frameworks for real-time and offline
+analysis of data coming from our neutrino telescope. I went through many
+iterations of refactoring code including lots of different technologies to keep
+the high-level API easy to use for short-term projects like bachelor theses --
+where students otherwise would have had to learn C++ and the ROOT framework --
+and yet high-performant to save time, costs and resources when launching tens of
+thousands of jobs on multiple HPC/HTC farms for large scale analysis.
+Unfortunately, most of the time and effort was spent on hacking, tweaking and
+making compromises with respect to usability and extensibility due to the
+language barriers between Python and the underlying low-level code.
+
+Over the past years, together with a few extremely talented people, we are
+trying to push the focus in astroparticle and high-energy physics to Julia and
+also started to build a new software stack for our own experiment, written
+entirely in this beautiful scientific language. The fact that a single ecosystem
+is often enough to achieve peak performance while giving the user such an
+accessible syntax is definitely a game-changer.
+
+I hope that Julia will sustain the momentum and people will eventually realise
+that it's time to move on and use the right tool for the scientific computing
+instead of trying to bend Python and putting energy in huge amounts of software
+packages to compensate it's weaknesses while creating an immense load of
+complexity, maintenance and skill requirement.
+
+## Gabriel Birnbaum [(@killah-t-cell)](https://github.com/killah-t-cell)
+
+I started to interact with Julia in 2020 when a friend at MIT suggested I take 18.337 – a scientific machine learning lecture taught by Chris Rackauckas. As I started to learn Julia, I thought it had a certain aura to it. It felt so well-designed and robust. Like something that was made to advance scientific computing. Not long after finishing that lecture, I started to get involved with the SciML community. I contributed with some PRs and eventually created my own package (Plasma.jl) – which is something I had always wanted to do. Doing it in Julia – with its strong metaprogramming structures, was fun and much easier than I had expected.
+
+What fascinates me most about Julia is the community of smart, interesting individuals that has formed around it. It is incredible that we have a place where top scientists and engineers can gather and exchange ideas, help each other, and form connections. It is awesome to be in a Slack channel with Chris Rackauckas or in a discord server with Tom Kwong (whose book "Design Patterns and Best Practices with Julia" I highly recommend). I am thankful that Julia has created an environment and language where users can do great things and learn a ton doing so.
+
+## Helge Eichhorn [(@helgee)](https://github.com/helgee/)
+
+Ten years already, yikes!
+The timing was perfect for me when Julia first emerged.
+I was about to start my final year of university and was looking for a programming language for my Introduction to Orbit Determination course.
+My academic MATLAB license had just expired and I was looking for alternatives.
+When I read the blog post, I thought that Julia was exactly what I needed.
+Thus, I downloaded the sources, compiled them without a hitch, gave it a try, and then used Python for the course.
+Probably a wise choice because otherwise I would have had to write my own high-order numerical integrator and certainly failed the course due to productive procrastination.
+Nevertheless, Julia fascinated me and I closely followed its development and even started to publish my first open-source Julia libraries in 2013.
+After a few more years, some back and forth, and getting bitten by scientific Python's Two-Language Problem one time too many, I made the switch in 2016 and have not looked back.
+
+Fast forward to today, my team and I get to work on a product which combines two of my favourite things: Julia and missions to the Moon!
+This is made possible by our fantastic ecosystem and community.
+We have come so far and yet there is still so much work to be done.
+Here is to another exciting decade, then...
+
+One final thought: As a mechanical engineer, I would have never expected to be able to contribute to the development of a programming languages.
+Hence, my tiny patches to base Julia make me insanely proud and show that Julia is tearing down barriers and that the Two-Language Problem truly has been solved.
