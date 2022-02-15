@@ -11,7 +11,6 @@ We have our project ideas organized below roughly by domain but you can also see
 * [DFTK.jl](/jsoc/gsoc/dftk/) – Density-functional theory in Julia
 * [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.
 * [Loop Optimization](/jsoc/gsoc/loopopt/) - Loop analysis and optimization
-* [Flux.jl](/jsoc/gsoc/flux/) - A flexible deep learning library.
 * [GeoStats.jl](/jsoc/gsoc/GeoStats/) - An extensible framework for high-performance geostatistics in Julia.
 * [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
 * [GUI](/jsoc/gsoc/gui/) - Projects related to Graphical User Interface toolkits
@@ -20,6 +19,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Javis](/jsoc/gsoc/javis/) - **J**ulia **a**nimations and **vis**ualizations for teaching, communication, and beyond!
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
 * [Language interoperability](/jsoc/gsoc/interop/) - Projects related to interfacing between Julia and other programming languages
+* [Machine learning](/json/gsoc/machine-learning) - work on problems in machine learning in the broader Julia ML ecosystem
 * [MLJ.jl](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
 * [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
 * [Numerics](/jsoc/gsoc/numerics/) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
@@ -42,4 +42,5 @@ We also have Julia project's available under other organizations. If you are app
 * [SciML - NumFocus](https://github.com/numfocus/gsoc#sciml)
   - [SciML](/jsoc/gsoc/sciml/) - Scientific Machine Learning
   - [Differential Equations](/jsoc/gsoc/diffeq/) - Numerical methods for high-performance solving of differential equation models.
+* FluxML - NumFocus
 @@
