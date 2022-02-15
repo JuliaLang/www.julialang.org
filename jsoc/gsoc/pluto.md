@@ -8,7 +8,7 @@ VS Code is an extensible editor, and one of its most recent features is a notebo
 
 **Recommended skills:** JavaScript/TypeScript, some Julia experience
 
-**Mentors:** [Sebastian Pfitzner](https://github.com/pfitzseb) (core maintainer of julia-vscode), [Fons van der Plas](https://github.com/fonsp) (core maintainer of Pluto.jl) and friends
+**Mentors:** [Sebastian Pfitzner](https://github.com/pfitzseb) (core maintainer of julia-vscode), [Panagiotis Georgakopoulos](https://github.com/pankgeorg) and [Fons van der Plas](https://github.com/fonsp) (core maintainers of Pluto.jl) and friends
 
 _Also see the other [VS Code projects](https://julialang.org/jsoc/gsoc/vscode/)!_
 
