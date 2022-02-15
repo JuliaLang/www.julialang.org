@@ -663,9 +663,9 @@ Funny that I can credit Julia and the pandemic for bringing me back to coding mo
 
 I first stumbled upon Julia somewhere in late 2014, early 2015 based on a [snarky blog post about what your choice of statistical software says about you](https://seanjtaylor.com/2013/01/03/the-statistics-software-signal.html). 
 ("Julia : You are [John Myles White](http://johnmyleswhite.com/).") 
-About this time, I also ran into Doug Bates' early work on MixedModels.jl and was absolutely floored by the performance difference to its predecessor in R, lme4. 
+About this time, I also ran into Doug Bates' early work on [MixedModels.jl](https://github.com/JuliaStats/MixedModels.jl/) and was absolutely floored by the performance difference to its predecessor in R, [lme4](https://github.com/lme4/lme4/). 
 Things that took hours on a big workstation could be done in minutes on my laptop. 
-I wanted that, but the ecosystem also wasn't there to replace R in my daily workflow (handling of missing data, DataFrames.jl, and StatsModels.jl still needed to come a long way) and I didn't have the capacity to deal with the churn. 
+I wanted that, but the ecosystem also wasn't there to replace R in my daily workflow (handling of missing data, [DataFrames.jl](https://github.com/JuliaData/DataFrames.jl), and [StatsModels.jl](https://github.com/JuliaStats/StatsModels.jl/) still needed to come a long way) and I didn't have the capacity to deal with the churn. 
 Around 2019, a colleague had an analysis problem that was simply intractable in lme4 and I had heard that Julia was finally stable. 
 I took another look at MixedModels.jl, found it was missing some features that I needed, but started corresponding with Doug to get those features implemented. 
 I was thoroughly impressed by how kind and responsive Doug -- a legend in statistical computing -- was to my requests. 
