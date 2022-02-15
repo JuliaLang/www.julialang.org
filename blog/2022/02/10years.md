@@ -502,3 +502,17 @@ simultaneously for computing and for the physical sciences, a fact to which Juli
 wise design choices.  I anticipate continuing to use Julia and to be involved with open source Julia
 projects for the foreseeable future.
 
+## Julius Krumbiegel [(@jkrumbiegel)](https://github.com/jkrumbiegel/)
+
+I first learned about Julia in 2017 during my neuroscience Master's in Berlin.
+I was doing a lab rotation where I kept trying (unsuccessfully) to convince everybody to ditch MATLAB for Python.
+At one of these occasions a colleague quipped "Don't the cool kids use Julia instead of Python anyway?".
+Surprised and slightly embarrassed that I had never heard of this language (and therefore was obviously not a cool kid) I looked online and found the "Why we created Julia" post.
+Reading through it, I immediately felt connected to the people who had created Julia, because they shared so many of my values (and grievances with programming languages).
+From that moment on I was quite hooked and explored Julia a lot in my free time - not for my university work, however, because I didn't need its speed, there was too much tooling friction, and the compilation latency scared me a bit.
+Not much later, however, I had the need for interactive 3D plotting and got very frustrated with my Python options.
+I found the package [Makie.jl](https://github.com/JuliaPlots/Makie.jl) which seemed elegant to me with its observable plots.
+I soon wished for better axes and layout options, but when opening issues didn't magically materialize what I wanted, I realized I needed to become active myself.
+So [out of the blue](https://github.com/JuliaPlots/Makie.jl/issues/354), never having done open-source development before, I first ported a constraint solver from C++, then contributed my own layouting system.
+A couple years later, I'm still really glad to be able to work with such nice people on interesting Julia projects, it's a lovely community that I have become a part of.
+
