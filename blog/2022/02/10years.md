@@ -269,7 +269,7 @@ I first hear of Julia around 2017. I had then been mainly a R user and got incre
 
 ## Micah Halter [(@mehalter)](https://github.com/mehalter)
 
-I was first introduced to Julia back around 2016 by a co-worker in my research lab and spent a decent amount of time playing around with the language, but wasn't using Julia for any projects or day-to-day use. Fast-forward to 2018, our lab started up a new research project to explore meta-modeling questions such as model composition and model exploration. With Julia's official `v1.0` release along with it's first class metaprogramming support and multiple dispatch, there really wasn't another language that could easily support the work we were doing without hacky, inelegant solutions. After many different meta-modeling approaches and several rewrites, we were able to start [AlgebraicJulia](https://www.algebraicjulia.org/) and bring together scientific modeling with the compositional ideas of Category Theory. Every time I add a new feature to our software that leverages the metaprogramming features of Julia, I reaffirm our decision to use Julia for this project.
+I was first introduced to Julia back around 2016 by a co-worker in my research lab and spent a decent amount of time playing around with the language, but wasn't using Julia for any projects or day-to-day use. Fast-forward to 2018, our lab started up a new research project to explore meta-modeling questions such as model composition and model exploration. With Julia's official `v1.0` release along with it's first class metaprogramming support and multiple dispatch, there really wasn't another language that could easily support the work we were doing without hacky, inelegant solutions. After many different meta-modeling approaches and several rewrites we were able to start [AlgebraicJulia](https://www.algebraicjulia.org/) and bring together scientific modeling with the compositional ideas of Category Theory. Every time I add a new feature to our software that leverages the metaprogramming features of Julia, I reaffirm our decision to use Julia for this project.
 
 
 ## Vaibhav Dixit [(@Vaibhavdixit02)](https://github.com/Vaibhavdixit02)
@@ -463,6 +463,10 @@ My first experience with Julia was back in the v0.2 days when I tried to use it 
 
 I'm thankful for everyone in the Julia community that has put in the work to build Julia and its amazing package ecosystem. Thankfully we never let "X is fast enough" or "Y is easy enough" prevent us from building the language, ecosystem, and community that we have today.
 
+## Arturo Erdely [(@aerdely)](https://github.com/aerdely)
+
+I'm a statistician that used R since 1997 until 2018 when I got stuck with performance for a simulation study I was working on. A specialist in Python tried to help me but the slow performance was similar in that programming language. I was considering going through the pain of learning C when somebody mentioned to me that Julia was quite promising, so I started to read about it and follow the Julia page. Finally, I decided to jump into Julia, not to try it, but to completely move all my work to Julia, no matter what. I'm very satisfied with what I have been able to do in Julia, still learning a lot because my poor computing skills and almost 53 years of age do not help, but so far since 2019 I do all my coding in Julia, I love the syntax, I do not miss R at all. 
+
 ## Tobias Knopp [(@tknopp)](https://github.com/tknopp)
 
 I learned about Julia in 2012 some weeks after the famous blog post. My reaction was: Yet another project that makes great promises but cannot compete with my Numpy-optimized workflow. Tested it a little bit, but gave up soon. One year later the project was still alive and I gave it another try on what later became the NFFT.jl package. I compared my Julia NFFT implementation to a C implementation and it was slow. Opened  issue 4832 and Jeff and Tim Holy helped me fixing the type instabilities. Bam, I was sold. This language is awesome.
@@ -497,3 +501,4 @@ seems to be a natural niche for a lot of interesting people, especially those wh
 simultaneously for computing and for the physical sciences, a fact to which Julia owes many of its
 wise design choices.  I anticipate continuing to use Julia and to be involved with open source Julia
 projects for the foreseeable future.
+
