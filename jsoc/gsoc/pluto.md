@@ -26,3 +26,13 @@ Pluto's primary use case is education, and we recently started using Pluto noteb
 **Recommended skills:** JavaScript, CSS, you can learn Julia as part of the project.
 
 **Mentors:** [Fons van der Plas](https://github.com/fonsp), [Connor Burns](https://github.com/ctrekker) and fellow Pluto.jl maintainers, with feedback from [Alan Edelman](https://math.mit.edu/directory/profile.php?pid=63)
+
+
+
+## Electron app
+
+Blabla
+
+**Recommended skills:** JavaScript
+
+**Mentors:** [Connor Burns](https://github.com/ctrekker), [Fons van der Plas](https://github.com/fonsp) and fellow Pluto.jl maintainers
