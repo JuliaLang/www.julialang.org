@@ -590,3 +590,35 @@ I looked at Octave, made some PR, but it was becoming clear that it would not so
 What really impressed me personally though was that it was so much more fun to program in. Being a new language there were also a lot of exciting things to explore. I realized that parametric types were a [perfect fit for compound SI units](https://groups.google.com/g/julia-dev/c/FjkHPK5XJdE/m/H8D1RT2I0WIJ). Well, actually it didn't fully work. It turned out that negative parameter values were doubling up for some other piece of information, but Jeff fixed that right away and the idea eventually developed into the [Unitful](https://github.com/PainterQubits/Unitful.jl.git) package.
 
 Fast forward to 2022. The early years are long past but Julia is still a fun and productive language. Moreover the package manager, package servers, and artifact system provides a level of "it just works" that I hadn't even started dreaming about ten years ago. At ContextVision a two language problem still remains but the speed difference between algorithm and product code is much reduced and when (I'm not saying if) static compilation becomes a reality it might be Julia all the way to the customer.
+
+## Tamas Gal [(@tamasgal)](https://github.com/tamasgal/)
+
+I am an astroparticle physicist and discovered Julia around 2015 when it was
+right between v0.3 and v0.4. I immediately recognised its great power and used
+it for my own scientific projects. Nowadays, all of my scientific calculations
+are done exclusively in Julia: there is nothing I cannot do.
+
+In the past decade however, I have also spent several hundreds of hours on
+creating and maintaining Python based frameworks for real-time and offline
+analysis of data coming from our neutrino telescope. I went through many
+iterations of refactoring code including lots of different technologies to keep
+the high-level API easy to use for short-term projects like bachelor theses --
+where students otherwise would have had to learn C++ and the ROOT framework --
+and yet high-performant to save time, costs and resources when launching tens of
+thousands of jobs on multiple HPC/HTC farms for large scale analysis.
+Unfortunately, most of the time and effort was spent on hacking, tweaking and
+making compromises with respect to usability and extensibility due to the
+language barriers between Python and the underlying low-level code.
+
+Over the past years, together with a few extremely talented people, we are
+trying to push the focus in astroparticle and high-energy physics to Julia and
+also started to build a new software stack for our own experiment, written
+entirely in this beautiful scientific language. The fact that a single ecosystem
+is often enough to achieve peak performance while giving the user such an
+accessible syntax is definitely a game-changer.
+
+I hope that Julia will sustain the momentum and people will eventually realise
+that it's time to move on and use the right tool for the scientific computing
+instead of trying to bend Python and putting energy in huge amounts of software
+packages to compensate it's weaknesses while creating an immense load of
+complexity, maintenance and skill requirement.
