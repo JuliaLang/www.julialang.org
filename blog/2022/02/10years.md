@@ -567,3 +567,36 @@ This experience definitely changed my career. I decided that for the summer afte
 I have first heard of Julia in 2015 but I was happy with Python and R at that time (I have two published books about R and Python programming). Fast forward to 2019, I had to modify my PhD thesis which I had written in C++ in 2013. It was running very fast but wasn't flexible. First, I tried to rewrite the code in R but the run time was really very slow. Then I remembered Julia. And yes, I reached the flexibility of Python and R and speed of C++. In the last three years, I have adapted almost all my works to Julia. I'm doing all my data analyses and visualizations in Julia and developing machine learning models in Julia. And that's not all. Recently, I needed a small web application. I am not a web developer and I have little knowledge about it. After trying some other tools, I decided to try Genie. And just in a few days I've developed a small web application in Genie. And, it is not just the beauty and power of the language. Julia has a great community. I have found answers to all of my questions in either Discord, or Stackoverflow in just a few seconds.
 
 I liked Julia a lot that I even created an online course in Udemy about Julia: [Programming with Julia](https://bit.ly/3BkILRj). Nowadays, my close friends are tired of my "One Julia rules all" jokes.
+
+
+## Tamas Gal [(@tamasgal)](https://github.com/tamasgal/)
+
+I am an astroparticle physicist and discovered Julia around 2015 when it was
+right between v0.3 and v0.4. I immediately recognised its great power and used
+it for my own scientific projects. Nowadays, all of my scientific calculations
+are done exclusively in Julia: there is nothing I cannot do.
+
+In the past decade however, I have also spent several hundreds of hours on
+creating and maintaining Python based frameworks for real-time and offline
+analysis of data coming from our neutrino telescope. I went through many
+iterations of refactoring code including lots of different technologies to keep
+the high-level API easy to use for short-term projects like bachelor theses --
+where students otherwise would have had to learn C++ and the ROOT framework --
+and yet high-performant to save time, costs and resources when launching tens of
+thousands of jobs on multiple HPC/HTC farms for large scale analysis.
+Unfortunately, most of the time and effort was spent on hacking, tweaking and
+making compromises with respect to usability and extensibility due to the
+language barriers between Python and the underlying low-level code.
+
+Over the past years, together with a few extremely talented people, we are
+trying to push the focus in astroparticle and high-energy physics to Julia and
+also started to build a new software stack for our own experiment, written
+entirely in this beautiful scientific language. The fact that a single ecosystem
+is often enough to achieve peak performance while giving the user such an
+accessible syntax is definitely a game-changer.
+
+I hope that Julia will sustain the momentum and people will eventually realise
+that it's time to move on and use the right tool for the scientific computing
+instead of trying to bend Python and putting energy in huge amounts of software
+packages to compensate it's weaknesses while creating an immense load of
+complexity, maintenance and skill requirement.
