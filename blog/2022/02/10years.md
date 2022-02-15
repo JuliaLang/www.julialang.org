@@ -650,6 +650,7 @@ Here is to another exciting decade, then...
 
 One final thought: As a mechanical engineer, I would have never expected to be able to contribute to the development of a programming languages.
 Hence, my tiny patches to base Julia make me insanely proud and show that Julia is tearing down barriers and that the Two-Language Problem truly has been solved.
+
 ## Gaël Forget [(@gaelforget)](https://github.com/gaelforget/)
 
 Back in 2017 when I got started with Julia, I had been doing a lot of Fortran for HPC, automatic differentiation for model optimization, and Matlab for results analysis. All of it open source over a period of 10 years with a focus on global ocean model simulations, geospatial statistics, and so on. A couple years before that, I had decided to take a pass on learning Python or R, and wait for something that would suit me better and be a definite upgrade. Julia was it! 
@@ -657,3 +658,18 @@ Back in 2017 when I got started with Julia, I had been doing a lot of Fortran fo
 I got going with [MeshArrays.jl](https://github.com/JuliaClimate/MeshArrays.jl) that I needed to handle climate model grids and presented at JuliaCon2018. Eighteen months later, just after doing my first Julia workshop at Ocean Sciences 2020, covid 19 disrupted all of our plans a bit (ok, a lot ...). But soon enough I realized that doing more Julia was a good way for me to cope and get some joy throughout this whole situation. And so I set out with the goal of coming out of the pandemic with tools I would use in my research moving forward. [ClimateModels.jl](https://github.com/gaelforget/ClimateModels.jl) and [OceanRobots.jl](https://github.com/gaelforget/OceanRobots.jl) , which I introduced at JuliaCon2021, are two examples. 
 
 Funny that I can credit Julia and the pandemic for bringing me back to coding more and with enthousiam! Five years in, I certainly have no regrets and feel pretty excited to see what's coming next. Hurrah to the Julia community!
+
+## Phillip Alday [(@palday)](https://github.com/palday/)
+
+I first stumbled upon Julia somewhere in late 2014, early 2015 based on a [snarky blog post about what your choice of statistical software says about you](https://seanjtaylor.com/2013/01/03/the-statistics-software-signal.html). 
+("Julia : You are [John Myles White](http://johnmyleswhite.com/).") 
+About this time, I also ran into Doug Bates' early work on MixedModels.jl and was absolutely floored by the performance difference to its predecessor in R, lme4. 
+Things that took hours on a big workstation could be done in minutes on my laptop. 
+I wanted that, but the ecosystem also wasn't there to replace R in my daily workflow (handling of missing data, DataFrames.jl, and StatsModels.jl still needed to come a long way) and I didn't have the capacity to deal with the churn. 
+Around 2019, a colleague had an analysis problem that was simply intractable in lme4 and I had heard that Julia was finally stable. 
+I took another look at MixedModels.jl, found it was missing some features that I needed, but started corresponding with Doug to get those features implemented. 
+I was thoroughly impressed by how kind and responsive Doug -- a legend in statistical computing -- was to my requests. 
+Within a few short months, I was contributing to MixedModels.jl on a regular basis and had discovered that Doug was typical of the community: passionate, helpful and kind. 
+I also discovered (part of) what makes Julia so special: everything was in Julia and it was easy to understand what was going on as a newcomer to the project, which is just not possible in other projects in other languages (e.g., lme4 in R).
+
+I came for the speed, enjoy and use the syntax, and love the community. 
