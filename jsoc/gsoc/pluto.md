@@ -12,18 +12,6 @@ VS Code is an extensible editor, and one of its most recent features is a notebo
 
 _Also see the other [VS Code projects](https://julialang.org/jsoc/gsoc/vscode/)!_
 
-## Macro support
-
-[Macros](https://docs.julialang.org/en/v1/manual/metaprogramming/#man-macros) are a core feature of Julia, and many important packages (Flux, JuMP, DiffEq, …) use them in creative ways. Pluto's reactivity is based on _syntax analysis_ to find the assigned and referenced variables of each cell. This powers not just reactive evaluation, but also Pluto's global scope management, and `@bind` interactivity. (See the [JuliaCon presentation](https://www.youtube.com/watch?v=IAF8DjrQSSk) for more info.)
-
-Macros can assign to a variable without Pluto detecting it as such. For example, `@variables x y` from [Symbolics.jl](https://github.com/JuliaSymbolics/Symbolics.jl) _assigns_ to variables `x` and `y`, while Pluto thinks that `x` and `y` were referenced. Your project is to **add macro support to Pluto**. Julia has the built-in ability to 'expand' macros on demand, but integrating this into Pluto's reactive runtime remains a significant algorithm design problem. More info in [Pluto.jl#196](https://github.com/fonsp/Pluto.jl/issues/196).
-
-**Expected Results:** First objective: process macros from packages, second (more difficult) objective: support macros defined inside the notebook itself.
-
-**Recommended skills:** Julia, you will learn about metaprogramming, algorithm design and distributed computing
-
-**Mentors:** [Fons van der Plas](https://github.com/fonsp) and fellow Pluto.jl maintainers
-
 ## Tools for education
 
 Pluto's primary use case is education, and we recently started using Pluto notebooks as an 'interactive textbook': https://computationalthinking.mit.edu/ . If you are interested in design and interactive visualization, there are lots of cool JS projects in this area. Examples include:
