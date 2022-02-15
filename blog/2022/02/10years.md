@@ -628,3 +628,23 @@ complexity, maintenance and skill requirement.
 I started to interact with Julia in 2020 when a friend at MIT suggested I take 18.337 – a scientific machine learning lecture taught by Chris Rackauckas. As I started to learn Julia, I thought it had a certain aura to it. It felt so well-designed and robust. Like something that was made to advance scientific computing. Not long after finishing that lecture, I started to get involved with the SciML community. I contributed with some PRs and eventually created my own package (Plasma.jl) – which is something I had always wanted to do. Doing it in Julia – with its strong metaprogramming structures, was fun and much easier than I had expected.
 
 What fascinates me most about Julia is the community of smart, interesting individuals that has formed around it. It is incredible that we have a place where top scientists and engineers can gather and exchange ideas, help each other, and form connections. It is awesome to be in a Slack channel with Chris Rackauckas or in a discord server with Tom Kwong (whose book "Design Patterns and Best Practices with Julia" I highly recommend). I am thankful that Julia has created an environment and language where users can do great things and learn a ton doing so.
+
+## Helge Eichhorn [(@helgee)](https://github.com/helgee/)
+
+Ten years already, yikes!
+The timing was perfect for me when Julia first emerged.
+I was about to start my final year of university and was looking for a programming language for my Introduction to Orbit Determination course.
+My academic MATLAB license had just expired and I was looking for alternatives.
+When I read the blog post, I thought that Julia was exactly what I needed.
+Thus, I downloaded the sources, compiled them without a hitch, gave it a try, and then used Python for the course.
+Probably a wise choice because otherwise I would have had to write my own high-order numerical integrator and certainly failed the course due to productive procrastination.
+Nevertheless, Julia fascinated me and I closely followed its development and even started to publish my first open-source Julia libraries in 2013.
+After a few more years, some back and forth, and getting bitten by scientific Python's Two-Language Problem one time too many, I made the switch in 2016 and have not looked back.
+
+Fast forward to today, my team and I get to work on a product which combines two of my favourite things: Julia and missions to the Moon!
+This is made possible by our fantastic ecosystem and community.
+We have come so far and yet there is still so much work to be done.
+Here is to another exciting decade, then...
+
+One final thought: As a mechanical engineer, I would have never expected to be able to contribute to the development of a programming languages.
+Hence, my tiny patches to base Julia make me insanely proud and show that Julia is tearing down barriers and that the Two-Language Problem truly has been solved.
