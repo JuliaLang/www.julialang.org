@@ -31,8 +31,25 @@ Pluto's primary use case is education, and we recently started using Pluto noteb
 
 ## Electron app
 
-Blabla
+Right now, [Pluto]() is a *Julia package* with one function, `Pluto.run()`:
+```julia
+julia> using Pluto
+julia> Pluto.run()
+
+Welcome to Pluto! Go to http://localhost:1234/ to start writing!
+```
+
+This makes sense, because Pluto is written in Julia! But for many people, the steps *install Julia, open a terminal, run the Julia REPL, use Pkg to install Pluto, import Pluto, run Pluto* are still much too intimidating. Ideally, we hope that Pluto will make scientific computing more accessible and fun to everyone, especially beginner students and programmers, who might not have used a terminal before!
+
+For this reason, we want Pluto to be a standalone [Electron](https://www.electronjs.org/) app, just like VS Code, Slack, Whatsapp, GitHub Dekstop, Atom, and many more. 
+
+(TODO) Come back soon to this page to learn more about:
+- Technical overview of how to get there
+- Additional benefits: native file system UI, double click handler, ...
+- Auto-updates and bundling Julia
+
+**Expected Results:** TODO
 
 **Recommended skills:** JavaScript
 
-**Mentors:** [Connor Burns](https://github.com/ctrekker), [Fons van der Plas](https://github.com/fonsp) and fellow Pluto.jl maintainers
+**Mentors:** [Connor Burns](https://github.com/ctrekker), [Michiel Dral](https://github.com/dralletje), [Fons van der Plas](https://github.com/fonsp) and fellow Pluto.jl maintainers
