@@ -223,7 +223,7 @@ I encountered Julia when I was looking for an alternative to Python to use for m
 I was lucky enough to start contributing to the [SciML](https://sciml.ai/) organization in the summer of 2020 as part of the [Google Summer of Code](https://summerofcode.withgoogle.com/) program working on [ReservoirComputing.jl](https://github.com/SciML/ReservoirComputing.jl). This also was the start of my personal journey into contributing to open source software, and the Julia language made that an incredibly easy transition.
 
 
-## Pamela Alejandra Bustamante Faúndez
+## Pamela Alejandra Bustamante Faúndez [(@pambus)](https://github.com/pambus)
 
 I first started using Julia while doing a research internship at GERAD research center (Montreal, Canada), in the context of my master and bachelor’s thesis on Mathematical Optimization. Some years have passed since then, I am now a PhD candidate in Engineering, I will do an internship at INRIA (France), but one thing remains constant… my love for the Julia Language. I always promote Julia among friends and colleagues in Latin America, even when it has been difficult to convince them because of the scarce resources of Julia in Spanish. I firmly believe in open access knowledge without barriers (either language barriers, accessibility, or others), and I will always advocate for that.
 
