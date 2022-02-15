@@ -502,6 +502,16 @@ simultaneously for computing and for the physical sciences, a fact to which Juli
 wise design choices.  I anticipate continuing to use Julia and to be involved with open source Julia
 projects for the foreseeable future.
 
+## Douglas Bates [(@dmbates)](https://github.com/dmbates/)
+
+Recently I wrote in a slack discussion
+
+> This is why I found Julia so attractive when I stumbled across it late in 2011.  It is a dynamically-typed, REPL-based, language for technical computing built on a hideously efficient implementation of multiple dispatch plus a JIT compiler and designed by very talented people with a comprehensive knowledge of all aspects of programming.  And these developers think very carefully about any feature before incorporating it in the language.  It has been and continues to be a wonderful experience working with the Julia community.
+
+Today I was working on a new package, [Wordlegames.jl](https://github.com/dmbates/Wordlegames.jl). 
+I thought how the combination of [juliaup](https://github.com/JuliaLang/juliaup),  [PkgTemplates.jl](https://github.com/invenia/PkgTemplates.jl), the [VSCode extension](https://www.julia-vscode.org/) for Julia , [Pkg.jl](https://github.com/JuliaLang/Pkg.jl) and so many other tools make doing this so much easier.
+It is a pleasure to work with such talented and generous people.
+
 ## Julius Krumbiegel [(@jkrumbiegel)](https://github.com/jkrumbiegel/)
 
 I first learned about Julia in 2017 during my neuroscience Master's in Berlin.
@@ -515,4 +525,3 @@ I found the package [Makie.jl](https://github.com/JuliaPlots/Makie.jl) which see
 I soon wished for better axes and layout options, but when opening issues didn't magically materialize what I wanted, I realized I needed to become active myself.
 So [out of the blue](https://github.com/JuliaPlots/Makie.jl/issues/354), never having done open-source development before, I first ported a constraint solver from C++, then contributed my own layouting system.
 A couple years later, I'm still really glad to be able to work with such nice people on interesting Julia projects, it's a lovely community that I have become a part of.
-
