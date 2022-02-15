@@ -35,7 +35,9 @@ Context: *Pluto is a notebook system written in Julia, which means that it runs 
 Looking for alternatives, we believe that, instead of using a pure-Julia implementation of HTTP, we should wrap around an existing, high-production web server like [hyper.rs](http://hyper.rs/). Julia has a rich history of wrapping libraries written in C, C++, Python, Go, JS and more, and the package manager has first-class support for external binaries.
 
 ### Details
-More technical background will follow, check back soon!
+
+As a participant of this project, you will build on top of the Julia and Rust ecosystems. A potential starting point would be looking at the Deno [http server](https://github.com/denoland/deno/blob/2dc5dba8baf148a525cbb7987cdad0ba6398c5e4/ext/http/lib.rs) implementation also built on top of hyper.rs.
+Initially, the goal would be to start using the [hyper C API](https://docs.rs/hyper/latest/hyper/ffi/index.html) to interoperate with Julia (there is already a [hyper_jll](https://github.com/JuliaBinaryWrappers/hyper_jll.jl) package :heart: !!). Depending on the progress, another area of exploration is to investigate rustier tools like [jlrs](https://github.com/Taaitaaiger/jlrs).
 
 **Expected Results:** A prototype of wrapping the `hyper` library in Julia, with a focus on reliability and efficiency, forming the basis of the package.
 
