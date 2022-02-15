@@ -305,7 +305,7 @@ In 2015, I was a Senior Lecturer at Brunel University in the UK, teaching contro
 
 I first learned about Julia in 2019, where as part of my linear algebra course we used Julia to explore the effects of various matrix operations. Jumping from there to 2021, I developed an interest in performance optimization, and met Valentin Churavy, which lead naturally to my work on the Julia backend to improve the speed of code generation and the performance of the generated code itself.
 
-## Sari S. Dalum
+## Sari S. Dalum [(@dalum)](https://github.com/dalum)
 
 I started with Julia back in 2017, when the version number was still 0.5.  I initially made contact with the community through the IRC channel, then got pulled over to Gitter, where I was immediately met with an extremely positive and inclusive atmosphere.  Within few days, I was encouraged to open PRs and take part in discussions surrounding the language, in particular related to linear algebra and generic programming.  I have always felt that the community structure has been very flat, and the distance to the core developers short.  Everyone I have communicated with have been open-minded and willing to discuss proposals and include users, both new and old, in the decisions.  The community events I have participated in have also been very warm and welcoming, which is without doubt the most important aspect of any programming language to me.  I now work with Julia full-time in a private company, and unfortunately have very little time to engage with the community, but I thought I'd put a few words here anyway, and hope to be able to join JuliaCon one day!
 
