@@ -567,3 +567,23 @@ This experience definitely changed my career. I decided that for the summer afte
 I have first heard of Julia in 2015 but I was happy with Python and R at that time (I have two published books about R and Python programming). Fast forward to 2019, I had to modify my PhD thesis which I had written in C++ in 2013. It was running very fast but wasn't flexible. First, I tried to rewrite the code in R but the run time was really very slow. Then I remembered Julia. And yes, I reached the flexibility of Python and R and speed of C++. In the last three years, I have adapted almost all my works to Julia. I'm doing all my data analyses and visualizations in Julia and developing machine learning models in Julia. And that's not all. Recently, I needed a small web application. I am not a web developer and I have little knowledge about it. After trying some other tools, I decided to try Genie. And just in a few days I've developed a small web application in Genie. And, it is not just the beauty and power of the language. Julia has a great community. I have found answers to all of my questions in either Discord, or Stackoverflow in just a few seconds.
 
 I liked Julia a lot that I even created an online course in Udemy about Julia: [Programming with Julia](https://bit.ly/3BkILRj). Nowadays, my close friends are tired of my "One Julia rules all" jokes.
+
+## Helge Eichhorn [(@helgee)](https://github.com/helgee/)
+
+Ten years already, yikes!
+The timing was perfect for me when Julia first emerged.
+I was about to start my final year of university and was looking for a programming language for my Introduction to Orbit Determination course.
+My academic MATLAB license had just expired and I was looking for alternatives.
+When I read the blog post, I thought that Julia was exactly what I needed.
+Thus, I downloaded the sources, compiled them without a hitch, gave it a try, and then used Python for the course.
+Probably a wise choice because otherwise I would have had to write my own high-order numerical integrator and certainly failed the course due to productive procrastination.
+Nevertheless, Julia fascinated me and I closely followed its development and even started to publish my first open-source Julia libraries in 2013.
+After a few more years, some back and forth, and getting bitten by scientific Python's Two-Language Problem one time too many, I made the switch in 2016 and have not looked back.
+
+Fast forward to today, my team and I get to work on a product which combines two of my favourite things: Julia and missions to the Moon!
+This is made possible by our fantastic ecosystem and community.
+We have come so far and yet there is still so much work to be done.
+Here is to another exciting decade, then...
+
+One final thought: As a mechanical engineer, I would have never expected to be able to contribute to the development of a programming languages.
+Hence, my tiny patches to base Julia make me insanely proud and show that Julia is tearing down barriers and that the Two-Language Problem truly has been solved.
