@@ -31,7 +31,6 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Tabular Data](/jsoc/gsoc/tables/) - Working with data
 * [TableTransforms.jl](/jsoc/gsoc/tabletransforms/) - Tabular transforms used in statistics and machine learning
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
-* [VS Code](/jsoc/gsoc/vscode/) - Improving Julia's VS Code IDE experience
 * [Topology optimisation](/jsoc/gsoc/topopt/) - improving topology optimisation tools in Julia.
 * [WebAssembly](/jsoc/gsoc/wasm/) - running and compiling Julia on WebAssembly
 @@
