@@ -4,9 +4,6 @@
 
 # Titles & possible mentors
 
-* [Particle swarm optimization of machine learning models](#Particle-swarm-optimization-of-machine-learning-models)
-* [In-processing methods for fairness in machine learning](#In-processing-methods-for-fairness-in-machine-learning)
-* [Causal and counterfactual methods for fairness in machine learning](#Causal-and-counterfactual-methods-for-fairness-in-machine-learning)
 * [Time series forecasting at scale - speed up via Julia](#Time-series-forecasting-at-scale---speed-up-via-Julia)
 * [Interpretable Machine Learning in Julia](#Interpretable-Machine-Learning-in-Julia)
 * [Model visualization in MLJ](#Model-visualization-in-MLJ)
@@ -20,155 +17,9 @@
 
 MLJ is released under the MIT license and sponsored by the Alan Turing Institute.
 
-## Particle swarm optimization of machine learning models
-
-Bring particle swarm optimization to the MLJ machine learning
-platform to help users tune machine learning models.
-
-**Difficulty.** Easy - moderate.
-
-### Description
-
-Imagine your search for the optimal machine learning model as the
-meandering flight of a bee through hyper-parameter space, looking for
-a new home for the queen.  Parallelize your search, and you've created
-a swarm of bees. Introduce communication between the bees about their
-success so far, and you introduce the possibility of the bees
-ultimately converging on good candidate for the best model.
-
-PSO (Particle Swarm Optimization) is a large, promising, and active
-area of research, but also one that is used in real data science
-practice. The method is based on a very simple idea inspired by nature
-and makes essentially no assumptions about the nature of the cost
-function (unlike other methods, such as gradient descent, which might
-require a handle on derivatives). The method is
-simple to implement, and applicable to a wide
-range of hyper-parameter optimization problems.
-
-**Mentors.** [Anthony Blaom](https://ablaom.github.io), [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
-
-### Prerequisites
-@@tight-list
-- Julia language fluency essential.
-- Git-workflow familiarity strongly preferred.
-- Some prior contact with optimization algorithms of some kind
-- A passing familiarity with machine learning goals and workflow preferred
-@@
-
-### Your contribution
-
-The aim of this project is to implement one or more variants of PSO
-algorithm, for use in the MLJ machine learning platform, for the purpose of optimizing hyper-parameters. *Integration* with MLJ is crucial, so there will be opportunity to spend time familiarizing yourself with this popular tool.
-
-Specifically, you will:
-- familiarize yourself with the training, evaluation and tuning of machine learning models in MLJ
-- learn about the PSO algorithm and its variants, conducting a short survey of some of the literature and existing implementations in Julia and other languages, and preparing a short summary
-- familiarize yourself intimately with the  [MLJ tuning API](https://github.com/alan-turing-institute/MLJTuning.jl#how-do-i-implement-a-new-tuning-strategy)
-- implement a simple PSO variant, complete with testing and documentation
-- experiment with the variant to learn more about its shortcomings and advantages, help recommend default parameter settings
-- add variants, as time permits
-
-### References
-- [Wiki entry on PSO](https://en.wikipedia.org/wiki/Particle_swarm_optimization)
-- [Zhang et al. (2015): A Comprehensive Survey on Particle Swarm Optimization Algorithm and Its Applications](https://www.hindawi.com/journals/mpe/2015/931256/)
-- [Elbes et al. (2015): A survey on particle swarm optimization with emphasis on engineering and network applications](https://link.springer.com/article/10.1007/s12065-019-00210-z)
-- [The MLJ tuning API](https://github.com/alan-turing-institute/MLJTuning.jl#how-do-i-implement-a-new-tuning-strategy)
-
-
-
-
-## In-processing methods for fairness in machine learning
-
-Mentors: [Jiahao Chen](https://jiahao.github.io/), [Moritz Schauer](https://github.com/mschauer), and [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
-
-[Fairness.jl](https://github.com/ashryaagr/Fairness.jl) is a package to audit and mitigate bias, using the MLJ machine learning framework and other tools. It has implementations of some preprocessing and postprocessing methods for improving fairness in classification models, but could use more implementations of other methods, especially inprocessing algorithms like adversarial debiasing.
-
-*Difficulty* Hard.
-
-### Prerequisites
-
-@@tight-list
-- Essential: working knowledge of the Julia language
-- Strongly preferred: git workflow familiarity
-- Desirable: Experience with flux and autodiff
-@@
-
-### Description
-
-Machine learning models are developed to support and make high-impact decisions like who to hire or who to give a loan to. However, available training data can exhibit bias against race, age, gender, or other prohibited bases, reflecting a complex social and economic history of systemic injustice. For example, women in the United Kingdom, United States and other countries were only allowed to have their own bank accounts and lines of credit in the 1970s! That means that training a credit decisioning model on historical data would encode implicit biases, that women are less credit-worthy because few of them had lines of credit in the past. Surely we would want to be fair and not hinder an applicant's ability to get a loan on the basis of their race, gender and age?
-
-So how can we fix data and models that are unfair? A common first reaction is to remove the race, gender and age attributes from the training data, and then say we are done. But as described in detail in the references, we have to consider if other features like one's name or address could encode such prohibited bases too. To mitigate bias and improve fairness in models, we can change the training data (pre-processing), the way we define and train the model (in-processing), and/or alter the predictions made (post-processing). Some algorithms for the first and third approaches have already been implemented in Fairness.jl, which have the advantage of treating the ML model as a black box. However, our latest research [(arXiv:2011.02407)](https://arxiv.org/abs/2011.02407) shows that pur black box methods have fundamental limitations in their ability to mitigate bias.
-
-### Your contribution
-
-This project is to implement more bias mitigation algorithms and invent new ones too. We will focus on in-processing algorithms that alter the training process or alter ML model. Some specific stages are to:
-
-1. Use [Flux.jl](https://github.com/FluxML/Flux.jl) or [MLJFlux.jl](https://github.com/alan-turing-institute/MLJFlux.jl) to develop in-processing algorithms,
-2. Study research papers proposing in-processing algorithms and implement them, and
-3. Implement fairness algorithms and metrics for individual fairness as described in papers like [arXiv:2006.11439](https://arxiv.org/abs/2006.11439).
-
-### References
-
-1. High-level overview: [https://towardsdatascience.com/a-tutorial-on-fairness-in-machine-learning-3ff8ba1040cb](https://towardsdatascience.com/a-tutorial-on-fairness-in-machine-learning-3ff8ba1040cb)
-2. [https://nextjournal.com/ashryaagr/fairness](https://nextjournal.com/ashryaagr/fairness)
-3. IBM’s AIF360 resources: [https://aif360.mybluemix.net/](https://aif360.mybluemix.net/)
-
-    AIF360 Inprocessing algorithms: Available [here](https://aif360.readthedocs.io/en/latest/modules/algorithms.html#module-aif360.algorithms.inprocessing).
-
-4. [https://dssg.github.io/fairness_tutorial/](https://dssg.github.io/fairness_tutorial/)
-
-
-## Causal and counterfactual methods for fairness in machine learning
-
-Mentors: [Jiahao Chen](https://jiahao.github.io/), [Moritz Schauer](https://github.com/mschauer), [Zenna Tavares](https://github.com/zenna), and [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
-
-[Fairness.jl](https://github.com/ashryaagr/Fairness.jl) is a package to audit and mitigate bias, using the MLJ machine learning framework and other tools. This project is to implement algorithms for counterfactual ("what if") reasoning and causal analysis to Fairness.jl and MLJ.jl, integrating and extending Julia packages for causal analysis.
-
-*Difficulty* Hard.
-
-### Prerequisites
-
-@@tight-list
-- Essential: working knowledge of the Julia language
-- Strongly preferred: git workflow familiarity
-- Desirable: Experience in causal inference
-- Desirable: Experience with graphical models
-@@
-
-
-### Description
-
-Machine learning models are developed to support and make high-impact decisions like who to hire or who to give a loan to. However, available training data can exhibit bias against race, age, gender, or other prohibited bases, reflecting a complex social and economic history of systemic injustice. For example, women in the United Kingdom, United States and other countries were only allowed to have their own bank accounts and lines of credit in the 1970s! That means that training a credit decisioning model on historical data would encode implicit biases, that women are less credit-worthy because few of them had lines of credit in the past. Surely we would want to be fair and not hinder an applicant's ability to get a loan on the basis of their race, gender and age?
-
-So how can we fix unfairness in models? Arguably, we should first identify the underlying _causes_ of bias, and only then can we actually remediate bias successfully.
-However, one major challenge is that a proper evaluation often requires data that we don't have. For this reason, we also need counterfactual analysis, to identify actions we can take that can mitigate fairness not just in our training data, but also in situations we haven't seen yet but could encounter in the future. Ideas for identifying and mitigating bias using such causal interventions have been proposed in papers such as [Equality of Opportunity in Classification: A Causal Approach](https://causalai.net/r37.pdf) and the references below.
-
-### Your contribution
-
-This project is to implement algorithms for counterfactual ("what if") reasoning and causal analysis to Fairness.jl and MLJ.jl, integrating and extending Julia packages for causal analysis. Some specific stages are:
-
-@@tight-list
-1. Implement interfaces in MLJ.jl for Julia packages for causal inference and probabilistic programming such as [Omega.jl](https://github.com/zenna/Omega.jl) and CausalInference.jl](https://github.com/mschauer/CausalInference.jl)
-2. Implement and benchmark causal and counterfactual definitons for measuring unfairness
-3. Implement and benchmark causal and counterfactual approaches to mitigate bias
-
-@@
-
-### References
-@@tight-list
-- [Repository of Causal-Fairness links](https://github.com/yongkaiwu/Causal-Fairness)
-- [Causal fairness for predictive models](https://causalai.net/r37.pdf)
-- [High-level overview: Fair Multiple Decision Making Through Soft Interventions](https://papers.nips.cc/paper/2020/file/d0921d442ee91b896ad95059d13df618-Paper.pdf)
-- [Fairness in Decision-Making — The Causal Explanation Formula](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/16949/15911)
-- [CausalML tool from Uber](https://causalml.readthedocs.io/en/latest/methodology.html#t-learner)
-- [end-to-end causal](https://www2.slideshare.net/AmitSharma315/dowhy-an-endtoend-library-for-causal-inference)
-- [Equality of Opportunity in Classification: A Causal Approach](https://causalai.net/r37.pdf).
-@@
-
-
-
 
 ## Time series forecasting at scale - speed up via Julia
+
 Time series are ubiquitous - stocks, sensor reading, vital signs. This projects aims at adding time series forecasting to MLJ and perform benchmark comparisons to [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
 
 **Difficulty.** Easy - moderate.
