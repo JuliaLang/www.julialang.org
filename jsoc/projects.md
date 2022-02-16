@@ -18,7 +18,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
 * [Javis](/jsoc/gsoc/javis/) - **J**ulia **a**nimations and **vis**ualizations for teaching, communication, and beyond!
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
-* [Language interoperability](/jsoc/gsoc/interop/) - Projects related to interfacing between Julia and other programming languages
+* [Language interoperability](/jsoc/gsoc/interop/) - Projects related to interfacing between Julia and other programming languages (C++, Rust)
 * [Machine learning](/json/gsoc/machine-learning) - work on problems in machine learning in the broader Julia ML ecosystem
 * [MLJ.jl](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
 * [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
