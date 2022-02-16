@@ -673,3 +673,6 @@ Within a few short months, I was contributing to MixedModels.jl on a regular bas
 I also discovered (part of) what makes Julia so special: everything was in Julia and it was easy to understand what was going on as a newcomer to the project, which is just not possible in other projects in other languages (e.g., lme4 in R).
 
 I came for the speed, enjoy and use the syntax, and love the community. 
+
+## Collin Warner(https://github.com/collinwarner)
+I had my first experience with Julia in Spring 2019, while in 18.06 (Linear Algebra) with Alan Edelman as the professor. After the course ended I reached out looking for a UROP. He introduced me to Chris Rackauckus and I worked on creating a neural differential equation for the next year as a Sophomore. Now as a Senior, I have returned to the lab. I took 6.172 (Software Performance Engineering) in the Fall, and wanted to make code faster and understand more about compilers. I thought that the Julia lab was a perfect place for that and had a good experience the last time I worked with them. I am planning on continuing with the lab next year during my Meng.
