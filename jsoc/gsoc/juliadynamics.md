@@ -17,25 +17,22 @@ to improve Agents.jl with more features, better performance, and overall higher 
 Possible features to implement are:
 
 @@tight-list
-- File IO of current state of ABM to disk
-- Reading lists of human data (e.g. csv files) into `Agent` instances.
-- New type of space representing a planet, which can be used in climate policy or human evolution modelling
 - Automatic performance increase of mixed-agent models by eliminating dynamic dispatch on the stepping function
-- Port of Open Street Map plotting to Makie.jl.
 - GPU support in Agents.jl
+- New type of space representing a planet, which can be used in climate policy or human evolution modelling, and new interface for an overarching ABM composed of several smaller ABMs
 @@
 
 **Recommended Skills**: Familiarity with agent based modelling, Agents.jl and Julia's Type System.
-Background in complex systems, sociology, or nonlinear dynamics is not required.
+Background in complex systems, sociology, or nonlinear dynamics is not required but would be advantageous.
 
 **Expected Results**: Well-documented, well-tested useful new features for Agents.jl.
 
-**Mentors**: [George Datseris](https://github.com/Datseris), [Tim DuBois](https://github.com/Libbum)
+**Mentors**: [George Datseris](https://github.com/Datseris).
 
 
 ## DynamicalSystems.jl
 
-**Difficulty:** Easy to Hard, depending on the algorithm chosen
+**Difficulty:** Easy to Medium, depending on the algorithm chosen
 
 [DynamicalSystems.jl](https://juliadynamics.github.io/DynamicalSystems.jl/latest/) is an [award-winning](https://dsweb.siam.org/The-Magazine/Article/winners-of-the-dsweb-2018-software-contest)
 Julia software library for dynamical systems, nonlinear dynamics, deterministic chaos and nonlinear timeseries analysis.
@@ -44,18 +41,6 @@ enrich DynamicalSystems.jl with new algorithms and enrich their knowledge of non
 exploration of complex systems.
 
 Possible projects are summarized in the [wanted-features of the library](https://github.com/issues?q=is%3Aopen+is%3Aissue+repo%3AJuliaDynamics%2FChaosTools.jl+repo%3AJuliaDynamics%2FDynamicalSystemsBase.jl+repo%3AJuliaDynamics%2FDelayEmbeddings.jl+repo%3AJuliaDynamics%2FRecurrenceAnalysis.jl+repo%3AJuliaDynamics%2FDynamicalSystems.jl+label%3A%22wanted+feature%22+)
-
-Examples include but are are not limited to:
-
-@@tight-list
-- Nonlinear local Lyapunov exponents
-- Final state sensitivity and fractal basin boundaries
-- Kolmogorov-Sinai entropy
-- Importance sampling for chaotic systems
-@@
-
-and many more.
-
 
 **Recommended Skills**: Familiarity with nonlinear dynamics and/or differential equations and the Julia language.
 
