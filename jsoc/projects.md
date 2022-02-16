@@ -23,7 +23,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [MLJ.jl](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
 * [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
 * [Numerics](/jsoc/gsoc/numerics/) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
-* [Pluto](/jsoc/gsoc/pluto/) - Pluto notebooks and tools for teaching
+* [Pluto and JavaScript](/jsoc/gsoc/pluto/) - Pluto notebooks and tools for teaching and JavaScript interoperability
 * [Pythia](/jsoc/gsoc/pythia/) - scalable time series for Julia.
 * [QuantumClifford](/jsoc/gsoc/quantumclifford) - Quantum circuits with Clifford gates
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
