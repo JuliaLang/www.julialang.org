@@ -434,6 +434,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/jsoc/gsoc/juliareach/index.html</loc>
+    <lastmod>2022-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2016/08/GSoC2016-Graft/index.html</loc>
     <lastmod>2022-02-17</lastmod>
     <changefreq>monthly</changefreq>
