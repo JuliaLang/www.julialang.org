@@ -465,7 +465,7 @@ I'm thankful for everyone in the Julia community that has put in the work to bui
 
 ## Arturo Erdely [(@aerdely)](https://github.com/aerdely)
 
-I'm a statistician that used R since 1997 until 2018 when I got stuck with performance for a simulation study I was working on. A specialist in Python tried to help me but the slow performance was similar in that programming language. I was considering going through the pain of learning C when somebody mentioned to me that Julia was quite promising, so I started to read about it and follow the Julia page. Finally, I decided to jump into Julia, not to try it, but to completely move all my work to Julia, no matter what. I'm very satisfied with what I have been able to do in Julia, still learning a lot because my poor computing skills and almost 53 years of age do not help, but so far since 2019 I do all my coding in Julia, I love the syntax, I do not miss R at all. 
+I'm a statistician that used R since 1997 until 2018 when I got stuck with performance for a simulation study I was working on. A specialist in Python tried to help me but the slow performance was similar in that programming language. I was considering going through the pain of learning C when somebody mentioned to me that Julia was quite promising, so I started to read about it and follow the Julia page. Finally, I decided to jump into Julia, not to try it, but to completely move all my work to Julia, no matter what. I'm very satisfied with what I have been able to do in Julia, still learning a lot because my poor computing skills and almost 53 years of age do not help, but so far since 2019 I do all my coding in Julia, I love the syntax, I do not miss R at all.
 
 ## Tobias Knopp [(@tknopp)](https://github.com/tknopp)
 
@@ -503,13 +503,13 @@ wise design choices.  I anticipate continuing to use Julia and to be involved wi
 projects for the foreseeable future.
 
 ## Alexandre A. Renchon [(@AlexisRenchon)](https://github.com/AlexisRenchon)
-I discovered programming during my bioengineer Master studies, in a class about informatics and algorithms, with visual basic. I quickly became excited about the 
+I discovered programming during my bioengineer Master studies, in a class about informatics and algorithms, with visual basic. I quickly became excited about the
 creative potential of coding. I created a few GUIs in VB, for mechanical engineer stuff and environmental sensing, the process was full of reflection and excitement,
-I loved it. I was later introduced to MATLAB, also during my Master, and that became my main language for the next 10 years. I did my entire PhD in MATLAB, creating more 
-GUIs for interactive visualisation of data analysis, many plots with complex layouts, and analysis with big datasets. When I transitioned to a postdoc position after my 
-PhD, I had to switch to an open-source language as they didn't have a MATLAB license. That was a good oportunity as I wanted to go open-source anyway. I considered Python and R, 
-but eventually opted for Julia. As a climate scientist, [this article](https://www.nature.com/articles/d41586-019-02310-3) was key. Also, after writing code in Python, R and 
-Julia, I fell in love with the Julia REPL, whereas I wasn't very excited by anything about Python or R. It was also an opportunity to learn more about personal IDE (instead of 
+I loved it. I was later introduced to MATLAB, also during my Master, and that became my main language for the next 10 years. I did my entire PhD in MATLAB, creating more
+GUIs for interactive visualisation of data analysis, many plots with complex layouts, and analysis with big datasets. When I transitioned to a postdoc position after my
+PhD, I had to switch to an open-source language as they didn't have a MATLAB license. That was a good oportunity as I wanted to go open-source anyway. I considered Python and R,
+but eventually opted for Julia. As a climate scientist, [this article](https://www.nature.com/articles/d41586-019-02310-3) was key. Also, after writing code in Python, R and
+Julia, I fell in love with the Julia REPL, whereas I wasn't very excited by anything about Python or R. It was also an opportunity to learn more about personal IDE (instead of
 just using R studio, or MATLAB built-in IDE). I tried all sort of IDE, and opted for VIM + vimteractive in the end. I also switched from Windows to Linux, and started using
 GitHub more actively. I joined the Julia slack channel, tried Plots.jl, and discovered Makie.jl which became my favorite plotting package. I then discovered Franklin.jl, and
 WGLMakie + JSServe. I discovered the possibility of doing so much in Julia. On top of it, I am convinced that it can solve the "2 language problem" that we have in environmental
@@ -521,7 +521,7 @@ Julia packages of version will bring, and I created my first package [DAMMmodel.
 
 ## SundaraRaman R [(@digital-carver)](https://github.com/digital-carver)
 
-When I read 'Why we created Julia', "the two language problem" wasn't very much on my radar. I had a nerdy curiousity around what it took to solve it, but what actually grabbed my interest was the passion and interest the team showed for good language design, and the thoughtfulness with which they were approaching the task. As I slowly got more involved with the language, I found myself agreeing with the design decisions more and more, and appreciating the blend and balance of pragmatism and elegance in the language. Julia matched my mind's idea of what a programming language should be, and luckily also matched my interest in scientific computing and performant languages - I slowly came to have a "favourite programming language" again, and it was Julia. 
+When I read 'Why we created Julia', "the two language problem" wasn't very much on my radar. I had a nerdy curiousity around what it took to solve it, but what actually grabbed my interest was the passion and interest the team showed for good language design, and the thoughtfulness with which they were approaching the task. As I slowly got more involved with the language, I found myself agreeing with the design decisions more and more, and appreciating the blend and balance of pragmatism and elegance in the language. Julia matched my mind's idea of what a programming language should be, and luckily also matched my interest in scientific computing and performant languages - I slowly came to have a "favourite programming language" again, and it was Julia.
 
 Around Julia 0.5 or 0.6, as I was playing around with regular expressions, I found some minor issues with them, and reported that. The responses mentioned the part of the code that might be responsible, and I was able to quickly pull them up from the language repository, understand the code, and fix the issue in an afternoon. That's when it hit me - the two language problem wasn't just about being able to write new performant code in the same language; it was also about being able to explore all (well, almost all) parts of the language and its ecosystem with the same knowledge it took to understand your own code. And being able to use the same tools and thought processes you use in your everyday code to explore, fix, or enhance them, however deep you are in the stack. It put power in the hands of the user, while keeping "easy things easy" (as Larry Wall would put it). That's what makes Julia a great language for me: it can lend itself to writing beautifully terse functional code one moment, and switching the next moment to carefully generating the most efficient code possible - the two can coexist and talk to each other, and sometimes even be the same thing!
 
@@ -531,7 +531,7 @@ Recently I wrote in a slack discussion
 
 > This is why I found Julia so attractive when I stumbled across it late in 2011.  It is a dynamically-typed, REPL-based, language for technical computing built on a hideously efficient implementation of multiple dispatch plus a JIT compiler and designed by very talented people with a comprehensive knowledge of all aspects of programming.  And these developers think very carefully about any feature before incorporating it in the language.  It has been and continues to be a wonderful experience working with the Julia community.
 
-Today I was working on a new package, [Wordlegames.jl](https://github.com/dmbates/Wordlegames.jl). 
+Today I was working on a new package, [Wordlegames.jl](https://github.com/dmbates/Wordlegames.jl).
 I thought how the combination of [juliaup](https://github.com/JuliaLang/juliaup),  [PkgTemplates.jl](https://github.com/invenia/PkgTemplates.jl), the [VSCode extension](https://www.julia-vscode.org/) for Julia , [Pkg.jl](https://github.com/JuliaLang/Pkg.jl) and so many other tools make doing this so much easier.
 It is a pleasure to work with such talented and generous people.
 
@@ -653,26 +653,26 @@ Hence, my tiny patches to base Julia make me insanely proud and show that Julia 
 
 ## Gaël Forget [(@gaelforget)](https://github.com/gaelforget/)
 
-Back in 2017 when I got started with Julia, I had been doing a lot of Fortran for HPC, automatic differentiation for model optimization, and Matlab for results analysis. All of it open source over a period of 10 years with a focus on global ocean model simulations, geospatial statistics, and so on. A couple years before that, I had decided to take a pass on learning Python or R, and wait for something that would suit me better and be a definite upgrade. Julia was it! 
+Back in 2017 when I got started with Julia, I had been doing a lot of Fortran for HPC, automatic differentiation for model optimization, and Matlab for results analysis. All of it open source over a period of 10 years with a focus on global ocean model simulations, geospatial statistics, and so on. A couple years before that, I had decided to take a pass on learning Python or R, and wait for something that would suit me better and be a definite upgrade. Julia was it!
 
-I got going with [MeshArrays.jl](https://github.com/JuliaClimate/MeshArrays.jl) that I needed to handle climate model grids and presented at JuliaCon2018. Eighteen months later, just after doing my first Julia workshop at Ocean Sciences 2020, covid 19 disrupted all of our plans a bit (ok, a lot ...). But soon enough I realized that doing more Julia was a good way for me to cope and get some joy throughout this whole situation. And so I set out with the goal of coming out of the pandemic with tools I would use in my research moving forward. [ClimateModels.jl](https://github.com/gaelforget/ClimateModels.jl) and [OceanRobots.jl](https://github.com/gaelforget/OceanRobots.jl) , which I introduced at JuliaCon2021, are two examples. 
+I got going with [MeshArrays.jl](https://github.com/JuliaClimate/MeshArrays.jl) that I needed to handle climate model grids and presented at JuliaCon2018. Eighteen months later, just after doing my first Julia workshop at Ocean Sciences 2020, covid 19 disrupted all of our plans a bit (ok, a lot ...). But soon enough I realized that doing more Julia was a good way for me to cope and get some joy throughout this whole situation. And so I set out with the goal of coming out of the pandemic with tools I would use in my research moving forward. [ClimateModels.jl](https://github.com/gaelforget/ClimateModels.jl) and [OceanRobots.jl](https://github.com/gaelforget/OceanRobots.jl) , which I introduced at JuliaCon2021, are two examples.
 
 Funny that I can credit Julia and the pandemic for bringing me back to coding more and with enthousiam! Five years in, I certainly have no regrets and feel pretty excited to see what's coming next. Hurrah to the Julia community!
 
 ## Phillip Alday [(@palday)](https://github.com/palday/)
 
-I first stumbled upon Julia somewhere in late 2014, early 2015 based on a [snarky blog post about what your choice of statistical software says about you](https://seanjtaylor.com/2013/01/03/the-statistics-software-signal.html). 
-("Julia : You are [John Myles White](http://johnmyleswhite.com/).") 
-About this time, I also ran into Doug Bates' early work on [MixedModels.jl](https://github.com/JuliaStats/MixedModels.jl/) and was absolutely floored by the performance difference to its predecessor in R, [lme4](https://github.com/lme4/lme4/). 
-Things that took hours on a big workstation could be done in minutes on my laptop. 
-I wanted that, but the ecosystem also wasn't there to replace R in my daily workflow (handling of missing data, [DataFrames.jl](https://github.com/JuliaData/DataFrames.jl), and [StatsModels.jl](https://github.com/JuliaStats/StatsModels.jl/) still needed to come a long way) and I didn't have the capacity to deal with the churn. 
-Around 2019, a colleague had an analysis problem that was simply intractable in lme4 and I had heard that Julia was finally stable. 
-I took another look at MixedModels.jl, found it was missing some features that I needed, but started corresponding with Doug to get those features implemented. 
-I was thoroughly impressed by how kind and responsive Doug -- a legend in statistical computing -- was to my requests. 
-Within a few short months, I was contributing to MixedModels.jl on a regular basis and had discovered that Doug was typical of the community: passionate, helpful and kind. 
+I first stumbled upon Julia somewhere in late 2014, early 2015 based on a [snarky blog post about what your choice of statistical software says about you](https://seanjtaylor.com/2013/01/03/the-statistics-software-signal.html).
+("Julia : You are [John Myles White](http://johnmyleswhite.com/).")
+About this time, I also ran into Doug Bates' early work on [MixedModels.jl](https://github.com/JuliaStats/MixedModels.jl/) and was absolutely floored by the performance difference to its predecessor in R, [lme4](https://github.com/lme4/lme4/).
+Things that took hours on a big workstation could be done in minutes on my laptop.
+I wanted that, but the ecosystem also wasn't there to replace R in my daily workflow (handling of missing data, [DataFrames.jl](https://github.com/JuliaData/DataFrames.jl), and [StatsModels.jl](https://github.com/JuliaStats/StatsModels.jl/) still needed to come a long way) and I didn't have the capacity to deal with the churn.
+Around 2019, a colleague had an analysis problem that was simply intractable in lme4 and I had heard that Julia was finally stable.
+I took another look at MixedModels.jl, found it was missing some features that I needed, but started corresponding with Doug to get those features implemented.
+I was thoroughly impressed by how kind and responsive Doug -- a legend in statistical computing -- was to my requests.
+Within a few short months, I was contributing to MixedModels.jl on a regular basis and had discovered that Doug was typical of the community: passionate, helpful and kind.
 I also discovered (part of) what makes Julia so special: everything was in Julia and it was easy to understand what was going on as a newcomer to the project, which is just not possible in other projects in other languages (e.g., lme4 in R).
 
-I came for the speed, enjoy and use the syntax, and love the community. 
+I came for the speed, enjoy and use the syntax, and love the community.
 
 ## Collin Warner [(@collinwarner)](https://github.com/collinwarner)
 
@@ -681,3 +681,10 @@ I had my first experience with Julia in Spring 2019, while in 18.06 (Linear Alge
 ## Emmett Boudreau [(@emmettgb)](https://github.com/emmettgb)
 
 My first encounter with the Julia language happened in fall of 2014. At the time I was quite young, but enthused by Computational Science, I was using primarily Python and R for these two tasks. I had worked on several projects with peers where we would hit the " Two Language Problem," and it got to be really frustrating. I was the only member of the team who could write C, and Cython wasn't really helping our problem as much as one might expect. Back then, tools like Numba and remote Python interpretation were not even close to where they are now, and I was looking for more information on getting Python to run faster when I stumbled across a Julia forum post. I was intrigued by the syntax, and since picking up Julia on that day, it has become my favorite programming language. I was able to solve our problem in Julia, rather than C, and I was able to call our Python code when needed via PyCall.jl. It ended up working perfectly, so I used it for projects with these sorts of problems each time they came into fruition. The language just kept doing fantastic, and then all of the changes that kept coming to the language were all just so great. Now the language has a venerable ecosystem to go along with it, so things have only gotten better.
+
+
+## Elisabeth Roesch [(@ElisabethRoesch)](https://github.com/ElisabethRoesch)  
+
+As a systems biologist, I form part of a very interdisciplinary field. I work in teams of biologists, mathematicians, computer scientists and more. Leveraging expertise of multiple domains is key for many hard problems in the field. One key aspect I consider when choosing my programming language is how it enables collaborations. A focus of Julia’s language design is abstraction and its implied modularity and composability. The effect that this design emphasis has on my day to day work of collaborating with other researchers is hard to describe in only a few words. Simple, yet clear syntax as well as elegant technical features, such as multiple dispatch, solve the expression problem and make it convenient to reuse, adapt and extend existing code of collaborators. Additionally, exploiting Julia’s rich package ecosystems is made easy, too.
+Second, Julia is fast. In the biological sciences, the amount of data at our fingertips is growing rapidly. Software that scales well is of great importance. In order to built sophisticated models that learn large biological systems using big data, I need a level of performance that languages such as R, Python or MATLAB cannot deliver. Two-language approaches, where code is translated into a faster language as a second stage of a project, are popular but also inherently inefficient and can be a source of mistakes and inaccuracy. Julia solves this two-language problem. Due to its easy syntax, Julia gives me a convenient environment for prototyping and algorithm design as well as production ready, high performance code for data-heavy work.
+Third, I use Julia because it is free, open source and because of its community. This motivates a constant peer reviewing process and a democratic approach to software development, publicly accessible for anyone to join on GitHub. The community guidelines and an active and welcoming user base bring together not only great coders but also kind and ambitious people — the ideal place for great things to happen.
