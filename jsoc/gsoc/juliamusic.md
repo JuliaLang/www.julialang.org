@@ -6,6 +6,8 @@
 
 **Difficulty**: Medium.
 
+**Length**: 350 hours.
+
 It is easy to analyze timing and intensity fluctuations in music that is the form of MIDI data. 
 This format is already digitilized, and packages such as MIDI.jl and MusicManipulations.jl allow for seamless data processing.
 But arguably the most interesting kind of music to analyze is the live one.
