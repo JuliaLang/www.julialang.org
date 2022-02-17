@@ -22,7 +22,7 @@ MLJ is released under the MIT license and sponsored by the Alan Turing Institute
 
 Time series are ubiquitous - stocks, sensor reading, vital signs. This projects aims at adding time series forecasting to MLJ and perform benchmark comparisons to [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
 
-**Difficulty.** Easy - moderate.
+**Difficulty.** Easy - moderate. **Duration.** 350 hours.
 
 ### Prerequisites
 - Julia language fluency essential.
@@ -50,7 +50,7 @@ But there are still very few principled time-series libraries out there, so you 
 
 Interpreting and explaining black box interpretation crucial to establish trust and improve performance
 
-**Difficulty.** Easy - moderate.
+**Difficulty.** Easy - moderate. **Duration.** 350 hours.
 
 ### Description
 It is important to have mechanisms in place to interpret the results of machine learning models. Identify the relevant factors of a decision or scoring of a model.
@@ -98,7 +98,7 @@ Tutorials
 
 Design and implement a data visualization module for MLJ.
 
-**Difficulty**. Easy.
+**Difficulty**. Easy.  **Duration.** 350 hours.
 
 ### Description
 
@@ -131,6 +131,8 @@ You will enhance your visualisation skills as well as your ability to "debug" an
 ## Deeper Bayesian Integration
 Bayesian methods and probabilistic supervised learning provide uncertainty quantification. This project aims increasing integration to combine Bayesian and non-Bayesian methods using Turing.
 
+**Difficulty.** Difficult. **Duration.** 350 hours.
+
 ### Description
 As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) in Turing. The bulk of the project is to implement methods that combine multiple predictive distributions.
 
@@ -149,7 +151,7 @@ As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) 
 ## MLJ and MLFlow integration
 Integrate MLJ with [MLFlow](https://mlflow.org).
 
-**Difficulty.** Easy.
+**Difficulty.** Easy. **Duration.** 350 hours.
 
 ### Description
 
@@ -173,7 +175,7 @@ MLFlow is a flexible model management tool. The project consists of writing the 
 Diagnose and exploit opportunities for speeding up common MLJ
 workflows.
 
-**Difficulty.** Moderate.
+**Difficulty.** Moderate.  **Duration.** 350 hours.
 
 ### Description
 
