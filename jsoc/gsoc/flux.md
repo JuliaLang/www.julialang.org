@@ -6,7 +6,7 @@ Flux projects are typically very competitive; we encourage you to get started ea
 
 ### Metalhead.jl Developement
 
-**Difficulty:** Medium
+**Difficulty:** Medium (175h)
 
 Help us improve [Metalhead.jl](https://github.com/FluxML/Metalhead.jl) by adding new models, porting pre-trained weights, and extending the model interfaces to make them more customizable.
 
@@ -16,7 +16,7 @@ Help us improve [Metalhead.jl](https://github.com/FluxML/Metalhead.jl) by adding
 
 ### FastAI.jl Time Series Development
 
-**Difficulty:** Medium
+**Difficulty:** Medium (350h)
 
 In this project, you will assist the [ML community team](https://julialang.zulipchat.com/#narrow/stream/237432-ml-ecosystem-coordination) with building time series methods for FastAI.jl on top of the existing JuliaML + FluxML ecosystem packages. This will require building the models/learners, documenting them, and creating the appropriate tutorials. Some familiarity with the following Julia packages is preferred, but it is not required:
 
@@ -32,7 +32,7 @@ In this project, you will assist the [ML community team](https://julialang.zulip
 
 ### FastAI.jl Text Development
 
-**Difficulty:** Medium
+**Difficulty:** Medium (350h)
 
 In this project, you will assist the [ML community team](https://julialang.zulipchat.com/#narrow/stream/237432-ml-ecosystem-coordination) with building text methods for FastAI.jl on top of the existing JuliaML + FluxML ecosystem packages. This will require building the models/learners, documenting them, and creating the appropriate tutorials. Some familiarity with the following Julia packages is preferred, but it is not required:
 
