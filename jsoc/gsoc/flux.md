@@ -2,11 +2,11 @@
 
 Flux usually takes part in [Google Summer of Code](https://summerofcode.withgoogle.com) as a NumFocus organization. We follow the same [rules and application guidelines](/jsoc/projects/) as Julia, so please check there for more information on applying. Below are a set of ideas for potential projects (though you are welcome to explore anything you are interested in).
 
-Flux projects are typically very competitive; we encourage you to get started early, as successful students typically have early PRs or working prototypes as part of the application. It is a good idea to simply start contributing via issue discussion and PRs and let a project grow from there; you can take a look at [this list of issues](https://github.com/FluxML/Flux.jl/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22) for some starter contributions.
+Flux projects are typically very competitive; we encourage you to get started early, as successful contributors typically have early PRs or working prototypes as part of the application. It is a good idea to simply start contributing via issue discussion and PRs and let a project grow from there; you can take a look at [this list of issues](https://github.com/FluxML/Flux.jl/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22) for some starter contributions.
 
 ### Metalhead.jl Developement
 
-**Difficulty:** Medium
+**Difficulty:** Medium (175h)
 
 Help us improve [Metalhead.jl](https://github.com/FluxML/Metalhead.jl) by adding new models, porting pre-trained weights, and extending the model interfaces to make them more customizable.
 
@@ -16,7 +16,7 @@ Help us improve [Metalhead.jl](https://github.com/FluxML/Metalhead.jl) by adding
 
 ### FastAI.jl Time Series Development
 
-**Difficulty:** Medium
+**Difficulty:** Medium (350h)
 
 In this project, you will assist the [ML community team](https://julialang.zulipchat.com/#narrow/stream/237432-ml-ecosystem-coordination) with building time series methods for FastAI.jl on top of the existing JuliaML + FluxML ecosystem packages. This will require building the models/learners, documenting them, and creating the appropriate tutorials. Some familiarity with the following Julia packages is preferred, but it is not required:
 
@@ -32,7 +32,7 @@ In this project, you will assist the [ML community team](https://julialang.zulip
 
 ### FastAI.jl Text Development
 
-**Difficulty:** Medium
+**Difficulty:** Medium (350h)
 
 In this project, you will assist the [ML community team](https://julialang.zulipchat.com/#narrow/stream/237432-ml-ecosystem-coordination) with building text methods for FastAI.jl on top of the existing JuliaML + FluxML ecosystem packages. This will require building the models/learners, documenting them, and creating the appropriate tutorials. Some familiarity with the following Julia packages is preferred, but it is not required:
 

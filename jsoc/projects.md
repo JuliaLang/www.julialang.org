@@ -18,12 +18,14 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
 * [Javis](/jsoc/gsoc/javis/) - **J**ulia **a**nimations and **vis**ualizations for teaching, communication, and beyond!
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
-* [Language interoperability](/jsoc/gsoc/interop/) - Projects related to interfacing between Julia and other programming languages
-* [Machine learning](/json/gsoc/machine-learning) - work on problems in machine learning in the broader Julia ML ecosystem
+* [JuliaMusic](/jsoc/gsoc/juliamusic/) - Functionalities for analyzing anything related to music
+* [JuliaReach](/jsoc/gsoc/juliareach/) - Reachability analysi for dynamical systems
+* [Language interoperability](/jsoc/gsoc/interop/) - Projects related to interfacing between Julia and other programming languages (C++, Rust)
+* [Machine learning](/jsoc/gsoc/machine-learning) - work on problems in machine learning in the broader Julia ML ecosystem
 * [MLJ.jl](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
 * [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
 * [Numerics](/jsoc/gsoc/numerics/) – Challenges for the hard–core number-cruncher, including linear algebra routines and basic mathematical functions.
-* [Pluto](/jsoc/gsoc/pluto/) - Pluto notebooks and tools for teaching
+* [Pluto and JavaScript](/jsoc/gsoc/pluto/) - Pluto notebooks and tools for teaching and JavaScript interoperability
 * [Pythia](/jsoc/gsoc/pythia/) - scalable time series for Julia.
 * [QuantumClifford](/jsoc/gsoc/quantumclifford) - Quantum circuits with Clifford gates
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
@@ -31,16 +33,16 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Tabular Data](/jsoc/gsoc/tables/) - Working with data
 * [TableTransforms.jl](/jsoc/gsoc/tabletransforms/) - Tabular transforms used in statistics and machine learning
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
-* [VS Code](/jsoc/gsoc/vscode/) - Improving Julia's VS Code IDE experience
 * [Topology optimisation](/jsoc/gsoc/topopt/) - improving topology optimisation tools in Julia.
+* [WebAssembly](/jsoc/gsoc/wasm/) - running and compiling Julia on WebAssembly
 @@
 
 We also have Julia project's available under other organizations. If you are applying for those projects, make sure your application is for that organization and NOT the Julia Language:
 @@tight-list
-* [Gridap - NumFocus](https://github.com/numfocus/gsoc#gridap)
-* [JuMP - NumFocus](https://github.com/numfocus/gsoc#jump)
-* [SciML - NumFocus](https://github.com/numfocus/gsoc#sciml)
+* [Gridap - NumFOCUS](https://github.com/numfocus/gsoc#gridap)
+* [JuMP - NumFOCUS](https://github.com/numfocus/gsoc#jump)
+* [FluxML - NumFOCUS](https://github.com/numfocus/gsoc#fluxml)
+* [SciML - NumFOCUS](https://github.com/numfocus/gsoc#sciml)
   - [SciML](/jsoc/gsoc/sciml/) - Scientific Machine Learning
   - [Differential Equations](/jsoc/gsoc/diffeq/) - Numerical methods for high-performance solving of differential equation models.
-* FluxML - NumFocus
 @@

@@ -1,39 +1,123 @@
-# Julia Seasons of Contributions
+~~~
+<!--
+      Containers: Julia Seasons of Contributions
+-->
+<br>
+ <br>
+ <div class="container pt-sm-2">
+   <div class="row">
+     <div class="col-lg-4 col-md-3 language-features "><hr/></div>
+     <div class="col-lg-4 col-md-6 language-features section-heading">
+       <h2 class="lead secondary-heading" id="julia_seasons_of_contributions">
+         <a href="#julia_seasons_of_contributions" class="link">Julia Seasons of Contributions</a>
+       </h2>
+     </div>
+     <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+   </div>
+   <br>
+~~~
 
-The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding and/or mentoring students and other developers to contribute to the open source ecosystem. Below are the current programs that the Julia Language is participating in.
+The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding and/or mentoring developers to contribute to the open source ecosystem. Below are the current programs that the Julia Language is participating in.
 
-## Google Summer of Code (GSoC)
+~~~
+   <br>
+</div>
+~~~
 
-![GSoC logo horizontal](https://user-images.githubusercontent.com/35577566/114047087-43ee0a00-983e-11eb-80ba-878d8701659a.png)
+~~~
+   <br>
+</div>
+~~~
+
+~~~
+<!--
+      Containers: Google Summer of Code (GSoC)
+ -->
+ <div class="container-fluid alt-color packages">
+   <br><br>
+   <div class="row">
+     <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+     <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+       <h2 class="lead secondary-heading" id="google_summer_of_code_gsoc">
+         <a href="#google_summer_of_code_gsoc" class="ecosystem">Google Summer of Code (GSoC)</a>
+       </h2>
+     </div>
+     <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+   </div>
+
+   <br>
+   <img src="/assets/images/GSoC-Horizontal-removebg-preview.png" width="100%">
+
+~~~
 
 The Julia organization is a participant in Google Summer of Code.
-The Julia organization generally fields a large number of students (&gt;20) mentored by open source developers and university professors at leading institutions from all around the world.
-Students who are accepted into this prestigious program are paid a summer stipend to contribute to the open source tooling around Julia and its package ecosystem.
+The Julia organization generally fields a large number of contributors (&gt;20) mentored by open source developers and university professors at leading institutions from all around the world.
+Contributors who are accepted into this prestigious program are paid a summer stipend to contribute to the open source tooling around Julia and its package ecosystem.
 
-If this sounds like something you would be interested in, head over to the [Projects page](/jsoc/projects/) to see a list of all the available projects.
-
-Check out the [application guidelines](/jsoc/guidelines/) once you have a project in mind.
+If this sounds like something you would be interested in, head over to the [Projects page](/jsoc/projects/) to see a list of all the available projects. Check out the [application guidelines](/jsoc/guidelines/) once you have a project in mind.
 
 You can see previous Summer of Code projects at the [Archive page](/jsoc/archive/) and details around the mentoring process on the [Mentors page](/jsoc/mentors/).
 
-### Why do GSoC with the Julia Language
+## Hear from some of our past GSoC contributors
 
-See what our former students have to say!
 ~~~
 <iframe width="100%" height="500" src="https://www.youtube-nocookie.com/embed/8lSB666bigw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
-## Google Season of Docs (GSoD)
+~~~
+   <br>
+ </div>
+~~~
 
+~~~
+ <!--
+      Containers: Google Season of Docs (GSoD)
+ -->
+  <div class="container pt-sm-2">
+   <br><br>
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading" id="google_season_of_docs_gsod">
+          <a href="#google_season_of_docs_gsod" class="link">Google Season of Docs (GSoD)</a>
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     </div>
+
+     <br>
+~~~
 ![Google Season of Docs](https://user-images.githubusercontent.com/35577566/114047222-5e27e800-983e-11eb-86fd-c8df3490634d.png)
 
 The Julia organization is applying to participate in [Google's Season of Docs](https://developers.google.com/season-of-docs).
-The Julia organization generally fields a large number of students mentored by open source developers, university professors at leading institutions from all around the world, and technical writers in the Julia Community. 
-Students who are accepted into this prestigious program are paid a stipend to contribute open source documentation to Julia and its package ecosystem.
+Google Season of Docs is a chance for technical writers to contribute to the open source ecosystem.
 
 If this sounds like something you would be interested in, head over to the [Projects page](/jsoc/gsod/projects/) to see a list of all the available technical writing projects.
 
-## NumFOCUS Small Development Grants
+~~~
+ </div>
+<br>
+~~~
+
+~~~
+<!--
+    Containers: NumFOCUS Small Development Grants
+  -->
+<div class="container-fluid alt-color packages">
+  <br><br>
+    <div class="row">
+      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+        <h2 class="lead secondary-heading" id="numfocus_small_development_grants">
+          <a href="#numfocus_small_development_grants" class="ecosystem">
+            NumFOCUS Small Development Grants
+          </a>
+        </h2>
+      </div>
+      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+    </div>
+    <br>
+~~~
 
 ![NumFocus Logo](https://user-images.githubusercontent.com/35577566/114047420-87487880-983e-11eb-83f1-2820cfe17942.png)
 
@@ -44,35 +128,86 @@ There are no restrictions on what the funding can be used for. Code development,
 Since only one application can be put in for the Julia project, an internal selection process is used to determine which proposals will be submitted to NumFOCUS.
 For examples of grants that were funded in the first round, [previous awards](https://numfocus.org/programs/sustainability#sdg).
 
-Usually, around USD 3,000 - 5,000 is available per proposal.
+Usually, around USD 5,000 - 10,000 is available per proposal.
 The total allocated funding from NumFOCUS is around USD 20,000 - 50,000 in previous cycles, meaning that not every project will be able to receive a grant.
 This total amount is adjusted depending on the number and quality of proposals.
 
-Impotant dates for upcoming Small Development Grants in 2021:
+Impotant dates for upcoming Small Development Grants in 2022:
 
-@@tight-list
-* May 7th, 2021 - Round 2 call for proposals goes live.
-* June 4th, 2021 - Round 2 proposal deadline. 
-* July 15th, 2021 - Round 2 notification of application status.
+Round 1
+- Call for Proposals Announcement: February 4, 2022
+- Proposal Submission Deadline: March 4, 2022
+- Committee Selection Deadline: March 18, 2022
+- Notification to Applicants Deadline: April 15, 2022
 
-* August 6th, 2021 - Round 3 call for proposals goes live.
-* September 3rd, 2021 - Round 3 proposal deadline. 
-* October 15th, 2021 - Round 3 notification of application status.
-@@
+Round 2
+- Call for Proposals Announcement: May 6, 2022
+- Proposal Submission Deadline: June 3, 2022
+- Committee Selection Deadline: June 17, 2022
+- Notification to Applicants Deadline: July 15, 2022
+
+Round 3
+- Call for Proposals Announcement: August 5, 2022
+- Proposal Submission Deadline: September 2, 2022
+- Committee Selection Deadline: September 16, 2022
+- Notification to Applicants Deadline: October 14, 2022
+
 Questions about NumFOCUS Small Development Grants? [Check out the NumFOCUS website Small Grants section for more details](https://numfocus.org/programs/small-development-grants)!
 
-## Summer 2021 Open Source Promotion Plan
+~~~
+  <br>
+ </div>
+~~~
 
-[![](https://summer.iscas.ac.cn/static/media/logo_n.6c7b788d.svg)](https://summer.iscas.ac.cn/#/homepage)
+~~~
+<!--
+      Containers: Contribution Ideas
+ -->
+ <div class="container pt-sm-2">
+  <br>
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading" id="program_admins">
+          <a href="#program_admins" class="link">Program Admins</a>
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     </div>
 
-Similar to GSoC, the Open Source Promotion Plan aims to promote the development of open source software and facilitate the construction of excellent open source software community. The Julia community is also a partner this year. Students who are interested in this program can take look at the Julia related [project list](https://summer.iscas.ac.cn/#/org/orgdetail/julia) and contact the mentor. For project owners who would like to submit new proposals, please contact [Jun Tian](mailto:tianjun.cpp@gmail.com).
+     <br>
+~~~
 
-## Program Admins
-
-The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibilities including, but not limited too, reviewing student applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final student selections and more. 
+The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibilities including, but not limited too, reviewing contributor applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final contributor selections and more. 
 
 [Find out more about our program admins](/jsoc/admins/). 
 
-## Questions?
+~~~
+ </div>
+<br>
+~~~
+
+~~~
+<!--
+    Containers: Get Help
+  -->
+<div class="container-fluid alt-color packages">
+  <br><br>
+    <div class="row">
+      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+      <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+        <h2 class="lead secondary-heading" id="questions">
+          <a href="#questions" class="ecosystem">Questions?</a>
+        </h2>
+      </div>
+      <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+    </div>
+    <br>
+~~~
 
 For any questions, please consult the program administrators at `jsoc@julialang.org`. Note that if you are a prospective applicant for one of the programs above, your first step should be to check out the resources for the project you are interested.
+
+~~~
+  <br>
+ </div>
+~~~
