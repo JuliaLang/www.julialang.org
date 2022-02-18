@@ -1,28 +1,138 @@
-# GSOC projects
+# MLJ.jl Projects – Summer of Code
 
-# 2021 Ideas
-
-# Titles & possible mentors
-
-* [Time series forecasting at scale - speed up via Julia](#Time-series-forecasting-at-scale---speed-up-via-Julia)
-* [Interpretable Machine Learning in Julia](#Interpretable-Machine-Learning-in-Julia)
-* [Model visualization in MLJ](#Model-visualization-in-MLJ)
-* [Deeper integration with Bayesian methods and Bayesian Stacking](#Deeper-Bayes)
-* [MLJ and MLFlow integration](#MLJ-and-MLFlow-integration)
-* [Speed demons only need apply](#Speed-demons-only-need-apply)
-
-# MLJ Projects – Summer of Code
-
-[MLJ](https://github.com/alan-turing-institute/MLJ.jl) is a machine learning framework for Julia aiming to provide a convenient way to use and combine a multitude of tools and models available in the Julia ML/Stats ecosystem.
+[MLJ](https://github.com/alan-turing-institute/MLJ.jl) is a machine
+learning framework for Julia aiming to provide a convenient way to use
+and combine a multitude of tools and models available in the Julia
+ML/Stats ecosystem.
 
 MLJ is released under the MIT license and sponsored by the Alan Turing Institute.
+
+## Machine Learning in Predictive Survival Analysis
+
+Implement survival analysis models for use in the MLJ machine learning
+platform.
+
+**Difficulty.** Moderate - hard. **Duration.** 350 hours
+
+### Description
+
+Survival/time-to-event analysis is an important field of Statistics
+concerned with understanding the distribution of events over time.
+Survival analysis presents a unique challenge as we are also interested
+in events that do not take place, which we refer to as 'censoring'.
+Survival analysis methods are important in many real-world settings,
+such as health care (disease prognosis), finance and economics (risk of
+default), commercial ventures (customer churn), engineering (component
+lifetime), and many more. This project aims to implement models for
+performing survivor analysis with the MLJ machine learning framework.
+
+**Mentors.** [Sebastian Vollmer](https://sebastian.vollmer.ms), [Anthony Blaom](https://ablaom.github.io/), 
+
+### Prerequisites
+
+-   Julia language fluency is essential.
+
+-   Git-workflow familiarity is strongly preferred.
+
+-   Some experience with survival analysis.
+
+-   Familiarity with MLJ's API a plus.
+
+-   A passing familiarity with machine learning goals and workflow is
+    preferred.
+
+### Your contribution
+
+Specifically, you will:
+
+-   Familiarize yourself with the training and evaluation machine
+    learning models in MLJ.
+
+-   Survey existing survival models in Julia.
+
+-   Integrate some existing classical survival models into MLJ.
+
+-   Develop a proof of concept for newer advanced survival analysis
+    models not currently implemented in Julia.
+
+### References
+
+-   [Kvamme, H., Borgan, Ø., & Scheel, I. (2019). Time-to-event
+    prediction with neural networks and Cox regression. Journal of
+    Machine Learning Research, 20(129),
+    1--30.](https://arxiv.org/abs/1907.00825)
+
+-   [Lee, C., Zame, W. R., Yoon, J., & van der Schaar, M. (2018).
+    Deephit: A deep learning approach to survival analysis with
+    competing risks. In Thirty-Second AAAI Conference on Artificial
+    Intelligence.](https://ojs.aaai.org/index.php/AAAI/article/view/11842/11701)
+
+-   [Katzman, J. L., Shaham, U., Cloninger, A., Bates, J., Jiang, T., &
+    Kluger, Y. (2018). DeepSurv: personalized treatment recommender
+    system using a Cox proportional hazards deep neural network. BMC
+    Medical Research Methodology, 18(1),
+    24.](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-018-0482-1)
+    <https://doi.org/10.1186/s12874-018-0482-1>
+
+-   [Gensheimer, M. F., & Narasimhan, B. (2019). A scalable
+    discrete-time survival model for neural networks. PeerJ, 7,
+    e6257.](https://peerj.com/articles/6257/)
+
+-   [Survival.jl
+    Documentation](https://juliastats.org/Survival.jl/latest/)
+	
+
+
+## Feature transformations 
+
+Enhancing MLJ data-preprocessing capabilities by integrating
+[TableTransforms](https://github.com/JuliaML/TableTransforms.jl) into
+MLJ.
+
+**Difficulty.** Easy. **Duration.** 350 hours
+
+### Description
+
+TableTransforms.jl is a Julia package heavily inspired by
+FeatureTranforms.jl which aims to provide feature engineering
+transforms which are vital in the Statistics and Machine Learning
+domain. This project would implement the necessary methods to
+integrate TableTransforms with MLJ, making them available for
+incorporation into sophisticated ML workflows.
+
+**Mentors.** [Anthony Blaom](https://ablaom.github.io/).
+
+### Prerequisites
+
+-   Julia language fluency is essential.
+
+-   Git-workflow familiarity is strongly preferred.
+
+-   A passing familiarity with machine learning goals and workflow
+    preferred
+
+### Your contribution
+
+-   Implement the MLJ model interface for transformers in TableTransforms.jl.
+
+-   Integrate TableTransforms pipelines with MLJ.
+
+### References
+
+-   [TableTransforms](https://github.com/JuliaML/TableTransforms.jl) Github
+    repository.
+
+-   [MLJModels](https://github.com/JuliaAI/MLJModels.jl) Github
+    repository with existing MLJ transformers.
+	
+-   [Specification of the MLJ model API](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/).
 
 
 ## Time series forecasting at scale - speed up via Julia
 
 Time series are ubiquitous - stocks, sensor reading, vital signs. This projects aims at adding time series forecasting to MLJ and perform benchmark comparisons to [sktime](https://github.com/alan-turing-institute/sktime), [tslearn](https://github.com/rtavenar/tslearn), [tsml](https://github.com/uea-machine-learning/tsml/)).
 
-**Difficulty.** Easy - moderate. **Duration.** 350 hours.
+**Difficulty.** Moderate - hard. **Duration.** 350 hours.
 
 ### Prerequisites
 - Julia language fluency essential.
@@ -37,7 +147,7 @@ Time series are everywhere in real-world applications and there has been an incr
 
 But there are still very few principled time-series libraries out there, so you would be working on something that could be very useful for a large number of people. To find out more, check out this [paper](http://learningsys.org/neurips19/assets/papers/sktime_ml_systems_neurips2019.pdf) on sktime.
 
-**Mentors**: [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer), [Markus Löning](https://github.com/mloning) (sktime developer).
+**Mentors**: [Sebastian Vollmer](https://sebastian.vollmer.ms), [Markus Löning](https://github.com/mloning) (sktime developer).
 
 ### References
 * [sktime](https://github.com/alan-turing-institute/sktime)
@@ -57,7 +167,7 @@ It is important to have mechanisms in place to interpret the results of machine 
 
 This project will implement methods for model and feature interpretability.
 
-**Mentors.** [Diego Arenas](https://github.com/darenasc), [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer).
+**Mentors.** [Diego Arenas](https://github.com/darenasc), [Sebastian Vollmer](https://sebastian.vollmer.ms).
 
 ### Prerequisites
 - Julia language fluency essential.
@@ -81,7 +191,7 @@ The aim of this project is to implement multiple  variants implementation algori
 Specifically you will
 - Familiarize yourself with MLJ
 - Survey of some of the literature and existing implementations in Julia and other languages, and preparing a short summary
-- Implement visualisations of explanations
+- Implement visualizations of explanations
 - Implement use cases
 - You will learn about the benefits and short comings of model interpretation and how to use them.
 
@@ -93,6 +203,7 @@ Specifically you will
 Tutorials
 - [AI explainability 360: hands-on tutorial](https://dl.acm.org/doi/abs/10.1145/3351095.3375667)
 - [IML tutorial](https://mlr3book.mlr-org.com/iml.html)
+
 
 ## Model visualization in MLJ
 
@@ -126,7 +237,8 @@ You will enhance your visualisation skills as well as your ability to "debug" an
 * [mlr3viz](https://github.com/mlr-org/mlr3viz)
 * [StatsPlots](https://github.com/JuliaPlots/StatsPlots.jl)
 
-**Mentors**: [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer), [Diego Arenas](https://github.com/darenasc).
+**Mentors**: [Sebastian Vollmer](https://sebastian.vollmer.ms), [Diego Arenas](https://github.com/darenasc).
+
 
 ## Deeper Bayesian Integration
 Bayesian methods and probabilistic supervised learning provide uncertainty quantification. This project aims increasing integration to combine Bayesian and non-Bayesian methods using Turing.
@@ -146,29 +258,39 @@ As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) 
 [SKpro](https://github.com/alan-turing-institute/skpro/blob/master/README.md)
 ### Difficulty: Medium to Hard
 
-**Mentors**: [Hong Ge](https://github.com/yebai) [Sebastian Vollmer](https://www.turing.ac.uk/people/programme-directors/sebastian-vollmer)
+**Mentors**: [Hong Ge](https://github.com/yebai) [Sebastian Vollmer](https://sebastian.vollmer.ms)
 
-## MLJ and MLFlow integration
-Integrate MLJ with [MLFlow](https://mlflow.org).
+
+## Tracking and sharing machine learning workflows in MLJ integration
+
+Help data scientists using MLJ track their machine learning experiments using [MLFlow](https://mlflow.org).
 
 **Difficulty.** Easy. **Duration.** 350 hours.
 
 ### Description
 
-MLFlow is a flexible model management tool. The project consists of writing the necessary functions to integrate MLJ with [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html) so models built using MLJ can keep track of its runs, evaluation metrics, parameters, and can be registered and monitored using MLFlow.
+MLFlow is a flexible model management tool. The project consists of
+writing the necessary functions to integrate MLJ with [MLFlow REST
+API](https://mlflow.org/docs/latest/rest-api.html) so that models built
+using MLJ can keep track of its runs, evaluation metrics, parameters,
+and can be registered and monitored using MLFlow. 
 
 ### Prerequisites
 - Julia language fluency essential.
 - Git-workflow familiarity strongly preferred.
 
 ### Your contribution
-* Provide to MLJ users a way to keep track of their machine learning models using MLflow, as a local or remote server.
+* Provide to MLJ users a way to keep track of their machine learning models using MLFlow, as a local or remote server.
 * Implement a reproducible way to store and load machine learning models.
-* Implement functions wrapping the REST API calls that makes possible the use of MLflow.
+* Implement functions wrapping the REST API calls that makes possible the use of MLFlow.
 
 ### References
 * [MLFlow](https://mlflow.org) website.
 * [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html).
+* [MLFlowClient.jl](https://github.com/JuliaAI/MLFlowClient.jl)
+
+
+**Mentors.**  [Diego Arenas](https://github.com/darenasc), [Anthony Blaom](https://ablaom.github.io/)
 
 ## Speed demons only need apply
 
