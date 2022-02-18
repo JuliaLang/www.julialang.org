@@ -6,32 +6,11 @@
 
 ## Numerical Linear Algebra
 
-<!--- Commented out since it was not updated for Summer 2021. 
-### Efficient Sparse linear algebra routines
-
-Modern data-intensive computations, such as Google's PageRank algorithm, can often be cast as operations involving sparse matrices of extremely large nominal dimensions. Unlike dense matrices, which decompose naturally into many homogeneous tiles, efficient algorithms for working with sparse matrices must be fully cognizant of the sparsity pattern of specific matrices at hand, which oftentimes reduce to efficiently computing partitions of extremely large graphs.
-
-This project proposal is for implementing efficient native Julia algorithms for sparse linear algebra routines.
-Students will be expected to
-
-* implement several algorithms for common tasks such as factorizing square and rectangular matrices, computing eigenvalues and eigenvectors, or computing singular values and singular vectors;
-* evaluate how to take advantage of Julia's threading facilities and multi-core computing so as to further improve computational performance;
-* benchmark the performance of those algorithms on various real world applications.
-
-Native Julia algorithms will be generic and support different numeric types, as in the *Generic linear algebra* project below.
-
-**Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra, especially sparse matrices, and some background knowledge in parallel computing.
-
-**Expected Results**: A native Julia package for parallel sparse linear algebra methods.
-
-**Mentors**: [Dominique Orban](https://dpo.github.io)
--->
-
 ### Matrix functions
 
 Matrix functions map matrices onto other matrices, and can often be interpreted as generalizations of ordinary functions like sine and exponential, which map numbers to numbers. Once considered a niche province of numerical algorithms, matrix functions now appear routinely in applications to cryptography, aircraft design, nonlinear dynamics, and finance.
 
-This project proposes to implement state of the art algorithms that extend the currently available matrix functions in Julia, as outlined in issue [#5840](https://github.com/JuliaLang/julia/issues/5840). In addition to matrix generalizations of standard functions such as real matrix powers, surds and logarithms, students will be challenged to design generic interfaces for lifting general scalar-valued functions to their matrix analogues for the efficient computation of arbitrary (well-behaved) matrix functions and their derivatives.
+This project proposes to implement state of the art algorithms that extend the currently available matrix functions in Julia, as outlined in issue [#5840](https://github.com/JuliaLang/julia/issues/5840). In addition to matrix generalizations of standard functions such as real matrix powers, surds and logarithms, contributors will be challenged to design generic interfaces for lifting general scalar-valued functions to their matrix analogues for the efficient computation of arbitrary (well-behaved) matrix functions and their derivatives.
 
 **Recommended Skills**: A strong understanding of calculus and numerical analysis.
 
@@ -133,72 +112,6 @@ This experimentation could be carried out as a package with a new implementation
 **Mentors**: [Jameson Nash](https://github.com/vtjnash)
 
 **Difficulty:** Hard
-
-<!--- Commented out since it was not updated for Summer 2021 and don't have specific mentors.
-
-### PETSc integration for scalable technical computing
-
-[PETSc](https://www.mcs.anl.gov/petsc) is a widely used framework of data structures and computational routines suitable for massively scaling scientific computations. Many of these algorithms are also ideally suited for big data applications such as computing principal components of very large sparse matrices and solving complicated forecasting models with distributed methods for solving partial differential equations.
-This project proposal is to develop a new Julia package to interface with PETsc, thus allowing users access to state of the art scalable algorithms for optimization, eigenproblem solvers, finite element mesh computations, and hyperbolic partial differential equation solvers. The more mathematically oriented student may choose to study the performance of these various algorithms as compared to other libraries and naïve implementations. Alternatively, students may also be interested in working on the LLVM BlueGene port for deploying Julia with PetSc integration in an actual supercomputing environment.
-
-**Recommended Skills**: Some background knowledge in numerical linear algebra and parallel computing.
-
-**Expected Results**: New wrappers for PETSc functions in the [PETSc.jl](https://github.com/JuliaParallel/PETSc.jl) package.
-
-**Mentors:** **Mentors:** Ask on Discourse or the linear-algebra channel on slack
-
-**Difficulty:** Medium
-
-### Parallel dense linear algebra routines
-
-A large portion of big data analytics is predicated upon efficient linear algebraic operations on extremely large matrices. However, massively parallel linear algebra has traditionally focussed on supercomputer architectures, and comparatively little work has been done on efficient scaling on more heterogeneous architectures such as commodity clusters and cloud computing servers, where memory hierarchies and network topologies both introduce latency and bandwidth bottlenecks that differ significantly from those on supercomputers.
-
-This project proposal is for implementing native Julia algorithms involving efficient, cache-conscious matrix operations on tiled matrices. Students will be expected to implement tiled algorithms and tune the performance of typical algorithms such as the singular value decomposition or linear solve.
-
-**Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra, and some background knowledge in parallel computing.
-
-**Expected Results**: A native Julia package for parallel dense linear algebra methods.
-
-**Mentors:** Ask on Discourse or the linear-algebra channel on slack
-
-**Difficulty:** Medium
-
-### Parallel sparse linear algebra routines
-
-Modern data-intensive computations, such as Google's PageRank algorithm, can often be cast as operations involving sparse matrices of extremely large nominal dimensions. Unlike dense matrices, which decompose naturally into many homogeneous tiles, efficient algorithms for working with sparse matrices must be fully cognizant of the sparsity pattern of specific matrices at hand, which oftentimes reduce to efficiently computing partitions of extremely large graphs.
-
-This project proposal is for implementing native Julia algorithms for massively parallel sparse linear algebra routines. Unlike the project above for dense linear algebra, efficient parallel algorithms for sparse linear algebra are comparatively less well studied and understood. Students will be expected to implement several algorithms for common tasks such as linear solvers or computing eigenvectors, and benchmark the performance of these algorithms on various real world applications.
-
-**Recommended Skills**: Strong linear algebra background. Familiarity with numerical linear algebra, especially sparse matrices, and some background knowledge in parallel computing.
-
-**Expected Results**: A native Julia package for parallel sparse linear algebra methods.
-
-**Mentors:** **Mentors:** Ask on Discourse or the linear-algebra channel on slack
-
-**Difficulty:** Medium
-
-### Generic linear algebra
-
-Julia supports many different numeric types, both in Base (e.g. `Float32`, `Float64`, `BigFloat`, `Complex`, `Rational`), as well as other packages (e.g. [Quaternions.jl](https://github.com/JuliaGeometry/Quaternions.jl), [ArbFloats.jl](https://github.com/JuliaArbTypes/ArbFloats.jl), [FixedPointNumbers.jl](https://github.com/JuliaMath/FixedPointNumbers.jl), [Unitful.jl](https://github.com/ajkeller34/Unitful.jl)).
-
-Currently there exists some limited support for generic linear algebra in the LinearAlgebra stdlib (e.g. matrix multiplication and LU factorizations), as well as more experimental code in [GenericLinearAlgebra.jl](https://github.com/JuliaLinearAlgebra/GenericLinearAlgebra.jl) and [GenericSVD.jl](https://github.com/JuliaLinearAlgebra/GenericSVD.jl) packages.
-
-The focus of this project will be to improve this functionality. Potential tasks include:
-
-@@tight-list
-- Implementing more operations, based on standard algorithms in books like [Golub and Van Loan](https://jhupbooks.press.jhu.edu/content/matrix-computations-0), or translating similar concepts from LAPACK.
-- General code maintenance: improving generality, reducing duplicate code, clarifying and documenting interfaces.
-- Developing accurate test cases, e.g. by deriving appropriate error bounds.
-- Documenting the necessary interfaces required by numeric types for these to work correctly.
-@@
-
-**Recommended Skills**: An understanding of linear algebra and basic numerical analysis.
-
-**Expected results**: Linear algebra routines which work on different numeric types, and corresponding tests.
-
-**Mentors:** Ask on Discourse or the linear-algebra channel on slack
-
--->
 
 ### Special functions
 

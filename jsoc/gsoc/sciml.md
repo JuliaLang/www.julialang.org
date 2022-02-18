@@ -21,7 +21,7 @@ includes:
 - Improving the speed and parallelization of PINN training routines.
 
 This project is good for both software engineers interested in the field of
-scientific machine learning and those students who are interested in perusing
+scientific machine learning and those contributors who are interested in perusing
 graduate research in the field.
 
 **Recommended Skills**: Background knowledge in numerical analysis and machine learning.
@@ -52,7 +52,7 @@ See the [DiffEqFlux.jl issue tracker](https://github.com/SciML/DiffEqFlux.jl/iss
 for full details.
 
 This project is good for both software engineers interested in the field of
-scientific machine learning and those students who are interested in perusing
+scientific machine learning and those contributors who are interested in perusing
 graduate research in the field.
 
 **Recommended Skills**: Background knowledge in numerical analysis and machine learning.

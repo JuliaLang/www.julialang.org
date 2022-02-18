@@ -22,7 +22,7 @@ Right now, when someone wants to get started in Julia with the intent to contrib
 The project to update the contributing guide will:
 
 - Audit the existing contributing guide for the core language (https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md)
-  Work with community leaders and members to identify the different groups of folks we want to write guides for (students, professionals, open-source enthusiasts, etc.)
+  Work with community leaders and members to identify the different groups of folks we want to write guides for (contributors, professionals, open-source enthusiasts, etc.)
 - Create guides geared towards each of these different groups (perhaps making them similar in content but with different levels of verboseness)
 - Create general guides for things like making a Pull Request or Opening an Issue (leveraging existing materials we have).
 - Highlight all of the non-technical ways folks can contribute to the Julia Language and the ecosystem.
@@ -61,6 +61,6 @@ General guidelines
 
 > Include here any additional information that is relevant to your proposal.
 
-Previous experience with technical writers or documentation: In 2020, the Julia Language was a mentoring organization and successfully mentored 3 projects through GSoD. In 2020, we also paid our own technical writers to work on various projects following the same timeline as GSoD. These projects proved to be extremely valuable, and we are hoping to build off their success. This year, we asked a couple of our successful GSoD students to leverage their technical writing experience and come back as mentors. We are really excited to have these mentors stay in the community with us and hopefully help the next round of technical writer(s).
+Previous experience with technical writers or documentation: In 2020, the Julia Language was a mentoring organization and successfully mentored 3 projects through GSoD. In 2020, we also paid our own technical writers to work on various projects following the same timeline as GSoD. These projects proved to be extremely valuable, and we are hoping to build off their success. This year, we asked a couple of our successful GSoD contributors to leverage their technical writing experience and come back as mentors. We are really excited to have these mentors stay in the community with us and hopefully help the next round of technical writer(s).
 
 Previous participation in Season of Docs, Google Summer of Code, or others: In 2020, the Julia Language successfully mentored 3 GSoD projects. 2020 being our first year in GSoD, we learned a ton about what we need to do to support technical writers better. A big lesson learned was the need for project and writer mentors. This is something that we are doing in 2021 with the hope of having content feedback for writer(s) and mentors with technical writing expertise so our writer(s) can continue developing their skills. Another welcome change for GSoD 2021, which we would have implemented on our own, but is not part of the core program, is monthly updates. Given that the timelines can be longer for these projects, it makes sense to check in regularly.

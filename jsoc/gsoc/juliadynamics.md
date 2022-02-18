@@ -14,7 +14,7 @@ frameworks written in Python or Java (NetLOGO, MASON, Mesa), show that
 Agents.jl outperforms all of them in computational speed, list of features
 and usability.
 
-In this project students will be paired with lead developers of Agents.jl
+In this project, contributors will be paired with lead developers of Agents.jl
 to improve Agents.jl with more features, better performance, and overall higher polish.
 Possible features to implement are:
 
@@ -40,7 +40,7 @@ Background in complex systems, sociology, or nonlinear dynamics is not required 
 
 [DynamicalSystems.jl](https://juliadynamics.github.io/DynamicalSystems.jl/latest/) is an [award-winning](https://dsweb.siam.org/The-Magazine/Article/winners-of-the-dsweb-2018-software-contest)
 Julia software library for dynamical systems, nonlinear dynamics, deterministic chaos and nonlinear timeseries analysis.
-It has an impressive list of features, but one can never have enough. In this project students will be able to
+It has an impressive list of features, but one can never have enough. In this project, contributors will be able to
 enrich DynamicalSystems.jl with new algorithms and enrich their knowledge of nonlinear dynamics and computer-assisted
 exploration of complex systems.
 

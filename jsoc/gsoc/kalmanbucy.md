@@ -3,7 +3,7 @@
 
 ## Smoothing non-linear continuous time systems
 
-The student implements a state of the art smoother for continuous-time systems with
+The contributor implements a state of the art smoother for continuous-time systems with
 additive Gaussian noise. The system's dynamics can be described as
 an ordinary differential equation with locally additive Gaussian random fluctuations,
 in other words a stochastic ordinary differential equation.
