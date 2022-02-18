@@ -261,7 +261,7 @@ As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) 
 **Mentors**: [Hong Ge](https://github.com/yebai) [Sebastian Vollmer](https://sebastian.vollmer.ms)
 
 
-## Tracking and sharing machine learning workflows in MLJ integration
+## Tracking and sharing machine learning workflows in MLJ
 
 Help data scientists using MLJ track their machine learning experiments using [MLFlow](https://mlflow.org).
 
@@ -290,7 +290,7 @@ and can be registered and monitored using MLFlow.
 * [MLFlowClient.jl](https://github.com/JuliaAI/MLFlowClient.jl)
 
 
-**Mentors.**  [Diego Arenas](https://github.com/darenasc), [Anthony Blaom](https://ablaom.github.io/)
+**Mentors.**  [Diego Arenas](https://github.com/darenasc), [Anthony Blaom](https://ablaom.github.io/), Deyan Dyankov
 
 ## Speed demons only need apply
 
