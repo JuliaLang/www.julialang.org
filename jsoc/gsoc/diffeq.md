@@ -9,7 +9,7 @@ Learning Software Organization](https://sciml.ai/). By mixing native methods and
 methods under the same dispatch system, [DifferentialEquations.jl serves both as a system to deploy and research the most modern efficient methodologies](https://arxiv.org/abs/1807.06430).
 While most of the basic methods have been developed and optimized, many newer
 methods need high performance implementations and real-world tests of their
-efficiency claims. In this project students will be paired with current
+efficiency claims. In this project contributors will be paired with current
 researchers in the discipline to get a handle on some of the latest techniques
 and build efficient implementations into the \*DiffEq libraries
 (OrdinaryDiffEq.jl, StochasticDiffEq.jl, DelayDiffEq.jl). Possible families of
@@ -39,7 +39,7 @@ equation (PDE) solvers and are thus important to many communities like
 computational fluid dynamics, mathematical biology, and quantum mechanics.
 
 This project is good for both software engineers interested in the field of
-numerical analysis and those students who are interested in pursuing graduate
+numerical analysis and those contributors who are interested in pursuing graduate
 research in the field.
 
 **Recommended Skills**: Background knowledge in numerical analysis, numerical

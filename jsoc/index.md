@@ -58,7 +58,7 @@ If this sounds like something you would be interested in, head over to the [Proj
 
 You can see previous Summer of Code projects at the [Archive page](/jsoc/archive/) and details around the mentoring process on the [Mentors page](/jsoc/mentors/).
 
-## Hear from some of our past GSoC students
+## Hear from some of our past GSoC contributors
 
 ~~~
 <iframe width="100%" height="500" src="https://www.youtube-nocookie.com/embed/8lSB666bigw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -178,7 +178,7 @@ Questions about NumFOCUS Small Development Grants? [Check out the NumFOCUS websi
      <br>
 ~~~
 
-The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibilities including, but not limited too, reviewing student applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final student selections and more. 
+The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibilities including, but not limited too, reviewing contributor applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final contributor selections and more. 
 
 [Find out more about our program admins](/jsoc/admins/). 
 

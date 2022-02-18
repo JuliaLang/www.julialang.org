@@ -99,6 +99,6 @@ compile time) while other areas are over-covered (greatly increasing the duratio
 benefit) and some tests may not be configured appropriately for statistical power. Furthermore, the
 current reports are very primitive and can only do a basic pair-wise comparison, while graphs and
 other interactive tooling would be more valuable. Thus, there would be many great projects for a
-summer student to tackle here!
+summer contributor to tackle here!
 
 **Contact:** [Jameson Nash](https://github.com/vtjnash), [Tim Besard](https://github.com/maleadt)

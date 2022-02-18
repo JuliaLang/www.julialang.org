@@ -3,7 +3,7 @@
 
 [JuliaImages](https://github.com/JuliaImages) (see the [documentation](https://juliaimages.github.io)) is a framework in Julia for multidimensional arrays, image processing, and computer vision (CV). It has an active development community and offers many features that unify CV and biomedical 3D/4D image processing, support big data, and promote interactive exploration.
 
-Often the best ideas are the ones that candidate SoC students come up with on their own. We are happy to [discuss such ideas](https://github.com/JuliaImages/Images.jl/discussions/new?category=jsoc) and help you refine your proposal.  Below are some potential project ideas that might help spur some thoughts. In general, anything that is missing in JuliaImages, and worths three-months' development can be considered as potential GSoC ideas. See the bottom of this page for information about mentors.
+Often the best ideas are the ones that candidate SoC contributors come up with on their own. We are happy to [discuss such ideas](https://github.com/JuliaImages/Images.jl/discussions/new?category=jsoc) and help you refine your proposal.  Below are some potential project ideas that might help spur some thoughts. In general, anything that is missing in JuliaImages, and worths three-months' development can be considered as potential GSoC ideas. See the bottom of this page for information about mentors.
 
 ## Benchmarking against other frameworks (medium)
 
@@ -102,7 +102,7 @@ required. For non-GUI projects, familiarity with Julia array interfaces are pref
 
 ## Better QR Code support (medium)
 
-[QRCode.jl](https://github.com/jiegillet/QRCode.jl) is a legacy package that supports encoding data to QR code. Students are required
+[QRCode.jl](https://github.com/jiegillet/QRCode.jl) is a legacy package that supports encoding data to QR code. Contributors are required
 to revive this package to co-exist with the latest JuliaImages ecosystem, and also adding support to decode QR code into julia data.
 
 ### Skills
@@ -189,7 +189,7 @@ A checkeboard detection algorithm which can provide the necessary inputs to a ca
 
 ### Where to go for discussion and to find mentors
 
-Interested students are encouraged to [open an discussion in Images.jl](https://github.com/JuliaImages/Images.jl/discussions/new) to
+Interested contributors are encouraged to [open an discussion in Images.jl](https://github.com/JuliaImages/Images.jl/discussions/new) to
 introduce themselves and discuss the detailed project ideas. To increase the chance of getting useful feedback, please provide detailed
 plans and ideas (don't just copy the contents here).
 
