@@ -8,6 +8,8 @@ VS Code is an extensible editor, and one of its most recent features is a notebo
 
 **Recommended skills:** JavaScript/TypeScript, some Julia experience
 
+**Duration:** 175 h
+
 **Mentors:** [Sebastian Pfitzner](https://github.com/pfitzseb) (core maintainer of julia-vscode), [Panagiotis Georgakopoulos](https://github.com/pankgeorg) and [Fons van der Plas](https://github.com/fonsp) (core maintainers of Pluto.jl) and friends
 
 _Also see the other [VS Code projects](https://julialang.org/jsoc/gsoc/vscode/)!_
@@ -24,6 +26,8 @@ Pluto's primary use case is education, and we recently started using Pluto noteb
 **Expected Results:** _One_ of the items above! When finished, your work will be used in future editions of the Computational Thinking course and more!
 
 **Recommended skills:** JavaScript, CSS, you can learn Julia as part of the project.
+
+**Duration:** 175 h
 
 **Mentors:** [Fons van der Plas](https://github.com/fonsp), [Connor Burns](https://github.com/ctrekker) and fellow Pluto.jl maintainers, with feedback from [Alan Edelman](https://math.mit.edu/directory/profile.php?pid=63)
 
@@ -52,5 +56,7 @@ This project can be broken down into four smaller chunks.
 **Expected Results:** An Electron app for editing Pluto.jl notebooks, with support for operating system-specific features like file open or double-click. The app should also automatically install Julia if not already installed
 
 **Recommended skills:** JavaScript
+
+**Duration:** 175 h
 
 **Mentors:** [Connor Burns](https://github.com/ctrekker), [Michiel Dral](https://github.com/dralletje), [Fons van der Plas](https://github.com/fonsp) and fellow Pluto.jl maintainers
