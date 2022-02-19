@@ -20,4 +20,4 @@ the observations.
 
 **Mentors**: [Moritz Schauer](https://github.com/mschauer)
 
-**Rating**: Hard
+**Rating**: Hard, 350 hours
