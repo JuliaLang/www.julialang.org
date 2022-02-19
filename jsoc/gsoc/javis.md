@@ -16,7 +16,7 @@ If interested in exploring any of these projects, please reach out to any of the
 
 - **[Jacob Zelko](http://jacobzelko.com/)** - [email](mailto:jacobszelko@gmail.com), [Slack](https://julialang.org/slack/) (username: TheCedarPrince), or [Zulip](https://julialang.zulipchat.com/) (username: TheCedarPrince)
 
-- **[Ole Kröger](https://opensourc.es/about/)** - [Slack](https://julialang.org/slack/) (username: Wikunia), or [Zulip](https://julialang.zulipchat.com/) (username: Wikunia)
+- **[Ole Kröger](https://opensourc.es/about/)** - [email](o.kroeger@opensourc.es), [Slack](https://julialang.org/slack/) (username: Wikunia), or [Zulip](https://julialang.zulipchat.com/) (username: Wikunia)
 
 - **[Giovanni Puccetti](https://gpucce.github.io)** - [Zulip](https://julialang.zulipchat.com/) (username: Giovanni)
 
@@ -29,6 +29,8 @@ Thanks for your interest! :tada:
 **Mentors:** Ole Kröger, Arsh Sharma
 
 **Recommended Skills:** Familiarity with profiling, caching approaches, and performance testing
+
+**Duration:** 175 hrs
 
 **Difficulty:** Medium
 
@@ -43,9 +45,11 @@ The goal for this project will not be to fully fix all identified performance is
 
 **Recommended Skills:** General understanding of Luxor and the underlying structure of Javis
 
+**Duration:** 175 hrs
+
 **Difficulty:** Medium
 
 Javis's interface has matured to a great point - but we believe Javis can do even more!
 Although Javis can do complex transformations such as morphing one polygon to another, Javis is capable of more than that.
-In this project, a contributor will work with Jacob and Giovanni to create new animation abilities for Javis to handle different coordinate systems, developing new types of shorthand expressions for object creation known as JObjects, further developing morphing, building out the flexibility of layers, and more.
+In this project, a contributor will work with Jacob and Giovanni to create new animation abilities for Javis to handle different coordinate systems, developing new types of shorthand expressions for object creation known as JObjects, further developing morphing, building out the flexibility of layers, and developing new interfaces (see this [PR for an idea](https://github.com/JuliaAnimators/Javis.jl/pull/434)).
 A contributor is encouraged to come to this project with new ideas for what animations Javis can do and to reach out to Jacob and Giovanni to begin discussions early.
