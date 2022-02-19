@@ -64,13 +64,15 @@ The application of machine learning requires an understanding a practitioner to 
 
 **Mentors:** [Chris Rackauckas](https://github.com/ChrisRackauckas) and [Dhairya Gandhi](https://github.com/DhairyaLGandhi/)
 
-### Differentiable Rendering [HARD]
+### Differentiable Rendering
 
-Expected Outcome: This is motivated to create SoftRasterizer/DiB-R based projects. We already have RayTracer.jl which is motivated by OpenDR. (Of course, if someone wants to implement NERF - like models they are most welcome to submit a proposal). We would ideally target at least 2 of these models.
+**Difficulty:** Hard (350h+)
 
-**Skills:** GPU Programming, Deep Learning, (deep) familiarity with the literature, familiarity with defining (a lot of) Custom Adjoints
+We have an existing package, [RayTracer.jl](https://github.com/avik-pal/RayTracer.jl), which is motivated by OpenDR, and exists to do differentiable raytracing with Flux.jl and Zygote.jl. The overarching goal of this project is to implement alternative rendering models like NeRF, VolSDF, Neural Raytracing etc. We would ideally target at least 2 of these models. Additionally, general maintenance of RayTracer.jl, updates to use the latest Flux.jl features, integration with ChainRules.jl, and more, are on the table.
 
-**Mentors:** [Dhairya Gandhi](https://github.com/DhairyaLGandhi/), [Julian Samaroo](https://github.com/jpsamaroo), [Avik Pal](https://github.com/avik-pal)
+**Skills:** GPU Programming, Deep Learning, familiarity with the literature, familiarity with defining Custom Adjoints
+
+**Mentors:** [Dhairya Gandhi](https://github.com/DhairyaLGandhi/), [Avik Pal](https://github.com/avik-pal), [Julian Samaroo](https://github.com/jpsamaroo)
 
 ## Deep Learning for source code analysis
 
