@@ -26,7 +26,7 @@ default), commercial ventures (customer churn), engineering (component
 lifetime), and many more. This project aims to implement models for
 performing survivor analysis with the MLJ machine learning framework.
 
-**Mentors.** [Sebastian Vollmer](https://sebastian.vollmer.ms), [Anthony Blaom](https://ablaom.github.io/), 
+**Mentors.** [Sebastian Vollmer](https://sebastian.vollmer.ms), [Anthony Blaom](https://ablaom.github.io/),
 
 ### Prerequisites
 
@@ -39,51 +39,51 @@ performing survivor analysis with the MLJ machine learning framework.
 -   Familiarity with MLJ's API a plus.
 
 -   A passing familiarity with machine learning goals and workflow is
-    preferred.
+	preferred.
 
 ### Your contribution
 
 Specifically, you will:
 
 -   Familiarize yourself with the training and evaluation machine
-    learning models in MLJ.
+	learning models in MLJ.
 
 -   Survey existing survival models in Julia.
 
 -   Integrate some existing classical survival models into MLJ.
 
 -   Develop a proof of concept for newer advanced survival analysis
-    models not currently implemented in Julia.
+	models not currently implemented in Julia.
 
 ### References
 
 -   [Kvamme, H., Borgan, Ø., & Scheel, I. (2019). Time-to-event
-    prediction with neural networks and Cox regression. Journal of
-    Machine Learning Research, 20(129),
-    1--30.](https://arxiv.org/abs/1907.00825)
+	prediction with neural networks and Cox regression. Journal of
+	Machine Learning Research, 20(129),
+	1--30.](https://arxiv.org/abs/1907.00825)
 
 -   [Lee, C., Zame, W. R., Yoon, J., & van der Schaar, M. (2018).
-    Deephit: A deep learning approach to survival analysis with
-    competing risks. In Thirty-Second AAAI Conference on Artificial
-    Intelligence.](https://ojs.aaai.org/index.php/AAAI/article/view/11842/11701)
+	Deephit: A deep learning approach to survival analysis with
+	competing risks. In Thirty-Second AAAI Conference on Artificial
+	Intelligence.](https://ojs.aaai.org/index.php/AAAI/article/view/11842/11701)
 
 -   [Katzman, J. L., Shaham, U., Cloninger, A., Bates, J., Jiang, T., &
-    Kluger, Y. (2018). DeepSurv: personalized treatment recommender
-    system using a Cox proportional hazards deep neural network. BMC
-    Medical Research Methodology, 18(1),
-    24.](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-018-0482-1)
-    <https://doi.org/10.1186/s12874-018-0482-1>
+	Kluger, Y. (2018). DeepSurv: personalized treatment recommender
+	system using a Cox proportional hazards deep neural network. BMC
+	Medical Research Methodology, 18(1),
+	24.](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-018-0482-1)
+	<https://doi.org/10.1186/s12874-018-0482-1>
 
 -   [Gensheimer, M. F., & Narasimhan, B. (2019). A scalable
-    discrete-time survival model for neural networks. PeerJ, 7,
-    e6257.](https://peerj.com/articles/6257/)
+	discrete-time survival model for neural networks. PeerJ, 7,
+	e6257.](https://peerj.com/articles/6257/)
 
 -   [Survival.jl
-    Documentation](https://juliastats.org/Survival.jl/latest/)
-	
+	Documentation](https://juliastats.org/Survival.jl/latest/)
 
 
-## Feature transformations 
+
+## Feature transformations
 
 Enhancing MLJ data-preprocessing capabilities by integrating
 [TableTransforms](https://github.com/JuliaML/TableTransforms.jl) into
@@ -109,7 +109,7 @@ incorporation into sophisticated ML workflows.
 -   Git-workflow familiarity is strongly preferred.
 
 -   A passing familiarity with machine learning goals and workflow
-    preferred
+	preferred
 
 ### Your contribution
 
@@ -120,11 +120,11 @@ incorporation into sophisticated ML workflows.
 ### References
 
 -   [TableTransforms](https://github.com/JuliaML/TableTransforms.jl) Github
-    repository.
+	repository.
 
 -   [MLJModels](https://github.com/JuliaAI/MLJModels.jl) Github
-    repository with existing MLJ transformers.
-	
+	repository with existing MLJ transformers.
+
 -   [Specification of the MLJ model API](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/).
 
 
@@ -261,36 +261,45 @@ As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) 
 **Mentors**: [Hong Ge](https://github.com/yebai) [Sebastian Vollmer](https://sebastian.vollmer.ms)
 
 
-## Tracking and sharing machine learning workflows in MLJ
+## Tracking and sharing MLJ workflows using MLFlow
 
-Help data scientists using MLJ track their machine learning experiments using [MLFlow](https://mlflow.org).
+Help data scientists using MLJ track and share their machine learning
+experiments using [MLFlow](https://mlflow.org).
 
-**Difficulty.** Easy. **Duration.** 350 hours.
+**Difficulty.** Moderate. **Duration.** 350 hours.
 
 ### Description
 
-MLFlow is a flexible model management tool. The project consists of
-writing the necessary functions to integrate MLJ with [MLFlow REST
-API](https://mlflow.org/docs/latest/rest-api.html) so that models built
-using MLJ can keep track of its runs, evaluation metrics, parameters,
-and can be registered and monitored using MLFlow. 
+MLFlow is an open source platform for the machine learning life
+cycle. It allows the data scientist to upload experiment metadata and
+outputs to the platform for reproducing and sharing purposes. This
+project aims to integrate the MLJ machine learning platform with
+MLFlow.
 
 ### Prerequisites
 - Julia language fluency essential.
 - Git-workflow familiarity strongly preferred.
+- General familiarity with data science workflows
 
 ### Your contribution
-* Provide to MLJ users a way to keep track of their machine learning models using MLFlow, as a local or remote server.
-* Implement a reproducible way to store and load machine learning models.
-* Implement functions wrapping the REST API calls that makes possible the use of MLFlow.
+* You will familiarize yourself with MLJ, MLFlow and MLFlowClient.jl client APIs.
+* Implement functionality to upload to MLFlow machine learning
+  model hyper-parameters, performance evaluations, and
+  artifacts encapsulating the trained model. 
+* Implement functionality allowing for the live tracking of learning
+  for iterative models, such as neural networks, by hooking in to
+  [MLJIteration.jl](https://github.com/JuliaAI/MLJIteration.jl).
 
 ### References
 * [MLFlow](https://mlflow.org) website.
 * [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html).
 * [MLFlowClient.jl](https://github.com/JuliaAI/MLFlowClient.jl)
+* [MLJIteration.jl](https://github.com/JuliaAI/MLJIteration.jl)
 
+**Mentors.** [Deyan Dyankov](https://github.com/deyandyankov),
+[Anthony Blaom](https://ablaom.github.io/), [Diego
+Arenas](https://github.com/darenasc).
 
-**Mentors.**  [Diego Arenas](https://github.com/darenasc), [Anthony Blaom](https://ablaom.github.io/), Deyan Dyankov
 
 ## Speed demons only need apply
 
