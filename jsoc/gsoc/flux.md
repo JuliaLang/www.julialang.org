@@ -46,15 +46,15 @@ In this project, you will assist the [ML community team](https://julialang.zulip
 
 **Mentors:** [Lorenz Ohly](https://github.com/lorenzoh), [Kyle Daruwalla](https://github.com/darsnack), [Brian Chen](https://github.com/ToucheSir)
 
-### Differentiable Computer Vision [HARD] (350h)
+### Differentiable Computer Vision
 
-Expected Outcome:
+**Difficulty:** Hard (350h)
 
 Create a library of utility functions that can consume Julia's Imaging libraries to make them differentiable. With Zygote.jl, we have the platform to take a general purpose package and apply automatic differentiation to it. This project is motivated to use existing libraries that offer perform computer vision tasks, and augment them with AD to perform tasks such as homography regression.
 
-Skills: Familiarity with automatic differentiation, deep learning, and defining (a lot of) Custom Adjoints
+**Skills:** Familiarity with automatic differentiation, deep learning, and defining (a lot of) Custom Adjoints
 
-Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/)
+**Mentors:** [Dhairya Gandhi](https://github.com/DhairyaLGandhi/)
 
 ### FermiNets: Generative Synthesis for Automating the Choice of Neural Architectures
 
@@ -73,20 +73,3 @@ We have an existing package, [RayTracer.jl](https://github.com/avik-pal/RayTrace
 **Skills:** GPU Programming, Deep Learning, familiarity with the literature, familiarity with defining Custom Adjoints
 
 **Mentors:** [Dhairya Gandhi](https://github.com/DhairyaLGandhi/), [Avik Pal](https://github.com/avik-pal), [Julian Samaroo](https://github.com/jpsamaroo)
-
-## Deep Learning for source code analysis
-
-**Difficulty**: Easy to Medium
-
-The use of deep learning tools to source code is an active area of research. With the runtime being able to easily introspect into Julia code (for example, with a clean, accessible AST format), using theses techniques on Julia code would be a fruitful exercise.
-
-@@tight-list
-* Use of RNNs for syntax error correction: https://arxiv.org/abs/1603.06129
-* Implement Code2Vec for Julia: https://arxiv.org/abs/1803.09473
-@@
-
-**Skills:** Familiarity with compiler techniques as well as deep learning tools will be required. The "domain expertise" in this task is Julia programming, so it will need someone who has a reasonable experience of the Julia programming language.
-
-**Expected Outcome:**  Packages for each technique that is usable by general programmers.
-
-**Mentors**: [Avik Sengupta](https://github.com/aviks/)
