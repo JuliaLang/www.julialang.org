@@ -46,7 +46,7 @@ In this project, you will assist the [ML community team](https://julialang.zulip
 
 **Mentors:** [Lorenz Ohly](https://github.com/lorenzoh), [Kyle Daruwalla](https://github.com/darsnack), [Brian Chen](https://github.com/ToucheSir)
 
-### Differentiable Computer Vision [HARD]
+### Differentiable Computer Vision [HARD] (350h)
 
 Expected Outcome:
 
@@ -58,7 +58,7 @@ Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/)
 
 ### FermiNets: Generative Synthesis for Automating the Choice of Neural Architectures
 
-**Difficulty:** Hard
+**Difficulty:** Hard (175h)
 
 The application of machine learning requires an understanding a practitioner to optimize a neural architecture for a given problem, or does it? Recently techniques in automated machine learning, also known as AutoML, have dropped this requirement by allowing for good architectures to be found automatically. One such method is the [FermiNet](https://arxiv.org/abs/1809.05989) which employs generative synthesis to give a neural architecture which respects certain operational requirements. The goal of this project is to implement the FermiNet in Flux to allow for automated synthesis of neural networks.
 
