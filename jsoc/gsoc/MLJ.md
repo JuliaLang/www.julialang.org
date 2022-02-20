@@ -296,7 +296,9 @@ MLFlow.
 * [MLFlowClient.jl](https://github.com/JuliaAI/MLFlowClient.jl)
 * [MLJIteration.jl](https://github.com/JuliaAI/MLJIteration.jl)
 
-**Mentors.** [Diego Arenas](https://github.com/darenasc), [Anthony Blaom](https://ablaom.github.io/), [Deyan Dyankov](https://github.com/deyandyankov)
+**Mentors.** [Deyan Dyankov](https://github.com/deyandyankov),
+[Anthony Blaom](https://ablaom.github.io/), [Diego
+Arenas](https://github.com/darenasc).
 
 
 ## Speed demons only need apply
