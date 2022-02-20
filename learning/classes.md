@@ -157,6 +157,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * Métodos numéricos para sistemas dinámicos (Prof. Luis Benet), Fall 2014
     * [Métodos numéricos avanzados](https://github.com/dpsanders/MetodosNumericosAvanzados) (Prof. David P. Sanders and Prof. Luis Benet), Spring 2015
     * [Métodos computacionales para la física estadística](https://github.com/dpsanders/metodos-monte-carlo) (Prof. David P. Sanders), Spring 2015
+* Universidad Nacional del Centro de la Provincia de Buenos Aires, Facultad de Ciencias Exactas, Tandil, Argentina. 
+    * [Modelización Matemática] (https://exa.unicen.edu.ar/matematicas/#asignaturas) (Prof. Pablo A. Lotito), 2020.    
 * Universidad Nacional Pedro Ruiz Gallo, Lambayeque, Perú
     * Julia: el lenguaje del futuro, [Semana de Integración de Ingeniería Electrónica](https://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro), (Oscar William Neciosup Vera), Spring 2015
 * Universidad Veracruzana, México
