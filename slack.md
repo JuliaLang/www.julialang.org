@@ -14,7 +14,7 @@ The Julia Language has an active Slack workspace/community with over 8,000 membe
 ### Admins
 The [Julia Community Standards](https://julialang.org/community/standards/) are enforced on Slack by our Slack Admins. 
 
-**If you see or experience any violation of those standards, or feel unsafe or upset, please contact us by sending an email to [slackadmins@julialang.org](mailto:slackadmins@julialang.org).** All communications will be treated confidentially but incidents may be shared the Julia Stewards (who will treat all information confidentially as well).
+**If you see or experience any violation of those standards, or feel unsafe or upset, please contact us by sending an email to [slackadmins@julialang.org](mailto:slackadmins@julialang.org).** All communications will be treated confidentially but incidents may be shared with the Julia Stewards (who will treat all information confidentially as well).
 
 You can also contact the [Julia Stewards](https://julialang.org/community/stewards/) by emailing [stewards@julialang.org](mailto:stewards@julialang.org), in particular if your concern or conflict involves the admins and/or you would prefer a third party to resolve it.
 
