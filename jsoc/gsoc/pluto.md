@@ -76,4 +76,6 @@ Initially, the goal would be to start using the [hyper C API](https://docs.rs/hy
 
 **Recommended skills:** Rust, some Julia experience, some previous experience with language interoperability or inter-process communication.
 
+**Duration:** 175 h
+
 **Mentors:** [Paul Berg](https://github.com/pangoraw) and [Fons van der Plas](https://github.com/fonsp)
