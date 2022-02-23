@@ -14,10 +14,12 @@ Mentors: [Julian Samaroo](https://github.com/jpsamaroo), [Valentin Churavy](http
 
 ## Distributed Training
 
-**Difficulty:** Hard
+**Difficulty:** Hard (350h)
 
 Add a distributed training API for Flux models built on top of [Dagger.jl](https://github.com/JuliaParallel/Dagger.jl). More detailed milestones include building Dagger.jl abstractions for [UCX.jl](https://github.com/JuliaParallel/UCX.jl), then building tools to map Flux models into data parallel Dagger DAGs. The final result should demonstrate a Flux model training with multiple devices in parallel via the Dagger.jl APIs. A stretch goal will include mapping operations with a model to a DAG to facilitate model parallelism as well.
 
-**Skills:** Familiarity with UCX, representing execution models as DAGs, Flux.jl, and data/model parallelism in machine learning
+There are projects now that host the building blocks: [DaggerFlux.jl](https://github.com/FluxML/DaggerFlux.jl) and [Distributed Data Parallel Training](https://github.com/DhairyaLGandhi/ResNetImageNet.jl) which can serve as jumping off points.
 
-**Mentors:** [Kyle Daruwalla](https://github.com/darsnack), [Julian Samaroo](https://github.com/jpsamaroo), and [Brian Chen](https://github.com/ToucheSir)
+**Skills:** Familiarity with UCX, representing execution models as DAGs, Flux.jl, CUDA.jl and data/model parallelism in machine learning
+
+**Mentors:** [Julian Samaroo](https://github.com/jpsamaroo), and [Dhairya Gandhi](https://github.com/DhairyaLGandhi)
