@@ -82,7 +82,6 @@ Specifically, you will:
 	Documentation](https://juliastats.org/Survival.jl/latest/)
 
 
-
 ## Feature transformations
 
 Enhancing MLJ data-preprocessing capabilities by integrating
@@ -335,3 +334,85 @@ In this project you will:
 - [Data front end](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/#Implementing-a-data-front-end-1) for MLJ models.
 
 **Mentors.** [Anthony Blaom](https://ablaom.github.io)
+
+
+## Correcting for class imbalance in classification problems
+
+Improve and extend Julia's offering of algorithms for correcting class
+imbalance, with a view to integration into MLJ and elsewhere.
+
+**Difficulty.** Easy - moderate. **Duration.** 350 hours
+
+### Description
+
+Many classification algorithms do not perform well when there is a
+class imbalance in the target variable (for example, many more
+positives than negatives). There are number of well-known data
+preprocessing algorithms, such as oversampling, for compensating for
+class imbalance. See for instance the python package
+[imbalance-learn](https://imbalanced-learn.org/stable/).
+
+The Julia package
+[ClassImbalance.jl](https://github.com/bcbi/ClassImbalance.jl)
+provides some native Julia class imbalance algorithms. For wider
+adoption it is proposed that:
+
+- ClassImbalance.jl be made more data-generic, for example made to
+  support arbitrary tables (objects implementing
+  [Tables.jl](https://github.com/JuliaData/Tables.jl)). Currently
+  there is only support for an old version of DataFrames.jl. 
+  
+- ClassImbalance.jl implements a general transformer interface, such
+  the ones provided by
+  [TableTransforms.jl](https://github.com/JuliaML/TableTransforms.jl),
+  [MLJ](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/)
+  or
+  [FeatureTransforms.jl](https://github.com/invenia/FeatureTransforms.jl)
+  (MLJ may ultimately support the TableTransforms.jl API - see the
+  separate "Feature Transforms" project)
+
+- Other Julia-native algorithms be added
+
+**Mentor.** [Anthony Blaom](https://ablaom.github.io/).
+
+
+### Prerequisites
+
+- Julia language fluency is essential.
+
+- An understanding of the class imbalance phenomena essential. A
+  detailed understanding of at least one class imbalance algorithm
+  essential.
+
+- Git-workflow familiarity is strongly preferred.
+
+- A familiarity with machine learning goals and workflow preferred
+	
+
+### Your contribution
+
+- Familiarize yourself with the existing ClassImbalance package,
+  including known issues
+
+- Familiarize yourself with the Tables.jl interface
+
+- Assess the merits of different transformer API choices and choose
+  one in consultation with your mentor
+  
+- Implement the proposed improvements in parallel with testing and
+  documentation additions to the package. Testing and documentation
+  must be up-to-date before new algorithms are added. 
+  
+
+### References
+
+- [ClassImbalance.jl](https://github.com/bcbi/ClassImbalance.jl) 
+
+- [TableTransforms.jl](https://github.com/JuliaML/TableTransforms.jl) Github
+	repository.
+
+- [Tables.jl](https://github.com/JuliaData/Tables.jl)
+
+- [Specification of the MLJ model API](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/). 
+
+- [FeatureTransforms.jl](https://github.com/invenia/FeatureTransforms.jl)
