@@ -4,9 +4,9 @@
 Julia is emerging as a serious tool for technical computing and is ideally suited for the ever-growing needs of big data analytics. This set of proposed projects addresses specific areas for improvement in analytics algorithms and distributed data management.
 
 
-**Difficulty:** Medium
-
 ## Scheduling algorithms for Distributed algorithms
+
+**Difficulty:** Medium (175h)
 
 Dagger.jl is a native Julia framework and scheduler for distributed execution of Julia code and general purpose data parallelism, using dynamic, runtime-generated task graphs which are flexible enough to describe multiple classes of parallel algorithms. This project proposes to implement different scheduling algorithms for Dagger to optimize scheduling of certain classes of distributed algorithms, such as MapReduce and MergeSort, and properly utilizing heterogeneous compute resources. Contributors will be expected to find published distributed scheduling algorithms and implement them on top of the Dagger framework, benchmarking scheduling performance on a variety of micro-benchmarks and real problems.
 
