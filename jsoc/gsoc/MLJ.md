@@ -82,7 +82,6 @@ Specifically, you will:
 	Documentation](https://juliastats.org/Survival.jl/latest/)
 
 
-
 ## Feature transformations
 
 Enhancing MLJ data-preprocessing capabilities by integrating
@@ -335,3 +334,160 @@ In this project you will:
 - [Data front end](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/#Implementing-a-data-front-end-1) for MLJ models.
 
 **Mentors.** [Anthony Blaom](https://ablaom.github.io)
+
+
+## Machine Learning in Predictive Survival Analysis
+
+Implement survival analysis models for use in the MLJ machine learning
+platform.
+
+**Difficulty.** Moderate - hard. **Duration.** 350 hours
+
+### Description
+
+Survival/time-to-event analysis is an important field of Statistics
+concerned with understanding the distribution of events over time.
+Survival analysis presents a unique challenge as we are also interested
+in events that do not take place, which we refer to as 'censoring'.
+Survival analysis methods are important in many real-world settings,
+such as health care (disease prognosis), finance and economics (risk of
+default), commercial ventures (customer churn), engineering (component
+lifetime), and many more. This project aims to implement models for
+performing survivor analysis with the MLJ machine learning framework.
+
+**Mentors.** [Sebastian Vollmer](https://sebastian.vollmer.ms), [Anthony Blaom](https://ablaom.github.io/),
+
+### Prerequisites
+
+-   Julia language fluency is essential.
+
+-   Git-workflow familiarity is strongly preferred.
+
+-   Some experience with survival analysis.
+
+-   Familiarity with MLJ's API a plus.
+
+-   A passing familiarity with machine learning goals and workflow is
+	preferred.
+
+### Your contribution
+
+Specifically, you will:
+
+-   Familiarize yourself with the training and evaluation machine
+	learning models in MLJ.
+
+-   Survey existing survival models in Julia.
+
+-   Integrate some existing classical survival models into MLJ.
+
+-   Develop a proof of concept for newer advanced survival analysis
+	models not currently implemented in Julia.
+
+### References
+
+-   [Kvamme, H., Borgan, Ø., & Scheel, I. (2019). Time-to-event
+	prediction with neural networks and Cox regression. Journal of
+	Machine Learning Research, 20(129),
+	1--30.](https://arxiv.org/abs/1907.00825)
+
+-   [Lee, C., Zame, W. R., Yoon, J., & van der Schaar, M. (2018).
+	Deephit: A deep learning approach to survival analysis with
+	competing risks. In Thirty-Second AAAI Conference on Artificial
+	Intelligence.](https://ojs.aaai.org/index.php/AAAI/article/view/11842/11701)
+
+-   [Katzman, J. L., Shaham, U., Cloninger, A., Bates, J., Jiang, T., &
+	Kluger, Y. (2018). DeepSurv: personalized treatment recommender
+	system using a Cox proportional hazards deep neural network. BMC
+	Medical Research Methodology, 18(1),
+	24.](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-018-0482-1)
+	<https://doi.org/10.1186/s12874-018-0482-1>
+
+-   [Gensheimer, M. F., & Narasimhan, B. (2019). A scalable
+	discrete-time survival model for neural networks. PeerJ, 7,
+	e6257.](https://peerj.com/articles/6257/)
+
+-   [Survival.jl
+	Documentation](https://juliastats.org/Survival.jl/latest/)
+
+
+## Correcting for class imbalance in classification problems
+
+Improve and extend Julia's offering of algorithms for correcting class
+imbalance, with a view to integration into MLJ and elsewhere.
+
+**Difficulty.** Easy - moderate. **Duration.** 350 hours
+
+### Description
+
+Many classification algorithms do not perform well when there is a
+class imbalance in the target variable (for example, many more
+positives than negatives). There are number of well-known data
+preprocessing algorithms, such as oversampling, for compensating for
+class imbalance. See for instance the python package
+[imbalance-learn](https://imbalanced-learn.org/stable/).
+
+The Julia package
+[ClassImbalance.jl](https://github.com/bcbi/ClassImbalance.jl)
+provides some native Julia class imbalance algorithms. For wider
+adoption it is proposed that:
+
+- ClassImbalance.jl be made more data-generic, for example made to
+  support arbitrary tables (objects implementing
+  [Tables.jl](https://github.com/JuliaData/Tables.jl)). Currently
+  there is only support for an old version of DataFrames.jl. 
+  
+- ClassImbalance.jl implements a general transformer interface, such
+  the ones provided by
+  [TableTransforms.jl](https://github.com/JuliaML/TableTransforms.jl),
+  [MLJ](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/)
+  or
+  [FeatureTransforms.jl](https://github.com/invenia/FeatureTransforms.jl)
+  (MLJ may ultimately support the TableTransforms.jl API - see the
+  separate "Feature Transforms" project)
+
+- Other Julia-native algorithms be added
+
+**Mentor.** [Anthony Blaom](https://ablaom.github.io/).
+
+
+### Prerequisites
+
+- Julia language fluency is essential.
+
+- An understanding of the class imbalance phenomena essential. A
+  detailed understanding of at least one class imbalance algorithm
+  essential.
+
+- Git-workflow familiarity is strongly preferred.
+
+- A familiarity with machine learning goals and workflow preferred
+	
+
+### Your contribution
+
+- Familiarize yourself with the existing ClassImbalance package,
+  including known issues
+
+- Familiarize yourself with the Tables.jl interface
+
+- Assess the merits of different transformer API choices and choose
+  one in consultation with your mentor
+  
+- Implement the proposed improvements in parallel with testing and
+  documentation additions to the package. Testing and documentation
+  must be up-to-date before new algorithms are added. 
+  
+
+### References
+
+- [ClassImbalance.jl](https://github.com/bcbi/ClassImbalance.jl) 
+
+- [TableTransforms.jl](https://github.com/JuliaML/TableTransforms.jl) Github
+	repository.
+
+- [Tables.jl](https://github.com/JuliaData/Tables.jl)
+
+- [Specification of the MLJ model API](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/). 
+
+- [FeatureTransforms.jl](https://github.com/invenia/FeatureTransforms.jl)
