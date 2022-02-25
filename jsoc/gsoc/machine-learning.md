@@ -2,13 +2,25 @@
 
 ### CUDA Hacking
 
-Are you a performance nut? Help us implement cutting-edge CUDA kernels in Julia for operations important across deep learning, scientific computing and more. We also need help developing our wrappers for machine learning, sparse matrices and more, as well as CI and infrastructure. Contact us to develop a project plan.
+Time: 175h
+
+Are you a performance nut? This project is aimed at expanding our coverage of high performance kernels and libraries widely used across machine learning workflows. 
+
+#### Expected Outcomes
+
+Help us implement cutting-edge CUDA kernels in Julia for operations important across deep learning, scientific computing and more. We also need help developing our wrappers for machine learning, sparse matrices and more, as well as CI and infrastructure. Contact us to develop a project plan.
 
 Mentors: [Tim Besard](https://github.com/maleadt), [Dhairya Gandhi](https://github.com/DhairyaLGandhi).
 
 ### Reinforcement Learning Environments
 
-Develop a series of reinforcement learning environments, in the spirit of the [OpenAI Gym](https://gym.openai.com). Although we have wrappers for the gym available, it is hard to install (due to the Python dependency) and, since it's written in Python and C code, we can't do more interesting things with it (such as differentiate through the environments). A pure-Julia version that supports a similar API and visualisation options would be valuable to anyone doing RL with Flux.
+Time: 175h
+
+Develop a series of reinforcement learning environments, in the spirit of the [OpenAI Gym](https://gym.openai.com). Although we have wrappers for the gym available, it is hard to install (due to the Python dependency) and, since it's written in Python and C code, we can't do more interesting things with it (such as differentiate through the environments).
+
+#### Expected Outcome
+
+A pure-Julia version of selected environments that supports a similar API and visualisation options would be valuable to anyone doing RL with Flux.
 
 Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/).
 
@@ -16,10 +28,10 @@ Mentors: [Dhairya Gandhi](https://github.com/DhairyaLGandhi/).
 
 Recent advances in reinforcement learning led to many breakthroughs in artificial intelligence. Some of the latest deep reinforcement learning algorithms have been implemented in [ReinforcementLearning.jl](https://github.com/JuliaReinforcementLearning/ReinforcementLearning.jl) with Flux. We'd like to have more interesting and practical algorithms added to enrich the whole community, including but not limited to the following directions:
 
-* **[Easy(175h)] Recurrent version of existing algorithms**. Students with a basic understanding of Q-learning and recurrent neural networks are preferred. We'd like to have a general implementation to easily extend existing algorithms to the sequential version.
+* **[Easy(175h)] Recurrent version of existing algorithms**. Contributors with a basic understanding of Q-learning and recurrent neural networks are preferred. We'd like to have a general implementation to easily extend existing algorithms to the sequential version.
 * **[Medium(175h)] Multi-agent reinforcement learning algorithms**. Currently, we only have some CFR， MADDPG and NFSP related algorithms implemented. We'd like to see more implemented, including [COMA](https://arxiv.org/abs/1705.08926) and its variants, [PSRO](https://arxiv.org/abs/1711.00832).
-* **[Medium(350h)] Model-based reinforcement learning algorithms**. Students interested in this topic may refer [Model-based Reinforcement Learning: A Survey](https://arxiv.org/abs/2006.16712) and design some general interfaces to implement typical model based algorithms.
-* **[Hard(350h)] Distributed reinforcement learning framework**. Inspired by [Acme](https://arxiv.org/abs/2006.00979), a similar design is proposed in [DistributedReinforcementLearning.jl](https://github.com/JuliaReinforcementLearning/DistributedReinforcementLearning.jl). However, it is still in a very early stage. Students interested in this direction are required to have a basic understanding of distributed computing in Julia. Ideally we'd like to see some distributed reinforcement learning algorithms implemented under this framework, like [R2D2](https://openreview.net/forum?id=r1lyTjAqYX&utm_campaign=RL%20Weekly&utm_medium=email&utm_source=Revue%20newsletter), [D4PG](https://arxiv.org/abs/1804.08617v1).
+* **[Medium(350h)] Model-based reinforcement learning algorithms**. Contributors interested in this topic may refer [Model-based Reinforcement Learning: A Survey](https://arxiv.org/abs/2006.16712) and design some general interfaces to implement typical model based algorithms.
+* **[Hard(350h)] Distributed reinforcement learning framework**. Inspired by [Acme](https://arxiv.org/abs/2006.00979), a similar design is proposed in [DistributedReinforcementLearning.jl](https://github.com/JuliaReinforcementLearning/DistributedReinforcementLearning.jl). However, it is still in a very early stage. Contributors interested in this direction are required to have a basic understanding of distributed computing in Julia. Ideally we'd like to see some distributed reinforcement learning algorithms implemented under this framework, like [R2D2](https://openreview.net/forum?id=r1lyTjAqYX&utm_campaign=RL%20Weekly&utm_medium=email&utm_source=Revue%20newsletter), [D4PG](https://arxiv.org/abs/1804.08617v1).
 
 #### Expected Outcomes
 
@@ -29,7 +41,7 @@ Mentors: [Jun Tian](https://github.com/findmyway)
 
 ### AlphaZero.jl
 
-The philosophy of the [AlphaZero.jl](https://github.com/jonathan-laurent/AlphaZero.jl) project is to provide an implementation of AlphaZero that is simple enough to be widely accessible for students and researchers, while also being sufficiently powerful and fast to enable meaningful experiments on limited computing resources (our latest release is consistently between one and two orders of magnitude faster than competing Python implementations).
+The philosophy of the [AlphaZero.jl](https://github.com/jonathan-laurent/AlphaZero.jl) project is to provide an implementation of AlphaZero that is simple enough to be widely accessible for contributors and researchers, while also being sufficiently powerful and fast to enable meaningful experiments on limited computing resources (our latest release is consistently between one and two orders of magnitude faster than competing Python implementations).
 
 Here are a few project ideas that build on AlphaZero.jl. Please contact us for additional details and let us know about your experience and interests so that we can build a project that best suits your profile.
 
@@ -52,7 +64,7 @@ In all these projects, the goal is not only to showcase the current Julia ecosys
 
 **Difficulty**: Medium to Hard
 
-Build deep learning models for Natural Language Processing in Julia. [TextAnalysis](https://github.com/juliatext/TextAnalysis.jl)  and [WordTokenizers](https://github.com/JuliaText/WordTokenizers.jl) contains the basic algorithms and data structures to work with textual data in Julia. On top of that base, we want to build modern deep learning models based on recent research. The following tasks can span multiple students and projects.
+Build deep learning models for Natural Language Processing in Julia. [TextAnalysis](https://github.com/juliatext/TextAnalysis.jl)  and [WordTokenizers](https://github.com/JuliaText/WordTokenizers.jl) contains the basic algorithms and data structures to work with textual data in Julia. On top of that base, we want to build modern deep learning models based on recent research. The following tasks can span multiple contributors and projects.
 
 It is important to note that we want practical, usable solutions to be created, not just research models. This implies that a large part of the effort will need to be in finding and using training data, and testing the models over a wide variety of domains. Pre-trained models must be available to users, who should be able to start using these without supplying their own training data.
 

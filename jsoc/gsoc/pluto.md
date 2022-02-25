@@ -6,7 +6,11 @@ VS Code is an extensible editor, and one of its most recent features is a notebo
 
 **Expected Results:** Reactive notebook built on top of VSCode's notebook API.
 
-**Recommended skills:** JavaScript/TypeScript, some Julia experience
+**Required skills:** JavaScript/TypeScript
+
+**Duration:** 175 h
+
+**Difficulty:** Medium
 
 **Mentors:** [Sebastian Pfitzner](https://github.com/pfitzseb) (core maintainer of julia-vscode), [Panagiotis Georgakopoulos](https://github.com/pankgeorg) and [Fons van der Plas](https://github.com/fonsp) (core maintainers of Pluto.jl) and friends
 
@@ -23,9 +27,44 @@ Pluto's primary use case is education, and we recently started using Pluto noteb
 
 **Expected Results:** _One_ of the items above! When finished, your work will be used in future editions of the Computational Thinking course and more!
 
-**Recommended skills:** JavaScript, CSS, you can learn Julia as part of the project.
+**Required skills:** JavaScript & CSS. (You can learn Julia as part of the project.)
+
+**Duration:** 175 h
+
+**Difficulty:** Easy/Medium depending on the choice
 
 **Mentors:** [Fons van der Plas](https://github.com/fonsp), [Connor Burns](https://github.com/ctrekker) and fellow Pluto.jl maintainers, with feedback from [Alan Edelman](https://math.mit.edu/directory/profile.php?pid=63)
+
+## Electron app
+
+Right now, [Pluto]() is a *Julia package* with one function, `Pluto.run()`:
+```julia
+julia> using Pluto
+julia> Pluto.run()
+
+Welcome to Pluto! Go to http://localhost:1234/ to start writing!
+```
+
+This makes sense, because Pluto is written in Julia! But for many people, the steps *install Julia, open a terminal, run the Julia REPL, use Pkg to install Pluto, import Pluto, run Pluto* are still much too intimidating. Ideally, we hope that Pluto will make scientific computing more accessible and fun for everyone, especially beginner students and programmers who might not have used a terminal before!
+
+For this reason, we want Pluto to be a standalone [Electron](https://www.electronjs.org/) app, just like VS Code, Slack, WhatsApp, GitHub Desktop, Atom, and many others. Pluto as a standalone app opens the door to a more smooth and uniform user experience across the board, through Electron's native file system capabilities, setting the app to open notebook files when double-clicked, and configurable automated updates for both Pluto and Julia.
+
+This project can be broken down into four smaller chunks.
+1. Serve Pluto's web files in Electron
+2. Get the Electron view talking with a local Pluto server
+3. Implement native file system features for Pluto in Electron
+4. Package the app into an easily installable binary (exe for Windows, dmg for MacOS, etc.), with the Julia executable embedded.
+
+**Expected Results:** An Electron app for editing Pluto.jl notebooks, with support for operating system-specific features like file open or double-click. 
+
+**Required skills:** JavaScript, NodeJS.
+
+**Duration:** 175 h
+
+**Difficulty:** Easy
+
+**Mentors:** [Connor Burns](https://github.com/ctrekker), [Michiel Dral](https://github.com/dralletje), [Fons van der Plas](https://github.com/fonsp) and fellow Pluto.jl maintainers
+
 
 ## Wrapping a Rust HTTP server in Julia
 
@@ -41,6 +80,10 @@ Initially, the goal would be to start using the [hyper C API](https://docs.rs/hy
 
 **Expected Results:** A prototype of wrapping the `hyper` library in Julia, with a focus on reliability and efficiency, forming the basis of the package.
 
-**Recommended skills:** Rust, some Julia experience, some previous experience with language interoperability or inter-process communication.
+**Required skills:** Rust, some Julia experience, some previous experience with language interoperability or inter-process communication.
+
+**Duration:** 175 h
 
 **Mentors:** [Paul Berg](https://github.com/pangoraw) and [Fons van der Plas](https://github.com/fonsp)
+
+**Difficulty:** Hard

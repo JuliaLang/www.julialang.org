@@ -4,7 +4,7 @@ There are a number of compiler projects that are currently being worked on. Plea
 additional details and let us know what specifically interests you about this area of contribution.
 That way, we can tailor your project to better suit your interests and skillset.
 
-- **Julia Optimization Passes:**
+- **Julia Optimization Passes (350 hours)**
 
   The Julia compiler performs optimizations at two distinct times during native code generation: first at the "Julia level", and then at the "LLVM level".
   At the Julia level, we have some basic optimization passes (inlining, basic DCE,
@@ -13,22 +13,22 @@ That way, we can tailor your project to better suit your interests and skillset.
   optimizations we could tackle next.
 
 
-- **LLVM:**
+- **LLVM (350 hours)**
   As previously mentioned, the Julia language utilizes LLVM as a backend for code generation. This means that there are plenty of opportunities for those with knowledge of or interest in LLVM to contribute via working on Julia's code generation process. Together, we can figure out an appropriate task if you would like to work in this area. Below are some LLVM-related projects that may be of interest.
 
-  - Investigating OrcJIT v2 improvements:
+  - Investigating OrcJIT v2 improvements (350 hours)
 
     The LLVM JIT has gained many new features. This project would involve finding out what they are
     and making use of them. Some examples include better resource tracking, parallel compilation, a
     new linker (which may need upstream work too), and fine-grained tracking of relocations.
 
 
-- **Parser error messages (and other parts):**
+- **Parser error messages (and other parts) (350 hours)**
 
   Error messages and infrastructure could use some work to track source locations more precisely.
   This may be a large project. Contact me and @c42f for more details if this interests you.
 
-- **Macro hygiene re-implementation, to eliminate incorrect predictions inherent in current approach:**
+- **Macro hygiene re-implementation, to eliminate incorrect predictions inherent in current approach (350 hours)**
 
   This may be a good project for someone that wants to learn lisp/scheme! Our current algorithm runs
   in multiple passes, which means sometimes we compute the wrong scope for a variable in the earlier
@@ -37,7 +37,7 @@ That way, we can tailor your project to better suit your interests and skillset.
   <https://github.com/JuliaLang/julia/issues/20241> and
   <https://github.com/JuliaLang/julia/issues/34164>.
 
-- **Better debug information output for variables:**
+- **Better debug information output for variables (350 hours)**
 
   We have part of the infrastructure in place for representing DWARF information for our variables,
   but only from limited places. We could do much better since there are numerous opportunities for
@@ -49,7 +49,7 @@ a willingness and interest in seeing how to integrate with a large system.
 
 **Mentors**: [Jameson Nash](https://github.com/vtjnash), [Ian Atol](https://github.com/ianatol)
 
-## Improving test coverage
+## Improving test coverage (350 hours)
 
 Code coverage reports very good coverage of all of the Julia Stdlib packages, but it's not complete.
 Additionally, the coverage tools themselves (--track-coverage and
@@ -63,7 +63,7 @@ Another related side-project might be to explore adding Type information to the 
 
 **Contact:** [Jameson Nash](https://github.com/vtjnash)
 
-## Multi-threading Improvement Projects
+## Multi-threading Improvement Projects (350 hours)
 
 A few ideas to get you started, in brief:
 
@@ -91,7 +91,7 @@ BoF calendar invite][threadcall] on the Julia Language Public Events calendar.
 **Contact:** [Jameson Nash](https://github.com/vtjnash)
 
 
-## Automation of testing / performance benchmarking
+## Automation of testing / performance benchmarking (350 hours)
 
 The Nanosoldier.jl project (and related <https://github.com/JuliaCI/BaseBenchmarks.jl>) tests for
 performance impacts of some changes. However, there remains many areas that are not covered (such as
@@ -99,6 +99,6 @@ compile time) while other areas are over-covered (greatly increasing the duratio
 benefit) and some tests may not be configured appropriately for statistical power. Furthermore, the
 current reports are very primitive and can only do a basic pair-wise comparison, while graphs and
 other interactive tooling would be more valuable. Thus, there would be many great projects for a
-summer student to tackle here!
+summer contributor to tackle here!
 
 **Contact:** [Jameson Nash](https://github.com/vtjnash), [Tim Besard](https://github.com/maleadt)

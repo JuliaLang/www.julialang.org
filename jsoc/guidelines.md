@@ -6,7 +6,7 @@ Before you apply, it's a good idea to get in touch with the Julia community.
 Ask questions on [Discourse](https://discourse.julialang.org) or [join the
 Julia Slack](https://julialang.org/slack/) to get connected with
 potential mentors to help find interesting projects. The Slack channel `#jsoc` is
-dedicated to helping students get the help they need. Additionally, you should
+dedicated to helping contributors get the help they need. Additionally, you should
 make use of these connections to start making some small contributions and
 progress on your project early on. While PRs before the applications are not
 required, the Julia Language organization programs are extremely competitive,
@@ -28,7 +28,7 @@ _If you have accessibility needs with respect to submitting your application, pl
 Applications are free-form, so you can discuss your project in whatever way you
 feel is best. Our organization does not have page or formatting requirements, but we recommend
 building a formal PDF document of less than 10 pages which is formatted using
-Word or LaTeX. If you have any questions that are not answered here, contact the Julia Language student
+Word or LaTeX. If you have any questions that are not answered here, contact the Julia Language
 programs administrators at `jsoc@julialang.org`. Note that the first step for GSoC is not sending us an email, please refer to the steps above for good first steps. We
 recommend having a mentor to help you with the application process. Please feel
 free to share your draft applications in the `#jsoc` channel of the Slack to
@@ -37,7 +37,7 @@ receive feedback.
 The key questions we will ask ourselves when considering it are:
 
 @@tight-list
-* Is the student committed to the project?
+* Is the contributor committed to the project?
 * Is the plan a reasonable amount to do in the allotted project time?
 * Are there clear milestones we can use to assess progress (it should be easy
   to answer the question "Is the project done?").
@@ -86,7 +86,7 @@ In more detail, you may find it useful to consider the following questions:
   - What other time commitments, such as summer courses, other jobs, planned vacations, etc., will you have over the summer?
 @@
 
-## Tips and Tricks from former GSoC Students
+## Tips and Tricks from former GSoC Contributors
 ~~~
 <iframe width="100%" height="400" src="https://www.youtube-nocookie.com/embed/YPO9ew6EkkU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~

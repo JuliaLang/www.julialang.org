@@ -5,6 +5,8 @@
 
 If you are interested in exploring any of these projects, please reach out to the listed project mentors. You can find their contact information at [turing.ml/team](https://turing.ml/stable/team).
 
+/toc
+
 ## More real-world Bayesian models in Turing / Julia
 
 **Mentors**: Kai Xu, Tor E. Fjelde, Hong Ge
@@ -74,7 +76,7 @@ Tape caching often leads to significant performance improvements for gradient-ba
 **Project length**: 350 hrs
 
 **Description**: 
-Although KernelFunctions.jl has extensive correctness testing, our performance testing is lacking. This project aims to resolve this, and resolve performance issues wherever they are found. The student would first need to extend our existing benchmarking coverage, and debug any obvious performance problems. The next phase of the work would be to construct end-to-end examples of KernelFunctions being used in practice, profile them to determine where performance problems lie, and fix them.
+Although KernelFunctions.jl has extensive correctness testing, our performance testing is lacking. This project aims to resolve this, and resolve performance issues wherever they are found. The contributor would first need to extend our existing benchmarking coverage, and debug any obvious performance problems. The next phase of the work would be to construct end-to-end examples of KernelFunctions being used in practice, profile them to determine where performance problems lie, and fix them.
 
 ## Iterative methods for inference in Gaussian Processes
 
@@ -96,7 +98,7 @@ There has recently been quite a bit of work on inference methods for GPs that us
 **Project length**: 350 hrs
 
 **Description**:
-Adding [approximate inference](https://github.com/JuliaGaussianProcesses/JuliaGaussianProcesses.github.io/discussions/5#discussioncomment-1627101) methods for non-Gaussian likelihoods which are available in other GP packages but not yet within JuliaGPs. The project would start by determining which approximate inference method(s) to implement---there's lots to do, and we're happy to work with a student on whichever method they are most interested in, or to suggest one if they have no strong preference.
+Adding [approximate inference](https://github.com/JuliaGaussianProcesses/JuliaGaussianProcesses.github.io/discussions/5#discussioncomment-1627101) methods for non-Gaussian likelihoods which are available in other GP packages but not yet within JuliaGPs. The project would start by determining which approximate inference method(s) to implement---there's lots to do, and we're happy to work with a contributor on whichever method they are most interested in, or to suggest one if they have no strong preference.
 
 ## GPU integration in the JuliaGPs ecosystem
 

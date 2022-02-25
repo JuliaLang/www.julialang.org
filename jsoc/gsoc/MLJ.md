@@ -20,7 +20,6 @@ MLJ is released under the MIT license and sponsored by the Alan Turing Institute
 - Speed demons only need apply
 - Correcting for class imbalance in classification problems
 
-
 ## Machine Learning in Predictive Survival Analysis
 
 Implement survival analysis models for use in the MLJ machine learning
