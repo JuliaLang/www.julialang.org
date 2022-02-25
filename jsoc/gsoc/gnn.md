@@ -6,13 +6,11 @@ GNNs are a growing are of research and find many applications in complex network
 
 - **Adding graph convolutional layers (duration: 175h, expected difficulty: easy to medium):** While we implement a good variety of graph convolutional layers, there is still a vast zoology to be implemented yet.
 
-- **Adding models and examples (duration: 175h, expected difficulty: medium):** As part of the documentation and for bootstrapping new projects, 
-we want to add fully worked out examples and applications of graph neural networks.
+- **Adding models and examples (duration: 175h, expected difficulty: medium):** As part of the documentation and for bootstrapping new projects, we want to add fully worked out examples and applications of graph neural networks.
 
 - **Adding graph datasets (duration: 175h, expected difficulty: easy):** Provide julia friendly wrappers for common graph datasets in [`MLDatasets.jl`](https://github.com/JuliaML/MLDatasets.jl).
 
-- **Supporting heterogeneous graphs (duration: 175h, expected difficulty: hard):** In some complex networks, the relations expressed by edges can be of different types.
-We need to implement an heteroeneous graph type and implement convolutional layers supporting them. 
+- **Supporting heterogeneous graphs (duration: 175h, expected difficulty: hard):** In some complex networks, the relations expressed by edges can be of different types. We need to implement an heteroeneous graph type and implement convolutional layers supporting them. 
 
 - **Training on very large graphs (duration: 175h, expected difficulty: medium to hard):** Graph containing several milions of nodes are too large for gpu memory. Mini-batch training si performed on subgraphs, as in the GraphSAGE algorithm.
 
