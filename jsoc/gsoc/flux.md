@@ -8,7 +8,10 @@ Flux projects are typically very competitive; we encourage you to get started ea
 
 **Difficulty:** Medium (175h)
 
-Help us improve [Metalhead.jl](https://github.com/FluxML/Metalhead.jl) by adding new models, porting pre-trained weights, and extending the model interfaces to make them more customizable.
+**Expected outcomes:** Help us improve [Metalhead.jl](https://github.com/FluxML/Metalhead.jl) by
+- adding new models
+- porting pre-trained weights
+- extending the model interfaces to make them more customizable
 
 **Skills:** Familiarity with vision model architectures and Flux.jl
 
@@ -18,13 +21,19 @@ Help us improve [Metalhead.jl](https://github.com/FluxML/Metalhead.jl) by adding
 
 **Difficulty:** Medium (350h)
 
-In this project, you will assist the [ML community team](https://julialang.zulipchat.com/#narrow/stream/237432-ml-ecosystem-coordination) with building time series methods for FastAI.jl on top of the existing JuliaML + FluxML ecosystem packages. This will require building the models/learners, documenting them, and creating the appropriate tutorials. Some familiarity with the following Julia packages is preferred, but it is not required:
+In this project, you will assist the [ML community team](https://julialang.zulipchat.com/#narrow/stream/237432-ml-ecosystem-coordination) with building time series methods for FastAI.jl on top of the existing JuliaML + FluxML ecosystem packages. Some familiarity with the following Julia packages is preferred, but it is not required:
 
 @@tight-list
 * [MLDataPattern.jl](https://github.com/JuliaML/MLDataPattern.jl.git)
 * [FluxTraining.jl](https://github.com/lorenzoh/FluxTraining.jl.git)
 * [DataAugmentation.jl](https://github.com/lorenzoh/DataAugmentation.jl)
 @@
+
+**Expected outcomes:** You will
+- load a working time series dataset using the FastAI.jl data registry
+- create new block methods for time series tasks
+- load at least one working time series model into a learner
+- develop an example tutorial that ties all the previous steps together
 
 **Skills:** Familiarity with deep learning pipelines, common practices, Flux.jl, and recurrent neural networks
 
@@ -34,13 +43,19 @@ In this project, you will assist the [ML community team](https://julialang.zulip
 
 **Difficulty:** Medium (350h)
 
-In this project, you will assist the [ML community team](https://julialang.zulipchat.com/#narrow/stream/237432-ml-ecosystem-coordination) with building text methods for FastAI.jl on top of the existing JuliaML + FluxML ecosystem packages. This will require building the models/learners, documenting them, and creating the appropriate tutorials. Some familiarity with the following Julia packages is preferred, but it is not required:
+In this project, you will assist the [ML community team](https://julialang.zulipchat.com/#narrow/stream/237432-ml-ecosystem-coordination) with building text methods for FastAI.jl on top of the existing JuliaML + FluxML ecosystem packages. Some familiarity with the following Julia packages is preferred, but it is not required:
 
 @@tight-list
 * [MLDataPattern.jl](https://github.com/JuliaML/MLDataPattern.jl.git)
 * [FluxTraining.jl](https://github.com/lorenzoh/FluxTraining.jl.git)
 * [JuliaText](https://github.com/JuliaText)
 @@
+
+**Expected outcomes:** You will
+- load a working text dataset using the FastAI.jl data registry
+- create new block methods for textual tasks
+- load at least one working text model into a learner
+- develop an example tutorial that ties all the previous steps together
 
 **Skills:** Familiarity with deep learning pipelines, common practices, Flux.jl, and JuliaText
 
@@ -50,7 +65,11 @@ In this project, you will assist the [ML community team](https://julialang.zulip
 
 **Difficulty:** Hard (350h)
 
-Create a library of utility functions that can consume Julia's Imaging libraries to make them differentiable. With Zygote.jl, we have the platform to take a general purpose package and apply automatic differentiation to it. This project is motivated to use existing libraries that offer perform computer vision tasks, and augment them with AD to perform tasks such as homography regression.
+Create a library of utility functions that can consume Julia's Imaging libraries to make them differentiable. With Zygote.jl, we have the platform to take a general purpose package and apply automatic differentiation to it.
+
+**Expected outcomes:** You will
+- write AD rules for functions in existing computer vision libraries
+- demonstrate the use of these newly differentiable libraries for tasks such as homography regression
 
 **Skills:** Familiarity with automatic differentiation, deep learning, and defining (a lot of) Custom Adjoints
 
@@ -60,7 +79,9 @@ Create a library of utility functions that can consume Julia's Imaging libraries
 
 **Difficulty:** Hard (175h)
 
-The application of machine learning requires an understanding a practitioner to optimize a neural architecture for a given problem, or does it? Recently techniques in automated machine learning, also known as AutoML, have dropped this requirement by allowing for good architectures to be found automatically. One such method is the [FermiNet](https://arxiv.org/abs/1809.05989) which employs generative synthesis to give a neural architecture which respects certain operational requirements. The goal of this project is to implement the FermiNet in Flux to allow for automated synthesis of neural networks.
+The application of machine learning requires an understanding a practitioner to optimize a neural architecture for a given problem, or does it? Recently techniques in automated machine learning, also known as AutoML, have dropped this requirement by allowing for good architectures to be found automatically. One such method is the [FermiNet](https://arxiv.org/abs/1809.05989) which employs generative synthesis to give a neural architecture which respects certain operational requirements.
+
+**Expected outcomes:** The goal of this project is to implement the FermiNet in Flux to allow for automated synthesis of neural networks.
 
 **Mentors:** [Chris Rackauckas](https://github.com/ChrisRackauckas) and [Dhairya Gandhi](https://github.com/DhairyaLGandhi/)
 
@@ -68,7 +89,12 @@ The application of machine learning requires an understanding a practitioner to 
 
 **Difficulty:** Hard (350h+)
 
-We have an existing package, [RayTracer.jl](https://github.com/avik-pal/RayTracer.jl), which is motivated by OpenDR, and exists to do differentiable raytracing with Flux.jl and Zygote.jl. The overarching goal of this project is to implement alternative rendering models like NeRF, VolSDF, Neural Raytracing etc. We would ideally target at least 2 of these models. Additionally, general maintenance of RayTracer.jl, updates to use the latest Flux.jl features, integration with ChainRules.jl, and more, are on the table.
+We have an existing package, [RayTracer.jl](https://github.com/avik-pal/RayTracer.jl), which is motivated by OpenDR, and exists to do differentiable raytracing with Flux.jl and Zygote.jl.
+
+**Expected outcomes:** You will
+- implement at least 2 alternative rendering models like NeRF, VolSDF, Neural Raytracing, etc.
+- make improvements to RayTracer.jl to use the latest Flux libraries
+- update RayTracer.jl for ChainRules.jl
 
 **Skills:** GPU Programming, Deep Learning, familiarity with the literature, familiarity with defining Custom Adjoints
 
