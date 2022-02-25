@@ -30,7 +30,6 @@ We have our project ideas organized below roughly by domain but you can also see
 * [TableTransforms.jl](/jsoc/gsoc/tabletransforms/) - Tabular transforms used in statistics and machine learning
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [Topology optimisation](/jsoc/gsoc/topopt/) - improving topology optimisation tools in Julia.
-* [WebAssembly](/jsoc/gsoc/wasm/) - running and compiling Julia on WebAssembly
 @@
 
 We also have Julia project's available under other organizations. If you are applying for those projects, make sure your application is for that organization and NOT the Julia Language:
