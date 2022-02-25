@@ -31,7 +31,7 @@ At the moment, all the necessary ingredients exist for designing web-based User 
 - Streamline the deployment process.
 
 **Bonus tasks.** If time allows, one of the following directions could be pursued.
-1. Making Makie web-based plots more suitable for general web apps (move more computation to the client side, improve interactivity and responsiveness).
+1. Make Makie web-based plots more suitable for general web apps (move more computation to the client side, improve interactivity and responsiveness).
 2. Generalize the UI infrastructure to native widgets, which are already implemented in Makie but with a different interface.
 
 **Desired skills.** Familiarity with HTML, JavaScript, and CSS, as well as reactive programming. Experience with the Julia visualization and UI ecosystem.
