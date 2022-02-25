@@ -5,6 +5,7 @@ learning framework for Julia aiming to provide a convenient way to use
 and combine a multitude of tools and models available in the Julia
 ML/Stats ecosystem.
 
+
 ### List of projects
 
 MLJ is released under the MIT license and sponsored by the Alan Turing Institute.
@@ -18,6 +19,7 @@ MLJ is released under the MIT license and sponsored by the Alan Turing Institute
 - Tracking and sharing MLJ workflows using MLFlow
 - Speed demons only need apply
 - Correcting for class imbalance in classification problems
+
 
 ## Machine Learning in Predictive Survival Analysis
 
