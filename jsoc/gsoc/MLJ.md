@@ -5,7 +5,19 @@ learning framework for Julia aiming to provide a convenient way to use
 and combine a multitude of tools and models available in the Julia
 ML/Stats ecosystem.
 
+### List of projects
+
 MLJ is released under the MIT license and sponsored by the Alan Turing Institute.
+
+- Machine Learning in Predictive Survival Analysis
+- Feature transformations
+- Time series forecasting at scale - speed up via Julia
+- Interpretable Machine Learning in Julia
+- Model visualization in MLJ
+- Deeper Bayesian Integration
+- Tracking and sharing MLJ workflows using MLFlow
+- Speed demons only need apply
+- Correcting for class imbalance in classification problems
 
 ## Machine Learning in Predictive Survival Analysis
 
@@ -370,6 +382,12 @@ adoption it is proposed that:
   [FeatureTransforms.jl](https://github.com/invenia/FeatureTransforms.jl)
   (MLJ may ultimately support the TableTransforms.jl API - see the
   separate "Feature Transforms" project)
+  
+- ClassImbalance.jl also support data containers implementing the
+  `getobs` interface in
+  [LearnBase.jl](https://mldatapatternjl.readthedocs.io/en/latest/documentation/container.html)
+  (but note [this](https://github.com/JuliaML/LearnBase.jl/issues/49)
+  code re-organization project and [this issue](https://github.com/JuliaML/MLUtils.jl/issues/61)).
 
 - Other Julia-native algorithms be added
 
@@ -416,3 +434,5 @@ adoption it is proposed that:
 - [Specification of the MLJ model API](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/). 
 
 - [FeatureTransforms.jl](https://github.com/invenia/FeatureTransforms.jl)
+
+- [The `getobs` data container interface](https://mldatapatternjl.readthedocs.io/en/latest/documentation/container.html)
