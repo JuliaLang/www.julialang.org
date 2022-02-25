@@ -134,12 +134,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/jsoc/gsoc/diffeq/index.html</loc>
-    <lastmod>2022-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2015/10/datastreams/index.html</loc>
     <lastmod>2022-02-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -933,12 +927,6 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2020/05/rr/index.html</loc>
-    <lastmod>2022-02-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://julialang.org/jsoc/gsoc/sciml/index.html</loc>
     <lastmod>2022-02-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
