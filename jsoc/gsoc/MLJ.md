@@ -10,15 +10,7 @@ ML/Stats ecosystem.
 
 MLJ is released under the MIT license and sponsored by the Alan Turing Institute.
 
-- Machine Learning in Predictive Survival Analysis
-- Feature transformations
-- Time series forecasting at scale - speed up via Julia
-- Interpretable Machine Learning in Julia
-- Model visualization in MLJ
-- Deeper Bayesian Integration
-- Tracking and sharing MLJ workflows using MLFlow
-- Speed demons only need apply
-- Correcting for class imbalance in classification problems
+\toc
 
 ## Machine Learning in Predictive Survival Analysis
 
