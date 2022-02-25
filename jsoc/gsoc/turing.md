@@ -5,6 +5,8 @@
 
 If you are interested in exploring any of these projects, please reach out to the listed project mentors. You can find their contact information at [turing.ml/team](https://turing.ml/stable/team).
 
+/toc
+
 ## More real-world Bayesian models in Turing / Julia
 
 **Mentors**: Kai Xu, Tor E. Fjelde, Hong Ge
