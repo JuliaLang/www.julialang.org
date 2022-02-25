@@ -73,48 +73,6 @@ to revive this package to co-exist with the latest JuliaImages ecosystem, and al
 
 **Mentors:** [Johnny Chen](https://github.com/johnnychen94)
 
-## Contributions to a Stereo Matching Package
-
-**Difficulty:** Medium(175h)
-
-When two images are taken of a scene with a calibrated stereo rig it is possible to construct a three-dimensional model of the scene provided that one can determine the coordinates of corresponding points in the two images. The task of determining the coordinates of corresponding points is frequently called *stereo matching* or *disparity estimation*. Numerous algorithms for this task have been proposed over the years and new ones continue to be developed.
-
-This project will implement several stereo matching algorithms. Emphasis will be placed on *efficient* implementations which leverage all of Julia's features for writing fast code.
-
-Example algorithms:
-
-@@tight-list
-  1. Bleyer, Michael, Christoph Rhemann, and Carsten Rother. "PatchMatch Stereo-Stereo Matching with Slanted Support Windows." Bmvc. Vol. 11. 2011.
-  2. Hirschmuller, Heiko. "Accurate and efficient stereo processing by semi-global matching and mutual information." Computer Vision and Pattern Recognition, 2005. CVPR 2005. IEEE Computer Society Conference on. Vol. 2. IEEE, 2005.
-  3. Gehrig, Stefan K., and Clemens Rabe. "Real-time semi-global matching on the CPU." Computer Vision and Pattern Recognition Workshops (CVPRW), 2010 IEEE Computer Society Conference on. IEEE, 2010.
-@@
-
-**Expected outputs:** A library of stereo matching algorithms with usage tutorials and documentation.
-
-**Skills:** Experiences in JuliaImages are required. Familiarity with the algorithms are preferred.
-
-**Mentors:** [Zygmunt Szpak](https://github.com/zygmuntszpak)
-
-## Contributions to a Calibration Target package
-
-**Difficulty:** Medium(175h)
-
-Camera calibration involves determining a camera's intrinsic parameters from a series of images of a so-called "calibration target". Knowledge of the intrinsic parameters facilitates three-dimensional reconstruction from images or video. The most frequently used calibration target is a checkerboard pattern. A key step in camera calibration involves automatically detecting the checkerboard and identifying landmarks such as the corners of each checkerboard square.
-
-This project will implement a recent automatic checkerboard detection and feature extraction algorithm.
-
-Example algorithm:
-
-@@tight-list
-  1. Y. Yan, P. Yang, L. Yan, J. Wan, Y. Sun, and K. Tansey, “Automatic checkerboard detection for camera calibration using self-correlation,” Journal of Electronic Imaging, vol. 27, no. 03, p. 1, May 2018.
-@@
-
-**Expected outputs:** A checkeboard detection algorithm which can provide the necessary inputs to a camera calibration routine.
-
-**Skills:** Experiences in JuliaImages are required. Familiarity with the algorithms are preferred.
-
-**Mentors:** [Zygmunt Szpak](https://github.com/zygmuntszpak)
-
 ## Where to go for discussion and to find mentors
 
 Interested contributors are encouraged to [open an discussion in Images.jl](https://github.com/JuliaImages/Images.jl/discussions/new) to
