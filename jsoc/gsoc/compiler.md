@@ -12,9 +12,17 @@ That way, we can tailor your project to better suit your interests and skillset.
   but need significant effort to finish. We see potential for many future optimizations at this phase of compilation, especially with some new analyses that have been recently added. For this proposal, we can work together to define which
   optimizations we could tackle next.
 
+  **Expected Outcomes**: Improve upon the "Julia level" suite of optimizations and analyses. Ideally merge an optimization that improves Julia codegen by the end of the project timeline.
+  **Skills**: Julia programming, some prior knowledge of compiler optimization techniques, creative thinking, and passion for performance!
+  **Difficulty**: Medium
+
 
 - **LLVM (350 hours)**
   As previously mentioned, the Julia language utilizes LLVM as a backend for code generation. This means that there are plenty of opportunities for those with knowledge of or interest in LLVM to contribute via working on Julia's code generation process. Together, we can figure out an appropriate task if you would like to work in this area. Below are some LLVM-related projects that may be of interest.
+
+  **Expected Outcomes**: Improve upon the "LLVM level" of Julia codegen.
+  **Skills**: C/C++ programming and some prior knowledge of LLVM (in the context of clang, Rust, Swift, etc... is fine)
+  **Difficulty**: Hard
 
   - Investigating OrcJIT v2 improvements (350 hours)
 
@@ -28,6 +36,10 @@ That way, we can tailor your project to better suit your interests and skillset.
   Error messages and infrastructure could use some work to track source locations more precisely.
   This may be a large project. Contact me and @c42f for more details if this interests you.
 
+  **Expected Outcomes**: Improve upon Julia parser error messages.
+  **Skills**: Some familiarity with parsers
+  **Difficulty**: Medium
+
 - **Macro hygiene re-implementation, to eliminate incorrect predictions inherent in current approach (350 hours)**
 
   This may be a good project for someone that wants to learn lisp/scheme! Our current algorithm runs
@@ -37,15 +49,20 @@ That way, we can tailor your project to better suit your interests and skillset.
   <https://github.com/JuliaLang/julia/issues/20241> and
   <https://github.com/JuliaLang/julia/issues/34164>.
 
+  **Expected Outcomes**: Ideally, re-implementation of hygenic macros. Realistically, resolving some or any of the `macros` issues.
+  **Skills**: Lisp/Scheme/Racket experience desired but not necessarily required.
+  **Difficulty**: Medium
+
 - **Better debug information output for variables (350 hours)**
 
   We have part of the infrastructure in place for representing DWARF information for our variables,
   but only from limited places. We could do much better since there are numerous opportunities for
   improvement!
 
-
+**Expected Outcomes**: Varies by project.
 **Recommended Skills**: Most of these projects involve algorithms work, requiring
 a willingness and interest in seeing how to integrate with a large system.
+**Difficulty**: Varies by project.
 
 **Mentors**: [Jameson Nash](https://github.com/vtjnash), [Ian Atol](https://github.com/ianatol)
 
@@ -100,5 +117,9 @@ benefit) and some tests may not be configured appropriately for statistical powe
 current reports are very primitive and can only do a basic pair-wise comparison, while graphs and
 other interactive tooling would be more valuable. Thus, there would be many great projects for a
 summer contributor to tackle here!
+
+**Expected Outcomes**: Improvement of Julia's automated testing/benchmarking framework.
+**Skills**: Interest in and/or experience with CI systems.
+**Difficulty**: Medium
 
 **Contact:** [Jameson Nash](https://github.com/vtjnash), [Tim Besard](https://github.com/maleadt)
