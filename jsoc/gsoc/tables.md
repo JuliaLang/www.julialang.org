@@ -25,7 +25,9 @@
 
 **Difficulty**: Medium
 
-[Apache Parquet](https://parquet.apache.org/) is a binary data format for tabular data. It has features for compression and memory-mapping of datasets on disk. A decent implementation of Parquet in Julia is likely to be highly performant. It will be useful as a standard format for distributing tabular data in a binary format. There exists a Parquet.jl package that has a Parquet reader and a writer. It currently conforms to the Julia Tabular file IO interface at a very basic level. It needs more work to add support for critical elements that would make Parquet.jl usable for fast large scale parallel data processing. One or more of the following goals can be targeted:
+**Duration**: 175 hours 
+
+[Apache Parquet](https://parquet.apache.org/) is a binary data format for tabular data. It has features for compression and memory-mapping of datasets on disk. A decent implementation of Parquet in Julia is likely to be highly performant. It will be useful as a standard format for distributing tabular data in a binary format. There exists a Parquet.jl package that has a Parquet reader and a writer. It currently conforms to the Julia Tabular file IO interface at a very basic level. It needs more work to add support for critical elements that would make Parquet.jl usable for fast large scale parallel data processing. Each of these goals can be targetted as a single, short duration (175 hrs) project. 
 @@tight-list
 * Lazy loading and support for out-of-core processing, with Arrow.jl and Tables.jl integration. Improved usability and performance of Parquet reader and writer for large files.
 * Reading from and writing data on to cloud data stores, including support for partitioned data.
@@ -44,54 +46,4 @@
 
 **Expected Results:** Depends on the specific projects we would agree on.
 
-**Mentors:** [Shashi Gowda](https://github.com/shashi), [Tanmay Mohapatra](https://github.com/tanmaykm)
-
-<!--- Commented out for Summer 2021 since the projects were not updated.
-## GPU support in JuliaDB
-
-JuliaDB is a distributed analytical database. It uses Julia’s multi-processing for parallelism at the moment. GPU implementations of some operations may allow relational algebra with low latency. In this project, you will be required to add basic GPU support in JuliaDB.
-
-@@tight-list
-- Copy a table to GPU -- this may be as simple as converting every column into a CuArray or GPUArray
-- `map`, `reduce` and `filter` operation -- apply simple functions on a large table that is on the GPU
-  - Ensure that columnar storage format is made use of in the lower level code generated.
-- The `groupby` and `join` operations may involve first implementing an efficient [`sortperm`](https://docs.julialang.org/en/v1/base/sort/#Base.sortperm) that utilize the GPU, or an efficient hash table on the GPU
-- `groupby` kernel on GPU
-- `join` kernel on GPU (stretch goal)
-@@
-
-**Mentors**: [Shashi Gowda](https://shashi.github.io), [Mike Innes](https://mikeinnes.github.io/)
-
-## A columnar query processing and optimization backend for Query.jl
-
-[Query.jl](https://github.com/queryverse/Query.jl) is designed to work
-with multiple backends. This project would add a backend for columnar sources
-that implements many of the optimizations that the database literature
-on column oriented query processing has identified.
-
-**Recommended Skills**: Very strong database design knowledge, familiarity
-with the Julia data stack and excellent Julia knowledge.
-
-**Expected Results**: A new backend for [Query.jl](https://github.com/queryverse/Query.jl)
-that runs queries against columnar stores in an optimized way.
-
-**Mentors**: [David Anthoff](https://github.com/davidanthoff)
-
-## Tabular file IO
-
-The Queryverse has a large number of file IO packages: [CSVFiles.jl](https://github.com/queryverse/CSVFiles.jl),
-[ExcelFiles.jl](https://github.com/queryverse/ExcelFiles.jl), [FeatherFiles.jl](https://github.com/queryverse/FeatherFiles.jl),
-[StatFiles.jl](https://github.com/queryverse/StatFiles.jl), [ParquetFiles](https://github.com/queryverse/ParquetFiles.jl)
-and [FstFiles.jl](https://github.com/queryverse/FstFiles.jl). This project
-will a) do serious performance work across all of the existing packages and
-b) add write capabilities  to a number of them.
-
-**Recommended Skills**: Experience with file formats, writing performant
-julia code.
-
-**Expected Results**: Write capabilities across the packages listed above,
-competitive performance for all the packages listed above.
-
-**Mentors**: [David Anthoff](https://github.com/davidanthoff)
-
--->
+**Mentors:** [Tanmay Mohapatra](https://github.com/tanmaykm)
