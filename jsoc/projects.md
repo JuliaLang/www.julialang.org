@@ -35,9 +35,6 @@ We have our project ideas organized below roughly by domain but you can also see
 We also have Julia project's available under other organizations. If you are applying for those projects, make sure your application is for that organization and NOT the Julia Language:
 @@tight-list
 * [Gridap - NumFOCUS](https://github.com/numfocus/gsoc#gridap)
-* [JuMP - NumFOCUS](https://github.com/numfocus/gsoc#jump)
 * [FluxML - NumFOCUS](https://github.com/numfocus/gsoc#fluxml)
 * [SciML - NumFOCUS](https://github.com/numfocus/gsoc#sciml)
-  - [SciML](/jsoc/gsoc/sciml/) - Scientific Machine Learning
-  - [Differential Equations](/jsoc/gsoc/diffeq/) - Numerical methods for high-performance solving of differential equation models.
 @@
