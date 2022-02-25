@@ -7,6 +7,8 @@ ML/Stats ecosystem.
 
 MLJ is released under the MIT license and sponsored by the Alan Turing Institute.
 
+/toc
+
 ## Machine Learning in Predictive Survival Analysis
 
 Implement survival analysis models for use in the MLJ machine learning
