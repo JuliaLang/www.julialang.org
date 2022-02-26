@@ -6,10 +6,10 @@ At JuliaCon 2021 a new sampler Monte Carlo method (for example as sampling algor
 introduced [1]. The method exploits the factorization structure to sample *a single* continuous time Markov chain targeting a joint distribution
 in parallel. In contrast to parallel Gibbs sampling in the method at no time a subset of coordinates is kept fixed. In Gibbs sampling keeping 
 a subset fixed is the main device to achieve massive parallelism: given a separating set of coordinates, the conditional posterior
-factorizes in parallezible subproblems. In the presented method, a particle representing a posterior state never ceases to move, 
-and it is only the decisions about direction changes which happen in parallel on subsets of coordinates.
+factorizes into independent subproblems. In the presented method, a particle representing a parameter vector sampled from the posterior never 
+ceases to move, and it is only the decisions about changes of the direction of the movement which happen in parallel on subsets of coordinates.
 
-There are two implementations available which make use of Julias multithreading capabilities. Starting from that, the contributor 
+There are already two implementations available which make use of Julias multithreading capabilities. Starting from that, the contributor 
 implements a version of the algorithm using GPU computing techniques as the methods is are suitable for these approaches.
 
 **Expected Results**: Implement massive parallel factorized bouncy particle sampler [1,2] using GPU computing.
