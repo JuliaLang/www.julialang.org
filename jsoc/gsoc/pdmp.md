@@ -1,4 +1,4 @@
-# Piecewise-deterministic Monte Carlo methods – Summer of Code
+# Event-chain Monte Carlo methods – Summer of Code
 
 ## Massive parallel factorized bouncy particle sampler
 
