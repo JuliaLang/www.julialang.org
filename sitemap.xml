@@ -1046,6 +1046,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/jsoc/gsoc/pdmp/index.html</loc>
+    <lastmod>2022-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2016/08/announcing-support-for-complex-domain-linear-programs-in-Convex.jl/index.html</loc>
     <lastmod>2022-02-26</lastmod>
     <changefreq>monthly</changefreq>
