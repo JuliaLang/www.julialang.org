@@ -22,6 +22,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Machine learning](/jsoc/gsoc/machine-learning) - work on problems in machine learning in the broader Julia ML ecosystem
 * [MLJ.jl](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
 * [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
+* [Event-chain Monte Carlo](/jsoc/gsoc/pdmp/) - a family of continuous time Markov-Chain Monte Carlo methods. 
 * [Pluto and JavaScript](/jsoc/gsoc/pluto/) - Pluto notebooks and tools for teaching and JavaScript interoperability
 * [QuantumClifford](/jsoc/gsoc/quantumclifford) - Quantum circuits with Clifford gates
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
