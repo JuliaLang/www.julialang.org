@@ -18,8 +18,7 @@ While we implement a good variety of graph convolutional layers, there is still 
 ### Adding models and examples
 
 As part of the documentation and for bootstrapping new projects, we want to add fully worked out examples and applications of graph neural networks. We can start
-with entry-level tutorials and progressively introduce to the read more advanced
-functionalities. 
+with entry-level tutorials and progressively introduce the reader to more advanced features. 
 
 **Duration**: 175h.  
 
