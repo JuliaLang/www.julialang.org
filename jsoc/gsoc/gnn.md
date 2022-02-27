@@ -7,62 +7,79 @@ GNNs are a growing area of research and find many applications in complex networ
 
 ### Adding graph convolutional layers 
 
-While we implement a good variety of graph convolutional layers, there is still a vast zoology to be implemented yet.
+While we implement a good variety of graph convolutional layers, there is still a vast zoology to be implemented yet. Preprocessing tools, pooling operators, and other gnn-related functionalities can be considered as well.
 
-*Duration*: 175h.  
-*Expected difficulty*: easy to medium.  
-*Expected outcome*: Enrich the package with a variety of new layers and operators.
+**Duration**: 175h.
+
+**Expected difficulty**: easy to medium.  
+
+**Expected outcome**: Enrich the package with a variety of new layers and operators.
 
 ### Adding models and examples
 
-As part of the documentation and for bootstrapping new projects, we want to add fully worked out examples and applications of graph neural networks.
+As part of the documentation and for bootstrapping new projects, we want to add fully worked out examples and applications of graph neural networks. We can start
+with entry-level tutorials and progressively introduce the reader to more advanced features. 
 
-*Duration*: 175h.  
-*Expected difficulty*: medium.  
-*Expected outcome*: A few pedagogical and more advanced examples of graph neural networks applications.
+**Duration**: 175h.  
+
+**Expected difficulty**: medium.  
+
+**Expected outcome**: A few pedagogical and more advanced examples of graph neural networks applications.
 
 ### Adding graph datasets
 
-Provide julia friendly wrappers for common graph datasets in [`MLDatasets.jl`](https://github.com/JuliaML/MLDatasets.jl).
+Provide julia friendly wrappers for common graph datasets in [`MLDatasets.jl`](https://github.com/JuliaML/MLDatasets.jl). Create convenient interfaces
+for the julia ML and data ecosystem. 
 
+**Duration**: 175h.  
 
-*Duration*: 175h.  
-*Expected difficulty*: easy.  
-*Expected outcome*: A large collection of graph datasets easily available to the julia ecosystem.
+**Expected difficulty**: easy.  
+
+**Expected outcome**: A large collection of graph datasets easily available to the julia ecosystem.
 
 ### Supporting heterogeneous graphs
 
-In some complex networks, the relations expressed by edges can be of different types. We need to implement an heteroeneous graph type and implement convolutional layers supporting them.
+In some complex networks, the relations expressed by edges can be of different types. We need to implement an heteroeneous graph type and define convolutional layers supporting it.
 
-*Duration*: 350h.  
-*Expected difficulty*: hard.  
-*Expected outcome*: The implementation of a new graph
+**Duration**: 350h.  
+
+**Expected difficulty**: hard.  
+
+**Expected outcome**: The implementation of a new graph
 type for etherogeneuous networks and corresponding graph convolutional layers.
 
 ### Training on very large graphs  
 
 Graph containing several milions of nodes are too large for gpu memory. Mini-batch training si performed on subgraphs, as in the GraphSAGE algorithm.
 
-*Duration*: 175h.  
-*Expected difficulty*: hard.  
-*Expected outcome*: The necessary algorithmic components to scale GNN training to very large graphs.
+**Duration**: 175h.  
+
+**Expected difficulty**: hard.  
+
+**Expected outcome**: The necessary algorithmic components to scale GNN training to very large graphs.
 
 
 ### Supporting temporal graph neural networks
-We aim at implementing temporal graph convolutions for time-varying graph and/or node features.
 
-*Duration*: 350h.  
-*Expected difficulty*: hard.  
-*Expected outcome*: A new dynamical graph type and 
+We aim at implementing temporal graph convolutions for time-varying graph and/or node features. The design of an efficient dynamical graph type is a crucial 
+part of this project.
+
+**Duration**: 350h. 
+
+**Expected difficulty**: hard.
+
+**Expected outcome**: A new dynamical graph type and 
 corresponding convolutional layers.
 
 ### Improving perfomance using sparse linear algebra 
 
 Many graph convolutional layers can be expressed as non-materializing algebraic operations involving the adjacency matrix instead of the slower and more memory consuming gather/scatter mechanism. We aim at extending as far as possible and in a gpu-friendly way these *fused* implementation.
 
-*Duration*: 175h.  
-*Expected difficulty*: hard.  
-*Expected outcome*: A noticeable perfomance increase
+**Duration**: 175h.
+
+**Expected difficulty**: hard.
+
+**Expected outcome**: A noticeable perfomance increase
 for many graph convolutional operations.
 
 ## Recommended skills
