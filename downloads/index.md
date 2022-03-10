@@ -279,7 +279,7 @@ All Julia binary releases are cryptographically secured using the traditional me
 
 ## Supported platforms
 
-Different OSes and architectures have varying [tiers of support](/downloads/#currently_supported_platforms). Please see [platform specific instructions](/downloads/platform/) for further installation instructions and if you have trouble installing Julia. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
+Different OSes and architectures have varying [tiers of support](/downloads/#support_tiers_for_the_latest_stable_release_of_julia). Please see [platform specific instructions](/downloads/platform/) for further installation instructions and if you have trouble installing Julia. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
 
 
 @@row @@col-12
