@@ -133,6 +133,7 @@
      See <a href="classes/">where Julia is being taught today</a>.
      </p>
      <img src="assets/schools.png" alt="Collection of schools where Julia is taught" class="img-fluid">
+     <!-- You can find the editable classroom image here: https://docs.google.com/presentation/d/1t94qHV-Al8gr-AVGEB4RG1KPYMZEN0CUdlfV2oPsAgU/edit?usp=sharing Please ping logan@julialang.org for access.  -->
    </div>
  </div>
 <br>
