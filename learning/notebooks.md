@@ -10,7 +10,6 @@ Jupyter notebooks are available for the following YouTube tutorials over at the 
 * [Introducción a Julia en español](https://youtu.be/LbTbs-0pOuc), by Miguel Raz Guzmán
 * [Intro to JuliaDB, a package for working with large persistent data sets](https://www.youtube.com/watch?v=d5SzUh2_ono), by Josh Day and Shashi Gowda
 * [Intro to solving differential equations in Julia](https://www.youtube.com/watch?v=KPEqYtEd-zY), by Chris Rackauckas
-* [Intro to Julia (version 0.6)](https://www.youtube.com/watch?v=4igzy3bGVkQ), by Jane Herriman
 @@
 
 The [Julia Language's YouTube channel](https://www.youtube.com/user/JuliaLanguage) also provides a number of tutorials and  various other Julia Language content.
