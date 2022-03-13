@@ -44,9 +44,10 @@ to anyone. Please check Slack for the meeting link.
 
 Each of these groups is organized around a common area of interest with a community focus.
 
-| Community group        | Slack channel       | Meetings               | Contact                                                              |
-| ---------------------- | ------------------- | ---------------------- | -------------------------------------------------------------------- |
-| JuliaCon committee     | `#juliacon`         | [none]                 | [Avik Sengupta][Avik-Sengupta], [Valentin Churavy][Valentin-Churavy] |
+| Community group        | Slack channel       | Meetings                            | Contact                                                              |
+| ---------------------- | ------------------- | ----------------------------------- | -------------------------------------------------------------------- |
+| JuliaCon committee     | `#juliacon`         | [none]                              | [Avik Sengupta][Avik-Sengupta], [Valentin Churavy][Valentin-Churavy] |
+| Julia Gender Inclusive | `#gender-inclusive` | Every six weeks, Sunday at 11am ET  | [Kim Auth][Kim-Auth], [Tan Zhi Xuan][Tan-Zhi-Xuan]     |
 
 ### See also
 
@@ -72,3 +73,5 @@ Each of these groups is organized around a common area of interest with a commun
 [Mosè-Giordano]: https://github.com/giordano
 [Tim-Besard]: https://github.com/maleadt
 [Valentin-Churavy]: https://github.com/vchuravy
+[Kim-Auth]: https://github.com/kimauth
+[Tan-Zhi-Xuan]: https://github.com/ztangent
