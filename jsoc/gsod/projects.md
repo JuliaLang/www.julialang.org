@@ -139,7 +139,7 @@ some coding (e.g., Julia macros, artifacts) and so is optional for
 this project.
 
 
-### 2. Integrating of model documentation into the reference manual
+### 2. Integration of model documentation into the reference manual
 
 Models can be loosely grouped into families (regressors, classifiers,
 clustering algorithms, etc) and integrating the new document strings
