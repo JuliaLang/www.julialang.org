@@ -1,8 +1,8 @@
 # Julia's Google Season of Docs Projects
 
-Below are the projects which have been proposed for Google Season of Docs under the umbrella of the Julia Language. If you have questions about potential projects, the first point of contact would be the mentor(s) listed on the project. If you are unable to get ahold of the potential mentor(s), you should email `jsoc@julialang.org` and CC `logan@julialang.org`. 
+Below are the projects which have been proposed for Google Season of Docs under the umbrella of the Julia Language. If you have questions about potential projects, the first point of contact would be the mentor(s) listed on the project. If you are unable to get ahold of the potential mentor(s), you should email `jsoc@julialang.org` and CC `logan@julialang.org`.
 
-We at the Julia Language are committed to making the application process and participation in GSoD with Julia accessible to everyone. If you have questions or requests, please do reach out and we will do our best to accommodate you. 
+We at the Julia Language are committed to making the application process and participation in GSoD with Julia accessible to everyone. If you have questions or requests, please do reach out and we will do our best to accommodate you.
 
 ### The GSoD experience with The Julia Language
 
@@ -41,7 +41,7 @@ Just to name a few. One project would be to create a unified scientific machine 
 #### Potential Impact
 
   Many university classes use the SciML ecosystem for its teaching, and thus classrooms all over the world will be improved. Tutorials that capture more domains will allow professors teaching biological modeling courses to not have to manually rewrite physics-based tutorials to match their curriculum, and conversion of READMEs to documentation will help such professors link to reference portions for these tools in their lecture notes.
-  
+
   Additionally, these benchmarks are a widely referenced cross-language benchmark of differential equations, which gives a standard between Python, R, Julia, MATLAB, and many C++ and Fortran packages. Improving the technical writing around the benchmarks can make this set of documents more widely accessible, and enlarging the scope of topics will help individuals of all programming languages better assess the methods they should be choosing for their problems.
 
 
@@ -84,3 +84,83 @@ Here are some ideas:
 
 Turing is a rapidly developing probabilistic programming language, used by machine learning researchers, data scientists, statisticians, and economists. Improving any measure of the informational tools in Turing will allow those communities to integrate better with the Julia community, which will, in turn, improve the rest of Julia's ecosystem. Better documentation and guides will attract new learners and help to transition more experienced people from tools that do not meet their needs.
 
+
+## MLJ (multi-paradigm machine learning)
+
+[MLJ](https://alan-turing-institute.github.io/MLJ.jl/dev/) (Machine
+Learning in Julia) is the most popular multi-paradigm machine learning
+toolbox written in the Julia language. It provides a common interface
+and meta-algorithms for selecting, tuning, evaluating, composing and
+almost 200 machine learning models written in Julia and other
+languages. Such models include neural networks (based on the popular
+[Flux.jl](https://fluxml.ai/Flux.jl/stable/) package) tree-based
+models (such as random forests) support vector machines, nearest
+neighbor models, outlier detection models, general linear models,
+clustering algorithms (such as K-means), and more.  In particular MLJ
+wraps a large number of models from the python toolbox
+[scikit-learn](https://scikit-learn.org/stable/).
+
+
+While the the MLJ ecosystem is spread over some [two dozen
+repositories](https://github.com/JuliaAI) the reference documentation
+is mostly collected in [single manual]
+(https://alan-turing-institute.github.io/MLJ.jl/dev/). Additional
+learning resources, which include a dedicated [tutorial
+site](https://juliaai.github.io/DataScienceTutorials.jl/), are listed
+[here](https://github.com/alan-turing-institute/MLJ.jl/blob/more-doc-updates/docs/src/learning_mlj.md).
+
+The reference manual is comprehensive from the point-of-view of what
+you can *do* with models (train, tune, evaluated, combined, etc) but
+has no model-specific documentation at all. Only some models have
+document strings, but these usually lack detail or examples, and do
+not conform to any standard.
+
+
+The present project can be divided
+into two parts:
+
+### 1. Model documentation
+
+Create a detailed document string for each model in MLJ's model
+registry, as outlined in [this github
+issue](https://github.com/alan-turing-institute/MLJ.jl/issues/913), or
+at least the most popular models.  A key part of each document string
+is **a short example illustrating basic usage**. Most models are provided
+by third party packages, which generally have their own documentation,
+so this is often a simple matter of adapting existing documentation to
+MLJ syntax. 
+
+The models wrapped from sckit-learn (about 70) constitute a separate
+case, as the available documentation is in python and not
+Julia. Initially, docstrings for these models will simply quote the
+python documentation. However, generating these [may
+require](https://github.com/JuliaAI/MLJScikitLearnInterface.jl/issues/37)
+some coding (e.g., Julia macros, artifacts) and so is optional for
+this project.
+
+
+### 2. Integrating of model documentation into the reference manual
+
+Models can be loosely grouped into families (regressors, classifiers,
+clustering algorithms, etc) and integrating the new document strings
+into the reference manual could fit into such an organization -
+something resembling the model documentation in
+[scikit-learn](https://scikit-learn.org/stable/).
+
+
+#### Requisite knowledge
+
+Writers will need some familiarity with basic machine learning
+workflows, and very basic Julia, but will also have the opportunity to
+develop both.
+
+
+#### Potential Impact
+
+Julia is perceived as a potential game-changer for machine learning.
+Current practice is dominated by platforms in python and R, but there
+innovation is increasingly stifled by the [two language
+problem](https://www.nature.com/articles/d41586-019-02310-3) solved by
+Julia. Good documentation is essential both to ensure MLJ.jl is an
+attractive option to practicing data scientists, and to those training
+new data scientists. 
