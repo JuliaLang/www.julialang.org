@@ -103,8 +103,8 @@ wraps a large number of models from the python toolbox
 
 While the the MLJ ecosystem is spread over some [two dozen
 repositories](https://github.com/JuliaAI) the reference documentation
-is mostly collected in [single manual]
-(https://alan-turing-institute.github.io/MLJ.jl/dev/). Additional
+is mostly collected in a [single
+manual](https://alan-turing-institute.github.io/MLJ.jl/dev/). Additional
 learning resources, which include a dedicated [tutorial
 site](https://juliaai.github.io/DataScienceTutorials.jl/), are listed
 [here](https://github.com/alan-turing-institute/MLJ.jl/blob/more-doc-updates/docs/src/learning_mlj.md).
