@@ -66,7 +66,7 @@ Just to name a few. One project would be to create a unified scientific machine 
   This would also greatly benefit the adoption of Flux in the larger ML ecosystem, which we feel is currently held back due to not having enough of these simple patterns documented in an approachable form. We want to see an increase in the number of contributors to the various packages too since that would help us improve our stack better. Flux also utilizes simple to understand and performant code, made possible by Julia, and through this, we also want to bring awareness to how our ecosystem has matured, and increase its adoption in research and industry.
 
 
-## Turing (Probabilistic machine learning)
+## Turing (probabilistic machine learning)
 
 [Turing.jl](https://turing.ml/dev/) is a probabilistic programming language written in Julia. The team is looking for help with documentation and tutorials for several projects. Mentors for this project would be [Cameron Pfiffer](https://github.com/cpfiffer/), [Martin Trapp](https://github.com/trappmartin/), [Kai Xu](https://github.com/xukai92), or [Hong Ge](https://github.com/yebai/).
 
