@@ -1,7 +1,8 @@
 # Julia in the classroom
 
 Julia is now being used in several universities and online courses.
-If you know of other classes using Julia for teaching, please consider updating this list.
+This list is by no means complete or even comprehensive - it is based on submissions made to the website.
+If you know of other classes using Julia for teaching, please consider [updating this list](https://github.com/JuliaLang/www.julialang.org/edit/main/learning/classes.md).
 
 @@tight-list
 * AGH University of Science and Technology, Poland
@@ -40,6 +41,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * [CM106/CMI043/CMM204/MNUM7079](https://www.youtube.com/playlist?list=PLOOY0eChA1uyk_01nGJVmcQGvcJq9h6_6), Otimização Não Linear (Prof. Abel Soares Siqueira), 2018, 2020
 * Federal University of Uberlândia, Institute of Physics
     * [GFM050](https://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
+* Johns Hopkins University
+    * [EN560.630](https://github.com/cristophermoen/StructuralDynamics), Structural Dynamics (Prof. Cristopher D. Moen), Spring 2020, Fall 2021
 * Hadsel High School, Stokmarknes, Nordland, Norway
     * [AnsattOversikt](https://www.hadsel.vgs.no/AnsattOversikt.aspx?personid=16964&amp;mid1=15925), [REA3034] Programmering og modellering (Programming and modeling with Julia and Snap), 2018 / 19 (High school lecturer Olav A Marschall, M.sc. Computer Science)
 * IIT Indore
@@ -108,6 +111,7 @@ If you know of other classes using Julia for teaching, please consider updating 
 * Southcentral Kentucky Community and Technical College
     * CIT 120 Computational Thinking (Inst. [Bryan Knowles](https://github.com/snotskie/)), Online, Fall 2017
 * Stanford University
+    * [ENGR108])(https://web.stanford.edu/class/engr108/), https://web.stanford.edu/class/engr108/ (Prof Stephen Boyd), Fall 2021 
     * [AA222](https://www.stanford.edu/class/aa222/), Introduction to Multidisciplinary Design Optimization (Prof. Mykel J. Kochenderfer), Spring 2014
     * [AA228/CS238](https://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer), Fall 2014
     * [EE103](https://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2014, Fall 2015
@@ -126,6 +130,21 @@ If you know of other classes using Julia for teaching, please consider updating 
    * DIIIO06, Advanced linear optimization, Spring 2020 (Diego Morán)
 * Universidad Alberto Hurtado, Chile
     * [Métodos Cuantitativos, Introducción a la Programación con Julia](https://mauriciotejada.com/programacionjulia), Magister en Economía (Prof. [Mauricio Tejada](https://mauriciotejada.com))
+* Université Bretagne Sud
+    * ANR2201 - Result Analysis (Prof. Marc Sevaux), since 2018
+    * INOE301 - Scheduling (Dr. Alexandru Olteanu), since 2018
+    * MAOE501 - Advanced Scheduling (Dr. Alexandru Olteanu), since 2018
+    * MTH2151 - Graphs (Prof. Marc Sevaux), since 2019
+    * MTH2153 - Numerical methods 1 (Dr. Bertrand Banos), since 2018
+    * MTH2251 - Mathematical Programming (Prof. Marc Sevaux), since 2018
+    * MTH2254 - Multi-objective optimization (Prof. Xavier Gandibleux), since 2018
+    * MTH2352 - Heuristics and metaheuristics (Prof. Marc Sevaux), since 2019
+    * OADE301 - Decision aiding tools (Dr. Alexandru Olteanu), since 2018
+    * OPCE501 - Combinatorial Optimization (Prof. Marc Sevaux), since 2019
+    * OPE401 - Operations Research (Dr. Alexandru Olteanu), since 2018
+    * ROP2301 - Optimization (Prof. Marc Sevaux), since 2018
+    * UVOE501 - Virtual factory and optimization (Dr. Alexandru Olteanu), since 2018
+    * UNOE401 - Digital factory and optimization (Dr. Alexandru Olteanu), since 2018
 * Universidad del Norte, Barranquilla, Colombia
     * [ELP 4076](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ELP&crse_numb_in=4076), Ingeniería de Ríos y Costas (Prof. Germán Rivillas)
     * [ICI 4083](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ICI&crse_numb_in=4083), Hidráulica (Prof. Germán Rivillas)
@@ -138,6 +157,8 @@ If you know of other classes using Julia for teaching, please consider updating 
     * Métodos numéricos para sistemas dinámicos (Prof. Luis Benet), Fall 2014
     * [Métodos numéricos avanzados](https://github.com/dpsanders/MetodosNumericosAvanzados) (Prof. David P. Sanders and Prof. Luis Benet), Spring 2015
     * [Métodos computacionales para la física estadística](https://github.com/dpsanders/metodos-monte-carlo) (Prof. David P. Sanders), Spring 2015
+* Universidad Nacional del Centro de la Provincia de Buenos Aires, Facultad de Ciencias Exactas, Tandil, Argentina. 
+    * [Modelización Matemática](https://exa.unicen.edu.ar/matematicas/#asignaturas) (Prof. Pablo A. Lotito), 2020.    
 * Universidad Nacional Pedro Ruiz Gallo, Lambayeque, Perú
     * Julia: el lenguaje del futuro, [Semana de Integración de Ingeniería Electrónica](https://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro), (Oscar William Neciosup Vera), Spring 2015
 * Universidad Veracruzana, México
@@ -151,11 +172,15 @@ If you know of other classes using Julia for teaching, please consider updating 
 * University of Basel, Department of Physics
     * [Classical Mechanics](https://www.quantumtheory-bruder.physik.unibas.ch) (Prof. Christoph Bruder), Fall 2020
 * University of California, Los Angeles (UCLA)
+    * [EE133A](https://www.seas.ucla.edu/~vandenbe/ee133a.html), Applied Numerical Computing (Prof. L. Vandenberghe), Fall 2021
     * [Biostat 257](https://ucla-biostat-257-2021spring.github.io), Computational Methods for Biostatistical Research, Spring 2021 (Prof. [Hua Zhou](http://hua-zhou.github.io))
 * University of Canterbury, Christchurch, New Zealand
     * DATA201/DATA422 [Data Wrangling](https://www.canterbury.ac.nz/courseinfo/GetCourseDetails.aspx?course=DATA201&occurrence=22S2(C)&year=2022) (Dr. Giulio Valentino Dalla Riva, Dr. Thomas Li), since S2 2018, 2019, 2020, 2021, 2022
     * DATA419 [Social Networks and Online Communities](https://www.canterbury.ac.nz/courseinfo/GetCourseDetails.aspx?course=DATA419&occurrence=22S1(C)&year=2022) (Dr. Giulio Valentino Dalla Riva), S2 2018, 2019, 2020, 2021, 2022
     * DATA417 [The Trustworthy Data Scientist](https://www.canterbury.ac.nz/courseinfo/GetCourseDetails.aspx?course=DATA417&occurrence=22S2(C)&year=2022) (Dr. Giulio Valentino Dalla Riva), S2 2018, 2019, 2020, 2021, 2022
+* University of Central Florida
+    * STA 7722 Statistical Learning Theory, Spring 2019-2022
+    * STA 6714 Data Preparation, Fall 2021-2022
 * University of Cologne, Institute for Theoretical Physics
     * [Computational Physics](https://www.thp.uni-koeln.de/trebst/Lectures/2016-CompPhys.shtml) (Prof. Simon Trebst), Summer 2016
     * [Computational Physics](https://www.thp.uni-koeln.de/~bulla/cp-ss17.html) (Prof. Ralf Bulla), Summer 2017

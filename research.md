@@ -57,9 +57,14 @@ For example, see the [CITATION.bib](https://github.com/JuliaLang/julia/blob/mast
 
 We welcome additions to this list in the form of [pull requests](https://github.com/JuliaLang/www.julialang.org/blob/master/research.md)
 
+## 2022
+
+* **The JuliaConnectoR: A Functionally-Oriented Interface for Integrating Julia in R**. Stefan Lenz, Maren Hackenberg, Harald Binder. _Journal of Statistical Software 101_ no. 16 (2022). doi: [10.18637/jss.v101.i06](https://www.jstatsoft.org/article/view/v101i06). Packages: [JuliaConnectoR](https://cran.r-project.org/web/packages/JuliaConnectoR/index.html) 
+
 ## 2021
 
 @@tight-list
+* **EntropyHub: An open-source toolkit for entropic time-series analysis**. Matthew W. Flood, Bernd Grimm. _PLoS ONE_ (2021). doi: [10.1371/journal.pone.0259448](https://doi.org/10.1371/journal.pone.0259448). Package: [EntropyHub.jl](https://github.com/MattWillFlood/EntropyHub.jl)
 * **A simple model for assessing climate control trade-offs and responding to unanticipated climate outcomes**. Henri F. Drake, Ronald L. Rivest, Alan Edelman, John M. Deutch. _Environmental Research Letters_ (2021). doi: [10.1088/1748-9326/ac243e](https://doi.org/10.1088/1748-9326/ac243e). Package: [ClimateMARGO.jl](https://github.com/ClimateMARGO/ClimateMARGO.jl).
 * **On the Rate of Error Growth in Time for Numerical Solutions of Nonlinear Dispersive Wave Equations**. Hendrik Ranocha, Manuel Quezada de Luna, David I. Ketcheson. _Partial Differential Equations and Applications_ (2021). doi: [10.1007/s42985-021-00126-3](https://doi.org/10.1007/s42985-021-00126-3). arXiv: [2102.07376 [math.NA]](http://arxiv.org/abs/2102.07376). Packages: [SummationByPartsOperators.jl](https://github.com/ranocha/SummationByPartsOperators.jl), [OrdinaryDiffEq.jl](https://github.com/SciML/OrdinaryDiffEq.jl)
 * **SummationByPartsOperators.jl: A Julia library of provably stable semidiscretization techniques with mimetic properties**. Hendrik Ranocha. _Journal of Open Source Software_ (2021). doi: [10.21105/joss.03454](https://doi.org/10.21105/joss.03454). Package: [SummationByPartsOperators.jl](https://github.com/ranocha/SummationByPartsOperators.jl)

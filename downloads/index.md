@@ -54,8 +54,8 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{stable_release_short}}/julia-{{stable_release}}-linux-aarch64.tar.gz">64-bit (AArch64)</a>
         (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{stable_release_short}}/julia-{{stable_release}}-linux-aarch64.tar.gz.asc">GPG</a>)
       </td>
-      <td colspan="3"> <!-- <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{stable_release_short}}/julia-{{stable_release}}-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
-                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{stable_release_short}}/julia-{{stable_release}}-linux-armv7l.tar.gz.asc">GPG</a>) -->
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{stable_release_short}}/julia-{{stable_release}}-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
+                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{stable_release_short}}/julia-{{stable_release}}-linux-armv7l.tar.gz.asc">GPG</a>)
       </td>
       </td>
     </tr>
@@ -217,8 +217,8 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-aarch64.tar.gz">64-bit (AArch64)</a>
         (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-aarch64.tar.gz.asc">GPG</a>)
       </td>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
-                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz.asc">GPG</a>)
+      <td colspan="3"> <!-- <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
+                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-armv7l.tar.gz.asc">GPG</a>) -->
       </td>
       </td>
     </tr>
@@ -279,7 +279,7 @@ All Julia binary releases are cryptographically secured using the traditional me
 
 ## Supported platforms
 
-Different OSes and architectures have varying [tiers of support](/downloads/#currently_supported_platforms). Please see [platform specific instructions](/downloads/platform/) for further installation instructions and if you have trouble installing Julia. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
+Different OSes and architectures have varying [tiers of support](/downloads/#support_tiers_for_the_latest_stable_release_of_julia). Please see [platform specific instructions](/downloads/platform/) for further installation instructions and if you have trouble installing Julia. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
 
 
 @@row @@col-12

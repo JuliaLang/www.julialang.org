@@ -16,7 +16,7 @@ UTC refers to Coordinated Universal Time, and ET refers to Eastern Time.
 | Working Group                    | Slack channel       | Meetings                                 | Contact                                                                  |
 | -------------------------------- | ------------------- | ---------------------------------------- | ------------------------------------------------------------------------ |
 | Astronomy                        | `#astro`            | Fourth Friday of each month at 19:00 UTC | [Mosè Giordano][Mosè-Giordano], [Miles Lucas][Miles-Lucas]               |
-| Base Julia CI                    | `#ci-dev`           | Every other Tuesday at 2:15pm ET         | [Elliot Saba][Elliot-Saba], [Dilum Aluthge][Dilum-Aluthge]               |
+| CI infrastructure                | `#ci-dev`           | Every other Monday at 2pm ET             | [Elliot Saba][Elliot-Saba], [Dilum Aluthge][Dilum-Aluthge]               |
 | [GPU][gpu]                       | `#gpu`              | Every other Monday at 11am ET            | [Tim Besard][Tim-Besard], [Valentin Churavy][Valentin-Churavy]           |
 | High-performance computing (HPC) | `#hpc`              | Fourth Tuesday of each month at 2pm ET   | [Valentin Churavy][Valentin-Churavy]                                     |
 | Machine learning                 | `#machine-learning` | Every other Tuesday at 12pm ET           | [Kyle Daruwalla][Kyle-Daruwalla], [Lorenz Ohly][Lorenz-Ohly]             |
@@ -44,9 +44,10 @@ to anyone. Please check Slack for the meeting link.
 
 Each of these groups is organized around a common area of interest with a community focus.
 
-| Community group        | Slack channel       | Meetings               | Contact                                                              |
-| ---------------------- | ------------------- | ---------------------- | -------------------------------------------------------------------- |
-| JuliaCon committee     | `#juliacon`         | [none]                 | [Avik Sengupta][Avik-Sengupta], [Valentin Churavy][Valentin-Churavy] |
+| Community group        | Slack channel       | Meetings                            | Contact                                                              |
+| ---------------------- | ------------------- | ----------------------------------- | -------------------------------------------------------------------- |
+| JuliaCon committee     | `#juliacon`         | [none]                              | [Avik Sengupta][Avik-Sengupta], [Valentin Churavy][Valentin-Churavy] |
+| Julia Gender Inclusive | `#gender-inclusive` | Every six weeks, Sunday at 11am ET  | [Kim Auth][Kim-Auth], [Tan Zhi Xuan][Tan-Zhi-Xuan]     |
 
 ### See also
 
@@ -72,3 +73,5 @@ Each of these groups is organized around a common area of interest with a commun
 [Mosè-Giordano]: https://github.com/giordano
 [Tim-Besard]: https://github.com/maleadt
 [Valentin-Churavy]: https://github.com/vchuravy
+[Kim-Auth]: https://github.com/kimauth
+[Tan-Zhi-Xuan]: https://github.com/ztangent

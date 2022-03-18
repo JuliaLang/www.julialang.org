@@ -17,3 +17,7 @@ The [CxxWrap.jl](https://github.com/JuliaInterop/CxxWrap.jl) package provides a 
 **Duration: 175h, expected difficulty: hard**
 
 **Mentor**: [Bart Janssens](https://github.com/barche)
+
+## Rust
+
+Take a look at the [hyper.rs project, listed on the "Pluto" page](pluto) about wrapping a Rust HTTP server in a Julia package.

@@ -15,7 +15,7 @@ The following functions are of interest: in-sample and out-of sample forecasts/n
 
 **Recommended skills:** Graduate-level knowledge of time series analysis, machine learning, and optimization is helpful.
 
-**Expected output:** The student is expected to produce code, documentation, visualization, and real-data examples.
+**Expected output:** The contributor is expected to produce code, documentation, visualization, and real-data examples.
 
 **References:** Contact project mentors for references.
 
@@ -27,6 +27,6 @@ The following  functionality is of interest: forecasting intermittent demand (Cr
 
 **Recommended skills:** Graduate-level knowledge of time series analysis is helpful.
 
-**Expected output:** The student is expected to produce code, documentation, visualization, and real-data examples.
+**Expected output:** The contributor is expected to produce code, documentation, visualization, and real-data examples.
 
 **References:** Contact project mentors for references.
