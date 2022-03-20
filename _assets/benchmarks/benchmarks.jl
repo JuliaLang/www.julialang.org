@@ -1,15 +1,17 @@
+using Base.MathConstants
+using CSV
 using DataFrames
 using Gadfly
+using PooledArrays
 
-benchmarks = readtable("benchmarks.csv", names=[:language, :benchmark, :time])
-cdata = benchmarks[benchmarks[:language].== "c", :]
-benchmarks = join(benchmarks, cdata, on=:benchmark)
-benchmarks[:time]./= benchmarks[:time_1]
-benchmarks[:language] = PooledDataArray(benchmarks[:language])
-benchmarks[:benchmark] = PooledDataArray(benchmarks[:benchmark])
-benchmarks = benchmarks[benchmarks[:language].!= "c", :]
-benchmarks[:language] = setlevels!(benchmarks[:language], Dict{UTF8String,Any}(
-  [lang => (lang == "javascript" ? "JavaScript" : ucfirst(lang)) for lang in benchmarks[:language]]))
+benchmarks = CSV.read("benchmarks.csv", DataFrame; header=["language", "benchmark", "time"])
+cdata = benchmarks[benchmarks[!, :language].== "c", :]
+benchmarks = innerjoin(benchmarks, cdata, on=:benchmark, makeunique=true)
+benchmarks[!, :time]./= benchmarks[!, :time_1]
+benchmarks[!, :language] = PooledArray(benchmarks[!, :language])
+benchmarks[!, :benchmark] = PooledArray(benchmarks[!, :benchmark])
+benchmarks[!, :language] = replace(lang -> lang == "javascript" ? "JavaScript" : uppercasefirst(lang),
+                                   benchmarks[!, :language])
 
 p = plot(benchmarks,
     x = :language,
@@ -19,7 +21,7 @@ p = plot(benchmarks,
     Guide.ylabel(nothing),
     Guide.xlabel(nothing),
     Theme(
-        default_point_size = 1mm,
+        point_size = 1mm,
         guide_title_position = :left,
         colorkey_swatch_shape = :circle,
         minor_label_font = "Georgia",
@@ -27,5 +29,4 @@ p = plot(benchmarks,
     ),
 )
 
-draw(SVG("_includes/benchmarks.svg", 8inch, 8inch/golden), p)
-
+draw(SVG("benchmarks.svg", 9inch, 9inch/golden), p)
