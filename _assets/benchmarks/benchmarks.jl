@@ -27,7 +27,7 @@ benchmarks[!, :normtime] = benchmarks[!, :time] ./ benchmarks[!, :ctime];
 langs = [];
 means = [];
 priorities = [];
-for lang in values(dict)
+for lang in benchmarks[!, :language]
     data = benchmarks[benchmarks[!, :language].== lang, :]
     gmean = geomean(data[!, :normtime])
     push!(langs, lang)
@@ -56,17 +56,12 @@ p = plot(benchmarks,
     Scale.y_log10,
     Guide.ylabel(nothing),
     Guide.xlabel(nothing),
-    Coord.Cartesian(xmin=1,xmax=13.3,ymin=-0.5,ymax=4.2),
     Theme(
         guide_title_position = :left,
         colorkey_swatch_shape = :circle,
         minor_label_font = "Georgia",
-        major_label_font = "Georgia"
+        major_label_font = "Georgia",
     ),
 )
-draw(SVG(8inch,8inch/golden), p)
 
 draw(SVG("benchmarks.svg", 9inch, 9inch/golden), p)
-
-# Show geometric means of microbenchmarks by language
-langmean[:,1:2]
