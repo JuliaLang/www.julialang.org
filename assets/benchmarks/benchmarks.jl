@@ -1,25 +1,76 @@
+# Producing the Julia Microbenchmarks plot
+
+# Load the required Julia packages
+using Base.MathConstants
+using CSV
 using DataFrames
 using Gadfly
+using StatsBase
 
-benchmarks = readtable("benchmarks.csv", names=[:language, :benchmark, :time])
-cdata = benchmarks[benchmarks[:language].== "c", :]
-benchmarks = join(benchmarks, cdata, on=:benchmark)
-benchmarks[:time]./= benchmarks[:time_1]
-benchmarks[:language] = PooledDataArray(benchmarks[:language])
-benchmarks[:benchmark] = PooledDataArray(benchmarks[:benchmark])
-benchmarks = benchmarks[benchmarks[:language].!= "c", :]
-benchmarks[:language] = setlevels!(benchmarks[:language], Dict{UTF8String,Any}(
-  [lang => (lang == "javascript" ? "JavaScript" : ucfirst(lang)) for lang in benchmarks[:language]]))
+# Load benchmark data from file
+benchmarks =
+    CSV.read("benchmarks.csv", DataFrame; header = ["language", "benchmark", "time"])
 
-p = plot(benchmarks,
+# Capitalize and decorate language names from datafile
+dict = Dict(
+    "c" => "C",
+    "julia" => "Julia",
+    "lua" => "LuaJIT",
+    "fortran" => "Fortran",
+    "java" => "Java",
+    "javascript" => "JavaScript",
+    "matlab" => "Matlab",
+    "mathematica" => "Mathematica",
+    "python" => "Python",
+    "octave" => "Octave",
+    "r" => "R",
+    "rust" => "Rust",
+    "go" => "Go",
+);
+benchmarks[!, :language] = [dict[lang] for lang in benchmarks[!, :language]]
+
+# Normalize benchmark times by C times
+ctime = benchmarks[benchmarks[!, :language] .== "C", :]
+benchmarks = innerjoin(benchmarks, ctime, on = :benchmark, makeunique = true)
+select!(benchmarks, Not(:language_1))
+rename!(benchmarks, :time_1 => :ctime)
+benchmarks[!, :normtime] = benchmarks[!, :time] ./ benchmarks[!, :ctime];
+
+# Compute the geometric mean for each language
+langs = [];
+means = [];
+priorities = [];
+for lang in benchmarks[!, :language]
+    data = benchmarks[benchmarks[!, :language] .== lang, :]
+    gmean = geomean(data[!, :normtime])
+    push!(langs, lang)
+    push!(means, gmean)
+    if (lang == "C")
+        push!(priorities, 1)
+    elseif (lang == "Julia")
+        push!(priorities, 2)
+    else
+        push!(priorities, 3)
+    end
+end
+
+# Add the geometric means back into the benchmarks dataframe
+langmean = DataFrame(language = langs, geomean = means, priority = priorities)
+benchmarks = innerjoin(benchmarks, langmean, on = :language)
+
+# Put C first, Julia second, and sort the rest by geometric mean
+sort!(benchmarks, [:priority, :geomean]);
+sort!(langmean, [:priority, :geomean]);
+
+p = plot(
+    benchmarks,
     x = :language,
-    y = :time,
+    y = :normtime,
     color = :benchmark,
     Scale.y_log10,
     Guide.ylabel(nothing),
     Guide.xlabel(nothing),
     Theme(
-        default_point_size = 1mm,
         guide_title_position = :left,
         colorkey_swatch_shape = :circle,
         minor_label_font = "Georgia",
@@ -27,5 +78,4 @@ p = plot(benchmarks,
     ),
 )
 
-draw(SVG("_includes/benchmarks.svg", 8inch, 8inch/golden), p)
-
+draw(SVG("benchmarks.svg", 9inch, 9inch / golden), p)
