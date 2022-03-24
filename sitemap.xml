@@ -2,12 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-    <loc>https://julialang.org/jsoc/gsod/proposal/index.html</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/jsoc/gsoc/juliadynamics/index.html</loc>
     <lastmod>2022-03-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -423,6 +417,12 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2013/04/put-this-in-your-pipe/index.html</loc>
+    <lastmod>2022-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/jsoc/gsod/2021/proposal/index.html</loc>
     <lastmod>2022-03-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
