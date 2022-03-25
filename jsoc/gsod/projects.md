@@ -127,3 +127,24 @@ problem](https://www.nature.com/articles/d41586-019-02310-3) solved by
 Julia. Good documentation is essential both to ensure MLJ.jl is an
 attractive option to practicing data scientists, and to those training
 new data scientists. 
+
+## [Plots](https://github.com/JuliaPlots/Plots.jl)
+
+Plots.jl is a unified API for several plotting libraries popular for its composable recipe system.
+
+### Projects
+
+#### Add demos to the user gallery with a focus on aesthetics
+
+Plots.jl had for long time a list of examples demonstrating basic functionality.
+Recently, a user gallery was added that should show particular good looking demos (chloropleths, gradients, animations, ... ) using DemoCards.jl.
+Interested writers would add new examples potentially taking inspiration from other existing galleries.
+
+### Requisite knowledge
+
+Writers will need some experience in producing visualisations and have a good sense for aesthetics.
+
+### Mentors
+
+ - [@BeastyBlacksmith](https://github.com/BeastyBlacksmith)
+ - [@johnnychen94](https://github.com/johnnychen94)
