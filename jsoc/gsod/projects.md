@@ -148,3 +148,38 @@ Writers will need some experience in producing visualisations and have a good se
 
  - [@BeastyBlacksmith](https://github.com/BeastyBlacksmith)
  - [@johnnychen94](https://github.com/johnnychen94)
+
+## [Javis.jl](https://github.com/JuliaAnimators/Javis.jl)
+
+Javis.jl is a tool focused on providing an easy to use interface for creating winsome and efficient animations and visualizations quickly - with an emphasis on having fun! 😃
+
+### Potential Projects
+
+#### Overhaul Tutorial 3 on Objects 
+
+Javis.jl uses an Action-Object relationship when creating animations.
+[Tutorial 3](https://juliaanimators.github.io/Javis.jl/stable/tutorials/tutorial_3/) was written early when we were pioneering this paradigm for Javis.
+A lot more has been added to Javis that has made working with Objects and Actions even more powerful!
+Those interested in this project should be excited to dive into this new exciting paradigm and work with mentors on how to develop this tutorial.
+
+#### Overhaul Tutorial 5 on Actions
+
+Javis.jl uses an Action-Object relationship when creating animations.
+[Tutorial 5](https://juliaanimators.github.io/Javis.jl/stable/tutorials/tutorial_5/) was written early when we were pioneering this paradigm for Javis.
+A lot more has been added to Javis that has made working with Objects and Actions even more powerful!
+Those interested in this project should be excited to dive into this new exciting paradigm and work with mentors on how to revamp our mascot for Javis!
+
+#### BeautifulJavis - A Gallery of Beautiful Javis Animations
+
+A wonderful project in the JuliaPlots ecosystem called [BeautifulMakie](https://lazarusa.github.io/BeautifulMakie/) was created by Lazaro Alonso.
+Lazaro graciously allowed us to potentially fork this project to make a new place for Javis - BeautifulJavis!
+BeautifulJavis is waiting to be created to be populated with [beautiful Javis animations](https://juliaanimators.github.io/Javis.jl/dev/examples/) with tutorials or instructions on how to make them.
+Interested individuals should be inspired by the opportunity to unleash their creativity in exploring Javis to its full potential to create beautiful and incredible Javis animations.
+
+### Requisite knowledge
+
+Potential contributors will need creativity, some experience or appreciation of the arts, and enthusiasm for teaching.
+
+### Mentors
+
+- **[Jacob Zelko](http://jacobzelko.com/)** - [email](mailto:jacobszelko@gmail.com), [Slack](https://julialang.org/slack/) (username: TheCedarPrince), or [Zulip](https://julialang.zulipchat.com/) (username: TheCedarPrince)
