@@ -33,7 +33,8 @@ The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding 
 <!--
       Containers: Google Summer of Code (GSoC)
  -->
- <div class="container-fluid alt-color packages">
+ <!--<div class="container-fluid alt-color packages">-->
+ <div class="container pt-sm-2">
    <br><br>
    <div class="row">
      <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
@@ -47,6 +48,8 @@ The Julia Seasons of Contributions (JSoC) are the seasonal programs for funding 
 
    <br>
    <img src="/assets/images/GSoC-Horizontal-removebg-preview.png" width="100%">
+   <br>
+   <br>
 
 ~~~
 
@@ -103,7 +106,8 @@ If this sounds like something you would be interested in, head over to the [Proj
 <!--
     Containers: NumFOCUS Small Development Grants
   -->
-<div class="container-fluid alt-color packages">
+<!--<div class="container-fluid alt-color packages">-->
+ <div class="container pt-sm-2">
   <br><br>
     <div class="row">
       <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
@@ -191,7 +195,8 @@ The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibiliti
 <!--
     Containers: Get Help
   -->
-<div class="container-fluid alt-color packages">
+<!--<div class="container-fluid alt-color packages">-->
+ <div class="container pt-sm-2">
   <br><br>
     <div class="row">
       <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
