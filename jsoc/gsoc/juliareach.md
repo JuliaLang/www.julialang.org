@@ -14,7 +14,7 @@
 
 **Recommended Skills.** Familiarity with Julia and Git/GitHub is mandatory. Familiarity with [LazySets](https://github.com/JuliaReach/LazySets.jl) is recommended. Basic knowledge of geometric terminology is appreciated but not required.
 
-**Mentors**: [Marcelo Forets](github.com/mforets), [Christian Schilling](github.com/schillic).
+**Mentors**: [Marcelo Forets](https://github.com/mforets), [Christian Schilling](https://github.com/schillic).
 
 ## Reachability with sparse polynomial zonotopes
 
@@ -36,7 +36,7 @@
 
 **Literature and related packages.** [This video](https://www.youtube.com/watch?v=iMtq6YeIsjA) explains the concept of polynomial zonotopes (slides [here](https://github.com/JuliaReach/juliareach-days-3-reachathon/blob/master/Challenge_5/Challenge5_PolynomialZonotopes.pdf)). The relevant theory is described in [this research article](https://arxiv.org/pdf/1901.01780). There exists a Matlab implementation in [CORA](https://tumcps.github.io/CORA/) (the implementation of polynomial zonotopes can be found in [this folder](https://github.com/TUMcps/CORA/tree/master/contSet/%40polyZonotope)).
 
-**Mentors**: [Marcelo Forets](github.com/mforets), [Christian Schilling](github.com/schillic).
+**Mentors**: [Marcelo Forets](https://github.com/mforets), [Christian Schilling](https://github.com/schillic).
 
 ## Improving the hybrid systems reachability API
 
@@ -50,4 +50,4 @@
 
 **Recommended Skills.** Familiarity with Julia and Git/GitHub is mandatory. Familiarity with [LazySets](https://github.com/JuliaReach/LazySets.jl) and [ReachabilityAnalysis](https://github.com/JuliaReach/ReachabilityAnalysis.jl) is also required.
 
-**Mentors**: [Marcelo Forets](github.com/mforets), [Christian Schilling](github.com/schillic).
+**Mentors**: [Marcelo Forets](https://github.com/mforets), [Christian Schilling](https://github.com/schillic).
