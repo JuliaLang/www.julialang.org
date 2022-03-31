@@ -13,9 +13,9 @@
 @def stable_release = "1.7.2"
 @def stable_release_short = "1.7"
 @def stable_release_date = "Feb 6, 2022"
-@def lts_release = "1.6.5"
+@def lts_release = "1.6.6"
 @def lts_release_short = "1.6"
-@def lts_release_date = "Dec 19, 2021"
+@def lts_release_date = "March 28, 2021"
 
 <!-- plotly -->
 @def hasplotly = false
@@ -24,6 +24,6 @@
 If the following lines are commented, the "upcoming release" section
 in `downloads/index.md` will not be shown.
 -->
-@def upcoming_release = "1.8.0-beta1"
+@def upcoming_release = "1.8.0-beta3"
 @def upcoming_release_short = "1.8"
-@def upcoming_release_date = "February 23, 2022"
+@def upcoming_release_date = "March 29, 2022"
