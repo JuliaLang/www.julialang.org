@@ -59,7 +59,10 @@ We welcome additions to this list in the form of [pull requests](https://github.
 
 ## 2022
 
+@@tight-list
 * **The JuliaConnectoR: A Functionally-Oriented Interface for Integrating Julia in R**. Stefan Lenz, Maren Hackenberg, Harald Binder. _Journal of Statistical Software 101_ no. 16 (2022). doi: [10.18637/jss.v101.i06](https://www.jstatsoft.org/article/view/v101i06). Packages: [JuliaConnectoR](https://cran.r-project.org/web/packages/JuliaConnectoR/index.html) 
+* **Adaptive numerical simulations with Trixi.jl: A case study of Julia for scientific computing**. Hendrik Ranocha, Michael Schlottke-Lakemper, Andrew R. Winters, Erik Faulhaber, Jesse Chan, Gregor J. Gassner. _Proceedings of the JuliaCon Conferences_ (2022). doi: [10.21105/jcon.00077](https://doi.org/10.21105/jcon.00077). arXiv: [2108.06476 [cs.MS]](http://arxiv.org/abs/2108.06476). Packages: [Trixi.jl](https://github.com/trixi-framework/Trixi.jl), [SummationByPartsOperators.jl](https://github.com/ranocha/SummationByPartsOperators.jl), [OrdinaryDiffEq.jl](https://github.com/SciML/OrdinaryDiffEq.jl)
+@@
 
 ## 2021
 
