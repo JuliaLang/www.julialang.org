@@ -17,7 +17,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Javis](/jsoc/gsoc/javis/) - **J**ulia **a**nimations and **vis**ualizations for teaching, communication, and beyond!
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
 * [JuliaMusic](/jsoc/gsoc/juliamusic/) - Functionalities for analyzing anything related to music
-* [JuliaReach](/jsoc/gsoc/juliareach/) - Reachability analysi for dynamical systems
+* [JuliaReach](/jsoc/gsoc/juliareach/) - Reachability analysis for dynamical systems
 * [Language interoperability](/jsoc/gsoc/interop/) - Projects related to interfacing between Julia and other programming languages (C++, Rust)
 * [Machine learning](/jsoc/gsoc/machine-learning) - work on problems in machine learning in the broader Julia ML ecosystem
 * [MLJ.jl](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
