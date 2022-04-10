@@ -2,7 +2,7 @@
 @def rss = """10x-ing PyTorch: Specializing Scientific Machine Learning with Julia ..."""
 @def published = "11 April 2022"
 @def title = "10x-ing PyTorch: Specializing Scientific Machine Learning with Julia"
-@def authors = """Chris Elrod, Chris Rackauckas"""
+@def authors = """Chris Elrod, Niklas Korsbo, Chris Rackauckas"""
 @def mintoclevel=2
 @def maxtoclevel=3
 
