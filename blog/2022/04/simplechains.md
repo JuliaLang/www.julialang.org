@@ -208,7 +208,7 @@ ZygoteRules.@adjoint function (f::FastDense)(x,p)
 end
 ```
 
-for `sigma.(W*x .+ b)` to calculate `J'v`, you can greatly optimize this if you know that the backwards pass will immediately preceed the forward pass. Specifically, there's no need to generate closures to store values since there no indeterminate future where the gradient might be needed, instead you can immediately proceed to calculate it. And, if you're only applying it to a vector of known size `v`, then this operation can be done non-allocating by mutating a cache vector. Lastly, if we know we're only going to use the derivative w.r.t. `x` (`xbar`), then we can eliminate many calculations. Look at the simplified version:
+for `sigma.(W*x .+ b)` to calculate `J'v`, you can greatly optimize this if you know that the backwards pass will immediately preceed the forward pass. Specifically, there's no need to generate closures to store values since there no indeterminate future where the gradient might be needed, instead you can immediately proceed to calculate it. And, if you're only applying it to a vector of known size `v`, then this operation can be done without allocating by mutating a cache vector. Lastly, if we know we're only going to use the derivative w.r.t. `x` (`xbar`), then we can eliminate many calculations. Look at the simplified version:
 
 ```julia
 r = W*x .+ b
