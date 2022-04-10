@@ -46,7 +46,7 @@ It's easy to show that these assumptions breakdown when we start focusing on thi
 ```julia
 using LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
 
-function mygemmavx!(C, A, B)
+function mygemmturbo!(C, A, B)
     @tturbo for m ∈ axes(A, 1), n ∈ axes(B, 2)
         Cmn = zero(eltype(C))
         for k ∈ axes(A, 2)
