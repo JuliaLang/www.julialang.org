@@ -33,7 +33,7 @@ For more details on the software and methods, check out this manuscript.
 However, the unique aspects of how neural networks are used in these contexts make it rife for specializing of performance. Specifically, in the context of machine learning one normally relies on the following assumption: the neural networks are large enough that the O(n^3) cost of matrix-matrix multiplication (or other kernels like convolutions) domainates the the runtime. This is essentially the guiding principle behind most of the mechanics of a machine learning library:
 
 1. Matrix-matrix multiplication scales cubicly while memory allocations scale linearly, so attempting to mutate vectors with non-allocating operations is not a high priority. Just use `A*x`.
-2. Focus on accelearting GPU kernels as fast as possible! Since these large matrix-matrix operations will be fastest on GPUs and are the bottleneck, performance benchmarks will essentially just be a measurement of how fast these specific kernels are.
+2. Focus on accelearting GPU kernels to be as fast as possible! Since these large matrix-matrix operations will be fastest on GPUs and are the bottleneck, performance benchmarks will essentially just be a measurement of how fast these specific kernels are.
 3. When doing reverse-mode automatic differentiation (backpropogation), feel free to copy values to memory. Memory allocations will be hidden by the larger kernel calls. 
 4. Also, feel free to write a "tape" for generation backpropogation. The tape does add the cost of essentially building a dictionary during the forward pass, but that will be hidden by the larger kernel calls.
 
