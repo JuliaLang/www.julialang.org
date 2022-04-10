@@ -62,7 +62,7 @@ function alloc_timer(n)
     C = rand(Float32,n,n)
     t1 = @belapsed $A * $B
     t2 = @belapsed (mul!($C,$A,$B))
-    t3 = @belapsed (mygemmavx!($C,$A,$B))
+    t3 = @belapsed (mygemmturbo!($C,$A,$B))
     A,B,C = (cu(A), cu(B), cu(C))
     t4 = @belapsed CUDA.@sync($A * $B)
     t5 = @belapsed CUDA.@sync(mul!($C,$A,$B))
