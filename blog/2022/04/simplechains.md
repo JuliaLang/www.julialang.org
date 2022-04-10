@@ -37,111 +37,108 @@ Do these assumptions actually hold in our case? And if they don't, can we focus 
 
 ## Digging In: Small Neural Network Performance Overheads
 
-It's easy to show that these assumptions breakdown when we start focusing on this smaller neural network use case. For starters, lets look at assumption (1). It's not hard to show where these two will unravel:
+It's easy to show that these assumptions breakdown when we start focusing on this smaller neural network use case. For starters, lets look at assumptions (1)(2). It's not hard to show where these two will unravel:
 
 ```julia
-using LinearAlgebra, BenchmarkTools
+using LinearAlgebra, BenchmarkTools, CUDA
 function alloc_timer(n)
-    A = rand(n,n)
-    B = rand(n,n)
-    C = rand(n,n)
-    t1 = @belapsed $A*$B
-    t2 = @belapsed mul!($C,$A,$B)
-    t1,t2
+    A = rand(Float32,n,n)
+    B = rand(Float32,n,n)
+    C = rand(Float32,n,n)
+    t1 = @belapsed $A * $B
+    t2 = @belapsed (mul!($C,$A,$B))
+    A,B,C = (cu(A), cu(B), cu(C))
+    t3 = @belapsed CUDA.@sync($A * $B)
+    t4 = @belapsed CUDA.@sync(mul!($C,$A,$B))
+    t1,t2,t3,t4
 end
-ns = 2 .^ (2:9)
+ns = 2 .^ (2:11)
 res = [alloc_timer(n) for n in ns]
-alloc   = [x[1] for x in res]
-noalloc = [x[2] for x in res]
- 
+alloc      = [x[1] for x in res]
+noalloc    = [x[2] for x in res]
+allocgpu   = [x[3] for x in res]
+noallocgpu = [x[4] for x in res]
+
 using Plots
-plot(ns,alloc,label="*",xscale=:log10,yscale=:log10,legend=:bottomright,
-     title="Micro-optimizations only matter for small matmuls")
-plot!(ns,noalloc,label="mul!")
-savefig("microopts.png")
+plot(ns,alloc,label="=",xscale=:log10,yscale=:log10,legend=:bottomright,
+     title="Do Micro-optimizations matter for BLAS3?")
+plot!(ns,noalloc,label=".=")
+plot!(ns,allocgpu,label="= gpu")
+plot!(ns,noallocgpu,label=".= gpu")
+savefig("microopts_blas3.png")
 ```
 
 ![](https://i0.wp.com/www.stochasticlifestyle.com/wp-content/uploads/2019/09/microopts.png?w=600&ssl=1)
 
 When we get to larger matrix-matrix operations, such as 100x100 * 100x100, we can effectively write off any overheads due to memory allocations. But we definitely see that there is a potential for some fairly significant performance gains in the lower end! Notice too that these gains are realized by using the pure-Julia LoopVectorization.jl as the standard BLAS tools tend to have extra threading overhead in this region (again, not optimizing as much in this region). 
 
-Also, if you've been a riding the GPU gospel without looking into the details this may be a shocker but it's not hard to show the seems on this one either. GPUs are designed as dumb slow chips with many cores, and thus they are only effective on very parallel operations, such as large matrix-matrix multiplications. It is from this point that assumption (2) is derived for large newtork operations. However, it is again in the case of the small where such GPU kernels will be outperformed by well-designed CPU kernels due to the lack of parallel opportunities:
+But, if you've been a riding the GPU gospel without looking into the details then this plot may be a shocker! However, GPUs are designed as dumb slow chips with many cores, and thus they are only effective on very parallel operations, such as large matrix-matrix multiplications. It is from this point that assumption (2) is derived for large newtork operations. But again, in the case of the small where such GPU kernels will be outperformed by well-designed CPU kernels due to the lack of parallel opportunities
+
+Matrix-matrix operations only occur when batching is able to be used (where each column of the B matrix in A*B is a separate batch). In many cases in scientific machine learning, such as [the calculation of vector-Jacobian products in ODE adjoints](https://youtu.be/6hhF6Llv4sI?t=342), this operation is a matrix-vector multiplication. These operations are smaller and only O(n^2), and as you would guess these effects are amplified in this scenario:
 
 ```julia
-using LinearAlgebra, BenchmarkTools
+using LinearAlgebra, BenchmarkTools, CUDA
 function alloc_timer(n)
-    A = rand(n,n)
-    B = rand(n,n)
-    C = rand(n,n)
-    t1 = @belapsed $A*$B
-    t2 = @belapsed mul!($C,$A,$B)
-    t1,t2
+    A = rand(Float32,n,n)
+    B = rand(Float32,n)
+    C = rand(Float32,n)
+    t1 = @belapsed $A * $B
+    t2 = @belapsed (mul!($C,$A,$B))
+    A,B,C = (cu(A), cu(B), cu(C))
+    t3 = @belapsed CUDA.@sync($A * $B)
+    t4 = @belapsed CUDA.@sync(mul!($C,$A,$B))
+    t1,t2,t3,t4
 end
-ns = 2 .^ (2:9)
+ns = 2 .^ (2:11)
 res = [alloc_timer(n) for n in ns]
-alloc   = [x[1] for x in res]
-noalloc = [x[2] for x in res]
- 
+alloc      = [x[1] for x in res]
+noalloc    = [x[2] for x in res]
+allocgpu   = [x[3] for x in res]
+noallocgpu = [x[4] for x in res]
+
 using Plots
-plot(ns,alloc,label="*",xscale=:log10,yscale=:log10,legend=:bottomright,
-     title="Micro-optimizations only matter for small matmuls")
-plot!(ns,noalloc,label="mul!")
-savefig("microopts.png")
+plot(ns,alloc,label="=",xscale=:log10,yscale=:log10,legend=:bottomright,
+     title="Micro-optimizations matter for BLAS2")
+plot!(ns,noalloc,label=".=")
+plot!(ns,allocgpu,label="= gpu")
+plot!(ns,noallocgpu,label=".= gpu")
+savefig("microopts_blas2.png")
 ```
 
-![](https://i0.wp.com/www.stochasticlifestyle.com/wp-content/uploads/2019/09/microopts.png?w=600&ssl=1)
-
-However, matrix-matrix operations only occur when batching is able to be used (where each column of the B matrix in A*B is a separate batch). In many cases in scientific machine learning, such as [the calculation of vector-Jacobian products in ODE adjoints](https://youtu.be/6hhF6Llv4sI?t=342), this operation is a matrix-vector multiplication. These operations are smaller and only O(n^2), and as you would guess these effects are amplified in this scenario:
-
-```julia
-using LinearAlgebra, BenchmarkTools
-function alloc_timer(n)
-    A = rand(n,n)
-    B = rand(n,n)
-    C = rand(n,n)
-    t1 = @belapsed $A*$B
-    t2 = @belapsed mul!($C,$A,$B)
-    t1,t2
-end
-ns = 2 .^ (2:9)
-res = [alloc_timer(n) for n in ns]
-alloc   = [x[1] for x in res]
-noalloc = [x[2] for x in res]
- 
-using Plots
-plot(ns,alloc,label="*",xscale=:log10,yscale=:log10,legend=:bottomright,
-     title="Micro-optimizations only matter for small matmuls")
-plot!(ns,noalloc,label="mul!")
-savefig("microopts.png")
-```
-
-![](https://i0.wp.com/www.stochasticlifestyle.com/wp-content/uploads/2019/09/microopts.png?w=600&ssl=1)
+![](https://user-images.githubusercontent.com/1814174/162620951-749aa395-6c81-4a3f-9814-ab55fb326c52.png)
 
 And remember, the basic operations of a neural network are `sigma.(W*x .+ b)`, and thus there's also an O(n) element-wise operation. As you would guess, this operation becomes more significant as n gets smaller and is requires even more consideration for memory operations. 
 
 ```julia
-using LinearAlgebra, BenchmarkTools
+using LinearAlgebra, BenchmarkTools, CUDA
 function alloc_timer(n)
-    A = rand(n,n)
-    B = rand(n,n)
-    C = rand(n,n)
+    A = rand(Float32,n,n)
+    B = rand(Float32,n,n)
+    C = rand(Float32,n,n)
     t1 = @belapsed $A .* $B
     t2 = @belapsed ($C .= $A .* $B)
-    t1,t2
+    A,B,C = (cu(A), cu(B), cu(C))
+    t3 = @belapsed CUDA.@sync($A .* $B)
+    t4 = @belapsed CUDA.@sync($C .= $A .* $B)
+    t1,t2,t3,t4
 end
 ns = 2 .^ (2:11)
 res = [alloc_timer(n) for n in ns]
-alloc   = [x[1] for x in res]
-noalloc = [x[2] for x in res]
- 
+alloc      = [x[1] for x in res]
+noalloc    = [x[2] for x in res]
+allocgpu   = [x[3] for x in res]
+noallocgpu = [x[4] for x in res]
+
 using Plots
 plot(ns,alloc,label="=",xscale=:log10,yscale=:log10,legend=:bottomright,
      title="Micro-optimizations matter for BLAS1")
 plot!(ns,noalloc,label=".=")
+plot!(ns,allocgpu,label="= gpu")
+plot!(ns,noallocgpu,label=".= gpu")
 savefig("microopts_blas1.png")
 ```
 
-![](https://i0.wp.com/www.stochasticlifestyle.com/wp-content/uploads/2019/09/microopts_blas1.png?w=600&ssl=1)
+![](https://user-images.githubusercontent.com/1814174/162620663-1b8a4fd2-47f6-4064-b290-233aa245a7bd.png)
 
 This already highly motivates a project focused on the performance for this case, but assumptions (3) and (4) point us to additionally look at the implementation of the backpropogation. The [trade-off between different machine learning library approaches to automatic differentiation has already been discussed at length](https://www.stochasticlifestyle.com/engineering-trade-offs-in-automatic-differentiation-from-tensorflow-and-pytorch-to-jax-and-julia/), but what the general discussions can miss is the extra opportunities afforded when really specializing on a domain. Take for example the use-case inside of neural ordinary differential equations (neural ODEs) and ODE adjoints. As mentioned above, in this use case the backwards pass is applied immediately after the forward pass. Thus while [a handwritten adjoint to a neural network layer](https://github.com/SciML/DiffEqFlux.jl/blob/v1.8.1/src/fast_layers.jl#L38-L56) can look like:
 
