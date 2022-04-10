@@ -82,7 +82,7 @@ plot(ns, alloc, label="*", xscale=:log10, yscale=:log10, legend=:bottomright,
     yticks=10.0 .^ (-8:0.5:2),
     ylabel="Time (s)", xlabel="N",)
 plot!(ns,noalloc,label="mul! (OpenBLAS)")
-plot!(ns,noalloclv,label="mygemmavx!")
+plot!(ns,noalloclv,label="mygemmturbo!")
 plot!(ns,allocgpu,label="* gpu")
 plot!(ns,noallocgpu,label="mul! gpu")
 savefig("microopts_blas3.png")
