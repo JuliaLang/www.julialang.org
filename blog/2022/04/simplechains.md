@@ -103,7 +103,7 @@ Matrix-matrix operations only occur when batching is able to be used (where each
 ```julia
 using LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
 
-function mygemmavx!(C, A, B)
+function mygemmturbo!(C, A, B)
     @tturbo for m ∈ axes(A, 1), n ∈ axes(B, 2)
         Cmn = zero(eltype(C))
         for k ∈ axes(A, 2)
@@ -119,7 +119,7 @@ function alloc_timer(n)
     C = rand(Float32,n)
     t1 = @belapsed $A * $B
     t2 = @belapsed (mul!($C,$A,$B))
-    t3 = @belapsed (mygemmavx!($C,$A,$B))
+    t3 = @belapsed (mygemmturbo!($C,$A,$B))
     A,B,C = (cu(A), cu(B), cu(C))
     t4 = @belapsed CUDA.@sync($A * $B)
     t5 = @belapsed CUDA.@sync(mul!($C,$A,$B))
@@ -139,7 +139,7 @@ plot(ns, alloc, label="* (OpenBLAS)", xscale=:log10, yscale=:log10, legend=:bott
     yticks=10.0 .^ (-8:0.5:2),
     ylabel="Time (s)", xlabel="N",)
 plot!(ns,noalloc,label="mul! (OpenBLAS)")
-plot!(ns,noalloclv,label="mygemvavx!")
+plot!(ns,noalloclv,label="mygemvturbo!")
 plot!(ns,allocgpu,label="* gpu")
 plot!(ns,noallocgpu,label="mul! gpu")
 savefig("microopts_blas2.png")
@@ -147,12 +147,12 @@ savefig("microopts_blas2.png")
 
 ![](https://user-images.githubusercontent.com/1814174/162625320-310d633a-34bf-407e-8cc9-ec55ca895d83.png)
 
-And remember, the basic operations of a neural network are `sigma.(W*x .+ b)`, and thus there's also an O(n) element-wise operation. As you would guess, this operation becomes more significant as n gets smaller and is requires even more consideration for memory operations. 
+And remember, the basic operations of a neural network are `sigma.(W*x .+ b)`, and thus there's also an O(n) element-wise operation. As you would guess, this operation becomes more significant as n gets smaller while requiring even more consideration for memory operations. 
 
 ```julia
 using LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
 
-function mybroadcastavx!(C, A, B)
+function mybroadcastturbo!(C, A, B)
     @tturbo for k ∈ axes(A, 2)
         C[k] += A[k] * B[k]
     end
@@ -164,7 +164,7 @@ function alloc_timer(n)
     C = rand(Float32,n,n)
     t1 = @belapsed $A .* $B
     t2 = @belapsed ($C .= $A .* $B)
-    t3 = @belapsed (mybroadcastavx!($C, $A, $B))
+    t3 = @belapsed (mybroadcastturbo!($C, $A, $B))
     A,B,C = (cu(A), cu(B), cu(C))
     t4 = @belapsed CUDA.@sync($A .* $B)
     t5 = @belapsed CUDA.@sync($C .= $A .* $B)
@@ -184,7 +184,7 @@ plot(ns,alloc,label="=",xscale=:log10,yscale=:log10,legend=:bottomright,
      ylabel = "Time (s)", xlabel = "N",
      yticks = 10.0 .^ (-8:0.5:2),)
 plot!(ns,noalloc,label=".=")
-plot!(ns, noalloc, label="mybroadcastavx!")
+plot!(ns, noalloc, label="mybroadcastturbo!")
 plot!(ns,allocgpu,label="= gpu")
 plot!(ns,noallocgpu,label=".= gpu")
 savefig("microopts_blas1.png")
