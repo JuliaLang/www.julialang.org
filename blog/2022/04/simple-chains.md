@@ -8,15 +8,11 @@
 
 # 10x-ing PyTorch: Specializing Scientific Machine Learning with Julia
 
-Machine learning is a huge discipline, with applications ranging from natural language processing to solving partial differential equations. It is from this landscape that major frameworks, such as PyTorch, TensorFlow, and [Flux.jl](https://fluxml.ai/), arise to be packages for "all of machine learning". While some of these frameworks have the backings of megacorporations, specifically Facebook and Google, driving their development, the Julia community has relied on the speed and productivity of the Julia programming language itself in order for its open source community to keep up with the pace of development. It is from this aspect which Flux.jl derives its "slimness": while PyTorch and TensorFlow include entire separate languages and compilers (torchscript, XLA, etc.), Flux.jl is just Julia. It is from this that the moniker "you could have built it yourself" is commonly used to describe Flux.jl.
+Machine learning is a huge discipline, with applications ranging from natural language processing to solving partial differential equations. It is from this landscape that major frameworks such as PyTorch, TensorFlow, and [Flux.jl](https://fluxml.ai/) arise and strive to be packages for "all of machine learning". While some of these frameworks have the backing of large companies such as Facebook and Google, the Julia community has relied on the speed and productivity of the Julia programming language itself in order for its open source community to keep up with the pace of development. It is from this aspect which Flux.jl derives its "slimness": while PyTorch and TensorFlow include entire separate languages and compilers (torchscript, XLA, etc.), Flux.jl is just Julia. It is from this that the moniker "you could have built it yourself" is commonly used to describe Flux.jl.
 
-However, in this post we'll take a different look at how the programmability of Julia can help in the machine learning space. Specifically, by targetting the grand space of "all machine learning", the frameworks inevitably make trade-offs that accelerate some aspects of the code at the detriment to others. This comes from the inevitable trade-off between simplicity, generality, and performance. However, the ability to easily construct machine learning libraries thus presents an interesting question: can this development feature be used to easily create alternative frameworks which focus its performance on more non-traditional applications or aspects?
+In this post we take a different look at how the programmability of Julia helps in the machine learning space. Specifically, by targetting the grand space of "all machine learning", frameworks inevitably make trade-offs that accelerate some aspects of the code to the detriment of others. This comes from the inevitable trade-off between simplicity, generality, and performance. However, the ability to easily construct machine learning libraries thus presents an interesting question: can this development feature be used to easily create alternative frameworks which focus its performance on more non-traditional applications or aspects?
 
-The answer is yes, you can quickly build machine learning frameworks which greatly outperform the giants in specialized cases using the Julia programming language, and we demonstrate this with our new release [SimpleChains.jl](https://github.com/PumasAI/SimpleChains.jl).
-
-#### Note before we start
-
-If you're interested in this topic and want to work on Julia machine learning, note that the [Pumas DeepPumas team is hiring](https://pumas.ai/company/machine-learning-scientist/). Additionally, [internships are available at Julia Computing](https://jobs.juliacomputing.com/jobs/ndvlJz9fHYcr/machine-learning-intern-remote).
+The answer is yes, you can quickly build machine learning implementations which greatly outperform the frameworks in specialized cases using the Julia programming language, and we demonstrate this with our new package: [SimpleChains.jl](https://github.com/PumasAI/SimpleChains.jl).
 
 ## Scientific Machine Learning (SciML) and "Small" Neural Networks
 
@@ -32,9 +28,9 @@ This [SciML methodology](https://sciml.ai/roadmap/) has been shown across many d
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eSeY4K4bITI?start=668" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
-For more details on the software and methods, [check out this manuscript](https://arxiv.org/abs/2001.04385). 
+For more details on the software and methods, [see our paper on Universal Differential Equations for Scientific Machine Learning](https://arxiv.org/abs/2001.04385). 
 
-However, the unique aspects of how neural networks are used in these contexts make it rife for specializing of performance. Specifically, in the context of machine learning one normally relies on the following assumption: the neural networks are large enough that the O(n^3) cost of matrix-matrix multiplication (or other kernels like convolutions) domainates the the runtime. This is essentially the guiding principle behind most of the mechanics of a machine learning library:
+The unique aspects of how neural networks are used in these contexts make them rife for performance improvements through specialization. Specifically, in the context of machine learning, one normally relies on the following assumption: the neural networks are large enough that the O(n^3) cost of matrix-matrix multiplication (or other kernels like convolutions) domainates the the runtime. This is essentially the guiding principle behind most of the mechanics of a machine learning library:
 
 1. Matrix-matrix multiplication scales cubicly while memory allocations scale linearly, so attempting to mutate vectors with non-allocating operations is not a high priority. Just use `A*x`.
 2. Focus on accelearting GPU kernels to be as fast as possible! Since these large matrix-matrix operations will be fastest on GPUs and are the bottleneck, performance benchmarks will essentially just be a measurement of how fast these specific kernels are.
@@ -96,7 +92,7 @@ savefig("microopts_blas3.png")
 
 When we get to larger matrix-matrix operations, such as 100x100 * 100x100, we can effectively write off any overheads due to memory allocations. But we definitely see that there is a potential for some fairly significant performance gains in the lower end! Notice too that these gains are realized by using the pure-Julia LoopVectorization.jl as the standard BLAS tools tend to have extra threading overhead in this region (again, not optimizing as much in this region). 
 
-But, if you've been riding the GPU gospel without looking into the details then this plot may be a shocker! However, GPUs are designed as dumb slow chips with many cores, and thus they are only effective on very parallel operations, such as large matrix-matrix multiplications. It is from this point that assumption (2) is derived for large newtork operations. But again, in the case of small networks such GPU kernels will be outperformed by well-designed CPU kernels due to the lack of parallel opportunities.
+But, if you have been riding the GPU gospel without looking into the details then this plot may be a shocker! However, GPUs are designed as dumb slow chips with many cores, and thus they are only effective on very parallel operations, such as large matrix-matrix multiplications. It is from this point that assumption (2) is derived for large newtork operations. But again, in the case of small networks such GPU kernels will be outperformed by well-designed CPU kernels due to the lack of parallel opportunities.
 
 Matrix-matrix operations only occur when batching is able to be used (where each column of the B matrix in A*B is a separate batch). In many cases in scientific machine learning, such as [the calculation of vector-Jacobian products in ODE adjoints](https://youtu.be/6hhF6Llv4sI?t=342), this operation is a matrix-vector multiplication. These operations are smaller and only O(n^2), and as you would guess these effects are amplified in this scenario:
 
@@ -491,3 +487,7 @@ all "by the book" implementations. Though of course, the SimpleChains.jl's simpl
 ## Conclusion
 
 There are many things that can make a library achieve high-performance, and nothing is as essential as knowing how it will be used. While the big machine learning frameworks have done extremely well focusing on the top-notch performance for 99.9% of their users, one can still completely outclass them when focusing on some of the 0.1% of applications which fall outside of what they have been targeting. This is the advantage of composability and flexibility: a language that allows you to easily build a machine learning framework is also a language which allows you to build alternative frameworks which are optimized for alternative people. SimpleChains.jl will not be useful to everybody, but it will be extremely useful to those who need it.
+
+## Opportunities
+
+If you are interested in this topic and want to work on Julia and machine learning, note that the [DeepPumas team is hiring](https://pumas.ai/company/machine-learning-scientist/). Additionally, [SciML internships are also available at Julia Computing](https://jobs.juliacomputing.com/jobs/ndvlJz9fHYcr/machine-learning-intern-remote).
