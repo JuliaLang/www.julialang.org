@@ -8,11 +8,11 @@
 
 # 10x-ing PyTorch: Specializing Scientific Machine Learning with Julia
 
-Machine learning is a huge discipline, with applications ranging from natural language processing to solving partial differential equations. It is from this landscape that major frameworks, such as PyTorch, TensorFlow, and Flux.jl, arise to be packages for "all of machine learning". While some of these frameworks have the backings of megacorporations, specifically Facebook and Google, driving their development, the Julia community has relied on the speed and productivity of the Julia programming language itself in order for its open source community to keep up with the pace of development. It is from this aspect which Flux.jl derives its "slimness": while PyTorch and TensorFlow include entire separate languages and compilers (torchscript, XLA, etc.), Flux.jl is just Julia. It is from this that the moniker "you could have built it yourself" is commonly used to describe Flux.jl.
+Machine learning is a huge discipline, with applications ranging from natural language processing to solving partial differential equations. It is from this landscape that major frameworks, such as PyTorch, TensorFlow, and [Flux.jl](https://fluxml.ai/), arise to be packages for "all of machine learning". While some of these frameworks have the backings of megacorporations, specifically Facebook and Google, driving their development, the Julia community has relied on the speed and productivity of the Julia programming language itself in order for its open source community to keep up with the pace of development. It is from this aspect which Flux.jl derives its "slimness": while PyTorch and TensorFlow include entire separate languages and compilers (torchscript, XLA, etc.), Flux.jl is just Julia. It is from this that the moniker "you could have built it yourself" is commonly used to describe Flux.jl.
 
 However, in this post we'll take a different look at how the programmability of Julia can help in the machine learning space. Specifically, by targetting the grand space of "all machine learning", the frameworks inevitably make trade-offs that accelerate some aspects of the code at the detriment to others. This comes from the inevitable trade-off between simplicity, generality, and performance. However, the ability to easily construct machine learning libraries thus presents an interesting question: can this development feature be used to easily create alternative frameworks which focus its performance on more non-traditional applications or aspects?
 
-The answer is yes, you can quickly build machine learning frameworks which greatly outperform the giants in specialized cases using the Julia programming language, and we demonstrate this with our new release SimpleChains.jl.
+The answer is yes, you can quickly build machine learning frameworks which greatly outperform the giants in specialized cases using the Julia programming language, and we demonstrate this with our new release [SimpleChains.jl](https://github.com/PumasAI/SimpleChains.jl).
 
 #### Note before we start
 
@@ -20,22 +20,26 @@ If you're interested in this topic and want to work on Julia machine learning, n
 
 ## Scientific Machine Learning (SciML) and "Small" Neural Networks
 
-SimpleChains.jl is a library developed by Julia Computing and PumasAI in collaboration with Roche and the University of Maryland, Baltimore. The purpose of SimpleChains.jl is to be as fast as possible for small neural networks. This is because SimpleChains.jl originated as a solution for the DeepPumas product for scientific machine learning (SciML) in clinical pharmacology. In this domain, small neural networks are combined with known nonlinear mixed effects models (statistical models with differential equations) to discover previously unknown mechanisms and prognostic factors. For a short introduction to how this is done, check out the following video by Niklas Korsbo:
+SimpleChains.jl is a library developed by [Julia Computing](https://juliacomputing.com/) and [Pumas-AI](https://pumas.ai/) in collaboration with [Roche](https://www.roche.com/) and the [University of Maryland, Baltimore](https://www.pharmacy.umaryland.edu/centers/ctm/). The purpose of SimpleChains.jl is to be as fast as possible for small neural networks. This is because SimpleChains.jl originated as a solution for the DeepPumas product for [scientific machine learning (SciML)](https://www.stochasticlifestyle.com/the-essential-tools-of-scientific-machine-learning-scientific-ml/) in clinical pharmacology. In this domain, small neural networks are combined with known nonlinear mixed effects models (statistical models with differential equations) to discover previously unknown mechanisms and prognostic factors. For a short introduction to how this is done, check out the following video by Niklas Korsbo:
 
+~~~
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TFB_lt1KMto" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+~~~
 
-This SciML methodology has been shown across many disciplines, from black hole dynamics to the development of earthquake safe buildings, to be a flexible method capable of discovering/guiding (bio)physical equations. Here's a recent talk which walks through the various use cases of SciML throughout the sciences:
+This [SciML methodology](https://sciml.ai/roadmap/) has been shown across many disciplines, from black hole dynamics to the development of earthquake safe buildings, to be a flexible method capable of discovering/guiding (bio)physical equations. Here's a recent talk which walks through the various use cases of SciML throughout the sciences:
 
+~~~
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eSeY4K4bITI?start=668" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+~~~
 
-For more details on the software and methods, check out this manuscript. 
+For more details on the software and methods, [check out this manuscript](https://arxiv.org/abs/2001.04385). 
 
 However, the unique aspects of how neural networks are used in these contexts make it rife for specializing of performance. Specifically, in the context of machine learning one normally relies on the following assumption: the neural networks are large enough that the O(n^3) cost of matrix-matrix multiplication (or other kernels like convolutions) domainates the the runtime. This is essentially the guiding principle behind most of the mechanics of a machine learning library:
 
 1. Matrix-matrix multiplication scales cubicly while memory allocations scale linearly, so attempting to mutate vectors with non-allocating operations is not a high priority. Just use `A*x`.
 2. Focus on accelearting GPU kernels to be as fast as possible! Since these large matrix-matrix operations will be fastest on GPUs and are the bottleneck, performance benchmarks will essentially just be a measurement of how fast these specific kernels are.
-3. When doing reverse-mode automatic differentiation (backpropogation), feel free to copy values to memory. Memory allocations will be hidden by the larger kernel calls. 
-4. Also, feel free to write a "tape" for generating backpropogation. The tape does add the cost of essentially building a dictionary during the forward pass, but that will be hidden by the larger kernel calls.
+3. When doing reverse-mode automatic differentiation (backpropagation), feel free to copy values to memory. Memory allocations will be hidden by the larger kernel calls. 
+4. Also, feel free to write a "tape" for generating backpropagation. The tape does add the cost of essentially building a dictionary during the forward pass, but that will be hidden by the larger kernel calls.
 
 Do these assumptions actually hold in our case? And if they don't, can we focus on these aspects to draw more performance out for our use cases?
 
@@ -188,7 +192,7 @@ savefig("microopts_blas1.png")
 
 ![](https://user-images.githubusercontent.com/1814174/162625049-b26fd0fd-271a-4c73-a44d-f40b36b18136.png)
 
-This already highly motivates a project focused on the performance for this case, but assumptions (3) and (4) point us to additionally look at the implementation of the backpropogation. The [trade-off between different machine learning libraries' approaches to automatic differentiation has already been discussed at length](https://www.stochasticlifestyle.com/engineering-trade-offs-in-automatic-differentiation-from-tensorflow-and-pytorch-to-jax-and-julia/), but what the general discussions can miss is the extra opportunities afforded when really specializing on a domain. Take for example the use-case inside of neural ordinary differential equations (neural ODEs) and ODE adjoints. As mentioned above, in this use case the backwards pass is applied immediately after the forward pass. Thus while [a handwritten adjoint to a neural network layer](https://github.com/SciML/DiffEqFlux.jl/blob/v1.8.1/src/fast_layers.jl#L38-L56) can look like:
+This already highly motivates a project focused on the performance for this case, but assumptions (3) and (4) point us to additionally look at the implementation of the backpropagation. The [trade-off between different machine learning libraries' approaches to automatic differentiation has already been discussed at length](https://www.stochasticlifestyle.com/engineering-trade-offs-in-automatic-differentiation-from-tensorflow-and-pytorch-to-jax-and-julia/), but what the general discussions can miss is the extra opportunities afforded when really specializing on a domain. Take for example the use-case inside of neural ordinary differential equations (neural ODEs) and ODE adjoints. As mentioned above, in this use case the backwards pass is applied immediately after the forward pass. Thus while [a handwritten adjoint to a neural network layer](https://github.com/SciML/DiffEqFlux.jl/blob/v1.8.1/src/fast_layers.jl#L38-L56) can look like:
 
 ```julia
 ZygoteRules.@adjoint function (f::FastDense)(x,p)
@@ -236,7 +240,7 @@ Of course, building this up for anything other than the simplest case takes a mu
 
 ## SimpleChains.jl: An Optimized Machine Learning Library for SciML Use Cases
 
-SimpleChains.jl is the solution to this problem. SimpleChains.jl is a small machine learning framework optimized for quickly fitting small models on the CPU. Early development favored a design that would:
+[SimpleChains.jl](https://github.com/PumasAI/SimpleChains.jl) is the solution to this problem. SimpleChains.jl is a small machine learning framework optimized for quickly fitting small models on the CPU. Early development favored a design that would:
 
 1. Allow us to achieve good performance, ideally approaching the CPU's potential peak FLOPs.
 2. Focus on small size meant we could largely forgo large kernel optimizations (such as cache tiling) in the early stages of development.
