@@ -24,7 +24,7 @@ SimpleChains.jl is a library developed by Julia Computing and PumasAI in collabo
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TFB_lt1KMto" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-This SciML methodology has been shown across many disciplines, from black hole dynamics to the development of earthquake safe buildings, to be a flexible method capable of discovering guiding (bio)physical equations. Here's a recent talk with walks through the various use cases of SciML throughout the sciences:
+This SciML methodology has been shown across many disciplines, from black hole dynamics to the development of earthquake safe buildings, to be a flexible method capable of discovering/guiding (bio)physical equations. Here's a recent talk which walks through the various use cases of SciML throughout the sciences:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eSeY4K4bITI?start=668" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
