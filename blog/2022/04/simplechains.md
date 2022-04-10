@@ -14,6 +14,10 @@ However, in this post we'll take a different look at how the programmability of 
 
 The answer is yes, you can quickly build machine learning frameworks which greatly outperform the giants in specialized cases using the Julia programming language, and we demonstrate this with our new release SimpleChains.jl.
 
+#### Note before we start
+
+If you're interested in this topic and want to work on Julia machine learning, note that the [Pumas DeepPumas team is hiring](https://pumas.ai/company/machine-learning-scientist/). Additionally, [internships are available at Julia Computing](https://jobs.juliacomputing.com/jobs/ndvlJz9fHYcr/machine-learning-intern-remote).
+
 ## Scientific Machine Learning (SciML) and "Small" Neural Networks
 
 SimpleChains.jl is a library developed by Julia Computing and PumasAI in collaboration with Roche and the University of Maryland, Baltimore. The purpose of SimpleChains.jl is to be as fast as possible for small neural networks. This is because SimpleChains.jl originated as a solution for the DeepPumas product for scientific machine learning (SciML) in clinical pharmacology. In this domain, small neural networks are combined with known nonlinear mixed effects models (statistical models with differential equations) to discover previously unknown mechanisms and prognostic factors. For a short introduction to how this is done, check out the following video by Niklas Korsbo:
@@ -40,35 +44,51 @@ Do these assumptions actually hold in our case? And if they don't, can we focus 
 It's easy to show that these assumptions breakdown when we start focusing on this smaller neural network use case. For starters, lets look at assumptions (1)(2). It's not hard to show where these two will unravel:
 
 ```julia
-using LinearAlgebra, BenchmarkTools, CUDA
+using LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
+
+function mygemmavx!(C, A, B)
+    @tturbo for m ∈ axes(A, 1), n ∈ axes(B, 2)
+        Cmn = zero(eltype(C))
+        for k ∈ axes(A, 2)
+            Cmn += A[m, k] * B[k, n]
+        end
+        C[m, n] = Cmn
+    end
+end
+
 function alloc_timer(n)
     A = rand(Float32,n,n)
     B = rand(Float32,n,n)
     C = rand(Float32,n,n)
     t1 = @belapsed $A * $B
     t2 = @belapsed (mul!($C,$A,$B))
+    t3 = @belapsed (mygemmavx!($C,$A,$B))
     A,B,C = (cu(A), cu(B), cu(C))
-    t3 = @belapsed CUDA.@sync($A * $B)
-    t4 = @belapsed CUDA.@sync(mul!($C,$A,$B))
-    t1,t2,t3,t4
+    t4 = @belapsed CUDA.@sync($A * $B)
+    t5 = @belapsed CUDA.@sync(mul!($C,$A,$B))
+    t1,t2,t3,t4,t5
 end
 ns = 2 .^ (2:11)
 res = [alloc_timer(n) for n in ns]
 alloc      = [x[1] for x in res]
 noalloc    = [x[2] for x in res]
-allocgpu   = [x[3] for x in res]
-noallocgpu = [x[4] for x in res]
+noalloclv  = [x[3] for x in res]
+allocgpu   = [x[4] for x in res]
+noallocgpu = [x[5] for x in res]
 
 using Plots
-plot(ns,alloc,label="=",xscale=:log10,yscale=:log10,legend=:bottomright,
-     title="Do Micro-optimizations matter for BLAS3?")
-plot!(ns,noalloc,label=".=")
-plot!(ns,allocgpu,label="= gpu")
-plot!(ns,noallocgpu,label=".= gpu")
+plot(ns, alloc, label="*", xscale=:log10, yscale=:log10, legend=:bottomright,
+    title="Which Micro-optimizations matter for BLAS3?",
+    yticks=10.0 .^ (-8:0.5:2),
+    ylabel="Time (s)", xlabel="N",)
+plot!(ns,noalloc,label="mul! (OpenBLAS)")
+plot!(ns,noalloclv,label="mygemmavx!")
+plot!(ns,allocgpu,label="* gpu")
+plot!(ns,noallocgpu,label="mul! gpu")
 savefig("microopts_blas3.png")
 ```
 
-![](https://i0.wp.com/www.stochasticlifestyle.com/wp-content/uploads/2019/09/microopts.png?w=600&ssl=1)
+![](https://user-images.githubusercontent.com/1814174/162625573-0c195a60-dc06-44fb-af04-6c0c389ded02.png)
 
 When we get to larger matrix-matrix operations, such as 100x100 * 100x100, we can effectively write off any overheads due to memory allocations. But we definitely see that there is a potential for some fairly significant performance gains in the lower end! Notice too that these gains are realized by using the pure-Julia LoopVectorization.jl as the standard BLAS tools tend to have extra threading overhead in this region (again, not optimizing as much in this region). 
 
@@ -77,68 +97,96 @@ But, if you've been a riding the GPU gospel without looking into the details the
 Matrix-matrix operations only occur when batching is able to be used (where each column of the B matrix in A*B is a separate batch). In many cases in scientific machine learning, such as [the calculation of vector-Jacobian products in ODE adjoints](https://youtu.be/6hhF6Llv4sI?t=342), this operation is a matrix-vector multiplication. These operations are smaller and only O(n^2), and as you would guess these effects are amplified in this scenario:
 
 ```julia
-using LinearAlgebra, BenchmarkTools, CUDA
+using LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
+
+function mygemmavx!(C, A, B)
+    @tturbo for m ∈ axes(A, 1), n ∈ axes(B, 2)
+        Cmn = zero(eltype(C))
+        for k ∈ axes(A, 2)
+            Cmn += A[m, k] * B[k, n]
+        end
+        C[m, n] = Cmn
+    end
+end
+
 function alloc_timer(n)
     A = rand(Float32,n,n)
     B = rand(Float32,n)
     C = rand(Float32,n)
     t1 = @belapsed $A * $B
     t2 = @belapsed (mul!($C,$A,$B))
+    t3 = @belapsed (mygemmavx!($C,$A,$B))
     A,B,C = (cu(A), cu(B), cu(C))
-    t3 = @belapsed CUDA.@sync($A * $B)
-    t4 = @belapsed CUDA.@sync(mul!($C,$A,$B))
-    t1,t2,t3,t4
+    t4 = @belapsed CUDA.@sync($A * $B)
+    t5 = @belapsed CUDA.@sync(mul!($C,$A,$B))
+    t1,t2,t3,t4,t5
 end
 ns = 2 .^ (2:11)
 res = [alloc_timer(n) for n in ns]
 alloc      = [x[1] for x in res]
 noalloc    = [x[2] for x in res]
-allocgpu   = [x[3] for x in res]
-noallocgpu = [x[4] for x in res]
+noalloclv  = [x[3] for x in res]
+allocgpu   = [x[4] for x in res]
+noallocgpu = [x[5] for x in res]
 
 using Plots
-plot(ns,alloc,label="=",xscale=:log10,yscale=:log10,legend=:bottomright,
-     title="Micro-optimizations matter for BLAS2")
-plot!(ns,noalloc,label=".=")
-plot!(ns,allocgpu,label="= gpu")
-plot!(ns,noallocgpu,label=".= gpu")
+plot(ns, alloc, label="* (OpenBLAS)", xscale=:log10, yscale=:log10, legend=:bottomright,
+    title="Which Micro-optimizations matter for BLAS2?",
+    yticks=10.0 .^ (-8:0.5:2),
+    ylabel="Time (s)", xlabel="N",)
+plot!(ns,noalloc,label="mul! (OpenBLAS)")
+plot!(ns,noalloclv,label="mygemvavx!")
+plot!(ns,allocgpu,label="* gpu")
+plot!(ns,noallocgpu,label="mul! gpu")
 savefig("microopts_blas2.png")
 ```
 
-![](https://user-images.githubusercontent.com/1814174/162620951-749aa395-6c81-4a3f-9814-ab55fb326c52.png)
+![](https://user-images.githubusercontent.com/1814174/162625320-310d633a-34bf-407e-8cc9-ec55ca895d83.png)
 
 And remember, the basic operations of a neural network are `sigma.(W*x .+ b)`, and thus there's also an O(n) element-wise operation. As you would guess, this operation becomes more significant as n gets smaller and is requires even more consideration for memory operations. 
 
 ```julia
-using LinearAlgebra, BenchmarkTools, CUDA
+using LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
+
+function mybroadcastavx!(C, A, B)
+    @tturbo for k ∈ axes(A, 2)
+        C[k] += A[k] * B[k]
+    end
+end
+
 function alloc_timer(n)
     A = rand(Float32,n,n)
     B = rand(Float32,n,n)
     C = rand(Float32,n,n)
     t1 = @belapsed $A .* $B
     t2 = @belapsed ($C .= $A .* $B)
+    t3 = @belapsed (mybroadcastavx!($C, $A, $B))
     A,B,C = (cu(A), cu(B), cu(C))
-    t3 = @belapsed CUDA.@sync($A .* $B)
-    t4 = @belapsed CUDA.@sync($C .= $A .* $B)
-    t1,t2,t3,t4
+    t4 = @belapsed CUDA.@sync($A .* $B)
+    t5 = @belapsed CUDA.@sync($C .= $A .* $B)
+    t1,t2,t3,t4,t5
 end
 ns = 2 .^ (2:11)
 res = [alloc_timer(n) for n in ns]
 alloc      = [x[1] for x in res]
 noalloc    = [x[2] for x in res]
-allocgpu   = [x[3] for x in res]
-noallocgpu = [x[4] for x in res]
+noalloclv  = [x[3] for x in res]
+allocgpu   = [x[4] for x in res]
+noallocgpu = [x[5] for x in res]
 
 using Plots
 plot(ns,alloc,label="=",xscale=:log10,yscale=:log10,legend=:bottomright,
-     title="Micro-optimizations matter for BLAS1")
+     title="Which Micro-optimizations matter for BLAS1?",
+     ylabel = "Time (s)", xlabel = "N",
+     yticks = 10.0 .^ (-8:0.5:2),)
 plot!(ns,noalloc,label=".=")
+plot!(ns, noalloc, label="mybroadcastavx!")
 plot!(ns,allocgpu,label="= gpu")
 plot!(ns,noallocgpu,label=".= gpu")
 savefig("microopts_blas1.png")
 ```
 
-![](https://user-images.githubusercontent.com/1814174/162620663-1b8a4fd2-47f6-4064-b290-233aa245a7bd.png)
+![](https://user-images.githubusercontent.com/1814174/162625049-b26fd0fd-271a-4c73-a44d-f40b36b18136.png)
 
 This already highly motivates a project focused on the performance for this case, but assumptions (3) and (4) point us to additionally look at the implementation of the backpropogation. The [trade-off between different machine learning library approaches to automatic differentiation has already been discussed at length](https://www.stochasticlifestyle.com/engineering-trade-offs-in-automatic-differentiation-from-tensorflow-and-pytorch-to-jax-and-julia/), but what the general discussions can miss is the extra opportunities afforded when really specializing on a domain. Take for example the use-case inside of neural ordinary differential equations (neural ODEs) and ODE adjoints. As mentioned above, in this use case the backwards pass is applied immediately after the forward pass. Thus while [a handwritten adjoint to a neural network layer](https://github.com/SciML/DiffEqFlux.jl/blob/v1.8.1/src/fast_layers.jl#L38-L56) can look like:
 
