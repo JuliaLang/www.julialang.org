@@ -290,10 +290,6 @@ G = similar(p, length(p), min(Threads.nthreads(), (Sys.CPU_THREADS ÷ ((Sys.ARCH
 SimpleChains.error_mean_and_loss(lenetloss, xtrain4, p)
 SimpleChains.error_mean_and_loss(lenetloss, xtest4, ytest1, p)
 
-
-# reinitialize to randomize parameters
-# SimpleChains.init_params!(lenet, p);
-
 # train without additional memory allocations
 @time SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(3e-4), 10);
 
