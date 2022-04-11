@@ -294,7 +294,7 @@ SimpleChains.error_mean_and_loss(lenetloss, xtest4, ytest1, p)
 # reinitialize to randomize parameters
 # SimpleChains.init_params!(lenet, p);
 
-# train without additional memor allocations
+# train without additional memory allocations
 @time SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(3e-4), 10);
 
 # assess training and test loss
