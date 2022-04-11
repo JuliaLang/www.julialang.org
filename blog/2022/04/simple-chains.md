@@ -88,7 +88,7 @@ plot!(ns,noallocgpu,label="mul! gpu")
 savefig("microopts_blas3.png")
 ```
 
-![](https://user-images.githubusercontent.com/1814174/162625573-0c195a60-dc06-44fb-af04-6c0c389ded02.png)
+![](https://user-images.githubusercontent.com/1814174/162710865-10a9dc1e-eb14-433d-96c1-6ed9c8b55df7.png)
 
 When we get to larger matrix-matrix operations, such as 100x100 * 100x100, we can effectively write off any overheads due to memory allocations. But we definitely see that there is a potential for some fairly significant performance gains in the lower end! Notice too that these gains are realized by using the pure-Julia LoopVectorization.jl as the standard BLAS tools tend to have extra threading overhead in this region (again, not optimizing as much in this region). 
 
@@ -141,7 +141,7 @@ plot!(ns,noallocgpu,label="mul! gpu")
 savefig("microopts_blas2.png")
 ```
 
-![](https://user-images.githubusercontent.com/1814174/162625320-310d633a-34bf-407e-8cc9-ec55ca895d83.png)
+![](https://user-images.githubusercontent.com/1814174/162710861-d70fb6de-7f54-47ff-bd11-054ebe85cc23.png)
 
 And remember, the basic operations of a neural network are `sigma.(W*x .+ b)`, and thus there's also an O(n) element-wise operation. As you would guess, this operation becomes more significant as n gets smaller while requiring even more consideration for memory operations. 
 
@@ -186,7 +186,7 @@ plot!(ns,noallocgpu,label=".= gpu")
 savefig("microopts_blas1.png")
 ```
 
-![](https://user-images.githubusercontent.com/1814174/162625049-b26fd0fd-271a-4c73-a44d-f40b36b18136.png)
+![](https://user-images.githubusercontent.com/1814174/162710861-d70fb6de-7f54-47ff-bd11-054ebe85cc23.png)
 
 This already highly motivates a project focused on the performance for this case, but assumptions (3) and (4) point us to additionally look at the implementation of the backpropagation. The [trade-off between different machine learning libraries' approaches to automatic differentiation has already been discussed at length](https://www.stochasticlifestyle.com/engineering-trade-offs-in-automatic-differentiation-from-tensorflow-and-pytorch-to-jax-and-julia/), but what the general discussions can miss is the extra opportunities afforded when really specializing on a domain. Take for example the use-case inside of neural ordinary differential equations (neural ODEs) and ODE adjoints. As mentioned above, in this use case the backwards pass is applied immediately after the forward pass. Thus while [a handwritten adjoint to a neural network layer](https://github.com/SciML/DiffEqFlux.jl/blob/v1.8.1/src/fast_layers.jl#L38-L56) can look like:
 
