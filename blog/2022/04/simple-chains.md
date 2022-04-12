@@ -1,6 +1,6 @@
-@def rss_pubdate = Date(2022, 4, 11)
+@def rss_pubdate = Date(2022, 4, 12)
 @def rss = """Small Network scientific machine learning in Julia is 5x faster than PyTorch ..."""
-@def published = "11 April 2022"
+@def published = "12 April 2022"
 @def title = "Small Network scientific machine learning in Julia is 5x faster than PyTorch"
 @def authors = """Chris Elrod, Niklas Korsbo, Chris Rackauckas"""
 @def mintoclevel=2
