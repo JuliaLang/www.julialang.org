@@ -1,12 +1,12 @@
 @def rss_pubdate = Date(2022, 4, 11)
-@def rss = """10x-ing PyTorch: Specializing Scientific Machine Learning with Julia ..."""
+@def rss = """Small Network scientific machine learning in Julia is 5x faster than PyTorch ..."""
 @def published = "11 April 2022"
-@def title = "10x-ing PyTorch: Specializing Scientific Machine Learning with Julia"
+@def title = "Small Network scientific machine learning in Julia is 5x faster than PyTorch"
 @def authors = """Chris Elrod, Niklas Korsbo, Chris Rackauckas"""
 @def mintoclevel=2
 @def maxtoclevel=3
 
-# 10x-ing PyTorch: Specializing Scientific Machine Learning with Julia
+# Small Network scientific machine learning in Julia is 5x faster than PyTorch
 
 Machine learning is a huge discipline, with applications ranging from natural language processing to solving partial differential equations. It is from this landscape that major frameworks such as PyTorch, TensorFlow, and [Flux.jl](https://fluxml.ai/) arise and strive to be packages for "all of machine learning". While some of these frameworks have the backing of large companies such as Facebook and Google, the Julia community has relied on the speed and productivity of the Julia programming language itself in order for its open source community to keep up with the pace of development. It is from this aspect which Flux.jl derives its "slimness": while PyTorch and TensorFlow include entire separate languages and compilers (torchscript, XLA, etc.), Flux.jl is just Julia. It is from this that the moniker "you could have built it yourself" is commonly used to describe Flux.jl.
 
@@ -243,7 +243,7 @@ Of course, building this up for anything other than the simplest case takes a mu
 3. Have an API where vectors of parameters (and their gradients) are first class, rather than having parameters live with the layers, to make it easier to work with various optimizers or solvers that expect contiguous vectors (such as BFGS).
 4. Be written in "pure Julia" for ease of development and optimization; while making heavy use of [LoopVectorization.jl](https://github.com/JuliaSIMD/LoopVectorization.jl/), SimpleChains.jl does not rely on any BLAS or NN libraries. It is a long term aim to extend this loop-compiler approach to optimization to also producing pullbacks automatically, without requiring them to be handwritten. However, the compiler-focused approach is already levered for ease of implementation: while we still have to hand-write gradients, we do not need to hand-optimize them.
 
-## SimpleChains.jl in Action: 10x-ing PyTorch in Small Examples
+## SimpleChains.jl in Action: 5x-ing PyTorch in Small Examples
 
 Let's test MNIST with LeNet5. Note that this example will be a very conservative estimate of speed because, as a more traditional machine learning use case, batching can be used to make use of matrix-matrix multiplications instead of the even smaller matrix-vector kernels. That said, even in this case we'll be able to see a substantial performance benefit because of the semi-small network sizes.
 
