@@ -300,14 +300,24 @@ SimpleChains.error_mean_and_loss(lenetloss, xtest4, ytest1, p)
 
 #### PyTorch
 
-Before we show the results, let's look at the competition. Here's two runs of 10 epochs using PyTorch following [this script](https://github.com/chriselrod/LeNetTorch) on a V100 GPU using a batch size of 2048 produces:
+Before we show the results, let's look at the competition. Here's two runs of 10 epochs using PyTorch following [this script](https://github.com/chriselrod/LeNetTorch) on an A100 GPU using a batch size of 2048:
+A100:
+```
+Took: 17.66
+Accuracy: 0.9491
+Took: 17.62
+Accuracy: 0.9692
+```
+Trying a V100:
+```
+Took: 16.29
+Accuracy: 0.9560
+Took: 15.94
+Accuracy: 0.9749
+```
+This problem is far too small to saturate the GPU, even with such a larger batch size. Time is dominated by moving batches from the CPU to the GPU.
+Unfortunately, as the batch sizes get larger, we need more epochs to reach the same accuracy, so we can hit a limit in terms maximizing accuracy/time.
 
-```
-Took: 17.33
-Accuracy: 0.9492
-Took: 17.22
-Accuracy: 0.9751
-```
 PyTorch using an AMD EPYC 7513 32-Core Processor:
 ```
 Took: 14.86
