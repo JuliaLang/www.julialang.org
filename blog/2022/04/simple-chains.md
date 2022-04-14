@@ -70,11 +70,11 @@ function alloc_timer(n)
 end
 ns = 2 .^ (2:11)
 res = [alloc_timer(n) for n in ns]
-alloc      = [x[1] for x in res]
-noalloc    = [x[2] for x in res]
-noalloclv  = [x[3] for x in res]
-allocgpu   = [x[4] for x in res]
-noallocgpu = [x[5] for x in res]
+alloc      = [t[1] for t in res]
+noalloc    = [t[2] for t in res]
+noalloclv  = [t[3] for t in res]
+allocgpu   = [t[4] for t in res]
+noallocgpu = [t[5] for t in res]
 
 using Plots
 plot(ns, alloc, label="*", xscale=:log10, yscale=:log10, legend=:bottomright,
