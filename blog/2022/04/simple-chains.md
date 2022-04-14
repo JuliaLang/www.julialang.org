@@ -478,7 +478,7 @@ Accuracy: 0.9841
 
 #### Flux.jl
 
-The standard machine learning library in Julia, [Flux.jl](https://github.com/FluxML/Flux.jl) was benchmarked using [this script]() with an A100 GPU. How fast was that?
+The standard machine learning library in Julia, [Flux.jl](https://github.com/FluxML/Flux.jl) was benchmarked using [this script](https://github.com/PumasAI/SimpleChains.jl/blob/main/examples/mnist_lenet.jl) with an A100 GPU. How fast was that?
 
 ```julia
 julia> @time train!(model, train_loader)
