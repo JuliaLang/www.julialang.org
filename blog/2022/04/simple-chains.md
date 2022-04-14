@@ -1,12 +1,12 @@
 @def rss_pubdate = Date(2022, 4, 14)
-@def rss = """Small Network scientific machine learning in Julia is 5x faster than PyTorch ..."""
+@def rss = """Doing small network scientific machine learning in Julia 5x faster than PyTorch ..."""
 @def published = "14 April 2022"
-@def title = "Small Network scientific machine learning in Julia is 5x faster than PyTorch"
+@def title = "Doing small network scientific machine learning in Julia 5x faster than PyTorch"
 @def authors = """Chris Elrod, Niklas Korsbo, Chris Rackauckas"""
 @def mintoclevel=2
 @def maxtoclevel=3
 
-# Small Network scientific machine learning in Julia is 5x faster than PyTorch
+# Doing small network scientific machine learning in Julia 5x faster than PyTorch
 
 Machine learning is a huge discipline, with applications ranging from natural language processing to solving partial differential equations. It is from this landscape that major frameworks such as PyTorch, TensorFlow, and [Flux.jl](https://fluxml.ai/) arise and strive to be packages for "all of machine learning". While some of these frameworks have the backing of large companies such as Facebook and Google, the Julia community has relied on the speed and productivity of the Julia programming language itself in order for its open source community to keep up with the pace of development. It is from this aspect which Flux.jl derives its "slimness": while PyTorch and TensorFlow include entire separate languages and compilers (torchscript, XLA, etc.), Flux.jl is just Julia. It is from this that the moniker "you could have built it yourself" is commonly used to describe Flux.jl.
 
