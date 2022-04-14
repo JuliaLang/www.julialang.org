@@ -432,16 +432,13 @@ G = similar(p, length(p), min(Threads.nthreads(), (Sys.CPU_THREADS ÷ ((Sys.ARCH
 # train
 @time SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(3e-4), 10);
 
-# assess training and test loss
-SimpleChains.error_mean_and_loss(lenetloss, xtrain4, p)
-SimpleChains.error_mean_and_loss(lenetloss, xtest4, ytest1, p)
-
+SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
+SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
 # train without additional memory allocations
 @time SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(3e-4), 10);
-
 # assess training and test loss
-SimpleChains.error_mean_and_loss(lenetloss, xtrain4, p)
-SimpleChains.error_mean_and_loss(lenetloss, xtest4, ytest1, p)
+SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
+SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
 ```
 
 #### PyTorch
