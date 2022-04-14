@@ -141,7 +141,7 @@ plot!(ns,noallocgpu,label="mul! gpu")
 savefig("microopts_blas2.png")
 ```
 
-![](https://user-images.githubusercontent.com/1814174/162710861-d70fb6de-7f54-47ff-bd11-054ebe85cc23.png)
+![](https://user-images.githubusercontent.com/1814174/162625320-310d633a-34bf-407e-8cc9-ec55ca895d83.png)
 
 And remember, the basic operations of a neural network are `sigma.(W*x .+ b)`, and thus there's also an O(n) element-wise operation. As you would guess, this operation becomes more significant as n gets smaller while requiring even more consideration for memory operations. 
 
@@ -246,6 +246,7 @@ Of course, building this up for anything other than the simplest case takes a mu
 ## SimpleChains.jl in Action: 30x-ing PyTorch in Tiny Example
 
 Let's first try a tiny example, where we map a 2x2 matrix to its matrix exponential; our training and test data:
+
 ```julia
 function f(x)
   N = Base.isqrt(length(x))
@@ -272,9 +273,11 @@ mlpd = SimpleChain(
   TurboDense(identity, 4)
 )
 ```
+
 The first layer maps the 4-dimensional input to 32 dimensions with a dense (linear) layer, applies the non-linear `tanh` activation. The second layer maps these 32 outputs to 16 dimensions with another dense layer, and again applies elementwise `tanh`, before the final layer dense layer maps these to a 4 dimensional result, which we could reshape into a 2x2 matrix, hopefully approximately equaling the exponential.
 
 We can fit this matrix as follows:
+
 ```julia
 @time p = SimpleChains.init_params(mlpd);
 G = SimpleChains.alloc_threaded_grad(mlpd);
@@ -300,6 +303,7 @@ end
 ```
 
 On an Intel i9 10980XE, an 18-core system featuring AVX512 with two 512-bit fma units/core, this produces
+
 ```julia
 julia> report(p)
 ┌ Info: Loss:
@@ -326,9 +330,11 @@ julia> for _ in 1:3
 │   train = 0.0016900344f0
 └   test = 0.08270371f0
 ```
+
 This was run in a fresh session, so that the first run of `train_unbatched` includes compile time. Once it has compiled, each further batch of 10_000 epochs takes just over 0.41 seconds, or about 41 microseconds/epoch.
 
 We also have a PyTorch model [here](https://github.com/chriselrod/MatrixExponentialTorch) for fitting this, which produces:
+
 ```
 Initial Train Loss: 7.4430
 Initial Test Loss: 7.3570
@@ -342,9 +348,11 @@ Took: 15.25 seconds
 Train Loss: 0.0008
 Test Loss: 0.0213
 ```
+
 Taking over 35x longer, at about 1.5 ms, per epoch.
 
 Trying on an AMD EPYC 7513, 32-Core CPU featuring AVX2:
+
 ```julia
 julia> report(p)
 ┌ Info: Loss:
@@ -370,7 +378,9 @@ julia> for _ in 1:3
 │   train = 0.0017783737f0
 └   test = 0.02649088f0
 ```
+
 While with the PyTorch implementation, we get:
+
 ```
 Initial Train Loss: 6.9856
 Initial Test Loss: 7.1151
@@ -384,6 +394,7 @@ Took: 68.02 seconds
 Train Loss: 0.0006
 Test Loss: 0.0039
 ```
+
 SimpleChains has close to a 100x advantage on this system for this model.
 
 Such small models were the motivation behind developing SimpleChains.
@@ -445,6 +456,7 @@ SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
 
 Before we show the results, let's look at the competition. Here's two runs of 10 epochs using PyTorch following [this script](https://github.com/chriselrod/LeNetTorch) on an A100 GPU using a batch size of 2048:
 A100:
+
 ```
 Took: 17.66
 Accuracy: 0.9491
@@ -458,17 +470,21 @@ Accuracy: 0.9560
 Took: 15.94
 Accuracy: 0.9749
 ```
+
 This problem is far too small to saturate the GPU, even with such a larger batch size. Time is dominated by moving batches from the CPU to the GPU.
 Unfortunately, as the batch sizes get larger, we need more epochs to reach the same accuracy, so we can hit a limit in terms maximizing accuracy/time.
 
 PyTorch using an AMD EPYC 7513 32-Core Processor:
+
 ```
 Took: 14.86
 Accuracy: 0.9626
 Took: 15.09
 Accuracy: 0.9783
 ```
+
 PyTorch using an Intel i9 10980XE 18-Core Processor:
+
 ```
 Took: 11.24
 Accuracy: 0.9759
@@ -554,6 +570,7 @@ julia> eval_loss_accuracy(train_loader, model, device),
 SimpleChains on an AMD EPYC 7513 32-Core Processor:
 
 ```julia
+#Compile
 julia> @time SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(3e-4), 10);
  34.410432 seconds (55.84 M allocations: 5.920 GiB, 3.79% gc time, 85.95% compilation time)
 
@@ -576,6 +593,7 @@ julia> SimpleChains.error_mean_and_loss(lenetloss, xtest4, ytest1, p)
 SimpleChains on an Intel i9 10980XE 18-Core Processor:
 
 ```julia
+#Compile
 julia> @time SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(3e-4), 10);
  35.578124 seconds (86.34 M allocations: 5.554 GiB, 3.94% gc time, 95.48% compilation time)
 
@@ -611,6 +629,7 @@ julia> SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
 SimpleChains on an Intel i7 1165G7 4-Core Processor (thin and light laptop CPU):
 
 ```julia
+#Compile
 julia> @time SimpleChains.train_batched!(G, p, lenetloss, xtrain, SimpleChains.ADAM(3e-4), 10);
  41.053800 seconds (104.10 M allocations: 5.263 GiB, 2.83% gc time, 77.62% compilation time)
 
