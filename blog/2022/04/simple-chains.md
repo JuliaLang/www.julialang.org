@@ -28,7 +28,7 @@ This [SciML methodology](https://sciml.ai/roadmap/) has been shown across many d
 
 For more details on the software and methods, [see our paper on Universal Differential Equations for Scientific Machine Learning](https://arxiv.org/abs/2001.04385). 
 
-The unique aspects of how neural networks are used in these contexts make them rife for performance improvements through specialization. Specifically, in the context of machine learning, one normally relies on the following assumption: the neural networks are large enough that the O(n^3) cost of matrix-matrix multiplication (or other kernels like convolutions) domainates the the runtime. This is essentially the guiding principle behind most of the mechanics of a machine learning library:
+The unique aspects of how neural networks are used in these contexts make them rife for performance improvements through specialization. Specifically, in the context of machine learning, one normally relies on the following assumption: the neural networks are large enough that the O(n^3) cost of matrix-matrix multiplication (or other kernels like convolutions) dominates the the runtime. This is essentially the guiding principle behind most of the mechanics of a machine learning library:
 
 1. Matrix-matrix multiplication scales cubicly while memory allocations scale linearly, so attempting to mutate vectors with non-allocating operations is not a high priority. Just use `A*x`.
 2. Focus on accelerating GPU kernels to be as fast as possible! Since these large matrix-matrix operations will be fastest on GPUs and are the bottleneck, performance benchmarks will essentially just be a measurement of how fast these specific kernels are.
@@ -39,7 +39,7 @@ Do these assumptions actually hold in our case? And if they don't, can we focus 
 
 ## Digging In: Small Neural Network Performance Overheads
 
-It's easy to show that these assumptions breakdown when we start focusing on this smaller neural network use case. For starters, lets look at assumptions (1)(2). It's not hard to show where these two will unravel:
+It's easy to show that these assumptions breakdown when we start focusing on this smaller neural network use case. For starters, let's look at assumptions (1)(2). It's not hard to show where these two will unravel:
 
 ```julia
 using LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
@@ -90,7 +90,7 @@ savefig("microopts_blas3.png")
 
 When we get to larger matrix-matrix operations, such as 100x100 * 100x100, we can effectively write off any overheads due to memory allocations. But we definitely see that there is a potential for some fairly significant performance gains in the lower end! Notice too that these gains are realized by using the pure-Julia LoopVectorization.jl as the standard BLAS tools tend to have extra threading overhead in this region (again, not optimizing as much in this region). 
 
-But, if you have been riding the GPU gospel without looking into the details then this plot may be a shocker! However, GPUs are designed as dumb slow chips with many cores, and thus they are only effective on very parallel operations, such as large matrix-matrix multiplications. It is from this point that assumption (2) is derived for large newtork operations. But again, in the case of small networks such GPU kernels will be outperformed by well-designed CPU kernels due to the lack of parallel opportunities.
+If you have been riding the GPU gospel without looking into the details then this plot may be a shocker! However, GPUs are designed as dumb slow chips with many cores, and thus they are only effective on very parallel operations, such as large matrix-matrix multiplications. It is from this point that assumption (2) is derived for large network operations. But again, in the case of small networks such GPU kernels will be outperformed by well-designed CPU kernels due to the lack of parallel opportunities.
 
 Matrix-matrix operations only occur when batching is able to be used (where each column of the B matrix in A*B is a separate batch). In many cases in scientific machine learning, such as [the calculation of vector-Jacobian products in ODE adjoints](https://youtu.be/6hhF6Llv4sI?t=342), this operation is a matrix-vector multiplication. These operations are smaller and only O(n^2), and as you would guess these effects are amplified in this scenario:
 
@@ -186,7 +186,7 @@ savefig("microopts_blas1.png")
 
 ![](https://user-images.githubusercontent.com/1814174/162710861-d70fb6de-7f54-47ff-bd11-054ebe85cc23.png)
 
-This already highly motivates a project focused on the performance for this case, but assumptions (3) and (4) point us to additionally look at the implementation of the backpropagation. The [trade-off between different machine learning libraries' approaches to automatic differentiation has already been discussed at length](https://www.stochasticlifestyle.com/engineering-trade-offs-in-automatic-differentiation-from-tensorflow-and-pytorch-to-jax-and-julia/), but what the general discussions can miss is the extra opportunities afforded when really specializing on a domain. Take for example the use-case inside of neural ordinary differential equations (neural ODEs) and ODE adjoints. As mentioned above, in this use case the backwards pass is applied immediately after the forward pass. Thus while [a handwritten adjoint to a neural network layer](https://github.com/SciML/DiffEqFlux.jl/blob/v1.8.1/src/fast_layers.jl#L38-L56) can look like:
+This already highly motivates a project focused on the performance for this case, but assumptions (3) and (4) point us to additionally look at the implementation of the backpropagation. The [trade-off between different machine learning libraries' approaches to automatic differentiation has already been discussed at length](https://www.stochasticlifestyle.com/engineering-trade-offs-in-automatic-differentiation-from-tensorflow-and-pytorch-to-jax-and-julia/), but what the general discussions can miss is the extra opportunities afforded when really specializing on a domain. Take for example the use-case inside of neural ordinary differential equations (neural ODEs) and ODE adjoints. As mentioned above, in this use case the backwards pass is applied immediately after the forward pass. Thus, while [a handwritten adjoint to a neural network layer](https://github.com/SciML/DiffEqFlux.jl/blob/v1.8.1/src/fast_layers.jl#L38-L56) can look like:
 
 ```julia
 ZygoteRules.@adjoint function (f::FastDense)(x,p)
@@ -455,6 +455,7 @@ SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
 #### PyTorch
 
 Before we show the results, let's look at the competition. Here's two runs of 10 epochs using PyTorch following [this script](https://github.com/chriselrod/LeNetTorch) on an A100 GPU using a batch size of 2048:
+
 A100:
 
 ```
@@ -471,8 +472,8 @@ Took: 15.94
 Accuracy: 0.9749
 ```
 
-This problem is far too small to saturate the GPU, even with such a larger batch size. Time is dominated by moving batches from the CPU to the GPU.
-Unfortunately, as the batch sizes get larger, we need more epochs to reach the same accuracy, so we can hit a limit in terms maximizing accuracy/time.
+This problem is far too small to saturate the GPU, even with such a large batch size. Time is dominated by moving batches from the CPU to the GPU.
+Unfortunately, as the batch sizes get larger, we need more epochs to reach the same accuracy, so we can hit a limit in terms of maximizing accuracy/time.
 
 PyTorch using an AMD EPYC 7513 32-Core Processor:
 
@@ -656,9 +657,9 @@ they were run on far beefier CPUs, and even beat PyTorch on both the V100 and A1
 uses and thus was able to use batching to even make GPUs viable: for many use cases of SimpleChains.jl this is not the case and thus
 the difference is even larger.
 
-However, it seems likely that the PyTorch script was not well optimized for GPUs, but we are less familiar with PyTorch and would welcome
+However, it seems likely that the PyTorch script was not well optimized for GPUs; we are less familiar with PyTorch and would welcome
 PRs improving it. That said, the script is taken from a real-world user out in the wild, and thus this should demonstrate what one would expect
-see from a user that is not digging into internals and hyper-optimizing. Nothing out of the ordinary was done with the Julia scripts: these were
+to see from a user that is not digging into internals and hyper-optimizing. Nothing out of the ordinary was done with the Julia scripts: these were
 all "by the book" implementations. Though of course, the SimpleChains.jl's simplest code is specifically optimized for this "by the book" use case.
 
 ## Conclusion
