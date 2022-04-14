@@ -580,22 +580,35 @@ SimpleChains on an Intel i9 10980XE 18-Core Processor:
 
 ```julia
 julia> @time SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(3e-4), 10);
- 34.915917 seconds (83.99 M allocations: 5.431 GiB, 3.91% gc time, 95.22% compilation time)
+ 35.578124 seconds (86.34 M allocations: 5.554 GiB, 3.94% gc time, 95.48% compilation time)
 
-julia> SimpleChains.error_mean_and_loss(lenetloss, xtrain4, p)
-(0.972, 0.09354472f0)
+julia> SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
+(0.9697833333333333, 0.10566422f0)
 
-julia> SimpleChains.error_mean_and_loss(lenetloss, xtest4, ytest1, p)
-(0.975, 0.084895514f0)
+julia> SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
+(0.9703, 0.095336154f0)
 
-julia> @time SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(3e-4), 10);
-  1.324148 seconds
+julia> # train without additional memory allocations
+       @time SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(3e-4), 10);
+  1.241958 seconds
 
-julia> SimpleChains.error_mean_and_loss(lenetloss, xtrain4, p)
-(0.9836833333333334, 0.054299146f0)
+julia> # assess training and test loss
+       SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
+(0.9801333333333333, 0.06850684f0)
 
-julia> SimpleChains.error_mean_and_loss(lenetloss, xtest4, ytest1, p)
-(0.9829, 0.053510584f0)
+julia> SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
+(0.9792, 0.06557372f0)
+
+julia> # train without additional memory allocations
+       @time SimpleChains.train_batched!(G, p, lenetloss, xtrain4, SimpleChains.ADAM(3e-4), 10);
+  1.230244 seconds
+
+julia> # assess training and test loss
+       SimpleChains.accuracy_and_loss(lenetloss, xtrain4, p)
+(0.9851666666666666, 0.051207382f0)
+
+julia> SimpleChains.accuracy_and_loss(lenetloss, xtest4, ytest1, p)
+(0.982, 0.05452118f0)
 ```
 
 SimpleChains on an Intel i7 1165G7 4-Core Processor (thin and light laptop CPU):
