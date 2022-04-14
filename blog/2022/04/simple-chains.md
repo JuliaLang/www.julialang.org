@@ -535,18 +535,18 @@ Flux on an Intel i9 10980XE 18-Core Processor:
 
 ```julia
 julia> @time train!(model, train_loader)
- 70.517619 seconds (98.27 M allocations: 67.833 GiB, 3.94% gc time, 39.30% compilation time)
+ 72.472941 seconds (97.92 M allocations: 67.853 GiB, 3.51% gc time, 38.08% compilation time)
 
 julia> eval_loss_accuracy(train_loader, model, device),
        eval_loss_accuracy(test_loader, model, device)
-((loss = 0.1306f0, acc = 96.14), (loss = 0.1144f0, acc = 96.57))
+((acc = 95.56, loss = 0.1502f0), (acc = 95.9, loss = 0.1353f0))
 
 julia> @time train!(model, train_loader)
- 44.241192 seconds (369.06 k allocations: 62.864 GiB, 2.55% gc time)
+ 45.083632 seconds (348.19 k allocations: 62.864 GiB, 2.77% gc time)
 
 julia> eval_loss_accuracy(train_loader, model, device),
        eval_loss_accuracy(test_loader, model, device)
-((loss = 0.072f0, acc = 97.7883), (loss = 0.0642f0, acc = 97.99))
+((acc = 97.5417, loss = 0.082f0), (acc = 97.74, loss = 0.0716f0))
 ```
 
 #### How long did SimpleChains.jl take?
