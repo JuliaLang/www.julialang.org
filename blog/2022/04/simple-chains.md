@@ -631,7 +631,7 @@ Note that smaller batch sizes improve accuracy per epoch, and batch sizes were s
 ## Benchmark Summary
 
 Latency before the first epoch begins training is problematic, but SimpleChains.jl is fast once compiled.
-Post-compilation, the 10980XE was around 70% faster than Flux with the A100 GPU.
+Post-compilation, the 10980XE was competitive with Flux using an A100 GPU, and about 35% faster than the V100.
 The 1165G7, a laptop CPU featuring AVX512, was competive, handily trouncing any of the competing machine learning libraries when 
 they were run on far beefier CPUs, and even beat PyTorch on both the V100 and A100. Again, we stress that this test case followed the more typical machine learning
 uses and thus was able to use batching to even make GPUs viable: for many use cases of SimpleChains.jl this is not the case and thus
