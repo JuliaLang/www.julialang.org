@@ -669,4 +669,4 @@ There are many things that can make a library achieve high-performance, and noth
 
 ## Opportunities
 
-If you are interested in this topic and want to work on Julia and machine learning, note that the [DeepPumas team is hiring](https://pumas.ai/company/machine-learning-scientist/). Additionally, [SciML internships are also available at Julia Computing](https://jobs.juliacomputing.com/jobs/ndvlJz9fHYcr/machine-learning-intern-remote).
+If you are interested in this topic and want to work on Julia and machine learning, note that the DeepPumas team is hiring ([here](https://pumas.ai/company/machine-learning-scientist/) and [here](https://pumas.ai/company/scientist-deeppumas/)). Additionally, [SciML internships are also available at Julia Computing](https://jobs.juliacomputing.com/jobs/ndvlJz9fHYcr/machine-learning-intern-remote).
