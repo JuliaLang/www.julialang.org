@@ -517,18 +517,18 @@ Flux on an AMD EPYC 7513 32-Core Processor:
 
 ```julia
 julia> @time train!(model, train_loader)
-106.340589 seconds (67.05 M allocations: 67.053 GiB, 4.18% gc time, 29.39% compilation time)
+110.816088 seconds (70.82 M allocations: 67.300 GiB, 4.46% gc time, 29.13% compilation time)
 
 julia> eval_loss_accuracy(train_loader, model, device),
        eval_loss_accuracy(test_loader, model, device)
-((loss = 0.211f0, acc = 93.79), (loss = 0.1954f0, acc = 94.28))
+((acc = 93.8667, loss = 0.213f0), (acc = 94.26, loss = 0.1928f0))
 
 julia> @time train!(model, train_loader)
- 73.762709 seconds (279.68 k allocations: 62.861 GiB, 4.15% gc time)
+ 74.710972 seconds (267.64 k allocations: 62.860 GiB, 3.65% gc time)
 
 julia> eval_loss_accuracy(train_loader, model, device),
        eval_loss_accuracy(test_loader, model, device)
-((loss = 0.1067f0, acc = 96.8083), (loss = 0.0978f0, acc = 97.0))
+((acc = 96.7117, loss = 0.1121f0), (acc = 96.92, loss = 0.0998f0))
 ```
 
 Flux on an Intel i9 10980XE 18-Core Processor:
