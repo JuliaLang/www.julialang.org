@@ -3,10 +3,6 @@
 [JuliaStats](https://github.com/JuliaStats) is an organization dedicated to providing high-quality packages for statistics in Julia.
 
 
-### List of projects
-
-\toc
-
 ## Panel data analysis
 
 Implement panel analysis models and estimators in Julia.
@@ -84,18 +80,11 @@ this interface, but there is still work to be done in .
  likelihood estimation, confidence intervals, and hypothesis testing. (Must
  know before applying.)
 
-
-
 ### Your contribution
 
 Participants will:
 
--   TBD
-
-
-### References
-
--   []()
+-   Help create, test, and document standard statistical APIs for Julia.
 
 
 ## JuliaStats Improvements 
