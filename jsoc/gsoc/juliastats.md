@@ -18,7 +18,7 @@ figures for several countries over time). This combination of longitudinal
 and cross-sectional data can be powerful for extracting causal
 structure from data.
 
-**Mentors.** [Nils Gudat](https://github.com/nilshg), [José Bayoán Santiago Calderón](https://github.com/Nosferican), More TBD?
+**Mentors.** [Nils Gudat](https://github.com/nilshg), [José Bayoán Santiago Calderón](https://github.com/Nosferican)
 
 ### Prerequisites
 
@@ -68,9 +68,9 @@ Implement consistent APIs for statistical modeling in Julia.
 Currently, the Julia statistics ecosystem is quite fragmented. There is 
 value in having a consistent API for a wide variety of statistical models. 
 The CRRao.jl package offers this design. We have built several models with
-this interface, but there is still work to be done in .
+this interface, but there is still work to be done here.
 
-**Mentors.** [Sourish Das](https://www.cmi.ac.in/~sourish/), (others TBD)
+**Mentors.** [Sourish Das](https://www.cmi.ac.in/~sourish/)
 
 ### Prerequisites
 
@@ -105,7 +105,7 @@ All of these packages are critically important to the Julia statistics
 community, and all could be improved.
 
 
-**Mentors.** TBD
+**Mentors.** Mousum Dutta, [Chirag Anand](https://github.com/chiraganand), [Ayush Patnaik](https://github.com/ayushpatnaikgit), 
 
 ### Prerequisites
 
