@@ -243,6 +243,8 @@ Of course, building this up for anything other than the simplest case takes a mu
 
 ## SimpleChains.jl in Action: 30x-ing PyTorch in Tiny Example
 
+#### Note: All of the code shown uses SimpleChains v0.2.2. For updates, see [the package's documentation](https://github.com/PumasAI/SimpleChains.jl)
+
 Let's first try a tiny example, where we map a 2x2 matrix to its matrix exponential; our training and test data:
 
 ```julia
@@ -399,6 +401,111 @@ SimpleChains has close to a 100x advantage on this system for this model.
 
 Such small models were the motivation behind developing SimpleChains.
 But how does it fair as we increase the problem size, to models where GPUs have traditionally started outperforming CPUs?
+
+### Edit: Timings Against Jax
+
+The author of the Jax Equinox library submitted a Jax code for benchmarking against. On a AMD Ryzen 9 5950X 16-Core Processor we saw with Jax:
+
+```
+Took: 14.52 seconds
+Train Loss: 0.0304
+Test Loss: 0.0268
+Took: 14.00 seconds
+Train Loss: 0.0033
+Test Loss: 0.0154
+Took: 13.85 seconds
+Train Loss: 0.0018
+Test Loss: 0.0112
+```
+
+vs SimpleChains.jl with 16 threads:
+
+```
+  5.097569 seconds (14.81 M allocations: 798.000 MiB, 3.94% gc time, 73.62% compilation time)
+┌ Info: Loss:
+│   train = 0.022585187f0
+└   test = 0.32509857f0
+  1.310997 seconds
+┌ Info: Loss:
+│   train = 0.0038023277f0
+└   test = 0.23108596f0
+  1.295088 seconds
+┌ Info: Loss:
+│   train = 0.0023415526f0
+└   test = 0.20991518f0
+```
+
+or 10x performace improvement, and on 36 × Intel(R) Core(TM) i9-10980XE CPU @ 3.00GHz we saw for Jax:
+
+```
+Initial Train Loss: 6.4232
+Initial Test Loss: 6.1088
+Took: 9.26 seconds
+Train Loss: 0.0304
+Test Loss: 0.0268
+Took: 8.98 seconds
+Train Loss: 0.0036
+Test Loss: 0.0156
+Took: 9.01 seconds
+Train Loss: 0.0018
+Test Loss: 0.0111
+```
+
+vs SimpleChains.jl:
+
+```
+  4.810973 seconds (13.03 M allocations: 686.357 MiB, 8.25% gc time, 89.76% compilation time)
+┌ Info: Loss:
+│   train = 0.011851382f0
+└   test = 0.017254675f0
+  0.410168 seconds
+┌ Info: Loss:
+│   train = 0.0037487738f0
+└   test = 0.009099905f0
+  0.410368 seconds
+┌ Info: Loss:
+│   train = 0.002041543f0
+└   test = 0.0065089874f0
+```
+
+or ~22x speedup. With an unknown 6-core CPU with unknown threads we saw Jax:
+
+```
+Initial Train Loss: 6.4232
+Initial Test Loss: 6.1088
+Took: 19.39 seconds
+Train Loss: 0.0307
+Test Loss: 0.0270
+Took: 18.91 seconds
+Train Loss: 0.0037
+Test Loss: 0.0157
+Took: 20.09 seconds
+Train Loss: 0.0018
+Test Loss: 0.0111
+```
+
+vs SimpleChains.jl
+
+```
+13.428804 seconds (17.76 M allocations: 949.815 MiB, 2.89% gc time, 100.00% compilation time)
+┌ Info: Loss:
+│   train = 12.414271f0
+└   test = 12.085746f0
+ 17.685621 seconds (14.99 M allocations: 808.462 MiB, 4.02% gc time, 48.56% compilation time)
+┌ Info: Loss:
+│   train = 0.034923762f0
+└   test = 0.052024134f0
+  9.208631 seconds (19 allocations: 608 bytes)
+┌ Info: Loss:
+│   train = 0.0045825513f0
+└   test = 0.03521506f0
+  9.258355 seconds (30 allocations: 960 bytes)
+┌ Info: Loss:
+│   train = 0.0026099205f0
+└   test = 0.023117168f0
+```
+
+Thus against Jax we saw a 2x-22x, with increasing performance improvements based on the availability of threads and the existence of AVX512. More details can be found at [this link](https://gist.github.com/patrick-kidger/68bf7b99ba02c246b20eaa38f2ad3d38), and we invite others to benchmark the libraries in more detail and share the results.
 
 ## SimpleChains.jl in Action: 5x-ing PyTorch in Small Examples
 
