@@ -22,7 +22,7 @@ figures for several countries over time). This combination of longitudinal
 and cross-sectional data can be powerful for extracting causal
 structure from data.
 
-**Mentors.** [Nils Gudat](https://github.com/nilshg), (others TBD)
+**Mentors.** [Nils Gudat](https://github.com/nilshg), [José Bayoán Santiago Calderón](https://github.com/Nosferican), More TBD?
 
 ### Prerequisites
 
