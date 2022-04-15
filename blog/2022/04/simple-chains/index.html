@@ -141,7 +141,7 @@ xbar &#61; W&#39; * zbar</code></pre> <p>and now cached:</p> <pre><code class=la
 cache .&#61; σ.&#40;cache .&#43; b&#41;
 cache .&#61; derivative.&#40;σ,cache&#41;
 cache .&#61; v .* cache
-mul&#33;&#40;xbar,W&#39;,cache&#41;</code></pre> <p>or in other words, we can write this as a mutating operation with a single cache vector: <code>vjp&#33;&#40;xbar,W,b,σ,v,cache&#41;</code>. All of the overheads of any automatic differentiation or mutations? Gone.</p> <p>Of course, building this up for anything other than the simplest case takes a much larger effort. In comes SimpleChains.jl.</p> <h2 id=simplechainsjl_an_optimized_machine_learning_library_for_sciml_use_cases ><a href="#simplechainsjl_an_optimized_machine_learning_library_for_sciml_use_cases">SimpleChains.jl: An Optimized Machine Learning Library for SciML Use Cases</a></h2> <p><a href="https://github.com/PumasAI/SimpleChains.jl">SimpleChains.jl</a> is the solution to this problem. SimpleChains.jl is a small machine learning framework optimized for quickly fitting small models on the CPU. Early development favored a design that would:</p> <ol> <li><p>Allow us to achieve good performance, ideally approaching the CPU&#39;s potential peak FLOPs.</p> <li><p>Focus on small size meant we could largely forgo large kernel optimizations &#40;such as cache tiling&#41; in the early stages of development.</p> <li><p>Have an API where vectors of parameters &#40;and their gradients&#41; are first class, rather than having parameters live with the layers, to make it easier to work with various optimizers or solvers that expect contiguous vectors &#40;such as BFGS&#41;.</p> <li><p>Be written in &quot;pure Julia&quot; for ease of development and optimization; while making heavy use of <a href="https://github.com/JuliaSIMD/LoopVectorization.jl/">LoopVectorization.jl</a>, SimpleChains.jl does not rely on any BLAS or NN libraries. It is a long term aim to extend this loop-compiler approach to optimization to also producing pullbacks automatically, without requiring them to be handwritten. However, the compiler-focused approach is already levered for ease of implementation: while we still have to hand-write gradients, we do not need to hand-optimize them.</p> </ol> <h2 id=simplechainsjl_in_action_30x-ing_pytorch_in_tiny_example ><a href="#simplechainsjl_in_action_30x-ing_pytorch_in_tiny_example">SimpleChains.jl in Action: 30x-ing PyTorch in Tiny Example</a></h2> <p>Let&#39;s first try a tiny example, where we map a 2x2 matrix to its matrix exponential; our training and test data:</p> <pre><code class=language-julia >function f&#40;x&#41;
+mul&#33;&#40;xbar,W&#39;,cache&#41;</code></pre> <p>or in other words, we can write this as a mutating operation with a single cache vector: <code>vjp&#33;&#40;xbar,W,b,σ,v,cache&#41;</code>. All of the overheads of any automatic differentiation or mutations? Gone.</p> <p>Of course, building this up for anything other than the simplest case takes a much larger effort. In comes SimpleChains.jl.</p> <h2 id=simplechainsjl_an_optimized_machine_learning_library_for_sciml_use_cases ><a href="#simplechainsjl_an_optimized_machine_learning_library_for_sciml_use_cases">SimpleChains.jl: An Optimized Machine Learning Library for SciML Use Cases</a></h2> <p><a href="https://github.com/PumasAI/SimpleChains.jl">SimpleChains.jl</a> is the solution to this problem. SimpleChains.jl is a small machine learning framework optimized for quickly fitting small models on the CPU. Early development favored a design that would:</p> <ol> <li><p>Allow us to achieve good performance, ideally approaching the CPU&#39;s potential peak FLOPs.</p> <li><p>Focus on small size meant we could largely forgo large kernel optimizations &#40;such as cache tiling&#41; in the early stages of development.</p> <li><p>Have an API where vectors of parameters &#40;and their gradients&#41; are first class, rather than having parameters live with the layers, to make it easier to work with various optimizers or solvers that expect contiguous vectors &#40;such as BFGS&#41;.</p> <li><p>Be written in &quot;pure Julia&quot; for ease of development and optimization; while making heavy use of <a href="https://github.com/JuliaSIMD/LoopVectorization.jl/">LoopVectorization.jl</a>, SimpleChains.jl does not rely on any BLAS or NN libraries. It is a long term aim to extend this loop-compiler approach to optimization to also producing pullbacks automatically, without requiring them to be handwritten. However, the compiler-focused approach is already levered for ease of implementation: while we still have to hand-write gradients, we do not need to hand-optimize them.</p> </ol> <h2 id=simplechainsjl_in_action_30x-ing_pytorch_in_tiny_example ><a href="#simplechainsjl_in_action_30x-ing_pytorch_in_tiny_example">SimpleChains.jl in Action: 30x-ing PyTorch in Tiny Example</a></h2> <h4 id=note_all_of_the_code_shown_uses_simplechains_v022_for_updates_see_a_hrefhttpsgithubcompumasaisimplechainsjlthe_packages_documentation ><a href="#note_all_of_the_code_shown_uses_simplechains_v022_for_updates_see_a_hrefhttpsgithubcompumasaisimplechainsjlthe_packages_documentation">Note: All of the code shown uses SimpleChains v0.2.2. For updates, see <a href="https://github.com/PumasAI/SimpleChains.jl">the package&#39;s documentation</a></a></h4> <p>Let&#39;s first try a tiny example, where we map a 2x2 matrix to its matrix exponential; our training and test data:</p> <pre><code class=language-julia >function f&#40;x&#41;
   N &#61; Base.isqrt&#40;length&#40;x&#41;&#41;
   A &#61; reshape&#40;view&#40;x, 1:N*N&#41;, &#40;N,N&#41;&#41;
   expA &#61; exp&#40;A&#41;
@@ -245,7 +245,72 @@ Train Loss: 0.0010
 Test Loss: 0.0056
 Took: 68.02 seconds
 Train Loss: 0.0006
-Test Loss: 0.0039</code></pre> <p>SimpleChains has close to a 100x advantage on this system for this model.</p> <p>Such small models were the motivation behind developing SimpleChains. But how does it fair as we increase the problem size, to models where GPUs have traditionally started outperforming CPUs?</p> <h2 id=simplechainsjl_in_action_5x-ing_pytorch_in_small_examples ><a href="#simplechainsjl_in_action_5x-ing_pytorch_in_small_examples">SimpleChains.jl in Action: 5x-ing PyTorch in Small Examples</a></h2> <p>Let&#39;s test MNIST with LeNet5. Note that this example will be a very conservative estimate of speed because, as a more traditional machine learning use case, batching can be used to make use of matrix-matrix multiplications instead of the even smaller matrix-vector kernels. That said, even in this case we&#39;ll be able to see a substantial performance benefit because of the semi-small network sizes.</p> <p>The following is the Julia code using SimpleChains.jl for the training:</p> <pre><code class=language-julia >using SimpleChains, MLDatasets
+Test Loss: 0.0039</code></pre> <p>SimpleChains has close to a 100x advantage on this system for this model.</p> <p>Such small models were the motivation behind developing SimpleChains. But how does it fair as we increase the problem size, to models where GPUs have traditionally started outperforming CPUs?</p> <h3 id=edit_timings_against_jax ><a href="#edit_timings_against_jax">Edit: Timings Against Jax</a></h3> <p>The author of the Jax Equinox library submitted a Jax code for benchmarking against. On a AMD Ryzen 9 5950X 16-Core Processor we saw with Jax:</p> <pre><code class=language-julia >Took: 14.52 seconds
+Train Loss: 0.0304
+Test Loss: 0.0268
+Took: 14.00 seconds
+Train Loss: 0.0033
+Test Loss: 0.0154
+Took: 13.85 seconds
+Train Loss: 0.0018
+Test Loss: 0.0112</code></pre> <p>vs SimpleChains.jl with 16 threads:</p> <pre><code class=language-julia >5.097569 seconds &#40;14.81 M allocations: 798.000 MiB, 3.94&#37; gc time, 73.62&#37; compilation time&#41;
+┌ Info: Loss:
+│   train &#61; 0.022585187f0
+└   test &#61; 0.32509857f0
+  1.310997 seconds
+┌ Info: Loss:
+│   train &#61; 0.0038023277f0
+└   test &#61; 0.23108596f0
+  1.295088 seconds
+┌ Info: Loss:
+│   train &#61; 0.0023415526f0
+└   test &#61; 0.20991518f0</code></pre> <p>or 10x performace improvement, and on 36 × Intel&#40;R&#41; Core&#40;TM&#41; i9-10980XE CPU @ 3.00GHz we saw for Jax:</p> <pre><code class=language-julia >Initial Train Loss: 6.4232
+Initial Test Loss: 6.1088
+Took: 9.26 seconds
+Train Loss: 0.0304
+Test Loss: 0.0268
+Took: 8.98 seconds
+Train Loss: 0.0036
+Test Loss: 0.0156
+Took: 9.01 seconds
+Train Loss: 0.0018
+Test Loss: 0.0111</code></pre> <p>vs SimpleChains.jl:</p> <pre><code class=language-julia >4.810973 seconds &#40;13.03 M allocations: 686.357 MiB, 8.25&#37; gc time, 89.76&#37; compilation time&#41;
+┌ Info: Loss:
+│   train &#61; 0.011851382f0
+└   test &#61; 0.017254675f0
+  0.410168 seconds
+┌ Info: Loss:
+│   train &#61; 0.0037487738f0
+└   test &#61; 0.009099905f0
+  0.410368 seconds
+┌ Info: Loss:
+│   train &#61; 0.002041543f0
+└   test &#61; 0.0065089874f0</code></pre> <p>or ~22x speedup. With an unknown 6-core CPU with unknown threads we saw Jax:</p> <pre><code class=language-julia >Initial Train Loss: 6.4232
+Initial Test Loss: 6.1088
+Took: 19.39 seconds
+Train Loss: 0.0307
+Test Loss: 0.0270
+Took: 18.91 seconds
+Train Loss: 0.0037
+Test Loss: 0.0157
+Took: 20.09 seconds
+Train Loss: 0.0018
+Test Loss: 0.0111</code></pre> <p>vs SimpleChains.jl</p> <pre><code class=language-julia >13.428804 seconds &#40;17.76 M allocations: 949.815 MiB, 2.89&#37; gc time, 100.00&#37; compilation time&#41;
+┌ Info: Loss:
+│   train &#61; 12.414271f0
+└   test &#61; 12.085746f0
+ 17.685621 seconds &#40;14.99 M allocations: 808.462 MiB, 4.02&#37; gc time, 48.56&#37; compilation time&#41;
+┌ Info: Loss:
+│   train &#61; 0.034923762f0
+└   test &#61; 0.052024134f0
+  9.208631 seconds &#40;19 allocations: 608 bytes&#41;
+┌ Info: Loss:
+│   train &#61; 0.0045825513f0
+└   test &#61; 0.03521506f0
+  9.258355 seconds &#40;30 allocations: 960 bytes&#41;
+┌ Info: Loss:
+│   train &#61; 0.0026099205f0
+└   test &#61; 0.023117168f0</code></pre> <p>Thus against Jax we saw a 2x-22x, with increasing performance improvements based on the availability of threads and the existence of AVX512. More details can be found at <a href="https://gist.github.com/patrick-kidger/68bf7b99ba02c246b20eaa38f2ad3d38">this link</a>, and we invite others to benchmark the libraries in more detail and share the results.</p> <h2 id=simplechainsjl_in_action_5x-ing_pytorch_in_small_examples ><a href="#simplechainsjl_in_action_5x-ing_pytorch_in_small_examples">SimpleChains.jl in Action: 5x-ing PyTorch in Small Examples</a></h2> <p>Let&#39;s test MNIST with LeNet5. Note that this example will be a very conservative estimate of speed because, as a more traditional machine learning use case, batching can be used to make use of matrix-matrix multiplications instead of the even smaller matrix-vector kernels. That said, even in this case we&#39;ll be able to see a substantial performance benefit because of the semi-small network sizes.</p> <p>The following is the Julia code using SimpleChains.jl for the training:</p> <pre><code class=language-julia >using SimpleChains, MLDatasets
 
 lenet &#61; SimpleChain&#40;
   &#40;static&#40;28&#41;, static&#40;28&#41;, static&#40;1&#41;&#41;,
