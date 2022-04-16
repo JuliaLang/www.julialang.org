@@ -67,7 +67,7 @@ Implement consistent APIs for statistical modeling in Julia.
 
 Currently, the Julia statistics ecosystem is quite fragmented. There is 
 value in having a consistent API for a wide variety of statistical models. 
-The CRRao.jl package offers this design. We have built several models with
+The [CRRao.jl](https://github.com/xKDR/CRRao.jl) package offers this design. We have built several models with
 this interface, but there is still work to be done here.
 
 **Mentors.** [Sourish Das](https://www.cmi.ac.in/~sourish/)
