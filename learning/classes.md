@@ -118,7 +118,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [CME 257](https://github.com/icme/cme257-advanced-julia/), Advanced Topics in Scientific Computing with Julia (Mr. [Brad Nelson](https://github.com/bnels)), Fall 2015
     * [EE266](http://ee266.stanford.edu/), Stochastic Control (Prof. Sanjay Lall), Spring 2016
 * Swiss Federal Institute of Technology (ETHZ)
-    * [101-0250-00L](https://eth-vaw-glaciology.github.io/course-101-0250-00/), Solving Partial Differential Equations in parallel on GPUs (Dr. Ludovic Räss), Fall 2021
+    * [101-0250-00L (PDE on GPU)](https://pde-on-gpu.vaw.ethz.ch/), Solving Partial Differential Equations in parallel on GPUs (Dr. [Ludovic Räss](https://github.com/luraess)), Fall 2021, Fall 2022
 * Tec de Monterrey, Santa Fe Campus, Mexico City
    * [IN2022](https://samp.itesm.mx/Materias/VistaPreliminarMateria?clave=IN2022&lang=ES), Modelos de Optimización (Prof. [Marzieh Khakifirooz](https://www.linkedin.com/in/marzieh-khakifirooz-a3b85643/)), Spring 2020
 * Tokyo Metropolitan University, Tokyo, Japan
