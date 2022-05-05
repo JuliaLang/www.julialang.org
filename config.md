@@ -15,7 +15,7 @@
 @def stable_release_date = "Feb 6, 2022"
 @def lts_release = "1.6.6"
 @def lts_release_short = "1.6"
-@def lts_release_date = "March 28, 2021"
+@def lts_release_date = "March 28, 2022"
 
 <!-- plotly -->
 @def hasplotly = false
