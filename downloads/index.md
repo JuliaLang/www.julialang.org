@@ -32,11 +32,13 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.dmg">64-bit (.dmg)</a>, <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.tar.gz">64-bit (.tar.gz)</a> </td>
       <td colspan="3"> </td>
     </tr>
+    <!--
     <tr>
       <th> macOS ARM (M-series Processor) <a href="/downloads/platform/#macos">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg">64-bit</a> (experimental) </td>
       <td colspan="3"> </td>
     </tr>
+    -->
     <tr>
       <th> Generic Linux on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3">
