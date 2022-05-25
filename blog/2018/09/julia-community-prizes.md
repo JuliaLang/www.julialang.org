@@ -23,7 +23,7 @@ For her enhancements of Julia's test suite and documentation
 For his development of JuliaDiffEq and his community engagement
 ![Chris Rackauckas](/assets/blog/2018-09-04-julia-community-prizes/chris-rackauckas.jpg)
 
-## Elliott Saba
+## Elliot Saba
 For his design and stewardship of Julia's community infrastructure
 ![Elliot Saba](/assets/blog/2018-09-04-julia-community-prizes/elliot-saba.jpg)
 
