@@ -108,6 +108,7 @@ We welcome additions to this list in the form of [pull requests](https://github.
 * **BioStructures.jl: read, write and manipulate macromolecular structures in Julia**. Joe G Greener, Joel Selvaraj, Ben J Ward. (2020) _Bioinformatics_, 36(14):4206-4207. doi: [10.1093/bioinformatics/btaa502](https://doi.org/10.1093/bioinformatics/btaa502). Package: [BioStructures.jl](https://github.com/BioJulia/BioStructures.jl).
 * **Polymake.jl: A New Interface to polymake**. Marek Kaluba, Benjamin Lorenz, Sascha Timme. (2020) _Mathematical Software – ICMS 2020_. doi: [10.1007/978-3-030-52200-1_37](https://doi.org/10.1007/978-3-030-52200-1_37). Package: [Polymake.jl](https://github.com/oscar-system/Polymake.jl)
 * **Predicting permeability via statistical learning on higher-order microstructural information**. M. Röding, Z. Ma, S. Torquato. (2020) _Scientific Reports_, 10: 15239. doi: [10.1038/s41598-020-72085-5](https://doi.org/10.1038/s41598-020-72085-5).
+* **GigaSOM.jl: High-performance clustering and visualization of huge cytometry datasets**. Kratochvíl M., Hunewald O., Heirendt L., Verissimo V., Vondrášek J., Satagopam V. P., Schneider R., Trefois C., Ollert M. (2020) _GigaScience_ 9.11. doi: [10.1093/gigascience/giaa127](https://doi.org/10.1093/gigascience/giaa127). Packages: [GigaSOM.jl](https://github.com/LCSB-BioCore/GigaSOM.jl), [GigaScatter.jl](https://github.com/LCSB-BioCore/GigaScatter.jl), [DistributedData.jl](https://github.com/LCSB-BioCore/DistributedData.jl).
 @@
 
 ## 2019
