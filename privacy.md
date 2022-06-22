@@ -13,9 +13,9 @@ payment processing and the [GitHub Sponsors terms](https://docs.github.com/en/gi
 
 ## Who will your information be shared with?
 
-If the application or company is already listed in the NumFOCUS policy, it is not include here.
+If the application or company is already listed in the NumFOCUS policy, it is not included here.
 
-The following websites/servies are used by the Julia Language and thus may be retaining infomation if you visit the website:
+The following websites/services are used by the Julia Language and thus may be retaining infomation if you visit the website:
 - [JuliaAcademy.com (hosted on Teachable)](https://teachable.com/privacy-policy)
 - [Spread Shirt (when shopping there)](https://www.spreadshirt.com/privacy-policy-C3259)
 - [Bonfire (when shopping there)](https://www.bonfire.com/privacy-policy/)
