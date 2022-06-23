@@ -78,7 +78,7 @@ In order to add `<meta aaa="bbb" content="ccc">` tags on your blog post, add
 ## Looking for broken links
 
 Every so often, one should do an in-depth check that there are no broken links.
-While Franklin provides a quick way to do this, it's a good idea to this in depth from time to time.
+While Franklin provides a quick way to do this, it's a good idea to do this in depth from time to time.
 The [broken-link-checker](https://github.com/stevenvachon/broken-link-checker) package is a pretty neat way to do this.
 After installing it with `npm` just do
 
@@ -91,7 +91,7 @@ blc https://julialang.org -ro
 ## Add languages for syntax highlighting
 
 Franklin uses [highlight.js](https://highlightjs.org/) for syntax highlighting. To add a
-new language to the library used by this webpage, recompile the library add add a the new
+new language to the library used by this webpage, recompile the library and add a the new
 language to the list. From the root of the highlight.js repo:
 
 ```

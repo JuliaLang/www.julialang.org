@@ -12,4 +12,4 @@ Jupyter notebooks are available for the following YouTube tutorials over at the 
 * [Intro to solving differential equations in Julia](https://www.youtube.com/watch?v=KPEqYtEd-zY), by Chris Rackauckas
 @@
 
-The [Julia Language's YouTube channel](https://www.youtube.com/user/JuliaLanguage) also provides a number of tutorials and  various other Julia Language content.
+The [Julia Language's YouTube channel](https://www.youtube.com/user/JuliaLanguage) also provides a number of tutorials and various other Julia Language content.
