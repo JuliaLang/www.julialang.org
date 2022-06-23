@@ -69,7 +69,7 @@ This can be implemented in pure Julia, or wrapping the C package [libexif](https
 **Difficulty:** Medium(175h) or Hard(350h)
 
 [QRCode.jl](https://github.com/jiegillet/QRCode.jl) is a legacy package that supports encoding data to QR code. Contributors are required
-to revive this package to co-exist with the latest JuliaImages ecosystem, and also adding support to decode QR code into julia data. Decoding QR code can be potentially be challenging and students need to find out a satisfying solution from the literature.
+to revive this package to co-exist with the latest JuliaImages ecosystem, and also adding support to decode QR code into Julia data. Decoding QR code can be potentially be challenging and students need to find out a satisfying solution from the literature.
 
 **Skills:** Experiences in JuliaImages are required. The ability to read and understand the QR code specification.
 

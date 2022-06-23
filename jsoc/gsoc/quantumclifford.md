@@ -15,7 +15,7 @@ At a minimum that would include [Pauli-Pauli products](https://github.com/Krasta
 
 **Expected duration:** 175 hours (but applicants can scope it to a longer project by including work on GPU-accelerated Gaussian elimination used in the canonicalization routines)
 
-**Difficulty:** Medium if the applicant is familiar with Julia, even without understanding of Quantum Information Science (but applicants can scope it to "hard" by including the afforementioned additional topics)
+**Difficulty:** Medium if the applicant is familiar with Julia, even without understanding of Quantum Information Science (but applicants can scope it to "hard" by including the aforementioned additional topics)
 
 ## Pauli Frames for faster sampling.
 

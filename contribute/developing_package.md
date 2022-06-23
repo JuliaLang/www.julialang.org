@@ -135,7 +135,7 @@ end
 
 To run the test defined above:
 
-1. In your temrinal, go to your package directory.
+1. In your terminal, go to your package directory.
 2. Open the Julia REPL.
 3. Go to the **package mode** by typing `]`. 
 4. Activate the package environment by running the following command:

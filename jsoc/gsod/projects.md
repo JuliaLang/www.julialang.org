@@ -19,11 +19,11 @@ Below you can find a running list of potential GSoD projects. If any of these ar
 
 ## Scientific Machine Learning (SciML) and Differential Equations
 
-Given the large scope and breadth of the SciML Ecosystem, the project will be participating independently from the Julia umbrealla. SciML is also a NumFOCUS sponsored project since 2020 and runs other dev programs seperate from the Julia umbrealla. You can find the [SciML GSoD projects on their website](https://sciml.ai/gsod/).
+Given the large scope and breadth of the SciML Ecosystem, the project will be participating independently from the Julia umbrella. SciML is also a NumFOCUS sponsored project since 2020 and runs other dev programs separate from the Julia umbrella. You can find the [SciML GSoD projects on their website](https://sciml.ai/gsod/).
 
 ## Flux (Machine Learning)
 
-The [Flux.jl](https://github.com/FluxML/Flux.jl) project will be applying seperatly from the Julia umbrealla since Flux is now a NumFOCUS affiliated project. You can find the [GSoD projects proposed for Flux on their wesbite](https://fluxml.ai/gsod.html).
+The [Flux.jl](https://github.com/FluxML/Flux.jl) project will be applying separately from the Julia umbrella since Flux is now a NumFOCUS affiliated project. You can find the [GSoD projects proposed for Flux on their wesbite](https://fluxml.ai/gsod.html).
 
 ## Turing (probabilistic machine learning)
 

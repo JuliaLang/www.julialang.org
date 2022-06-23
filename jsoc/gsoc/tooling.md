@@ -6,7 +6,7 @@
 
 **Duration**: 350 hours
 
-[Semgrep](https://semgrep.dev/) is an open source multi-language static analysis toookit, based on the [tree-sitter](https://tree-sitter.github.io/tree-sitter/) parser generator. The project would involve adding Julia support to Semgrep, as well as creating a standard ruleset for Julia. It might be necessary to improve the [Julia tree-sitter grammer](https://github.com/tree-sitter/tree-sitter-julia) for this project. 
+[Semgrep](https://semgrep.dev/) is an open source multi-language static analysis toolkit, based on the [tree-sitter](https://tree-sitter.github.io/tree-sitter/) parser generator. The project would involve adding Julia support to Semgrep, as well as creating a standard ruleset for Julia. It might be necessary to improve the [Julia tree-sitter grammer](https://github.com/tree-sitter/tree-sitter-julia) for this project. 
 
 **Resources**:
 @@tight-list

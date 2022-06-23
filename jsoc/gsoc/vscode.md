@@ -5,7 +5,7 @@
 We are generally looking for folks that want to help with the [Julia VS Code extension](https://www.julia-vscode.org/).
 We have a long list of open issues, and some of them amount to significant projects.
 
-**Required Skills**: TypeScript, julia, web development.
+**Required Skills**: TypeScript, Julia, web development.
 
 **Expected Results**: Depends on the specific projects we would agree on.
 

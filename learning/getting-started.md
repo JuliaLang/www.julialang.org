@@ -34,7 +34,7 @@ If you have experience programming in another language, you will find that most 
 
 
 ## Developing packages
-It is easy to move from using Julia packages to developing them. Most of our contributors started that way. If you are the user of a Julia package, please believe that you have the skills to contribute bug fixes and new features. Chris Rackaukas has created a video that walks you through the process of creating a new package, or contributing code to an existing package. Find it [here on our Youtube channel](https://www.youtube.com/watch?v=QVmU29rCjaA)
+It is easy to move from using Julia packages to developing them. Most of our contributors started that way. If you are the user of a Julia package, please believe that you have the skills to contribute bug fixes and new features. Chris Rackauckas has created a video that walks you through the process of creating a new package, or contributing code to an existing package. Find it [here on our Youtube channel](https://www.youtube.com/watch?v=QVmU29rCjaA)
 
 
 ## Looking for help

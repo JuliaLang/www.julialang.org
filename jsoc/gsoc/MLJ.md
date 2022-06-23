@@ -254,7 +254,7 @@ As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) 
 
 ### Your contributions
 - Interface between Turing and MLJ
-- Comparisons of ensambling, stacking of predictive distribution
+- Comparisons of ensembling, stacking of predictive distribution
 - reproducible benchmarks across various settings.
 
 ### References

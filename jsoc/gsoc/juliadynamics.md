@@ -39,7 +39,7 @@ Background in complex systems, sociology, or nonlinear dynamics is not required 
 **Length**: 175 hours.
 
 [DynamicalSystems.jl](https://juliadynamics.github.io/DynamicalSystems.jl/latest/) is an [award-winning](https://dsweb.siam.org/The-Magazine/Article/winners-of-the-dsweb-2018-software-contest)
-Julia software library for dynamical systems, nonlinear dynamics, deterministic chaos and nonlinear timeseries analysis.
+Julia software library for dynamical systems, nonlinear dynamics, deterministic chaos and nonlinear time series analysis.
 It has an impressive list of features, but one can never have enough. In this project, contributors will be able to
 enrich DynamicalSystems.jl with new algorithms and enrich their knowledge of nonlinear dynamics and computer-assisted
 exploration of complex systems.

@@ -68,7 +68,7 @@ The work happens at this [PR](https://github.com/JuliaGL/GLAbstraction.jl/pull/8
 Besides Transpiler integration, a lot of those goals have been achieved and now effort needs to
 be put into writing tests and porting the packages that rely on GLAbstraction to work with the new API.
 
-**Expected Results**: finishing the PR and making sure it works with dependant packages
+**Expected Results**: finishing the PR and making sure it works with dependent packages
 
 **Recommended skills**: Requirement is a good understanding of OpenGL
 

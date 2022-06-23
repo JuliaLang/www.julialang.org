@@ -8,7 +8,7 @@
 
 Machine learning is a huge discipline, with applications ranging from natural language processing to solving partial differential equations. It is from this landscape that major frameworks such as PyTorch, TensorFlow, and [Flux.jl](https://fluxml.ai/) arise and strive to be packages for "all of machine learning". While some of these frameworks have the backing of large companies such as Facebook and Google, the Julia community has relied on the speed and productivity of the Julia programming language itself in order for its open source community to keep up with the pace of development. It is from this aspect which Flux.jl derives its "slimness": while PyTorch and TensorFlow include entire separate languages and compilers (torchscript, XLA, etc.), Flux.jl is just Julia. It is from this that the moniker "you could have built it yourself" is commonly used to describe Flux.jl.
 
-In this post we take a different look at how the programmability of Julia helps in the machine learning space. Specifically, by targetting the grand space of "all machine learning", frameworks inevitably make trade-offs that accelerate some aspects of the code to the detriment of others. This comes from the inevitable trade-off between simplicity, generality, and performance. However, the ability to easily construct machine learning libraries thus presents an interesting question: can this development feature be used to easily create alternative frameworks which focus its performance on more non-traditional applications or aspects?
+In this post we take a different look at how the programmability of Julia helps in the machine learning space. Specifically, by targeting the grand space of "all machine learning", frameworks inevitably make trade-offs that accelerate some aspects of the code to the detriment of others. This comes from the inevitable trade-off between simplicity, generality, and performance. However, the ability to easily construct machine learning libraries thus presents an interesting question: can this development feature be used to easily create alternative frameworks which focus its performance on more non-traditional applications or aspects?
 
 The answer is yes, you can quickly build machine learning implementations which greatly outperform the frameworks in specialized cases using the Julia programming language, and we demonstrate this with our new package: [SimpleChains.jl](https://github.com/PumasAI/SimpleChains.jl).
 
@@ -206,7 +206,7 @@ ZygoteRules.@adjoint function (f::FastDense)(x,p)
 end
 ```
 
-for `sigma.(W*x .+ b)` to calculate `J'v`, you can greatly optimize this if you know that the backwards pass will immediately preceed the forward pass. Specifically, there's no need to generate closures to store values since there no indeterminate future where the gradient might be needed, instead you can immediately proceed to calculate it. And, if you're only applying it to a vector of known size `v`, then this operation can be done without allocating by mutating a cache vector. Lastly, if we know we're only going to use the derivative w.r.t. `x` (`xbar`), then we can eliminate many calculations. Look at the simplified version:
+for `sigma.(W*x .+ b)` to calculate `J'v`, you can greatly optimize this if you know that the backwards pass will immediately precede the forward pass. Specifically, there's no need to generate closures to store values since there no indeterminate future where the gradient might be needed, instead you can immediately proceed to calculate it. And, if you're only applying it to a vector of known size `v`, then this operation can be done without allocating by mutating a cache vector. Lastly, if we know we're only going to use the derivative w.r.t. `x` (`xbar`), then we can eliminate many calculations. Look at the simplified version:
 
 ```julia
 r = W*x .+ b
@@ -759,7 +759,7 @@ Note that smaller batch sizes improve accuracy per epoch, and batch sizes were s
 
 Latency before the first epoch begins training is problematic, but SimpleChains.jl is fast once compiled.
 Post-compilation, the 10980XE was competitive with Flux using an A100 GPU, and about 35% faster than the V100.
-The 1165G7, a laptop CPU featuring AVX512, was competive, handily trouncing any of the competing machine learning libraries when 
+The 1165G7, a laptop CPU featuring AVX512, was competitive, handily trouncing any of the competing machine learning libraries when 
 they were run on far beefier CPUs, and even beat PyTorch on both the V100 and A100. Again, we stress that this test case followed the more typical machine learning
 uses and thus was able to use batching to even make GPUs viable: for many use cases of SimpleChains.jl this is not the case and thus
 the difference is even larger.

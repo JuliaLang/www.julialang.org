@@ -6,7 +6,7 @@ The sections below explain additional processes and data collection policies spe
 
 ## What information does The Julia Language collect?
 
-*Online payments* (donations) are processed through NumFOCUS (if made direcly on the NumFOCUS website); upon clicking 
+*Online payments* (donations) are processed through NumFOCUS (if made directly on the NumFOCUS website); upon clicking 
 on a "donate" button or link, you will be transferred to a NumFOCUS site. If the donation is made via GitHub, you would click the "sponsor" button.
 Please see the [NumFOCUS Privacy Policy](https://numfocus.org/privacy-policy) regarding data collected during 
 payment processing and the [GitHub Sponsors terms](https://docs.github.com/en/github/site-policy/github-sponsors-additional-terms) for details on data collected during that process.
@@ -15,7 +15,7 @@ payment processing and the [GitHub Sponsors terms](https://docs.github.com/en/gi
 
 If the application or company is already listed in the NumFOCUS policy, it is not included here.
 
-The following websites/services are used by the Julia Language and thus may be retaining infomation if you visit the website:
+The following websites/services are used by the Julia Language and thus may be retaining information if you visit the website:
 - [JuliaAcademy.com (hosted on Teachable)](https://teachable.com/privacy-policy)
 - [Spread Shirt (when shopping there)](https://www.spreadshirt.com/privacy-policy-C3259)
 - [Bonfire (when shopping there)](https://www.bonfire.com/privacy-policy/)

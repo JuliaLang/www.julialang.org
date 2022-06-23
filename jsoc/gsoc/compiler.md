@@ -49,7 +49,7 @@ That way, we can tailor your project to better suit your interests and skillset.
   <https://github.com/JuliaLang/julia/issues/20241> and
   <https://github.com/JuliaLang/julia/issues/34164>.
 
-  **Expected Outcomes**: Ideally, re-implementation of hygenic macros. Realistically, resolving some or any of the `macros` issues.
+  **Expected Outcomes**: Ideally, re-implementation of hygienic macros. Realistically, resolving some or any of the `macros` issues.
   **Skills**: Lisp/Scheme/Racket experience desired but not necessarily required.
   **Difficulty**: Medium
 

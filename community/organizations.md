@@ -1,6 +1,6 @@
 ## Julia GitHub Organizations
 
-Something unique about the Julia Language is the way [the community self organizes into GitHub Organizations](https://youtu.be/cLFfTE2KWrk?t=644). This allows for a higher degree of collaboration and structure that ultimately enables each of these communitites to be self sustaining.
+Something unique about the Julia Language is the way [the community self organizes into GitHub Organizations](https://youtu.be/cLFfTE2KWrk?t=644). This allows for a higher degree of collaboration and structure that ultimately enables each of these communities to be self sustaining.
 
 The following is a non-comprehensive list of Julia GitHub organizations, grouped by domain. If you know of an organization not shown here, please open a pull request so that we can keep the list up to date.
 
@@ -133,11 +133,11 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 
 ### Miscellaneous
 
-* [JuliaCN](https://github.com/JuliaCN) - An open-source orgnization for Julia localization in Chinese
+* [JuliaCN](https://github.com/JuliaCN) - An open-source organization for Julia localization in Chinese
 * [JuliaGaming](https://github.com/JuliaGaming) – Open source games built in the Julia Programming Language.
 * [JuliaKorea](https://github.com/juliakorea) - Julia Korea organization
 * [JuliaLangSlack](https://github.com/JuliaLangSlack) – Projects built to enable the Julia Lang community Slack workspace
-* [JuliaStaging](https://github.com/JuliaStaging) - Utilities to analyze, generate and evaluate julia code for multi-stage scenarios
+* [JuliaStaging](https://github.com/JuliaStaging) - Utilities to analyze, generate and evaluate Julia code for multi-stage scenarios
 * [JuliaSymbolics](https://github.com/JuliaSymbolics) - A fast and modern CAS for a fast and modern language
 * [JuliaTokyo](https://github.com/JuliaTokyo) - Yet another Julialang community.
 * [Julia-Streamers](https://github.com/Julia-Streamers) – The official organization for the Julia Streaming community!
