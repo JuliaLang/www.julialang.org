@@ -76,7 +76,7 @@ In more detail, you may find it useful to consider the following questions:
 * **About you.** Why you? Give us a sense of who you are as a person and as a programmer.
   - What academic, professional or hobby programming experience do you have, and how will it help you with your project?
   - Have you contributed to open source projects before? (Link us to some issues and patches, if any)
-  - Why are you interested in Julia? Have you used it much before? You need to demonstrate your ability to use Julia by the beginning of the program. Trainee programs are not for learning the Julia language, though extensive prior experience is not required, given the high quality of applications each year, individuals with Julia Open Source contributions are usually much more likley to be chosen.
+  - Why are you interested in Julia? Have you used it much before? You need to demonstrate your ability to use Julia by the beginning of the program. Trainee programs are not for learning the Julia language, though extensive prior experience is not required, given the high quality of applications each year, individuals with Julia Open Source contributions are usually much more likely to be chosen.
   - Do you have the mathematical/scientific background for your project? Many of the Julialang projects have a significant portion that require technical expertise and applicants need to demonstrate their ability to handle the chosen project.
   - How should we contact you? Let us know your email address and GitHub  username.
   - Do you have a website or blog?

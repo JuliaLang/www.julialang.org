@@ -136,7 +136,7 @@ Usually, around USD 5,000 - 10,000 is available per proposal.
 The total allocated funding from NumFOCUS is around USD 20,000 - 50,000 in previous cycles, meaning that not every project will be able to receive a grant.
 This total amount is adjusted depending on the number and quality of proposals.
 
-Impotant dates for upcoming Small Development Grants in 2022:
+Important dates for upcoming Small Development Grants in 2022:
 
 Round 1
 - Call for Proposals Announcement: February 4, 2022

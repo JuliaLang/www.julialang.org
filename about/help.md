@@ -14,7 +14,7 @@
 
 ## Have a Julia question?
  - First check the [Julia FAQs](https://docs.julialang.org/en/v1/manual/faq/) section of the docs which includes answers to many common, general Julia questions.
- - The next best place to go to ask a question is the offical [Julia Discourse site](https://discourse.julialang.org).
+ - The next best place to go to ask a question is the official [Julia Discourse site](https://discourse.julialang.org).
  - Stack Overflow has a growing number of [Julia questions and answers](https://stackoverflow.com/questions/tagged/julia).
  - For realtime help from a person, you should check out our [official chat channels](/community/#chat).
  - If you think there may be a bug in core Julia, search the [open issues on the core Julia repo](https://github.com/JuliaLang/julia/issues).

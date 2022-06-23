@@ -175,7 +175,7 @@ This occurs when the method is owned by one module but the argument types are fr
 We'll see how to deal with these in later installments.
 
 You also see breaks in the flamegraph. During these periods, code generation and runtime create new objects and then call methods on those objects; if one of those calls requires a fresh entrance into inference, that triggers the creation of a new flame.
-Hence, the number of distinct flames (which is just equal to `length(tinf.children)`) gives you a rough indication of how frequently the chains of inference were broken. This can be caused by type instability, separate top-level calls from the REPL during `@snoopi_deep`, calls to `eval` in your code, or some other cause for julia to start running type inference.
+Hence, the number of distinct flames (which is just equal to `length(tinf.children)`) gives you a rough indication of how frequently the chains of inference were broken. This can be caused by type instability, separate top-level calls from the REPL during `@snoopi_deep`, calls to `eval` in your code, or some other cause for Julia to start running type inference.
 
 ### PProf.jl
 ```
