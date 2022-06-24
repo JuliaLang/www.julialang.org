@@ -1,4 +1,4 @@
-
+@def title = "Julia Programming Language Job Board"
 ~~~
 
 <!-- Inner Banner -->
