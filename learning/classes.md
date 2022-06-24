@@ -200,8 +200,11 @@ If you know of other classes using Julia for teaching, please consider [updating
     * COT 4501, Numerical Analysis: A Computational Approach ([Prof. James Fairbanks](https://www.cise.ufl.edu/fairbanks-james/)), Spring 2022 
 * University of Glasgow, School of Mathematics and Statistics
     * An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](https://www.gla.ac.uk/postgraduate/taught/dataanalytics/)), September 2017
-*   University of Oulu
-    *   Invited [Advanced Julia Workshop](https://github.com/crstnbr/JuliaOulu20) (MSc. Carsten Bauer, University of Cologne), Spring 2020
+* University of Oregon
+    * EC607, [Core Macroeconomics III](https://github.com/gionikola/spring2021_core_macro_lab) ([Prof. David Evans](http://econevans.com/))
+    * EC607, [Computational Economics](https://github.com/dgevans/EC-607-Computational-Economics) ([Prof. David Evans](http://econevans.com/))
+* University of Oulu
+    * Invited [Advanced Julia Workshop](https://github.com/crstnbr/JuliaOulu20) (MSc. Carsten Bauer, University of Cologne), Spring 2020
 * University of South Florida
     * ESI 4312, Deterministic Operations Research (Prof. Changhyun Kwon), Fall 2017–Fall 2020
     * ESI 6410, Optimization in O.R. (Prof. Changhyun Kwon), Spring 2021
