@@ -1100,6 +1100,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/jobs/index.html</loc>
+    <lastmod>2022-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/jsoc/gsoc/graphics/index.html</loc>
     <lastmod>2022-06-24</lastmod>
     <changefreq>monthly</changefreq>
