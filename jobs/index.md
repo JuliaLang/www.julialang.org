@@ -97,7 +97,7 @@
 				<div class="row">
 					<div class="col-md-2 col-sm-2">
 						<div class="company-logo">
-							<img src="https://images.squarespace-cdn.com/content/v1/5e592107d63bf3329f7decf7/1582902620008-IBQ28C95PN6MV82RQXYK/optimal_inverted.png?format=1500w" class="img-responsive" alt="" />
+							<img src="https://images.squarespace-cdn.com/content/v1/5e592107d63bf3329f7decf7/1582902620008-IBQ28C95PN6MV82RQXYK/optimal_inverted.png?format=1500w" class="img-responsive" alt="Optimal Agriculture" />
 						</div>
 					</div>
 					<div class="col-md-8 col-sm-8">
@@ -116,7 +116,7 @@
 				<div class="row">
 					<div class="col-md-2 col-sm-2">
 						<div class="company-logo">
-							<img src="https://images.squarespace-cdn.com/content/v1/5e592107d63bf3329f7decf7/1582902620008-IBQ28C95PN6MV82RQXYK/optimal_inverted.png?format=1500w" class="img-responsive" alt="" />
+							<img src="https://images.squarespace-cdn.com/content/v1/5e592107d63bf3329f7decf7/1582902620008-IBQ28C95PN6MV82RQXYK/optimal_inverted.png?format=1500w" class="img-responsive" alt="Optimal Agriculture" />
 						</div>
 					</div>
 					<div class="col-md-8 col-sm-8">
