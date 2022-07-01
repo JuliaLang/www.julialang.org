@@ -92,6 +92,44 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="company-list">
+				<div class="row">
+					<div class="col-md-2 col-sm-2">
+						<div class="company-logo">
+							<img src="https://images.squarespace-cdn.com/content/v1/5e592107d63bf3329f7decf7/1582902620008-IBQ28C95PN6MV82RQXYK/optimal_inverted.png?format=1500w" class="img-responsive" alt="Optimal Agriculture" />
+						</div>
+					</div>
+					<div class="col-md-8 col-sm-8">
+						<div class="company-content">
+							<h3>Senior Software Engineer</h3>
+							<p><span class="company-name"><i class="fa fa-briefcase"></i>Optimal Agriculture</span><span class="company-location"><i class="fa fa-map-marker"></i>London, UK</span><span class="package"><i class="fa fa-money"></i>£80k - £100k</span></p>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<a href="https://angel.co/company/optimal-labs/jobs/690348-senior-software-engineer" class="btn view-job">View Job</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="company-list">
+				<div class="row">
+					<div class="col-md-2 col-sm-2">
+						<div class="company-logo">
+							<img src="https://images.squarespace-cdn.com/content/v1/5e592107d63bf3329f7decf7/1582902620008-IBQ28C95PN6MV82RQXYK/optimal_inverted.png?format=1500w" class="img-responsive" alt="Optimal Agriculture" />
+						</div>
+					</div>
+					<div class="col-md-8 col-sm-8">
+						<div class="company-content">
+							<h3>Principal Software Engineer</h3>
+							<p><span class="company-name"><i class="fa fa-briefcase"></i>Optimal Agriculture</span><span class="company-location"><i class="fa fa-map-marker"></i>London, UK</span><span class="package"><i class="fa fa-money"></i>£100k - £120k</span></p>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<a href="https://angel.co/company/optimal-labs/jobs/2112544-principal-software-engineer" class="btn view-job">View Job</a>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<a href="https://github.com/JuliaLang/www.julialang.org/issues/new?assignees=logankilpatrick&labels=job&template=job-board-post.md&title=" class="btn brows-btn">Add a Job</a>
