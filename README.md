@@ -4,7 +4,7 @@ This is the GitHub repository for the Julia Programming Language's main website,
 The repository for the source code of the language itself can be found at [github.com/JuliaLang/julia](https://github.com/JuliaLang/julia).
 
 The Julia website is generated using GitHub pages and [Franklin.jl](https://github.com/tlienart/Franklin.jl), a Julia native package for building static websites.
-
+ 
 
 ## Making Simple Changes
 
