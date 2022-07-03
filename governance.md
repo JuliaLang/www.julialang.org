@@ -28,7 +28,7 @@ What kind of money goes to Julia through NumFOCUS and how is it spent? When you 
 
 ## Related Organizations With No Governance Role
 
-There are organizations that people sometimes mistakenly believe have some kind of official control over the Julia project. This section details two of them, but please note that neither has any official relationship to the Julia project, nor any governance capacity with respect to the project. Individuals who have some control over the project and happen to belong to these organizations, have that control as individuals and not as members of those organizations and takes the separation of those roles quite seriously.
+There are organizations that people sometimes mistakenly believe have some kind of official control over the Julia project. This section details two of them, but please note that neither has any official relationship to the Julia project, nor any governance capacity with respect to the project. Individuals who have some control over the project and happen to belong to these organizations, have that control as individuals and not as members of those organizations and take the separation of those roles quite seriously.
 
 ### The Julia Lab
 
