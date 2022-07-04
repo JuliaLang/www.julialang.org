@@ -130,7 +130,28 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="company-list">
+				<div class="row">
+					<div class="col-md-2 col-sm-2">
+						<div class="company-logo">
+							<img src="https://planting.space/logo/PS-main-logo-1066x400px.png" class="img-responsive" alt="PlantingSpace logo" />
+						</div>
+					</div>
+					<div class="col-md-8 col-sm-8">
+						<div class="company-content">
+							<h3>Core Software Engineering</h3>
+							<p><span class="company-name"><i class="fa fa-briefcase"></i>PlantingSpace</span><span class="company-location"><i class="fa fa-map-marker"></i>Remote</span><span class="package"><i class="fa fa-money"></i>Unknown</span></p>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<a href="https://planting.space/joinus/" class="btn view-job">View Job</a>
+					</div>
+				</div>
+			</div>
 		</div>
+		</div>
+
 		<div class="row">
 			<a href="https://github.com/JuliaLang/www.julialang.org/issues/new?assignees=logankilpatrick&labels=job&template=job-board-post.md&title=" class="btn brows-btn">Add a Job</a>
 		</div>
