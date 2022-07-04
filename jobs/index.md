@@ -150,7 +150,6 @@
 				</div>
 			</div>
 		</div>
-		</div>
 
 		<div class="row">
 			<a href="https://github.com/JuliaLang/www.julialang.org/issues/new?assignees=logankilpatrick&labels=job&template=job-board-post.md&title=" class="btn brows-btn">Add a Job</a>
