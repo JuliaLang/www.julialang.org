@@ -14,8 +14,8 @@ Julia is available for Windows 7 and later for both 32 bit and 64 bit versions.
 
 **We highly recommend running Julia using a modern terminal, such as installing the [Windows Terminal from the Microsoft Store](https://aka.ms/terminal).**
 
-\newcommand{\winpath}{~~~<code>C:\Users\JohnDoe\AppData\Local\Programs\Julia {{stable_release}}</code>~~~}
-\newcommand{\winpathbin}{~~~<code>C:\Users\JohnDoe\AppData\Local\Programs\Julia {{stable_release}}\bin</code>~~~}
+\newcommand{\winpath}{~~~<code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-{{stable_release}}</code>~~~}
+\newcommand{\winpathbin}{~~~<code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-{{stable_release}}\bin</code>~~~}
 
 
 ### Install Julia in 4 simple steps!
