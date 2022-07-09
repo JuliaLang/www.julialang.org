@@ -19,7 +19,7 @@ Most users are advised to use the latest official release version of Julia.
       <td> <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.exe">32-bit (installer)</a>, <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.zip">32-bit (portable) </td>
   </tr>
   <tr>
-      <th> macOS </th>
+      <th> macOS (Intel or Rosetta) </th>
       <td colspan="2"> <a href="https://julialangnightlies-s3.julialang.org/bin/mac/x64/julia-latest-mac64.dmg">64-bit</a> </td>
   </tr>
   <tr>
