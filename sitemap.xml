@@ -776,12 +776,6 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/research/index.html</loc>
-    <lastmod>2022-07-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/blog/2019/12/yao-differentiable-quantum-programming/index.html</loc>
     <lastmod>2022-07-17</lastmod>
     <changefreq>monthly</changefreq>
@@ -848,6 +842,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/research/index.html</loc>
+    <lastmod>2022-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2016/04/biojulia2016/index.html</loc>
     <lastmod>2022-07-17</lastmod>
     <changefreq>monthly</changefreq>
@@ -885,6 +885,12 @@
 </url>
 <url>
     <loc>https://julialang.org/jsoc/archive/index.html</loc>
+    <lastmod>2022-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/research/publications-archive/index.html</loc>
     <lastmod>2022-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
