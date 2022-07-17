@@ -1,68 +1,11 @@
-
-# Research
-
-Research on Julia is carried out at the Julia Lab at MIT and at many universities worldwide.
-If you use Julia in your research, we request citing the following paper:
-
-Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah. (2017) SIAM Review, 59: 65–98. doi: [10.1137/141000671](https://dx.doi.org/10.1137/141000671). [pdf](/assets/research/julia-fresh-approach-BEKS.pdf).
-
-<!-- LAZY COPY PASTE -->
-
-## Prizes and Awards
-
-Researchers contributing to Julia have been awarded various prizes:
-
-@@tight-list
-* [2021: Julia Community Prizes](https://juliacon.org/2021/prize/): Bogumił Kamiński & Milan Bouchet-Valat, Fons van der Plas, and Dilum Aluthge
-* [2020: Julia Community Prizes](https://juliacon.org/2020/prize/): Huda Nassar, Mosè Giordano, and Chris Elrod
-* [2019: NumFOCUS Awards and New Contributor Recognition](https://numfocus.org/blog/2019-numfocus-awards): Logan Kilpatrick, Mosè Giordano
-* [2019: IEEE Computer Society Sidney Fernbach Award](https://www.computer.org/press-room/2019-news/2019-ieee-fernbach-award-edelman): Alan Edelman
-* [2019: Julia Community Prizes](https://juliacon.org/2019/prize.html): Jane Herriman, Mike Innes, and Jacob Quinn
-* [2019: James H. Wilkinson Prize for Numerical Software](https://sinews.siam.org/Details-Page/january-prize-spotlight-jeff-bezanson-steven-l-brunton-jack-dongarra-stefan-karpinski-and-viral-b-shah): Jeff Bezanson, Stefan Karpinski, and Viral Shah
-* [2019: Forbes 30 under 30 in Enterprise Technology](https://www.forbes.com/profile/keno-fischer/?list=30under30-enterprise-technology#2388dab7190f): Keno Fischer for Julia
-* [2018: Inaugural NumFOCUS Awards and New Contributor Recognition](https://numfocus.org/blog/inaugural-numfocus-awards-and-new-contributor-recognition): Pietro Vertechi, Michael Savastio
-* [2018: Julia Community Prizes](/blog/2018/09/julia-community-prizes/): Tim Besard, Katharine Hyatt, Chris Rackauckas, and Elliot Saba
-* [2018: DSWeb Software Contest](https://dsweb.siam.org/The-Magazine/Article/winners-of-the-dsweb-2018-software-contest): George Datseris for DynamicalSystems.jl
-* [2018: Best of Open Source Software (Bossie) Award](https://globenewswire.com/news-release/2018/09/26/1576496/0/en/InfoWorld-Recognizes-Open-Source-Software-Technologies-Driving-Business-Innovation.html): The Julia project
-* [2016: INFORMS Computing Society Prize](https://connect.informs.org/computing/awards/ics-prize): Miles Lubin, Iain Dunning, and Joey Huchette for JuMP.jl
-* [2015: IEEE-CS Charles Babbage Award](https://www.computer.org/web/awards/charles-babbage): Alan Edelman
-@@
-
-## Sponsors
-
-We thank our sponsors for making Julia possible:
-
-@@tight-list
-* [Lincoln Laboratory](https://www.ll.mit.edu): [Dr. Jeremy Kepner](https://www.mit.edu/~kepner/) is the founding sponsor of the Julia project.
-* [Gordon and Betty Moore Foundation](https://www.moore.org/article-detail?newsUrlName=bringing-julia-from-beta-to-1.0-to-support-data-intensive-scientific-computing)
-* [Alfred P. Sloan Foundation](https://sloan.org/grant-detail/7999)
-* Intel
-* Research grants from various agencies have led to Julia contributions: [NSF](https://nsf.gov), [DARPA](https://www.darpa.mil/), [NIH](https://www.nih.gov/), [NASA](https://nasa.gov), and [FAA](https://www.faa.gov/).
-* And all of our [individual sponsors on GitHub](https://github.com/sponsors/JuliaLang). 
-@@
-
-## Publications
-
-Here's a list of publications about the Julia language, its standard
-library, Julia packages, and technical computing applications.
-It is by no means complete, and is based on submissions by authors.
-A broader list of papers is available on [Google Scholar](https://scholar.google.com/scholar?cites=12373977815425691465&as_sdt=40000005&sciodt=0,22&hl=en).
-
-In order to make Julia packages and projects easy to cite, the
-community has settled on a standard location and format for
-bibliographic information.  
-Please add a `CITATION.bib` file (BibTeX format) in the top-level directory of your package or repo.
-The key for the bib entry should be &lt;PackageName.jl&gt;-&lt;year&gt;-&lt;letter&gt; (Use a letter if you have multiple citations in same year).
-For example, see the [CITATION.bib](https://github.com/JuliaLang/julia/blob/master/CITATION.bib) file in the Julia repo.
-
-We welcome additions to this list in the form of [pull requests](https://github.com/JuliaLang/www.julialang.org/blob/master/research.md)
+# Publications (Archived)
 
 ## 2022
 
 @@tight-list
 * **Newton's Method in Mixed Precision**. C. T. Kelley. _SIAM Review 64: 191-211_ (2022). doi: [10.1137/20M1342902](https://epubs.siam.org/doi/10.1137/20M1342902)
-* **GaussianProcesses.jl: A Nonparametric Bayes Package for the Julia Language**. Jamie Fairbrother, Christopher Nemeth, Maxime Rischard, Johanni Brea, Thomas Pinder. _Journal of Statistical Software 102_ no. 1 (2022). doi: [10.18637/jss.v101.i06](https://www.jstatsoft.org/article/view/v102i01). Packages: [GaussianProcesses.jl](https://github.com/STOR-i/GaussianProcesses.jl) 
-* **The JuliaConnectoR: A Functionally-Oriented Interface for Integrating Julia in R**. Stefan Lenz, Maren Hackenberg, Harald Binder. _Journal of Statistical Software 101_ no. 16 (2022). doi: [10.18637/jss.v101.i06](https://www.jstatsoft.org/article/view/v101i06). Packages: [JuliaConnectoR](https://cran.r-project.org/web/packages/JuliaConnectoR/index.html) 
+* **GaussianProcesses.jl: A Nonparametric Bayes Package for the Julia Language**. Jamie Fairbrother, Christopher Nemeth, Maxime Rischard, Johanni Brea, Thomas Pinder. _Journal of Statistical Software 102_ no. 1 (2022). doi: [10.18637/jss.v101.i06](https://www.jstatsoft.org/article/view/v102i01). Packages: [GaussianProcesses.jl](https://github.com/STOR-i/GaussianProcesses.jl)
+* **The JuliaConnectoR: A Functionally-Oriented Interface for Integrating Julia in R**. Stefan Lenz, Maren Hackenberg, Harald Binder. _Journal of Statistical Software 101_ no. 16 (2022). doi: [10.18637/jss.v101.i06](https://www.jstatsoft.org/article/view/v101i06). Packages: [JuliaConnectoR](https://cran.r-project.org/web/packages/JuliaConnectoR/index.html)
 * **Adaptive numerical simulations with Trixi.jl: A case study of Julia for scientific computing**. Hendrik Ranocha, Michael Schlottke-Lakemper, Andrew R. Winters, Erik Faulhaber, Jesse Chan, Gregor J. Gassner. _Proceedings of the JuliaCon Conferences_ (2022). doi: [10.21105/jcon.00077](https://doi.org/10.21105/jcon.00077). arXiv: [2108.06476 [cs.MS]](http://arxiv.org/abs/2108.06476). Packages: [Trixi.jl](https://github.com/trixi-framework/Trixi.jl), [SummationByPartsOperators.jl](https://github.com/ranocha/SummationByPartsOperators.jl), [OrdinaryDiffEq.jl](https://github.com/SciML/OrdinaryDiffEq.jl)
 * **COBREXA.jl: constraint-based reconstruction and exascale analysis**. Kratochvíl, M., Heirendt, L., Wilken, S.E., Pusa, T., Arreckx, S., Noronha, A., van Aalst, M., Satagopam, V.P., Ebenhöh, O., Schneider, R., Trefois, C., and Gu, W. _Bioinformatics_, 38.4 (2022), pp.1171-1172. doi: [10.1093/bioinformatics/btab782](https://doi.org/10.1093/bioinformatics/btab782). Package: [COBREXA.jl](https://github.com/LCSB-BioCore/COBREXA.jl).
 @@
@@ -78,8 +21,8 @@ We welcome additions to this list in the form of [pull requests](https://github.
 * **A purely hyperbolic discontinuous Galerkin approach for self-gravitating gas dynamics**. Michael Schlottke-Lakemper, Andrew R. Winters, Hendrik Ranocha, Gregor J. Gassner. _Journal of Computational Physics_ (2021). doi: [10.1016/j.jcp.2021.110467](https://dx.doi.org/10.1016/j.jcp.2021.110467). arXiv: [2008.10593 [math.NA]](http://arxiv.org/abs/2008.10593). Package: [Trixi.jl](https://github.com/trixi-framework/Trixi.jl)
 * **A Broad Class of Conservative Numerical Methods for Dispersive Wave Equations**. Hendrik Ranocha, Dimitrios Mitsotakis, David I. Ketcheson. _Communications in Computational Physics_ (2021). doi: [10.4208/cicp.OA-2020-0119](https://dx.doi.org/10.4208/cicp.OA-2020-0119). arXiv: [2006.14802 [math.NA]](http://arxiv.org/abs/2006.14802). Packages: [SummationByPartsOperators.jl](https://github.com/ranocha/SummationByPartsOperators.jl), [OrdinaryDiffEq.jl](https://github.com/SciML/OrdinaryDiffEq.jl)
 * **Compressing atmospheric data into its real information content**. Milan Klöwer, Miha Razinger, Juan J. Dominguez, Peter D. Düben, Tim N. Palmer. _Nature Computational Science_ 1 (11), 713-724 (2021). doi: [10.1038/s43588-021-00156-2](https://doi.org/10.1038/s43588-021-00156-2). Packages: [BitInformation.jl](https://github.com/milankl/BitInformation.jl), [ZfpCompression.jl](https://github.com/milankl/ZfpCompression.jl), [LinLogQuantization.jl](https://github.com/milankl/LinLogQuantization.jl).
-* **GeophysicalFlows.jl: Solvers for geophysical fluid dynamics problems in periodic domains on CPUs & GPUs**. Navid C. Constantinou, Gregory L. Wagner, Lia Siegelman, Brodie C. Pearson, André Palóczy. _Journal of Open Sourse Software 60_ no. 6, 3053 (2021). doi: [10.21105/joss.03053](https://doi.org/10.21105/joss.03053). Packages: [GeophysicalFlows.jl](https://github.com/FourierFlows/GeophysicalFlows.jl) 
-* **Distributions.jl: Definition and Modeling of Probability Distributions in the JuliaStats Ecosystem**. Mathieu Besançon, Theodore Papamarkou, David Anthoff, Alex Arslan, Simon Byrne, Dahua Lin, John Pearson. _Journal of Statistical Software 98_ no. 16 (2021). doi: [10.18637/jss.v098.i16](https://www.jstatsoft.org/article/view/v098i16). Packages: [Distributions.jl](https://github.com/JuliaStats/Distributions.jl) 
+* **GeophysicalFlows.jl: Solvers for geophysical fluid dynamics problems in periodic domains on CPUs & GPUs**. Navid C. Constantinou, Gregory L. Wagner, Lia Siegelman, Brodie C. Pearson, André Palóczy. _Journal of Open Sourse Software 60_ no. 6, 3053 (2021). doi: [10.21105/joss.03053](https://doi.org/10.21105/joss.03053). Packages: [GeophysicalFlows.jl](https://github.com/FourierFlows/GeophysicalFlows.jl)
+* **Distributions.jl: Definition and Modeling of Probability Distributions in the JuliaStats Ecosystem**. Mathieu Besançon, Theodore Papamarkou, David Anthoff, Alex Arslan, Simon Byrne, Dahua Lin, John Pearson. _Journal of Statistical Software 98_ no. 16 (2021). doi: [10.18637/jss.v098.i16](https://www.jstatsoft.org/article/view/v098i16). Packages: [Distributions.jl](https://github.com/JuliaStats/Distributions.jl)
 * **Supply and Demand in a Two-Sector Matching Model**. Paweł Gola. _Journal of Political Economy 126_ no. 3 (2021). doi: [doi.org/10.1086/712507](https://www.journals.uchicago.edu/doi/10.1086/712507). Preprint: [author's webpage](http://www.pawelgola.com/SupplyDemandGola.pdf). Codes: [author's webpage](http://www.pawelgola.com/SupplyDemandCode)
 * **Neutral Vortex Necklace in a Trapped Planar Superfluid**. M. M. Cawte, M. T. Reeves, and A. S. Bradley. Journal of Low Temperature Physics 2021. [10.1007/s10909-020-02547-7](https://doi.org/10.1007/s10909-020-02547-7). Packages: [DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl), [VortexDistributions.jl](https://github.com/AshtonSBradley/VortexDistributions.jl)
 * **Steady states, squeezing, and entanglement in intracavity triplet down conversion**. M. D. E. Denys, M. K. Olsen, L. S. Trainor, H. G. L. Schwefel, A. S. Bradley. Optics Communications 2021. [10.1016/j.optcom.2020.126699](https://doi.org/10.1016/j.optcom.2020.126699). Packages: [DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl), [QuantumOptics.jl](https://github.com/qojulia/QuantumOptics.jl)
