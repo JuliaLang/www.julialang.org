@@ -1,6 +1,9 @@
 ## Books
 
 @@tight-list
+* Tobin A. Driscoll, Richard J. Braun. [Fundamentals of Numerical Computation: Julia Edition](https://my.siam.org/Store/Product/viewproduct/?ProductId=41831895). SIAM-Society for Industrial and Applied Mathematics, 2022
+* George Datseris, Ulrich Parlitz. [Nonlinear Dynamics: A Concise Introduction Interlaced with Code](https://github.com/JuliaDynamics/NonlinearDynamicsTextbook). Springer, 2022
+* Hayden Klok, Yoni Nazarathy. [Statistics with julia: Fundamentals for data science, machine learning and artificial intelligence](https://github.com/h-Klok/StatsWithJuliaBook). Springer, 2021
 * Noel Kalicharan. [Julia - Bit by Bit](https://link.springer.com/book/10.1007/978-3-030-73936-2). Springer, 2021.
 * Jose Storopoli, Rik Huijzer and Lazaro Alonso. [Julia Data Science](https://amazon.com/dp/B09KMRKQ96), October 2021. The book is also available freely as static HTML and PDF at [juliadatascience.io](https://juliadatascience.io).
 * Stanley H. Chan. [Intro to Probability for Data Science](https://www.amazon.com/Introduction-Probability-Data-Science-Stanley/dp/1607857464/), November 2021. The book is also available freely as HTML and PDF at [probability4datascience.com](https://probability4datascience.com/index.html). Code is in Julia/Python/R/Matlab.
@@ -18,7 +21,6 @@
 * Antonello Lobianco. [Julia Quick Syntax Reference](https://www.apress.com/gp/book/9781484251898). Apress, November 2019.
 * Bogumił Kamiński and Przemysław Szufel. [Julia プログラミングクックブック](https://www.oreilly.co.jp/books/9784873118895/). Japanese translation for Julia 1.2 by Hidemoto Nakada. Orairījapan, Tōkyo, October 2019.
 * Günter Faes. [Datenanalyse mit Julia: Einstieg in die Datenanalyse mit der Programmiersprache Julia](https://www.amazon.de/Datenanalyse-mit-Julia-Einstieg-Programmiersprache/dp/3749485089/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=Datenanalyse+mit+Julia&qid=1582912563&sr=8-3). Books on Demand, September 2019.
-* Hayden Klok and Yoni Nazarathy. [Statistics with julia: Fundamentals for data science, machine learning and artificial intelligence. September 2019. Draft](https://github.com/h-Klok/StatsWithJuliaBook)
 * Avik Sengupta. [Julia High Performance, 2nd Ed.](https://www.packtpub.com/product/julia-high-performance-second-edition/9781788298117). Packt Publishing, June  2019.
 * Ben Lauwens and Allen B. Downey. [Think Julia](https://www.oreilly.com/library/view/think-julia/9781492045021/). O&rsquo;Reilly Media, June 2019.
 * Giray Ökten. [First Semester in Numerical Analysis with Julia](https://purl.flvc.org/fsu/fd/FSU_libsubv1_scholarship_submission_1556028278_15938059). Florida State University Libraries, April 2019.
@@ -36,13 +38,13 @@ _Julia 1.0 was released on 8 August 2018_
 * Dmitrijs Cudihins. [Hands-on Computer Vision with Julia](https://www.packtpub.com/application-development/hands-computer-vision-julia). Packt Publishing, June 2018.
 * Stephen Boyd and Lieven Vandenberghe. [Introduction to Applied Linear Algebra](https://web.stanford.edu/~boyd/vmls/). Cambridge University Press, June 2018.
 * Anshul Joshi and Rahul Lakhanpal. [Learning Julia](https://www.packtpub.com/application-development/learning-julia). Packt Publishing, November 2017.
-* Dominique Orban and Mario Arioli. [DOI](https://dx.doi.org/10.1137/1.9781611974737) Iterative Solution of Symmetric Quasi-definite Linear Systems. Society for Industrial and Applied Mathematics, April 2017.
-* Tobin A. Driscoll and Richard J. Braun. [Fundamentals of Numerical Computation](https://my.siam.org/Store/Product/viewproduct/?ProductId=29215528). SIAM-Society for Industrial and Applied Mathematics, 2017.
+* Dominique Orban and Mario Arioli. [Iterative Solution of Symmetric Quasi-definite Linear Systems](https://dx.doi.org/10.1137/1.9781611974737). Society for Industrial and Applied Mathematics, April 2017.
+* Sandeep Nagar. [Beginning Julia Programming For Engineers and Scientists](https://doi.org/10.1007/978-1-4842-3171-5). Apress, 2017
 * Jalem Raj Rohit. [Julia Cookbook](https://www.packtpub.com/application-development/julia-cookbook). Packt Publishing, September 2016.
 * Zacharias Voulgaris. [Julia for Data Science](https://technicspub.com/julia-for-data-science/). Technics Publications, September 2016.
 * Avik Sengupta. [Julia High Performance](https://www.packtpub.com/application-development/julia-high-performance). Packt Publishing, April 2016.
 * Anshul Joshi. [Julia for Data Science](https://www.packtpub.com/big-data-and-business-intelligence/julia-data-science). Packt Publishing, 2016.
-* Ivo Balbaert, Avik Sengupta, and Malcolm Sherrington. Julia: High Performance Programming. Packt Publishing, 2016.
+* Ivo Balbaert, Avik Sengupta, and Malcolm Sherrington. [Julia: High Performance Programming](https://www.oreilly.com/library/view/julia-high-performance/9781787125704/). Packt Publishing, 2016.
 * Ivo Balbaert. [Getting Started with Julia Programming Language](https://www.packtpub.com/application-development/getting-started-julia). Packt Publishing, 2015.
 * Malcolm Sherrington. [Mastering Julia](https://www.packtpub.com/application-development/mastering-julia). Packt Publishing, 2015.
 * Bruce Tate, Ian Dees, Frederic Daoud, and Jack Moffit. [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks). The Pragmatic Programmers, December 2014.
