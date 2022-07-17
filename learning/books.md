@@ -1,6 +1,7 @@
 ## Books
 
 @@tight-list
+* George Datseris, Ulrich Parlitz. [Nonlinear Dynamics: A Concise Introduction Interlaced with Code](https://github.com/JuliaDynamics/NonlinearDynamicsTextbook). Springer, 2022
 * Noel Kalicharan. [Julia - Bit by Bit](https://link.springer.com/book/10.1007/978-3-030-73936-2). Springer, 2021.
 * Jose Storopoli, Rik Huijzer and Lazaro Alonso. [Julia Data Science](https://amazon.com/dp/B09KMRKQ96), October 2021. The book is also available freely as static HTML and PDF at [juliadatascience.io](https://juliadatascience.io).
 * Stanley H. Chan. [Intro to Probability for Data Science](https://www.amazon.com/Introduction-Probability-Data-Science-Stanley/dp/1607857464/), November 2021. The book is also available freely as HTML and PDF at [probability4datascience.com](https://probability4datascience.com/index.html). Code is in Julia/Python/R/Matlab.
@@ -38,6 +39,7 @@ _Julia 1.0 was released on 8 August 2018_
 * Anshul Joshi and Rahul Lakhanpal. [Learning Julia](https://www.packtpub.com/application-development/learning-julia). Packt Publishing, November 2017.
 * Dominique Orban and Mario Arioli. [DOI](https://dx.doi.org/10.1137/1.9781611974737) Iterative Solution of Symmetric Quasi-definite Linear Systems. Society for Industrial and Applied Mathematics, April 2017.
 * Tobin A. Driscoll and Richard J. Braun. [Fundamentals of Numerical Computation](https://my.siam.org/Store/Product/viewproduct/?ProductId=29215528). SIAM-Society for Industrial and Applied Mathematics, 2017.
+* Sandeep Nagar. [Beginning Julia Programming For Engineers and Scientists](https://doi.org/10.1007/978-1-4842-3171-5). Apress, 2017
 * Jalem Raj Rohit. [Julia Cookbook](https://www.packtpub.com/application-development/julia-cookbook). Packt Publishing, September 2016.
 * Zacharias Voulgaris. [Julia for Data Science](https://technicspub.com/julia-for-data-science/). Technics Publications, September 2016.
 * Avik Sengupta. [Julia High Performance](https://www.packtpub.com/application-development/julia-high-performance). Packt Publishing, April 2016.
