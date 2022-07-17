@@ -37,7 +37,7 @@ _Julia 1.0 was released on 8 August 2018_
 * Dmitrijs Cudihins. [Hands-on Computer Vision with Julia](https://www.packtpub.com/application-development/hands-computer-vision-julia). Packt Publishing, June 2018.
 * Stephen Boyd and Lieven Vandenberghe. [Introduction to Applied Linear Algebra](https://web.stanford.edu/~boyd/vmls/). Cambridge University Press, June 2018.
 * Anshul Joshi and Rahul Lakhanpal. [Learning Julia](https://www.packtpub.com/application-development/learning-julia). Packt Publishing, November 2017.
-* Dominique Orban and Mario Arioli. [DOI](https://dx.doi.org/10.1137/1.9781611974737) Iterative Solution of Symmetric Quasi-definite Linear Systems. Society for Industrial and Applied Mathematics, April 2017.
+* Dominique Orban and Mario Arioli. [Iterative Solution of Symmetric Quasi-definite Linear Systems](https://dx.doi.org/10.1137/1.9781611974737). Society for Industrial and Applied Mathematics, April 2017.
 * Tobin A. Driscoll and Richard J. Braun. [Fundamentals of Numerical Computation](https://my.siam.org/Store/Product/viewproduct/?ProductId=29215528). SIAM-Society for Industrial and Applied Mathematics, 2017.
 * Sandeep Nagar. [Beginning Julia Programming For Engineers and Scientists](https://doi.org/10.1007/978-1-4842-3171-5). Apress, 2017
 * Jalem Raj Rohit. [Julia Cookbook](https://www.packtpub.com/application-development/julia-cookbook). Packt Publishing, September 2016.
