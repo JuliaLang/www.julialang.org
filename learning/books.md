@@ -44,7 +44,7 @@ _Julia 1.0 was released on 8 August 2018_
 * Zacharias Voulgaris. [Julia for Data Science](https://technicspub.com/julia-for-data-science/). Technics Publications, September 2016.
 * Avik Sengupta. [Julia High Performance](https://www.packtpub.com/application-development/julia-high-performance). Packt Publishing, April 2016.
 * Anshul Joshi. [Julia for Data Science](https://www.packtpub.com/big-data-and-business-intelligence/julia-data-science). Packt Publishing, 2016.
-* Ivo Balbaert, Avik Sengupta, and Malcolm Sherrington. Julia: High Performance Programming. Packt Publishing, 2016.
+* Ivo Balbaert, Avik Sengupta, and Malcolm Sherrington. [Julia: High Performance Programming](https://www.oreilly.com/library/view/julia-high-performance/9781787125704/). Packt Publishing, 2016.
 * Ivo Balbaert. [Getting Started with Julia Programming Language](https://www.packtpub.com/application-development/getting-started-julia). Packt Publishing, 2015.
 * Malcolm Sherrington. [Mastering Julia](https://www.packtpub.com/application-development/mastering-julia). Packt Publishing, 2015.
 * Bruce Tate, Ian Dees, Frederic Daoud, and Jack Moffit. [Seven More Languages in Seven Weeks](https://pragprog.com/book/7lang/seven-more-languages-in-seven-weeks). The Pragmatic Programmers, December 2014.
