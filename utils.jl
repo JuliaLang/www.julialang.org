@@ -176,7 +176,7 @@ end
 function hfun_author_twitter()
     url = get_author_twitter()
     isempty(url) && return ""
-    return "<a href=\"$url\"><img src=\"/assets/infra/twitter_16.png\"/></a>"
+    return "<a href=\"$url\"><img src=\"/assets/infra/twitter.svg\"/ width=\"22px\" height=\"22px\" style=\"margin-left:2px\"></a>"
 end
 
 """
