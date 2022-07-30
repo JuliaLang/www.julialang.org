@@ -24,6 +24,10 @@ If you know of other classes using Julia for teaching, please consider [updating
 * [Czech Technical University in Prague](https://www.cvut.cz/en), Czech Republic
     * [Julia for Optimization and Learning](https://juliateachingctu.github.io/Julia-for-Optimization-and-Learning/stable/)
     * [Scientific Programming in Julia](https://juliateachingctu.github.io/Scientific-Programming-in-Julia/stable)
+
+* Dartmouth College
+    * [EARS 13](https://dartmouth.smartcatalogiq.com/en/current/orc/Departments-Programs-Undergraduate/Earth-Sciences/EARS-Earth-Sciences-Undergraduate/EARS-13)
+    * [EARS 80.03](https://dartmouth.smartcatalogiq.com/en/current/orc/Departments-Programs-Undergraduate/Earth-Sciences/EARS-Earth-Sciences-Undergraduate/EARS-80-03)
 * École Polytechnique Fédérale de Lausanne
     * [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
 * [Einaudi Institute for Economics and Finance, Rome](http://www.eief.it/eief/)
