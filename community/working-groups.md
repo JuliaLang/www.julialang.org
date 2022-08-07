@@ -11,12 +11,12 @@ The working group meetings are also listed on the
 
 ### List of working groups
 
-UTC refers to Coordinated Universal Time, and ET refers to Eastern Time.
+UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time), and ET refers to [Eastern Time](https://en.wikipedia.org/wiki/Eastern_Time_Zone).
 
 | Working Group                    | Slack channel       | Meetings                                 | Contact                                                                  |
 | -------------------------------- | ------------------- | ---------------------------------------- | ------------------------------------------------------------------------ |
 | Astronomy                        | `#astro`            | Fourth Friday of each month at 19:00 UTC | [Mosè Giordano][Mosè-Giordano], [Miles Lucas][Miles-Lucas]               |
-| CI infrastructure                | `#ci-dev`           | Every other Monday at 2pm ET             | [Elliot Saba][Elliot-Saba], [Dilum Aluthge][Dilum-Aluthge]               |
+| CI infrastructure                | `#ci-dev`           | Every other Monday at 12pm ET             | [Elliot Saba][Elliot-Saba], [Dilum Aluthge][Dilum-Aluthge]               |
 | [GPU][gpu]                       | `#gpu`              | Every other Monday at 11am ET            | [Tim Besard][Tim-Besard], [Valentin Churavy][Valentin-Churavy]           |
 | High-performance computing (HPC) | `#hpc`              | Fourth Tuesday of each month at 2pm ET   | [Valentin Churavy][Valentin-Churavy]                                     |
 | Machine learning                 | `#machine-learning` | Every other Tuesday at 12pm ET           | [Kyle Daruwalla][Kyle-Daruwalla], [Lorenz Ohly][Lorenz-Ohly]             |
