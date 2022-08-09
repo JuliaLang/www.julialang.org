@@ -62,8 +62,8 @@ JuliaCon would not be possible without the support of such amazing sponsors.  Yo
 - ASML, Silver Sponsor, [Sponsored Talk](https://www.youtube.com/watch?v=waWkScPKoDM)
 - G Research, Silver Sponsor, [Sponsored Talk](https://www.youtube.com/watch?v=fUUpk1gTe_w)
 - Jeffrey Sarnoff, Silver Sponsor
-- Packt Publishing, Gather, and Vercel: Media Partner
-- Data Umbrella and WiMLDS: Community Partner
+- Packt Publishing, Gather, and Vercel: Media Partners
+- Data Umbrella and WiMLDS: Community Partners
 - NumFOCUS, Fiscal Sponsor 
 
 # JuliaCon T-Shirt, Mug, and more!
