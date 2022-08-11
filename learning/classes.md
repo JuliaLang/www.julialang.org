@@ -215,6 +215,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * ESI 6410, Optimization in O.R. (Prof. Changhyun Kwon), Spring 2021
     * [ESI 6491](https://www.chkwon.net/teaching/esi-6491/), Linear Programming and Network Optimization (Prof. Changhyun Kwon), Fall 2015–Fall 2020
     * [EIN 6945](https://www.chkwon.net/teaching/ein-6935/), Nonlinear Optimization and Game Theory (Prof. [Changhyun Kwon](https://www.chkwon.net/)), Spring 2016, 2018, 2020
+* University of Southern California
+    * QBIO 577, Computational Molecular Biology Laboratory, [Systems Biology](https://github.com/adamlmaclean/julia-dynsys-resources/) (Prof. [Adam L. MacLean](https://macleanlab.usc.edu/people/adam-maclean/)), since Fall 2019
 * University of Sydney
     * [MATH3076/3976](https://www.maths.usyd.edu.au/u/olver/teaching/MATH3976/), Mathematical Computing (Assoc. Prof. [Sheehan Olver](https://www.maths.usyd.edu.au/u/olver/)), Fall 2016
 * Université Paul Sabatier, Toulouse
