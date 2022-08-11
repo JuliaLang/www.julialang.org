@@ -26,9 +26,9 @@ It is an incredibly tough job to pick just three awards each year as there are s
 
 JuliaCon 2022 brought together an amazing group of keynote speakers sharing some truly amazing perspectives.
 
-Erin LeDell, Chief Machine Learning Scientist at H2O.ai, founder of WiMLDS and co-founder of R-Ladies Global, presented: [API’s and Community: Building for Success](https://www.youtube.com/watch?v=ubURNGq6lsI)
-Jeremy Howard, Fast.ai co-creator, University of Queensland Honorary Professor, presented: [What makes a programming language successful](https://www.youtube.com/watch?v=s6pjxCuNGjc)
-Husain Attarwala, Head of Clinical Pharmacology and Pharmacometrics at Moderna, presented: [Modeling and Simulation to Guide Dose Selection](https://www.youtube.com/watch?v=6wGSCD3cI9E)
+- Erin LeDell, Chief Machine Learning Scientist at H2O.ai, founder of WiMLDS and co-founder of R-Ladies Global, presented: [API’s and Community: Building for Success](https://www.youtube.com/watch?v=ubURNGq6lsI)
+- Jeremy Howard, Fast.ai co-creator, University of Queensland Honorary Professor, presented: [What makes a programming language successful](https://www.youtube.com/watch?v=s6pjxCuNGjc)
+- Husain Attarwala, Head of Clinical Pharmacology and Pharmacometrics at Moderna, presented: [Modeling and Simulation to Guide Dose Selection](https://www.youtube.com/watch?v=6wGSCD3cI9E)
 
 # JuMP-dev 2022
 
