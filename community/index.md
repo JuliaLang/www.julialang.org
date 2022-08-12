@@ -56,7 +56,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      <!-- 2 -->
      <div class="col-lg-4 col-md-6 feature">
        <h3>Questions?</h3>
-       <p>The primary online discussion venue for Julia is the <a href="https://discourse.julialang.org/">Discourse forum</a>. Learn more about our Discourse site and what it is best used for <a href="discourse/">here</a>.
+       <p>The primary online discussion venue for Julia is the <a href="https://discourse.julialang.org/">Discourse forum</a>. Learn more about our Discourse site and what it is best used for <a href="discourse/">here</a>. <p>Julia also has a presence on StackOverflow under the <a href="https://stackoverflow.com/tags/julia">[julia]</a> tag, and on StackOverflow en Español under <a href="https://es.stackoverflow.com/questions/tagged/julia">[julia]</a>.
        </p>
      </div>
      <!-- 3 -->
@@ -77,8 +77,8 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      </div>
      <!-- 6 -->
      <div class="col-lg-4 col-md-6 feature">
-       <h3>StackOverflow</h3>
-       <p>Julia also has a presence on StackOverflow under the <a href="https://stackoverflow.com/tags/julia">[julia]</a> tag, and on StackOverflow en Español under <a href="https://es.stackoverflow.com/questions/tagged/julia">[julia]</a>.
+       <h3>Forem</h3>
+       <p>The Julia Forem is the best place for the community to read, write, and share written content. Join the Forem today and start writing <a href="https://forem.julialang.org">https://forem.julialang.org</a>.
        </p>
      </div>
    </div>
