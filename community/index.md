@@ -78,7 +78,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      <!-- 6 -->
      <div class="col-lg-4 col-md-6 feature">
        <h3>Forem</h3>
-       <p>In 2022, the Julia community launched a forem instance which allows Julia users to read, write, and share written content. Join the Forem today and start writing <a href="https://forem.julialang.org">https://forem.julialang.org</a>.
+       <p>The Julia Forem is the best place for the community to read, write, and share written content. Join the Forem today and start writing <a href="https://forem.julialang.org">https://forem.julialang.org</a>.
        </p>
      </div>
    </div>
