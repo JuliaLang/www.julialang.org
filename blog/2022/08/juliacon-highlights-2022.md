@@ -81,4 +81,26 @@ JuliaCon 2022 was yet another amazing event for the community and ecosystem to c
 
 Thank you to all of the amazing speakers, volunteers, organizations, and the entire Julia community for making this year's conference a success. It truly does take a community to put on JuliaCon!
 
+### JuliaCon 2022 Organizing Committee
+
+* Avik Sengupta, co-Chair [Twitter](https://twitter.com/aviksengupta)
+* Valentin Churavy, co-Chair [Twitter](https://twitter.com/vchuravy)
+* Katharine Hyatt, Program [Twitter](https://twitter.com/kslimes)
+* Michael Herbst, Program
+* Oscar Dowson, Program (JuMP)
+* Kelly Shen, Diversity & Inclusion
+* Ranjan Anantharaman, Finance
+* Kevin O'Brien, Media and Publicity
+* Logan Kilpatrick, Media and Publicity [Twitter](https://twitter.com/OfficialLoganK)
+* Carsten Bauer, Proceedings Chair
+* Tom Kwong, Infrastructure [Twitter](https://twitter.com/tomkwong)
+* Will Kimmerer, Local Meetups [Twitter](https://twitter.com/KimmererWill)
+
+### Proceedings Committee
+
+* Carsten Bauer
+* Mathieu Besançon
+* Ranjan Anantharaman
+* Valentin Churavy
+
 If you are interested in helping out with next year's conference, [please let us know](https://forms.gle/t2GTGjmUgYSGztU26)!
