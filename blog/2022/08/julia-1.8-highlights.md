@@ -290,9 +290,11 @@ However, this means that sometimes the package manager might not give you the ve
 Another reason why you might not have the latest version of a package is when new versions have been released since you last updated.
 This can sometimes be confusing when you for example hit a bug that have been fixed on a later version or when the documentation of the package is not in sync with what you are running locally.
 
-Therefore, the package manager will now show a small indicator when installing packages or when using the status output (`pkg> st`) for packages that are not on the latest version. It will also try to predict if the package can be easily updated (`pkg> up`) or if some other packages in your environment is "holding it back" (have compatibility constraints that )
+Therefore, the package manager will now show a small indicator when installing packages or when using the status output (`pkg> st`) for packages that are not on the latest version. It will also try to predict if the package has a chance to be updated (`pkg> up`) or if some other packages in your environment is "holding it back" (have compatibility constraints that prevents the package from updating).
 
 There is also a new flag `--outdated` that can be passed to the status printing to see what the latest versions are and what packages' compat are holding other packages back from updating.
+
+![](/assets/blog/2022-1.8-highlights/pkg_upgrade.png)
 
 ### Pkg support for sysimages
 
