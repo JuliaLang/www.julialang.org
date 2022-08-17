@@ -111,7 +111,7 @@ It takes 2 seconds since one of the non-occupied threads is able to run two of t
 Unnecessary heap allocations can seriously degrade performance, and existing tools for tracking them down (namely `@time` and `--track-allocation`) didn't quite provide the fine-grained detail, nice visualization, and ease of use we were looking for. So we created the allocation profiler (`Profile.Allocs`), which captures heap allocations with the type, size, and stack trace of each, such that they can be easily visualized with [PProf.jl](https://github.com/JuliaPerf/PProf.jl) and as seen below, with the Julia extension for VS Code.
 
 
-| ![](https://i.imgur.com/WNYc6Kv.png) |
+| ![](/assets/blog/2022-1.8-highlights/vscode_allocs.png)|
 | :--------: |
 | The Julia extension for VS Code provides easy access to illustrated allocation profiling via `@profview_allocs` |
 
@@ -188,7 +188,7 @@ Note that each thread now shows a utilization percentage, showing that the only 
 
 External profile viewers now also support thread and task selection.
 
-| ![](https://i.imgur.com/C2bzWVg.png)| ![](https://i.imgur.com/YmEqapz.png) |
+| ![](/assets/blog/2022-1.8-highlights/thread_profile_profileview.png)| ![](/assets/blog/2022-1.8-highlights/thread_profile_vscode.png) |
 | :--------: | :--------: |
 | ProfileView.jl | Julia extension for VS Code has a built-in `@profview` macro |
 
