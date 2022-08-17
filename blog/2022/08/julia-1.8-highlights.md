@@ -1,13 +1,14 @@
 +++
 mintoclevel = 2
-maxtoclevel = 2
+maxtoclevel = 3
 title = "Julia 1.8 Highlights"
-authors = “Jeff Bezanson, Jameson Nash, Ian Butterworth, Kristoffer Carlsson, Shuhei Kadowaki, Elliot Saba, Mosè Giordano, Simeon Schaub, Tim Holy, Keno Fischer”
-published = “17 Aug 2022”
+authors = "Jeff Bezanson, Jameson Nash, Ian Butterworth, Kristoffer Carlsson, Shuhei Kadowaki, Elliot Saba, Mosè Giordano, Simeon Schaub, Tim Holy, Keno Fischer"
+published = "17 August 2022"
 rss_pubdate = Date(2022, 08, 17)
-rss = “”“Highlights of the Julia 1.8 release.”“”
+rss = """Highlights of the Julia 1.8 release."""
++++
 
-# Julia 1.8 highlights    
+# Julia 1.8 highlights
 
 After 3 betas and X4release candidates, Julia version 1.8 has finally been released. We would like to thank all the contributors to this release and all the testers that helped with finding regressions and issues in the pre-releases. Without you, this release would not have been possible.
 
@@ -105,7 +106,7 @@ It takes 2 seconds since one of the non-occupied threads is able to run two of t
 
 ### New allocation profiler
 
-*Pete Vilter*, *Nathan Daly* 
+*Pete Vilter*, *Nathan Daly*
 
 Unnecessary heap allocations can seriously degrade performance, and existing tools for tracking them down (namely `@time` and `--track-allocation`) didn't quite provide the fine-grained detail, nice visualization, and ease of use we were looking for. So we created the allocation profiler (`Profile.Allocs`), which captures heap allocations with the type, size, and stack trace of each, such that they can be easily visualized with [PProf.jl](https://github.com/JuliaPerf/PProf.jl) and as seen below, with the Julia extension for VS Code.
 
@@ -289,7 +290,7 @@ However, this means that sometimes the package manager might not give you the ve
 Another reason why you might not have the latest version of a package is when new versions have been released since you last updated.
 This can sometimes be confusing when you for example hit a bug that have been fixed on a later version or when the documentation of the package is not in sync with what you are running locally.
 
-Therefore, the package manager will now show a small indicator when installing packages or when using the status output (`pkg> st`) for packages that are not on the latest version. It will also try to predict if the package can be easily updated (`pkg> up`) or if some other packages in your environment is "holding it back" (have compatibility constraints that ) 
+Therefore, the package manager will now show a small indicator when installing packages or when using the status output (`pkg> st`) for packages that are not on the latest version. It will also try to predict if the package can be easily updated (`pkg> up`) or if some other packages in your environment is "holding it back" (have compatibility constraints that )
 
 There is also a new flag `--outdated` that can be passed to the status printing to see what the latest versions are and what packages' compat are holding other packages back from updating.
 
@@ -320,6 +321,6 @@ For those wishing for more background about precompilation, [this blog post](htt
 
 ## Improved support for Apple Silicon
 
-Previously Julia 1.7 offered the [first experimental preview](https://julialang.org/blog/2021/11/julia-1.7-highlights/#support_for_apple_silicon) of native builds of Julia on Apple Silicon. While this generally worked for basic usage, users experienced frequent segmentation faults, negatively affecting experience. These problems were due to how Julia internally uses LLVM to generate and link the code for this platform, and were eventually solved in Julia 1.8 by [moving to a more modern linker](https://github.com/JuliaLang/julia/pull/43664), which has better support for ARM CPUs on macOS. However, this fix required upgrading to LLVM 13, a change which cannot be backported to the v1.7 series. Therefore 1.7 will always be affected by frequent crashes on Apple Silicon. 
+Previously Julia 1.7 offered the [first experimental preview](https://julialang.org/blog/2021/11/julia-1.7-highlights/#support_for_apple_silicon) of native builds of Julia on Apple Silicon. While this generally worked for basic usage, users experienced frequent segmentation faults, negatively affecting experience. These problems were due to how Julia internally uses LLVM to generate and link the code for this platform, and were eventually solved in Julia 1.8 by [moving to a more modern linker](https://github.com/JuliaLang/julia/pull/43664), which has better support for ARM CPUs on macOS. However, this fix required upgrading to LLVM 13, a change which cannot be backported to the v1.7 series. Therefore 1.7 will always be affected by frequent crashes on Apple Silicon.
 
 With 1.8, Apple Silicon becomes become a [Tier 2 supported platform](https://julialang.org/downloads/#supported_platforms), and is now covered by Continuous Integration (CI) on dedicated Apple Silicon machines.
