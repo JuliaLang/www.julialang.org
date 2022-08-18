@@ -43,7 +43,7 @@ Before Julia 1.8, the `@inline` macro could only be used on method definitions a
 
 *Simeon Schaub*
 
-Non-constant global variables in Julia comes with a performance penalty because the compiler cannot reason about their type since they during runtime can be reassinged to another object of some other type.
+Non-constant global variables in Julia come with a performance penalty because the compiler cannot reason about their type since they during runtime can be reassigned to another object of some other type.
 In Julia 1.8, it is now possible to specify the type of a non-constant global variable using the `x::T` syntax where `T` is the type of the global. Trying to re-assign the variable to an object of another type errors:
 
 ```julia-repl
@@ -55,14 +55,14 @@ ERROR: MethodError: Cannot `convert` an object of type String to an object of ty
 ...
 ```
 
-Type annotating global varialbes removes much (but not all) of the cost of using non-constant global variables.
+Type annotating global variables removes much (but not all) of the cost of using non-constant global variables.
 
 
 ## New default scheduler for `@threads`
 
 *Takafumi Arakaki*, *Ian Butterworth* , *Jeff Bezanson*
 
-Julia has had `@threads` macro for parallelizing a `for` loop even before the generic parallel task runtime was introduced in Julia 1.3.  Due to this historical reason, `@threads` has been providing a static scheduling to avoid breaking programs accidentally relying on this strict behavior (see [`:static` scheduling in the documentation](https://docs.julialang.org/en/v1.8-dev/base/multi-threading/#Base.Threads.@threads)).  Thus, to work nicely with the rest of the multi-tasking system, [the `:static` scheduler was introduced in Julia 1.5](https://github.com/JuliaLang/julia/pull/35646) to help people prepare for changing the default scheduling behavior in the future; which is now!  In Julia 1.8, programs written with `@threads` can fully leverage the dynamic and composable task scheduler.
+Julia has had `@threads` macro for parallelizing a `for` loop even before the generic parallel task runtime was introduced in Julia 1.3. Due to this historical reason, `@threads` has been providing a static scheduling to avoid breaking programs accidentally relying on this strict behavior (see [`:static` scheduling in the documentation](https://docs.julialang.org/en/v1.8-dev/base/multi-threading/#Base.Threads.@threads)). Thus, to work nicely with the rest of the multitasking system, [the `:static` scheduler was introduced in Julia 1.5](https://github.com/JuliaLang/julia/pull/35646) to help people prepare for changing the default scheduling behavior in the future; which is now!  In Julia 1.8, programs written with `@threads` can fully leverage the dynamic and composable task scheduler.
 
 To illustrate the improvement, consider the following program that simulates CPU-intensive work-load that requires `seconds` seconds to complete:
 
@@ -74,7 +74,7 @@ julia> function busywait(seconds)
         end;
 ```
 
-Before Julia 1.8, `@threads` always uses all worker threads. As such, `@threads` does not complete until all previous tasks are complete:
+Before Julia 1.8, `@threads` always uses all worker threads. As such, `@threads` do not complete until all previous tasks are complete:
 
 ```julia-repl
 julia> @time begin
@@ -86,7 +86,7 @@ julia> @time begin
 6.003001 seconds (16.33 k allocations: 899.255 KiB, 0.25% compilation time)
 ```
 
-The run-time is about 6 seconds.  It means that one task internally created for `@threads` waits for the task `busywait(5)` to complete.
+The run-time is about 6 seconds. It means that one task internally created for `@threads` waits for the task `busywait(5)` to complete.
 
 However, in Julia 1.8, we have
 
@@ -100,7 +100,7 @@ julia> @time begin
 2.012056 seconds (16.05 k allocations: 883.919 KiB, 0.66% compilation time)
 ```
 
-It takes 2 seconds since one of the non-occupied threads is able to run two of the 1-second iterations to complete the for loop.
+It takes 2 seconds since one of the non-occupied threads can run two of the 1-second iterations to complete the for loop.
 
 ## Profiling
 
@@ -195,7 +195,7 @@ External profile viewers now also support thread and task selection.
 
 #### Profiling code that is already running
 
-1.8 also introduces the option to profile code that is already running. Say you have started some long running code and progress appears to slow. At any time you see what's happening without interrupting by triggering a 1 second profile via sending `SIGINFO` on BSDs including MacOS, or `SIGUSR1` on Linux (not supported on Windows). MacOS & FreeBSD have the added convenience of sending `SIGUSR1` via `ctrl-t`.
+1.8 also introduces the option to profile code that is already running. Say you have started some long-running code and progress appears to slow. At any time you see what's happening without interrupting by triggering a 1-second profile via sending `SIGINFO` on BSDs including MacOS, or `SIGUSR1` on Linux (not supported on Windows). MacOS & FreeBSD have the added convenience of sending `SIGUSR1` via `ctrl-t`.
 
 First, an immediate stacktrace will print, followed by the report after the profile sampling at the next yield point.
 
@@ -206,7 +206,7 @@ julia> sleep(5)
 load: 2.82  cmd: julia 32246 waiting 37.66u 8.33s
 
 ======================================================================================
-Information request received. A stacktrace will print followed by a 1.0 second profile
+Information request received. A stacktrace will print followed by a 1.0-second profile
 ======================================================================================
 
 signal (29): Information request: 29
@@ -252,7 +252,7 @@ Thread 4 Task 0x00000001095486a0 Total snapshots: 650. Utilization: 0%
 
 *Ian Butterworth*
 
-A new tool has been added to provide insight into the way that loading dependencies contributes to the load time of a package.
+A new tool has been added to provide insight into the way that loading dependencies contribute to the load time of a package.
 
 The macro is `InteractiveUtils.@time_imports` and it is directly available in the REPL.
 
@@ -285,14 +285,14 @@ Any compilation time will be highlighted as a percentage of load time, and if an
 
 
 Packages in Julia tend to declare compatibility constraints on versions of their dependencies.
-This is done to ensure that you end up with a set of version that should work well with each other.
+This is done to ensure that you end up with a set of versions that should work well with each other.
 However, this means that sometimes the package manager might not give you the very latest version of all packages.
 Another reason why you might not have the latest version of a package is when new versions have been released since you last updated.
-This can sometimes be confusing when you for example hit a bug that have been fixed on a later version or when the documentation of the package is not in sync with what you are running locally.
+This can sometimes be confusing when you for example hit a bug that has been fixed on a later version or when the documentation of the package is not in sync with what you are running locally.
 
-Therefore, the package manager will now show a small indicator when installing packages or when using the status output (`pkg> st`) for packages that are not on the latest version. It will also try to predict if the package has a chance to be updated (`pkg> up`) or if some other packages in your environment is "holding it back" (have compatibility constraints that prevents the package from updating).
+Therefore, the package manager will now show a small indicator when installing packages or when using the status output (`pkg> st`) for packages that are not on the latest version. It will also try to predict if the package has a chance to be updated (`pkg> up`) or if some other packages in your environment are "holding it back" (have compatibility constraints that prevent the package from updating).
 
-There is also a new flag `--outdated` that can be passed to the status printing to see what the latest versions are and what packages' compat are holding other packages back from updating.
+There is also a new flag `--outdated` that can be passed to the status printing to see what the latest versions are and what packages' compat is holding other packages back from updating.
 
 ![](/assets/blog/2022-1.8-highlights/pkg_upgrade.png)
 
@@ -314,15 +314,15 @@ Julia precompiles packages by saving your module definitions in a second format 
 
 Unfortunately, older Julia versions ended up throwing away a lot of this compiled code: type-inferred code was saved only for methods defined in the package, and for all other methods it was discarded. This meant that if your package needed a method in `Base` or another package that had not previously been inferred for the specific types needed by your package, you were out of luck--that method/type combination would always be freshly re-inferred in each new Julia session. Moreover, precompilation occasionally triggered a runtime performance hit: when Julia's compiler needed type-inferred code that had been discarded, it handled the omission by inserting an indirect invocation into the low-level CPU instructions that it compiles for your method. While this provided an opportunity to re-infer the methods for the required types, the indirect invocation allocated memory and reduced performance for all subsequent uses of the method.
 
-Julia 1.8 addresses both of these limitations by automatically saving all type-inferred code that links back to your package: either methods owned by your package, or any newly-inferred code that can be proven by the compiler to be called by methods in your package. More specifically, all code that is linked to your package by a chain of successful type-inference will be cached; Julia only discards type-inference results for methods in other packages that were only called by runtime dispatch. This inference-chain requirement ensures that compilation that is performed to *build* your package, but which is not needed to *run* it (e.g., code used only for metaprogramming or generating data), does not unnecessily bloat the `.ji` files.
+Julia 1.8 addresses both of these limitations by automatically saving all type-inferred code that links back to your package: either methods owned by your package or any newly-inferred code that can be proven by the compiler to be called by methods in your package. More specifically, all code that is linked to your package by a chain of successful type-inference will be cached; Julia only discards type-inference results for methods in other packages that were only called by runtime dispatch. This inference-chain requirement ensures that compilation that is performed to *build* your package, but which is not needed to *run* it (e.g., code used only for metaprogramming or generating data), does not unnecessarily bloat the `.ji` files.
 
-With Julia 1.8, for workloads with "predictable" types you can often entirely eliminate type-inference as a source of latency. The amount of savings depends on how much of the overall latency was due to type-inference; in tests with a dozen or so different packages, we have observed reductions in the time for an initial workload ranging from a few percent to 20-fold. Users of [SnoopCompile](https://timholy.github.io/SnoopCompile.jl/stable/)'s analysis tools will also find that the results of adding precompilation are much more predictable: for dispatch-trees that trace back to methods owned by your package, adding precompilation will eliminate all of their inference time. Thus, you can eliminate the worst offenders with the confidence that your intervention will have the intended effect.
+With Julia 1.8, for workloads with "predictable" types, you can often entirely eliminate type-inference as a source of latency. The amount of savings depends on how much of the overall latency was due to type-inference; in tests with a dozen or so different packages, we have observed reductions in the time for an initial workload ranging from a few percent to 20-fold. Users of [SnoopCompile](https://timholy.github.io/SnoopCompile.jl/stable/)'s analysis tools will also find that the results of adding precompilation are much more predictable: for dispatch-trees that trace back to methods owned by your package, adding precompilation will eliminate all of their inference time. Thus, you can eliminate the worst offenders with the confidence that your intervention will have the intended effect.
 
 For those wishing for more background about precompilation, [this blog post](https://julialang.org/blog/2021/01/precompile_tutorial/) and/or the SnoopCompile documentation may be useful.
 
 
 ## Improved support for Apple Silicon
 
-Previously Julia 1.7 offered the [first experimental preview](https://julialang.org/blog/2021/11/julia-1.7-highlights/#support_for_apple_silicon) of native builds of Julia on Apple Silicon. While this generally worked for basic usage, users experienced frequent segmentation faults, negatively affecting experience. These problems were due to how Julia internally uses LLVM to generate and link the code for this platform, and were eventually solved in Julia 1.8 by [moving to a more modern linker](https://github.com/JuliaLang/julia/pull/43664), which has better support for ARM CPUs on macOS. However, this fix required upgrading to LLVM 13, a change which cannot be backported to the v1.7 series. Therefore 1.7 will always be affected by frequent crashes on Apple Silicon.
+Previously Julia 1.7 offered the [first experimental preview](https://julialang.org/blog/2021/11/julia-1.7-highlights/#support_for_apple_silicon) of native builds of Julia on Apple Silicon. While this generally worked for basic usage, users experienced frequent segmentation faults, negatively affecting the experience. These problems were due to how Julia internally uses LLVM to generate and link the code for this platform and were eventually solved in Julia 1.8 by [moving to a more modern linker](https://github.com/JuliaLang/julia/pull/43664), which has better support for ARM CPUs on macOS. However, this fix required upgrading to LLVM 13, a change which cannot be backported to the v1.7 series. Therefore 1.7 will always be affected by frequent crashes on Apple Silicon.
 
-With 1.8, Apple Silicon becomes become a [Tier 2 supported platform](https://julialang.org/downloads/#supported_platforms), and is now covered by Continuous Integration (CI) on dedicated Apple Silicon machines.
+With 1.8, Apple Silicon becomes become a [Tier 2 supported platform](https://julialang.org/downloads/#supported_platforms) and is now covered by Continuous Integration (CI) on dedicated Apple Silicon machines.
