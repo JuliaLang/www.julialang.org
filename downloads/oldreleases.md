@@ -13,48 +13,48 @@ nor maintained anymore.
   <tbody>
     <tr>
       <th> Windows <a href="/downloads/platform/#windows">[help]</a></th>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/{{stable_release_short}}/julia-{{stable_release}}-win64.exe">64-bit (installer)</a>, <a href="https://julialang-s3.julialang.org/bin/winnt/x64/{{stable_release_short}}/julia-{{stable_release}}-win64.zip">64-bit (portable)</a> </td>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{stable_release_short}}/julia-{{stable_release}}-win32.exe">32-bit (installer)</a>,  <a href="https://julialang-s3.julialang.org/bin/winnt/x86/{{stable_release_short}}/julia-{{stable_release}}-win32.zip">32-bit (portable)</a> </td> </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.7/julia-1.7.3-win64.exe">64-bit (installer)</a>, <a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.7/julia-1.7.3-win64.zip">64-bit (portable)</a> </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.7/julia-1.7.3-win32.exe">32-bit (installer)</a>,  <a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.7/julia-1.7.3-win32.zip">32-bit (portable)</a> </td> </td>
     </tr>
     <tr>
       <th> macOS x86 (Intel or Rosetta) <a href="/downloads/platform/#macos">[help]</a></th>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.dmg">64-bit (.dmg)</a>, <a href="https://julialang-s3.julialang.org/bin/mac/x64/{{stable_release_short}}/julia-{{stable_release}}-mac64.tar.gz">64-bit (.tar.gz)</a> </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.7/julia-1.7.3-mac64.dmg">64-bit (.dmg)</a>, <a href="https://julialang-s3.julialang.org/bin/mac/x64/1.7/julia-1.7.3-mac64.tar.gz">64-bit (.tar.gz)</a> </td>
       <td colspan="3"> </td>
     </tr>
     <!--
     <tr>
       <th> macOS ARM (M-series Processor) <a href="/downloads/platform/#macos">[help]</a></th>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg">64-bit</a> </td>
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.7/julia-1.7.3-macaarch64.dmg">64-bit</a> </td>
       <td colspan="3"> </td>
     </tr>
     -->
     <tr>
       <th> Generic Linux on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
       <td colspan="3">
-        <a href="https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{stable_release}}-linux-x86_64.tar.gz">64-bit (glibc)</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{stable_release}}-linux-x86_64.tar.gz.asc">GPG</a>),
-        <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{stable_release_short}}/julia-{{stable_release}}-musl-x86_64.tar.gz">64-bit (musl)</a>
-        (<a href="https://julialang-s3.julialang.org/bin/musl/x64/{{stable_release_short}}/julia-{{stable_release}}-musl-x86_64.tar.gz.asc">GPG</a>)
+        <a href="https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.3-linux-x86_64.tar.gz">64-bit (glibc)</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.3-linux-x86_64.tar.gz.asc">GPG</a>),
+        <a href="https://julialang-s3.julialang.org/bin/musl/x64/1.7/julia-1.7.3-musl-x86_64.tar.gz">64-bit (musl)</a>
+        (<a href="https://julialang-s3.julialang.org/bin/musl/x64/1.7/julia-1.7.3-musl-x86_64.tar.gz.asc">GPG</a>)
       </td>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/{{stable_release_short}}/julia-{{stable_release}}-linux-i686.tar.gz">32-bit</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/x86/{{stable_release_short}}/julia-{{stable_release}}-linux-i686.tar.gz.asc">GPG</a>)
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/x86/1.7/julia-1.7.3-linux-i686.tar.gz">32-bit</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.7/julia-1.7.3-linux-i686.tar.gz.asc">GPG</a>)
       </td>
     </tr>
     <tr>
       <th> Generic Linux on ARM <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{stable_release_short}}/julia-{{stable_release}}-linux-aarch64.tar.gz">64-bit (AArch64)</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/{{stable_release_short}}/julia-{{stable_release}}-linux-aarch64.tar.gz.asc">GPG</a>)
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.7/julia-1.7.3-linux-aarch64.tar.gz">64-bit (AArch64)</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.7/julia-1.7.3-linux-aarch64.tar.gz.asc">GPG</a>)
       </td>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{stable_release_short}}/julia-{{stable_release}}-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
-                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/{{stable_release_short}}/julia-{{stable_release}}-linux-armv7l.tar.gz.asc">GPG</a>)
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.7/julia-1.7.3-linux-armv7l.tar.gz">32-bit (ARMv7-a hard float)</a>
+                                       (<a href="https://julialang-s3.julialang.org/bin/linux/armv7l/1.7/julia-1.7.3-linux-armv7l.tar.gz.asc">GPG</a>)
       </td>
       </td>
     </tr>
     <!--
     <tr>
       <th> Generic Linux on PowerPC <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/{{stable_release_short}}/julia-{{stable_release}}-linux-ppc64le.tar.gz">64-bit (little endian)</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/{{stable_release_short}}/julia-{{stable_release}}-linux-ppc64le.tar.gz.asc">GPG</a>)
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.7/julia-1.7.3-linux-ppc64le.tar.gz">64-bit (little endian)</a>
+        (<a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.7/julia-1.7.3-linux-ppc64le.tar.gz.asc">GPG</a>)
       </td>
       <td colspan="3">
       </td>
@@ -62,20 +62,20 @@ nor maintained anymore.
     -->
     <tr>
       <th> Generic FreeBSD on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></th>
-      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/{{stable_release_short}}/julia-{{stable_release}}-freebsd-x86_64.tar.gz">64-bit</a>
-        (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/{{stable_release_short}}/julia-{{stable_release}}-freebsd-x86_64.tar.gz.asc">GPG</a>)
+      <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.7/julia-1.7.3-freebsd-x86_64.tar.gz">64-bit</a>
+        (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.7/julia-1.7.3-freebsd-x86_64.tar.gz.asc">GPG</a>)
       </td>
       <td colspan="3"> </td>
     </tr>
     <tr>
       <th> Source </th>
-      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v{{stable_release}}/julia-{{stable_release}}.tar.gz">Tarball</a>
-        (<a href="https://github.com/JuliaLang/julia/releases/download/v{{stable_release}}/julia-{{stable_release}}.tar.gz.asc">GPG</a>)
+      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v1.7.3/julia-1.7.3.tar.gz">Tarball</a>
+        (<a href="https://github.com/JuliaLang/julia/releases/download/v1.7.3/julia-1.7.3.tar.gz.asc">GPG</a>)
       </td>
-      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v{{stable_release}}/julia-{{stable_release}}-full.tar.gz">Tarball with dependencies</a>
-        (<a href="https://github.com/JuliaLang/julia/releases/download/v{{stable_release}}/julia-{{stable_release}}-full.tar.gz.asc">GPG</a>)
+      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/releases/download/v1.7.3/julia-1.7.3-full.tar.gz">Tarball with dependencies</a>
+        (<a href="https://github.com/JuliaLang/julia/releases/download/v1.7.3/julia-1.7.3-full.tar.gz.asc">GPG</a>)
       </td>
-      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/v{{stable_release}}">GitHub</a> </td>
+      <td colspan="2"> <a href="https://github.com/JuliaLang/julia/tree/v1.7.3">GitHub</a> </td>
     </tr>
   </tbody>
 </table>
