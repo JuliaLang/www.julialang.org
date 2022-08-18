@@ -302,7 +302,7 @@ Above, we can see that both Plots and NanMath are not on their latest version an
 
 *Kristoffer Carlsson*
 
-Using the package PackageCompiler.jl it is possible to create a "sysimage" (a prebaked serialized file) with packages that can significantly improve the load time of these packages. A drawback to this is that when using a custom sysimage with packages, the version of those packages are "frozen" no matter what the package man
+Using the package PackageCompiler.jl it is possible to create a "sysimage" (a prebaked serialized file) with packages that can significantly improve the load time of these packages. A drawback to this is that when using a custom sysimage with packages, the version of those packages are "frozen" no matter what the package manager claims.
 
 So if you have version 0.1 of a package in the sysimage and you add version 0.2 with the package manager, you will still use version 0.1.
 
