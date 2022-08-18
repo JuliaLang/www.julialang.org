@@ -3,8 +3,8 @@ mintoclevel = 2
 maxtoclevel = 3
 title = "Julia 1.8 Highlights"
 authors = "Jeff Bezanson, Jameson Nash, Ian Butterworth, Kristoffer Carlsson, Shuhei Kadowaki, Elliot Saba, Mosè Giordano, Simeon Schaub, Tim Holy, Keno Fischer"
-published = "17 August 2022"
-rss_pubdate = Date(2022, 08, 17)
+published = "18 August 2022"
+rss_pubdate = Date(2022, 08, 18)
 rss = """Highlights of the Julia 1.8 release."""
 +++
 
