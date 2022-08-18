@@ -1208,6 +1208,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/blog/2022/08/julia-1.8-highlights/index.html</loc>
+    <lastmod>2022-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/blog/2016/10/StructuredQueries/index.html</loc>
     <lastmod>2022-08-18</lastmod>
     <changefreq>monthly</changefreq>
