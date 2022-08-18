@@ -296,6 +296,8 @@ There is also a new flag `--outdated` that can be passed to the status printing 
 
 ![](/assets/blog/2022-1.8-highlights/pkg_upgrade.png)
 
+Above, we can see that both Plots and NanMath are not on their latest version and Plots and RecipesPipeline are blocking NanMath from upgrading.
+
 ### Pkg support for sysimages
 
 *Kristoffer Carlsson*
