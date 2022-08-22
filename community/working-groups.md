@@ -17,6 +17,7 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 | -------------------------------- | ------------------- | ---------------------------------------- | ------------------------------------------------------------------------ |
 | Astronomy                        | `#astro`            | Fourth Friday of each month at 19:00 UTC | [Mosè Giordano][Mosè-Giordano], [Miles Lucas][Miles-Lucas]               |
 | CI infrastructure                | `#ci-dev`           | Every other Monday at 12pm ET             | [Elliot Saba][Elliot-Saba], [Dilum Aluthge][Dilum-Aluthge]               |
+| [Dagger][dagger]                 | `#distributed`      | Every other Thursday at 10am ET          | [Julian Samaroo][Julian-Samaroo], [Krystian Guliński][Krystian-Guliński]    |
 | [GPU][gpu]                       | `#gpu`              | Every other Monday at 11am ET            | [Tim Besard][Tim-Besard], [Valentin Churavy][Valentin-Churavy]           |
 | High-performance computing (HPC) | `#hpc`              | Fourth Tuesday of each month at 2pm ET   | [Valentin Churavy][Valentin-Churavy]                                     |
 | Machine learning                 | `#machine-learning` | Every other Tuesday at 12pm ET           | [Kyle Daruwalla][Kyle-Daruwalla], [Lorenz Ohly][Lorenz-Ohly]             |
@@ -26,6 +27,7 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 
 The machine learning WG also uses the `#ml-contributors` stream on the [Julia Zulip][zulip].
 
+[dagger]: https://github.com/JuliaParallel/Dagger.jl
 [gpu]: https://github.com/JuliaGPU
 [pkg]: https://github.com/JuliaLang/Pkg.jl
 
@@ -66,7 +68,9 @@ Each of these groups is organized around a common area of interest with a commun
 [Fredrik-Ekre]: https://github.com/fredrikekre
 [Jameson-Nash]: https://github.com/vtjnash
 [Jeff-Bezanson]: https://github.com/JeffBezanson
+[Julian-Samaroo]: https://github.com/jpsamaroo
 [Kristoffer-Carlsson]: https://github.com/KristofferC
+[Krystian-Guliński]: https://github.com/krynju
 [Kyle-Daruwalla]: https://github.com/darsnack
 [Lorenz-Ohly]: https://github.com/lorenzoh
 [Miles-Lucas]: https://github.com/mileslucas
