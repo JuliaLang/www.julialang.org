@@ -110,6 +110,8 @@ export PATH="$PATH:/path/to/<Julia directory>/bin"
 
 Apart from this, there are several ways through which you can change environment variable. You can follow [this guide](https://help.ubuntu.com/community/EnvironmentVariables) to find out a way convenient for you.
 
+### Uninstallation
+
 Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove `~/.julia`. The startup file is at `~/.julia/config/startup.jl` and the history at `~/.julia/logs/repl_history.jl`.
 
 ## Cross-platform installer
