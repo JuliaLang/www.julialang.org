@@ -151,6 +151,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * ROP2301 - Optimization (Prof. Marc Sevaux), since 2018
     * UVOE501 - Virtual factory and optimization (Dr. Alexandru Olteanu), since 2018
     * UNOE401 - Digital factory and optimization (Dr. Alexandru Olteanu), since 2018
+* University of Engineering and Technology – UTEC, Barranco, Lima, Peru
+    * IN2003 - Operations Research 1: Deterministic models (Prof. Fabien Cornillier), since 2017
 * Universidad del Norte, Barranquilla, Colombia
     * [ELP 4076](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ELP&crse_numb_in=4076), Ingeniería de Ríos y Costas (Prof. Germán Rivillas)
     * [ICI 4083](https://pomelo.uninorte.edu.co/pls/prod/bwckctlg.p_disp_course_detail?cat_term_in=202030&subj_code_in=ICI&crse_numb_in=4083), Hidráulica (Prof. Germán Rivillas)
