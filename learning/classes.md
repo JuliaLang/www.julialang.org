@@ -127,6 +127,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [101-0250-00L (PDE on GPU)](https://pde-on-gpu.vaw.ethz.ch/), Solving Partial Differential Equations in parallel on GPUs (Dr. [Ludovic Räss](https://github.com/luraess)), Fall 2021, Fall 2022
 * Tec de Monterrey, Santa Fe Campus, Mexico City
    * [IN2022](https://samp.itesm.mx/Materias/VistaPreliminarMateria?clave=IN2022&lang=ES), Modelos de Optimización (Prof. [Marzieh Khakifirooz](https://www.linkedin.com/in/marzieh-khakifirooz-a3b85643/)), Spring 2020
+* Technical University of Delft (TU Delft)
+   * [EE4375](https://github.com/ziolai/finite_element_electrical_engineering), Finite Element Methods for Electrical Engineering Applications (Prof. D. Lahaye)
 * Tokyo Metropolitan University, Tokyo, Japan
     * L0407, [Exercises in Programming I for Mechanical Systems Engineering](https://github.com/hsugawa8651/mseprogOne) (Hiroharu Sugawara): Fall 2018, Fall 2019, Fall 2020, Fall 2021 (scheduled), in Japanese
 * [TU Dortmund / SFB 823](https://www.statistik.tu-dortmund.de/sfb823.html), Germany
