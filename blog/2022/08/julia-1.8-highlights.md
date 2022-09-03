@@ -193,7 +193,7 @@ External profile viewers now also support thread and task selection.
 
 #### Profiling code that is already running
 
-1.8 also introduces the option to profile code that is already running. Say you have started some long-running code and progress appears to slow. At any time you see what's happening without interrupting by triggering a 1-second profile via sending `SIGINFO` on BSDs including MacOS, or `SIGUSR1` on Linux (not supported on Windows). MacOS & FreeBSD have the added convenience of sending `SIGUSR1` via `ctrl-t`.
+1.8 also introduces the option to profile code that is already running. Say you have started some long-running code and progress appears to slow. At any time you see what's happening without interrupting by triggering a 1-second profile via sending `SIGINFO` on BSDs including MacOS, or `SIGUSR1` on Linux (not supported on Windows). MacOS & FreeBSD have the added convenience of sending `SIGINFO` via `ctrl-t`.
 
 First, an immediate stacktrace will print, followed by the report after the profile sampling at the next yield point.
 
