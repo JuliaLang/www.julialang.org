@@ -330,7 +330,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     </tr>
     <tr>
       <td rowspan="8"> Linux (Glibc) </td>
-      <td rowspan="5"> 2.6.18+ </td>
+      <td rowspan="5"> 2.6.24+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
     </tr>
