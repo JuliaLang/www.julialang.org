@@ -140,7 +140,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
 
     <p>We conduct the Julia User & Developer Survey right before JuliaCon every year and present the findings at JuliaCon. The survey has now been conducted two years in a row:</p>
         <ul>
-            <li> 2022: <a href="https://www.youtube.com/watch?v=OnlKtNVNRrk">JuliaCon 2022 talk</a>
+            <li> 2022: <a href="/assets/2022-julia-user-developer-survey.pdf">Slides</a>, and <a href="https://www.youtube.com/watch?v=OnlKtNVNRrk">JuliaCon 2022 talk</a>
             <li> 2021: <a href="/assets/2021-julia-user-developer-survey.pdf">Slides</a>, and <a href="https://www.youtube.com/watch?v=0XSk5zybfic">JuliaCon 2021 talk</a>
             <li> 2020: <a href="/assets/2020-julia-user-developer-survey.pdf">Slides</a>, <a href="https://www.youtube.com/watch?v=lBhw7C_bIyk">JuliaCon 2020 talk</a>, and <a href="/blog/2020/08/2020-julia-user-and-developer-survey/">blog post</a>
             <li> 2019: <a href="/assets/2019-julia-user-developer-survey.pdf">Slides</a>, <a href="https://www.youtube.com/watch?v=yx6lBSHqGfc">JuliaCon 2019 talk</a>, and <a href="/blog/2019/08/2019-julia-survey/">blog post</a>
