@@ -13,10 +13,10 @@ IF YOU'RE THINKING ABOUT REMOVING THIS NOTE, DON'T. ACCORDING TO OUR LAWYERS, TH
 -->
 
 ~~~
-<h2 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h2>
+<h2 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}}</a></h2>
 ~~~
 
-Checksums for this release are available in both [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.sha256) formats.
+Julia {{stable_release}} was tagged on {{stable_release_tag_date}} and released on {{stable_release_announce_date}}. Checksums for this release are available in both [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.sha256) formats.
 
 @@row @@col-12
 ~~~
@@ -98,11 +98,10 @@ You should *only* be using the long-term support (LTS) version of Julia if you w
 
 
 ~~~
-<h2 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})</a></h2>
+<h2 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}}</a></h2>
 ~~~
 
-Checksums for this release are available in both, [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) formats.
-
+Julia {{lts_release}} was tagged on {{lts_release_tag_date}} and released on {{lts_release_announce_date}}. Checksums for this release are available in both, [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) formats.
 
 @@row @@col-12
 ~~~
