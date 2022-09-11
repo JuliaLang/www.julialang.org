@@ -10,6 +10,10 @@
 @def author = ""
 
 <!-- Templating of the Downloads -->
+<!--
+NOTE: When updating for a new release, make sure to also rerun
+`downloads/oldreleases.jl`
+-->
 @def stable_release = "1.8.1"
 @def stable_release_short = "1.8"
 @def stable_release_date = "September 6, 2022"
