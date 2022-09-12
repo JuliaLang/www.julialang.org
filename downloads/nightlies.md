@@ -19,17 +19,18 @@ Most users are advised to use the latest official release version of Julia.
       <td> <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.exe">32-bit (installer)</a>, <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.zip">32-bit (portable) </td>
   </tr>
   <tr>
-      <th> macOS (Intel or Rosetta) </th>
-      <td colspan="2"> <a href="https://julialangnightlies-s3.julialang.org/bin/mac/x64/julia-latest-mac64.dmg">64-bit</a> </td>
+      <th> macOS</th>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/julia-latest-macos-x86_64.dmg">64-bit Intel</a> </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/julia-latest-macos-aarch64.dmg">Apple Silicon</a> </td>
   </tr>
   <tr>
       <th> Generic Linux on x86 </th>
-      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz">64-bit</a> </td>
-      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/x86/julia-latest-linux32.tar.gz">32-bit</a> </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/julia-latest-linux-x86_64.tar.gz">64-bit</a> </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/i686/julia-latest-linux-i686.tar.gz">32-bit</a> </td>
   </tr>
   <tr>
       <th> Generic Linux on ARM </th>
-      <td colspan="2"> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linuxaarch64.tar.gz">64-bit (AArch64)</a> </td>
+      <td colspan="2"> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linux-aarch64.tar.gz">64-bit (AArch64)</a> </td>
   </tr>
   <tr>
       <th> Source </th>
