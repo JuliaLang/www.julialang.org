@@ -130,7 +130,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Technical University of Delft (TU Delft)
    * [EE4375](https://github.com/ziolai/finite_element_electrical_engineering), Finite Element Methods for Electrical Engineering Applications (Prof. D. Lahaye)
 * Tokyo Metropolitan University, Tokyo, Japan
-    * L0407, [Exercises in Programming I for Mechanical Systems Engineering](https://github.com/hsugawa8651/mseprogOne) (Hiroharu Sugawara): Fall 2018, Fall 2019, Fall 2020, Fall 2021 (scheduled), in Japanese
+    * L0407, [Exercises in Programming I for Mechanical Systems Engineering](https://github.com/hsugawa8651/mseprogOne) (Hiroharu Sugawara), since 2018, in Japanese
 * [TU Dortmund / SFB 823](https://www.statistik.tu-dortmund.de/sfb823.html), Germany
     * One week introductory course into Julia with applications in statistics and economics ([Tileman Conring](https://www.statistik.tu-dortmund.de/conring.html)): Spring 2018
 * Universidad Adolfo Ibáñez, Chile
