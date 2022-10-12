@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
           fetch-depth: 1
@@ -36,7 +36,7 @@ jobs:
       # matplotlib which is necessary if you intend to use PyPlot. If you do
       # not, then you can remove the `run: pip install matplotlib` line.
       - name: Install python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: '3.8'
 
@@ -73,17 +73,17 @@ jobs:
 
       - name: Deploy (preview)
         if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name # if this build is a PR build and the PR is NOT from a fork
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
-          BRANCH: gh-preview
-          FOLDER: __site
-          SSH: true
-          TARGET_FOLDER: "previews/PR${{ github.event.number }}"
+          branch: gh-preview
+          folder: __site
+          ssh-key: true
+          target-folder: "previews/PR${{ github.event.number }}"
 
       - name: Deploy (main)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          SSH: true
-          BRANCH: gh-pages
-          FOLDER: __site
+          ssh-key: true
+          branch: gh-pages
+          folder: __site
