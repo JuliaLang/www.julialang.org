@@ -200,6 +200,9 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [Advanced Julia Workshop](https://github.com/crstnbr/JuliaWorkshop18) (MSc. Carsten Bauer), Fall 2018
     * [Computational Physics](https://www.thp.uni-koeln.de/trebst/Lectures/2019-CompPhys.shtml) (Prof. Simon Trebst), Summer 2019
     * [Advanced Julia Workshop](https://github.com/crstnbr/JuliaWorkshop19) (MSc. Carsten Bauer), Fall 2019
+* University of Colorado Boulder
+    * [ASEN 5264, Decision Making under Uncertainty](https://github.com/zsunberg/CU-DMU-Materials)
+    * [CSCI 5636, Numerical Solutions to Partial Differential Equations](https://cu-numpde.github.io/fall22/syllabus.html)
 * University of Connecticut, Storrs
     * CHEG 5395, Metaheuristic and Heuristic Methods in Chemical Engineering (Prof. Ranjan Srivastava), Spring 2018
 * University of Edinburgh
