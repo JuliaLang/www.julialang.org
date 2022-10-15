@@ -335,8 +335,8 @@ and resize it as needed:
 
 ```julia
     temp = temps[Threads.threadid()]
-    length(temp) < m-lo+1 && resize!(temp, m-lo+1)
-    copyto!(temp, 1, v, lo, m-lo+1)
+    length(temp) < mid-lo+1 && resize!(temp, mid-lo+1)
+    copyto!(temp, 1, v, lo, mid-lo+1)
 ```
 
 After these minor modifications, let's check performance on our large
