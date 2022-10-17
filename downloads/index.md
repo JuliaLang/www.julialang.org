@@ -369,7 +369,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td rowspan="1"> Linux (Musl) </td>
       <td rowspan="1"> 2.6.39+ </td>
       <td> x86-64 (64-bit) </td>
-      <td> <font color="crimson">Tier 3</font> </td>
+      <td> <font color="orange">Tier 2</font> </td>
     </tr>
     <tr>
       <td rowspan="2"> FreeBSD </td>
