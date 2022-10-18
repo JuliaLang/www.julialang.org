@@ -297,8 +297,8 @@ function psort!(v, lo::Int=1, hi::Int=length(v), temps=[similar(v, 0) for i = 1:
 
 ```julia
     temp = temps[Threads.threadid()]
-    length(temp) < m-lo+1 && resize!(temp, m-lo+1)
-    copyto!(temp, 1, v, lo, m-lo+1)
+    length(temp) < mid-lo+1 && resize!(temp, mid-lo+1)
+    copyto!(temp, 1, v, lo, mid-lo+1)
 ```
 
 经过这些细微的修改后，让我们测试一下程序在大规模机器上的性能:
