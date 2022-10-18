@@ -120,8 +120,8 @@ end</code></pre>
     psort&#33;&#40;v, mid&#43;1, hi, temps&#41;</code></pre>
 <p>最后，使用为当前线程预留的数组（而不是分配一个新的）并根据需要调整其大小:</p>
 <pre><code class=language-julia >temp &#61; temps&#91;Threads.threadid&#40;&#41;&#93;
-    length&#40;temp&#41; &lt; m-lo&#43;1 &amp;&amp; resize&#33;&#40;temp, m-lo&#43;1&#41;
-    copyto&#33;&#40;temp, 1, v, lo, m-lo&#43;1&#41;</code></pre>
+    length&#40;temp&#41; &lt; mid-lo&#43;1 &amp;&amp; resize&#33;&#40;temp, mid-lo&#43;1&#41;
+    copyto&#33;&#40;temp, 1, v, lo, mid-lo&#43;1&#41;</code></pre>
 <p>经过这些细微的修改后，让我们测试一下程序在大规模机器上的性能:</p>
 <pre><code class=language-bash >&#36; for n in 1 2 4 8 16; do    JULIA_NUM_THREADS&#61;&#36;n ./julia psort.jl; done
   2.813555 seconds &#40;3.08 k allocations: 153.448 MiB, 1.44&#37; gc time&#41;
