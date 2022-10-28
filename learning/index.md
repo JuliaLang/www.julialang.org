@@ -27,7 +27,7 @@
      <!-- 2 -->
      <div class="col-lg-4 col-md-6 feature">
        <h3>Exercism Julia Track</h3>
-       <p>Prefer to learn by doing exercises and getting feedback from a team of welcoming mentors? Check out the Julia Track on <a href="https://exercism.io/tracks/julia">Exercism.io</a>.
+       <p>Prefer to learn by doing exercises and getting feedback from a team of welcoming mentors? Check out the Julia Track on <a href="https://exercism.org/tracks/julia">Exercism.org</a>.
        </p>
      </div>
      <!-- 3 -->
