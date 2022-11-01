@@ -316,7 +316,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     </tr>
     <tr>
       <td> i686 (32-bit) </td>
-      <td> <font color="orange">Tier 2</font> </td>
+      <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
       <td> 8.1+ </td>
