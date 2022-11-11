@@ -1,4 +1,4 @@
-# JuliaCon 2021
+# JuliaCon 2023
 
 This page acts as a simple landing area with a list of important links for JuliaCon 2021. The conference home page is [https://juliacon.org/2021/](https://juliacon.org/2021/).
 
