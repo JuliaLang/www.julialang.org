@@ -130,7 +130,6 @@ The Julia language organization puts out a call for proposals from the community
 There are no restrictions on what the funding can be used for. Code development, documentation work, educational, sustainability, and diversity initiatives, or other types of projects are all eligible.
 
 Since only one application can be put in for the Julia project, an internal selection process is used to determine which proposals will be submitted to NumFOCUS.
-For examples of grants that were funded in the first round, [previous awards](https://numfocus.org/programs/sustainability#sdg).
 
 Usually, around USD 5,000 - 10,000 is available per proposal.
 The total allocated funding from NumFOCUS is around USD 20,000 - 50,000 in previous cycles, meaning that not every project will be able to receive a grant.
