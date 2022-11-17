@@ -14,9 +14,9 @@
 NOTE: When updating for a new release, make sure to also rerun
 `downloads/oldreleases.jl`
 -->
-@def stable_release = "1.8.2"
+@def stable_release = "1.8.3"
 @def stable_release_short = "1.8"
-@def stable_release_date = "September 29, 2022"
+@def stable_release_date = "November 15, 2022"
 @def lts_release = "1.6.7"
 @def lts_release_short = "1.6"
 @def lts_release_date = "July 19, 2022"
