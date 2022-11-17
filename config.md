@@ -14,9 +14,9 @@
 NOTE: When updating for a new release, make sure to also rerun
 `downloads/oldreleases.jl`
 -->
-@def stable_release = "1.8.2"
+@def stable_release = "1.8.3"
 @def stable_release_short = "1.8"
-@def stable_release_date = "September 29, 2022"
+@def stable_release_date = "November 14, 2022"
 @def lts_release = "1.6.7"
 @def lts_release_short = "1.6"
 @def lts_release_date = "July 19, 2022"
@@ -27,7 +27,7 @@ NOTE: When updating for a new release, make sure to also rerun
 <!--
 If the following lines are commented, the "upcoming release" section
 in `downloads/index.md` will not be shown.
-@def upcoming_release = "1.8.0-rc4"
-@def upcoming_release_short = "1.8"
-@def upcoming_release_date = "August 8, 2022"
 -->
+@def upcoming_release = "1.9.0-alpha1"
+@def upcoming_release_short = "1.9"
+@def upcoming_release_date = "November 15, 2022"
