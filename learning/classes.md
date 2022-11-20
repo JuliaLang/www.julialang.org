@@ -167,6 +167,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * Métodos numéricos para sistemas dinámicos (Prof. Luis Benet), Fall 2014
     * [Métodos numéricos avanzados](https://github.com/dpsanders/MetodosNumericosAvanzados) (Prof. David P. Sanders and Prof. Luis Benet), Spring 2015
     * [Métodos computacionales para la física estadística](https://github.com/dpsanders/metodos-monte-carlo) (Prof. David P. Sanders), Spring 2015
+    * [Risk Theory](https://github.com/aerdely/RiskTheory) (Prof. Arturo Erdely), Fall 2022
 * Universidad Nacional del Centro de la Provincia de Buenos Aires, Facultad de Ciencias Exactas, Tandil, Argentina. 
     * [Modelización Matemática](https://exa.unicen.edu.ar/matematicas/#asignaturas) (Prof. Pablo A. Lotito), 2020.    
 * Universidad Nacional Pedro Ruiz Gallo, Lambayeque, Perú
