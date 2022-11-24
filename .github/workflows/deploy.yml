@@ -82,7 +82,7 @@ jobs:
 
       - name: Deploy (main)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           ssh-key: true
           branch: gh-pages
