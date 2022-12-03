@@ -364,6 +364,9 @@ classic LSODE). Let's use DifferentialEquations.jl to call CVODE with its Adams
 method and have it solve the ODE for us:
 
 ```julia
+using ParameterizedFunctions # required for the `@ode_def` macro
+using Sundials
+
 rober = @ode_def Rober begin
   dy₁ = -k₁*y₁+k₃*y₂*y₃
   dy₂ =  k₁*y₁-k₂*y₂^2-k₃*y₂*y₃
@@ -432,7 +435,7 @@ prob = DDEProblem(delay_lotka_volterra,[1.0,1.0],h,(0.0,10.0),constant_lags=[0.1
 p = [2.2, 1.0, 2.0, 0.4]
 params = Flux.params(p)
 
-using DiffEqSensitivity
+using SciMLSensitivity
 function predict_rd_dde()
   solve(prob,MethodOfSteps(Tsit5()),p=p,sensealg=TrackerAdjoint(),saveat=0.1)[1,:]
 end
