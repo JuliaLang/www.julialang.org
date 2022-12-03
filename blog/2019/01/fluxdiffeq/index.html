@@ -52,7 +52,10 @@ Flux.train&#33;&#40;loss_rd, params, data, opt, cb &#61; cb&#41;</code></pre> <p
   x -&gt; maxpool&#40;x, &#40;2,2&#41;&#41;,
   x -&gt; reshape&#40;x, :, size&#40;x, 4&#41;&#41;,
   x -&gt; solve&#40;prob,Tsit5&#40;&#41;,u0&#61;x,saveat&#61;0.1&#41;&#91;1,:&#93;,
-  Dense&#40;288, 10&#41;, softmax&#41; |&gt; gpu</code></pre> <p>As long as you can write down the forward pass, we can take any parameterised, differentiable program and optimise it. The world is your oyster.</p> <h2 id=why_is_a_full_ode_solver_suite_necessary_for_doing_this_well ><a href="#why_is_a_full_ode_solver_suite_necessary_for_doing_this_well">Why is a full ODE solver suite necessary for doing this well?</a></h2> <p>Where we have combined an existing solver suite and deep learning library, the excellent <a href="https://github.com/rtqichen/torchdiffeq">torchdiffeq</a> project takes an alternative approach, instead implementing solver methods directly in PyTorch, including an adaptive Runge Kutta 4-5 &#40;<code>dopri5</code>&#41; and an Adams-Bashforth-Moulton method &#40;<code>adams</code>&#41;. However, while their approach is very effective for certain kinds of models, not having access to a full solver suite is limiting.</p> <p>Consider the following example, the <a href="https://www.radford.edu/~thompson/vodef90web/problems/demosnodislin/Single/DemoRobertson/demorobertson.pdf">ROBER ODE</a>. The most well-tested &#40;and optimized&#41; implementation of an Adams-Bashforth-Moulton method is the <a href="https://computation.llnl.gov/projects/sundials">CVODE integrator in the C&#43;&#43; package SUNDIALS</a> &#40;a derivative of the classic LSODE&#41;. Let&#39;s use DifferentialEquations.jl to call CVODE with its Adams method and have it solve the ODE for us:</p> <pre><code class=language-julia >rober &#61; @ode_def Rober begin
+  Dense&#40;288, 10&#41;, softmax&#41; |&gt; gpu</code></pre> <p>As long as you can write down the forward pass, we can take any parameterised, differentiable program and optimise it. The world is your oyster.</p> <h2 id=why_is_a_full_ode_solver_suite_necessary_for_doing_this_well ><a href="#why_is_a_full_ode_solver_suite_necessary_for_doing_this_well">Why is a full ODE solver suite necessary for doing this well?</a></h2> <p>Where we have combined an existing solver suite and deep learning library, the excellent <a href="https://github.com/rtqichen/torchdiffeq">torchdiffeq</a> project takes an alternative approach, instead implementing solver methods directly in PyTorch, including an adaptive Runge Kutta 4-5 &#40;<code>dopri5</code>&#41; and an Adams-Bashforth-Moulton method &#40;<code>adams</code>&#41;. However, while their approach is very effective for certain kinds of models, not having access to a full solver suite is limiting.</p> <p>Consider the following example, the <a href="https://www.radford.edu/~thompson/vodef90web/problems/demosnodislin/Single/DemoRobertson/demorobertson.pdf">ROBER ODE</a>. The most well-tested &#40;and optimized&#41; implementation of an Adams-Bashforth-Moulton method is the <a href="https://computation.llnl.gov/projects/sundials">CVODE integrator in the C&#43;&#43; package SUNDIALS</a> &#40;a derivative of the classic LSODE&#41;. Let&#39;s use DifferentialEquations.jl to call CVODE with its Adams method and have it solve the ODE for us:</p> <pre><code class=language-julia >using ParameterizedFunctions # required for the &#96;@ode_def&#96; macro
+using Sundials
+
+rober &#61; @ode_def Rober begin
   dy₁ &#61; -k₁*y₁&#43;k₃*y₂*y₃
   dy₂ &#61;  k₁*y₁-k₂*y₂^2-k₃*y₂*y₃
   dy₃ &#61;  k₂*y₂^2
@@ -72,7 +75,7 @@ prob &#61; DDEProblem&#40;delay_lotka_volterra,&#91;1.0,1.0&#93;,h,&#40;0.0,10.0
 p &#61; &#91;2.2, 1.0, 2.0, 0.4&#93;
 params &#61; Flux.params&#40;p&#41;
 
-using DiffEqSensitivity
+using SciMLSensitivity
 function predict_rd_dde&#40;&#41;
   solve&#40;prob,MethodOfSteps&#40;Tsit5&#40;&#41;&#41;,p&#61;p,sensealg&#61;TrackerAdjoint&#40;&#41;,saveat&#61;0.1&#41;&#91;1,:&#93;
 end
