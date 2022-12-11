@@ -1,7 +1,8 @@
 ## Books
 
 @@tight-list
-* Logan Kilpatrick, Nolan Fortman. [Julia Crash Course: Learn the worlds fastest growing programming language](https://logankilpatrick.gumroad.com/l/juliacrashcourse), December 2022
+* Bogumił Kamiński. [Julia for Data Analysis](https://www.manning.com/books/julia-for-data-analysis), Manning Publications, December 2022
+* Logan Kilpatrick, Nolan Fortman. [Julia Crash Course 🚀: Learn the worlds fastest growing programming language](https://logankilpatrick.gumroad.com/l/juliacrashcourse), December 2022
 * Tobin A. Driscoll, Richard J. Braun. [Fundamentals of Numerical Computation: Julia Edition](https://my.siam.org/Store/Product/viewproduct/?ProductId=41831895). SIAM-Society for Industrial and Applied Mathematics, 2022
 * George Datseris, Ulrich Parlitz. [Nonlinear Dynamics: A Concise Introduction Interlaced with Code](https://github.com/JuliaDynamics/NonlinearDynamicsTextbook). Springer, 2022
 * Hayden Klok, Yoni Nazarathy. [Statistics with julia: Fundamentals for data science, machine learning and artificial intelligence](https://github.com/h-Klok/StatsWithJuliaBook). Springer, 2021
