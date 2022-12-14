@@ -50,7 +50,7 @@ t = Template(;
        )
 ```
 
-Make sure to replace `your-GitHub-username` with your actual GitHub username and `your-name` with your name. For more information on all of the options available, see the [PkgTemplates User Guide](https://invenia.github.io/PkgTemplates.jl/stable/user/#PkgTemplates-User-Guide-1).
+Make sure to replace `your-GitHub-username` with your actual GitHub username and `your-name` with your name. For more information on all of the options available, see the [PkgTemplates User Guide](https://juliaci.github.io/PkgTemplates.jl/stable/user/).
 
 Now, to create the package, in the Julia REPL execute the following command: 
 
