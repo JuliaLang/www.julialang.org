@@ -58,7 +58,7 @@ Now, to create the package, in the Julia REPL execute the following command:
 t("YourPackageName")
 ```
 
-Replace `YourPackageName` with the actual name of your package. Note that packages in Julia start with a capital letter. For more information on how to properly name your package, see [Package naming conventions](https://pkgdocs.julialang.org/v1/).
+Replace `YourPackageName` with the actual name of your package. Note that packages in Julia start with a capital letter. For more information on how to properly name your package, see [Package naming guidelines](https://pkgdocs.julialang.org/v1/creating-packages/#Package-naming-guidelines).
 
 After `PkgTemplates.jl` creates your new package, it stores the source files at  `~/.julia/dev` on Linux, and at `%USERNAME%/.julia/dev` on Windows. If this is not where you want to be working from, then move the source files to your preferred location. Your package directory contains the following:
 
