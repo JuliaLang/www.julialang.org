@@ -42,9 +42,10 @@ using PkgTemplates
 
 t = Template(;
            user="your-GitHub-username",
-           license="MIT",
            authors=["your-name"],
-           plugins=[Git(),
+           plugins=[
+               License(name="MIT"),
+               Git(),
                GitHubActions(),
            ],
        )
