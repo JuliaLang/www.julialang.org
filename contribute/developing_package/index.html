@@ -3,9 +3,10 @@ Pkg.add&#40;&quot;PkgTemplates&quot;&#41;</code></pre> <p>Now, create your packa
 
 t &#61; Template&#40;;
            user&#61;&quot;your-GitHub-username&quot;,
-           license&#61;&quot;MIT&quot;,
            authors&#61;&#91;&quot;your-name&quot;&#93;,
-           plugins&#61;&#91;Git&#40;&#41;,
+           plugins&#61;&#91;
+               License&#40;name&#61;&quot;MIT&quot;&#41;,
+               Git&#40;&#41;,
                GitHubActions&#40;&#41;,
            &#93;,
        &#41;</code></pre> <p>Make sure to replace <code>your-GitHub-username</code> with your actual GitHub username and <code>your-name</code> with your name. For more information on all of the options available, see the <a href="https://invenia.github.io/PkgTemplates.jl/stable/user/#PkgTemplates-User-Guide-1">PkgTemplates User Guide</a>.</p> <p>Now, to create the package, in the Julia REPL execute the following command: </p> <pre><code class=language-julia >t&#40;&quot;YourPackageName&quot;&#41;</code></pre>
