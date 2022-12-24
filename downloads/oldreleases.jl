@@ -2,16 +2,11 @@ using HTTP, JSON3
 
 function currentversions()
     out = Dict{VersionNumber,String}()
-    comment = false
     for line in eachline("../config.md")
-        if startswith(line, "<!--")
-            comment = true
+        if startswith(line, '+') || startswith(line, '#')
+            continue
         end
-        if occursin("-->", line)
-            comment = false
-        end
-        comment && continue
-        m = match(r"^@def (stable|lts|upcoming)_release = \"([^\"]+)\"", line)
+        m = match(r"^(stable|lts|upcoming)_release = \"([^\"]+)\"", line)
         m === nothing && continue
         out[VersionNumber(m.captures[2])] = m.captures[1]
     end
