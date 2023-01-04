@@ -62,6 +62,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [Optimization for Learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)
 * Massachusetts Institute of Technology (MIT)
     * [6.251 / 15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas), Fall 2015
+    * [12.805](http://student.mit.edu/catalog/m12c.html#12.805), Data Analysis in Physical Oceanography ([Jake Gebbie](https://github.com/ggebbie) and Tom Farrar), Fall 2022
     * [18.06](https://web.mit.edu/18.06/www/), Linear Algebra: Fall 2015, Dr. [Alex Townsend](https://github.com/ajt60gaibb); Fall 2014, Prof. Alexander Postnikov; Fall [2013](https://stellar.mit.edu/S/course/18/fa13/18.06), Prof. Alan Edelman
     * [18.303](https://math.mit.edu/~stevenj/18.303/), Linear Partial Differential Equations: Analysis and Numerics (Prof. [Steven G. Johnson](https://github.com/stevengj)), Fall 2013–2016.
     * [18.337 / 6.338](http://courses.csail.mit.edu/18.337/2016/), Numerical Computing with Julia (Prof. [Alan Edelman](https://github.com/alanedelman)). [Fall 2015](https://courses.csail.mit.edu/18.337/2015) ([IJulia notebooks](https://github.com/alanedelman/18.337_2015)). Fall 2013–
