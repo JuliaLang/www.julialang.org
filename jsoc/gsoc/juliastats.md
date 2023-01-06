@@ -24,11 +24,9 @@ structure from data.
 
 -   Must be fluent in at least one language for statistical computing, and 
     willing to learn Julia before the start of projects.
-
--  Knowledge of basic statistical inference covering topics such as maximum
-   likelihood estimation, confidence intervals, and hypothesis testing. (Must
-   know before applying.)
-
+-   Knowledge of basic statistical inference covering topics such as maximum
+    likelihood estimation, confidence intervals, and hypothesis testing. (Must
+    know before applying.)
 -   Basic familiarity with time series statistics (e.g. ARIMA models, autocorrelations) 
     or panel data. (Can be learned after applying.)
 
@@ -40,10 +38,9 @@ Participants will:
 -   Learn and build on past approaches and packages for panel data analysis,
     such as those in [Econometrics.jl](https://github.com/Nosferican/Econometrics.jl) 
     and [SynthControl.jl](https://github.com/nilshg/SynthControl.jl).
-
 -   Generalize [TreatmentPanels.jl](https://github.com/nilshg/TreatmentPanels.jl) 
-    into an abstract interface for dealing with and manipulating panel data.
-  
+    and [TSFrames.jl](https://github.com/xKDR/TSFrames.jl) into an abstract interface
+    for dealing with and manipulating panel data.
 -   Integrate existing estimators provided by packages such as Econometrics.jl 
     into a single package for panel data estimation.
 
@@ -51,9 +48,30 @@ Participants will:
 ### References
 
 -   [A Primer for Panel Data Analysis](http://web.pdx.edu/~crkl/ec510/pda_yaffee.pdf)
-
 -   [Econometric Analysis of Cross Section and Panel Data](https://mitpress.mit.edu/books/econometric-analysis-cross-section-and-panel-data-second-edition) by Jeffrey Wooldridge
 
+
+## Distributions.jl Expansion
+
+Distributions.jl is a package providing basic 
+
+**Difficulty.** Easy-Medium. **Duration.** 175-350 hours
+
+### Prerequisites
+
+-   Must be fluent in Julia.
+-   A college-level introduction to probability covering topics such as
+    probability density functions, moments and cumulants, and multivariate
+    distributions.
+
+### Your contribution
+
+Possible improvements to Distributions.jl include:
+-   New distribution families, such as elliptical distributions or
+    distributions of order statistics.
+-   Additional parametrizations and keyword constructors for current 
+    distributions.
+-   Extended support for distributions of transformed variables.
 
 
 ## CRRao.jl
@@ -66,18 +84,15 @@ Implement consistent APIs for statistical modeling in Julia.
 
 Currently, the Julia statistics ecosystem is quite fragmented. There is 
 value in having a consistent API for a wide variety of statistical models. 
-The [CRRao.jl](https://github.com/xKDR/CRRao.jl) package offers this design. We have built several models with
-this interface, but there is still work to be done here.
+The [CRRao.jl](https://github.com/xKDR/CRRao.jl) package offers this design.
 
-**Mentors.** [Sourish Das](https://www.cmi.ac.in/~sourish/), [Ayush Patnaik](https://github.com/ayushpatnaikgit), []()
+**Mentors.** [Sourish Das](https://www.cmi.ac.in/~sourish/), [Ayush Patnaik](https://github.com/ayushpatnaikgit)
 
 ### Prerequisites
 
 -   Must be fluent in Julia.
-
--   Knowledge of basic statistical inference covering topics such as maximum
-   likelihood estimation, confidence intervals, and hypothesis testing. (Must
-   know before applying.)
+-   Basic statistical inference covering topics such as maximum
+    likelihood estimation, confidence intervals, and hypothesis testing.
 
 ### Your contribution
 
@@ -97,24 +112,21 @@ of participants.
 
 JuliaStats provides many of the most popular packages in Julia, including:
 -   StatsBase.jl for basic statistics (e.g. weights, sample statistics,
-  moments). 
+    moments). 
 -   MixedModels.jl for random and mixed-effects linear models. 
 -   GLM.jl for generalized linear models. 
 All of these packages are critically important to the Julia statistics
 community, and all could be improved.
 
 
-**Mentors.** Mousum Dutta, [Chirag Anand](https://github.com/chiraganand), [Ayush Patnaik](https://github.com/ayushpatnaikgit), [Carlos Parada](https://github.com/ayushpatnaikgit)
+**Mentors.** Mousum Dutta, [Chirag Anand](https://github.com/chiraganand), [Ayush Patnaik](https://github.com/ayushpatnaikgit), [Carlos Parada](https://github.com/paradacarleton)
 
 ### Prerequisites
 
 -   Must be fluent in at least one language for statistical computing, and 
     willing to learn Julia before the start of projects.
-
 -   Knowledge of basic statistical inference covering topics such as maximum
-   likelihood estimation, confidence intervals, and hypothesis testing. (Must
-   know before applying.)
-
+    likelihood estimation, confidence intervals, and hypothesis testing.
 
 
 ### Your contribution
@@ -126,14 +138,5 @@ Participants will:
     interested in.
 -   StatsBase.jl improvements could include support for cumulants,
     L-moments, or additional estimators.
--   Distributions.jl improvements could include support for new 
-    distributions (e.g. elliptical distributions), additional 
-    parametrizations and keyword constructors for current 
-    distributions, or extending support for distributions of 
-    transformed variables.
 -   Improved nonparametric density estimators, e.g. those in R's
-    [Locfit](https://cran.r-project.org/web/packages/locfit/index.html) 
-    or [log-spline estimators](https://www.sciencedirect.com/science/article/pii/S0167947320301511).
--   Packages to support survey statistics, similar to R's
-    [survey](https://cran.r-project.org/web/packages/survey/index.html)
-    package.
+    [Locfit](https://cran.r-project.org/web/packages/locfit/index.html).
