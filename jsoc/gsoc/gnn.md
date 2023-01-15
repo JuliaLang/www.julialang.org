@@ -37,9 +37,11 @@ for the Julia ML and data ecosystem.
 
 **Expected outcome**: A large collection of graph datasets easily available to the Julia ecosystem.
 
-### Supporting heterogeneous graphs
+### Implement layers for heterogeneous graphs
 
-In some complex networks, the relations expressed by edges can be of different types. We need to implement an heterogeneous graph type and define convolutional layers supporting it.
+In some complex networks, the relations expressed by edges can be of different types. We currently support this
+with the `GNNHeteroGraph` type but none of the current graph convolutional layers support heterogeneous graphs 
+as inputs. With this project we will implement a few layers for heterographs.
 
 **Duration**: 350h.  
 
