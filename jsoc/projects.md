@@ -33,6 +33,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Tooling](/jsoc/gsoc/tooling/) - Language tooling, static analysis
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [Topology optimisation](/jsoc/gsoc/topopt/) - improving topology optimisation tools in Julia.
+* [Trixi.jl](/jsoc/gsoc/trixi/) - modern computational fluid dynamics with Trixi.jl in Julia.
 @@
 
 We also have Julia project's available under other organizations. If you are applying for those projects, make sure your application is for that organization and NOT the Julia Language:
