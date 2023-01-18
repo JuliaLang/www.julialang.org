@@ -73,7 +73,7 @@ A huge thanks to all of those who supported JuliaCon 2022 by purchasing a limite
 
 # Conference Feedback Welcome
 
-We are always trying to make JuliaCon more inclusive, fun, and informative. If you have any suggestions for what we can do better in the future, please [share your thoughts in the post conference survey](https://forms.gle/GJ6Y8Tz99XvBZgwr9). Note that there are other third party surveys out there that are not affiliated with the Julia proejct or JuliaCon, so please be careful.
+We are always trying to make JuliaCon more inclusive, fun, and informative. If you have any suggestions for what we can do better in the future, please [share your thoughts in the post conference survey](https://forms.gle/GJ6Y8Tz99XvBZgwr9). Note that there are other third party surveys out there that are not affiliated with the Julia project or JuliaCon, so please be careful.
 
 # Wrapping up
 
