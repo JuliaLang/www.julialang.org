@@ -3,6 +3,7 @@
 @@tight-list
 * Bogumił Kamiński. [Julia for Data Analysis](https://www.manning.com/books/julia-for-data-analysis), Manning Publications, December 2022
 * Logan Kilpatrick, Nolan Fortman. [Julia Crash Course 🚀: Learn the worlds fastest growing programming language](https://logankilpatrick.gumroad.com/l/juliacrashcourse), December 2022
+* Ahmad Chitsazzadeh. [Data Analysis with Julia Programming Language](https://mftbook.ir/product/data-analysis-with-julia), Tehran Dibagaran Publications, October 2022. The book is in Persian language that is also available as e-book at [fidibo.com](https://fidibo.com/book/141894-%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D8%AA%D8%AD%D9%84%DB%8C%D9%84-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-julia)
 * Tobin A. Driscoll, Richard J. Braun. [Fundamentals of Numerical Computation: Julia Edition](https://my.siam.org/Store/Product/viewproduct/?ProductId=41831895). SIAM-Society for Industrial and Applied Mathematics, 2022
 * George Datseris, Ulrich Parlitz. [Nonlinear Dynamics: A Concise Introduction Interlaced with Code](https://github.com/JuliaDynamics/NonlinearDynamicsTextbook). Springer, 2022
 * Hayden Klok, Yoni Nazarathy. [Statistics with julia: Fundamentals for data science, machine learning and artificial intelligence](https://github.com/h-Klok/StatsWithJuliaBook). Springer, 2021
