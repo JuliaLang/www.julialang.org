@@ -1,6 +1,7 @@
 ## Books
 
 @@tight-list
+* C. T. Kelley, [Solving Nonlinear Equations with Iterative Methods. Solvers and Examples in Julia](https://my.siam.org/Store/Product/viewproduct/?ProductId=44313635), SIAM, 2022. The book comes with a package [SIAMFANLequations.jl](https://github.com/ctkelley/SIAMFANLEquations.jl) and a set of [Jupyter notebooks](https://github.com/ctkelley/NotebookSIAMFANL).
 * Bogumił Kamiński. [Julia for Data Analysis](https://www.manning.com/books/julia-for-data-analysis), Manning Publications, December 2022
 * Logan Kilpatrick, Nolan Fortman. [Julia Crash Course 🚀: Learn the worlds fastest growing programming language](https://logankilpatrick.gumroad.com/l/juliacrashcourse), December 2022
 * Ahmad Chitsazzadeh. [Data Analysis with Julia Programming Language](https://mftbook.ir/product/data-analysis-with-julia), Tehran Dibagaran Publications, October 2022. The book is in Persian language that is also available as e-book at [fidibo.com](https://fidibo.com/book/141894-%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D8%AA%D8%AD%D9%84%DB%8C%D9%84-%D8%AF%D8%A7%D8%AF%D9%87-%D8%A8%D8%A7-julia)
