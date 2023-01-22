@@ -120,7 +120,7 @@ Julia installs all its files in a single directory. Deleting the directory where
 
 ## Juliaup
 
-An installer and version manager for Julia called [juliaup](https://github.com/JuliaLang/juliaup) is available in the [Microsoft Store](https://www.microsoft.com/store/apps/9NJNWW8PVKMN).
+An installer and version manager for Julia called [juliaup](https://github.com/JuliaLang/juliaup) is available in the [Microsoft Store](https://www.microsoft.com/store/apps/9NJNWW8PVKMN) and can be installed [via the command line](https://github.com/JuliaLang/juliaup#mac-and-linux) on Mac and Linux.
 It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.
 
 # A Brief Note About Unofficial Binaries
