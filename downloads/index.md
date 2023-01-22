@@ -315,11 +315,6 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> 8.1+ </td>
-      <td> i686 (32-bit) / x86-64 (64-bit) </td>
-      <td> <font color="orange">Tier 2</font> </td>
-    </tr>
-    <tr>
       <td> CUDA 10.1</td>
       <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
       <td> <font color="green">Tier 1</font> </a> </td>
