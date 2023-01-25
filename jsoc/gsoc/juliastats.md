@@ -145,32 +145,33 @@ Participants will:
 ## Survey.jl
 This package is used to study complex survey data. We aim to use the performance enhancements of Julia to create a fast package for large modern surveys. 
 
+**Difficulty.** Easy-Hard. **Duration.** 175-350 hours
+
 ### Prerequisites
 
--   Fluent in at least one language for statistical computing (Julia, R, Python, SAS, Stata etc), and 
+-   Experience with at least one language for statistical computing (Julia, R, Python, SAS, Stata etc), and 
     willing to learn Julia before the start of projects.
 -   Knowledge of basic statistical and probability concepts, preferably covered from academic course(s).
--   Knowledge of basic software engineering practices.
+-   Knowledge of basic software engineering practices, structured/object oriented programming.
 -   Basic familiarity or willingness to learn applied survey sampling and analysis. (Can be learned after applying. Mentorship and guidance provided.)
 -   (Bonus) Any prior experience using Julia for data analytics or statistics.
 -   (Bonus) Any prior experience with survey analysis, using any software or tool.
--   (Bonus) Any prior experience with git/GitHub, and contribution/PR to open-source projects.
--   Basic familiarity with time series statistics (e.g. ARIMA models, autocorrelations) 
-    or panel data. (Can be learned after applying.)
+-   (Bonus) Any prior experience with version control, git/GitHub, and contributing/PR to open-source projects.
 
 ### Your contribution
 
-Participants will:
--   Enhance documentation, and improve testing suite
--   
--   Make JuliaStats better! This can include additional estimators,
-    new features, performance improvements, or anything else you're
+Internship can be tailored around brackground and interests of participants and depending on ability, several standalone mini-projects can be created. Potential participants can expect to work on:
+-   Making Survey.jl better! This includes enhancing existing API, new features and algorithms, or anything else you're
     interested in.
--   StatsBase.jl improvements could include support for cumulants,
-    L-moments, or additional estimators.
--   Improved nonparametric density estimators, e.g. those in R's
-    [Locfit](https://cran.r-project.org/web/packages/locfit/index.html).
-    
+-   Multistage and Probability Proportional to Size (PPS) sampling with or without replacement.
+-   Generalised variance estimation methods - taylor series linearisation, Horvitz-Thompson style estimators
+-   Replicate weighting methods - Jacknife, Balanced Repeated Replicate (BRR), different flavours of bootstrapping
+-   Post-stratification, raking or calibration, GREG estimation.
+-   Connect Survey.jl with [FreqTable.jl](https://github.com/nalimilan/FreqTables.jl) for contingency table analysis, or to survival analysis, or a machine learning library.
+-   Association tests, Rao-Scott, likelihood ratio tests for glms, Cox models, loglinear models.
+-   Increase performance of methods, analysing complexity, benchmarking code profiling, optimisation of code and algorithms
+-   Enhance documentation and tutorials, improve testing suite
+
 ### References
 
 -   [Survey.jl](https://github.com/xKDR/Survey.jl) - see some issues, past PR's and milestone ideas
