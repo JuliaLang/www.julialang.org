@@ -143,11 +143,11 @@ Participants will:
     
     
 ## Survey.jl
-This package is used to study complex survey data. Examples of real-world surveys include official government surveys in areas like economics, labour market, argirculture, financial and commercial surveys. Social and behavioural scientists like sociologists, psychologists and biologists also analyse surveys in academic and theoretical settings. We aim to use the performance enhancements of Julia to create a fast package for large modern surveys. 
+This package is used to study complex survey data. Examples of real-world surveys include official government surveys in areas like economics, labour market and agriculture; financial and commercial surveys. Social and behavioural scientists like political scientists, sociologists, psychologists, biologists and macroeconomists also analyse surveys in academic and theoretical settings. The prevalence of "big" survey datasets has exploded with the ease of administering surveys online. We aim to use the performance enhancements of Julia to create a fast package for large modern surveys. 
 
 **Difficulty.** Easy-Hard. **Duration.** 175-350 hours
 
-**Mentors.** 
+**Mentors.** [who?]
 
 ### Prerequisites
 
@@ -166,7 +166,7 @@ Internship can be tailored around brackground and interests of participants and 
 -   Making Survey.jl better! This includes enhancing existing API with more functionality, new features and algorithms, software engineering improvements or anything else you're interested in.
 -   Generalised variance estimation methods - taylor series linearisation, Horvitz-Thompson style estimators
 -   Replicate weighting methods - Jacknife, Balanced Repeated Replicate (BRR), different flavours of bootstrapping
--   Post-stratification, raking or calibration, GREG estimation.
+-   Post-stratification, raking or calibration, GREG estimation and related methods.
 -   Connect Survey.jl with [FreqTable.jl](https://github.com/nalimilan/FreqTables.jl) for contingency table analysis, or to survival analysis, or a machine learning library.
 -   Improve support for multistage and Probability Proportional to Size (PPS) sampling with or without replacement.
 -   Association tests (with contingency tables), Rao-Scott, likelihood ratio tests for glms, Cox models, loglinear models.
