@@ -178,6 +178,8 @@ Internship can be tailored around brackground and interests of participants and 
 ### References
 
 -   [Survey.jl](https://github.com/xKDR/Survey.jl) - see some issues, past PR's and milestone ideas
+-   Package announcements, Julia Discourse post [link here]
+-   Benchmarking [link] - if done in time
 -   [Model Assisted Survey Sampling](https://d-nb.info/969712979/04) - Sarndal, Swensson, Wretman (1992)
 -   [Complex Surveys: a guide to analysis using R](https://r-survey.r-forge.r-project.org/svybook/)
 -   [Survey analysis in R](https://r-survey.r-forge.r-project.org/survey/) for high level topics than can be implemented for Julia
