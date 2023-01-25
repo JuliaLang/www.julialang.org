@@ -162,7 +162,7 @@ This package is used to study complex survey data. Examples of real-world survey
 
 ### Your contribution
 
-Internship can be tailored around brackground and interests of participants and depending on ability, several standalone mini-projects can be created. Potential participants can expect to work on:
+The project can be tailored around the background and interests of participants and depending on ability, several standalone mini-projects can be created. Potential participants can expect to work on:
 -   Making Survey.jl better! This includes enhancing existing API with more functionality, new features and algorithms, software engineering improvements or anything else you're interested in.
 -   Generalised variance estimation methods - taylor series linearisation, Horvitz-Thompson style estimators
 -   Replicate weighting methods - Jacknife, Balanced Repeated Replicate (BRR), different flavours of bootstrapping
