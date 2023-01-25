@@ -163,14 +163,14 @@ This package is used to study complex survey data. We aim to use the performance
 ### Your contribution
 
 Internship can be tailored around brackground and interests of participants and depending on ability, several standalone mini-projects can be created. Potential participants can expect to work on:
--   Making Survey.jl better! This includes enhancing existing API, new features and algorithms, or anything else you're
-    interested in.
--   Multistage and Probability Proportional to Size (PPS) sampling with or without replacement.
+-   Making Survey.jl better! This includes enhancing existing API with more functionality, new features and algorithms, software engineering improvements or anything else you're interested in.
 -   Generalised variance estimation methods - taylor series linearisation, Horvitz-Thompson style estimators
 -   Replicate weighting methods - Jacknife, Balanced Repeated Replicate (BRR), different flavours of bootstrapping
 -   Post-stratification, raking or calibration, GREG estimation.
 -   Connect Survey.jl with [FreqTable.jl](https://github.com/nalimilan/FreqTables.jl) for contingency table analysis, or to survival analysis, or a machine learning library.
--   Association tests, Rao-Scott, likelihood ratio tests for glms, Cox models, loglinear models.
+-   Improve support for multistage and Probability Proportional to Size (PPS) sampling with or without replacement.
+-   Association tests (with contingency tables), Rao-Scott, likelihood ratio tests for glms, Cox models, loglinear models.
+-   Causal inference and bayesian survey methods.
 -   Increase performance of methods, analysing complexity, benchmarking code profiling, optimisation of code and algorithms
 -   Enhance documentation and tutorials, improve testing suite
 
