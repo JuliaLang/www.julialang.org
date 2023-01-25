@@ -140,3 +140,30 @@ Participants will:
     L-moments, or additional estimators.
 -   Improved nonparametric density estimators, e.g. those in R's
     [Locfit](https://cran.r-project.org/web/packages/locfit/index.html).
+    
+    
+## Survey.jl
+This package analyses complex surveys 
+
+### Prerequisites
+
+-   Must be fluent in at least one language for statistical computing, and 
+    willing to learn Julia before the start of projects.
+-   Knowledge of basic statistical inference covering topics such as maximum
+    likelihood estimation, confidence intervals, and hypothesis testing. (Must
+    know before applying.)
+-   Basic familiarity with time series statistics (e.g. ARIMA models, autocorrelations) 
+    or panel data. (Can be learned after applying.)
+
+### Your contribution
+
+Participants will:
+
+-   Make JuliaStats better! This can include additional estimators,
+    new features, performance improvements, or anything else you're
+    interested in.
+-   StatsBase.jl improvements could include support for cumulants,
+    L-moments, or additional estimators.
+-   Improved nonparametric density estimators, e.g. those in R's
+    [Locfit](https://cran.r-project.org/web/packages/locfit/index.html).
+    
