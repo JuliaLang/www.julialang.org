@@ -147,6 +147,8 @@ This package is used to study complex survey data. We aim to use the performance
 
 **Difficulty.** Easy-Hard. **Duration.** 175-350 hours
 
+**Mentors.** 
+
 ### Prerequisites
 
 -   Experience with at least one language for statistical computing (Julia, R, Python, SAS, Stata etc), and 
