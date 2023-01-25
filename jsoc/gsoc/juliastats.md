@@ -143,7 +143,7 @@ Participants will:
     
     
 ## Survey.jl
-This package is used to study complex survey data. We aim to use the performance enhancements of Julia to create a fast package for large modern surveys. 
+This package is used to study complex survey data. Examples of real-world surveys include official government surveys in areas like economics, labour market, argirculture, financial and commercial surveys. Social and behavioural scientists like sociologists, psychologists and biologists also analyse surveys in academic and theoretical settings. We aim to use the performance enhancements of Julia to create a fast package for large modern surveys. 
 
 **Difficulty.** Easy-Hard. **Duration.** 175-350 hours
 
