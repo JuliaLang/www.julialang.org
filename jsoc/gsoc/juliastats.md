@@ -143,22 +143,26 @@ Participants will:
     
     
 ## Survey.jl
-This package analyses complex surveys 
+This package is used to study complex survey data. We aim to use the performance enhancements of Julia to create a fast package for large modern surveys. 
 
 ### Prerequisites
 
--   Must be fluent in at least one language for statistical computing, and 
+-   Fluent in at least one language for statistical computing (Julia, R, Python, SAS, Stata etc), and 
     willing to learn Julia before the start of projects.
--   Knowledge of basic statistical inference covering topics such as maximum
-    likelihood estimation, confidence intervals, and hypothesis testing. (Must
-    know before applying.)
+-   Knowledge of basic statistical and probability concepts, preferably covered from academic course(s).
+-   Knowledge of basic software engineering practices.
+-   Basic familiarity or willingness to learn applied survey sampling and analysis. (Can be learned after applying. Mentorship and guidance provided.)
+-   (Bonus) Any prior experience using Julia for data analytics or statistics.
+-   (Bonus) Any prior experience with survey analysis, using any software or tool.
+-   (Bonus) Any prior experience with git/GitHub, and contribution/PR to open-source projects.
 -   Basic familiarity with time series statistics (e.g. ARIMA models, autocorrelations) 
     or panel data. (Can be learned after applying.)
 
 ### Your contribution
 
 Participants will:
-
+-   Enhance documentation, and improve testing suite
+-   
 -   Make JuliaStats better! This can include additional estimators,
     new features, performance improvements, or anything else you're
     interested in.
@@ -167,3 +171,9 @@ Participants will:
 -   Improved nonparametric density estimators, e.g. those in R's
     [Locfit](https://cran.r-project.org/web/packages/locfit/index.html).
     
+### References
+
+-   [Survey.jl](https://github.com/xKDR/Survey.jl) - see some issues, past PR's and milestone ideas
+-   [Model Assisted Survey Sampling](https://d-nb.info/969712979/04) - Sarndal, Swensson, Wretman (1992)
+-   [Complex Surveys: a guide to analysis using R](https://r-survey.r-forge.r-project.org/svybook/)
+-   [Survey analysis in R](https://r-survey.r-forge.r-project.org/survey/) for high level topics than can be implemented for Julia
