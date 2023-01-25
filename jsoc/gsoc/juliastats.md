@@ -157,7 +157,7 @@ This package is used to study complex survey data. We aim to use the performance
 -   Knowledge of basic software engineering practices, structured/object oriented programming.
 -   Basic familiarity or willingness to learn applied survey sampling and analysis. (Can be learned after applying. Mentorship and guidance provided.)
 -   (Bonus) Any prior experience using Julia for data analytics or statistics.
--   (Bonus) Any prior experience with survey analysis, using any software or tool.
+-   (Bonus) Any prior experience or coursework with survey analysis, using any software or tool.
 -   (Bonus) Any prior experience with version control, git/GitHub, and contributing/PR to open-source projects.
 
 ### Your contribution
@@ -171,6 +171,7 @@ Internship can be tailored around brackground and interests of participants and 
 -   Improve support for multistage and Probability Proportional to Size (PPS) sampling with or without replacement.
 -   Association tests (with contingency tables), Rao-Scott, likelihood ratio tests for glms, Cox models, loglinear models.
 -   Causal inference and bayesian survey methods.
+-   Handling missing data, imputation.
 -   Increase performance of methods, analysing complexity, benchmarking code profiling, optimisation of code and algorithms
 -   Enhance documentation and tutorials, improve testing suite
 
