@@ -38,8 +38,7 @@ Participants will:
 -   Learn and build on past approaches and packages for panel data analysis,
     such as those in [Econometrics.jl](https://github.com/Nosferican/Econometrics.jl) 
     and [SynthControl.jl](https://github.com/nilshg/SynthControl.jl).
--   Generalize [TreatmentPanels.jl](https://github.com/nilshg/TreatmentPanels.jl) 
-    and [TSFrames.jl](https://github.com/xKDR/TSFrames.jl) into an abstract interface
+-   Generalize [TreatmentPanels.jl](https://github.com/nilshg/TreatmentPanels.jl) into an abstract interface
     for dealing with and manipulating panel data.
 -   Integrate existing estimators provided by packages such as Econometrics.jl 
     into a single package for panel data estimation.
@@ -53,7 +52,7 @@ Participants will:
 
 ## Distributions.jl Expansion
 
-Distributions.jl is a package providing basic 
+Distributions.jl is a package providing basic probability distributions and associated functions. 
 
 **Difficulty.** Easy-Medium. **Duration.** 175-350 hours
 
@@ -72,6 +71,35 @@ Possible improvements to Distributions.jl include:
 -   Additional parametrizations and keyword constructors for current 
     distributions.
 -   Extended support for distributions of transformed variables.
+-   [Replace RMath RNGs.](https://github.com/JuliaStats/Distributions.jl/issues/294)
+
+## HypothesisTesting.jl Expansion
+
+HypothesisTesting.jl is a package that implements a range of hypothesis tests.
+
+**Difficulty.** Medium. **Duration.** 350 hours
+
+### Prerequisites
+
+-   Must be fluent in Julia.
+-   A college-level introduction to probability covering topics such as
+    probability density functions, moments and cumulants, and multivariate
+    distributions.
+
+### Your contribution
+
+Possible improvements to Distributions.jl include:
+-   Develop Breusch-Pagan test against heteroskedasticity
+-   Develop Harvey-Collier Test for linearity
+-   Develop Bartlet Rank Test for randomness
+-   Develop an exact dynamic programming solution to Wilcoxon–Mann–Whitney (WMW) test 
+
+### References
+
+-   [bptest in R](https://search.r-project.org/CRAN/refmans/lmtest/html/bptest.html)
+-   [randtests in R](https://cran.r-project.org/web/packages/randtests/randtests.pdf)
+-   Alexander Marx, etal. (2016) “Exact Dynamic Programing Solution of the Wilcoxon–Mann–Whitney Test” 
+    Genomics Proteomics Bioinformatics, 14, 55-61
 
 
 ## CRRao.jl
@@ -86,7 +114,7 @@ Currently, the Julia statistics ecosystem is quite fragmented. There is
 value in having a consistent API for a wide variety of statistical models. 
 The [CRRao.jl](https://github.com/xKDR/CRRao.jl) package offers this design.
 
-**Mentors.** [Sourish Das](https://www.cmi.ac.in/~sourish/), [Ayush Patnaik](https://github.com/ayushpatnaikgit)
+**Mentors.** [Sourish Das](https://www.cmi.ac.in/~sourish/), [Ayush Patnaik](https://xkdr.org/author/ayush-patnaik)
 
 ### Prerequisites
 
@@ -119,7 +147,7 @@ All of these packages are critically important to the Julia statistics
 community, and all could be improved.
 
 
-**Mentors.** Mousum Dutta, [Chirag Anand](https://github.com/chiraganand), [Ayush Patnaik](https://github.com/ayushpatnaikgit), [Carlos Parada](https://github.com/paradacarleton)
+**Mentors.** [Mousum Dutta](https://github.com/mousum-github), [Ayush Patnaik](https://xkdr.org/author/ayush-patnaik), [Carlos Parada](https://github.com/paradacarleton)
 
 ### Prerequisites
 
@@ -147,39 +175,28 @@ This package is used to study complex survey data. Examples of real-world survey
 
 **Difficulty.** Easy-Hard. **Duration.** 175-350 hours
 
-**Mentors.** [who?]
-
+**Mentors.** [Ayush Patnaik](https://xkdr.org/author/ayush-patnaik), [Shikhar Mishra](https://github.com/smishr)
 ### Prerequisites
 
 -   Experience with at least one language for statistical computing (Julia, R, Python, SAS, Stata etc), and 
     willing to learn Julia before the start of projects.
 -   Knowledge of basic statistical and probability concepts, preferably covered from academic course(s).
--   Knowledge of basic software engineering practices, structured/object oriented programming.
--   Basic familiarity or willingness to learn applied survey sampling and analysis. (Can be learned after applying. Mentorship and guidance provided.)
--   (Bonus) Any prior experience using Julia for data analytics or statistics.
 -   (Bonus) Any prior experience or coursework with survey analysis, using any software or tool.
--   (Bonus) Any prior experience with version control, git/GitHub, and contributing/PR to open-source projects.
 
 ### Your contribution
 
 The project can be tailored around the background and interests of participants and depending on ability, several standalone mini-projects can be created. Potential participants can expect to work on:
--   Making Survey.jl better! This includes enhancing existing API with more functionality, new features and algorithms, software engineering improvements or anything else you're interested in.
--   Generalised variance estimation methods - taylor series linearisation, Horvitz-Thompson style estimators
--   Replicate weighting methods - Jacknife, Balanced Repeated Replicate (BRR), different flavours of bootstrapping
+-   Generalised variance estimation methods using taylor linearisation
 -   Post-stratification, raking or calibration, GREG estimation and related methods.
 -   Connect Survey.jl with [FreqTable.jl](https://github.com/nalimilan/FreqTables.jl) for contingency table analysis, or to survival analysis, or a machine learning library.
 -   Improve support for multistage and Probability Proportional to Size (PPS) sampling with or without replacement.
 -   Association tests (with contingency tables), Rao-Scott, likelihood ratio tests for glms, Cox models, loglinear models.
--   Causal inference and bayesian survey methods.
 -   Handling missing data, imputation.
--   Increase performance of methods, analysing complexity, benchmarking code profiling, optimisation of code and algorithms
--   Enhance documentation and tutorials, improve testing suite
 
 ### References
 
 -   [Survey.jl](https://github.com/xKDR/Survey.jl) - see some issues, past PR's and milestone ideas
 -   Package announcements, Julia Discourse post [link here]
--   Benchmarking [link] - if done in time
 -   [Model Assisted Survey Sampling](https://d-nb.info/969712979/04) - Sarndal, Swensson, Wretman (1992)
 -   [Complex Surveys: a guide to analysis using R](https://r-survey.r-forge.r-project.org/svybook/)
 -   [Survey analysis in R](https://r-survey.r-forge.r-project.org/survey/) for high level topics than can be implemented for Julia
