@@ -88,7 +88,7 @@ HypothesisTesting.jl is a package that implements a range of hypothesis tests.
 
 ### Your contribution
 
-Possible improvements to Distributions.jl include:
+Improvements to Distributions.jl include:
 -   Develop Breusch-Pagan test against heteroskedasticity
 -   Develop Harvey-Collier Test for linearity
 -   Develop Bartlet Rank Test for randomness
