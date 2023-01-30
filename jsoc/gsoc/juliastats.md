@@ -127,6 +127,7 @@ The [CRRao.jl](https://github.com/xKDR/CRRao.jl) package offers this design.
 Participants will:
 
 -   Help create, test, and document standard statistical APIs for Julia.
+-   Integrate MixedModels.jl
 
 
 ## JuliaStats Improvements 
