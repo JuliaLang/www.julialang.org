@@ -175,7 +175,7 @@ This package is used to study complex survey data. Examples of real-world survey
 
 **Difficulty.** Easy-Hard. **Duration.** 175-350 hours
 
-**Mentors.** [Ayush Patnaik](https://xkdr.org/author/ayush-patnaik), [Shikhar Mishra](https://github.com/smishr)
+**Mentors.** [Ayush Patnaik](https://xkdr.org/author/ayush-patnaik)
 ### Prerequisites
 
 -   Experience with at least one language for statistical computing (Julia, R, Python, SAS, Stata etc), and 
