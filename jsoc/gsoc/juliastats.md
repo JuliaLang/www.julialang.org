@@ -194,7 +194,7 @@ The project can be tailored around the background and interests of participants 
 -   Connect Survey.jl with [FreqTable.jl](https://github.com/nalimilan/FreqTables.jl) for contingency table analysis, or to survival analysis, or a machine learning library.
 -   Improve support for multistage and Probability Proportional to Size (PPS) sampling with or without replacement.
 -   Association tests (with contingency tables), Rao-Scott, likelihood ratio tests for glms, Cox models, loglinear models.
--   Handling missing data, imputation.
+-   Handling missing data, imputation like [mitools](https://stat.ethz.ch/CRAN/web/packages/mitools/index.html).
 
 ### References
 
