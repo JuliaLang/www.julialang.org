@@ -49,3 +49,36 @@
 **Expected Results:** Depends on the specific projects we would agree on.
 
 **Mentors:** [Tanmay Mohapatra](https://github.com/tanmaykm)
+
+## DataFrames.jl join enhancements
+
+**Difficulty**: Hard
+
+**Duration**: 175 hours 
+
+[DataFrames.jl](https://github.com/JuliaData/DataFrames.jl) is one of the more popular implementations of tabular data type for Julia. One of the features it supports is data frame joining. However, more work is needed to improve this functionality. The specific targets for this project are (a final list of targets included in the scope of the project can be decided later).
+@@tight-list
+* improve performance and memory consumption of joins (related issues:
+  [#3255](https://github.com/JuliaData/DataFrames.jl/issues/3255),
+  [#3270](https://github.com/JuliaData/DataFrames.jl/issues/3270),
+  [#2974](https://github.com/JuliaData/DataFrames.jl/issues/2974),
+  [#2688](https://github.com/JuliaData/DataFrames.jl/issues/2688),
+  [#2660](https://github.com/JuliaData/DataFrames.jl/issues/2660));
+* implement `asofjoin` or similar "nearest matching" join (related issue: [#2738](https://github.com/JuliaData/DataFrames.jl/issues/2738));
+* implement join merging one table into the other, i.e. updating existing columns (related issue: [#2243](https://github.com/JuliaData/DataFrames.jl/issues/2243));
+* improve column naming in joins (related issue: [#2472](https://github.com/JuliaData/DataFrames.jl/issues/2472)).
+@@
+
+**Resources:**
+@@tight-list
+* Issues linked in the description
+* [DataFrames.jl](https://github.com/JuliaData/DataFrames.jl)
+* [Tables.jl](https://github.com/JuliaData/Tables.jl)
+* [DataAPI.jl](https://github.com/JuliaData/DataAPI.jl)
+@@
+
+**Recommended skills:** Good knowledge of Julia language, Julia data stack and writing performant multi-threaded Julia code. Experience with benchmarking code. Knowledge of join algorithms (as e.g. used in databases like [DuckDB](https://duckdb.org/) or other tabular data manipulation ecosystems e.g. [Polars](https://www.pola.rs/) or [data.table](https://github.com/Rdatatable/data.table)).
+
+**Expected Results:** Depends on the specific projects we would agree on.
+
+**Mentors:** [Bogumił Kamiński](https://github.com/bkamins)
