@@ -79,6 +79,8 @@ HypothesisTesting.jl is a package that implements a range of hypothesis tests.
 
 **Difficulty.** Medium. **Duration.** 350 hours
 
+**Mentors.** [Sourish Das](https://www.cmi.ac.in/~sourish/), [Mousum Dutta](https://github.com/mousum-github)
+
 ### Prerequisites
 
 -   Must be fluent in Julia.
