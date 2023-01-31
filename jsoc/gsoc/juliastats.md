@@ -174,7 +174,7 @@ Participants will:
     
     
 ## Survey.jl
-This package is used to study complex survey data. Examples of real-world surveys include official government surveys in areas like economics, health and agriculture; financial and commercial surveys. Social and behavioural scientists like political scientists, sociologists, psychologists, biologists and macroeconomists also analyse surveys in academic and theoretical settings. The prevalence of "big" survey datasets has exploded with the ease of administering surveys online. We aim to use the performance enhancements of Julia to create a fast package for large modern surveys. 
+This package is used to study complex survey data. Examples of real-world surveys include official government surveys in areas like economics, health and agriculture; financial and commercial surveys. Social and behavioural scientists like political scientists, sociologists, psychologists, biologists and macroeconomists also analyse surveys in academic and theoretical settings. The prevalence of "big" survey datasets has exploded with the ease of administering surveys online. The project aims to use performance enhancements of Julia to create a fast package for modern "large" surveys. 
 
 **Difficulty.** Easy-Hard. **Duration.** 175-350 hours
 
@@ -188,7 +188,7 @@ This package is used to study complex survey data. Examples of real-world survey
 
 ### Your contribution
 
-The project can be tailored around the background and interests of participants and depending on ability, several standalone mini-projects can be created. Potential participants can expect to work on:
+The project can be tailored around the background and interests of participants and depending on ability, several standalone mini-projects can be created. Participants can potentially work on:
 -   Generalised variance estimation methods using taylor linearisation
 -   Post-stratification, raking or calibration, GREG estimation and related methods.
 -   Connect Survey.jl with [FreqTable.jl](https://github.com/nalimilan/FreqTables.jl) for contingency table analysis, or to survival analysis, or a machine learning library.
@@ -199,7 +199,8 @@ The project can be tailored around the background and interests of participants 
 ### References
 
 -   [Survey.jl](https://github.com/xKDR/Survey.jl) - see some issues, past PR's and milestone ideas
--   Package announcements, Julia Discourse post [link here]
+-   Julia discourse post asking for community suggestions [here](https://discourse.julialang.org/t/suggestions-for-the-design-of-survey-jl/86381/2)
+-   JuliaCon Statistics Symposium [clip](https://youtu.be/RY7SSfyNl9o) for Survey
 -   [Model Assisted Survey Sampling](https://d-nb.info/969712979/04) - Sarndal, Swensson, Wretman (1992)
 -   [Complex Surveys: a guide to analysis using R](https://r-survey.r-forge.r-project.org/svybook/)
 -   [Survey analysis in R](https://r-survey.r-forge.r-project.org/survey/) for high level topics than can be implemented for Julia
