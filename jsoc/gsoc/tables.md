@@ -59,7 +59,7 @@
 [DataFrames.jl](https://github.com/JuliaData/DataFrames.jl) is one of the more popular implementations of tabular data type for Julia. One of the features it supports is data frame joining. However, more work is needed to improve this functionality. The specific targets for this project are (a final list of targets included in the scope of the project can be decided later).
 @@tight-list
 * fully implement multi-threading support by joins, reduce memory requirements of used join algorithms (which should additionally improve their performance), verify efficiency of alternative joining strategies in comparison to those currently used and implement them along with adaptive algorithm choosing the right joining strategy depending on the passed data;
-* implement join allowing for efficient matching on non-equal keys; special attention should be made to matching on keys that are timestamps and spatial objects;
+* implement join allowing for efficient matching on non-equal keys; special attention should be made to matching on keys that are date/time and spatial objects;
 * implement join allowing for an in-place update of columns of one data frame by values stored in another data frame based on matching key and condition specifying when an update should be performed;
 * implement an more flexible mechanizm than currently available allowing to define output data frame column names when performing a join.
 @@
