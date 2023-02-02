@@ -7,7 +7,6 @@ We have our project ideas organized below roughly by domain but you can also see
 @@tight-list
 * [BayesianOptimization.jl](/jsoc/gsoc/bayesopt/) - a package for global optimization of black-box functions
 * [Compiler](/jsoc/gsoc/compiler/) – work on the Julia compiler's internals to make things better for everyone.
-* [DFTK.jl](/jsoc/gsoc/dftk/) – Density-functional theory in Julia
 * [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.
 * [Loop Optimization](/jsoc/gsoc/loopopt/) - Loop analysis and optimization
 * [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
