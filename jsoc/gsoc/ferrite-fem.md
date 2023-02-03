@@ -5,9 +5,9 @@ The package provides extensive examples to start from and is designed as a compr
 Ferrite is actively used in teaching finite element to students at several universities across different countries (e.g. Ruhr-University Bochum and Chalmers University of Technology).
 Further infrastructure is provided in the form of different mesh parsers and a Julia based visualizer called [FerriteViz.jl](https://github.com/Ferrite-FEM/FerriteViz.jl).
 
-Below we provide a four of potential project ideas.
+Below we provide a four of potential project ideas in [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl).
 However, interested students should feel free to explore ideas they are interested in.
-
+Projects in finite element visualization are also possible with [FerriteViz.jl](https://github.com/Ferrite-FEM/FerriteViz.jl).
 
 
 ## Adaptive Mesh Refinement
