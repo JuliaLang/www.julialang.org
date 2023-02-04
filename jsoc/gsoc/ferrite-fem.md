@@ -22,7 +22,7 @@ Information about the existing implementation is summarized [here](https://githu
 
 **Minimum goal**: Finalize the basic p4est implementation as described in the original paper [1], either starting from the [existing branch](https://github.com/Ferrite-FEM/Ferrite.jl/tree/mk/p4est) (recommended) or from scratch together with a set of tests.
 
-**Extended goal**: Intersting extensions might be to implement the optimizations proposed by Tobin Isaac [2], anisotropic refinement as in p6est [3] or generalizations to other geometries as in t8code [4].
+**Extended goal**: Interesting extensions might be to implement the optimizations proposed by Tobin Isaac [2], anisotropic refinement as in p6est [3] or generalizations to other geometries as in t8code [4].
 
 **Recommended skills**:
 - Basic knowledge the finite element method
