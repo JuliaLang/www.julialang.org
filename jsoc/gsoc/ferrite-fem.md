@@ -24,7 +24,7 @@ Information about the existing implementation is summarized [here](https://githu
 
 **Extended goal**: Intersting extensions might be to implement the optimizations proposed by Tobin Isaac [2], anisotropic refinement as in p6est [3] or generalizations to other geometries as in t8code [4].
 
-**Recommended skills**: 
+**Recommended skills**:
 - Basic knowledge the finite element method
 - Basic knowledge about mesh geometries
 
@@ -52,10 +52,10 @@ Currently [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl) can not handle
 
 **Extended goal**: If the time allows then it might be interesting to move one step further and explore Runge-Kutta Discontinuous Galerkin (RKDG) schemes for a convection-dominated problem.
 
-**Recommended skills**: 
+**Recommended skills**:
 - Knowledge the finite element method
 
-**Mentors**: [Dennis Ogiermann](https://github.com/termi-official)
+**Mentors**: [Dennis Ogiermann](https://github.com/termi-official) and [Fredrik Ekre](https://github.com/fredrikekre/)
 
 
 
@@ -75,12 +75,12 @@ The code should come with proper test coverage.
 
 **Extended goal**: With this minimally functional example it is possible to extend the project into different directions, e.g. optimized solvers or nonlinear fluid-structure interaction.
 
-**Recommended skills**: 
+**Recommended skills**:
 - Basic knowledge the finite element method
 - Basic knowledge about solids or fluids
 - The ability (or eagerness to learn) to write fast code
 
-**Mentors**: [Dennis Ogiermann](https://github.com/termi-official)
+**Mentors**: [Dennis Ogiermann](https://github.com/termi-official) and [Fredrik Ekre](https://github.com/fredrikekre/)
 
 
 
@@ -100,7 +100,7 @@ The code has to be properly benchmarked and tested to identify different perform
 
 **Extended goal**: With this minimally functional example it is possible to extend the project into different directions, e.g. optimized matrix-free solvers or GPU assembly.
 
-**Recommended skills**: 
+**Recommended skills**:
 - Basic knowledge the finite element method
 - Basic knowledge about benchmarking
 - The ability (or eagerness to learn) to write fast code
