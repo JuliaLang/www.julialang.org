@@ -17,7 +17,7 @@ Projects in finite element visualization are also possible with [FerriteViz.jl](
 **Project size**: 300-350 hours
 
 **Problem**: While [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl) provides infrastructure for the most common tasks in finite element assembly, it lacks an adaptive mesh infrastructure for adaptive finite element technology.
-We started implementing a p4est type adaptive mesh refinement, which is a highly optimized data structure for this task, could not find time to finalize it.
+A preliminary implementation of a p4est type adaptive mesh refinement has been started, but not finalized yet.
 Information about the existing implementation is summarized [here](https://github.com/Ferrite-FEM/Ferrite.jl/blob/mk/p4est/p4est-ferrite.md).
 
 **Minimum goal**: Finalize the basic p4est implementation as described in the original paper [1], either starting from the [existing branch](https://github.com/Ferrite-FEM/Ferrite.jl/tree/mk/p4est) (recommended) or from scratch together with a set of tests.
