@@ -55,6 +55,8 @@ If you know of other classes using Julia for teaching, please consider [updating
    * COM 15112 - Paralell and Cloud Computing (Cómputo paralelo y en la nube) (Dr. José Octavio Gutiérrez García)
 * Iowa State University
     * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann), Fall 2014
+* [Kathmandu University](https://ku.edu.np/)
+````* [AICC 202 Introduction to Data Science](https://github.com/rojesh-shikhrakar/AICC202-Intro-to-Data-Science) (Rojesh Man Shikhrakar), Spring 2023
 * [Luiss University Rome](https://www.luiss.edu/), [Department of Economics and Finance](https://economiaefinanza.luiss.it)
     * [Econometric Theory](http://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](http://gragusa.org))
 * [Lund University, Sweden](https://www.lunduniversity.lu.se/), [Department of Automatic Control](http://control.lth.se/)
