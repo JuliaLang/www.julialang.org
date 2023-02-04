@@ -6,7 +6,7 @@ Ferrite is actively used in teaching finite element to students at several unive
 Further infrastructure is provided in the form of different mesh parsers and a Julia based visualizer called [FerriteViz.jl](https://github.com/Ferrite-FEM/FerriteViz.jl).
 
 Below we provide a four of potential project ideas in [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl).
-However, interested students should feel free to explore ideas they are interested in.
+However, interested students should feel free to explore ideas they are interested in. Please contact any of the mentors listed below, or join the `#ferrite-fem` channel on the Julia slack to discuss.
 Projects in finite element visualization are also possible with [FerriteViz.jl](https://github.com/Ferrite-FEM/FerriteViz.jl).
 
 
