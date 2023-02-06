@@ -120,7 +120,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Southcentral Kentucky Community and Technical College
     * CIT 120 Computational Thinking (Inst. [Bryan Knowles](https://github.com/snotskie/)), Online, Fall 2017
 * Stanford University
-    * [ENGR108](https://web.stanford.edu/class/engr108/), Introduction to Matrix Methods (Prof Stephen Boyd), Fall 2021 
+    * [ENGR108](https://web.stanford.edu/class/engr108/), Introduction to Matrix Methods (Prof Stephen Boyd), Fall 2021
     * [AA222](https://www.stanford.edu/class/aa222/), Introduction to Multidisciplinary Design Optimization (Prof. Mykel J. Kochenderfer), Spring 2014
     * [AA228/CS238](https://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer), Fall 2014
     * [EE103](https://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2014, Fall 2015
@@ -171,8 +171,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [Métodos numéricos avanzados](https://github.com/dpsanders/MetodosNumericosAvanzados) (Prof. David P. Sanders and Prof. Luis Benet), Spring 2015
     * [Métodos computacionales para la física estadística](https://github.com/dpsanders/metodos-monte-carlo) (Prof. David P. Sanders), Spring 2015
     * [Risk Theory](https://github.com/aerdely/RiskTheory) (Prof. Arturo Erdely), Fall 2022
-* Universidad Nacional del Centro de la Provincia de Buenos Aires, Facultad de Ciencias Exactas, Tandil, Argentina. 
-    * [Modelización Matemática](https://exa.unicen.edu.ar/matematicas/#asignaturas) (Prof. Pablo A. Lotito), 2020.    
+* Universidad Nacional del Centro de la Provincia de Buenos Aires, Facultad de Ciencias Exactas, Tandil, Argentina.
+    * [Modelización Matemática](https://exa.unicen.edu.ar/matematicas/#asignaturas) (Prof. Pablo A. Lotito), 2020.
 * Universidad Nacional Pedro Ruiz Gallo, Lambayeque, Perú
     * Julia: el lenguaje del futuro, [Semana de Integración de Ingeniería Electrónica](https://www.slideshare.net/Ownv94/lenguaje-julia-el-lenguaje-del-futuro), (Oscar William Neciosup Vera), Spring 2015
 * Universidad Veracruzana, México
@@ -214,8 +214,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * Spring 2016, [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/index.html))
 * University of Florida
     * COT 5615, Math for Intelligent Systems (Prof. Kejun Huang), 2021
-    * CIS 4390, Abstraction, Composition, and Computation ([Prof. James Fairbanks](https://www.cise.ufl.edu/fairbanks-james/)), Fall 2021 
-    * COT 4501, Numerical Analysis: A Computational Approach ([Prof. James Fairbanks](https://www.cise.ufl.edu/fairbanks-james/)), Spring 2022 
+    * CIS 4390, Abstraction, Composition, and Computation ([Prof. James Fairbanks](https://www.cise.ufl.edu/fairbanks-james/)), Fall 2021
+    * COT 4501, Numerical Analysis: A Computational Approach ([Prof. James Fairbanks](https://www.cise.ufl.edu/fairbanks-james/)), Spring 2022
 * University of Glasgow, School of Mathematics and Statistics
     * An Introduction to Julia, course of Online Master of Science (MSc) in Data Analytics ([Theodore Papamarkou](https://www.gla.ac.uk/postgraduate/taught/dataanalytics/)), September 2017
 * University of Oregon
@@ -241,7 +241,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Université de Montréal
     * [BIO6032](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6032/), Biologie computationnelle et modélisation (Prof. [Timothée Poisot](https://poisotlab.io/)), Winter 2021-
     * [BIO3033](https://admission.umontreal.ca/cours-et-horaires/cours/bio-3033/) & [BIO6033](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6033/), Méthodes Quantitatives en Biologie (Prof. [Timothée Poisot](https://poisotlab.io/)), Fall 2017-
-    * [BIO3043](https://admission.umontreal.ca/cours-et-horaires/cours/bio-3043/) & [BIO6037](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6037/), Analyse des Réseaux Écologiques (Prof. [Timothée Poisot](https://poisotlab.io/)), Fall 2018- 
+    * [BIO3043](https://admission.umontreal.ca/cours-et-horaires/cours/bio-3043/) & [BIO6037](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6037/), Analyse des Réseaux Écologiques (Prof. [Timothée Poisot](https://poisotlab.io/)), Fall 2018-
     * [IFT1575](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-1575/), Modèles de recherche opérationnelle (Prof. [Bernard Gendron](https://www.iro.umontreal.ca/~gendron/)), Fall 2017
     * [IFT3245](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3245/), Simulation et modèles (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Fall 2017
     * [IFT3515](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3515/), Optimisation non linéaire (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2017-2018
@@ -249,7 +249,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * University of Washington
     * [AMATH 586](https://trogdoncourses.github.io/amath-586-2020/), Numerical analysis of time-dependent problems (Prof. [Tom Trogdon](http://faculty.washington.edu/trogdon/)), Spring 2020
 * Washington University in St. Louis
-    * [Advanced Scientific Computing (Bio5989)](https://github.com/timholy/AdvancedScientificComputing/tree/main) (Prof. [Tim Holy]()), annual. See [videos](https://www.youtube.com/playlist?list=PL-G47MxHVTewUm5ywggLvmbUCNOD2RbKA) and corresponding [branch](https://github.com/timholy/AdvancedScientificComputing/tree/Fall2021) from the Fall 2021 edition of the course.
+    * [Advanced Scientific Computing (Bio5989)](https://github.com/timholy/AdvancedScientificComputing/tree/main) (Prof. [Tim Holy](https://neuroscience.wustl.edu/people/timothy-holy-phd/)), annual. See [videos](https://www.youtube.com/playlist?list=PL-G47MxHVTewUm5ywggLvmbUCNOD2RbKA) and corresponding [branch](https://github.com/timholy/AdvancedScientificComputing/tree/Fall2021) from the Fall 2021 edition of the course.
 * Western University Canada
     * [CS 2101A](https://www.csd.uwo.ca/~moreno/cs2101a_moreno/index.html), Foundations of Programming for High Performance Computing. (Prof. Marc Moreno Maza), Fall 2013
 @@
