@@ -63,6 +63,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [Julia for Scientific Computing](http://www.control.lth.se/education/doctorate-program/julia-course/julia-course-2019/)
     * [Optimization for Learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)
 * Massachusetts Institute of Technology (MIT)
+    * [18.S097](https://math.mit.edu/academics/iap2023.html#credit) Special Subject in Mathematics: Introduction to Julia for Data Science ([Bogumił Kamiński](http://bogumilkaminski.pl/about/), [Przemysław Szufel](https://szufel.pl/en/), Łukasz Kraiński, Bartosz Witkowski, Sebastian Zając, Mateusz Zawisza), 2023 ([course materials and lecture videos](https://github.com/pszufe/MIT_18.S097_Introduction-to-Julia-for-Data-Science))
     * [6.251 / 15.081](https://stellar.mit.edu/courseguide/course/6/fa15/6.251/), Introduction to Mathematical Programming (Prof. Dimitris J. Bertsimas), Fall 2015
     * [12.805](http://student.mit.edu/catalog/m12c.html#12.805), Data Analysis in Physical Oceanography ([Jake Gebbie](https://github.com/ggebbie) and Tom Farrar), Fall 2022
     * [18.06](https://web.mit.edu/18.06/www/), Linear Algebra: Fall 2015, Dr. [Alex Townsend](https://github.com/ajt60gaibb); Fall 2014, Prof. Alexander Postnikov; Fall [2013](https://stellar.mit.edu/S/course/18/fa13/18.06), Prof. Alan Edelman
@@ -114,6 +115,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * [Sciences Po Paris](https://www.sciencespo.fr), [Department of Economics](https://www.sciencespo.fr/department-economics/en), Spring 2016.
     * [Computational Economics for PhDs](https://github.com/ScPo-CompEcon/Syllabus) ([Florian Oswald](https://floswald.github.io))
 * SGH Warsaw School of Economics, Poland
+    * 234060-0723, Advanced Simulation Modelling ([Przemysław Szufel](https://szufel.pl/en/)): since 2019
     * 223490-0286, Statistical Learning Methods ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): since 2017
     * 234900-0286, Agent-Based Modeling ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): since 2017
     * 239420-0553, _Introduction to Deep Learning_ module ([Bogumił Kamiński](http://bogumilkaminski.pl/about/)): since 2018
