@@ -107,6 +107,10 @@ If you know of other classes using Julia for teaching, please consider [updating
 * Royal Military Academy (Brussels)
     * ES123, Computer Algorithms and Programming Project (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Spring 2018
     * ES313, Mathematical modelling and Computer Simulation (Prof. [Ben Lauwens](https://github.com/BenLauwens)), Fall 2018
+* [Ruhr University Bochum](https://www.ruhr-uni-bochum.de/en), Germany
+    * Student Projects about "Building Blocks for Modern Simulation Software" (Prof. [Daniel Balzani](http://www.lkm.rub.de/index.html.en)) since spring 2020
+    * Introduction to the Finite Element Method (Prof. [Daniel Balzani](http://www.lkm.rub.de/index.html.en)), since fall 2020
+    * Mechanical Modeling of Materials (Prof. [Daniel Balzani](http://www.lkm.rub.de/index.html.en)) since spring 2021
 * [RWTH Aachen University](https://www.rwth-aachen.de/cms/~a/root/?lidx=1), Germany
     * [Introduction to Programming for Business Analytics](https://www.dpo.rwth-aachen.de/cms/DPO/Studium/Lehre/~puyhc/Introduction-to-Programming-for-Business/?lidx=1), since Fall 2021
 * “Sapienza” University of Rome, Italy
