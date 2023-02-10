@@ -15,7 +15,6 @@ For the 2022 idea list, [View Idea List](https://julialang.org/jsoc/projects/).
 
 In 2021, Google provided great support to our contributors through its program. 20 students contributed to Julia projects: [View Projects](https://summerofcode.withgoogle.com/archive/2021/organizations/5086646441082880#projects-list).
 
-Here is the [Idea List](https://julialang.org/jsoc/projects/).
 
 ## GSoC 2020
 
