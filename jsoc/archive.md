@@ -7,7 +7,7 @@ Take a look to our [Julia Seasons of Contributions Page](/jsoc) and contribute y
 
 ## GSoC 2022
 
-In 2022, we are delighted to recognize Google for their support and funding, as well as our Contributor. Nineteen talented and driven students contributed to the projects, making a meaningful impact. Check out the [Projects List](https://summerofcode.withgoogle.com/archive/2022/organizations/the-julia-language#projects-list).
+In 2022, we are delighted to recognize Google for its support and funding, as well as our Contributor. Nineteen talented and driven contributors worked on projects, making a meaningful impact. Check out the [Projects List](https://summerofcode.withgoogle.com/archive/2022/organizations/the-julia-language#projects-list) on the GSoC site for a look into what was done in 2022.
 
 For the 2022 idea list, [View Idea List](https://julialang.org/jsoc/projects/).
 
