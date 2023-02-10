@@ -2,7 +2,7 @@
 
 # Summer of Code Archives
 
-Julia has greatly benefited from the Google Summer of Code. In the last 8 years, over 110+ students have contributed to Julia and various Julia packages. Many of these students, after their summer projects, have gone on to become regular contributors to Julia, a programming language that has been gaining much popularity in recent years.
+Julia has greatly benefited from Google Summer of Code. In the last 8 years, over 130+ people have contributed to Julia and various Julia packages through the program. Many of these individuals, after their summer projects, have gone on to become regular contributors to the Julia ecosystem.
 Take a look to our [Julia Seasons of Contributions Page](/jsoc) and contribute your ideas.
 
 ## GSoC 2022
