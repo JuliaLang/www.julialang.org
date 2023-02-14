@@ -47,7 +47,8 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      <!-- 1 -->
      <div class="col-lg-4 col-md-6 feature">
        <h3>GitHub</h3>
-       <p>We use GitHub for the development of Julia itself. There, we host our source code, track
+       <p>We use GitHub for the development of Julia itself. There, we host our
+         <a href="https://github.com/JuliaLang/julia">source code</a>, track
          <a href="https://github.com/JuliaLang/julia/issues">issues</a>, and accept
          <a href="https://github.com/JuliaLang/julia/pulls">pull requests</a>. For support and questions,
          please use Discourse.
