@@ -117,7 +117,7 @@ Implement a way to indicate to the code that “Hey, this input should be treate
 **Project length:** 350 hrs
 
 **Description:**
-Adding [approximate inference](https://github.com/JuliaGaussianProcesses/JuliaGaussianProcesses.github.io/discussions/5#discussioncomment-1627101) methods for non-Gaussian likelihoods which are available in other GP packages but not yet within JuliaGPs. The project would start by determining which approximate inference method(s) to implement---there’s lots to do, and we’re happy to work with a contributor on whichever method they are most interested in, or to suggest one if they have no strong preference.
+Adding [approximate inference](https://github.com/JuliaGaussianProcesses/JuliaGaussianProcesses.github.io/discussions/5#discussioncomment-1627101) methods for non-Gaussian likelihoods which are available in other GP packages but not yet within JuliaGPs. The project would start by determining which approximate inference method(s) to implement - there’s lots to do, and we’re happy to work with a contributor on whichever method they are most interested in, or to suggest one if they have no strong preference.
 
 ## GPU integration in the JuliaGPs ecosystem
 
