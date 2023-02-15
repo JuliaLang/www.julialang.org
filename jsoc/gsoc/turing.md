@@ -97,7 +97,7 @@ In addition, implementing more recent advanced in variational inference is also 
 **Description:**
 At the moment there is currently no support for running a Turing model in a “batched” mode.
 
-When one wants to run, say, 2 chains in parallel for a given model, the current approach is to in effect to call sample(model, ...) twice.
+When one wants to run, say, 2 chains in parallel for a given model, the current approach is to in effect to call `sample(model, ...)` twice.
 Of course, one can parallelize these sample calls across multiple cores, etc. and this is already supported in Turing.jl.
 
 What is not yet supported, is to, say, run 2 chains at the same time taking by “stacking” the parameters into a higher-dimensional array, e.g. if the parameters θ is a Vector of values, then we can stack them into a Matrix of size length(θ) × 2 and then execute the model on this instead.
