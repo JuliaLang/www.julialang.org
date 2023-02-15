@@ -15,6 +15,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
 * [Javis](/jsoc/gsoc/javis/) - **J**ulia **a**nimations and **vis**ualizations for teaching, communication, and beyond!
+* [JuliaConstraints](/jsoc/gsoc/juliaconstraints/) - A collection of tools for Constraint Programming in Julia
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
 * [JuliaMusic](/jsoc/gsoc/juliamusic/) - Functionalities for analyzing anything related to music
 * [JuliaReach](/jsoc/gsoc/juliareach/) - Reachability analysis for dynamical systems
@@ -23,7 +24,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Machine learning](/jsoc/gsoc/machine-learning) - work on problems in machine learning in the broader Julia ML ecosystem
 * [MLJ.jl](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
 * [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
-* [PDMPs and event-chain Monte Carlo](/jsoc/gsoc/pdmp/) - a family of continuous time Markov-Chain Monte Carlo methods. 
+* [PDMPs and event-chain Monte Carlo](/jsoc/gsoc/pdmp/) - a family of continuous time Markov-Chain Monte Carlo methods.
 * [Pluto and JavaScript](/jsoc/gsoc/pluto/) - Pluto notebooks and tools for teaching and JavaScript interoperability
 * [QuantumClifford](/jsoc/gsoc/quantumclifford) - Quantum circuits with Clifford gates
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
