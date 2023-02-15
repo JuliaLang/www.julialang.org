@@ -102,7 +102,7 @@ Of course, one can parallelize these sample calls across multiple cores, etc. an
 
 What is not yet supported, is to, say, run 2 chains at the same time taking by “stacking” the parameters into a higher-dimensional array, e.g. if the parameters θ is a Vector of values, then we can stack them into a Matrix of size length(θ) × 2 and then execute the model on this instead.
 
-It can effectively be boiled down to adding support for calling logdensity(model, θ_batch) with θ_batch being of size d × N and having the result be a vector of length `N*. Once we have this, a sampler with batched-mode can work nicely with a Turing.jl model.
+It can effectively be boiled down to adding support for calling logdensity(model, θ_batch) with θ_batch being of size d × N and having the result be a vector of length `N`. Once we have this, a sampler with batched-mode can work nicely with a Turing.jl model.
 
 This will require:
 Making changes internally to DynamicPPL.jl, the DSL of Turing.jl, to allow batching.
