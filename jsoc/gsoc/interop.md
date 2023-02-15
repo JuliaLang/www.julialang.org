@@ -20,4 +20,4 @@ The [CxxWrap.jl](https://github.com/JuliaInterop/CxxWrap.jl) package provides a 
 
 ## Rust
 
-Take a look at the [hyper.rs project, listed on the "Pluto" page](pluto) about wrapping a Rust HTTP server in a Julia package.
+Take a look at the [hyper.rs project, listed on the "Pluto" page](https://julialang.org/jsoc/gsoc/pluto/#wrapping_a_rust_http_server_in_julia), about wrapping a Rust HTTP server in a Julia package.
