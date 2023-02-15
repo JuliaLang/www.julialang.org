@@ -69,7 +69,7 @@ Bijectors.jl, the package which provides transformations of distributions to Tur
 DynamicPPL.jl, the package providing the DSL of Turing.jl, is not compatible with GPU. Again, a lot of scalar indexing is used, and likely some internal functions are simply just incompatible with GPU usage at the moment.
 Others?
 
-There might also be other issues along the way, and making Turing.jl fully support GPU usage within the span of the project is very unlikely, _but* taking a significant step in this direction should be possible and will be very useful.
+There might also be other issues along the way, making Turing.jl fully support GPU usage within the span of the project is very unlikely, but taking a significant step in this direction should be possible and will be very useful.
 
 ## Variational Inference
 
@@ -97,7 +97,7 @@ In addition, implementing more recent advanced in variational inference is also 
 **Description:**
 At the moment there is currently no support for running a Turing model in a “batched” mode.
 
-When one wants to run, say, 2 chains in parallel for a given model, the current approach is to in effect to call sample(model, ...) twice.
+When one wants to run, say, 2 chains in parallel for a given model, the current approach is to in effect to call `sample(model, ...)` twice.
 Of course, one can parallelize these sample calls across multiple cores, etc. and this is already supported in Turing.jl.
 
 What is not yet supported, is to, say, run 2 chains at the same time taking by “stacking” the parameters into a higher-dimensional array, e.g. if the parameters θ is a Vector of values, then we can stack them into a Matrix of size length(θ) × 2 and then execute the model on this instead.
@@ -117,7 +117,7 @@ Implement a way to indicate to the code that “Hey, this input should be treate
 **Project length:** 350 hrs
 
 **Description:**
-Adding [approximate inference](https://github.com/JuliaGaussianProcesses/JuliaGaussianProcesses.github.io/discussions/5#discussioncomment-1627101) methods for non-Gaussian likelihoods which are available in other GP packages but not yet within JuliaGPs. The project would start by determining which approximate inference method(s) to implement---there’s lots to do, and we’re happy to work with a contributor on whichever method they are most interested in, or to suggest one if they have no strong preference.
+Adding [approximate inference](https://github.com/JuliaGaussianProcesses/JuliaGaussianProcesses.github.io/discussions/5#discussioncomment-1627101) methods for non-Gaussian likelihoods which are available in other GP packages but not yet within JuliaGPs. The project would start by determining which approximate inference method(s) to implement - there’s lots to do, and we’re happy to work with a contributor on whichever method they are most interested in, or to suggest one if they have no strong preference.
 
 ## GPU integration in the JuliaGPs ecosystem
 
