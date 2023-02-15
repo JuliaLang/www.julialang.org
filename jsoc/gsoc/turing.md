@@ -45,7 +45,7 @@ Determine if the current approach is the really the way to go, or if we need to 
 
 ## A modular tape caching mechanism for ReverseDiff
 
-**Mentors:** Tor Fjelde, Xianda Sun, Qingliang Zhuo, Hong Ge
+**Mentors:** Tor Fjelde, Xianda Sun, David Widmann, Qingliang Zhuo, Hong Ge
 
 **Project difficulty:** Hard
 
@@ -88,7 +88,7 @@ In addition, implementing more recent advanced in variational inference is also 
 
 ## Batched support in Turing.jl
 
-**Mentors:** Tor Fjelde, Hong Ge
+**Mentors:** Tor Fjelde, David Widmann, Hong Ge
 
 **Project difficulty:** Medium
 
@@ -108,28 +108,6 @@ This will require:
 Making changes internally to DynamicPPL.jl, the DSL of Turing.jl, to allow batching.
 Implement a way to indicate to the code that “Hey, this input should be treated as a batch, not a single input!*. One approach to this might be an independent package which implements a wrapper type Batch or something, which is simply unwrapped at the stages where appropriate, but this needs to be further discussed.
 
-## Benchmarking & improving performance of the JuliaGaussianProcesses libraries
-
-**Mentors:** Will Tebbutt, ST John
-
-**Project difficulty:** Medium
-
-**Project length:** 350 hrs
-
-**Description:**
-Although KernelFunctions.jl has extensive correctness testing, our performance testing is lacking. This project aims to resolve this, and resolve performance issues wherever they are found. The contributor would first need to extend our existing benchmarking coverage, and debug any obvious performance problems. The next phase of the work would be to construct end-to-end examples of KernelFunctions being used in practice, profile them to determine where performance problems lie, and fix them.
-
-## Iterative methods for inference in Gaussian Processes
-
-**Mentors:** Will Tebbutt, S. T. John, Ross Viljoen
-
-**Project difficulty:** Medium
-
-**Project length:** 175 hrs
-
-**Description:**
-There has recently been quite a bit of work on inference methods for GPs that use iterative methods rather than the Cholesky factorisation. They look quite promising, but no one has implemented any of these within the Julia GP ecosystem yet, but they should fit nicely within the AbstractGPs framework. If you’re interested in improving the GP ecosystem in Julia, this project might be for you!
-
 ## Approximate inference methods for non-Gaussian likelihoods in Gaussian Processes
 
 **Mentors:** S. T. John, Ross Viljoen
@@ -143,7 +121,7 @@ Adding [approximate inference](https://github.com/JuliaGaussianProcesses/JuliaGa
 
 ## GPU integration in the JuliaGPs ecosystem
 
-**Mentors:** Ross Viljoen, S. T. John, Will Tebbutt
+**Mentors:** Ross Viljoen, S. T. John
 
 **Project difficulty:** Medium
 
