@@ -69,7 +69,7 @@ Bijectors.jl, the package which provides transformations of distributions to Tur
 DynamicPPL.jl, the package providing the DSL of Turing.jl, is not compatible with GPU. Again, a lot of scalar indexing is used, and likely some internal functions are simply just incompatible with GPU usage at the moment.
 Others?
 
-There might also be other issues along the way, and making Turing.jl fully support GPU usage within the span of the project is very unlikely, _but* taking a significant step in this direction should be possible and will be very useful.
+There might also be other issues along the way, making Turing.jl fully support GPU usage within the span of the project is very unlikely, but taking a significant step in this direction should be possible and will be very useful.
 
 ## Variational Inference
 
