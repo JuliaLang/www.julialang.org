@@ -16,6 +16,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
 * [Javis](/jsoc/gsoc/javis/) - **J**ulia **a**nimations and **vis**ualizations for teaching, communication, and beyond!
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
+* [JuliaHealth](/jsoc/gsoc/juliahealth/) - Using the Julia programming language to improve medicine, health care, public health, and biomedical research.
 * [JuliaMusic](/jsoc/gsoc/juliamusic/) - Functionalities for analyzing anything related to music
 * [JuliaReach](/jsoc/gsoc/juliareach/) - Reachability analysis for dynamical systems
 * [JuliaStats](/jsoc/gsoc/juliastats/) - Statistical analysis in Julia
