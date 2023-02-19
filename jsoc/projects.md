@@ -14,7 +14,6 @@ We have our project ideas organized below roughly by domain but you can also see
 * [GUI](/jsoc/gsoc/gui/) - Projects related to Graphical User Interface toolkits
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
-* [Javis](/jsoc/gsoc/javis/) - **J**ulia **a**nimations and **vis**ualizations for teaching, communication, and beyond!
 * [JuliaConstraints](/jsoc/gsoc/juliaconstraints/) - A collection of tools for Constraint Programming in Julia
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
 * [JuliaHealth](/jsoc/gsoc/juliahealth/) - Using the Julia programming language to improve medicine, health care, public health, and biomedical research.
