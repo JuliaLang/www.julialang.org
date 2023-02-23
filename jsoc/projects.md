@@ -41,4 +41,5 @@ We also have Julia project's available under other organizations. If you are app
 * [Gridap - NumFOCUS](https://github.com/numfocus/gsoc#gridap)
 * [FluxML - NumFOCUS](https://github.com/numfocus/gsoc#fluxml)
 * [SciML - NumFOCUS](https://github.com/numfocus/gsoc#sciml)
+* [ArviZ - NumFOCUS](https://github.com/numfocus/gsoc#arviz)
 @@
