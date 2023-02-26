@@ -121,7 +121,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaStats](https://github.com/JuliaStats) – [Statistics](https://juliastats.github.io/)
 * [JuliaText](https://github.com/JuliaText) – Natural Language Processing (NLP), Computational Linguistics and (textual) Information Retrieval
 * [queryverse](https://github.com/queryverse) – Julia Packages for Data Science
-* [Taija](https://github.com/JuliaTrustworthyAI) – Home for repositories of the Taija (Trustworthy Artificial Intelligence in Julia) project
+* [TAIJA](https://github.com/JuliaTrustworthyAI) – Home for repositories of the Taija (Trustworthy Artificial Intelligence in Julia) project
 * [TuringLang](https://github.com/TuringLang) – Bayesian inference with probabilistic programming
 
 ### Visualizations
