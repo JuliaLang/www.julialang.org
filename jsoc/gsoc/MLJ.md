@@ -31,8 +31,9 @@ default), commercial ventures (customer churn), engineering (component
 lifetime), and many more. This project aims to implement models for
 performing survivor analysis with the MLJ machine learning framework.
 
-**mlr3proba is currently the most complete survival analysis interface, let's get SA.jl to
-the same standard - but learning from mistakes along the way.**
+**[mlr3proba](https://mlr3proba.mlr-org.com) is currently the most complete survival
+analysis interface, let's get SurvivalAnalysisA.jl to the same standard - but learning from mistakes
+along the way.**
 
 
 **Mentors.** [Sebastian Vollmer](https://sebastian.vollmer.ms), [Anthony Blaom](https://ablaom.github.io/),
@@ -72,34 +73,17 @@ Specifically, you will:
 
 ### References
 
-- Mateusz Krzyziński et al., ‘SurvSHAP(t): Time-Dependent Explanations of Machine Learning Survival Models’, Knowledge-Based Systems 262 (February 2023): 110234, https://doi.org/10.1016/j.knosys.2022.110234.
+- Mateusz Krzyziński et al., [SurvSHAP(t): Time-Dependent Explanations of Machine Learning Survival Models](https://doi.org/10.1016/j.knosys.2022.110234.), Knowledge-Based Systems 262 (February 2023): 110234
 
--   [Kvamme, H., Borgan, Ø., & Scheel, I. (2019). Time-to-event
-	prediction with neural networks and Cox regression. Journal of
-	Machine Learning Research, 20(129),
-	1--30.](https://arxiv.org/abs/1907.00825)
+- Kvamme, H., Borgan, Ø., & Scheel, I. (2019). [Time-to-event prediction with neural networks and Cox regression](https://arxiv.org/abs/1907.00825). Journal of Machine Learning Research, 20(129), 1--30.
 
--   [Lee, C., Zame, W. R., Yoon, J., & van der Schaar, M. (2018).
-	Deephit: A deep learning approach to survival analysis with
-	competing risks. In Thirty-Second AAAI Conference on Artificial
-	Intelligence.](https://ojs.aaai.org/index.php/AAAI/article/view/11842/11701)
+- Lee, C., Zame, W. R., Yoon, J., & van der Schaar, M. (2018). [Deephit: A deep learning approach to survival analysis with	competing risks.](https://ojs.aaai.org/index.php/AAAI/article/view/11842/11701) In Thirty-Second AAAI Conference on Artificial	Intelligence.
 
--   [Katzman, J. L., Shaham, U., Cloninger, A., Bates, J., Jiang, T., &
-	Kluger, Y. (2018). DeepSurv: personalized treatment recommender
-	system using a Cox proportional hazards deep neural network. BMC
-	Medical Research Methodology, 18(1),
-	24.](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-018-0482-1)
-	<https://doi.org/10.1186/s12874-018-0482-1>
+- Katzman, J. L., Shaham, U., Cloninger, A., Bates, J., Jiang, T., & Kluger, Y. (2018). [DeepSurv: personalized treatment recommender system using a Cox proportional hazards deep neural network](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-018-0482-1). BMC Medical Research Methodology, 18(1), 24.
 
--   [Gensheimer, M. F., & Narasimhan, B. (2019). A scalable
-	discrete-time survival model for neural networks. PeerJ, 7,
-	e6257.](https://peerj.com/articles/6257/)
+- Gensheimer, M. F., & Narasimhan, B. (2019). A scalable discrete-time survival model for neural networks.](https://peerj.com/articles/6257/) PeerJ, 7, e6257.
 
--   [Survival.jl
-	Documentation](https://juliastats.org/Survival.jl/latest/)
-
-
-
+- [Survival.jl Documentation](https://juliastats.org/Survival.jl/latest/)
 
 
 ## Deeper Bayesian Integration
