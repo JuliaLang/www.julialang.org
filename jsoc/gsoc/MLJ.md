@@ -73,7 +73,7 @@ Specifically, you will:
 
 ### References
 
-- Mateusz Krzyziński et al., [SurvSHAP(t): Time-Dependent Explanations of Machine Learning Survival Models](https://doi.org/10.1016/j.knosys.2022.110234.), Knowledge-Based Systems 262 (February 2023): 110234
+- Mateusz Krzyziński et al., [SurvSHAP(t): Time-Dependent Explanations of Machine Learning Survival Models](https://doi.org/10.1016/j.knosys.2022.110234), Knowledge-Based Systems 262 (February 2023): 110234
 
 - Kvamme, H., Borgan, Ø., & Scheel, I. (2019). [Time-to-event prediction with neural networks and Cox regression](https://arxiv.org/abs/1907.00825). Journal of Machine Learning Research, 20(129), 1--30.
 
@@ -83,7 +83,7 @@ Specifically, you will:
 
 - Gensheimer, M. F., & Narasimhan, B. (2019). A scalable discrete-time survival model for neural networks.](https://peerj.com/articles/6257/) PeerJ, 7, e6257.
 
-- [Survival.jl Documentation](https://juliastats.org/Survival.jl/latest/)
+- [SurvivalAnalysis.jl](https://github.com/RaphaelS1/SurvivalAnalysis.jl)
 
 
 ## Deeper Bayesian Integration
