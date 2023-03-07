@@ -24,6 +24,136 @@ nor maintained anymore.
   <tbody>
 
   <tr>
+    <th scope="row" rowspan=16>v1.9.0-beta4</th>
+
+    <td>Linux (glibc)</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-beta4-linux-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-beta4-linux-x86_64.tar.gz.asc">asc</a>)</td>
+    <td>ce40a62760c854008afbc476a5851386b43556e09609d655fa8ae453beb588c5</td>
+  </tr>
+
+  <tr>
+    <td>Linux (glibc)</td>
+    <td>i686</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/linux/x86/1.9/julia-1.9.0-beta4-linux-i686.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.9/julia-1.9.0-beta4-linux-i686.tar.gz.asc">asc</a>)</td>
+    <td>58f8890212e429c9c47ae39e5c51fa4dab24deb5f5d8bc4c2b89c0f005a71549</td>
+  </tr>
+
+  <tr>
+    <td>Linux (glibc)</td>
+    <td>aarch64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.9/julia-1.9.0-beta4-linux-aarch64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.9/julia-1.9.0-beta4-linux-aarch64.tar.gz.asc">asc</a>)</td>
+    <td>284ba730f5cbf24383aa09a7d8196eb9efbe03ae25af84244b1880b7d92c0be9</td>
+  </tr>
+
+  <tr>
+    <td>Linux (glibc)</td>
+    <td>powerpc64le</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.9/julia-1.9.0-beta4-linux-ppc64le.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.9/julia-1.9.0-beta4-linux-ppc64le.tar.gz.asc">asc</a>)</td>
+    <td>40dacbbeb851845d2e8ef5cd15d584e6ffd0c199546ca9f71fe9266213244c72</td>
+  </tr>
+
+  <tr>
+    <td>Linux (musl)</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/musl/x64/1.9/julia-1.9.0-beta4-musl-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/musl/x64/1.9/julia-1.9.0-beta4-musl-x86_64.tar.gz.asc">asc</a>)</td>
+    <td>fcf4fc9f076526591bd73c9b55eb7a6db3d45484bd4874d0160a265a068eecc4</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.0-beta4-mac64.dmg">dmg</a></td>
+    <td>747b251cff81f73dc846e13f66357a0f38662f275160444b04a6383633796808</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>aarch64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.0-beta4-macaarch64.dmg">dmg</a></td>
+    <td>ef01784f66110d7fffff6d138f3cf18bb0ed58cbce94572bfddb6789a664e307</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.0-beta4-mac64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.0-beta4-mac64.tar.gz.asc">asc</a>)</td>
+    <td>282eb9fe6dd08a3322d47fd6a6837fb8868d1285e332bf4fd73062f42210a14b</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>aarch64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.0-beta4-macaarch64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.0-beta4-macaarch64.tar.gz.asc">asc</a>)</td>
+    <td>778f4188ea872d40ab233c711b8246e51be7089a56fbb305547227f98a8ae88c</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>x86_64</td>
+    <td>installer</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-beta4-win64.exe">exe</a></td>
+    <td>c298228ad482b9941f496b88cffa4d7db516be7bae576e9d83a2bff435435ba5</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>i686</td>
+    <td>installer</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-beta4-win32.exe">exe</a></td>
+    <td>c295681336fcf7004a20c1f32ed00e8b3289c88631de2dc4cbb360e3d325b7e7</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-beta4-win64.zip">zip</a></td>
+    <td>aa62b1ebc933b7e13969541c4fa22e4e4d27de3c1585846d5347e707327aec03</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>i686</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-beta4-win32.zip">zip</a></td>
+    <td>911cc6862cefc6f2514912bde8667c5b3d57b1343b75a4c4b4082db9cdbb2bf8</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-beta4-win64.tar.gz">tar.gz</a></td>
+    <td>29dec12ebfec6c01304d721585f450c2d567699c3474bda4596f782b333acd23</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>i686</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-beta4-win32.tar.gz">tar.gz</a></td>
+    <td>8168c41d1492abb17b2c0aaa58f1c8b7ea769772619a8dd3f03c0dfafd68d204</td>
+  </tr>
+
+  <tr>
+    <td>FreeBSD</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.9/julia-1.9.0-beta4-freebsd-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.9/julia-1.9.0-beta4-freebsd-x86_64.tar.gz.asc">asc</a>)</td>
+    <td>abb160f82657b4accef6536577a508603394a9020f7f5539d0e10c4bc8a1b6e6</td>
+  </tr>
+
+  <tr>
     <th scope="row" rowspan=16>v1.9.0-beta3</th>
 
     <td>Linux (glibc)</td>
@@ -284,7 +414,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=7>v1.9.0-beta1</th>
+    <th scope="row" rowspan=8>v1.9.0-beta1</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -331,6 +461,14 @@ nor maintained anymore.
     <td>archive</td>
     <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-beta1-win32.zip">zip</a></td>
     <td>a5a8e4a9cd0ba81b21bbcd7e8ab7848a9e9de50c6dbc5c448a7bec747e9689d8</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>i686</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-beta1-win32.tar.gz">tar.gz</a></td>
+    <td>a36d00edffc09700f598e6788f2d03cad84ec2c6db25b5a237d927abbccb1099</td>
   </tr>
 
   <tr>
