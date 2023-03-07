@@ -48,7 +48,7 @@ Please contact the mentor for this project if interested and want to discuss wha
 JuliaHealth is interested in developing tooling for PLP that utilizes historical patient data, such as patient medical claims or electronic health records, that follow the OMOP Common Data Model (OMOP CDM), a widely used data standard that allows researchers to analyze large, heterogeneous healthcare datasets in a consistent and efficient manner.
 For this project, we are looking for students interested in developing PLP tooling within Julia.
 
-- **Mentor:** Jacob Zelko (aka TheCedarPrince) [email: jacobszelko@gmail.com]
+- **Mentor:** Sebastian Vollmer [email: sjvollmer@gmail.com], Jacob Zelko (aka TheCedarPrince) [email: jacobszelko@gmail.com]
 
 - **Difficulty**: Hard
 
