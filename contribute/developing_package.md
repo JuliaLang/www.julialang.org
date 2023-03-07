@@ -1,7 +1,8 @@
 # How to develop a Julia package
+
 A package contains modules, tests, and documentation. It extends core Julia functionality. You can share your code with the community by developing a package. In this tutorial, you’ll learn how to develop a Julia package and register it to the [Julia General Registry](https://github.com/JuliaRegistries/General).  
 
-You can create a Julia package using the built-in package manager [PkgDev.jl](https://github.com/JuliaLang/PkgDev.jl) or the package [PkgTemplates.jl](https://invenia.github.io/PkgTemplates.jl/stable/). This example uses `PkgTemplates.jl` and is inspired in the video below:
+You can create a Julia package using the built-in package manager [PkgDev.jl](https://github.com/JuliaLang/PkgDev.jl) or the package [PkgTemplates.jl](https://juliaci.github.io/PkgTemplates.jl/stable/). This example uses `PkgTemplates.jl` and is inspired in the video below:
 
 ~~~
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QVmU29rCjaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -26,7 +27,7 @@ Before you begin developing a package, make sure you perform the following steps
 
 As we mentioned above, a package contains modules, tests, and documentation. We use PkgTemplates.jl that helps us create all of these files and the configuration for a package.
 
-Before creating your package, you need to define a template that contains the initial configuration. First, you need to install `PkgTemplates.jl`. 
+Before creating your package, you need to define a template that contains the initial configuration. First, you need to install `PkgTemplates.jl`.
 
 In the Julia REPL, run the following commands:
 
@@ -69,7 +70,7 @@ After `PkgTemplates.jl` creates your new package, it stores the source files at 
 * `README.md`: It contains information about your package. For example, a README file has information on how to install your package and examples of how to use it.
 * `src`:  It contains the file `YourPackageName.jl`.  This is where you write the code for your package.
 * `test`:  It contains the file `runtests.jl`. This is where you write the code for testing your package.
-* `.github`: It contains `yaml` files for [Continuous Integration using GitHub Actions](https://lab.github.com/githubtraining/github-actions:-continuous-integration). 
+* `.github`: It contains `yaml` files for [Continuous Integration using GitHub Actions](https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration).
 
 ## Step 2: Create a GitHub repository for your package
 
@@ -138,14 +139,15 @@ To run the test defined above:
 
 1. In your terminal, go to your package directory.
 2. Open the Julia REPL.
-3. Go to the **package mode** by typing `]`. 
-4. Activate the package environment by running the following command:
-
-```
-activate .
-```
-
+3. Go to the **package mode** by typing `]`.
+4. Activate the package environment by running `activate` command,
 5. In the package mode, run the command `test`.
+
+```
+julia> ] # Go to the package mode
+(v1.8) pkg> activate YourPackageName # Your package name
+(YourPackageName) pkg> test
+```
 
 The Test summary provides the number of passed tests out of the total of existing tests.
 
@@ -196,17 +198,18 @@ To add a new dependency to your package:
 
 1. In your terminal, go to your package directory.
 2. Open the Julia REPL.
-3. Go to the **package** mode by typing `]`. 
-4. Activate the package environment by running the following command:
-
-```
-activate .
-```
-
+3. Go to the **package** mode by typing `]`.
+4. Activate the package environment by running `activate` command.
 5. Add the new package by running the command `add PackageName`.
+
+```
+julia> ] # Go to the package mode
+(v1.8) pkg> activate YourPackageName # Your package name
+(YourPackageName) pkg> add PackageName
+```
 
 **Note:** You can add more than one package by leaving white spaces between the names of the packages.
 
-The Julia package manager [Pkg.jl](https://pkgdocs.julialang.org/v1/) adds the new dependency to the file `Project.toml` and other resulting dependencies to the file `Manifest.toml`. 
+The Julia package manager [Pkg.jl](https://pkgdocs.julialang.org/v1/) adds the new dependency to the file `Project.toml` and other resulting dependencies to the file `Manifest.toml`.
 
-Congratulations! You **have created your first Julia package and registered it to the Julia General Registry**. Now, you can continue your open source contribution journey and create your own packages or [propose changes to others](/contribute/opportunities). 
+**Congratulations!** You have created your **first Julia package** and **registered it to the Julia General Registry**. Now, you can continue your open source contribution journey and create your own packages or [propose changes to others](/contribute/opportunities).
