@@ -1,16 +1,6 @@
 #  Machine Learning Projects - Summer of Code
 
-### CUDA Hacking
-
-Time: 175h
-
-Are you a performance nut? This project is aimed at expanding our coverage of high performance kernels and libraries widely used across machine learning workflows. 
-
-#### Expected Outcomes
-
-Help us implement cutting-edge CUDA kernels in Julia for operations important across deep learning, scientific computing and more. We also need help developing our wrappers for machine learning, sparse matrices and more, as well as CI and infrastructure. Contact us to develop a project plan.
-
-Mentors: [Tim Besard](https://github.com/maleadt), [Dhairya Gandhi](https://github.com/DhairyaLGandhi).
+**Note: FluxML participates as a NumFOCUS sub-organization. Head to [the FluxML GSoC page](http://fluxml.ai/gsoc/) for their idea list.**
 
 ### Reinforcement Learning Environments
 
