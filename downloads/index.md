@@ -259,6 +259,10 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 ~~~
 Most Linux users should use the glibc binaries unless you know that your system uses musl as its libc.
 
+## Juliaup - Julia version manager
+
+You can also install Julia with [Juliaup](https://github.com/JuliaLang/juliaup) - a Rust-based cross-platform Julia installer that makes working with multiple julia versions easy and fun!
+
 ## Older Releases
 
 Older releases of Julia for all platforms are available on the [Older releases page](/downloads/oldreleases/). Only the LTS and Stable releases are maintained.
