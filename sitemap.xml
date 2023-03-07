@@ -1184,6 +1184,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/jsoc/gsoc/flux/index.html</loc>
+    <lastmod>2023-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/learning/tryjulia/index.html</loc>
     <lastmod>2023-03-07</lastmod>
     <changefreq>monthly</changefreq>
