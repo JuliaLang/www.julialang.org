@@ -67,6 +67,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaSparse](https://github.com/JuliaSparse) – Sparse matrix solvers
 * [JuMP-dev (formerly JuliaOpt)](http://jump.dev) – JuMP is a modeling language and supporting packages for mathematical optimization in Julia
 * [SciML (formerly JuliaDiffEq)](https://github.com/SciML) – [Open source software for scientific machine learning](https://sciml.ai) ([Gitter](https://gitter.im/JuliaDiffEq/Lobby))
+* [trixi-framework](https://github.com/trixi-framework) - [The Trixi framework is a collaborative scientific effort to provide open source tools for adaptive high-order numerical simulations of hyperbolic PDEs in Julia. Besides the core algorithms, the framework also includes mesh and visualization tools. Moreover, it includes utilities such as Julia wrappers of mature libraries written in other programming languages.](https://trixi-framework.github.io/)
 
 ### Scientific Domains
 
