@@ -54,6 +54,10 @@ open("./oldreleases.md", "w") do io
             code written for those releases. Note that these are not actively developed
             nor maintained anymore.
 
+            
+            For more information visit : **[GitHub Releases Page](https://github.com/JuliaLang/julia/releases)**
+            
+
             @@row @@col-12
             ~~~
             <table class="downloads table table-hover table-bordered">
