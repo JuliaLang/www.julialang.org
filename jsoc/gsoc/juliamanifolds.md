@@ -16,8 +16,7 @@ Multivariate data analysis encompasses methods such as Principal Component Analy
 
 ### Prerequisites
 
--   Must be fluent in at least one language for statistical computing, and 
-    willing to learn Julia before the start of projects.
+-   Must be fluent in at least one language for statistical computing such as R or Python, and willing to learn Julia before the start of projects.
 -   Basic familiarity with multivariate data analysis (PCA, LDA, ICA).
 -   Basic knowledge of numerical optimization methods.
 
@@ -32,3 +31,4 @@ Participants will:
 ### References
 
 -   [Multivariate Data Analysis on Matrix Manifolds](https://link.springer.com/book/10.1007/978-3-030-76974-1)
+-   [An introduction to optimization on smooth manifolds](https://www.nicolasboumal.net/#book)
