@@ -1,4 +1,4 @@
-# JuliaStats Projects – Summer of Code
+# JuliaManifolds Projects – Summer of Code
 
 [JuliaManifolds](https://github.com/JuliaManifolds) is an organization dedicated to providing packages relying on geometric methods for optimization and statistics in Julia.
 
