@@ -21,6 +21,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [JuliaStats](/jsoc/gsoc/juliastats/) - Statistical analysis in Julia
 * [Language interoperability](/jsoc/gsoc/interop/) - Projects related to interfacing between Julia and other programming languages (C++, Rust)
 * [Machine learning](/jsoc/gsoc/machine-learning) - work on problems in machine learning in the broader Julia ML ecosystem
+* [JuliaManifolds](/jsoc/gsoc/juliamanifolds.md) - Manifolds, statistics, geometric algorithms
 * [MLJ.jl](/jsoc/gsoc/MLJ/) – a Machine Learning Toolbox for Julia.
 * [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
 * [PDMPs and event-chain Monte Carlo](/jsoc/gsoc/pdmp/) - a family of continuous time Markov-Chain Monte Carlo methods.
