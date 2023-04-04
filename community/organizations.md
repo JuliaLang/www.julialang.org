@@ -58,6 +58,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaIntervals](https://github.com/JuliaIntervals) – Rigorous numerics with interval arithmetic & applications
 * [JuliaLinearAlgebra](https://github.com/JuliaLinearAlgebra) – Linear algebra in Julia
+* [JuliaManifolds](https://github.com/JuliaManifolds) – Riemannian manifolds in Julia and applications thereon like [optimization](https://manoptjl.org) or differential equations
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
 * [JuliaMatrices](https://github.com/JuliaMatrices)
 * [JuliaNLSolvers](https://github.com/JuliaNLSolvers)
