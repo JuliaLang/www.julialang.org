@@ -84,6 +84,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaEarth](https://github.com/JuliaEarth) –  Fostering statistics research in Earth sciences
 * [JuliaEpi](https://github.com/JuliaEpi) –  Computational epidemiology in Julia
 * [JuliaFEM](https://github.com/JuliaFEM) –  Finite Element Method
+* [JuliaGPs](https://github.com/JuliaGaussianProcesses) - Gaussian Processes
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
 * [JuliaHealth](https://github.com/JuliaHealth) – [medicine, health care, public health](https://juliahealth.org/)
 * [JuliaIBM](https://github.com/JuliaIBPM) - Immersed boundary methods and other tools for solving partial differential equations
