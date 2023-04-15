@@ -1,4 +1,4 @@
-using HTTP, JSON3
+using HTTP, JSON3, GitHub
 
 function currentversions()
     out = Dict{VersionNumber,String}()
@@ -15,6 +15,17 @@ end
 
 response = HTTP.get("https://julialang-s3.julialang.org/bin/versions.json")
 releases = [VersionNumber(String(k)) => v.files for (k, v) in JSON3.read(response.body)]
+
+# Note, we may get rate limited here
+github_repo = Repo("JuliaLang/julia")
+releases_info = GitHub.releases(github_repo)
+release_dict = Dict()
+
+# Loop through the releases and get the publish date and version
+for release in releases_info[1]
+    release_dict[VersionNumber(release.tag_name)] = release.published_at
+end
+print(release_dict)
 
 current = currentversions()
 filter!(release -> !haskey(current, first(release)), releases)
@@ -71,9 +82,16 @@ open("./oldreleases.md", "w") do io
             """)
     for (version, files) in releases
         n = length(files)
+        release_date = ""
+        try
+            release_date = release_dict[version]
+        catch
+            release_date = "Unknown"
+        end
+
         println(io, """
                   <tr>
-                    <th scope="row" rowspan=$n>v$version</th>
+                    <th scope="row" rowspan=$n>v$version, on $release_date</th>
                 """)
         isfirst = true
         for file in files
