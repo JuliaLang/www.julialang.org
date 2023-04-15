@@ -13,7 +13,7 @@
 * Stanley H. Chan. [Intro to Probability for Data Science](https://www.amazon.com/Introduction-Probability-Data-Science-Stanley/dp/1607857464/), November 2021. The book is also available freely as HTML and PDF at [probability4datascience.com](https://probability4datascience.com/index.html). Code is in Julia/Python/R/Matlab.
 * Sambit Kumar Dash. [Hands-on Julia Programming](https://in.bpbonline.com/products/hands-on-julia-programming), Bpb Publications, October 2021.
 * Erik Engheim. [Julia for Beginners](https://leanpub.com/julia-for-beginners), January 2021.
-* Lee Phillips. [Applied Julia](https://lee-phillips.org/juliabook/), Late 2021. Comments welcome.
+* Lee Phillips. [Practical Julia](https://lee-phillips.org/juliabook/). “The secret weapon for scientists.” In final production; coming from No Starch Press in September 2023.
 * Mykel J. Kochenderfer, Tim A. Wheeler, and Kyle H. Wray. [Algorithms for Decision Making](https://algorithmsbook.com/), December 2020.
 * Christopher P. Adams. [Learning Microeconometrics with R](https://www.routledge.com/Learning-Microeconometrics-with-R/Adams/p/book/9780367255381), December 2020; Has [Julia code](https://sites.google.com/view/microeconometricswithr/home?authuser=0) for all [12 chapters](https://sites.google.com/view/microeconometricswithr/table-of-contents?authuser=0).
 * Raj Rao. [Applied Computational Linear Algebra for Everyone](https://mynerva.io/compla), December 2020; Interactive, experential computational book as described in [this JuliaCon  talk](https://www.youtube.com/watch?v=R84L-BQcjHw)  
