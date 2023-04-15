@@ -109,6 +109,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
 * [JuliaWaveScattering](https://github.com/JuliaWaveScattering) – Linear wave equations (acoustic, elastic, electromagnetic, quantum)
 * [JuliaQuantum](https://github.com/JuliaQuantum) – Quantum science and technology
+* [JuliaQuantumControl](https://github.com/JuliaQuantumControl) — Framework for open-loop quantum optimal control
 * [qojulia](https://github.com/qojulia) – QuantumOptics.jl related projects
 * [QuantumBFS](https://github.com/QuantumBFS) - A group of quantum developers around Bao Fu Si (Temple)
 
