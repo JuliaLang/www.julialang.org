@@ -25,7 +25,6 @@ release_dict = Dict()
 for release in releases_info[1]
     release_dict[VersionNumber(release.tag_name)] = release.published_at
 end
-print(release_dict)
 
 current = currentversions()
 filter!(release -> !haskey(current, first(release)), releases)
@@ -82,12 +81,8 @@ open("./oldreleases.md", "w") do io
             """)
     for (version, files) in releases
         n = length(files)
-        release_date = ""
-        try
-            release_date = release_dict[version]
-        catch
-            release_date = "Unknown"
-        end
+    
+        release_date = get(release_dict, version, "Unknown")
 
         println(io, """
                   <tr>
