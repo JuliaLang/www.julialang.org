@@ -151,11 +151,11 @@ This feature was introduced in [#45369]( https://github.com/JuliaLang/julia/pull
 
 *Lilith Hafner* 
 
-In Julia v1.9, the default sorting algorithm for simple types and orders (`BitInteger`, `IEEEFloat`, and `Char` sorted in default or reverse order) has been upgraded to a more adaptive sorting algorithm that often dispatches to radix sort. This results in linear runtime with respect to input size, and `Float16`s are now much more efficient to sort compared to version 1.8.
+The default sorting algorithm for has been upgraded to a more adaptive sorting algorithm that is always stable and often has state of the art performance. For simple types and orders—`BitInteger`, `IEEEFloat`, and `Char` sorted in default or reverse order—we use a radix sort that has linear runtime with respect to input size. This effect is especially pronounced for `Float16`s which recieved a 3x-50x speedup over 1.8.
 
-For other types, the default sorting algorithm has been changed to the internal `ScratchQuickSort`, which is stable and generally faster than `QuickSort`, although it does allocate memory. For situations where memory efficiency is crucial, you can override these new defaults by specifying `alg=QuickSort`.
+For other types, the default sorting algorithm has been changed to the internal `ScratchQuickSort` in most cases, which is stable and generally faster than `QuickSort`, although it does allocate memory. For situations where memory efficiency is crucial, you can override these new defaults by specifying `alg=QuickSort`.
 
-To learn more about the latest advancements in high-performance sorting in Julia, watch the JuliaCon 2022 talk, [Julia's latest in high performance sorting](https://www.youtube.com/watch?v=9SGuHFgJvSE).
+To learn more about the these changes, you can watch the JuliaCon 2022 talk, [Julia's latest in high performance sorting](https://www.youtube.com/watch?v=9SGuHFgJvSE) and it's forthcoming sequel in JuliaCon 2023.
 
 ## Tasks and the interactive thread pool
 
