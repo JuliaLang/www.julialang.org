@@ -17,7 +17,7 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 
 ## TODOs:
 
-- [ ] Authors Memory usage hint 
+- [ ] Authors Memory usage hint
 - [ ] Stack function
 - [ ] Link to docs for Numbered REPL prompt
 
@@ -29,7 +29,7 @@ In Julia, *precompilation* involves compiling package code and saving the compil
 
 However, prior to Julia 1.9, only a portion of the compiled code could be saved: types, variables, and methods were saved, as well as the outputs of any type-inference for the argument types specifically `precompile`d by the package developers. Notably absent from cache files was the *native code*—the code that actually runs on your CPU. Although caching helped reduce time-to-first-execution (TTFX) latency, the need to regenerate native code in each session meant that many packages still suffered from long TTFX latencies.
 
-With the introduction of Julia 1.9, native code caching is now available, resulting in a significant improvement in TTFX latency and paving the way for future enhancements across the ecosystem. Package authors can now utilize `precompile` statements or workloads with [SnoopPrecompile](https://timholy.github.io/SnoopCompile.jl/stable/snoop_pc/) to cache important routines in advance. Users can also create custom local "Startup" packages that load dependencies and precompile workloads tailored to their daily work.
+With the introduction of Julia 1.9, native code caching is now available, resulting in a significant improvement in TTFX latency and paving the way for future enhancements across the ecosystem. Package authors can now utilize `precompile` statements or workloads with [PrecompileTools](https://github.com/JuliaLang/PrecompileTools.jl) to cache important routines in advance. Users can also create custom local "Startup" packages that load dependencies and precompile workloads tailored to their daily work.
 
 This feature comes with some tradeoffs, such as an increase in precompilation time by 10%-50%. However, since this is a one-time cost, we believe the tradeoff is well worth it. Cache files have also become larger due to the storage of more data and the use of a different serialization format.
 
@@ -54,6 +54,18 @@ For most packages, TTFX has gone from being the dominant factor to virtually neg
 |  ImageFiltering |     1.66 |     0.17 |       **9.61** |    2.66 |     2.1 |      1.27 |         **1.9** |
 
 These numbers reveal a huge quality-of-life improvement across a wide range of packages.
+
+Together with `PrecompileTools.jl`, Julia 1.9 delivers many of the benefits of [PackageCompiler](https://github.com/JuliaLang/PackageCompiler.jl) without the need for user-customization. Here is an explicit comparison:
+
+|: Task | Julia 1.9 + PrecompileTools | PackageCompiler |
+|:----- | --- | --- |
+| Developers can reduce out-of-box TTFX for their users | ✔️ | ❌ |
+| Users can reduce TTFX for custom tasks | ✔️ | ✔️ |
+| Works without a source-build of Julia | ✔️ | ❌ |
+| Packages can be updated without rebuilding Julia | ✔️ | ❌ |
+| Reduces TTL | ❌ | ✔️ |
+
+The difference in TTL arises because the system image can safely skip all the code-validation checks that are necessary when loading packages.
 
 ___
 
@@ -89,7 +101,7 @@ julia> @time using ForwardDiff
 julia>  @time using ForwardDiff
   0.247568 seconds (220.93 k allocations: 13.793 MiB)
 ```
-    
+
 For a comprehensive guide on using package extensions, please refer to the [documentation](https://pkgdocs.julialang.org/dev/creating-packages/#Conditional-loading-of-code-in-packages-(Extensions)) .
 
 
@@ -121,7 +133,7 @@ To analyze your heap snapshot, open a Chromium browser and follow these steps: `
 
 *Valentin Churavy*
 
-Julia has various integration with native profilers, most notably 
+Julia has various integration with native profilers, most notably
 
  -->
 
@@ -149,7 +161,7 @@ This feature was introduced in [#45369]( https://github.com/JuliaLang/julia/pull
 
 ## Sorting performance
 
-*Lilith Hafner* 
+*Lilith Hafner*
 
 The default sorting algorithm for has been upgraded to a more adaptive sorting algorithm that is always stable and often has state of the art performance. For simple types and orders—`BitInteger`, `IEEEFloat`, and `Char` sorted in default or reverse order—we use a radix sort that has linear runtime with respect to input size. This effect is especially pronounced for `Float16`s which recieved a 3x-50x speedup over 1.8.
 
@@ -198,15 +210,15 @@ Main
 Base.Math
 
 (Base.Math) julia> varinfo()
-  name           size summary                                      
+  name           size summary
   ––––––––––– ––––––– –––––––––––––––––––––––––––––––––––––––––––––
-  @evalpoly   0 bytes @evalpoly (macro with 1 method)              
-  Math                Module                                       
-  ^           0 bytes ^ (generic function with 68 methods)         
-  acos        0 bytes acos (generic function with 12 methods)      
-  acosd       0 bytes acosd (generic function with 1 method)       
-  acosh       0 bytes acosh (generic function with 12 methods)     
-  acot        0 bytes acot (generic function with 4 methods) 
+  @evalpoly   0 bytes @evalpoly (macro with 1 method)
+  Math                Module
+  ^           0 bytes ^ (generic function with 68 methods)
+  acos        0 bytes acos (generic function with 12 methods)
+  acosd       0 bytes acosd (generic function with 1 method)
+  acosh       0 bytes acosh (generic function with 12 methods)
+  acot        0 bytes acot (generic function with 4 methods)
 ...
 ```
 
@@ -293,7 +305,7 @@ Previously `pkg> up Foo` would freely update any dependency in the environment. 
 
 *Kristoffer Carlsson*
 
-Pkg will now remember the last time the registry was updated across julia sessions and only auto-update once per day when using an `add` command. Previously the registry auto-updated once per session. Note that the `update` command 
+Pkg will now remember the last time the registry was updated across julia sessions and only auto-update once per day when using an `add` command. Previously the registry auto-updated once per session. Note that the `update` command
 
 ### `pkg> add` can now try to only add already installed packages
 
@@ -328,7 +340,7 @@ To show the reason why a package is in the manifest a new `pkg> why Foo` command
 
 Previously, coverage testing could only be enabled for either `all` where all code visited is checked, `user` (the prior default for `Pkg.test`) where everything except for `Base` is checked including stdlibs, or `none` where tracking is disabled.
 
-The github action `julia-runtest` defaults to coverage testing on, meaning a lot of tracking outside of the package under test previously took place, slowing tests down, especially tight loops. 
+The github action `julia-runtest` defaults to coverage testing on, meaning a lot of tracking outside of the package under test previously took place, slowing tests down, especially tight loops.
 
 v1.8 introduced the ability to specify a path to either a file or directory for coverage to be tracked in via `--code-coverage=@path`, and v1.9 makes that the default for `Pkg.test(coverage=true)` (and thus used by `julia-runtest` by default).
 
@@ -338,7 +350,7 @@ This change means often a lot less code needs to be tracked, and in cases where 
 
 *Valentin Churavy, Mosè Giordano*
 
-LLVM is the underlying compiler infrastructure that Julia compiler builds ontop of. With Julia 1.9 we update the version used to [v14.0.6](https://releases.llvm.org/14.0.0/docs/ReleaseNotes.html). 
+LLVM is the underlying compiler infrastructure that Julia compiler builds ontop of. With Julia 1.9 we update the version used to [v14.0.6](https://releases.llvm.org/14.0.0/docs/ReleaseNotes.html).
 
 Among the other features introduced in LLVM 14 there is [autovectorization enabled by default for SVE/SVE2 extensions](https://community.arm.com/arm-community-blogs/b/tools-software-ides-blog/posts/llvm-14) on AArch64 CPUs. SVE, *Scalable Vector Extension*, is a SIMD-like extension which uses flexible-width vector registries, instead of the fixed-width registries typically used by other SIMD architectures. Julia code does not have to do anything to use SVE/SVE2 instructions: vectorizable code always uses SIMD instructions when possible, and with LLVM 14 the SVE registries will be used more aggressively on CPUs which support it, such as Fujitsu's A64FX, Nvidia Grace, or the ARM Neoverse series. We gave an overview of Julia SVE autovectorization capabilitites in the webinar [*Julia on A64FX*](https://www.youtube.com/watch?v=kZNYFWGnixA).
 
