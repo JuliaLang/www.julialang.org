@@ -67,6 +67,9 @@ Together with `PrecompileTools.jl`, Julia 1.9 delivers many of the benefits of [
 
 The difference in TTL arises because the system image can safely skip all the code-validation checks that are necessary when loading packages.
 
+At the time of Julia 1.9's release, only a small fraction of the package ecosystem has adopted PrecompileTools.
+Experienced TTFX is expected to continue to decrease as more packages adopt it.
+
 ___
 
 ## Package extensions
