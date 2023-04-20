@@ -58,8 +58,8 @@ These numbers reveal a huge quality-of-life improvement across a wide range of p
 
 Together with `PrecompileTools.jl`, Julia 1.9 delivers many of the benefits of [PackageCompiler](https://github.com/JuliaLang/PackageCompiler.jl) without the need for user-customization. Here is an explicit comparison:
 
-|: Task | Julia 1.9 + PrecompileTools | PackageCompiler |
-|:----- | --- | --- |
+| Task | Julia 1.9 + PrecompileTools | PackageCompiler |
+|:----- | ---:| ---:|
 | Developers can reduce out-of-box TTFX for their users | ✔️ | ❌ |
 | Users can reduce TTFX for custom tasks | ✔️ | ✔️ |
 | Works without a source-build of Julia | ✔️ | ❌ |
@@ -69,7 +69,7 @@ Together with `PrecompileTools.jl`, Julia 1.9 delivers many of the benefits of [
 The difference in TTL arises because the system image can safely skip all the code-validation checks that are necessary when loading packages.
 
 At the time of Julia 1.9's release, only a small fraction of the package ecosystem has adopted PrecompileTools.
-Experienced TTFX is expected to continue to decrease as more packages adopt it.
+As these new tools become leveraged more widely, users can probably expect ongoing improvements in TTFX.
 
 ___
 
