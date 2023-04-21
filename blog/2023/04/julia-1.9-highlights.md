@@ -17,7 +17,8 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 
 ## TODOs:
 
-- [ ] Authors Memory usage hint
+- [ ] Authors for "Memory usage hint"
+- [ ] Authors for "Tasks and the interactive thread pool"
 - [ ] Stack function
 - [ ] Link to docs for Numbered REPL prompt
 
@@ -353,7 +354,7 @@ This change means often a lot less code needs to be tracked, and in cases where 
 
 *Valentin Churavy, Mosè Giordano*
 
-LLVM is the underlying compiler infrastructure that Julia compiler builds ontop of. With Julia 1.9 we update the version used to [v14.0.6](https://releases.llvm.org/14.0.0/docs/ReleaseNotes.html).
+LLVM is the underlying compiler infrastructure that Julia's compiler builds upon. With Julia 1.9 we update the version used to [v14.0.6](https://releases.llvm.org/14.0.0/docs/ReleaseNotes.html).
 
 Among the other features introduced in LLVM 14 there is [autovectorization enabled by default for SVE/SVE2 extensions](https://community.arm.com/arm-community-blogs/b/tools-software-ides-blog/posts/llvm-14) on AArch64 CPUs. SVE, *Scalable Vector Extension*, is a SIMD-like extension which uses flexible-width vector registries, instead of the fixed-width registries typically used by other SIMD architectures. Julia code does not have to do anything to use SVE/SVE2 instructions: vectorizable code always uses SIMD instructions when possible, and with LLVM 14 the SVE registries will be used more aggressively on CPUs which support it, such as Fujitsu's A64FX, Nvidia Grace, or the ARM Neoverse series. We gave an overview of Julia SVE autovectorization capabilitites in the webinar [*Julia on A64FX*](https://www.youtube.com/watch?v=kZNYFWGnixA).
 
