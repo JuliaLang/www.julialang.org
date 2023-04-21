@@ -76,7 +76,7 @@ ___
 
 *Kristoffer Carlsson*
 
-In Julia, the power of multiple dispatch makes it simple to extend functionality across a wide range of types. For instance, a plotting package may need to accommodate various Julia objects, many of which are defined in separate packages within the Julia ecosystem. Moreover, it's possible to add optimized versions of generic functions for specific types, such as the [StaticArray](https://github.com/JuliaArrays/StaticArrays.jl) , where the array size is known at compile time, leading to significant performance improvements.
+In Julia, the power of multiple dispatch makes it simple to extend functionality across a wide range of types. For instance, a plotting package may need to accommodate various Julia objects, many of which are defined in separate packages within the Julia ecosystem. Moreover, it's possible to add optimized versions of generic functions for specific types, such as the [StaticArray](https://github.com/JuliaArrays/StaticArrays.jl), where the array size is known at compile time, leading to significant performance improvements.
 
 To extend a method to a type, you would typically import the package containing the type, load the package to access the type, and then define the extended method:
 
@@ -91,7 +91,7 @@ end
 However, adding package dependencies can have costs, such as increased load times or require installation of large artifacts (e.g., CUDA.jl). This can be burdensome for package authors who must constantly balance dependency costs against the benefits of new method extensions for an "average" package user.
 
 Julia 1.9 introduces "package extensions", a feature that (in a loose sense) automatically loads a file when a set of packages are loaded. This file contains the code to load the (weak) dependency and extend the method. The goal is that one shouldn't have to pay for features that one does not use. Package extensions provides functionality simiar to what Requires.jl already offers but with key advantages, such as allowing precompilation of conditional code and adding compatibility constraints on weak dependencies.
-Since these are now "first class", package authors should be less reluctant to start using it compared to Requires.jl could feel a little bit like a hack.
+Since these are now "first class", package authors should be less reluctant to start using it compared to Requires.jl.
 
 As a concrete example where package extensions are used for good effect, the ForwardDiff.jl package provides optimized routines for automatic differentiation when the input is a `StaticArray`. In Julia 1.8, it unconditionally loaded the `StaticArrays` package, while in 1.9, it uses a package extension. This results in a significant improvement in load time:
 
@@ -105,7 +105,7 @@ julia>  @time using ForwardDiff
   0.247568 seconds (220.93 k allocations: 13.793 MiB)
 ```
 
-For a comprehensive guide on using package extensions, please refer to the [documentation](https://pkgdocs.julialang.org/dev/creating-packages/#Conditional-loading-of-code-in-packages-(Extensions)) .
+For a comprehensive guide on using package extensions, please refer to the [documentation](https://pkgdocs.julialang.org/dev/creating-packages/#Conditional-loading-of-code-in-packages-(Extensions)).
 
 
 ## Heap snapshot
@@ -229,9 +229,9 @@ Base.Math
 
 *Kristoffer Carlsson*
 
-Drawing heavily on inspiration from the IPython shell (and other notebook based systems like Mathematica), the Julia REPL can enable a "numbered prompt" that stores evaluated objects in the REPL for later use and keeps track of the number of expressions that have been evaluated.
+Drawing heavily on inspiration from the IPython shell (and other notebook-based systems like Mathematica), the Julia REPL can enable a "numbered prompt" that stores evaluated objects in the REPL for later use and keeps track of the number of expressions that have been evaluated.
 
-Being able to refer to an earlier evaluated object can be useful if one for exampe forgets to store the result of a long computation to a variable and then executes something else (so that `ans` gets overwritten).
+Being able to refer to an earlier evaluated object can be useful if, for example, one forgets to store the result of a long computation to a variable and then executes something else (so that `ans` gets overwritten).
 
 
 | ![](https://i.imgur.com/IPDUoJK.png)  |![](https://i.imgur.com/XTaG17X.png)|
@@ -245,7 +245,7 @@ For instructions how to enable this, see the documentation [ADD LINK]
 
 *Kristoffer Carlsson*
 
-Julia comes with a set of standard libraries ("stdlibs") which are similar to normal packages except that they can be loaded without having to explicitly install them. Most of these stdlibs also comes "prebaked" in the sysimage that Julia ships which means that they technically gets loaded every time Julia is started.
+Julia comes with a set of standard libraries ("stdlibs") which are similar to normal packages except that they can be loaded without having to explicitly install them. Most of these stdlibs also comes "prebaked" in the sysimage that Julia ships which means that they technically get loaded every time Julia is started.
 
 
 However, this approach has some drawbacks:
@@ -301,7 +301,7 @@ Users are encouraged to use the `@fastmath` macro instead which constrains the e
 
 *Kristoffer Carlsson*
 
-Previously `pkg> up Foo` would freely update any dependency in the environment. Now `up` has the same preserve strategies that `add` observes, meaning that first `up Foo` will only allow `Foo` to update. It is possible to loosen this restriction a bit with the various `--preserve` command options to also allow dependencies to `Foo` to update. See the documentaion for `Pkg.update` for more information.
+Previously `pkg> up Foo` would freely update any dependency in the environment. Now `up` has the same preserve strategies that `add` observes, meaning that first `up Foo` will only allow `Foo` to update. It is possible to loosen this restriction a bit with the various `--preserve` command options to also allow dependencies of `Foo` to update. See the documentation for `Pkg.update` for more information.
 
 
 ### `pkg> add` will only auto update the registry once per day
@@ -347,7 +347,7 @@ The github action `julia-runtest` defaults to coverage testing on, meaning a lot
 
 v1.8 introduced the ability to specify a path to either a file or directory for coverage to be tracked in via `--code-coverage=@path`, and v1.9 makes that the default for `Pkg.test(coverage=true)` (and thus used by `julia-runtest` by default).
 
-This change means often a lot less code needs to be tracked, and in cases where code from dependencies fall in tight loops this can heavily speed up the test suite. In one example Octivarian.jl tests with coverage enabled went from >2hrs to ~6 minutes.
+This change means often a lot less code needs to be tracked, and in cases where code from dependencies fall in tight loops this can heavily speed up the test suite. In one example Octavian.jl tests with coverage enabled went from >2hrs to ~6 minutes.
 
 ## LLVM Update to v14
 
@@ -361,7 +361,7 @@ Among the other features introduced in LLVM 14 there is [autovectorization enabl
 
 *Gabriel Baraldi, Mosè Giordano*
 
-To execute arithmetic operations on Float16 values julia used to promote them to Float32, and then convert them back to Float16 to return the result. 1.9 added support for native Float16 operations on AArch64 CPUs that have hardware support for half-precision floating-point arithmetic, like Apple's M series or Fujitsu's A64FX. In memory-bound applications this allows for up to 2x speedup compared to Float32 operations and 4x compared to Float64 operations. For example, on an M1 MacBook you can get
+To execute arithmetic operations on `Float16` values, julia used to promote them to `Float32`, and then convert them back to `Float16` to return the result. 1.9 added support for native `Float16` operations on AArch64 CPUs that have hardware support for half-precision floating-point arithmetic, like Apple's M series or Fujitsu's A64FX. In memory-bound applications this allows for up to 2× speedup compared to `Float32` operations and 4× compared to `Float64` operations. For example, on an M1 MacBook you can get
 
 ```julia
 julia> using BenchmarkTools
