@@ -77,9 +77,10 @@ ___
 
 *Kristoffer Carlsson*
 
-In Julia, the power of multiple dispatch makes it simple to extend functionality across a wide range of types. For instance, a plotting package may need to accommodate various Julia objects, many of which are defined in separate packages within the Julia ecosystem. Moreover, it's possible to add optimized versions of generic functions for specific types, such as the [StaticArray](https://github.com/JuliaArrays/StaticArrays.jl), where the array size is known at compile time, leading to significant performance improvements.
+In Julia, the power of multiple dispatch makes it simple to extend functionality across a wide range of types. For instance, a plotting package may want to provide functionality to plot a large variety of Julia objects, many of which are defined in separate packages within the Julia ecosystem. Moreover, it's possible to add optimized versions of generic functions for specific types, such as the [StaticArray](https://github.com/JuliaArrays/StaticArrays.jl), where the array size is known at compile time, leading to significant performance improvements.
 
-To extend a method to a type, you would typically import the package containing the type, load the package to access the type, and then define the extended method:
+To extend a method to a type, you would typically import the package containing the type, load the package to access the type, and then define the extended method.
+Taking the use case of the plotting package, this could look something like:
 
 ```julia
 import Contours
@@ -92,7 +93,7 @@ end
 However, adding package dependencies can have costs, such as increased load times or require installation of large artifacts (e.g., CUDA.jl). This can be burdensome for package authors who must constantly balance dependency costs against the benefits of new method extensions for an "average" package user.
 
 Julia 1.9 introduces "package extensions", a feature that (in a loose sense) automatically loads a file when a set of packages are loaded. This file contains the code to load the (weak) dependency and extend the method. The goal is that one shouldn't have to pay for features that one does not use. Package extensions provides functionality simiar to what Requires.jl already offers but with key advantages, such as allowing precompilation of conditional code and adding compatibility constraints on weak dependencies.
-Since these are now "first class", package authors should be less reluctant to start using it compared to Requires.jl.
+Since the package extension functionality is now "first class", package authors should be less reluctant to start using it compared to Requires.jl.
 
 As a concrete example where package extensions are used for good effect, the ForwardDiff.jl package provides optimized routines for automatic differentiation when the input is a `StaticArray`. In Julia 1.8, it unconditionally loaded the `StaticArrays` package, while in 1.9, it uses a package extension. This results in a significant improvement in load time:
 
@@ -107,7 +108,6 @@ julia>  @time using ForwardDiff
 ```
 
 For a comprehensive guide on using package extensions, please refer to the [documentation](https://pkgdocs.julialang.org/dev/creating-packages/#Conditional-loading-of-code-in-packages-(Extensions)).
-
 
 ## Heap snapshot
 
@@ -250,8 +250,8 @@ Julia comes with a set of standard libraries ("stdlibs") which are similar to no
 
 
 However, this approach has some drawbacks:
-- The stdlib versions are tied to the Julia version, requiring users to wait for the next Julia release to receive bug fixes.
-- Loading stdlibs in the sysimage incurs a cost for users who don't utilize them, as they are loaded every time Julia starts.
+- The stdlib versions are tied to the Julia version, requiring users to wait for the next Julia release to receive bug fixes for them.
+- Prebaking stdlibs into the sysimage incurs a cost for users who don't utilize them, as they are loaded every time Julia starts.
 - Developing stdlibs that are in the sysimage can be annoying.
 
 In 1.9 we are experimenting with a new concept of "upgradable stdlibs" that come shipped with Julia but can also be upgraded like normal packages. To start with, this is done with the small and relatively sparsely used stdlib DelimitedFiles.
@@ -302,14 +302,14 @@ Users are encouraged to use the `@fastmath` macro instead which constrains the e
 
 *Kristoffer Carlsson*
 
-Previously `pkg> up Foo` would freely update any dependency in the environment. Now `up` has the same preserve strategies that `add` observes, meaning that first `up Foo` will only allow `Foo` to update. It is possible to loosen this restriction a bit with the various `--preserve` command options to also allow dependencies of `Foo` to update. See the documentation for `Pkg.update` for more information.
+Previously it was underspecified what packages were actually allowed to upgrade when giving a specific package to update (`pkg> up Foo`). Now `up Foo` only allow `Foo` itself to update with all other packages having their version fixed in the resolve process. It is possible to loosen this restriction with the various `--preserve` command options to also allow e.g. dependencies of `Foo` to update. See the documentation for `Pkg.update` for more information.
 
 
 ### `pkg> add` will only auto update the registry once per day
 
 *Kristoffer Carlsson*
 
-Pkg will now remember the last time the registry was updated across julia sessions and only auto-update once per day when using an `add` command. Previously the registry auto-updated once per session. Note that the `update` command
+Pkg will now remember the last time the registry was updated across julia sessions and only auto-update once per day when using an `add` command. Previously the registry auto-updated once per session. Note that the `update` command will as before always try to update the registry.
 
 ### `pkg> add` can now try to only add already installed packages
 
@@ -317,7 +317,7 @@ Pkg will now remember the last time the registry was updated across julia sessio
 
 When working with many environments, for instance across Pluto notebooks, the default behavior of `Pkg.add` to add the latest version of the requested package and any new dependencies can mean hitting precompilation frequently.
 
-`Pkg.add` can now be told to prefer to add already installed versions of packages, which are more likely to be precompiled.
+`Pkg.add` can now be told to prefer to add already installed versions of packages (those that already have been downloadedd onto your machine), which are more likely to be precompiled.
 
 To globally opt-in to the new preference set the env var `JULIA_PKG_PRESERVE_TIERED_INSTALLED` to `true`.
 
@@ -325,6 +325,7 @@ Or to enable for specific operations use:
 - `pkg> add --preserve=tiered_installed Foo` to try this new strategy first in the tiered preserve.
 - `pkg> add --preserve=installed Foo` to strictly try this strategy, or error.
 
+Note that using this you may get old versions of packages installed so if you are encountering issues, it is usually a good idea to do an actual upgrade to the latest version to see if the issue has been fixed.
 ### `pkg> why` to tell you why a package in the manifest
 
 *Kristoffer Carlsson*
