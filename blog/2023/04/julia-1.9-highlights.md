@@ -20,7 +20,9 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 - [ ] Authors for "Memory usage hint"
 - [ ] Authors for "Tasks and the interactive thread pool"
 - [ ] Stack function
-- [ ] Link to docs for Numbered REPL prompt
+- [ ] Link to docs for Numbered REPL promp
+- [ ] move images from imgur to in repo
+
 
 ## Caching of native code
 
