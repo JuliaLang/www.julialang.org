@@ -24,7 +24,137 @@ nor maintained anymore.
   <tbody>
 
   <tr>
-    <th scope="row" rowspan=32>v1.9.0-rc1</th>
+    <th scope="row" rowspan=16>v1.9.0-rc2, on 2023-04-01T13:16:12Z</th>
+
+    <td>Linux (glibc)</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-rc2-linux-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-rc2-linux-x86_64.tar.gz.asc">asc</a>)</td>
+    <td>664f3b50c16c089e9e580958107b4a8e8d1af8206242993601bb3447b4d3541c</td>
+  </tr>
+
+  <tr>
+    <td>Linux (glibc)</td>
+    <td>i686</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/linux/x86/1.9/julia-1.9.0-rc2-linux-i686.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.9/julia-1.9.0-rc2-linux-i686.tar.gz.asc">asc</a>)</td>
+    <td>96bd3db4ab1e846de7f48177521b8c8768bd80e484ed7fd7591a39753f7f9a02</td>
+  </tr>
+
+  <tr>
+    <td>Linux (glibc)</td>
+    <td>aarch64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.9/julia-1.9.0-rc2-linux-aarch64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.9/julia-1.9.0-rc2-linux-aarch64.tar.gz.asc">asc</a>)</td>
+    <td>2e8325f1c7e14bf2f36e84ef1ed61b51e8a674c8d2cc0f1166b95f3b345e4a3f</td>
+  </tr>
+
+  <tr>
+    <td>Linux (glibc)</td>
+    <td>powerpc64le</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.9/julia-1.9.0-rc2-linux-ppc64le.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.9/julia-1.9.0-rc2-linux-ppc64le.tar.gz.asc">asc</a>)</td>
+    <td>4444ecd58bfeed61a969a32cec94df8860cdb02314bc09c10af6958fdd5d4c31</td>
+  </tr>
+
+  <tr>
+    <td>Linux (musl)</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/musl/x64/1.9/julia-1.9.0-rc2-musl-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/musl/x64/1.9/julia-1.9.0-rc2-musl-x86_64.tar.gz.asc">asc</a>)</td>
+    <td>b16b0902c97fc58efbf997aa1ef486f7bd4825382d010e04bb3e9ec7bca7bce1</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.0-rc2-mac64.dmg">dmg</a></td>
+    <td>6a74ac67088c0eb50c5cbdff46a88a9b856fba721f3cf51e80ef10d7991609d5</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>aarch64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.0-rc2-macaarch64.dmg">dmg</a></td>
+    <td>2706e215970a7a6ae2bbd1f62f08181c373dabb093fd43b90c097f5b4e2c3576</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.0-rc2-mac64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.0-rc2-mac64.tar.gz.asc">asc</a>)</td>
+    <td>49b6a164e81f61f0cacb035494f994cbfe84a2101a0faaacb3a774c6eeec724f</td>
+  </tr>
+
+  <tr>
+    <td>macOS</td>
+    <td>aarch64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.0-rc2-macaarch64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.0-rc2-macaarch64.tar.gz.asc">asc</a>)</td>
+    <td>78913526f3c6ef94bb27ab4930fb2d7d4c7060e584e4ffaf9b57048289d1cb9e</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>x86_64</td>
+    <td>installer</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-rc2-win64.exe">exe</a></td>
+    <td>ea884f779347b1e307b62b1458ed0430de23259b69016004ef5271736d77309c</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>i686</td>
+    <td>installer</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-rc2-win32.exe">exe</a></td>
+    <td>a3b4fcbb4b4aeed4e226d65b8574aeb2ac4c7c6f6afd971e1d8e85405690d148</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-rc2-win64.zip">zip</a></td>
+    <td>7d1d8afb102e7f405f76e5a0e15c557cd2703c0b34e654c24c6b5470c1176192</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>i686</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-rc2-win32.zip">zip</a></td>
+    <td>187b1bc8741b66d6351b07766d8a505c9a94345771ecec852511606eeeef7028</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-rc2-win64.tar.gz">tar.gz</a></td>
+    <td>31b4f81cf72c598ee3d965361955802ffd245584c23839cd9234cc1554036299</td>
+  </tr>
+
+  <tr>
+    <td>Windows</td>
+    <td>i686</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-rc2-win32.tar.gz">tar.gz</a></td>
+    <td>330f781f877320cba626b17d1f6950900aba072211f53b700d9393196395f388</td>
+  </tr>
+
+  <tr>
+    <td>FreeBSD</td>
+    <td>x86_64</td>
+    <td>archive</td>
+    <td><a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.9/julia-1.9.0-rc2-freebsd-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.9/julia-1.9.0-rc2-freebsd-x86_64.tar.gz.asc">asc</a>)</td>
+    <td>907d0cb91cc54e4f5b290e85fb61cae3ec4c9a0e1e7e0fff13c20b42604d1a72</td>
+  </tr>
+
+  <tr>
+    <th scope="row" rowspan=16>v1.9.0-rc1, on 2023-03-07T08:08:56Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -154,135 +284,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <td>Linux (glibc)</td>
-    <td>x86_64</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-rc1-linux-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-rc1-linux-x86_64.tar.gz.asc">asc</a>)</td>
-    <td>357ddb46518a2ded6d867f930f088238dcdc580c53b3c627b9011650200294ee</td>
-  </tr>
-
-  <tr>
-    <td>Linux (glibc)</td>
-    <td>i686</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/linux/x86/1.9/julia-1.9.0-rc1-linux-i686.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/x86/1.9/julia-1.9.0-rc1-linux-i686.tar.gz.asc">asc</a>)</td>
-    <td>f726767f995aab05f241a9312bbc1a84922fbc81a9ad8647bebefe2154b6bf5e</td>
-  </tr>
-
-  <tr>
-    <td>Linux (glibc)</td>
-    <td>aarch64</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.9/julia-1.9.0-rc1-linux-aarch64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/aarch64/1.9/julia-1.9.0-rc1-linux-aarch64.tar.gz.asc">asc</a>)</td>
-    <td>8637f7facae9f8d5975a6f09f50104d4f34be3ee425324e2e4d7375410cf7e13</td>
-  </tr>
-
-  <tr>
-    <td>Linux (glibc)</td>
-    <td>powerpc64le</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.9/julia-1.9.0-rc1-linux-ppc64le.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/1.9/julia-1.9.0-rc1-linux-ppc64le.tar.gz.asc">asc</a>)</td>
-    <td>71c6e4987c4a62d1c728ece21bc68572f49a533cc80276afa2f193916b0c7994</td>
-  </tr>
-
-  <tr>
-    <td>Linux (musl)</td>
-    <td>x86_64</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/musl/x64/1.9/julia-1.9.0-rc1-musl-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/musl/x64/1.9/julia-1.9.0-rc1-musl-x86_64.tar.gz.asc">asc</a>)</td>
-    <td>5175033c143afa6f211aaf640f58eabe2234ee5a029e2aabac2c8b43d2438e56</td>
-  </tr>
-
-  <tr>
-    <td>macOS</td>
-    <td>x86_64</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.0-rc1-mac64.dmg">dmg</a></td>
-    <td>63d979374870229d5ba3f2389db4fcca9ba30bca4388af35404fa97a3ec0c481</td>
-  </tr>
-
-  <tr>
-    <td>macOS</td>
-    <td>aarch64</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.0-rc1-macaarch64.dmg">dmg</a></td>
-    <td>31fea372696352181e5de14bc9c7e7f224bae0091e16c0e5a57a94ee950818e7</td>
-  </tr>
-
-  <tr>
-    <td>macOS</td>
-    <td>x86_64</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.0-rc1-mac64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.0-rc1-mac64.tar.gz.asc">asc</a>)</td>
-    <td>2e49d2c2b5a3a7feb835f3c0ac533b8fa976fb9c90088a94904451d94ce8c76b</td>
-  </tr>
-
-  <tr>
-    <td>macOS</td>
-    <td>aarch64</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.0-rc1-macaarch64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.0-rc1-macaarch64.tar.gz.asc">asc</a>)</td>
-    <td>b7f533b3252ccfd05afd79c7fcacb4e0c14682880c8a61a556f5333396ad4ecb</td>
-  </tr>
-
-  <tr>
-    <td>Windows</td>
-    <td>x86_64</td>
-    <td>installer</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-rc1-win64.exe">exe</a></td>
-    <td>8bcb9ac062b86407c16f21052c05cc4a414a2623e708ccf4c41394857c849063</td>
-  </tr>
-
-  <tr>
-    <td>Windows</td>
-    <td>i686</td>
-    <td>installer</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-rc1-win32.exe">exe</a></td>
-    <td>ce98b674215062333bcdd48dd21315dfde3ae89cb39508db785c6c4b34b98307</td>
-  </tr>
-
-  <tr>
-    <td>Windows</td>
-    <td>x86_64</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-rc1-win64.zip">zip</a></td>
-    <td>3c4f6fd1dc19c8714f111fa2594794bcf7580f4ec43727de336d42573943f18b</td>
-  </tr>
-
-  <tr>
-    <td>Windows</td>
-    <td>i686</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-rc1-win32.zip">zip</a></td>
-    <td>13a4e24cf6c8f72f9beab6e1f723e5c399a7dbd86c13ce8b789a7ceee1c44db5</td>
-  </tr>
-
-  <tr>
-    <td>Windows</td>
-    <td>x86_64</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-rc1-win64.tar.gz">tar.gz</a></td>
-    <td>2877e839ab30e50d173d5e29c0f6fb7a79ac6ae8a662f7eb47721eef611df66a</td>
-  </tr>
-
-  <tr>
-    <td>Windows</td>
-    <td>i686</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-rc1-win32.tar.gz">tar.gz</a></td>
-    <td>95e0ff5079d2dde78f0ddce17c3ff9a91bd67c8dfa480efccfe2e1c289ac0dc4</td>
-  </tr>
-
-  <tr>
-    <td>FreeBSD</td>
-    <td>x86_64</td>
-    <td>archive</td>
-    <td><a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.9/julia-1.9.0-rc1-freebsd-x86_64.tar.gz">tar.gz</a> (<a href="https://julialang-s3.julialang.org/bin/freebsd/x64/1.9/julia-1.9.0-rc1-freebsd-x86_64.tar.gz.asc">asc</a>)</td>
-    <td>b037d0003894750ef8889eafc507399090cb05871122f0a1d6134bc1e6ee766c</td>
-  </tr>
-
-  <tr>
-    <th scope="row" rowspan=16>v1.9.0-beta4</th>
+    <th scope="row" rowspan=16>v1.9.0-beta4, on 2023-02-07T21:54:40Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -412,7 +414,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=16>v1.9.0-beta3</th>
+    <th scope="row" rowspan=16>v1.9.0-beta3, on 2023-01-18T07:23:21Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -542,7 +544,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=16>v1.9.0-beta2</th>
+    <th scope="row" rowspan=16>v1.9.0-beta2, on 2022-12-29T11:22:18Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -672,7 +674,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=8>v1.9.0-beta1</th>
+    <th scope="row" rowspan=8>v1.9.0-beta1, on 2022-12-27T23:28:07Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -738,7 +740,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.9.0-alpha1</th>
+    <th scope="row" rowspan=15>v1.9.0-alpha1, on 2022-11-15T14:39:19Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -860,7 +862,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.8.4</th>
+    <th scope="row" rowspan=15>v1.8.4, on 2022-12-23T21:34:06Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -982,7 +984,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.8.3</th>
+    <th scope="row" rowspan=15>v1.8.3, on 2022-11-14T20:17:25Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -1104,7 +1106,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.8.2</th>
+    <th scope="row" rowspan=15>v1.8.2, on 2022-09-29T22:02:14Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -1226,7 +1228,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.8.1</th>
+    <th scope="row" rowspan=15>v1.8.1, on 2022-09-06T15:38:09Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -1348,7 +1350,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.8.0</th>
+    <th scope="row" rowspan=15>v1.8.0, on 2022-08-17T13:41:03Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -1470,7 +1472,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.8.0-rc4</th>
+    <th scope="row" rowspan=15>v1.8.0-rc4, on 2022-08-09T21:19:58Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -1592,7 +1594,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.8.0-rc3</th>
+    <th scope="row" rowspan=15>v1.8.0-rc3, on 2022-07-16T00:30:15Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -1714,7 +1716,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=11>v1.8.0-rc2</th>
+    <th scope="row" rowspan=11>v1.8.0-rc2, on Unknown</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -1804,7 +1806,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.8.0-rc1</th>
+    <th scope="row" rowspan=15>v1.8.0-rc1, on 2022-05-31T20:09:24Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -1926,7 +1928,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.8.0-beta3</th>
+    <th scope="row" rowspan=15>v1.8.0-beta3, on 2022-03-29T18:50:34Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -2048,7 +2050,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=11>v1.8.0-beta2</th>
+    <th scope="row" rowspan=11>v1.8.0-beta2, on 2022-03-22T17:16:04Z</th>
 
     <td>Linux (glibc)</td>
     <td>i686</td>
@@ -2138,7 +2140,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.8.0-beta1</th>
+    <th scope="row" rowspan=15>v1.8.0-beta1, on 2022-02-25T00:40:24Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -2260,7 +2262,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=14>v1.7.3</th>
+    <th scope="row" rowspan=14>v1.7.3, on 2022-05-25T18:55:03Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -2374,7 +2376,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=16>v1.7.2</th>
+    <th scope="row" rowspan=16>v1.7.2, on 2022-02-07T18:55:33Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -2504,7 +2506,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.7.1</th>
+    <th scope="row" rowspan=15>v1.7.1, on 2021-12-23T02:37:29Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -2626,7 +2628,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.7.0</th>
+    <th scope="row" rowspan=15>v1.7.0, on 2021-11-30T19:28:06Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -2748,7 +2750,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=16>v1.7.0-rc3</th>
+    <th scope="row" rowspan=16>v1.7.0-rc3, on 2021-11-15T19:31:58Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -2878,7 +2880,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=17>v1.7.0-rc2</th>
+    <th scope="row" rowspan=17>v1.7.0-rc2, on 2021-10-23T13:22:14Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -3016,7 +3018,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=17>v1.7.0-rc1</th>
+    <th scope="row" rowspan=17>v1.7.0-rc1, on 2021-09-15T18:24:25Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -3154,7 +3156,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=17>v1.7.0-beta4</th>
+    <th scope="row" rowspan=17>v1.7.0-beta4, on 2021-08-30T20:00:24Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -3292,7 +3294,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.7.0-beta3</th>
+    <th scope="row" rowspan=15>v1.7.0-beta3, on 2021-07-08T18:19:24Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -3414,7 +3416,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=13>v1.7.0-beta2</th>
+    <th scope="row" rowspan=13>v1.7.0-beta2, on 2021-06-21T16:28:28Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -3520,7 +3522,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=13>v1.7.0-beta1</th>
+    <th scope="row" rowspan=13>v1.7.0-beta1, on 2021-06-17T22:27:04Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -3626,7 +3628,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=14>v1.6.6</th>
+    <th scope="row" rowspan=14>v1.6.6, on 2022-03-29T18:43:04Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -3740,7 +3742,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=14>v1.6.5</th>
+    <th scope="row" rowspan=14>v1.6.5, on 2021-12-21T00:06:54Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -3854,7 +3856,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=14>v1.6.4</th>
+    <th scope="row" rowspan=14>v1.6.4, on 2021-11-19T20:22:23Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -3968,7 +3970,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.6.3</th>
+    <th scope="row" rowspan=15>v1.6.3, on 2021-09-24T18:13:33Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -4090,7 +4092,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.6.2</th>
+    <th scope="row" rowspan=15>v1.6.2, on 2021-07-14T18:04:40Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -4212,7 +4214,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=15>v1.6.1</th>
+    <th scope="row" rowspan=15>v1.6.1, on 2021-04-23T21:02:13Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -4334,7 +4336,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=14>v1.6.0</th>
+    <th scope="row" rowspan=14>v1.6.0, on 2021-03-24T20:00:04Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -4448,7 +4450,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=14>v1.6.0-rc3</th>
+    <th scope="row" rowspan=14>v1.6.0-rc3, on 2021-03-18T05:40:54Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -4562,7 +4564,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=14>v1.6.0-rc2</th>
+    <th scope="row" rowspan=14>v1.6.0-rc2, on 2021-03-11T18:40:33Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -4676,7 +4678,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=14>v1.6.0-rc1</th>
+    <th scope="row" rowspan=14>v1.6.0-rc1, on 2021-02-06T20:21:00Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -4790,7 +4792,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=14>v1.6.0-beta1</th>
+    <th scope="row" rowspan=14>v1.6.0-beta1, on 2021-01-08T18:07:32Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -4904,7 +4906,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=14>v1.5.4</th>
+    <th scope="row" rowspan=14>v1.5.4, on 2021-03-11T19:51:20Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -5018,7 +5020,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=13>v1.5.3</th>
+    <th scope="row" rowspan=13>v1.5.3, on 2020-11-09T21:33:25Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -5124,7 +5126,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=13>v1.5.2</th>
+    <th scope="row" rowspan=13>v1.5.2, on 2020-09-24T05:49:22Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -5230,7 +5232,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=13>v1.5.1</th>
+    <th scope="row" rowspan=13>v1.5.1, on 2020-08-25T20:39:54Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -5336,7 +5338,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=13>v1.5.0</th>
+    <th scope="row" rowspan=13>v1.5.0, on 2020-08-02T01:10:08Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -5442,7 +5444,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=13>v1.5.0-rc2</th>
+    <th scope="row" rowspan=13>v1.5.0-rc2, on 2020-07-27T19:26:00Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -5548,7 +5550,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=10>v1.5.0-rc1</th>
+    <th scope="row" rowspan=10>v1.5.0-rc1, on 2020-06-26T21:44:46Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -5630,7 +5632,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=11>v1.5.0-beta1</th>
+    <th scope="row" rowspan=11>v1.5.0-beta1, on 2020-05-28T18:15:16Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -5720,7 +5722,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=10>v1.4.2</th>
+    <th scope="row" rowspan=10>v1.4.2, on 2020-05-23T19:09:09Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -5802,7 +5804,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=11>v1.4.1</th>
+    <th scope="row" rowspan=11>v1.4.1, on 2020-04-14T17:49:45Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -5892,7 +5894,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=10>v1.4.0</th>
+    <th scope="row" rowspan=10>v1.4.0, on 2020-03-21T18:51:37Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -5974,7 +5976,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=7>v1.4.0-rc2</th>
+    <th scope="row" rowspan=7>v1.4.0-rc2, on 2020-02-24T17:16:22Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6032,7 +6034,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=8>v1.4.0-rc1</th>
+    <th scope="row" rowspan=8>v1.4.0-rc1, on 2020-01-23T18:19:44Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6098,7 +6100,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=11>v1.3.1</th>
+    <th scope="row" rowspan=11>v1.3.1, on 2019-12-30T22:37:46Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6188,7 +6190,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=11>v1.3.0</th>
+    <th scope="row" rowspan=11>v1.3.0, on 2019-11-26T06:46:40Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6278,7 +6280,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=8>v1.3.0-rc5</th>
+    <th scope="row" rowspan=8>v1.3.0-rc5, on 2019-11-17T19:36:21Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6344,7 +6346,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=8>v1.3.0-rc4</th>
+    <th scope="row" rowspan=8>v1.3.0-rc4, on 2019-10-15T14:51:18Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6410,7 +6412,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=8>v1.3.0-rc3</th>
+    <th scope="row" rowspan=8>v1.3.0-rc3, on 2019-10-04T02:21:51Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6476,7 +6478,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=8>v1.3.0-rc2</th>
+    <th scope="row" rowspan=8>v1.3.0-rc2, on 2019-09-12T20:24:27Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6542,7 +6544,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=8>v1.3.0-rc1</th>
+    <th scope="row" rowspan=8>v1.3.0-rc1, on 2019-08-18T05:13:58Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6608,7 +6610,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=8>v1.3.0-alpha</th>
+    <th scope="row" rowspan=8>v1.3.0-alpha, on 2019-07-23T02:11:58Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6674,7 +6676,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=11>v1.2.0</th>
+    <th scope="row" rowspan=11>v1.2.0, on 2019-08-20T00:37:20Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6764,7 +6766,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=8>v1.2.0-rc3</th>
+    <th scope="row" rowspan=8>v1.2.0-rc3, on 2019-08-12T20:57:40Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6830,7 +6832,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=7>v1.2.0-rc2</th>
+    <th scope="row" rowspan=7>v1.2.0-rc2, on 2019-07-08T20:33:20Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6888,7 +6890,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=8>v1.2.0-rc1</th>
+    <th scope="row" rowspan=8>v1.2.0-rc1, on 2019-05-30T18:22:37Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -6954,7 +6956,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=10>v1.1.1</th>
+    <th scope="row" rowspan=10>v1.1.1, on 2019-05-16T04:31:52Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7036,7 +7038,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=11>v1.1.0</th>
+    <th scope="row" rowspan=11>v1.1.0, on 2019-01-21T22:05:17Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7126,7 +7128,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v1.1.0-rc2</th>
+    <th scope="row" rowspan=6>v1.1.0-rc2, on 2019-01-13T20:21:26Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7176,7 +7178,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=7>v1.1.0-rc1</th>
+    <th scope="row" rowspan=7>v1.1.0-rc1, on 2019-01-01T00:08:31Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7234,7 +7236,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=11>v1.0.5</th>
+    <th scope="row" rowspan=11>v1.0.5, on 2019-09-09T19:33:05Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7324,7 +7326,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=11>v1.0.4</th>
+    <th scope="row" rowspan=11>v1.0.4, on 2019-05-16T04:08:37Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7414,7 +7416,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=11>v1.0.3</th>
+    <th scope="row" rowspan=11>v1.0.3, on 2018-12-18T03:55:13Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7504,7 +7506,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=9>v1.0.2</th>
+    <th scope="row" rowspan=9>v1.0.2, on 2018-11-08T21:03:30Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7578,7 +7580,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=9>v1.0.1</th>
+    <th scope="row" rowspan=9>v1.0.1, on 2018-09-29T19:48:43Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7652,7 +7654,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=10>v1.0.0</th>
+    <th scope="row" rowspan=10>v1.0.0, on 2018-08-09T00:18:35Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7734,7 +7736,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v1.0.0-rc1</th>
+    <th scope="row" rowspan=6>v1.0.0-rc1, on 2018-08-07T16:31:25Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7784,7 +7786,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=9>v0.7.0</th>
+    <th scope="row" rowspan=9>v0.7.0, on 2018-08-08T06:49:22Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7858,7 +7860,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v0.7.0-rc3</th>
+    <th scope="row" rowspan=6>v0.7.0-rc3, on 2018-08-06T23:12:12Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7908,7 +7910,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=7>v0.7.0-rc2</th>
+    <th scope="row" rowspan=7>v0.7.0-rc2, on 2018-08-02T19:18:13Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -7966,7 +7968,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=7>v0.7.0-rc1</th>
+    <th scope="row" rowspan=7>v0.7.0-rc1, on 2018-07-31T20:32:44Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8024,7 +8026,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=7>v0.7.0-beta2</th>
+    <th scope="row" rowspan=7>v0.7.0-beta2, on 2018-07-13T22:54:28Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8082,7 +8084,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v0.7.0-beta</th>
+    <th scope="row" rowspan=6>v0.7.0-beta, on 2018-06-24T01:57:16Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8132,7 +8134,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.7.0-alpha</th>
+    <th scope="row" rowspan=5>v0.7.0-alpha, on 2018-05-31T03:02:52Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8174,7 +8176,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.6.4</th>
+    <th scope="row" rowspan=5>v0.6.4, on 2018-07-09T19:40:12Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8216,7 +8218,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=8>v0.6.3</th>
+    <th scope="row" rowspan=8>v0.6.3, on 2018-05-28T20:53:53Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8282,7 +8284,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=7>v0.6.2</th>
+    <th scope="row" rowspan=7>v0.6.2, on 2017-12-14T02:19:27Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8340,7 +8342,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=7>v0.6.1</th>
+    <th scope="row" rowspan=7>v0.6.1, on 2017-10-24T23:57:34Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8398,7 +8400,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.6.0</th>
+    <th scope="row" rowspan=5>v0.6.0, on 2017-06-19T19:08:39Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8440,7 +8442,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v0.6.0-rc3</th>
+    <th scope="row" rowspan=6>v0.6.0-rc3, on 2017-06-07T20:06:31Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8490,7 +8492,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v0.6.0-rc2</th>
+    <th scope="row" rowspan=6>v0.6.0-rc2, on 2017-05-21T04:15:09Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8540,7 +8542,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v0.6.0-rc1</th>
+    <th scope="row" rowspan=6>v0.6.0-rc1, on 2017-05-08T12:15:47Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8590,7 +8592,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v0.6.0-pre.beta</th>
+    <th scope="row" rowspan=6>v0.6.0-pre.beta, on 2017-04-01T11:00:38Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8640,7 +8642,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v0.6.0-pre.alpha</th>
+    <th scope="row" rowspan=6>v0.6.0-pre.alpha, on 2017-02-28T13:23:54Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8690,7 +8692,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v0.5.2</th>
+    <th scope="row" rowspan=6>v0.5.2, on 2017-05-08T12:17:08Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8740,7 +8742,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v0.5.1</th>
+    <th scope="row" rowspan=6>v0.5.1, on 2017-03-06T02:52:58Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8790,7 +8792,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=6>v0.5.0</th>
+    <th scope="row" rowspan=6>v0.5.0, on 2016-09-20T03:50:05Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8840,7 +8842,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.5.0-rc4</th>
+    <th scope="row" rowspan=5>v0.5.0-rc4, on 2016-09-09T07:31:35Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8882,7 +8884,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.5.0-rc3</th>
+    <th scope="row" rowspan=5>v0.5.0-rc3, on 2016-08-23T15:26:09Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8924,7 +8926,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.5.0-rc2</th>
+    <th scope="row" rowspan=5>v0.5.0-rc2, on 2016-08-12T12:22:00Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -8966,7 +8968,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.5.0-rc1</th>
+    <th scope="row" rowspan=5>v0.5.0-rc1, on 2016-08-04T08:59:51Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9008,7 +9010,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.5.0-rc0</th>
+    <th scope="row" rowspan=5>v0.5.0-rc0, on 2016-07-27T18:35:14Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9050,7 +9052,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.7</th>
+    <th scope="row" rowspan=5>v0.4.7, on 2016-09-19T21:26:14Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9092,7 +9094,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.6</th>
+    <th scope="row" rowspan=5>v0.4.6, on 2016-06-19T23:37:38Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9134,7 +9136,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.5</th>
+    <th scope="row" rowspan=5>v0.4.5, on 2016-03-20T13:54:58Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9176,7 +9178,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.4</th>
+    <th scope="row" rowspan=5>v0.4.4, on 2016-03-20T13:53:18Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9218,7 +9220,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.3</th>
+    <th scope="row" rowspan=5>v0.4.3, on 2016-01-13T10:08:36Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9260,7 +9262,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.2</th>
+    <th scope="row" rowspan=5>v0.4.2, on 2015-12-07T11:35:05Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9302,7 +9304,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.1</th>
+    <th scope="row" rowspan=5>v0.4.1, on 2015-11-09T13:16:15Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9344,7 +9346,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.0</th>
+    <th scope="row" rowspan=5>v0.4.0, on 2015-10-09T09:25:04Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9386,7 +9388,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.0-rc4</th>
+    <th scope="row" rowspan=5>v0.4.0-rc4, on 2015-10-04T05:47:03Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9428,7 +9430,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.0-rc3</th>
+    <th scope="row" rowspan=5>v0.4.0-rc3, on 2015-09-28T22:31:36Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9470,7 +9472,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.0-rc2</th>
+    <th scope="row" rowspan=5>v0.4.0-rc2, on 2015-09-19T03:22:47Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9512,7 +9514,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.4.0-rc1</th>
+    <th scope="row" rowspan=5>v0.4.0-rc1, on 2015-09-09T20:28:08Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9554,7 +9556,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.12</th>
+    <th scope="row" rowspan=5>v0.3.12, on 2015-11-09T13:12:35Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9596,7 +9598,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.11</th>
+    <th scope="row" rowspan=5>v0.3.11, on 2015-07-27T06:54:19Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9638,7 +9640,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.10</th>
+    <th scope="row" rowspan=5>v0.3.10, on 2015-06-24T14:06:38Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9680,7 +9682,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.9</th>
+    <th scope="row" rowspan=5>v0.3.9, on 2015-05-30T20:13:12Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9722,7 +9724,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.8</th>
+    <th scope="row" rowspan=5>v0.3.8, on 2015-04-30T23:55:14Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9764,7 +9766,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.7</th>
+    <th scope="row" rowspan=5>v0.3.7, on 2015-03-24T09:51:03Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9806,7 +9808,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.6</th>
+    <th scope="row" rowspan=5>v0.3.6, on 2015-02-18T07:36:32Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9848,7 +9850,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.5</th>
+    <th scope="row" rowspan=5>v0.3.5, on 2015-01-09T21:06:55Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9890,7 +9892,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.4</th>
+    <th scope="row" rowspan=5>v0.3.4, on 2014-12-26T11:20:58Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9932,7 +9934,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.3</th>
+    <th scope="row" rowspan=5>v0.3.3, on 2014-11-23T20:50:56Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -9974,7 +9976,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.2</th>
+    <th scope="row" rowspan=5>v0.3.2, on 2014-10-21T22:20:10Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -10016,7 +10018,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=5>v0.3.1</th>
+    <th scope="row" rowspan=5>v0.3.1, on 2014-09-21T21:42:32Z</th>
 
     <td>Linux (glibc)</td>
     <td>x86_64</td>
@@ -10058,7 +10060,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=3>v0.3.0</th>
+    <th scope="row" rowspan=3>v0.3.0, on 2014-08-20T20:44:42Z</th>
 
     <td>macOS</td>
     <td>x86_64</td>
@@ -10084,7 +10086,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=3>v0.2.1</th>
+    <th scope="row" rowspan=3>v0.2.1, on Unknown</th>
 
     <td>macOS</td>
     <td>x86_64</td>
@@ -10110,7 +10112,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=3>v0.2.0</th>
+    <th scope="row" rowspan=3>v0.2.0, on 2013-11-19T04:21:45Z</th>
 
     <td>macOS</td>
     <td>x86_64</td>
@@ -10136,7 +10138,7 @@ nor maintained anymore.
   </tr>
 
   <tr>
-    <th scope="row" rowspan=1>v0.1.2</th>
+    <th scope="row" rowspan=1>v0.1.2, on Unknown</th>
 
     <td>macOS</td>
     <td>x86_64</td>
