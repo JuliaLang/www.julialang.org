@@ -22,6 +22,7 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 - [ ] Stack function
 - [ ] Link to docs for Numbered REPL promp
 - [ ] move images from imgur to in repo
+- [ ] mention Apple Silicon becoming tier 1
 
 
 ## Caching of native code
