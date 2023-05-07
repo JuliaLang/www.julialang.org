@@ -37,25 +37,25 @@ With the introduction of Julia 1.9, native code caching is now available, result
 
 This feature comes with some tradeoffs, such as an increase in precompilation time by 10%-50%. However, since this is a one-time cost, we believe the tradeoff is well worth it. Cache files have also become larger due to the storage of more data and the use of a different serialization format.
 
-The graph below illustrates the changes in time-to-load (TTL), TTFX, and cache file size starting with Julia 1.7 (prior to the precompilation improvements):
+The graph below illustrates the changes in time-to-load (TTL), TTFX, and cache file size starting with Julia 1.7 (prior to any of the recent precompilation improvements):
 
 
-![](https://i.imgur.com/kydvmQL.png)
+![](https://imgur.com/a/Xprq38A)
 
 For most packages, TTFX has gone from being the dominant factor to virtually negligible. TTL has also been reduced, albeit not as dramatically as TTFX. The same data is presented in the table below, with the "ratio" columns representing the ratio of Julia 1.7 / Julia 1.9 and "total" meaning "TTL + TTFX".
 
 
-|         Package | TTFX_1.7 | TTFX_1.9 | **TTFX_ratio** | TTL_1.7 | TTL_1.9 | TTL_ratio | **total_ratio** |
+|         package | TTFX_1.7 | TTFX_1.9 | **TTFX_ratio** | TTL_1.7 | TTL_1.9 | TTL_ratio | **total_ratio** |
 |-----------------|----------|----------|------------|---------|---------|-----------|-------------|
-|             CSV |    11.64 |     0.08 |     **137.12** |    0.38 |    0.38 |       1.0 |       **26.11** |
-|      DataFrames |    17.56 |     0.39 |      **45.43** |    1.47 |    1.39 |      1.05 |        **10.7** |
-|          Revise |     7.03 |     0.16 |      **43.18** |     2.9 |    2.16 |      1.34 |        **4.27** |
-|         GLMakie |    63.92 |     1.86 |      **34.38** |   12.39 |    8.72 |      1.42 |        **7.21** |
-|              LV |    10.99 |     0.02 |     **464.45** |    2.66 |    0.68 |      3.93 |       **19.51** |
-|  OrdinaryDiffEq |     2.17 |     0.18 |      **12.15** |    9.82 |    5.54 |      1.77 |         **2.1** |
-| ModelingToolkit |    73.11 |     5.81 |      **12.57** |   19.44 |   13.66 |      1.42 |        **4.75** |
-|            JuMP |    10.34 |     0.28 |      **36.82** |    4.64 |    3.69 |      1.26 |        **3.77** |
-|  ImageFiltering |     1.66 |     0.17 |       **9.61** |    2.66 |     2.1 |      1.27 |         **1.9** |
+|             CSV |    11.66 |     0.08 |     **137.43** |    0.38 |    0.65 |      0.59 |       **16.34** |
+|      DataFrames |    17.39 |     0.38 |     **45.99** |    1.59 |     1.6 |      0.99 |       **9.58** |
+|          Revise |     7.04 |     0.39 |     **18.2** |    2.95 |    2.38 |      1.24 |       **3.61** |
+|         GLMakie |    64.62 |     1.66 |     **39.02** |   12.21 |    9.47 |      1.29 |       **6.91** |
+|              LV |    11.06 |      0.0 |     **7677.8** |    2.56 |    0.97 |      2.64 |       **14.05** |
+|  OrdinaryDiffEq |     2.25 |     0.21 |     **10.67** |    9.95 |    5.95 |      1.67 |       **1.98** |
+| ModelingToolkit |    73.53 |     4.81 |     **15.3** |   20.93 |    13.5 |      1.55 |       **5.16** |
+|            JuMP |    10.36 |     0.28 |     **36.75** |    4.68 |    3.96 |      1.18 |       **3.54** |
+|  ImageFiltering |     1.35 |     0.12 |     **10.84** |    2.76 |    2.14 |      1.29 |       **1.82** |
 
 These numbers reveal a huge quality-of-life improvement across a wide range of packages.
 
