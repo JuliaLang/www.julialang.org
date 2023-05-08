@@ -354,6 +354,9 @@ v1.8 introduced the ability to specify a path to either a file or directory for 
 
 This change means often a lot less code needs to be tracked, and in cases where code from dependencies fall in tight loops this can heavily speed up the test suite. In one example Octavian.jl tests with coverage enabled went from >2hrs to ~6 minutes.
 
+## macOS ARM Achieves Tier 1 Status
+
+With all tests successfully passing and continuous integration (CI) established for macOS ARM, the platform's status has been upgraded from Tier 2 to Tier 1.
 ## LLVM Update to v14
 
 *Valentin Churavy, Mosè Giordano*
