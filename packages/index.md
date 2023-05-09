@@ -1,6 +1,6 @@
 # Julia Packages
 
-The Julia ecosystem contains over 7,400 packages that are registered in the [General registry](https://github.com/JuliaRegistries/General), which means that finding the right package can be a challenge. Fortunately, there are services that can help navigate the ecosystem, including:
+The Julia ecosystem contains over 9,000 packages that are registered in the [General registry](https://github.com/JuliaRegistries/General), which means that finding the right package can be a challenge. Fortunately, there are services that can help navigate the ecosystem, including:
 
 @@tight-list
 * [JuliaHub](https://juliahub.com/ui/Packages) — a [Julia Computing](https://juliacomputing.com) service that includes search of all registered open source package documentation, code search, and navigation by tags/keywords.
