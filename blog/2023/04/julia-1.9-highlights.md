@@ -40,7 +40,7 @@ This feature comes with some tradeoffs, such as an increase in precompilation ti
 The graph below illustrates the changes in time-to-load (TTL), TTFX, and cache file size starting with Julia 1.7 (prior to any of the recent precompilation improvements):
 
 
-![](https://imgur.com/a/Xprq38A)
+![](https://i.imgur.com/L2SQtTr.png)
 
 For most packages, TTFX has gone from being the dominant factor to virtually negligible. TTL has also been reduced, albeit not as dramatically as TTFX. The same data is presented in the table below, with the "ratio" columns representing the ratio of Julia 1.7 / Julia 1.9 and "total" meaning "TTL + TTFX".
 
