@@ -2,9 +2,9 @@
 mintoclevel = 2
 maxtoclevel = 3
 title = "Julia 1.9 Highlights"
-authors = "..."
-published = "17 April 2023"
-rss_pubdate = Date(2023, 04, 17)
+authors = "The Julia contributors"
+published = "9 May 2023"
+rss_pubdate = Date(2023, 05, 19)
 rss = """Highlights of the Julia 1.9 release."""
 +++
 
@@ -15,14 +15,6 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 
 \toc
 
-## TODOs:
-
-- [ ] Authors for "Memory usage hint"
-- [ ] Authors for "Tasks and the interactive thread pool"
-- [ ] Stack function
-- [ ] Link to docs for Numbered REPL promp
-- [ ] move images from imgur to in repo
-- [ ] mention Apple Silicon becoming tier 1
 
 
 ## Caching of native code
@@ -40,7 +32,7 @@ This feature comes with some tradeoffs, such as an increase in precompilation ti
 The graph below illustrates the changes in time-to-load (TTL), TTFX, and cache file size starting with Julia 1.7 (prior to any of the recent precompilation improvements):
 
 
-![](https://i.imgur.com/L2SQtTr.png)
+![](/assets/blog/2023-1.9-highlights/benchmarks.png)|
 
 For most packages, TTFX has gone from being the dominant factor to virtually negligible. TTL has also been reduced, albeit not as dramatically as TTFX. The same data is presented in the table below, with the "ratio" columns representing the ratio of Julia 1.7 / Julia 1.9 and "total" meaning "TTL + TTFX".
 
@@ -133,21 +125,13 @@ Profile.take_heap_snapshot("Snapshot.heapsnapshot", all_one=true)
 
 To analyze your heap snapshot, open a Chromium browser and follow these steps: `right click -> inspect -> memory -> load`. Upload your `.heapsnapshot` file, and a new tab will appear on the left side to display your snapshot's details.
 
-![A heap snapshot in chrome devtools](https://i.imgur.com/CpkwTms.png)
+![A heap snapshot in chrome devtools](/assets/blog/2023-1.9-highlights/snapshot.png)
 
-
-<!-- ## Intel VTune integration
-
-*Valentin Churavy*
-
-Julia has various integration with native profilers, most notably
-
- -->
 
 
 ## Memory usage hint for the GC with `--heap-size-hint`
 
-Authors??
+*Roman Samarev*
 
 Julia 1.9 introduces a new command flag, `--heap-size-hint=<size>`, that enables users to set a limit on memory usage, after which the garbage collector (GC) will work more aggressively to clean up unused memory.
 
@@ -177,6 +161,8 @@ For other types, the default sorting algorithm has been changed to the internal 
 To learn more about the these changes, you can watch the JuliaCon 2022 talk, [Julia's latest in high performance sorting](https://www.youtube.com/watch?v=9SGuHFgJvSE) and it's forthcoming sequel in JuliaCon 2023.
 
 ## Tasks and the interactive thread pool
+
+*Jeff Bezanson, Kiran Pamnany, Jameson Nash*
 
 Before version 1.9, Julia treated all tasks equally, running them on all available threads without any distinction in priority. However, there are situations where you may want certain tasks to be prioritized, such as when running a [heartbeat](https://en.wikipedia.org/wiki/Heartbeat_(computing)) , providing an interactive interface, or displaying progress updates.
 
@@ -237,12 +223,11 @@ Drawing heavily on inspiration from the IPython shell (and other notebook-based 
 
 Being able to refer to an earlier evaluated object can be useful if, for example, one forgets to store the result of a long computation to a variable and then executes something else (so that `ans` gets overwritten).
 
-
-| ![](https://i.imgur.com/IPDUoJK.png)  |![](https://i.imgur.com/XTaG17X.png)|
+| ![](/assets/blog/2023-1.9-highlights/julia_numbered.png)  |![](/assets/blog/2023-1.9-highlights/ipython.png)|
 | :--------: | :--------: |
 | Julia REPL with "numbered prompt" | IPython REPL |
 
-For instructions how to enable this, see the documentation [ADD LINK]
+For instructions how to enable this, see the documentation: https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt.
 
 
 ## DelimitedFiles -- first stdlib to be upgradable
@@ -286,11 +271,6 @@ julia> using DelimitedFiles
 julia> pkgdir(DelimitedFiles)
 "/Users/kristoffercarlsson/.julia/packages/DelimitedFiles/aGcsu"
 ```
-
-
-## `stack`  function
-
-[#43334](https://github.com/JuliaLang/julia/pull/43334)
 
 
 ## `--math-mode=fast` disabled
