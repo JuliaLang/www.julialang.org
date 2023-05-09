@@ -57,8 +57,7 @@ Together with `PrecompileTools.jl`, Julia 1.9 delivers many of the benefits of [
 |:----- | ---:| ---:|
 | Developers can reduce out-of-box TTFX for their users | ✔️ | ❌ |
 | Users can reduce TTFX for custom tasks | ✔️ | ✔️ |
-| Works without a source-build of Julia | ✔️ | ❌ |
-| Packages can be updated without rebuilding Julia | ✔️ | ❌ |
+| Packages can be updated without rebuilding system image | ✔️ | ❌ |
 | Reduces TTL | ❌ | ✔️ |
 
 The difference in TTL arises because the system image can safely skip all the code-validation checks that are necessary when loading packages.
