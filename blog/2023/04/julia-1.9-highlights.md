@@ -116,7 +116,7 @@ using Profile
 Profile.take_heap_snapshot("Snapshot.heapsnapshot")
 ```
 
-If you're more interested in the number of objects rather than their sizes, you can use the `all_one=true` argument. This will report every object's size as one, making it easier to identify the total count of objects retained.
+If you are more interested in the number of objects rather than their sizes, you can use the `all_one=true` argument. This will report every object's size as one, making it easier to identify the total count of objects retained.
 
 ```julia
 Profile.take_heap_snapshot("Snapshot.heapsnapshot", all_one=true)
