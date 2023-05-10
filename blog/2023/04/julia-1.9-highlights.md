@@ -299,7 +299,7 @@ Pkg will now remember the last time the registry was updated across julia sessio
 
 When working with many environments, for instance across Pluto notebooks, the default behavior of `Pkg.add` to add the latest version of the requested package and any new dependencies can mean hitting precompilation frequently.
 
-`Pkg.add` can now be told to prefer to add already installed versions of packages (those that already have been downloadedd onto your machine), which are more likely to be precompiled.
+`Pkg.add` can now be told to prefer to add already installed versions of packages (those that already have been downloaded onto your machine), which are more likely to be precompiled.
 
 To globally opt-in to the new preference set the env var `JULIA_PKG_PRESERVE_TIERED_INSTALLED` to `true`.
 
