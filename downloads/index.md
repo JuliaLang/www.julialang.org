@@ -301,7 +301,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     <tr>
       <td> 11.4+ </td>
       <td> ARMv8 (64-bit) </td>
-      <td> <font color="orange">Tier 2</font> </td>
+      <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
       <td> 10.6+ </td>
