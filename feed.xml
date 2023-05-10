@@ -6,6 +6,14 @@
   <link>https://julialang.org/</link>
   <atom:link href="https://julialang.org/feed.xml" rel="self" type="application/rss+xml" />
   <item>
+    <title><![CDATA[Julia 1.9 Highlights]]></title>
+    <link>https://julialang.org/blog/2023/04/julia-1.9-highlights/</link>
+    <description><![CDATA[Highlights of the Julia 1.9 release.
+<br><a href="https://julialang.org/blog/2023/04/julia-1.9-highlights/">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2023/04/julia-1.9-highlights/</guid>
+    <pubDate>Fri, 19 May 2023 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title><![CDATA[Julia 1.8 Highlights]]></title>
     <link>https://julialang.org/blog/2022/08/julia-1.8-highlights/</link>
     <description><![CDATA[Highlights of the Julia 1.8 release.

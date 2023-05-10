@@ -428,13 +428,19 @@
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://julialang.org/jsoc/gsoc/juliareach/index.html</loc>
+    <loc>https://julialang.org/blog/2023/04/julia-1.9-highlights/index.html</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>https://julialang.org/blog/2016/08/GSoC2016-Graft/index.html</loc>
+    <lastmod>2023-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/jsoc/gsoc/juliareach/index.html</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
