@@ -185,7 +185,7 @@ For more information, refer to the [manual section on multi-threading](https://d
 
 ### Contextual module REPL
 
-*Rafael Forquet*
+*Rafael Fourquet*
 
 
 In Julia, the REPL evaluates expressions within the `Main` module by default. Starting with version 1.9, you can now change this to any other module. Many introspection methods, such as `varinfo`, which previously defaulted to examining the `Main` module, will now default to the REPL's current contextual module.
