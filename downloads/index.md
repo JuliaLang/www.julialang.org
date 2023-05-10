@@ -33,7 +33,7 @@ Checksums for this release are available in both [MD5](https://julialang-s3.juli
       <td colspan="3"> </td>
     </tr>
     <tr>
-      <th> macOS ARM (M-series Processor) <a href="/downloads/platform/#macos">[help]</a></th>
+      <th> macOS (Apple Silicon) <a href="/downloads/platform/#macos">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.dmg">64-bit (.dmg)</a>, <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{stable_release_short}}/julia-{{stable_release}}-macaarch64.tar.gz">64-bit (.tar.gz)</a> </td>
       <td colspan="3"> </td>
     </tr>
@@ -194,7 +194,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
       <td colspan="3"> </td>
     </tr>
     <tr>
-      <th> macOS ARM (M-series Processor) <a href="/downloads/platform/#macos">[help]</a></th>
+      <th> macOS (Apple Silicon) <a href="/downloads/platform/#macos">[help]</a></th>
       <td colspan="3"> <a href="https://julialang-s3.julialang.org/bin/mac/aarch64/{{upcoming_release_short}}/julia-{{upcoming_release}}-macaarch64.dmg">64-bit</a> </td>
       <td colspan="3"> </td>
     </tr>
