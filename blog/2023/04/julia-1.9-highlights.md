@@ -101,7 +101,7 @@ julia>  @time using ForwardDiff
   0.247568 seconds (220.93 k allocations: 13.793 MiB)
 ```
 
-For a comprehensive guide on using package extensions, please refer to the [documentation](https://pkgdocs.julialang.org/dev/creating-packages/#Conditional-loading-of-code-in-packages-(Extensions)).
+For a comprehensive guide on using package extensions, please refer to the [documentation](https://pkgdocs.julialang.org/v1.9/creating-packages/#Conditional-loading-of-code-in-packages-(Extensions)).
 
 ## Heap snapshot
 
@@ -179,7 +179,7 @@ julia --threads 3,1
 
 This command starts Julia with 3 "normal" threads and one interactive thread (in the interactive thread pool).
 
-For more information, refer to the [manual section on multi-threading](https://docs.julialang.org/en/v1.9-dev/manual/multi-threading/#man-threadpools). This feature was introduced in [#42302](https://github.com/JuliaLang/julia/pull/42302) .
+For more information, refer to the [manual section on multi-threading](https://docs.julialang.org/en/v1.9/manual/multi-threading/#man-threadpools). This feature was introduced in [#42302](https://github.com/JuliaLang/julia/pull/42302) .
 
 ## REPL
 
