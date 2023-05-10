@@ -163,7 +163,7 @@ To learn more about the these changes, you can watch the JuliaCon 2022 talk, [Ju
 
 *Jeff Bezanson, Kiran Pamnany, Jameson Nash*
 
-Before version 1.9, Julia treated all tasks equally, running them on all available threads without any distinction in priority. However, there are situations where you may want certain tasks to be prioritized, such as when running a [heartbeat](https://en.wikipedia.org/wiki/Heartbeat_(computing)) , providing an interactive interface, or displaying progress updates.
+Before version 1.9, Julia treated all tasks equally, running them on all available threads without any distinction in priority. However, there are situations where you may want certain tasks to be prioritized, such as when running a [heartbeat](https://en.wikipedia.org/wiki/Heartbeat_(computing)), providing an interactive interface, or displaying progress updates.
 
 To address this need, you can now designate a task as interactive when you [`Threads.@spawn`](https://docs.julialang.org/en/v1/base/multi-threading/#Base.Threads.@spawn)  it:
 
@@ -226,7 +226,7 @@ Being able to refer to an earlier evaluated object can be useful if, for example
 | :--------: | :--------: |
 | Julia REPL with "numbered prompt" | IPython REPL |
 
-For instructions how to enable this, see the documentation: https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt.
+For instructions how to enable this, see the [documentation](https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt).
 
 
 ## DelimitedFiles -- first stdlib to be upgradable
