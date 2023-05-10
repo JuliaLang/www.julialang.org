@@ -140,6 +140,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 ### Miscellaneous
 
 * [JuliaCN](https://github.com/JuliaCN) - An open-source organization for Julia localization in Chinese
+* [JuliaEPFL](https://github.com/JuliaEPFL) - Julia enthusiasts at and around École polytechnique fédérale de Lausanne (Switzerland)
 * [JuliaGaming](https://github.com/JuliaGaming) – Open source games built in the Julia Programming Language.
 * [JuliaKorea](https://github.com/juliakorea) - Julia Korea organization
 * [JuliaLangSlack](https://github.com/JuliaLangSlack) – Projects built to enable the Julia Lang community Slack workspace
