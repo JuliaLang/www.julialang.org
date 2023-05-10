@@ -339,7 +339,6 @@ This change means often a lot less code needs to be tracked, and in cases where 
 While Base loading supported specifying a custom `manifest` in the `Project.toml` file, Pkg.jl was unaware and didn't take this configuration into account. By doing so, we now have a way to support "monorepo" style projects, where sub-projects
 
 (internal packages) can specify a root-level manifest to "share" dependency resolution and versions. This greatly simplifies Pkg operations on sub-projects because they don't need their _own_ Manifest.toml files that can quickly get out of
-
 sync with the parent or peer manifests.
 
 
