@@ -37,17 +37,17 @@ The graph below illustrates the changes in time-to-load (TTL), TTFX, and cache f
 For most packages, TTFX has gone from being the dominant factor to virtually negligible. TTL has also been reduced, albeit not as dramatically as TTFX. The same data is presented in the table below, with the "ratio" columns representing the ratio of Julia 1.7 / Julia 1.9 and "total" meaning "TTL + TTFX".
 
 
-|         package | TTFX_1.7 | TTFX_1.9 | **TTFX_ratio** | TTL_1.7 | TTL_1.9 | TTL_ratio | **total_ratio** |
-|-----------------|----------|----------|------------|---------|---------|-----------|-------------|
-|             CSV |    11.66 |     0.08 |     **137.43** |    0.38 |    0.65 |      0.59 |       **16.34** |
-|      DataFrames |    17.39 |     0.38 |     **45.99** |    1.59 |     1.6 |      0.99 |       **9.58** |
-|          Revise |     7.04 |     0.39 |     **18.2** |    2.95 |    2.38 |      1.24 |       **3.61** |
-|         GLMakie |    64.62 |     1.66 |     **39.02** |   12.21 |    9.47 |      1.29 |       **6.91** |
-|              LV |    11.06 |      0.0 |     **7677.8** |    2.56 |    0.97 |      2.64 |       **14.05** |
-|  OrdinaryDiffEq |     2.25 |     0.21 |     **10.67** |    9.95 |    5.95 |      1.67 |       **1.98** |
-| ModelingToolkit |    73.53 |     4.81 |     **15.3** |   20.93 |    13.5 |      1.55 |       **5.16** |
-|            JuMP |    10.36 |     0.28 |     **36.75** |    4.68 |    3.96 |      1.18 |       **3.54** |
-|  ImageFiltering |     1.35 |     0.12 |     **10.84** |    2.76 |    2.14 |      1.29 |       **1.82** |
+| package         | TTFX_1.7 [s] | TTFX_1.9 [s] | **TTFX_ratio** | TTL_1.7 [s] | TTL_1.9 [s] | TTL_ratio | **total_ratio** |
+|-----------------|--------------|--------------|----------------|-------------|-------------|-----------|-----------------|
+| CSV             | 11.66        | 0.08         | **137.43**     | 0.38        | 0.65        | 0.59      | **16.34**       |
+| DataFrames      | 17.39        | 0.38         | **45.99**      | 1.59        | 1.6         | 0.99      | **9.58**        |
+| Revise          | 7.04         | 0.39         | **18.2**       | 2.95        | 2.38        | 1.24      | **3.61**        |
+| GLMakie         | 64.62        | 1.66         | **39.02**      | 12.21       | 9.47        | 1.29      | **6.91**        |
+| LV              | 11.06        | 0.0          | **7677.8**     | 2.56        | 0.97        | 2.64      | **14.05**       |
+| OrdinaryDiffEq  | 2.25         | 0.21         | **10.67**      | 9.95        | 5.95        | 1.67      | **1.98**        |
+| ModelingToolkit | 73.53        | 4.81         | **15.3**       | 20.93       | 13.5        | 1.55      | **5.16**        |
+| JuMP            | 10.36        | 0.28         | **36.75**      | 4.68        | 3.96        | 1.18      | **3.54**        |
+| ImageFiltering  | 1.35         | 0.12         | **10.84**      | 2.76        | 2.14        | 1.29      | **1.82**        |
 
 These numbers reveal a huge quality-of-life improvement across a wide range of packages.
 
