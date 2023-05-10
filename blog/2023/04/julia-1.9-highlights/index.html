@@ -111,7 +111,7 @@ julia&gt; pkgdir&#40;DelimitedFiles&#41;
 <h3 id=pkg_add_can_now_try_to_only_add_already_installed_packages ><a href="#pkg_add_can_now_try_to_only_add_already_installed_packages"><code>pkg&gt; add</code> can now try to only add already installed packages</a></h3>
 <p><em>Ian Butterworth</em></p>
 <p>When working with many environments, for instance across Pluto notebooks, the default behavior of <code>Pkg.add</code> to add the latest version of the requested package and any new dependencies can mean hitting precompilation frequently.</p>
-<p><code>Pkg.add</code> can now be told to prefer to add already installed versions of packages &#40;those that already have been downloaded onto your machine&#41;, which are more likely to be precompiled.</p>
+<p><code>Pkg.add</code> can now be told to prefer to add already installed versions of packages &#40;those that already have been downloadedd onto your machine&#41;, which are more likely to be precompiled.</p>
 <p>To globally opt-in to the new preference set the env var <code>JULIA_PKG_PRESERVE_TIERED_INSTALLED</code> to <code>true</code>.</p>
 <p>Or to enable for specific operations use:</p>
 <ul>
