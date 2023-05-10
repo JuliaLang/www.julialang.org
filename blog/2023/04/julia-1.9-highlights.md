@@ -32,7 +32,7 @@ This feature comes with some tradeoffs, such as an increase in precompilation ti
 The graph below illustrates the changes in time-to-load (TTL), TTFX, and cache file size starting with Julia 1.7 (prior to any of the recent precompilation improvements):
 
 
-![](/assets/blog/2023-1.9-highlights/benchmarks.png)|
+![](/assets/blog/2023-1.9-highlights/benchmarks.png)
 
 For most packages, TTFX has gone from being the dominant factor to virtually negligible. TTL has also been reduced, albeit not as dramatically as TTFX. The same data is presented in the table below, with the "ratio" columns representing the ratio of Julia 1.7 / Julia 1.9 and "total" meaning "TTL + TTFX".
 
@@ -86,10 +86,10 @@ end
 
 However, adding package dependencies can have costs, such as increased load times or require installation of large artifacts (e.g., CUDA.jl). This can be burdensome for package authors who must constantly balance dependency costs against the benefits of new method extensions for an "average" package user.
 
-Julia 1.9 introduces "package extensions", a feature that, in a loose sense, automatically loads a module when a set of packages are loaded. The module, contained within a file in the `ext` directory of the parent package, loads the weak dependency and extend methods. The goal is that one should not have to pay for features that one does not use. Package extensions provide functionality similar to that which Requires.jl already offers but with key advantages, such as allowing precompilation of conditional code and adding compatibility constraints on weak dependencies.
+Julia 1.9 introduces "package extensions", a feature that, in a loose sense, automatically loads a module when a set of packages are loaded. The module, contained within a file in the `ext` directory of the parent package, loads the weak dependency and extend methods. The goal is that one should not have to pay for features that one does not use. Package extensions provide functionality similar to that which [Requires.jl](https://github.com/JuliaPackaging/Requires.jl) already offers but with key advantages, such as allowing precompilation of conditional code and adding compatibility constraints on weak dependencies.
 Since the package extension functionality is now "first class", package authors should be less reluctant to start using it compared to Requires.jl.
 
-As a concrete example where package extensions are used for good effect, the ForwardDiff.jl package provides optimized routines for automatic differentiation when the input is a `StaticArray`. In Julia 1.8, it unconditionally loaded the `StaticArrays` package, while in 1.9, it uses a package extension. This results in a significant improvement in load time:
+As a concrete example where package extensions are used for good effect, the [ForwardDiff.jl](https://github.com/JuliaDiff/ForwardDiff.jl) package provides optimized routines for automatic differentiation when the input is a `StaticArray`. In Julia 1.8, it unconditionally loaded the `StaticArrays` package, while in 1.9, it uses a package extension. This results in a significant improvement in load time:
 
 ```julia
 # 1.8 (StaticArrays unconditionally loaded)
@@ -142,7 +142,7 @@ To use this new feature, simply run Julia with the `--heap-size-hint` flag follo
 julia --heap-size-hint=<size>
 ```
 
-Replace `<size>` with the appropriate value (e.g., 1G for 1 gigabyte or 512M for 512 megabytes).
+Replace `<size>` with the appropriate value (e.g., `1G` for 1 gigabyte or `512M` for 512 megabytes).
 
 This enhancement in Julia 1.9 makes it easier than ever to manage memory resources effectively, providing users with greater control and flexibility when working with memory-intensive applications.
 
@@ -153,7 +153,7 @@ This feature was introduced in [#45369]( https://github.com/JuliaLang/julia/pull
 
 *Lilith Hafner*
 
-The default sorting algorithm for has been upgraded to a more adaptive sorting algorithm that is always stable and often has state of the art performance. For simple types and orders—`BitInteger`, `IEEEFloat`, and `Char` sorted in default or reverse order—we use a radix sort that has linear runtime with respect to input size. This effect is especially pronounced for `Float16`s which recieved a 3x-50x speedup over 1.8.
+The default sorting algorithm has been upgraded to a more adaptive sorting algorithm that is always stable and often has state of the art performance. For simple types and orders—`BitInteger`, `IEEEFloat`, and `Char` sorted in default or reverse order—we use a radix sort that has linear runtime with respect to input size. This effect is especially pronounced for `Float16`s which recieved a 3x-50x speedup over 1.8.
 
 For other types, the default sorting algorithm has been changed to the internal `ScratchQuickSort` in most cases, which is stable and generally faster than `QuickSort`, although it does allocate memory. For situations where memory efficiency is crucial, you can override these new defaults by specifying `alg=QuickSort`.
 
@@ -163,7 +163,7 @@ To learn more about the these changes, you can watch the JuliaCon 2022 talk, [Ju
 
 *Jeff Bezanson, Kiran Pamnany, Jameson Nash*
 
-Before version 1.9, Julia treated all tasks equally, running them on all available threads without any distinction in priority. However, there are situations where you may want certain tasks to be prioritized, such as when running a [heartbeat](https://en.wikipedia.org/wiki/Heartbeat_(computing)) , providing an interactive interface, or displaying progress updates.
+Before version 1.9, Julia treated all tasks equally, running them on all available threads without any distinction in priority. However, there are situations where you may want certain tasks to be prioritized, such as when running a [heartbeat](https://en.wikipedia.org/wiki/Heartbeat_(computing)), providing an interactive interface, or displaying progress updates.
 
 To address this need, you can now designate a task as interactive when you [`Threads.@spawn`](https://docs.julialang.org/en/v1/base/multi-threading/#Base.Threads.@spawn)  it:
 
@@ -226,7 +226,7 @@ Being able to refer to an earlier evaluated object can be useful if, for example
 | :--------: | :--------: |
 | Julia REPL with "numbered prompt" | IPython REPL |
 
-For instructions how to enable this, see the documentation: https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt.
+For instructions how to enable this, see the [documentation](https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt).
 
 
 ## DelimitedFiles -- first stdlib to be upgradable
@@ -312,7 +312,7 @@ Note that using this you may get old versions of packages installed so if you ar
 
 *Kristoffer Carlsson*
 
-To show the reason why a package is in the manifest a new `pkg> why Foo` command is available. The output is all the different ways to reach the package through the dependency graph starting from the dependencies.
+To show the reason why a package is in the manifest a new `pkg> why Foo` command is available. The output is all the different ways to reach the package through the dependency graph starting from the direct dependencies.
 
 ```
 (jl_zMxmBY) pkg> why DataAPI
