@@ -226,7 +226,7 @@ Being able to refer to an earlier evaluated object can be useful if, for example
 | :--------: | :--------: |
 | Julia REPL with "numbered prompt" | IPython REPL |
 
-For instructions how to enable this, see the documentation: https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt.
+For instructions how to enable this, see the documentation: [https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt](https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt)
 
 
 ## DelimitedFiles -- first stdlib to be upgradable
