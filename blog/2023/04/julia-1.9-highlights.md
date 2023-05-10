@@ -332,6 +332,17 @@ v1.8 introduced the ability to specify a path to either a file or directory for 
 
 This change means often a lot less code needs to be tracked, and in cases where code from dependencies fall in tight loops this can heavily speed up the test suite. In one example Octavian.jl tests with coverage enabled went from >2hrs to ~6 minutes.
 
+### Better support for monorepos with sub-packages via the `manifest` field in `Project.toml`
+
+*Jacob Quinn, Nick Robinson*
+
+While Base loading supported specifying a custom `manifest` in the `Project.toml` file, Pkg.jl was unaware and didn't take this configuration into account. By doing so, we now have a way to support "monorepo" style projects, where sub-projects
+
+(internal packages) can specify a root-level manifest to "share" dependency resolution and versions. This greatly simplifies Pkg operations on sub-projects because they don't need their _own_ Manifest.toml files that can quickly get out of
+
+sync with the parent or peer manifests.
+
+
 ## Apple Silicon Achieves Tier 1 Status
 
 With all tests successfully passing and continuous integration (CI) established for Apple Silicon, the [platform's status](https://julialang.org/downloads/#supported_platforms) has been upgraded from Tier 2 to Tier 1.
