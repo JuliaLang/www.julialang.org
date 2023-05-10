@@ -308,7 +308,7 @@ Or to enable for specific operations use:
 - `pkg> add --preserve=installed Foo` to strictly try this strategy, or error.
 
 Note that using this you may get old versions of packages installed so if you are encountering issues, it is usually a good idea to do an actual upgrade to the latest version to see if the issue has been fixed.
-### `pkg> why` to tell you why a package in the manifest
+### `pkg> why` to tell you why a package is in the manifest
 
 *Kristoffer Carlsson*
 
