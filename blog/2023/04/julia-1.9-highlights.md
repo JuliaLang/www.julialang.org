@@ -29,11 +29,11 @@ With the introduction of Julia 1.9, native code caching is now available, result
 
 This feature comes with some tradeoffs, such as an increase in precompilation time by 10%-50%. However, since this is a one-time cost, we believe the tradeoff is well worth it. Cache files have also become larger due to the storage of more data and the use of a different serialization format.
 
-The graph below illustrates the changes in time-to-load (TTL), TTFX, and cache file size starting with Julia 1.7 (prior to any of the recent precompilation improvements)[^1]:
+The graph below illustrates the changes in time-to-load (TTL), TTFX, and cache file size starting with Julia 1.7 (prior to any of the recent precompilation improvements):
 
 ![](/assets/blog/2023-1.9-highlights/benchmarks.png)
 
-For most packages, TTFX has gone from being the dominant factor to virtually negligible. TTL has also been reduced, albeit not as dramatically as TTFX. The same data is presented in the table below, with the "ratio" columns representing the ratio of Julia 1.7 / Julia 1.9 and "total" meaning "TTL + TTFX".
+(See Methodology below for details.) For most packages, TTFX has gone from being the dominant factor to virtually negligible. TTL has also been reduced, albeit not as dramatically as TTFX. The same data is presented in the table below, with the "ratio" columns representing the ratio of Julia 1.7 / Julia 1.9 and "total" meaning "TTL + TTFX".
 
 
 | package         | TTFX_1.7 [s] | TTFX_1.9 [s] | **TTFX_ratio** | TTL_1.7 [s] | TTL_1.9 [s] | TTL_ratio | **total_ratio** |
@@ -63,6 +63,10 @@ The difference in TTL arises because the system image can safely skip all the co
 
 At the time of Julia 1.9's release, only a small fraction of the package ecosystem has adopted PrecompileTools.
 As these new tools become leveraged more widely, users can probably expect ongoing improvements in TTFX.
+
+#### Methodology
+
+A demonstration workload was designed for each package. That workload was placed in a [Startup package](https://julialang.github.io/PrecompileTools.jl/stable/#Tutorial:-local-%22Startup%22-packages) and precompiled; for benchmarking, we load the Startup package and run the same workload. Full details can be found in [this repository](https://github.com/timholy/JuliaCon2022_Precompilation/tree/teh/jan_2023/analysis/cache_external).
 
 ___
 
@@ -377,4 +381,3 @@ julia> @btime sumsimd(x) setup=(x=randn(Float64, 1_000_000))
 
 Milan Klöwer presented an application of using half-precision for a shallow water simulation run on A64FX in his JuliaCon 2021 talk [*3.6x speedup on A64FX by squeezing ShallowWaters.jl into Float16*](https://www.youtube.com/watch?v=btHfZr2C0GA).
 
-[^1]: Methodology: a demonstration workload was designed for each package. That workload was placed in a [Startup package](https://julialang.github.io/PrecompileTools.jl/stable/#Tutorial:-local-%22Startup%22-packages) and precompiled; for benchmarking, we load the Startup package and run the same workload. Full details can be found in [this repository](https://github.com/timholy/JuliaCon2022_Precompilation/tree/teh/jan_2023/analysis/cache_external).
