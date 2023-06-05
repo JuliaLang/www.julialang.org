@@ -1,10 +1,4 @@
-@def rss_pubdate = Date(2023, 6, XX)
-@def rss = """ TBD """
-@def published = "xx June 2023"
-@def title = "PSA: Stop using `states[threadid()]`"
-@def authors = """Mason Protter, Valentin Churavy, ..."""
-@def mintoclevel=2
-@def maxtoclevel=3
++++ mintoclevel = 2 maxtoclevel = 3 title = "PSA: Stop using `states[threadid()]`" authors = "Mason Protter, Valentin Churavy, Ian Butterworth, ..." published = "XX June 2023" rss_pubdate = Date(2023, 06, XX) rss = """PSA: Stop using `states[threadid()]`""" +++
 
 # PSA: Stop using `states[threadid()]`
 Alt titles:
