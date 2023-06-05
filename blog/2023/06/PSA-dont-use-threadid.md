@@ -1,14 +1,3 @@
-## TODO's before publication
-- [ ] Update master & 1.9 docs to guide against misuse of `threadid()` e.g. 
-    - [ ] `add docs on task-specific buffering using @threads` [#48542](https://github.com/JuliaLang/julia/pull/48542)
-    - [ ] `add docs on task migration` [#50047](https://github.com/JuliaLang/julia/pull/50047)
-    - [ ] Add `!!1compat` notes to threadid/nthreads/maxthreadid
-    - [ ] Add note to recommend against `@async`
-- [ ] Make sure that ^ 1.9 version is released so docs are discoverable
-- [ ] Get signoff by core multithreading developers
-- [ ] More detail in the Packages section, perhaps with examples (or remove it)
-- [ ] Bikeshead the title.
-
 # PSA: Stop using `states[threadid()]`
 Alt titles:
 - PSA: Multithreading with `states[threadid()]` is unsafe
