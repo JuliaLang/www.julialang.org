@@ -16,7 +16,6 @@ Alt titles:
 - PSA: Don't assume `threadid()` is stable within a task
 
 __
-#### (or really any uses of `threadid()`)
 
 
 Partially due to the evolving history of our parallel and concurrent interfaces[^historynote], some Julia programmers have been writing *incorrect* parallel code that contains the possibility of race conditions which will give subtly wrong results. It's important for the stability and correctness of the ecosystem that these usages are identified and fixed. 
