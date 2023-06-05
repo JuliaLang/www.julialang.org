@@ -112,7 +112,7 @@ The above `pmampreduce` can hopefully be added to base Julia at some point in th
 
 ## Another option: Use a package which handles this correctly
 
-We encourage people to check out various multithreading libraries like [Transducers.jl](https://github.com/JuliaFolds2/Transducers.jl) (or various frontends like [ThreadsX.jl](https://github.com/tkf/ThreadsX.jl), [FLoops.jl](https://github.com/JuliaFolds/FLoops.jl), and [Folds.jl](https://github.com/JuliaFolds/Folds.jl)), <!--- [Polyester.jl](https://github.com/JuliaSIMD/Polyester.jl), --> and [MultiThreadedCaches.jl](https://github.com/JuliaConcurrent/MultiThreadedCaches.jl).
+We encourage people to check out various multithreading libraries like [Transducers.jl](https://github.com/JuliaFolds2/Transducers.jl) (or various frontends like [ThreadsX.jl](https://github.com/tkf/ThreadsX.jl), [FLoops.jl](https://github.com/JuliaFolds/FLoops.jl), and [Folds.jl](https://github.com/JuliaFolds/Folds.jl)),  and [MultiThreadedCaches.jl](https://github.com/JuliaConcurrent/MultiThreadedCaches.jl).
 
 ### Transducers.jl ecosystem
 Transducers.jl is fundamentally about expressing the traversing of data in a structured and principled way, often with the benefit that it makes parallel computing easier to reason about. 
