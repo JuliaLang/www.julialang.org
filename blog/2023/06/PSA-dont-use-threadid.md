@@ -68,7 +68,7 @@ However, this is not a good long term solution because
 
 If you want a recipe that can replace the above buggy one with something that can be written using only the `Base.Threads` module, we recommend moving away from `@threads`, and instead working directly with `@spawn` to create and manage tasks. The reason is that `@threads` does not have any builtin mechanisms for managing and merging the results of work from different threads, whereas tasks can manage and return their own state in a safe way.
 
-Tasks creating and returning their own state is inherently safer than the spawner of paralell tasks setting up state for spawned tasks to read from and write to. 
+Tasks creating and returning their own state is inherently safer than the spawner of parallel tasks setting up state for spawned tasks to read from and write to. 
 
 Code which replaces the incorrect code pattern shown above can look like this:
 ```julia
