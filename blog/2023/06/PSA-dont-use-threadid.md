@@ -168,7 +168,7 @@ MultiThreadedCaches.jl on the other hand attempts to make the `states[threadid()
     3. Thread adoption (v1.9): Foreign threads can now be adopted (and later be removed) at any time during the execution of the program.
     4. GC threads: The runtime can use additional threads to accelerate work like executing the Garbage Collector.
 
-    Any code that relies on a specific `threadid` staying constant, or on a constant number of threads during execution, is bound to be incorrect. As a rule of thumb, programmers should at most be querying the number of threads to motivate heuristics like how to distribute parallel work, but programs should generally **not** be written to depend on implementation details of threads for correctness. Rather, programmers should reason about *tasks*. 
+    Any code that relies on a specific `threadid` staying constant, or on a constant number of threads during execution, is bound to be incorrect. As a rule of thumb, programmers should at most be querying the number of threads to motivate heuristics like how to distribute parallel work, but programs should generally **not** be written to depend on implementation details of threads for correctness. Rather, programmers should reason about *tasks*, i.e. pieces of work that may execute concurrently with other code, independently of the number of *threads* that are used for executing them. 
     
 [^assoc]: ## Associativity
     [Associativity](https://en.wikipedia.org/wiki/Associative_property) is an important property for parallel reducing functions because it means that `op(a, op(b, c)) == op(op(a, b), c)`, and hence the result does not depend on the order in which the reduction is performed. 
