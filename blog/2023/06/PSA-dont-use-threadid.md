@@ -165,7 +165,7 @@ MultiThreadedCaches.jl on the other hand attempts to make the `states[threadid()
 
     1. Task migration: A task can observe multiple `threadid`s during its execution.
     2. Interactive priority: `nthreads()` will report the number of non-interactive worker-threads, thus undercounting the number of active threads.
-    3. Thread adoption (v1.9): Foreign threads can now be adopted (and latter removed) at any time during the execution of the program.
+    3. Thread adoption (v1.9): Foreign threads can now be adopted (and later be removed) at any time during the execution of the program.
     4. GC threads: The runtime can use additional threads to accelerate work like executing the Garbage Collector.
 
     Any code that relies on a specific `threadid` staying constant, or on a constant number of threads during execution, is bound to be incorrect. As a rule of thumb, programmers should at most be querying the number of threads to motivate heuristics like how to distribute parallel work, but programs should generally **not** be written to depend on implementation details of threads for correctness. Rather, programmers should reason about *tasks*. 
