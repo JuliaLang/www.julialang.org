@@ -100,7 +100,7 @@ do_something(states)
 This is a fully general replacement for the old, buggy pattern. However, for many applications this should be simplified down to a parallel version of `mapreduce`:
 ```julia
 using Threads: nthreads, @spawn
-function pmapreduce(f, op, itr; init=some_initial_value, chunks_per_thread::Int = 2)
+function tmapreduce(f, op, itr; init=some_initial_value, chunks_per_thread::Int = 2)
     chunk_size = max(1, length(itr) ÷ chunks_per_thread)
     tasks = map(Iterators.partition(itr, chunk_size)) do chunk
         @spawn mapreduce(f, op, chunk; init=init)
@@ -108,9 +108,9 @@ function pmapreduce(f, op, itr; init=some_initial_value, chunks_per_thread::Int 
     mapreduce(fetch, op, tasks; init=init)
 end
 ```
-In `pmapreduce(f, op, itr)`, the function `f` is applied to each element of `itr`, and then an *associative*[^assoc] two-argument function `op`.
+In `tmapreduce(f, op, itr)`, the function `f` is applied to each element of `itr`, and then an *associative*[^assoc] two-argument function `op`.
 
-The above `pmampreduce` can hopefully be added to base Julia at some point in the near future. In the meantime however it's somewhat simple to write your own as above.
+The above `tmampreduce` can hopefully be added to base Julia at some point in the near future. In the meantime however it's somewhat simple to write your own as above.
 
 ## Another option: Use a package which handles this correctly
 
@@ -119,7 +119,7 @@ We encourage people to check out various multithreading libraries like [Transduc
 ### Transducers.jl ecosystem
 Transducers.jl is fundamentally about expressing the traversing of data in a structured and principled way, often with the benefit that it makes parallel computing easier to reason about. 
 
-The above `pmapreduce(f, op, itr)` could be expressed as
+The above `tmapreduce(f, op, itr)` could be expressed as
 ```julia
 using Transducers
 itr |> Map(f) |> foldxt(op; init=some_initial_value)
