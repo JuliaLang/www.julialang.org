@@ -92,7 +92,7 @@ tasks = map(data_chunks) do chunk
     end
 end
 states = fetch.(tasks) # get all the values returned by the individual tasks.
-# fetch is type unstable, so you may optionally want to assert a specific return value. 
+# fetch is type unstable, so you may optionally want to assert a specific return type.
 
 do_something(states)
 ```
