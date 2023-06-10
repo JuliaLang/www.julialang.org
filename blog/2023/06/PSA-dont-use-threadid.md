@@ -9,7 +9,7 @@ Alt titles:
 __
 
 
-Partially due to the evolving history of our parallel and concurrent interfaces[^historynote], some Julia programmers have been writing *incorrect* parallel code that contains the possibility of race conditions which will give subtly wrong results. It's important for the stability and correctness of the ecosystem that these usages are identified and fixed. 
+Partially due to the evolving history of our parallel and concurrent interfaces[^historynote], some Julia programmers have been writing *incorrect* parallel code that contains the possibility of race conditions which can give wrong results. This pattern has even been erroneously recommended in [previous official julia blogposts](https://github.com/JuliaLang/www.julialang.org/blob/main/blog/2019/07/multithreading.md#thread-local-state). It is important for the stability and correctness of the ecosystem that these usages are identified and fixed.
 
 The general template that this incorrect code follows is something like the following:
 
@@ -26,9 +26,7 @@ end
 do_something(states)
 ```
 
-The above code is **incorrect** because the tasks spawned by `@threads` are  allowed to yield to other tasks during their execution.
- 
-This means that between reading `old_val` and storing `new_val` in the storage, the task could be paused and a new task running on the same thread with the same `threadid()` could concurrently write to `states[tid]`, causing a race condition and thus work being lost.
+The above code is **incorrect** because the tasks spawned by `@threads` are  allowed to yield to other tasks during their execution. This means that between reading `old_val` and storing `new_val` in the storage, the task could be paused and a new task running on the same thread with the same `threadid()` could concurrently write to `states[tid]`, causing a race condition and thus work being lost.
 
 This is not actually a problem with multithreading specifically, but really a concurrency problem, and it can be demonstrated even with a single thread. For example: 
 ```
