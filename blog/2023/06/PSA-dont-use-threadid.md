@@ -1,10 +1,11 @@
 +++ mintoclevel = 2 maxtoclevel = 3 title = "PSA: Stop using `states[threadid()]`" authors = "Mason Protter, Valentin Churavy, Ian Butterworth, ..." published = "XX June 2023" rss_pubdate = Date(2023, 06, XX) rss = """PSA: Stop using `states[threadid()]`""" +++
 
-# PSA: Stop using `states[threadid()]`
+# PSA: Thread-local state is no longer recommended; Common misconceptions about threadid() and nthreads()
 Alt titles:
 - PSA: Multithreading with `states[threadid()]` is unsafe
 - PSA: Multithreading with `buffers[threadid()]` is unsafe
 - PSA: Don't assume `threadid()` is stable within a task
+- PSA: Stop using `states[threadid()]`
 
 __
 
