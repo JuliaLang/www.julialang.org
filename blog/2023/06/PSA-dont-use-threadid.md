@@ -1,13 +1,6 @@
-+++ mintoclevel = 2 maxtoclevel = 3 title = "PSA: Stop using `states[threadid()]`" authors = "Mason Protter, Valentin Churavy, Ian Butterworth, ..." published = "XX June 2023" rss_pubdate = Date(2023, 06, XX) rss = """PSA: Stop using `states[threadid()]`""" +++
++++ mintoclevel = 2 maxtoclevel = 3 title = "PSA: Thread-local state is no longer recommended; Common misconceptions about threadid() and nthreads()" authors = "Mason Protter, Valentin Churavy, Ian Butterworth, ..." published = "XX June 2023" rss_pubdate = Date(2023, 06, XX) rss = """PSA: Thread-local state is no longer recommended; Common misconceptions about threadid() and nthreads()""" +++
 
 # PSA: Thread-local state is no longer recommended; Common misconceptions about threadid() and nthreads()
-Alt titles:
-- PSA: Multithreading with `states[threadid()]` is unsafe
-- PSA: Multithreading with `buffers[threadid()]` is unsafe
-- PSA: Don't assume `threadid()` is stable within a task
-- PSA: Stop using `states[threadid()]`
-
-__
 
 
 Partially due to the evolving history of our parallel and concurrent interfaces[^historynote], some Julia programmers have been writing *incorrect* parallel code that contains the possibility of race conditions which can give wrong results. This pattern has even been erroneously recommended in [previous official julia blogposts](https://github.com/JuliaLang/www.julialang.org/blob/main/blog/2019/07/multithreading.md#thread-local-state). It is important for the stability and correctness of the ecosystem that these usages are identified and fixed.
