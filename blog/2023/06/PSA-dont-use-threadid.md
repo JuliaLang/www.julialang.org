@@ -214,7 +214,7 @@ MultiThreadedCaches.jl on the other hand attempts to make the `states[threadid()
 
 [^yielding]: ~~~<h4>~~~Don't try to reason about yielding~~~</h4>~~~
 @@long-footnote
-   Many existing uses of thread local state happen to be relatively robust and give correct answers only because the functions they are calling during execution do not yield. One may then think "well, I can just avoid this problem by making sure my code doesn't yeield", but we think this is a bad and unsustainable idea, because whether or not a function call will yield is not stable, obvious, or easily inspectable.
+   Many existing uses of thread local state happen to be relatively robust and give correct answers only because the functions they are calling during execution do not yield. One may then think "well, I can just avoid this problem by making sure my code doesn't yield", but we think this is a bad and unsustainable idea, because whether or not a function call will yield is not stable, obvious, or easily inspectable.
 
    For instance, if a function `f` is updated to include a background `@debug` statement or other forms of non-user-visible IO, it may change from being non-yielding to yielding. If during a call to `f`, the compiler encounters a dynamic dispatch where new code must be JIT compiled, a yield-point may be encountered, and any number of other internal changes could happen to code which can cause it to yielding.
 
