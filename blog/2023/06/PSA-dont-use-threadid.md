@@ -122,7 +122,7 @@ end
 
 In `tmapreduce(f, op, itr)`, the function `f` is applied to each element of `itr`, and then an *associative*[^assoc] two-argument function `op`.
 
-The above `tmampreduce` can hopefully be added to base Julia at some point in the near future. In the meantime however it's somewhat simple to write your own as above.
+The above `tmapreduce` can hopefully be added to base Julia at some point in the near future. In the meantime however it's somewhat simple to write your own as above.
 
 ### Another option: Use a package which handles this correctly
 
