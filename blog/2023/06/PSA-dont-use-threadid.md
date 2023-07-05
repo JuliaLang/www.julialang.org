@@ -93,6 +93,7 @@ data_chunks = partition(some_data, chunk_size) # partition your data into chunks
 
 tasks = map(data_chunks) do chunk
     # Each chunk of your data gets its own spawned task that does its own local, sequential work
+    # and then returns the result
     @spawn begin
         state = some_initial_value
         for x in chunk
