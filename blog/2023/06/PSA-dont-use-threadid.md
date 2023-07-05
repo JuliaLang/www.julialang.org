@@ -34,7 +34,7 @@ end
 do_something(states)
 ```
 
-The above code is **incorrect** because the tasks spawned by `@threads` are  allowed to yield to other tasks during their execution. This means that between reading `old_val` and storing `new_val` in the storage, the task could be paused and a new task running on the same thread with the same `threadid()` could concurrently write to `states[tid]`, causing a race condition and thus work being lost.
+The above code is **incorrect** because the tasks spawned by `@threads` are  allowed to yield to other tasks during their execution[^yielding]. This means that between reading `old_val` and storing `new_val` in the storage, the task could be paused and a new task running on the same thread with the same `threadid()` could concurrently write to `states[tid]`, causing a race condition and thus work being lost.
 
 This is not actually a problem with multithreading specifically, but really a concurrency problem, and it can be demonstrated even with a single thread. For example:
 
@@ -48,10 +48,10 @@ julia> f(i) = (sleep(0.001); i);
 julia> let state = [0], N=100
            @sync for i ∈ 1:N
                Threads.@spawn begin
-                   tid = Threads.threadid()
-                   old_var = state[tid]
-                   new_var = old_var + f(i)
-                   state[tid] = new_var
+                   tid = Threads.threadid()  # each task gets `tid = 1`
+                   old_var = state[tid]      # each task reads the current value, which for all is 0 (!) because...
+                   new_var = old_var + f(i)  # ...the `sleep` in `f` causes all tasks to pause *simultaneously* here (all loop iterations start, but do not yet finish)
+                   state[tid] = new_var      # after being released from the `sleep`, each task sets `state[1]` to `i`
                end
            end
            sum(state), sum(1:N)
@@ -92,7 +92,8 @@ data_chunks = partition(some_data, chunk_size) # partition your data into chunks
 # See also ChunkSplitters.jl and SplittablesBase.jl for partitioning data
 
 tasks = map(data_chunks) do chunk
-    # Each chunk of your data gets its own spawned task that does its own local work and returns a result
+    # Each chunk of your data gets its own spawned task that does its own local, sequential work
+    # and then returns the result
     @spawn begin
         state = some_initial_value
         for x in chunk
@@ -122,7 +123,7 @@ end
 
 In `tmapreduce(f, op, itr)`, the function `f` is applied to each element of `itr`, and then an *associative*[^assoc] two-argument function `op`.
 
-The above `tmampreduce` can hopefully be added to base Julia at some point in the near future. In the meantime however it's somewhat simple to write your own as above.
+The above `tmapreduce` can hopefully be added to base Julia at some point in the near future. In the meantime however it's somewhat simple to write your own as above.
 
 ### Another option: Use a package which handles this correctly
 
@@ -208,6 +209,17 @@ MultiThreadedCaches.jl on the other hand attempts to make the `states[threadid()
    4. GC threads: The runtime can use additional threads to accelerate work like executing the Garbage Collector.
 
    Any code that relies on a specific `threadid` staying constant, or on a constant number of threads during execution, is bound to be incorrect. As a rule of thumb, programmers should at most be querying the number of threads to motivate heuristics like how to distribute parallel work, but programs should generally **not** be written to depend on implementation details of threads for correctness. Rather, programmers should reason about *tasks*, i.e. pieces of work that may execute concurrently with other code, independently of the number of *threads* that are used for executing them.
+@@
+
+\\
+
+[^yielding]: ~~~<h4>~~~Don't try to reason about yielding~~~</h4>~~~
+@@long-footnote
+   Many existing uses of thread local state happen to be relatively robust and give correct answers only because the functions they are calling during execution do not yield. One may then think "well, I can just avoid this problem by making sure my code doesn't yield", but we think this is a bad and unsustainable idea, because whether or not a function call will yield is not stable, obvious, or easily inspectable.
+
+   For instance, if a function `f` is updated to include a background `@debug` statement or other forms of non-user-visible IO, it may change from being non-yielding to yielding. If during a call to `f`, the compiler encounters a dynamic dispatch where new code must be JIT compiled, a yield-point may be encountered, and any number of other internal changes could happen to code which can cause it to yielding.
+
+   Furthermore, future versions of julia may eventually move away from a [cooperative task model](https://en.wikipedia.org/wiki/Cooperative_multitasking) to a [preemptive task model](https://en.wikipedia.org/wiki/Preemption_(computing), in which case yield points would not be the only way that race conditions like this could be encountered.
 @@
 
 \\
