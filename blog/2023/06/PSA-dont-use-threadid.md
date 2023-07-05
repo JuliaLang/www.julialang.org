@@ -219,7 +219,7 @@ MultiThreadedCaches.jl on the other hand attempts to make the `states[threadid()
 
    For instance, if a function `f` is updated to include a background `@debug` statement or other forms of non-user-visible IO, it may change from being non-yielding to yielding. If during a call to `f`, the compiler encounters a dynamic dispatch where new code must be JIT compiled, a yield-point may be encountered, and any number of other internal changes could happen to code which can cause it to yielding.
 
-   Furthermore, future versions of julia may eventually move away from a [cooperative task model](https://en.wikipedia.org/wiki/Cooperative_multitasking) to a [preemptive task model](https://en.wikipedia.org/wiki/Preemption_(computing), in which case yield points would not be the only way that race conditions like this could be encountered.
+   Furthermore, future versions of julia may eventually move away from a [cooperative task model](https://en.wikipedia.org/wiki/Cooperative_multitasking) to a [preemptive task model](https://en.wikipedia.org/wiki/Preemption_(computing)), in which case yield points would not be the only way that race conditions like this could be encountered.
 @@
 
 \\
