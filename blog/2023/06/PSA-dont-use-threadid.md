@@ -92,7 +92,7 @@ data_chunks = partition(some_data, chunk_size) # partition your data into chunks
 # See also ChunkSplitters.jl and SplittablesBase.jl for partitioning data
 
 tasks = map(data_chunks) do chunk
-    # Each chunk of your data gets its own spawned task that does its own local work and returns a result
+    # Each chunk of your data gets its own spawned task that does its own local, sequential work
     @spawn begin
         state = some_initial_value
         for x in chunk
