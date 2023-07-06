@@ -3,8 +3,8 @@ mintoclevel = 2
 maxtoclevel = 3
 title = "PSA: Thread-local state is no longer recommended"
 authors = "Mason Protter, Valentin Churavy, Ian Butterworth, ..."
-published = "30 June 2023"
-rss_pubdate = Date(2023, 06, 30)
+published = "06 July 2023"
+rss_pubdate = Date(2023, 07, 06)
 rss = """PSA: Thread-local state is no longer recommended; Common misconceptions about threadid() and nthreads()"""
 +++
 
@@ -26,7 +26,7 @@ using Base.Threads: nthreads, @threads, threadid
 
 states = [some_initial_value for _ in 1:nthreads()]
 @threads for x in some_data
-    tid = threadid()                       
+    tid = threadid()
     old_val = states[tid]
     new_val = some_operator(old_val, f(x))
     states[tid] = new_val
@@ -49,12 +49,12 @@ julia> let state = [0], N=100
            @sync for i ∈ 1:N
                Threads.@spawn begin
                    tid = Threads.threadid()  # Each task gets `tid = 1`.
-                   old_var = state[tid]      # Each task reads the current value, which for 
+                   old_var = state[tid]      # Each task reads the current value, which for
                                              # all is 0 (!) because...
-                   new_var = old_var + f(i)  # ...the `sleep` in `f` causes all tasks to pause 
-                                             # *simultaneously* here (all loop iterations start, 
+                   new_var = old_var + f(i)  # ...the `sleep` in `f` causes all tasks to pause
+                                             # *simultaneously* here (all loop iterations start,
                                              # but do not yet finish).
-                   state[tid] = new_var      # After being released from the `sleep`, each task 
+                   state[tid] = new_var      # After being released from the `sleep`, each task
                                              # sets `state[1]` to `i`.
                end
            end
