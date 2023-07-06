@@ -48,10 +48,14 @@ julia> f(i) = (sleep(0.001); i);
 julia> let state = [0], N=100
            @sync for i ∈ 1:N
                Threads.@spawn begin
-                   tid = Threads.threadid()  # each task gets `tid = 1`
-                   old_var = state[tid]      # each task reads the current value, which for all is 0 (!) because... 
-                   new_var = old_var + f(i)  # ...the `sleep` in `f` causes all tasks to pause *simultaneously* here (all loop iterations start, but do not yet finish)
-                   state[tid] = new_var      # after being released from the `sleep`, each task sets `state[1]` to `i`
+                   tid = Threads.threadid()  # Each task gets `tid = 1`.
+                   old_var = state[tid]      # Each task reads the current value, which for 
+                                             # all is 0 (!) because...
+                   new_var = old_var + f(i)  # ...the `sleep` in `f` causes all tasks to pause 
+                                             # *simultaneously* here (all loop iterations start, 
+                                             # but do not yet finish).
+                   state[tid] = new_var      # After being released from the `sleep`, each task 
+                                             # sets `state[1]` to `i`.
                end
            end
            sum(state), sum(1:N)
