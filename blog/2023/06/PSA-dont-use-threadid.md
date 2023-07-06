@@ -89,11 +89,13 @@ Code which replaces the incorrect code pattern shown above can look like this:
 using Base.Threads: nthreads, @threads, @spawn
 using Base.Iterators: partition
 
-tasks_per_thread = 2 # customize this as needed. More tasks have more overhead, but better load balancing
+tasks_per_thread = 2 # customize this as needed. More tasks have more overhead, but better
+                     # load balancing
 
 chunk_size = max(1, length(some_data) ÷ (tasks_per_thread * nthreads()))
-data_chunks = partition(some_data, chunk_size) # partition your data into chunks that individual tasks will deal with
-# See also ChunkSplitters.jl and SplittablesBase.jl for partitioning data
+data_chunks = partition(some_data, chunk_size) # partition your data into chunks that
+                                               # individual tasks will deal with
+#See also ChunkSplitters.jl and SplittablesBase.jl for partitioning data
 
 tasks = map(data_chunks) do chunk
     # Each chunk of your data gets its own spawned task that does its own local, sequential work
@@ -106,8 +108,8 @@ tasks = map(data_chunks) do chunk
         return state
     end
 end
-states = fetch.(tasks) # get all the values returned by the individual tasks.
-# fetch is type unstable, so you may optionally want to assert a specific return type.
+states = fetch.(tasks) # get all the values returned by the individual tasks. fetch is type
+                       # unstable, so you may optionally want to assert a specific return type.
 
 do_something(states)
 ```
