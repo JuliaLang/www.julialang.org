@@ -7,11 +7,11 @@
   <atom:link href="https://julialang.org/feed.xml" rel="self" type="application/rss+xml" />
   <item>
     <title><![CDATA[PSA: Thread-local state is no longer recommended]]></title>
-    <link>https://julialang.org/blog/2023/06/PSA-dont-use-threadid/</link>
+    <link>https://julialang.org/blog/2023/07/PSA-dont-use-threadid/</link>
     <description><![CDATA[PSA: Thread-local state is no longer recommended; Common misconceptions about threadid&#40;&#41; and nthreads&#40;&#41;
-<br><a href="https://julialang.org/blog/2023/06/PSA-dont-use-threadid/">Read more</a>]]></description>
-    <guid>https://julialang.org/blog/2023/06/PSA-dont-use-threadid/</guid>
-    <pubDate>Fri, 30 Jun 2023 00:00:00 UT</pubDate>
+<br><a href="https://julialang.org/blog/2023/07/PSA-dont-use-threadid/">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2023/07/PSA-dont-use-threadid/</guid>
+    <pubDate>Thu, 6 Jul 2023 00:00:00 UT</pubDate>
   </item>
   <item>
     <title><![CDATA[Julia 1.9 Highlights]]></title>

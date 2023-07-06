@@ -2,12 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-    <loc>https://julialang.org/blog/2023/06/PSA-dont-use-threadid/index.html</loc>
-    <lastmod>2023-07-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://julialang.org/jsoc/gsoc/juliadynamics/index.html</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -615,6 +609,12 @@
 </url>
 <url>
     <loc>https://julialang.org/blog/2019/05/beyond-ml-pipelines-with-mlj/index.html</loc>
+    <lastmod>2023-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://julialang.org/blog/2023/07/PSA-dont-use-threadid/index.html</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
