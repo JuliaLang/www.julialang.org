@@ -74,7 +74,7 @@ Any usage of `threadid()` in package or user code should be seen as a warning si
 The simplest (though not recommended longterm) quickfix if you happen to use `@threads` is to replace usages of `@threads for ...` with `@threads :static for ...`. The reason for this is that the `:static` scheduler for `@threads` does not allow the asynchronous task migration and yielding that causes the bug in the first place.
 
 However, this is not a good long term solution because
-1) It's relying on guard rails to prevent otherwise incorrect code to be correct
+1) It's relying on non-obvious implicit guard rails to prevent otherwise incorrect code to be correct
 2) `@threads :static` is not cooperative or composable, that means that if code inside your `@threads :static` loop also does multithreading, your code could be reduced to worse than single-threaded speeds, or even deadlock.
 
 ### Better fix: Work directly with tasks
@@ -119,7 +119,7 @@ This is a fully general replacement for the old, buggy pattern. However, for man
 ```julia
 using Threads: nthreads, @spawn
 function tmapreduce(f, op, itr; chunks_per_thread::Int = 2, kwargs...)
-    chunk_size = max(1, length(itr) ÷ chunks_per_thread)
+    chunk_size = max(1, length(some_data) ÷ (tasks_per_thread * nthreads()))
     tasks = map(Iterators.partition(itr, chunk_size)) do chunk
         @spawn mapreduce(f, op, chunk; kwargs...)
     end
@@ -223,7 +223,7 @@ MultiThreadedCaches.jl on the other hand attempts to make the `states[threadid()
 @@long-footnote
    Many existing uses of thread local state happen to be relatively robust and give correct answers only because the functions they are calling during execution do not yield. One may then think "well, I can just avoid this problem by making sure my code doesn't yield", but we think this is a bad and unsustainable idea, because whether or not a function call will yield is not stable, obvious, or easily inspectable.
 
-   For instance, if a function `f` is updated to include a background `@debug` statement or other forms of non-user-visible IO, it may change from being non-yielding to yielding. If during a call to `f`, the compiler encounters a dynamic dispatch where new code must be JIT compiled, a yield-point may be encountered, and any number of other internal changes could happen to code which can cause it to yielding.
+   For instance, if a function `f` is updated to include a background `@debug` statement or other forms of non-user-visible IO, it may change from being non-yielding to yielding. If during a call to `f`, the compiler encounters a dynamic dispatch where new code must be JIT compiled, a yield-point may be encountered, and any number of other internal changes could happen to code which can cause it to yield.
 
    Furthermore, future versions of julia may eventually move away from a [cooperative task model](https://en.wikipedia.org/wiki/Cooperative_multitasking) to a [preemptive task model](https://en.wikipedia.org/wiki/Preemption_(computing)), in which case yield points would not be the only way that race conditions like this could be encountered.
 @@
