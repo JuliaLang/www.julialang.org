@@ -119,7 +119,7 @@ This is a fully general replacement for the old, buggy pattern. However, for man
 ```julia
 using Threads: nthreads, @spawn
 function tmapreduce(f, op, itr; chunks_per_thread::Int = 2, kwargs...)
-    chunk_size = max(1, length(some_data) ÷ (tasks_per_thread * nthreads()))
+    chunk_size = max(1, length(itr) ÷ (tasks_per_thread * nthreads()))
     tasks = map(Iterators.partition(itr, chunk_size)) do chunk
         @spawn mapreduce(f, op, chunk; kwargs...)
     end
