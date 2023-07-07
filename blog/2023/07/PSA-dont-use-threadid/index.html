@@ -33,7 +33,7 @@ julia&gt; let state &#61; &#91;0&#93;, N&#61;100
 <p>The simplest &#40;though not recommended longterm&#41; quickfix if you happen to use <code>@threads</code> is to replace usages of <code>@threads for ...</code> with <code>@threads :static for ...</code>. The reason for this is that the <code>:static</code> scheduler for <code>@threads</code> does not allow the asynchronous task migration and yielding that causes the bug in the first place.</p>
 <p>However, this is not a good long term solution because</p>
 <ol>
-<li><p>It&#39;s relying on guard rails to prevent otherwise incorrect code to be correct</p>
+<li><p>It&#39;s relying on non-obvious implicit guard rails to prevent otherwise incorrect code to be correct</p>
 
 <li><p><code>@threads :static</code> is not cooperative or composable, that means that if code inside your <code>@threads :static</code> loop also does multithreading, your code could be reduced to worse than single-threaded speeds, or even deadlock.</p>
 
@@ -69,9 +69,9 @@ states &#61; fetch.&#40;tasks&#41; # get all the values returned by the individu
 
 do_something&#40;states&#41;</code></pre>
 <p>This is a fully general replacement for the old, buggy pattern. However, for many applications this should be simplified down to a parallel version of <code>mapreduce</code>:</p>
-<pre><code class=language-julia >using Threads: nthreads, @spawn
+<pre><code class=language-julia >using Base.Threads: nthreads, @spawn
 function tmapreduce&#40;f, op, itr; chunks_per_thread::Int &#61; 2, kwargs...&#41;
-    chunk_size &#61; max&#40;1, length&#40;itr&#41; ÷ chunks_per_thread&#41;
+    chunk_size &#61; max&#40;1, length&#40;itr&#41; ÷ &#40;tasks_per_thread * nthreads&#40;&#41;&#41;&#41;
     tasks &#61; map&#40;Iterators.partition&#40;itr, chunk_size&#41;&#41; do chunk
         @spawn mapreduce&#40;f, op, chunk; kwargs...&#41;
     end
@@ -152,7 +152,7 @@ out</code></pre>
 </table>
 
 <div class=long-footnote ><p>Many existing uses of thread local state happen to be relatively robust and give correct answers only because the functions they are calling during execution do not yield. One may then think &quot;well, I can just avoid this problem by making sure my code doesn&#39;t yield&quot;, but we think this is a bad and unsustainable idea, because whether or not a function call will yield is not stable, obvious, or easily inspectable.</p>
-<p>For instance, if a function <code>f</code> is updated to include a background <code>@debug</code> statement or other forms of non-user-visible IO, it may change from being non-yielding to yielding. If during a call to <code>f</code>, the compiler encounters a dynamic dispatch where new code must be JIT compiled, a yield-point may be encountered, and any number of other internal changes could happen to code which can cause it to yielding.</p>
+<p>For instance, if a function <code>f</code> is updated to include a background <code>@debug</code> statement or other forms of non-user-visible IO, it may change from being non-yielding to yielding. If during a call to <code>f</code>, the compiler encounters a dynamic dispatch where new code must be JIT compiled, a yield-point may be encountered, and any number of other internal changes could happen to code which can cause it to yield.</p>
 <p>Furthermore, future versions of julia may eventually move away from a <a href="https://en.wikipedia.org/wiki/Cooperative_multitasking">cooperative task model</a> to a <a href="https://en.wikipedia.org/wiki/Preemption_&#40;computing&#41;">preemptive task model</a>, in which case yield points would not be the only way that race conditions like this could be encountered.</p></div>
 <br/>
 <table class=fndef  id="fndef:assoc">
