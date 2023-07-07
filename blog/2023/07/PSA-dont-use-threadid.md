@@ -117,7 +117,7 @@ do_something(states)
 This is a fully general replacement for the old, buggy pattern. However, for many applications this should be simplified down to a parallel version of `mapreduce`:
 
 ```julia
-using Threads: nthreads, @spawn
+using Base.Threads: nthreads, @spawn
 function tmapreduce(f, op, itr; chunks_per_thread::Int = 2, kwargs...)
     chunk_size = max(1, length(itr) ÷ (tasks_per_thread * nthreads()))
     tasks = map(Iterators.partition(itr, chunk_size)) do chunk
