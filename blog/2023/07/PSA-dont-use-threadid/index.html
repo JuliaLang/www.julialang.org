@@ -70,7 +70,7 @@ states &#61; fetch.&#40;tasks&#41; # get all the values returned by the individu
 do_something&#40;states&#41;</code></pre>
 <p>This is a fully general replacement for the old, buggy pattern. However, for many applications this should be simplified down to a parallel version of <code>mapreduce</code>:</p>
 <pre><code class=language-julia >using Base.Threads: nthreads, @spawn
-function tmapreduce&#40;f, op, itr; chunks_per_thread::Int &#61; 2, kwargs...&#41;
+function tmapreduce&#40;f, op, itr; tasks_per_thread::Int &#61; 2, kwargs...&#41;
     chunk_size &#61; max&#40;1, length&#40;itr&#41; ÷ &#40;tasks_per_thread * nthreads&#40;&#41;&#41;&#41;
     tasks &#61; map&#40;Iterators.partition&#40;itr, chunk_size&#41;&#41; do chunk
         @spawn mapreduce&#40;f, op, chunk; kwargs...&#41;
