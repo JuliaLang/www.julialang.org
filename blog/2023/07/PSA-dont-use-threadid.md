@@ -17,7 +17,7 @@ rss = """PSA: Thread-local state is no longer recommended; Common misconceptions
 
 ## The buggy pattern
 
-Partially due to the evolving history of our parallel and concurrent interfaces[^historynote], some Julia programmers have been writing *incorrect* parallel code that contains the possibility of race conditions which can give wrong results. This pattern has even been erroneously recommended in [previous official julia blogposts](/blog/2019/07/multithreading#thread-local-state). It is important for the stability and correctness of the ecosystem that these usages are identified and fixed.
+Partially due to the evolving history of our parallel and concurrent interfaces[^historynote], some Julia programmers have been writing *incorrect* parallel code that contains the possibility of race conditions which can give wrong results. This pattern has even been erroneously recommended in [previous official julia blogposts](/blog/2019/07multithreading/#thread-local_state). It is important for the stability and correctness of the ecosystem that these usages are identified and fixed.
 
 The general template that this incorrect code follows is something like the following:
 
