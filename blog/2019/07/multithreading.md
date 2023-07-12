@@ -302,6 +302,8 @@ standard definitions.
 
 ### Thread-local state
 
+\warn{}{As of Julia 1.8 this pattern is no longer recommended. Please read this [follow up blogpost](/blog/2023/07/PSA-dont-use-threadid) for more details and how to migrate away from this pattern.}
+
 Julia code naturally tends to be purely functional (no side effects or mutation),
 or to use only local mutation, so migrating to full thread-safety will hopefully
 be easy in many cases.
