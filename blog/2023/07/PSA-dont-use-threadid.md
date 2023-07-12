@@ -234,5 +234,5 @@ MultiThreadedCaches.jl on the other hand attempts to make the `states[threadid()
 @@long-footnote
    [Associativity](https://en.wikipedia.org/wiki/Associative_property) is an important property for parallel reducing functions, because it means that `op(a, op(b, c)) == op(op(a, b), c)`, and hence the result does not depend on the order in which the reduction is performed.
 
-   Note that associativity is not the same as commutivity, which is the property that `op(a, b) == op(b, a)`. This is *not* required for parallel reducing functions.
+   Note that associativity is not the same as commutativity, which is the property that `op(a, b) == op(b, a)`. This is *not* required for parallel reducing functions.
 @@
