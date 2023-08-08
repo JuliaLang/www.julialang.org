@@ -140,12 +140,12 @@ To run the test defined above:
 1. In your terminal, go to your package directory.
 2. Open the Julia REPL.
 3. Go to the **package mode** by typing `]`.
-4. Activate the package environment by running `activate` command,
+4. Activate the package environment by running `activate .` command,
 5. In the package mode, run the command `test`.
 
 ```
 julia> ] # Go to the package mode
-(v1.8) pkg> activate YourPackageName # Your package name
+(v1.8) pkg> activate .
 (YourPackageName) pkg> test
 ```
 
