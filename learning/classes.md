@@ -238,6 +238,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * QBIO 577, Computational Molecular Biology Laboratory, [Systems Biology](https://github.com/adamlmaclean/julia-dynsys-resources/) (Prof. [Adam L. MacLean](https://macleanlab.usc.edu/people/adam-maclean/)), since Fall 2019
 * University of Sydney
     * [MATH3076/3976](https://www.maths.usyd.edu.au/u/olver/teaching/MATH3976/), Mathematical Computing (Assoc. Prof. [Sheehan Olver](https://www.maths.usyd.edu.au/u/olver/)), Fall 2016
+* University of Queensland
+    * [MATH2504](https://my.uq.edu.au/programs-courses/course.html?course_code=MATH2504), Programming of Simulation, Analysis, & Learning Systems (Assoc. Prof. [Yoni Nazarathy](https://smp.uq.edu.au/profile/236/yoni-nazarathy)), since 2021-
 * Université Paul Sabatier, Toulouse
     * [Optimization in Machine Learning](https://www.irit.fr/cimi-machine-learning/node/15.html), (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/)), Fall 2015
 * [Université de Liège](https://www.ulg.ac.be/)
