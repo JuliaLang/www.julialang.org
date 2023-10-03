@@ -25,9 +25,9 @@ hasplotly = false
 
 # If the following lines are commented, the "upcoming release" section
 # in `downloads/index.md` will not be shown.
-upcoming_release = "1.10.0-beta2"
+upcoming_release = "1.10.0-beta3"
 upcoming_release_short = "1.10"
-upcoming_release_date = "August 17, 2023"
+upcoming_release_date = "October 3, 2023"
 +++
 
 <!--
