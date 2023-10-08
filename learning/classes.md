@@ -21,6 +21,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [MTH 229](https://www.math.csi.cuny.edu/abhijit/229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](https://mth229.github.io) page.
 * Cornell University
     * [CS 5220](https://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel), Spring 2014
+    * [ORIE 4741](https://people.orie.cornell.edu/mru8/orie4741/), Machine Learning with Big Messy Data (Prof. Madeleine Udell), Fall 2017
 * [Czech Technical University in Prague](https://www.cvut.cz/en), Czech Republic
     * [Julia for Optimization and Learning](https://juliateachingctu.github.io/Julia-for-Optimization-and-Learning/stable/)
     * [Scientific Programming in Julia](https://juliateachingctu.github.io/Scientific-Programming-in-Julia/stable)
