@@ -1,6 +1,7 @@
 ## Books
 
 @@tight-list
+* Adeil Araújo and Meirivâni Oliveira, ["Julia with Physics: An Introduction" in Portuguese](https://www.seduc.ce.gov.br/wp-content/uploads/sites/37/2023/09/Ebook-02-Julia-com-Fisica.pdf), Seduc - CE, September 2023.
 * İlker Arslan, [Julia for Data Science](http://mng.bz/x4vd), Manning Publications, April 2023
 * C. T. Kelley, [Solving Nonlinear Equations with Iterative Methods. Solvers and Examples in Julia](https://my.siam.org/Store/Product/viewproduct/?ProductId=44313635), SIAM, 2022. The book comes with a package [SIAMFANLequations.jl](https://github.com/ctkelley/SIAMFANLEquations.jl) and a set of [Jupyter notebooks](https://github.com/ctkelley/NotebookSIAMFANL).
 * Bogumił Kamiński. [Julia for Data Analysis](https://www.manning.com/books/julia-for-data-analysis), Manning Publications, December 2022
