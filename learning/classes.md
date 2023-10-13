@@ -257,6 +257,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [IFT6512](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-6512/), Programmation stochastique (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2018
 * University of Washington
     * [AMATH 586](https://trogdoncourses.github.io/amath-586-2020/), Numerical analysis of time-dependent problems (Prof. [Tom Trogdon](http://faculty.washington.edu/trogdon/)), Spring 2020
+* Vrije Universiteit Amsterdam
+    * [XM_40017](https://studiegids.vu.nl/en/2023-2024/courses/XM_40017#/), Programming Large-Scale Parallel Systems (Prof. Dr. Ir. [H.E. Bal](https://research.vu.nl/en/persons/he-bal), Dr. [F. Verdugo Rojano](https://research.vu.nl/en/persons/francesc-verdugo-rojano)), Fall 2023
 * Washington University in St. Louis
     * [Advanced Scientific Computing (Bio5989)](https://github.com/timholy/AdvancedScientificComputing/tree/main) (Prof. [Tim Holy](https://neuroscience.wustl.edu/people/timothy-holy-phd/)), annual. See [videos](https://www.youtube.com/playlist?list=PL-G47MxHVTewUm5ywggLvmbUCNOD2RbKA) and corresponding [branch](https://github.com/timholy/AdvancedScientificComputing/tree/Fall2021) from the Fall 2021 edition of the course.
 * Western University Canada
