@@ -21,6 +21,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [MTH 229](https://www.math.csi.cuny.edu/abhijit/229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](https://mth229.github.io) page.
 * Cornell University
     * [CS 5220](https://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel), Spring 2014
+    * [ORIE 4741](https://people.orie.cornell.edu/mru8/orie4741/), Machine Learning with Big Messy Data (Prof. Madeleine Udell), Fall 2017
 * [Czech Technical University in Prague](https://www.cvut.cz/en), Czech Republic
     * [Julia for Optimization and Learning](https://juliateachingctu.github.io/Julia-for-Optimization-and-Learning/stable/)
     * [Scientific Programming in Julia](https://juliateachingctu.github.io/Scientific-Programming-in-Julia/stable)
@@ -256,6 +257,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [IFT6512](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-6512/), Programmation stochastique (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2018
 * University of Washington
     * [AMATH 586](https://trogdoncourses.github.io/amath-586-2020/), Numerical analysis of time-dependent problems (Prof. [Tom Trogdon](http://faculty.washington.edu/trogdon/)), Spring 2020
+* Vrije Universiteit Amsterdam
+    * [XM_40017](https://studiegids.vu.nl/en/2023-2024/courses/XM_40017#/), Programming Large-Scale Parallel Systems (Prof. Dr. Ir. [H.E. Bal](https://research.vu.nl/en/persons/he-bal), Dr. [F. Verdugo Rojano](https://research.vu.nl/en/persons/francesc-verdugo-rojano)), Fall 2023
 * Washington University in St. Louis
     * [Advanced Scientific Computing (Bio5989)](https://github.com/timholy/AdvancedScientificComputing/tree/main) (Prof. [Tim Holy](https://neuroscience.wustl.edu/people/timothy-holy-phd/)), annual. See [videos](https://www.youtube.com/playlist?list=PL-G47MxHVTewUm5ywggLvmbUCNOD2RbKA) and corresponding [branch](https://github.com/timholy/AdvancedScientificComputing/tree/Fall2021) from the Fall 2021 edition of the course.
 * Western University Canada

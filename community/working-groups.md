@@ -24,8 +24,10 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 | Multithreading                   | `#multithreading`   | First Wednesday of each month at 10am ET | [Jameson Nash][Jameson-Nash]                                             |
 | [Pkg][pkg]                       | `#pkg-dev`          | Occasional Tuesdays at 2:15pm ET         | [Kristoffer Carlsson][Kristoffer-Carlsson], [Fredrik Ekre][Fredrik-Ekre] |
 | Release management               | `#releases`         | [none]                                   | [Kristoffer Carlsson][Kristoffer-Carlsson], [Alex Arslan][Alex-Arslan]   |
+| REPL                             | `#repl`             | [none]                                   | [Timothy Chapman][Timothy Chapman]                                       |
 
-The machine learning WG also uses the `#ml-contributors` stream on the [Julia Zulip][zulip].
+The machine learning and REPL working groups can respectively also be found on
+the `#ml-contributors` and `#repl` streams on the [Julia Zulip][zulip].
 
 [dagger]: https://github.com/JuliaParallel/Dagger.jl
 [gpu]: https://github.com/JuliaGPU
@@ -79,3 +81,4 @@ Each of these groups is organized around a common area of interest with a commun
 [Valentin-Churavy]: https://github.com/vchuravy
 [Kim-Auth]: https://github.com/kimauth
 [Tan-Zhi-Xuan]: https://github.com/ztangent
+[Timothy Chapman]: https://github.com/tecosaur
