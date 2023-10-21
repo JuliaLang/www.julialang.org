@@ -262,7 +262,7 @@ Most Linux users should use the glibc binaries unless you know that your system 
 
 ## Juliaup - Julia version manager
 
-You can also install Julia with [Juliaup](https://github.com/JuliaLang/juliaup) - a Rust-based cross-platform Julia installer that makes working with multiple julia versions easy and fun!
+You can also install Julia with [juliaup](https://github.com/JuliaLang/juliaup) - a cross-platform Julia installer that makes working with multiple julia versions easy and fun!
 
 ## Older Releases
 
