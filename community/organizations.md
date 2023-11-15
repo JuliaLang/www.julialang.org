@@ -4,6 +4,8 @@ Something unique about the Julia Language is the way [the community self organiz
 
 The following is a non-comprehensive list of Julia GitHub organizations, grouped by domain. If you know of an organization not shown here, please open a pull request so that we can keep the list up to date.
 
+**Note:** Note that organizations listed here should strive to have at least 2 owners with admin rights, and at least 2 public members. Doing so helps to protect the organization's repositories against a single person being unreachable.
+
 ### Julia
 
 * [JuliaLang](https://github.com/JuliaLang) – A fresh approach to numerical computing
