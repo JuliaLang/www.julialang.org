@@ -2,7 +2,7 @@
 
 Something unique about the Julia Language is the way [the community self organizes into GitHub Organizations](https://youtu.be/cLFfTE2KWrk?t=644). This allows for a higher degree of collaboration and structure that ultimately enables each of these communities to be self sustaining.
 
-The following is a non-comprehensive list of Julia GitHub organizations, grouped by domain. If you know of an organization not shown here, please open a pull request so that we can keep the list up to date.
+The following is a non-comprehensive list of Julia GitHub organizations, grouped by domain. If you're aware of an organization not listed here, please contribute by adding it under the appropriate group. Open a pull request [here](https://github.com/JuliaLang/www.julialang.org/blob/main/community/organizations.md) to help us maintain an updated list.
 
 **Note:** Organizations listed here should strive to have at least 2 owners with admin rights, and at least 2 public members. Doing so helps to protect the organization's repositories against a single person being unreachable.
 
@@ -50,6 +50,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaPerf](https://github.com/JuliaPerf) - Performance tools
 * [JuliaSIMD](https://github.com/JuliaSIMD) - SIMD vectorization in Julia
 * [JuliaWeb](https://github.com/JuliaWeb) – Web stack
+* [JuliaWGPU](https://github.com/JuliaWGPU) - WGPU (WebGPU) graphics and compute packages
 
 ### Mathematics
 
