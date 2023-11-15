@@ -4,6 +4,9 @@ Something unique about the Julia Language is the way [the community self organiz
 
 The following is a non-comprehensive list of Julia GitHub organizations, grouped by domain. If you know of an organization not shown here, please open a pull request so that we can keep the list up to date.
 
+Note that organizations listed here should strive to have at least 2 owners with admin rights, and at least 2 public members.
+Doing so helps to protect the organization's repositories against a single person being unreachable.
+
 ### Julia
 
 * [JuliaLang](https://github.com/JuliaLang) – A fresh approach to numerical computing
@@ -149,5 +152,3 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaTokyo](https://github.com/JuliaTokyo) - Yet another Julialang community.
 * [Julia-Streamers](https://github.com/Julia-Streamers) – The official organization for the Julia Streaming community!
 * [QuantEcon](https://github.com/QuantEcon) - Open source code for quantitative economic modeling
-
-dummy change
