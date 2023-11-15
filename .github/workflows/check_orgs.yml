@@ -1,6 +1,9 @@
 name: Check publicly listed organizations
 on:
-  repository_dispatch:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - community/organizations.md
   push:
     paths:
       - community/organizations.md
