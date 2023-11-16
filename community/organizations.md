@@ -142,7 +142,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 
 ### Miscellaneous
 
-* [DynareJulia](https://github/DynareJulia) - A plateform for the solution, simulation and estimation of dynamic stochastic general equilibrium economic models
+* [DynareJulia](https://github.com/DynareJulia) - A plateform for the solution, simulation and estimation of dynamic stochastic general equilibrium economic models
 * [JuliaCN](https://github.com/JuliaCN) - An open-source organization for Julia localization in Chinese
 * [JuliaEPFL](https://github.com/JuliaEPFL) - Julia enthusiasts at and around École polytechnique fédérale de Lausanne (Switzerland)
 * [JuliaGaming](https://github.com/JuliaGaming) – Open source games built in the Julia Programming Language.
