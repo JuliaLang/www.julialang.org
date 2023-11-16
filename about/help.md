@@ -38,4 +38,4 @@
  - Contact `contact@julialang.org` and let us know how we can help!
  
 ## Anything else?
- - Contact `logan@julialang.org` and let us know how we can help!
+ - Contact `community@julialang.org` and let us know how we can help!
