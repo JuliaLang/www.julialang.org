@@ -1,15 +1,37 @@
 # Download Julia
 
-~~~
-<a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
-~~~
-
 Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](https://julialang.org/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
+
+
+## Juliaup: The recommended Julia installation manager
+
+To install Julia it is recommended to use the `juliaup` installation manager, which will automatically install
+and manage keeping julia up to date.
+
+Installation on Windows is either via the Windows store [here](https://www.microsoft.com/store/apps/9NJNWW8PVKMN)
+or via the command prompt:
+```
+winget install julia -s msstore
+```
+
+On Linux and MacOS:
+```
+curl -fsSL https://install.julialang.org | sh
+```
+
+Once installed `julia` and `juliaup` will be available via the command line interface.
+
+To install different versions see `juliaup --help` or the documentation at [github.com/JuliaLang/juliaup](https://github.com/JuliaLang/juliaup).
+
 
 ---
 
+## Julia Version History
+
+Note that all Julia versions are installable through Juliaup.
+
 ~~~
-<h2 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h2>
+<h3 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h3>
 ~~~
 
 Checksums for this release are available in both [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.sha256) formats.
@@ -101,7 +123,7 @@ You should *only* be using the long-term support (LTS) version of Julia if you w
 
 
 ~~~
-<h2 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})</a></h2>
+<h3 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})</a></h3>
 ~~~
 
 Checksums for this release are available in both, [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5) and [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) formats.
@@ -186,7 +208,7 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 {{ifdef upcoming_release}}
 
 ~~~
-<h2 id=upcoming_release><a href="#upcoming_release">Upcoming release: v{{upcoming_release}} ({{upcoming_release_date}})</a></h2>
+<h3 id=upcoming_release><a href="#upcoming_release">Upcoming release: v{{upcoming_release}} ({{upcoming_release_date}})</a></h3>
 ~~~
 
  We're currently testing release candidates for Julia v{{upcoming_release_short}}, an upcoming minor release in the 1.x series of releases. We encourage developers and interested users to try it out and report any issues they encounter. As a prerelease, it should not be considered production-ready; it's intended to give users a chance to try out {{upcoming_release_short}} with their code before the full release.
@@ -282,25 +304,21 @@ Checksums for this release are available in both, [MD5](https://julialang-s3.jul
 ~~~
 Most Linux users should use the glibc binaries unless you know that your system uses musl as its libc.
 
-## Juliaup - Julia version manager
-
-You can also install Julia with [juliaup](https://github.com/JuliaLang/juliaup) - a cross-platform Julia installer that makes working with multiple julia versions easy and fun!
-
-## Older Releases
+### Older Releases
 
 Older releases of Julia for all platforms are available on the [Older releases page](/downloads/oldreleases/). Only the LTS and Stable releases are maintained.
 
-## Nightly Builds
+### Nightly Builds
 
 Builds of the current unstable development version of Julia are available on the [nightlies page](/downloads/nightlies/). While the name suggests that they are built every night, they are actually built after each commit to master. However, at times due to broken builds or CI infrastructure issues, nightlies may not be produced. These are intended as developer previews into the latest work and are not intended for normal use. Most users are advised to use the current stable release version of Julia.
 
-## Download verification
+### Download verification
 
 All Julia binary releases are cryptographically secured using the traditional methods on each platform. macOS and Windows releases are codesigned with certificates that are verified by the operating system during installation. Linux and source tarballs are signed with GPG using [this key](/assets/juliareleases.asc).
 
 ---
 
-## Supported platforms
+### Supported platforms
 
 Different OSes and architectures have varying [tiers of support](/downloads/#support_tiers_for_the_latest_stable_release_of_julia). Please see [platform specific instructions](/downloads/platform/) for further installation instructions and if you have trouble installing Julia. If the official binaries do not work for you, please [file an issue in the Julia project](https://github.com/JuliaLang/julia/issues).
 
@@ -404,7 +422,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
 ~~~
 @@ @@
 
-### Support tiers for the latest stable release of Julia
+#### Support tiers for the latest stable release of Julia
 
 @@row @@col-12
 ~~~
@@ -417,7 +435,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
 ~~~
 @@ @@
 
-## JSON release feed
+### JSON release feed
 
 The info above is also available as a [JSON file](https://julialang-s3.julialang.org/bin/versions.json) ([schema](https://julialang-s3.julialang.org/bin/versions-schema.json)). It may take up to two hours after the release of a new version for it to be included in the JSON file.
 
