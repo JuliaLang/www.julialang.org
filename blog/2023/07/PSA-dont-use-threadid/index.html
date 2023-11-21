@@ -1,4 +1,4 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>PSA: Thread-local state is no longer recommended</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="PSA: Thread-local state is no longer recommended"> <meta property="og:description" content="PSA: Thread-local state is no longer recommended; Common misconceptions about threadid() and nthreads()"> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>PSA: Thread-local state is no longer recommended <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 06 July 2023 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Mason Protter, Valentin Churavy, Ian Butterworth, and many helpful contributors </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2023/07/PSA-dont-use-threadid.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"> <p><em>Common misconceptions about threadid&#40;&#41; and nthreads&#40;&#41;</em></p> <div class=franklin-toc ><ol><li><a href="#the_buggy_pattern">The buggy pattern</a><li><a href="#fixing_buggy_code_which_uses_this_pattern">Fixing buggy code which uses this pattern</a><ol><li><a href="#quickfix_replace_threads_with_threads_static">Quickfix: Replace <code>@threads</code> with <code>@threads :static</code></a><li><a href="#better_fix_work_directly_with_tasks">Better fix: Work directly with tasks</a><li><a href="#another_option_use_a_package_which_handles_this_correctly">Another option: Use a package which handles this correctly</a></ol></ol></div> <h2 id=the_buggy_pattern ><a href="#the_buggy_pattern">The buggy pattern</a></h2> <p>Partially due to the evolving history of our parallel and concurrent interfaces<sup id="fnref:historynote"><a href="#fndef:historynote" class=fnref >[1]</a></sup>, some Julia programmers have been writing <em>incorrect</em> parallel code that contains the possibility of race conditions which can give wrong results. This pattern has even been erroneously recommended in <a href="/blog/2019/07/multithreading/#thread-local_state">previous official julia blogposts</a>. It is important for the stability and correctness of the ecosystem that these usages are identified and fixed.</p> <p>The general template that this incorrect code follows is something like the following:</p> <pre><code class=language-julia >using Base.Threads: nthreads, @threads, threadid
+<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>PSA: Thread-local state is no longer recommended</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="PSA: Thread-local state is no longer recommended"> <meta property="og:description" content="PSA: Thread-local state is no longer recommended; Common misconceptions about threadid() and nthreads()"> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>PSA: Thread-local state is no longer recommended <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 06 July 2023 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Mason Protter, Valentin Churavy, Ian Butterworth, and many helpful contributors </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2023/07/PSA-dont-use-threadid.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"> <p><em>Common misconceptions about threadid&#40;&#41; and nthreads&#40;&#41;</em></p> <div class=franklin-toc ><ol><li><a href="#the_buggy_pattern">The buggy pattern</a><li><a href="#fixing_buggy_code_which_uses_this_pattern">Fixing buggy code which uses this pattern</a><ol><li><a href="#quickfix_replace_threads_with_threads_static">Quickfix: Replace <code>@threads</code> with <code>@threads :static</code></a><li><a href="#better_fix_work_directly_with_tasks">Better fix: Work directly with tasks</a><li><a href="#another_option_use_a_package_which_handles_this_correctly">Another option: Use a package which handles this correctly</a></ol></ol></div> <h2 id=the_buggy_pattern ><a href="#the_buggy_pattern">The buggy pattern</a></h2> <p>Partially due to the evolving history of our parallel and concurrent interfaces<sup id="fnref:historynote"><a href="#fndef:historynote" class=fnref >[1]</a></sup>, some Julia programmers have been writing <em>incorrect</em> parallel code that contains the possibility of race conditions which can give wrong results. This pattern has even been erroneously recommended in <a href="/blog/2019/07/multithreading/#thread-local_state">previous official julia blogposts</a>. It is important for the stability and correctness of the ecosystem that these usages are identified and fixed.</p> <p>The general template that this incorrect code follows is something like the following:</p> <pre><code class=language-julia >using Base.Threads: nthreads, @threads, threadid
 
 states &#61; &#91;some_initial_value for _ in 1:nthreads&#40;&#41;&#93;
 @threads for x in some_data
@@ -173,6 +173,69 @@ out</code></pre>
 <script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
 
     
+
+    
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
 
     <footer class="container-fluid footer-copy">
   <div class=container >
