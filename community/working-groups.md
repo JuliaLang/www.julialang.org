@@ -18,6 +18,7 @@ UTC refers to [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordin
 | Astronomy                        | `#astro`            | Fourth Friday of each month at 19:00 UTC | [Mosè Giordano][Mosè-Giordano], [Miles Lucas][Miles-Lucas]               |
 | CI infrastructure                | `#ci-dev`           | Every other Monday at 12pm ET             | [Elliot Saba][Elliot-Saba], [Dilum Aluthge][Dilum-Aluthge]               |
 | [Dagger][dagger]                 | `#distributed`      | Every other Thursday at 10am ET          | [Julian Samaroo][Julian-Samaroo], [Krystian Guliński][Krystian-Guliński]    |
+| [Documentation tooling][wg-docs] | `#documentation`    | Last Tuesday of every month at 18:00 UTC | [Morten Piibeleht][Morten-Piibeleht], [Fredrik Ekre][Fredrik-Ekre]       |
 | [GPU][gpu]                       | `#gpu`              | Every other Monday at 11am ET            | [Tim Besard][Tim-Besard], [Valentin Churavy][Valentin-Churavy]           |
 | High-performance computing (HPC) | `#hpc`              | Fourth Tuesday of each month at 2pm ET   | [Valentin Churavy][Valentin-Churavy]                                     |
 | Machine learning                 | `#machine-learning` | Every other Tuesday at 12pm ET           | [Kyle Daruwalla][Kyle-Daruwalla], [Lorenz Ohly][Lorenz-Ohly]             |
@@ -30,6 +31,7 @@ The machine learning and REPL working groups can respectively also be found on
 the `#ml-contributors` and `#repl` streams on the [Julia Zulip][zulip].
 
 [dagger]: https://github.com/JuliaParallel/Dagger.jl
+[wg-docs]: https://github.com/JuliaDocs
 [gpu]: https://github.com/JuliaGPU
 [pkg]: https://github.com/JuliaLang/Pkg.jl
 
@@ -76,6 +78,7 @@ Each of these groups is organized around a common area of interest with a commun
 [Kyle-Daruwalla]: https://github.com/darsnack
 [Lorenz-Ohly]: https://github.com/lorenzoh
 [Miles-Lucas]: https://github.com/mileslucas
+[Morten-Piibeleht]: https://github.com/mortenpi
 [Mosè-Giordano]: https://github.com/giordano
 [Tim-Besard]: https://github.com/maleadt
 [Valentin-Churavy]: https://github.com/vchuravy
