@@ -58,6 +58,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann), Fall 2014
 * Kathmandu University
     * [AICC202 Introduction to Data Science](https://github.com/rojesh-shikhrakar/AICC202-Intro-to-Data-Science), Foundational Data Science Course (Rojesh Man Shikhrakar), Spring 2023
+* Korea Advanced Institute of Science and Technology (KAIST)
+    * [IE535](https://www.chkwon.net/teaching/#ie-535-network-theory-and-applications), Network Theory and Applications (Prof. [Changhyun Kwon](https://www.chkwon.net)), Fall 2023
 * [Luiss University Rome](https://www.luiss.edu/), [Department of Economics and Finance](https://economiaefinanza.luiss.it)
     * [Econometric Theory](http://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](http://gragusa.org))
 * [Lund University, Sweden](https://www.lunduniversity.lu.se/), [Department of Automatic Control](http://control.lth.se/)
