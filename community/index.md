@@ -63,7 +63,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      <!-- 3 -->
      <div class="col-lg-4 col-md-6 feature">
        <h3>Chat</h3>
-       <p>For casual conversations, we have an <a href="https://julialang.org/slack/">official Julia Slack</a>. As an open source alternative to Slack and home to some Julia sub-communities, we have <a href="https://julialang.zulipchat.com/register/">Zulip</a>. There is also an active community on the <a href="https://discord.gg/mm2kYjB">Humans of Julia Discord server</a>.
+       <p>For casual conversations, we have a <a href="https://julialang.zulipchat.com/register/">Zulip</a>. As a closed source alternative to Zulip, we have an <a href="https://julialang.org/slack/">official Julia Slack</a>. There is also an active community on the <a href="https://discord.gg/mm2kYjB">Humans of Julia Discord server</a>.
        </p>
      </div>
      <!-- 4 -->
