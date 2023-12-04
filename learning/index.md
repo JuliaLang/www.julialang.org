@@ -21,7 +21,7 @@
      <div class="col-lg-4 col-md-6 feature">
        <h3>Julia Academy</h3>
        <p>Do you learn best by watching instructor led videos on programming? Check out
-         <a href="https://juliaacademy.com/courses?preview=logged_out">JuliaAcademy</a> which was prepared by core Julia developers in collaboration with Julia Computing.
+         <a href="https://juliaacademy.com/courses?preview=logged_out">JuliaAcademy</a> which was prepared by core Julia developers in collaboration with JuliaHub.
        </p>
      </div>
      <!-- 2 -->
