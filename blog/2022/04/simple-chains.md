@@ -26,13 +26,13 @@ This [SciML methodology](https://sciml.ai/roadmap/) has been shown across many d
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eSeY4K4bITI?start=668" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
-For more details on the software and methods, [see our paper on Universal Differential Equations for Scientific Machine Learning](https://arxiv.org/abs/2001.04385). 
+For more details on the software and methods, [see our paper on Universal Differential Equations for Scientific Machine Learning](https://arxiv.org/abs/2001.04385).
 
 The unique aspects of how neural networks are used in these contexts make them rife for performance improvements through specialization. Specifically, in the context of machine learning, one normally relies on the following assumption: the neural networks are large enough that the O(n^3) cost of matrix-matrix multiplication (or other kernels like convolutions) dominates the the runtime. This is essentially the guiding principle behind most of the mechanics of a machine learning library:
 
 1. Matrix-matrix multiplication scales cubicly while memory allocations scale linearly, so attempting to mutate vectors with non-allocating operations is not a high priority. Just use `A*x`.
 2. Focus on accelerating GPU kernels to be as fast as possible! Since these large matrix-matrix operations will be fastest on GPUs and are the bottleneck, performance benchmarks will essentially just be a measurement of how fast these specific kernels are.
-3. When doing reverse-mode automatic differentiation (backpropagation), feel free to copy values to memory. Memory allocations will be hidden by the larger kernel calls. 
+3. When doing reverse-mode automatic differentiation (backpropagation), feel free to copy values to memory. Memory allocations will be hidden by the larger kernel calls.
 4. Also, feel free to write a "tape" for generating backpropagation. The tape does add the cost of essentially building a dictionary during the forward pass, but that will be hidden by the larger kernel calls.
 
 Do these assumptions actually hold in our case? And if they don't, can we focus on these aspects to draw more performance out for our use cases?
@@ -88,7 +88,7 @@ savefig("microopts_blas3.png")
 
 ![](https://user-images.githubusercontent.com/1814174/162710865-10a9dc1e-eb14-433d-96c1-6ed9c8b55df7.png)
 
-When we get to larger matrix-matrix operations, such as 100x100 * 100x100, we can effectively write off any overheads due to memory allocations. But we definitely see that there is a potential for some fairly significant performance gains in the lower end! Notice too that these gains are realized by using the pure-Julia LoopVectorization.jl as the standard BLAS tools tend to have extra threading overhead in this region (again, not optimizing as much in this region). 
+When we get to larger matrix-matrix operations, such as 100x100 * 100x100, we can effectively write off any overheads due to memory allocations. But we definitely see that there is a potential for some fairly significant performance gains in the lower end! Notice too that these gains are realized by using the pure-Julia LoopVectorization.jl as the standard BLAS tools tend to have extra threading overhead in this region (again, not optimizing as much in this region).
 
 If you have been riding the GPU gospel without looking into the details then this plot may be a shocker! However, GPUs are designed as dumb slow chips with many cores, and thus they are only effective on very parallel operations, such as large matrix-matrix multiplications. It is from this point that assumption (2) is derived for large network operations. But again, in the case of small networks such GPU kernels will be outperformed by well-designed CPU kernels due to the lack of parallel opportunities.
 
@@ -141,7 +141,7 @@ savefig("microopts_blas2.png")
 
 ![](https://user-images.githubusercontent.com/1814174/162625320-310d633a-34bf-407e-8cc9-ec55ca895d83.png)
 
-And remember, the basic operations of a neural network are `sigma.(W*x .+ b)`, and thus there's also an O(n) element-wise operation. As you would guess, this operation becomes more significant as n gets smaller while requiring even more consideration for memory operations. 
+And remember, the basic operations of a neural network are `sigma.(W*x .+ b)`, and thus there's also an O(n) element-wise operation. As you would guess, this operation becomes more significant as n gets smaller while requiring even more consideration for memory operations.
 
 ```julia
 using LinearAlgebra, BenchmarkTools, CUDA, LoopVectorization
@@ -215,7 +215,7 @@ y = σ.(r)
 zbar = v .* σbar
 Wbar = zbar * x'
 bbar = zbar
-xbar = W' * zbar   
+xbar = W' * zbar
 ```
 
 and now cached:
@@ -435,7 +435,7 @@ vs SimpleChains.jl with 16 threads:
 └   test = 0.20991518f0
 ```
 
-or 10x performace improvement, and on 36 × Intel(R) Core(TM) i9-10980XE CPU @ 3.00GHz we saw for Jax:
+or 10x performance improvement, and on 36 × Intel(R) Core(TM) i9-10980XE CPU @ 3.00GHz we saw for Jax:
 
 ```
 Initial Train Loss: 6.4232
@@ -759,7 +759,7 @@ Note that smaller batch sizes improve accuracy per epoch, and batch sizes were s
 
 Latency before the first epoch begins training is problematic, but SimpleChains.jl is fast once compiled.
 Post-compilation, the 10980XE was competitive with Flux using an A100 GPU, and about 35% faster than the V100.
-The 1165G7, a laptop CPU featuring AVX512, was competitive, handily trouncing any of the competing machine learning libraries when 
+The 1165G7, a laptop CPU featuring AVX512, was competitive, handily trouncing any of the competing machine learning libraries when
 they were run on far beefier CPUs, and even beat PyTorch on both the V100 and A100. Again, we stress that this test case followed the more typical machine learning
 uses and thus was able to use batching to even make GPUs viable: for many use cases of SimpleChains.jl this is not the case and thus
 the difference is even larger.

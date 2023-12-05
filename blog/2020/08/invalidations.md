@@ -111,7 +111,7 @@ To improve performance, it checks (as efficiently as possible at runtime) whethe
 and if so calls the method it knows.
 In this case, `f` just returns a constant, so when applicable the compiler even hard-wires in the return value for you.
 
-However, the compiler also acknowledges the possiblity that `container[1]` *won't* be an `Int`.
+However, the compiler also acknowledges the possibility that `container[1]` *won't* be an `Int`.
 That allows the above code to throw a MethodError:
 
 ```julia-repl
@@ -365,7 +365,7 @@ and so loading the SIMD package triggers invalidation of everything that depends
 As is usually the case, there are several ways to fix this: we could drop the `::Tuple` in the definition of `struct CallWaitMsg`, because there's no need to call `convert` if the object is already known to have the correct type (which would be `Any` if we dropped the field type-specification, and `Any` is not restrictive).  Alternatively, we could keep the `::Tuple` in the type-specification, and use external knowledge that we have and assert that `args` is *already* a `Tuple` in `deserialize_msg` where it calls `CallWaitMsg`, thus informing Julia that it can afford to skip the call to `convert`.
 This is intended only as a taste of what's involved in fixing invalidations; more extensive descriptions are available in [SnoopCompile's documentation](https://timholy.github.io/SnoopCompile.jl/stable/snoopr/) and the [video](https://www.youtube.com/watch?v=7VbXbI6OmYo).
 
-But it also conveys an important point: most invalidations come from poorly-inferred code, so by fixing invalidations you're often improving quality in other ways.  Julia's [performance tips] page has a wealth of good advice about avoiding non-inferrable code, and in particular cases (where you might know more about the types than inference is able to determine on its own) you can help inference by adding type-assertions.
+But it also conveys an important point: most invalidations come from poorly-inferred code, so by fixing invalidations you're often improving quality in other ways.  Julia's [performance tips] page has a wealth of good advice about avoiding non-inferable code, and in particular cases (where you might know more about the types than inference is able to determine on its own) you can help inference by adding type-assertions.
 Again, some of the recently-merged "latency" pull requests to Julia might serve as instructive examples.
 
 ## Summary

@@ -58,9 +58,9 @@ Each of these groups is organized around a common area of interest with a commun
 ### See also
 
 - [GitHub organizations][github-orgs]
-- [Community events calendar][commmunity-events-calendar]
+- [Community events calendar][community-events-calendar]
 
-[commmunity-events-calendar]: /community/#events
+[community-events-calendar]: /community/#events
 [github-orgs]: /community/organizations/
 [slack]: /slack
 [zulip]: https://julialang.zulipchat.com/

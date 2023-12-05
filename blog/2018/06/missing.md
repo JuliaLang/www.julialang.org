@@ -2,7 +2,7 @@
 @def rss = """ First-Class Statistical Missing Values Support in Julia 0.7 | The 0.7 release of Julia will soon introduce first-class support for statistical... """
 @def published = "19 June 2018"
 @def title = "First-Class Statistical Missing Values Support in Julia 0.7"
-@def authors = """ <a href="https://bouchet-valat.site.ined.fr">Milan Bouchet-Valat</a>"""  
+@def authors = """ <a href="https://bouchet-valat.site.ined.fr">Milan Bouchet-Valat</a>"""
 @def hascode = true
 
 The 0.7 release of Julia will soon introduce first-class support for statistical
@@ -260,7 +260,7 @@ to represent missing values[^jmw]. `Nullable` suffered from several issues:
 
 - `Array{Nullable{T}}` objects used a sub-optimal memory layout where `T` values
   and the associated `Bool` indicator were stored side-by-side, which wastes
-  space due to aligment constraints and is not the most efficient for processing.
+  space due to alignment constraints and is not the most efficient for processing.
   Therefore, specialized array types like
   [`NullableArray`](https://github.com/JuliaStats/NullableArrays.jl) had to be used
   (similar to `DataArray`).

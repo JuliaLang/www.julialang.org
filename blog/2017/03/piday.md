@@ -2,7 +2,7 @@
 @def rss = """ Some fun with &pi; in Julia | !pi (/assets/blog/2017-03-14-piday/pi.png) ^credit ... """
 @def published = "14 March 2017"
 @def title = "Some fun with &#928; in Julia"
-@def authors = "Simon Byrne, Luis Benet and David Sanders"  
+@def authors = "Simon Byrne, Luis Benet and David Sanders"
 @def hasmath = true
 @def hascode = true
 
@@ -258,7 +258,7 @@ The idea is to split $S$ up into two parts, $S = S_N + T_N$, where
 $ S_N := \sum_{n=1}^N \frac{1}{n^2}$ contains the first $N$ terms,
 and $T_N := S - S_N = \sum_{n=N+1}^\infty \frac{1}{n^2}$ contains the rest (an infinite number of terms).
 
-We will evalute $S_N$ numerically, and use the following analytical bound for $T_N$:
+We will evaluate $S_N$ numerically, and use the following analytical bound for $T_N$:
 
 $$\frac{1}{N+1} \le T_N \le \frac{1}{N}$$.
 
@@ -590,16 +590,16 @@ end
 intervals = make_intervals()
 
 10-element Array{ValidatedNumerics.Interval{Float64},1}:
- Interval(0.0, 0.2)                               
- Interval(0.19999999999999998, 0.4)               
+ Interval(0.0, 0.2)
+ Interval(0.19999999999999998, 0.4)
  Interval(0.39999999999999997, 0.6000000000000001)
- Interval(0.6, 0.8)                               
- Interval(0.7999999999999999, 1.0)                
- Interval(1.0, 1.2000000000000002)                
- Interval(1.2, 1.4000000000000001)                
- Interval(1.4, 1.6)                               
- Interval(1.5999999999999999, 1.8)                
- Interval(1.7999999999999998, 2.0)                
+ Interval(0.6, 0.8)
+ Interval(0.7999999999999999, 1.0)
+ Interval(1.0, 1.2000000000000002)
+ Interval(1.2, 1.4000000000000001)
+ Interval(1.4, 1.6)
+ Interval(1.5999999999999999, 1.8)
+ Interval(1.7999999999999998, 2.0)
 ```
 
 Given one of those intervals, we evaluate the function of interest:

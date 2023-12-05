@@ -2,7 +2,7 @@
 @def rss = """ GSoC 2017: Implementing iterative solvers for numerical linear algebra | The central part of my GSoC project is about implementing the Jacobi-Davidson method natively in Julia, available in JacobiDavidson.jl (https://github.com/haampie/JacobiDavidson.jl). This method computes a few approximate solutions of the eigenvalue problem  Ax =  lambda Bx  for large and sparse mat... """
 @def published = "23 August 2017"
 @def title = "GSoC 2017: Implementing iterative solvers for numerical linear algebra"
-@def authors = "Harmen Stoppels, Andreas Noack"  
+@def authors = "Harmen Stoppels, Andreas Noack"
 @def hasmath = true
 @def hascode = true
 
@@ -112,7 +112,7 @@ It does not yet detect 50003, but that might happen when `pairs` is increased a 
 
 ![Residual norm](/assets/blog/2017-08-23-native-julia-implementations-of-iterative-solvers-for-numerical-linear-algebra/resnorm.svg)
 
-It's not easy to construct a preconditioner this good for any given problem, but usually people tend to know what works well in specific classes of problems. If no specific preconditioner is availabe, you can always try a general one such as ILU. The next section illustrates that.
+It's not easy to construct a preconditioner this good for any given problem, but usually people tend to know what works well in specific classes of problems. If no specific preconditioner is available, you can always try a general one such as ILU. The next section illustrates that.
 
 ### ILU example
 As an example of how ILU can be used we generate a non-symmetric, banded matrix having a structure that typically arises in finite differences schemes of three-dimensional problems:

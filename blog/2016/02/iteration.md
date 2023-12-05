@@ -300,7 +300,7 @@ end
 Obviously, this simple implementation skips all relevant error
 checking.  However, here the main point I wish to explore is that the
 allocation of `B` turns out to be
-[non-inferrable](https://docs.julialang.org/en/latest/manual/faq/#man-type-stability-1):
+[non-inferable](https://docs.julialang.org/en/latest/manual/faq/#man-type-stability-1):
 `sz` is a `Vector{Int}`, the length (number of elements) of a specific
 `Vector{Int}` is not encoded by the type itself, and therefore the
 dimensionality of `B` cannot be inferred.
@@ -312,7 +312,7 @@ result:
 B = Array{eltype(A)}(undef, sz...)::Array{eltype(A),ndims(A)}
 ```
 
-or by using an implementation that *is* inferrable:
+or by using an implementation that *is* inferable:
 
 ```
 function sumalongdims(A, dims)
@@ -464,7 +464,7 @@ julia> Tuple(I) .+ 1
 If desired you can package this back up in a `CartesianIndex`, or just
 use it directly (with splatting) for indexing.
 The compiler optimizes all these operations away, so there is no actual
-"cost" to constucting objects in this way.
+"cost" to constructing objects in this way.
 
 Why is iteration disallowed? One reason is to support the following:
 

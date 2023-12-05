@@ -66,7 +66,7 @@ One difficulty reported during the BoF was getting organizational approval to re
 
 #### Open Sourcing Packages That Previously Used Internal CI/CD
 
-One important element of successful open-source projects is that CI logs should generally be available to all contributors. This can be a burdensome criteria to meet if a previously closed-source package utilized internal CI/CD pipelines with nicer properties than publicly available CI pipelines. In some instances, certain flavors of this problem can be solved with better tooling, e.g. self-hosted (but publically accessible) package registries can vendor open-sourced packages just as nicely as Julia's General Registry, but might leverage custom CI/CD for pre-registration checks.
+One important element of successful open-source projects is that CI logs should generally be available to all contributors. This can be a burdensome criteria to meet if a previously closed-source package utilized internal CI/CD pipelines with nicer properties than publicly available CI pipelines. In some instances, certain flavors of this problem can be solved with better tooling, e.g. self-hosted (but publicly accessible) package registries can vendor open-sourced packages just as nicely as Julia's General Registry, but might leverage custom CI/CD for pre-registration checks.
 
 #### Open Source Efforts Could Reveal Strategic Intent
 

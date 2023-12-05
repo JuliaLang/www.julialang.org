@@ -2,7 +2,7 @@
 @def rss = """ GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux | Over the summer I have been working at improving the Computer Vision capabilities of Flux. My specific line of work was to __add newer models to the Flux model-zoo__, __implement some new features__ and also __improve the speed of the previous layers__. Specifically, I achieved a __18-fold__ speed up... """
 @def published = "13 August 2018"
 @def title = "GSoC 2018: Adding Newer Features and Speeding up Convolutions in Flux"
-@def authors = """<a href="https://github.com/avik-pal/">Avik Pal</a>"""  
+@def authors = """<a href="https://github.com/avik-pal/">Avik Pal</a>"""
 @def hascode = true
 
 Over the summer I have been working at improving the Computer Vision capabilities of Flux. My specific line of work was to __add newer models to the Flux model-zoo__, __implement some new features__ and also __improve the speed of the previous layers__. Specifically, I achieved a __18-fold__ speed up for the __Convolutions__ and around __3-fold__ for __BatchNorm__.
@@ -113,7 +113,7 @@ Here's a small demo of the package
 
 ### FastStyleTransfer.jl
 
-This is the implementation of the paper __[Perceptual Losses for Real-Time Style Transfer and Super-Resolution](https://arxiv.org/pdf/1603.08155)__. There are some obvious deviations from the paper. We used the best layer implementations that were currently available in Flux. As for the exact architecture it is still in developement. We provide three pre-trained models with this package. The API has been kept as simple as possible.
+This is the implementation of the paper __[Perceptual Losses for Real-Time Style Transfer and Super-Resolution](https://arxiv.org/pdf/1603.08155)__. There are some obvious deviations from the paper. We used the best layer implementations that were currently available in Flux. As for the exact architecture it is still in development. We provide three pre-trained models with this package. The API has been kept as simple as possible.
 
 Below is a small example of style transfer on MonaLisa
 

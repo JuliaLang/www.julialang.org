@@ -9,7 +9,7 @@ In the [first post](https://julialang.org/blog/2021/01/precompile_tutorial/), we
 We also pointed out that precompilation is closely tied to *type inference*:
 
 - precompilation allows you to cache the results of type inference, thus saving time when you start using methods defined in the package
-- caching becomes more effective when a higher proportion of calls are made with inferrable argument types (i.e., type-inference "succeeds"). Successful inference introduces links, in the form of `MethodInstance` backedges, that permit the entire call graph to be cached.
+- caching becomes more effective when a higher proportion of calls are made with inferable argument types (i.e., type-inference "succeeds"). Successful inference introduces links, in the form of `MethodInstance` backedges, that permit the entire call graph to be cached.
 
 As a consequence, anyone interested in precompilation needs to pay attention to type inference: how much time does it account for, where is it spending its time, and what can be done to improve caching?
 Julia itself provides the internal infrastructure needed to "spy" on inference, and the user-space utilities are in the [SnoopCompile] package.

@@ -31,11 +31,11 @@ Best practices: all models must be checked to be differentiable with all Turing-
 Most samplers in Turing.jl implements the AbstractMCMC.jl interface, allowing a unified way for the user to interact with the samplers.
 The interface of AbstractMCMC.jl is currently very bare-bones and does not lend itself nicely to interoperability between samplers.
 
-For example, it’s completely valid to compose to MCMC kernels, e.g. taking one step using the RWMH from AdvancedMH.jl, followed by taking one step using NUTS from AdvancedHMC.jl. 
+For example, it’s completely valid to compose to MCMC kernels, e.g. taking one step using the RWMH from AdvancedMH.jl, followed by taking one step using NUTS from AdvancedHMC.jl.
 Unfortunately, implementing such a composition requires explicitly defining conversions between the state returned from RWMH and the state returned from NUTS, and conversion of state from NUTS to state of RWMH.
 Doing this for one such sampler-pair is generally very easy to do, but once you have to do this for N samplers, suddenly the amount of work needed to be done becomes insurmountable.
 
-One way to deal alleviate this issue would be to add a simple interface for interacting with the states of the samplers, e.g. a method for getting the current values in the state, a method for setting the current values in the state, in addition to a set of glue-methods which can be overriden in the specific case where more information can be shared between the states. 
+One way to deal alleviate this issue would be to add a simple interface for interacting with the states of the samplers, e.g. a method for getting the current values in the state, a method for setting the current values in the state, in addition to a set of glue-methods which can be overridden in the specific case where more information can be shared between the states.
 
 As an example of some ongoing work that attempts to take a step in this direction is: https://github.com/TuringLang/AbstractMCMC.jl/pull/86
 

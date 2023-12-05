@@ -2,7 +2,7 @@
 @def rss = """ Distributed Numerical Optimization | This post walks through the parallel computing functionality of Julia... """
 @def published = "5 April 2013"
 @def title = "Distributed Numerical Optimization"
-@def authors = """<a href="https://mlubin.github.io/">Miles Lubin</a>"""  
+@def authors = """<a href="https://mlubin.github.io/">Miles Lubin</a>"""
 @def hascode = true
 @def hasmath = true
 
@@ -134,7 +134,7 @@ macro creates a [task](https://docs.julialang.org/en/latest/manual/control-flow/
 on the *master process* (e.g. process 1). Each task feeds work to a
 corresponding worker; the call `remotecall_fetch(p, f, lst[idx])` function
 calls `f` on process `p` and returns the result when finished. Tasks are
-uninterruptable and only surrender control at specific points such as
+uninterruptible and only surrender control at specific points such as
 `remotecall_fetch`. Tasks cannot directly modify variables from the enclosing
 scope, but the same effect can be achieved by using the `next_idx` function to
 access and mutate `i`. *The task idiom functions in place of using a loop to

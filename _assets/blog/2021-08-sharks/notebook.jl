@@ -81,7 +81,7 @@ end
 # ╔═╡ d830e69e-f085-495e-be2c-8ea44582fa20
 md"""
 Looking at [videos of swimming dogfish](https://youtu.be/nMa6lD2CQVI?t=200), we can see a couple general features
- - The motion of the front half of the body has a small amplitude (around 20% of the tail). This sets the amplitude evelope for the traveling wave.
+ - The motion of the front half of the body has a small amplitude (around 20% of the tail). This sets the amplitude envelope for the traveling wave.
 """
 
 # ╔═╡ c2b7a082-c05d-41bb-af4c-eb23f6a331bf
@@ -264,7 +264,7 @@ We can learn a lot from this simple plot. For example, the side-to-side force ha
 This simple model is a great start and it opens up a ton of avenues for improving the shark simulation and suggesting research questions:
  - The instantaneous net forces should be zero in a free swimming body! We could add reaction motions to our model to achieve this. Would the model shark swim in a straight line if we did this, or is a control-loop needed?
  - Real sharks are 3D (gasp!). While we could easily extend this approach using 2D splines, it will take much longer to simulate. Is there a way use GPUs to accelerate the simulations without completely changing the solver?
- - If we were going to make a bio-inspired robot of this shark, we will have constraints on the shape and motion and powering available. Can we use this framework to help optimize our robotic within it's contraints?
+ - If we were going to make a bio-inspired robot of this shark, we will have constraints on the shape and motion and powering available. Can we use this framework to help optimize our robotic within it's constraints?
 
 Below you can find links to all the packages used in this notebook. Happy Simulating!
 
