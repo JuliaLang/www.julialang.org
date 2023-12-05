@@ -192,7 +192,7 @@ The following video contains information on how to ask questions on StackOverflo
 ~~~
 
 
-If you know how to answer a question on StackOverflow or Discourse thats' an immediate chance to help!  Search for questions tagged [**[julia]**](https://stackoverflow.com/questions/tagged/julia) on StackOverflow or use a more specific term. Moreover, you can join the [#stackoverflow channel](https://julialang.zulipchat.com/#narrow/stream/225544-stackoverflow) on Zulip or the ´#stackoverflow-feed´ channel on the official [Julia Slack](https://julialang.org/slack/) to stay up-to-date on StackOverflow questions related to Julia.
+If you know how to answer a question on StackOverflow or Discourse thats' an immediate chance to help!  Search for questions tagged [**[julia]**](https://stackoverflow.com/questions/tagged/julia) on StackOverflow or use a more specific term. Moreover, you can join the ´#stackoverflow-feed´ channel on the official [Julia Slack](https://julialang.org/slack/) to stay up-to-date on StackOverflow questions related to Julia.
 
 #### Edit the README file of a Julia package
 
