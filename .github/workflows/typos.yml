@@ -42,8 +42,9 @@ jobs:
           old = set()
           with open(sys.argv[1]) as old_file:
             for line in old_file:
-              print(line)
-              old.add(json.loads(line)["typo"])
+              j = json.loads(line)
+              if j["type"] == "typo":
+                old.add(["typo"])
           clean = True
           with open(sys.argv[2]) as new_file:
             for line in new_file:
