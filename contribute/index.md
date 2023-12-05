@@ -183,7 +183,7 @@ If you are still unsure how to get started, then you can have a look at the foll
 
 #### Ask and answer questions
 
-You can ask or answer questions on both [StackOverflow](https://stackoverflow.com/questions/tagged/julia), [Discourse](https://discourse.julialang.org/), and [Zulip](https://julialang.zulipchat.com/). It not only helps to expand your knowledge but to spread the word about the Julia ecosystem.
+You can ask or answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/julia), [Discourse](https://discourse.julialang.org/), and [Zulip](https://julialang.zulipchat.com/). It not only helps to expand your knowledge but to spread the word about the Julia ecosystem.
 
 The following video contains information on how to ask questions on StackOverflow and how this can improve your learning (and understanding):
 
