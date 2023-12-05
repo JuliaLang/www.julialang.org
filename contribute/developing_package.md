@@ -91,7 +91,7 @@ To include a function from a different file in `YourPackageName.jl`:
 
 ```
 function greet_your_package_name()
-    println("Hello YourPackageName!")
+    return "Hello YourPackageName!"
 end
 ```
 3. Export the function `greet_your_package_name()` so that is available to users as follows:
