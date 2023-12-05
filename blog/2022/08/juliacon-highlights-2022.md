@@ -48,7 +48,7 @@ This year's 4th annual Julia User and Developer survey captured the thoughts of 
 
 JuliaCon would not be possible without the support of such amazing sponsors.  You can find our list of JuliaCon 2022 sponsors below with their sponsored videos: 
 
-- Julia Computing, Platinum Sponsor, [Sponsored Talk](https://www.youtube.com/watch?v=ZB15pk1fpgA)
+- JuliaHub, Platinum Sponsor, [Sponsored Talk](https://www.youtube.com/watch?v=ZB15pk1fpgA)
 - Julius Technologies, Platinum Sponsor, [Sponsored Talk](https://www.youtube.com/watch?v=Giq0qRByfmY)
 - RelationalAI, Platinum Sponsor, [Sponsored Talk](https://www.youtube.com/watch?v=Pncp0puIwI0)
 - Intel, Gold Sponsor, [Sponsored Talk](https://www.youtube.com/watch?v=-n5VMbEQLa4)

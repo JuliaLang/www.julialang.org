@@ -2,7 +2,7 @@
 @def rss = """ Julia’s Release Process | People involved in the day-to-day development of a project tend to become so familiar with its rhythm and process that they internalize it and it feels like everyone must just _know_ how each stage unfolds. Of course, from the outside looking in it's not so obvious. So I thought it might be helpful t... """
 @def published = "28 August 2019"
 @def title = "Julia’s Release Process"
-@def authors = "Stefan Karpinski (Julia Computing)"  
+@def authors = "Stefan Karpinski (JuliaHub)"
 
 
 People involved in the day-to-day development of a project tend to become so familiar with its rhythm and process that they internalize it and it feels like everyone must just _know_ how each stage unfolds. Of course, from the outside looking in it's not so obvious. So I thought it might be helpful to the broader Julia community—and maybe even for other programming language communities—to actually write down Julia's release process, including the details of:
@@ -144,4 +144,4 @@ Once a release branch has accumulated enough bug fixes and enough time has passe
 Hopefully you've found this overview of Julia's release process and policies illuminating. The very best thing we can hope for is that some of you reading this will find it interesting and want to get involved and that by demystifying things, we've helped make becoming a Julia developer a little more accessible.
 
 
-[^1]: [PkgEval](https://github.com/JuliaComputing/NewPkgEval.jl) is a tool for running the test suites of all Julia packages, which helps us make sure that we haven't inadvertently broken anything. Each failure is examined when a release is made: we verify that the failure isn't due to a violation of SemVer and try to make pull requests to fix packages, regardless of the cause of the failure.
+[^1]: [PkgEval](https://github.com/JuliaCI/NewPkgEval.jl) is a tool for running the test suites of all Julia packages, which helps us make sure that we haven't inadvertently broken anything. Each failure is examined when a release is made: we verify that the failure isn't due to a violation of SemVer and try to make pull requests to fix packages, regardless of the cause of the failure.

@@ -2,7 +2,7 @@
 @def rss = """ 機器學習以及程式語言(Traditional Chinese) | > 任何足夠複雜的機器學習系統都包含一個特別設置、不符規範、充滿 bug 又緩慢實作的程式語言半成品。^greenspun ... """
 @def published = "25 December 2017"
 @def title = "機器學習以及程式語言(Traditional Chinese)"
-@def authors = "By Mike Innes (Julia Computing), David Barber (UCL), Tim Besard (UGent), James Bradbury (Salesforce Research), Valentin Churavy (MIT), Simon Danisch (MIT), Alan Edelman (MIT), Stefan Karpinski (Julia Computing), Jon Malmaud (MIT), Jarrett Revels (MIT), Viral Shah (Julia Computing), Pontus Stenetorp (UCL) and Deniz Yuret (Koç University)"  
+@def authors = "By Mike Innes (JuliaHub), David Barber (UCL), Tim Besard (UGent), James Bradbury (Salesforce Research), Valentin Churavy (MIT), Simon Danisch (MIT), Alan Edelman (MIT), Stefan Karpinski (JuliaHub), Jon Malmaud (MIT), Jarrett Revels (MIT), Viral Shah (JuliaHub), Pontus Stenetorp (UCL) and Deniz Yuret (Koç University)"  
 @def hascode = true
 
 > 任何足夠複雜的機器學習系統都包含一個特別設置、不符規範、充滿 bug 又緩慢實作的程式語言半成品。[^greenspun]

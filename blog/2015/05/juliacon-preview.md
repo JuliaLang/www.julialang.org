@@ -50,4 +50,4 @@ The parallel computing session will tackle parallelism at all levels. Contributo
 
 After all that you will surely be inspired to hack on Julia projects all night, but make sure to wake up for a full day of **workshops** on Saturday!
 
-Remember to [get your tickets](https://www.eventbrite.com/e/juliacon-2015-tickets-16517619645) and [book your hotel](https://juliacon.org/#accom) before June 4th to take advantage of early bird pricing. We'd also like to thank our **platinum sponsors**: the Gordon and Betty Moore Foundation, BlackRock, and Julia Computing. We can't forget out **silver sponsors** either: Intel and Invenia. We're looking forward to seeing you there!
+Remember to [get your tickets](https://www.eventbrite.com/e/juliacon-2015-tickets-16517619645) and [book your hotel](https://juliacon.org/#accom) before June 4th to take advantage of early bird pricing. We'd also like to thank our **platinum sponsors**: the Gordon and Betty Moore Foundation, BlackRock, and JuliaHub. We can't forget out **silver sponsors** either: Intel and Invenia. We're looking forward to seeing you there!

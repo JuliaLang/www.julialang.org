@@ -43,4 +43,4 @@ We're excited to see further progress of using arrow-formatted in Julia; as it s
 
 Checkout the [package documentation](https://arrow.juliadata.org/stable/) or [format documentation](https://arrow.apache.org/docs/index.html) if you're interested in learning more; and as always, feel free to swing by the [#data Slack channel](https://julialang.slack.com/messages/data/) with questions or to chat, or [start a new topic](https://discourse.julialang.org/c/domain/data/16) in the Data discourse domain. Happy arrowing!
 
-A big thanks to Julia Computing for helping sponsor the work on the Julia implementation.
+A big thanks to JuliaHub (formerly Julia Computing) for helping sponsor the work on the Julia implementation.

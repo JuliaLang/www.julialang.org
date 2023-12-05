@@ -2,7 +2,7 @@
 @def rss = """ First-Class Statistical Missing Values Support in Julia 0.7 | The 0.7 release of Julia will soon introduce first-class support for statistical... """
 @def published = "19 June 2018"
 @def title = "First-Class Statistical Missing Values Support in Julia 0.7"
-@def authors = """ <a href="https://bouchet-valat.site.ined.fr">Milan Bouchet-Valat</a>"""  
+@def authors = """ <a href="https://bouchet-valat.site.ined.fr">Milan Bouchet-Valat</a>"""
 @def hascode = true
 
 The 0.7 release of Julia will soon introduce first-class support for statistical
@@ -495,7 +495,7 @@ a special mention.
 [^PDA]:
  The `PooledDataArray` type shipped in the same package can be replaced with
  either [`CategoricalArray`](https://github.com/JuliaData/CategoricalArrays.jl) or
- [`PooledArray`](https://github.com/JuliaComputing/PooledArrays.jl) depending on whether
+ [`PooledArray`](https://github.com/JuliaData/PooledArrays.jl) depending on whether
  the data is really categorical or simply contains a small number of distinct values.
 
 [^splitting]:
