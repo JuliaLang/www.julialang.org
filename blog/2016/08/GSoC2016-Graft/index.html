@@ -19,7 +19,7 @@
       &quot;occupation&quot; &#61;&gt; &quot;Athlete&quot;,
       &quot;adjacencies&quot; &#61;&gt; Dict&#40;&quot;Alice&quot; &#61;&gt; Dict&#40;&quot;relationship&quot; &#61;&gt; &quot;friend&quot;&#41;&#41;
    &#41;
-&#41;</code></pre> <p>Cleary, using labels internally is a very bad idea. Any sort of data access would set off multiple dictionary look-ups. Instead, if a bidirectional map could be used to translate labels into vertex identifiers and back, the number of dictionary lookups could be reduced to one. The data would also be better structured for query processing.</p> <pre><code class=language-julia ># Label Map to resolve queries
+&#41;</code></pre> <p>Clearly, using labels internally is a very bad idea. Any sort of data access would set off multiple dictionary look-ups. Instead, if a bidirectional map could be used to translate labels into vertex identifiers and back, the number of dictionary lookups could be reduced to one. The data would also be better structured for query processing.</p> <pre><code class=language-julia ># Label Map to resolve queries
 LabelMap&#40;
    # Forward map : labels to vertex identifiers
    Dict&#40;&quot;Alice&quot; &#61;&gt; 1, &quot;David&quot; &#61;&gt; 4, &quot;Charlie&quot; &#61;&gt; 3, &quot;Bob&quot; &#61;&gt; 2&#41;,

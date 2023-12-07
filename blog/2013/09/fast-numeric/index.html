@@ -35,7 +35,7 @@ end</code></pre>
 for i &#61; 1:length&#40;x&#41;
     r&#91;i&#93; &#61; exp&#40;-abs&#40;x&#91;i&#93;-y&#91;i&#93;&#41;&#41;
 end</code></pre>
-<p>This version finishes the computation in one pass, without introducing any temporary arrays. Moreover, if <code>r</code> is pre-allocated, one can even omit the statment that creates <code>r</code>. The <a href="https://github.com/lindahua/Devectorize.jl"><em>Devectorize.jl</em></a> package provides a macro <code>@devec</code> that can automatically translate vectorized expressions into loops:</p>
+<p>This version finishes the computation in one pass, without introducing any temporary arrays. Moreover, if <code>r</code> is pre-allocated, one can even omit the statement that creates <code>r</code>. The <a href="https://github.com/lindahua/Devectorize.jl"><em>Devectorize.jl</em></a> package provides a macro <code>@devec</code> that can automatically translate vectorized expressions into loops:</p>
 <pre><code class=language-julia >using Devectorize
 
 @devec r &#61; exp&#40;-abs&#40;x-y&#41;&#41;</code></pre>
@@ -79,7 +79,7 @@ for i &#61; 1:m
     end
     r&#91;i&#93; &#61; s
 end</code></pre>
-<p>The loop here accesses the elements row-by-row, as <code>a&#91;i,1&#93;, a&#91;i,2&#93;, ..., a&#91;i,n&#93;</code>. The interval between these elements is <code>m</code>. Intuitively, it jumps at the stride of length <code>m</code> from the begining of each row to the end in each inner loop, and then jumps back to the begining of next row. This is not very efficient, especially when <code>m</code> is large.</p>
+<p>The loop here accesses the elements row-by-row, as <code>a&#91;i,1&#93;, a&#91;i,2&#93;, ..., a&#91;i,n&#93;</code>. The interval between these elements is <code>m</code>. Intuitively, it jumps at the stride of length <code>m</code> from the beginning of each row to the end in each inner loop, and then jumps back to the beginning of next row. This is not very efficient, especially when <code>m</code> is large.</p>
 <p>This procedure can be made much more cache-friendly by changing the order of computation:</p>
 <pre><code class=language-julia >for i &#61; 1:m
     r&#91;i&#93; &#61; a&#91;i,1&#93;

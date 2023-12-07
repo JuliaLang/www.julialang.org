@@ -61,10 +61,10 @@ dims&#41;</code> where <code>dims</code> specifies the dimensions you want to su
     B &#61; Array&#123;eltype&#40;A&#41;&#125;&#40;undef, sz...&#41;
     sumalongdims&#33;&#40;B, A&#41;
 end</code></pre>
-<p>Obviously, this simple implementation skips all relevant error checking.  However, here the main point I wish to explore is that the allocation of <code>B</code> turns out to be <a href="https://docs.julialang.org/en/latest/manual/faq/#man-type-stability-1">non-inferrable</a>: <code>sz</code> is a <code>Vector&#123;Int&#125;</code>, the length &#40;number of elements&#41; of a specific <code>Vector&#123;Int&#125;</code> is not encoded by the type itself, and therefore the dimensionality of <code>B</code> cannot be inferred.</p>
+<p>Obviously, this simple implementation skips all relevant error checking.  However, here the main point I wish to explore is that the allocation of <code>B</code> turns out to be <a href="https://docs.julialang.org/en/latest/manual/faq/#man-type-stability-1">non-inferable</a>: <code>sz</code> is a <code>Vector&#123;Int&#125;</code>, the length &#40;number of elements&#41; of a specific <code>Vector&#123;Int&#125;</code> is not encoded by the type itself, and therefore the dimensionality of <code>B</code> cannot be inferred.</p>
 <p>Now, we could fix that in several ways, for example by annotating the result:</p>
 <pre><code class=language-julia >B &#61; Array&#123;eltype&#40;A&#41;&#125;&#40;undef, sz...&#41;::Array&#123;eltype&#40;A&#41;,ndims&#40;A&#41;&#125;</code></pre>
-<p>or by using an implementation that <em>is</em> inferrable:</p>
+<p>or by using an implementation that <em>is</em> inferable:</p>
 <pre><code class=language-julia >function sumalongdims&#40;A, dims&#41;
     sz &#61; ntuple&#40;i-&gt;i ∈ dims ? 1 : size&#40;A, i&#41;, Val&#40;ndims&#40;A&#41;&#41;&#41;
     B &#61; Array&#123;eltype&#40;A&#41;&#125;&#40;undef, sz...&#41;
@@ -132,7 +132,7 @@ Stacktrace:
 <p>When you want to perform broadcast arithmetic, just extract the underlying tuple:</p>
 <pre><code class=language-julia >julia&gt; Tuple&#40;I&#41; .&#43; 1
 &#40;3, 8&#41;</code></pre>
-<p>If desired you can package this back up in a <code>CartesianIndex</code>, or just use it directly &#40;with splatting&#41; for indexing. The compiler optimizes all these operations away, so there is no actual &quot;cost&quot; to constucting objects in this way.</p>
+<p>If desired you can package this back up in a <code>CartesianIndex</code>, or just use it directly &#40;with splatting&#41; for indexing. The compiler optimizes all these operations away, so there is no actual &quot;cost&quot; to constructing objects in this way.</p>
 <p>Why is iteration disallowed? One reason is to support the following:</p>
 <pre><code class=language-julia >julia&gt; R &#61; CartesianIndices&#40;&#40;1:3, 1:3&#41;&#41;
 3×3 CartesianIndices&#123;2,Tuple&#123;UnitRange&#123;Int64&#125;,UnitRange&#123;Int64&#125;&#125;&#125;:

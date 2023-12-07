@@ -144,7 +144,7 @@ julia &#40;v1.6&#41;&gt; @btime cat&#40;&#91;1 2&#93;, &#91;3 4&#93;, dims &#61;
   1.380 μs &#40;23 allocations: 1.05 KiB&#41;
 
 julia &#40;v1.6&#41;&gt; @btime reshape&#40;&#91;1; 2; 3; 4&#93;, &#40;1, 2, 1, 2&#41;&#41;; # fast, but intent less clear
-  65.884 ns &#40;2 allocations: 192 bytes&#41;</code></pre> <p>This is a substantial improvement in performance for this basic operation, and the differential improves greatly as more dimensions become invovled.</p> <p>For ease of reading a larger array expression, line breaks are of course tolerated:</p> <pre><code class=language-julia-repl >julia&gt; &#91; 1 2
+  65.884 ns &#40;2 allocations: 192 bytes&#41;</code></pre> <p>This is a substantial improvement in performance for this basic operation, and the differential improves greatly as more dimensions become involved.</p> <p>For ease of reading a larger array expression, line breaks are of course tolerated:</p> <pre><code class=language-julia-repl >julia&gt; &#91; 1 2
          3 4
          ;;;
          5 6

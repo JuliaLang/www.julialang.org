@@ -337,7 +337,7 @@ false</code></pre>
 <pre><code class=language-julia >dopush&#40;&#41; &#61; push&#33;&#40;SCDType&#91;&#93;, SCDType&#40;&#41;&#41;
 precompile&#40;dopush, &#40;&#41;&#41;</code></pre>
 <p>then the <code>MethodInstance</code> for <code>push&#33;&#40;::Vector&#123;SCDType&#125;, ::SCDType&#41;</code> will be added to the package through the backedge to <code>dopush</code> &#40;which you do own&#41;.</p>
-<p>This was an artifical example, but in more typical cases this happens organically through the functionality of your package. But again, this works only for inferrable calls.</p></div>
+<p>This was an artificial example, but in more typical cases this happens organically through the functionality of your package. But again, this works only for inferable calls.</p></div>
 <p></p>
 </div><br><br>
 
