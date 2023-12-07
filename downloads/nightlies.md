@@ -14,27 +14,37 @@ Most users are advised to use the latest official release version of Julia.
 <table class="downloads table table-hover table-bordered">
   <tbody>
   <tr>
-      <th> Windows </th>
-      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x64/julia-latest-win64.exe">64-bit (installer)</a>, <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x64/julia-latest-win64.zip">64-bit (portable) </td>
-      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.exe">32-bit (installer)</a>, <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.zip">32-bit (portable) </td>
+      <th> Platform</th>
+      <th> 64-bit</th>
+      <th> 32-bit</th>
   </tr>
   <tr>
-      <th> macOS</th>
-      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/julia-latest-macos-x86_64.dmg">64-bit Intel</a> </td>
-      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/julia-latest-macos-aarch64.dmg">Apple Silicon</a> </td>
+      <td> Windows </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x64/julia-latest-win64.exe">installer</a>, <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x64/julia-latest-win64.zip">portable</a> </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.exe">installer</a>, <a href="https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.zip">portable</a> </td>
   </tr>
   <tr>
-      <th> Generic Linux on x86 </th>
-      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/julia-latest-linux-x86_64.tar.gz">64-bit</a> </td>
-      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/i686/julia-latest-linux-i686.tar.gz">32-bit</a> </td>
+      <td> macOS</td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/macos/x86_64/julia-latest-macos-x86_64.dmg">Intel</a>, <a href="https://julialangnightlies-s3.julialang.org/bin/macos/aarch64/julia-latest-macos-aarch64.dmg">Apple Silicon</a> </td>
+      <td> </td>
   </tr>
   <tr>
-      <th> Generic Linux on ARM </th>
-      <td colspan="2"> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linux-aarch64.tar.gz">64-bit (AArch64)</a> </td>
+      <td> Generic Linux on x86 </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/x86_64/julia-latest-linux-x86_64.tar.gz">.tar.gz</a> </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/i686/julia-latest-linux-i686.tar.gz">.tar.gz</a> </td>
   </tr>
+  <tr>
+      <td> Generic Linux on ARM </td>
+      <td> <a href="https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linux-aarch64.tar.gz">AArch64</a> </td>
+      <td> </td>
+  </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
   <tr>
       <th> Source </th>
-      <td colspan="2"> <a href="https://github.com/JuliaLang/julia">GitHub</a> </td>
+      <td> <a href="https://github.com/JuliaLang/julia">GitHub</a> </td>
   </tr>
   </tbody>
 </table>
