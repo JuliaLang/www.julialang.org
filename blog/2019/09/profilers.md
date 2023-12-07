@@ -2,7 +2,7 @@
 @def rss = """ Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](http://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports. ![Instruments.app bad result](/assets/blog/2019-09-16-profilers/profile-instruments-bad.png)"""
 @def published = "16 September 2019"
 @def title = "Profiling tool wins and woes"
-@def authors = """<a href="https://github.com/vtjnash/">Jameson Nash</a>"""  
+@def authors = """<a href="https://github.com/vtjnash/">Jameson Nash</a>"""
 @def hascode=true
 
 Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](http://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.
@@ -385,7 +385,7 @@ julia> Profile.print(format=:tree, recur=:flat)
 Total snapshots: 629
 ```
 
-I think this looks cool, and vaguely even shows how I would conceptualize the functions in my head. This is availble right now only on [my jn/profile-recurflat](https://github.com/JuliaLang/julia/tree/jn/profile-recurflat) branch, but should be a PR soon, and show up in the JuliaLang v1.4 release.
+I think this looks cool, and vaguely even shows how I would conceptualize the functions in my head. This is available right now only on [my jn/profile-recurflat](https://github.com/JuliaLang/julia/tree/jn/profile-recurflat) branch, but should be a PR soon, and show up in the JuliaLang v1.4 release.
 
 ## Final thoughts
 

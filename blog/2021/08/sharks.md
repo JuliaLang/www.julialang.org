@@ -270,7 +270,7 @@ For example, the side-to-side force has the same frequency as the swimming motio
 This simple model is a great start and it opens up a ton of avenues for improving the shark simulation and suggesting research questions:
  - The instantaneous net forces should be zero in a free swimming body! We could add reaction motions to our model to achieve this. Would the model shark swim in a straight line if we did this, or is a control-loop needed?
  - Real sharks are 3D (gasp!). While we could easily extend this approach using 2D splines, it will take much longer to simulate. Is there a way use GPUs to accelerate the simulations without completely changing the solver?
- - If we were going to make a bio-inspired robot of this shark, we will have constraints on the shape and motion and powering available. Can we use this framework to help optimize our robotic within it's contraints?
+ - If we were going to make a bio-inspired robot of this shark, we will have constraints on the shape and motion and powering available. Can we use this framework to help optimize our robotic within it's constraints?
 
 Below you can find links to all the packages used in this notebook. Happy Simulating!
 

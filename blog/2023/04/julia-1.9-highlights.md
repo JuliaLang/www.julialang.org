@@ -156,7 +156,7 @@ This feature was introduced in [#45369]( https://github.com/JuliaLang/julia/pull
 
 *Lilith Hafner*
 
-The default sorting algorithm has been upgraded to a more adaptive sorting algorithm that is always stable and often has state of the art performance. For simple types and orders—`BitInteger`, `IEEEFloat`, and `Char` sorted in default or reverse order—we use a radix sort that has linear runtime with respect to input size. This effect is especially pronounced for `Float16`s which recieved a 3x-50x speedup over 1.8.
+The default sorting algorithm has been upgraded to a more adaptive sorting algorithm that is always stable and often has state of the art performance. For simple types and orders—`BitInteger`, `IEEEFloat`, and `Char` sorted in default or reverse order—we use a radix sort that has linear runtime with respect to input size. This effect is especially pronounced for `Float16`s which received a 3x-50x speedup over 1.8.
 
 For other types, the default sorting algorithm has been changed to the internal `ScratchQuickSort` in most cases, which is stable and generally faster than `QuickSort`, although it does allocate memory. For situations where memory efficiency is crucial, you can override these new defaults by specifying `alg=QuickSort`.
 

@@ -14,7 +14,7 @@ Open projects on this effort include:
 **Difficulty**: Hard.
 
 **Description**: In order to be able to use LoopModels from Julia, we must be able to apply a custom pass pipeline.
-This is likely something other packages will want to be able to do in the future, and something some packages ([Enzyme.jl](https://github.com/wsmoses/Enzyme.jl)) do already. In this project, your aim will be to create a package that provides infrastructure others can 
+This is likely something other packages will want to be able to do in the future, and something some packages ([Enzyme.jl](https://github.com/wsmoses/Enzyme.jl)) do already. In this project, your aim will be to create a package that provides infrastructure others can
 depend on to simplify applying custom pass pipelines.
 
 **Expected Results**: Register a package that allows applying custom LLVM pass pipelines to Julia code.
@@ -26,7 +26,7 @@ depend on to simplify applying custom pass pipelines.
 ## Developing Loop Models (350 hours):
 **Difficulty**: Medium.
 
-**Description**: This is open ended, with many potential projects here. These range from using [Presburger arithmetic](https://dl.acm.org/doi/10.1145/3485539) to [support decidable polyhedral modeling](https://lirias.kuleuven.be/retrieve/361209), working on canonicalizations to handle more kinds of loops frequently encountered from Julia (e.g. from `CartesianIndicies`), modeling the costs of different schedules, to efficiently searching the iteration space and find the fastest way to evaluate a loop nest. We can discuss your interests and find a task you'll enjoy and make substantive contributions to.
+**Description**: This is open ended, with many potential projects here. These range from using [Presburger arithmetic](https://dl.acm.org/doi/10.1145/3485539) to [support decidable polyhedral modeling](https://lirias.kuleuven.be/retrieve/361209), working on canonicalizations to handle more kinds of loops frequently encountered from Julia (e.g. from `CartesianIndices`), modeling the costs of different schedules, to efficiently searching the iteration space and find the fastest way to evaluate a loop nest. We can discuss your interests and find a task you'll enjoy and make substantive contributions to.
 
 **Expected Results**: Help develop some aspect of the loop modeling and/or optimization.
 

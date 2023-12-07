@@ -2,7 +2,7 @@
 @def rss = """ Generalizing AbstractArrays: opportunities and challenges | Somewhat unusually, this blog post is future-looking: it mostly... """
 @def published = "27 March 2016"
 @def title = "Generalizing AbstractArrays: opportunities and challenges"
-@def authors = """ <a href="http://holylab.wustl.edu">Tim Holy</a>"""  
+@def authors = """ <a href="http://holylab.wustl.edu">Tim Holy</a>"""
 @def hascode = true
 
 
@@ -362,7 +362,7 @@ These examples suggest a formalization of `AbstractArray`:
 Resolving these conflicting demands is not easy. One approach might be
 to decree that some of these array types simply can't be supported
 with generic code. It is possible that this is the right
-strategy. Alternatively, one can attept to devise an array API that
+strategy. Alternatively, one can attempt to devise an array API that
 handles all of these types (and hopefully more).
 
 In GitHub issue

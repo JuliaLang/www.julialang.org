@@ -398,7 +398,7 @@ julia (v1.6)> @btime reshape([1; 2; 3; 4], (1, 2, 1, 2)); # fast, but intent les
   65.884 ns (2 allocations: 192 bytes)
 ```
 
-This is a substantial improvement in performance for this basic operation, and the differential improves greatly as more dimensions become invovled.
+This is a substantial improvement in performance for this basic operation, and the differential improves greatly as more dimensions become involved.
 
 For ease of reading a larger array expression, line breaks are of course tolerated:
 ```julia-repl

@@ -53,7 +53,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * IIT Indore
     * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://marjan.fesb.hr/~slap/)), June 2016
 * Instituto Tecnológico Autónomo de México (ITAM), Mexico City, Mexico
-   * COM 15112 - Paralell and Cloud Computing (Cómputo paralelo y en la nube) (Dr. José Octavio Gutiérrez García)
+   * COM 15112 - Parallel and Cloud Computing (Cómputo paralelo y en la nube) (Dr. José Octavio Gutiérrez García)
 * Iowa State University
     * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann), Fall 2014
 * Kathmandu University

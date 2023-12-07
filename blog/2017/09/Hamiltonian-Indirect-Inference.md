@@ -2,7 +2,7 @@
 @def rss = """ GSoC 2017 Project: Hamiltonian Indirect Inference | This is a writeup of my project for the Google Summer of Code 2017. The... """
 @def published = "19 September 2017"
 @def title = "GSoC 2017 Project: Hamiltonian Indirect Inference"
-@def authors = "Dorisz Albrecht"  
+@def authors = "Dorisz Albrecht"
 @def hasmath = true
 @def hascode = true
 
@@ -50,7 +50,7 @@ The novelty of this project was to find a way to fit every component together in
 
 After the second stage, I coded economic models for the [DynamicHMC.jl](https://github.com/tpapp/DynamicHMC.jl). The Stochastic Volatility model is one of them. In the following section, I will go through the set up.
 
-The continuous-time version of the Ornstein-Ulenbeck Stochastic - volatiltiy model describes how the return at time t has mean zero and its volatility is governed by a continuous-time Ornstein-Ulenbeck process of its variance. The big fluctuation of the value of a financial product imply a varying volatility process. That is why we need stochastic elements in the model. As we can access data only in discrete time, it is natural to take the discretization of the model.
+The continuous-time version of the Ornstein-Ulenbeck Stochastic - volatility model describes how the return at time t has mean zero and its volatility is governed by a continuous-time Ornstein-Ulenbeck process of its variance. The big fluctuation of the value of a financial product imply a varying volatility process. That is why we need stochastic elements in the model. As we can access data only in discrete time, it is natural to take the discretization of the model.
 
 The discrete-time version of the Ornstein-Ulenbeck Stochastic - volatility model:
 
