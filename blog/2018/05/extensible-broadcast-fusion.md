@@ -2,7 +2,7 @@
 @def rss = """ Extensible broadcast fusion | Julia version 0.7 brings with it an exciting new feature: the ability to customize broadcast... """
 @def published = "11 May 2018"
 @def title = "Extensible broadcast fusion"
-@def authors = """<a href="https://github.com/mbauman">Matt Bauman (Julia Computing)</a>"""  
+@def authors = """<a href="https://github.com/mbauman">Matt Bauman (JuliaHub)</a>"""  
 @def hascode = true
 
 

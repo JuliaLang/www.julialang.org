@@ -2,7 +2,7 @@
 @def rss = """ Julia将支持可组合的多线程并行机制 | 摩尔定律带来的免费性能提升（free lunch） free lunch 几近结束，... """
 @def published = "30 July 2019"
 @def title = "Julia将支持可组合的多线程并行机制"
-@def author = "Jeff Bezanson (Julia Computing), Jameson Nash (Julia Computing), Kiran Pamnany (Intel)"
+@def author = "Jeff Bezanson (JuliaHub), Jameson Nash (JuliaHub), Kiran Pamnany (Intel)"
 @def hascode = true
 
 摩尔定律带来的[免费性能提升（free lunch）][free lunch]几近结束，

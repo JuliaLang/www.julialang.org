@@ -60,7 +60,7 @@ Thank you to everyone who purchased the JuliaCon 2021 T-shirt or mug this year. 
 ## Other JuliaCon Blog posts
 
 You might want to check out some of the other awesome blog posts folks have written about JuliaCon 2021:
-- [Julia Computing](https://juliacomputing.com/blog/2021/08/juliacon/)
+- [JuliaHub](https://juliahub.com/blog/2021/08/juliacon/)
 - [Julia for Data Science](https://www.juliafordatascience.com/best-data-science-talks-of-juliacon-2021/)
 - [Invenia at JuliaCon](https://invenia.github.io/blog/2021/08/10/juliacon2021/)
 - [SciML at JuliaCon](https://sciml.ai/news/2021/08/16/juliacon2021/)

@@ -482,8 +482,8 @@ for their respective architectures. Amazon, Google and Microsoft have provided
 cloud computing credits as well. Intel, Google, and Microsoft have also previously
 sponsored JuliaCon.
 
-This work was primarily funded by my employer, Julia Computing. Part of Julia
-Computing's open source work is funded by external grants. As such, part of this
+This work was primarily funded by my employer, JuliaHub (formerly Julia Computing). Part of
+JuliaHub's open source work is funded by external grants. As such, part of this
 work was funded under a grant from the Moore Foundation, which is gratefully
 acknowledged.
 
@@ -492,11 +492,11 @@ of multi-threading in Julia on Intel platforms. Additionally, where hardware bug
 were encountered during this work, they were reported to the relevant vendor under
 existing funded contracts.
 
-Further, Julia Computing has [previously announced](https://juliacomputing.com/blog/2019/02/13/JuliaTeam-Vision.html)
+Further, JuliaHub has [previously announced](https://juliahub.com/blog/2019/02/13/JuliaTeam-Vision.html)
 that `rr` integration will likely be available in future commercial offerings.
-This is a separate piece of work and not a Julia Computing product. If you
-are interested in using these capabilities with a Julia Computing product,
-or under your Julia Computing support agreement, please contact your support
+This is a separate piece of work and not a JuliaHub product. If you
+are interested in using these capabilities with a JuliaHub product,
+or under your JuliaHub support agreement, please contact your support
 representative.
 
 Lastly, your author discloses his self-interest. He spends too much time

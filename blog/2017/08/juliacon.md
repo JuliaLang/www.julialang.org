@@ -2,7 +2,7 @@
 @def rss = """ JuliaCon 2017 on the West Coast | ! (/assets/blog/2017-08-15-juliacon/juliacon.jpg)... """
 @def published = "15 August 2017"
 @def title = "JuliaCon 2017 on the West Coast"
-@def authors = "Ranjan Anantharaman"  
+@def authors = "Ranjan Anantharaman"
 
 
 ![](/assets/blog/2017-08-15-juliacon/juliacon.jpg)
@@ -12,7 +12,7 @@ and I’m back: this time to the West Coast for the next edition of
 JuliaCon. The [latest
 edition](https://www.youtube.com/playlist?list=PLP8iPy9hna6QpP6vqZs408etJVECPKIev)
 promised more talks, workshops, and wider community attendance.  As
-usual, the conference began with a day dedicated to workshops.  
+usual, the conference began with a day dedicated to workshops.
 
 The
 first workshop was on the
@@ -97,7 +97,7 @@ processing](https://github.com/arsenal9971/Shearlab.jl), especially
 focussing on the Shear Transform. I was delighted to know that the
 author, [Hector Andrade
 Loarca](https://www.youtube.com/watch?v=8iYUbWfR_lI), uses
-[`ArrayFire.jl`](https://github.com/JuliaComputing/ArrayFire.jl) for
+[`ArrayFire.jl`](https://github.com/JuliaGPU/ArrayFire.jl) for
 his research, and that it helps him greatly.
 
 The Celeste keynote was the highlight of the day, with my colleague
@@ -155,7 +155,7 @@ crest of a robust optimization
 The conference ended with [Jeff
 Bezanson](https://www.youtube.com/watch?v=i9mfWKzEXcg) presenting a
 short talk on JuliaDB, the in-memory database that was part of the
-JuliaFin product from Julia Computing, and was recently open
+JuliaFin product from JuliaHub, and was recently open
 sourced. It supports both relational and SQL-like queries and uses
 [`Dagger.jl`](https://github.com/JuliaParallel/Dagger.jl) under the
 hood.  After Jeff finished, the question and answer session seemed to

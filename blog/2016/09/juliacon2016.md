@@ -2,7 +2,7 @@
 @def rss = """ A Personal Perspective On JuliaCon 2016 | The gentle breeze brushed my face and the mild sunshine warmed an... """
 @def published = "21 September 2016"
 @def title = "A Personal Perspective On JuliaCon 2016"
-@def authors = """Ranjan Anantharaman"""  
+@def authors = """Ranjan Anantharaman"""
 
 
 The gentle breeze brushed my face and the mild sunshine warmed an
@@ -129,7 +129,7 @@ he spoke about was very interesting, and got me thinking about the Julia compile
 very enlightening discussion with him later about the Julia parser.
 
 It turned out that in the afternoon, I was crunched for time. I was helping Shashi plug
-[ArrayFire](https://github.com/JuliaComputing/ArrayFire.jl) into
+[ArrayFire](https://github.com/JuliaGPU/ArrayFire.jl) into
 [Dagger.jl](https://github.com/JuliaParallel/Dagger.jl) for his talk that was due in a
 couple of hours, while also working on my own ArrayFire notebooks for late that evening.
 But we managed to pull through in time. So the afternoon session had
