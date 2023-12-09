@@ -3,7 +3,6 @@
 @@tight-list
 * Júlio Hoffimann, [Geospatial Data Science with Julia](https://juliaearth.github.io/geospatial-data-science-with-julia), Open Access, 2023.
 * Adeil Araújo and Meirivâni Oliveira, ["Julia with Physics: An Introduction" in Portuguese](https://www.seduc.ce.gov.br/wp-content/uploads/sites/37/2023/09/Ebook-02-Julia-com-Fisica.pdf), Seduc - CE, September 2023.
-* İlker Arslan, [Julia for Data Science](http://mng.bz/x4vd), Manning Publications, April 2023
 * C. T. Kelley, [Solving Nonlinear Equations with Iterative Methods. Solvers and Examples in Julia](https://my.siam.org/Store/Product/viewproduct/?ProductId=44313635), SIAM, 2022. The book comes with a package [SIAMFANLequations.jl](https://github.com/ctkelley/SIAMFANLEquations.jl) and a set of [Jupyter notebooks](https://github.com/ctkelley/NotebookSIAMFANL).
 * Bogumił Kamiński. [Julia for Data Analysis](https://www.manning.com/books/julia-for-data-analysis), Manning Publications, December 2022
 * Logan Kilpatrick, Nolan Fortman. [Julia Crash Course 🚀: Learn the worlds fastest growing programming language](https://logankilpatrick.gumroad.com/l/juliacrashcourse), December 2022
@@ -19,7 +18,7 @@
 * Lee Phillips. [Practical Julia](https://lee-phillips.org/juliabook/). “The secret weapon for scientists.” In final production; coming from No Starch Press in September 2023.
 * Mykel J. Kochenderfer, Tim A. Wheeler, and Kyle H. Wray. [Algorithms for Decision Making](https://algorithmsbook.com/), December 2020.
 * Christopher P. Adams. [Learning Microeconometrics with R](https://www.routledge.com/Learning-Microeconometrics-with-R/Adams/p/book/9780367255381), December 2020; Has [Julia code](https://sites.google.com/view/microeconometricswithr/home?authuser=0) for all [12 chapters](https://sites.google.com/view/microeconometricswithr/table-of-contents?authuser=0).
-* Raj Rao. [Applied Computational Linear Algebra for Everyone](https://mynerva.io/compla), December 2020; Interactive, experential computational book as described in [this JuliaCon  talk](https://www.youtube.com/watch?v=R84L-BQcjHw)  
+* Raj Rao. [Applied Computational Linear Algebra for Everyone](https://mynerva.io/compla), December 2020; Interactive, experential computational book as described in [this JuliaCon  talk](https://www.youtube.com/watch?v=R84L-BQcjHw)
 * Bogumił Kamiński and Paweł Prałat. [Train Your Brain - Challenging Yet Elementary Mathematics](https://www.ryerson.ca/train-your-brain/), December 2020; a free on-line [Julia language companion](https://math.ryerson.ca/~pralat/train-your-brain.pdf) is available for download.
 * Ahan Sengupta [The Little Book of Julia Algorithms](https://www.amazon.com/Little-Book-Julia-Algorithms-programming/dp/1838173609/). SAV Publishing, September 2020.
 * Zacharias Voulgaris. [Julia for Machine Learning](https://technicspub.com/julia/). Technics Publications, June 2020.
