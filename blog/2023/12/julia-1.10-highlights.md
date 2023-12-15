@@ -90,7 +90,7 @@ Sysimage so thready
 
 In previous versions of Julia multiple processes running with the same depot will all race to precompile packages into cache files, resulting in extra work being done and the potential for corruption of these cache files.
 
-1.10 introduces a "pidfile" (process id file) locking mechanism that orchestrates it such that only one Julia process will work to precompile a given cache file, where a cache file is specific to the Julia setup that is being targetted during precompilation.
+1.10 introduces a "pidfile" (process id file) locking mechanism that orchestrates it such that only one Julia process will work to precompile a given cache file, where a cache file is specific to the Julia setup that is being targeted during precompilation.
 
 This arrangement benefits both local users, whom may be running multiple processes at once, and high performance computing users who may be running hundreds of workers with the same shared depot.
 
