@@ -52,7 +52,7 @@ A lot of this work was driven by profiling and improving the load time of [OmniP
 
 Up to 1.9, Julia's garbage collector was stop-the-world (meaning that all compute threads had to be stopped while a collection cycle was running) and serial (meaning a single thread performed a collection while the compute threads were halted). As one may imagine, garbage collection can quickly become a bottleneck in multithreaded code, particularly in code where multiple threads allocate.
 
-In 1.10, we gave the first steps towards improving scalability the of garbage collector in multithreaded code. More specifically, our work consisted of parallelizing the mark-phase of Julia's GC and enabling part of sweeping to be run concurrently with compute threads.
+In 1.10, we gave the first steps towards improving scalability of the garbage collector in multithreaded code. More specifically, our work consisted of parallelizing the mark-phase of Julia's GC and enabling part of sweeping to be run concurrently with compute threads.
 
 # Tracy and Intel VTune ITTAPI profiling integration
 
