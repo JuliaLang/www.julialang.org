@@ -15,13 +15,13 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 
 \toc
 
-# New parser written in Julia
+## New parser written in Julia
 
 *Claire Foster*
 
 In Julia 1.10 we have replaced Julia's default parser (written in Scheme) with one written in Julia...
 
-# Package load time improvements
+## Package load time improvements
 
 *Jameson Nash et al.*
 
@@ -41,7 +41,7 @@ Omnipackage load times:
 Julia 1.9: 48.041773 seconds (102.17 M allocations: 6.522 GiB, 5.82% gc time, 1.21% compilation time: 86% of which was recompilation)
 Julia 1.10: 19.125309 seconds (30.38 M allocations: 2.011 GiB, 11.54% gc time, 10.38% compilation time: 61% of which was recompilation)
 
-# Stacktrace rendering improvements
+## Stacktrace rendering improvements
 
 *Jeff Bezanson, Tim Holy*
 
@@ -50,7 +50,7 @@ Julia 1.10: 19.125309 seconds (30.38 M allocations: 2.011 GiB, 11.54% gc time, 1
 - https://github.com/JuliaLang/julia/pull/49102
 
 
-# Parallel GC
+## Parallel GC
 
 *Diogo Netto*
 
@@ -58,7 +58,7 @@ Up to 1.9, Julia's garbage collector was stop-the-world (meaning that all comput
 
 In 1.10, we gave the first steps towards improving scalability of the garbage collector in multithreaded code. More specifically, our work consisted of parallelizing the mark-phase of Julia's GC and enabling part of sweeping to be run concurrently with compute threads.
 
-# Tracy and Intel VTune ITTAPI profiling integration
+## Tracy and Intel VTune ITTAPI profiling integration
 
 *Cody Tapscott, Valentin Churavy, Prem Chintalapudi*
 
@@ -66,13 +66,13 @@ In 1.10, we gave the first steps towards improving scalability of the garbage co
 
 <Screenshot VTune></Screenshot>
 
-# Symbol versioning by default
+## Symbol versioning by default
 
 *Cody Tapscott*
 
 You get a libjulia and you get a libjulia and you get a libjulia...
 
-# Upgrade to LLVM 15
+## Upgrade to LLVM 15
 
 *Valentin Churavy, Gabriel Baraldi, Prem Chintalapudi*
 
@@ -87,7 +87,7 @@ improved support for Float16 on x86.
 
 With the upgrade to LLVM 15 we were able to [use JITLink on aarch64 CPUs on Linux](https://github.com/JuliaLang/julia/pull/49745).  [This linker](https://llvm.org/docs/JITLink.html), which had been first introduced in [Julia v1.8 only for Apple Silicon](https://julialang.org/blog/2022/08/julia-1.8-highlights/#improved_support_for_apple_silicon) (aarch64 CPUs on macOS), resolves many frequent segmentation fault errors that affected Julia on this platform.  However, due to a [bug in LLVM memory manager](https://github.com/llvm/llvm-project/issues/63236), non-trivial workloads may generate too many memory mappings (`mmap`) that can exceed the limit of allowed mappings.  If you run into this problem, read the documentation on how to [change the `mmap` limit](https://docs.julialang.org/en/v1.10.0/devdocs/build/arm/#AArch64-(ARMv8)).
 
-# Parallel native code generation for system images and package images
+## Parallel native code generation for system images and package images
 
 *Prem Chintalapudi*
 
@@ -95,7 +95,7 @@ Ahead of time compileration (AOT) was speed up by exposing parallelism during [t
 
 The amount of parallelism used can be controlled by the environment variable `JULIA_IMAGE_THREADS`.
 
-# Avoiding races during parallel Precompilation
+## Avoiding races during parallel Precompilation
 
 *Ian Butterworth*
 
@@ -105,7 +105,7 @@ In previous versions of Julia multiple processes running with the same depot wil
 
 This arrangement benefits both local users, whom may be running multiple processes at once, and high performance computing users who may be running hundreds of workers with the same shared depot.
 
-# Parallel precompile on using
+## Parallel precompile on using
 
 *Ian Butterworth*
 
@@ -115,6 +115,6 @@ When developing a package users can end up hitting precompilation during load ti
 
 1.10 introduces parallel precompilation during loading time to catch these cases and precompile faster.
 
-# Acknowledgement
+## Acknowledgement
 
 The preparation of this release was partially funded by NASA under award 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Aeronautics and Space Administration.
