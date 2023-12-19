@@ -27,12 +27,12 @@ In Julia 1.10 we have replaced Julia's default parser (written in Scheme) with o
 
 In 1.9 the TTFX was heavily improved by allowing package authors to enable saving of native code during precompilation.
 
-In 1.10, as a follow up, signficant work was put into the performance of the loading of packages
+In 1.10, as a follow up, significant work was put into the performance of the loading of packages
 
-A lot of this work was driven by profiling and improving the load time of [OmniPackage.jl](https://github.com/JuliaComputing/OmniPackage.jl) which is an artifical "mega package" which only purpose is to depend on and load a lot of dependencies.
+A lot of this work was driven by profiling and improving the load time of [OmniPackage.jl](https://github.com/JuliaComputing/OmniPackage.jl) which is an artificial "mega package" which only purpose is to depend on and load a lot of dependencies.
 
 - Improvement to the type system... (Jameson)
-- Reudction of invalidations causing recompilation
+- Reduction of invalidations causing recompilation
 - Moving packages away from Requires.jl to package extensions
 - `mul!` dispatch improvements (Daniel K)
 
