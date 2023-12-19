@@ -36,6 +36,10 @@ A lot of this work was driven by profiling and improving the load time of [OmniP
 - Moving packages away from Requires.jl to package extensions
 - `mul!` dispatch improvements (Daniel K)
 
+Omnipackage load times:
+
+Julia 1.9: 48.041773 seconds (102.17 M allocations: 6.522 GiB, 5.82% gc time, 1.21% compilation time: 86% of which was recompilation)
+Julia 1.10: 19.125309 seconds (30.38 M allocations: 2.011 GiB, 11.54% gc time, 10.38% compilation time: 61% of which was recompilation)
 
 # Stacktrace rendering improvements
 
