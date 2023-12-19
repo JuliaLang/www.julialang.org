@@ -110,3 +110,7 @@ While `Pkg` automatically precompiles dependencies in parallel after installatio
 When developing a package users can end up hitting precompilation during load time, and if code changes in developed packages are deep in the dependency tree of the package being loaded the serial precompile process can be particularly slow.
 
 1.10 introduces parallel precompilation during loading time to catch these cases and precompile faster.
+
+# Acknowledgement
+
+The preparation of this release was partially funded by NASA under award 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Aeronautics and Space Administration.
