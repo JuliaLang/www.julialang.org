@@ -3,7 +3,7 @@ mintoclevel = 2
 maxtoclevel = 3
 title = "Julia 1.10 Highlights"
 authors = "The Julia contributors"
-published = "22 Dec 2023"
+published = "22 December 2023"
 rss_pubdate = Date(2023, 12, 22)
 rss = """Highlights of the Julia 1.10 release."""
 +++
@@ -91,11 +91,11 @@ With the upgrade to LLVM 15 we were able to [use JITLink on aarch64 CPUs on Linu
 
 *Prem Chintalapudi*
 
-Ahead of time compileration (AOT) was speed up by exposing parallelism during [the image generation phase](https://github.com/JuliaLang/julia/pull/47797). Instead of compiling a large monolithic compilation unit, the work is now split into multiple smaller chunks. 
+Ahead of time compileration (AOT) was speed up by exposing parallelism during [the image generation phase](https://github.com/JuliaLang/julia/pull/47797). Instead of compiling a large monolithic compilation unit, the work is now split into multiple smaller chunks.
 
-The amount of parallelism used can be controlled by the environment variable `JULIA_IMAGE_THREADS`. 
+The amount of parallelism used can be controlled by the environment variable `JULIA_IMAGE_THREADS`.
 
-# Avoiding races during parallel Precompilation 
+# Avoiding races during parallel Precompilation
 
 *Ian Butterworth*
 
