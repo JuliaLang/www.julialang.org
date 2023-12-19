@@ -72,7 +72,12 @@ You get a libjulia and you get a libjulia and you get a libjulia...
 
 *Valentin Churavy, Gabriel Baraldi, Prem Chintalapudi*
 
-# Linux-aarch64 Stability Improvements
+We continue to track upstream LLVM and this release updates Julia to LLVM 15. This brings with it updated profiles for new processors and general modernizations.
+
+Particular noteworthy were the move to the new pass-manager promising performance improvements for the native codegen pipeline, as well as
+improved support for Float16 on x86.
+
+## Linux-aarch64 Stability Improvements
 
 *Mose Giordano*
 
@@ -82,9 +87,11 @@ With the upgrade to LLVM 15 we were able to [use JITLink on aarch64 CPUs on Linu
 
 *Prem Chintalapudi*
 
-Sysimage so thready
+Ahead of time compileration (AOT) was speed up by exposing parallelism during [the image generation phase](https://github.com/JuliaLang/julia/pull/47797). Instead of compiling a large monolithic compilation unit, the work is now split into multiple smaller chunks. 
 
-# Precompilation pidlocking
+The amount of parallelism used can be controlled by the environment variable `JULIA_IMAGE_THREADS`. 
+
+# Avoiding races during parallel Precompilation 
 
 *Ian Butterworth*
 
