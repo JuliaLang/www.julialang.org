@@ -52,11 +52,13 @@ Julia 1.10: 19.125309 seconds (30.38 M allocations: 2.011 GiB, 11.54% gc time, 1
 
 ## Parallel GC
 
-*Diogo Netto*
+*Diogo Correia Netto*
 
-Up to 1.9, Julia's garbage collector was stop-the-world (meaning that all compute threads had to be stopped while a collection cycle was running) and serial (meaning a single thread performed a collection while the compute threads were halted). As one may imagine, garbage collection can quickly become a bottleneck in multithreaded code, particularly in code where multiple threads allocate.
+We parallelized in 1.10 the mark phase of the garbage collector (GC) and also introduced the possibility of running part of the sweeping phase concurrently with application threads. This results in significant speedups on GC time for multithreaded allocation-heavy workloads.
 
-In 1.10, we gave the first steps towards improving scalability of the garbage collector in multithreaded code. More specifically, our work consisted of parallelizing the mark-phase of Julia's GC and enabling part of sweeping to be run concurrently with compute threads.
+The multithreaded GC can be enabled through the commaline line option `--gcthreads=M`, which specifies the number of threads to be used in the mark phase of the GC. One may also enable concurrent page sweeping mentioned above through `--gcthreads=M,1`, meaning `M` threads will be used in the GC mark phase and one GC thread is responsible for performing part of the sweeping phase concurrently with the application.
+
+The default number of GC threads is set, by default, to half of the number of compute threads (`--threads`).
 
 ## Tracy and Intel VTune ITTAPI profiling integration
 
