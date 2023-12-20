@@ -62,6 +62,8 @@ In 1.10, we gave the first steps towards improving scalability of the garbage co
 
 *Cody Tapscott, Valentin Churavy, Prem Chintalapudi*
 
+The Julia runtime has gained additional integration capabilities with the Tracy profiler as well as Intel's VTune profiler. The profilers are now capable of reporting notable events such as compilation, major and minor GCs, invalidation and memory counters, and more. Profiling support can be enabled while building Julia via the `WITH_TRACY=1` and `WITH_ITTAPI=1` `make` options.
+
 <Screenshot Tracy> </Screenshot>
 
 <Screenshot VTune></Screenshot>
