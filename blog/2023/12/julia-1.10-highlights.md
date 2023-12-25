@@ -25,21 +25,29 @@ In Julia 1.10 we have replaced Julia's default parser (written in Scheme) with o
 
 *Jameson Nash et al.*
 
-In 1.9 the TTFX was heavily improved by allowing package authors to enable saving of native code during precompilation.
+In 1.9 the TTFX (Time To First X, the time it takes for the result to be available the first time a function is called) was heavily improved by allowing package authors to enable saving of native code during precompilation.
+In 1.10, as a follow up, significant work was put into the performance of the loading of packages.
 
-In 1.10, as a follow up, significant work was put into the performance of the loading of packages
+A lot of this work was driven by profiling and improving the load time of [OmniPackage.jl](https://github.com/JuliaComputing/OmniPackage.jl) which is an artificial "mega package" which only purpose is to depend on and load a lot of dependencies. In total, OmniPackage.jl ends up loading about 650 packages, many of them of significant size.
 
-A lot of this work was driven by profiling and improving the load time of [OmniPackage.jl](https://github.com/JuliaComputing/OmniPackage.jl) which is an artificial "mega package" which only purpose is to depend on and load a lot of dependencies.
+Among many other things
+- Improvement to the type system that caused it to scale better as the number of methods and types got large.
+- Reduction in invalidations that trigger unnecessary recompilation.
+- Moving packages away from Requires.jl to package extensions (which can be precompiled).
+- Optimizations in `mul!` dispatch mechanisms.
+- Numerous other performance upgrades.
 
-- Improvement to the type system... (Jameson)
-- Reduction of invalidations causing recompilation
-- Moving packages away from Requires.jl to package extensions
-- `mul!` dispatch improvements (Daniel K)
+Running `@time using OmniPackage` (after precompilation) has the follow results on 1.9 and 1.10 respectively (measurements made on a M1 Macbook Pro):
 
-Omnipackage load times:
+```
+# Julia 1.9:
+ 48.041773 seconds (102.17 M allocations: 6.522 GiB, 5.82% gc time, 1.21% compilation time: 86% of which was recompilation)
 
-Julia 1.9: 48.041773 seconds (102.17 M allocations: 6.522 GiB, 5.82% gc time, 1.21% compilation time: 86% of which was recompilation)
-Julia 1.10: 19.125309 seconds (30.38 M allocations: 2.011 GiB, 11.54% gc time, 10.38% compilation time: 61% of which was recompilation)
+# Julia 1.10:
+ 19.125309 seconds (30.38 M allocations: 2.011 GiB, 11.54% gc time, 10.38% compilation time: 61% of which was recompilation)
+```
+
+So this is more than a 2x package load improvement for a very big package. Individual packages may seem smaller or larger improvements.
 
 ## Stacktrace rendering improvements
 
