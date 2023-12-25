@@ -48,15 +48,62 @@ Running `@time using OmniPackage` (after precompilation) has the follow results 
 ```
 
 So this is more than a 2x package load improvement for a very big package. Individual packages may seem smaller or larger improvements.
+## Improvements in Stacktrace Rendering
 
-## Stacktrace rendering improvements
+*Jeff Bezanson, Tim Holy, Kristoffer Carlsson*
 
-*Jeff Bezanson, Tim Holy*
+When an error occurs Julia prints out the error together with a "stacktrace" aimed to help at debugging how the error occured. These stacktraces in Julia are quite detailed, containing information like the method name, argument names and types, and the location of the method in the module and file. However, in complex scenarios involving intricate parametric types, a single stacktrace frame could occupy an entire terminal screen. With the Julia 1.10 release, we've introduced improvements to make stacktraces less verbose.
 
-- `Type{...}` in stacktraces
-- Successive frames at identical location collapsed
-- https://github.com/JuliaLang/julia/pull/49102
+One major factor contributing to lengthy stacktraces is the use of parametric types, especially when these types are nested within each other. This complexity can quickly escalate. To address this, in pull request [#49795](https://github.com/JuliaLang/julia/pull/49795), the REPL now abbreviates parameters with `{…}` when these would otherwise be excessively long. Users can view the complete stacktrace by using the `show` command on the automatically defined `err` variable in the REPL.
 
+Other notable improvements include:
+
+- Omitting the `#unused#` variable name in stacktraces. For example, `zero(#unused#::Type{Any})` now appears as `zero(::Type{Any})`.
+- Simplifying the display of keyword arguments in function calls. For instance, `f(; x=3, y=2)` previously displayed as `f(; kw::Base.Pairs{Symbol, Int64, Tuple{Symbol, Symbol}, NamedTuple{(:x, :y), Tuple{Int64, Int64}}})` in a stacktrace. Now, it's shown as `f(; kw::@Kwargs{x::Int64, y::Int64})`, with `@Kwargs` expanding to the former format.
+- Collapsing successive frames at the same location. Defining `f(x, y=1)` implicitly defines two methods: `f(x)` (calling `f(x, 1)`) and `f(x, y)`. The method for `f(x)` is now omitted in the stacktrace as it exists solely to call `f(x, y)`.
+- Hiding internally generated methods, often created for argument forwarding and bearing obscure names like `#f#16`.
+
+To illustrate, consider the following Julia code:
+
+```julia
+f(g, a; kw...) = error();
+@inline f(a; kw...) = f(identity, a; kw...);
+f(1)
+```
+
+Previously, the stacktrace for this code appeared as:
+
+```julia
+Stacktrace:
+ [1] error()
+   @ Base ./error.jl:44
+ [2] f(g::Function, a::Int64; kw::Base.Pairs{Symbol, Union{}, Tuple{}, NamedTuple{(), Tuple{}}})
+   @ Main ./REPL[1]:1
+ [3] f(g::Function, a::Int64)
+   @ Main ./REPL[1]:1
+ [4] #f#16
+   @ ./REPL[2]:1 [inlined]
+ [5] f(a::Int64)
+   @ Main ./REPL[2]:1
+ [6] top-level scope
+   @ REPL[6]:1
+```
+
+With the improvements in Julia 1.10, the stacktrace is now more concise:
+
+```julia
+Stacktrace:
+ [1] error()
+   @ Base ./error.jl:44
+ [2] f(g::Function, a::Int64; kw::@Kwargs{})
+   @ Main ./REPL[1]:1
+ [3] f(a::Int64)
+   @ Main ./REPL[2]:1
+ [4] top-level scope
+   @ REPL[3]:1
+```
+
+This update results in stacktraces that are both shorter and easier to read.
 
 ## Parallel GC
 
