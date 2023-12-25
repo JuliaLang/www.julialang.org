@@ -125,12 +125,6 @@ The Julia runtime has gained additional integration capabilities with the Tracy 
 
 <Screenshot VTune></Screenshot>
 
-## Symbol versioning by default
-
-*Cody Tapscott*
-
-You get a libjulia and you get a libjulia and you get a libjulia...
-
 ## Upgrade to LLVM 15
 
 *Valentin Churavy, Gabriel Baraldi, Prem Chintalapudi*
