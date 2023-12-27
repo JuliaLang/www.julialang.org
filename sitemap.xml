@@ -1052,6 +1052,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://julialang.org/blog/2023/12/julia-1.10-highlights/index.html</loc>
+    <lastmod>2023-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://julialang.org/downloads/oldreleases/index.html</loc>
     <lastmod>2023-12-27</lastmod>
     <changefreq>monthly</changefreq>

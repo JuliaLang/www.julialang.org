@@ -6,6 +6,14 @@
   <link>https://julialang.org/</link>
   <atom:link href="https://julialang.org/feed.xml" rel="self" type="application/rss+xml" />
   <item>
+    <title><![CDATA[Julia 1.10 Highlights]]></title>
+    <link>https://julialang.org/blog/2023/12/julia-1.10-highlights/</link>
+    <description><![CDATA[Highlights of the Julia 1.10 release.
+<br><a href="https://julialang.org/blog/2023/12/julia-1.10-highlights/">Read more</a>]]></description>
+    <guid>https://julialang.org/blog/2023/12/julia-1.10-highlights/</guid>
+    <pubDate>Wed, 27 Dec 2023 00:00:00 UT</pubDate>
+  </item>
+  <item>
     <title><![CDATA[PSA: Thread-local state is no longer recommended]]></title>
     <link>https://julialang.org/blog/2023/07/PSA-dont-use-threadid/</link>
     <description><![CDATA[PSA: Thread-local state is no longer recommended; Common misconceptions about threadid&#40;&#41; and nthreads&#40;&#41;
