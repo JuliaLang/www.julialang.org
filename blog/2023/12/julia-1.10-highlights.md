@@ -3,13 +3,13 @@ mintoclevel = 2
 maxtoclevel = 3
 title = "Julia 1.10 Highlights"
 authors = "The Julia contributors"
-published = "22 December 2023"
-rss_pubdate = Date(2023, 12, 22)
+published = "27 December 2023"
+rss_pubdate = Date(2023, 12, 27)
 rss = """Highlights of the Julia 1.10 release."""
 +++
 
 
-After X betas and X release candidates, Julia version 1.10 has finally(!) been released. We would like to thank all the contributors to this release and all the testers that helped with finding regressions and issues in the pre-releases. Without you, this release would not have been possible.
+After 3 betas and 3 release candidates, Julia version 1.10 has finally(!) been released. We would like to thank all the contributors to this release and all the testers that helped with finding regressions and issues in the pre-releases. Without you, this release would not have been possible.
 
 The full list of changes can be found in the [NEWS file](https://github.com/JuliaLang/julia/blob/release-1.10/NEWS.md), but here we'll give a more in-depth overview of some of the release highlights.
 
@@ -19,7 +19,37 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 
 *Claire Foster*
 
-In Julia 1.10 we have replaced Julia's default parser (written in Scheme) with one written in Julia...
+With the release of Julia 1.10, swapped out the default parser, previously written in Scheme, to a new one, written in Julia, known as [JuliaSyntax.jl](https://github.com/JuliaLang/JuliaSyntax.jl/). This change introduces several improvements:
+
+- **Increased Parsing Performance**: The new parser has signficantly better performance for parsing code.
+- **Detailed Syntax Error Messages**: Error messages now provide more specific information, pinpointing the exact location of syntax issues.
+- **Advanced Source Code Mapping**: The parser generates expressions that track their position in the source code, facilitating precise error localization and beeing useful to build tools like linters on top of.
+
+
+An example to illustrate the improvement in error messaging:
+
+*Pre Julia 1.10 Error Message:*
+
+```julia
+julia> [[], [], [,] [], []]
+ERROR: syntax: unexpected ","
+```
+
+In this version, the error message is general and doesn't specify the location of the syntax error.
+
+*Julia 1.10 Error Message:*
+
+```julia
+julia> [[], [], [,] [], []]
+ERROR: ParseError:
+# Error @ REPL[1]:1:11
+[[], [], [,] [], []]
+#         ╙ ── unexpected `,`
+```
+
+Here, the error message includes an indication of the exact location of the issue within the code.
+
+For a more detailed overview of the new parser, you can refer to this [2022 JuliaCon talk](https://www.youtube.com/watch?v=CIiGng9Brrk).
 
 ## Package load time improvements
 
