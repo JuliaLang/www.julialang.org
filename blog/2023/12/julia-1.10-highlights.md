@@ -78,7 +78,7 @@ Running `@time using OmniPackage` (after precompilation) has the following resul
 ```
 
 So this is more than a 2x package load improvement for a very big package. Individual packages may seem smaller or larger improvements.
-## Improvements in Stacktrace Rendering
+## Improvements in stacktrace rendering
 
 *Jeff Bezanson, Tim Holy, Kristoffer Carlsson*
 
@@ -135,9 +135,9 @@ Stacktrace:
 
 This update results in stacktraces that are both shorter and easier to read.
 
-## Parallel GC
+## Parallel garbage collection
 
-*Diogo Correia Netto*
+*Diogo Correia Netto, Valentin Churavy*
 
 We parallelized in 1.10 the mark phase of the garbage collector (GC) and also introduced the possibility of running part of the sweeping phase concurrently with application threads. This results in significant speedups on GC time for multithreaded allocation-heavy workloads.
 
@@ -160,14 +160,14 @@ Below is an example of using Tracy when profiling the Julia runtime.
 
 *Valentin Churavy, Gabriel Baraldi, Prem Chintalapudi*
 
-We continue to track upstream LLVM and this release updates Julia to LLVM 15. This brings with it updated profiles for new processors and general modernizations.
+We continue to track upstream LLVM and the Julia 1.10 release uses LLVM 15. This brings with it updated profiles for new processors and general modernizations.
 
-Particular noteworthy were the move to the new pass-manager promising performance improvements for the native codegen pipeline, as well as
+Particular noteworthy were the move to the new pass-manager promising compilation time improvements. LLVM 15 brings with it
 improved support for Float16 on x86.
 
-## Linux-aarch64 Stability Improvements
+## Linux AArch64 stability improvements
 
-*Mose Giordano*
+*Mose Giordano, *
 
 With the upgrade to LLVM 15 we were able to [use JITLink on aarch64 CPUs on Linux](https://github.com/JuliaLang/julia/pull/49745).  [This linker](https://llvm.org/docs/JITLink.html), which had been first introduced in [Julia v1.8 only for Apple Silicon](https://julialang.org/blog/2022/08/julia-1.8-highlights/#improved_support_for_apple_silicon) (aarch64 CPUs on macOS), resolves frequent segmentation fault errors that affected Julia on this platform.  However, due to a [bug in LLVM memory manager](https://github.com/llvm/llvm-project/issues/63236), non-trivial workloads may generate too many memory mappings (`mmap`) that can exceed the limit of allowed mappings.  If you run into this problem, read the documentation on how to [change the `mmap` limit](https://docs.julialang.org/en/v1.10.0/devdocs/build/arm/#AArch64-(ARMv8)).
 
@@ -179,7 +179,7 @@ Ahead-of-time compilation (AOT) was sped up by exposing parallelism during [the 
 
 The amount of parallelism used can be controlled by the environment variable `JULIA_IMAGE_THREADS=n`. Also, due to the limitations of Windows-native COFF binaries, multithreading is disabled when compiling large images on Windows.
 
-## Avoiding races during parallel Precompilation
+## Avoiding races during parallel precompilation
 
 *Ian Butterworth*
 
