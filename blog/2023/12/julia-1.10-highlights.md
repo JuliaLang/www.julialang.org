@@ -149,7 +149,7 @@ The default number of GC threads is set, by default, to half of the number of co
 
 *Cody Tapscott, Valentin Churavy, Prem Chintalapudi*
 
-The Julia runtime has gained additional integration capabilities with the Tracy profiler as well as Intel's VTune profiler. The profilers are now capable of reporting notable events such as compilation, major and minor GCs, invalidation and memory counters, and more. Profiling support can be enabled while building Julia via the `WITH_TRACY=1` and `WITH_ITTAPI=1` `make` options.
+The Julia runtime has gained additional integration capabilities with the Tracy profiler as well as Intel's VTune profiler. The profilers are now capable of reporting notable events such as compilation, major and minor GCs, invalidation and memory counters, and more. Profiling support can be enabled while building Julia via the `WITH_TRACY=1` and `WITH_ITTAPI=1` `make` options. We aim to make these profilers usable without having to rebuild Julia in future Julia versions.
 
 Below is an example of using Tracy when profiling the Julia runtime.
 
