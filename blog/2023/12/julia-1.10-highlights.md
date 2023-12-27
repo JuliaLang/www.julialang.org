@@ -30,7 +30,7 @@ An example to illustrate the improvement in error messaging:
 
 *Pre Julia 1.10 Error Message:*
 
-```julia
+```julia-repl
 julia> [[], [], [,] [], []]
 ERROR: syntax: unexpected ","
 ```
@@ -39,7 +39,7 @@ In this version, the error message is general and doesn't specify the location o
 
 *Julia 1.10 Error Message:*
 
-```julia
+```julia-repl
 julia> [[], [], [,] [], []]
 ERROR: ParseError:
 # Error @ REPL[1]:1:11
