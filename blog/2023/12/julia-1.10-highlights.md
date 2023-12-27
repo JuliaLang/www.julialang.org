@@ -21,9 +21,9 @@ The full list of changes can be found in the [NEWS file](https://github.com/Juli
 
 With the release of Julia 1.10, swapped out the default parser, previously written in Scheme, to a new one, written in Julia, known as [JuliaSyntax.jl](https://github.com/JuliaLang/JuliaSyntax.jl/). This change introduces several improvements:
 
-- **Increased Parsing Performance**: The new parser has signficantly better performance for parsing code.
+- **Increased Parsing Performance**: The new parser has significantly better performance for parsing code.
 - **Detailed Syntax Error Messages**: Error messages now provide more specific information, pinpointing the exact location of syntax issues.
-- **Advanced Source Code Mapping**: The parser generates expressions that track their position in the source code, facilitating precise error localization and beeing useful to build tools like linters on top of.
+- **Advanced Source Code Mapping**: The parser generates expressions that track their position in the source code, facilitating precise error localization and being useful to build tools like linters on top of.
 
 
 An example to illustrate the improvement in error messaging:
@@ -56,9 +56,9 @@ For a more detailed overview of the new parser, you can refer to this [2022 Juli
 *Jameson Nash et al.*
 
 In 1.9 the TTFX (Time To First X, the time it takes for the result to be available the first time a function is called) was heavily improved by allowing package authors to enable saving of native code during precompilation.
-In 1.10, as a follow up, significant work was put into the performance of the loading of packages.
+In 1.10, as a follow-up, significant work was put into the performance of the loading of packages.
 
-A lot of this work was driven by profiling and improving the load time of [OmniPackage.jl](https://github.com/JuliaComputing/OmniPackage.jl) which is an artificial "mega package" which only purpose is to depend on and load a lot of dependencies. In total, OmniPackage.jl ends up loading about 650 packages, many of them of significant size.
+A lot of this work was driven by profiling and improving the load time of [OmniPackage.jl](https://github.com/JuliaComputing/OmniPackage.jl) which is an artificial "mega package" whose only purpose is to depend on and load a lot of dependencies. In total, OmniPackage.jl ends up loading about 650 packages, many of them of significant size.
 
 Among many other things
 - Improvement to the type system that caused it to scale better as the number of methods and types got large.
@@ -67,7 +67,7 @@ Among many other things
 - Optimizations in `mul!` dispatch mechanisms.
 - Numerous other performance upgrades.
 
-Running `@time using OmniPackage` (after precompilation) has the follow results on 1.9 and 1.10 respectively (measurements made on a M1 Macbook Pro):
+Running `@time using OmniPackage` (after precompilation) has the following results on 1.9 and 1.10 respectively (measurements made on an M1 Macbook Pro):
 
 ```
 # Julia 1.9:
@@ -82,7 +82,7 @@ So this is more than a 2x package load improvement for a very big package. Indiv
 
 *Jeff Bezanson, Tim Holy, Kristoffer Carlsson*
 
-When an error occurs Julia prints out the error together with a "stacktrace" aimed to help at debugging how the error occured. These stacktraces in Julia are quite detailed, containing information like the method name, argument names and types, and the location of the method in the module and file. However, in complex scenarios involving intricate parametric types, a single stacktrace frame could occupy an entire terminal screen. With the Julia 1.10 release, we've introduced improvements to make stacktraces less verbose.
+When an error occurs Julia prints out the error together with a "stacktrace" aimed to help at debugging how the error occurred. These stacktraces in Julia are quite detailed, containing information like the method name, argument names and types, and the location of the method in the module and file. However, in complex scenarios involving intricate parametric types, a single stacktrace frame could occupy an entire terminal screen. With the Julia 1.10 release, we've introduced improvements to make stacktraces less verbose.
 
 One major factor contributing to lengthy stacktraces is the use of parametric types, especially when these types are nested within each other. This complexity can quickly escalate. To address this, in pull request [#49795](https://github.com/JuliaLang/julia/pull/49795), the REPL now abbreviates parameters with `{…}` when these would otherwise be excessively long. Users can view the complete stacktrace by using the `show` command on the automatically defined `err` variable in the REPL.
 
@@ -141,7 +141,7 @@ This update results in stacktraces that are both shorter and easier to read.
 
 We parallelized in 1.10 the mark phase of the garbage collector (GC) and also introduced the possibility of running part of the sweeping phase concurrently with application threads. This results in significant speedups on GC time for multithreaded allocation-heavy workloads.
 
-The multithreaded GC can be enabled through the commaline line option `--gcthreads=M`, which specifies the number of threads to be used in the mark phase of the GC. One may also enable concurrent page sweeping mentioned above through `--gcthreads=M,1`, meaning `M` threads will be used in the GC mark phase and one GC thread is responsible for performing part of the sweeping phase concurrently with the application.
+The multi-threaded GC can be enabled through the command line option `--gcthreads=M`, which specifies the number of threads to be used in the mark phase of the GC. One may also enable concurrent page sweeping mentioned above through `--gcthreads=M,1`, meaning `M` threads will be used in the GC mark phase and one GC thread is responsible for performing part of the sweeping phase concurrently with the application.
 
 The default number of GC threads is set, by default, to half of the number of compute threads (`--threads`).
 
@@ -151,9 +151,10 @@ The default number of GC threads is set, by default, to half of the number of co
 
 The Julia runtime has gained additional integration capabilities with the Tracy profiler as well as Intel's VTune profiler. The profilers are now capable of reporting notable events such as compilation, major and minor GCs, invalidation and memory counters, and more. Profiling support can be enabled while building Julia via the `WITH_TRACY=1` and `WITH_ITTAPI=1` `make` options.
 
-<Screenshot Tracy> </Screenshot>
+Below is an example of using Tracy when profiling the Julia runtime.
 
-<Screenshot VTune></Screenshot>
+![](/assets/blog/2023-1.10-highlights/tracy.png)
+
 
 ## Upgrade to LLVM 15
 
@@ -168,15 +169,15 @@ improved support for Float16 on x86.
 
 *Mose Giordano*
 
-With the upgrade to LLVM 15 we were able to [use JITLink on aarch64 CPUs on Linux](https://github.com/JuliaLang/julia/pull/49745).  [This linker](https://llvm.org/docs/JITLink.html), which had been first introduced in [Julia v1.8 only for Apple Silicon](https://julialang.org/blog/2022/08/julia-1.8-highlights/#improved_support_for_apple_silicon) (aarch64 CPUs on macOS), resolves many frequent segmentation fault errors that affected Julia on this platform.  However, due to a [bug in LLVM memory manager](https://github.com/llvm/llvm-project/issues/63236), non-trivial workloads may generate too many memory mappings (`mmap`) that can exceed the limit of allowed mappings.  If you run into this problem, read the documentation on how to [change the `mmap` limit](https://docs.julialang.org/en/v1.10.0/devdocs/build/arm/#AArch64-(ARMv8)).
+With the upgrade to LLVM 15 we were able to [use JITLink on aarch64 CPUs on Linux](https://github.com/JuliaLang/julia/pull/49745).  [This linker](https://llvm.org/docs/JITLink.html), which had been first introduced in [Julia v1.8 only for Apple Silicon](https://julialang.org/blog/2022/08/julia-1.8-highlights/#improved_support_for_apple_silicon) (aarch64 CPUs on macOS), resolves frequent segmentation fault errors that affected Julia on this platform.  However, due to a [bug in LLVM memory manager](https://github.com/llvm/llvm-project/issues/63236), non-trivial workloads may generate too many memory mappings (`mmap`) that can exceed the limit of allowed mappings.  If you run into this problem, read the documentation on how to [change the `mmap` limit](https://docs.julialang.org/en/v1.10.0/devdocs/build/arm/#AArch64-(ARMv8)).
 
 ## Parallel native code generation for system images and package images
 
 *Prem Chintalapudi*
 
-Ahead of time compilation (AOT) was speed up by exposing parallelism during [the LLVM compilation phase](https://github.com/JuliaLang/julia/pull/47797). Instead of compiling a large monolithic compilation unit, the work is now split into multiple smaller chunks. This multithreading speeds up compilation of system images as well as large package images, resulting in lower precompile times for these.
+Ahead-of-time compilation (AOT) was sped up by exposing parallelism during [the LLVM compilation phase](https://github.com/JuliaLang/julia/pull/47797). Instead of compiling a large monolithic compilation unit, the work is now split into multiple smaller chunks. This multithreading speeds up the compilation of system images as well as large package images, resulting in lower precompile times for these.
 
-The amount of parallelism used can be controlled by the environment variable `JULIA_IMAGE_THREADS=n`. Also, due to limitations of Windows-native COFF binaries, multithreading is disabled when compiling large images on Windows.
+The amount of parallelism used can be controlled by the environment variable `JULIA_IMAGE_THREADS=n`. Also, due to the limitations of Windows-native COFF binaries, multithreading is disabled when compiling large images on Windows.
 
 ## Avoiding races during parallel Precompilation
 
@@ -186,13 +187,13 @@ In previous versions of Julia multiple processes running with the same depot wil
 
 1.10 introduces a "pidfile" (process id file) locking mechanism that orchestrates it such that only one Julia process will work to precompile a given cache file, where a cache file is specific to the Julia setup that is being targeted during precompilation.
 
-This arrangement benefits both local users, whom may be running multiple processes at once, and high performance computing users who may be running hundreds of workers with the same shared depot.
+This arrangement benefits both local users, who may be running multiple processes at once, and high-performance computing users who may be running hundreds of workers with the same shared depot.
 
 ## Parallel precompile on using
 
 *Ian Butterworth*
 
-While `Pkg` automatically precompiles dependencies in parallel after installation, precompilation  that happens at `using/import` time has previously been serial, precompiling one dependency at a time.
+While `Pkg` automatically precompiles dependencies in parallel after installation, precompilation that happens at `using/import` time has previously been serial, precompiling one dependency at a time.
 
 When developing a package users can end up hitting precompilation during load time, and if code changes in developed packages are deep in the dependency tree of the package being loaded the serial precompile process can be particularly slow.
 
