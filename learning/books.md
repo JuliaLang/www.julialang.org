@@ -13,7 +13,7 @@
 * George Datseris, Ulrich Parlitz. [Nonlinear Dynamics: A Concise Introduction Interlaced with Code](https://github.com/JuliaDynamics/NonlinearDynamicsTextbook). Springer, 2022
 * Hayden Klok, Yoni Nazarathy. [Statistics with julia: Fundamentals for data science, machine learning and artificial intelligence](https://github.com/h-Klok/StatsWithJuliaBook). Springer, 2021
 * Noel Kalicharan. [Julia - Bit by Bit](https://link.springer.com/book/10.1007/978-3-030-73936-2). Springer, 2021.
-* Jose Storopoli, Rik Huijzer and Lazaro Alonso. [Julia Data Science](https://amazon.com/dp/B09KMRKQ96), October 2021. The book is also available freely as static HTML and PDF at [juliadatascience.io](https://juliadatascience.io).
+* Jose Storopoli, Rik Huijzer and Lazaro Alonso. [Julia Data Science](https://juliadatascience.io), October 2021.
 * Stanley H. Chan. [Intro to Probability for Data Science](https://www.amazon.com/Introduction-Probability-Data-Science-Stanley/dp/1607857464/), November 2021. The book is also available freely as HTML and PDF at [probability4datascience.com](https://probability4datascience.com/index.html). Code is in Julia/Python/R/Matlab.
 * Sambit Kumar Dash. [Hands-on Julia Programming](https://in.bpbonline.com/products/hands-on-julia-programming), Bpb Publications, October 2021.
 * Erik Engheim. [Julia for Beginners](https://leanpub.com/julia-for-beginners), January 2021.
@@ -31,7 +31,7 @@
 * Günter Faes. [Datenanalyse mit Julia: Einstieg in die Datenanalyse mit der Programmiersprache Julia](https://www.amazon.de/Datenanalyse-mit-Julia-Einstieg-Programmiersprache/dp/3749485089/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=Datenanalyse+mit+Julia&qid=1582912563&sr=8-3). Books on Demand, September 2019.
 * Avik Sengupta. [Julia High Performance, 2nd Ed.](https://www.packtpub.com/product/julia-high-performance-second-edition/9781788298117). Packt Publishing, June  2019.
 * Ben Lauwens and Allen B. Downey. [Think Julia](https://www.oreilly.com/library/view/think-julia/9781492045021/). O&rsquo;Reilly Media, June 2019.
-* Giray Ökten. [First Semester in Numerical Analysis with Julia](https://purl.flvc.org/fsu/fd/FSU_libsubv1_scholarship_submission_1556028278_15938059). Florida State University Libraries, April 2019.
+* Giray Ökten. [First Semester in Numerical Analysis with Julia](https://diginole.lib.fsu.edu/islandora/object/fsu%3A657877). Florida State University Libraries, April 2019.
 * Changhyun Kwon. [Julia Programming for Operations Research](https://www.chkwon.net/julia/). March 2019.
 * Mykel J. Kochenderfer and Tim A. Wheeler. [Algorithms for Optimization](https://mitpress.mit.edu/books/algorithms-optimization). MIT Press, March 2019.
 * Paul D. McNicholas and Peter Tait. [Data Science with Julia](https://www.crcpress.com/Data-Science-with-Julia/McNicholas-Tait/p/book/9781138499980). Chapman and Hall/CRC, January 2019.
