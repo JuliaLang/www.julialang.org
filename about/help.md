@@ -32,7 +32,7 @@
  - To contribute a bug fix or other patch to core Julia, see the [Julia Developer's Guide](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md).
  - To contribute to the official Julia documentation, use the [contributing guide](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md#improving-documentation) to contribute a documentation patch.
  - To contribute to the official Julia Language website, see the [README for the website repository](https://github.com/JuliaLang/www.julialang.org#readme). 
- - To announce your package to the Julia community, post on the Julia Discourse under the [package announcement](https://discourse.julialang.org/c/community/packages/47) section. 
+ - To announce your package to the Julia community, post on the Julia Discourse under the [package announcement](https://discourse.julialang.org/c/package-announcements/60) section. 
  
 ## Need to contact the Julia Language?
  - Contact `contact@julialang.org` and let us know how we can help!
