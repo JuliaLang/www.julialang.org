@@ -618,7 +618,7 @@ Instead, what we are learning is the tiny ODE system from which the ODE
 solution is generated. I.e., the neural network inside the neural_ode
 layer learns this function:
 
-```
+```text
 u' = A*u^3
 ```
 
