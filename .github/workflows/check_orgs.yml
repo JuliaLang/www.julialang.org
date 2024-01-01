@@ -19,7 +19,7 @@ jobs:
 
       - uses: julia-actions/setup-julia@v1
         with:
-          version: 1.9
+          version: 1.10
 
       - uses: julia-actions/julia-buildpkg@v1
         with:
