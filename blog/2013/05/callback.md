@@ -10,7 +10,7 @@ One of the great strengths of Julia is that it is so easy to [call C
 code](https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#) natively, with no special "glue" routines or overhead to marshal
 arguments and convert return values.  For example, if you want to call
 [GNU GSL](https://www.gnu.org/software/gsl/) to compute a special function
-like a [Debye integral](http://linux.math.tifr.res.in/manuals/html/gsl-ref-html/gsl-ref_7.html), it is as easy as:
+like a [Debye integral](https://www.gnu.org/software/gsl/doc/html/specfunc.html#c.gsl_sf_debye_1), it is as easy as:
 
 ```
 debye_1(x) = ccall((:gsl_sf_debye_1,:libgsl), Cdouble, (Cdouble,), x)
