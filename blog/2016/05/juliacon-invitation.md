@@ -36,7 +36,7 @@ macro economics, machine learning, astrophysics, visualisation, and more!
 On Saturday 25th, the final day of the conference, we will hold a hackathon
 where attendees are encouraged to team up based on personal interests to either
 create new Julia projects or contribute to existing ones. All these details are
-now in the [JuliaCon poster](https://juliacon.org/pdf/juliacon2016poster3.pdf).
+now in the [JuliaCon poster](https://juliacon.org/2016/pdf/juliacon2016poster3.pdf).
 
 Without further ado, please allow us to introduce our keynote speakers:
 
@@ -79,13 +79,13 @@ discount!
 
 
 We need your help to spread this message far and wide! Post the
-[JuliaCon poster](https://juliacon.org/pdf/juliacon2016poster3.pdf) and
+[JuliaCon poster](https://juliacon.org/2016/pdf/juliacon2016poster3.pdf) and
 this blog post to your local email lists. Print the poster and post it
 on your local message board. In addition, please tweet, retweet, post
 on FaceBook and LinkedIn and other social media. This is the biggest
 JuliaCon ever, and we need your help in making it a huge success.
 
 [juliacon]: https://juliacon.org/
-[talks]: https://juliacon.org/abstracts.html
+[talks]: https://juliacon.org/2016/abstracts
 [tickets]: https://www.eventbrite.com/e/juliacon-2016-tickets-20943697162?ref=ebtnebregn
-[workshops]: https://juliacon.org/workshops.html
+[workshops]: https://juliacon.org/2016/workshops
