@@ -714,3 +714,26 @@ pre {
   vertical-align: bottom;
   margin-left: -4px;
 }
+
+pre .cmdprompt-block::before {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  content: ">";
+  margin-right: 10px;
+  margin-left: 5px;
+  color: rgb(127, 127, 127);
+}
+pre .bash-block::before {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  content: "$";
+  margin-right: 10px;
+  margin-left: 5px;
+  color: rgb(127, 127, 127);
+}
