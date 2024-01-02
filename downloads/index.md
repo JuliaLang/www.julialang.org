@@ -41,7 +41,7 @@
 
 Once installed `julia` will be available via the command line interface.
 
-This recommended installation method is via [Juliaup](https://github.com/JuliaLang/juliaup) which is an installation manager that will automatically install julia and keep it up to date. The command `juliaup` is also installed. To install different julia versions see `juliaup --help` or the documentation at [github.com/JuliaLang/juliaup](https://github.com/JuliaLang/juliaup)
+This recommended installation method is via the [Juliaup](https://github.com/JuliaLang/juliaup) installation manager, which will automatically install julia and help keep it up to date. The command `juliaup` is also installed. To install different julia versions see `juliaup --help`.
 
 ---
 
