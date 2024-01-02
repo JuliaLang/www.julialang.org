@@ -1,6 +1,6 @@
 
 ~~~
-  <br><br><br><br>
+  <div class="main-download-instructions">
 ~~~
 
 ## Install Julia
@@ -48,7 +48,7 @@ This recommended installation method is via the [Juliaup](https://github.com/Jul
 Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](https://julialang.org/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
 
 ~~~
-  <br><br><br><br><br><br>
+  </div>
 ~~~
 
 ## Julia Version History

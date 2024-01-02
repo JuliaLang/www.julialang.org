@@ -688,6 +688,11 @@ pre {
 	background-color: #eee9e6;
 }
 
+.main-download-instructions {
+  height: 70vh;
+  min-height: 450px;
+}
+
 .install-platform-note {
   font-size: 0.85rem;
 }
