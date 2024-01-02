@@ -2,7 +2,7 @@
 ~~~
   <div class="main-download-instructions">
    <div class="main-download-instructions-inner">
-    <h2> Install <img src="/assets/infra/logo.svg" class="inline-h2-julia-logo" alt="Julia"></img></h2>
+    <h2 id="install_julia"> <a href="#install_julia">Install <img src="/assets/infra/logo.svg" class="inline-h2-julia-logo" alt="Julia"></img></h2></a>
     <div class="container pt-sm-2">
       <div class="row" id="windows-instructions" style="display: none;">
         Install Julia from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> by running this in the command prompt:
@@ -51,7 +51,7 @@ Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia
 
 ## Julia Version History
 
-Note that all Julia versions are installable through Juliaup.
+Note that all Julia versions are installable through [Juliaup](#install_julia).
 
 ~~~
 <h3 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h3>
