@@ -772,7 +772,3 @@ all "by the book" implementations. Though of course, the SimpleChains.jl's simpl
 ## Conclusion
 
 There are many things that can make a library achieve high-performance, and nothing is as essential as knowing how it will be used. While the big machine learning frameworks have done extremely well focusing on the top-notch performance for 99.9% of their users, one can still completely outclass them when focusing on some of the 0.1% of applications which fall outside of what they have been targeting. This is the advantage of composability and flexibility: a language that allows you to easily build a machine learning framework is also a language which allows you to build alternative frameworks which are optimized for alternative people. SimpleChains.jl will not be useful to everybody, but it will be extremely useful to those who need it.
-
-## Opportunities
-
-If you are interested in this topic and want to work on Julia and machine learning, note that the DeepPumas team is hiring ([here](https://pumas.ai/company/machine-learning-scientist/) and [here](https://pumas.ai/company/scientist-deeppumas/)). Additionally, [SciML internships are also available at JuliaHub](https://jobs.juliacomputing.com/jobs/ndvlJz9fHYcr/machine-learning-intern-remote).

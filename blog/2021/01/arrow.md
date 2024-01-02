@@ -41,6 +41,6 @@ It also supports multithreaded reading/writing by default, memory compression/de
 
 We're excited to see further progress of using arrow-formatted in Julia; as it stands, we believe the Julia implementation to be one of the easiest, yet powerful and flexible implementations for the arrow format. Being able to work interactively with arrow datasets to explore, integrate easily with so many other formats, and process the data as-is is a powerful tool for anyone working with data.
 
-Checkout the [package documentation](https://arrow.juliadata.org/stable/) or [format documentation](https://arrow.apache.org/docs/index.html) if you're interested in learning more; and as always, feel free to swing by the [#data Slack channel](https://julialang.slack.com/messages/data/) with questions or to chat, or [start a new topic](https://discourse.julialang.org/c/domain/data/16) in the Data discourse domain. Happy arrowing!
+Checkout the [package documentation](https://arrow.apache.org/julia/stable) or [format documentation](https://arrow.apache.org/docs/index.html) if you're interested in learning more; and as always, feel free to swing by the [#data Slack channel](https://julialang.slack.com/messages/data/) with questions or to chat, or [start a new topic](https://discourse.julialang.org/c/domain/data/16) in the Data discourse domain. Happy arrowing!
 
 A big thanks to JuliaHub (formerly Julia Computing) for helping sponsor the work on the Julia implementation.

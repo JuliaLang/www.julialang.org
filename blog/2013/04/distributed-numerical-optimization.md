@@ -130,7 +130,7 @@ end
 ```
 
 On first sight, this code is not particularly intuitive. The `@spawnlocal`
-macro creates a [task](https://docs.julialang.org/en/latest/manual/control-flow/#man-tasks)
+macro creates a [task](https://docs.julialang.org/en/v1/base/parallel/#Tasks)
 on the *master process* (e.g. process 1). Each task feeds work to a
 corresponding worker; the call `remotecall_fetch(p, f, lst[idx])` function
 calls `f` on process `p` and returns the result when finished. Tasks are
