@@ -1,42 +1,39 @@
 
 ~~~
   <div class="main-download-instructions">
-~~~
-
-## Install Julia
-
-~~~
-  <div class="container pt-sm-2">
-    <div class="row" id="windows-instructions" style="display: none;">
-      Install Julia from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> by running this in the command prompt:
-      <pre><code class="language-plaintext">winget install julia -s msstore</code></pre>
-      <span class="install-platform-note"><span id="platform-subnote-windows">It looks like you're using Windows. </span>For Linux and MacOS instructions <a onclick="showOther()" href="javascript:void(0);">click here</a></span>
+   <div class="main-download-instructions-inner">
+    <h2> Install <img src="/assets/infra/logo.svg" class="inline-h2-julia-logo" alt="Julia"></img></h2>
+    <div class="container pt-sm-2">
+      <div class="row" id="windows-instructions" style="display: none;">
+        Install Julia from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> by running this in the command prompt:
+        <pre><code class="language-plaintext">winget install julia -s msstore</code></pre>
+        <span class="install-platform-note"><span id="platform-subnote-windows">It looks like you're using Windows. </span>For Linux and MacOS instructions <a onclick="showOther()" href="javascript:void(0);">click here</a></span>
+      </div>
+      <div class="row" id="other-platforms-instructions" style="display: none;">
+        Install Julia by running this in your terminal:
+        <pre><code class="language-plaintext">curl -fsSL https://install.julialang.org | sh</code></pre>
+        <span class="install-platform-note"><span id="platform-subnote-other">It looks like you're using a Unix-type system. </span>For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a></span>
+      </div>
+      <br>
     </div>
-    <div class="row" id="other-platforms-instructions" style="display: none;">
-      Install Julia by running this in your terminal:
-      <pre><code class="language-plaintext">curl -fsSL https://install.julialang.org | sh</code></pre>
-      <span class="install-platform-note"><span id="platform-subnote-other">It looks like you're using a Unix-type system. </span>For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a></span>
-    </div>
-    <br>
-  </div>
-  <script>
-  function showWindows() {
-    document.getElementById('windows-instructions').style.display = 'block';
-    document.getElementById('other-platforms-instructions').style.display = 'none';
-  }
-  function showOther() {
-    document.getElementById('windows-instructions').style.display = 'none';
-    document.getElementById('other-platforms-instructions').style.display = 'block';
-  }
-  var isWindows = navigator.platform.indexOf('Win') > -1;
-  if (isWindows) {
-    document.getElementById('platform-subnote-other').style.display = 'none';
-    showWindows();
-  } else {
-    document.getElementById('platform-subnote-windows').style.display = 'none';
-    showOther();
-  }
-</script>
+    <script>
+      function showWindows() {
+        document.getElementById('windows-instructions').style.display = 'block';
+        document.getElementById('other-platforms-instructions').style.display = 'none';
+      }
+      function showOther() {
+        document.getElementById('windows-instructions').style.display = 'none';
+        document.getElementById('other-platforms-instructions').style.display = 'block';
+      }
+      var isWindows = navigator.platform.indexOf('Win') > -1;
+      if (isWindows) {
+        document.getElementById('platform-subnote-other').style.display = 'none';
+        showWindows();
+      } else {
+        document.getElementById('platform-subnote-windows').style.display = 'none';
+        showOther();
+      }
+    </script>
 ~~~
 
 Once installed `julia` will be available via the command line interface.
@@ -48,6 +45,7 @@ This recommended installation method is via the [Juliaup](https://github.com/Jul
 Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](https://julialang.org/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
 
 ~~~
+   </div>
   </div>
 ~~~
 

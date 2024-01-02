@@ -690,9 +690,26 @@ pre {
 
 .main-download-instructions {
   height: 70vh;
-  min-height: 450px;
+  min-height: 470px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-download-instructions-inner {
+  width: 80%;
+  background-color: #F2F2F2;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-radius: 30px;
 }
 
 .install-platform-note {
   font-size: 0.85rem;
+}
+
+.inline-h2-julia-logo {
+  height: 45px;
+  vertical-align: bottom;
 }
