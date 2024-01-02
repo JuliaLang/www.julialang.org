@@ -1,34 +1,57 @@
-# Download Julia
 
-Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](https://julialang.org/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
+~~~
+  <div class="main-download-instructions">
+   <div class="main-download-instructions-inner">
+    <h2 id="install_julia"> <a href="#install_julia">Install <img src="/assets/infra/logo.svg" class="inline-h2-julia-logo" alt="Julia"></img></h2></a>
+    <div class="container pt-sm-2">
+      <div class="row" id="windows-instructions" style="display: none;">
+        Install Julia from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> by running this in the command prompt:
+        <pre><code class="language-plaintext cmdprompt-block">winget install julia -s msstore</code></pre>
+        <span class="install-platform-note"><span id="platform-subnote-windows">It looks like you're using Windows. </span>For Linux and MacOS instructions <a onclick="showOther()" href="javascript:void(0);">click here</a></span>
+      </div>
+      <div class="row" id="other-platforms-instructions" style="display: none;">
+        Install Julia by running this in your terminal:
+        <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
+        <span class="install-platform-note"><span id="platform-subnote-other">It looks like you're using a Unix-type system. </span>For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a></span>
+      </div>
+      <br>
+    </div>
+    <script>
+      function showWindows() {
+        document.getElementById('windows-instructions').style.display = 'block';
+        document.getElementById('other-platforms-instructions').style.display = 'none';
+      }
+      function showOther() {
+        document.getElementById('windows-instructions').style.display = 'none';
+        document.getElementById('other-platforms-instructions').style.display = 'block';
+      }
+      var isWindows = navigator.platform.indexOf('Win') > -1;
+      if (isWindows) {
+        document.getElementById('platform-subnote-other').style.display = 'none';
+        showWindows();
+      } else {
+        document.getElementById('platform-subnote-windows').style.display = 'none';
+        showOther();
+      }
+    </script>
+~~~
 
+Once installed `julia` will be available via the command line interface.
 
-## Juliaup: The recommended Julia installation manager
-
-To install Julia it is recommended to use the `juliaup` installation manager, which will automatically install
-and manage keeping julia up to date.
-
-Installation on Windows is either via the Windows store [here](https://www.microsoft.com/store/apps/9NJNWW8PVKMN)
-or via the command prompt:
-```
-winget install julia -s msstore
-```
-
-On Linux and MacOS:
-```
-curl -fsSL https://install.julialang.org | sh
-```
-
-Once installed `julia` and `juliaup` will be available via the command line interface.
-
-To install different versions see `juliaup --help` or the documentation at [github.com/JuliaLang/juliaup](https://github.com/JuliaLang/juliaup).
-
+This recommended installation method is via the [Juliaup](https://github.com/JuliaLang/juliaup) installation manager, which will automatically install julia and help keep it up to date. The command `juliaup` is also installed. To install different julia versions see `juliaup --help`.
 
 ---
 
+Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia in your research, please [cite us](https://julialang.org/research/). If possible, do consider [sponsoring](https://github.com/sponsors/julialang) us.
+
+~~~
+   </div>
+  </div>
+~~~
+
 ## Julia Version History
 
-Note that all Julia versions are installable through Juliaup.
+Note that all Julia versions are installable through [Juliaup](#install_julia).
 
 ~~~
 <h3 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h3>
