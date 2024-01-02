@@ -712,4 +712,5 @@ pre {
 .inline-h2-julia-logo {
   height: 45px;
   vertical-align: bottom;
+  margin-left: -4px;
 }
