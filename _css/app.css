@@ -687,3 +687,7 @@ pre {
 	outline: 0;
 	background-color: #eee9e6;
 }
+
+.install-platform-note {
+  font-size: 0.85rem;
+}
