@@ -10,54 +10,6 @@ However, interested students should feel free to explore ideas they are interest
 Projects in finite element visualization are also possible with [FerriteViz.jl](https://github.com/Ferrite-FEM/FerriteViz.jl).
 
 
-## Adaptive Mesh Refinement
-
-**Difficulty**: Medium-Hard
-
-**Project size**: 300-350 hours
-
-**Problem**: While [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl) provides infrastructure for the most common tasks in finite element assembly, it lacks an adaptive mesh infrastructure for adaptive finite element technology.
-A preliminary implementation of a p4est type adaptive mesh refinement has been started, but not finalized yet.
-Information about the existing implementation is summarized [here](https://github.com/Ferrite-FEM/Ferrite.jl/blob/mk/p4est/p4est-ferrite.md).
-
-**Minimum goal**: Finalize the basic p4est implementation as described in the original paper [1], either starting from the [existing branch](https://github.com/Ferrite-FEM/Ferrite.jl/tree/mk/p4est) (recommended) or from scratch together with a set of tests.
-
-**Extended goal**: Interesting extensions might be to implement the optimizations proposed by Tobin Isaac [2], anisotropic refinement as in p6est [3] or generalizations to other geometries as in t8code [4].
-
-**Recommended skills**:
-- Basic knowledge the finite element method
-- Basic knowledge about mesh geometries
-
-**Mentors**: [Maximilian Köhler](https://github.com/koehlerson) and [Dennis Ogiermann](https://github.com/termi-official)
-
-**References**
-
-1. Burstedde, C., Wilcox, L. C., & Ghattas, O. (2011). p4est: Scalable algorithms for parallel adaptive mesh refinement on forests of octrees. SIAM Journal on Scientific Computing, 33(3), 1103-1133.
-2. Isaac, T., Burstedde, C., Wilcox, L. C., & Ghattas, O. (2015). Recursive algorithms for distributed forests of octrees. SIAM Journal on Scientific Computing, 37(5), C497-C531.
-3. Isaac, T., Stadler, G., & Ghattas, O. (2015). Solution of nonlinear Stokes equations discretized by high-order finite elements on nonconforming and anisotropic meshes, with application to ice sheet dynamics. SIAM Journal on Scientific Computing, 37(6), B804-B833.
-4. Holke, J. (2019). t8code-Extreme Scale Adaptive Mesh Refinement with Arbitrary Elements.
-
-
-
-## Discontinuous Galerkin Infrastructure
-
-**Difficulty**: Medium-Hard
-
-**Project size**: 300-350 hours
-
-**Problem**: Discontinuous Galerkin methods combine different advantages of finite element and finite volume schemes at the cost of having more degrees of freedom than classical continuous Galerkin methods.
-Currently [Ferrite.jl](https://github.com/ferrite-fem/Ferrite.jl) can not handle such problems, because there is no H(div) conforming (i.e. Raviart-Thomas) element implemented.
-
-**Minimum goal**: A minimum goal is to implement a H(div) conforming element together with a mixed Poisson example and introduce corresponding test coverage.
-
-**Extended goal**: If the time allows then it might be interesting to move one step further and explore Runge-Kutta Discontinuous Galerkin (RKDG) schemes for a convection-dominated problem.
-
-**Recommended skills**:
-- Knowledge the finite element method
-
-**Mentors**: [Dennis Ogiermann](https://github.com/termi-official) and [Fredrik Ekre](https://github.com/fredrikekre/)
-
-
 
 ## Fluid-Structure Interaction Example
 

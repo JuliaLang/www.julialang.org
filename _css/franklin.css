@@ -83,3 +83,46 @@
 
 .hljs-string {color: #ca4418;}
 .hljs-subst { color: inherit;}
+
+.admonition {
+    background-color: #b5b5b5;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #363636;
+    border-radius: 4px;
+    font-size: 1rem; }
+    .admonition-note {
+      background-color: #3d6e91;
+      border-color: #209cee; }
+      .admonition-note > .admonition-title {
+        background-color: #209cee;
+        color: #fff; }
+      .admonition-note > .admonition-body {
+        color: rgba(0, 0, 0, 0.7); }
+    .admonition-warn {
+      background-color: #fff3c5;
+      border-color: #ffdd57; }
+      .admonition.warn > .admonition-title {
+        background-color: #ffdd57;
+        color: rgba(0, 0, 0, 0.7); }
+      .admonition-warn > .admonition-body {
+        color: rgba(0, 0, 0, 0.7); }
+  
+  .admonition-title {
+    color: #fff;
+    background-color: #363636;
+    align-items: center;
+    font-weight: 700;
+    justify-content: space-between;
+    line-height: 1.25;
+    padding: 0.75em;
+    position: relative; }
+  
+  .admonition-body {
+    color: #222222;
+    padding: 1em 1.25em; }
+    .admonition-body pre {
+      background-color: whitesmoke; }
+    .admonition-body code {
+      background-color: rgba(0, 0, 0, 0.05); }
+  

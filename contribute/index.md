@@ -20,11 +20,11 @@
    <br>
 ~~~
 
-Welcome to the Julia Ecosystem Contributor’s Guide and to the community! 
+Welcome to the Julia Ecosystem Contributor’s Guide and to the community!
 
 The purpose of this guide is **to help you get started** contributing to the Julia ecosystem. It contains information on the [benefits of becoming a Julia contributor](#why_contribute) and the [tools](#tools) you need to get started. Also, you can find the different [contribution pathways](#contribution_pathways) that you can take and how to get [help](#get_help) from the community.
 
-We **welcome** both **technical** and **nontechnical** contributions. Whether you are a **beginner** or a **seasoned developer**, you can always find a way to contribute to the Julia Ecosystem. 
+We **welcome** both **technical** and **nontechnical** contributions. Whether you are a **beginner** or a **seasoned developer**, you can always find a way to contribute to the Julia Ecosystem.
 
 ~~~
    <br>
@@ -122,9 +122,9 @@ Before you start contributing to the Julia ecosystem, you need the following too
 
 ## Contribution Pathways
 
-Your **first step** is to identify how you want to start contributing to the Julia ecosystem. For example, you can start by writing a blog post about how you used Julia to solve a problem. Then, you can create a new package or improve one that you have used. You can take multiple paths, some of which might cross. 
+Your **first step** is to identify how you want to start contributing to the Julia ecosystem. For example, you can start by writing a blog post about how you used Julia to solve a problem. Then, you can create a new package or improve one that you have used. You can take multiple paths, some of which might cross.
 
-If you are a **complete beginner** to the Julia language or programming in general, then you can consider going through any of the resources that the community has created to [help you get started](https://julialang.org/learning/). 
+If you are a **complete beginner** to the Julia language or programming in general, then you can consider going through any of the resources that the community has created to [help you get started](https://julialang.org/learning/).
 
 We suggest the following paths as a starting point in your contribution journey:
 
@@ -134,7 +134,7 @@ We suggest the following paths as a starting point in your contribution journey:
        * Find an [open issue](https://github.com/JuliaLang/julia/issues).
        * Report a [security issue](https://github.com/JuliaLang/julia/security/policy).
      * [Contribute to an existing package](https://julialang.org/contribute/opportunities/).
-       * Find a [help wanted](https://github.com/issues?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22) issue. 
+       * Find a [help wanted](https://github.com/issues?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22) issue.
        * Find a [good first](https://github.com/issues?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22+) issue.
        * Find a [hacktoberfest issue](https://juliacommunity.github.io/your-first-julia-pr/).
      * [Develop a new package](/contribute/developing_package).
@@ -142,14 +142,14 @@ We suggest the following paths as a starting point in your contribution journey:
      * [File a bug report](https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md#how-to-file-a-bug-report).
      * [Write tests](https://kshyatt.github.io/post/firstjuliapr/).
      * Make a feature request.
-   * **Documentation** 
+   * **Documentation**
      * Create new documents: Write new sections of existing documentation, docstrings, and tutorials.
      * Improve existing documents: Update outdated documentation, fix typos and broken links.
 * **Help:** You can help spread the word about the Julia ecosystem:
    * Read the [Code of Conduct](https://julialang.org/community/standards/).
    * Share a use case.
    * Write a blog post and submit it to the [Julia Language Blog Aggregator](https://www.juliabloggers.com/julia-bloggers-submit-feed/).
-   * [Ask and answer questions](#ask-and-answer-questions) on Slack or Discourse.
+   * [Ask and answer questions](#ask-and-answer-questions) on Zulip or Discourse.
    * Engage on [Twitter](https://twitter.com/JuliaLanguage).
    * Attend a [Julia event](https://julialang.org/community/#events).
 
@@ -183,7 +183,7 @@ If you are still unsure how to get started, then you can have a look at the foll
 
 #### Ask and answer questions
 
-You can ask or answer questions on both [StackOverflow](https://stackoverflow.com/questions/tagged/julia) and [Discourse](https://discourse.julialang.org/). It not only helps to expand your knowledge but to spread the word about the Julia ecosystem. 
+You can ask or answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/julia), [Discourse](https://discourse.julialang.org/), and [Zulip](https://julialang.zulipchat.com/). It not only helps to expand your knowledge but to spread the word about the Julia ecosystem.
 
 The following video contains information on how to ask questions on StackOverflow and how this can improve your learning (and understanding):
 
@@ -192,9 +192,9 @@ The following video contains information on how to ask questions on StackOverflo
 ~~~
 
 
-If you know how to answer a question on StackOverflow or Discourse thats' an immediate chance to help!  Search for questions tagged [**[julia]**](https://stackoverflow.com/questions/tagged/julia) on StackOverflow or use a more specific term. Moreover, you can join ´#stackoverflow-feed´ channel on the official [Julia Slack](https://julialang.org/slack/) to stay up-to-date on StackOverflow questions related to Julia. 
+If you know how to answer a question on StackOverflow or Discourse thats' an immediate chance to help!  Search for questions tagged [**[julia]**](https://stackoverflow.com/questions/tagged/julia) on StackOverflow or use a more specific term. Moreover, you can join the ´#stackoverflow-feed´ channel on the official [Julia Slack](https://julialang.org/slack/) to stay up-to-date on StackOverflow questions related to Julia.
 
-#### Edit the README file of a Julia package 
+#### Edit the README file of a Julia package
 
 A lot of documentation in the Julia-verse needs to be updated or fixed. You can help clean up documentation by correcting typos, fixing broken links, or replacing the mentions of outdated packages. To search for Julia packages and their README file or documentation, go to the [JuliaHub](https://juliahub.com/ui/Packages) website. Then, click the name of the package to discover its website, GitHub repository, and further details.
 
@@ -227,9 +227,10 @@ Some Julia organizations and packages are looking for help from the community. W
 
 The Julia community is more than happy to help you with any questions related to your contribution. You can get help in any of the following channels:
 
-* [Official Julia Slack](https://julialang.org/slack/): The community uses Julia Slack for informal communications. However, bear in mind that messages disappear over time because of the limits of the free version of Slack.  
-* [Julia Discourse forum](https://discourse.julialang.org/): The community discusses Julia development in the Discourse forum. In general, we recommend asking technical questions on Discourse. Questions and answers posted on Discourse remain on the web and public indefinitely. 
-* [Julia FAQ](https://docs.julialang.org/en/v1/manual/faq/): In the Frequently Asked Questions section of the [Julia Documentation](https://docs.julialang.org/en/v1/), you can find answers to the most common questions from Julia beginners. 
+* [Julia Zulip](https://julialang.zulipchat.com/): The community uses Zulip for informal communications.
+* [Official Julia Slack](https://julialang.org/slack/): The community also uses the Julia Slack for informal communications. However, bear in mind that messages disappear over time because of the limits of the free version of Slack.
+* [Julia Discourse forum](https://discourse.julialang.org/): The community discusses Julia development in the Discourse forum. In general, we recommend asking technical questions on Discourse. Questions and answers posted on Discourse remain on the web and public indefinitely.
+* [Julia FAQ](https://docs.julialang.org/en/v1/manual/faq/): In the Frequently Asked Questions section of the [Julia Documentation](https://docs.julialang.org/en/v1/), you can find answers to the most common questions from Julia beginners.
 * [StackOverflow](https://stackoverflow.com/questions/tagged/julia): It has a growing number of Julia questions and answers.
 
 ~~~

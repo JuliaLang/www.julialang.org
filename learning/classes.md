@@ -6,7 +6,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 
 @@tight-list
 * AGH University of Science and Technology, Poland
-    * [Signal processing in medical diagnostic systems](http://home.agh.edu.pl/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej) (Tomasz Pieciak), Spring 2015
+    * [Signal processing in medical diagnostic systems](https://web.archive.org/web/20200225113052/http://home.agh.edu.pl:80/~pieciak/en/dydaktyka/przetwarzanie-sygnalow-w-systemach-diagnostyki-medycznej) (Tomasz Pieciak), Spring 2015
 * Arizona State University
     * MAT 423, Numerical Analysis (Prof. Clemens Heitzinger), Fall 2014
 * Azad University, Science and Research Branch
@@ -21,6 +21,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [MTH 229](https://www.math.csi.cuny.edu/abhijit/229/), Calculus Computer Laboratory (Prof. John Verzani), Spring 2014. Also see the [MTH 229 Projects](https://mth229.github.io) page.
 * Cornell University
     * [CS 5220](https://www.cs.cornell.edu/~bindel/class/cs5220-s14/), Applications of Parallel Computers (Prof. David Bindel), Spring 2014
+    * [ORIE 4741](https://people.orie.cornell.edu/mru8/orie4741/), Machine Learning with Big Messy Data (Prof. Madeleine Udell), Fall 2017
 * [Czech Technical University in Prague](https://www.cvut.cz/en), Czech Republic
     * [Julia for Optimization and Learning](https://juliateachingctu.github.io/Julia-for-Optimization-and-Learning/stable/)
     * [Scientific Programming in Julia](https://juliateachingctu.github.io/Scientific-Programming-in-Julia/stable)
@@ -31,17 +32,17 @@ If you know of other classes using Julia for teaching, please consider [updating
 * École Polytechnique Fédérale de Lausanne
     * [CIVIL 557] Decision-aid methodologies in transportation (Mor Kaspi, Virginie Lurkin), Spring 2017
 * [Einaudi Institute for Economics and Finance, Rome](http://www.eief.it/eief/)
-    * [Econometrics of DSGE Models](http://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://gragusa.org))
+    * [Econometrics of DSGE Models](https://web.archive.org/web/20211207064252/https://gragusa.org/teaching/eief-dsge/) ([Giuseppe Ragusa](http://gragusa.org))
 * Emory University
-    * [MATH 346](https://www.mathcs.emory.edu/~lruthot/courses/sp15-math346.html), Introduction to Optimization Theory (Prof. Lars Ruthotto), Spring 2015
-    * [MATH 516](https://www.mathcs.emory.edu/~lruthot/courses/math516.html), Numerical Analysis II (Prof. Lars Ruthotto), Spring 2015
+    * [MATH 346](https://web.archive.org/web/20200130214134/http://www.mathcs.emory.edu/~lruthot/courses/sp15-math346.html), Introduction to Optimization Theory (Prof. Lars Ruthotto), Spring 2015
+    * [MATH 516](https://web.archive.org/web/20200131000553/http://www.mathcs.emory.edu/~lruthot/courses/math516.html), Numerical Analysis II (Prof. Lars Ruthotto), Spring 2015
 * Federal Rural University of Rio de Janeiro (UFRRJ)
     * TM429, Introduction to Recommender Systems (Prof. [Filipe Braida](https://github.com/filipebraida)), Fall 2016, Spring 2017
 * [Federal University of Alagoas](https://ufal.br) (_Universidade Federal de Alagoas_, UFAL)
     * COMP272, Distributed Systems ([Prof. André Lage-Freitas](https://sites.google.com/a/ic.ufal.br/andrelage)): 2015, 2016, and 2017
 * [Federal University of Paraná](https://www.ufpr.br/) (_Universidade Federal do Paraná_, UFPR)
-    * [CM103](https://abelsiqueira.github.io/cm103-2019s2/), Laboratório de Matemática Aplicada (Prof. Abel Soares Siqueira), 2016, 2017, and 2018, 2019
-    * [CMM014](https://abelsiqueira.github.io/cmm014-2019s1/), Cálculo Numérico (Prof. Abel Soares Siqueira), 2019
+    * [CM103](https://web.archive.org/web/20200905092341/https://abelsiqueira.github.io/cm103-2019s2/), Laboratório de Matemática Aplicada (Prof. Abel Soares Siqueira), 2016, 2017, and 2018, 2019
+    * CMM014, Cálculo Numérico (Prof. Abel Soares Siqueira), 2019
     * [CM106/CMI043/CMM204/MNUM7079](https://www.youtube.com/playlist?list=PLOOY0eChA1uyk_01nGJVmcQGvcJq9h6_6), Otimização Não Linear (Prof. Abel Soares Siqueira), 2018, 2020
 * Federal University of Uberlândia, Institute of Physics
     * [GFM050](https://www.infis.ufu.br/gerson), Física Computacional (Prof. Gerson J. Ferreira), Fall 2016
@@ -52,13 +53,15 @@ If you know of other classes using Julia for teaching, please consider [updating
 * IIT Indore
     * [ApplNLA](https://github.com/ivanslapnicar/GIAN-Applied-NLA-Course), Modern Applications of Numerical Linear Algebra (Prof. [Ivan Slapnicar](http://marjan.fesb.hr/~slap/)), June 2016
 * Instituto Tecnológico Autónomo de México (ITAM), Mexico City, Mexico
-   * COM 15112 - Paralell and Cloud Computing (Cómputo paralelo y en la nube) (Dr. José Octavio Gutiérrez García)
+   * COM 15112 - Parallel and Cloud Computing (Cómputo paralelo y en la nube) (Dr. José Octavio Gutiérrez García)
 * Iowa State University
     * [STAT 590F](https://github.com/heike/stat590f), Topics in Statistical Computing: Julia Seminar (Prof. Heike Hofmann), Fall 2014
 * Kathmandu University
-    * [AICC202 Introduction to Data Science](https://github.com/rojesh-shikhrakar/AICC202-Intro-to-Data-Science), Foundational Data Science Course (Rojesh Man Shikhrakar), Spring 2023
+    * [AICC202 Introduction to Data Science](https://github.com/rojesh-shikhrakar/KU-AICC202-Intro-to-Data-Science), Foundational Data Science Course (Rojesh Man Shikhrakar), Spring 2023
+* Korea Advanced Institute of Science and Technology (KAIST)
+    * [IE535](https://www.chkwon.net/teaching/#ie-535-network-theory-and-applications), Network Theory and Applications (Prof. [Changhyun Kwon](https://www.chkwon.net)), Fall 2023
 * [Luiss University Rome](https://www.luiss.edu/), [Department of Economics and Finance](https://economiaefinanza.luiss.it)
-    * [Econometric Theory](http://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](http://gragusa.org))
+    * [Econometric Theory](https://web.archive.org/web/20220524221156/https://gragusa.org/teaching/grad-et/) ([Giuseppe Ragusa](http://gragusa.org))
 * [Lund University, Sweden](https://www.lunduniversity.lu.se/), [Department of Automatic Control](http://control.lth.se/)
     * [Julia for Scientific Computing](http://www.control.lth.se/education/doctorate-program/julia-course/julia-course-2019/)
     * [Optimization for Learning](https://www.control.lth.se/education/engineering-program/frtn50-optimization-for-learning/)
@@ -114,8 +117,8 @@ If you know of other classes using Julia for teaching, please consider [updating
 * [RWTH Aachen University](https://www.rwth-aachen.de/cms/~a/root/?lidx=1), Germany
     * [Introduction to Programming for Business Analytics](https://www.dpo.rwth-aachen.de/cms/DPO/Studium/Lehre/~puyhc/Introduction-to-Programming-for-Business/?lidx=1), since Fall 2021
 * “Sapienza” University of Rome, Italy
-    * [Operations Research](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2015
-    * [Optimization for Complex Systems](http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2016
+    * [Operations Research](https://web.archive.org/web/20210224172735/http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2015
+    * [Optimization for Complex Systems](https://web.archive.org/web/20210224172735/http://www.iasi.cnr.it/~liuzzi/teachita.htm) (Giampaolo Liuzzi), Spring 2016
 * [Sciences Po Paris](https://www.sciencespo.fr), [Department of Economics](https://www.sciencespo.fr/department-economics/en), Spring 2016.
     * [Computational Economics for PhDs](https://github.com/ScPo-CompEcon/Syllabus) ([Florian Oswald](https://floswald.github.io))
 * SGH Warsaw School of Economics, Poland
@@ -127,7 +130,7 @@ If you know of other classes using Julia for teaching, please consider [updating
     * CIT 120 Computational Thinking (Inst. [Bryan Knowles](https://github.com/snotskie/)), Online, Fall 2017
 * Stanford University
     * [ENGR108](https://web.stanford.edu/class/engr108/), Introduction to Matrix Methods (Prof Stephen Boyd), Fall 2021
-    * [AA222](https://www.stanford.edu/class/aa222/), Introduction to Multidisciplinary Design Optimization (Prof. Mykel J. Kochenderfer), Spring 2014
+    * AA222, Introduction to Multidisciplinary Design Optimization (Prof. Mykel J. Kochenderfer), Spring 2014
     * [AA228/CS238](https://www.stanford.edu/class/aa228/), Decision Making under Uncertainty (Prof. Mykel J. Kochenderfer), Fall 2014
     * [EE103](https://stanford.edu/class/ee103/), Introduction to Matrix Methods (Prof. Stephen Boyd), Fall 2014, Fall 2015
     * [CME 257](https://github.com/icme/cme257-advanced-julia/), Advanced Topics in Scientific Computing with Julia (Mr. [Brad Nelson](https://github.com/bnels)), Fall 2015
@@ -189,9 +192,9 @@ If you know of other classes using Julia for teaching, please consider [updating
 * University at Buffalo
     * [IE 572](https://www.chkwon.net/teaching/#ie-572-linear-programming/) Linear Programming (Prof. Changhyun Kwon), Fall 2014
 * University of Antwerp, Faculty of Pharmaceutical, Biomedical, Veterinary Sciences, October 2016
-    * Computational Neuroscience (2070FBDBMW), Master of Biomedical Sciences, of Biochemistry, of Physics ([Michele Giugliano](https://www.uantwerpen.be/popup/opleidingsonderdeel.aspx?catalognr=2070FBDBMW&amp;taal=nl&amp;aj=2016))
+    * Computational Neuroscience (2070FBDBMW), Master of Biomedical Sciences, of Biochemistry, of Physics (Michele Giugliano)
 * University of Basel, Department of Physics
-    * [Classical Mechanics](https://www.quantumtheory-bruder.physik.unibas.ch) (Prof. Christoph Bruder), Fall 2020
+    * [Classical Mechanics](https://quantumtheory-bruder.physik.unibas.ch/en/) (Prof. Christoph Bruder), Fall 2020
 * University of California, Los Angeles (UCLA)
     * [EE133A](https://www.seas.ucla.edu/~vandenbe/ee133a.html), Applied Numerical Computing (Prof. L. Vandenberghe), Fall 2021
     * [Biostat 257](https://ucla-biostat-257-2021spring.github.io), Computational Methods for Biostatistical Research, Spring 2021 (Prof. [Hua Zhou](http://hua-zhou.github.io))
@@ -216,8 +219,8 @@ If you know of other classes using Julia for teaching, please consider [updating
 * University of Connecticut, Storrs
     * CHEG 5395, Metaheuristic and Heuristic Methods in Chemical Engineering (Prof. Ranjan Srivastava), Spring 2018
 * University of Edinburgh
-    * Spring 2017, [MATH11146](https://www.drps.ed.ac.uk/16-17/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/index.html))
-    * Spring 2016, [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/index.html))
+    * Spring 2017, [MATH11146](https://www.drps.ed.ac.uk/16-17/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. Peter Richtarik)
+    * Spring 2016, [MATH11146](http://www.drps.ed.ac.uk/15-16/dpt/cxmath11146.htm), Modern optimization methods for big data problems (Prof. Peter Richtarik)
 * University of Florida
     * COT 5615, Math for Intelligent Systems (Prof. Kejun Huang), 2021
     * CIS 4390, Abstraction, Composition, and Computation ([Prof. James Fairbanks](https://www.cise.ufl.edu/fairbanks-james/)), Fall 2021
@@ -237,15 +240,17 @@ If you know of other classes using Julia for teaching, please consider [updating
 * University of Southern California
     * QBIO 577, Computational Molecular Biology Laboratory, [Systems Biology](https://github.com/adamlmaclean/julia-dynsys-resources/) (Prof. [Adam L. MacLean](https://macleanlab.usc.edu/people/adam-maclean/)), since Fall 2019
 * University of Sydney
-    * [MATH3076/3976](https://www.maths.usyd.edu.au/u/olver/teaching/MATH3976/), Mathematical Computing (Assoc. Prof. [Sheehan Olver](https://www.maths.usyd.edu.au/u/olver/)), Fall 2016
+    * [MATH3076/3976](https://web.archive.org/web/20210308130503/https://www.maths.usyd.edu.au/u/olver/teaching/MATH3976/), Mathematical Computing (Assoc. Prof. Sheehan Olver), Fall 2016
+* University of Queensland
+    * [MATH2504](https://my.uq.edu.au/programs-courses/course.html?course_code=MATH2504), Programming of Simulation, Analysis, & Learning Systems (Assoc. Prof. [Yoni Nazarathy](https://smp.uq.edu.au/profile/236/yoni-nazarathy)), since 2021-
 * Université Paul Sabatier, Toulouse
-    * [Optimization in Machine Learning](https://www.irit.fr/cimi-machine-learning/node/15.html), (Prof. [Peter Richtarik](https://www.maths.ed.ac.uk/~prichtar/)), Fall 2015
+    * [Optimization in Machine Learning](https://www.irit.fr/cimi-machine-learning/node/15.html), (Prof. Peter Richtarik), Fall 2015
 * [Université de Liège](https://www.ulg.ac.be/)
-    * [MATH0462](http://www.tcuvelier.be/teaching-2016-2017-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
-    * [MATH0461](https://www.programmes.uliege.be/cocoon/20192020/cours/MATH0461-2.html), Introduction to Numerical Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2016
-    * [MATH0462](http://www.montefiore.ulg.ac.be/~tcuvelier/teaching/2015-2016-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](http://www.montefiore.ulg.ac.be/~louveaux/)), Fall 2015
+    * [MATH0462](http://www.tcuvelier.be/teaching-2016-2017-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](https://people.montefiore.uliege.be/louveaux/)), Fall 2016
+    * [MATH0461](https://www.programmes.uliege.be/cocoon/20192020/cours/MATH0461-2.html), Introduction to Numerical Optimization (Prof. [Quentin Louveaux](https://people.montefiore.uliege.be/louveaux/)), Fall 2016
+    * [MATH0462](https://tcuvelier.be/teaching-2015-2016-discrete-optimisation), Discrete Optimization (Prof. [Quentin Louveaux](https://people.montefiore.uliege.be/louveaux/)), Fall 2015
 * Université de Montréal
-    * [BIO6032](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6032/), Biologie computationnelle et modélisation (Prof. [Timothée Poisot](https://poisotlab.io/)), Winter 2021-
+    * [BIO6032](https://web.archive.org/web/20230530021551/https://admission.umontreal.ca/cours-et-horaires/cours/bio-6032/), Biologie computationnelle et modélisation (Prof. [Timothée Poisot](https://poisotlab.io/)), Winter 2021-
     * [BIO3033](https://admission.umontreal.ca/cours-et-horaires/cours/bio-3033/) & [BIO6033](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6033/), Méthodes Quantitatives en Biologie (Prof. [Timothée Poisot](https://poisotlab.io/)), Fall 2017-
     * [BIO3043](https://admission.umontreal.ca/cours-et-horaires/cours/bio-3043/) & [BIO6037](https://admission.umontreal.ca/cours-et-horaires/cours/bio-6037/), Analyse des Réseaux Écologiques (Prof. [Timothée Poisot](https://poisotlab.io/)), Fall 2018-
     * [IFT1575](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-1575/), Modèles de recherche opérationnelle (Prof. [Bernard Gendron](https://www.iro.umontreal.ca/~gendron/)), Fall 2017
@@ -254,6 +259,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [IFT6512](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-6512/), Programmation stochastique (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2018
 * University of Washington
     * [AMATH 586](https://trogdoncourses.github.io/amath-586-2020/), Numerical analysis of time-dependent problems (Prof. [Tom Trogdon](http://faculty.washington.edu/trogdon/)), Spring 2020
+* Vrije Universiteit Amsterdam
+    * [XM_40017](https://studiegids.vu.nl/en/2023-2024/courses/XM_40017#/), Programming Large-Scale Parallel Systems (Prof. Dr. Ir. [H.E. Bal](https://research.vu.nl/en/persons/he-bal), Dr. [F. Verdugo Rojano](https://research.vu.nl/en/persons/francesc-verdugo-rojano)), Fall 2023
 * Washington University in St. Louis
     * [Advanced Scientific Computing (Bio5989)](https://github.com/timholy/AdvancedScientificComputing/tree/main) (Prof. [Tim Holy](https://neuroscience.wustl.edu/people/timothy-holy-phd/)), annual. See [videos](https://www.youtube.com/playlist?list=PL-G47MxHVTewUm5ywggLvmbUCNOD2RbKA) and corresponding [branch](https://github.com/timholy/AdvancedScientificComputing/tree/Fall2021) from the Fall 2021 edition of the course.
 * Western University Canada

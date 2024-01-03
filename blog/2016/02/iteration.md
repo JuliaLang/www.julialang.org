@@ -21,7 +21,7 @@ These iterators are deceptively simple: just a few principles bring a
 world of power in writing multidimensional algorithms.  However, like
 many simple concepts, the implications can take a while to sink in.
 It's also possible to confuse these techniques with
-[`Base.Cartesian`](https://docs.julialang.org/en/latest/devdocs/cartesian/),
+[`Base.Cartesian`](https://docs.julialang.org/en/v1/devdocs/cartesian/),
 which is a completely different (and more painful) approach to
 solving the same problem.  There are still a few occasions where
 `Base.Cartesian` is helpful or necessary, but for many problems these new
@@ -29,7 +29,7 @@ capabilities represent a vastly simplified approach.
 
 Let's introduce these iterators with an extension of an example taken
 from the
-[manual](https://docs.julialang.org/en/latest/manual/arrays/#Iteration-1).
+[manual](https://docs.julialang.org/en/v1/manual/arrays/#Iteration-1).
 
 # eachindex, CartesianIndex, and CartesianIndices
 
@@ -97,7 +97,7 @@ AbstractArray{CartesianIndex{2},2}
 
 As a consequence `iter[2,2]` and `iter[5]` both return `CartesianIndex(2, 2)`; indeed,
 the latter is the recommended way to convert
-from a [linear index](https://docs.julialang.org/en/latest/devdocs/subarrays/#Indexing:-cartesian-vs.-linear-indexing-1) to a multidimensional cartesian index.
+from a [linear index](https://docs.julialang.org/en/v1/devdocs/subarrays/#Indexing:-cartesian-vs.-linear-indexing-1) to a multidimensional cartesian index.
 
 However, internally `iter` is just a wrapper around the `axes` range for each dimension:
 
@@ -125,7 +125,7 @@ is that some `AbstractArray`s cannot be indexed efficiently with a
 linear index; in contrast, a much wider class of objects can be
 efficiently indexed with a multidimensional iterator.  (SubArrays are,
 generally speaking, [a prime
-example](https://docs.julialang.org/en/latest/devdocs/subarrays).)
+example](https://docs.julialang.org/en/v1/devdocs/subarrays).)
 `eachindex` is designed to pick the most efficient iterator for the
 given array type.  You can even use
 
@@ -300,7 +300,7 @@ end
 Obviously, this simple implementation skips all relevant error
 checking.  However, here the main point I wish to explore is that the
 allocation of `B` turns out to be
-[non-inferrable](https://docs.julialang.org/en/latest/manual/faq/#man-type-stability-1):
+[non-inferable](https://docs.julialang.org/en/v1/manual/faq/#man-type-stability-1):
 `sz` is a `Vector{Int}`, the length (number of elements) of a specific
 `Vector{Int}` is not encoded by the type itself, and therefore the
 dimensionality of `B` cannot be inferred.
@@ -312,7 +312,7 @@ result:
 B = Array{eltype(A)}(undef, sz...)::Array{eltype(A),ndims(A)}
 ```
 
-or by using an implementation that *is* inferrable:
+or by using an implementation that *is* inferable:
 
 ```
 function sumalongdims(A, dims)
@@ -326,7 +326,7 @@ However, here we want to emphasize that this design — having a separate
 `sumalongdims!` from `sumalongdims` — often mitigates the worst aspects
 of inference problems. This trick, using a [function-call to separate a
 performance-critical step from a potentially type-unstable
-precursor](https://docs.julialang.org/en/latest/manual/performance-tips/#kernel-functions-1),
+precursor](https://docs.julialang.org/en/v1/manual/performance-tips/#kernel-functions-1),
 is sometimes referred to as introducing a *function barrier*.
 It allows Julia's compiler to generate a well-optimized version of
 `sumalongdims!` even if the intermediate type of `B` is not known.
@@ -464,7 +464,7 @@ julia> Tuple(I) .+ 1
 If desired you can package this back up in a `CartesianIndex`, or just
 use it directly (with splatting) for indexing.
 The compiler optimizes all these operations away, so there is no actual
-"cost" to constucting objects in this way.
+"cost" to constructing objects in this way.
 
 Why is iteration disallowed? One reason is to support the following:
 

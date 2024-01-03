@@ -78,7 +78,7 @@ Know how one can use PackageCompiler.jl to cache the loading and compiled code o
 
 You will also learn how to create apps - executable programs that can be run on other machines without requiring Julia installation and without having to provide the source code.
 
-The Webinar is led by Julia Computing's @KristofferC89, who is a long-time contributor to Julia, PackageCompiler.jl, the Julia package manager and debugger.
+The Webinar is led by JuliaHub's @KristofferC89, who is a long-time contributor to Julia, PackageCompiler.jl, the Julia package manager and debugger.
 
 #julialang
 

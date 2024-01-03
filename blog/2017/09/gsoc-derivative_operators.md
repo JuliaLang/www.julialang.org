@@ -2,12 +2,12 @@
 @def rss = """ GSoC 2017: Efficient Discretizations of PDE Operators | This project is an attempt towards building a PDE solver for JuliaDiffEq using the Finite Difference Method (https://en.wikipedia.org/wiki/Finite_difference_method)(FDM) approach. We take up the FDM approach instead of FEM (https://en.wikipedia.org/wiki/Finite_element_method) and FVM (https://en.w... """
 @def published = "6 September 2017"
 @def title = "GSoC 2017: Efficient Discretizations of PDE Operators"
-@def authors = """Shivin Srivastava, Christopher Rackauckas"""  
+@def authors = """Shivin Srivastava, Christopher Rackauckas"""
 @def hasmath = true
 @def hascode = true
 
 
-This project is an attempt towards building a PDE solver for JuliaDiffEq using the [Finite Difference Method](https://en.wikipedia.org/wiki/Finite_difference_method)(FDM) approach. We take up the FDM approach instead of [FEM](https://en.wikipedia.org/wiki/Finite_element_method) and [FVM](https://en.wikipedia.org/wiki/Finite_volume_method) as there are many toolboxes which already exist for FEM and FVM but not for FDM. Also, there are many use cases where the geometry of the problem is simple enough to be solved by FDM methods which are much faster due to their being able to avoid the bottleneck step of matrix multiplication by using Linear transformations to mimic the effect of a matrix multiplication. Since matrix multiplication basically transforms a vector element to a weighted sum of the neighbouring elements, this can be easily acheived using a special function which acts on the vector in optimal $\mathcal{O}(n)$ time.
+This project is an attempt towards building a PDE solver for JuliaDiffEq using the [Finite Difference Method](https://en.wikipedia.org/wiki/Finite_difference_method)(FDM) approach. We take up the FDM approach instead of [FEM](https://en.wikipedia.org/wiki/Finite_element_method) and [FVM](https://en.wikipedia.org/wiki/Finite_volume_method) as there are many toolboxes which already exist for FEM and FVM but not for FDM. Also, there are many use cases where the geometry of the problem is simple enough to be solved by FDM methods which are much faster due to their being able to avoid the bottleneck step of matrix multiplication by using Linear transformations to mimic the effect of a matrix multiplication. Since matrix multiplication basically transforms a vector element to a weighted sum of the neighbouring elements, this can be easily achieved using a special function which acts on the vector in optimal $\mathcal{O}(n)$ time.
 
 The result is a new package called [DiffEqOperators.jl](https://github.com/SciML/DiffEqOperators.jl) which creates efficient discretizations of partial differential operators thereby converting PDEs to ODEs which can be solved efficiently by existing ODE solvers. The `DerivativeOperator` is based on central differencing schemes of approximating derivatives at a point whereas the `UpwindOperators` are based on one-sided differencing schemes where the solution is typically a wave moving in a particular direction. The package also supports a variety of boundary conditions like [Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_boundary_condition), [Neumann](https://en.wikipedia.org/wiki/Neumann_boundary_condition), [Periodic](https://en.wikipedia.org/wiki/Periodic_boundary_conditions) and the [Robin](https://en.wikipedia.org/wiki/Robin_boundary_condition) [boundary condition](https://en.wikipedia.org/wiki/Boundary_value_problem).
 
@@ -90,11 +90,11 @@ julia> A = DerivativeOperator{Float64}(4,2,1.0,10,:Dirichlet0,:Dirichlet0)
 julia> A.stencil_coefs
 7-element SVector{7,Float64}:
   -0.166667
-   2.0     
-  -6.5     
+   2.0
+  -6.5
    9.33333
-  -6.5     
-   2.0     
+  -6.5
+   2.0
   -0.166667
 ```
 
@@ -103,15 +103,15 @@ If we want to apply the operator as a matrix multiplication (sparse or dense) we
 ```
 julia> full(A)
 10×10 Array{Float64,2}:
- 9.33333   -6.5        2.0       …   0.0        0.0        0.0     
--6.5        9.33333   -6.5           0.0        0.0        0.0     
- 2.0       -6.5        9.33333       0.0        0.0        0.0     
--0.166667   2.0       -6.5           0.0        0.0        0.0     
- 0.0       -0.166667   2.0          -0.166667   0.0        0.0     
- 0.0        0.0       -0.166667  …   2.0       -0.166667   0.0     
+ 9.33333   -6.5        2.0       …   0.0        0.0        0.0
+-6.5        9.33333   -6.5           0.0        0.0        0.0
+ 2.0       -6.5        9.33333       0.0        0.0        0.0
+-0.166667   2.0       -6.5           0.0        0.0        0.0
+ 0.0       -0.166667   2.0          -0.166667   0.0        0.0
+ 0.0        0.0       -0.166667  …   2.0       -0.166667   0.0
  0.0        0.0        0.0          -6.5        2.0       -0.166667
- 0.0        0.0        0.0           9.33333   -6.5        2.0     
- 0.0        0.0        0.0          -6.5        9.33333   -6.5     
+ 0.0        0.0        0.0           9.33333   -6.5        2.0
+ 0.0        0.0        0.0          -6.5        9.33333   -6.5
  0.0        0.0        0.0           2.0       -6.5        9.33333
 
 julia> sparse(A)
@@ -201,7 +201,7 @@ Although vanilla `DerivativeOperators` and the `UpwindOperators` form the major 
 
 We are also working on the Robin boundary conditions for `DerivativeOperators` which are currently not as accurate as they [should](https://gist.github.com/shivin9/124ed1e5ea96792fc8666e0caf32715c) be.
 
-Another avenue for work is the lazy implementations of `expm` and  `expmv` for `DerivativeOperators`.   
+Another avenue for work is the lazy implementations of `expm` and  `expmv` for `DerivativeOperators`.
 
 ## Acknowledgments
 

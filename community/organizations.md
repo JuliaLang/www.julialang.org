@@ -2,7 +2,9 @@
 
 Something unique about the Julia Language is the way [the community self organizes into GitHub Organizations](https://youtu.be/cLFfTE2KWrk?t=644). This allows for a higher degree of collaboration and structure that ultimately enables each of these communities to be self sustaining.
 
-The following is a non-comprehensive list of Julia GitHub organizations, grouped by domain. If you know of an organization not shown here, please open a pull request so that we can keep the list up to date.
+The following is a non-comprehensive list of Julia GitHub organizations, grouped by domain. If you're aware of an organization not listed here, please contribute by adding it under the appropriate group. Open a pull request [here](https://github.com/JuliaLang/www.julialang.org/blob/main/community/organizations.md) to help us maintain an updated list.
+
+**Note:** Organizations listed here should strive to have at least 2 owners with admin rights, and at least 2 public members. Doing so helps to protect the organization's repositories against a single person being unreachable.
 
 ### Julia
 
@@ -48,6 +50,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaPerf](https://github.com/JuliaPerf) - Performance tools
 * [JuliaSIMD](https://github.com/JuliaSIMD) - SIMD vectorization in Julia
 * [JuliaWeb](https://github.com/JuliaWeb) – Web stack
+* [JuliaWGPU](https://github.com/JuliaWGPU) - WGPU (WebGPU) graphics and compute packages
 
 ### Mathematics
 
@@ -58,6 +61,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaGraphs](https://github.com/JuliaGraphs) – Graph Theory and Implementation
 * [JuliaIntervals](https://github.com/JuliaIntervals) – Rigorous numerics with interval arithmetic & applications
 * [JuliaLinearAlgebra](https://github.com/JuliaLinearAlgebra) – Linear algebra in Julia
+* [JuliaManifolds](https://github.com/JuliaManifolds) – Riemannian manifolds in Julia and applications thereon like [optimization](https://manoptjl.org) or differential equations
 * [JuliaMath](https://github.com/JuliaMath) – Mathematics made easy in Julia
 * [JuliaMatrices](https://github.com/JuliaMatrices)
 * [JuliaNLSolvers](https://github.com/JuliaNLSolvers)
@@ -84,6 +88,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaEarth](https://github.com/JuliaEarth) –  Fostering statistics research in Earth sciences
 * [JuliaEpi](https://github.com/JuliaEpi) –  Computational epidemiology in Julia
 * [JuliaFEM](https://github.com/JuliaFEM) –  Finite Element Method
+* [JuliaGPs](https://github.com/JuliaGaussianProcesses) - Gaussian Processes
 * [JuliaGeo](https://github.com/JuliaGeo) – Earth science, geospatial data processing
 * [JuliaHealth](https://github.com/JuliaHealth) – [medicine, health care, public health](https://juliahealth.org/)
 * [JuliaIBM](https://github.com/JuliaIBPM) - Immersed boundary methods and other tools for solving partial differential equations
@@ -105,9 +110,11 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 ### Physics/Quantum mechanics
 
 * [JuliaAtoms](https://github.com/JuliaAtoms) - Atomic physics in Julia
+* [JuliaHEP](https://github.com/JuliaHEP) - High-Energy Physics related projects.
 * [JuliaPhysics](https://github.com/JuliaPhysics) – Physics
 * [JuliaWaveScattering](https://github.com/JuliaWaveScattering) – Linear wave equations (acoustic, elastic, electromagnetic, quantum)
 * [JuliaQuantum](https://github.com/JuliaQuantum) – Quantum science and technology
+* [JuliaQuantumControl](https://github.com/JuliaQuantumControl) — Framework for open-loop quantum optimal control
 * [qojulia](https://github.com/qojulia) – QuantumOptics.jl related projects
 * [QuantumBFS](https://github.com/QuantumBFS) - A group of quantum developers around Bao Fu Si (Temple)
 
@@ -136,7 +143,9 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 
 ### Miscellaneous
 
+* [DynareJulia](https://github.com/DynareJulia) - A platform for the solution, simulation, and estimation of dynamic stochastic general equilibrium economic models
 * [JuliaCN](https://github.com/JuliaCN) - An open-source organization for Julia localization in Chinese
+* [JuliaEPFL](https://github.com/JuliaEPFL) - Julia enthusiasts at and around École polytechnique fédérale de Lausanne (Switzerland)
 * [JuliaGaming](https://github.com/JuliaGaming) – Open source games built in the Julia Programming Language.
 * [JuliaKorea](https://github.com/juliakorea) - Julia Korea organization
 * [JuliaLangSlack](https://github.com/JuliaLangSlack) – Projects built to enable the Julia Lang community Slack workspace

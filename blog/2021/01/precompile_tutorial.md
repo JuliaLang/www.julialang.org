@@ -663,8 +663,8 @@ precompile(dopush, ())
 
 then the `MethodInstance` for `push!(::Vector{SCDType}, ::SCDType)` will be added to the package through the backedge to `dopush` (which you do own).
 
-This was an artifical example, but in more typical cases this happens organically through the functionality of your package.
-But again, this works only for inferrable calls.
+This was an artificial example, but in more typical cases this happens organically through the functionality of your package.
+But again, this works only for inferable calls.
 @@
 
 [package mode]: https://julialang.github.io/Pkg.jl/v1/getting-started/#Basic-Usage

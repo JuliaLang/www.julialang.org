@@ -243,7 +243,7 @@ For those interested, here is the list of specific PRs that implement the main i
 
 These inference improvements were initially motivated by the needs of [JET.jl](https://github.com/aviatesk/JET.jl), a static analyzer for Julia, that is powered by the Julia compiler's type inference implementation.
 These inference improvements in 1.7 allow JET to analyze your program more correctly and faster –
-as a simple measurement, [when analyzing JET itself](https://gist.github.com/aviatesk/e2ffa4bfaee60f939ef4b65449fa394b),
+as a simple measurement, when analyzing JET itself,
 JET took `90` seconds to report `93` false-positive errors in 1.6,
 but in 1.7 and higher, JET can finish the analysis within `40` seconds and the number of false positives is reduced to `27`,
 thanks to both the type inference improvements and [several inferrability improvements of Julia Base](https://github.com/JuliaLang/julia/pulls?q=is%3Apr+is%3Amerged+inferrability).
@@ -253,7 +253,7 @@ thanks to both the type inference improvements and [several inferrability improv
 *Elliot Saba*, *Viral B Shah*, *Mosè Giordano*
 
 Julia v1.7 introduces a new BLAS demuxing library called [libblastrampoline (LBT)](https://github.com/staticfloat/libblastrampoline), that provides a flexible and efficient way to switch the backing BLAS library at runtime.
-Because the BLAS/LAPACK API is "pure" (e.g. each BLAS/LAPACK invocation is separate from any other; there is no carryover state from one API call to another) it is possible to switch which BLAS backend actually services a particular client API call, such as a [DGEMM](http://www.netlib.org/lapack/explore-html/d1/d54/group__double__blas__level3_gaeda3cbd99c8fb834a60a6412878226e1.html) call for a `Float64` `Matrix`-`Matrix` multiplication.
+Because the BLAS/LAPACK API is "pure" (e.g. each BLAS/LAPACK invocation is separate from any other; there is no carryover state from one API call to another) it is possible to switch which BLAS backend actually services a particular client API call, such as a Double Precision General Matrix Multiply call for a `Float64` `Matrix`-`Matrix` multiplication.
 This statelessness enables us to easily switch from one BLAS backend to another without needing to modify client code, and combining this with a flexible wrapper implementation, we are able to provide a single, coherent API that automatically adjusts for a variety of BLAS/LAPACK providers across all the platforms that Julia itself supports.
 
 The wrapper itself consists of assembly routines to jump to a stored function pointer, using the same assembly chunks that the [Procedure Linkage Table (PLT)](https://www.technovelty.org/linux/plt-and-got-the-key-to-code-sharing-and-dynamic-libraries.html) uses in every dynamic library on your operating system.
@@ -398,7 +398,7 @@ julia (v1.6)> @btime reshape([1; 2; 3; 4], (1, 2, 1, 2)); # fast, but intent les
   65.884 ns (2 allocations: 192 bytes)
 ```
 
-This is a substantial improvement in performance for this basic operation, and the differential improves greatly as more dimensions become invovled.
+This is a substantial improvement in performance for this basic operation, and the differential improves greatly as more dimensions become involved.
 
 For ease of reading a larger array expression, line breaks are of course tolerated:
 ```julia-repl

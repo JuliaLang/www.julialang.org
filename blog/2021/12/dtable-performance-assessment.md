@@ -45,7 +45,7 @@ The `DTable` aims to excel in two areas:
 - parallelization of data processing
 - out-of-core processing (will be available through future `Dagger.jl` upgrades)
 
-The goal is to become competitive with similiar tools, such as `Dask` or `Spark`, so that Julia users can solve and scale their problems within Julia.
+The goal is to become competitive with similar tools, such as `Dask` or `Spark`, so that Julia users can solve and scale their problems within Julia.
 
 By leveraging the composability of the Julia data ecosystem, we can reuse a lot of existing functionality in order to achieve the above goals, and continue improving the solution in the future instead of just creating another monolithic solution.
 
@@ -134,7 +134,7 @@ DTable command: `map(row -> (r = row.a1 + 1,), d)`
 
 As the set of values is limited, a simple filter expression was chosen, which filters out approximately half of the records (command below).
 
-In this scenario, the parallelization and partitioning overhead doesn't pay off as well as both `DTable` and `Dask` are noticably slower than `DataFrames.jl`.
+In this scenario, the parallelization and partitioning overhead doesn't pay off as well as both `DTable` and `Dask` are noticeably slower than `DataFrames.jl`.
 When it comes to the comparison of these two implementations, the performance looks very similiar with `Dask` being on average 1.6 times faster than the `DTable`.
 
 The scaling of the `DTable` allows it to catch up to `DataFrames` at the largest data size. It's possible that this behavior may continue at larger data sizes and eventually provide a speedup versus `DataFrames` after some threshold.
@@ -203,7 +203,7 @@ DTable command: `Dagger.groupby(d, :a1)`
 ## Grouped reduction (single column)
 
 Mimicking the success of reduction benchmarks, the `DTable` is again performing better here than the direct competition.
-For the single column reductions, it's an average ~20.2 times speedup over `Dask`, and their scaling behavior looks very similiar.
+For the single column reductions, it's an average ~20.2 times speedup over `Dask`, and their scaling behavior looks very similar.
 
 Contrary to the standard reduction benchmarks, the `DTable` doesn't offer a speedup compared to `DataFrames.jl` across all the data sizes.
 It looks like the current algorithm has a significant overhead that can be observed as a lower bound to the performance at smaller data sizes.
@@ -217,7 +217,7 @@ DTable command: `r = reduce(fit!, g, cols=[:a2], init=Mean())`
 
 ## Grouped reduction (all columns)
 
-The results for the all-columns reduction look very similiar to single-column.
+The results for the all-columns reduction look very similar to single-column.
 The `DTable` managed to offer an average ~22.3 times speeup over `Dask`.
 
 Again, the `DTable` is heavily falling behind `DataFrames.jl` on smaller data sizes due to the significant entry overhead acting as a lower performance bound at smaller data sizes.
@@ -253,7 +253,7 @@ We hope to include all the necessary fixes in future patches to Julia 1.7.
 
 The `DTable` has successfully passed the proof-of-concept stage and is currently under active development as a part of the `Dagger.jl` package.
 
-This early performance assessment has confirmed that the `DTable` has the potential to become a competetive tool for processing tabular data.
+This early performance assessment has confirmed that the `DTable` has the potential to become a competitive tool for processing tabular data.
 It managed to perform significantly better than direct competition (`Dask`) in 6 out of 7 presented benchmarks and in the remaining one it doesn't fall too far behind.
 While this looks promising there's still a lot of work ahead in order to make the `DTable` feature-rich and even faster, so keep an eye out for future updates on the project.
 

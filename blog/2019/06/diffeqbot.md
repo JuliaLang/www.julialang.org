@@ -2,7 +2,7 @@
 @def rss = """ Hello @DiffEqBot | Hi! Today we all got a new member to the DiffEq family. Say hi to our own DiffEqBot (https://github.com/DiffEqBot) - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a repository (https://github.com/DiffE... """
 @def published = "18 June 2019"
 @def title = "Hello @DiffEqBot"
-@def authors = """<a href="https://github.com/kanav99">Kanav Gupta</a>"""  
+@def authors = """<a href="https://github.com/kanav99">Kanav Gupta</a>"""
 @def hascode = true
 
 Hi! Today we all got a new member to the DiffEq family. Say hi to our own [DiffEqBot](https://github.com/DiffEqBot) - A bot which helps run benchmarks and compares with the current master of a given package. It also generates and stores the Reports generated in a [repository](https://github.com/DiffEqBot/Reports). What's special about this is that it is completely stateless (no databases involved at all, just juggling between repositories!) and it has no exposed public URLs. Even though highly inspired by Nanosoldier, this has a completely unique workflow.
@@ -25,7 +25,7 @@ Right now, `DIAGRAMS` cannot be a recursive dictionary, i.e. an element of the d
 
 ## How does DiffEqBot work internally?
 
-DiffEqBot works by jumping accross many repositories and it has been all possible due to awesome APIs both GitHub and Gitlab has provided us with! I will explain the workflow of DiffEqBot in the steps it take to get a particular job done -
+DiffEqBot works by jumping across many repositories and it has been all possible due to awesome APIs both GitHub and Gitlab has provided us with! I will explain the workflow of DiffEqBot in the steps it take to get a particular job done -
 
 1. You make a comment on the pull request to run the benchmarks. With the help of GitHub webhooks, `comment` event is posted on a Heroku app. You get the repository's name and pull request number where this comment is made. It makes sure all the sanity checks, like if the person can run benchmarks or not, or the repository is registered or not etc.
 
@@ -35,7 +35,7 @@ DiffEqBot works by jumping accross many repositories and it has been all possibl
 
 ![](https://i.imgur.com/lWS8i7X.jpg)
 
-3. Here comes the tricky part. We have a seperate dedicated Gitlab private repository called `BenchmarkingRepo` which is basically an empty repository, but plays an important role which would be explained now. DiffEqBot checks out a branch with name formatted as `REPONAME-PR` and generates a Gitlab CI configuration script (`.gitlab-ci.yml`) and makes a commit on this branch. What this configuration does is, pull the PR where the request is made, run the benchmarks, and post the results back to the bot. Basically the script is -
+3. Here comes the tricky part. We have a separate dedicated Gitlab private repository called `BenchmarkingRepo` which is basically an empty repository, but plays an important role which would be explained now. DiffEqBot checks out a branch with name formatted as `REPONAME-PR` and generates a Gitlab CI configuration script (`.gitlab-ci.yml`) and makes a commit on this branch. What this configuration does is, pull the PR where the request is made, run the benchmarks, and post the results back to the bot. Basically the script is -
 
 ```yaml
 main:
@@ -60,7 +60,7 @@ failed_job:
 
 ![](https://i.imgur.com/vYvx4Ta.jpg)
 
-5. In the `some_script_to_run_becnhmarks.jl` file, we make a request back to DiffEqBot along with the report in JSON format in the end. When this happens, DiffEqBot makes a commit on the Reports repository on GitHub submitting the markdown script.
+5. In the `some_script_to_run_benchmarks.jl` file, we make a request back to DiffEqBot along with the report in JSON format in the end. When this happens, DiffEqBot makes a commit on the Reports repository on GitHub submitting the markdown script.
 
 ![](https://i.imgur.com/49pIrAe.jpg)
 
@@ -112,7 +112,7 @@ All the configuration of DiffEqBot is done through a file `config.json` in the H
 * `github_app.bot_endpoint` - Github App interacts with the Heroku app by a webhook. This is the endpoint where the app should make requests.
 * `gitlab_account.benchmarking_repo_id` - Project ID of the BenchmarkingRepo on Gitlab
 * `gitlab_account.access_token` - Gitlab Personal Access token of Bot account with repo:write rights.
-* `github_accout.access_token` - Github Personal access token with `public_repo` scope. You can directly generate this [here](https://github.com/settings/tokens/new?description=DiffEqBot&scopes=public_repo).
+* `github_account.access_token` - Github Personal access token with `public_repo` scope. You can directly generate this [here](https://github.com/settings/tokens/new?description=DiffEqBot&scopes=public_repo).
 
 ## Access Control and Security
 
@@ -123,4 +123,4 @@ We have for now given access to only certain members of the organization. We cal
 
 ## Shortcomings and Road ahead
 
-I absolutely love this new member of our community. But it still has several shortcomings. As seen above, due to security concerns, we have allowed only certain members of the organization access to run the benchmarks. Also, we have a basic frontend ready for display of reports, but an even more better design is welcome! We might also need more commands for DiffEqBot than just `runbenchmarks` and `abort`. All these extra features would be a cherry on top. I also plan to make it open source and maintain a proper documentation so that other communities can also deploy this for thier uses and maybe help in its development too!
+I absolutely love this new member of our community. But it still has several shortcomings. As seen above, due to security concerns, we have allowed only certain members of the organization access to run the benchmarks. Also, we have a basic frontend ready for display of reports, but an even more better design is welcome! We might also need more commands for DiffEqBot than just `runbenchmarks` and `abort`. All these extra features would be a cherry on top. I also plan to make it open source and maintain a proper documentation so that other communities can also deploy this for their uses and maybe help in its development too!

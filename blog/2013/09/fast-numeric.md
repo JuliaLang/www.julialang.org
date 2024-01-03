@@ -2,7 +2,7 @@
 @def rss = """ Fast Numeric Computation in Julia | Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality.... """
 @def published = "4 September 2013"
 @def title = "Fast Numeric Computation in Julia"
-@def authors = """<a href="https://dahua.me">Dahua Lin</a>"""  
+@def authors = """<a href="https://dahua.me">Dahua Lin</a>"""
 @def hascode = true
 
 
@@ -74,7 +74,7 @@ for i = 1:length(x)
 end
 ```
 
-This version finishes the computation in one pass, without introducing any temporary arrays. Moreover, if `r` is pre-allocated, one can even omit the statment that creates `r`. The [*Devectorize.jl*](https://github.com/lindahua/Devectorize.jl) package provides a macro ``@devec`` that can automatically translate vectorized expressions into loops:
+This version finishes the computation in one pass, without introducing any temporary arrays. Moreover, if `r` is pre-allocated, one can even omit the statement that creates `r`. The [*Devectorize.jl*](https://github.com/lindahua/Devectorize.jl) package provides a macro ``@devec`` that can automatically translate vectorized expressions into loops:
 
 ```julia
 using Devectorize
@@ -147,7 +147,7 @@ for i = 1:m
 end
 ```
 
-The loop here accesses the elements row-by-row, as `a[i,1], a[i,2], ..., a[i,n]`. The interval between these elements is `m`. Intuitively, it jumps at the stride of length `m` from the begining of each row to the end in each inner loop, and then jumps back to the begining of next row. This is not very efficient, especially when `m` is large.
+The loop here accesses the elements row-by-row, as `a[i,1], a[i,2], ..., a[i,n]`. The interval between these elements is `m`. Intuitively, it jumps at the stride of length `m` from the beginning of each row to the end in each inner loop, and then jumps back to the beginning of next row. This is not very efficient, especially when `m` is large.
 
 This procedure can be made much more cache-friendly by changing the order of computation:
 

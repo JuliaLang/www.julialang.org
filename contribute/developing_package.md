@@ -91,7 +91,7 @@ To include a function from a different file in `YourPackageName.jl`:
 
 ```
 function greet_your_package_name()
-    println("Hello YourPackageName!")
+    return "Hello YourPackageName!"
 end
 ```
 3. Export the function `greet_your_package_name()` so that is available to users as follows:
@@ -140,12 +140,12 @@ To run the test defined above:
 1. In your terminal, go to your package directory.
 2. Open the Julia REPL.
 3. Go to the **package mode** by typing `]`.
-4. Activate the package environment by running `activate` command,
+4. Activate the package environment by running `activate .` command,
 5. In the package mode, run the command `test`.
 
 ```
 julia> ] # Go to the package mode
-(v1.8) pkg> activate YourPackageName # Your package name
+(v1.8) pkg> activate .
 (YourPackageName) pkg> test
 ```
 

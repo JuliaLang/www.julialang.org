@@ -16,7 +16,7 @@ rss_pubdate = Date(2021, 07, 26)
 
 The JuliaCon 2021 [organizing committee](https://juliacon.org/2021/committee/) is proud to share that JuliaCon is off to an incredible start this year with workshops commencing on Tuesday July 20th and going until the conference talks begin on Wednesday July 28th.
 
-Julia co-creator and CEO of Julia Computing, Viral Shah, pointed out on Twitter that this year's first workshop has already reached more people than some of the original JuliaCon videos have over the course of 7 years.
+Julia co-creator and CEO of JuliaHub, Viral Shah, pointed out on Twitter that this year's first workshop has already reached more people than some of the original JuliaCon videos have over the course of 7 years.
 ~~~
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I just noticed this impressive <a href="https://twitter.com/hashtag/julialang?src=hash&amp;ref_src=twsrc%5Etfw">#julialang</a> growth statistic. The first <a href="https://twitter.com/hashtag/juliacon?src=hash&amp;ref_src=twsrc%5Etfw">#juliacon</a> was 7 years ago. Yesterday&#39;s <a href="https://twitter.com/hashtag/JuliaCon2021?src=hash&amp;ref_src=twsrc%5Etfw">#JuliaCon2021</a> tutorials got the same number of YouTube views in 1 day that the first <a href="https://twitter.com/hashtag/juliacon?src=hash&amp;ref_src=twsrc%5Etfw">#juliacon</a> videos got in 7 years! <a href="https://t.co/gJ5zMkAIzF">pic.twitter.com/gJ5zMkAIzF</a></p>&mdash; Viral B. Shah (@Viral_B_Shah) <a href="https://twitter.com/Viral_B_Shah/status/1417820118726361091?ref_src=twsrc%5Etfw">July 21, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 ~~~

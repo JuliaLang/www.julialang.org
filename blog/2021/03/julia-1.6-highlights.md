@@ -255,7 +255,7 @@ possible.  By limiting the number of backedges and data structures, as well as
 centralizing the template pieces of code that each JLL package uses, we are
 able to not only vastly improve load times, but improve compile times as well!
 As an added bonus, improvements to JLL package APIs can now be made directly in
-`JLLWappers.jl` without needing to re-deploy hundreds of JLLs.  Because these
+`JLLWrappers.jl` without needing to re-deploy hundreds of JLLs.  Because these
 JLL packages only define a thin wrapper around simple, lightweight functions
 that load libraries and return paths and such, they do not benefit from the
 heavy optimization that most Julia code undergoes.  One final piece of the

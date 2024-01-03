@@ -2,7 +2,7 @@
 @def rss = """ A portrait of JuliaCon 2018 | !JuliaCon2018 group photo (/assets/blog/2018-09-11-juliacon2018/JuliaCon2018_group_photo.jpg)... """
 @def published = "11 September 2018"
 @def title = "A portrait of JuliaCon 2018"
-@def authors = "Jane Herriman"  
+@def authors = "Jane Herriman"
 
 ![JuliaCon2018 group photo](/assets/blog/2018-09-11-juliacon2018/JuliaCon2018_group_photo.jpg)
 
@@ -14,7 +14,7 @@ With an eye to quality over quantity, we're happy to report that our attendees w
 
 Furthermore, we were able to provide over \$70,000 USD to support conference expenses for attendees including speakers, Google Summer of Code (GSoC) students working on Julia, and users we thought would bring greater diversity to JuliaCon. Individuals receiving financial support came from all six continents represented at the conference.
 
-In particular, the JuliaCon organizing committee was able to bring in a total of \$45,000 USD from the Sloan Foundation, the Moore Foundation, and Julia Computing to support JuliaCon 2018 diversity efforts. With these funds, which amounted to 3X the diversity budget for JuliaCon 2017, we were able to support conference expenses for over 25 people who helped increase diversity at JuliaCon 2018.
+In particular, the JuliaCon organizing committee was able to bring in a total of \$45,000 USD from the Sloan Foundation, the Moore Foundation, and JuliaHub (known as Julia Computing at the time this post was authored) to support JuliaCon 2018 diversity efforts. With these funds, which amounted to 3X the diversity budget for JuliaCon 2017, we were able to support conference expenses for over 25 people who helped increase diversity at JuliaCon 2018.
 
 #### Some data from JuliaCon 2018 attendees
 

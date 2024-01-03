@@ -2,7 +2,7 @@
 @def rss = """ More Dots: Syntactic Loop Fusion in Julia | After a lengthy design process (https://github.com/JuliaLang/julia/issues/8450) and preliminary foundations in Julia 0.5 (/blog/2016-10-11-julia-0.5-highlights#vectorized_function_calls), Julia 0.6 includes new facilities for writing code in the "vectorized"... """
 @def published = "21 January 2017"
 @def title = "More Dots: Syntactic Loop Fusion in Julia"
-@def authors = """ <a href="https://math.mit.edu/~stevenj">Steven G. Johnson</a>"""  
+@def authors = """ <a href="https://math.mit.edu/~stevenj">Steven G. Johnson</a>"""
 @def hascode = true
 
 
@@ -73,7 +73,7 @@ tasks (e.g. string processing).
 To explore this question (also discussed
 [in this blog post](https://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code/)), let's begin by rewriting the code above in a more traditional vectorized style, without
 so many dots, such as you might use in Julia 0.4 or in other languages
-(most famously Matlab, Python/Numpy, or R).   
+(most famously Matlab, Python/Numpy, or R).
 
 ```julia
 X = f(2 * X.^2 + 6 * X.^3 - sqrt(X))
@@ -126,7 +126,7 @@ allowing you to *combine arrays and scalars or arrays of different shapes/dimens
 has its own unique capabilities.)
 From the standpoint of the programmer, this adds a certain amount of
 clarity because it indicates explicitly when an elementwise operation
-is occuring.  From the standpoint of the compiler, dot-call syntax
+is occurring.  From the standpoint of the compiler, dot-call syntax
 enables the *syntactic loop fusion* optimization described in more detail
 below, which we think is an overwhelming advantage of this style.
 
@@ -528,8 +528,8 @@ julia> s = ["The QUICK Brown", "fox     jumped", "over the LAZY dog."];
 
 julia> s .= replace.(lowercase.(s), r"\s+", "-")
 3-element Array{String,1}:
- "the-quick-brown"   
- "fox-jumped"        
+ "the-quick-brown"
+ "fox-jumped"
  "over-the-lazy-dog."
 ```
 

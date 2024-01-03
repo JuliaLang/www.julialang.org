@@ -63,7 +63,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      <!-- 3 -->
      <div class="col-lg-4 col-md-6 feature">
        <h3>Chat</h3>
-       <p>For casual conversations, we have an <a href="https://julialang.org/slack/">official Julia Slack</a>. As an open source alternative to Slack and home to some Julia sub-communities, we have <a href="https://julialang.zulipchat.com/register/">Zulip</a>. There is also an active community on the <a href="https://discord.gg/mm2kYjB">Humans of Julia Discord server</a>.
+       <p>For casual conversations, we have a <a href="https://julialang.zulipchat.com/register/">Zulip</a>. As a closed source alternative to Zulip, we have an <a href="https://julialang.org/slack/">official Julia Slack</a>. There is also an active community on the <a href="https://discord.gg/mm2kYjB">Humans of Julia Discord server</a>.
        </p>
      </div>
      <!-- 4 -->
@@ -79,7 +79,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      <!-- 6 -->
      <div class="col-lg-4 col-md-6 feature">
        <h3>Forem</h3>
-       <p>The Julia Forem is the best place for the community to read, write, and share written content. Join the Forem today and start writing <a href="https://forem.julialang.org">https://forem.julialang.org</a>.
+       <p>The Julia Forem is the best place for the community to read, write, and share long form written content. Join the Forem today and start writing <a href="https://forem.julialang.org">https://forem.julialang.org</a>.
        </p>
      </div>
    </div>
@@ -109,7 +109,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
      </div>
 
      <br>
-     <p>The Julia Community has a shared calendar for all upcoming global events. If you are an event organizer, please <a href="mailto:logan@julialang.org">email us</a>
+     <p>The Julia Community has a shared calendar for all upcoming global events. If you are an event organizer, please <a href="mailto:community@julialang.org">email us</a>
      with the details so it can be added to the calendar. The Julia community also has <a href="https://www.meetup.com/topics/julia/all/">local meetups around the world.</a></p>
       <div id="calendar-container">
            <iframe src="https://calendar.google.com/calendar/b/2/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=UTC&amp;src=anVsaWFsYW5nLm9yZ19rb21hdWFxZXQxNGVvZzlvaXYzcDZvN3BtZ0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%238E24AA" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
@@ -141,6 +141,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
 
     <p>We conduct the Julia User & Developer Survey right before JuliaCon every year and present the findings at JuliaCon. The survey has now been conducted two years in a row:</p>
         <ul>
+            <li> 2023: <a href="/assets/2023-julia-user-developer-survey.pdf">Slides</a>
             <li> 2022: <a href="/assets/2022-julia-user-developer-survey.pdf">Slides</a>, and <a href="https://www.youtube.com/watch?v=OnlKtNVNRrk">JuliaCon 2022 talk</a>
             <li> 2021: <a href="/assets/2021-julia-user-developer-survey.pdf">Slides</a>, and <a href="https://www.youtube.com/watch?v=0XSk5zybfic">JuliaCon 2021 talk</a>
             <li> 2020: <a href="/assets/2020-julia-user-developer-survey.pdf">Slides</a>, <a href="https://www.youtube.com/watch?v=lBhw7C_bIyk">JuliaCon 2020 talk</a>, and <a href="/blog/2020/08/2020-julia-user-and-developer-survey/">blog post</a>

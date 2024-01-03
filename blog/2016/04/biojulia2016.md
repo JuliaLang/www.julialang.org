@@ -2,7 +2,7 @@
 @def rss = """ BioJulia Project in 2016 | I am pleased to announce that the next phase of BioJulia is starting! In the next several months, I'm going to implement many crucial features for bioinformatics that will motivate you to use Julia and BioJulia libraries in your work. But before going to the details of the project, let me briefly int... """
 @def published = "30 April 2016"
 @def title = "BioJulia Project in 2016"
-@def authors = "Kenta Sato"  
+@def authors = "Kenta Sato"
 
 
 I am pleased to announce that the next phase of BioJulia is starting! In the next several months, I'm going to implement many crucial features for bioinformatics that will motivate you to use Julia and BioJulia libraries in your work. But before going to the details of the project, let me briefly introduce you what the BioJulia project is. This project is supported by the Moore Foundation and the Julia project.

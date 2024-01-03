@@ -8,6 +8,42 @@ The instructions here refer to the latest stable release of Julia. If you are
 using the LTS version or an older version, please substitute the appropriate
 version number in the instructions.
 
+## Cross-platform installer
+
+An installer and version manager for Julia called [juliaup](https://github.com/JuliaLang/juliaup) can be installed [via the command line](https://github.com/JuliaLang/juliaup#mac-and-linux) on Linux and Mac and is available in the [Microsoft Store](https://www.microsoft.com/store/apps/9NJNWW8PVKMN) for Windows.
+It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.
+
+## Linux and FreeBSD
+
+It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following set of commands downloads the latest version of Julia into a directory named ~~~<code>julia-{{stable_release}}</code>~~~.
+
+~~~
+<pre><code class="language-shell">wget https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{ stable_release }}-linux-x86_64.tar.gz
+tar zxvf julia-{{ stable_release }}-linux-x86_64.tar.gz</code></pre>
+~~~
+
+### Running Julia
+
+The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the `julia` executable. The directory where Julia is installed is referred to as `<Julia directory>`.
+
+To run Julia, you can do any of the following:
+
+*   Invoke the `julia` executable by using its full path: `<Julia directory>/bin/julia`
+*   Create a symbolic link to `julia` inside a folder which is on your system `PATH`
+*   Add Julia's `bin` folder (with full path) to your system `PATH` environment variable
+
+To add Julia's `bin` folder (with full path) to `PATH` environment variable, you can edit the `~/.bashrc` (or `~/.bash_profile`) file. Open the file in your favourite editor and add a new line as follows:
+
+```shell
+export PATH="$PATH:/path/to/<Julia directory>/bin"
+```
+
+Apart from this, there are several ways through which you can change environment variable. You can follow [this guide](https://help.ubuntu.com/community/EnvironmentVariables) to find out a way convenient for you.
+
+### Uninstallation
+
+Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove `~/.julia`. The startup file is at `~/.julia/config/startup.jl` and the history at `~/.julia/logs/repl_history.jl`.
+
 ## Windows
 
 Julia is available for Windows 7 and later for both 32 bit and 64 bit versions.
@@ -82,46 +118,6 @@ To launch Julia, simply type `julia` inside your shell and press return.
 ### Uninstallation
 
 You can uninstall Julia by deleting Julia.app and the packages directory in `~/.julia`. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove `~/.julia/config/startup.jl` and `~/.julia/logs/repl_history.jl`.
-
-## Linux and FreeBSD
-
-It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following set of commands downloads the latest version of Julia into a directory named ~~~<code>julia-{{stable_release}}</code>~~~.
-
-~~~
-<pre><code class="language-shell">wget https://julialang-s3.julialang.org/bin/linux/x64/{{stable_release_short}}/julia-{{ stable_release }}-linux-x86_64.tar.gz
-tar zxvf julia-{{ stable_release }}-linux-x86_64.tar.gz</code></pre>
-~~~
-
-### Running Julia
-
-The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the `julia` executable. The directory where Julia is installed is referred to as `<Julia directory>`.
-
-To run Julia, you can do any of the following:
-
-*   Invoke the `julia` executable by using its full path: `<Julia directory>/bin/julia`
-*   Create a symbolic link to `julia` inside a folder which is on your system `PATH`
-*   Add Julia's `bin` folder (with full path) to your system `PATH` environment variable
-
-To add Julia's `bin` folder (with full path) to `PATH` environment variable, you can edit the `~/.bashrc` (or `~/.bash_profile`) file. Open the file in your favourite editor and add a new line as follows:
-
-```shell
-export PATH="$PATH:/path/to/<Julia directory>/bin"
-```
-
-Apart from this, there are several ways through which you can change environment variable. You can follow [this guide](https://help.ubuntu.com/community/EnvironmentVariables) to find out a way convenient for you.
-
-### Uninstallation
-
-Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove `~/.julia`. The startup file is at `~/.julia/config/startup.jl` and the history at `~/.julia/logs/repl_history.jl`.
-
-## Cross-platform installer
-
-[Jill.py](https://github.com/johnnychen94/jill.py) is a community-maintained command-line tool that automates the installation workflow for all platforms. After installing this using `pip install jill -U`, you can then use `jill install` to install the current stable release, and `jill install latest` to install the nightly builds.
-
-## Juliaup
-
-An installer and version manager for Julia called [juliaup](https://github.com/JuliaLang/juliaup) is available in the [Microsoft Store](https://www.microsoft.com/store/apps/9NJNWW8PVKMN) and can be installed [via the command line](https://github.com/JuliaLang/juliaup#mac-and-linux) on Mac and Linux.
-It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.
 
 # A Brief Note About Unofficial Binaries
 

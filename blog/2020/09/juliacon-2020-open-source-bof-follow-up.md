@@ -48,7 +48,7 @@ Another flavor of this problem can exist when open-sourced code features many do
 
 #### Organizations That Don't Use OSS In The First Place
 
-One attendee brought up that, for many organizations, the first barrier to allowing employee OSS contributions is to allow internal usage of OSS at all. It can be hard for decision makers at organizations that have no prior OSS experience to come to terms with the traditional motivations and arguments for OSS. They may even harbor [common misconceptions](https://www.dreamsongs.com/IHE/IHE-29.html#58965) about how the process actually works. Luckily, there's [a plethora of material available online](https://bfy.tw/OvDl) that targets exactly this audience that organization members can bundle up in a manner that's most effective for their organization.
+One attendee brought up that, for many organizations, the first barrier to allowing employee OSS contributions is to allow internal usage of OSS at all. It can be hard for decision makers at organizations that have no prior OSS experience to come to terms with the traditional motivations and arguments for OSS. They may even harbor [common misconceptions](https://www.dreamsongs.com/IHE/IHE-29.html#58965) about how the process actually works. Luckily, there's a plethora of material available online that targets exactly this audience that organization members can bundle up in a manner that's most effective for their organization.
 
 #### Licensing, Patents, and IP
 
@@ -66,7 +66,7 @@ One difficulty reported during the BoF was getting organizational approval to re
 
 #### Open Sourcing Packages That Previously Used Internal CI/CD
 
-One important element of successful open-source projects is that CI logs should generally be available to all contributors. This can be a burdensome criteria to meet if a previously closed-source package utilized internal CI/CD pipelines with nicer properties than publicly available CI pipelines. In some instances, certain flavors of this problem can be solved with better tooling, e.g. self-hosted (but publically accessible) package registries can vendor open-sourced packages just as nicely as Julia's General Registry, but might leverage custom CI/CD for pre-registration checks.
+One important element of successful open-source projects is that CI logs should generally be available to all contributors. This can be a burdensome criteria to meet if a previously closed-source package utilized internal CI/CD pipelines with nicer properties than publicly available CI pipelines. In some instances, certain flavors of this problem can be solved with better tooling, e.g. self-hosted (but publicly accessible) package registries can vendor open-sourced packages just as nicely as Julia's General Registry, but might leverage custom CI/CD for pre-registration checks.
 
 #### Open Source Efforts Could Reveal Strategic Intent
 

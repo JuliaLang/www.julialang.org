@@ -2,7 +2,7 @@
 @def rss = """ Announcing support for complex-domain linear programs in Convex.jl | I am pleased to announce the support for complex-domain linear programs (LPs) in Convex.jl. As one of the *Google Summer of Code* students under *The Julia Language*, I had proposed to implement the support for complex semidefinite programming. In the first phase of project, I started by tackling the... """
 @def published = "17 August 2016"
 @def title = "Announcing support for complex-domain linear programs in Convex.jl"
-@def authors = "Ayush Pandey"  
+@def authors = "Ayush Pandey"
 @def hascode = true
 
 
@@ -69,7 +69,7 @@ x1== xr.value + im*xi.value # should return true
 
 List of all the affine atoms are as follows:
 
-1. addition, substraction, multiplication, division
+1. addition, subtraction, multiplication, division
 2. indexing and slicing
 3. k-th diagonal of a matrix
 4. construct diagonal matrix

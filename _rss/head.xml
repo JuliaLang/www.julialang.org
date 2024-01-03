@@ -8,7 +8,7 @@ For instance 'website_url' or 'website_description'.
 Notes:
 * namespaces (xmlns): https://validator.w3.org/feed/docs/howto/declare_namespaces.html
 * best practices: https://www.rssboard.org/rss-profile
-* fd2rss convers markdown to html and fixes or removes relative links
+* fd2rss converts markdown to html and fixes or removes relative links
 * fd_rss_feed_url is built out of {website_url}/{rss_file}.xml, you can change the
 rss_file variable in your config file if you want to use something different than 'feed'
 -->

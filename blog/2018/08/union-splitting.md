@@ -2,7 +2,7 @@
 @def rss = """ Union-splitting: what it is, and why you should care | Among those who follow Julia's development closely, one of the (many) new features causing great excitement is something called "Union-splitting."... """
 @def published = "9 August 2018"
 @def title = "Union-splitting: what it is, and why you should care"
-@def authors = """<a href="https://github.com/timholy">Tim Holy</a>"""  
+@def authors = """<a href="https://github.com/timholy">Tim Holy</a>"""
 @def hascode = true
 
 Among those who follow Julia's development closely, one of the (many) new features causing great excitement is something called "Union-splitting."
@@ -67,7 +67,7 @@ Worse, if you forgot to check, and `function2` didn't error when you passed it 0
 That is far worse than getting an error, because it's much harder to track down where wrong results come from.
 
 In Julia 0.7 and 1.0, Milan Bouchet-Valat rewrote all of our `find*` functions, of which one change (among many) was that `findfirst` now returns `nothing` when it fails to find the requested value.
-Unlike the old approach of returning 0, this return value is truly unambigous and robust against generalizations of indexing where 0 might be a perfectly valid array index.
+Unlike the old approach of returning 0, this return value is truly unambiguous and robust against generalizations of indexing where 0 might be a perfectly valid array index.
 It also gives you more reliable code, because if you forget to check, really there's not much you can do with `nothing` that doesn't trigger a (very welcome) error.
 And thanks to Union-splitting, it doesn't cause any kind of performance penalty whatsoever.
 

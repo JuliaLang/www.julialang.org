@@ -21,7 +21,7 @@
      <div class="col-lg-4 col-md-6 feature">
        <h3>Julia Academy</h3>
        <p>Do you learn best by watching instructor led videos on programming? Check out
-         <a href="https://juliaacademy.com/courses?preview=logged_out">JuliaAcademy</a> which was prepared by core Julia developers in collaboration with Julia Computing.
+         <a href="https://juliaacademy.com/courses?preview=logged_out">JuliaAcademy</a> which was prepared by core Julia developers in collaboration with JuliaHub.
        </p>
      </div>
      <!-- 2 -->
@@ -133,7 +133,7 @@
      See <a href="classes/">where Julia is being taught today</a>.
      </p>
      <img src="assets/schools.png" alt="Collection of schools where Julia is taught" class="img-fluid">
-     <!-- You can find the editable classroom image here: https://docs.google.com/presentation/d/1t94qHV-Al8gr-AVGEB4RG1KPYMZEN0CUdlfV2oPsAgU/edit?usp=sharing Please ping logan@julialang.org for access.  -->
+     <!-- You can find the editable classroom image here: https://docs.google.com/presentation/d/1t94qHV-Al8gr-AVGEB4RG1KPYMZEN0CUdlfV2oPsAgU/edit?usp=sharing Please ping community@julialang.org for access.  -->
    </div>
  </div>
 <br>
