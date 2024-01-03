@@ -3,15 +3,14 @@
   <div class="main-download-instructions">
    <div class="main-download-instructions-inner">
     <h2 id="install_julia"> <a href="#install_julia">Install <img src="/assets/infra/logo.svg" class="inline-h2-julia-logo" alt="Julia"></img></h2></a>
-    Current stable release: <a href="https://github.com/JuliaLang/julia/tree/v{{stable_release}}">v{{stable_release}}</a> ({{stable_release_date}})
     <div class="container pt-sm-2">
       <div class="row" id="windows-instructions" style="display: none;">
-        Install Julia from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> by running this in the command prompt:
+        Install the latest Julia version (<a href="https://github.com/JuliaLang/julia/tree/v{{stable_release}}">v{{stable_release}}</a> {{stable_release_date}}) from the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> by running this in the command prompt:
         <pre><code class="language-plaintext cmdprompt-block">winget install julia -s msstore</code></pre>
         <span class="install-platform-note"><span id="platform-subnote-windows">It looks like you're using Windows. </span>For Linux and MacOS instructions <a onclick="showOther()" href="javascript:void(0);">click here</a></span>
       </div>
       <div class="row" id="other-platforms-instructions" style="display: none;">
-        Install Julia by running this in your terminal:
+        Install the latest Julia version (<a href="https://github.com/JuliaLang/julia/tree/v{{stable_release}}">v{{stable_release}}</a> {{stable_release_date}}) by running this in your terminal:
         <pre><code class="language-plaintext bash-block">curl -fsSL https://install.julialang.org | sh</code></pre>
         <span class="install-platform-note"><span id="platform-subnote-other">It looks like you're using a Unix-type system. </span>For Windows instructions <a onclick="showWindows()" href="javascript:void(0);">click here</a></span>
       </div>
