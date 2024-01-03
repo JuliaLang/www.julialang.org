@@ -49,6 +49,8 @@ Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia
   </div>
 ~~~
 
+---
+
 ### Supported platforms
 
 Different OSes and architectures have varying [tiers of support](/downloads/#support_tiers_for_the_latest_stable_release_of_julia).
