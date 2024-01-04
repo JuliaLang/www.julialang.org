@@ -1,4 +1,6 @@
 
+@def title = "Download Julia"
+
 ~~~
   <div class="main-download-instructions">
    <div class="main-download-instructions-inner">
