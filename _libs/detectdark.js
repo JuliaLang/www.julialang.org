@@ -7,7 +7,7 @@ function changeFilePath(originalPath, newFileName) {
     pathArray[fileNameIndex] = newFileName;
     const modifiedPath = pathArray.join('/');
     return modifiedPath;
-  }
+}
 function check_scheme() {
     if (targetNode.getAttribute(darkreader_field) == 'dark') {
         console.log("darkreader dark mode detected");
