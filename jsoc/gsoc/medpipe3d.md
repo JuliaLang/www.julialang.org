@@ -1,6 +1,6 @@
 # MedPipe3D Projects 
 
-MedPipe3D.jl together with MedEye3D.jl MedEval3D.jl and currently in development MedImage.jl is a set of libraries created to provide essential tools for 3D medical imaging to the Julia language exosystem. Recently all of the projects migrated also to the JuliaHealth organization to improve package visibility and promote interoperability.
+MedPipe3D.jl together with MedEye3D.jl MedEval3D.jl and currently in development MedImage.jl is a set of libraries created to provide essential tools for 3D medical imaging to the Julia language ecosystem. Recently all of the projects migrated also to the JuliaHealth organization to improve packages visibility and promote interoperability.
 
 
 ## Potential Projects
@@ -8,7 +8,7 @@ MedPipe3D.jl together with MedEye3D.jl MedEval3D.jl and currently in development
 ### Project 1: Adding functionalities to medical imaging visualizations
 
 **Description:** 
-MedEye3D is a package that supports the display of medical imaging data. It includes multiple functionalities specific to this use case like automatic windowing to display soft tissues and lungs.... Display that takes into account voxel spacing, support of overlaying display for multimodal imaging, and more. All with high performance powered by OpenGL and Rocket.jl. Still, a lot of further improvements are possible and are described in the Potential Outcomes section. 
+MedEye3D is a package that supports the display of medical imaging data. It includes multiple functionalities specific to this use case like automatic windowing to display soft tissues, lungs, and other tissues. The display takes into account voxel spacing, support of overlaying display for multimodal imaging, and more. All with high performance powered by OpenGL and Rocket.jl. Still, a lot of further improvements are possible and are described in the Potential Outcomes section. 
 
 - **Mentor:** Jakub Mitura [email: jakub.mitura14@gmail.com]
 
@@ -22,25 +22,34 @@ MedEye3D is a package that supports the display of medical imaging data. It incl
   - Some experience with 3d volumetric data with spatial metadata (or a willingness to learn!)
 
 - **Potential Outcomes:** 
-Although MedEye3D already supports displaying medical images, there are still some functionalities that will be useful:
+Although MedEye3D already supports displaying medical images, there are still some functionalities that will be useful for the implementation of some more advanced algorithms, like supervoxel segmentation or image registration (and both of them are crucial for solving a lot of important problems in medical imaging). To achieve this this project's goal is to implement.
 1) Developing support for multiple image viewing with indicators for image registration like display of the borders, and display lines connecting points.
-2) Automatic correct windowing for MRI.
+2) Automatic correct windowing for MRI and PET.
 3) Support of display for supervoxels (sv). Show borders of sv; indicate whether the gradient of the image is in agreement with sv borders.
-4) Improve startup time.
+4) Improve start time.
 5) Simplify basic usage by providing high-level functions.
+
+- **Success criteria and time needed:** How the success of functionality described above is defined and the approximate time required for each.
+
+1) The user can load 2 different images, and they would display concurrently one next to the other. During scrolling the same area of the body should be displayed (for well-registered sample images) based on the supplied metadata. While moving the mouse cursor on one image the position of the cursor in the same physical spot on the other image should be displayed (physical location calculated from spatial metadata).  120h
+2) Given the most common PET and MRI modalities (random FDG PET/CT, and T2, T1, FLAIR, ADC, DWI on MRI) - the user will see the image similar to what is automatically displayed in 3DSlicer - 10h
+3) Given an integer mask where a unique integer value will encode information about a single supervoxel and an underlying 3d medical image user will have the option to overlay the original image with the borders of the superpixels where adjacent borders will have different colors, or show those borders on the background of the image convolved with edge filter, for example, Sobel filter - 180h
+4) Any measurable decrease in the start time of the viewer -   20h
+5) The user will be able to display images just by supplying MedImage objects from the MedImage.jl library to a single display function -  20h
+
 
 
 
 ### Project 2: Adding dataset-wide functions and integrations of augmentations
 
 **Description:** 
-MedPipe3D was created as a package that improves integration between other parts of the small ecosystem (MedEye3D, MedEval3D, and MedImage). Currently, because of changes in other packages, it needs to be expanded and adapted so it can be a basis for a fully functional medical imaging pipeline.
+MedPipe3D was created as a package that improves integration between other parts of the small ecosystem (MedEye3D, MedEval3D, and MedImage). Currently, it needs to be expanded and adapted so it can be a basis for a fully functional medical imaging pipeline.
 
 - **Mentor:** Jakub Mitura [email: jakub.mitura14@gmail.com]
 
 - **Difficulty**: Medium
 
-- **Duration**: 175 hours
+- **Duration**: 350 hours
 
 - **Suggested Skills and Background**: 
   - Experience with Julia
@@ -57,28 +66,17 @@ MedPipe3D was created as a package that improves integration between other parts
 5) Add basic post-processing like the largest connected component analysis.
 6) Set all hyperparameters (of augmentation; size of a patch, threshold for getting binary mask from probabilities) in a struct or dictionary to enable hyperparameter tuning.
 7) Enable automated display of the algorithm output in the validation epoch, including saving such outputs to persistent storage.
+8) Support k-fold cross-validation.
 
 This set of changes although time-consuming to implement should not pose a significant issue to anybody with experience with the Julia programming language. However, implementing those will be a huge step in making Julia language a good alternative to Python in developing end-to-end medical imaging segmentation algorithms.
 
-### Project 3: Adding loss function and advanced metric
-
-**Description:** 
-MedEval3D is the library with a set of high-performance 3D segmentation metrics. These are crucial for establishing the performance of the 3d segmentation algorithms.
-
-- **Mentor:** Jakub Mitura [email: jakub.mitura14@gmail.com]
-
-- **Difficulty**: Medium
-
-- **Duration**: 175 hours
-
-- **Suggested Skills and Background**: 
-  - Experience with Julia
-
-
-- **Potential Outcomes:** 
-1) Implementation of popular loss functions like focal loss dice cross entropy loss etc.
-2) Add compound losses like Dice with TOPK 
-3) Integration of per voxel Hausdorff distance (The author of the library had created also a cuda c++ algorithm that is 200 times faster than monai and want to integrate it to MedEval3D )
-4) Develop tests for the implementation of differentiable distance-based loss (Hausdorff distance or optimal transport) that will check for stability of the differentiation and whether both distance and overlap will impact the value of loss in a desired manner. The actual algorithm will be developed later by the package author.
-
-Those changes will add further flexibility to model development, and make model diagnostics and debugging more intuitive.
+- **Success criteria and time needed:** How the success of functionality described above is defined and the approximate time required for each.
+For each point mentor will also supply the person responsible for implementation with examples of required functionalities in Python or will point to the Julia libraries already implementing it (that just need to be integrated).
+1) Given the configuration struct supplied by the user the supplied augmentations will be executed with some defined probability after loading the image: Brightness transform, Contrast augmentation transform, Gamma Transform, Gaussian noise transform, Rician noise transform, Mirror transform, Scale transform, Gaussian blur transform, Simulate low-resolution transform, Elastic deformation transform -100h. 
+2) Enable some transformation to be executed on the model input, then inverse this transform on the model output; execute model inference n times when n is supplied by the user and return mean and standard deviation of segmentation masks produced by the model as the output -60h.
+3) given the size of the 3D patch by the user algorithm after data loading will crop or pad the supplied image to meet the set size criterion. The part of the image where the label is present should be selected more frequently than the areas without during cropping, the probability that the area with some label indicated on segmentation mas will be chosen will equal p (0-1) where p is supplied by the user -40h. 
+4) given the list of paths to medical images it will load them calculate the mean or median spacing (option selected by the user), and return it. Then during pipeline execution, all images should be resampled to a user-supplied spacing and user-supplied orientation - 40h.
+5) Given a model output and a threshold that will be used for each channel of the output to binarize the output user will have an option to retrieve only n largest components from binarized algorithm output - 20h.
+6) Probabilities and hyperparameters of all augmentations, thresholds for binarization of output channels chosen spacing for preprocessing, number and settings of test time augmentations should be available in a hyperparam struct that is the additional argument of the pipeline function and that can be used for hyperparameter tuning -30h.
+7) During the validation epoch the images can be saved into persistent storage and a single random image loaded together with the output mask into MedEye3d for visualization during training -30h.
+8) The user can set either val_percentage - which will lead to the division of the dataset to training and validation fold or supply k which will lead to k-fold cross-validation. In the latter option mean, threshold, and standard deviation of the ensemble will be returned as the final output of the model -30h.
