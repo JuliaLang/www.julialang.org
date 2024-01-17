@@ -113,9 +113,9 @@ Currently, our simulator performs GPU-accelerated computations using CUDA arrays
 
 We expect the following outcomes by the end of this program:
 
-  - Extend and/or improve our GPU-accelerated simulations by generating a new simulation method `BlochKernel`, with multi-vendor GPU support.
-  - Documentation explaining the new simulation method showcasing some use-case examples.
-  - Implement automatic pipelines on Buildkite to test the simulations in multiple GPU architectures.
-  - Report performance improvements between `BlochKernel` and `Bloch`.
+  - Extended and/or improved GPU-accelerated simulations, having generated a new simulation method `BlochKernel` with multi-vendor GPU support.
+  - Developed documentation explaining the new simulation method, including showcasing some use-case examples.
+  - Implemented automatic pipelines on Buildkite for testing the simulations across multiple GPU architectures.
+  - Reported performance improvements between `BlochKernel` and `Bloch`.
 
 Please contact the mentors of this project if you are interested and want to discuss other aspects that could be pursued during the course of this project.
