@@ -89,9 +89,9 @@ Whatever may occur in this situation will be supported by project mentors.
 **Description:** 
 KomaMRI.jl is a Julia package designed for highly-efficient Magnetic Resonance Imaging (MRI) simulations, serving both educational and research purposes.
 
-Simulation can help to grasp hard-to-understand MRI concepts, like signal acquisition, and image reconstruction. Moreover, they can guide the design of novel pulse sequences, and generate synthetic data for training machine learning models.
+Simulations can help to grasp hard-to-understand MRI concepts, like signal acquisition, and image reconstruction. Moreover, they can guide the design of novel pulse sequences, and generate synthetic data for training machine learning models.
 
-Our current simulator method uses GPU-accelerated computations using CUDA arrays. We are now advancing to implement a new simulation method (`BlochKernel<:SimulationMethod`) based on GPU kernel programming using KernelAbstractions.jl. This enhancement will not only boost computation speeds but also broaden accessibility with multi-vendor GPU support. This will enable the use of MRI simulations in iterative algorithms to solve optimization and inverse problems. We are seeking enthusiastic people interested in developing this functionality.
+Currently, our simulator performs GPU-accelerated computations using CUDA arrays. We are now advancing to implement a new simulation method (`BlochKernel<:SimulationMethod`) based on GPU kernel programming using KernelAbstractions.jl. This enhancement will not only boost computation speeds but also broaden accessibility with KernelAbstractions.jl's multi-vendor GPU support. This could enable the use of MRI simulations in iterative algorithms to solve inverse problems. We are seeking enthusiastic people interested in developing this functionality.
 
 - **Mentors:** Carlos Castillo [email: cncastillo@uc.cl], Boris Oróstica [email: beorostica@uc.cl]
 
@@ -114,8 +114,8 @@ Our current simulator method uses GPU-accelerated computations using CUDA arrays
 We expect the following outcomes by the end of this program:
 
   - Extend and/or improve our GPU-accelerated simulations by generating a new simulation method `BlochKernel`, with multi-vendor GPU support.
-  - Documentation explaining the new and use-case examples.
-  - Implement automatic tests on Buildkite to test the simulations in multiple GPU architectures.
+  - Documentation explaining the new simulation method showcasing some use-case examples.
+  - Implement automatic pipelines on Buildkite to test the simulations in multiple GPU architectures.
   - Report performance improvements between `BlochKernel` and `Bloch`.
 
 Please contact the mentors of this project if you are interested and want to discuss other aspects that could be pursued during the course of this project.
