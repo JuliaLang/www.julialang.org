@@ -1,16 +1,187 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Building GUIs with Julia, Tk, and Cairo, Part II</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Building GUIs with Julia, Tk, and Cairo, Part II"> <meta property="og:description" content=" Building GUIs with Julia, Tk, and Cairo, Part II | In this installment, we'll cover both low-level graphics (using Cairo) and plotting graphs inside GUIs (using Winston).... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Building GUIs with Julia, Tk, and Cairo, Part II <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 23 May 2013 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="http://holylab.wustl.edu">Timothy E. Holy</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/05/graphical-user-interfaces-part2.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>In this installment, we&#39;ll cover both low-level graphics &#40;using Cairo&#41; and plotting graphs inside GUIs &#40;using Winston&#41;. Here again we&#39;re relying on infrastructure built by many people, including Jeff Bezanson, Mike Nolta, and Keno Fisher.</p> <h2 id=cairo ><a href="#cairo">Cairo</a></h2> <h3 id=the_basics ><a href="#the_basics">The basics</a></h3> <p>The display of the image is handled by Cairo, a C library for two-dimensional drawing. Julia&#39;s Cairo wrapper isn&#39;t currently documented, so let&#39;s walk through a couple of basics first.</p> <p>If you&#39;re new to graphics libraries like Cairo, there are a few concepts that may not be immediately obvious but are introduced in the Cairo <a href="https://cairographics.org/tutorial/">tutorial</a>. The key concept is that the Cairo API works like &quot;stamping,&quot; where a <em>source</em> gets applied to a <em>destination</em> in a region specified by a <em>path</em>. Here, the destination will be the pixels corresponding to a region of a window on the screen. We&#39;ll control the source and the path to achieve the effects we want.</p> <p>Let&#39;s play with this. First, inside a new window we create a Cairo-enabled Canvas for drawing:</p> <pre><code class=language-julia >using Base.Graphics
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>Building GUIs with Julia, Tk, and Cairo, Part II</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Building GUIs with Julia, Tk, and Cairo, Part II">
+<meta property="og:description" content=" Building GUIs with Julia, Tk, and Cairo, Part II | In this installment, we'll cover both low-level graphics (using Cairo) and plotting graphs inside GUIs (using Winston).... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Building GUIs with Julia, Tk, and Cairo, Part II
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 23 May 2013 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;"><a href="http://holylab.wustl.edu">Timothy E. Holy</a> </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/05/graphical-user-interfaces-part2.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>In this installment, we&#39;ll cover both low-level graphics &#40;using Cairo&#41; and plotting graphs inside GUIs &#40;using Winston&#41;. Here again we&#39;re relying on infrastructure built by many people, including Jeff Bezanson, Mike Nolta, and Keno Fisher.</p>
+<h2 id="cairo"><a href="#cairo">Cairo</a></h2>
+<h3 id="the_basics"><a href="#the_basics">The basics</a></h3>
+<p>The display of the image is handled by Cairo, a C library for two-dimensional drawing. Julia&#39;s Cairo wrapper isn&#39;t currently documented, so let&#39;s walk through a couple of basics first.</p>
+<p>If you&#39;re new to graphics libraries like Cairo, there are a few concepts that may not be immediately obvious but are introduced in the Cairo <a href="https://cairographics.org/tutorial/">tutorial</a>. The key concept is that the Cairo API works like &quot;stamping,&quot; where a <em>source</em> gets applied to a <em>destination</em> in a region specified by a <em>path</em>. Here, the destination will be the pixels corresponding to a region of a window on the screen. We&#39;ll control the source and the path to achieve the effects we want.</p>
+<p>Let&#39;s play with this. First, inside a new window we create a Cairo-enabled Canvas for drawing:</p>
+<pre><code class="language-julia">using Base.Graphics
 using Cairo
 using Tk
 
 win &#61; Toplevel&#40;&quot;Test&quot;, 400, 200&#41;
 c &#61; Canvas&#40;win&#41;
-pack&#40;c, expand&#61;true, fill&#61;&quot;both&quot;&#41;</code></pre> <p>We&#39;ve created a window 400 pixels wide and 200 pixels high. <code>c</code> is our Canvas, a type defined in the <code>Tk</code> package. Later we&#39;ll dig into the internals a bit, but for now suffice it to say that a Canvas is a multi-component object that you can often treat as a black box. The initial call creating the canvas leaves a lot of its fields undefined, because you don&#39;t yet know crucial details like the size of the canvas. The call to <code>pack</code> specifies that this canvas fills the entire window, and simultaneously fills in the missing information in the Canvas object itself.</p> <p>Note that the window is currently blank, because we haven&#39;t drawn anything to it yet, so you can see whatever was lying underneath. In my case it captured a small region of my desktop:</p> <p><img src="/assets/blog/GUI_figures/cairo_example2.jpg?raw&#61;true" alt="cairo snapshot" /></p> <p>Now let&#39;s do some drawing. Cairo doesn&#39;t know anything about Tk Canvases, so we have to pull out the part of it that works directly with Cairo:</p> <pre><code class=language-julia >ctx &#61; getgc&#40;c&#41;</code></pre>
+pack&#40;c, expand&#61;true, fill&#61;&quot;both&quot;&#41;</code></pre>
+<p>We&#39;ve created a window 400 pixels wide and 200 pixels high. <code>c</code> is our Canvas, a type defined in the <code>Tk</code> package. Later we&#39;ll dig into the internals a bit, but for now suffice it to say that a Canvas is a multi-component object that you can often treat as a black box. The initial call creating the canvas leaves a lot of its fields undefined, because you don&#39;t yet know crucial details like the size of the canvas. The call to <code>pack</code> specifies that this canvas fills the entire window, and simultaneously fills in the missing information in the Canvas object itself.</p>
+<p>Note that the window is currently blank, because we haven&#39;t drawn anything to it yet, so you can see whatever was lying underneath. In my case it captured a small region of my desktop:</p>
+<p><img src="/assets/blog/GUI_figures/cairo_example2.jpg?raw&#61;true" alt="cairo snapshot" /></p>
+<p>Now let&#39;s do some drawing. Cairo doesn&#39;t know anything about Tk Canvases, so we have to pull out the part of it that works directly with  Cairo:</p>
+<pre><code class="language-julia">ctx &#61; getgc&#40;c&#41;</code></pre>
 <p><code>getgc</code> means &quot;get graphics context,&quot; returning an object &#40;here <code>ctx</code>&#41; that holds all relevant information about the current state of drawing to this canvas.</p>
 <p>One nice feature of Cairo is that the coordinates are abstracted; ultimately we care about screen pixels, but we can set up <em>user coordinates</em> that have whatever scaling is natural to the problem. We just have to tell Cairo how to convert user coordinates to <em>device</em> &#40;screen&#41; coordinates. We set up a coordinate system using <code>set_coords</code>, defined in <code>base/graphics.jl</code>:</p>
-<pre><code class=language-julia >function set_coords&#40;ctx::GraphicsContext, x, y, w, h, l, r, t, b&#41;</code></pre>
+<pre><code class="language-julia">function set_coords&#40;ctx::GraphicsContext, x, y, w, h, l, r, t, b&#41;</code></pre>
 <p><code>x</code> &#40;horizontal&#41; and <code>y</code> &#40;vertical&#41; specify the upper-left corner of the drawing region in <em>device</em> coordinates, and <code>w</code> and <code>h</code> its width and height, respectively. &#40;Note Cairo uses &#40;0,0&#41; for the top-left corner of the window.&#41; <code>l</code>, <code>r</code>, <code>t</code>, and <code>b</code> are the <em>user</em> coordinates corresponding to the left, right, top, and bottom, respectively, of this region. Note that <code>set_coords</code> will also <code>clip</code> any drawing that occurs outside the region defined by <code>x</code>, <code>y</code>, <code>w</code>, and <code>h</code>; however, the coordinate system you&#39;ve specified extends to infinity, and you can draw all the way to the edge of the canvas by calling <code>reset_clip&#40;&#41;</code>.</p>
 <p>Let&#39;s fill the drawing region with a color, so we can see it:</p>
-<pre><code class=language-julia ># Set coordinates to go from 0 to 10 within a 300x100 centered region
+<pre><code class="language-julia"># Set coordinates to go from 0 to 10 within a 300x100 centered region
 set_coords&#40;ctx, 50, 50, 300, 100, 0, 10, 0, 10&#41;
 set_source_rgb&#40;ctx, 0, 0, 1&#41;   # set color to blue
 paint&#40;ctx&#41;                     # paint the entire clip region</code></pre>
@@ -18,7 +189,7 @@ paint&#40;ctx&#41;                     # paint the entire clip region</code></pr
 <p><img src="/assets/blog/GUI_figures/cairo_example3.jpg?raw&#61;true" alt="cairo snapshot" /></p>
 <p>Fortunately, to display your graphics you don&#39;t have to rely on users changing the stacking order of windows: call <code>reveal&#40;c&#41;</code> to update the front surface with the contents of the back surface, followed by <code>update&#40;&#41;</code> &#40;or perhaps better, <code>Tk.update&#40;&#41;</code> since <code>update</code> is a fairly generic name&#41; to give Tk a chance to expose the front surface to the OS&#39;s window manager.</p>
 <p>Now let&#39;s draw a red line:</p>
-<pre><code class=language-julia >move_to&#40;ctx, -1, 5&#41;
+<pre><code class="language-julia">move_to&#40;ctx, -1, 5&#41;
 line_to&#40;ctx, 7, 6&#41;
 set_source_rgb&#40;ctx, 1, 0, 0&#41;
 set_line_width&#40;ctx, 5&#41;
@@ -27,7 +198,7 @@ reveal&#40;c&#41;
 Tk.update&#40;&#41;</code></pre>
 <p>We started at a position outside the coordinate region &#40;we&#39;ll get to see the clipping in action this way&#41;. The next command, <code>line_to</code>, creates a segment of a <em>path</em>, the way that regions are defined in Cairo. The <code>stroke</code> command draws a line along the trajectory of the path, after which the path is cleared. &#40;You can use <code>stroke_preserve</code> if you want to re-use this path for another purpose later.&#41;</p>
 <p>Let&#39;s illustrate this by adding a solid green rectangle with a magenta border, letting it spill over the edges of the previously-defined coordinate region:</p>
-<pre><code class=language-julia >reset_clip&#40;ctx&#41;
+<pre><code class="language-julia">reset_clip&#40;ctx&#41;
 rectangle&#40;ctx, 7, 5, 4, 4&#41;
 set_source_rgb&#40;ctx, 0, 1, 0&#41;
 fill_preserve&#40;ctx&#41;
@@ -38,10 +209,10 @@ Tk.update&#40;&#41;</code></pre>
 <p><code>fill</code> differs from <code>paint</code> in that <code>fill</code> works inside the currently-defined path, whereas <code>paint</code> fills the entire clip region.</p>
 <p>Here is our masterpiece, where the &quot;background&quot; may differ for you &#40;mine was positioned over the bottom of a wikipedia page&#41;:</p>
 <p><img src="/assets/blog/GUI_figures/cairo_example.jpg?raw&#61;true" alt="cairo snapshot" /></p>
-<h3 id=rendering_an_image ><a href="#rendering_an_image">Rendering an image</a></h3>
+<h3 id="rendering_an_image"><a href="#rendering_an_image">Rendering an image</a></h3>
 <p>Images are rendered in Cairo inside a <code>rectangle</code> &#40;controlling placement of the image&#41; followed by <code>fill</code>. So far this is just like the simple drawing above. The difference is the <em>source</em>, which now will be a <em>surface</em> instead of an RGB color. If you&#39;re drawing from Julia, chances are that you want to display an in-memory array. The main trick is that Cairo requires this array to be a matrix of type <code>Uint32</code> encoding the color. The scheme is that the least significant byte is the blue value &#40;ranging from <code>0x00</code> to <code>0xff</code>&#41;, the next is green, and the next red. &#40;The most significant byte can encode the alpha value, or transparency, if you specify that transparency is to be used in your image surface.&#41;</p>
 <p>Both <code>Winston</code> and <code>Images</code> can generate a buffer of <code>Uint32</code> for you. Let&#39;s try the one in <code>Images</code>:</p>
-<pre><code class=language-julia >using Images
+<pre><code class="language-julia">using Images
 img &#61; imread&#40;&quot;some_photo.jpg&quot;&#41;
 buf &#61; uint32color&#40;img&#41;&#39;
 image&#40;ctx, CairoRGBSurface&#40;buf&#41;, 0, 0, 10, 10&#41;
@@ -52,12 +223,12 @@ Tk.update&#40;&#41;</code></pre>
 <p><img src="/assets/blog/GUI_figures/cairo_image1.jpg?raw&#61;true" alt="cairo snapshot" /></p>
 <p>It fills only part of the window because of the coordinate system we&#39;ve established, where the range <code>0:10</code> corresponds to an inset region in the center of the window.</p>
 <p>While it&#39;s a minor point, note that <code>CairoRGBSurface</code> takes a transpose for you, to convert from the column-major order of matrices in Julia to the row-major convention of Cairo. <code>Images</code> avoids taking transposes unless necessary, and is capable of handling images with any storage order. Here we do a transpose in preparation to have it be converted back to its original shape by <code>CairoRGBSurface</code>. If performance is critical, you can avoid the default behavior of <code>CairoRGBSurface</code> by calling <code>CairoImageSurface</code> directly &#40;see the <code>Cairo.jl</code> code&#41;.</p>
-<h3 id=redrawing_resize_support ><a href="#redrawing_resize_support">Redrawing &amp; resize support</a></h3>
+<h3 id="redrawing_resize_support"><a href="#redrawing_resize_support">Redrawing &amp; resize support</a></h3>
 <p>A basic feature of windows is that they should behave properly under resizing operations. This doesn&#39;t come entirely for free, although the grid &#40;and pack&#41; managers of Tk take care of many details for us. However, for Canvases we need to to do a little bit of extra work; to see what I mean, just try resizing the window we created above.</p>
 <p>The key is to have a callback that gets activated whenever the canvas changes size, and to have this callback capable of redrawing the window at arbitrary size. Canvases make this easy by having a field, <code>resize</code>, that you assign the callback to. This function will receive a single argument, the canvas itself, but as always you can provide more information. Taking our image example, we could set</p>
-<pre><code class=language-julia >c.resize &#61; c-&gt;redraw&#40;c, buf&#41;</code></pre>
+<pre><code class="language-julia">c.resize &#61; c-&gt;redraw&#40;c, buf&#41;</code></pre>
 <p>and then define</p>
-<pre><code class=language-julia >function redraw&#40;c::Canvas, buf&#41;
+<pre><code class="language-julia">function redraw&#40;c::Canvas, buf&#41;
     ctx &#61; getgc&#40;c&#41;
     set_source_rgb&#40;ctx, 1, 0, 0&#41;
     paint&#40;ctx&#41;
@@ -72,21 +243,21 @@ end</code></pre>
 <p>Voila&#33; We&#39;re really getting somewhere now.</p>
 <p>Unlike the complete GUI, this implementation doesn&#39;t have the option to preserve the image&#39;s aspect ratio. However, there&#39;s really no magic there; it all comes down to computing sizes and controlling the drawing region and coordinate system.</p>
 <p>One important point: resizing the window causes the existing Cairo context&#40;s&#41; to be destroyed, and creates new ones suitable for the new canvas size. One consequence is that your old <code>ctx</code> variable <em>is now invalid, and trying to use it for drawing will cause a segfault</em>. For this reason, you shouldn&#39;t ever store a ctx object on its own; always begin drawing by calling <code>getgc&#40;c&#41;</code> again.</p>
-<h3 id=canvases_and_the_mouse ><a href="#canvases_and_the_mouse">Canvases and the mouse</a></h3>
+<h3 id="canvases_and_the_mouse"><a href="#canvases_and_the_mouse">Canvases and the mouse</a></h3>
 <p>A Canvas already comes with a set of fields prepared for mouse events. For example, in the complete GUI we have the equivalent of the following:</p>
-<pre><code class=language-julia >selectiondonefunc &#61; &#40;c, bb&#41; -&gt; zoombb&#40;imgc, img2, bb&#41;
+<pre><code class="language-julia">selectiondonefunc &#61; &#40;c, bb&#41; -&gt; zoombb&#40;imgc, img2, bb&#41;
 c.mouse.button1press &#61; &#40;c, x, y&#41; -&gt; rubberband_start&#40;c, x, y, selectiondonefunc&#41;</code></pre>
 <p><code>rubberband_start</code>, a function defined in <code>rubberband.jl</code>, will now be called whenever the user presses the left mouse button. <code>selectiondonefunc</code> is a callback that we supply; it will be executed when the user releases the mouse button, and it needs to implement whatever it is we want to achieve with the selected region &#40;in this case, a zoom operation&#41;. Part of what <code>rubberband_start</code> does is to bind <code>selectiondonefunc</code> to the release of the mouse button, via <code>c.mouse.button1release</code>. <code>bb</code> is a <code>BoundingBox</code> &#40;a type defined in <code>base/graphics.jl</code>&#41; that will store the region selected by the user, and this gets passed to <code>selectiondonefunc</code>. &#40;The first two inputs to <code>zoombb</code>, <code>imgc</code> and <code>img2</code>, store settings that are relevant to this particular GUI but will not be described in detail here.&#41;</p>
 <p>The <code>mouse</code> inside a <code>Canvas</code> is an object of type <code>MouseHandler</code>, which has fields for <code>press</code> and <code>release</code> of all 3 mouse buttons and additional ones for motion. However, a few cases &#40;which happen to be relevant to this GUI&#41; are not available in <code>MouseHandler</code>. Here are some examples of how to configure these actions:</p>
-<pre><code class=language-julia ># Bind double-clicks
+<pre><code class="language-julia"># Bind double-clicks
 bind&#40;c.c, &quot;&lt;Double-Button-1&gt;&quot;, &#40;path,x,y&#41;-&gt;zoom_reset&#40;imgc, img2&#41;&#41;
 # Bind Shift-scroll &#40;using the wheel mouse&#41;
 bindwheel&#40;c.c, &quot;Shift&quot;, &#40;path,delta&#41;-&gt;panhorz&#40;imgc,img2,int&#40;delta&#41;&#41;&#41;</code></pre>
 <p>The <code>delta</code> argument for the wheel mouse will encode the direction of scrolling.</p>
-<h3 id=the_rubber_band_region_selection ><a href="#the_rubber_band_region_selection">The rubber band &#40;region selection&#41;</a></h3>
+<h3 id="the_rubber_band_region_selection"><a href="#the_rubber_band_region_selection">The rubber band &#40;region selection&#41;</a></h3>
 <p>Support for the rubber band is provided in the file <code>rubberband.jl</code>. Like <code>navigation.jl</code>, this is a stand-alone set of functions that you should be able to incorporate into other projects. It draws a dashed rectangle employing the same machinery we described at the top of this page, with slight modifications to create the dashes &#40;through the <code>set_dash</code> function&#41;. By now, this should all be fairly straightforward.</p>
 <p>However, these functions use one additional trick worth mentioning. Let&#39;s finally look at the Tk <code>Canvas</code> object:</p>
-<pre><code class=language-julia >type Canvas
+<pre><code class="language-julia">type Canvas
     c::TkWidget
     front::CairoSurface  # surface for window
     back::CairoSurface   # backing store
@@ -97,10 +268,10 @@ bindwheel&#40;c.c, &quot;Shift&quot;, &#40;path,delta&#41;-&gt;panhorz&#40;imgc,
 
     function ...</code></pre>
 <p>Here we can explicitly see the two buffers, used in double-buffering, and their associated contexts. <code>getgc&#40;c&#41;</code>, where <code>c</code> is a <code>Canvas</code>, simply returns <code>backcc</code>. This is why all drawing occurs on the back surface. For the rubber band, we choose instead to draw on the front surface, and then &#40;as the size of the rubber band changes&#41; &quot;repair the damage&quot; by copying from the back surface. Since we only have to modify the pixels along the band itself, this is fast. You can see these details in <code>rubberband.jl</code>.</p>
-<h2 id=winston ><a href="#winston">Winston</a></h2>
+<h2 id="winston"><a href="#winston">Winston</a></h2>
 <p>For many GUIs in Julia, an important component will be the ability to display data graphically. While we could draw graphs directly with Cairo, it would be a lot of work to build from scratch; fortunately, there&#39;s an excellent package, Winston, that already does this.</p>
 <p>Since there&#39;s a nice set of examples of some of the things you can do with Winston, here our focus is very narrow: how do you integrate Winston plots into GUIs built with Tk. Fortunately, this is quite easy. Let&#39;s walk through an example:</p>
-<pre><code class=language-julia >using Tk
+<pre><code class="language-julia">using Tk
 using Winston
 
 win &#61; Toplevel&#40;&quot;Testing&quot;, 400, 200&#41;
@@ -108,7 +279,7 @@ fwin &#61; Frame&#40;win&#41;
 pack&#40;fwin, expand&#61;true, fill&#61;&quot;both&quot;&#41;</code></pre>
 <p>We chose to fill the entire window with a frame <code>fwin</code>, so that everything inside this GUI will have a consistent background. All other objects will be placed inside <code>fwin</code>.</p>
 <p>Next, let&#39;s set up the elements, a Canvas on the left and a single button on the right:</p>
-<pre><code class=language-julia >c &#61; Canvas&#40;fwin, 300, 200&#41;
+<pre><code class="language-julia">c &#61; Canvas&#40;fwin, 300, 200&#41;
 grid&#40;c, 1, 1, sticky&#61;&quot;nsew&quot;&#41;
 fctrls &#61; Frame&#40;fwin&#41;
 grid&#40;fctrls, 1, 2, sticky&#61;&quot;sw&quot;, pady&#61;5, padx&#61;5&#41;
@@ -118,7 +289,7 @@ grid_rowconfigure&#40;fwin, 1, weight&#61;1&#41;
 ok &#61; Button&#40;fctrls, &quot;OK&quot;&#41;
 grid&#40;ok, 1, 1&#41;</code></pre>
 <p>Finally, let&#39;s plot something inside the Canvas:</p>
-<pre><code class=language-julia >x &#61; linspace&#40;0.0,10.0,1001&#41;
+<pre><code class="language-julia">x &#61; linspace&#40;0.0,10.0,1001&#41;
 y &#61; sin&#40;x&#41;
 p &#61; FramedPlot&#40;&#41;
 add&#40;p, Curve&#40;x, y, &quot;color&quot;, &quot;red&quot;&#41;&#41;
@@ -129,12 +300,12 @@ Tk.update&#40;&#41;</code></pre>
 <p><img src="/assets/blog/GUI_figures/winston.jpg?raw&#61;true" alt="Winston snapshot" /></p>
 <p>You&#39;ll note that you can resize this window, and the plot grows or shrinks accordingly.</p>
 <p>Easy, huh? The only part of this code that is specific to GUIs is the line <code>Winston.display&#40;c, p&#41;</code>, where we specified that we wanted our plot to appear inside a particular Canvas. Of course, there&#39;s a lot of magic behind the scenes in Winston, but covering its internals is beyond our scope here.</p>
-<h2 id=conclusions ><a href="#conclusions">Conclusions</a></h2>
+<h2 id="conclusions"><a href="#conclusions">Conclusions</a></h2>
 <p>There&#39;s more one could cover, but most of the rest is fairly specific to this particular GUI. A fair amount of code is needed to handle coordinates: selecting specific regions within the 4d image, and rendering to specific regions of the output canvas. If you want to dive into these details, your best bet is to start reading through the <code>ImageView</code> code, but it&#39;s not going to be covered in any more detail here.</p>
 <p>Hopefully by this point you have a pretty good sense for how to produce on-screen output with Tk, Cairo, and Winston. It takes a little practice to get comfortable with these tools, but the end result is quite powerful. Happy hacking&#33;</p>
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
@@ -142,7 +313,7 @@ Tk.update&#40;&#41;</code></pre>
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -206,25 +377,25 @@ Tk.update&#40;&#41;</code></pre>
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -233,53 +404,53 @@ Tk.update&#40;&#41;</code></pre>
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -288,3 +459,9 @@ Tk.update&#40;&#41;</code></pre>
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

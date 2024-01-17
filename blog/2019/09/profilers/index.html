@@ -1,9 +1,189 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Profiling tool wins and woes</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Profiling tool wins and woes"> <meta property="og:description" content=" Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](http://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports. ![Instruments.app bad result](/assets/blog/2019-09-16-profilers/profile-instruments-bad.png)"> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Profiling tool wins and woes <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 16 September 2019 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://github.com/vtjnash/">Jameson Nash</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2019/09/profilers.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: <a href="http://www.brendangregg.com/flamegraphs.html">brendangregg&#39;s often cloned flamegraphs tool</a> was created in 2011&#33; So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.</p> <h2 id=learn_more ><a href="#learn_more">Learn more&#33;</a></h2> <p>If you want to learn how they are supposed to work, I suggest looking at other resources first, such as:</p> <ul> <li><p>Julia Evans on learning to be a wizard: <a href="https://wizardzines.com/zines/perf/">https://wizardzines.com/zines/perf/</a></p> <li><p>Julia Evans taking a sabbatical to write a profiler tool: <a href="https://jvns.ca/categories/ruby-profiler/">https://jvns.ca/categories/ruby-profiler/</a></p> <li><p>Brendan Gregg on perf: <a href="https://www.brendangregg.com/perf.html">https://www.brendangregg.com/perf.html</a></p> <li><p>Brendan Gregg on flamegraphs: <a href="http://www.brendangregg.com/flamegraphs.html">http://www.brendangregg.com/flamegraphs.html</a></p> </ul> <p>Then come back here to dive deeper&#33;</p> <h2 id=deep_dive_into_deeper_stacks ><a href="#deep_dive_into_deeper_stacks">Deep Dive into Deeper Stacks</a></h2> <p>I wanted to look into a couple profilers to see how they would handle recursion. This is a tricky area, both in getting compilers to output useful benchmarks, and in getting profiling tools to summarize the interpretation of it. And since I work on Julia, I can try to fix problems I find there, making the world a better place&#33; For the other tools I tested, I&#39;m hoping this collection of observations may help those projects learn ways to improve from other projects. So if it seems I&#39;m just enjoying finding problems, that&#39;s true, but I also am also actively making fixes and improvements through this effort.</p> <h2 id=unit_under_test ><a href="#unit_under_test">Unit Under Test</a></h2> <p>We&#39;re going to use recursive Fibonacci as our test function, since it&#39;s dead simple to write in most languages, but we don&#39;t see compilers getting &quot;too clever&quot; and eliminating the recursion. Here&#39;s the basic formulation we&#39;ll use:</p> <pre><code class=language-julia >fib&#40;n&#41; :
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>Profiling tool wins and woes</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Profiling tool wins and woes">
+<meta property="og:description" content=" Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: [brendangregg's often cloned flamegraphs tool](http://www.brendangregg.com/flamegraphs.html) was created in 2011! So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports. ![Instruments.app bad result](/assets/blog/2019-09-16-profilers/profile-instruments-bad.png)">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Profiling tool wins and woes
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 16 September 2019 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;"><a href="https://github.com/vtjnash/">Jameson Nash</a> </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2019/09/profilers.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Profiling tools are awesome. They let us see what actually is affecting our program performance. Profiling tools also are terrible. They lie to us and give us confusing information. They also have some surprisingly new developments: <a href="http://www.brendangregg.com/flamegraphs.html">brendangregg&#39;s often cloned flamegraphs tool</a> was created in 2011&#33; So here I will be investigating some ways to make our profile reports better; and looking at ways in which they commonly break, to raise awareness of those artifacts in the reports.</p>
+<h2 id="learn_more"><a href="#learn_more">Learn more&#33;</a></h2>
+<p>If you want to learn how they are supposed to work, I suggest looking at other resources first, such as:</p>
+<ul>
+<li><p>Julia Evans on learning to be a wizard: <a href="https://wizardzines.com/zines/perf/">https://wizardzines.com/zines/perf/</a></p>
+</li>
+<li><p>Julia Evans taking a sabbatical to write a profiler tool: <a href="https://jvns.ca/categories/ruby-profiler/">https://jvns.ca/categories/ruby-profiler/</a></p>
+</li>
+<li><p>Brendan Gregg on perf: <a href="https://www.brendangregg.com/perf.html">https://www.brendangregg.com/perf.html</a></p>
+</li>
+<li><p>Brendan Gregg on flamegraphs: <a href="http://www.brendangregg.com/flamegraphs.html">http://www.brendangregg.com/flamegraphs.html</a></p>
+</li>
+</ul>
+<p>Then come back here to dive deeper&#33;</p>
+<h2 id="deep_dive_into_deeper_stacks"><a href="#deep_dive_into_deeper_stacks">Deep Dive into Deeper Stacks</a></h2>
+<p>I wanted to look into a couple profilers to see how they would handle recursion. This is a tricky area, both in getting compilers to output useful benchmarks, and in getting profiling tools to summarize the interpretation of it. And since I work on Julia, I can try to fix problems I find there, making the world a better place&#33; For the other tools I tested, I&#39;m hoping this collection of observations may help those projects learn ways to improve from other projects. So if it seems I&#39;m just enjoying finding problems, that&#39;s true, but I also am also actively making fixes and improvements through this effort.</p>
+<h2 id="unit_under_test"><a href="#unit_under_test">Unit Under Test</a></h2>
+<p>We&#39;re going to use recursive Fibonacci as our test function, since it&#39;s dead simple to write in most languages, but we don&#39;t see compilers getting &quot;too clever&quot; and eliminating the recursion. Here&#39;s the basic formulation we&#39;ll use:</p>
+<pre><code class="language-julia">fib&#40;n&#41; :
     n &gt; 1 &#61;&gt; fib&#40;n - 1&#41; &#43; fib&#40;n - 2&#41;
-    else  &#61;&gt; 1</code></pre> <p>Furthermore, we&#39;ll also try making each of those recursive calls actually indirect through another function to give a slightly more complex backtrace:</p> <pre><code class=language-julia >fib_r&#40;n&#41; : fib&#40;n&#41;</code></pre>
-<h2 id=profiling_c_code ><a href="#profiling_c_code">Profiling C code</a></h2>
+    else  &#61;&gt; 1</code></pre>
+<p>Furthermore, we&#39;ll also try making each of those recursive calls actually indirect through another function to give a slightly more complex backtrace:</p>
+<pre><code class="language-julia">fib_r&#40;n&#41; : fib&#40;n&#41;</code></pre>
+<h2 id="profiling_c_code"><a href="#profiling_c_code">Profiling C code</a></h2>
 <p>First, let&#39;s look at a sample C program:</p>
-<pre><code class=language-c >int fib&#40;int n&#41;;
+<pre><code class="language-c">int fib&#40;int n&#41;;
 int fib_r&#40;int n&#41; &#123;
     return fib&#40;n&#41;;
 &#125;
@@ -14,7 +194,7 @@ int main&#40;void&#41; &#123;
     return fib&#40;40&#41;;
 &#125;</code></pre>
 <p>On my macOS machine, this takes on the order of one second, so that&#39;s usually a good number of samples. I&#39;m going to use a few options to prevent certain stack optimizations, and otherwise let the compiler do it&#39;s best. The <code>-fno-optimize-sibling-calls</code> option prohibits the compiler from using a tailcall, which ensures <code>fib_r</code> stays in the stacktrace recording and that <code>fib</code> can&#39;t be partially optimized into a loop. The <code>-fno-inline</code> is there to help preserve the predictability of the record.</p>
-<pre><code class=language-bash >&#36; clang -Wall -Werror -pedantic -std&#61;c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c -o fib
+<pre><code class="language-bash">&#36; clang -Wall -Werror -pedantic -std&#61;c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c -o fib
 &#36; time ./fib
 real    0m0.723s
 user    0m0.717s
@@ -29,12 +209,12 @@ Instruments Trace Complete: instrumentscli0.trace
 <p><img src="/assets/blog/2019-09-16-profilers/profile-instruments-good.png" alt="Instruments.app good result" /></p>
 <p>The only problem I can identify here is that all of the self-weights are zero in this view. In the source code view, the lines are properly annotated with counts.</p>
 <p>On Linux, with the <code>perf</code> tool, this is pretty similar to use:</p>
-<pre><code class=language-bash >&#36; gcc -Wall -Werror -pedantic -std&#61;c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c
+<pre><code class="language-bash">&#36; gcc -Wall -Werror -pedantic -std&#61;c11 -fno-optimize-sibling-calls -fno-inline -O3 -g fib.c
 &#36; perf record --call-graph dwarf ./a.out
 &#91; perf record: Woken up 153 times to write data &#93;
 &#91; perf record: Captured and wrote 38.221 MB perf.data &#40;4748 samples&#41; &#93;</code></pre>
 <p>But I couldn&#39;t get this to generate a satisfactory report. I think the fault is with the dwarf implementation, so it seems you should be careful when using it to make decisions.</p>
-<pre><code class=language-bash >&#36; perf report --stdio --call-graph&#61;none
+<pre><code class="language-bash">&#36; perf report --stdio --call-graph&#61;none
 # Total Lost Samples: 0
 #
 # Samples: 4K of event &#39;cycles:uppp&#39;
@@ -48,9 +228,9 @@ Instruments Trace Complete: instrumentscli0.trace
      8.75&#37;     0.00&#37;  a.out    &#91;unknown&#93;         &#91;.&#93; 0x00007ffc2454634f
      7.52&#37;     0.00&#37;  a.out    a.out             &#91;.&#93; _start
      7.52&#37;     0.00&#37;  a.out    a.out             &#91;.&#93; main</code></pre>
-<p>I tried various options including <code>-gdwarf-2</code>, <code>-gdwarf-4</code>, <code>-fno-omit-frame-pointer</code><sup id="fnref:1"><a href="#fndef:1" class=fnref >[1]</a></sup>, and switching to <code>clang</code>. None of those helped much. With FPO disabled, the clang results were much better than with gcc &#40;both improved&#41;, but clang&#39;s output was also a smidgen slower running, so that might be a contributing factor &#40;more overhead&#41;.</p>
+<p>I tried various options including <code>-gdwarf-2</code>, <code>-gdwarf-4</code>, <code>-fno-omit-frame-pointer</code><sup id="fnref:1"><a href="#fndef:1" class="fnref">[1]</a></sup>, and switching to <code>clang</code>. None of those helped much. With FPO disabled, the clang results were much better than with gcc &#40;both improved&#41;, but clang&#39;s output was also a smidgen slower running, so that might be a contributing factor &#40;more overhead&#41;.</p>
 <p>But combining the compiler option <code>-fno-omit-frame-pointer</code> with the perf option <code>--call-graph fp</code> worked.</p>
-<pre><code class=language-bash >&#36; perf report --stdio --call-graph&#61;none
+<pre><code class="language-bash">&#36; perf report --stdio --call-graph&#61;none
 # Total Lost Samples: 0
 #
 # Samples: 4K of event &#39;cycles:uppp&#39;
@@ -66,9 +246,9 @@ Instruments Trace Complete: instrumentscli0.trace
     99.99&#37;     0.00&#37;  a.out    &#91;unknown&#93;         &#91;.&#93; 0x077e258d4c544155</code></pre>
 <p>Here we see it&#39;s got the right children &#40;total&#41; and self weights&#33;</p>
 <p>There&#39;s also a bunch of other options for <code>--call-graph</code>, but all of them spewed vast amounts of &#40;mis&#41;information, so I&#39;ve opted not to try to fit that in here.</p>
-<h2 id=profiling_julialang_code ><a href="#profiling_julialang_code">Profiling JuliaLang code</a></h2>
+<h2 id="profiling_julialang_code"><a href="#profiling_julialang_code">Profiling JuliaLang code</a></h2>
 <p>Now let&#39;s see how JuliaLang &#40;v1.3&#41; does:</p>
-<pre><code class=language-julia-repl >julia&gt; @noinline function fib&#40;n&#41;
+<pre><code class="language-julia-repl">julia&gt; @noinline function fib&#40;n&#41;
          return n &gt; 1 ? fib_r&#40;n - 1&#41; &#43; fib_r&#40;n - 2&#41; : 1
        end
 
@@ -95,7 +275,7 @@ julia&gt; count&#40;&#61;&#61;&#40;0&#41;, Profile.fetch&#40;&#41;&#41;
 585</code></pre>
 <p>So that&#39;s pretty bad—we appear to have about 212 samples, going by the counts on the <code>eval</code> function at the top of the stack. And we&#39;re told that about 2000&#37; of the time was in <code>fib</code>. Clearly not true. What happened here? We computed that <code>fib</code> &#40;and <code>fib_r</code>&#41; each appeared an average of 10-20 times in every backtrace, so we over-represent them in our flat-format output. OK, so first thing to do is to fix that: each frame should only be counted once towards each output line.</p>
 <p>But there&#39;s also the recursive option, which doesn&#39;t suffer from this particular issue. So how does it fare:</p>
-<pre><code class=language-julia-repl >julia&gt; Profile.print&#40;format&#61;:tree&#41;
+<pre><code class="language-julia-repl">julia&gt; Profile.print&#40;format&#61;:tree&#41;
 260 REPL&#91;1&#93;:2; fib&#40;::Int64&#41;
 112 REPL&#91;1&#93;:1; fib_r&#40;::Int64&#41;
 212 task.jl:333; REPL.var&quot;##26#27&quot;
@@ -186,7 +366,7 @@ julia&gt; count&#40;&#61;&#61;&#40;0&#41;, Profile.fetch&#40;&#41;&#41;
   ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    1   int.jl:53; &#43;
   ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎    ╎  2   int.jl:53; &#43;</code></pre>
 <p>We also see this has issues with identifying the stack in many cases &#40;almost 40&#37; failed&#33;&#41;, similar to <code>perf</code>. One way to improve that &#40;reducing to ~10&#37; failure rate&#41; is to disable the omit-frame-pointer option, like we did before. Currently this requires this source code change:</p>
-<pre><code class=language-diff >diff --git a/src/jitlayers.cpp b/src/jitlayers.cpp
+<pre><code class="language-diff">diff --git a/src/jitlayers.cpp b/src/jitlayers.cpp
 index cf339d8a4b..f6e9c08e2c 100644
 --- a/src/jitlayers.cpp
 &#43;&#43;&#43; b/src/jitlayers.cpp
@@ -205,7 +385,7 @@ index cf339d8a4b..f6e9c08e2c 100644
 <p>However, none of these option are helpful for our tree above. We need more tools in our toolbox&#33;</p>
 <p>Let&#39;s now examine how we can try to consolidate the recursive frames somehow. One option is the flat reports we looked at earlier.</p>
 <p>Here&#39;s that same flat report above with the counts corrected &#40;in Julia v1.4-dev&#41;, and some extra information also now compiled for it:</p>
-<pre><code class=language-julia-repl >julia&gt; Profile.print&#40;format&#61;:flat, sortedby&#61;:counts&#41;
+<pre><code class="language-julia-repl">julia&gt; Profile.print&#40;format&#61;:flat, sortedby&#61;:counts&#41;
  Count  Overhead File      Line Function
    228         2 ./boot.jl  330 eval
      2         2 ./int.jl    52 -
@@ -214,7 +394,7 @@ index cf339d8a4b..f6e9c08e2c 100644
    514       426 ./REPL&#91;1&#93;    2 fib
 Total snapshots: 610</code></pre>
 <p>That&#39;s better, and now the information matches the tree&#33; But unlike the tree view, this flat view doesn&#39;t show context. Some of those functions are very common, like <code>&#43;</code>, and it might not be sufficient to see them in aggregate like this. Can we combine the benefits of both views somehow?</p>
-<h2 id=better_recursion_handling ><a href="#better_recursion_handling">Better recursion handling</a></h2>
+<h2 id="better_recursion_handling"><a href="#better_recursion_handling">Better recursion handling</a></h2>
 <p>Let&#39;s now look at some different approaches some tools take to flatten this recursion to make it easier to find insights.</p>
 <p>First, the Instruments.app tool we&#39;ve looked at above has an option to collapse recursive calls, which will take a callstack with one repeated entry and replace it with one entry that takes the sum of that recursion. This has no effect on our example code, since there&#39;s two entries being repeated. While this mode can simplify the stack view and make it easier to explore, it doesn&#39;t provide us with additional insight into the code.</p>
 <p>There&#39;s another visualization-only tool called Speedscope which has <a href="https://github.com/jlfwong/speedscope/pull/68">an option to do this</a>. It imports profile files created by many other tools and languages, so we&#39;ll import the earlier <code>perf</code> file and see how it does against our lineup:</p>
@@ -222,10 +402,10 @@ Total snapshots: 610</code></pre>
 <p>Looks about right&#33; Only one silly nit: it claims the sum of all frames identical to the highlighted frame &#40;just itself&#41; took 367.38 ms &#40;good&#41;, but that the highlighted frame alone took 1.05 s &#40;oops, the tool must be computing the count of the wrong summary information&#41;. But otherwise, this seems to show about the right information we&#39;ve come to expect.</p>
 <p>Let&#39;s look closer at what it&#39;s doing using their <a href="https://www.speedscope.app/#profileURL&#61;https://raw.githubusercontent.com/jlfwong/speedscope/master/sample/profiles/stackcollapse/recursion.txt">stackcollapse recursion sample</a> with left-heavy view and &#39;r&#39;ecursion-flattened view shows one solution. Here we see that it simply drops any repeated frames when examining the call tree. This works out fine for our simple <code>fib</code> example, but shows some artifacts when we look at their sample data. Notice how the blue frame &#40;c&#41; is always charged to the green frame &#40;b&#41;, even though half of the calls actually came from the red frame &#40;a&#41;?</p>
 <p>When I showed this post to my friend, he suggested I also include his <a href="https://github.com/vchuravy/PProf.jl">PProf.jl</a> package here &#40;a JuliaLang front end for the <a href="https://github.com/google/pprof">pprof</a> visualization tool&#41;. This was a good suggestion, as it provides several alternative graphical representations. First, it can produce a callgrind format graphic:</p>
-<p><img src="/assets/blog/2019-09-16-profilers/profile-pprof.png" alt=PProf  /></p>
+<p><img src="/assets/blog/2019-09-16-profilers/profile-pprof.png" alt="PProf" /></p>
 <p>This is nice&#33; We get to visualize the static functions call tree simultaneously with the weight each function contributes to the time. However, this format can be a bit limited on the total quantity of information it can fit, so it might not always help. The <code>pprof</code> tool automatically filters out smaller frames to aid the user in seeing the important ones, and provides several options for adding and removing functions from the view.</p>
 <p>In addition, the <code>pprof</code> tool has a sandwich text report that summarizes the caller and callee list around each profile sample:</p>
-<pre><code class=language-bash >Type: events
+<pre><code class="language-bash">Type: events
 Showing nodes accounting for 632, 100&#37; of 632 total
 ----------------------------------------------------------&#43;-------------
       flat  flat&#37;   sum&#37;        cum   cum&#37;   calls calls&#37; &#43; context
@@ -250,10 +430,10 @@ Showing nodes accounting for 632, 100&#37; of 632 total
 <p>Let&#39;s combine all those ideas to make a new option for our Julia plain-text tree view: flattened recursion. Here&#39;s the docstring for the new argument to <code>Profile.print</code>:</p>
 <ul>
 <li><p><code>recur</code> – Controls the recursion handling in <code>:tree</code> format. <code>:off</code> &#40;default&#41; prints the tree as normal. <code>:flat</code> instead compresses any recursion &#40;by ip&#41;, showing the approximate effect of converting any self-recursion into an iterator. <code>:flatc</code> does the same but also includes collapsing of C frames &#40;may do odd things around <code>jl_apply</code>&#41;.</p>
-
+</li>
 </ul>
-<p>So this will no longer be a literal interpretation of the stack, but will show a particular linearization where each recursive call was re-written as a loop. This has a few secondary implications. It means that we may now see counts that sum to greater than their parent. For example, 100&#37; &#40;236/236&#41; of the time inside the parent <code>fib</code> was spent inside the child <code>fib_r</code>, and additionally, 4&#37; &#40;9/236&#41; were recorded as being part of a direct call to <code>fib</code> from <code>fib</code> &#40;an artifact caused by unreliable stack recording&#41;. Additionally, if you recall the definition of <code>fib</code> above, <code>fib</code> has two distinct calls to <code>fib_r</code>. Since the goal was to rearrange recursive calls, and not recursive lines, we expect to see those two calls reflected exactly in the profile shape too. However, there&#39;s no distinction made between <em>which</em> call each was from &#40;unless you also pass <code>collapse&#61;false</code><sup id="fnref:2"><a href="#fndef:2" class=fnref >[2]</a></sup>&#41;.</p>
-<pre><code class=language-julia-repl >julia&gt; Profile.print&#40;format&#61;:tree, recur&#61;:flat&#41;
+<p>So this will no longer be a literal interpretation of the stack, but will show a particular linearization where each recursive call was re-written as a loop. This has a few secondary implications. It means that we may now see counts that sum to greater than their parent. For example, 100&#37; &#40;236/236&#41; of the time inside the parent <code>fib</code> was spent inside the child <code>fib_r</code>, and additionally, 4&#37; &#40;9/236&#41; were recorded as being part of a direct call to <code>fib</code> from <code>fib</code> &#40;an artifact caused by unreliable stack recording&#41;. Additionally, if you recall the definition of <code>fib</code> above, <code>fib</code> has two distinct calls to <code>fib_r</code>. Since the goal was to rearrange recursive calls, and not recursive lines, we expect to see those two calls reflected exactly in the profile shape too. However, there&#39;s no distinction made between <em>which</em> call each was from &#40;unless you also pass <code>collapse&#61;false</code><sup id="fnref:2"><a href="#fndef:2" class="fnref">[2]</a></sup>&#41;.</p>
+<pre><code class="language-julia-repl">julia&gt; Profile.print&#40;format&#61;:tree, recur&#61;:flat&#41;
 94  ./REPL&#91;1&#93;:1; fib_r&#40;::Int64&#41;
 260 ./REPL&#91;2&#93;:2; fib&#40;::Int64&#41;
 275 ./task.jl:333; &#40;::REPL.var&quot;##26#27&quot;&#123;REPL.REPLBackend&#125;&#41;&#40;&#41;
@@ -270,24 +450,24 @@ Showing nodes accounting for 632, 100&#37; of 632 total
   ╎  1   ./REPL&#91;2&#93;:2; fib&#40;::Int64&#41;
 Total snapshots: 629</code></pre>
 <p>I think this looks cool, and vaguely even shows how I would conceptualize the functions in my head. This is available right now only on <a href="https://github.com/JuliaLang/julia/tree/jn/profile-recurflat">my jn/profile-recurflat</a> branch, but should be a PR soon, and show up in the JuliaLang v1.4 release.</p>
-<h2 id=final_thoughts ><a href="#final_thoughts">Final thoughts</a></h2>
+<h2 id="final_thoughts"><a href="#final_thoughts">Final thoughts</a></h2>
 <p>There&#39;s many more tools for examining profile exploration tools that I haven&#39;t mentioned, including the venerable <a href="https://github.com/timholy/ProfileView.jl">ProfileView.jl</a> and <a href="https://docs.junolab.org/stable/man/juno_frontend.html#Profiler-1">Juno.jl</a>. And there&#39;s other tools too for working on performance questions, such as the simple <a href="https://docs.julialang.org/en/v1/base/base/#Base.@time">@time</a> and the batteries-included <a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a> . Those will often then lead to needing to do deeper exploration of the code. For that next step, consider using <a href="https://github.com/JuliaDebug/Cthulhu.jl">Cthulhu.jl</a> and <a href="https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/">learning more about other kinds of debugging</a>.</p>
 <p>And finally, we&#39;re working on a <a href="https://github.com/JuliaLang/julia/pull/31534">memory profiler</a> for JuliaLang to let you explore questions of memory consumption, similar to the time-duration-consumed questions explored above. So watch for more updates to come&#33;</p>
 <hr />
-<p><table class=fndef  id="fndef:1">
+<p><table class="fndef" id="fndef:1">
     <tr>
-        <td class=fndef-backref ><a href="#fnref:1">[1]</a>
-        <td class=fndef-content >When writing this, I forget to also test the <code>--fasynchronous-unwind-tables</code> flag to <code>gcc</code>, which is supposed to be exact. However, it seemed not to make a difference to <code>perf</code>. My understanding is that this flag was already the default on x86-64. To confirm this, I tested the inverse flag &#40;<code>-fno-asynchronous-unwind-tables</code>&#41; and noted that this did make the result even worse.
-    
+        <td class="fndef-backref"><a href="#fnref:1">[1]</a></td>
+        <td class="fndef-content">When writing this, I forget to also test the <code>--fasynchronous-unwind-tables</code> flag to <code>gcc</code>, which is supposed to be exact. However, it seemed not to make a difference to <code>perf</code>. My understanding is that this flag was already the default on x86-64. To confirm this, I tested the inverse flag &#40;<code>-fno-asynchronous-unwind-tables</code>&#41; and noted that this did make the result even worse.</td>
+    </tr>
 </table>
- <table class=fndef  id="fndef:2">
+ <table class="fndef" id="fndef:2">
     <tr>
-        <td class=fndef-backref ><a href="#fnref:2">[2]</a>
-        <td class=fndef-content >The <code>collapse&#61;false</code> option controls whether to merge the profile by line number or to keep them distinct by instruction pointer. One useful code-maintence trick is to try to ensure each line does relatively little, so that line numbers are a precise source of information. This doesn&#39;t need to be taken to the extreme, as I do below as an example &#40;nearly writing out a <a href="https://en.m.wikipedia.org/wiki/Three-address_code">3AC</a> manually&#41;, since several of these statements will likely get optimized and moved anyways. But sometimes it can be invaluable to see if one <code>fib_r</code> call was more expensive than the other in our example, or to know <em>which</em> array was being indexed just from the stacktrace, etc.
-    
+        <td class="fndef-backref"><a href="#fnref:2">[2]</a></td>
+        <td class="fndef-content">The <code>collapse&#61;false</code> option controls whether to merge the profile by line number or to keep them distinct by instruction pointer. One useful code-maintence trick is to try to ensure each line does relatively little, so that line numbers are a precise source of information. This doesn&#39;t need to be taken to the extreme, as I do below as an example &#40;nearly writing out a <a href="https://en.m.wikipedia.org/wiki/Three-address_code">3AC</a> manually&#41;, since several of these statements will likely get optimized and moved anyways. But sometimes it can be invaluable to see if one <code>fib_r</code> call was more expensive than the other in our example, or to know <em>which</em> array was being indexed just from the stacktrace, etc.</td>
+    </tr>
 </table>
 </p>
-<pre><code class=language-julia-repl >@noinline function fib&#40;n&#41;
+<pre><code class="language-julia-repl">@noinline function fib&#40;n&#41;
     if n &gt; 1
         n -&#61; 1
         x1 &#61; fib_r&#40;n&#41;
@@ -300,7 +480,7 @@ Total snapshots: 629</code></pre>
     return y
 end</code></pre>
 <p>Post-note: There was also an off-by-one lookup error in Profile.jl too that will soon be resolved. This is almost never an issue, but we can sometimes notice it as bogus information showing some frame that should never have been reached. For example, we can profile a call to the expensive <code>cpuid</code> instruction, and see that there&#39;s a bogus frame that makes it appear we used some code that happened to be located outside the target function was somehow getting used.</p>
-<pre><code class=language-julia-repl >julia&gt; testf&#40;&#41; &#61; for i &#61; 1:10^7; ccall&#40;:jl_cpuid, Cvoid, &#40;Ref&#123;NTuple&#123;4,Int32&#125;&#125;, Int32&#41;, &#40;0,0,0,0&#41;, 0&#41;; end
+<pre><code class="language-julia-repl">julia&gt; testf&#40;&#41; &#61; for i &#61; 1:10^7; ccall&#40;:jl_cpuid, Cvoid, &#40;Ref&#123;NTuple&#123;4,Int32&#125;&#125;, Int32&#41;, &#40;0,0,0,0&#41;, 0&#41;; end
 julia&gt; @profile testf&#40;&#41;
 julia&gt; Profile.print&#40;C&#61;true&#41;
 201 ./REPL&#91;2&#93;:1; testf&#40;&#41;
@@ -310,7 +490,7 @@ julia&gt; Profile.print&#40;C&#61;true&#41;
   1   ./libjulia.1.4.dylib:?; _GLOBAL__sub_I_runtime_ccall.cpp</code></pre>
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
@@ -318,7 +498,7 @@ julia&gt; Profile.print&#40;C&#61;true&#41;
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -382,25 +562,25 @@ julia&gt; Profile.print&#40;C&#61;true&#41;
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -409,53 +589,53 @@ julia&gt; Profile.print&#40;C&#61;true&#41;
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -464,3 +644,9 @@ julia&gt; Profile.print&#40;C&#61;true&#41;
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

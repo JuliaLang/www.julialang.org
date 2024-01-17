@@ -1,12 +1,194 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Analyzing sources of compiler latency in Julia: method invalidations</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Analyzing sources of compiler latency in Julia: method invalidations"> <meta property="og:description" content="Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation, tools for detecting and eliminating its causes, and the impact this effort has had on latency."> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Analyzing sources of compiler latency in Julia: method invalidations <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 26 August 2020 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Tim Holy, Jeff Bezanson, and Jameson Nash </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2020/08/invalidations.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><div class=franklin-toc ><ol><li><a href="#method_invalidation_what_is_it_and_when_does_it_happen">Method invalidation: what is it and when does it happen?</a><ol><li><a href="#an_example_compilation_for_containers_with_unknown_element_types">An example: compilation for containers with unknown element types</a><li><a href="#triggering_method_invalidation">Triggering method invalidation</a></ol><li><a href="#how_common_is_method_invalidation">How common is method invalidation?</a><li><a href="#what_are_the_impacts_of_method_invalidation">What are the impacts of method invalidation?</a><li><a href="#can_and_should_this_be_fixed">Can and should this be fixed?</a><li><a href="#changes_in_julia_that_have_reduced_the_number_of_invalidations">Changes in Julia that have reduced the number of invalidations</a><li><a href="#tools_for_analyzing_and_fixing_invalidations">Tools for analyzing and fixing invalidations</a><li><a href="#summary">Summary</a><ol><li><a href="#impacts_of_progress_to_date">Impacts of progress to date</a><li><a href="#outlook_for_the_future">Outlook for the future</a></ol></ol></div> <p><a href="https://julialang.org/">The Julia programming language</a> has wonderful flexibility with types, and this allows you to combine packages in unanticipated ways to solve new kinds of problems. Crucially, it achieves this flexibility without sacrificing runtime performance. It does this by running versions of code or algorithms that have been &quot;specialized&quot; for the specific types you are using. Creating these specializations is compilation, and when done on the fly &#40;as is common in Julia&#41; this is called &quot;just in time&quot; &#40;JIT&#41; compilation. Unfortunately, JIT-compilation takes time, and this contributes to <em>latency</em> when you first run Julia code. This problem is often summarized as &quot;time-to-first-plot,&quot; though there is nothing specific about plotting other than the fact that plotting libraries tend to involve large code bases, and these must be JIT-compiled.</p> <p>Many people have spent a lot of time analyzing and reducing Julia&#39;s latency. These efforts have met with considerable success: Julia 1.5 feels snappier than any version in memory, and benchmarks support that impression. But the job of reducing latency is not over yet. Recent work on Julia&#39;s master branch has made considerable progress in significantly reducing a specific source of latency, method invalidation. This post will answer questions such as:</p> <ul> <li><p>What is method invalidation?</p> <li><p>How can I diagnose why my code is being invalidated?</p> <li><p>How can I fix my code to prevent invalidation?</p> <li><p>What impact have the efforts so far had on latency to load and use packages?</p> </ul> <h2 id=method_invalidation_what_is_it_and_when_does_it_happen ><a href="#method_invalidation_what_is_it_and_when_does_it_happen">Method invalidation: what is it and when does it happen?</a></h2> <h3 id=an_example_compilation_for_containers_with_unknown_element_types ><a href="#an_example_compilation_for_containers_with_unknown_element_types">An example: compilation for containers with unknown element types</a></h3> <p>When Julia compiles a method for specific types, it saves the resulting code so that it can be used by any caller. This is crucial to performance, because it means that compilation generally has to be done only once for a specific type. To keep things really simple, we&#39;ll use a very artificial example.</p> <pre><code class=language-julia >f&#40;x::Int&#41; &#61; 1
-applyf&#40;container&#41; &#61; f&#40;container&#91;1&#93;&#41;</code></pre> <p>Here we&#39;ve defined two functions; <code>f</code> supports <code>Int</code>, and <code>applyf</code> supports <code>Any</code> argument at all. When you call <code>applyf</code>, Julia will compile <em>specialized</em> versions on demand for the particular types of <code>container</code> that you&#39;re using at that moment, even though there isn&#39;t any type annotation in its definition. These versions that have been specialized for particular input types are <code>MethodInstance</code>s, an internal type in <code>Core.Compiler</code>.</p> <p>If you call <code>applyf&#40;&#91;100&#93;&#41;</code>, Julia will compile and use a version of <code>applyf</code> specifically created for <code>Vector&#123;Int&#125;</code>. Since the element type &#40;<code>Int</code>&#41; is a part of the <code>container</code>&#39;s type, it will compile this specialization knowing that only <code>f&#40;::Int&#41;</code> will be used: the call will be &quot;hard-wired&quot; into the code that Julia produces. You can see this using <code>@code_typed</code>:</p> <pre><code class=language-julia-repl >julia&gt; applyf&#40;&#91;100&#93;&#41;
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>Analyzing sources of compiler latency in Julia: method invalidations</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Analyzing sources of compiler latency in Julia: method invalidations">
+<meta property="og:description" content="Julia runs fast, but suffers from latency due to compilation. This post analyzes one source of excess compilation, tools for detecting and eliminating its causes, and the impact this effort has had on latency.">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Analyzing sources of compiler latency in Julia: method invalidations
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 26 August 2020 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">Tim Holy, Jeff Bezanson, and Jameson Nash </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2020/08/invalidations.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><div class="franklin-toc"><ol><li><a href="#method_invalidation_what_is_it_and_when_does_it_happen">Method invalidation: what is it and when does it happen?</a><ol><li><a href="#an_example_compilation_for_containers_with_unknown_element_types">An example: compilation for containers with unknown element types</a></li><li><a href="#triggering_method_invalidation">Triggering method invalidation</a></li></ol></li><li><a href="#how_common_is_method_invalidation">How common is method invalidation?</a></li><li><a href="#what_are_the_impacts_of_method_invalidation">What are the impacts of method invalidation?</a></li><li><a href="#can_and_should_this_be_fixed">Can and should this be fixed?</a></li><li><a href="#changes_in_julia_that_have_reduced_the_number_of_invalidations">Changes in Julia that have reduced the number of invalidations</a></li><li><a href="#tools_for_analyzing_and_fixing_invalidations">Tools for analyzing and fixing invalidations</a></li><li><a href="#summary">Summary</a><ol><li><a href="#impacts_of_progress_to_date">Impacts of progress to date</a></li><li><a href="#outlook_for_the_future">Outlook for the future</a></li></ol></li></ol></div>
+<p><a href="https://julialang.org/">The Julia programming language</a> has wonderful flexibility with types, and this allows you to combine packages in unanticipated ways to solve new kinds of problems. Crucially, it achieves this flexibility without sacrificing runtime performance. It does this by running versions of code or algorithms that have been &quot;specialized&quot; for the specific types you are using. Creating these specializations is compilation, and when done on the fly &#40;as is common in Julia&#41; this is called &quot;just in time&quot; &#40;JIT&#41; compilation. Unfortunately, JIT-compilation takes time, and this contributes to <em>latency</em> when you first run Julia code. This problem is often summarized as &quot;time-to-first-plot,&quot; though there is nothing specific about plotting other than the fact that plotting libraries tend to involve large code bases, and these must be JIT-compiled.</p>
+<p>Many people have spent a lot of time analyzing and reducing Julia&#39;s latency. These efforts have met with considerable success: Julia 1.5 feels snappier than any version in memory, and benchmarks support that impression. But the job of reducing latency is not over yet. Recent work on Julia&#39;s master branch has made considerable progress in significantly reducing a specific source of latency, method invalidation. This post will answer questions such as:</p>
+<ul>
+<li><p>What is method invalidation?</p>
+</li>
+<li><p>How can I diagnose why my code is being invalidated?</p>
+</li>
+<li><p>How can I fix my code to prevent invalidation?</p>
+</li>
+<li><p>What impact have the efforts so far had on latency to load and use packages?</p>
+</li>
+</ul>
+<h2 id="method_invalidation_what_is_it_and_when_does_it_happen"><a href="#method_invalidation_what_is_it_and_when_does_it_happen">Method invalidation: what is it and when does it happen?</a></h2>
+<h3 id="an_example_compilation_for_containers_with_unknown_element_types"><a href="#an_example_compilation_for_containers_with_unknown_element_types">An example: compilation for containers with unknown element types</a></h3>
+<p>When Julia compiles a method for specific types, it saves the resulting code so that it can be used by any caller. This is crucial to performance, because it means that compilation generally has to be done only once for a specific type. To keep things really simple, we&#39;ll use a very artificial example.</p>
+<pre><code class="language-julia">f&#40;x::Int&#41; &#61; 1
+applyf&#40;container&#41; &#61; f&#40;container&#91;1&#93;&#41;</code></pre>
+<p>Here we&#39;ve defined two functions; <code>f</code> supports <code>Int</code>, and <code>applyf</code> supports <code>Any</code> argument at all. When you call <code>applyf</code>, Julia will compile <em>specialized</em> versions on demand for the particular types of <code>container</code> that you&#39;re using at that moment, even though there isn&#39;t any type annotation in its definition. These versions that have been specialized for particular input types are <code>MethodInstance</code>s, an internal type in <code>Core.Compiler</code>.</p>
+<p>If you call <code>applyf&#40;&#91;100&#93;&#41;</code>, Julia will compile and use a version of <code>applyf</code> specifically created for <code>Vector&#123;Int&#125;</code>.  Since the element type &#40;<code>Int</code>&#41; is a part of the <code>container</code>&#39;s type, it will compile this specialization knowing that only <code>f&#40;::Int&#41;</code> will be used: the call will be &quot;hard-wired&quot; into the code that Julia produces. You can see this using <code>@code_typed</code>:</p>
+<pre><code class="language-julia-repl">julia&gt; applyf&#40;&#91;100&#93;&#41;
 1
 
 julia&gt; @code_typed applyf&#40;&#91;100&#93;&#41;
 CodeInfo&#40;
 1 ─     Base.arrayref&#40;true, container, 1&#41;::Int64
 └──     return 1
-&#41; &#61;&gt; Int64</code></pre> <p>The compiler knows that the answer will be 1, as long as the input array has an element indexable by 1. &#40;That <code>arrayref</code> statement enforces bounds-checking, and ensure that Julia will throw an appropriate error if you pass <code>applyf</code> an empty container.&#41;</p> <p>For the purpose of this blog post, things start to get especially interesting if we use a container that can store elements with different types &#40;here, type <code>Any</code>&#41;:</p> <pre><code class=language-julia-repl >julia&gt; c &#61; Any&#91;100&#93;;
+&#41; &#61;&gt; Int64</code></pre>
+<p>The compiler knows that the answer will be 1, as long as the input array has an element indexable by 1. &#40;That <code>arrayref</code> statement enforces bounds-checking, and ensure that Julia will throw an appropriate error if you pass <code>applyf</code> an empty container.&#41;</p>
+<p>For the purpose of this blog post, things start to get especially interesting if we use a container that can store elements with different types &#40;here, type <code>Any</code>&#41;:</p>
+<pre><code class="language-julia-repl">julia&gt; c &#61; Any&#91;100&#93;;
 
 julia&gt; applyf&#40;c&#41;
 1
@@ -21,23 +203,35 @@ CodeInfo&#40;
 └──      goto #4
 4 ┄ &#37;7 &#61; φ &#40;#2 &#61;&gt; 1, #3 &#61;&gt; &#37;5&#41;::Core.Const&#40;1, false&#41;
 └──      return &#37;7
-&#41; &#61;&gt; Int64</code></pre> <p>This may seem a lot more complicated, but the take-home message is actually quite simple. First, look at that <code>arrayref</code> statement: it is annotated <code>::Any</code>, meaning that Julia can&#39;t predict in advance what it will return. Immediately after the reference, notice the <code>isa</code> statement followed by a <code>φ</code>; including the final return, all of this is essentially equivalent to:</p> <pre><code class=language-julia >if isa&#40;x, Int&#41;
+&#41; &#61;&gt; Int64</code></pre>
+<p>This may seem a lot more complicated, but the take-home message is actually quite simple. First, look at that <code>arrayref</code> statement: it is annotated <code>::Any</code>, meaning that Julia can&#39;t predict in advance what it will return. Immediately after the reference, notice the <code>isa</code> statement followed by a <code>φ</code>; including the final return, all of this is essentially equivalent to:</p>
+<pre><code class="language-julia">if isa&#40;x, Int&#41;
     value &#61; 1
 else
     value &#61; f&#40;x&#41;::Int
 end
-return value</code></pre> <p>The compiler might not know in advance what type <code>container&#91;1&#93;</code> will have, but it knows there&#39;s a method of <code>f</code> specialized for <code>Int</code>. To improve performance, it checks &#40;as efficiently as possible at runtime&#41; whether that method might be applicable, and if so calls the method it knows. In this case, <code>f</code> just returns a constant, so when applicable the compiler even hard-wires in the return value for you.</p> <p>However, the compiler also acknowledges the possibility that <code>container&#91;1&#93;</code><em>won&#39;t</em> be an <code>Int</code>. That allows the above code to throw a MethodError:</p> <pre><code class=language-julia-repl >julia&gt; applyf&#40;Any&#91;true&#93;&#41;
+return value</code></pre>
+<p>The compiler might not know in advance what type <code>container&#91;1&#93;</code> will have, but it knows there&#39;s a method of <code>f</code> specialized for <code>Int</code>. To improve performance, it checks &#40;as efficiently as possible at runtime&#41; whether that method might be applicable, and if so calls the method it knows. In this case, <code>f</code> just returns a constant, so when applicable the compiler even hard-wires in the return value for you.</p>
+<p>However, the compiler also acknowledges the possibility that <code>container&#91;1&#93;</code><em>won&#39;t</em> be an <code>Int</code>. That allows the above code to throw a MethodError:</p>
+<pre><code class="language-julia-repl">julia&gt; applyf&#40;Any&#91;true&#93;&#41;
 ERROR: MethodError: no method matching f&#40;::Type&#123;Bool&#125;&#41;
 Closest candidates are:
   f&#40;::Int64&#41; at REPL&#91;1&#93;:1
-&#91;...&#93;</code></pre> <p>That&#39;s similar to what happens if we see how a well-typed call gets inferred:</p> <pre><code class=language-julia-repl >julia&gt; @code_typed applyf&#40;&#91;true&#93;&#41;
+&#91;...&#93;</code></pre>
+<p>That&#39;s similar to what happens if we see how a well-typed call gets inferred:</p>
+<pre><code class="language-julia-repl">julia&gt; @code_typed applyf&#40;&#91;true&#93;&#41;
 CodeInfo&#40;
 1 ─ &#37;1 &#61; Base.getindex&#40;container, 1&#41;::Bool
 │        Main.f&#40;&#37;1&#41;::Union&#123;&#125;
 └──      unreachable
-&#41; &#61;&gt; Union&#123;&#125;</code></pre> <p>where in this case the compiler knows that the call won&#39;t succeed. Calls annotated <code>::Union&#123;&#125;</code> do not return.</p> <h3 id=triggering_method_invalidation ><a href="#triggering_method_invalidation">Triggering method invalidation</a></h3> <p><strong>NOTE</strong>: This demo is being run on Julia&#39;s master branch &#40;which will become 1.6&#41;. Depending on your version of Julia, you might get different results and/or need to define more than one additional method for <code>f</code> to see the outcome shown here.</p> <p>Julia is interactive: we can define new methods on the fly and try them out. Having already run the above code in our session, let&#39;s see what happens when we define a new method for <code>f</code>:</p> <pre><code class=language-julia >f&#40;::Bool&#41; &#61; 2</code></pre>
+&#41; &#61;&gt; Union&#123;&#125;</code></pre>
+<p>where in this case the compiler knows that the call won&#39;t succeed. Calls annotated <code>::Union&#123;&#125;</code> do not return.</p>
+<h3 id="triggering_method_invalidation"><a href="#triggering_method_invalidation">Triggering method invalidation</a></h3>
+<p><strong>NOTE</strong>: This demo is being run on Julia&#39;s master branch &#40;which will become 1.6&#41;. Depending on your version of Julia, you might get different results and/or need to define more than one additional method for <code>f</code> to see the outcome shown here.</p>
+<p>Julia is interactive: we can define new methods on the fly and try them out. Having already run the above code in our session, let&#39;s see what happens when we define a new method for <code>f</code>:</p>
+<pre><code class="language-julia">f&#40;::Bool&#41; &#61; 2</code></pre>
 <p>While the <code>Vector&#123;Int&#125;</code>-typed version of <code>applyf</code> is not changed by this new definition &#40;try it and see&#41;, both the <code>Bool</code>-typed version and the untyped version are different than previously:</p>
-<pre><code class=language-julia >julia&gt; @code_typed applyf&#40;&#91;true&#93;&#41;
+<pre><code class="language-julia">julia&gt; @code_typed applyf&#40;&#91;true&#93;&#41;
 CodeInfo&#40;
 1 ─     Base.arrayref&#40;true, container, 1&#41;::Bool
 └──     return 2
@@ -51,7 +245,7 @@ CodeInfo&#40;
 &#41; &#61;&gt; Int64</code></pre>
 <p>This shows that defining a new method for <code>f</code> forced <em>recompilation</em> of these <code>MethodInstance</code>s.</p>
 <p>You can see that Julia no longer uses that optimization checking whether <code>container&#91;1&#93;</code> happens to be an <code>Int</code>. Experience has shown that once a method has a couple of specializations, it may accumulate yet more, and to reduce the amount of recompilation needed Julia quickly abandons attempts to optimize the case handling containers with unknown element types. If you look carefully, you&#39;ll notice one remaining optimization: the call to <code>Main.f</code> is type-asserted as <code>Int</code>, since both known methods of <code>f</code> return an <code>Int</code>. This can be a very useful performance optimization for any code that uses the output of <code>applyf</code>. But define two additional methods of <code>f</code>,</p>
-<pre><code class=language-julia >julia&gt; f&#40;::String&#41; &#61; 3
+<pre><code class="language-julia">julia&gt; f&#40;::String&#41; &#61; 3
 f &#40;generic function with 4 methods&#41;
 
 julia&gt; f&#40;::Dict&#41; &#61; 4
@@ -68,33 +262,33 @@ CodeInfo&#40;
 <p>Recompilation is triggered by two events:</p>
 <ul>
 <li><p>when a new method is defined, old compiled methods that made now-incorrect assumptions get <em>invalidated</em></p>
-
+</li>
 <li><p>when no valid compiled method can be found to handle a call, Julia &#40;re&#41;compiles the necessary code.</p>
-
+</li>
 </ul>
 <p>It&#39;s the moment of method definition, triggering invalidations of other previously-compiled code, that will be the focus of this blog post.</p>
-<h2 id=how_common_is_method_invalidation ><a href="#how_common_is_method_invalidation">How common is method invalidation?</a></h2>
+<h2 id="how_common_is_method_invalidation"><a href="#how_common_is_method_invalidation">How common is method invalidation?</a></h2>
 <p>Unfortunately, method invalidation is &#40;or rather, used to be&#41; pretty common. First, let&#39;s get some baseline statistics. Using the <a href="https://github.com/timholy/MethodAnalysis.jl">MethodAnalysis</a> package, you can find out that a fresh Julia session has approximately 50,000 <code>MethodInstance</code>s tucked away in its cache &#40;more precisely, about 56,000 on Julia 1.5, about 45,000 on Julia 1.6&#41;. These are mostly for <code>Base</code> and the standard libraries. &#40;There are some additional <code>MethodInstance</code>s that get created to load the MethodAnalysis package and do this analysis, but these are surely a very small fraction of the total.&#41;</p>
 <p>Using <a href="https://github.com/timholy/SnoopCompile.jl">SnoopCompile</a>, we can count the number of invalidations triggered by loading various packages into a fresh Julia session:</p>
-<table><tr><th align=left >Package<th align=right >Version<th align=right ># inv., Julia 1.5<th align=right ># inv., master branch<tr><td align=left >Example<td align=right >0.5.3<td align=right >0<td align=right >0<tr><td align=left >Revise<td align=right >2.7.3<td align=right >23<td align=right >0<tr><td align=left >FixedPointNumbers<td align=right >0.8.4<td align=right >335<td align=right >0<tr><td align=left >StaticArrays<td align=right >0.12.4<td align=right >2181<td align=right >44<tr><td align=left >Images<td align=right >0.22.4<td align=right >2881<td align=right >301<tr><td align=left >Optim<td align=right >0.22.0<td align=right >2902<td align=right >59<tr><td align=left >SIMD<td align=right >2.8.0<td align=right >2949<td align=right >11<tr><td align=left >Plots<td align=right >1.5.8<td align=right >3156<td align=right >118<tr><td align=left >Makie<td align=right >0.11.1<td align=right >3273<td align=right >129<tr><td align=left >Flux<td align=right >0.10.4<td align=right >3461<td align=right >x<tr><td align=left >DataFrames<td align=right >0.21.6<td align=right >4126<td align=right >2390<tr><td align=left >JuMP<td align=right >0.21.3<td align=right >4281<td align=right >1952<tr><td align=left >DifferentialEquations<td align=right >6.15.0<td align=right >6373<td align=right >2309</table>
+<table><tr><th align="left">Package</th><th align="right">Version</th><th align="right"># inv., Julia 1.5</th><th align="right"># inv., master branch</th></tr><tr><td align="left">Example</td><td align="right">0.5.3</td><td align="right">0</td><td align="right">0</td></tr><tr><td align="left">Revise</td><td align="right">2.7.3</td><td align="right">23</td><td align="right">0</td></tr><tr><td align="left">FixedPointNumbers</td><td align="right">0.8.4</td><td align="right">335</td><td align="right">0</td></tr><tr><td align="left">StaticArrays</td><td align="right">0.12.4</td><td align="right">2181</td><td align="right">44</td></tr><tr><td align="left">Images</td><td align="right">0.22.4</td><td align="right">2881</td><td align="right">301</td></tr><tr><td align="left">Optim</td><td align="right">0.22.0</td><td align="right">2902</td><td align="right">59</td></tr><tr><td align="left">SIMD</td><td align="right">2.8.0</td><td align="right">2949</td><td align="right">11</td></tr><tr><td align="left">Plots</td><td align="right">1.5.8</td><td align="right">3156</td><td align="right">118</td></tr><tr><td align="left">Makie</td><td align="right">0.11.1</td><td align="right">3273</td><td align="right">129</td></tr><tr><td align="left">Flux</td><td align="right">0.10.4</td><td align="right">3461</td><td align="right">x</td></tr><tr><td align="left">DataFrames</td><td align="right">0.21.6</td><td align="right">4126</td><td align="right">2390</td></tr><tr><td align="left">JuMP</td><td align="right">0.21.3</td><td align="right">4281</td><td align="right">1952</td></tr><tr><td align="left">DifferentialEquations</td><td align="right">6.15.0</td><td align="right">6373</td><td align="right">2309</td></tr></table>
 <p>&#40;&#39;x&#39; indicates that the package cannot be loaded. Julia&#39;s master-branch results were at commit 1c9c24170c53273832088431de99fe19247af172, partway through the development of Julia 1.6.&#41;</p>
 <p>You can see that key packages used by large portions of the Julia ecosystem have historically invalidated hundreds or thousands of <code>MethodInstance</code>s, sometimes more than 10&#37; of the total number of <code>MethodInstance</code>s present before loading the package. The situation has been dramatically improved on Julia 1.6, but there remains more work left to do, especially for particular packages.</p>
-<h2 id=what_are_the_impacts_of_method_invalidation ><a href="#what_are_the_impacts_of_method_invalidation">What are the impacts of method invalidation?</a></h2>
+<h2 id="what_are_the_impacts_of_method_invalidation"><a href="#what_are_the_impacts_of_method_invalidation">What are the impacts of method invalidation?</a></h2>
 <p>The next time you want to call functionality that gets invalidated, you have to wait for recompilation. We can illustrate this on Julia 1.5 using everyone&#39;s favorite example, plotting:</p>
-<pre><code class=language-julia-repl >julia&gt; using Plots
+<pre><code class="language-julia-repl">julia&gt; using Plots
 
 julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
   7.717729 seconds &#40;15.27 M allocations: 797.207 MiB, 3.59&#37; gc time&#41;</code></pre>
 <p>As is well known, it&#39;s much faster the second time, because it&#39;s already compiled:</p>
-<pre><code class=language-julia-repl >julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
+<pre><code class="language-julia-repl">julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
   0.311226 seconds &#40;19.93 k allocations: 775.055 KiB&#41;</code></pre>
 <p>Moreover, if you decide you want some additional functionality via</p>
-<pre><code class=language-julia-repl >julia&gt; using StaticArrays
+<pre><code class="language-julia-repl">julia&gt; using StaticArrays
 
 julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
   0.305394 seconds &#40;19.96 k allocations: 781.836 KiB&#41;</code></pre>
 <p>you can see it&#39;s essentially as fast again.  However, StaticArrays was already present because it gets loaded internally by Plots–-all the invalidations it causes have already happened before we issued that second plotting command.  Let&#39;s contrast that with what happens if you load a package that does a lot of <em>new</em> invalidation &#40;again, this is on Julia versions 1.5 and below&#41;:</p>
-<pre><code class=language-julia-repl >julia&gt; using SIMD
+<pre><code class="language-julia-repl">julia&gt; using SIMD
 
 julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
   7.238336 seconds &#40;26.50 M allocations: 1.338 GiB, 7.88&#37; gc time&#41;</code></pre>
@@ -102,31 +296,31 @@ julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
 <p>This doesn&#39;t just affect plotting or packages. For example, loading packages could transiently make the REPL, the next Pkg update, or the next call to a distributed worker lag for several seconds.</p>
 <p>You can minimize some of the costs of invalidation by loading all packages at the outset–if all invalidations happen before you start compiling very much code, then the first compilation already takes the full suite of methods into account.</p>
 <p>On versions of Julia up to and including 1.5, package load time was substantially increased by invalidation. On Julia 1.6, invalidation only rarely affects package load times, largely because Pkg and the loading code have been made more resistant to invalidation.</p>
-<h2 id=can_and_should_this_be_fixed ><a href="#can_and_should_this_be_fixed">Can and should this be fixed?</a></h2>
+<h2 id="can_and_should_this_be_fixed"><a href="#can_and_should_this_be_fixed">Can and should this be fixed?</a></h2>
 <p>Invalidations affect latency on their own, but they also impact other potential strategies for reducing latency. For example, julia creates &quot;precompile&quot; &#40;<code>*.ji</code>&#41; files to speed up package usage. Currently, it saves type-inferred but not <a href="https://www.techopedia.com/definition/3846/native-code">native code</a> to its precompile files. In principle, we could greatly reduce latency by also saving native code, since that would eliminate the need to do any compilation at all. However, this strategy would be ineffective if most of this code ends up getting invalidated. Indeed, it could make latency even worse, because you&#39;re doing work &#40;loading more stuff from disk&#41; without much reward. However, if we get rid of most invalidations, then we can expect to get more benefit from caching native code, and so if the community eliminates most invalidations then it begins to make much more sense to work to develop this new capability.</p>
 <p>As to &quot;can invalidations be fixed?&quot;, that depends on the goal. We will never get rid of invalidation altogether; as the <code>applyf</code> example above shows, invalidation is sometimes necessary if you want both good runtime performance and interactive usage, and this combination is one of the best things about Julia. The real question is whether there are <em>unnecessary</em> invalidations, or an unexploited strategy to limit their impact. While the table above resoundingly demonstrates the feasibility of reducing the frequency of invalidation, going any further requires that we develop an understanding the common sources of invalidation and what can be done to fix them.</p>
-<h2 id=changes_in_julia_that_have_reduced_the_number_of_invalidations ><a href="#changes_in_julia_that_have_reduced_the_number_of_invalidations">Changes in Julia that have reduced the number of invalidations</a></h2>
+<h2 id="changes_in_julia_that_have_reduced_the_number_of_invalidations"><a href="#changes_in_julia_that_have_reduced_the_number_of_invalidations">Changes in Julia that have reduced the number of invalidations</a></h2>
 <p>Much of the progress in reducing invalidations in Julia 1.6 come from changes to generic mechanisms in the compiler. A <a href="https://github.com/JuliaLang/julia/pull/36733">crucial change</a> was the realization that some invalidations were formerly triggered by new methods of <em>ambiguous specificity</em> for particular argument combinations; since calling a function with this argument combination would have resulted in a <code>MethodError</code> anyway, it is unnecessary to invalidate their &#40;nominal&#41; dependents.</p>
 <p>Another <a href="https://github.com/JuliaLang/julia/pull/36208">pair</a> of <a href="https://github.com/JuliaLang/julia/pull/35904">fundamental</a> changes led to subtle but significant alterations in how much Julia specializes poorly-inferred code to reflect the current state of the world. By making Julia less eager to specialize in such circumstances, huge swaths of the package ecosystem became more robust against invalidation.</p>
 <p>Finally, as demonstrated by the <code>applyf</code> example, the version that was well-inferred from the outset–when we passed it <code>container &#61; &#91;100&#93;</code>, a <code>Vector&#123;Int&#125;</code>–never needed to be invalidated; it was only those <code>MethodInstance</code>s compiled for <code>Vector&#123;Any&#125;</code> that needed updating.  So the last major component of how we&#39;ve reduced invalidations is to improve the inferrability of Julia&#39;s own code.  By recording and analyzing invalidations, we gained a much better understanding of where the weaknesses in Julia&#39;s own code were with respect to inferrability.  We used this information to improve the implementations of dozens of methods, and added type annotations in many more, to help Julia generate better code. You find many examples by searching for the <a href="https://github.com/JuliaLang/julia/pulls?q&#61;is&#37;3Apr&#43;label&#37;3Alatency&#43;is&#37;3Aclosed">latency tag</a> among closed pull requests.</p>
 <p>It&#39;s worth noting that the task of improving code is never finished, and this is true here as well.  In tackling this problem we ended up developing a number of new tools to analyze the source of invalidations and fix the corresponding inference problems.  We briefly touch on this final topic below.</p>
-<h2 id=tools_for_analyzing_and_fixing_invalidations ><a href="#tools_for_analyzing_and_fixing_invalidations">Tools for analyzing and fixing invalidations</a></h2>
+<h2 id="tools_for_analyzing_and_fixing_invalidations"><a href="#tools_for_analyzing_and_fixing_invalidations">Tools for analyzing and fixing invalidations</a></h2>
 <p>Recently, the <a href="https://github.com/timholy/SnoopCompile.jl">SnoopCompile</a> package gained the ability to analyze invalidations and help developers fix them. Because these tools will likely change over time, this blog post will only scratch the surface; people who want to help fix invalidations are encouraged to read <a href="https://timholy.github.io/SnoopCompile.jl/stable/snoopr/">SnoopCompile&#39;s documentation</a> for further detail. There is also a <a href="https://www.youtube.com/watch?v&#61;7VbXbI6OmYo">video</a> available with a live-session fixing a real-world invalidation, which might serve as a useful example.</p>
 <p>But to give you a taste of what this looks like, here are a couple of screenshots. These were taken in Julia&#39;s REPL, but you can also use these tools in <a href="https://www.julia-vscode.org/">vscode</a> or other environments.</p>
 <p>First, let&#39;s look at a simple way &#40;one that is not always precisely accurate, see SnoopCompile&#39;s documentation&#41; to collect data on a package:</p>
-<pre><code class=language-julia >using SnoopCompile
+<pre><code class="language-julia">using SnoopCompile
 trees &#61; invalidation_trees&#40;@snoopr using SIMD&#41;</code></pre>
 <p>which in the REPL looks like this:</p>
-<p><img src="/assets/blog/2020-invalidations/SIMD_invalidations.png" alt=snoopr_simd  /></p>
+<p><img src="/assets/blog/2020-invalidations/SIMD_invalidations.png" alt="snoopr_simd" /></p>
 <p>This prints out a list of method definitions &#40;shown in light purple&#41; that triggered invalidations &#40;shown in yellow&#41;. In very rough terms, you can tell how &quot;important&quot; these are by the number of children; the ones with more children are listed last. You can gain more insight into exactly what happened, and what the consequences were, with <code>ascend</code>:</p>
-<p><img src="/assets/blog/2020-invalidations/SIMD_ascend.png" alt=snoopr_simd_ascend  /></p>
+<p><img src="/assets/blog/2020-invalidations/SIMD_ascend.png" alt="snoopr_simd_ascend" /></p>
 <p>The <a href="https://timholy.github.io/SnoopCompile.jl/stable/snoopr/">SnoopCompile documentation</a> has information about how to navigate this interactive menu, and how to interpret the results to identify a fix, but in very rough terms what&#39;s happening is that <code>deserialize_msg</code> is creating a <a href="https://github.com/JuliaLang/julia/blob/5be3a544250a3c13de8d8ef2b434953005aee5c3/stdlib/Distributed/src/messages.jl#L26-L30"><code>Distributed.CallWaitMsg</code></a> with very poor <em>a priori</em> type information &#40;all arguments are inferred to be of type <code>Any</code>&#41;; since the <code>args</code> field of a <code>CallWaitMsg</code> must be a <code>Tuple</code>, and because inference doesn&#39;t know that the supplied argument is already a <code>Tuple</code>, it calls <code>convert&#40;Tuple, args&#41;</code> so as to ensure it can construct the <code>CallWaitMsg</code> object. But SIMD defines a new <code>convert&#40;Tuple, v::Vec&#41;</code> method which has greater specificity, and so loading the SIMD package triggers invalidation of everything that depends on the less-specific method <code>convert&#40;Tuple, ::Any&#41;</code>.</p>
 <p>As is usually the case, there are several ways to fix this: we could drop the <code>::Tuple</code> in the definition of <code>struct CallWaitMsg</code>, because there&#39;s no need to call <code>convert</code> if the object is already known to have the correct type &#40;which would be <code>Any</code> if we dropped the field type-specification, and <code>Any</code> is not restrictive&#41;.  Alternatively, we could keep the <code>::Tuple</code> in the type-specification, and use external knowledge that we have and assert that <code>args</code> is <em>already</em> a <code>Tuple</code> in <code>deserialize_msg</code> where it calls <code>CallWaitMsg</code>, thus informing Julia that it can afford to skip the call to <code>convert</code>. This is intended only as a taste of what&#39;s involved in fixing invalidations; more extensive descriptions are available in <a href="https://timholy.github.io/SnoopCompile.jl/stable/snoopr/">SnoopCompile&#39;s documentation</a> and the <a href="https://www.youtube.com/watch?v&#61;7VbXbI6OmYo">video</a>.</p>
 <p>But it also conveys an important point: most invalidations come from poorly-inferred code, so by fixing invalidations you&#39;re often improving quality in other ways.  Julia&#39;s <a href="https://docs.julialang.org/en/v1/manual/performance-tips/">performance tips</a> page has a wealth of good advice about avoiding non-inferable code, and in particular cases &#40;where you might know more about the types than inference is able to determine on its own&#41; you can help inference by adding type-assertions. Again, some of the recently-merged &quot;latency&quot; pull requests to Julia might serve as instructive examples.</p>
-<h2 id=summary ><a href="#summary">Summary</a></h2>
-<h3 id=impacts_of_progress_to_date ><a href="#impacts_of_progress_to_date">Impacts of progress to date</a></h3>
+<h2 id="summary"><a href="#summary">Summary</a></h2>
+<h3 id="impacts_of_progress_to_date"><a href="#impacts_of_progress_to_date">Impacts of progress to date</a></h3>
 <p>The cumulative impact of these and other changes over the course of the development &#40;so far&#41; of Julia 1.6 is noticeable. For example, on Julia 1.5 we have extra latencies to load the next package &#40;due to the loading code being invalidated&#41; and to execute already-compiled code if it gets invalidated by loading other packages:</p>
-<pre><code class=language-julia-repl >julia&gt; @time using Plots
+<pre><code class="language-julia-repl">julia&gt; @time using Plots
   7.252560 seconds &#40;13.27 M allocations: 792.701 MiB, 3.19&#37; gc time&#41;
 
 julia&gt; @time using Example
@@ -140,7 +334,7 @@ julia&gt; using SIMD
 julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
   5.724359 seconds &#40;16.36 M allocations: 825.491 MiB, 7.77&#37; gc time&#41;</code></pre>
 <p>In contrast, on the current development branch of Julia pre-1.6 &#40;commit 1c9c24170c53273832088431de99fe19247af172&#41;, we have</p>
-<pre><code class=language-julia-repl >julia&gt; @time using Plots
+<pre><code class="language-julia-repl">julia&gt; @time using Plots
   3.133783 seconds &#40;7.49 M allocations: 526.797 MiB, 6.90&#37; gc time&#41;
 
 julia&gt; @time using Example
@@ -158,22 +352,22 @@ julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
 <p>Perhaps the biggest mystery is, why is the first usage faster? There likely to be several contributions:</p>
 <ul>
 <li><p>improvements in compilation speed on Julia 1.6 &#40;a separate line of work worthy of its own blog post&#41;</p>
-
+</li>
 <li><p>with less invalidation, some Base code exploited by plotting may not need recompilation</p>
-
+</li>
 <li><p>with less invalidation, more <code>precompile</code> statements for Plots&#39; own internal methods can be used</p>
-
+</li>
 </ul>
 <p>As an example of the latter two, on Julia 1.5 the most expensive call to infer during the <code>display&#40;plot&#40;...&#41;&#41;</code> call &#40;which you can measure with SnoopCompile&#39;s <code>@snoopi</code> macro&#41; is <code>recipe_pipeline&#33;&#40;::Plots.Plot&#123;Plots.GRBackend&#125;, ::Dict&#123;Symbol,Any&#125;, ::Tuple&#123;Array&#123;Float64,1&#125;&#125;&#41;&#41;</code>, which by itself requires nearly 0.4s of inference time. Plot actually attempts to precompile this statement, but it can&#39;t benefit from the result because some of the code that this statement depends on gets invalidated by loading Plots. On Julia&#39;s master branch, this inference doesn&#39;t need to happen because the precompiled code is still valid.</p>
 <p>There&#39;s another way to get a more comprehensive look at the state of Julia and the progress since 1.5: since most invalidations come from poorly-inferred code, we can analyze all extant <code>MethodInstance</code>s and determine which ones have been inferred for &quot;problematic&quot; signatures &#40;e.g., <code>isequal&#40;::Int, ::Any&#41;</code> when we&#39;d prefer a concrete type for the second argument&#41;. Aside from counting them, it&#39;s also worth noting how many <em>other</em> <code>MethodInstance</code>s depend on these &quot;bad&quot; <code>MethodInstance</code>s and would therefore be invalidated if we happened to define the right &#40;or wrong&#41; new method.  Below is a histogram tallying the number of dependents for each problematic inferred signature, comparing Julia 1.5 &#40;top&#41; with the master branch &#40;bottom&#41;:</p>
-<p><img src="/assets/blog/2020-invalidations/invalidation_backedge_analysis.png" alt=backedges  /></p>
+<p><img src="/assets/blog/2020-invalidations/invalidation_backedge_analysis.png" alt="backedges" /></p>
 <p>The very large zero bin for the master branch indicates that many of the problematic signatures on Julia 1.5 do not even appear in <code>master</code>&#39;s precompiled code. This plot reveals extensive progress, but that tail suggests that the effort is not yet done.</p>
-<h3 id=outlook_for_the_future ><a href="#outlook_for_the_future">Outlook for the future</a></h3>
+<h3 id="outlook_for_the_future"><a href="#outlook_for_the_future">Outlook for the future</a></h3>
 <p>Julia&#39;s remarkable flexibility and outstanding code-generation open many new horizons. These advantages come with a few costs, and here we&#39;ve explored one of them, method invalidation. While Julia&#39;s core developers have been aware of its cost for a long time, we&#39;re only now starting to get tools to analyze it in a manner suitable for a larger population of users and developers. Because it&#39;s not been easy to measure previously, there are still numerous opportunities for improvement waiting to be discovered. In particular, while Base Julia and its standard libraries are well along the way to being &quot;protected&quot; from invalidation, the same may not be true of many packages. One might hope that the next period of Julia&#39;s development might see significant progress in getting packages to work together gracefully without inadvertently stomping on each other&#39;s toes.</p>
 <p></p>
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
@@ -181,7 +375,7 @@ julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -245,25 +439,25 @@ julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -272,53 +466,53 @@ julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -327,3 +521,9 @@ julia&gt; @time display&#40;plot&#40;rand&#40;5&#41;&#41;&#41;
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

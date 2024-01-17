@@ -1,39 +1,202 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Building GUIs with Julia, Tk, and Cairo, Part I</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Building GUIs with Julia, Tk, and Cairo, Part I"> <meta property="og:description" content=" Building GUIs with Julia, Tk, and Cairo, Part I | This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia.... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Building GUIs with Julia, Tk, and Cairo, Part I <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 23 May 2013 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"> <a href="http://holylab.wustl.edu">Timothy E. Holy</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/05/graphical-user-interfaces-part1.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia. Those following Julia development will know that plotting in Julia is still evolving, and one could therefore expect that it might be premature to build GUIs with Julia. My own recent experience has taught me that this expectation is wrong: compared with building GUIs in Matlab &#40;my only previous GUI-writing experience&#41;, Julia already offers a number of quite compelling advantages. We&#39;ll see some of these advantages on display below.</p> <p>We&#39;ll go through the highlights needed to create an image viewer GUI. Before getting into how to write this GUI, first let&#39;s play with it to get a sense for how it works. It&#39;s best if you just try these commands yourself, because it&#39;s difficult to capture things like interactivity with static text and pictures.</p> <p>You&#39;ll need the <code>ImageView</code> package:</p> <pre><code class=language-julia >Pkg.add&#40;&quot;ImageView&quot;&#41;</code></pre>
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>Building GUIs with Julia, Tk, and Cairo, Part I</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Building GUIs with Julia, Tk, and Cairo, Part I">
+<meta property="og:description" content=" Building GUIs with Julia, Tk, and Cairo, Part I | This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia.... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Building GUIs with Julia, Tk, and Cairo, Part I
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 23 May 2013 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;"> <a href="http://holylab.wustl.edu">Timothy E. Holy</a> </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/05/graphical-user-interfaces-part1.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>This is the first of two blog posts designed to walk users through the process of creating GUIs in Julia. Those following Julia development will know that plotting in Julia is still evolving, and one could therefore expect that it might be premature to build GUIs with Julia. My own recent experience has taught me that this expectation is wrong: compared with building GUIs in Matlab &#40;my only previous GUI-writing experience&#41;, Julia already offers a number of quite compelling advantages. We&#39;ll see some of these advantages on display below.</p>
+<p>We&#39;ll go through the highlights needed to create an image viewer GUI. Before getting into how to write this GUI, first let&#39;s play with it to get a sense for how it works. It&#39;s best if you just try these commands yourself, because it&#39;s difficult to capture things like interactivity with static text and pictures.</p>
+<p>You&#39;ll need the <code>ImageView</code> package:</p>
+<pre><code class="language-julia">Pkg.add&#40;&quot;ImageView&quot;&#41;</code></pre>
 <p>It&#39;s worth pointing out that this package is expected to evolve over time; however, if things have changed from what&#39;s described in this blog, try checking out the &quot;blog&quot; branch directly from the <a href="https://github.com/timholy/ImageView.jl">repository</a>. I should also point out that this package was developed on the author&#39;s Linux system, and it&#39;s possible that things may not work as well on other platforms.</p>
 <p>First let&#39;s try it with a photograph. Load one this way:</p>
-<pre><code class=language-julia >using Images
+<pre><code class="language-julia">using Images
 using ImageView
 img &#61; imread&#40;&quot;my_photo.jpg&quot;&#41;</code></pre>
 <p>Any typical image format should be fine, it doesn&#39;t have to be a jpg. Now display the image this way:</p>
-<pre><code class=language-julia >display&#40;img, pixelspacing &#61; &#91;1,1&#93;&#41;</code></pre>
+<pre><code class="language-julia">display&#40;img, pixelspacing &#61; &#91;1,1&#93;&#41;</code></pre>
 <p>The basic command to view the image is <code>display</code>. The optional <code>pixelspacing</code> input tells <code>display</code> that this image has a fixed aspect ratio, and that this needs to be honored when displaying the image. &#40;Alternatively, you could set <code>img&#91;&quot;pixelspacing&quot;&#93; &#61; &#91;1,1&#93;</code> and then you wouldn&#39;t have to tell this to the <code>display</code> function.&#41;</p>
 <p>You should get a window with your image:</p>
-<p><img src="/assets/blog/GUI_figures/photo1.jpg?raw&#61;true" alt=photo  /></p>
+<p><img src="/assets/blog/GUI_figures/photo1.jpg?raw&#61;true" alt="photo" /></p>
 <p>OK, nice. But we can start to have some fun if we resize the window, which causes the image to get bigger or smaller:</p>
-<p><img src="/assets/blog/GUI_figures/photo2.jpg?raw&#61;true" alt=photo  /></p>
+<p><img src="/assets/blog/GUI_figures/photo2.jpg?raw&#61;true" alt="photo" /></p>
 <p>Note the black perimeter; that&#39;s because we&#39;ve specified the aspect ratio through the <code>pixelspacing</code> input, and when the window doesn&#39;t have the same aspect ratio as the image you&#39;ll have a perimeter either horizontally or vertically. Try it without specifying <code>pixelspacing</code>, and you&#39;ll see that the image stretches to fill the window, but it looks distorted:</p>
-<pre><code class=language-julia >display&#40;img&#41;</code></pre>
-<p><img src="/assets/blog/GUI_figures/photo3.jpg?raw&#61;true" alt=photo  /></p>
+<pre><code class="language-julia">display&#40;img&#41;</code></pre>
+<p><img src="/assets/blog/GUI_figures/photo3.jpg?raw&#61;true" alt="photo" /></p>
 <p>&#40;This won&#39;t work if you&#39;ve already defined <code>&quot;pixelspacing&quot;</code> for <code>img</code>; if necessary, use <code>delete&#33;&#40;img, &quot;pixelspacing&quot;&#41;</code> to remove that setting.&#41;</p>
 <p>Next, click and drag somewhere inside the image. You&#39;ll see the typical rubberband selection, and once you let go the image display will zoom in on the selected region.</p>
-<p><img src="/assets/blog/GUI_figures/photo4.jpg?raw&#61;true" alt=photo  /> <img src="/assets/blog/GUI_figures/photo5.jpg?raw&#61;true" alt=photo  /></p>
+<p><img src="/assets/blog/GUI_figures/photo4.jpg?raw&#61;true" alt="photo" /> <img src="/assets/blog/GUI_figures/photo5.jpg?raw&#61;true" alt="photo" /></p>
 <p>Again, the aspect ratio of the display is preserved. Double-clicking on the image restores the display to full size.</p>
 <p>If you have a wheel mouse, zoom in again and scroll the wheel, which should cause the image to pan vertically. If you scroll while holding down Shift, it pans horizontally; hold down Ctrl and you affect the zoom setting. Note as you zoom via the mouse, the zoom stays focused around the mouse pointer location, making it easy to zoom in on some small feature simply by pointing your mouse at it and then Ctrl-scrolling.</p>
 <p>Long-time users of Matlab may note a number of nice features about this behavior:</p>
 <ul>
 <li><p>The resizing and panning is much smoother than Matlab&#39;s</p>
-
+</li>
 <li><p>Matlab doesn&#39;t expose modifier keys in conjunction with the wheel mouse, making it difficult to implement this degree of interactivity</p>
-
+</li>
 <li><p>In Matlab, zooming with the wheel mouse is always centered on the middle of the display, requiring you to alternate between zooming and panning to magnify a particular small region of your image or plot.</p>
-
+</li>
 </ul>
 <p>These already give a taste of some of the features we can achieve quite easily in Julia.</p>
 <p>However, there&#39;s more to this GUI than meets the eye. You can display the image upside-down with</p>
-<pre><code class=language-julia >display&#40;img, pixelspacing &#61; &#91;1,1&#93;, flipy&#61;true&#41;</code></pre>
+<pre><code class="language-julia">display&#40;img, pixelspacing &#61; &#91;1,1&#93;, flipy&#61;true&#41;</code></pre>
 <p>or switch the <code>x</code> and <code>y</code> axes with</p>
-<pre><code class=language-julia >display&#40;img, pixelspacing &#61; &#91;1,1&#93;, xy&#61;&#91;&quot;y&quot;,&quot;x&quot;&#93;&#41;</code></pre>
-<p><img src="/assets/blog/GUI_figures/photo6.jpg?raw&#61;true" alt=photo  /> <img src="/assets/blog/GUI_figures/photo7.jpg?raw&#61;true" alt=photo  /></p>
+<pre><code class="language-julia">display&#40;img, pixelspacing &#61; &#91;1,1&#93;, xy&#61;&#91;&quot;y&quot;,&quot;x&quot;&#93;&#41;</code></pre>
+<p><img src="/assets/blog/GUI_figures/photo6.jpg?raw&#61;true" alt="photo" /> <img src="/assets/blog/GUI_figures/photo7.jpg?raw&#61;true" alt="photo" /></p>
 <p>To experience the full functionality, you&#39;ll need a &quot;4D  image,&quot; a movie &#40;time sequence&#41; of 3D images. If you don&#39;t happen to have one lying around, you can create one via <code>include&#40;&quot;test/test4d.jl&quot;&#41;</code>, where <code>test</code> means the test directory in <code>ImageView</code>. &#40;Assuming you installed <code>ImageView</code> via the package manager, you can say <code>include&#40;joinpath&#40;Pkg.dir&#40;&#41;, &quot;ImageView&quot;, &quot;test&quot;, &quot;test4d.jl&quot;&#41;&#41;</code>.&#41; This creates a solid cone that changes color over time, again in the variable <code>img</code>. Then, type <code>display&#40;img&#41;</code>. You should see something like this:</p>
 <p><img src="/assets/blog/GUI_figures/display_GUI.jpg?raw&#61;true" alt="GUI snapshot" /></p>
 <p>The green circle is a &quot;slice&quot; from the cone. At the bottom of the window you&#39;ll see a number of buttons and our current location, <code>z&#61;1</code> and <code>t&#61;1</code>, which correspond to the base of the cone and the beginning of the movie, respectively. Click the upward-pointing green arrow, and you&#39;ll &quot;pan&quot; through the cone in the <code>z</code> dimension, making the circle smaller. You can go back with the downward-pointing green arrow, or step frame-by-frame with the black arrows. Next, clicking the &quot;play forward&quot; button moves forward in time, and you&#39;ll see the color change through gray to magenta. The black square is a stop button. You can, of course, type a particular <code>z</code>, <code>t</code> location into the entry boxes, or grab the sliders and move them.</p>
@@ -45,25 +208,25 @@ img &#61; imread&#40;&quot;my_photo.jpg&quot;&#41;</code></pre>
 <br />
 
 <p>By default, <code>display</code> will show you slices in the <code>xy</code>-plane. You might want to see a different set of slices from the 4d image:</p>
-<pre><code class=language-julia >display&#40;img, xy&#61;&#91;&quot;x&quot;,&quot;z&quot;&#93;&#41;</code></pre>
+<pre><code class="language-julia">display&#40;img, xy&#61;&#91;&quot;x&quot;,&quot;z&quot;&#93;&#41;</code></pre>
 <p>Initially you&#39;ll see nothing, but that&#39;s because this edge of the image is black. Type 151 into the <code>y:</code> entry box &#40;note its name has changed&#41; and hit enter, or move the &quot;y&quot; slider into the middle of its range; now you&#39;ll see the cone from the side.</p>
 <p><img src="/assets/blog/GUI_figures/display_GUI2.jpg?raw&#61;true" alt="GUI snapshot" /></p>
 <p>This GUI is also useful for &quot;plain movies&quot; &#40;2d images with time&#41;, in which case the <code>z</code> controls will be omitted and it will behave largely as a typical movie-player. Likewise, the <code>t</code> controls will be omitted for 3d images lacking a temporal component, making this a nice viewer for MRI scans.</p>
 <p>Again, we note a number of improvements over Matlab:</p>
 <ul>
 <li><p>When you resize the window, note that the controls keep their initial size, while the image fills the window. With some effort this behavior is possible to achieve in Matlab, but &#40;as you&#39;ll see later in these posts&#41; it&#39;s essentially trivial with Julia and Tk.</p>
-
+</li>
 <li><p>When we move the sliders, the display updates while we drag it, not just when we let go of the mouse button.</p>
-
+</li>
 <li><p>If you try this with a much larger 3d or 4d image, you may also notice that the display feels snappy and responsive in a way that&#39;s sometimes hard to achieve with Matlab.</p>
-
+</li>
 </ul>
 <p>Altogether advantages such as these combine to give a substantially more polished feel to GUI applications written in Julia.</p>
 <p>This completes our tour of the features of this GUI. Now let&#39;s go through a few of the highlights needed to create it. We&#39;ll tackle this in pieces; not only will this make it easier to learn, but it also illustrates how to build re-useable components. Let&#39;s start with the navigation frame.</p>
-<h2 id=first_steps_the_navigation_frame ><a href="#first_steps_the_navigation_frame">First steps: the navigation frame</a></h2>
+<h2 id="first_steps_the_navigation_frame"><a href="#first_steps_the_navigation_frame">First steps: the navigation frame</a></h2>
 <p>First, let me acknowledge that this GUI is built on the work of many people who have contributed to Julia&#39;s Cairo and Tk packages. For this step, we&#39;ll make particular use of John Verzani&#39;s contribution of a huge set of convenience wrappers for most of Tk&#39;s widget functionality. John wrote up a nice set of <a href="https://github.com/JuliaLang/Tk.jl/tree/master/examples">examples</a> that demonstrate many of the things you can do with it; this first installment is essentially just a &quot;longer&quot; example, and won&#39;t surprise anyone who has read his documentation.</p>
 <p>Let&#39;s create a couple of types to hold the data we&#39;ll need. We need a type that stores &quot;GUI state,&quot; which here consists of the currently-viewed location in the image and information needed to implement the &quot;play&quot; functionality:</p>
-<pre><code class=language-julia >type NavigationState
+<pre><code class="language-julia">type NavigationState
     # Dimensions:
     zmax::Int          # number of frames in z, set to 1 if only 2 spatial dims
     tmax::Int          # number of frames in t, set to 1 if only a single image
@@ -74,7 +237,7 @@ img &#61; imread&#40;&quot;my_photo.jpg&quot;&#41;</code></pre>
     fps::Float64       # playback speed in frames per second
 end</code></pre>
 <p>Next, let&#39;s create a type to hold &quot;handles&quot; to all the widgets:</p>
-<pre><code class=language-julia >type NavigationControls
+<pre><code class="language-julia">type NavigationControls
     stepup                            # z buttons...
     stepdown
     playup
@@ -94,7 +257,7 @@ end</code></pre>
 <p>It might not be strictly necessary to hold handles to all the widgets &#40;you could do everything with callbacks&#41;, but having them available is convenient. For example, if you don&#39;t like the icons I created, you can easily initialize the GUI and replace, using the handles, the icons with something better.</p>
 <p>We&#39;ll talk about initialization later; for now, assume that we have a variable <code>state</code> of type <code>NavigationState</code> that holds the current position in the &#40;possibly&#41; 4D image, and <code>ctrls</code> which contains a fully-initialized set of widget handles.</p>
 <p>Each button needs a callback function to be executed when it is clicked. Let&#39;s go through the functions for controlling <code>t</code>. First there is a general utility not tied to any button, but it affects many of the controls:</p>
-<pre><code class=language-julia >function updatet&#40;ctrls, state&#41;
+<pre><code class="language-julia">function updatet&#40;ctrls, state&#41;
     set_value&#40;ctrls.editt, string&#40;state.t&#41;&#41;
     set_value&#40;ctrls.scalet, state.t&#41;
     enableback &#61; state.t &gt; 1
@@ -106,14 +269,14 @@ end</code></pre>
 end</code></pre>
 <p>The first two lines synchronize the entry box and slider to the current value of <code>state.t</code>; the currently-selected time can change by many different mechanisms &#40;one of the buttons, typing into the entry box, or moving the slider&#41;, so we make <code>state.t</code> be the &quot;authoritative&quot; value and synchronize everything to it. The remaining lines of this function control which of the <code>t</code> navigation buttons are enabled &#40;if <code>t&#61;&#61;1</code>, we can&#39;t go any earlier in the movie, so we gray out the backwards buttons&#41;.</p>
 <p>A second utility function modifies <code>state.t</code>:</p>
-<pre><code class=language-julia >function incrementt&#40;inc, ctrls, state, showframe&#41;
+<pre><code class="language-julia">function incrementt&#40;inc, ctrls, state, showframe&#41;
     state.t &#43;&#61; inc
     updatet&#40;ctrls, state&#41;
     showframe&#40;state&#41;
 end</code></pre>
 <p>Note the call to <code>updatet</code> described above. The new part of this is the <code>showframe</code> function, whose job it is to display the image frame &#40;or any other visual information&#41; to the user. Typically, the actual <code>showframe</code> function will need additional information such as where to render the image, but you can provide this information using anonymous functions. We&#39;ll see how that works in the next installment; below we&#39;ll just create a simple &quot;stub&quot; function.</p>
 <p>Now we get to callbacks which we&#39;ll &quot;bind&quot; to the step and play buttons:</p>
-<pre><code class=language-julia >function stept&#40;inc, ctrls, state, showframe&#41;
+<pre><code class="language-julia">function stept&#40;inc, ctrls, state, showframe&#41;
     if 1 &lt;&#61; state.t&#43;inc &lt;&#61; state.tmax
         incrementt&#40;inc, ctrls, state, showframe&#41;
     else
@@ -131,14 +294,14 @@ function playt&#40;inc, ctrls, state, showframe&#41;
     start_timer&#40;state.timer, iround&#40;1000*dt&#41;, iround&#40;1000*dt&#41;&#41;
 end</code></pre>
 <p><code>stept&#40;&#41;</code> increments the <code>t</code> frame by the specified amount &#40;typically 1 or -1&#41;, while <code>playt&#40;&#41;</code> starts a timer that will call <code>stept</code> at regular intervals. The timer is stopped if play reaches the beginning or end of the movie. The <code>stop_playing&#33;</code> function checks to see whether we have an active timer, and if so stops it:</p>
-<pre><code class=language-julia >function stop_playing&#33;&#40;state::NavigationState&#41;
+<pre><code class="language-julia">function stop_playing&#33;&#40;state::NavigationState&#41;
     if &#33;is&#40;state.timer, nothing&#41;
         stop_timer&#40;state.timer&#41;
         state.timer &#61; nothing
     end
 end</code></pre>
 <p>An alternative way to handle playback without a timer would be in a loop, like this:</p>
-<pre><code class=language-julia >function stept&#40;inc, ctrls, state, showframe&#41;
+<pre><code class="language-julia">function stept&#40;inc, ctrls, state, showframe&#41;
     if 1 &lt;&#61; state.t&#43;inc &lt;&#61; state.tmax
         incrementt&#40;inc, ctrls, state, showframe&#41;
     end
@@ -154,7 +317,7 @@ function playt&#40;inc, ctrls, state, showframe&#41;
 end</code></pre>
 <p>With this version we would use a single Boolean value to signal whether there is active playback. A key point here is the call to <code>tcl_doevent&#40;&#41;</code>, which allows Tk to interrupt the execution of the loop to handle user interaction &#40;in this case, clicking the stop button&#41;. But with the timer that&#39;s not necessary, and moreover the timer gives us control over the speed of playback.</p>
 <p>Finally, there are callbacks for the entry and slider widgets:</p>
-<pre><code class=language-julia >function sett&#40;ctrls,state, showframe&#41;
+<pre><code class="language-julia">function sett&#40;ctrls,state, showframe&#41;
     tstr &#61; get_value&#40;ctrls.editt&#41;
     try
         val &#61; int&#40;tstr&#41;
@@ -174,46 +337,46 @@ end</code></pre>
 <p><code>sett</code> runs when the user types an entry into the edit box; if the user types in nonsense like &quot;foo&quot;, it will gracefully reset it to the current position.</p>
 <p>There&#39;s a complementary set of these functions for the <code>z</code> controls.</p>
 <p>These callbacks implement the functionality of this &quot;navigation&quot; GUI. The other main task is initialization. We won&#39;t cover this in gory detail &#40;you are invited to browse the code&#41;, but let&#39;s hit a few highlights.</p>
-<h4 id=creating_the_buttons ><a href="#creating_the_buttons">Creating the buttons</a></h4>
+<h4 id="creating_the_buttons"><a href="#creating_the_buttons">Creating the buttons</a></h4>
 <p>You can use image files &#40;e.g., .png files&#41; for your icons, but the ones here are created programmatically. To do this, specify two colors, the &quot;foreground&quot; and &quot;background&quot;, as strings. One also needs the <code>data</code> array &#40;of type <code>Bool</code>&#41; for the pixels that should be colored by the foreground color, and false for the ones to be set to the background. There&#39;s also the <code>mask</code> array, which can prevent the <code>data</code> array from taking effect in any pixels marked as false in the <code>mask</code>.</p>
 <p>Given suitable <code>data</code> and <code>mask</code> arrays &#40;here we just set the mask to <code>trues</code>&#41;, and color strings, we create the icon and assign it to a button like this:</p>
-<pre><code class=language-julia >icon &#61; Tk.image&#40;data, mask, &quot;gray70&quot;, &quot;black&quot;&#41;  # background&#61;gray70, foreground&#61;black
+<pre><code class="language-julia">icon &#61; Tk.image&#40;data, mask, &quot;gray70&quot;, &quot;black&quot;&#41;  # background&#61;gray70, foreground&#61;black
 ctrls.stop &#61; Button&#40;f, icon&#41;</code></pre>
 <p>Here <code>f</code> is the &quot;parent frame&quot; that the navigation controller will be rendered in. A frame is a container that organizes a collection of related GUI elements. Later we&#39;ll find out how to create one.</p>
-<h4 id=assigning_callbacks_to_widgets ><a href="#assigning_callbacks_to_widgets">Assigning callbacks to widgets</a></h4>
+<h4 id="assigning_callbacks_to_widgets"><a href="#assigning_callbacks_to_widgets">Assigning callbacks to widgets</a></h4>
 <p>The &quot;stop&quot; and &quot;play backwards&quot; buttons look like this:</p>
-<pre><code class=language-julia >bind&#40;ctrls.stop, &quot;command&quot;, path -&gt; stop_playing&#33;&#40;state&#41;&#41;
+<pre><code class="language-julia">bind&#40;ctrls.stop, &quot;command&quot;, path -&gt; stop_playing&#33;&#40;state&#41;&#41;
 bind&#40;ctrls.playback, &quot;command&quot;, path -&gt; playt&#40;-1, ctrls, state, showframe&#41;</code></pre>
 <p>The <code>path</code> input is generated by Tk/Tcl, but we don&#39;t have to use it. Instead, we use anonymous functions to pass the arguments relevant to this particular GUI instantiation. Note that these two buttons share <code>state</code>; that means that any changes made by one callback will have impact on the other.</p>
-<h4 id=placing_the_buttons_in_the_frame_layout_management ><a href="#placing_the_buttons_in_the_frame_layout_management">Placing the buttons in the frame &#40;layout management&#41;</a></h4>
+<h4 id="placing_the_buttons_in_the_frame_layout_management"><a href="#placing_the_buttons_in_the_frame_layout_management">Placing the buttons in the frame &#40;layout management&#41;</a></h4>
 <p>Here our layout needs are quite simple, but I recommend that you read the <a href="https://www.tkdocs.com/tutorial/concepts.html#geometry">excellent</a> <a href="https://www.tkdocs.com/tutorial/grid.html">tutorial</a> on Tk&#39;s <code>grid</code> layout engine. <code>grid</code> provides a great deal of functionality missing in Matlab, and in particular allows flexible and polished GUI behavior when resizing the window.</p>
 <p>We position the stop button this way:</p>
-<pre><code class=language-julia >grid&#40;ctrls.stop, 1, stopindex, padx&#61;3*pad, pady&#61;pad&#41;</code></pre>
+<pre><code class="language-julia">grid&#40;ctrls.stop, 1, stopindex, padx&#61;3*pad, pady&#61;pad&#41;</code></pre>
 <p>After the handle for the button itself, the next two inputs determine the row, column position of the widget. Here the column position is set using a variable &#40;an integer&#41; whose value will depend on whether the z controls are present. The <code>pad</code> settings just apply a bit of horizontal and vertical padding around the button.</p>
 <p>To position the slider widgets, we could do something like this:</p>
-<pre><code class=language-julia >ctrls.scalez &#61; Slider&#40;f, 1:state.zmax&#41;
+<pre><code class="language-julia">ctrls.scalez &#61; Slider&#40;f, 1:state.zmax&#41;
 grid&#40;ctrls.scalez, 2, start:stop, sticky&#61;&quot;we&quot;, padx&#61;pad&#41;</code></pre>
 <p>This positions them in row 2 of the frame&#39;s grid, and has them occupy the range of columns &#40;indicated by <code>start:stop</code>&#41; used by the button controls for the same <code>z</code> or <code>t</code> axis. The <code>sticky</code> setting means that it will stretch to fill from West to East &#40;left to right&#41;.</p>
 <p>In the main GUI we&#39;ll use one more feature of <code>grid</code>, so let&#39;s cover it now. This feature controls how regions of the window expand or shrink when the window is resized:</p>
-<pre><code class=language-julia >grid_rowconfigure&#40;win, 1, weight&#61;1&#41;
+<pre><code class="language-julia">grid_rowconfigure&#40;win, 1, weight&#61;1&#41;
 grid_columnconfigure&#40;win, 1, weight&#61;1&#41;</code></pre>
 <p>This says that row 1, column 1 will expand at a rate of <code>1</code> when the figure is made larger. You can set different weights for different GUI components. The default value is 0, indicating that it shouldn&#39;t expand at all. That&#39;s what we want for this navigation frame, so that the buttons keep their size when the window is resized. Larger weight values indicate that the given component should expand &#40;or shrink&#41; at faster rates.</p>
-<h3 id=putting_it_all_together_and_testing_it_out ><a href="#putting_it_all_together_and_testing_it_out">Putting it all together and testing it out</a></h3>
+<h3 id="putting_it_all_together_and_testing_it_out"><a href="#putting_it_all_together_and_testing_it_out">Putting it all together and testing it out</a></h3>
 <p>We&#39;ll place the navigation controls inside a Tk frame. Let&#39;s create one from the command line:</p>
-<pre><code class=language-julia >using Tk
+<pre><code class="language-julia">using Tk
 win &#61; Toplevel&#40;&#41;
 f &#61; Frame&#40;win&#41;
 pack&#40;f, expand&#61;true, fill&#61;&quot;both&quot;&#41;</code></pre>
 <p>The first three lines create the window and the frame. <code>pack</code> is an alternative layout engine to <code>grid</code>, and slightly more convenient when all you want is to place a single item so that it fills its container. &#40;You can mix <code>pack</code> and <code>grid</code> as long as they are operating on separate containers. Here we&#39;ll have a frame <code>pack</code>ed in the window, and the widgets will be <code>grid</code>ded inside the frame.&#41; After that fourth line, the window is rather tiny; the call to <code>pack</code> causes the frame to fill to expand the whole window, but at the moment the frame has no contents, so the window is as small as it can be.</p>
 <p><img src="/assets/blog/GUI_figures/navigation1.jpg?raw&#61;true" alt="GUI snapshot" /></p>
 <p>We need a <code>showframe</code> callback; for now let&#39;s create a very simple one that will help in testing:</p>
-<pre><code class=language-julia >showframe &#61; x -&gt; println&#40;&quot;showframe z&#61;&quot;, x.z, &quot;, t&#61;&quot;, x.t&#41;</code></pre>
+<pre><code class="language-julia">showframe &#61; x -&gt; println&#40;&quot;showframe z&#61;&quot;, x.z, &quot;, t&#61;&quot;, x.t&#41;</code></pre>
 <p>Next, load the GUI code &#40;<code>using ImageView.Navigation</code>&#41; and create the <code>NavigationState</code> and <code>NavigationControls</code> objects:</p>
-<pre><code class=language-julia >ctrls &#61; NavigationControls&#40;&#41;
+<pre><code class="language-julia">ctrls &#61; NavigationControls&#40;&#41;
 state &#61; NavigationState&#40;40, 1000, 2, 5&#41;</code></pre>
 <p>Here we&#39;ve set up a fake movie with 40 image slices in <code>z</code>, and 1000 image stacks in <code>t</code>.</p>
 <p>Finally, we initialize the widgets:</p>
-<pre><code class=language-julia >init_navigation&#33;&#40;f, ctrls, state, showframe&#41;</code></pre>
+<pre><code class="language-julia">init_navigation&#33;&#40;f, ctrls, state, showframe&#41;</code></pre>
 <p><img src="/assets/blog/GUI_figures/navigation2.jpg?raw&#61;true" alt="GUI snapshot" /></p>
 <p>Now when you click on buttons, or change the text in the entry boxes, you&#39;ll see the GUI in action. You can tell from the command line output, generated by <code>showframe</code>, what&#39;s happening internally:</p>
 <p><img src="/assets/blog/GUI_figures/navigation_repl.jpg?raw&#61;true" alt="GUI snapshot" /></p>
@@ -221,7 +384,7 @@ state &#61; NavigationState&#40;40, 1000, 2, 5&#41;</code></pre>
 <p>Not too hard, right? The next step is to render the image, which brings us into the domain of Cairo.</p>
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
@@ -229,7 +392,7 @@ state &#61; NavigationState&#40;40, 1000, 2, 5&#41;</code></pre>
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -293,25 +456,25 @@ state &#61; NavigationState&#40;40, 1000, 2, 5&#41;</code></pre>
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -320,53 +483,53 @@ state &#61; NavigationState&#40;40, 1000, 2, 5&#41;</code></pre>
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -375,3 +538,9 @@ state &#61; NavigationState&#40;40, 1000, 2, 5&#41;</code></pre>
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

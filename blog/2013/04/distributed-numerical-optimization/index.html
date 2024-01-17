@@ -1,9 +1,204 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/katex/katex.min.css"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Distributed Numerical Optimization</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Distributed Numerical Optimization"> <meta property="og:description" content=" Distributed Numerical Optimization | This post walks through the parallel computing functionality of Julia... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Distributed Numerical Optimization <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 5 April 2013 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://mlubin.github.io/">Miles Lubin</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/04/distributed-numerical-optimization.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>This post walks through the parallel computing functionality of Julia to implement an asynchronous parallel version of the classical <em>cutting-plane</em> algorithm for convex &#40;nonsmooth&#41; optimization, demonstrating the complete workflow including running on both Amazon EC2 and a large multicore server. I will quickly review the cutting-plane algorithm and will be focusing primarily on parallel computation patterns, so don&#39;t worry if you&#39;re not familiar with the optimization side of things.</p> <h3 id=cutting-plane_algorithm ><a href="#cutting-plane_algorithm">Cutting-plane algorithm</a></h3> <p>The cutting-plane algorithm is a method for solving the optimization problem</p> <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo><mi>min</mi><mo>⁡</mo></mo><mrow><mi>x</mi><mo>∈</mo><msup><mi mathvariant=double-struck >R</mi><mi>d</mi></msup></mrow></munder><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>f</mi><mi>i</mi></msub><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">\min_{x \in \mathbb R^d} \sum_{i=1}^n f_i(x)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.66786em;"><span style="top:-2.28658em;margin-left:0em;"><span class=pstrut  style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mathbb mtight">R</span><span class=msupsub ><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.7820285714285713em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class=pstrut  style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3em;"><span class=pstrut  style="height:3em;"></span><span><span class=mop >min</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.8407899999999999em;"><span></span></span></span></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class=pstrut  style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class=pstrut  style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class=pstrut  style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:1.277669em;"><span></span></span></span></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span></span> <p>where the functions <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> are convex but not necessarily differentiable. The absolute value function <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant=normal >∣</mi><mi>x</mi><mi mathvariant=normal >∣</mi></mrow><annotation encoding="application/x-tex">|x| </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class=mord >∣</span><span class="mord mathdefault">x</span><span class=mord >∣</span></span></span></span> and the 1-norm <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant=normal >∣</mi><mi mathvariant=normal >∣</mi><mi>x</mi><mi mathvariant=normal >∣</mi><msub><mi mathvariant=normal >∣</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex"> ||x|| _ 1 </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class=mord >∣</span><span class=mord >∣</span><span class="mord mathdefault">x</span><span class=mord >∣</span><span class=mord ><span class=mord >∣</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> are typical examples. Important applications also arise from <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian relaxation</a>. The idea of the algorithm is to approximate the functions <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> with piecewise linear models <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex"> m_i </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.58056em;vertical-align:-0.15em;"></span><span class=mord ><span class="mord mathdefault">m</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> which are built up from information obtained by evaluating <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex"> f_i </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> at different points. We iteratively minimize over the models to generate candidate solution points.</p> <p>We can state the algorithm as</p> <ol> <li><p>Choose starting point <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex"> x </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>.</p> <li><p>For <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo separator=true >,</mo><mo>…</mo><mo separator=true >,</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i = 1,\ldots,n</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class=mord >1</span><span class=mpunct >,</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=minner >…</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mpunct >,</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span></span></span></span>, evaluate <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">f_i(x) </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span> and update corresponding model <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex"> m_i </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.58056em;vertical-align:-0.15em;"></span><span class=mord ><span class="mord mathdefault">m</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</p> <li><p>Let the next candidate <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex"> x </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> be the minimizer of <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>m</mi><mi>i</mi></msub><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex"> \sum_{i=1}^n m_i(x) </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1.104002em;vertical-align:-0.29971000000000003em;"></span><span class=mop ><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mord ><span class="mord mathdefault">m</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span>.</p> <li><p>If not converged, goto step 2.</p> </ol> <p>If it is costly to evaluate <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex"> f_i(x) </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span>, then the algorithm is naturally parallelizable at step 2. The minimization in step 3 can be computed by solving a linear optimization problem, which is usually very fast. &#40;Let me point out here that Julia has interfaces to linear programming and other optimization solvers under <a href="http://www.juliaopt.org/">JuliaOpt</a>.</p> <p>Abstracting the math, we can write the algorithm using the following Julia code.</p> <pre><code class=language-julia ># functions initialize, isconverged, solvesubproblem, and process implemented elsewhere
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+   <link rel="stylesheet" href="/libs/katex/katex.min.css">
+      
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>Distributed Numerical Optimization</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Distributed Numerical Optimization">
+<meta property="og:description" content=" Distributed Numerical Optimization | This post walks through the parallel computing functionality of Julia... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Distributed Numerical Optimization
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 5 April 2013 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;"><a href="https://mlubin.github.io/">Miles Lubin</a> </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/04/distributed-numerical-optimization.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>This post walks through the parallel computing functionality of Julia to implement an asynchronous parallel version of the classical <em>cutting-plane</em> algorithm for convex &#40;nonsmooth&#41; optimization, demonstrating the complete workflow including running on both Amazon EC2 and a large multicore server. I will quickly review the cutting-plane algorithm and will be focusing primarily on parallel computation patterns, so don&#39;t worry if you&#39;re not familiar with the optimization side of things.</p>
+<h3 id="cutting-plane_algorithm"><a href="#cutting-plane_algorithm">Cutting-plane algorithm</a></h3>
+<p>The cutting-plane algorithm is a method for solving the optimization problem</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo><mi>min</mi><mo>⁡</mo></mo><mrow><mi>x</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mi>d</mi></msup></mrow></munder><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\min_{x \in \mathbb R^d} \sum_{i=1}^n f_i(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-2.28658em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mathbb mtight">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7820285714285713em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8407899999999999em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></span>
+<p>where the functions <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> are convex but not necessarily differentiable. The absolute value function <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi>x</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">|x| </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mord">∣</span></span></span></span> and the 1-norm <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mi mathvariant="normal">∣</mi><msub><mi mathvariant="normal">∣</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex"> ||x|| _ 1 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mord">∣</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> are typical examples. Important applications also arise from <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian relaxation</a>. The idea of the algorithm is to approximate the functions <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> with piecewise linear models <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex"> m_i </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> which are built up from information obtained by evaluating <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex"> f_i </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> at different points. We iteratively minimize over the models to generate candidate solution points.</p>
+<p>We can state the algorithm as</p>
+<ol>
+<li><p>Choose starting point <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex"> x </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>.</p>
+</li>
+<li><p>For <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i = 1,\ldots,n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span></span></span></span>, evaluate <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_i(x) </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> and update corresponding model <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex"> m_i </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</p>
+</li>
+<li><p>Let the next candidate <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex"> x </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> be the minimizer of <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>m</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> \sum_{i=1}^n m_i(x) </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.104002em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span>.</p>
+</li>
+<li><p>If not converged, goto step 2.</p>
+</li>
+</ol>
+<p>If it is costly to evaluate <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> f_i(x) </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span>, then the algorithm is naturally parallelizable at step 2. The minimization in step 3 can be computed by solving a linear optimization problem, which is usually very fast. &#40;Let me point out here that Julia has interfaces to linear programming and other optimization solvers under <a href="http://www.juliaopt.org/">JuliaOpt</a>.</p>
+<p>Abstracting the math, we can write the algorithm using the following Julia code.</p>
+<pre><code class="language-julia"># functions initialize, isconverged, solvesubproblem, and process implemented elsewhere
 state, subproblems &#61; initialize&#40;&#41;
 while &#33;isconverged&#40;state&#41;
     results &#61; map&#40;solvesubproblem,subproblems&#41;
     state, subproblems &#61; process&#40;state, results&#41;
-end</code></pre> <p>The function <code>solvesubproblem</code> corresponds to evaluating <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">f_i(x)</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class=mord ><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class=msupsub ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class=pstrut  style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.15em;"><span></span></span></span></span></span></span><span class=mopen >(</span><span class="mord mathdefault">x</span><span class=mclose >)</span></span></span></span> for a given <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex"> i </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> and <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex"> x </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> &#40;the elements of <code>subproblems</code> could be tuples <code>&#40;i,x&#41;</code>&#41;. The function <code>process</code> corresponds to minimizing the model in step 3, and it produces a new state and a new set of subproblems to solve.</p> <p>Note that the algorithm looks much like a map-reduce that would be easy to parallelize using many existing frameworks. Indeed, in Julia we can simply replace <code>map</code> with <code>pmap</code> &#40;parallel map&#41;. Let&#39;s consider a twist that makes the parallelism not so straightforward.</p> <h3 id=asynchronous_variant ><a href="#asynchronous_variant">Asynchronous variant</a></h3> <p>Variability in the time taken by the <code>solvesubproblem</code> function can lead to load imbalance and limit parallel efficiency as workers sit idle waiting for new tasks. Such variability arises naturally if <code>solvesubproblem</code> itself requires solving a optimization problem, or if the workers and network are shared, as is often the case with cloud computing.</p> <p>We can consider a new variant of the cutting-plane algorithm to address this issue. The key point is</p> <ul> <li><p>When proportion <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>α</mi><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0 &lt; \alpha \le 1 </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.68354em;vertical-align:-0.0391em;"></span><span class=mord >0</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >&lt;</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >≤</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.64444em;vertical-align:0em;"></span><span class=mord >1</span></span></span></span> of subproblems for a given candidate have been solved, generate a new candidate and corresponding set of subproblems by using whatever information is presently available.</p> </ul> <p>In other words, we generate new tasks to feed to workers without needing to wait for all current tasks to complete, making the algorithm asynchronous. The algorithm remains convergent, although the total number of iterations may increase. For more details, see <a href="https://dx.doi.org/10.1023/A:1021858008222">this paper</a> by Jeff Linderoth and Stephen Wright.</p> <p>By introducing asynchronicity we can no longer use a nice black-box <code>pmap</code> function and have to dig deeper into the parallel implementation. Fortunately, this is easy to do in Julia.</p> <h3 id=parallel_implementation_in_julia ><a href="#parallel_implementation_in_julia">Parallel implementation in Julia</a></h3> <p>Julia implements distributed-memory parallelism based on one-sided message passing, where process push work onto others &#40;via <code>remotecall</code>&#41; and the results are retrieved &#40;via <code>fetch</code>&#41; by the process which requires them. Macros such as <code>@spawn</code> and <code>@parallel</code> provide pretty syntax around this low-level functionality. This model of parallelism is very different from the typical SIMD style of MPI. Both approaches are useful in different contexts, and I expect an MPI wrapper for Julia will appear in the future &#40;see also <a href="https://github.com/lcw/julia-mpi">here</a>&#41;.</p> <p>Reading the <a href="https://docs.julialang.org/en/v1/manual/parallel-computing/#Parallel-Computing-1">manual</a> on parallel computing is highly recommended, and I won&#39;t try to reproduce it in this post. Instead, we&#39;ll dig into and extend one of the examples it presents.</p> <p>The implementation of <code>pmap</code> in Julia is</p> <pre><code class=language-julia >function pmap&#40;f, lst&#41;
+end</code></pre>
+<p>The function <code>solvesubproblem</code> corresponds to evaluating <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_i(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> for a given <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex"> i </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex"> x </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> &#40;the elements of <code>subproblems</code> could be tuples <code>&#40;i,x&#41;</code>&#41;. The function <code>process</code> corresponds to minimizing the model in step 3, and it produces a new state and a new set of subproblems to solve.</p>
+<p>Note that the algorithm looks much like a map-reduce that would be easy to parallelize using many existing frameworks. Indeed, in Julia we can simply replace <code>map</code> with <code>pmap</code> &#40;parallel map&#41;. Let&#39;s consider a twist that makes the parallelism not so straightforward.</p>
+<h3 id="asynchronous_variant"><a href="#asynchronous_variant">Asynchronous variant</a></h3>
+<p>Variability in the time taken by the <code>solvesubproblem</code> function can lead to load imbalance and limit parallel efficiency as workers sit idle waiting for new tasks. Such variability arises naturally if <code>solvesubproblem</code> itself requires solving a optimization problem, or if the workers and network are shared, as is often the case with cloud computing.</p>
+<p>We can consider a new variant of the cutting-plane algorithm to address this issue. The key point is</p>
+<ul>
+<li><p>When proportion <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>α</mi><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0 &lt; \alpha \le 1 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> of subproblems for a given candidate have been solved, generate a new candidate and corresponding set of subproblems by using whatever information is presently available.</p>
+</li>
+</ul>
+<p>In other words, we generate new tasks to feed to workers without needing to wait for all current tasks to complete, making the algorithm asynchronous. The algorithm remains convergent, although the total number of iterations may increase. For more details, see <a href="https://dx.doi.org/10.1023/A:1021858008222">this paper</a> by Jeff Linderoth and Stephen Wright.</p>
+<p>By introducing asynchronicity we can no longer use a nice black-box <code>pmap</code> function and have to dig deeper into the parallel implementation. Fortunately, this is easy to do in Julia.</p>
+<h3 id="parallel_implementation_in_julia"><a href="#parallel_implementation_in_julia">Parallel implementation in Julia</a></h3>
+<p>Julia implements distributed-memory parallelism based on one-sided message passing, where process push work onto others &#40;via <code>remotecall</code>&#41; and the results are retrieved &#40;via <code>fetch</code>&#41; by the process which requires them. Macros such as <code>@spawn</code> and <code>@parallel</code> provide pretty syntax around this low-level functionality.  This model of parallelism is very different from the typical SIMD style of MPI. Both approaches are useful in different contexts, and I expect an MPI wrapper for Julia will appear in the future &#40;see also <a href="https://github.com/lcw/julia-mpi">here</a>&#41;.</p>
+<p>Reading the <a href="https://docs.julialang.org/en/v1/manual/parallel-computing/#Parallel-Computing-1">manual</a> on parallel computing is highly recommended, and I won&#39;t try to reproduce it in this post. Instead, we&#39;ll dig into and extend one of the examples it presents.</p>
+<p>The implementation of <code>pmap</code> in Julia is</p>
+<pre><code class="language-julia">function pmap&#40;f, lst&#41;
     np &#61; nprocs&#40;&#41;  # determine the number of processors available
     n &#61; length&#40;lst&#41;
     results &#61; cell&#40;n&#41;
@@ -27,7 +222,10 @@ end</code></pre> <p>The function <code>solvesubproblem</code> corresponds to eva
         end
     end
     results
-end</code></pre> <p>On first sight, this code is not particularly intuitive. The <code>@spawnlocal</code> macro creates a <a href="https://docs.julialang.org/en/v1/base/parallel/#Tasks">task</a> on the <em>master process</em> &#40;e.g. process 1&#41;. Each task feeds work to a corresponding worker; the call <code>remotecall_fetch&#40;p, f, lst&#91;idx&#93;&#41;</code> function calls <code>f</code> on process <code>p</code> and returns the result when finished. Tasks are uninterruptible and only surrender control at specific points such as <code>remotecall_fetch</code>. Tasks cannot directly modify variables from the enclosing scope, but the same effect can be achieved by using the <code>next_idx</code> function to access and mutate <code>i</code>. <em>The task idiom functions in place of using a loop to poll for results from each worker process.</em></p> <p>Implementing our asynchronous algorithm is not much more than a modification of the above code:</p> <pre><code class=language-julia ># given constants n and 0 &lt; alpha &lt;&#61; 1
+end</code></pre>
+<p>On first sight, this code is not particularly intuitive. The <code>@spawnlocal</code> macro creates a <a href="https://docs.julialang.org/en/v1/base/parallel/#Tasks">task</a> on the <em>master process</em> &#40;e.g. process 1&#41;. Each task feeds work to a corresponding worker; the call <code>remotecall_fetch&#40;p, f, lst&#91;idx&#93;&#41;</code> function calls <code>f</code> on process <code>p</code> and returns the result when finished. Tasks are uninterruptible and only surrender control at specific points such as <code>remotecall_fetch</code>. Tasks cannot directly modify variables from the enclosing scope, but the same effect can be achieved by using the <code>next_idx</code> function to access and mutate <code>i</code>. <em>The task idiom functions in place of using a loop to poll for results from each worker process.</em></p>
+<p>Implementing our asynchronous algorithm is not much more than a modification of the above code:</p>
+<pre><code class="language-julia"># given constants n and 0 &lt; alpha &lt;&#61; 1
 # functions initialize and solvesubproblem defined elsewhere
 np &#61; nprocs&#40;&#41;
 state, subproblems &#61; initialize&#40;&#41;
@@ -70,61 +268,68 @@ end
             end
         end
     end
-end</code></pre> <p>where <code>state</code> is an instance of a type defined as</p> <pre><code class=language-julia >type State
+end</code></pre>
+<p>where <code>state</code> is an instance of a type defined as</p>
+<pre><code class="language-julia">type State
     didtrigger::Vector&#123;Bool&#125;
     numback::Vector&#123;Int&#125;
     ...
-end</code></pre> <p>There is little difference in the structure of the code inside the <code>@sync</code> blocks, and the asynchronous logic is encapsulated in the local <code>updatemodel</code> function which conditionally generates new subproblems. A strength of Julia is that functions like <code>pmap</code> are implemented in Julia itself, so that it is particularly straightforward to make modifications like this.</p> <h3 id=running_it ><a href="#running_it">Running it</a></h3> <p>Now for the fun part. The complete cutting-plane algorithm &#40;along with additional variants&#41; is implemented in <a href="https://github.com/mlubin/JuliaBenders">JuliaBenders</a>. The code is specialized for <a href="https://en.wikipedia.org/wiki/Stochastic_programming">stochastic programming</a> where the cutting-plane algorithm is known as the <a href="http://www.springerreference.com/docs/html/chapterdbid/72429.html">L-shaped method</a> or Benders decomposition and is used to decompose the solution of large linear optimization problems. Here, <code>solvesubproblem</code> entails solving a relatively small linear optimization problem. Test instances are taken from <a href="https://dx.doi.org/10.1023/A:1021858008222">the previously mentioned paper</a>.</p> <p>We&#39;ll first run on a large multicore server. The <code>runals.jl</code> &#40;asynchronous L-shaped&#41; file contains the algorithm we&#39;ll use. Its usage is</p> <pre><code class=language-bash >julia runals.jl &#91;data source&#93; &#91;num subproblems&#93; &#91;async param&#93; &#91;block size&#93;</code></pre>
-<p>where <code>&#91;num subproblems&#93;</code> is the <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> as above and <code>&#91;async param&#93;</code> is the proportion <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>. By setting <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\alpha = 1</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.64444em;vertical-align:0em;"></span><span class=mord >1</span></span></span></span> we obtain the synchronous algorithm. For the asynchronous version we will take <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>0.6</mn></mrow><annotation encoding="application/x-tex">\alpha =
-0.6</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.64444em;vertical-align:0em;"></span><span class=mord >0</span><span class=mord >.</span><span class=mord >6</span></span></span></span>. The <code>&#91;block size&#93;</code> parameter controls how many subproblems are sent to a worker at once &#40;in the previous code, this value was always 1&#41;. We will use 4000 subproblems in our experiments.</p>
+end</code></pre>
+<p>There is little difference in the structure of the code inside the <code>@sync</code> blocks, and the asynchronous logic is encapsulated in the local <code>updatemodel</code> function which conditionally generates new subproblems. A strength of Julia is that functions like <code>pmap</code> are implemented in Julia itself, so that it is particularly straightforward to make modifications like this.</p>
+<h3 id="running_it"><a href="#running_it">Running it</a></h3>
+<p>Now for the fun part. The complete cutting-plane algorithm &#40;along with additional variants&#41; is implemented in <a href="https://github.com/mlubin/JuliaBenders">JuliaBenders</a>. The code is specialized for <a href="https://en.wikipedia.org/wiki/Stochastic_programming">stochastic programming</a> where the cutting-plane algorithm is known as the <a href="http://www.springerreference.com/docs/html/chapterdbid/72429.html">L-shaped method</a> or Benders decomposition and is used to decompose the solution of large linear optimization problems. Here, <code>solvesubproblem</code> entails solving a relatively small linear optimization problem. Test instances are taken from <a href="https://dx.doi.org/10.1023/A:1021858008222">the previously mentioned paper</a>.</p>
+<p>We&#39;ll first run on a large multicore server. The <code>runals.jl</code> &#40;asynchronous L-shaped&#41; file contains the algorithm we&#39;ll use. Its usage is</p>
+<pre><code class="language-bash">julia runals.jl &#91;data source&#93; &#91;num subproblems&#93; &#91;async param&#93; &#91;block size&#93;</code></pre>
+<p>where <code>&#91;num subproblems&#93;</code> is the <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> as above and <code>&#91;async param&#93;</code> is the proportion <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>. By setting <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\alpha = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> we obtain the synchronous algorithm. For the asynchronous version we will take <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>0.6</mn></mrow><annotation encoding="application/x-tex">\alpha =
+0.6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span></span></span></span>. The <code>&#91;block size&#93;</code> parameter controls how many subproblems are sent to a worker at once &#40;in the previous code, this value was always 1&#41;. We will use 4000 subproblems in our experiments.</p>
 <p>To run multiple Julia processes on a shared-memory machine, we pass the <code>-p N</code> option to the <code>julia</code> executable, which will start up <code>N</code> system processes. To execute the asynchronous version with 10 workers, we run</p>
-<pre><code class=language-bash >julia -p 12 runals.jl Data/storm 4000 0.6 30</code></pre>
+<pre><code class="language-bash">julia -p 12 runals.jl Data/storm 4000 0.6 30</code></pre>
 <p>Note that we start 12 processes. These are the 10 workers, the master &#40;which distributes tasks&#41;, and another process to perform the master&#39;s computations &#40;an additional refinement which was not described above&#41;. Results from various runs are presented in the table below.</p>
 
-<table style="text-align:right;margin-left:auto;margin-right:auto" cellspacing=5 >
+<table style="text-align:right;margin-left:auto;margin-right:auto" cellspacing="5">
 <tr style="text-align:center">
-	<td> 
-	<td colspan=2  style="border-bottom-style:solid;border-bottom-width:2px">Synchronous
-	<td colspan=2  style="border-bottom-style:solid;border-bottom-width:2px">Asynchronous
-
+	<td> </td>
+	<td colspan="2" style="border-bottom-style:solid;border-bottom-width:2px">Synchronous</td>
+	<td colspan="2" style="border-bottom-style:solid;border-bottom-width:2px">Asynchronous</td>
+</tr>
 <tr style="text-align:center">
-	<td style="border-bottom-style:solid;border-bottom-width:2px">No. Workers
-	<td style="border-bottom-style:solid;border-bottom-width:2px">Speed
+	<td style="border-bottom-style:solid;border-bottom-width:2px">No. Workers</td>
+	<td style="border-bottom-style:solid;border-bottom-width:2px">Speed</td>
 	<td style="border-bottom-style:solid;border-bottom-width:2px">Efficiency
-	<td style="border-bottom-style:solid;border-bottom-width:2px">Speed
+	<td style="border-bottom-style:solid;border-bottom-width:2px">Speed</td>
 	<td style="border-bottom-style:solid;border-bottom-width:2px">Efficiency
-
+</td></td></tr>
 <tr>
-	<td style="text-align:center">10
-	<td>154
-	<td>Baseline
-	<td>166
-	<td>Baseline
-
+	<td style="text-align:center">10</td>
+	<td>154</td>
+	<td>Baseline</td>
+	<td>166</td>
+	<td>Baseline</td>
+</tr>
 <tr>
-	<td style="text-align:center">20
-	<td>309
-	<td>100.3%
-	<td>348
-	<td>105%
-
+	<td style="text-align:center">20</td>
+	<td>309</td>
+	<td>100.3%</td>
+	<td>348</td>
+	<td>105%</td>
+</tr>
 <tr>
-	<td style="text-align:center">40
-	<td>517
-	<td>84%
-	<td>654
-	<td>98%
-
+	<td style="text-align:center">40</td>
+	<td>517</td>
+	<td>84%</td>
+	<td>654</td>
+	<td>98%</td>
+</tr>
 <tr>
-	<td style="text-align:center">60
-	<td>674
-	<td>73%
-	<td>918
-	<td>92%
-
+	<td style="text-align:center">60</td>
+	<td>674</td>
+	<td>73%</td>
+	<td>918</td>
+	<td>92%</td>
+</tr>
 </table>
 
-<p class=caption  style="text-align:center"><b>Table:</b>
+<p class="caption" style="text-align:center"><b>Table:</b>
 Results on a shared-memory 8x Xeon E7-8850 server. Workers correspond to
 individual cores. Speed is the rate of subproblems solved per second. Efficiency
 is calculated as the percent of ideal parallel speedup obtained. The superlinear
@@ -134,60 +339,60 @@ scaling observed with 20 workers is likely a system artifact.
 <p>There are a few more hoops to jump through in order to run on EC2. First we must build a system image &#40;AMI&#41; with Julia installed. Julia connects to workers over ssh, so I found it useful to put my EC2 ssh key on the AMI and also set <code>StrictHostKeyChecking no</code> in <code>/etc/ssh/ssh_config</code> to disable the authenticity prompt when connecting to new workers. Someone will likely correct me on if this is the right approach.</p>
 <p>Assuming we have an AMI in place, we can fire up the instances. I used an m3.xlarge instance for the master and m1.medium instances for the workers. &#40;Note: you can save a lot of money by using the spot market.&#41;</p>
 <p>To add remote workers on startup, Julia accepts a file with a list of host names through the <code>--machinefile</code> option. We can generate this easily enough by using the EC2 API Tools &#40;Ubuntu package <code>ec2-api-tools</code>&#41; with the command</p>
-<pre><code class=language-julia >ec2-describe-instances | grep running | awk &#39;&#123; print &#36;5; &#125;&#39; &gt; mfile</code></pre>
+<pre><code class="language-julia">ec2-describe-instances | grep running | awk &#39;&#123; print &#36;5; &#125;&#39; &gt; mfile</code></pre>
 <p>On the master instance we can then run</p>
-<pre><code class=language-julia >julia --machinefile mfile runatr.jl Data/storm 4000 0.6 30</code></pre>
+<pre><code class="language-julia">julia --machinefile mfile runatr.jl Data/storm 4000 0.6 30</code></pre>
 <p>Results from various runs are presented in the table below.</p>
 
-<table style="text-align:right;margin-left:auto;margin-right:auto" cellspacing=5 >
+<table style="text-align:right;margin-left:auto;margin-right:auto" cellspacing="5">
 <tr style="text-align:center">
-	<td> 
-	<td colspan=2  style="border-bottom-style:solid;border-bottom-width:2px">Synchronous
-	<td colspan=2  style="border-bottom-style:solid;border-bottom-width:2px">Asynchronous
-
+	<td> </td>
+	<td colspan="2" style="border-bottom-style:solid;border-bottom-width:2px">Synchronous</td>
+	<td colspan="2" style="border-bottom-style:solid;border-bottom-width:2px">Asynchronous</td>
+</tr>
 <tr style="text-align:center">
-	<td style="border-bottom-style:solid;border-bottom-width:2px">No. Workers
-	<td style="border-bottom-style:solid;border-bottom-width:2px">Speed
+	<td style="border-bottom-style:solid;border-bottom-width:2px">No. Workers</td>
+	<td style="border-bottom-style:solid;border-bottom-width:2px">Speed</td>
 	<td style="border-bottom-style:solid;border-bottom-width:2px">Efficiency
-	<td style="border-bottom-style:solid;border-bottom-width:2px">Speed
+	<td style="border-bottom-style:solid;border-bottom-width:2px">Speed</td>
 	<td style="border-bottom-style:solid;border-bottom-width:2px">Efficiency
-
+</td></td></tr>
 <tr>
-	<td style="text-align:center">10
-	<td>149
-	<td>Baseline
-	<td>151
-	<td>Baseline
-
+	<td style="text-align:center">10</td>
+	<td>149</td>
+	<td>Baseline</td>
+	<td>151</td>
+	<td>Baseline</td>
+</tr>
 <tr>
-	<td style="text-align:center">20
-	<td>289
-	<td>97%
-	<td>301
-	<td>99.7%
-
+	<td style="text-align:center">20</td>
+	<td>289</td>
+	<td>97%</td>
+	<td>301</td>
+	<td>99.7%</td>
+</tr>
 <tr>
-	<td style="text-align:center">40
-	<td>532
-	<td>89%
-	<td>602
-	<td>99.5%
-
+	<td style="text-align:center">40</td>
+	<td>532</td>
+	<td>89%</td>
+	<td>602</td>
+	<td>99.5%</td>
+</tr>
 </table>
 
-<p class=caption  style="text-align:center"><b>Table:</b>
+<p class="caption" style="text-align:center"><b>Table:</b>
 Results on Amazon EC2. Workers correspond to individual m1.medium instances. The
 master process is run on an m3.xlarge instance.
 </p>
 
 <p>On both architectures the asynchronous version solves subproblems at a higher rate and has significantly better parallel efficiency. Scaling is better on EC2 than on the shared-memory server likely because the subproblem calculation is memory bound, and so performance is better on the distributed-memory architecture. Anyway, with Julia we can easily experiment on both.</p>
-<h3 id=further_reading ><a href="#further_reading">Further reading</a></h3>
+<h3 id="further_reading"><a href="#further_reading">Further reading</a></h3>
 <p>A more detailed <a href="https://github.com/JuliaLang/julia-tutorial/blob/master/NumericalOptimization/tutorial.pdf?raw&#61;true">tutorial</a> was prepared for the Julia <a href="https://github.com/JuliaLang/julia-tutorial">IAP session</a> at MIT in January 2013.</p>
-<a rel=license  href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="padding-left:0;width:10%;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="https://purl.org/dc/terms/" property="dct:title">Distributed Numerical Optimization</span> by <span xmlns:cc="https://creativecommons.org/ns#" property="cc:attributionName">Miles Lubin</span> is licensed under a <a rel=license  href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+<a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="padding-left:0;width:10%;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="https://purl.org/dc/terms/" property="dct:title">Distributed Numerical Optimization</span> by <span xmlns:cc="https://creativecommons.org/ns#" property="cc:attributionName">Miles Lubin</span> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
         
 
@@ -200,7 +405,7 @@ master process is run on an m3.xlarge instance.
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -264,25 +469,25 @@ master process is run on an m3.xlarge instance.
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -291,53 +496,53 @@ master process is run on an m3.xlarge instance.
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -346,3 +551,9 @@ master process is run on an m3.xlarge instance.
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

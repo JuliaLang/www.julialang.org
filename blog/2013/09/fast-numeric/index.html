@@ -1,6 +1,173 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Fast Numeric Computation in Julia</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Fast Numeric Computation in Julia"> <meta property="og:description" content=" Fast Numeric Computation in Julia | Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality.... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Fast Numeric Computation in Julia <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 4 September 2013 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://dahua.me">Dahua Lin</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/09/fast-numeric.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality. With Julia, you can focus on your problem, keep your codes clean, and more importantly, write fast codes without diving into lower level languages such as C or Fortran even when performance is critical.</p> <p>However, you should not take this potential speed for granted. To get your codes fast, you should keep performance in mind and follow general best practice guidelines. Here, I would like to share with you my experience in writing efficient codes for numerical computation.</p> <h2 id=first_make_it_correct ><a href="#first_make_it_correct">First, make it correct</a></h2> <p>As in any language, the foremost goal when you implement your algorithm is to <em>make it correct</em>. An algorithm that doesn&#39;t work correctly is useless no matter how fast it runs. One can always optimize the codes afterwards when necessary. When there are different approaches to a problem, you should choose the one that is <em>asymptotically more efficient</em>. For example, an unoptimized quick-sort implementation can easily beat a carefully optimized bubble-sort when sorting even moderately large arrays. Given a particular choice of algorithm, however, implementing it carefully and observing common performance guidelines can still make a big difference in performance – I will focus on this in the remaining part.</p> <h2 id=devectorize_expressions ><a href="#devectorize_expressions">Devectorize expressions</a></h2> <p>Users of other high level languages such as MATLAB® or Python are often advised to <em>vectorize</em> their codes as much as possible to get performance, because loops are slow in those languages. In Julia, on the other hand, loops can run as fast as those written in C and you no longer have to count on vectorization for speed. Actually, turning vectorized expressions into loops, which we call <em>devectorization</em>, often results in even higher performance.</p> <p>Consider the following:</p> <pre><code class=language-julia >r &#61; exp&#40;-abs&#40;x-y&#41;&#41;</code></pre>
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>Fast Numeric Computation in Julia</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Fast Numeric Computation in Julia">
+<meta property="og:description" content=" Fast Numeric Computation in Julia | Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality.... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Fast Numeric Computation in Julia
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 4 September 2013 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;"><a href="https://dahua.me">Dahua Lin</a> </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2013/09/fast-numeric.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Working on numerical problems daily, I have always dreamt of a language that provides an elegant interface while allowing me to write codes that run blazingly fast on large data sets. Julia is a language that turns this dream into a reality. With Julia, you can focus on your problem, keep your codes clean, and more importantly, write fast codes without diving into lower level languages such as C or Fortran even when performance is critical.</p>
+<p>However, you should not take this potential speed for granted. To get your codes fast, you should keep performance in mind and follow general best practice guidelines. Here, I would like to share with you my experience in writing efficient codes for numerical computation.</p>
+<h2 id="first_make_it_correct"><a href="#first_make_it_correct">First, make it correct</a></h2>
+<p>As in any language, the foremost goal when you implement your algorithm is to <em>make it correct</em>. An algorithm that doesn&#39;t work correctly is useless no matter how fast it runs. One can always optimize the codes afterwards when necessary. When there are different approaches to a problem, you should choose the one that is <em>asymptotically more efficient</em>. For example, an unoptimized quick-sort implementation can easily beat a carefully optimized bubble-sort when sorting even moderately large arrays. Given a particular choice of algorithm, however, implementing it carefully and observing common performance guidelines can still make a big difference in performance – I will focus on this in the remaining part.</p>
+<h2 id="devectorize_expressions"><a href="#devectorize_expressions">Devectorize expressions</a></h2>
+<p>Users of other high level languages such as MATLAB® or Python are often advised to <em>vectorize</em> their codes as much as possible to get performance, because loops are slow in those languages. In Julia, on the other hand, loops can run as fast as those written in C and you no longer have to count on vectorization for speed. Actually, turning vectorized expressions into loops, which we call <em>devectorization</em>, often results in even higher performance.</p>
+<p>Consider the following:</p>
+<pre><code class="language-julia">r &#61; exp&#40;-abs&#40;x-y&#41;&#41;</code></pre>
 <p>Very simple expression, right? Behind the scenes, however, it takes a lot of steps and temporary arrays to get you the results of this expression. The following sequence of temporary array constructions is what is done to compute the above expression:</p>
-<pre><code class=language-julia >n &#61; length&#40;x&#41;
+<pre><code class="language-julia">n &#61; length&#40;x&#41;
 
 tmp1 &#61; Array&#40;Float64, n&#41;
 for i &#61; 1:n
@@ -24,33 +191,33 @@ end</code></pre>
 <p>We can see that this procedure creates three temporary arrays and it takes four passes to complete the computation. This introduces significant overhead:</p>
 <ul>
 <li><p>It takes time to allocate memory for the temporary arrays;</p>
-
+</li>
 <li><p>It takes time to reclaim the memory of these arrays during garbage collection;</p>
-
+</li>
 <li><p>It takes time to traverse the memory – generally, fewer passes means higher efficiency.</p>
-
+</li>
 </ul>
 <p>Such overhead is significant in practice, often leading to 2x to 3x slow down. To get optimal performance, one should <em>devectorize</em> this code like so:</p>
-<pre><code class=language-julia >r &#61; similar&#40;x&#41;
+<pre><code class="language-julia">r &#61; similar&#40;x&#41;
 for i &#61; 1:length&#40;x&#41;
     r&#91;i&#93; &#61; exp&#40;-abs&#40;x&#91;i&#93;-y&#91;i&#93;&#41;&#41;
 end</code></pre>
 <p>This version finishes the computation in one pass, without introducing any temporary arrays. Moreover, if <code>r</code> is pre-allocated, one can even omit the statement that creates <code>r</code>. The <a href="https://github.com/lindahua/Devectorize.jl"><em>Devectorize.jl</em></a> package provides a macro <code>@devec</code> that can automatically translate vectorized expressions into loops:</p>
-<pre><code class=language-julia >using Devectorize
+<pre><code class="language-julia">using Devectorize
 
 @devec r &#61; exp&#40;-abs&#40;x-y&#41;&#41;</code></pre>
 <p>The comprehension syntax also provides a concise syntax for devectorized computation:</p>
-<pre><code class=language-julia >r &#61; &#91;exp&#40;-abs&#40;x&#91;i&#93;-y&#91;i&#93;&#41;&#41; for i &#61; 1:length&#40;x&#41;&#93;</code></pre>
+<pre><code class="language-julia">r &#61; &#91;exp&#40;-abs&#40;x&#91;i&#93;-y&#91;i&#93;&#41;&#41; for i &#61; 1:length&#40;x&#41;&#93;</code></pre>
 <p>Note that comprehension always creates new arrays to store the results. Hence, to write results to pre-allocated arrays, you still have to devectorize the computation manually or use the <code>@devec</code> macro.</p>
-<h2 id=merge_computations_into_a_single_loop ><a href="#merge_computations_into_a_single_loop">Merge computations into a single loop</a></h2>
+<h2 id="merge_computations_into_a_single_loop"><a href="#merge_computations_into_a_single_loop">Merge computations into a single loop</a></h2>
 <p>Traversing arrays, especially large ones, may incur cache misses or even page faults, both of which can cause significant latency. Thus, it is desirable to minimize the number of round trips to memory as much as possible. For example, you may compute multiple maps with one loop:</p>
-<pre><code class=language-julia >for i &#61; 1:length&#40;x&#41;
+<pre><code class="language-julia">for i &#61; 1:length&#40;x&#41;
     a&#91;i&#93; &#61; x&#91;i&#93; &#43; y&#91;i&#93;
     b&#91;i&#93; &#61; x&#91;i&#93; - y&#91;i&#93;
 end</code></pre>
 <p>This is usually faster than writing <code>a &#61; x &#43; y; b &#61; x - y</code>.</p>
 <p>The following example shows how you can compute multiple statistics &#40;e.g. sum, max, and min&#41; over a dataset efficiently.</p>
-<pre><code class=language-julia >n &#61; length&#40;x&#41;
+<pre><code class="language-julia">n &#61; length&#40;x&#41;
 rsum &#61; rmax &#61; rmin &#61; x&#91;1&#93;
 for i &#61; 2:n
     xi &#61; x&#91;i&#93;
@@ -61,7 +228,7 @@ for i &#61; 2:n
         rmin &#61; xi
     end
 end</code></pre>
-<h2 id=write_cache-friendly_codes ><a href="#write_cache-friendly_codes">Write cache-friendly codes</a></h2>
+<h2 id="write_cache-friendly_codes"><a href="#write_cache-friendly_codes">Write cache-friendly codes</a></h2>
 <p>Modern computer systems have a complicated heterogeneous memory structure that combines registers, multiple levels of caches, and RAM. Data are accessed through the cache hierarchy – a smaller and much faster memory that stores copies of frequently used data.</p>
 <p>Most systems do not provide ways to directly control the cache system. However, you can take steps to make it much easier for the automated cache management system to help you if you write <em>cache-friendly</em> codes. In general, you don&#39;t have to understand every detail about how a cache system works. It is often sufficient to observe the simple rule below:</p>
 <blockquote>
@@ -69,7 +236,7 @@ end</code></pre>
 </blockquote>
 <p>This is sometimes referred to as the <em>principle of locality</em>. For example, if <code>x</code> is a contiguous array, then after reading <code>x&#91;i&#93;</code>, it is much more likely that <code>x&#91;i&#43;1&#93;</code> is already in the cache than it is that <code>x&#91;i&#43;1000000&#93;</code> is, in which case it will be <em>much</em> faster to access <code>x&#91;i&#43;1&#93;</code> than <code>x&#91;i&#43;1000000&#93;</code>.</p>
 <p>Julia arrays are stored in column-major order, which means that the rows of a column are contiguous, but the columns of a row are generally not. It is therefore generally more efficient to access data column-by-column than row-by-row. Consider the problem of computing the sum of each row in a matrix. It is natural to implement this as follows:</p>
-<pre><code class=language-julia >m, n &#61; size&#40;a&#41;
+<pre><code class="language-julia">m, n &#61; size&#40;a&#41;
 r &#61; Array&#40;Float64, m&#41;
 
 for i &#61; 1:m
@@ -81,7 +248,7 @@ for i &#61; 1:m
 end</code></pre>
 <p>The loop here accesses the elements row-by-row, as <code>a&#91;i,1&#93;, a&#91;i,2&#93;, ..., a&#91;i,n&#93;</code>. The interval between these elements is <code>m</code>. Intuitively, it jumps at the stride of length <code>m</code> from the beginning of each row to the end in each inner loop, and then jumps back to the beginning of next row. This is not very efficient, especially when <code>m</code> is large.</p>
 <p>This procedure can be made much more cache-friendly by changing the order of computation:</p>
-<pre><code class=language-julia >for i &#61; 1:m
+<pre><code class="language-julia">for i &#61; 1:m
     r&#91;i&#93; &#61; a&#91;i,1&#93;
 end
 
@@ -89,17 +256,17 @@ for j &#61; 2:n, i &#61; 1:m
     r&#91;i&#93; &#43;&#61; a&#91;i,j&#93;
 end</code></pre>
 <p>Some benchmarking shows that this version can be <em>5-10 times</em> faster than the one above for large matrices.</p>
-<h2 id=avoid_creating_arrays_in_loops ><a href="#avoid_creating_arrays_in_loops">Avoid creating arrays in loops</a></h2>
+<h2 id="avoid_creating_arrays_in_loops"><a href="#avoid_creating_arrays_in_loops">Avoid creating arrays in loops</a></h2>
 <p>Creating arrays requires memory allocation and adds to the workload of the garbage collector. Reusing the same array is a good way to reduce the cost of memory management.</p>
 <p>It is not uncommon that you want to update arrays in an iterative algorithm. For example, in K-means, you may want to update both the cluster means and distances in each iteration. A straightforward way to do this might look like:</p>
-<pre><code class=language-julia >while &#33;converged &amp;&amp; t &lt; maxiter
+<pre><code class="language-julia">while &#33;converged &amp;&amp; t &lt; maxiter
     means &#61; compute_means&#40;x, labels&#41;
     dists &#61; compute_distances&#40;x, means&#41;
     labels &#61; assign_labels&#40;dists&#41;
     ...
 end</code></pre>
 <p>In this implementation of K-means, the arrays <code>means</code>, <code>dists</code>, and <code>labels</code> are recreated at each iteration. This reallocation of memory on each step is unnecessary. The sizes of these arrays are fixed, and their storage can be reused across iterations. The following alternative code is a more efficient way to implement the same algorithm:</p>
-<pre><code class=language-julia >d, n &#61; size&#40;x&#41;
+<pre><code class="language-julia">d, n &#61; size&#40;x&#41;
 
 # pre-allocate storage
 means &#61; Array&#40;Float64, d, K&#41;
@@ -114,27 +281,27 @@ while &#33;converged &amp;&amp; t &lt; maxiter
 end</code></pre>
 <p>In this version, the functions invoked in the loop updates pre-allocated arrays in-place.</p>
 <p>If you are writing a package, it is recommended that you provide two versions for each function that outputs arrays: one that performs the update in-place, and another that returns a new array. The former can usually be implemented as a light-weight wrapper of the latter that copies the input array before modifying it. A good example is the <a href="https://github.com/JuliaStats/Distributions.jl"><em>Distributions.jl</em></a> package, which provides both <code>logpdf</code> and <code>logpdf&#33;</code>, so that one can write <code>lp &#61; logpdf&#40;d,x&#41;</code> when a new array is needed, or <code>logpdf&#33;&#40;lp,d,x&#41;</code> when <code>lp</code> has been pre-allocated.</p>
-<h2 id=identify_opportunities_to_use_blas ><a href="#identify_opportunities_to_use_blas">Identify opportunities to use BLAS</a></h2>
+<h2 id="identify_opportunities_to_use_blas"><a href="#identify_opportunities_to_use_blas">Identify opportunities to use BLAS</a></h2>
 <p>Julia wraps a large number of <a href="https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms">BLAS</a> routines for linear algebraic computation. These routines are the result of decades of research and optimization by many of the world&#39;s top experts in fast numerical computation. As a result, using them where possible can provide performance boosts that seem almost magical – BLAS routines are often orders of magnitude faster than the simple loop implementations they replace.</p>
 <p>For example, consider accumulating weighted versions of vectors as follows:</p>
-<pre><code class=language-julia >r &#61; zeros&#40;size&#40;x,1&#41;&#41;
+<pre><code class="language-julia">r &#61; zeros&#40;size&#40;x,1&#41;&#41;
 for j &#61; 1:size&#40;x,2&#41;
     r &#43;&#61; x&#91;:,j&#93; * w&#91;j&#93;
 end</code></pre>
 <p>You can replace the statement <code>r &#43;&#61; x&#91;:,j&#93; * w&#91;j&#93;</code> with a call to the BLAS <code>axpy&#33;</code> function to get better performance:</p>
-<pre><code class=language-julia >for j &#61; 1:size&#40;x,2&#41;
+<pre><code class="language-julia">for j &#61; 1:size&#40;x,2&#41;
     axpy&#33;&#40;w&#91;j&#93;, x&#91;:,j&#93;, r&#41;
 end</code></pre>
 <p>This, however, is still far from being optimal. If you are familiar with linear algebra, you may have probably found that this is just matrix-vector multiplication, and can be written as <code>r &#61; x * w</code>, which is not only shorter, simpler and clearer than either of the above loops – it also runs much faster than either versions.</p>
 <p>Our next example is a subtler application of BLAS routines to computing pairwise Euclidean distances between columns in two matrices. Below is a straightforward implementation that directly computes pairwise distances:</p>
-<pre><code class=language-julia >m, n &#61; size&#40;a&#41;
+<pre><code class="language-julia">m, n &#61; size&#40;a&#41;
 r &#61; Array&#40;Float64, m, n&#41;
 
 for j &#61; 1:n, i &#61; 1:m
     r&#91;i,j&#93; &#61; sqrt&#40;sum&#40;abs2&#40;a&#91;:,i&#93; - b&#91;:,j&#93;&#41;&#41;&#41;
 end</code></pre>
 <p>This is clearly suboptimal – a lot of temporary arrays are created in evaluating the expression in the inner loop. To speed this up, we can devectorize the inner expression:</p>
-<pre><code class=language-julia >d, m &#61; size&#40;a&#41;
+<pre><code class="language-julia">d, m &#61; size&#40;a&#41;
 n &#61; size&#40;b,2&#41;
 r &#61; Array&#40;Float64, m, n&#41;
 
@@ -147,9 +314,9 @@ for j &#61; 1:n, i &#61; 1:m
     end
 end</code></pre>
 <p>This version is much more performant than the vectorized form. But is it the best we can do? By employing an alternative strategy, we can write a even faster algorithm for computing pairwise distances. The trick is that the squared Euclidean distance between two vectors can be expanded as:</p>
-<pre><code class=language-julia >sum&#40;abs2&#40;x-y&#41;&#41; &#61;&#61; sum&#40;abs2&#40;x&#41;&#41; &#43; sum&#40;abs2&#40;y&#41;&#41; - 2*dot&#40;x,y&#41;</code></pre>
+<pre><code class="language-julia">sum&#40;abs2&#40;x-y&#41;&#41; &#61;&#61; sum&#40;abs2&#40;x&#41;&#41; &#43; sum&#40;abs2&#40;y&#41;&#41; - 2*dot&#40;x,y&#41;</code></pre>
 <p>If we evaluate these three terms separately, the computation can be mapped to BLAS routines perfectly. Below, we have a new implementation of pairwise distances written using only BLAS routines, including the norm calls that are wrapped by the <a href="https://github.com/lindahua/NumericExtensions.jl"><em>NumericExtensions.jl</em></a> package:</p>
-<pre><code class=language-julia >using NumericExtensions   # for sqsum
+<pre><code class="language-julia">using NumericExtensions   # for sqsum
 using Base.LinAlg.BLAS    # for gemm&#33;
 
 m, n &#61; size&#40;a&#41;
@@ -165,18 +332,18 @@ for i &#61; 1:length&#40;r&#41;
 end</code></pre>
 <p>This version is over <em>100 times</em> faster than our original implementation — the <code>gemm</code> function in BLAS has been optimized to the extreme by many talented developers and engineers over the past few decades.</p>
 <p>We should mention that you don&#39;t have to implement this yourself if you really want to compute pairwise distances: the <a href="https://github.com/lindahua/Distance.jl"><em>Distance.jl</em></a> package provides optimized implementations of a broad variety of distance metrics, including this one. We presented this optimization trick as an example to illustrate the substantial performance gains that can be achieved by writing code that uses BLAS routines wherever possible.</p>
-<h2 id=explore_available_packages ><a href="#explore_available_packages">Explore available packages</a></h2>
+<h2 id="explore_available_packages"><a href="#explore_available_packages">Explore available packages</a></h2>
 <p>Julia has a very active open source ecosystem. A variety of packages have been developed that provide optimized algorithms for high performance computation. Look for a package that does what you need before you decide to roll your own – and if you don&#39;t find what you need, consider contributing it&#33; Here are a couple of packages that might be useful for those interested in high performance computation:</p>
 <ul>
 <li><p><a href="https://github.com/lindahua/NumericExtensions.jl">NumericExtensions.jl</a> – extensions to Julia&#39;s base functionality for high-performance support for a variety of common computations &#40;many of these will gradually get moved into base Julia&#41;.</p>
-
+</li>
 <li><p><a href="https://github.com/lindahua/Devectorize.jl">Devectorize.jl</a> – macros and functions to de-vectorize vector expressions. With this package, users can write computations in high-level vectorized way while enjoying the high run-time performance of hand-coded de-vectorized loops.</p>
-
+</li>
 </ul>
 <p>Check out the <a href="https://pkg.julialang.org/">Julia package list</a> for many more packages. Julia also ships with a <a href="https://docs.julialang.org/en/v1/manual/profile/#Profiling-1">sampling profiler</a> to measure where your code is spending most of its time. When in doubt, measure don&#39;t guess&#33;</p>
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
@@ -184,7 +351,7 @@ end</code></pre>
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -248,25 +415,25 @@ end</code></pre>
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -275,53 +442,53 @@ end</code></pre>
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -330,3 +497,9 @@ end</code></pre>
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

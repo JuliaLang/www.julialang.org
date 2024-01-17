@@ -1,80 +1,231 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Platform Specific Instructions for Official Binaries</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <meta property="og:title" content="Platform Specific Instructions for Official Binaries"> <meta property="og:description" content=""> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/downloads/platform.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><h1 id=platform_specific_instructions_for_official_binaries ><a href="#platform_specific_instructions_for_official_binaries">Platform Specific Instructions for Official Binaries</a></h1> <p>All official Julia binaries produce portable installations. Once installed, the directory in which Julia was installed can be moved to a different location on the same computer, or even to a different computer.</p> <p>The instructions here refer to the latest stable release of Julia. If you are using the LTS version or an older version, please substitute the appropriate version number in the instructions.</p> <h2 id=cross-platform_installer ><a href="#cross-platform_installer">Cross-platform installer</a></h2> <p>An installer and version manager for Julia called <a href="https://github.com/JuliaLang/juliaup">juliaup</a> can be installed <a href="https://github.com/JuliaLang/juliaup#mac-and-linux">via the command line</a> on Linux and Mac and is available in the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> for Windows. It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.</p> <h2 id=linux_and_freebsd ><a href="#linux_and_freebsd">Linux and FreeBSD</a></h2> <p>It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following set of commands downloads the latest version of Julia into a directory named <code>julia-1.10.0</code>.</p> <pre><code class=language-shell >wget https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.0-linux-x86_64.tar.gz
-tar zxvf julia-1.10.0-linux-x86_64.tar.gz</code></pre> <h3 id=running_julia ><a href="#running_julia">Running Julia</a></h3> <p>The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the <code>julia</code> executable. The directory where Julia is installed is referred to as <code>&lt;Julia directory&gt;</code>.</p> <p>To run Julia, you can do any of the following:</p> <ul> <li><p>Invoke the <code>julia</code> executable by using its full path: <code>&lt;Julia directory&gt;/bin/julia</code></p> <li><p>Create a symbolic link to <code>julia</code> inside a folder which is on your system <code>PATH</code></p> <li><p>Add Julia&#39;s <code>bin</code> folder &#40;with full path&#41; to your system <code>PATH</code> environment variable</p> </ul> <p>To add Julia&#39;s <code>bin</code> folder &#40;with full path&#41; to <code>PATH</code> environment variable, you can edit the <code>~/.bashrc</code> &#40;or <code>~/.bash_profile</code>&#41; file. Open the file in your favourite editor and add a new line as follows:</p> <pre><code class=language-shell >export PATH&#61;&quot;&#36;PATH:/path/to/&lt;Julia directory&gt;/bin&quot;</code></pre>
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>Platform Specific Instructions for Official Binaries</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Platform Specific Instructions for Official Binaries">
+<meta property="og:description" content="">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item  active flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/downloads/platform.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="platform_specific_instructions_for_official_binaries"><a href="#platform_specific_instructions_for_official_binaries">Platform Specific Instructions for Official Binaries</a></h1>
+<p>All official Julia binaries produce portable installations. Once installed, the directory in which Julia was installed can be moved to a different location on the same computer, or even to a different computer.</p>
+<p>The instructions here refer to the latest stable release of Julia. If you are using the LTS version or an older version, please substitute the appropriate version number in the instructions.</p>
+<h2 id="cross-platform_installer"><a href="#cross-platform_installer">Cross-platform installer</a></h2>
+<p>An installer and version manager for Julia called <a href="https://github.com/JuliaLang/juliaup">juliaup</a> can be installed <a href="https://github.com/JuliaLang/juliaup#mac-and-linux">via the command line</a> on Linux and Mac and is available in the <a href="https://www.microsoft.com/store/apps/9NJNWW8PVKMN">Microsoft Store</a> for Windows. It can be used to install specific Julia versions or update to the latest release. This package handles all PATH related aspects of Julia, and alerts users when new Julia versions are released.</p>
+<h2 id="linux_and_freebsd"><a href="#linux_and_freebsd">Linux and FreeBSD</a></h2>
+<p>It is strongly recommended that the official generic binaries from the downloads page be used to install Julia on Linux and FreeBSD. The following set of commands downloads the latest version of Julia into a directory named <code>julia-1.10.0</code>.</p>
+
+<pre><code class="language-shell">wget https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.0-linux-x86_64.tar.gz
+tar zxvf julia-1.10.0-linux-x86_64.tar.gz</code></pre>
+
+<h3 id="running_julia"><a href="#running_julia">Running Julia</a></h3>
+<p>The generic Linux and FreeBSD binaries do not require any special installation steps, but you will need to ensure that your system can find the <code>julia</code> executable. The directory where Julia is installed is referred to as <code>&lt;Julia directory&gt;</code>.</p>
+<p>To run Julia, you can do any of the following:</p>
+<ul>
+<li><p>Invoke the <code>julia</code> executable by using its full path: <code>&lt;Julia directory&gt;/bin/julia</code></p>
+</li>
+<li><p>Create a symbolic link to <code>julia</code> inside a folder which is on your system <code>PATH</code></p>
+</li>
+<li><p>Add Julia&#39;s <code>bin</code> folder &#40;with full path&#41; to your system <code>PATH</code> environment variable</p>
+</li>
+</ul>
+<p>To add Julia&#39;s <code>bin</code> folder &#40;with full path&#41; to <code>PATH</code> environment variable, you can edit the <code>~/.bashrc</code> &#40;or <code>~/.bash_profile</code>&#41; file. Open the file in your favourite editor and add a new line as follows:</p>
+<pre><code class="language-shell">export PATH&#61;&quot;&#36;PATH:/path/to/&lt;Julia directory&gt;/bin&quot;</code></pre>
 <p>Apart from this, there are several ways through which you can change environment variable. You can follow <a href="https://help.ubuntu.com/community/EnvironmentVariables">this guide</a> to find out a way convenient for you.</p>
-<h3 id=uninstallation ><a href="#uninstallation">Uninstallation</a></h3>
+<h3 id="uninstallation"><a href="#uninstallation">Uninstallation</a></h3>
 <p>Julia installs all its files in a single directory. Deleting the directory where Julia was installed is sufficient. If you would also like to remove your packages, remove <code>~/.julia</code>. The startup file is at <code>~/.julia/config/startup.jl</code> and the history at <code>~/.julia/logs/repl_history.jl</code>.</p>
-<h2 id=windows ><a href="#windows">Windows</a></h2>
+<h2 id="windows"><a href="#windows">Windows</a></h2>
 <p>Julia is available for Windows 7 and later for both 32 bit and 64 bit versions.</p>
 <p><strong>We highly recommend running Julia using a modern terminal, such as installing the <a href="https://aka.ms/terminal">Windows Terminal from the Microsoft Store</a>.</strong></p>
-<h3 id=install_julia_in_4_simple_steps ><a href="#install_julia_in_4_simple_steps">Install Julia in 4 simple steps&#33;</a></h3>
+<h3 id="install_julia_in_4_simple_steps"><a href="#install_julia_in_4_simple_steps">Install Julia in 4 simple steps&#33;</a></h3>
 <ol>
 <li><p>Download the Windows Julia installer from https://julialang.org/downloads/. Note, the 32-bit Julia binaries work on both 32-bit and 64-bit Windows  &#40;x86 and x86&#95;64&#41;, but the 64-bit Julia binaries only run on 64-bit Windows &#40;x86&#95;64&#41;.</p>
-
+</li>
 <li><p>Run the installer</p>
-
+</li>
 <li><p>Check the <code>Add Julia To PATH</code> to automatically add Julia to Environment Variables</p>
-
+</li>
 </ol>
-<p><img src="https://user-images.githubusercontent.com/32921645/146406045-8d9cdd74-9625-44fa-9636-c49db0cb551b.png" alt=image  /></p>
-<ol start=4 >
+<p><img src="https://user-images.githubusercontent.com/32921645/146406045-8d9cdd74-9625-44fa-9636-c49db0cb551b.png" alt="image" /></p>
+<ol start="4">
 <li><p>Invoke Julia by simply typing <code>julia</code> in your preferred terminal</p>
-
+</li>
 </ol>
-<h4 id=adding_julia_to_path_for_older_releases ><a href="#adding_julia_to_path_for_older_releases">Adding Julia to path for older releases</a></h4>
+<h4 id="adding_julia_to_path_for_older_releases"><a href="#adding_julia_to_path_for_older_releases">Adding Julia to path for older releases</a></h4>
 <p>For older &#40;&lt;&#61; Julia 1.5.4&#41; downloads, note the installation directory at the time of installation. The installation directory should look something like <code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-1.10.0</code>, <em>please note this path</em>.</p>
 <p>Then add the Julia executable directory to PATH by performing the following steps.</p>
-<h5 id=adding_julia_to_path_on_windows_10 ><a href="#adding_julia_to_path_on_windows_10">Adding Julia to PATH on Windows 10,</a></h5>
+<h5 id="adding_julia_to_path_on_windows_10"><a href="#adding_julia_to_path_on_windows_10">Adding Julia to PATH on Windows 10,</a></h5>
 <ol>
 <li><p>Open Run &#40;Windows Key &#43; R&#41;,  type in <code>rundll32 sysdm.cpl,EditEnvironmentVariables</code> and hit enter.</p>
-
+</li>
 <li><p>Under either the &quot;User Variables&quot; or &quot;System Variables&quot; section, find the row with &quot;Path&quot;, and click edit.</p>
-
+</li>
 <li><p>The &quot;Edit environment variable&quot; UI will appear. Here, click &quot;New&quot;, and paste in the directory noted from the installation stage. This should look something like <code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-1.10.0\bin</code>.</p>
-
+</li>
 <li><p>Click OK. You can now run Julia from the command line, by typing <code>julia</code>&#33;</p>
-
+</li>
 </ol>
-<h5 id=adding_julia_to_path_on_windows_7_or_8 ><a href="#adding_julia_to_path_on_windows_7_or_8">Adding Julia to PATH on Windows 7 or 8</a></h5>
+<h5 id="adding_julia_to_path_on_windows_7_or_8"><a href="#adding_julia_to_path_on_windows_7_or_8">Adding Julia to PATH on Windows 7 or 8</a></h5>
 <ol>
 <li><p>Open Run &#40;Windows Key &#43; R&#41;,  type in <code>rundll32 sysdm.cpl,EditEnvironmentVariables</code> and hit enter.</p>
-
+</li>
 <li><p>In the System Variables window, highlight Path, and click Edit.</p>
-
+</li>
 <li><p>In the Edit System Variables window, move the cursor to the end of the field.</p>
-
+</li>
 <li><p>If there is no semicolon at the end, add it and paste in the path to the <code>bin</code> folder within the installation directory noted earlier. This path should look something like <code>C:\Users\JohnDoe\AppData\Local\Programs\Julia-1.10.0\bin</code>.</p>
-
+</li>
 <li><p>Click OK. You can now run Julia from the command line, by typing <code>julia</code>&#33;</p>
-
+</li>
 </ol>
-<h3 id=windows_7_windows_server_2012_installation_notes ><a href="#windows_7_windows_server_2012_installation_notes">Windows 7 / Windows Server 2012 Installation Notes</a></h3>
+<h3 id="windows_7_windows_server_2012_installation_notes"><a href="#windows_7_windows_server_2012_installation_notes">Windows 7 / Windows Server 2012 Installation Notes</a></h3>
 <p>Windows 7 / Windows Server 2012 users also need to install:</p>
 <ul>
 <li><p>the <a href="https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in">TLS easy&#95;fix</a> for the package manager to work, see <a href="https://discourse.julialang.org/t/errors-for-git-pkg/9351">this Discourse thread</a> for more details.</p>
-
+</li>
 <li><p><a href="https://docs.microsoft.com/en-us/powershell/scripting/wmf/overview">Windows Management Framework 3.0 or later</a> to include PowerShell 3.0 or later.</p>
-
+</li>
 </ul>
-<h3 id=uninstallation__2 ><a href="#uninstallation__2">Uninstallation</a></h3>
+<h3 id="uninstallation__2"><a href="#uninstallation__2">Uninstallation</a></h3>
 <p>Uninstallation is preferably performed by using the Windows uninstaller. The directory in <code>&#37;HOME&#37;/.julia</code> can then be deleted if you want to remove all traces of Julia &#40;this includes user installed packages&#41;.</p>
-<h2 id=macos ><a href="#macos">macOS</a></h2>
+<h2 id="macos"><a href="#macos">macOS</a></h2>
 <p>On macOS, a <code>julia-1.10.0-mac64.dmg</code> file is provided, which contains <code>Julia-1.10.app</code>. Installation is the same as any other Mac software: drag the <code>Julia-1.10.app</code> to Applications Folder&#39;s Shortcut. The Julia download runs on macOS 10.9 Mavericks and later releases. You can build from source for macOS 10.6 Snow Leopard &#40;possibly earlier versions as well&#41; and 32-bit but neither are fully supported.</p>
 <p>You can launch Julia by opening the Julia app <a href="https://www.howtogeek.com/409411/how-to-launch-applications-on-your-mac/">like any other application</a>.</p>
-<h3 id=optional_add_julia_to_path ><a href="#optional_add_julia_to_path">Optional: Add Julia to PATH</a></h3>
+<h3 id="optional_add_julia_to_path"><a href="#optional_add_julia_to_path">Optional: Add Julia to PATH</a></h3>
 <p>If you want to launch Julia from the command line, first <a href="https://www.howtogeek.com/682770/how-to-open-the-terminal-on-a-mac/">open a new terminal window</a>, then run the following snippet from your <a href="https://superuser.com/questions/144666/what-is-the-difference-between-shell-console-and-terminal">shell</a> &#40;e.g., using the Terminal app, not inside the Julia prompt&#41;.</p>
 
-<pre><code class=language-shell >sudo mkdir -p /usr/local/bin
+<pre><code class="language-shell">sudo mkdir -p /usr/local/bin
 sudo rm -f /usr/local/bin/julia
 sudo ln -s /Applications/Julia-1.10.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia</code></pre>
 
 <p>This code creates a <a href="https://en.wikipedia.org/wiki/Symbolic_link">symlink</a> to a Julia version &#40;here 1.10&#41; of your choosing. To launch Julia, simply type <code>julia</code> inside your shell and press return.</p>
-<h3 id=uninstallation__3 ><a href="#uninstallation__3">Uninstallation</a></h3>
+<h3 id="uninstallation__3"><a href="#uninstallation__3">Uninstallation</a></h3>
 <p>You can uninstall Julia by deleting Julia.app and the packages directory in <code>~/.julia</code>. Multiple Julia.app binaries can co-exist without interfering with each other. If you would also like to remove your preferences files, remove <code>~/.julia/config/startup.jl</code> and <code>~/.julia/logs/repl_history.jl</code>.</p>
-<h1 id=a_brief_note_about_unofficial_binaries ><a href="#a_brief_note_about_unofficial_binaries">A Brief Note About Unofficial Binaries</a></h1>
+<h1 id="a_brief_note_about_unofficial_binaries"><a href="#a_brief_note_about_unofficial_binaries">A Brief Note About Unofficial Binaries</a></h1>
 <p>There are a variety of distribution-specific packages that are community contributed. They may not use the right versions of Julia dependencies or include important patches that the official binaries ship with. All such distributions are community maintained, and hence they may not always have the latest versions of Julia, and sometimes, the instructions may not work. In general, bug reports will only be accepted if they are reproducible on the official generic binaries on the downloads page.</p>
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
@@ -82,7 +233,7 @@ sudo ln -s /Applications/Julia-1.10.app/Contents/Resources/julia/bin/julia /usr/
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -146,25 +297,25 @@ sudo ln -s /Applications/Julia-1.10.app/Contents/Resources/julia/bin/julia /usr/
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -173,53 +324,53 @@ sudo ln -s /Applications/Julia-1.10.app/Contents/Resources/julia/bin/julia /usr/
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -228,3 +379,9 @@ sudo ln -s /Applications/Julia-1.10.app/Contents/Resources/julia/bin/julia /usr/
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

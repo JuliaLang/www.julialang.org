@@ -1,10 +1,187 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia"> <meta property="og:description" content=" JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia | Thanks to a grant from the Gordon and Betty Moore Foundation, I've enjoyed the... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 21 October 2015 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Kenta Sato </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2015/10/biojulia-sequence-analysis.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><ul> <li><p>Participant: Kenta Sato &#40;<a href="https://github.com/bicycle1885">@bicycle1885</a>&#41;</p> <li><p>Mentor: Daniel C. Jones &#40;<a href="https://github.com/dcjones">@dcjones</a>&#41;</p> </ul> <p>Thanks to a grant from the Gordon and Betty Moore Foundation, I&#39;ve enjoyed the Julia Summer of Code 2015 program administered by the NumFOCUS and a travel to the JuliaCon 2015 at Boston. During this program, I have created several packages about data structures and algorithms for sequence analysis, mainly targeted for bioinformatics. Even though Julia had lots of practical packages for numerical computing on floating-point numbers, it lacked efficient and compact data structures that are fundamental in bioinformatics.</p> <p>Recent development of high-throughput DNA sequencers has enabled to sequence massive numbers of DNA fragments &#40;known as reads&#41; from biological samples within a day. The first step of sequence analysis is locating positions of these fragments in other long reference sequence, then we can detect genetic variants or gene expressions based on the result. This step is called sequence mapping or aligning, and because reference sequences are most commonly genome-scale &#40;about 3.2 billions length for human&#41;, a full-text search index is used to speed up this alignment process. This kind of full-text search index is implemented in many bioinformatics tools, most notably <a href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">bowtie2</a> and <a href="http://bio-bwa.sourceforge.net/">BWA</a>, whose papers are cited thousands of times.</p> <p><img src="/assets/blog/2015-10-03-sequence-analysis/mapping.png" alt=Mapping  /></p> <p>The main focus of my project was creating a full-text search index in Julia that is easy to use and efficient in practical applications. In the course towards this destination, I&#39;ve created several packages that are useful as a building block for other data structures. I&#39;m going to introduce you these packages in this post.</p> <h2 id=intarraysjl ><a href="#intarraysjl">IntArrays.jl</a></h2> <p><a href="https://github.com/bicycle1885/IntArrays.jl">IntArrays.jl</a> is a package for arrays of unsigned integer. So, is it useful? Yes, it is&#33; This is because the <code>IntArray</code> type implemented in this package can store integers as small space as possible. The <code>IntArray</code> type has a type parameter <code>w</code> that represents the number of bits required to encode elements in an array. For example, if each element is an integer between 0 and 3, you only need to use two bits to encode it and <code>w</code> can be set to 2 or greater. These 2-bit integers are packed into a buffer and therefore the array consumes only one fourth of the space compared to the usual array. The following is a case of a byte sequence of <code>&#91;0x01, 0x03, 0x02, 0x00&#93;</code>:</p> <pre>
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia">
+<meta property="og:description" content=" JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia | Thanks to a grant from the Gordon and Betty Moore Foundation, I've enjoyed the... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>JSoC 2015 project: Efficient data structures and algorithms for sequence analysis in BioJulia
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 21 October 2015 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">Kenta Sato </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2015/10/biojulia-sequence-analysis.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><ul>
+<li><p>Participant: Kenta Sato &#40;<a href="https://github.com/bicycle1885">@bicycle1885</a>&#41;</p>
+</li>
+<li><p>Mentor: Daniel C. Jones &#40;<a href="https://github.com/dcjones">@dcjones</a>&#41;</p>
+</li>
+</ul>
+<p>Thanks to a grant from the Gordon and Betty Moore Foundation, I&#39;ve enjoyed the Julia Summer of Code 2015 program administered by the NumFOCUS and a travel to the JuliaCon 2015 at Boston.  During this program, I have created several packages about data structures and algorithms for sequence analysis, mainly targeted for bioinformatics.  Even though Julia had lots of practical packages for numerical computing on floating-point numbers, it lacked efficient and compact data structures that are fundamental in bioinformatics.</p>
+<p>Recent development of high-throughput DNA sequencers has enabled to sequence massive numbers of DNA fragments &#40;known as reads&#41; from biological samples within a day.  The first step of sequence analysis is locating positions of these fragments in other long reference sequence, then we can detect genetic variants or gene expressions based on the result.  This step is called sequence mapping or aligning, and because reference sequences are most commonly genome-scale &#40;about 3.2 billions length for human&#41;, a full-text search index is used to speed up this alignment process.  This kind of full-text search index is implemented in many bioinformatics tools, most notably <a href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">bowtie2</a> and <a href="http://bio-bwa.sourceforge.net/">BWA</a>, whose papers are cited thousands of times.</p>
+<p><img src="/assets/blog/2015-10-03-sequence-analysis/mapping.png" alt="Mapping" /></p>
+<p>The main focus of my project was creating a full-text search index in Julia that is easy to use and efficient in practical applications.  In the course towards this destination, I&#39;ve created several packages that are useful as a building block for other data structures.  I&#39;m going to introduce you these packages in this post.</p>
+<h2 id="intarraysjl"><a href="#intarraysjl">IntArrays.jl</a></h2>
+<p><a href="https://github.com/bicycle1885/IntArrays.jl">IntArrays.jl</a> is a package for arrays of unsigned integer. So, is it useful? Yes, it is&#33; This is because the <code>IntArray</code> type implemented in this package can store integers as small space as possible. The <code>IntArray</code> type has a type parameter <code>w</code> that represents the number of bits required to encode elements in an array. For example, if each element is an integer between 0 and 3, you only need to use two bits to encode it and <code>w</code> can be set to 2 or greater. These 2-bit integers are packed into a buffer and therefore the array consumes only one fourth of the space compared to the usual array. The following is a case of a byte sequence of <code>&#91;0x01, 0x03, 0x02, 0x00&#93;</code>:</p>
+
+<pre>
     index:                           1          2          3          4
     byte sequence (hex):          0x01       0x03       0x02       0x00
     byte sequence (bin):    0b00000001 0b00000011 0b00000010 0b00000000
     packed sequence (w=2):          01         11         10         00
     in-memory layout:         00101101
-</pre> <p>The full type definition is <code>IntArray&#123;w,T,n&#125;</code>, where <code>w</code> is the number of bits for each element as I explained, <code>T</code> is the type of elements, and <code>n</code> is the dimension of the array. This type is a subtype of the <code>AbstractArray&#123;T,n&#125;</code> and will behave like a familiar array; allocation, random access and update are supported. <code>IntVector</code> and <code>IntMatrix</code> are also defined as type aliases like <code>Vector</code> and <code>Matrix</code>, respectively.</p> <p>Here is an example:</p> <pre><code class=language-julia >julia&gt; IntArray&#123;2,UInt8&#125;&#40;2, 3&#41;
+</pre>
+
+<p>The full type definition is <code>IntArray&#123;w,T,n&#125;</code>, where <code>w</code> is the number of bits for each element as I explained, <code>T</code> is the type of elements, and <code>n</code> is the dimension of the array.  This type is a subtype of the <code>AbstractArray&#123;T,n&#125;</code> and will behave like a familiar array; allocation, random access and update are supported. <code>IntVector</code> and <code>IntMatrix</code> are also defined as type aliases like <code>Vector</code> and <code>Matrix</code>, respectively.</p>
+<p>Here is an example:</p>
+<pre><code class="language-julia">julia&gt; IntArray&#123;2,UInt8&#125;&#40;2, 3&#41;
 2x3 IntArrays.IntArray&#123;2,UInt8,2&#125;:
  0x00  0x00  0x01
  0x00  0x00  0x03
@@ -37,11 +214,15 @@ julia&gt; sort&#33;&#40;array&#41;
  0x02
  0x02
  0x03
- 0x03</code></pre> <p>And the memory footprint of <code>IntArray</code> is much smaller:</p> <pre><code class=language-julia >julia&gt; sizeof&#40;IntVector&#123;2,UInt8&#125;&#40;1_000_000&#41;&#41;
+ 0x03</code></pre>
+<p>And the memory footprint of <code>IntArray</code> is much smaller:</p>
+<pre><code class="language-julia">julia&gt; sizeof&#40;IntVector&#123;2,UInt8&#125;&#40;1_000_000&#41;&#41;
 250000
 
 julia&gt; sizeof&#40;Vector&#123;UInt8&#125;&#40;1_000_000&#41;&#41;
-1000000</code></pre> <p>Since packing and unpacking integers in a buffer require additional operations, there are overheads in operations and <code>IntArray</code> is often slower than <code>Array</code>. I&#39;ve tried to keep this discrepancy as small as possible, but the <code>IntArray</code> is about 4-5 times slower when sorting it:</p> <pre><code class=language-julia >julia&gt; array &#61; rand&#40;0x00:0x03, 2^24&#41;;
+1000000</code></pre>
+<p>Since packing and unpacking integers in a buffer require additional operations, there are overheads in operations and <code>IntArray</code> is often slower than <code>Array</code>. I&#39;ve tried to keep this discrepancy as small as possible, but the <code>IntArray</code> is about 4-5 times slower when sorting it:</p>
+<pre><code class="language-julia">julia&gt; array &#61; rand&#40;0x00:0x03, 2^24&#41;;
 
 julia&gt; sort&#40;array&#41;; @time sort&#40;array&#41;;
   0.488779 seconds &#40;8 allocations: 16.000 MB&#41;
@@ -49,7 +230,13 @@ julia&gt; sort&#40;array&#41;; @time sort&#40;array&#41;;
 julia&gt; iarray &#61; IntVector&#123;2&#125;&#40;array&#41;;
 
 julia&gt; sort&#40;iarray&#41;; @time sort&#40;iarray&#41;;
-  2.290878 seconds &#40;18 allocations: 4.001 MB&#41;</code></pre> <p>If you have a great idea to improve the performance, please let me know&#33;</p> <h2 id=indexablebitvectorsjl ><a href="#indexablebitvectorsjl">IndexableBitVectors.jl</a></h2> <p>The next package is <a href="https://github.com/BioJulia/IndexableBitVectors.jl">IndexableBitVectors.jl</a>. You must be familiar with the <code>BitVector</code> type in the standard library; types defined in my package is a static but indexable version of it. Here &quot;indexable&quot; means that a query to ask the number of bits between an arbitrary range can be answered <strong>in constant time</strong>. If you are already familiar with <a href="https://en.wikipedia.org/wiki/Succinct_data_structure">succinct data structures</a>, you may know this is an important building block of other succinct data structures like wavelet trees, LOUDS, etcetera.</p> <p>The package exports two variants of such bit vectors: <code>SucVector</code> and <code>RRR</code>. <code>SucVector</code> is simpler and faster than <code>RRR</code>, but <code>RRR</code> is compressible and will be smaller if 0/1 bits are localized in a bit vector. Both types split a bit vector into blocks and cache the number of bits up to the position. In <code>SucVector</code>, the extra space is about 1/4 bits per bit, so it will become ~25&#37; larger than the original bit vector.</p> <p>The most important query operation over these data structures would be the <code>rank1&#40;bv, i&#41;</code> query, which counts the number of 1 bits within <code>bv&#91;1:i&#93;</code>. Owing to the cached bit counts, we can finish the rank operation in constant time:</p> <pre><code class=language-julia >julia&gt; using IndexableBitVectors
+  2.290878 seconds &#40;18 allocations: 4.001 MB&#41;</code></pre>
+<p>If you have a great idea to improve the performance, please let me know&#33;</p>
+<h2 id="indexablebitvectorsjl"><a href="#indexablebitvectorsjl">IndexableBitVectors.jl</a></h2>
+<p>The next package is <a href="https://github.com/BioJulia/IndexableBitVectors.jl">IndexableBitVectors.jl</a>. You must be familiar with the <code>BitVector</code> type in the standard library; types defined in my package is a static but indexable version of it. Here &quot;indexable&quot; means that a query to ask the number of bits between an arbitrary range can be answered <strong>in constant time</strong>. If you are already familiar with <a href="https://en.wikipedia.org/wiki/Succinct_data_structure">succinct data structures</a>, you may know this is an important building block of other succinct data structures like wavelet trees, LOUDS, etcetera.</p>
+<p>The package exports two variants of such bit vectors: <code>SucVector</code> and <code>RRR</code>. <code>SucVector</code> is simpler and faster than <code>RRR</code>, but <code>RRR</code> is compressible and will be smaller if 0/1 bits are localized in a bit vector. Both types split a bit vector into blocks and cache the number of bits up to the position. In <code>SucVector</code>, the extra space is about 1/4 bits per bit, so it will become ~25&#37; larger than the original bit vector.</p>
+<p>The most important query operation over these data structures would be the <code>rank1&#40;bv, i&#41;</code> query, which counts the number of 1 bits within <code>bv&#91;1:i&#93;</code>. Owing to the cached bit counts, we can finish the rank operation in constant time:</p>
+<pre><code class="language-julia">julia&gt; using IndexableBitVectors
 
 julia&gt; bv &#61; bitrand&#40;2^30&#41;;
 
@@ -73,10 +260,15 @@ julia&gt; rank1&#40;sbv, 2^29&#41;; @time rank1&#40;sbv, 2^29&#41;;  # much fast
 julia&gt; rrr &#61; RRR&#40;bv&#41;;
 
 julia&gt; rank1&#40;rrr, 2^29&#41;; @time rank1&#40;rrr, 2^29&#41;;  # much faster, too&#33;
-  0.000004 seconds &#40;6 allocations: 192 bytes&#41;</code></pre> <p>The <code>select1&#40;bv, j&#41;</code> query is also useful in many cases, which locates the <code>j</code>-th 1 bit in the bit vector <code>bv</code>. For example, if a set of positive integers is represented in this bit vector, you can efficiently query the <code>j</code>-th smallest member in the set.</p> <p>Let&#39;s see the internal representation of <code>SucVector</code> to understand the magic. A bit vector is separated into large blocks:</p> <pre><code class=language-julia >type SucVector &lt;: AbstractIndexableBitVector
+  0.000004 seconds &#40;6 allocations: 192 bytes&#41;</code></pre>
+<p>The <code>select1&#40;bv, j&#41;</code> query is also useful in many cases, which locates the <code>j</code>-th 1 bit in the bit vector <code>bv</code>.  For example, if a set of positive integers is represented in this bit vector, you can efficiently query the <code>j</code>-th smallest member in the set.</p>
+<p>Let&#39;s see the internal representation of <code>SucVector</code> to understand the magic. A bit vector is separated into large blocks:</p>
+<pre><code class="language-julia">type SucVector &lt;: AbstractIndexableBitVector
     blocks::Vector&#123;Block&#125;
     len::Int
-end</code></pre> <p>Each large block contains 256 bits and consists of four small blocks which contain 64 bits respectively, a large block stores <em>global</em> 1s&#39; count up to the starting position of it and a small block stores <em>local</em> 1s&#39; count staring from the beginning position of its parent large block. Bits itself are stored in four bit chunks corresponding to small blocks:</p> <pre><code class=language-julia >immutable Block
+end</code></pre>
+<p>Each large block contains 256 bits and consists of four small blocks which contain 64 bits respectively, a large block stores <em>global</em> 1s&#39; count up to the starting position of it and a small block stores <em>local</em> 1s&#39; count staring from the beginning position of its parent large block.  Bits itself are stored in four bit chunks corresponding to small blocks:</p>
+<pre><code class="language-julia">immutable Block
     # large block
     large::UInt32
     # small blocks
@@ -85,7 +277,14 @@ end</code></pre> <p>Each large block contains 256 bits and consists of four smal
     smalls::NTuple&#123;4,UInt8&#125;
     # bit chunks &#40;64bits × 4 &#61; 256bits&#41;
     chunks::NTuple&#123;4,UInt64&#125;
-end</code></pre> <p><img src="/assets/blog/2015-10-03-sequence-analysis/sucvector.png" alt=Block  /></p> <p>Since the bit count of the first small block is always zero, we can exploit this space to extend the cache of the large block &#40;red frame&#41;. When running the <code>rank1&#40;bv, i&#41;</code> query, it first picks a large and small block pair that the <code>i</code>-th bit belongs to and then adds their cached bit counts, finally counts remaining 1 bits in a chunk on the fly.</p> <p>As I mentioned, this data structure can be used as a building block of various data structures. The next package I&#39;m going to introduce is one of them.</p> <h2 id=waveletmatricesjl ><a href="#waveletmatricesjl">WaveletMatrices.jl</a></h2> <p>You may already know about the <a href="https://en.wikipedia.org/wiki/Wavelet_Tree">wavelet tree</a>, which supports the <em>rank</em> and <em>select</em> queries like <code>SucVector</code> and <code>RRR</code>, but elements are not restricted to 0/1 bits. In fact, the <em>rank</em> and <em>select</em> queries are available on arbitrary unsigned integers. The wavelet tree can be thought as a generalization of indexable bit vectors in this respect. What I&#39;ve implemented is not the well-known wavelet tree, a variant of it called &quot;wavelet matrix&quot;. You can find an implementation and a link to a paper at <a href="https://github.com/BioJulia/WaveletMatrices.jl">WaveletMatrices.jl</a>. According to the authors of the paper, the wavelet matrix is &quot;simpler to build, simpler to query, and faster in practice than the levelwise wavelet tree&quot;.</p> <p>The <code>WaveletMatrix</code> type takes three type parameters: <code>w</code>, <code>T</code>, and <code>B</code>. <code>w</code> and <code>T</code> are analogous to those of <code>IntArray&#123;w,T,n&#125;</code>, and <code>B</code> is a type of indexable bit vector.</p> <pre><code class=language-julia >julia&gt; using WaveletMatrices
+end</code></pre>
+<p><img src="/assets/blog/2015-10-03-sequence-analysis/sucvector.png" alt="Block" /></p>
+<p>Since the bit count of the first small block is always zero, we can exploit this space to extend the cache of the large block &#40;red frame&#41;.  When running the <code>rank1&#40;bv, i&#41;</code> query, it first picks a large and small block pair that the <code>i</code>-th bit belongs to and then adds their cached bit counts, finally counts remaining 1 bits in a chunk on the fly.</p>
+<p>As I mentioned, this data structure can be used as a building block of various data structures. The next package I&#39;m going to introduce is one of them.</p>
+<h2 id="waveletmatricesjl"><a href="#waveletmatricesjl">WaveletMatrices.jl</a></h2>
+<p>You may already know about the <a href="https://en.wikipedia.org/wiki/Wavelet_Tree">wavelet tree</a>, which supports the <em>rank</em> and <em>select</em> queries like <code>SucVector</code> and <code>RRR</code>, but elements are not restricted to 0/1 bits.  In fact, the <em>rank</em> and <em>select</em> queries are available on arbitrary unsigned integers. The wavelet tree can be thought as a generalization of indexable bit vectors in this respect.  What I&#39;ve implemented is not the well-known wavelet tree, a variant of it called &quot;wavelet matrix&quot;. You can find an implementation and a link to a paper at <a href="https://github.com/BioJulia/WaveletMatrices.jl">WaveletMatrices.jl</a>. According to the authors of the paper, the wavelet matrix is &quot;simpler to build, simpler to query, and faster in practice than the levelwise wavelet tree&quot;.</p>
+<p>The <code>WaveletMatrix</code> type takes three type parameters: <code>w</code>, <code>T</code>, and <code>B</code>. <code>w</code> and <code>T</code> are analogous to those of <code>IntArray&#123;w,T,n&#125;</code>, and <code>B</code> is a type of indexable bit vector.</p>
+<pre><code class="language-julia">julia&gt; using WaveletMatrices
 
 julia&gt; wm &#61; WaveletMatrix&#123;2&#125;&#40;&#91;0x00, 0x01, 0x02, 0x03&#93;&#41;
 4-element WaveletMatrices.WaveletMatrix&#123;2,UInt8,IndexableBitVectors.SucVector&#125;:
@@ -111,7 +310,11 @@ julia&gt; sum&#40;xs&#91;1:2^15&#93; .&#61;&#61; 0x03&#41;
 8171
 
 julia&gt; rank&#40;0x03, wm, 2^15&#41;
-8171</code></pre> <p>The details of the data structure and algorithms are relatively simple but beyond the scope of this post. For people who are interested in this data structure, the paper I mentioned above and my implementation would be helpful. There are more operations that the wavelet matrix can run efficiently and those operations will be added in the future.</p> <h2 id=fmindexesjl ><a href="#fmindexesjl">FMIndexes.jl</a></h2> <p>80&#37; of sequence analysis in bioinformatics is about sequence search, which includes pattern search, homologous gene search, genome comparison, short-read mapping, and so on. The <a href="https://en.wikipedia.org/wiki/FM-index">FM-Index</a> is often regarded as one of the most efficient indices for full-text search, and I&#39;ve implemented it in the <a href="https://github.com/BioJulia/FMIndexes.jl">FMIndexes.jl</a> package. Thanks to the packages I&#39;ve introduced so far, the code of it looks really simple. For example, counting the number of occurrences of a given pattern in a text can be written as follows &#40;slightly simplified for explanatory purpose&#41;:</p> <pre><code class=language-julia >function count&#40;query, index::FMIndex&#41;
+8171</code></pre>
+<p>The details of the data structure and algorithms are relatively simple but beyond the scope of this post. For people who are interested in this data structure, the paper I mentioned above and my implementation would be helpful. There are more operations that the wavelet matrix can run efficiently and those operations will be added in the future.</p>
+<h2 id="fmindexesjl"><a href="#fmindexesjl">FMIndexes.jl</a></h2>
+<p>80&#37; of sequence analysis in bioinformatics is about sequence search, which includes pattern search, homologous gene search, genome comparison, short-read mapping, and so on.  The <a href="https://en.wikipedia.org/wiki/FM-index">FM-Index</a> is often regarded as one of the most efficient indices for full-text search, and I&#39;ve implemented it in the <a href="https://github.com/BioJulia/FMIndexes.jl">FMIndexes.jl</a> package.  Thanks to the packages I&#39;ve introduced so far, the code of it looks really simple.  For example, counting the number of occurrences of a given pattern in a text can be written as follows &#40;slightly simplified for explanatory purpose&#41;:</p>
+<pre><code class="language-julia">function count&#40;query, index::FMIndex&#41;
     sp, ep &#61; 1, length&#40;index&#41;
     # backward search
     i &#61; length&#40;query&#41;
@@ -123,9 +326,14 @@ julia&gt; rank&#40;0x03, wm, 2^15&#41;
         i -&#61; 1
     end
     return length&#40;sp:ep&#41;
-end</code></pre> <p>A unique property of the FM-Index is that an index itself is just a permutation of characters of an original text and counts of characters contained in it. This permutation is called <a href="https://en.wikipedia.org/wiki/Burrows&#37;E2&#37;80&#37;93Wheeler_transform">Burrows-Wheeler transform</a> &#40;also known as BWT&#41;, and the permuted text is stored in a wavelet matrix &#40;or a wavelet tree&#41; in order to efficiently count the number of characters within a specific region. Therefore, the space required to index a text is often smaller than that of other full-text indices &#40;actually, in practice, efficiently finding positions of a query needs auxiliary data as well&#41;. Moreover, this transform is <a href="https://en.wikipedia.org/wiki/Bijection">bijective</a>, and thus the original text can be restored from an index.</p> <p>Building an index for full-text search is ridiculously simple: just passing a sequence to a constructor:</p> <pre><code class=language-julia >julia&gt; using FMIndexes
+end</code></pre>
+<p>A unique property of the FM-Index is that an index itself is just a permutation of characters of an original text and counts of characters contained in it. This permutation is called <a href="https://en.wikipedia.org/wiki/Burrows&#37;E2&#37;80&#37;93Wheeler_transform">Burrows-Wheeler transform</a> &#40;also known as BWT&#41;, and the permuted text is stored in a wavelet matrix &#40;or a wavelet tree&#41; in order to efficiently count the number of characters within a specific region.  Therefore, the space required to index a text is often smaller than that of other full-text indices &#40;actually, in practice, efficiently finding positions of a query needs auxiliary data as well&#41;. Moreover, this transform is <a href="https://en.wikipedia.org/wiki/Bijection">bijective</a>, and thus the original text can be restored from an index.</p>
+<p>Building an index for full-text search is ridiculously simple: just passing a sequence to a constructor:</p>
+<pre><code class="language-julia">julia&gt; using FMIndexes
 
-julia&gt; fmindex &#61; FMIndex&#40;&quot;abracadabra&quot;&#41;;</code></pre> <p>The <code>FMIndex</code> type supports two main queries: <code>count</code> and <code>locate</code>. The <code>count&#40;query, index&#41;</code> query literally counts the number of occurrences of the <code>query</code> string and the <code>locate&#40;query, index&#41;</code> locates starting positions of the <code>query</code>. In order to restore the original text, you can use the <code>restore</code> function. Here is a simple usage:</p> <pre><code class=language-julia >julia&gt; count&#40;&quot;a&quot;, fmindex&#41;
+julia&gt; fmindex &#61; FMIndex&#40;&quot;abracadabra&quot;&#41;;</code></pre>
+<p>The <code>FMIndex</code> type supports two main queries: <code>count</code> and <code>locate</code>.  The <code>count&#40;query, index&#41;</code> query literally counts the number of occurrences of the <code>query</code> string and the <code>locate&#40;query, index&#41;</code> locates starting positions of the <code>query</code>.  In order to restore the original text, you can use the <code>restore</code> function.  Here is a simple usage:</p>
+<pre><code class="language-julia">julia&gt; count&#40;&quot;a&quot;, fmindex&#41;
 5
 
 julia&gt; count&#40;&quot;abra&quot;, fmindex&#41;
@@ -145,7 +353,10 @@ julia&gt; locate&#40;&quot;abra&quot;, fmindex&#41; |&gt; collect
  1
 
 julia&gt; bytestring&#40;restore&#40;fmindex&#41;&#41;
-&quot;abracadabra&quot;</code></pre> <p>As an example, for bioinformaticians, let&#39;s try several queries on a chromosome. You also need to install the <a href="https://github.com/BioJulia/Bio.jl">Bio.jl</a> package to efficiently parse a <a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a> file. The next script reads a chromosome from a FASTA file, build an FM-Index, and then serialize it into a file for later use &#40;I love the serializers of Julia, they are available for free&#33;&#41;:</p> <p><strong>index.jl</strong></p> <pre><code class=language-julia >using Bio.Seq
+&quot;abracadabra&quot;</code></pre>
+<p>As an example, for bioinformaticians, let&#39;s try several queries on a chromosome.  You also need to install the <a href="https://github.com/BioJulia/Bio.jl">Bio.jl</a> package to efficiently parse a <a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a> file. The next script reads a chromosome from a FASTA file, build an FM-Index, and then serialize it into a file for later use &#40;I love the serializers of Julia, they are available for free&#33;&#41;:</p>
+<p><strong>index.jl</strong></p>
+<pre><code class="language-julia">using Bio.Seq
 using IntArrays
 using FMIndexes
 
@@ -168,12 +379,18 @@ fmindex &#61; FMIndex&#40;encode&#40;record.seq&#41;&#41;
 # save it in a file
 open&#40;string&#40;filepath, &quot;.index&quot;&#41;, &quot;w&#43;&quot;&#41; do io
     serialize&#40;io, fmindex&#41;
-end</code></pre> <p>OK, then create an index for chromosome 22 of human &#40;you can download it from <a href="https://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/">here</a>&#41;:</p> <pre><code class=language-julia >&#36; julia4 index.jl chr22.fa
+end</code></pre>
+<p>OK, then create an index for chromosome 22 of human &#40;you can download it from <a href="https://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/">here</a>&#41;:</p>
+<pre><code class="language-julia">&#36; julia4 index.jl chr22.fa
 chr22: 50818468bp
 &#36; ls -lh chr22.fa.index
--rw-r--r--&#43; 1 kenta  staff    74M  9 26 06:30 chr22.fa.index</code></pre> <p>After construction finished &#40;this will take several minutes&#41;, read the index in REPL:</p> <pre><code class=language-julia >julia&gt; using FMIndexes
+-rw-r--r--&#43; 1 kenta  staff    74M  9 26 06:30 chr22.fa.index</code></pre>
+<p>After construction finished &#40;this will take several minutes&#41;, read the index in REPL:</p>
+<pre><code class="language-julia">julia&gt; using FMIndexes
 
-julia&gt; fmindex &#61; open&#40;deserialize, &quot;chr22.fa.index&quot;&#41;;</code></pre> <p>Now that you can execute queries to search a DNA fragment:</p> <pre><code class=language-julia >julia&gt; using Bio.Seq
+julia&gt; fmindex &#61; open&#40;deserialize, &quot;chr22.fa.index&quot;&#41;;</code></pre>
+<p>Now that you can execute queries to search a DNA fragment:</p>
+<pre><code class="language-julia">julia&gt; using Bio.Seq
 
 julia&gt; count&#40;dna&quot;GACTTTCAC&quot;, fmindex&#41;  # this DNA fragment hits at 111 locations
 111
@@ -195,4 +412,170 @@ julia&gt; locate&#40;dna&quot;GACTTTCACTTTCCC&quot;, fmindex&#41; |&gt; collect
  36253071
 
 julia&gt; @time locate&#40;dna&quot;GACTTTCACTTTCCC&quot;, fmindex&#41;;  # this can be located in 32 μs&#33;
-  0.000032 seconds &#40;5 allocations: 192 bytes&#41;</code></pre> <p>This locus, <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db&#61;hg38&amp;position&#61;chr22&#37;3A36253071-36253120&amp;hgsid&#61;446220019_CeC0woSUOd5ov3GLph7a6fs5Uryo">chr22:36253071</a>, is the starting position of the <em>APOL1</em> gene.</p> <h2 id=applications ><a href="#applications">Applications</a></h2> <p>My aim of having created these packages was to prove that it is practicable to implement high-performance data structures for bioinformatics in Julia. I&#39;m pretty sure that it is true, but it may be skeptical to others. So, I&#39;m going to prove it by writing useful and performant applications using these packages. Now I&#39;m working on <a href="https://github.com/bicycle1885/FMM.jl">FMM.jl</a>, which aligns massive amounts of DNA fragments to a genome sequence using the FM-Index and other algorithms. This is still a work in progress, there would be many bugs and unusual cases I should care about, but its performance is not so bad compared to other implementations.</p> <p>The <a href="https://github.com/BioJulia">BioJulia</a> project is also under active development. The packages I made are intended to work with the <a href="https://github.com/BioJulia/Bio.jl">Bio.jl</a> package. If you are interested in the BioJulia project, we really welcome your contributions&#33;</p> </div><br><br> <script src="/libs/highlight/highlight.min.js"></script> <script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: ' '});</script> <script> (function(){ // Get the elements. // - the 'pre' element. // - the 'div' with the 'paste-content' id. var pre = document.getElementsByTagName('pre'); // Add a copy button in the 'pre' element. // which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render). for (var i = 0; i < pre.length; i++) { var tag_name = pre[i].children[0].className var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs'); if ( isLanguage ) { var button = document.createElement('button'); button.className = 'copy-button'; button.textContent = 'Copy'; pre[i].appendChild(button); } }; // Run Clipboard var copyCode = new Clipboard('.copy-button', { target: function(trigger) { return trigger.previousElementSibling; } }); // On success: // - Change the "Copy" text to "Copied". // - Swap it to "Copy" in 2s. // - Lead user to the "contenteditable" area with Velocity scroll. copyCode.on('success', function(event) { event.clearSelection(); event.trigger.textContent = 'Copied'; window.setTimeout(function() { event.trigger.textContent = 'Copy'; }, 2000); }); // On error (Safari): // - Change the "Press Ctrl+C to copy" // - Swap it to "Copy" in 2s. copyCode.on('error', function(event) { event.trigger.textContent = 'Press "Ctrl + C" to copy'; window.setTimeout(function() { event.trigger.textContent = 'Copy'; }, 5000); }); })(); </script> <footer class="container-fluid footer-copy"> <div class=container > <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css"> <style> #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; } /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block. We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */ </style> <div id=mc_embed_signup > <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate> <div id=mc_embed_signup_scroll > <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div> <div id=mce-responses  class=clear  style="display: inline-block;"> <div class=response  id=mce-error-response  style="display:none"></div> <div class=response  id=mce-success-response  style="display:none"></div> </div> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups--> <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div> <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div> </div> </form> </div> <script type='text/javascript' src='https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script> <!--End mc_embed_signup--> <div class="row footrow"> <ul> <li><a href="/project">About</a> <li><a href="/about/help">Get Help</a> <li><a href="/governance/">Governance</a> <li><a href="/research/#publications">Publications</a> <li><a href="/research/#sponsors">Sponsors</a> </ul> <ul> <li><a href="/downloads/">Downloads</a> <li><a href="/downloads/">All Releases</a> <li><a href="https://github.com/JuliaLang/julia">Source Code</a> <li><a href="/downloads/#current_stable_release">Current Stable Release</a> <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a> </ul> <ul> <li><a href="https://docs.julialang.org/en/v1/">Documentation</a> <li><a href="https://juliaacademy.com">JuliaAcademy</a> <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a> <li><a href="/learning/getting-started/">Getting Started</a> <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a> <li><a href="/learning/books">Books</a> </ul> <ul> <li><a href="/community/">Community</a> <li><a href="/community/standards/">Code of Conduct</a> <li><a href="/diversity/">Diversity</a> <li><a href="https://juliacon.org">JuliaCon</a> <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a> <li><a href="/shop/">Shop Merchandise</a> </ul> <ul> <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a> <li><a href="/contribute">Contributor's Guide</a> <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a> <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a> <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a> <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a> <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a> </ul> </div> <div id=footer-bottom  class=row > <div class="col-md-10 py-2"> <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p> <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>. </div> <div class="col-md-2 py-2"> <span class=float-sm-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </div> </div> </footer> <script src="/libs/jquery/jquery.min.js"></script> <script src="/libs/bootstrap/bootstrap.min.js"></script>
+  0.000032 seconds &#40;5 allocations: 192 bytes&#41;</code></pre>
+<p>This locus, <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db&#61;hg38&amp;position&#61;chr22&#37;3A36253071-36253120&amp;hgsid&#61;446220019_CeC0woSUOd5ov3GLph7a6fs5Uryo">chr22:36253071</a>, is the starting position of the <em>APOL1</em> gene.</p>
+<h2 id="applications"><a href="#applications">Applications</a></h2>
+<p>My aim of having created these packages was to prove that it is practicable to implement high-performance data structures for bioinformatics in Julia.  I&#39;m pretty sure that it is true, but it may be skeptical to others.  So, I&#39;m going to prove it by writing useful and performant applications using these packages. Now I&#39;m working on <a href="https://github.com/bicycle1885/FMM.jl">FMM.jl</a>, which aligns massive amounts of DNA fragments to a genome sequence using the FM-Index and other algorithms.  This is still a work in progress, there would be many bugs and unusual cases I should care about, but its performance is not so bad compared to other implementations.</p>
+<p>The <a href="https://github.com/BioJulia">BioJulia</a> project is also under active development.  The packages I made are intended to work with the <a href="https://github.com/BioJulia/Bio.jl">Bio.jl</a> package.  If you are interested in the BioJulia project, we really welcome your contributions&#33;</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/libs/highlight/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
+      /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+        We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+    </style>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
+        </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+      </div>
+      </form>
+    </div>
+    <script type='text/javascript' src='https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+    <!--End mc_embed_signup-->
+
+    <div class="row footrow">
+      <ul>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/libs/jquery/jquery.min.js"></script>
+<script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

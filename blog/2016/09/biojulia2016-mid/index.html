@@ -1,4 +1,183 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more!</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more!"> <meta property="og:description" content=" BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more! | We are pleased to announce releasing... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more! <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 10 September 2016 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Kenta Sato </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/09/biojulia2016-mid.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>We are pleased to announce releasing <a href="https://github.com/BioJulia/Bio.jl">Bio.jl</a> 0.4, a minor release including significant functionality improvements as I promised in <a href="/blog/2016/04/biojulia2016/">the previous blog post</a>.</p> <p>The following features are added since the post:</p> <ul> <li><p>Online sequence search algorithms.</p> <li><p>Sequence data structure for reference genomes.</p> <li><p>Data reader and writer for the .2bit file format.</p> <li><p>Data reader and writer for the SAM and BAM file formats.</p> <li><p>Sequence demultiplexing tool.</p> <li><p>Package to handle BGZF files.</p> </ul> <p>And many other miscellaneous performance and usability improvements&#33; Tutorial notebooks are available at <a href="https://github.com/BioJulia/BioTutorials">https://github.com/BioJulia/BioTutorials</a>. Here I briefly introduce you to these new features one by one.</p> <h2 id=online_sequence_search_algorithms ><a href="#online_sequence_search_algorithms">Online sequence search algorithms</a></h2> <p>Sequence search is an indispensable tool in sequence analysis. Since the last post, I have added exact, approximate and regex search algorithms. The search interface of Bio.jl mimics that of Julia&#39;s standard library.</p> <pre><code class=language-julia >julia&gt; using Bio.Seq
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more!</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more!">
+<meta property="og:description" content=" BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more! | We are pleased to announce releasing... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>BioJulia 2016 - online sequence search, sequence demultiplexing, new readers and much more!
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 10 September 2016 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">Kenta Sato </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/09/biojulia2016-mid.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>We are pleased to announce releasing <a href="https://github.com/BioJulia/Bio.jl">Bio.jl</a> 0.4, a minor release including significant functionality improvements as I promised in <a href="/blog/2016/04/biojulia2016/">the previous blog post</a>.</p>
+<p>The following features are added since the post:</p>
+<ul>
+<li><p>Online sequence search algorithms.</p>
+</li>
+<li><p>Sequence data structure for reference genomes.</p>
+</li>
+<li><p>Data reader and writer for the .2bit file format.</p>
+</li>
+<li><p>Data reader and writer for the SAM and BAM file formats.</p>
+</li>
+<li><p>Sequence demultiplexing tool.</p>
+</li>
+<li><p>Package to handle BGZF files.</p>
+</li>
+</ul>
+<p>And many other miscellaneous performance and usability improvements&#33;  Tutorial notebooks are available at <a href="https://github.com/BioJulia/BioTutorials">https://github.com/BioJulia/BioTutorials</a>.  Here I briefly introduce you to these new features one by one.</p>
+<h2 id="online_sequence_search_algorithms"><a href="#online_sequence_search_algorithms">Online sequence search algorithms</a></h2>
+<p>Sequence search is an indispensable tool in sequence analysis.  Since the last post, I have added exact, approximate and regex search algorithms.  The search interface of Bio.jl mimics that of Julia&#39;s standard library.</p>
+<pre><code class="language-julia">julia&gt; using Bio.Seq
 
 julia&gt; seq &#61; dna&quot;ACAGCGTAGCT&quot;
 11nt DNA Sequence:
@@ -14,7 +193,10 @@ julia&gt; approxsearch&#40;seq, dna&quot;AGGG&quot;, 1&#41;
 
 # Regular expression search.
 julia&gt; search&#40;seq, biore&quot;AGN*?G&quot;d&#41;
-3:6</code></pre> <h2 id=sequence_data_structure_for_reference_genomes ><a href="#sequence_data_structure_for_reference_genomes">Sequence data structure for reference genomes</a></h2> <p>In Bio.jl DNA sequences are encoded using 4 bits per base by default in order to store ambiguous nucleotides and this encoding does well in most cases. However, some biological sequences such as chromosomal sequences are so long especially for eukaryotic organisms and the default DNA sequences may result in a waste of memory space. <code>ReferenceSequence</code> is a new type introduced in Bio.jl that compresses positions of ambiguous nucleotides using a sparse bit vector. This type can achieve almost 2-bit encoding in common reference sequences because most of the ambiguous nucleotides are clustered in a sequence and the number of them is small compared to other unambiguous nucleotides.</p> <pre><code class=language-julia ># Converting a DNASequence object to ReferenceSequence.
+3:6</code></pre>
+<h2 id="sequence_data_structure_for_reference_genomes"><a href="#sequence_data_structure_for_reference_genomes">Sequence data structure for reference genomes</a></h2>
+<p>In Bio.jl DNA sequences are encoded using 4 bits per base by default in order to store ambiguous nucleotides and this encoding does well in most cases. However, some biological sequences such as chromosomal sequences are so long especially for eukaryotic organisms and the default DNA sequences may result in a waste of memory space. <code>ReferenceSequence</code> is a new type introduced in Bio.jl that compresses positions of ambiguous nucleotides using a sparse bit vector. This type can achieve almost 2-bit encoding in common reference sequences because most of the ambiguous nucleotides are clustered in a sequence and the number of them is small compared to other unambiguous nucleotides.</p>
+<pre><code class="language-julia"># Converting a DNASequence object to ReferenceSequence.
 julia&gt; ReferenceSequence&#40;dna&quot;ACGT&quot;^10000&#41;
 40000nt Reference Sequence:
 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACG…CGTACGTACGTACGTACGTACGTACGTACGTACGTACGT
@@ -28,7 +210,10 @@ Bio.Seq.SeqRecord&#123;Bio.Seq.ReferenceSequence,Bio.Seq.FASTAMetadata&#125;:
 
 julia&gt; sequence&#40;ans&#41;
 248956422nt Reference Sequence:
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN…NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</code></pre> <h2 id=data_reader_and_writer_for_the_2bit_file_format ><a href="#data_reader_and_writer_for_the_2bit_file_format">Data reader and writer for the 2bit file format</a></h2> <p>2bit is a binary file format to store reference sequences. This is a kind of binary counterpart of <a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a> but specialized for DNA reference sequences to enable smaller file size and faster loading. Reference sequences of various organisms are distributed from <a href="https://hgdownload.soe.ucsc.edu/downloads.html">the download page of UCSC</a> in this file format. An important advantage of 2bit is that sequences are indexed by its name and can be accessed immediately.</p> <pre><code class=language-julia ># Opening a sequence file of yeast &#40;S.cerevisiae&#41;.
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN…NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</code></pre>
+<h2 id="data_reader_and_writer_for_the_2bit_file_format"><a href="#data_reader_and_writer_for_the_2bit_file_format">Data reader and writer for the 2bit file format</a></h2>
+<p>2bit is a binary file format to store reference sequences. This is a kind of binary counterpart of <a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a> but specialized for DNA reference sequences to enable smaller file size and faster loading. Reference sequences of various organisms are distributed from <a href="https://hgdownload.soe.ucsc.edu/downloads.html">the download page of UCSC</a> in this file format. An important advantage of 2bit is that sequences are indexed by its name and can be accessed immediately.</p>
+<pre><code class="language-julia"># Opening a sequence file of yeast &#40;S.cerevisiae&#41;.
 julia&gt; reader &#61; open&#40;TwoBitReader, &quot;sacCer3.2bit&quot;&#41;;
 
 # Loading a chromosome VI using random access index.
@@ -36,7 +221,11 @@ julia&gt; reader&#91;&quot;chrVI&quot;&#93;
 Bio.Seq.SeqRecord&#123;Bio.Seq.ReferenceSequence,Array&#123;UnitRange&#123;Int64&#125;,1&#125;&#125;:
   name: chrVI
   sequence: GATCTCGCAAGTGCATTCCTAGACTTAATTCATATCTGC…GTGTGGTGTGTGGGTGTGGTGTGTGGGTGTGGTGTGTGG
-  metadata: UnitRange&#123;Int64&#125;&#91;&#93;</code></pre> <h2 id=data_reader_and_writer_for_the_sam_and_bam_file_formats ><a href="#data_reader_and_writer_for_the_sam_and_bam_file_formats">Data reader and writer for the SAM and BAM file formats</a></h2> <p>The SAM and BAM file formats are designed for storing sequences aligned to reference sequences. SAM is a line-oriented text file format and easy to handle with UNIX command line tools. BAM is a compressed binary version of SAM and suitable for storing data in disks and processing with purpose-built softwares like <a href="https://samtools.github.io/">samtools</a>. The BAM data reader is carefully tuned so that users can use it in real analysis with large files. It is also feasible to read a <a href="https://www.ebi.ac.uk/ena/software/cram-toolkit">CRAM</a> file combining the BAM reader and <code>samtools view</code> command.</p> <p>An experimental feature is parallel processing using multiple threads. Multi-threading support is introduced in Julia 0.5 and we use it to parallelize decompression of BAM files. Here is a simple benchmark script to show how much reading speed can be improved with multiple threads:</p> <pre><code class=language-julia >using Bio.Align
+  metadata: UnitRange&#123;Int64&#125;&#91;&#93;</code></pre>
+<h2 id="data_reader_and_writer_for_the_sam_and_bam_file_formats"><a href="#data_reader_and_writer_for_the_sam_and_bam_file_formats">Data reader and writer for the SAM and BAM file formats</a></h2>
+<p>The SAM and BAM file formats are designed for storing sequences aligned to reference sequences. SAM is a line-oriented text file format and easy to handle with UNIX command line tools. BAM is a compressed binary version of SAM and suitable for storing data in disks and processing with purpose-built softwares like <a href="https://samtools.github.io/">samtools</a>. The BAM data reader is carefully tuned so that users can use it in real analysis with large files. It is also feasible to read a <a href="https://www.ebi.ac.uk/ena/software/cram-toolkit">CRAM</a> file combining the BAM reader and <code>samtools view</code> command.</p>
+<p>An experimental feature is parallel processing using multiple threads. Multi-threading support is introduced in Julia 0.5 and we use it to parallelize decompression of BAM files. Here is a simple benchmark script to show how much reading speed can be improved with multiple threads:</p>
+<pre><code class="language-julia">using Bio.Align
 
 # Count the number of mapped records.
 function countmapped&#40;reader&#41;
@@ -52,18 +241,29 @@ function countmapped&#40;reader&#41;
     return ret
 end
 
-println&#40;open&#40;countmapped, BAMReader, ARGS&#91;1&#93;&#41;&#41;</code></pre> <p><code>JULIA_NUM_THREADS</code> environment variable controls the number of worker threads. The result below shows that the elapsed time is almost halved using two threads:</p> <pre><code class=language-julia >~/.j/v/Bio &#36; time julia countmapped.jl SRR1238088.sort.bam
+println&#40;open&#40;countmapped, BAMReader, ARGS&#91;1&#93;&#41;&#41;</code></pre>
+<p><code>JULIA_NUM_THREADS</code> environment variable controls the number of worker threads. The result below shows that the elapsed time is almost halved using two threads:</p>
+<pre><code class="language-julia">~/.j/v/Bio &#36; time julia countmapped.jl SRR1238088.sort.bam
 28040186
        29.27 real        28.64 user         0.66 sys
 ~/.j/v/Bio &#36; env JULIA_NUM_THREADS&#61;2 time julia countmapped.jl SRR1238088.sort.bam
 28040186
-       17.40 real        32.31 user         0.63 sys</code></pre> <h2 id=package_to_handle_bgzf_files ><a href="#package_to_handle_bgzf_files">Package to handle BGZF files</a></h2> <p>BGZF &#40;Blocked GZip Format&#41; is a gzip-compliant file format commonly used in bioinformatics. BGZF can be read using standard gzip tools but files in the format are compressed block by block and special metadata are added to index the compressed files for random access. BAM files are compressed in this file format and sequence alignments in a specific genomic region can be retrieved efficiently. BGZFStreams.jl is a new package to handle BGZF files like usual I/O streams and it is built on top of our <a href="https://github.com/BioJulia/Libz.jl">Libz.jl</a> package. Parallel decompression mentioned above is implemented in this package layer.</p> <pre><code class=language-julia >julia&gt; using BGZFStreams
+       17.40 real        32.31 user         0.63 sys</code></pre>
+<h2 id="package_to_handle_bgzf_files"><a href="#package_to_handle_bgzf_files">Package to handle BGZF files</a></h2>
+<p>BGZF &#40;Blocked GZip Format&#41; is a gzip-compliant file format commonly used in bioinformatics. BGZF can be read using standard gzip tools but files in the format are compressed block by block and special metadata are added to index the compressed files for random access. BAM files are compressed in this file format and sequence alignments in a specific genomic region can be retrieved efficiently.  BGZFStreams.jl is a new package to handle BGZF files like usual I/O streams and it is built on top of our <a href="https://github.com/BioJulia/Libz.jl">Libz.jl</a> package. Parallel decompression mentioned above is implemented in this package layer.</p>
+<pre><code class="language-julia">julia&gt; using BGZFStreams
 
 julia&gt; stream &#61; BGZFStream&#40;&quot;/Users/kenta/.julia/v0.5/BGZFStreams/test/bar.bgz&quot;&#41;
 BGZFStreams.BGZFStream&#123;IOStream&#125;&#40;&lt;mode&#61;read&gt;&#41;
 
 julia&gt; readstring&#40;stream&#41;
-&quot;bar&quot;</code></pre> <https://github.com/BioJulia/BGZFStreams.jl> <h2 id=sequence_demultiplexing_tool ><a href="#sequence_demultiplexing_tool">Sequence demultiplexing tool</a></h2> <p>Sequence demultiplexing is a technique to distinguish the origin of a sequence using its artificially-attached &quot;barcode&quot; sequence. This is often used at a preprocessing phase after <a href="https://www.illumina.com/technology/next-generation-sequencing/multiplexing-sequencing-assay.html">multiplexed sequencing</a>, a common technique to sequence multiple samples simultaneously. A barcode sequence, however, may be corrupted due to sequencing error, and we need to find the best matching barcode from a barcode set. The demultiplexer algorithm implemented in Bio.jl is based on a trie-like data structure, and efficiently finds the optimal barcode from the prefix of a given DNA sequence.</p> <pre><code class=language-julia ># Set DNA barcode pool.
+&quot;bar&quot;</code></pre>
+
+<https://github.com/BioJulia/BGZFStreams.jl>
+
+<h2 id="sequence_demultiplexing_tool"><a href="#sequence_demultiplexing_tool">Sequence demultiplexing tool</a></h2>
+<p>Sequence demultiplexing is a technique to distinguish the origin of a sequence using its artificially-attached &quot;barcode&quot; sequence. This is often used at a preprocessing phase after <a href="https://www.illumina.com/technology/next-generation-sequencing/multiplexing-sequencing-assay.html">multiplexed sequencing</a>, a common technique to sequence multiple samples simultaneously.  A barcode sequence, however, may be corrupted due to sequencing error, and we need to find the best matching barcode from a barcode set.  The demultiplexer algorithm implemented in Bio.jl is based on a trie-like data structure, and efficiently finds the optimal barcode from the prefix of a given DNA sequence.</p>
+<pre><code class="language-julia"># Set DNA barcode pool.
 julia&gt; barcodes &#61; DNASequence&#91;&quot;ATGG&quot;, &quot;CAGA&quot;, &quot;GGAA&quot;, &quot;TACG&quot;&#93;;
 
 # Create a sequence demultiplexer that allows one errors at most.
@@ -78,4 +278,179 @@ julia&gt; demultiplex&#40;dplxr, dna&quot;ATGGCGNT&quot;&#41;  # 1st barcode wit
 &#40;1,0&#41;
 
 julia&gt; demultiplex&#40;dplxr, dna&quot;CAGGCGNT&quot;&#41;  # 2nd barcode with one error
-&#40;2,1&#41;</code></pre> <h2 id=next_step ><a href="#next_step">Next step</a></h2> <p>This is still the first half of my project this year. The next term will come with:</p> <ul> <li><p>Supporting more file formats including GFF3, VCF and BCF.</p> <li><p>Integration with databases.</p> <li><p>Integration with genome browsers.</p> </ul> <p>And, of course, improving existing features of Bio.jl and other packages. We welcome any contributions and feature requests from you all. <a href="https://gitter.im/BioJulia/Bio.jl">Gitter chat channel</a> is the best place to communicate with developers and other users. If you love Julia and/or biology, any reason not to join us?</p> <h2 id=acknowledgements ><a href="#acknowledgements">Acknowledgements</a></h2> <p>I gratefully acknowledge the Moore Foundation and the Julia project for supporting the BioJulia project. I also would like to thank <a href="https://github.com/BenJWard">Ben J. Ward</a> and <a href="https://github.com/kdmurray91">Kevin Murray</a> for comments on my program code and other contributions.</p> </div><br><br> <script src="/libs/highlight/highlight.min.js"></script> <script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: ' '});</script> <script> (function(){ // Get the elements. // - the 'pre' element. // - the 'div' with the 'paste-content' id. var pre = document.getElementsByTagName('pre'); // Add a copy button in the 'pre' element. // which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render). for (var i = 0; i < pre.length; i++) { var tag_name = pre[i].children[0].className var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs'); if ( isLanguage ) { var button = document.createElement('button'); button.className = 'copy-button'; button.textContent = 'Copy'; pre[i].appendChild(button); } }; // Run Clipboard var copyCode = new Clipboard('.copy-button', { target: function(trigger) { return trigger.previousElementSibling; } }); // On success: // - Change the "Copy" text to "Copied". // - Swap it to "Copy" in 2s. // - Lead user to the "contenteditable" area with Velocity scroll. copyCode.on('success', function(event) { event.clearSelection(); event.trigger.textContent = 'Copied'; window.setTimeout(function() { event.trigger.textContent = 'Copy'; }, 2000); }); // On error (Safari): // - Change the "Press Ctrl+C to copy" // - Swap it to "Copy" in 2s. copyCode.on('error', function(event) { event.trigger.textContent = 'Press "Ctrl + C" to copy'; window.setTimeout(function() { event.trigger.textContent = 'Copy'; }, 5000); }); })(); </script> <footer class="container-fluid footer-copy"> <div class=container > <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css"> <style> #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; } /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block. We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */ </style> <div id=mc_embed_signup > <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate> <div id=mc_embed_signup_scroll > <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div> <div id=mce-responses  class=clear  style="display: inline-block;"> <div class=response  id=mce-error-response  style="display:none"></div> <div class=response  id=mce-success-response  style="display:none"></div> </div> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups--> <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div> <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div> </div> </form> </div> <script type='text/javascript' src='https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script> <!--End mc_embed_signup--> <div class="row footrow"> <ul> <li><a href="/project">About</a> <li><a href="/about/help">Get Help</a> <li><a href="/governance/">Governance</a> <li><a href="/research/#publications">Publications</a> <li><a href="/research/#sponsors">Sponsors</a> </ul> <ul> <li><a href="/downloads/">Downloads</a> <li><a href="/downloads/">All Releases</a> <li><a href="https://github.com/JuliaLang/julia">Source Code</a> <li><a href="/downloads/#current_stable_release">Current Stable Release</a> <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a> </ul> <ul> <li><a href="https://docs.julialang.org/en/v1/">Documentation</a> <li><a href="https://juliaacademy.com">JuliaAcademy</a> <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a> <li><a href="/learning/getting-started/">Getting Started</a> <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a> <li><a href="/learning/books">Books</a> </ul> <ul> <li><a href="/community/">Community</a> <li><a href="/community/standards/">Code of Conduct</a> <li><a href="/diversity/">Diversity</a> <li><a href="https://juliacon.org">JuliaCon</a> <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a> <li><a href="/shop/">Shop Merchandise</a> </ul> <ul> <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a> <li><a href="/contribute">Contributor's Guide</a> <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a> <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a> <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a> <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a> <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a> </ul> </div> <div id=footer-bottom  class=row > <div class="col-md-10 py-2"> <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p> <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>. </div> <div class="col-md-2 py-2"> <span class=float-sm-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </div> </div> </footer> <script src="/libs/jquery/jquery.min.js"></script> <script src="/libs/bootstrap/bootstrap.min.js"></script>
+&#40;2,1&#41;</code></pre>
+<h2 id="next_step"><a href="#next_step">Next step</a></h2>
+<p>This is still the first half of my project this year. The next term will come with:</p>
+<ul>
+<li><p>Supporting more file formats including GFF3, VCF and BCF.</p>
+</li>
+<li><p>Integration with databases.</p>
+</li>
+<li><p>Integration with genome browsers.</p>
+</li>
+</ul>
+<p>And, of course, improving existing features of Bio.jl and other packages. We welcome any contributions and feature requests from you all.  <a href="https://gitter.im/BioJulia/Bio.jl">Gitter chat channel</a> is the best place to communicate with developers and other users. If you love Julia and/or biology, any reason not to join us?</p>
+<h2 id="acknowledgements"><a href="#acknowledgements">Acknowledgements</a></h2>
+<p>I gratefully acknowledge the Moore Foundation and the Julia project for supporting the BioJulia project. I also would like to thank <a href="https://github.com/BenJWard">Ben J. Ward</a> and <a href="https://github.com/kdmurray91">Kevin Murray</a> for comments on my program code and other contributions.</p>
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/libs/highlight/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
+      /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+        We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+    </style>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
+        </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+      </div>
+      </form>
+    </div>
+    <script type='text/javascript' src='https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+    <!--End mc_embed_signup-->
+
+    <div class="row footrow">
+      <ul>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/libs/jquery/jquery.min.js"></script>
+<script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

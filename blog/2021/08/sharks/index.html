@@ -1,19 +1,185 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/katex/katex.min.css"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Simulation of a swimming dogfish shark</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:image" content="{{base}}slenderfish.jpg"> <meta name="twitter:creator:id" content=194427250 > <meta name="twitter:card" content=summary_large_image > <meta property="og:title" content="Simulation of a swimming dogfish shark"> <meta property="og:description" content="Simulation of a swimming dogfish shark "> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Simulation of a swimming dogfish shark <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 12 August 2021 </span> | <span style="font-weight: bold;">Gabriel D Weymouth<a href="https://twitter.com/intent/user?user_id=194427250"><img src="/assets/infra/twitter.svg"/ width=22px  height=22px  style="margin-left:2px"></a></span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2021/08/sharks.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"> <p>This post will demonstrate how to set up and simulate a model of a swimming dogfish shark using <a href="https://julialang.org/">Julia</a> and <a href="https://www.youtube.com/watch?v&#61;YsPkfZqbNSQ">WaterLily.jl</a>. This post is adapted from a <a href="https://github.com/fonsp/Pluto.jl">Pluto</a> notebook that you can get <a href="/assets/blog/2021-08-sharks/notebook.jl">here</a>.</p> <pre><code class=language-julia >using WaterLily, StaticArrays, PlutoUI, Interpolations, Plots, Images</code></pre>
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+   <link rel="stylesheet" href="/libs/katex/katex.min.css">
+      
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>Simulation of a swimming dogfish shark</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:image" content="{{base}}slenderfish.jpg">
+<meta name="twitter:creator:id" content="194427250">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="Simulation of a swimming dogfish shark">
+<meta property="og:description" content="Simulation of a swimming dogfish shark
+">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Simulation of a swimming dogfish shark
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 12 August 2021 </span>
+	|
+	
+	 <span style="font-weight: bold;">Gabriel D Weymouth<a href="https://twitter.com/intent/user?user_id=194427250"><img src="/assets/infra/twitter.svg"/ width="22px" height="22px" style="margin-left:2px"></a></span> 
+  <!-- assumption that only one of the two is defined -->
+  
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2021/08/sharks.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+<p>This post will demonstrate how to set up and simulate a model of a swimming dogfish shark using <a href="https://julialang.org/">Julia</a> and <a href="https://www.youtube.com/watch?v&#61;YsPkfZqbNSQ">WaterLily.jl</a>. This post is adapted from a <a href="https://github.com/fonsp/Pluto.jl">Pluto</a> notebook that you can get <a href="/assets/blog/2021-08-sharks/notebook.jl">here</a>.</p>
+<pre><code class="language-julia">using WaterLily, StaticArrays, PlutoUI, Interpolations, Plots, Images</code></pre>
 <p>We&#39;ll use a simple model of the shark based on Lighthill&#39;s pioneering <a href="https://doi.org/10.1017/S0022112060001110">paper on the swimming of slender fish</a>. It focuses on the &quot;backbone&quot; of the fish; idealizing the shape as a thickness distribution on either side of the center, and the motion as a lateral &#40;&quot;side-to-side&quot;&#41; traveling wave. Amazingly, this simple approach provides insight across a huge range of a swimming animals as illustrated in the image below. <a href="https://www.nature.com/articles/nphys3078">Image credit: Gazzola et al, Nature 2014</a></p>
 <p><img src="/assets/blog/2021-08-sharks/slenderfish.png" alt="" /></p>
-<h2 id=modeling_the_sharks_thickness_and_motion ><a href="#modeling_the_sharks_thickness_and_motion">Modeling the shark&#39;s thickness and motion</a></h2>
+<h2 id="modeling_the_sharks_thickness_and_motion"><a href="#modeling_the_sharks_thickness_and_motion">Modeling the shark&#39;s thickness and motion</a></h2>
 <p>We&#39;ll define the thickness and motion distributions using interpolate to fit splines through a few points.</p>
-<pre><code class=language-julia >fit &#61; y -&gt; scale&#40;
+<pre><code class="language-julia">fit &#61; y -&gt; scale&#40;
         interpolate&#40;y, BSpline&#40;Quadratic&#40;Line&#40;OnGrid&#40;&#41;&#41;&#41;&#41;&#41;,
         range&#40;0,1,length&#61;length&#40;y&#41;&#41;
     &#41;</code></pre>
 <p>Here is an image of the dogfish shark we will model. Image credit: Shark Trust.</p>
-<pre><code class=language-julia >url2 &#61; &quot;https://pterosaurheresies.files.wordpress.com/2020/01/squalus-acanthias-invivo588.jpg&quot;
+<pre><code class="language-julia">url2 &#61; &quot;https://pterosaurheresies.files.wordpress.com/2020/01/squalus-acanthias-invivo588.jpg&quot;
 filename2 &#61; download&#40;url2&#41;
 dogfish &#61; load&#40;filename2&#41;</code></pre>
 <p><img src="/assets/blog/2021-08-sharks/shark1.png" alt="" /></p>
 <p>The bottom view shows the outline we&#39;re interested in, and adding a few points along the length defines the thickness distribution function <code>thk</code>.</p>
-<pre><code class=language-julia >plot&#40;dogfish&#41;
+<pre><code class="language-julia">plot&#40;dogfish&#41;
 nose, len &#61; &#40;30,224&#41;, 500
 width &#61; &#91;0.02, 0.07, 0.06, 0.048, 0.03, 0.019, 0.01&#93;
 scatter&#33;&#40;
@@ -29,16 +195,16 @@ plot&#33;&#40;
 <p>Looking at <a href="https://youtu.be/nMa6lD2CQVI?t&#61;200">videos of swimming dogfish</a>, we can see a couple general features</p>
 <ul>
 <li><p>The motion of the front half of the body has a small amplitude &#40;around 20&#37; of the tail&#41;. This sets the amplitude envelope for the traveling wave.</p>
-
+</li>
 </ul>
-<pre><code class=language-julia >envelope &#61; &#91;0.2,0.21,0.23,0.4,0.88,1.0&#93;
+<pre><code class="language-julia">envelope &#61; &#91;0.2,0.21,0.23,0.4,0.88,1.0&#93;
 amp &#61; fit&#40;envelope&#41;</code></pre>
 <ul>
 <li><p>The wavelength of the traveling wave is a bit longer than the body length</p>
-
+</li>
 </ul>
-<p>In the code below, you can change the value of <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span> to control the wavelength of the traveling wave to see the impact it has on the backbone over the motion cycle.</p>
-<pre><code class=language-julia >λ &#61; 1.4
+<p>In the code below, you can change the value of <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span> to control the wavelength of the traveling wave to see the impact it has on the backbone over the motion cycle.</p>
+<pre><code class="language-julia">λ &#61; 1.4
 scatter&#40;0:0.2:1, envelope&#41;
 colors &#61; palette&#40;:cyclic_wrwbw_40_90_c42_n256&#41;
 for t in 1/12:1/12:1
@@ -47,11 +213,11 @@ for t in 1/12:1/12:1
 end
 plot&#33;&#40;ylim&#61;&#40;-1.4,1.4&#41;, legend&#61;false&#41;</code></pre>
 <p><img src="/assets/blog/2021-08-sharks/wavelength.svg" alt="" /></p>
-<h2 id=setting_up_the_simulation ><a href="#setting_up_the_simulation">Setting up the simulation</a></h2>
+<h2 id="setting_up_the_simulation"><a href="#setting_up_the_simulation">Setting up the simulation</a></h2>
 <p>Now the thickness and motion are defined, but how will we apply these to a fluid simulation? <code>WaterLily</code> uses an <a href="https://eprints.soton.ac.uk/369635/">immersed boundary method</a> and <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> to embed a body into the flow. The upshot is that we don&#39;t need to do any meshing; all we need is a signed distance function &#40;SDF&#41; to the surface.</p>
-<p>Let&#39;s start by defining the SDF to the &quot;backbone&quot;, which is a line segment from <span class=katex ><span class=katex-mathml ><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn><mo>…</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=0\ldots 1</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:0.64444em;vertical-align:0em;"></span><span class=mord >0</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=minner >…</span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class=mord >1</span></span></span></span>. <a href="https://www.youtube.com/watch?v&#61;PMltMdi1Wzg">See this great video from Inigo Quilez for a derivation of this sdf.</a>. The plot below shows the sdf and the zero contour, which is ... just a line segment.</p>
+<p>Let&#39;s start by defining the SDF to the &quot;backbone&quot;, which is a line segment from <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn><mo>…</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=0\ldots 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span></span></span></span>. <a href="https://www.youtube.com/watch?v&#61;PMltMdi1Wzg">See this great video from Inigo Quilez for a derivation of this sdf.</a>. The plot below shows the sdf and the zero contour, which is ... just a line segment.</p>
 <p>Simple adjustments to the SDF give us more control of the shape and position. By shifting the y offset as <code>y &#61; y-shift</code>, we can move the body laterally. And by subtracting a thickness from the distance as <code>sdf &#61; sdf-thickness</code>, we can give the line some width. This is all we need to model the shark.</p>
-<pre><code class=language-julia >shift &#61; 0.5
+<pre><code class="language-julia">shift &#61; 0.5
 T &#61; 0.5
 
 function segment_sdf&#40;x, y&#41;
@@ -68,13 +234,13 @@ contour&#33;&#40;grid, grid, segment_sdf, levels&#61;&#91;0&#93;, color&#61;:bla
 <p>With the basic SDF tested out, we are ready to set up the WaterLily simulation using the function <code>fish</code> defined below:</p>
 <ul>
 <li><p>The functions <code>thk</code> is passed in to create the <code>sdf</code> and the function <code>amp</code> is passed in to create the traveling wave <code>map</code>.</p>
-
+</li>
 <li><p>The only numerical parameter passed into <code>fish</code> is the length of the fish <code>L</code> measured in computational cells. This sets the resolution of the simulation and the size of the fluid arrays.</p>
-
+</li>
 <li><p>The other parameters are the tail amplitude <code>A</code> as a fraction of the length, the <a href="https://en.wikipedia.org/wiki/Strouhal_number">Stouhal number</a> which sets the motion frequency <code>ω</code>, and the <a href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds number</a> which sets the fluid viscosity <code>ν</code>.</p>
-
+</li>
 </ul>
-<pre><code class=language-julia >function fish&#40;thk, amp, k&#61;5.3; L&#61;2^6, A&#61;0.1, St&#61;0.3, Re&#61;1e4&#41;
+<pre><code class="language-julia">function fish&#40;thk, amp, k&#61;5.3; L&#61;2^6, A&#61;0.1, St&#61;0.3, Re&#61;1e4&#41;
 	# fraction along fish length
 	s&#40;x&#41; &#61; clamp&#40;x&#91;1&#93;/L, 0, 1&#41;
 
@@ -102,21 +268,21 @@ swimmer &#61; fish&#40;thk, amp; L, A, St&#41;;
 period &#61; 2A/St
 cycle &#61; range&#40;0, 23/24*period, length&#61;24&#41;</code></pre>
 <p>We can test our geometry by plotting the immersed boundary function <code>μ₀</code>; which equals 1 in the fluid and 0 in the body.</p>
-<pre><code class=language-julia >@gif for t ∈ cycle
+<pre><code class="language-julia">@gif for t ∈ cycle
 	measure&#33;&#40;swimmer, t*swimmer.L/swimmer.U&#41;
 	contour&#40;swimmer.flow.μ₀&#91;:,:,1&#93;&#39;,
 			aspect_ratio&#61;:equal, legend&#61;false, border&#61;:none&#41;
 end</code></pre>
 <p><img src="/assets/blog/2021-08-sharks/swimmer.gif" alt="" /></p>
-<h2 id=running_visualizing_and_measuring_the_simulation ><a href="#running_visualizing_and_measuring_the_simulation">Running visualizing and measuring the simulation</a></h2>
+<h2 id="running_visualizing_and_measuring_the_simulation"><a href="#running_visualizing_and_measuring_the_simulation">Running visualizing and measuring the simulation</a></h2>
 <p>That animation of the motion looks great, so we are ready to run the flow simulator&#33;</p>
 <p>The <code>sim_step&#33;&#40;sim, t, remeasure&#61;true&#41;</code> function runs the simulator up to time <code>t</code>, remeasuring the body position every time step. &#40;<code>remeasure&#61;false</code> by default since it takes a little extra computational time and isn&#39;t needed for statics geometries.&#41;</p>
-<pre><code class=language-julia ># run the simulation a few cycles &#40;this takes few seconds&#41;
+<pre><code class="language-julia"># run the simulation a few cycles &#40;this takes few seconds&#41;
 sim_step&#33;&#40;swimmer, 10, remeasure&#61;true&#41;
 sim_time&#40;swimmer&#41;</code></pre>
 <p>The simulation has now run forward in time, but there are no visualizations or measurements by default.</p>
 <p>To see what is going on, lets make a gif of the vorticity <code>ω&#61;curl&#40;u&#41;</code> to visualize the vortices in the wake of the shark. This requires simulating a cycle of motion, and computing the <code>curl</code> at all the points <code>@inside</code> the simulation.</p>
-<pre><code class=language-julia ># plot the vorcity ω&#61;curl&#40;u&#41; scaled by the body length L and flow speed U
+<pre><code class="language-julia"># plot the vorcity ω&#61;curl&#40;u&#41; scaled by the body length L and flow speed U
 function plot_vorticity&#40;sim&#41;
 	@inside sim.flow.σ&#91;I&#93; &#61; WaterLily.curl&#40;3, I, sim.flow.u&#41; * sim.L / sim.U
 	contourf&#40;sim.flow.σ&#39;,
@@ -132,7 +298,7 @@ end</code></pre>
 <p><img src="/assets/blog/2021-08-sharks/swimmer2.gif" alt="" /></p>
 <p>This is pretty &#40;CFD does stand for <em>Colorful Fluid Dynamics</em> after all&#41;, but also tells us something important about the flow. Notice that there are no eddies coming off the body anywhere other than the tail&#33; This is a sign of efficiency since energy is only used to create those trailing vortices.</p>
 <p>We can dig in and get some quantitative measurements from the simulation as well. The function <code>∮nds</code> takes a integral over the body surface. By passing in the pressure <code>p</code>, we can measure the thrust force and side force generated by the shark&#33;</p>
-<pre><code class=language-julia >function get_force&#40;sim, t&#41;
+<pre><code class="language-julia">function get_force&#40;sim, t&#41;
 	sim_step&#33;&#40;sim, t, remeasure&#61;true&#41;
 	return WaterLily.∮nds&#40;sim.flow.p, sim.body, t*sim.L/sim.U&#41; ./ &#40;0.5*sim.L*sim.U^2&#41;
 end
@@ -144,45 +310,45 @@ scatter&#40;cycle./period, &#91;first.&#40;forces&#41;, last.&#40;forces&#41;&#9
 		ylabel&#61;&quot;scaled force&quot;&#41;</code></pre>
 <p><img src="/assets/blog/2021-08-sharks/forces.svg" alt="" /></p>
 <p>We can learn a lot from this simple plot. For example, the side-to-side force has the same frequency as the swimming motion itself while the thrust force has double the frequency, with a peak every time the tail passes through the centerline.</p>
-<h2 id=next_steps ><a href="#next_steps">Next steps</a></h2>
+<h2 id="next_steps"><a href="#next_steps">Next steps</a></h2>
 <p>This simple model is a great start and it opens up a ton of avenues for improving the shark simulation and suggesting research questions:</p>
 <ul>
 <li><p>The instantaneous net forces should be zero in a free swimming body&#33; We could add reaction motions to our model to achieve this. Would the model shark swim in a straight line if we did this, or is a control-loop needed?</p>
-
+</li>
 <li><p>Real sharks are 3D &#40;gasp&#33;&#41;. While we could easily extend this approach using 2D splines, it will take much longer to simulate. Is there a way use GPUs to accelerate the simulations without completely changing the solver?</p>
-
+</li>
 <li><p>If we were going to make a bio-inspired robot of this shark, we will have constraints on the shape and motion and powering available. Can we use this framework to help optimize our robotic within it&#39;s constraints?</p>
-
+</li>
 </ul>
 <p>Below you can find links to all the packages used in this notebook. Happy Simulating&#33;</p>
 <ol>
 <li><p><a href="https://juliamath.github.io/Interpolations.jl/stable/">Interpolations.jl</a></p>
-
+</li>
 <li><p><a href="https://juliadiff.org/">JuliaDiff</a></p>
-
+</li>
 <li><p><a href="https://juliaimages.org/stable/">JuliaImages</a></p>
-
+</li>
 <li><p><a href="http://docs.juliaplots.org/latest/">Plots.jl</a></p>
-
+</li>
 <li><p><a href="https://github.com/fonsp/Pluto.jl">Pluto.jl</a> and <a href="https://github.com/fonsp/PlutoUI.jl">PlutoUI.jl</a></p>
-
+</li>
 <li><p><a href="https://github.com/JuliaArrays/StaticArrays.jl">StaticArrays.jl</a></p>
-
+</li>
 <li><p><a href="https://github.com/weymouth/WaterLily.jl">WaterLily.jl</a></p>
-
+</li>
 </ol>
-		<div class=author-info >
-          <img src="/assets/blog/2021-08-sharks/GWeymouth.jpg" class=author-img  alt="Gabriel D Weymouth" width=150px >
+		<div class="author-info">
+          <img src="/assets/blog/2021-08-sharks/GWeymouth.jpg" class="author-img" alt="Gabriel D Weymouth" width="150px">
 		  <h3>Gabriel D Weymouth</h3>
-		  <div class=author-description >
+		  <div class="author-description">
 		    Associate Professor of Marine Hydrodynamics at University of Southampton
 
 		  </div>
-          <div class=author-social >
-            <ul class=author-social-icons >
-            <li class=author-social-link-twitter >
+          <div class="author-social">
+            <ul class="author-social-icons">
+            <li class="author-social-link-twitter">
   <a href="https://twitter.com/intent/user?user_id=194427250"><i class="fa fa-twitter"></i></a>
-
+</li>
 
             </ul>
 		  </div>
@@ -190,7 +356,7 @@ scatter&#40;cycle./period, &#91;first.&#40;forces&#41;, last.&#40;forces&#41;&#9
 		
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
         
 
@@ -203,7 +369,7 @@ scatter&#40;cycle./period, &#91;first.&#40;forces&#41;, last.&#40;forces&#41;&#9
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -267,25 +433,25 @@ scatter&#40;cycle./period, &#91;first.&#40;forces&#41;, last.&#40;forces&#41;&#9
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -294,53 +460,53 @@ scatter&#40;cycle./period, &#91;first.&#40;forces&#41;, last.&#40;forces&#41;&#9
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -349,3 +515,9 @@ scatter&#40;cycle./period, &#91;first.&#40;forces&#41;, last.&#40;forces&#41;&#9
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

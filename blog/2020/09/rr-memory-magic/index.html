@@ -1,4 +1,189 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Using time travel to remotely debug faulty DRAM</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:image" content="https://julialang.org/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg"> <meta name="twitter:creator:id" content=4922348584 > <meta name="twitter:card" content=summary_large_image > <meta property="og:title" content="Using time travel to remotely debug faulty DRAM"> <meta property="og:description" content="The story of debugging a mysterious Julia segfault."> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Using time travel to remotely debug faulty DRAM <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 24 September 2020 </span> | <span style="font-weight: bold;">Keno Fischer<a href="https://twitter.com/intent/user?user_id=4922348584"><img src="/assets/infra/twitter.svg"/ width=22px  height=22px  style="margin-left:2px"></a></span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2020/09/rr-memory-magic.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"> <link rel=stylesheet  type="text/css" href="/assets/blog/2020-05-02-rr/asciinema-player.css" /> <script src="/assets/blog/2020-05-02-rr/asciinema-player.js"></script> <p>A <a href="/blog/2020/05/rr">few months ago</a> on this blog, I introduced a new Julia feature that lets users easily submit bugreports using the <code>rr</code> time-traveling debugger &#40;please go read that post if you haven&#39;t, otherwise the rest of this post may not make much sense&#41;. Since Julia 1.5 was officially released a little over a month ago, more than a dozen users have made use of this capability to send us detailed bug reports. So far, everything went according to plan.</p> <center> <img id=meme  src="/assets/blog/2020-09-23-rr-memory/rr-meme.jpeg"/> </center><br/> <p>In this post I want to tell the story of issue <a href="https://github.com/JuliaLang/julia/issues/37524">#37524</a>, the most unusual of the several <code>rr</code> traces we received. As spoiled in the title of this blog post, the eventual issue turned out to be faulty memory. However, by popular demand, and to dispel any rumors of the use of black magic, I thought it might be worth stepping through the analysis of this issue step by step.</p> <p>When debugging an <code>rr</code> trace, the first thing to do is usually to just replay it to the point of the crash to look around &#40;sometimes the crash is obvious from the state of the program at the crash location, other times, more history is required&#41;. In this case the initial investigation was done by my colleague <a href="https://github.com/maleadt">Tim Besard</a>. Downloading the trace and starting the replay he would have seen the following. Note that this recording is sped up about 20x &#40;it runs for about two minutes real time&#41; and lightly edited at the end to focus on only the relevant output.</p> <asciinema-player author="Keno Fischer" speed=20  theme=asciinema  title="The initial replay" src="/assets/blog/2020-09-23-rr-memory/rrmemory.cast" preload> </asciinema-player> <p>So clearly the user who submitted the bug report was doing some sort of episodic procedure &#40;maybe an ML training process&#41;, and a couple thousand iterations in, something went wrong. The issue reported the following output:</p> <pre><code class=language-julia >signal &#40;11&#41;: Segmentation fault
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>Using time travel to remotely debug faulty DRAM</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:image" content="https://julialang.org/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg">
+<meta name="twitter:creator:id" content="4922348584">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="Using time travel to remotely debug faulty DRAM">
+<meta property="og:description" content="The story of debugging a mysterious Julia segfault.">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Using time travel to remotely debug faulty DRAM
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 24 September 2020 </span>
+	|
+	
+	 <span style="font-weight: bold;">Keno Fischer<a href="https://twitter.com/intent/user?user_id=4922348584"><img src="/assets/infra/twitter.svg"/ width="22px" height="22px" style="margin-left:2px"></a></span> 
+  <!-- assumption that only one of the two is defined -->
+  
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2020/09/rr-memory-magic.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main">
+
+  <link rel="stylesheet" type="text/css" href="/assets/blog/2020-05-02-rr/asciinema-player.css" />
+  <script src="/assets/blog/2020-05-02-rr/asciinema-player.js"></script>
+
+<p>A <a href="/blog/2020/05/rr">few months ago</a> on this blog, I introduced a new Julia feature that lets users easily submit bugreports using the <code>rr</code> time-traveling debugger &#40;please go read that post if you haven&#39;t, otherwise the rest of this post may not make much sense&#41;. Since Julia 1.5 was officially released a little over a month ago, more than a dozen users have made use of this capability to send us detailed bug reports. So far, everything went according to plan.</p>
+
+<center>
+<img id="meme" src="/assets/blog/2020-09-23-rr-memory/rr-meme.jpeg"/>
+</center><br/>
+
+<p>In this post I want to tell the story of issue <a href="https://github.com/JuliaLang/julia/issues/37524">#37524</a>, the most unusual of the several <code>rr</code> traces we received. As spoiled in the title of this blog post, the eventual issue turned out to be faulty memory. However, by popular demand, and to dispel any rumors of the use of black magic, I thought it might be worth stepping through the analysis of this issue step by step.</p>
+<p>When debugging an <code>rr</code> trace, the first thing to do is usually to just replay it to the point of the crash to look around &#40;sometimes the crash is obvious from the state of the program at the crash location, other times, more history is required&#41;. In this case the initial investigation was done by my colleague <a href="https://github.com/maleadt">Tim Besard</a>. Downloading the trace and starting the replay he would have seen the following. Note that this recording is sped up about 20x &#40;it runs for about two minutes real time&#41; and lightly edited at the end to focus on only the relevant output.</p>
+
+  <asciinema-player author="Keno Fischer"
+                    speed="20"
+                    theme="asciinema"
+                    title="The initial replay"
+                    src="/assets/blog/2020-09-23-rr-memory/rrmemory.cast"
+                    preload>
+  </asciinema-player>
+
+<p>So clearly the user who submitted the bug report was doing some sort of episodic procedure &#40;maybe an ML training process&#41;, and a couple thousand iterations in, something went wrong. The issue reported the following output:</p>
+<pre><code class="language-julia">signal &#40;11&#41;: Segmentation fault
 in expression starting at julia-crash.jl:76
 jl_is_concrete_type at /buildworker/worker/package_linux64/build/src/julia.h:1222 &#91;inlined&#93;
 jl_apply_tuple_type_v_ at /buildworker/worker/package_linux64/build/src/jltypes.c:1381 &#91;inlined&#93;
@@ -11,7 +196,9 @@ do_apply at /buildworker/worker/package_linux64/build/src/builtins.c:655
 update&#33; at Knn2.jl:48
 update&#33; at Knn2.jl:106
 unknown function &#40;ip: 0x7f0483dd8205&#41;
-&#91;snip&#93;</code></pre> <p>but instead, we get an internal <code>rr</code> error:</p> <pre><code class=language-plaintext >&#91;FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig&#40;&#41;&#93;
+&#91;snip&#93;</code></pre>
+<p>but instead, we get an internal <code>rr</code> error:</p>
+<pre><code class="language-plaintext">&#91;FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig&#40;&#41;&#93;
  &#40;task 17107 &#40;rec:7760&#41; at time 51911&#41;
  -&gt; Assertion &#96;false&#39; failed to hold. Replaying &#96;SIGNAL: SIGSEGV&#40;det&#41;&#39;: expecting tracee signal or trap, but instead at
  &#96;write&#39; &#40;ticks: 144040993972&#41;
@@ -28,8 +215,23 @@ ase:0x7f0499f49240 gs_base:0x0
 &#125;
 &#123;
   real_time:38257.585223 global_time:51912, event:&#96;SYSCALLBUF_RESET&#39; tid:7760, ticks:143998759917
-&#125;</code></pre> <p>This is the point where Tim asked me to take over, since that really isn&#39;t supposed to happen. Now, the error message here may look a bit scary, but let&#39;s parse it out part by part. The actual error message is:</p> <pre><code class=language-plaintext >Replaying &#96;SIGNAL: SIGSEGV&#40;det&#41;&#39;: expecting tracee signal or trap, but instead at
- &#96;write&#39; &#40;ticks: 144040993972&#41;</code></pre> <p>What does this mean? First a quick refresher about how <code>rr</code> works: Basically, it records any modifications made to the process memory by the kernel &#40;or any other source of non-determinism&#41;. Then, between such modification it relies on the determinism of the processor to produce a bitwise-identical output state, given an input memory state. At each event <code>rr</code> also records the complete incoming and outgoing register state. The incoming register state is not strictly required &#40;since it will be deterministically computed from the previous input state&#41;, but it can be useful for some analyses purposes, as well as allowing an additional check that replay is proceeding correctly.</p> <p>Now, what happened here is that <code>rr</code> expected to get a deterministic &#40;<code>&#40;det&#41;</code>&#41; segfault &#40;i.e. one caused by the execution of an instruction, as opposed to being asynchronously sent by some other process e.g. using <code>kill -SIGSEGV</code>&#41;. However, instead of seeing this segfault, we ended up somewhere else: <code>but instead at &#39;write&#39;</code>. During the replay, <code>rr</code> found itself being told to execute a <code>write</code> system call rather than seeing the crash. We&#39;ve already seen the output behavior of the program &#40;basically one write for every episode&#41;, so a reasonable guess is that during replay, it instead successfully finished the episode and reached the next <code>write</code> system call &#40;which would have been the first execution point at which the <code>rr</code> supervisor regains control from the tracee&#41;. In <code>rr</code> parlance, we call this a &quot;divergence&quot;: A situation in which the execution path taken during replay differs from what actually happened during recording. Divergences are generally caused by rr bugs resulting in unobserved memory modifications &#40;e.g. an imperfect model of the kernel&#39;s memory modification behavior&#41;, but there are more subtle issues that may be responsible as well &#40;such as CPU microarchitecture bugs&#41;. I thus turned to trying to debug this divergence. There are a few common candidates for divergences that I looked for first. In no particular order of preference, they are:</p> <ul> <li><p>Unusual system calls that may not have gotten enough testing in <code>rr</code>, thus making it likely that <code>rr</code>&#39;s model of the kernel behavior is incomplete</p> <li><p>Unusual or proprietary devices/device drivers/kernel extensions that may be silently modifying userspace memory &#40;a big no-no, and probably a security issue, but surprisingly many bad drivers do it anyway&#41;.</p> <li><p>Unusual CPUs or microarchitectures that may not have been tested before &#40;e.g. old Silvermont Atom chips are known to have such microarchitecture bugs&#41;.</p> </ul> <p>However, looking through the raw trace &#40;the event log obtained using <code>rr dump</code>&#41; and asking for hardware details, nothing particularly suspicious came to mind, so I set to analyzing the trace itself. In the listing above, I snipped out the events before the segfaults, but here they are for reference, so we can talk about them a bit:</p> <pre><code class=language-plaintext >&#123;
+&#125;</code></pre>
+<p>This is the point where Tim asked me to take over, since that really isn&#39;t supposed to happen. Now, the error message here may look a bit scary, but let&#39;s parse it out part by part. The actual error message is:</p>
+<pre><code class="language-plaintext">Replaying &#96;SIGNAL: SIGSEGV&#40;det&#41;&#39;: expecting tracee signal or trap, but instead at
+ &#96;write&#39; &#40;ticks: 144040993972&#41;</code></pre>
+<p>What does this mean? First a quick refresher about how <code>rr</code> works: Basically, it records any modifications made to the process memory by the kernel &#40;or any other source of non-determinism&#41;. Then, between such modification it relies on the determinism of the processor to produce a bitwise-identical output state, given an input memory state. At each event <code>rr</code> also records the complete incoming and outgoing register state. The incoming register state is not strictly required &#40;since it will be deterministically computed from the previous input state&#41;, but it can be useful for some analyses purposes, as well as allowing an additional check that replay is proceeding correctly.</p>
+<p>Now, what happened here is that <code>rr</code> expected to get a deterministic &#40;<code>&#40;det&#41;</code>&#41; segfault &#40;i.e. one caused by the execution of an instruction, as opposed to being asynchronously sent by some other process e.g. using <code>kill -SIGSEGV</code>&#41;. However, instead of seeing this segfault, we ended up somewhere else: <code>but instead at
+ &#39;write&#39;</code>. During the replay, <code>rr</code> found itself being told to execute a <code>write</code> system call rather than seeing the crash. We&#39;ve already seen the output behavior of the program &#40;basically one write for every episode&#41;, so a reasonable guess is that during replay, it instead successfully finished the episode and reached the next <code>write</code> system call &#40;which would have been the first  execution point at which the <code>rr</code> supervisor regains control from the tracee&#41;. In <code>rr</code> parlance, we call this a &quot;divergence&quot;: A situation in which the execution path taken during replay differs from what actually happened during recording. Divergences are generally caused by rr bugs resulting in unobserved memory modifications &#40;e.g. an imperfect model of the kernel&#39;s memory modification behavior&#41;, but there are more subtle issues that may be responsible as well &#40;such as CPU microarchitecture bugs&#41;. I thus turned to trying to debug this divergence. There are a few common candidates for divergences that I looked for first. In no particular order of preference, they are:</p>
+<ul>
+<li><p>Unusual system calls that may not have gotten enough testing in <code>rr</code>, thus making it likely that <code>rr</code>&#39;s model of the kernel behavior is incomplete</p>
+</li>
+<li><p>Unusual or proprietary devices/device drivers/kernel extensions that may be silently modifying userspace memory &#40;a big no-no, and probably a security issue, but surprisingly many bad drivers do it anyway&#41;.</p>
+</li>
+<li><p>Unusual CPUs or microarchitectures that may not have been tested before &#40;e.g. old Silvermont Atom chips are known to have such microarchitecture bugs&#41;.</p>
+</li>
+</ul>
+<p>However, looking through the raw trace &#40;the event log obtained using <code>rr dump</code>&#41; and asking for hardware details, nothing particularly suspicious came to mind, so I set to analyzing the trace itself. In the listing above, I snipped out the events before the segfaults, but here they are for reference, so we can talk about them a bit:</p>
+<pre><code class="language-plaintext">&#123;
   real_time:38257.562367 global_time:51903, event:&#96;SYSCALL: write&#39; &#40;state:ENTERING_SYSCALL&#41; tid:7760, ticks:143983372177
 rax:0xffffffffffffffda rbx:0x681fffa0 rcx:0xffffffffffffffff rdx:0x4 rsi:0x7f046a9a0338 rdi:0xd rbp:0xd rsp:0x681ffe10 r8:0x0 r9:0x7f0490095f90 r10:0x7f0475ad7bb0 r11:0x246 r12:0x0 r13:0x7f046a9a0338 r14:0x4 r15:0x7f046a9a0338 rip:0x70000002 eflags:0x246 cs:0x33 ss:0x2b ds:0x0 es:0x0 fs:0x0 gs:0x0 orig_rax:0x1 fs_base:0x7f0499f49240 gs_base:0x0
 &#125;
@@ -62,7 +264,11 @@ rax:0x436487c0 rbx:0x7f0490b74330 rcx:0xb479 rdx:0x435f2dc8 rsi:0x435f2dc0 rdi:0
 6ca71230 r8:0x1 r9:0x7f0490b74330 r10:0x1007f0490b784d0 r11:0x4364d190 r12:0x0 r13:0x7f0490b88c70 r14:0x7f047daf36d0 r1
 5:0xb479 rip:0x7f049e2ba8e3 eflags:0x10287 cs:0x33 ss:0x2b ds:0x0 es:0x0 fs:0x0 gs:0x0 orig_rax:0xffffffffffffffff fs_b
 ase:0x7f0499f49240 gs_base:0x0
-&#125;</code></pre> <p>Let&#39;s start with explaining some terminology. While <code>rr</code> does keep track of elapsed wall clock time &#40;<code>real_time</code> above&#41;, that notion of &quot;time&quot; is entirely informational. Instead, rather than dividing time into hours, seconds and minutes, <code>rr</code> divides time into <code>events</code>, <code>tid</code> &#40;the kernel&#39;s thread id for each task; in circumstances where ids are reused an additional <code>serial</code> counter is computed, but not saved&#41; and <code>ticks</code>. <code>events</code> are a global &#40;over the tree of recorded processes&#41; linear ordering of events that cause external modification to the process&#39; memory &#40;e.g. system calls or signals&#41;, whereas <code>ticks</code> are a per-task &#40;think per-thread or per-<code>tid</code>&#41; measure of forward progress. The exact metric depends on the CPU microarchitecture and what measurement hardware is available. Valid choices are e.g. <code>Number of retired instructions</code> or <code>Number of retired conditional branches</code>, but in theory any stable, reliable count of forward progress is sufficient, as long as it uniquely identifies &#40;potentially in conjunction with the register state&#41; a particular point in the execution &#40;e.g. number of retired instructions works trivially and retired conditional branches mostly work, because that count in conjunction with the instruction pointer forms a monotonically increasing pair&#41;.</p> <p>Alright, so looking at the event log, we basically see reflected what we already knew: It does a bunch of write system calls &#40;to print the episode number&#41;, a ton of computation &#40;143 billion conditional branches&#39; worth&#41;, and eventually it&#39;s supposed to crash. We also know that at event <code>51909</code> &#40;the last write before the supposed segfault&#41;, things in the replay were still mostly on track. We can&#39;t say whether the memory contents had already diverged, but we at least know that the register state and the number of instructions executed was bitwise identical to what happened during the recording.</p> <p>One good way to investigate a divergence is to poke around in memory a bit prior to when one suspects the divergence to have occurred and see what kind of memory modifications could have made the difference. Usually, I just do this by going to the prior event, but in our case, there are 15 million conditional branches between the last two events, which is quite a bit of distance. Instead I hacked up a <a href="https://github.com/mozilla/rr/pull/2658">quick command</a> that lets us seek directly to a particular tick count. In this case, I arbitrarily chose <code>143998750000</code>, about 10000 ticks prior to when the segfault occurred during the recording. Let&#39;s go there:</p> <pre><code class=language-bash >&#36; rr replay -g 51908 --serve-files .
+&#125;</code></pre>
+<p>Let&#39;s start with explaining some terminology. While <code>rr</code> does keep track of elapsed wall clock time &#40;<code>real_time</code> above&#41;, that notion of &quot;time&quot; is entirely informational. Instead, rather than dividing time into hours, seconds and minutes, <code>rr</code> divides time into <code>events</code>, <code>tid</code> &#40;the kernel&#39;s thread id for each task; in circumstances where ids are reused an additional <code>serial</code> counter is computed, but not saved&#41; and <code>ticks</code>. <code>events</code> are a global &#40;over the tree of recorded processes&#41; linear ordering of events that cause external modification to the process&#39; memory &#40;e.g. system calls or signals&#41;, whereas <code>ticks</code> are a per-task &#40;think per-thread or per-<code>tid</code>&#41; measure of forward progress. The exact metric depends on the CPU microarchitecture and what measurement hardware is available. Valid choices are e.g. <code>Number of retired instructions</code> or <code>Number of retired conditional branches</code>, but in theory any stable, reliable count of forward progress is sufficient, as long as it uniquely identifies &#40;potentially in conjunction with the register state&#41; a particular point in the execution &#40;e.g. number of retired instructions works trivially and retired conditional branches mostly work, because that count in conjunction with the instruction pointer forms a monotonically increasing pair&#41;.</p>
+<p>Alright, so looking at the event log, we basically see reflected what we already knew: It does a bunch of write system calls &#40;to print the episode number&#41;, a ton of computation &#40;143 billion conditional branches&#39; worth&#41;, and eventually it&#39;s supposed to crash. We also know that at event <code>51909</code> &#40;the last write before the supposed segfault&#41;, things in the replay were still mostly on track. We can&#39;t say whether the memory contents had already diverged, but we at least know that the register state and the number of instructions executed was bitwise identical to what happened during the recording.</p>
+<p>One good way to investigate a divergence is to poke around in memory a bit prior to when one suspects the divergence to have occurred and see what kind of memory modifications could have made the difference. Usually, I just do this by going to the prior event, but in our case, there are 15 million conditional branches between the last two events, which is quite a bit of distance. Instead I hacked up a <a href="https://github.com/mozilla/rr/pull/2658">quick command</a> that lets us seek directly to a particular tick count. In this case, I arbitrarily chose <code>143998750000</code>, about 10000 ticks prior to when the segfault occurred during the recording. Let&#39;s go there:</p>
+<pre><code class="language-bash">&#36; rr replay -g 51908 --serve-files .
 &#91;snip&#93;
 0x0000000070000002 in ?? &#40;&#41;
 &#40;rr&#41; when
@@ -76,15 +282,21 @@ Current tick: 143998750000
 &#40;rr&#41; when
 Current event: 51911
 
-&#40;rr&#41;</code></pre> <p>The trace tells us that it expected the segfault to happen at address <code>rip:0x7f049e2ba8e3</code>, so let&#39;s take a look there:</p> <pre><code class=language-julia >&#40;rr&#41; disas 0x7f049e2ba8e3
+&#40;rr&#41;</code></pre>
+<p>The trace tells us that it expected the segfault to happen at address <code>rip:0x7f049e2ba8e3</code>, so let&#39;s take a look there:</p>
+<pre><code class="language-julia">&#40;rr&#41; disas 0x7f049e2ba8e3
 Dump of assembler code for function jl_apply_tuple_type:
 &#91;snip&#93;
    0x00007f049e2ba8e0 &lt;&#43;96&gt;:  mov    &#40;&#37;rax&#41;,&#37;r10
    0x00007f049e2ba8e3 &lt;&#43;99&gt;:  mov    -0x8&#40;&#37;r10&#41;,&#37;r9
-&#91;snip&#93;</code></pre> <p>Alright, so that&#39;s a load from <code>r10</code>. Luckily <code>r10</code> is recorded in the trace: <code>r10:0x1007f0490b784d0</code>. A seasoned debugger will quickly recognize this pointer as too wide. In particular, in general, for user space pointers, the high byte is <code>0x00</code>, but here it is <code>0x01</code> &#40;gdb drops leading zeros&#41;. Sometimes unused pointer bits are used for extra information, but at least julia itself only uses the unused low bits for this purpose, not the high bits. That said, this trace included a significant number of external native libraries &#40;including a full python environment&#41;, so it&#39;s certainly possible that some external library would have used such pointer tagging techniques. Let&#39;s do some more investigation. The first thing I tried to do was take a look at the pointer with the high bit manually cleared to see if it was a valid Julia object at all or just some junk that somehow ended up being loaded from:</p> <pre><code class=language-julia >&#40;rr&#41; p jl_&#40;0x7f0490b784d0&#41;
+&#91;snip&#93;</code></pre>
+<p>Alright, so that&#39;s a load from <code>r10</code>. Luckily <code>r10</code> is recorded in the trace: <code>r10:0x1007f0490b784d0</code>. A seasoned debugger will quickly recognize this pointer as too wide. In particular, in general, for user space pointers, the high byte is <code>0x00</code>, but here it is <code>0x01</code> &#40;gdb drops leading zeros&#41;. Sometimes unused pointer bits are used for extra information, but at least julia itself only uses the unused low bits for this purpose, not the high bits. That said, this trace included a significant number of external native libraries &#40;including a full python environment&#41;, so it&#39;s certainly possible that some external library would have used such pointer tagging techniques. Let&#39;s do some more investigation. The first thing I tried to do was take a look at the pointer with the high bit manually cleared to see if it was a valid Julia object at all or just some junk that somehow ended up being loaded from:</p>
+<pre><code class="language-julia">&#40;rr&#41; p jl_&#40;0x7f0490b784d0&#41;
 Array&#123;Any, 1&#125;
 &#36;1 &#61; void
-&#40;rr&#41;</code></pre> <p>Ok, so this is actually a pointer to a julia object &#40;the type <code>Array&#123;Any, 1&#125;</code>&#41; with a mysteriously set high bit. It&#39;s not necessarily unexpected for junk data to look like valid pointers. Junk data often comes from uninitialized re-use of memory, and could certainly pick up part of a valid pointer if such a pointer was previously at that memory location. To narrow things down further, let&#39;s gather some more information. We&#39;re still 10000 ticks away from the place where the segfault was supposed to occur, but let&#39;s see what&#39;s currently happening in the process:</p> <pre><code class=language-julia >&#40;rr&#41; bt
+&#40;rr&#41;</code></pre>
+<p>Ok, so this is actually a pointer to a julia object &#40;the type <code>Array&#123;Any, 1&#125;</code>&#41; with a mysteriously set high bit. It&#39;s not necessarily unexpected for junk data to look like valid pointers. Junk data often comes from uninitialized re-use of memory, and could certainly pick up part of a valid pointer if such a pointer was previously at that memory location. To narrow things down further, let&#39;s gather some more information. We&#39;re still 10000 ticks away from the place where the segfault was supposed to occur, but let&#39;s see what&#39;s currently happening in the process:</p>
+<pre><code class="language-julia">&#40;rr&#41; bt
 #0  type_hash &#40;kj&#61;&lt;optimized out&gt;, failed&#61;failed@entry&#61;0x7fff6ca7102c&#41;
     at /buildworker/worker/package_linux64/build/src/jltypes.c:1003
 #1  0x00007f049e2b5856 in typekey_hash &#40;nofail&#61;0, n&#61;&lt;optimized out&gt;, key&#61;0x435f2dc8,
@@ -113,15 +325,21 @@ Array&#123;Any, &#40;2,&#41;&#125;&#91;
 Array&#123;Any, &#40;2,&#41;&#125;&#91;
   Array&#123;Float64, &#40;1,&#41;&#125;&#91;58.965&#93;,
   1.40691&#93;
-&#36;4 &#61; void</code></pre> <p>Alright, so we&#39;re currently trying to allocate a tuple of <code>42600</code> elements, all of which are 2-element arrays &#40;of type <code>Array&#123;Any, 1&#125;</code>&#41;. Since 10000 is less than <code>42600</code>, it&#39;s also quite likely that this is the operation that we crashed in during the recording &#40;also remember that the crash location was <code>jl_apply_tuple</code>, which is part of the allocation of a new tuple type&#41;. However, we haven&#39;t quite explained things yet. If we set a breakpoint at the location of the crash:</p> <pre><code class=language-julia >&#40;rr&#41; b *0x7f049e2ba8e3
+&#36;4 &#61; void</code></pre>
+<p>Alright, so we&#39;re currently trying to allocate a tuple of <code>42600</code> elements, all of which are 2-element arrays &#40;of type <code>Array&#123;Any, 1&#125;</code>&#41;. Since 10000 is less than <code>42600</code>, it&#39;s also quite likely that this is the operation that we crashed in during the recording &#40;also remember that the crash location was <code>jl_apply_tuple</code>, which is part of the allocation of a new tuple type&#41;. However, we haven&#39;t quite explained things yet. If we set a breakpoint at the location of the crash:</p>
+<pre><code class="language-julia">&#40;rr&#41; b *0x7f049e2ba8e3
 Breakpoint 1 at 0x7f049e2ba8e3: file /buildworker/worker/package_linux64/build/src/julia.h, line 1222.
 &#40;rr&#41; c
 Continuing.
-&#91;FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig&#40;&#41;&#93;</code></pre> <p>we just get the divergence again, so it never actually reached this execution point, but diverged earlier &#40;but only happened to crash there&#41;. Can we find out what happened? Looking back at the assembly, we see that <code>r10</code> was loaded from <code>rax</code>, which we also have: <code>rax:0x436487c0</code>. What&#39;s there currently &#40;remember we&#39;re still 10000 ticks before the crash&#41;?:</p> <pre><code class=language-julia >&#40;rr&#41; p *&#40;void**&#41;0x436487c0
+&#91;FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig&#40;&#41;&#93;</code></pre>
+<p>we just get the divergence again, so it never actually reached this execution point, but diverged earlier &#40;but only happened to crash there&#41;. Can we find out what happened? Looking back at the assembly, we see that <code>r10</code> was loaded from <code>rax</code>, which we also have: <code>rax:0x436487c0</code>. What&#39;s there currently &#40;remember we&#39;re still 10000 ticks before the crash&#41;?:</p>
+<pre><code class="language-julia">&#40;rr&#41; p *&#40;void**&#41;0x436487c0
 &#36;5 &#61; &#40;void *&#41; 0x7f0490b784d0
 &#40;rr&#41; p jl_&#40;&#36;5&#41;
 Array&#123;Any, 1&#125;
-&#36;6 &#61; void</code></pre> <p>That&#39;s exactly the pointer we saw during the crash, but the high bit isn&#39;t set. The next thing we might want to ask is what &#40;recorded&#41; changes <em>do</em> happen to this memory location:</p> <pre><code class=language-julia >&#40;rr&#41; awatch *&#40;void**&#41;0x436487c0
+&#36;6 &#61; void</code></pre>
+<p>That&#39;s exactly the pointer we saw during the crash, but the high bit isn&#39;t set. The next thing we might want to ask is what &#40;recorded&#41; changes <em>do</em> happen to this memory location:</p>
+<pre><code class="language-julia">&#40;rr&#41; awatch *&#40;void**&#41;0x436487c0
 Hardware access &#40;read/write&#41; watchpoint 1: *&#40;void**&#41;0x436487c0
 
 &#40;rr&#41; c
@@ -141,7 +359,9 @@ typekey_eq &#40;key&#61;key@entry&#61;0x435f2dc8, n&#61;n@entry&#61;46200, tt&#6
 Continuing.
 &#91;FATAL /home/keno/rr/src/ReplaySession.cc:636:check_pending_sig&#40;&#41;&#93;
  &#40;task 19490 &#40;rec:7760&#41; at time 51911&#41;
- -&gt; Assertion &#96;false&#39; failed to hold. Replaying &#96;SIGNAL: SIGSEGV&#40;det&#41;&#39;: expecting tracee signal or trap, but instead at &#96;write&#39; &#40;ticks: 144040993972&#41;</code></pre> <p>We see some accesses from the type cache, and then the divergence. What about in the other direction? &#40;Note that the divergence crashed the <code>rr</code> process, so we have to first get back to the same execution point - luckily since this is a recording, everything is stable, so we can just <code>seek-ticks</code> right back to where we were&#41;.</p> <pre><code class=language-julia >&#40;rr&#41; awatch *&#40;void**&#41;0x436487c0
+ -&gt; Assertion &#96;false&#39; failed to hold. Replaying &#96;SIGNAL: SIGSEGV&#40;det&#41;&#39;: expecting tracee signal or trap, but instead at &#96;write&#39; &#40;ticks: 144040993972&#41;</code></pre>
+<p>We see some accesses from the type cache, and then the divergence. What about in the other direction? &#40;Note that the divergence crashed the <code>rr</code> process, so we have to first get back to the same execution point - luckily since this is a recording, everything is stable, so we can just <code>seek-ticks</code> right back to where we were&#41;.</p>
+<pre><code class="language-julia">&#40;rr&#41; awatch *&#40;void**&#41;0x436487c0
 Hardware access &#40;read/write&#41; watchpoint 1: *&#40;void**&#41;0x436487c0
 &#40;rr&#41; rc
 Continuing.
@@ -157,7 +377,9 @@ jl_svecset &#40;x&#61;0x7f0490b784d0 &lt;jl_system_image_data&#43;16912&gt;, i&#
 #0  jl_svecset &#40;x&#61;0x7f0490b784d0 &lt;jl_system_image_data&#43;16912&gt;, i&#61;&lt;optimized out&gt;, t&#61;&lt;optimized out&gt;&#41;
     at /buildworker/worker/package_linux64/build/src/julia.h:840
 #1  jl_f_tuple &#40;F&#61;&lt;optimized out&gt;, args&#61;0x42f54590, nargs&#61;46200&#41;
-    at /buildworker/worker/package_linux64/build/src/builtins.c:728</code></pre> <p>For reference, here&#39;s the relevant function we&#39;re currently in from the Julia 1.5 branch:</p> <pre><code class=language-c >JL_CALLABLE&#40;jl_f_tuple&#41;
+    at /buildworker/worker/package_linux64/build/src/builtins.c:728</code></pre>
+<p>For reference, here&#39;s the relevant function we&#39;re currently in from the Julia 1.5 branch:</p>
+<pre><code class="language-c">JL_CALLABLE&#40;jl_f_tuple&#41;
 &#123;
 &#91;snip&#93;
     &#125;
@@ -168,7 +390,9 @@ jl_svecset &#40;x&#61;0x7f0490b784d0 &lt;jl_system_image_data&#43;16912&gt;, i&#
             jl_svecset&#40;types, i, jl_typeof&#40;args&#91;i&#93;&#41;&#41;;
         tt &#61; jl_inst_concrete_tupletype&#40;types&#41;;
 &#91;snip&#93;
-&#125;</code></pre> <p>The code is fairly straightforward: It&#39;s just iterating over the incoming arguments to <code>tuple</code>, and getting the types for each one &#40;such that it can then create an appropriate tuple type that matches the argument&#41;. Clearly we just computed the type of one of the incoming arrays and are setting it into the svec. We can find out which array we just computed the type of:</p> <pre><code class=language-julia >&#40;rr&#41; disas
+&#125;</code></pre>
+<p>The code is fairly straightforward: It&#39;s just iterating over the incoming arguments to <code>tuple</code>, and getting the types for each one &#40;such that it can then create an appropriate tuple type that matches the argument&#41;. Clearly we just computed the type of one of the incoming arrays and are setting it into the svec. We can find out which array we just computed the type of:</p>
+<pre><code class="language-julia">&#40;rr&#41; disas
    0x00007f049e2d8530 &lt;&#43;240&gt;: mov    -0x8&#40;&#37;r12,&#37;r13,1&#41;,&#37;rax
    0x00007f049e2d8535 &lt;&#43;245&gt;: mov    -0x8&#40;&#37;rax&#41;,&#37;rax
    0x00007f049e2d8539 &lt;&#43;249&gt;: and    &#36;0xfffffffffffffff0,&#37;rax
@@ -190,10 +414,16 @@ jl_svecset &#40;x&#61;0x7f0490b784d0 &lt;jl_system_image_data&#43;16912&gt;, i&#
 Array&#123;Any, &#40;2,&#41;&#125;&#91;
   Array&#123;Float64, &#40;1,&#41;&#125;&#91;43.1183&#93;,
   0.86978&#93;
-&#36;6 &#61; void</code></pre> <p>We can also watch this array&#39;s type pointer to see if there&#39;s anything unexpected that messes with it:</p> <pre><code class=language-julia >&#40;rr&#41; p &amp;&#40;&#40;uint64_t**&#41;0x7f0478f5aa10&#41;&#91;-1&#93;
+&#36;6 &#61; void</code></pre>
+<p>We can also watch this array&#39;s type pointer to see if there&#39;s anything unexpected that messes with it:</p>
+<pre><code class="language-julia">&#40;rr&#41; p &amp;&#40;&#40;uint64_t**&#41;0x7f0478f5aa10&#41;&#91;-1&#93;
 &#36;9 &#61; &#40;void **&#41; 0x7f0478f5aa08
 &#40;rr&#41; p jl_&#40;&#40;uint64_t&#41;*&#36;9 &amp; ~0x3&#41;
-Array&#123;Any, 1&#125;</code></pre> <p>&#40;note that we masked out the low bits, which <code>julia</code> does use as mentioned above - and if we looked at the assembly the code does the same&#41;.</p> <p>To recap: We found a suspicious pointer <code>0x1007f0490b784d0</code>, noticed it was loaded from <code>0x436487c0</code>, which we then found was previously set by loading the type pointer from some array object. We then found that the address of said array object was <code>0x7f0478f5aa10</code>, meaning that it&#39;s type pointer was at <code>0x7f0478f5aa08</code> &#40;the value of which would eventually be propagated to the crash site&#41;. We further saw that at least in the replay, the value at <code>0x7f0478f5aa08</code> correctly pointed to the <code>Array&#123;Any, 1&#125;</code> type without any suspicious high bit flips.</p> <p>Let&#39;s further look at all memory accesses to this type tag at <code>0x7f0478f5aa08</code> &#40;going backwards in time&#41; to see if we find anything suspicious:</p> <pre><code class=language-julia >&#40;rr&#41; awatch *0x7f0478f5aa08
+Array&#123;Any, 1&#125;</code></pre>
+<p>&#40;note that we masked out the low bits, which <code>julia</code> does use as mentioned above - and if we looked at the assembly the code does the same&#41;.</p>
+<p>To recap: We found a suspicious pointer <code>0x1007f0490b784d0</code>, noticed it was loaded from <code>0x436487c0</code>, which we then found was previously set by loading the type pointer from some array object. We then found that the address of said array object was <code>0x7f0478f5aa10</code>, meaning that it&#39;s type pointer was at <code>0x7f0478f5aa08</code> &#40;the value of which would eventually be propagated to the crash site&#41;. We further saw that at least in the replay, the value at <code>0x7f0478f5aa08</code> correctly pointed to the <code>Array&#123;Any, 1&#125;</code> type without any suspicious high bit flips.</p>
+<p>Let&#39;s further look at all memory accesses to this type tag at <code>0x7f0478f5aa08</code> &#40;going backwards in time&#41; to see if we find anything suspicious:</p>
+<pre><code class="language-julia">&#40;rr&#41; awatch *0x7f0478f5aa08
 Hardware access &#40;read/write&#41; watchpoint 6: *0x7f0478f5aa08
 
 &#40;rr&#41; command 6
@@ -271,4 +501,182 @@ Value &#61; -1867021101
     at /buildworker/worker/package_linux64/build/src/builtins.c:728
 &#91;snip&#93;
 Current event: 51839
-Current tick: 143756648123</code></pre> <p>This gives us a lot of information. Basically, we looked at the type tag a couple of times trying to allocate the tuple during event 51911, but other than that, nothing read or wrote it since event 51839. We also know that during event 51839 it must have still had the correct value, since otherwise we would have seen the crash there. At this point, we basically have the full story:</p> <p>At some point after event 51839, something flipped the lowest bit of the high byte of either the type tag of array itself &#40;at memory location <code>0x7f0478f5aa08</code>&#41; or the value of the type pointer in the svec of types &#40;at memory location <code>0x436487c0</code>&#41;. This causes the type cache lookup &#40;the <code>type_hash</code> function we saw&#41; to fail. As a result, the program tries to allocate a new type for this tuple, which then crashes because it attempts to actually look at the type corrupted type pointer. The observed segfault results. During replay, the bit does not get flipped, the type cache lookup succeeds and the program just goes along normally.</p> <p>What kind of issues could cause a bit flip like this? We already checked for obvious explanations like a weird kernel or strange devices, which leaves more obscure causes: CPU microarchitecture issues &#40;modern CPUs are basically JITs from their ISA to some other internal representation - this occasionally has bugs - just look for the phrase &quot;complex microarchitectural conditions&quot; in Intel errata&#41;, faulty memory, cosmic rays or similar issues. Single-bit flips in particular often point to hardware issues, since software tends to overwrite in 8-bit units at least &#40;unless it does a read-update-write cycle, e.g. because of a bogus pointer, but just as a practical observation software induced divergences tend to mostly be stray writes of larger unit size&#41;. On the issue, I asked for two additional pieces of evidence: Another recording of the same program as well as a replay attempt on the original machine.</p> <p>If the replay fails on the original machine as well &#40;it did&#41;, this is some evidence against a microarchitectural issue &#40;it&#39;s not guaranteed of course, but executing the exact same instruction sequence at least has some chance to re-trigger such an issue&#41;. As for the second recording, it failed in exactly the same way: A bit flip in the low bit of the high byte of some pointer. This strongly implicates faulty memory as the fault is in the same bit position across both runs, which could happen, if one particular bit of a memory cell is degraded &#40;e.g. in such a way that charge leaks into it over time, or there is some damage to the particular data line that this bit is on&#41;. In particular, if the issue were radiation-induced &#40;perhaps the user&#39;s office happens to be above the physics department fusion reactor&#41;, we would have not expected a preference for any particular bit index.</p> <p>Having excluded these other issues to my satisfaction, I closed the report with my conclusion and encouraged the user to run memtest on their machine. And indeed, the next day I got the following screenshot:</p> <img id=meme  src="/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg"/> <p>The failures reported are exactly what we expected: A 0-&gt;1 bit flip in the low bit of the high byte &#40;second-highest nibble&#41; of the memory location. Since all the failing memory addresses have then <code>0x5c</code> address bits set, we can probably make the assumption that the bit that was flipped was that of the array itself &#40;whose address ended in <code>0x8</code>, i.e. having the high dword at <code>0xc</code>&#41;, rather than the copy of the type tag in the svec &#40;whose address ended in <code>0x0</code>&#41;, but none of the detected failures exactly match the address offset of one of the two addresses we identified as potential targets for the bit flip &#40;though the test in the screenshot was not run to completion, so maybe it would have found one&#41;. Further analysis of the failure would require physical access to the DRAM and perhaps an electron microscope, but we need not go there, because we&#39;ve already determined this is not a Julia bug and the user will probably be replacing their machine.</p> <h2 id=conclusion ><a href="#conclusion">Conclusion</a></h2> <p>With about an hour&#39;s work &#40;plus 2-3 hours to add the <code>seek-to-ticks</code> functionality written, tested, upstreamed, etc.&#41;, we managed to remotely and conclusively diagnose that a reported crash was caused by faulty memory on the user&#39;s machine. Even though the <code>rr</code> trace did not contain the actual cause of the crash, it was nevertheless an invaluable tool to analyze this issue. The fact that the stray bit flip was missing from the recording already excluded 99&#37; of possible cases for the crash, and some careful analysis of the trace gave enough clues to be able to eliminate most of the remaining. To quote Sherlock Holmes</p> <blockquote> <p>When you have eliminated the impossible, whatever remains, however improbable, must be the truth.</p> </blockquote> <p>Without <code>rr</code>, it may often be tempting to blame unexplained crashes on bad hardware, cosmic rays or gremlins living under the floor. Here, we were able to fairly convincingly conclude that that the issue must indeed be bad memory. I like to say that <code>rr</code> turns a debugging problem into a data analysis problem and here, as is so often the case, the most insightful piece is figuring out what data is missing.</p> </div><br><br> <script src="/libs/highlight/highlight.min.js"></script> <script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: ' '});</script> <script> (function(){ // Get the elements. // - the 'pre' element. // - the 'div' with the 'paste-content' id. var pre = document.getElementsByTagName('pre'); // Add a copy button in the 'pre' element. // which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render). for (var i = 0; i < pre.length; i++) { var tag_name = pre[i].children[0].className var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs'); if ( isLanguage ) { var button = document.createElement('button'); button.className = 'copy-button'; button.textContent = 'Copy'; pre[i].appendChild(button); } }; // Run Clipboard var copyCode = new Clipboard('.copy-button', { target: function(trigger) { return trigger.previousElementSibling; } }); // On success: // - Change the "Copy" text to "Copied". // - Swap it to "Copy" in 2s. // - Lead user to the "contenteditable" area with Velocity scroll. copyCode.on('success', function(event) { event.clearSelection(); event.trigger.textContent = 'Copied'; window.setTimeout(function() { event.trigger.textContent = 'Copy'; }, 2000); }); // On error (Safari): // - Change the "Press Ctrl+C to copy" // - Swap it to "Copy" in 2s. copyCode.on('error', function(event) { event.trigger.textContent = 'Press "Ctrl + C" to copy'; window.setTimeout(function() { event.trigger.textContent = 'Copy'; }, 5000); }); })(); </script> <footer class="container-fluid footer-copy"> <div class=container > <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css"> <style> #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; } /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block. We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */ </style> <div id=mc_embed_signup > <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate> <div id=mc_embed_signup_scroll > <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div> <div id=mce-responses  class=clear  style="display: inline-block;"> <div class=response  id=mce-error-response  style="display:none"></div> <div class=response  id=mce-success-response  style="display:none"></div> </div> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups--> <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div> <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div> </div> </form> </div> <script type='text/javascript' src='https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script> <!--End mc_embed_signup--> <div class="row footrow"> <ul> <li><a href="/project">About</a> <li><a href="/about/help">Get Help</a> <li><a href="/governance/">Governance</a> <li><a href="/research/#publications">Publications</a> <li><a href="/research/#sponsors">Sponsors</a> </ul> <ul> <li><a href="/downloads/">Downloads</a> <li><a href="/downloads/">All Releases</a> <li><a href="https://github.com/JuliaLang/julia">Source Code</a> <li><a href="/downloads/#current_stable_release">Current Stable Release</a> <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a> </ul> <ul> <li><a href="https://docs.julialang.org/en/v1/">Documentation</a> <li><a href="https://juliaacademy.com">JuliaAcademy</a> <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a> <li><a href="/learning/getting-started/">Getting Started</a> <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a> <li><a href="/learning/books">Books</a> </ul> <ul> <li><a href="/community/">Community</a> <li><a href="/community/standards/">Code of Conduct</a> <li><a href="/diversity/">Diversity</a> <li><a href="https://juliacon.org">JuliaCon</a> <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a> <li><a href="/shop/">Shop Merchandise</a> </ul> <ul> <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a> <li><a href="/contribute">Contributor's Guide</a> <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a> <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a> <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a> <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a> <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a> </ul> </div> <div id=footer-bottom  class=row > <div class="col-md-10 py-2"> <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p> <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>. </div> <div class="col-md-2 py-2"> <span class=float-sm-right > <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </div> </div> </footer> <script src="/libs/jquery/jquery.min.js"></script> <script src="/libs/bootstrap/bootstrap.min.js"></script>
+Current tick: 143756648123</code></pre>
+<p>This gives us a lot of information. Basically, we looked at the type tag a couple of times trying to allocate the tuple during event 51911, but other than that, nothing read or wrote it since event 51839. We also know that during event 51839 it must have still had the correct value, since otherwise we would have seen the crash there. At this point, we basically have the full story:</p>
+<p>At some point after event 51839, something flipped the lowest bit of the high byte of either the type tag of array itself &#40;at memory location <code>0x7f0478f5aa08</code>&#41; or the value of the type pointer in the svec of types &#40;at memory location <code>0x436487c0</code>&#41;. This causes the type cache lookup &#40;the <code>type_hash</code>  function we saw&#41; to fail. As a result, the program tries to allocate a new type for this tuple, which then crashes because it attempts to actually look at the type corrupted type pointer. The observed segfault results. During replay, the bit does not get flipped, the type cache lookup succeeds and the program just goes along normally.</p>
+<p>What kind of issues could cause a bit flip like this? We already checked for obvious explanations like a weird kernel or strange devices, which leaves more obscure causes: CPU microarchitecture issues &#40;modern CPUs are basically JITs from their ISA to some other internal representation - this occasionally has bugs - just look for the phrase &quot;complex microarchitectural conditions&quot; in Intel errata&#41;, faulty memory, cosmic rays or similar issues. Single-bit flips in particular often point to hardware issues, since software tends to overwrite in 8-bit units at least &#40;unless it does a read-update-write cycle, e.g. because of a bogus pointer, but just as a practical observation software induced divergences tend to mostly be stray writes of larger unit size&#41;. On the issue, I asked for two additional pieces of evidence: Another recording of the same program as well as a replay attempt on the original machine.</p>
+<p>If the replay fails on the original machine as well &#40;it did&#41;, this is some evidence against a microarchitectural issue &#40;it&#39;s not guaranteed of course, but executing the exact same instruction sequence at least has some chance to re-trigger such an issue&#41;. As for the second recording, it failed in exactly the same way: A bit flip in the low bit of the high byte of some pointer. This strongly implicates faulty memory as the fault is in the same bit position across both runs, which could happen, if one particular bit of a memory cell is degraded &#40;e.g. in such a way that charge leaks into it over time, or there is some damage to the particular data line that this bit is on&#41;. In particular, if the issue were radiation-induced &#40;perhaps the user&#39;s office happens to be above the physics department fusion reactor&#41;, we would have not expected a preference for any particular bit index.</p>
+<p>Having excluded these other issues to my satisfaction, I closed the report with my conclusion and encouraged the user to run memtest on their machine. And indeed, the next day I got the following screenshot:</p>
+
+<img id="meme" src="/assets/blog/2020-09-23-rr-memory/faulty-mem.jpg"/>
+
+<p>The failures reported are exactly what we expected: A 0-&gt;1 bit flip in the low bit of the high byte &#40;second-highest nibble&#41; of the memory location. Since all the failing memory addresses have then <code>0x5c</code> address bits set, we can probably make the assumption that the bit that was flipped was that of the array itself &#40;whose address ended in <code>0x8</code>, i.e. having the high dword at <code>0xc</code>&#41;, rather than the copy of the type tag in the svec &#40;whose address ended in <code>0x0</code>&#41;, but none of the detected failures exactly match the address offset of one of the two addresses we identified as potential targets for the bit flip &#40;though the test in the screenshot was not run to completion, so maybe it would have found one&#41;. Further analysis of the failure would require physical access to the DRAM and perhaps an electron microscope, but we need not go there, because we&#39;ve already determined this is not a Julia bug and the user will probably be replacing their machine.</p>
+<h2 id="conclusion"><a href="#conclusion">Conclusion</a></h2>
+<p>With about an hour&#39;s work &#40;plus 2-3 hours to add the <code>seek-to-ticks</code> functionality written, tested, upstreamed, etc.&#41;, we managed to remotely and conclusively diagnose that a reported crash was caused by faulty memory on the user&#39;s machine.  Even though the <code>rr</code> trace did not contain the actual cause of the crash, it was nevertheless an invaluable tool to analyze this issue. The fact that the stray bit flip was missing from the recording already excluded 99&#37; of possible cases for the crash, and some careful analysis of the trace gave enough clues to be able to eliminate most of the remaining. To quote Sherlock Holmes</p>
+<blockquote>
+<p>When you have eliminated the impossible, whatever remains, however improbable, must be the truth.</p>
+</blockquote>
+<p>Without <code>rr</code>, it may often be tempting to blame unexplained crashes on bad hardware, cosmic rays or gremlins living under the floor. Here, we were able to fairly convincingly conclude that that the issue must indeed be bad memory. I like to say that <code>rr</code> turns a debugging problem into a data analysis problem and here, as is so often the case, the most insightful piece is figuring out what data is missing.</p>
+
+</div><br><br>
+
+<!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/libs/highlight/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
+    
+
+    <!-- http://tutsplus.github.io/clipboard/ -->
+
+<script>
+(function(){
+
+	// Get the elements.
+	// - the 'pre' element.
+	// - the 'div' with the 'paste-content' id.
+
+	var pre = document.getElementsByTagName('pre');
+
+	// Add a copy button in the 'pre' element.
+	// which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+
+	for (var i = 0; i < pre.length; i++) {
+		var tag_name = pre[i].children[0].className
+            	var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+		if ( isLanguage ) {
+			var button           = document.createElement('button');
+					button.className = 'copy-button';
+					button.textContent = 'Copy';
+
+					pre[i].appendChild(button);
+		}
+	};
+
+	// Run Clipboard
+
+	var copyCode = new Clipboard('.copy-button', {
+		target: function(trigger) {
+			return trigger.previousElementSibling;
+    }
+	});
+
+	// On success:
+	// - Change the "Copy" text to "Copied".
+	// - Swap it to "Copy" in 2s.
+	// - Lead user to the "contenteditable" area with Velocity scroll.
+
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		event.trigger.textContent = 'Copied';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 2000);
+
+	});
+
+	// On error (Safari):
+	// - Change the  "Press Ctrl+C to copy"
+	// - Swap it to "Copy" in 2s.
+
+	copyCode.on('error', function(event) {
+		event.trigger.textContent = 'Press "Ctrl + C" to copy';
+		window.setTimeout(function() {
+			event.trigger.textContent = 'Copy';
+		}, 5000);
+	});
+
+})();
+</script>
+
+
+    <footer class="container-fluid footer-copy">
+  <div class="container">
+
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
+      /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+        We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+    </style>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
+        </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+      </div>
+      </form>
+    </div>
+    <script type='text/javascript' src='https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+    <!--End mc_embed_signup-->
+
+    <div class="row footrow">
+      <ul>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
+      </ul>
+      <ul>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
+      </ul>
+      <ul>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
+      </ul>
+    </div>
+    <div id="footer-bottom" class="row">
+      <div class="col-md-10 py-2">
+        <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
+        <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
+      </div>
+      <div class="col-md-2 py-2">
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/libs/jquery/jquery.min.js"></script>
+<script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

@@ -1,5 +1,161 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>How to develop a Julia package</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <meta property="og:title" content="How to develop a Julia package"> <meta property="og:description" content=""> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/contribute/developing_package.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><h1 id=how_to_develop_a_julia_package ><a href="#how_to_develop_a_julia_package">How to develop a Julia package</a></h1> <p>A package contains modules, tests, and documentation. It extends core Julia functionality. You can share your code with the community by developing a package. In this tutorial, you’ll learn how to develop a Julia package and register it to the <a href="https://github.com/JuliaRegistries/General">Julia General Registry</a>. </p> <p>You can create a Julia package using the built-in package manager <a href="https://github.com/JuliaLang/PkgDev.jl">PkgDev.jl</a> or the package <a href="https://juliaci.github.io/PkgTemplates.jl/stable/">PkgTemplates.jl</a>. This example uses <code>PkgTemplates.jl</code> and is inspired in the video below:</p> <iframe width=560  height=315  src="https://www.youtube.com/embed/QVmU29rCjaA" title="YouTube video player" frameborder=0  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>In the video, Chris Rackauckas uses Travis as a Continuous Integration &#40;CI&#41; tool. For this tutorial, we use <a href="https://github.com/features/actions">GitHub Actions</a> instead which is the current preferred method.</p> <p>Moreover, this is a summary of the video above. If you want to see more details, we suggest that you watch the full video. To find further information on developing packages and contributing to existing ones, see the timestamps in the description of the video.</p> <h2 id=prerequisites ><a href="#prerequisites">Prerequisites</a></h2> <p>Before you begin developing a package, make sure you perform the following steps:</p> <ol> <li><p><a href="https://julialang.org/downloads/">Install Julia</a> on your local machine.</p> <li><p>Install an <a href="/contribute/#tools">IDE</a> and configure it to work with Julia.</p> <li><p><a href="https://docs.julialang.org/en/v1/manual/modules/">Understand how modules work in Julia</a>.</p> <li><p><a href="https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account">Create a GitHub account</a> if you don’t have one already.</p> </ol> <p><strong>Note:</strong> In case of any issues, remember you can <a href="/contribute/#get_help">get help</a> from the community.</p> <h2 id=step_1_create_your_package ><a href="#step_1_create_your_package">Step 1: Create your package</a></h2> <p>As we mentioned above, a package contains modules, tests, and documentation. We use PkgTemplates.jl that helps us create all of these files and the configuration for a package.</p> <p>Before creating your package, you need to define a template that contains the initial configuration. First, you need to install <code>PkgTemplates.jl</code>.</p> <p>In the Julia REPL, run the following commands:</p> <pre><code class=language-julia >using Pkg
-Pkg.add&#40;&quot;PkgTemplates&quot;&#41;</code></pre> <p>Now, create your package template by executing the following commands in the Julia REPL:</p> <pre><code class=language-julia >using PkgTemplates
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>How to develop a Julia package</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="How to develop a Julia package">
+<meta property="og:description" content="">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item  flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item  active flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/contribute/developing_package.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><h1 id="how_to_develop_a_julia_package"><a href="#how_to_develop_a_julia_package">How to develop a Julia package</a></h1>
+<p>A package contains modules, tests, and documentation. It extends core Julia functionality. You can share your code with the community by developing a package. In this tutorial, you’ll learn how to develop a Julia package and register it to the <a href="https://github.com/JuliaRegistries/General">Julia General Registry</a>.  </p>
+<p>You can create a Julia package using the built-in package manager <a href="https://github.com/JuliaLang/PkgDev.jl">PkgDev.jl</a> or the package <a href="https://juliaci.github.io/PkgTemplates.jl/stable/">PkgTemplates.jl</a>. This example uses <code>PkgTemplates.jl</code> and is inspired in the video below:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QVmU29rCjaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>In the video, Chris Rackauckas uses Travis as a Continuous Integration &#40;CI&#41; tool. For this tutorial, we use <a href="https://github.com/features/actions">GitHub Actions</a> instead which is the current preferred method.</p>
+<p>Moreover, this is a summary of the video above. If you want to see more details, we suggest that you watch the full video. To find further information on developing packages and contributing to existing ones, see the timestamps in the description of the video.</p>
+<h2 id="prerequisites"><a href="#prerequisites">Prerequisites</a></h2>
+<p>Before you begin developing a package, make sure you perform the following steps:</p>
+<ol>
+<li><p><a href="https://julialang.org/downloads/">Install Julia</a> on your local machine.</p>
+</li>
+<li><p>Install an <a href="/contribute/#tools">IDE</a> and configure it to work with Julia.</p>
+</li>
+<li><p><a href="https://docs.julialang.org/en/v1/manual/modules/">Understand how modules work in Julia</a>.</p>
+</li>
+<li><p><a href="https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account">Create a GitHub account</a> if you don’t have one already.</p>
+</li>
+</ol>
+<p><strong>Note:</strong> In case of any issues, remember you can <a href="/contribute/#get_help">get help</a> from the community.</p>
+<h2 id="step_1_create_your_package"><a href="#step_1_create_your_package">Step 1: Create your package</a></h2>
+<p>As we mentioned above, a package contains modules, tests, and documentation. We use PkgTemplates.jl that helps us create all of these files and the configuration for a package.</p>
+<p>Before creating your package, you need to define a template that contains the initial configuration. First, you need to install <code>PkgTemplates.jl</code>.</p>
+<p>In the Julia REPL, run the following commands:</p>
+<pre><code class="language-julia">using Pkg
+Pkg.add&#40;&quot;PkgTemplates&quot;&#41;</code></pre>
+<p>Now, create your package template by executing the following commands in the Julia REPL:</p>
+<pre><code class="language-julia">using PkgTemplates
 
 t &#61; Template&#40;;
            user&#61;&quot;your-GitHub-username&quot;,
@@ -9,69 +165,72 @@ t &#61; Template&#40;;
                Git&#40;&#41;,
                GitHubActions&#40;&#41;,
            &#93;,
-       &#41;</code></pre> <p>Make sure to replace <code>your-GitHub-username</code> with your actual GitHub username and <code>your-name</code> with your name. For more information on all of the options available, see the <a href="https://juliaci.github.io/PkgTemplates.jl/stable/user/">PkgTemplates User Guide</a>.</p> <p>Now, to create the package, in the Julia REPL execute the following command: </p> <pre><code class=language-julia >t&#40;&quot;YourPackageName&quot;&#41;</code></pre>
+       &#41;</code></pre>
+<p>Make sure to replace <code>your-GitHub-username</code> with your actual GitHub username and <code>your-name</code> with your name. For more information on all of the options available, see the <a href="https://juliaci.github.io/PkgTemplates.jl/stable/user/">PkgTemplates User Guide</a>.</p>
+<p>Now, to create the package, in the Julia REPL execute the following command: </p>
+<pre><code class="language-julia">t&#40;&quot;YourPackageName&quot;&#41;</code></pre>
 <p>Replace <code>YourPackageName</code> with the actual name of your package. Note that packages in Julia start with a capital letter. For more information on how to properly name your package, see <a href="https://pkgdocs.julialang.org/v1/creating-packages/#Package-naming-guidelines">Package naming guidelines</a>.</p>
 <p>After <code>PkgTemplates.jl</code> creates your new package, it stores the source files at <code>~/.julia/dev</code> on Linux, and at <code>&#37;USERNAME&#37;/.julia/dev</code> on Windows. If this is not where you want to be working from, then move the source files to your preferred location. Your package directory contains the following:</p>
 <ul>
 <li><p><code>LICENSE</code>: The license that your package uses. In this example, we set the <a href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
-
+</li>
 <li><p><code>Manifest.toml</code>: It includes information on the package dependencies. For more information on Project and Manifest files, see <a href="https://pkgdocs.julialang.org/v1/toml-files/">Pkg.jl documentation</a>. </p>
-
+</li>
 <li><p><code>Project.toml</code>: It contains high-level information about the project.</p>
-
+</li>
 <li><p><code>README.md</code>: It contains information about your package. For example, a README file has information on how to install your package and examples of how to use it.</p>
-
+</li>
 <li><p><code>src</code>:  It contains the file <code>YourPackageName.jl</code>.  This is where you write the code for your package.</p>
-
+</li>
 <li><p><code>test</code>:  It contains the file <code>runtests.jl</code>. This is where you write the code for testing your package.</p>
-
+</li>
 <li><p><code>.github</code>: It contains <code>yaml</code> files for <a href="https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration">Continuous Integration using GitHub Actions</a>.</p>
-
+</li>
 </ul>
-<h2 id=step_2_create_a_github_repository_for_your_package ><a href="#step_2_create_a_github_repository_for_your_package">Step 2: Create a GitHub repository for your package</a></h2>
+<h2 id="step_2_create_a_github_repository_for_your_package"><a href="#step_2_create_a_github_repository_for_your_package">Step 2: Create a GitHub repository for your package</a></h2>
 <p>You need to create a GitHub repository to store and share your package. For more information on how to create a new GitHub repository, see <a href="https://docs.github.com/en/get-started/quickstart/create-a-repo#create-a-repository">Create a repository</a>. In particular, make sure that you consider the following when creating the repository:</p>
 <ul>
 <li><p>Name the repository as your package name.</p>
-
+</li>
 <li><p>Add <code>.jl</code> to the name of the repository. In this example, you need to name your repository as <code>YourPackageName.jl</code>.</p>
-
+</li>
 <li><p>Keep the options of <strong>Initialize this repository with</strong> unselected.</p>
-
+</li>
 </ul>
-<h2 id=step_3_write_code ><a href="#step_3_write_code">Step 3: Write code</a></h2>
+<h2 id="step_3_write_code"><a href="#step_3_write_code">Step 3: Write code</a></h2>
 <p>Now, you can start writing code. You can find a file with the same name as your package &#40;<code>YourPackageName.jl</code>&#41; in the subfolder <code>src/</code>. You can add your code to the file <code>YourPackageName.jl</code>. However, If your package contains many functions, then it is best to divide it into several files. Then, you can call these functions from the main file  &#40;<code>YourPackageName.jl</code>&#41;  using the <a href="https://docs.julialang.org/en/v1/manual/code-loading/">include</a> command.</p>
 <p>To include a function from a different file in <code>YourPackageName.jl</code>:</p>
 <ol>
 <li><p>In the folder <code>src/</code>, create a file called <code>functions.jl</code>. </p>
-
+</li>
 <li><p>Add the following text to the file <code>functions.jl</code>:</p>
-
+</li>
 </ol>
-<pre><code class=language-julia >function greet_your_package_name&#40;&#41;
+<pre><code class="language-julia">function greet_your_package_name&#40;&#41;
     return &quot;Hello YourPackageName&#33;&quot;
 end</code></pre>
-<ol start=3 >
+<ol start="3">
 <li><p>Export the function <code>greet_your_package_name&#40;&#41;</code> so that is available to users as follows:</p>
-
+</li>
 </ol>
-<pre><code class=language-julia >export greet_your_package_name</code></pre>
-<ol start=4 >
+<pre><code class="language-julia">export greet_your_package_name</code></pre>
+<ol start="4">
 <li><p>In the main file <code>YourPackageName.jl</code>, include the <code>functions.jl</code> file with the following command:</p>
-
+</li>
 </ol>
-<pre><code class=language-julia >include&#40;&quot;functions.jl&quot;&#41;</code></pre>
+<pre><code class="language-julia">include&#40;&quot;functions.jl&quot;&#41;</code></pre>
 <p>Finally, the full content of the main file &#40;YourPackageName.jl&#41;  is the following:</p>
-<pre><code class=language-julia >module YourPackageName
+<pre><code class="language-julia">module YourPackageName
 
 export greet_your_package_name
 include&#40;&quot;functions.jl&quot;&#41;
 
 end</code></pre>
 <p>You can include as many functions and files as you need following the process described above. </p>
-<h2 id=step_4_test_your_package ><a href="#step_4_test_your_package">Step 4: Test your package</a></h2>
+<h2 id="step_4_test_your_package"><a href="#step_4_test_your_package">Step 4: Test your package</a></h2>
 <p>Tests are necessary to make sure that your package is working correctly. When you create a new package, <code>PkgTemplates.jl</code> creates a starter code &#40;<code>test/runtests.jl</code>&#41; for your tests. Then, you can add tests for each new function that you write. </p>
 <p>For example, the following code tests the function <code>greet_your_package_name&#40;&#41;</code>:</p>
-<pre><code class=language-julia >using YourPackageName
+<pre><code class="language-julia">using YourPackageName
 using Test
 
 @testset &quot;YourPackageName.jl&quot; begin
@@ -81,74 +240,74 @@ end</code></pre>
 <p>To run the test defined above:</p>
 <ol>
 <li><p>In your terminal, go to your package directory.</p>
-
+</li>
 <li><p>Open the Julia REPL.</p>
-
+</li>
 <li><p>Go to the <strong>package mode</strong> by typing <code>&#93;</code>.</p>
-
+</li>
 <li><p>Activate the package environment by running <code>activate .</code> command,</p>
-
+</li>
 <li><p>In the package mode, run the command <code>test</code>.</p>
-
+</li>
 </ol>
-<pre><code class=language-julia >julia&gt; &#93; # Go to the package mode
+<pre><code class="language-julia">julia&gt; &#93; # Go to the package mode
 &#40;v1.8&#41; pkg&gt; activate .
 &#40;YourPackageName&#41; pkg&gt; test</code></pre>
 <p>The Test summary provides the number of passed tests out of the total of existing tests.</p>
-<h2 id=step_5_register_your_package ><a href="#step_5_register_your_package">Step 5: Register your package</a></h2>
+<h2 id="step_5_register_your_package"><a href="#step_5_register_your_package">Step 5: Register your package</a></h2>
 <p>When you are ready to share your package, you need to register it in the <a href="https://github.com/JuliaRegistries/General">Julia General Registry</a>. After registering your package, other users can install it using <code>Pkg.add&#40;“PackageName”&#41;</code>.  </p>
 <p>To register your package:</p>
 <ol>
 <li><p>Go to the <a href="https://github.com/JuliaRegistries/Registrator.jl">Registrator</a> repository.</p>
-
+</li>
 <li><p>Click the <strong>install app</strong> button to install the Julia Registrator application.</p>
-
+</li>
 <li><p>In your package repository, <a href="https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue">create a new issue</a>. </p>
-
+</li>
 <li><p>In the <strong>Leave a comment</strong> text field, add the following text:</p>
-
+</li>
 </ol>
-<pre><code class=language-julia >@JuliaRegistrator register&#40;&#41;</code></pre>
+<pre><code class="language-julia">@JuliaRegistrator register&#40;&#41;</code></pre>
 <p>The Julia Registrator application creates a new pull request to the Julia General Registry automatically. The community will review your package and might make comments or suggest changes. After the Julia General Registry maintainers approve the pull request, your package is added to the list of packages available.</p>
-<h2 id=further_steps ><a href="#further_steps">Further steps</a></h2>
+<h2 id="further_steps"><a href="#further_steps">Further steps</a></h2>
 <p>You might need to add new features or fix bugs as you continue developing your package,  Also, you might decide that you need to add dependencies to the project &#40;other packages&#41;. As a result, you need to update the <code>Project.toml</code> file so that it reflects the updates to your package.</p>
 <p>In this section, we go through the steps for versioning your package and adding new dependencies. </p>
-<h3 id=versioning ><a href="#versioning">Versioning</a></h3>
+<h3 id="versioning"><a href="#versioning">Versioning</a></h3>
 <p>While you continue to develop your package, you need to update its version. It enables you to keep track of the different changes to your package. A <a href="https://pkgdocs.julialang.org/v1/toml-files/#The-version-field">package version</a> is a number that contains three digits &#40;<code>X.X.X</code>&#41;. The digits in the version indicate the following:</p>
 <ul>
 <li><p>First digit: Major version</p>
-
+</li>
 <li><p>Second digit: Minor version</p>
-
+</li>
 <li><p>Third digit: Patch number </p>
-
+</li>
 </ul>
 <p>Update your package version digits according to the following guidelines:</p>
 <ul>
 <li><p>If you make a breaking change, increase the first digit. </p>
-
+</li>
 <li><p>If you add a new feature, increase the second digit.</p>
-
+</li>
 <li><p>If you fix a bug, increase the third digit.</p>
-
+</li>
 </ul>
 <p>To update the version of your package, open the <code>Project.toml</code> file and modify the <code>version</code> variable.</p>
-<h3 id=adding_new_dependencies ><a href="#adding_new_dependencies">Adding new dependencies</a></h3>
+<h3 id="adding_new_dependencies"><a href="#adding_new_dependencies">Adding new dependencies</a></h3>
 <p>Instead of reinventing the wheel and creating everything from scratch, you can load packages that the community has already created. You just need to add the new dependency to the project and <a href="https://docs.julialang.org/en/v1/manual/modules/#Standalone-using-and-import">call the functions</a> as you usually do in Julia.</p>
 <p>To add a new dependency to your package:</p>
 <ol>
 <li><p>In your terminal, go to your package directory.</p>
-
+</li>
 <li><p>Open the Julia REPL.</p>
-
+</li>
 <li><p>Go to the <strong>package</strong> mode by typing <code>&#93;</code>.</p>
-
+</li>
 <li><p>Activate the package environment by running <code>activate</code> command.</p>
-
+</li>
 <li><p>Add the new package by running the command <code>add PackageName</code>.</p>
-
+</li>
 </ol>
-<pre><code class=language-julia >julia&gt; &#93; # Go to the package mode
+<pre><code class="language-julia">julia&gt; &#93; # Go to the package mode
 &#40;v1.8&#41; pkg&gt; activate YourPackageName # Your package name
 &#40;YourPackageName&#41; pkg&gt; add PackageName</code></pre>
 <p><strong>Note:</strong> You can add more than one package by leaving white spaces between the names of the packages.</p>
@@ -156,7 +315,7 @@ end</code></pre>
 <p><strong>Congratulations&#33;</strong> You have created your <strong>first Julia package</strong> and <strong>registered it to the Julia General Registry</strong>. Now, you can continue your open source contribution journey and create your own packages or <a href="/contribute/opportunities">propose changes to others</a>.</p>
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
@@ -164,7 +323,7 @@ end</code></pre>
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -228,25 +387,25 @@ end</code></pre>
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -255,53 +414,53 @@ end</code></pre>
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -310,3 +469,9 @@ end</code></pre>
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

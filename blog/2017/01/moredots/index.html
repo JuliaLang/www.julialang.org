@@ -1,51 +1,213 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>More Dots: Syntactic Loop Fusion in Julia</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="More Dots: Syntactic Loop Fusion in Julia"> <meta property="og:description" content=" More Dots: Syntactic Loop Fusion in Julia | After a lengthy design process (https://github.com/JuliaLang/julia/issues/8450) and preliminary foundations in Julia 0.5 (/blog/2016-10-11-julia-0.5-highlights#vectorized_function_calls), Julia 0.6 includes new facilities for writing code in the "vectorized"... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>More Dots: Syntactic Loop Fusion in Julia <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 21 January 2017 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"> <a href="https://math.mit.edu/~stevenj">Steven G. Johnson</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2017/01/moredots.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>After a <a href="https://github.com/JuliaLang/julia/issues/8450">lengthy design process</a> and <a href="/blog/2016/10/julia-0.5-highlights/#vectorized_function_calls">preliminary foundations in Julia 0.5</a>, Julia 0.6 includes new facilities for writing code in the &quot;vectorized&quot; style &#40;familiar from Matlab, Numpy, R, etcetera&#41; while avoiding the overhead that this style of programming usually imposes: multiple vectorized operations can now be &quot;fused&quot; into a single loop, without allocating any extraneous temporary arrays.</p> <p>This is best illustrated with an example &#40;in which we get <em>order-of-magnitude</em> savings in memory and time, as demonstrated below&#41;. Suppose we have a function <code>f&#40;x&#41; &#61; 3x^2 &#43; 5x &#43; 2</code> that evaluates a polynomial, and we want to evaluate <code>f&#40;2x^2 &#43; 6x^3 - sqrt&#40;x&#41;&#41;</code> for a whole array <code>X</code>, storing the result in-place in <code>X</code>. You can now do:</p> <pre><code class=language-julia >X .&#61; f.&#40;2 .* X.^2 .&#43; 6 .* X.^3 .- sqrt.&#40;X&#41;&#41;</code></pre>
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>More Dots: Syntactic Loop Fusion in Julia</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="More Dots: Syntactic Loop Fusion in Julia">
+<meta property="og:description" content=" More Dots: Syntactic Loop Fusion in Julia | After a lengthy design process (https://github.com/JuliaLang/julia/issues/8450) and preliminary foundations in Julia 0.5 (/blog/2016-10-11-julia-0.5-highlights#vectorized_function_calls), Julia 0.6 includes new facilities for writing code in the "vectorized"... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>More Dots: Syntactic Loop Fusion in Julia
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 21 January 2017 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;"> <a href="https://math.mit.edu/~stevenj">Steven G. Johnson</a> </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2017/01/moredots.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>After a <a href="https://github.com/JuliaLang/julia/issues/8450">lengthy design process</a> and <a href="/blog/2016/10/julia-0.5-highlights/#vectorized_function_calls">preliminary foundations in Julia 0.5</a>, Julia 0.6 includes new facilities for writing code in the &quot;vectorized&quot; style &#40;familiar from Matlab, Numpy, R, etcetera&#41; while avoiding the overhead that this style of programming usually imposes: multiple vectorized operations can now be &quot;fused&quot; into a single loop, without allocating any extraneous temporary arrays.</p>
+<p>This is best illustrated with an example &#40;in which we get <em>order-of-magnitude</em> savings in memory and time, as demonstrated below&#41;.  Suppose we have a function <code>f&#40;x&#41; &#61; 3x^2 &#43; 5x &#43; 2</code> that evaluates a polynomial, and we want to evaluate <code>f&#40;2x^2 &#43; 6x^3 - sqrt&#40;x&#41;&#41;</code> for a whole array <code>X</code>, storing the result in-place in <code>X</code>.  You can now do:</p>
+<pre><code class="language-julia">X .&#61; f.&#40;2 .* X.^2 .&#43; 6 .* X.^3 .- sqrt.&#40;X&#41;&#41;</code></pre>
 <p>or, <a href="https://github.com/JuliaLang/julia/pull/20321">equivalently</a>:</p>
-<pre><code class=language-julia >@. X &#61; f&#40;2X^2 &#43; 6X^3 - sqrt&#40;X&#41;&#41;</code></pre>
+<pre><code class="language-julia">@. X &#61; f&#40;2X^2 &#43; 6X^3 - sqrt&#40;X&#41;&#41;</code></pre>
 <p>and the whole computation will be <em>fused</em> into a single loop, operating in-place, with performance comparable to the hand-written &quot;devectorized&quot; loop:</p>
-<pre><code class=language-julia >for i in eachindex&#40;X&#41;
+<pre><code class="language-julia">for i in eachindex&#40;X&#41;
     x &#61; X&#91;i&#93;
     X&#91;i&#93; &#61; f&#40;2x^2 &#43; 6x^3 - sqrt&#40;x&#41;&#41;
 end</code></pre>
 <p>&#40;Of course, like all Julia code, to get good performance both of these snippets should be executed inside some function, not in global scope.&#41;   To see the details of a variety of performance experiments with this example code, follow along in the attached IJulia/Jupyter <code>X .&#61; ...</code> code has performance within 10&#37; of the hand-devectorized loop &#40;which itself is within 5&#37; of the speed of C code&#41;, except for very small arrays where there is a modest overhead &#40;e.g. 50&#37; overhead for a length-1 array <code>X</code>&#41;.</p>
 <p>In this blog post, we delve into some of the details of this new development, in order to answer questions that often arise when this feature is presented:</p>
-<div class=tight-list ><ol>
+<div class="tight-list"><ol>
 <li><p>What is the overhead of traditional &quot;vectorized&quot; code?  Isn&#39;t vectorized code supposed to be fast already?</p>
-
+</li>
 <li><p>Why are all these dots necessary?  Couldn&#39;t Julia just optimize &quot;ordinary&quot; vector code?</p>
-
+</li>
 <li><p>Is this something unique to Julia, or can other languages do the same thing?</p>
-
+</li>
 </ol></div>
 <p>The short answers are:</p>
-<div class=tight-list ><ol>
+<div class="tight-list"><ol>
 <li><p><a href="https://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code/">Ordinary vectorized code is fast, but not as fast as a hand-written loop</a> &#40;assuming loops are efficiently compiled, as in Julia&#41; because each vectorized operation generates a new temporary array and executes a separate loop, leading to a lot of overhead when multiple vectorized operations are combined.</p>
-
+</li>
 <li><p>The dots allow Julia to recognize the &quot;vectorized&quot; nature of the operations at a <em>syntactic</em> level &#40;before e.g. the type of <code>x</code> is known&#41;, and hence the loop fusion is a <em>syntactic guarantee</em>, not a compiler optimization that may or may not occur for carefully written code.  They also allow the <em>caller</em> to &quot;vectorize&quot; <em>any</em> function, rather than relying on the function author.  &#40;The <code>@.</code> macro lets you add dots to every operation in an expression, improving readability for expressions with lots of dots.&#41;</p>
-
+</li>
 <li><p>Other languages have implemented loop fusion for vectorized operations, but typically for only a small set of types and operations/functions that are known to the compiler or vectorization library.  Julia&#39;s ability to do it generically, even for <em>user-defined</em> array types and functions/operators, is unusual and relies in part on the syntax choices above and on its ability to efficiently compile higher-order functions.</p>
-
+</li>
 </ol></div>
 <p>Finally, we&#39;ll review why, since these dots actually correspond to <code>broadcast</code> operations, they can <strong>combine arrays and scalars, or combine containers of different shapes and kinds</strong>, and we&#39;ll compare <code>broadcast</code> and <code>map</code>.  Moreover, Julia 0.6 expanded and clarified the notion of a &quot;scalar&quot; for <code>broadcast</code>, so that it is <strong>not limited to numerical operations</strong>: you can use <code>broadcast</code> and fusing &quot;dot calls&quot; for many other tasks &#40;e.g. string processing&#41;.</p>
-<h2 id=isnt_vectorized_code_already_fast ><a href="#isnt_vectorized_code_already_fast">Isn&#39;t vectorized code already fast?</a></h2>
+<h2 id="isnt_vectorized_code_already_fast"><a href="#isnt_vectorized_code_already_fast">Isn&#39;t vectorized code already fast?</a></h2>
 <p>To explore this question &#40;also discussed <a href="https://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code/">in this blog post</a>&#41;, let&#39;s begin by rewriting the code above in a more traditional vectorized style, without so many dots, such as you might use in Julia 0.4 or in other languages &#40;most famously Matlab, Python/Numpy, or R&#41;.</p>
-<pre><code class=language-julia >X &#61; f&#40;2 * X.^2 &#43; 6 * X.^3 - sqrt&#40;X&#41;&#41;</code></pre>
+<pre><code class="language-julia">X &#61; f&#40;2 * X.^2 &#43; 6 * X.^3 - sqrt&#40;X&#41;&#41;</code></pre>
 <p>Of course, this assumes that the functions <code>sqrt</code> and <code>f</code> are &quot;vectorized,&quot; i.e. that they accept vector arguments <code>X</code> and compute the function elementwise.  This is true of <code>sqrt</code> in Julia 0.4, but it means that we have to rewrite our function <code>f</code> from above in a vectorized style, as e.g. <code>f&#40;x&#41; &#61; 3x.^2 &#43; 5x &#43; 2</code> &#40;changing <code>f</code> to use the elementwise operator <code>.^</code> because <code>vector^scalar</code> is not defined&#41;.   &#40;If we were using Julia 0.4 and cared a lot about efficiency, we might have instead used the <code>@vectorize_1arg f Number</code> macro to generate more specialized elementwise code.&#41;</p>
-<h3 id=which_functions_are_vectorized ><a href="#which_functions_are_vectorized">Which functions are vectorized?</a></h3>
+<h3 id="which_functions_are_vectorized"><a href="#which_functions_are_vectorized">Which functions are vectorized?</a></h3>
 <p>As an aside, this example illustrates an annoyance with the vectorized style: you have to <em>decide in advance</em> whether a given function <code>f&#40;x&#41;</code> will also be applied elementwise to arrays, and either write it specially or define a corresponding elementwise method.</p>
 <p>&#40;Our function <code>f</code> accepts any <code>x</code> type, and in Matlab or R there is no distinction between a scalar and a 1-element array.  However, even if a function <em>accepts</em> an array argument <code>x</code>, that doesn&#39;t mean it will <em>work</em> elementwise for an array unless you write the function with that in mind.&#41;</p>
 <p>For library functions like <code>sqrt</code>, this means that the library authors have to guess at which functions should have vectorized methods, and users have to guess at what vaguely defined subset of library functions work for vectors.</p>
 <p>One possible solution is to vectorize <em>every function automatically</em>.   The language <a href="https://en.wikipedia.org/wiki/Chapel_&#37;28programming_language&#37;29">Chapel</a> does this: every function <code>f&#40;x...&#41;</code> implicitly defines a function <code>f&#40;x::Array...&#41;</code> that evaluates <code>map&#40;f, x...&#41;</code> <a href="http://pgas11.rice.edu/papers/ChamberlainEtAl-Chapel-Iterators-PGAS11.pdf">&#40;Chamberlain et al, 2011&#41;</a>. This could be implemented in Julia as well via function-call overloading <a href="https://github.com/JeffBezanson/phdthesis/blob/master/main.pdf">&#40;Bezanson, 2015: chapter 4&#41;</a>, but we chose to go in a different direction.</p>
 <p>Instead, starting in Julia 0.5, <em>any</em> function <code>f&#40;x&#41;</code> can be applied elementwise to an array <code>X</code> with the <a href="https://docs.julialang.org/en/v1/manual/functions/#man-vectorized-1">&quot;dot call&quot; syntax <code>f.&#40;X&#41;</code></a>. Thus, the <em>caller</em> decides which functions to vectorize.  In Julia 0.6, &quot;traditionally&quot; vectorized library functions like <code>sqrt&#40;X&#41;</code> are <a href="https://github.com/JuliaLang/julia/pull/17302">deprecated</a> in favor of <code>sqrt.&#40;X&#41;</code>, and dot operators like <code>x .&#43; y</code> are <a href="https://github.com/JuliaLang/julia/pull/17623">now equivalent</a> to dot calls <code>&#40;&#43;&#41;.&#40;x,y&#41;</code>.   Unlike Chapel&#39;s implicit vectorization, Julia&#39;s <code>f.&#40;x...&#41;</code> syntax corresponds to <code>broadcast&#40;f, x...&#41;</code> rather than <code>map</code>, allowing you to <em>combine arrays and scalars or arrays of different shapes/dimensions.</em>  &#40;<code>broadcast</code> and <code>map</code> are compared at the end of this post; each has its own unique capabilities.&#41; From the standpoint of the programmer, this adds a certain amount of clarity because it indicates explicitly when an elementwise operation is occurring.  From the standpoint of the compiler, dot-call syntax enables the <em>syntactic loop fusion</em> optimization described in more detail below, which we think is an overwhelming advantage of this style.</p>
-<h3 id=why_vectorized_code_is_fast ><a href="#why_vectorized_code_is_fast">Why vectorized code is fast</a></h3>
+<h3 id="why_vectorized_code_is_fast"><a href="#why_vectorized_code_is_fast">Why vectorized code is fast</a></h3>
 <p>In many dynamically typed languages popular for interactive technical computing &#40;Matlab, Python, R, etc.&#41;, vectorization is seen as a key &#40;often <em>the</em> key&#41; performance optimization.   It allows your code to take advantage of highly optimized &#40;perhaps even parallelized&#41; library routines for basic operations like <code>scalar*array</code> or <code>sqrt&#40;array&#41;</code>. Those functions, in turn, are usually implemented in a low-level language like C or Fortran.   Writing your own &quot;devectorized&quot; loops, in contrast, is too slow, unless you are willing to drop down to a low-level language yourself, because the semantics of those dynamic languages make it hard to compile them to efficient code in general.</p>
 <p>Thanks to Julia&#39;s design, a properly written devectorized loop in Julia has performance within a few percent of C or Fortran, so there is no <em>necessity</em> of vectorizing; this is explicitly demonstrated for the devectorized loop above in the accompanying <a href="/assets/blog/moredots/More-Dots.ipynb">notebook</a>. However, vectorization may still be <em>convenient</em> for some problems. And vectorized operations like <code>scalar*array</code> or <code>sqrt&#40;array&#41;</code> are still fast in Julia &#40;calling optimized library routines, albeit ones written in Julia itself&#41;.</p>
 <p>Furthermore, if your problem involves a function that does not have a pre-written, highly optimized, vectorized library routine in Julia, and that does not decompose easily into existing vectorized building blocks like <code>scalar*array</code>, then you can write your own building block without dropping down to a low-level language. &#40;If all the performance-critical code you will ever need already existed in the form of optimized library routines, programming would be a lot easier&#33;&#41;</p>
-<h3 id=why_vectorized_code_is_not_as_fast_as_it_could_be ><a href="#why_vectorized_code_is_not_as_fast_as_it_could_be">Why vectorized code is not as fast as it could be</a></h3>
+<h3 id="why_vectorized_code_is_not_as_fast_as_it_could_be"><a href="#why_vectorized_code_is_not_as_fast_as_it_could_be">Why vectorized code is not as fast as it could be</a></h3>
 <p>There is a tension between two general principles in computing: on the one hand, <em>re-using</em> highly optimized code is good for performance; on the other other hand, optimized code that is <em>specialized</em> for your problem can usually beat general-purpose functions. This is illustrated nicely by the traditional vectorized version of our code above:</p>
-<pre><code class=language-julia >f&#40;x&#41; &#61; 3x.^2 &#43; 5x &#43; 2
+<pre><code class="language-julia">f&#40;x&#41; &#61; 3x.^2 &#43; 5x &#43; 2
 X &#61; f&#40;2 * X.^2 &#43; 6 * X.^3 - sqrt&#40;X&#41;&#41;</code></pre>
 <p>Each of the operations like <code>X.^2</code>  and <code>5*X</code><em>individually</em> calls highly optimized functions, but their <em>combination</em> leaves a lot of performance on the table when <code>X</code> is an array.   To see that, you have to realize that this code is equivalent to:</p>
-<pre><code class=language-julia >tmp1 &#61; X.^2
+<pre><code class="language-julia">tmp1 &#61; X.^2
 tmp2 &#61; 2*tmp1
 tmp3 &#61; X.^3
 tmp4 &#61; 6 * tmp3
@@ -58,39 +220,39 @@ X &#61; f&#40;tmp7&#41;</code></pre>
 <p>By itself, allocating/freeing memory can take a significant amount of time compared to our other computations. This is especially true if <code>X</code> is very small so that the allocation overhead matters &#40;in our benchmark <a href="/assets/blog/moredots/More-Dots.ipynb">notebook</a>, we pay a 10× cost for a 6-element array and a 6× cost for a 36-element array&#41;, or  if <code>X</code> is very large so that the memory churn matters &#40;see below for numbers&#41;. Furthermore, you pay a <em>different</em> performance price from the fact that you have 12 loops &#40;12 passes over memory&#41; compared to one, in part because of the loss of <a href="https://en.wikipedia.org/wiki/Locality_of_reference">memory locality</a>.</p>
 <p>In particular, reading or writing data in main computer memory &#40;RAM&#41; is much slower than performing scalar arithmetic operations like <code>&#43;</code> and <code>*</code>, so computer hardware stores recently used data in a <a href="https://en.wikipedia.org/wiki/Cache_&#37;28computing&#37;29">cache</a>: a small amount of much faster memory.  Furthermore, there is a hierarchy of smaller, faster caches, culminating in the <a href="https://en.wikipedia.org/wiki/Processor_register">register memory</a> of the CPU itself.   This means that, for good performance, you should load each datum <code>x &#61; X&#91;i&#93;</code><em>once</em> &#40;so that it goes into cache, or into a register for small enough types&#41;, and then perform several operations like <code>f&#40;2x^2 &#43; 6x^3 - sqrt&#40;x&#41;&#41;</code> on <code>x</code> while you still have fast access to it, before loading the next datum; this is called &quot;temporal locality.&quot;   The traditional vectorized code discards this potential locality: each <code>X&#91;i&#93;</code> is loaded once for a single small operation like <code>2*X&#91;i&#93;</code>, writing the result out to a temporary array before immediately reading the next <code>X&#91;i&#93;</code>.</p>
 <p>In typical performance benchmarks &#40;see <a href="/assets/blog/moredots/More-Dots.ipynb">notebook</a>&#41;, therefore, the traditional vectorized code <code>X &#61; f&#40;2 * X.^2 &#43; 6 * X.^3 - sqrt&#40;X&#41;&#41;</code> turns out to be <strong>about 10× slower</strong> than the devectorized or fused-vectorized versions of the same code at the beginning of this article for <code>X &#61; zeros&#40;10^6&#41;</code>.   Even if we pre-allocate all of the temporary arrays &#40;completely eliminating the allocation cost&#41;,  our benchmarks show that performing a separate loop for each operation still is about 4–5× slower for a million-element <code>X</code>. This is not unique to Julia&#33;  <strong>Vectorized code is suboptimal in any language</strong> unless the language&#39;s compiler can automatically fuse all of these loops &#40;even ones that appear inside function calls&#41;, which rarely happens for the reasons described below.</p>
-<h2 id=why_does_julia_need_dots_to_fuse_the_loops ><a href="#why_does_julia_need_dots_to_fuse_the_loops">Why does Julia need dots to fuse the loops?</a></h2>
+<h2 id="why_does_julia_need_dots_to_fuse_the_loops"><a href="#why_does_julia_need_dots_to_fuse_the_loops">Why does Julia need dots to fuse the loops?</a></h2>
 <p>You might look at an expression like <code>2 * X.^2 &#43; 6 * X.^3 - sqrt&#40;X&#41;</code> and think that it is &quot;obvious&quot; that it could be combined into a single loop over <code>X</code>.  Why can&#39;t Julia&#39;s compiler be smart enough to recognize this?</p>
 <p>The thing that you need to realize is that, in Julia, there is nothing particularly special about <code>&#43;</code> or <code>sqrt</code> — they are arbitrary functions and could do <em>anything</em>. <code>X &#43; Y</code> could send an email or open a plotting window, for all the compiler knows.   To figure out that it could fuse e.g. <code>2*X &#43; Y</code> into a single loop, allocating a single array for the result, the compiler would need to:</p>
 <ol>
 <li><p>Deduce the types of <code>X</code> and <code>Y</code> and figure out what <code>*</code> and <code>&#43;</code> functions to call.  &#40;Julia already does this, at least when <a href="https://en.wikipedia.org/wiki/Type_inference">type inference</a> succeeds.&#41;</p>
-
+</li>
 <li><p>Look inside of those functions, realize that they are elementwise loops over <code>X</code> and <code>Y</code>, and realize that they are <a href="https://en.wikipedia.org/wiki/Pure_function">pure</a> &#40;e.g. <code>2*X</code> has no side-effects like modifying <code>Y</code>&#41;.</p>
-
+</li>
 <li><p>Analyze expressions like <code>X&#91;i&#93;</code> &#40;which are calls to a function <code>getindex&#40;X, i&#41;</code> that is &quot;just another function&quot; to the compiler&#41;, to detect that they are memory reads/writes and determine what <em>data dependencies</em> they imply &#40;e.g. to figure out that <code>2*X</code> allocates a temporary array that can be eliminated&#41;.</p>
-
+</li>
 </ol>
 <p>The second and third steps pose an <em>enormous challenge</em>: looking at an arbitrary function and &quot;understanding&quot; it at this level turns out to be a very hard problem for a computer.  If fusion is viewed as a compiler <em>optimization</em>, then the compiler is only free to fuse if it can <em>prove</em> that fusion <em>won&#39;t change the results</em>, which requires the detection of purity and other data-dependency analyses.</p>
 <p>In contrast, when the Julia compiler sees an expression like <code>2 .* X .&#43; Y</code>, it knows just from the <em>syntax</em> &#40;the &quot;spelling&quot;&#41; that these are elementwise operations, and Julia <em>guarantees</em> that the code will <em>always</em> fuse into a single loop, freeing it from the need to prove purity.  This is what we term <strong>syntactic loop fusion</strong>, described in more detail below.</p>
-<h3 id=a_halfway_solution_loop_fusion_for_a_few_operationstypes ><a href="#a_halfway_solution_loop_fusion_for_a_few_operationstypes">A halfway solution: Loop fusion for a few operations/types</a></h3>
+<h3 id="a_halfway_solution_loop_fusion_for_a_few_operationstypes"><a href="#a_halfway_solution_loop_fusion_for_a_few_operationstypes">A halfway solution: Loop fusion for a few operations/types</a></h3>
 <p>One approach that may occur to you, and which has been implemented in a variety of languages &#40;e.g. <a href="https://dl.acm.org/citation.cfm?id&#61;665526">Kennedy &amp; McKinley, 1993</a>; <a href="https://citeseerx.ist.psu.edu/viewdoc/summary?doi&#61;10.1.1.46.6627">Lewis et al., 1998</a>; <a href="https://dl.acm.org/citation.cfm?id&#61;507661">Chakravarty &amp; Keller, 2001</a>; <a href="http://ieeexplore.ieee.org.libproxy.mit.edu/document/577265/">Manjikian &amp; Abdelrahman, 2002</a>; <a href="https://ieeexplore.ieee.org/document/5389392/">Sarkar, 2010</a>; <a href="https://dl.acm.org/citation.cfm?id&#61;1993517">Prasad et al., 2011</a>; <a href="https://dl.acm.org/citation.cfm?id&#61;2457490">Wu et al., 2012</a>&#41;, is to only perform loop fusion for <em>a few &quot;built-in&quot; types and operations</em> that the compiler can be designed to recognize.   The same idea has also been implemented as libraries &#40;e.g. template libraries in C&#43;&#43;: <a href="https://citeseerx.ist.psu.edu/viewdoc/summary?doi&#61;10.1.1.43.248">Veldhuizen, 1995</a>&#41; or <a href="https://en.wikipedia.org/wiki/Domain-specific_language">domain-specific languages &#40;DSLs&#41;</a> as extensions of existing languages; in Python, for example, loop fusion for a small set of vector operations and array/scalar types can be found in the <a href="http://deeplearning.net/software/theano/introduction.html">Theano</a>, <a href="https://op2.github.io/PyOP2/">PyOP2</a>, and <a href="https://github.com/numba/numba/pull/1110">Numba</a> software. Likewise, in Julia we could potentially build the compiler to recognize that it can fuse <code>*</code>, <code>&#43;</code>, <code>.^</code>, and similar operations for the built-in <code>Array</code> type, &#40;and perhaps only for a few scalar types&#41;. This has, in fact, already been implemented in Julia as a macro-based DSL &#40;you add <code>@vec</code> or <code>@acc</code> decorators to a vectorized expression&#41; in the <a href="https://github.com/lindahua/Devectorize.jl">Devectorize</a> and <a href="https://github.com/IntelLabs/ParallelAccelerator.jl">ParallelAccelerator</a> packages.</p>
 <p>However, even though Julia will certainly implement additional compiler optimizations as time passes, one of the key principles of Julia&#39;s design is to &quot;build in&quot; as little as possible into the core language, implementing as much as possible of Julia <em>in Julia</em> itself <a href="https://github.com/JeffBezanson/phdthesis/blob/master/main.pdf">&#40;Bezanson, 2015&#41;</a>. Put another way, the same <em>optimizations should be just as available to user-defined types and functions</em> as to the &quot;built-in&quot; functions of Julia&#39;s standard library &#40;<code>Base</code>&#41;.  You should be able to define your own array types &#40;e.g. via the <a href="https://github.com/JuliaArrays/StaticArrays.jl">StaticArrays</a> package or <a href="https://github.com/JuliaParallel/PETSc.jl">PETSc arrays</a>&#41; and functions &#40;such as our <code>f</code> above&#41;, and have them be capable of fusing vectorized operations.</p>
 <p>Moreover, a difficulty with fancy compiler optimizations is that, as a programmer, you are often unsure whether they will occur.  You have to learn to avoid coding styles that accidentally prevent the compiler from recognizing the fusion opportunity &#40;e.g. because you called a &quot;non-built-in&quot; function&#41;, you need to learn to use additional compiler-diagnostic tools to identify which optimizations are taking place, and you need to continually check these diagnostics as new versions of the compiler and language are released.  With vectorized code, losing a fusion optimization may mean wasting an order of magnitude in memory and time, so you have to worry much more than you would for a typical compiler micro-optimization.</p>
-<h3 id=syntactic_loop_fusion_in_julia ><a href="#syntactic_loop_fusion_in_julia">Syntactic loop fusion in Julia</a></h3>
+<h3 id="syntactic_loop_fusion_in_julia"><a href="#syntactic_loop_fusion_in_julia">Syntactic loop fusion in Julia</a></h3>
 <p>In contrast, Julia&#39;s approach is quite simple and general: the caller indicates, by adding dots, which function calls and operators are intended to be applied elementwise &#40;specifically, as <code>broadcast</code> calls&#41;. The compiler notices these dots at <em>parse time</em> &#40;or technically at &quot;lowering&quot; time, but in any case long before it knows the types of the variables etc.&#41;, and transforms them into calls to <code>broadcast</code>.  Moreover, it guarantees that <em>nested</em> &quot;dot calls&quot; will <em>always</em> be fused into a single broadcast call, i.e. a single loop.</p>
 <p>Put another way, <code>f.&#40;g.&#40;x .&#43; 1&#41;&#41;</code> is treated by Julia as merely <a href="https://en.wikipedia.org/wiki/Syntactic_sugar">syntactic sugar</a> for <code>broadcast&#40;x -&gt; f&#40;g&#40;x &#43; 1&#41;&#41;, x&#41;</code>.   An assignment <code>y .&#61; f.&#40;g.&#40;x .&#43; 1&#41;&#41;</code> is treated as sugar for the in-place operation <code>broadcast&#33;&#40;x -&gt; f&#40;g&#40;x &#43; 1&#41;&#41;, y, x&#41;</code>.   The compiler need not prove that this produces the same result as a corresponding non-fused operation, because the fusion is a mandatory transformation defined as part of the language, rather than an optional optimization.</p>
 <p>Arbitrary user-defined functions <code>f&#40;x&#41;</code> work with this mechanism, as do arbitrary user-defined collection types for <code>x</code>, as long as you define <code>broadcast</code> methods for your collection.  &#40;The default <code>broadcast</code> already works for any subtype of <code>AbstractArray</code>.&#41;</p>
 <p>Moreover, dotted operators are now available for not just the familiar ASCII operators like <code>.&#43;</code>, but for <em>any</em> character that Julia parses as a binary operator.  This includes a wide array of Unicode symbols like <code>⊗</code>, <code>∪</code>, and <code>⨳</code>, most of which are undefined by default.   So, for example, if you define <code>⊗&#40;x,y&#41; &#61; kron&#40;x,y&#41;</code> for the <a href="https://en.wikipedia.org/wiki/Kronecker_product">Kronecker product</a>, you can immediately do <code>&#91;A, B&#93; .⊗ &#91;C, D&#93;</code> to compute the &quot;elementwise&quot; operation <code>&#91;A ⊗ C, B ⊗ D&#93;</code>, because <code>x .⊗ y</code> is sugar for <code>broadcast&#40;⊗, x, y&#41;</code>.</p>
 <p>Note that &quot;side-by-side&quot; binary operations are actually equivalent to nested calls, and hence they fuse for dotted operations.   For example <code>3 .* x .&#43; y</code> is equivalent to <code>&#40;&#43;&#41;.&#40;&#40;*&#41;.&#40;3, x&#41;, y&#41;</code>, and hence it fuses into <code>broadcast&#40;&#40;x,y&#41; -&gt; 3*x&#43;y, x, y&#41;</code>.   Note also that the fusion stops only when a &quot;non-dot&quot; call is encountered, e.g. <code>sqrt.&#40;abs.&#40;sort&#33;&#40;x.^2&#41;&#41;&#41;</code> fuses the <code>sqrt</code> and <code>abs</code> operations into a single loop, but <code>x.^2</code> occurs in a separate loop &#40;producing a temporary array&#41; because of the intervening non-dot function call <code>sort&#33;&#40;...&#41;</code>.</p>
-<h3 id=other_partway_solutions ><a href="#other_partway_solutions">Other partway solutions</a></h3>
+<h3 id="other_partway_solutions"><a href="#other_partway_solutions">Other partway solutions</a></h3>
 <p>For the sake of completeness, we should mention some other possibilities that would partly address the problems of vectorization.  For example, functions could be specially <a href="https://github.com/JuliaLang/julia/issues/414">annotated to declare that they are pure</a>, one could specially annotate container types with array-like semantics, etcetera, to help the compiler recognize the possibility of fusion.   But this imposes a lot of requirements on library authors, and once again it requires them to identify in advance which functions are likely to be applied to vectors &#40;and hence be worth the additional analysis and annotation effort&#41;.</p>
 <p>Another approach that has been suggested is to define updating operators like <code>x &#43;&#61; y</code> to be equivalent to calls to a special function, like <code>x &#61; plusequals&#33;&#40;x, y&#41;</code>, that can be defined as an in-place operation, rather than <code>x &#43;&#61; y</code> being a synonym for <code>x &#61; x &#43; y</code> as in Julia today. &#40;<a href="https://docs.python.org/3.3/reference/datamodel.html#object.__iadd__">NumPy does this</a>.&#41; By itself, this can be used to <a href="http://blog.svenbrauch.de/2016/04/13/processing-scientific-data-in-python-and-numpy-but-doing-it-fast/">avoid temporary arrays in some simple cases</a> by breaking them into a sequence of in-place updates, but it doesn&#39;t handle more complex expressions, is limited to a few operations like <code>&#43;</code>, and doesn&#39;t address the cache inefficiency of multiple loops.   &#40;In Julia 0.6, you can do <code>x .&#43;&#61; y</code> and it is equivalent to <code>x .&#61; x .&#43; y</code>, which does a single fused loop in-place, but this syntax now extends to arbitrary combinations of arbitrary functions.&#41;</p>
-<h2 id=should_other_languages_implement_syntactic_loop_fusion ><a href="#should_other_languages_implement_syntactic_loop_fusion">Should other languages implement syntactic loop fusion?</a></h2>
+<h2 id="should_other_languages_implement_syntactic_loop_fusion"><a href="#should_other_languages_implement_syntactic_loop_fusion">Should other languages implement syntactic loop fusion?</a></h2>
 <p>Obviously, Julia&#39;s approach of syntactic loop fusion relies partly on the fact that, as a young language, we are still relatively free to redefine core syntactic elements like <code>f.&#40;x&#41;</code> and <code>x .&#43; y</code>.  But suppose you were willing to add this or similar syntax to an existing language, like Python or Go, or create a DSL add-on on top of those languages as discussed above; would you then be able to implement the same fusing semantics efficiently?</p>
 <p>There is a catch: <code>2 .* x .&#43; x .^ 2</code> is sugar for <code>broadcast&#40;x -&gt; 2*x &#43; x^2, x&#41;</code> in Julia, but for this to be fast we need the <a href="https://en.wikipedia.org/wiki/Higher-order_function">higher-order function</a> <code>broadcast</code> to be very fast as well.  First, this requires that arbitrary user-defined scalar &#40;non-vectorized&#33;&#41; functions like <code>x -&gt; 2*x &#43; x^2</code> be compiled to fast code, which is often a challenge in high-level dynamic languages.   Second, it ideally requires that higher-order functions like <code>broadcast</code> be able to <a href="https://en.wikipedia.org/wiki/Inline_expansion">inline</a> the function argument <code>x -&gt; 2*x &#43; x^2</code>, and this facility is even less common.  &#40;It wasn&#39;t available in Julia until version 0.5.&#41;</p>
 <p>Also, the ability of <code>broadcast</code> to combine arrays and scalars or arrays of different shapes &#40;see below&#41; turns out to be subtle to implement efficiently without losing generality. The current implementation relies on a metaprogramming feature that Julia provides called <a href="https://docs.julialang.org/en/v1/manual/metaprogramming/#Generated-functions-1">generated functions</a> in order to get compile-time specialization on the number and types of the arguments.  An alternative solution to the inlining and specialization issues would be to build the <code>broadcast</code> function into the compiler, but then you might lose the ability of <code>broadcast</code> to be overloadable for user-defined containers, nor could users write their own higher-order functions with similar functionality.</p>
-<h3 id=the_importance_of_higher-order_inlining ><a href="#the_importance_of_higher-order_inlining">The importance of higher-order inlining</a></h3>
+<h3 id="the_importance_of_higher-order_inlining"><a href="#the_importance_of_higher-order_inlining">The importance of higher-order inlining</a></h3>
 <p>In particular, consider a naive implementation of <code>broadcast</code> &#40;only for one-argument functions&#41;:</p>
-<pre><code class=language-julia >function naivebroadcast&#40;f, x&#41;
+<pre><code class="language-julia">function naivebroadcast&#40;f, x&#41;
     y &#61; similar&#40;x&#41;
     for i in eachindex&#40;x&#41;
         y&#91;i&#93; &#61; f&#40;x&#91;i&#93;&#41;
@@ -101,21 +263,21 @@ end</code></pre>
 <p>If <code>f&#40;x&#41;</code> is expensive enough, then the overhead of the function call may be negligible, but for a cheap function like <code>f&#40;x&#41; &#61; 2*x &#43; x^2</code> the overhead can be very significant: with Julia 0.4, the overhead is roughly a factor of two compared to a hand-written loop that evaluates <code>z &#61; x&#91;i&#93;; y&#91;i&#93; &#61; 2*z &#43; z^2</code>.     Since lots of vectorized code in practice evaluates relatively cheap functions like this, it would be a big problem for a generic vectorization method based on <code>broadcast</code>.  &#40;The function call also inhibits <a href="https://software.intel.com/en-us/articles/vectorization-in-julia">SIMD optimization</a> by the compiler, which prevents computations in <code>f&#40;x&#41;</code> from being applied simultaneously to several <code>x&#91;i&#93;</code> elements.&#41;</p>
 <p>However, <a href="/blog/2016/10/julia-0.5-highlights/#functions">in Julia 0.5, every function has its own type</a>.  And, in Julia, whenever you call a function like <code>naivebroadcast&#40;f, x&#41;</code>, a <em>specialized version</em> of <code>naivebroadcast</code> is compiled for <code>typeof&#40;f&#41;</code> and <code>typeof&#40;x&#41;</code>.   Since the compiled code is specific to <code>typeof&#40;f&#41;</code>, i.e. to the specific function being passed, the Julia compiler is free to <a href="https://en.wikipedia.org/wiki/Inline_expansion">inline</a> <code>f&#40;x&#41;</code> into the generated code if it wants to, and all of the function-call overhead can disappear.</p>
 <p>Julia is neither the first nor the only language that can inline higher-order functions; e.g. it is reportedly <a href="https://stackoverflow.com/questions/25566517/can-haskell-inline-functions-passed-as-an-argument">possible in Haskell</a> and in the <a href="https://kotlinlang.org/docs/reference/inline-functions.html">Kotlin</a> language. Nevertheless, it seems to be a rare feature, especially in <a href="https://en.wikipedia.org/wiki/Imperative_programming">imperative languages</a>. Fast higher-order functions are a key ingredient of Julia that allows a function like <code>broadcast</code> to be written in Julia itself &#40;and hence be extensible to user-defined containers&#41;, rather than having to be built in to the compiler &#40;and probably limited to &quot;built-in&quot; container types&#41;.</p>
-<h2 id=not_just_elementwise_math_the_power_of_broadcast ><a href="#not_just_elementwise_math_the_power_of_broadcast">Not just elementwise math: The power of broadcast</a></h2>
+<h2 id="not_just_elementwise_math_the_power_of_broadcast"><a href="#not_just_elementwise_math_the_power_of_broadcast">Not just elementwise math: The power of broadcast</a></h2>
 <p>Dot calls correspond to the <code>broadcast</code> function in Julia.  Broadcasting is a powerful concept &#40;also found, for example, in <a href="https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">NumPy</a> and <a href="https://www.mathworks.com/help/matlab/ref/bsxfun.html">Matlab</a>&#41; in which the concept of &quot;elementwise&quot; operations is extended to encompass combining arrays of different shapes or arrays and scalars.   Moreover, this is not limited to arrays of numbers, and starting in Julia 0.6 a &quot;scalar&quot; in a <code>broadcast</code> context can be an object of an arbitrary type.</p>
-<h3 id=combining_containers_of_different_shapes ><a href="#combining_containers_of_different_shapes">Combining containers of different shapes</a></h3>
+<h3 id="combining_containers_of_different_shapes"><a href="#combining_containers_of_different_shapes">Combining containers of different shapes</a></h3>
 <p>You may have noticed that the examples above included expressions like <code>6 .* X.^3</code> that combine an array &#40;<code>X</code>&#41; with scalars &#40;<code>6</code> and <code>3</code>&#41;. Conceptually, in <code>X.^3</code> the scalar <code>3</code> is &quot;expanded&quot; &#40;or &quot;broadcasted&quot;&#41; to match the size of <code>X</code>, as if it became an array <code>&#91;3,3,3,...&#93;</code>, before performing <code>^</code> elementwise.  In practice of course, no array of <code>3</code>s is ever explicitly constructed.</p>
 <p>More generally, if you combine two arrays of different dimensions or shapes, any &quot;singleton&quot; &#40;length 1&#41; or missing dimension of one array is &quot;broadcasted&quot; across that dimension of the other array.   For example, <code>A .&#43; &#91;1,2,3&#93;</code> adds <code>&#91;1,2,3&#93;</code> to <em>each column</em> of a 3×<em>n</em> matrix <code>A</code>.   Another typical example is to combine a row vector &#40;or a 1×<em>n</em> array&#41; and a column vector to make a matrix &#40;2d array&#41;:</p>
-<pre><code class=language-julia >julia&gt; &#91;1 2 3&#93; .&#43; &#91;10,20,30&#93;
+<pre><code class="language-julia">julia&gt; &#91;1 2 3&#93; .&#43; &#91;10,20,30&#93;
 3×3 Array&#123;Int64,2&#125;:
  11  12  13
  21  22  23
  31  32  33</code></pre>
 <p>&#40;If <code>x</code> is a row vector, and <code>y</code> is a column vector, then <code>A &#61; x .&#43; y</code> makes a matrix with <code>A&#91;i,j&#93; &#61; x&#91;j&#93; &#43; y&#91;i&#93;</code>.&#41;</p>
 <p>Although other languages have also implemented similar <code>broadcast</code> semantics, Julia is unusual in being able to support such operations for <em>arbitrary</em> user-defined functions and types with <em>performance comparable to hand-written C</em> loops, even though its <code>broadcast</code> function is written <em>entirely in Julia</em> with no special support from the compiler.   This not only requires efficient compilation and higher-order inlining as mentioned above, but also the ability to <a href="/blog/2016/02/iteration/">efficiently iterate over arrays of arbitrary dimensionalities</a> determined at compile-time for each caller.</p>
-<h3 id=not_just_numbers ><a href="#not_just_numbers">Not just numbers</a></h3>
+<h3 id="not_just_numbers"><a href="#not_just_numbers">Not just numbers</a></h3>
 <p>Although the examples above were all for numeric computations, in fact neither the <code>broadcast</code> function nor the dot-call fusion syntax is limited to numeric data.  For example:</p>
-<pre><code class=language-julia >julia&gt; s &#61; &#91;&quot;The QUICK Brown&quot;, &quot;fox     jumped&quot;, &quot;over the LAZY dog.&quot;&#93;;
+<pre><code class="language-julia">julia&gt; s &#61; &#91;&quot;The QUICK Brown&quot;, &quot;fox     jumped&quot;, &quot;over the LAZY dog.&quot;&#93;;
 
 julia&gt; s .&#61; replace.&#40;lowercase.&#40;s&#41;, r&quot;\s&#43;&quot;, &quot;-&quot;&#41;
 3-element Array&#123;String,1&#125;:
@@ -124,24 +286,24 @@ julia&gt; s .&#61; replace.&#40;lowercase.&#40;s&#41;, r&quot;\s&#43;&quot;, &qu
  &quot;over-the-lazy-dog.&quot;</code></pre>
 <p>Here, we take an array <code>s</code> of strings, we convert each string to lower case, and then we replace any sequence of whitespace &#40;the <a href="https://docs.julialang.org/en/v1/manual/strings/#Regular-Expressions">regular expression</a> <code>r&quot;\s&#43;&quot;</code>&#41; with a hyphen <code>&quot;-&quot;</code>.  Since these two dot calls are nested, they are fused into a single loop over <code>s</code> and are written in-place in <code>s</code> thanks to the <code>s .&#61; ...</code> &#40;temporary <em>strings</em> are allocated in this process, but not temporary <em>arrays</em> of strings&#41;.   Furthermore, notice that the arguments <code>r&quot;\s&#43;&quot;</code> and <code>&quot;-&quot;</code> are treated as &quot;scalars&quot; and are &quot;broadcasted&quot; to every element of <code>s</code>.</p>
 <p>The general rule &#40;starting in Julia 0.6&#41; is that, in <code>broadcast</code>, arguments of <em>any type</em> are <em>treated as scalars by default</em>.  The main exceptions are arrays &#40;subtypes of <code>AbstractArray</code>&#41; and tuples, which are treated as containers and are iterated over.  &#40;If you define your own container type that is not a subtype of <code>AbstractArray</code>, you can tell <code>broadcast</code> to treat it as a container to be iterated over by overloading <code>Base.Broadcast.containertype</code> and a couple of other functions.&#41;</p>
-<h3 id=not_just_containers ><a href="#not_just_containers">Not just containers</a></h3>
+<h3 id="not_just_containers"><a href="#not_just_containers">Not just containers</a></h3>
 <p>Since the dot-call syntax corresponds to <code>broadcast</code>, and <code>broadcast</code> is just an ordinary Julia function to which you can add your own methods &#40;as opposed to some kind of privileged compiler built-in&#41;, many possibilities open up.  Not only can you extend fusing dot calls to your own data structures &#40;e.g. <a href="https://github.com/JuliaParallel/DistributedArrays.jl">DistributedArrays</a> extends <code>broadcast</code> to work for arrays <a href="https://en.wikipedia.org/wiki/Distributed_memory">distributed</a> across multiple computers&#41;, but you can apply the same syntax to data types that are <em>hardly &quot;containers&quot; at all</em>.</p>
 <p>For example, the <a href="https://github.com/JuliaApproximation/ApproxFun.jl">ApproxFun</a> package defines an object called a <code>Fun</code> that represents a numerical approximation of a user-defined function &#40;essentially, a <code>Fun</code> is a fancy polynomial fit&#41;. By defining <a href="https://github.com/JuliaApproximation/ApproxFun.jl/issues/356"><code>broadcast</code> methods for <code>Fun</code></a>, you can now take an <code>f::Fun</code> and do, for example, <code>exp.&#40;f.^2 .&#43; f.^3&#41;</code> and it will translate to <code>broadcast&#40;y -&gt; exp&#40;y^2 &#43; y^3&#41;, f&#41;</code>.  This <code>broadcast</code> call, in turn, will evaluate <code>exp&#40;y^2 &#43; y^3&#41;</code> for <code>y &#61; f&#40;x&#41;</code> at cleverly selected <code>x</code> points, construct a polynomial fit, and return a new <code>Fun</code> object representing the fit. &#40;Conceptually, this replaces <em>elementwise</em> operations on containers with <em>pointwise</em> operations on functions.&#41; In contrast, ApproxFun also allows you to compute the same result using <code>exp&#40;f^2 &#43; f^3&#41;</code>, but in this case it will go through the fitting process <em>four times</em> &#40;constructing four <code>Fun</code> objects&#41;, once for each operation like <code>f^2</code>, and is more than an order of magnitude slower due to this lack of fusion.</p>
-<h3 id=broadcast_vs_map ><a href="#broadcast_vs_map">broadcast vs. map</a></h3>
+<h3 id="broadcast_vs_map"><a href="#broadcast_vs_map">broadcast vs. map</a></h3>
 <p>Finally, it is instructive to compare <code>broadcast</code> with <code>map</code>, since <code>map</code><em>also</em> applies a function elementwise to one or more arrays.   &#40;The dot-call syntax invokes <code>broadcast</code>, not <code>map</code>.&#41; The basic differences are:</p>
 <ul>
 <li><p><code>broadcast</code> handles only <em>containers with &quot;shapes&quot;</em> M×N×⋯ &#40;i.e., a <code>size</code> and dimensionality&#41;, whereas <code>map</code> handles &quot;shapeless&quot; containers like <code>Set</code> or iterators of unknown length like <code>eachline&#40;file&#41;</code>.</p>
-
+</li>
 <li><p><code>map</code> requires all arguments to have the <em>same length</em> &#40;and hence cannot combine arrays and scalars&#41; and &#40;for array containers&#41; the same shape, whereas <code>broadcast</code> does not &#40;it can &quot;expand&quot; smaller containers to match larger ones&#41;.</p>
-
+</li>
 <li><p><code>map</code> treats all arguments as <em>containers by default</em>, and in particular expects its arguments to <a href="https://docs.julialang.org/en/v1/manual/interfaces/#man-interface-iteration-1">act as iterators</a>. In contrast, <code>broadcast</code> treats its arguments as <em>scalars by default</em> &#40;i.e., as 0-dimensional arrays of one element&#41;, except for a few types like <code>AbstractArray</code> and <code>Tuple</code> that are explicitly declared to be broadcast containers.</p>
-
+</li>
 </ul>
 <p>Sometimes, of course, their behavior coincides, e.g. <code>map&#40;sqrt, &#91;1,2,3&#93;&#41;</code> and <code>sqrt.&#40;&#91;1,2,3&#93;&#41;</code> give the same result.  But, in general, neither <code>map</code> nor <code>broadcast</code> generalizes the other — each has things they can do that the other cannot.</p>
 
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
@@ -149,7 +311,7 @@ julia&gt; s .&#61; replace.&#40;lowercase.&#40;s&#41;, r&quot;\s&#43;&quot;, &qu
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -213,25 +375,25 @@ julia&gt; s .&#61; replace.&#40;lowercase.&#40;s&#41;, r&quot;\s&#43;&quot;, &qu
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -240,53 +402,53 @@ julia&gt; s .&#61; replace.&#40;lowercase.&#40;s&#41;, r&quot;\s&#43;&quot;, &qu
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -295,3 +457,9 @@ julia&gt; s .&#61; replace.&#40;lowercase.&#40;s&#41;, r&quot;\s&#43;&quot;, &qu
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

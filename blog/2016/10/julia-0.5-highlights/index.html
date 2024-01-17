@@ -1,33 +1,225 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Julia 0.5 Highlights</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Julia 0.5 Highlights"> <meta property="og:description" content=" Julia 0.5 Highlights | It introduces more transformative features than any release since the first official version.... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Julia 0.5 Highlights <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 11 October 2016 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;">Stefan Karpinski </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/10/julia-0.5-highlights.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p><em>To follow along with the examples in this blog post and run them live, you can go to <a href="https://juliabox.com/">JuliaBox</a>, create a free login, and open the &quot;Julia 0.5 Highlights&quot; notebook under &quot;What&#39;s New in 0.5&quot;. The notebook can also be downloaded from <a href="/assets/blog/Julia-0.5-highlights-notebook/Julia&#37;200.5&#37;20Highlights.ipynb">here</a>.</em></p> <p><a href="/blog/2016/01/julia-0.5-release/">Julia 0.5</a> is a pivotal release. It introduces more transformative features than any release since the first official version. Moreover, several of these features set the stage for even more to come in the <a href="https://www.youtube.com/watch?v&#61;5gXMpbY1kJY">lead up to Julia 1.0</a>. In this post, we&#39;ll go through some of the major changes in 0.5, including improvements to functional programming, comprehensions, generators, arrays, strings, and more.</p> <h2 id=functions ><a href="#functions">Functions</a></h2> <p>Julia has always supported functional programming features:</p> <ul> <li><p>anonymous functions &#40;<a href="https://en.wikipedia.org/wiki/Anonymous_function">lambdas</a>&#41;,</p> <li><p>inner functions that close over local variables &#40;<a href="https://en.wikipedia.org/wiki/Closure_&#40;computer_programming&#41;">closures</a>&#41;,</p> <li><p>functions passed to and from other functions &#40;<a href="https://en.wikipedia.org/wiki/First-class_function">first-class</a> and <a href="https://en.wikipedia.org/wiki/Higher-order_function">higher-order</a> functions&#41;.</p> </ul> <p>Before this release, however, these features all came with a significant performance cost. In a language that targets high-performance technical computing, that&#39;s a serious limitation. So the Julia standard library and ecosystem have been rife with work-arounds to get the expressiveness of functional programming without the performance problems. But the right solution, of course, is to make functional programming fast – ideally just as fast as the optimal hand-written version of your code would be. In Julia 0.5, it is. And that changes everything.</p> <p>This change is so important that there will be a separate blog post about it in the coming weeks, explaining how higher-order functions, closures and lambdas have been made so efficient, as well as detailing the kinds of zero-cost abstractions these changes enable. But for now, I&#39;ll just tease with a little timing comparison. First, some definitions – they&#39;re the same in both 0.4 and 0.5:</p> <pre><code class=language-julia >v &#61; rand&#40;10^7&#41;;                   # 10 million random numbers
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>Julia 0.5 Highlights</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Julia 0.5 Highlights">
+<meta property="og:description" content=" Julia 0.5 Highlights | It introduces more transformative features than any release since the first official version.... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Julia 0.5 Highlights
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 11 October 2016 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;">Stefan Karpinski </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2016/10/julia-0.5-highlights.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p><em>To follow along with the examples in this blog post and run them live, you can go to <a href="https://juliabox.com/">JuliaBox</a>, create a free login, and open the &quot;Julia 0.5 Highlights&quot; notebook under &quot;What&#39;s New in 0.5&quot;. The notebook can also be downloaded from <a href="/assets/blog/Julia-0.5-highlights-notebook/Julia&#37;200.5&#37;20Highlights.ipynb">here</a>.</em></p>
+<p><a href="/blog/2016/01/julia-0.5-release/">Julia 0.5</a> is a pivotal release. It introduces more transformative features than any release since the first official version. Moreover, several of these features set the stage for even more to come in the <a href="https://www.youtube.com/watch?v&#61;5gXMpbY1kJY">lead up to Julia 1.0</a>. In this post, we&#39;ll go through some of the major changes in 0.5, including improvements to functional programming, comprehensions, generators, arrays, strings, and more.</p>
+<h2 id="functions"><a href="#functions">Functions</a></h2>
+<p>Julia has always supported functional programming features:</p>
+<ul>
+<li><p>anonymous functions &#40;<a href="https://en.wikipedia.org/wiki/Anonymous_function">lambdas</a>&#41;,</p>
+</li>
+<li><p>inner functions that close over local variables &#40;<a href="https://en.wikipedia.org/wiki/Closure_&#40;computer_programming&#41;">closures</a>&#41;,</p>
+</li>
+<li><p>functions passed to and from other functions &#40;<a href="https://en.wikipedia.org/wiki/First-class_function">first-class</a> and <a href="https://en.wikipedia.org/wiki/Higher-order_function">higher-order</a> functions&#41;.</p>
+</li>
+</ul>
+<p>Before this release, however, these features all came with a significant performance cost. In a language that targets high-performance technical computing, that&#39;s a serious limitation. So the Julia standard library and ecosystem have been rife with work-arounds to get the expressiveness of functional programming without the performance problems. But the right solution, of course, is to make functional programming fast – ideally just as fast as the optimal hand-written version of your code would be. In Julia 0.5, it is. And that changes everything.</p>
+<p>This change is so important that there will be a separate blog post about it in the coming weeks, explaining how higher-order functions, closures and lambdas have been made so efficient, as well as detailing the kinds of zero-cost abstractions these changes enable. But for now, I&#39;ll just tease with a little timing comparison. First, some definitions – they&#39;re the same in both 0.4 and 0.5:</p>
+<pre><code class="language-julia">v &#61; rand&#40;10^7&#41;;                   # 10 million random numbers
 double_it_vec&#40;v&#41; &#61; 2v             # vectorized doubling of input
-double_it_map&#40;v&#41; &#61; map&#40;x-&gt;2x, v&#41;  # map a lambda over input</code></pre> <p>First, a timing comparison in Julia 0.4:</p> <pre><code class=language-julia >julia&gt; VERSION
+double_it_map&#40;v&#41; &#61; map&#40;x-&gt;2x, v&#41;  # map a lambda over input</code></pre>
+<p>First, a timing comparison in Julia 0.4:</p>
+<pre><code class="language-julia">julia&gt; VERSION
 v&quot;0.4.7&quot;
 
 julia&gt; mean&#40;&#91;@elapsed&#40;double_it_vec&#40;v&#41;&#41; for _&#61;1:100&#93;&#41;
 0.024444888209999998
 
 julia&gt; mean&#40;&#91;@elapsed&#40;double_it_map&#40;v&#41;&#41; for _&#61;1:100&#93;&#41;
-0.5515606454499999</code></pre> <p>On 0.4, the functional version using <code>map</code> is 22 times slower than the vectorized version, which uses specialized generated code for maximal speed. Now, the same comparison in Julia 0.5:</p> <pre><code class=language-julia >julia&gt; VERSION
+0.5515606454499999</code></pre>
+<p>On 0.4, the functional version using <code>map</code> is 22 times slower than the vectorized version, which uses specialized generated code for maximal speed. Now, the same comparison in Julia 0.5:</p>
+<pre><code class="language-julia">julia&gt; VERSION
 v&quot;0.5.0&quot;
 
 julia&gt; mean&#40;&#91;@elapsed&#40;double_it_vec&#40;v&#41;&#41; for _&#61;1:100&#93;&#41;
 0.024549842180000003
 
 julia&gt; mean&#40;&#91;@elapsed&#40;double_it_map&#40;v&#41;&#41; for _&#61;1:100&#93;&#41;
-0.023871925960000002</code></pre> <p>The version using <code>map</code> is as fast as the vectorized one in 0.5. In this case, writing <code>2v</code> happens to be more convenient than writing <code>map&#40;x-&gt;2x, v&#41;</code>, so we may choose not to use <code>map</code> here, but there are many cases where functional constructs are clearer, more general, and more convenient. Now, they are also fast.</p> <h3 id=ambiguous_methods ><a href="#ambiguous_methods">Ambiguous methods</a></h3> <p>One design decision that any multiple dispatch language must make is how to handle dispatch ambiguities: cases where none of the methods applicable to a given set of arguments is more specific than the rest. Suppose, for example, that a generic function, <code>f</code>, has the following methods:</p> <pre><code class=language-julia >f&#40;a::Int, b::Real&#41; &#61; 1
-f&#40;a::Real, b::Int&#41; &#61; 2</code></pre> <p>In Julia 0.4 and earlier, the second method definition causes an ambiguity warning:</p> <pre><code class=language-julia >WARNING: New definition
+0.023871925960000002</code></pre>
+<p>The version using <code>map</code> is as fast as the vectorized one in 0.5. In this case, writing <code>2v</code> happens to be more convenient than writing <code>map&#40;x-&gt;2x, v&#41;</code>, so we may choose not to use <code>map</code> here, but there are many cases where functional constructs are clearer, more general, and more convenient. Now, they are also fast.</p>
+<h3 id="ambiguous_methods"><a href="#ambiguous_methods">Ambiguous methods</a></h3>
+<p>One design decision that any multiple dispatch language must make is how to handle dispatch ambiguities: cases where none of the methods applicable to a given set of arguments is more specific than the rest. Suppose, for example, that a generic function, <code>f</code>, has the following methods:</p>
+<pre><code class="language-julia">f&#40;a::Int, b::Real&#41; &#61; 1
+f&#40;a::Real, b::Int&#41; &#61; 2</code></pre>
+<p>In Julia 0.4 and earlier, the second method definition causes an ambiguity warning:</p>
+<pre><code class="language-julia">WARNING: New definition
     f&#40;Real, Int64&#41; at none:1
 is ambiguous with:
     f&#40;Int64, Real&#41; at none:1.
 To fix, define
     f&#40;Int64, Int64&#41;
-before the new definition.</code></pre> <p>This warning is clear and gets right to the point: the case <code>f&#40;a,b&#41;</code> where <code>a</code> and <code>b</code> are of type <code>Int</code> &#40;aka <code>Int64</code> on 64-bit systems&#41; is ambiguous. Evaluating <code>f&#40;3,4&#41;</code> calls the first method of <code>f</code> – but this behavior is undefined. Giving a warning whenever methods <em>could</em> be ambiguous is a fairly conservative choice: it urges people to define a method covering the ambiguous intersection before even defining the methods that overlap. When we decided to give warnings for potentially ambiguous methods, we hoped that people would avoid ambiguities and all would be well in the world.</p> <p>Warning about method ambiguities turns out to be both too strict and too lenient. It&#39;s far too easy for ambiguities to arise when shared generic functions serve as extension points across unrelated packages. When many packages extend the same generic functions, it&#39;s common for the methods added to have some ambiguous overlap. This happens even when each package has no ambiguities on its own. Worse still, slight changes to one package can introduce ambiguities elsewhere, resulting in the least fun game of <a href="https://en.wikipedia.org/wiki/Whac-A-Mole#Colloquial_usage">whack-a-mole</a> ever. At the same time, the fact that ambiguities <em>only</em> cause warnings means that people learn to ignore them, which is annoying at best, and dangerous at worst: it&#39;s far too easy for a real problem to be hidden by a barrage of insignificant ambiguity warnings. In particular, on 0.4 and earlier if an ambiguous method is actually called, no error occurs. Instead, one of the possible methods is called, based on the order in which methods were defined – which is essentially arbitrary when they come from different packages. Usually the method works – it does apply, after all – but this is clearly not the right thing to do.</p> <p>The solution is simple: in Julia 0.5 the existence of potential ambiguities is fine, but actually calling an ambiguous method is an immediate error. The above method definitions for <code>f</code>, which previously triggered a warning, are now silent, but <em>calling</em> <code>f</code> with two <code>Int</code> arguments is a method dispatch error:</p> <pre><code class=language-julia >julia&gt; f&#40;3,4&#41;
+before the new definition.</code></pre>
+<p>This warning is clear and gets right to the point: the case <code>f&#40;a,b&#41;</code> where <code>a</code> and <code>b</code> are of type <code>Int</code> &#40;aka <code>Int64</code> on 64-bit systems&#41; is ambiguous. Evaluating <code>f&#40;3,4&#41;</code> calls the first method of <code>f</code> – but this behavior is undefined. Giving a warning whenever methods <em>could</em> be ambiguous is a fairly conservative choice: it urges people to define a method covering the ambiguous intersection before even defining the methods that overlap. When we decided to give warnings for potentially ambiguous methods, we hoped that people would avoid ambiguities and all would be well in the world.</p>
+<p>Warning about method ambiguities turns out to be both too strict and too lenient. It&#39;s far too easy for ambiguities to arise when shared generic functions serve as extension points across unrelated packages. When many packages extend the same generic functions, it&#39;s common for the methods added to have some ambiguous overlap. This happens even when each package has no ambiguities on its own. Worse still, slight changes to one package can introduce ambiguities elsewhere, resulting in the least fun game of <a href="https://en.wikipedia.org/wiki/Whac-A-Mole#Colloquial_usage">whack-a-mole</a> ever. At the same time, the fact that ambiguities <em>only</em> cause warnings means that people learn to ignore them, which is annoying at best, and dangerous at worst: it&#39;s far too easy for a real problem to be hidden by a barrage of insignificant ambiguity warnings. In particular, on 0.4 and earlier if an ambiguous method is actually called, no error occurs. Instead, one of the possible methods is called, based on the order in which methods were defined – which is essentially arbitrary when they come from different packages. Usually the method works – it does apply, after all – but this is clearly not the right thing to do.</p>
+<p>The solution is simple: in Julia 0.5 the existence of potential ambiguities is fine, but actually calling an ambiguous method is an immediate error. The above method definitions for <code>f</code>, which previously triggered a warning, are now silent, but <em>calling</em> <code>f</code> with two <code>Int</code> arguments is a method dispatch error:</p>
+<pre><code class="language-julia">julia&gt; f&#40;3,4&#41;
 ERROR: MethodError: f&#40;::Int64, ::Int64&#41; is ambiguous. Candidates:
   f&#40;a::Real, b::Int64&#41; at REPL&#91;2&#93;:1
   f&#40;a::Int64, b::Real&#41; at REPL&#91;1&#93;:1
  in eval&#40;::Module, ::Any&#41; at ./boot.jl:231
  in macro expansion at ./REPL.jl:92 &#91;inlined&#93;
- in &#40;::Base.REPL.##1#2&#123;Base.REPL.REPLBackend&#125;&#41;&#40;&#41; at ./event.jl:46</code></pre> <p>This improves the experience of using the Julia package ecosystem considerably, while also making Julia safer and more reliable. No more torrent of insignificant ambiguity warnings. No more playing ambiguity whack-a-mole when someone else refactors their code and accidentally introduces ambiguities in yours. No more risk that a method call could be silently broken because of warnings that we&#39;ve all learned to ignore.</p> <h3 id=return_type_annotations ><a href="#return_type_annotations">Return type annotations</a></h3> <p>A long-requested feature has been the ability to annotate method definitions with an explicit return type. This aids the clarity of code, serves as self-documentation, helps the compiler reason about code, and ensures that return types are what programmers intend them to be. In 0.5, you can annotate method definitions with a return type like so:</p> <pre><code class=language-julia >function clip&#123;T&lt;:Real&#125;&#40;x::T, lo::Real, hi::Real&#41;::T
+ in &#40;::Base.REPL.##1#2&#123;Base.REPL.REPLBackend&#125;&#41;&#40;&#41; at ./event.jl:46</code></pre>
+<p>This improves the experience of using the Julia package ecosystem considerably, while also making Julia safer and more reliable. No more torrent of insignificant ambiguity warnings. No more playing ambiguity whack-a-mole when someone else refactors their code and accidentally introduces ambiguities in yours. No more risk that a method call could be silently broken because of warnings that we&#39;ve all learned to ignore.</p>
+<h3 id="return_type_annotations"><a href="#return_type_annotations">Return type annotations</a></h3>
+<p>A long-requested feature has been the ability to annotate method definitions with an explicit return type. This aids the clarity of code, serves as self-documentation, helps the compiler reason about code, and ensures that return types are what programmers intend them to be. In 0.5, you can annotate method definitions with a return type like so:</p>
+<pre><code class="language-julia">function clip&#123;T&lt;:Real&#125;&#40;x::T, lo::Real, hi::Real&#41;::T
     if x &lt; lo
         return lo
     elseif x &gt; hi
@@ -35,14 +227,18 @@ ERROR: MethodError: f&#40;::Int64, ::Int64&#41; is ambiguous. Candidates:
     else
         return x
     end
-end</code></pre> <p>This function is similar to the built-in <a href="https://docs.julialang.org/en/release-0.5/stdlib/math/#Base.clamp"><code>clamp</code></a> function, but let&#39;s consider this definition for the sake of example. The return annotation on <code>clip</code> has the effect of inserting implicit calls to <code>x-&gt;convert&#40;T, x&#41;</code> at each return point of the method. It has no effect on any other method of <code>clip</code>, only the one where the annotation occurs. In this case, the annotation ensures that this method always returns a value of the same type as <code>x</code>, regardless of the types of <code>lo</code> and <code>hi</code>:</p> <pre><code class=language-julia >julia&gt; clip&#40;0.5, 1, 2&#41; # convert&#40;T, lo&#41;
+end</code></pre>
+<p>This function is similar to the built-in <a href="https://docs.julialang.org/en/release-0.5/stdlib/math/#Base.clamp"><code>clamp</code></a> function, but let&#39;s consider this definition for the sake of example. The return annotation on <code>clip</code> has the effect of inserting implicit calls to <code>x-&gt;convert&#40;T, x&#41;</code> at each return point of the method. It has no effect on any other method of <code>clip</code>, only the one where the annotation occurs. In this case, the annotation ensures that this method always returns a value of the same type as <code>x</code>, regardless of the types of <code>lo</code> and <code>hi</code>:</p>
+<pre><code class="language-julia">julia&gt; clip&#40;0.5, 1, 2&#41; # convert&#40;T, lo&#41;
 1.0
 
 julia&gt; clip&#40;1.5, 1, 2&#41; # convert&#40;T, x&#41;
 1.5
 
 julia&gt; clip&#40;2.5, 1, 2&#41; # convert&#40;T, hi&#41;
-2.0</code></pre> <p>You&#39;ll note that the annotated return type here is <code>T</code>, which is a type parameter of the <code>clip</code> method. Not only is that allowed, but the return type can be an arbitrary expression of argument values, type parameters, and values from outer scopes. For example, here is a variation that promotes its arguments:</p> <pre><code class=language-julia >function clip2&#40;x::Real, lo::Real, hi::Real&#41;::promote_type&#40;typeof&#40;x&#41;, typeof&#40;lo&#41;, typeof&#40;hi&#41;&#41;
+2.0</code></pre>
+<p>You&#39;ll note that the annotated return type here is <code>T</code>, which is a type parameter of the <code>clip</code> method. Not only is that allowed, but the return type can be an arbitrary expression of argument values, type parameters, and values from outer scopes. For example, here is a variation that promotes its arguments:</p>
+<pre><code class="language-julia">function clip2&#40;x::Real, lo::Real, hi::Real&#41;::promote_type&#40;typeof&#40;x&#41;, typeof&#40;lo&#41;, typeof&#40;hi&#41;&#41;
     if x &lt; lo
         return lo
     elseif x &gt; hi
@@ -59,7 +255,12 @@ julia&gt; clip2&#40;2, 1, 13//5&#41;
 2//1
 
 julia&gt; clip2&#40;2.5, 1, 13//5&#41;
-2.5</code></pre> <p>Return type annotations are a fairly simple syntactic transformation, but they make it easier to write methods with consistent and predictable return types. If different branches of your code can lead to slightly different types, the fix is now as simple as putting a single type annotation on the entire method.</p> <h3 id=vectorized_function_calls ><a href="#vectorized_function_calls">Vectorized function calls</a></h3> <p>Julia 0.5 introduces the syntax <code>f.&#40;A1, A2, ...&#41;</code> for vectorized function calls. This syntax translates to <code>broadcast&#40;f, A1, A2, ...&#41;</code>, where <code>broadcast</code> is a higher-order function &#40;introduced in 0.2&#41;, which generically implements the kind of broadcasting behavior found in Julia&#39;s &quot;dotted operators&quot; such as <code>.&#43;</code>, <code>.-</code>, <code>.*</code>, and <code>./</code>. Since higher-order functions are now efficient, writing <code>broadcast&#40;f,v,w&#41;</code> and <code>f.&#40;v,w&#41;</code> are both about as fast as loops specialized for the operation <code>f</code> and the shapes of <code>v</code> and <code>w</code>. This syntax lets you vectorize your scalar functions the way built-in vectorized functions like <code>log</code>, <code>exp</code>, and <code>atan2</code> work. In fact, in the future, this syntax will likely replace the pre-vectorized methods of functions like <code>exp</code> and <code>log</code>, so that users will write <code>exp.&#40;v&#41;</code> to exponentiate a vector of values. This may seem a little bit uglier, but it&#39;s more consistent than choosing an essentially arbitrarily set of functions to pre-vectorize, and as I&#39;ll explain below, this approach can also have significant performance benefits.</p> <p>To give a more concrete sense of what this syntax can be used for, consider the <code>clip</code> function defined above for real arguments. This scalar function can be applied to vectors using vectorized call syntax without any further method definitions:</p> <pre><code class=language-julia >julia&gt; v &#61; randn&#40;10&#41;
+2.5</code></pre>
+<p>Return type annotations are a fairly simple syntactic transformation, but they make it easier to write methods with consistent and predictable return types. If different branches of your code can lead to slightly different types, the fix is now as simple as putting a single type annotation on the entire method.</p>
+<h3 id="vectorized_function_calls"><a href="#vectorized_function_calls">Vectorized function calls</a></h3>
+<p>Julia 0.5 introduces the syntax <code>f.&#40;A1, A2, ...&#41;</code> for vectorized function calls. This syntax translates to <code>broadcast&#40;f, A1, A2, ...&#41;</code>, where <code>broadcast</code> is a higher-order function &#40;introduced in 0.2&#41;, which generically implements the kind of broadcasting behavior found in Julia&#39;s &quot;dotted operators&quot; such as <code>.&#43;</code>, <code>.-</code>, <code>.*</code>, and <code>./</code>. Since higher-order functions are now efficient, writing <code>broadcast&#40;f,v,w&#41;</code> and <code>f.&#40;v,w&#41;</code> are both about as fast as loops specialized for the operation <code>f</code> and the shapes of <code>v</code> and <code>w</code>. This syntax lets you vectorize your scalar functions the way built-in vectorized functions like <code>log</code>, <code>exp</code>, and <code>atan2</code> work. In fact, in the future, this syntax will likely replace the pre-vectorized methods of functions like <code>exp</code> and <code>log</code>, so that users will write <code>exp.&#40;v&#41;</code> to exponentiate a vector of values. This may seem a little bit uglier, but it&#39;s more consistent than choosing an essentially arbitrarily set of functions to pre-vectorize, and as I&#39;ll explain below, this approach can also have significant performance benefits.</p>
+<p>To give a more concrete sense of what this syntax can be used for, consider the <code>clip</code> function defined above for real arguments. This scalar function can be applied to vectors using vectorized call syntax without any further method definitions:</p>
+<pre><code class="language-julia">julia&gt; v &#61; randn&#40;10&#41;
 10-element Array&#123;Float64,1&#125;:
  -0.868996
   1.79301
@@ -88,7 +289,9 @@ julia&gt; clip.&#40;v, -1, 1&#41;
  -0.608423
  -1.0
  -1.0
-  0.864448</code></pre> <p>The second and third arguments don&#39;t need to be scalars – as with dotted operators, they can be vectors as well, and the <code>clip</code> operation will be applied to each corresponding triple of values:</p> <pre><code class=language-julia >julia&gt; clip.&#40;v, repmat&#40;&#91;-1,0.5&#93;,5&#41;, repmat&#40;&#91;-0.5,1&#93;,5&#41;&#41;
+  0.864448</code></pre>
+<p>The second and third arguments don&#39;t need to be scalars – as with dotted operators, they can be vectors as well, and the <code>clip</code> operation will be applied to each corresponding triple of values:</p>
+<pre><code class="language-julia">julia&gt; clip.&#40;v, repmat&#40;&#91;-1,0.5&#93;,5&#41;, repmat&#40;&#91;-0.5,1&#93;,5&#41;&#41;
 10-element Array&#123;Float64,1&#125;:
  -0.868996
   1.0
@@ -99,7 +302,9 @@ julia&gt; clip.&#40;v, -1, 1&#41;
  -0.608423
   0.5
  -1.0
-  0.864448</code></pre> <p>From these examples, it may be unclear why this operation is called &quot;<code>broadcast</code>&quot;. The function gets its name from the following behavior: wherever one of its arguments has a singleton dimension &#40;i.e. dimension of size 1&#41;, it &quot;broadcasts&quot; that value along the corresponding dimension of the other arguments when applying the operator. Broadcasting allows dotted operations to easily do handy tricks like mean-centering the columns of a matrix:</p> <pre><code class=language-julia >julia&gt; A &#61; rand&#40;3,4&#41;;
+  0.864448</code></pre>
+<p>From these examples, it may be unclear why this operation is called &quot;<code>broadcast</code>&quot;. The function gets its name from the following behavior: wherever one of its arguments has a singleton dimension &#40;i.e. dimension of size 1&#41;, it &quot;broadcasts&quot; that value along the corresponding dimension of the other arguments when applying the operator. Broadcasting allows dotted operations to easily do handy tricks like mean-centering the columns of a matrix:</p>
+<pre><code class="language-julia">julia&gt; A &#61; rand&#40;3,4&#41;;
 
 julia&gt; B &#61; A .- mean&#40;A,1&#41;
 3×4 Array&#123;Float64,2&#125;:
@@ -109,21 +314,28 @@ julia&gt; B &#61; A .- mean&#40;A,1&#41;
 
 julia&gt; mean&#40;B,1&#41;
 1×4 Array&#123;Float64,2&#125;:
- 0.0  0.0  0.0  0.0</code></pre> <p>The matrix <code>A</code> is 3×4 and <code>mean&#40;A,1&#41;</code> is 1×4 so the <code>.-</code> operator broadcasts the subtraction of each mean value along the corresponding column of A, thereby mean-centering each column. Combining this broadcasting behavior with vectorized call syntax lets us write some fairly fancy custom array operations very concisely:</p> <pre><code class=language-julia >julia&gt; clip.&#40;B, &#91;-0.3, -0.2, -0.1&#93;, &#91;0.4, 0.3, 0.2, 0.1&#93;&#39;&#41;
+ 0.0  0.0  0.0  0.0</code></pre>
+<p>The matrix <code>A</code> is 3×4 and <code>mean&#40;A,1&#41;</code> is 1×4 so the <code>.-</code> operator broadcasts the subtraction of each mean value along the corresponding column of A, thereby mean-centering each column. Combining this broadcasting behavior with vectorized call syntax lets us write some fairly fancy custom array operations very concisely:</p>
+<pre><code class="language-julia">julia&gt; clip.&#40;B, &#91;-0.3, -0.2, -0.1&#93;, &#91;0.4, 0.3, 0.2, 0.1&#93;&#39;&#41;
 3×4 Array&#123;Float64,2&#125;:
   0.343976   0.3       -0.3       -0.00448691
  -0.2       -0.2        0.168928  -0.128212
- -0.1        0.104111   0.2        0.1</code></pre> <p>This expression clips each element of <code>B</code> with its own specific <code>&#40;hi,lo&#41;</code> pair from this matrix:</p> <pre><code class=language-julia >julia&gt; &#91;&#40;lo,hi&#41; for lo&#61;&#91;-0.3, -0.2, -0.1&#93;, hi&#61;&#91;0.4, 0.3, 0.2, 0.1&#93;&#93;
+ -0.1        0.104111   0.2        0.1</code></pre>
+<p>This expression clips each element of <code>B</code> with its own specific <code>&#40;hi,lo&#41;</code> pair from this matrix:</p>
+<pre><code class="language-julia">julia&gt; &#91;&#40;lo,hi&#41; for lo&#61;&#91;-0.3, -0.2, -0.1&#93;, hi&#61;&#91;0.4, 0.3, 0.2, 0.1&#93;&#93;
 3×4 Array&#123;Tuple&#123;Float64,Float64&#125;,2&#125;:
  &#40;-0.3,0.4&#41;  &#40;-0.3,0.3&#41;  &#40;-0.3,0.2&#41;  &#40;-0.3,0.1&#41;
  &#40;-0.2,0.4&#41;  &#40;-0.2,0.3&#41;  &#40;-0.2,0.2&#41;  &#40;-0.2,0.1&#41;
- &#40;-0.1,0.4&#41;  &#40;-0.1,0.3&#41;  &#40;-0.1,0.2&#41;  &#40;-0.1,0.1&#41;</code></pre> <p>Vectorized call syntax avoids ever materializing this array of pairs, however, and the messy code to apply <code>clip</code> to each element of <code>B</code> with the corresponding <code>lo</code> and <code>hi</code> values doesn&#39;t have to be written. When <code>B</code> is larger than a toy example, not constructing a temporary matrix of <code>&#40;lo,hi&#41;</code> pairs can be a big efficiency win.</p> <p>There is a bit more to the story about vectorized call syntax. It&#39;s common to write expressions applying multiple vectorized functions to some arrays. For example, one might write something like:</p> <pre><code class=language-julia >max&#40;abs&#40;X&#41;, abs&#40;Y&#41;&#41;</code></pre>
+ &#40;-0.1,0.4&#41;  &#40;-0.1,0.3&#41;  &#40;-0.1,0.2&#41;  &#40;-0.1,0.1&#41;</code></pre>
+<p>Vectorized call syntax avoids ever materializing this array of pairs, however, and the messy code to apply <code>clip</code> to each element of <code>B</code> with the corresponding <code>lo</code> and <code>hi</code> values doesn&#39;t have to be written. When <code>B</code> is larger than a toy example, not constructing a temporary matrix of <code>&#40;lo,hi&#41;</code> pairs can be a big efficiency win.</p>
+<p>There is a bit more to the story about vectorized call syntax. It&#39;s common to write expressions applying multiple vectorized functions to some arrays. For example, one might write something like:</p>
+<pre><code class="language-julia">max&#40;abs&#40;X&#41;, abs&#40;Y&#41;&#41;</code></pre>
 <p>This computes the absolute values of each element of <code>X</code> and <code>Y</code> and takes the larger of the corresponding elements from <code>abs&#40;X&#41;</code> and <code>abs&#40;Y&#41;</code>. In this traditional vectorized form, the code allocates two temporary intermediate arrays – one to store each of <code>abs&#40;X&#41;</code> and <code>abs&#40;Y&#41;</code>. If we use the new vectorized function call syntax, however, these calls are syntactically fused into a <em>single</em> call to <code>broadcast</code> with an anonymous function. In other words, we write this:</p>
-<pre><code class=language-julia >max.&#40;abs.&#40;X&#41;, abs.&#40;Y&#41;&#41;</code></pre>
+<pre><code class="language-julia">max.&#40;abs.&#40;X&#41;, abs.&#40;Y&#41;&#41;</code></pre>
 <p>which internally becomes this:</p>
-<pre><code class=language-julia >broadcast&#40;&#40;x, y&#41;-&gt;max&#40;abs&#40;x&#41;, abs&#40;y&#41;&#41;, X, Y&#41;</code></pre>
+<pre><code class="language-julia">broadcast&#40;&#40;x, y&#41;-&gt;max&#40;abs&#40;x&#41;, abs&#40;y&#41;&#41;, X, Y&#41;</code></pre>
 <p>This version of the computation avoids allocating any intermediate arrays and performs the entire vectorized computation all at once, directly into the result array. We can see this difference in memory usage and speed when we benchmark these expressions:</p>
-<pre><code class=language-julia >julia&gt; using BenchmarkTools
+<pre><code class="language-julia">julia&gt; using BenchmarkTools
 
 julia&gt; X, Y &#61; rand&#40;1000,1000&#41;, rand&#40;1000,1000&#41;;
 
@@ -147,7 +359,7 @@ julia&gt; 22.89/7.63, 16.63/3.84
 &#40;3.0,4.330729166666667&#41;</code></pre>
 <p>I&#39;m using the <a href="https://github.com/JuliaCI/BenchmarkTools.jl"><code>BenchmarkTools</code></a> package here instead of hand-rolled timing loops. <code>BenchmarkTools</code> has been carefully designed to avoid many of the common pitfalls of benchmarking code and to provide sound statistical estimates of how much time and memory your code uses. For the sake of brevity, I&#39;m omitting some of the less relevant output from <code>@benchmark</code>.</p>
 <p>As you can see, the dotted form uses 3 times less memory and is 4.3 times faster. These improvements come from avoiding temporary allocations and performing the entire computation in a single pass over the arrays. Even greater reduction in allocation can occur when we use the new <code>.&#61;</code> operator to also do vectorized assignment:</p>
-<pre><code class=language-julia >julia&gt; Z &#61; zeros&#40;X&#41;; # matrix of zeros similar to X
+<pre><code class="language-julia">julia&gt; Z &#61; zeros&#40;X&#41;; # matrix of zeros similar to X
 
 julia&gt; @benchmark Z .&#61; max.&#40;abs.&#40;X&#41;, abs.&#40;Y&#41;&#41;
 BenchmarkTools.Trial:
@@ -158,11 +370,11 @@ BenchmarkTools.Trial:
   maximum time:     4.24 ms &#40;0.00&#37; GC&#41;</code></pre>
 <p>With in-place vectorized assignment, we can fill the pre-allocated array, <code>Z</code>, without doing any allocation &#40;the 96 bytes is an artifact&#41;, and do so 7.3 times faster than the old-style vectorized computation. This can be a big win in situations where we can reuse the same output array for multiple computations.</p>
 <p>The last major missing piece of vectorized call syntax is yet to come – it will be implemented in the next version of Julia. Dotted operators like <code>.&#43;</code> and <code>.*</code> will cease to be their own independent operators and simply become the vectorized forms of the corresponding scalar operators, <code>&#43;</code> and <code>*</code>. In other words, instead of <code>.&#43;</code> being a function as it is now, with its own behavior independent of <code>&#43;</code>, when you write <code>X .&#43; Y</code> it will mean <code>broadcast&#40;&#43;, X, Y&#41;</code>. Furthermore, dotted operators will participate in the same syntax-level fusion as other vectorized calls, so an expression like <code>exp.&#40;log.&#40;X&#41; .&#43; log.&#40;Y&#41;&#41;</code> will translate into a single call to broadcast:</p>
-<pre><code class=language-julia >broadcast&#40;&#40;x, y&#41;-&gt;exp&#40;log&#40;x&#41; &#43; log&#40;y&#41;&#41;, X, Y&#41;</code></pre>
+<pre><code class="language-julia">broadcast&#40;&#40;x, y&#41;-&gt;exp&#40;log&#40;x&#41; &#43; log&#40;y&#41;&#41;, X, Y&#41;</code></pre>
 <p>This change will complete the transition to a generalized approach to vectorized function application &#40;including syntax-level loop fusion&#41;, which will make Julia&#39;s story for writing allocation-free array code much stronger.</p>
-<h2 id=comprehensions ><a href="#comprehensions">Comprehensions</a></h2>
+<h2 id="comprehensions"><a href="#comprehensions">Comprehensions</a></h2>
 <p>Julia&#39;s array comprehensions have always supported some advanced features such as iterating with several variables to produce multidimensional arrays. This release rounds out the functionality of comprehensions with two additional features: nested generation with multiple <code>for</code> clauses, and filtering with a trailing <code>if</code> clause. To demonstrate these features, consider making a dollar &#40;100¢&#41; using quarters &#40;25¢&#41;, dimes &#40;10¢&#41;, nickels &#40;5¢&#41; and pennies &#40;1¢&#41;. We can generate an array of tuples of total values in each kind of coin by using a comprehension with nested <code>for</code> clauses:</p>
-<pre><code class=language-julia >julia&gt; change &#61; &#91;&#40;q,d,n,p&#41; for q&#61;0:25:100 for d&#61;0:10:100-q for n&#61;0:5:100-q-d for p&#61;100-q-d-n&#93;
+<pre><code class="language-julia">julia&gt; change &#61; &#91;&#40;q,d,n,p&#41; for q&#61;0:25:100 for d&#61;0:10:100-q for n&#61;0:5:100-q-d for p&#61;100-q-d-n&#93;
 242-element Array&#123;NTuple&#123;4,Int64&#125;,1&#125;:
  &#40;0,0,0,100&#41;
  &#40;0,0,5,95&#41;
@@ -180,17 +392,17 @@ BenchmarkTools.Trial:
 <p>There are a few notable differences from the multidimensional array syntax:</p>
 <ul>
 <li><p>Each iteration is a new <code>for</code> clause, rather than a single compound iteration separated by commas;</p>
-
+</li>
 <li><p>Each successive <code>for</code> clause <em>can</em> refer to variables from the previous clauses;</p>
-
+</li>
 <li><p>The result is a single flat vector regardless of how many nested <code>for</code> clauses there are.</p>
-
+</li>
 </ul>
 <p>The tuple <code>&#40;q,d,n,p&#41;</code> in the comprehension body is a breakdown of monetary value into quarters, dimes, nickels and pennies. Note that the iteration range for <code>p</code> isn&#39;t a range at all, it&#39;s a single value, <code>100-q-d-n</code>, the unique number guaranteeing that each tuple adds up to a dollar. &#40;This relies on the fact that a number behaves like an immutable zero-dimensional container, holding only itself, a behavior which is sometimes convenient but which has been the subject of significant debate. As of 0.5 it still works.&#41; We can verify that each tuple adds up to 100:</p>
-<pre><code class=language-julia >julia&gt; extrema&#40;&#91;sum&#40;t&#41; for t in change&#93;&#41;
+<pre><code class="language-julia">julia&gt; extrema&#40;&#91;sum&#40;t&#41; for t in change&#93;&#41;
 &#40;100,100&#41;</code></pre>
 <p>Since 100 is both the minimum and maximum of all the tuple sums, we know they are all exactly 100. So, there are 242 ways to make a dollar with common coins. But suppose we want to ensure that the value in pennies is less than the value in nickels, and so forth. By adding a filter clause, we can do this easily too:</p>
-<pre><code class=language-julia >julia&gt; &#91;&#40;q,d,n,p&#41; for q&#61;0:25:100 for d&#61;0:10:100-q for n&#61;0:5:100-q-d for p&#61;100-q-d-n if p &lt; n &lt; d &lt; q&#93;
+<pre><code class="language-julia">julia&gt; &#91;&#40;q,d,n,p&#41; for q&#61;0:25:100 for d&#61;0:10:100-q for n&#61;0:5:100-q-d for p&#61;100-q-d-n if p &lt; n &lt; d &lt; q&#93;
 4-element Array&#123;NTuple&#123;4,Int64&#125;,1&#125;:
  &#40;50,30,15,5&#41;
  &#40;50,30,20,0&#41;
@@ -198,29 +410,29 @@ BenchmarkTools.Trial:
  &#40;75,20,5,0&#41;</code></pre>
 <p>The only difference here is the <code>if p &lt; n &lt; d &lt; q</code> clause at the end of the comprehension, which has the effect that the result only contains cases where this predicate holds true. There are exactly four ways to make a dollar with strictly increasing value from pennies to nickels to dimes to quarters.</p>
 <p>Nested and filtered comprehensions aren&#39;t earth-shattering features – everything you can do with them can be done in a variety of other ways – but they are expressive and convenient, found in other languages, and they allow you to try more things with your data quickly and easily, with less pointless refactoring.</p>
-<h2 id=generators ><a href="#generators">Generators</a></h2>
+<h2 id="generators"><a href="#generators">Generators</a></h2>
 <p>In the previous section we used an array comprehension to take the sum of each tuple, save the sums as an array, and then pass that array of sums to the <code>extrema</code> function to find the largest and smallest sum &#40;they&#39;re all 100&#41;:</p>
-<pre><code class=language-julia >julia&gt; @time extrema&#40;&#91;sum&#40;t&#41; for t in change&#93;&#41;
+<pre><code class="language-julia">julia&gt; @time extrema&#40;&#91;sum&#40;t&#41; for t in change&#93;&#41;
   0.000072 seconds &#40;8 allocations: 2.203 KB&#41;
 &#40;100,100&#41;</code></pre>
 <p>Wrapping this in the <code>@time</code> macro shows that this expression allocates 2.2 KB of memory – mostly for the array of sums, which is thrown away after the computation. But allocating an array just to find its extrema is unnecessary: the minimum and maximum can be computed over streamed data by keeping the largest and smallest values seen so far. In other words, this calculation could be expressed with constant memory overhead by interleaving the production of values with computation of extrema. Previously, expressing this interleaved computation required some amount of refactoring, and many approaches were considerably less efficient. In 0.5, if you simply omit the square brackets around an array comprehension, you get a <em>generator expression</em>, which instead of producing an array of values, can be iterated over, yielding one value at a time. Since <code>extrema</code> works with arbitrary iterable objects – including generators – expressing an interleaved calculation using constant memory is now as simple as deleting <code>&#91;</code> and <code>&#93;</code>:</p>
-<pre><code class=language-julia >julia&gt; @time extrema&#40;sum&#40;t&#41; for t in change&#41;
+<pre><code class="language-julia">julia&gt; @time extrema&#40;sum&#40;t&#41; for t in change&#41;
   0.000066 seconds &#40;6 allocations: 208 bytes&#41;
 &#40;100,100&#41;</code></pre>
 <p>This avoids allocating a temporary array of sums entirely, instead computing the next tuple&#39;s sum only when the <code>extrema</code> function is ready to accept a new value. Using a generator reduces the memory overhead to 208 bytes – the size of the the return value. More importantly, the memory usage doesn&#39;t depend on the size of the <code>change</code> array anymore – it will always be just 208 bytes, even if <code>change</code> holds a trillion tuples. It&#39;s not hard to imagine situations where such a reduction in asymptotic memory usage is crucial. The similar syntax between array comprehensions and generator expressions makes it trivial to move back and forth between the two styles of computation as needed.</p>
-<h3 id=initializing_collections ><a href="#initializing_collections">Initializing collections</a></h3>
+<h3 id="initializing_collections"><a href="#initializing_collections">Initializing collections</a></h3>
 <p>The new generator syntax dovetails particularly nicely with Julia&#39;s convention for constructing collections – to make a new collection, you call the constructor with a single iterable argument, which yields the values you want in the new collection. In its simplest form, this looks something like:</p>
-<pre><code class=language-julia >julia&gt; IntSet&#40;&#91;1, 4, 9, 16, 25, 36, 49, 64&#93;&#41;
+<pre><code class="language-julia">julia&gt; IntSet&#40;&#91;1, 4, 9, 16, 25, 36, 49, 64&#93;&#41;
 IntSet&#40;&#91;1, 4, 9, 16, 25, 36, 49, 64&#93;&#41;</code></pre>
 <p>In this expression, an array of integers is passed to the <code>IntSet</code> constructor to create an object representing that set, which in this case happen to be small squares. Once constructed, the <code>IntSet</code> object no longer refers to the original array of integers. Instead, it uses a bitmask to efficiently store and operate on sets. It displays itself as you would construct it from an array, but that&#39;s merely for convenience – there&#39;s no actual array anymore.</p>
 <p>Now, I&#39;m a human &#40;no blogbots here&#41; and I find typing out even short sequences of perfect squares tedious and error prone – despite a math degree, I&#39;m awful at arithmetic. It would be much easier to generate squares with an array comprehension:</p>
-<pre><code class=language-julia >julia&gt; IntSet&#40;&#91;k^2 for k &#61; 1:8&#93;&#41;
+<pre><code class="language-julia">julia&gt; IntSet&#40;&#91;k^2 for k &#61; 1:8&#93;&#41;
 IntSet&#40;&#91;1, 4, 9, 16, 25, 36, 49, 64&#93;&#41;</code></pre>
 <p>This comprehension produces the same array of integers that I typed manually above. As before, creating this array object is unnecessary – it would be even better to generate the desired squares as they are inserted into the new <code>IntSet</code>. Which, of course, is precisely what generator expressions allow:</p>
-<pre><code class=language-julia >julia&gt; IntSet&#40;k^2 for k &#61; 1:8&#41;
+<pre><code class="language-julia">julia&gt; IntSet&#40;k^2 for k &#61; 1:8&#41;
 IntSet&#40;&#91;1, 4, 9, 16, 25, 36, 49, 64&#93;&#41;</code></pre>
 <p>Using a generator here is just as clear, more concise, and significantly more efficient:</p>
-<pre><code class=language-julia >julia&gt; using BenchmarkTools
+<pre><code class="language-julia">julia&gt; using BenchmarkTools
 
 julia&gt; @benchmark IntSet&#40;&#91;k^2 for k &#61; 1:8&#93;&#41;
 BenchmarkTools.Trial:
@@ -238,22 +450,22 @@ BenchmarkTools.Trial:
   mean time:        165.74 ns &#40;11.48&#37; GC&#41;
   maximum time:     4.82 μs &#40;93.20&#37; GC&#41;</code></pre>
 <p>As you can see from this benchmark, the version with an array comprehension uses twice as much memory and is 50&#37; slower than constructing the same <code>IntSet</code> using a generator expression.</p>
-<h4 id=constructing_dictionaries ><a href="#constructing_dictionaries">Constructing dictionaries</a></h4>
+<h4 id="constructing_dictionaries"><a href="#constructing_dictionaries">Constructing dictionaries</a></h4>
 <p>Generators can be used to construct dictionaries too, and this use case deserves some special attention since it completes a multi-release process of putting user-defined dictionary types on an equal footing with the built-in <code>Dict</code> type. In Julia 0.3, the <code>&#61;&gt;</code> operator only existed as part of syntax for constructing <code>Dict</code> objects: <code>&#91;k₁ &#61;&gt; v₁, k₂ &#61;&gt; v₂&#93;</code> and <code>&#91;k&#40;i&#41; &#61;&gt; v&#40;i&#41; for i &#61; c&#93;</code>. This design was based on other dynamic languages where dictionaries are among a small set of built-in types with special syntax that are deeply integrated into the language. As Julia&#39;s ecosystem has matured, however, it has become apparent that Julia is actually more like Java or C&#43;&#43; in this respect than it is like Python or Lua: the <code>Dict</code> type isn&#39;t that special – it happens to be defined in the standard library, but is otherwise quite ordinary. Many programs use other dictionary implementations: for example, the tree-based <code>SortedDict</code> type, which sorts values by key, or <code>OrderedDict</code>, which maintains keys in the order they are inserted. Having special syntax only for <code>Dict</code> makes using other dictionary implementations problematic. In 0.3, there was no good syntax for constructing values of these dictionaries – the best one could do was to invoke a constructor with an array of two-tuples:</p>
-<pre><code class=language-julia >SortedDict&#40;&#91;&#40;k₁, v₁&#41;, &#40;k₂, v₂&#41;&#93;&#41;        # fixed-size dictionaries
+<pre><code class="language-julia">SortedDict&#40;&#91;&#40;k₁, v₁&#41;, &#40;k₂, v₂&#41;&#93;&#41;        # fixed-size dictionaries
 SortedDict&#40;&#91;&#40;k&#40;i&#41;, v&#40;i&#41;&#41; for i in c&#93;&#41;   # dictionary comprehensions</code></pre>
 <p>Not only are these constructions inconvenient and ugly, they&#39;re also inefficient since they create temporary heap-allocated arrays of heap-allocated tuples of key-value pairs. With much relief, we can now instead write:</p>
-<pre><code class=language-julia >SortedDict&#40;k₁ &#61;&gt; v₁, k₂ &#61;&gt; v₂&#41;          # fixed-size dictionaries, since 0.4
+<pre><code class="language-julia">SortedDict&#40;k₁ &#61;&gt; v₁, k₂ &#61;&gt; v₂&#41;          # fixed-size dictionaries, since 0.4
 SortedDict&#40;k&#40;i&#41; &#61;&gt; v&#40;i&#41; for i &#61; c&#41;      # dictionary comprehensions, since 0.5</code></pre>
 <p>This last syntax combines two orthogonal features introduced in 0.4 and 0.5, respectively:</p>
 <ul>
 <li><p><code>k &#61;&gt; v</code> as a standalone syntax for a <code>Pair</code> object, and</p>
-
+</li>
 <li><p>generator expressions, particularly to initialize collections.</p>
-
+</li>
 </ul>
 <p>The <code>Dict</code> type is now constructed in exactly the same way:</p>
-<pre><code class=language-julia >julia&gt; Dict&#40;&quot;foo&quot; &#61;&gt; 1, &quot;bar&quot; &#61;&gt; 2&#41;
+<pre><code class="language-julia">julia&gt; Dict&#40;&quot;foo&quot; &#61;&gt; 1, &quot;bar&quot; &#61;&gt; 2&#41;
 Dict&#123;String,Int64&#125; with 2 entries:
   &quot;bar&quot; &#61;&gt; 2
   &quot;foo&quot; &#61;&gt; 1
@@ -271,21 +483,21 @@ Dict&#123;String,Int64&#125; with 10 entries:
   &quot;*****&quot;      &#61;&gt; 5
   &quot;******&quot;     &#61;&gt; 6</code></pre>
 <p>This generalization makes the syntax for constructing a <code>Dict</code> slightly longer, but we feel that the increased consistency, ability to change dictionary implementations with a simple search-and-replace, and putting user-defined dictionary-like types on the same level as the built-in <code>Dict</code> type make this change well worthwhile.</p>
-<h2 id=arrays ><a href="#arrays">Arrays</a></h2>
+<h2 id="arrays"><a href="#arrays">Arrays</a></h2>
 <p>The 0.5 release was originally intended to include a large number of disruptive array changes, collectively dubbed &quot;Arraymageddon&quot;. After much discussion, experimentation and benchmarking, this set of breaking changes was significantly reduced for a variety of reasons:</p>
 <ul>
 <li><p>Some changes were deemed not to be good ideas after all;</p>
-
+</li>
 <li><p>Others were of unclear benefit, so it was decided to reconsider them in the future once there is more information to support a decision;</p>
-
+</li>
 <li><p>A few didn&#39;t get implemented due to lack of developer time, including some cases where everyone agrees there&#39;s a problem but there is not yet any complete design for a solution.</p>
-
+</li>
 </ul>
 <p>Although not many breaking changes happened in 0.5, this was a major release for Julia&#39;s array infrastructure. The code to implement various complex polymorphic indexing operations for generic arrays and array-like structures was majorly refactored, and in the process it shrank by 40&#37; while becoming more complete, more general, and faster. You can read more about the very cool things you can now do with array-like types in an excellent pair of blog posts published here earlier in the year: <a href="/blog/2016/02/multidimensional-algorithms-and-iteration/"><em>Multidimensional algorithms and iteration</em></a> and <a href="/blog/2016/03/generalizing-abstractarrays-opportunities-and-challenges/"><em>Generalizing AbstractArrays</em></a>. In the next two subsections, I&#39;ll go over some of the array changes that did happen in 0.5.</p>
-<h3 id=dimension_sum_slices ><a href="#dimension_sum_slices">Dimension sum slices</a></h3>
+<h3 id="dimension_sum_slices"><a href="#dimension_sum_slices">Dimension sum slices</a></h3>
 <p>The most significant breaking change in the 0.5 cycle affects multidimensional array slicing. To explain it we&#39;ll need a little terminology. A <em>singleton dimension</em> of a multidimensional array is a dimension whose size is 1. For example, a 5x1 matrix has a trailing singleton dimension and may be called a &quot;column matrix&quot;, and a 1x5 matrix has a leading singleton dimension and may be called a &quot;row matrix&quot;. A <em>scalar slice</em> refers to a dimension in a multidimensional slice expression where the index is a scalar integer &#40;considered to be zero-dimensional&#41;, rather than a 1-dimensional range or vector, or some higher-dimensional collection of indices. For example, in <code>A&#91;1,:&#93;</code> the first slice is scalar, the second is not; in <code>A&#91;:,2&#93;</code> the second slice is scalar, the first is not; in <code>A&#91;3,4&#93;</code> both slices are scalar.</p>
 <p>All previous versions of Julia have dropped trailing scalar slices when performing multidimensional array slicing. That is, when an array was sliced with multiple indices, the resulting array had the number of dimensions of the original array minus the number of trailing scalar slices. So when you sliced a column out of a matrix the result was a 1-dimensional vector, but when you sliced a row the result was a 2-dimensional row matrix:</p>
-<pre><code class=language-julia >julia&gt; VERSION
+<pre><code class="language-julia">julia&gt; VERSION
 v&quot;0.4.7&quot;
 
 julia&gt; M &#61; &#91;i&#43;j^2 for i&#61;1:3, j&#61;1:4&#93;
@@ -304,7 +516,7 @@ julia&gt; M&#91;3,:&#93; # row matrix
 1x4 Array&#123;Int64,2&#125;:
  4  7  12  19</code></pre>
 <p>This rule is handy for linear algebra since row and column slices have distinct types and different orientations, but its complexity, asymmetry, and lack of generality make it less than ideal for arrays as general purpose containers. With more dimensions, the asymmetry of this behavior can be seen even in a single slice operation:</p>
-<pre><code class=language-julia >julia&gt; VERSION
+<pre><code class="language-julia">julia&gt; VERSION
 v&quot;0.4.7&quot;
 
 julia&gt; T &#61; &#91;i&#43;j^2&#43;k^3 for i&#61;1:3, j&#61;1:4, k&#61;1:2&#93;
@@ -323,7 +535,7 @@ julia&gt; T&#91;2,:,2&#93;
 1x4 Array&#123;Int64,2&#125;:
  11  14  19  26</code></pre>
 <p>The leading dimension of this slice is retained while the trailing dimension is discarded – even though both are scalar slices. The result array is neither 3-dimensional like the original, nor 1-dimensional like the collective indexes &#40;0 &#43; 1 &#43; 0&#41;; instead, it&#39;s 2-dimensional – apropos of nothing. Here, in another fairly similar slice, all dimensions are kept:</p>
-<pre><code class=language-julia >julia&gt; T&#91;:,4,:&#93;
+<pre><code class="language-julia">julia&gt; T&#91;:,4,:&#93;
 3x1x2 Array&#123;Int64,3&#125;:
 &#91;:, :, 1&#93; &#61;
  18
@@ -335,7 +547,7 @@ julia&gt; T&#91;2,:,2&#93;
  26
  27</code></pre>
 <p>By comparison, the new slicing behavior in 0.5 is simple, systematic, and symmetrical. &#40;And not original by any means – APL pioneered this array slicing scheme in the 1960s.&#41; In Julia 0.5, when an array is sliced, the dimension of the result is the sum of the dimensions of the slices, and the dimension sizes of the result are the concatenation of the sizes of the slices. Thus, row slices and column slices both produce vectors:</p>
-<pre><code class=language-julia >julia&gt; VERSION
+<pre><code class="language-julia">julia&gt; VERSION
 v&quot;0.5.0&quot;
 
 julia&gt; M&#91;:,1&#93; # vector: 1 &#43; 0 &#61; 1
@@ -351,20 +563,20 @@ julia&gt; M&#91;1,:&#93; # vector: 0 &#43; 1 &#61; 1
  10
  170</code></pre>
 <p>Similarly, slicing a 3-dimensional array with scalars in all but one dimension also produces a vector:</p>
-<pre><code class=language-julia >julia&gt; T&#91;2,:,2&#93; # vector: 0 &#43; 1 &#43; 0 &#61; 1
+<pre><code class="language-julia">julia&gt; T&#91;2,:,2&#93; # vector: 0 &#43; 1 &#43; 0 &#61; 1
 4-element Array&#123;Int64,1&#125;:
  11
  14
  19
  26</code></pre>
 <p>The only example from above that doesn&#39;t produce a vector is the last one:</p>
-<pre><code class=language-julia >julia&gt; T&#91;:,4,:&#93; # matrix: 1 &#43; 0 &#43; 1 &#61; 2
+<pre><code class="language-julia">julia&gt; T&#91;:,4,:&#93; # matrix: 1 &#43; 0 &#43; 1 &#61; 2
 3×2 Array&#123;Int64,2&#125;:
  18  25
  19  26
  20  27</code></pre>
 <p>The result is a matrix since the leading and trailing slices are ranges, and the middle slice disappears since it is scalar, leaving a matrix. The 0.5 slicing behavior naturally generalizes to higher dimensional slices:</p>
-<pre><code class=language-julia >julia&gt; I &#61; &#91;1 2 1; 1 3 2&#93;
+<pre><code class="language-julia">julia&gt; I &#61; &#91;1 2 1; 1 3 2&#93;
 2×3 Array&#123;Int64,2&#125;:
  1  2  1
  1  3  2
@@ -391,70 +603,70 @@ julia&gt; M&#91;I,J&#93;
  10  11  10
  10  12  11</code></pre>
 <p>Here we have the following natural identity on dimensions:</p>
-<pre><code class=language-julia >size&#40;M&#91;I,J&#93;&#41; &#61;&#61; &#40;size&#40;I,1&#41;, size&#40;I,2&#41;, size&#40;J,1&#41;, size&#40;J,2&#41;&#41;</code></pre>
+<pre><code class="language-julia">size&#40;M&#91;I,J&#93;&#41; &#61;&#61; &#40;size&#40;I,1&#41;, size&#40;I,2&#41;, size&#40;J,1&#41;, size&#40;J,2&#41;&#41;</code></pre>
 <p>In addition to being more systematic and symmetrical, this new behavior allows many complex indexing operations to be expressed concisely.</p>
 <p>Although the change to multidimensional slicing behavior is a significant breaking change, it has caused surprisingly little havoc in the Julia package ecosystem. It tends to primarily affect linear algebra code, and when code does break, it&#39;s usually fairly clear what is broken and what needs to be done to fix it. When updating your code, if you need to keep a dimension that is dropped under the new indexing behavior, you can write <code>M&#91;1:1,:&#93;</code>:</p>
-<pre><code class=language-julia >julia&gt; M&#91;1:1,:&#93;
+<pre><code class="language-julia">julia&gt; M&#91;1:1,:&#93;
 1×4 Array&#123;Float64,2&#125;:
  0.950951  0.713032  0.0835119  0.897018</code></pre>
 <p>Since integer range construction can be eliminated by Julia&#39;s compiler, writing this is free but has the effect of keeping a dimension which would otherwise be dropped under the new rules. Unfortunately, there&#39;s no way to make this change without breaking some code – we apologize in advance for the inconvenience, and we hope you find the improvement to be worthwhile.</p>
-<h3 id=array_views ><a href="#array_views">Array views</a></h3>
+<h3 id="array_views"><a href="#array_views">Array views</a></h3>
 <p>One of the major news items of 0.5 is a non-change: array slices still create copies of array data. There was a lot of discussion about changing the default behavior to creating views, but we ended up deciding against this change and keeping the old behavior. The motivation for views by default was to improve performance drastically in a variety of slow cases, but after a lot of discussion, experiments, and benchmarks, it was decided not to make this change. The conversation about this decision is long, so I&#39;ll summarize the major points:</p>
 <ul>
 <li><p>Slicing should either consistently produce views or copies. Unpredictably doing one or the other depending on types – or worse still, on runtime values – would be a disaster for writing reliable, generic code.</p>
-
+</li>
 <li><p>Guaranteeing view semantics for all abstract arrays – especially sparse and custom array types – is hard and can be quite slow and/or expensive in general cases.</p>
-
+</li>
 <li><p>Even in the case of dense arrays with cheap array views, it&#39;s not clear that views are always a performance win.</p>
 <p>In some cases they definitely are, but in others the fact that a copied slice is contiguous and has optimal memory ordering for iteration overwhelms the benefit of not copying.</p>
-
+</li>
 <li><p>Copied slices are easier to reason about and less likely to lead to subtle bugs than views.</p>
 <p>Views can lead to situations where someone modifies the view, not realizing that it&#39;s a view, thereby unintentionally modifying the original array.</p>
 <p>These kinds of bugs are hard to track down and even harder to notice.</p>
-
+</li>
 <li><p>There is no clear transition or deprecation strategy.</p>
 <p>Changing from copying slices to views would be a major compatibility issue. We generally give programmers deprecation warnings when some behavior is going to break or change in the next release. Sometimes we can&#39;t do that so we just bite the bullet and break code with an error. But changing slices to views wouldn&#39;t break code with an error, it would just silently cause code to produce different, incorrect results. There&#39;s no clear way to make this transition safely.</p>
-
+</li>
 </ul>
 <p>Taken together this makes a compelling case against changing the default slicing behavior to returning views. That said, even if they&#39;re not the default, views are a crucial tool for performance in some situations. Accordingly, a huge amount of work went into improving the ergonomics of views in 0.5, including:</p>
 <ul>
 <li><p>Renaming the function for view construction from &quot;<code>sub</code>&quot; to &quot;<code>view</code>&quot;, which seems like a much better name.</p>
-
+</li>
 <li><p>Array views now support all forms of indexing supported by arrays. Previously, views did not support some of the more complex forms of array indexing.</p>
-
+</li>
 <li><p>The <code>@view</code> macro was introduced, allowing the use of natural slicing syntax for views.</p>
 <p>In other words you can now write <code>@view A&#91;1:end-1,2:end&#93;</code> instead of <code>view&#40;A, 1:size&#40;A,1&#41;-1, 2:size&#40;A,2&#41;&#41;</code>.</p>
-
+</li>
 </ul>
 <p>Since views are an such important tool for both performance and for expressing complex mutating operations on arrays &#40;especially with higher order functions&#41;, we may introduce a special syntax for view slices in the future. In particular, the syntax <code>A@&#91;I...&#93;</code> had a fair amount of popular support. Stay tuned&#33;</p>
-<h2 id=and_more ><a href="#and_more">And more...</a></h2>
+<h2 id="and_more"><a href="#and_more">And more...</a></h2>
 <p>This is far from the full extent of the improvements introduced in Julia 0.5, but this blog post is already getting quite long, so I&#39;ll just summarize a few of the other big ticket items:</p>
 <ul>
 <li><p>The set of string types and operations has been significantly simplified and streamlined.</p>
 <p>The <code>ASCIIString</code> and <code>UTF8String</code> types have been merged into a single <code>String</code> type, and the <code>UTF16String</code> and <code>UTF32String</code> and related functions have been moved into the <a href="https://github.com/JuliaArchive/LegacyStrings.jl"><code>LegacyStrings</code></a> package, which keeps the same implementations as 0.4.</p>
 <p>In the future, better support for different string encodings will be developed under the <a href="https://github.com/nalimilan/StringEncodings.jl"><code>StringEncodings</code></a> package.</p>
-
+</li>
 <li><p>Most functionality related to prime generation, primality checking and combinatorics, has been moved into two external packages: <a href="https://github.com/JuliaMath/Primes.jl"><code>Primes</code></a> and <a href="https://github.com/JuliaMath/Combinatorics.jl"><code>Combinatorics</code></a>. To use these functions, you&#39;ll need to install these packages and do <code>using Primes</code> or <code>using Combinatorics</code> as necessary.</p>
-
+</li>
 <li><p>Julia&#39;s LLVM version was upgraded from 3.3 to 3.7.1. This may not seem like a big deal, but the transition required herculean effort by many core Julia contributors. For a series of different and impossibly annoying reasons, LLVM versions 3.4, 3.5 and 3.6 were not usable for Julia, so we&#39;re very happy to be back to using current versions of our favorite compiler framework.</p>
-
+</li>
 <li><p>Support for compiling and running on <a href="https://en.wikipedia.org/wiki/ARM_architecture">ARM</a> chips is much improved since 0.4. Julia 0.5 also introduced initial support for <a href="https://en.wikipedia.org/wiki/Power_Architecture">Power</a> systems, a development which has been supported and driven by IBM. We will be expanding and improving support for many architectures going forward. With support for ARM and Power, Julia is already a productive platform for technical computing from embedded systems to big iron.</p>
-
+</li>
 </ul>
 <p></p>
 <ul>
 <li><p>The 0.5 release has experimental multithreading support. This isn&#39;t ready for production usage, but it&#39;s fun to play around with and you can already get impressive performance gains – scalability is a key focus. Julia&#39;s threading provides true concurrent execution like C&#43;&#43;, Go or Java: different threads can do work at the same time, up to the number of physical cores available.</p>
-
+</li>
 <li><p>Interactive debugging support has been a weak spot in the Julia ecosystem for some time, but not any more.</p>
 <p>On a vanilla build of Julia 0.5, you can install the <a href="https://github.com/Keno/Gallium.jl"><code>Gallium</code></a> package to get a full-fledged, high-performance debugger:</p>
 <p>set breakpoints, step through code, examine variables, and inspect stack frames.</p>
-
+</li>
 </ul>
 <p>I hope you&#39;ve enjoyed this overview of highlights from the new release of Julia, and that you enjoy the release itself even more. Julia 0.5 is easily the strongest release to date, but of course the next one will be even better :&#41;</p>
 <p>Happy coding&#33;</p>
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
@@ -462,7 +674,7 @@ julia&gt; M&#91;I,J&#93;
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -526,25 +738,25 @@ julia&gt; M&#91;I,J&#93;
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -553,53 +765,53 @@ julia&gt; M&#91;I,J&#93;
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -608,3 +820,9 @@ julia&gt; M&#91;I,J&#93;
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>

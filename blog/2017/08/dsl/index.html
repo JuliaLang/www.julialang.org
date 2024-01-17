@@ -1,24 +1,196 @@
-<!doctype html> <html lang=en > <meta charset=utf-8 > <meta name=viewport  content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv=x-ua-compatible  content="ie=edge"> <meta name=author  content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al."> <meta name=description  content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more."> <meta name=robots  content="max-image-preview:large"> <meta name="twitter:site:id" content=1237720952 > <meta name=google-site-verification  content=9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw  /> <link rel=icon  href="/assets/infra/julia.ico"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/libs/bootstrap/bootstrap.min.css"> <link rel=stylesheet  href="/css/app.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/fonts.css"> <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel=stylesheet > <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel=stylesheet > <script async defer src="/libs/buttons.js"></script> <script src="/libs/clipboard.min.js"></script> <script src="/libs/detectdark.js"></script> <script type="application/javascript"> var doNotTrack = false; if (!doNotTrack) { window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true }); ga('send', 'pageview', { 'anonymize_ip': true }); } </script> <script async src='https://www.google-analytics.com/analytics.js'></script> <title>Creating domain-specific languages in Julia using macros</title> <style> .container ul li p {margin-bottom: 0;} .container ol li p {margin-bottom: 0;} .container ul ul {margin: .4em 0 .4em 0;} .container ul ol {margin: .4em 0 .4em 0;} .container ol ul {margin: .4em 0 .4em 0;} .container ol ol {margin: .4em 0 .4em 0;} </style> <style> .main { font-family: Georgia; } .main pre { margin-left: auto; margin-right: auto; } .main { width: 100%; font-size: 100%; } .main code { font-size: 90%; } .main pre code { font-size: 90%; } @media (min-width: 940px) { .main { width: 800px; } .container.blog-title { width: 800px;} } </style> <meta property="og:title" content="Creating domain-specific languages in Julia using macros"> <meta property="og:description" content=" Creating domain-specific languages in Julia using macros | Since the beginning of Julia, it has been tempting to use macros to write **domain-specific languages** (DSLs), i.e. to *extend* Julia syntax to provide a simpler interface to create Julia objects with complicated behaviour. The first, and still most extensive, example is JuMP (https://github.com/Ju... "> <meta property="og:image" content="/assets/images/julia-open-graph.png"> <div class="container py-3 py-lg-0"> <nav class="navbar navbar-expand-lg navbar-light bg-light" id=main-menu > <a class=navbar-brand  href="/"> <img class=julialogo  src="/assets/infra/logo.svg" alt="JuliaLang Logo"> </a> <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type=button  data-toggle=collapse  data-target="#navbarSupportedContent" aria-controls=navbarSupportedContent  aria-expanded=false  aria-label="Toggle navigation"> <span class=navbar-toggler-icon ></span> </button> <div class="collapse navbar-collapse" id=navbarSupportedContent > <ul class="navbar-nav mx-auto"> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/downloads/">Download</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="https://docs.julialang.org">Documentation</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/learning/">Learn</a> <li class="nav-item active flex-md-fill text-md-center"> <a class=nav-link  href="/blog/">Blog</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/community/">Community</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/contribute/">Contribute</a> <li class="nav-item flex-md-fill text-md-center"> <a class=nav-link  href="/jsoc/">JSoC</a> </ul> <span class=navbar-right > <a class=github-button  href="https://github.com/JuliaLang/julia" data-size=large  data-show-count=true  aria-label="Star JuliaLang/julia on GitHub">Star</a> <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a> </span> </div> </nav> </div> <br><br> <div class="container blog-title"> <h1>Creating domain-specific languages in Julia using macros <a type="application/rss+xml" href="https://julialang.org/feed.xml"> <i class="fa fa-rss-square rss-icon"></i> </a> </h1> <h3> <span style="font-weight: lighter;"> 9 August 2017 </span> | <span style="font-weight: bold;"></span> <span style="font-weight: bold;"><a href="https://github.com/dpsanders">David P. Sanders</a> </span> </h3> </div> <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2017/08/dsl.md" title="Edit this page on GitHub" class=edit-float > </a> <div class="container main"><p>Since the beginning of Julia, it has been tempting to use macros to write <strong>domain-specific languages</strong> &#40;DSLs&#41;, i.e. to <em>extend</em> Julia syntax to provide a simpler interface to create Julia objects with complicated behaviour. The first, and still most extensive, example is <a href="https://github.com/JuliaOpt/JuMP.jl">JuMP</a>.</p> <p>Since the fix for the infamous early <a href="https://github.com/JuliaLang/julia/issues/265">Julia issue #265</a>, which was incorporated in Julia 0.6, some previous methods for creating DSLs in Julia, mainly involving <code>eval</code>, ceased to work.</p> <p>In this post, we will describe a recommended pattern &#40;i.e., a reusable structure&#41; for creating DSLs <em>without</em> the use of <code>eval</code>, using syntax suitable for Julia 0.6 and later versions; it is strongly recommended to upgrade to Julia 0.6.</p> <h2 id=creating_a_model_object_containing_a_function ><a href="#creating_a_model_object_containing_a_function">Creating a <code>Model</code> object containing a function</a></h2> <p>This blog post arose from a question in the JuliaCon 2017 hackathon about the <a href="https://github.com/ModiaSim/Modia.jl">Modia modelling language</a>, where there is a <code>@model</code> macro. Here we will describe the simplest possible version of such a macro, which will create a <code>Model</code> object that contains a function, and is itself callable.</p> <p>First we define the <code>Model</code> object. It is tempting to write it like this:</p> <pre><code class=language-julia >struct NaiveModel
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- parts for all pages -->
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="author" content="Jeff Bezanson, Stefan Karpinski, Viral Shah, Alan Edelman, et al.">
+<meta name="description" content="The official website for the Julia Language. Julia is a language that is fast, dynamic, easy to use, and open source. Click here to learn more.">
+<meta name="robots" content="max-image-preview:large">
+<meta name="twitter:site:id" content="1237720952"> <!-- @JuliaLanguage -->
+<meta name="google-site-verification" content="9VDSjBtchQj6PQYIVwugTPY7pVCfLYgvkXiRHjc_Bzw" /> <!-- Google News Feed -->
+
+
+	<link rel="icon" href="/assets/infra/julia.ico">
+
+  <!-- Franklin stylesheets for generated pages -->
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+  
+
+	<!-- NOTE: specific stylesheets -->
+<link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/franklin.css">
+<link rel="stylesheet" href="/css/fonts.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script async defer src="/libs/buttons.js"></script>
+<script src="/libs/clipboard.min.js"></script>
+<script src="/libs/detectdark.js"></script>
+
+
+
+<!-- NOTE: google tracking -->
+
+<script type="application/javascript">
+	var doNotTrack = false;
+	if (!doNotTrack) {
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-28835595-1', 'auto', { 'anonymize_ip': true });
+		ga('send', 'pageview', { 'anonymize_ip': true });
+	}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+   <title>Creating domain-specific languages in Julia using macros</title>   
+
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
+  
+
+  <!-- Specific style for blog pages (except the /blob/index) -->
+  
+  <style>
+    .main { font-family: Georgia; }
+    .main pre {
+  	  margin-left: auto;
+  	  margin-right: auto;
+    }
+    .main { width: 100%; font-size: 100%; }
+    .main code { font-size: 90%; }
+    .main pre code { font-size: 90%; }
+    @media (min-width: 940px) {
+      .main { width: 800px; }
+      .container.blog-title { width: 800px;}
+    }
+  </style>
+  
+
+  <!-- OGP Metadata -->
+	<meta property="og:title" content="Creating domain-specific languages in Julia using macros">
+<meta property="og:description" content=" Creating domain-specific languages in Julia using macros | Since the beginning of Julia, it has been tempting to use macros to write **domain-specific languages** (DSLs), i.e. to *extend* Julia syntax to provide a simpler interface to create Julia objects with complicated behaviour. The first, and still most extensive, example is JuMP (https://github.com/Ju... ">
+<meta property="og:image" content="/assets/images/julia-open-graph.png">
+
+
+</head>
+
+<body>
+
+<div class="container py-3 py-lg-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/">
+      <img class="julialogo" src="/assets/infra/logo.svg" alt="JuliaLang Logo">
+    </a>
+
+    <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <!-- MENU: DOWNLOAD | DOCUMENTATION | BLOG ... -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/downloads/">Download</a>
+        </li>
+        <li class="nav-item flex-md-fill text-md-center">
+          <a class="nav-link" href="https://docs.julialang.org">Documentation</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/learning/">Learn</a>
+        </li>
+        <li class="nav-item active flex-md-fill text-md-center">
+          <a class="nav-link" href="/blog/">Blog</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/community/">Community</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/contribute/">Contribute</a>
+        </li>
+        <li class="nav-item   flex-md-fill text-md-center">
+          <a class="nav-link" href="/jsoc/">JSoC</a>
+        </li>
+      </ul>
+      <span class="navbar-right">
+        <a class="github-button" href="https://github.com/JuliaLang/julia" data-size="large" data-show-count="true" aria-label="Star JuliaLang/julia on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+      </span>
+    </div>
+
+  </nav>
+</div>
+
+
+<br><br>
+
+
+<div class="container blog-title">
+  <h1>Creating domain-specific languages in Julia using macros
+    <a type="application/rss+xml" href="https://julialang.org/feed.xml">
+      <i class="fa fa-rss-square rss-icon"></i>
+    </a>
+  </h1>
+  <h3>
+   <span style="font-weight: lighter;"> 9 August 2017 </span>
+	|
+	
+	 <span style="font-weight: bold;"></span> 
+  <!-- assumption that only one of the two is defined -->
+   <span style="font-weight: bold;"><a href="https://github.com/dpsanders">David P. Sanders</a> </span> 
+  </h3>
+</div>
+
+
+
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/blog/2017/08/dsl.md" title="Edit this page on GitHub" class="edit-float">
+</a>
+
+
+<!-- Content appended here -->
+<div class="container main"><p>Since the beginning of Julia, it has been tempting to use macros to write <strong>domain-specific languages</strong> &#40;DSLs&#41;, i.e. to <em>extend</em> Julia syntax to provide a simpler interface to create Julia objects with complicated behaviour. The first, and still most extensive, example is <a href="https://github.com/JuliaOpt/JuMP.jl">JuMP</a>.</p>
+<p>Since the fix for the infamous early <a href="https://github.com/JuliaLang/julia/issues/265">Julia issue #265</a>, which was incorporated in Julia 0.6, some previous methods for creating DSLs in Julia, mainly involving <code>eval</code>, ceased to work.</p>
+<p>In this post, we will describe a recommended pattern &#40;i.e., a reusable structure&#41; for creating DSLs <em>without</em> the use of <code>eval</code>, using syntax suitable for Julia 0.6 and later versions; it is strongly recommended to upgrade to Julia 0.6.</p>
+<h2 id="creating_a_model_object_containing_a_function"><a href="#creating_a_model_object_containing_a_function">Creating a <code>Model</code> object containing a function</a></h2>
+<p>This blog post arose from a question in the JuliaCon 2017 hackathon about the <a href="https://github.com/ModiaSim/Modia.jl">Modia modelling language</a>, where there is a <code>@model</code> macro. Here we will describe the simplest possible version of such a macro, which will create a <code>Model</code> object that contains a function, and is itself callable.</p>
+<p>First we define the <code>Model</code> object. It is tempting to write it like this:</p>
+<pre><code class="language-julia">struct NaiveModel
     f::Function
-end</code></pre> <p>We can then create an instance of the <code>NaiveModel</code> type &#40;i.e., an object of that type&#41; using the default constructor, e.g. by passing it an anonymous function:</p> <pre><code class=language-julia >julia&gt; m1 &#61; NaiveModel&#40;x -&gt; 2x&#41;
-NaiveModel&#40;#1&#41;</code></pre> <p>and we can call the function using</p> <pre><code class=language-julia >julia&gt; m1.f&#40;10&#41;
-20</code></pre> <p>If we wish instances like <code>m</code> to themselves behave like functions, we can overload the call syntax on the <code>NaiveModel</code> object:</p> <pre><code class=language-julia >julia&gt; &#40;m::NaiveModel&#41;&#40;x&#41; &#61; m.f&#40;x&#41;</code></pre>
-<p>so that we can now just write</p>
-<pre><code class=language-julia >julia&gt; m1&#40;10&#41;
+end</code></pre>
+<p>We can then create an instance of the <code>NaiveModel</code> type &#40;i.e., an object of that type&#41; using the default constructor, e.g. by passing it an anonymous function:</p>
+<pre><code class="language-julia">julia&gt; m1 &#61; NaiveModel&#40;x -&gt; 2x&#41;
+NaiveModel&#40;#1&#41;</code></pre>
+<p>and we can call the function using</p>
+<pre><code class="language-julia">julia&gt; m1.f&#40;10&#41;
 20</code></pre>
-<h2 id=parametrising_the_type ><a href="#parametrising_the_type">Parametrising the type</a></h2>
+<p>If we wish instances like <code>m</code> to themselves behave like functions, we can overload the call syntax on the <code>NaiveModel</code> object:</p>
+<pre><code class="language-julia">julia&gt; &#40;m::NaiveModel&#41;&#40;x&#41; &#61; m.f&#40;x&#41;</code></pre>
+<p>so that we can now just write</p>
+<pre><code class="language-julia">julia&gt; m1&#40;10&#41;
+20</code></pre>
+<h2 id="parametrising_the_type"><a href="#parametrising_the_type">Parametrising the type</a></h2>
 <p>Since <code>Function</code> is an abstract type, for performance we should <em>not</em> have a field of this type inside our object. Rather, we parametrise the type using the type of the function:</p>
-<pre><code class=language-julia >struct Model&#123;F&#125;
+<pre><code class="language-julia">struct Model&#123;F&#125;
     f::F
 end
 
 &#40;m::Model&#41;&#40;x&#41; &#61; m.f&#40;x&#41;</code></pre>
-<pre><code class=language-julia >julia&gt; m2 &#61; Model&#40;x-&gt;2x&#41;
+<pre><code class="language-julia">julia&gt; m2 &#61; Model&#40;x-&gt;2x&#41;
 Model&#123;##3#4&#125;&#40;#3&#41;</code></pre>
-<pre><code class=language-julia >julia&gt; m2&#40;10&#41;
+<pre><code class="language-julia">julia&gt; m2&#40;10&#41;
 20</code></pre>
 <p>Let&#39;s compare the performance:</p>
-<pre><code class=language-julia >julia&gt; using BenchmarkTools
+<pre><code class="language-julia">julia&gt; using BenchmarkTools
 
 julia&gt; @btime m1&#40;10&#41;;
 41.482 ns &#40;0 allocations: 0 bytes&#41;
@@ -26,16 +198,16 @@ julia&gt; @btime m1&#40;10&#41;;
 julia&gt; @btime m2&#40;10&#41;;
 20.212 ns &#40;0 allocations: 0 bytes&#41;</code></pre>
 <p>Indeed we have removed some overhead in the second case.</p>
-<h2 id=manipulating_expressions ><a href="#manipulating_expressions">Manipulating expressions</a></h2>
+<h2 id="manipulating_expressions"><a href="#manipulating_expressions">Manipulating expressions</a></h2>
 <p>We wish to define a <em>macro</em> that will allow us to use a simple syntax, of our choosing, to create objects. Suppose we would like to use the syntax</p>
-<pre><code class=language-julia >julia&gt; @model 2x</code></pre>
+<pre><code class="language-julia">julia&gt; @model 2x</code></pre>
 <p>to define a <code>Model</code> object containing the function <code>x -&gt; 2x</code>. Note that <code>2x</code> on its own is not valid Julia syntax for creating a function; the macro will allow us to use this simplified syntax for our own purposes.</p>
 <p>Before getting to macros, let&#39;s first build some tools to manipulate the expression <code>2x</code> in the correct way to build a <code>Model</code> object from it, using standard Julia functions.</p>
 <p>First, let&#39;s create a function to manipulate our expression:</p>
-<pre><code class=language-julia >function make_function&#40;ex::Expr&#41;
+<pre><code class="language-julia">function make_function&#40;ex::Expr&#41;
     return :&#40;x -&gt; &#36;ex&#41;
 end</code></pre>
-<pre><code class=language-julia >julia&gt; ex &#61; :&#40;2x&#41;;
+<pre><code class="language-julia">julia&gt; ex &#61; :&#40;2x&#41;;
 
 julia&gt; make_function&#40;ex&#41;
 :&#40;x-&gt;begin  # In&#91;12&#93;, line 2:
@@ -43,36 +215,36 @@ julia&gt; make_function&#40;ex&#41;
 end&#41;</code></pre>
 <p>Here, we have created a Julia expression called <code>ex</code>, which just contains the expression <code>2x</code> that we would like for the body of our new function, and we have passed this expression into <code>make_function</code>, which wraps it into a complete anonymous function. This assumes that <code>ex</code> is an expression containing the variable <code>x</code> and makes a new expression representing an anonymous function with the single argument <code>x</code>. &#40;See e.g. <a href="https://github.com/dpsanders/julia_towards_1.0/blob/master/4.&#37;20Metaprogramming.ipynb">my JuliaCon 2017 tutorial</a> for an example of how to walk through the expression tree in order to extract <em>automatically</em> the variables that it contains.&#41;</p>
 <p>Now let&#39;s define a function <code>make_model</code> that takes a function, wraps it, and passes it into a <code>Model</code> object:</p>
-<pre><code class=language-julia >function make_model&#40;ex::Expr&#41;
+<pre><code class="language-julia">function make_model&#40;ex::Expr&#41;
     return :&#40;Model&#40;&#36;ex&#41;&#41;
 end</code></pre>
-<pre><code class=language-julia >julia&gt; make_model&#40;make_function&#40;:&#40;2x&#41;&#41;&#41;
+<pre><code class="language-julia">julia&gt; make_model&#40;make_function&#40;:&#40;2x&#41;&#41;&#41;
 :&#40;Model&#40;&#40;x-&gt;begin  # In&#91;12&#93;, line 2:
             2x
         end&#41;&#41;&#41;</code></pre>
 <p>If we evaluate this &quot;by hand&quot;, we see that it correctly creates a <code>Model</code> object:</p>
-<pre><code class=language-julia >julia&gt; m3 &#61; eval&#40;make_model&#40;make_function&#40;:&#40;2x&#41;&#41;&#41;&#41;
+<pre><code class="language-julia">julia&gt; m3 &#61; eval&#40;make_model&#40;make_function&#40;:&#40;2x&#41;&#41;&#41;&#41;
 Model&#123;##7#8&#125;&#40;#7&#41;
 
 julia&gt; m3&#40;10&#41;
 20</code></pre>
-<h2 id=macros ><a href="#macros">Macros</a></h2>
+<h2 id="macros"><a href="#macros">Macros</a></h2>
 <p>However, this is ugly and clumsy. Instead, we now wrap everything inside a <strong>macro</strong>. A macro is a code manipulator: it eats code, massages it in some way &#40;possibly including completely rewriting it&#41;, and spits out the new code that was produced. This makes macros an incredibly powerful &#40;and, therefore, dangerous&#41; tool when correctly used.</p>
 <p>In the simplest case, a macro takes as argument a single Julia <code>Expr</code> object, i.e. an unevaluated Julia expression &#40;i.e., a piece of Julia code&#41;. It manipulates this expression object to create a new expression object, which it then returns.</p>
 <p>The key point is that this returned expression is &quot;spliced into&quot; the newly-generated code <strong>in place of the old code</strong>. The compiler will never actually see the old code, only the new code.</p>
 <p>Let&#39;s start with the simplest possible macro:</p>
-<pre><code class=language-julia >macro model&#40;ex&#41;
+<pre><code class="language-julia">macro model&#40;ex&#41;
     @show ex
     @show typeof&#40;ex&#41;
     return nothing
 end</code></pre>
 <p>This just shows the argument that it was passed and exits, returning an empty expression.</p>
-<pre><code class=language-julia >julia&gt; m4 &#61; @model 2x
+<pre><code class="language-julia">julia&gt; m4 &#61; @model 2x
 ex &#61; :&#40;2x&#41;
 typeof&#40;ex&#41; &#61; Expr</code></pre>
 <p>We see that the Julia <code>Expr</code> object has been automatically created from the explicit code that we typed.</p>
 <p>Now we can plug in our previous functions to complete the macro&#39;s functionality:</p>
-<pre><code class=language-julia >julia&gt; macro model&#40;ex&#41;
+<pre><code class="language-julia">julia&gt; macro model&#40;ex&#41;
            return make_model&#40;make_function&#40;ex&#41;&#41;
        end
 
@@ -84,13 +256,13 @@ Model&#123;##7#8&#125;&#40;#7&#41;
 julia&gt; m5&#40;10&#41;
 20</code></pre>
 <p>To check that the macro is doing what we think it is, we can use the <code>@macroexpand</code> command, which itself is a macro &#40;as denoted by the initial <code>@</code>&#41;:</p>
-<pre><code class=language-julia >julia&gt; @macroexpand @model 2x
+<pre><code class="language-julia">julia&gt; @macroexpand @model 2x
 :&#40;&#40;Main.Model&#41;&#40;&#40;#71#x-&gt;begin  # In&#91;12&#93;, line 2:
                     2#71#x
                 end&#41;&#41;&#41;</code></pre>
-<h2 id=macro_hygiene ><a href="#macro_hygiene">Macro &quot;hygiene&quot;</a></h2>
+<h2 id="macro_hygiene"><a href="#macro_hygiene">Macro &quot;hygiene&quot;</a></h2>
 <p>However, our macro has an issue, called macro &quot;hygiene&quot;. This has to do with where variables are defined. Let&#39;s put everything we have so far inside a module:</p>
-<pre><code class=language-julia >module Models
+<pre><code class="language-julia">module Models
 
 export Model, @model
 
@@ -114,14 +286,14 @@ end
 
 end</code></pre>
 <p>Now we import the module and use the macro:</p>
-<pre><code class=language-julia >julia&gt; using Models
+<pre><code class="language-julia">julia&gt; using Models
 
 julia&gt; m6 &#61; @model 2x;
 
 julia&gt; m6&#40;10&#41;
 20</code></pre>
 <p>So far so good. But now let&#39;s try to include a global variable in the expression:</p>
-<pre><code class=language-julia >julia&gt; a &#61; 2;
+<pre><code class="language-julia">julia&gt; a &#61; 2;
 
 julia&gt; m7 &#61; @model 2*a*x
 Models.Model&#123;##7#8&#125;&#40;#7&#41;
@@ -132,13 +304,13 @@ Stacktrace:
  &#91;1&#93; #7 at ./In&#91;1&#93;:12 &#91;inlined&#93;
  &#91;2&#93; &#40;::Models.Model&#123;##7#8&#125;&#41;&#40;::Int64&#41; at ./In&#91;1&#93;:9</code></pre>
 <p>We see that it cannot find <code>a</code>. Let&#39;s see what the macro is doing:</p>
-<pre><code class=language-julia >julia&gt; @macroexpand @model 2*a*x
+<pre><code class="language-julia">julia&gt; @macroexpand @model 2*a*x
 :&#40;&#40;Models.Model&#41;&#40;&#40;#4#x-&gt;begin  # In&#91;1&#93;, line 12:
                     2 * Models.a * #4#x
                 end&#41;&#41;&#41;</code></pre>
 <p>We see that Julia is looking for <code>Models.a</code>, i.e. a variable <code>a</code> defined inside the <code>Models</code> module.</p>
 <p>To fix this problem, we must write an &quot;unhygienic&quot; macro, by &quot;escaping&quot; the code, using the <code>esc</code> function. This is a mechanism telling the compiler to look for variable definitions in the scope from which the macro is called &#40;here, the current module <code>Main</code>&#41;, rather than the scope where the macro is defined &#40;here, the <code>Models</code> module&#41;:</p>
-<pre><code class=language-julia >module Models2
+<pre><code class="language-julia">module Models2
 
 export Model, @model
 
@@ -161,7 +333,7 @@ macro model&#40;ex&#41;
 end
 
 end</code></pre>
-<pre><code class=language-julia >julia&gt; using Models2
+<pre><code class="language-julia">julia&gt; using Models2
 
 julia&gt; a &#61; 2;
 
@@ -171,19 +343,19 @@ Models2.Model&#123;##3#4&#125;&#40;#3&#41;
 julia&gt; m8&#40;10&#41;
 40</code></pre>
 <p>This is the final, working version of the macro.</p>
-<h2 id=conclusion ><a href="#conclusion">Conclusion</a></h2>
+<h2 id="conclusion"><a href="#conclusion">Conclusion</a></h2>
 <p>We have successfully completed our task: we have seen how to create a macro that enables a simple syntax for creating a Julia object that we can use later.</p>
 <p>For some more in-depth discussion of metaprogramming techniques and macros, see my video tutorial <em>Invitation to intermediate Julia</em>, given at JuliaCon 2016:</p>
 <ul>
 <li><p>link to <a href="https://www.youtube.com/watch?v&#61;rAxzR7lMGDM">the video</a></p>
-
+</li>
 <li><p>link to the <a href="https://github.com/dpsanders/intermediate_julia">Jupyter notebooks</a></p>
-
+</li>
 </ul>
 <p><strong>Author</strong>: <a href="http://sistemas.fciencias.unam.mx/~dsanders/">David P. Sanders</a>, Associate Professor, Department of Physics, Faculty of Sciences, National University of Mexico &#40;UNAM&#41;.</p>
 </div><br><br>
 
-
+<!-- CONTENT ENDS HERE -->
     
     
         <script src="/libs/highlight/highlight.min.js"></script>
@@ -191,7 +363,7 @@ julia&gt; m8&#40;10&#41;
 
     
 
-    
+    <!-- http://tutsplus.github.io/clipboard/ -->
 
 <script>
 (function(){
@@ -255,25 +427,25 @@ julia&gt; m8&#40;10&#41;
 
 
     <footer class="container-fluid footer-copy">
-  <div class=container >
+  <div class="container">
 
-    
-    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel=stylesheet  type="text/css">
-    <style>
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="https://cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
       #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; }
       /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
     </style>
-    <div id=mc_embed_signup >
-      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method=post  id=mc-embedded-subscribe-form  name=mc-embedded-subscribe-form  class=validate  target=_blank  novalidate>
-      <div id=mc_embed_signup_scroll >
-        <div hidden=true ><input type=hidden  name=tags  value=7245945 ></div>
-        <div id=mce-responses  class=clear  style="display: inline-block;">
-          <div class=response  id=mce-error-response  style="display:none"></div>
-          <div class=response  id=mce-success-response  style="display:none"></div>
+    <div id="mc_embed_signup">
+      <form action="https://julialang.us14.list-manage.com/subscribe/post?u=d78e03c1818e29eeda84ff234&amp;id=c17a203547" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+        <div hidden="true"><input type="hidden" name="tags" value="7245945"></div>
+        <div id="mce-responses" class="clear" style="display: inline-block;">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden=true ><input type=text  name=b_d78e03c1818e29eeda84ff234_c17a203547  tabindex=-1  value="" style="display: inline-block;"></div>
-        <div class=clear  style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type=email  value="" placeholder="Enter your email" name=EMAIL  class="required email" id=mce-EMAIL  style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type=submit  value=Subscribe  name=subscribe  id=mc-embedded-subscribe  class=button  style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
+        <div style="position: absolute; left: -5000px; display: inline-block;" aria-hidden="true"><input type="text" name="b_d78e03c1818e29eeda84ff234_c17a203547" tabindex="-1" value="" style="display: inline-block;"></div>
+        <div class="clear" style="display: inline-block; display: flex; justify-content: center;"><h2 style="display: inline-block; margin-right: 15px; color:white;">Stay up to date on all things Julia!</h2><input type="email" value="" placeholder="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" style="margin-right: 15px; display: inline-block; align-self: center; line-height: 2em;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="display: inline-block; align-self: center; margin: 0 5px 0 0;"></div>
       </div>
       </form>
     </div>
@@ -282,53 +454,53 @@ julia&gt; m8&#40;10&#41;
 
     <div class="row footrow">
       <ul>
-        <li><a href="/project">About</a>
-        <li><a href="/about/help">Get Help</a>
-        <li><a href="/governance/">Governance</a>
-        <li><a href="/research/#publications">Publications</a>
-        <li><a href="/research/#sponsors">Sponsors</a>
+        <li><a href="/project">About</a></li>
+        <li><a href="/about/help">Get Help</a></li>
+        <li><a href="/governance/">Governance</a></li>
+        <li><a href="/research/#publications">Publications</a></li>
+        <li><a href="/research/#sponsors">Sponsors</a></li>
       </ul>
       <ul>
-        <li><a href="/downloads/">Downloads</a>
-        <li><a href="/downloads/">All Releases</a>
-        <li><a href="https://github.com/JuliaLang/julia">Source Code</a>
-        <li><a href="/downloads/#current_stable_release">Current Stable Release</a>
-        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/downloads/">All Releases</a></li>
+        <li><a href="https://github.com/JuliaLang/julia">Source Code</a></li>
+        <li><a href="/downloads/#current_stable_release">Current Stable Release</a></li>
+        <li><a href="/downloads/#long_term_support_release">Longterm Support Release</a></li>
       </ul>
       <ul>
-        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a>
-        <li><a href="https://juliaacademy.com">JuliaAcademy</a>
-        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a>
-        <li><a href="/learning/getting-started/">Getting Started</a>
-        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a>
-        <li><a href="/learning/books">Books</a>
+        <li><a href="https://docs.julialang.org/en/v1/">Documentation</a></li>
+        <li><a href="https://juliaacademy.com">JuliaAcademy</a></li>
+        <li><a href="https://www.youtube.com/user/JuliaLanguage">YouTube</a></li>
+        <li><a href="/learning/getting-started/">Getting Started</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/manual/faq/">FAQ</a></li>
+        <li><a href="/learning/books">Books</a></li>
       </ul>
       <ul>
-        <li><a href="/community/">Community</a>
-        <li><a href="/community/standards/">Code of Conduct</a>
-        <li><a href="/diversity/">Diversity</a>
-        <li><a href="https://juliacon.org">JuliaCon</a>
-        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a>
-        <li><a href="/shop/">Shop Merchandise</a>
+        <li><a href="/community/">Community</a></li>
+        <li><a href="/community/standards/">Code of Conduct</a></li>
+        <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliacon.org">JuliaCon</a></li>
+        <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
+        <li><a href="/shop/">Shop Merchandise</a></li>
       </ul>
       <ul>
-        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a>
-        <li><a href="/contribute">Contributor's Guide</a>
-        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a>
-        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a>
-        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a>
-        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a>
+        <li><a href="https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md">Contributing</a></li>
+        <li><a href="/contribute">Contributor's Guide</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/issues">Issue Tracker</a></li>
+        <li><a href="https://github.com/JuliaLang/julia/security/policy">Report a Security Issue</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22help+wanted%22">Help Wanted Issues</a></li>
+        <li><a href="https://github.com/search?q=is%3Aopen+is%3Aissue+language%3AJulia+label%3A%22good+first+issue%22">Good First Issue</a></li>
+        <li><a href="https://docs.julialang.org/en/v1/devdocs/init/">Dev Docs</a></li>
       </ul>
     </div>
-    <div id=footer-bottom  class=row >
+    <div id="footer-bottom" class="row">
       <div class="col-md-10 py-2">
         <p>This site is powered by <a href="https://www.netlify.com">Netlify</a>, <a href="https://franklinjl.org">Franklin.jl</a>, and the <a href="https://julialang.org">Julia Programming Language</a>. We thank <a href="https://www.fastly.com">Fastly</a> for their generous infrastructure support.</p>
         <p>©2023 JuliaLang.org <a href="https://github.com/JuliaLang/www.julialang.org/graphs/contributors">contributors</a>. The content on this website is made available under the <a href="https://github.com/JuliaLang/www.julialang.org/blob/master/LICENSE.md">MIT license</a>.
       </div>
       <div class="col-md-2 py-2">
-        <span class=float-sm-right >
-          <a class=github-button  href="https://github.com/sponsors/julialang" data-icon=octicon-heart  data-size=large  aria-label="Sponsor @julialang on GitHub">Sponsor</a>
+        <span class="float-sm-right">
+          <a class="github-button" href="https://github.com/sponsors/julialang" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @julialang on GitHub">Sponsor</a>
         </span>
       </div>
     </div>
@@ -337,3 +509,9 @@ julia&gt; m8&#40;10&#41;
 
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="/libs/highlight/highlight.min.js"></script> -->
+<!-- <script>hljs.initHighlightingOnLoad();</script> -->
+
+
+  </body>
+</html>
