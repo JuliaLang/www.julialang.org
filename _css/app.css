@@ -687,3 +687,54 @@ pre {
 	outline: 0;
 	background-color: #eee9e6;
 }
+
+.main-download-instructions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.main-download-instructions-inner {
+  width: 100%;
+  background-color: #F2F2F2;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-radius: 30px;
+  filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.2));
+}
+
+.install-platform-note {
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+.inline-h2-julia-logo {
+  height: 45px;
+  vertical-align: bottom;
+  margin-left: -4px;
+}
+
+pre .cmdprompt-block::before {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  content: ">";
+  margin-right: 10px;
+  margin-left: 5px;
+  color: rgb(127, 127, 127);
+}
+pre .bash-block::before {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  content: "$";
+  margin-right: 10px;
+  margin-left: 5px;
+  color: rgb(127, 127, 127);
+}

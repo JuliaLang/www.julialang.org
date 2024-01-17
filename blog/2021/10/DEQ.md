@@ -4,7 +4,7 @@
 @def title = "Composability in Julia: Implementing Deep Equilibrium Models via Neural ODEs"
 @def authors = """Qiyao Wei, Frank Schäfer, Avik Pal, Chris Rackauckas"""  
 
-The [SciML Common Interface](https://scimlbase.sciml.ai/dev/) defines a complete
+The [SciML Common Interface](https://docs.sciml.ai/SciMLBase/stable/) defines a complete
 set of equation solving techniques, from differential equations and optimization
 to nonlinear solves and integration (quadrature), in a way that is made to
 mix with machine learning naturally. In this sense, there is no difference
@@ -30,7 +30,7 @@ of methods in machine learning literature. For background on DiffEqFlux and Neur
 please see the previous blog post [DiffEqFlux.jl – A Julia Library for Neural Differential Equations](https://julialang.org/blog/2019/01/fluxdiffeq/).
 
 (Note: If you are interested in this work and are an undergraduate or graduate
-student, we have [Google Summer of Code projects available in this area](/jsoc/gsoc/diffeq/). This
+student, we have [Google Summer of Code projects available in this area](/jsoc/projects/). This
 [pays quite well over the summer](https://developers.google.com/open-source/gsoc/help/student-stipends).
 Please join the [Julia Slack](http://julialang.org/slack/) and the #jsoc channel to discuss in more detail.)
 
@@ -272,7 +272,7 @@ There are many ways that one can solve a rootfinding problem with different char
 One can directly use Newton's method, but this can require a good guess and may not distinguish
 between stable and unstable equilibrium. Julia packages like
 [NLsolve.jl](https://github.com/JuliaNLSolvers/NLsolve.jl) provide many good algorithms, and
-Bifurcation tools like [BifurcationKit.jl](https://rveltz.github.io/BifurcationKit.jl/dev/) give a whole host of other methods.
+Bifurcation tools like [BifurcationKit.jl](https://bifurcationkit.github.io/BifurcationKitDocs.jl/stable/) give a whole host of other methods.
 Given the importance of solving nonlinear algebraic systems and their differentiability, the SciML organization
 has put together a common interface package [NonlinearSolve.jl](https://nonlinearsolve.sciml.ai/dev/) that weaves
 together all of the techniques throughout the package ecosystem (bringing together methods from SUNDIALS, MINPACK,

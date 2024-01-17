@@ -8,7 +8,7 @@ Julia’s official documentation is in English, but many groups work to translat
 * [JuliaLangPt](https://github.com/JuliaLangPt) (Portuguese)
 * [JuliaKorea](https://juliakorea.github.io/ko/) (Korean)
 * [JuliaGerman](https://github.com/JuliaLangGerman) (German)
-* [Julia Francophonie](https://www.juliafran.org/) (French)
+* [JuliaNantes](https://julialang.univ-nantes.fr/) (French)
 * [Persian translation](https://github.com/AppliedLinearAlgebra-Sharif/julia-docs) (Persian)
 
 Please [provide a PR](https://github.com/JuliaLang/www.julialang.org/edit/main/community/localization.md) to add other localization efforts.

@@ -110,7 +110,7 @@ The speedup is actually not that large, which is a testament to the fact that Ju
 very efficient, but note the difference in allocations: 250004 on 1.4 versus 2 on 1.5. The
 difference is all those view objects which don't need to heap allocated anymore.
 
-We would like to thank [RelationalAI](https://www.relational.ai/) for sponsoring this work.
+We would like to thank [RelationalAI](https://relational.ai/) for sponsoring this work.
 
 ## Multithreading API stabilization & improvements
 

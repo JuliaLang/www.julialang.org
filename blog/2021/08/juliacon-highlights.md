@@ -31,7 +31,7 @@ We were excited to have the JuMP-dev conference co-located within JuliaCon for t
 
 ## Code, Docs and Tests: What’s In the General Registry?
 
-Mosè Giordano and Eric P. Hanson presented [Code, Docs and Tests: What’s In the General Registry?](https://live.juliacon.org/talk/HVSAW9)
+Mosè Giordano and Eric P. Hanson presented [Code, Docs and Tests: What’s In the General Registry?](https://julialang.org/blog/2021/08/general-survey/) ([video](https://youtu.be/watch?v=9YWwiFbaRx8))
 
 The General registry is the collection of open source packages that makes up the Julia package ecosystem. The Julia General registry has **11.8 million lines of code** (including docs and tests). More than 96% of packages have an Open Source Initiative approved license, 88% have at least 20 lines of readme or docs, 96% have run tests, 95% have setup for continuous integration, 58% of packages have at least 2 contributors, 93% have at least 10 commits, 48% of contributors have contributed to two or more packages and 60% of contributors have made at least 5 commits. There are more than 5,000 Julia contributors who have contributed to packages in the General registry. You can read more in this [blog post by Mosè and Eric](https://julialang.org/blog/2021/08/general-survey/).
 

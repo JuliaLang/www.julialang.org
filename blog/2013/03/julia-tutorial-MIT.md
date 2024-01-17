@@ -27,13 +27,13 @@ The rationale and vision behind julia, and its design principles are discussed i
 
 ## Statistical Models in Julia ([slides](https://github.com/JuliaLang/julia-tutorial/raw/master/Stats/slides.pdf))
 
-This session demonstrates Julia's statistics capabilities, which are provided by these packages: [Distributions](https://github.com/JuliaStats/Distributions.jl), [GLM](https://github.com/JuliaStats/GLM.jl), and [LM](https://github.com/JuliaStats/LM.jl).
+This session demonstrates Julia's statistics capabilities, which are provided by [Distributions](https://github.com/JuliaStats/Distributions.jl) and [GLM](https://github.com/JuliaStats/GLM.jl).
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/v9Io-p_iymI" frameborder="0" allowfullscreen></iframe>~~~
 
 ## Fast Fourier Transforms
 
-Julia provides a built-in interface to the [FFTW](http://www.fftw.org/) library. This session demonstrates the Julia's [signal processing](https://docs.julialang.org/en/release-0.1/stdlib/base/#signal_processing) capabilities, such as FFTs and DCTs. Also see the [Hadamard](https://github.com/stevengj/Hadamard.jl) package.
+Julia provides a built-in interface to the [FFTW](http://www.fftw.org/) library. This session demonstrates the Julia's signal processing capabilities, such as FFTs and DCTs. Also see the [Hadamard](https://github.com/stevengj/Hadamard.jl) package.
 
 ~~~<iframe width="560" height="315" src="https://www.youtube.com/embed/1iBLaHGL1AM" frameborder="0" allowfullscreen></iframe>~~~
 
