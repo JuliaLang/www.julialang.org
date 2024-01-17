@@ -114,6 +114,43 @@
   <br><br>
 </div>
 
+<br>
+<br>
+<br>
+<!--
+     Containers: Pluto
+-->
+<div class="container pt-sm-2 pluto packages">
+ <br><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+      <div class="col-lg-4 col-md-6 language-features section-heading">
+        <h2 class="lead secondary-heading">Pluto.jl notebooks</h2>
+      </div>
+      <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+    </div>
+
+    <p><a href="https://plutojl.org/">Pluto.jl</a> is a Julia programming environment designed for <em>learning and teaching</em>, and it is the easiest way to get started with Julia programming, packages and visualisation.</p>
+    <p>Pluto.jl is <a href="https://plutojl.org/#install">easy to install</a>, and you can write interactive documents with no prior experience. 
+    </p>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 feature">
+        <a href="https://featured.plutojl.org/"><img src="assets/pluto1.png" alt="A generic screenshot of a Pluto.jl notebook"></a>
+      </div>
+      <div class="col-lg-4 col-md-6 feature" aria-hidden="true">
+        <a href="https://featured.plutojl.org/"><img src="assets/pluto3.png"></a>
+      </div>
+      <div class="col-lg-4 col-md-6 feature" aria-hidden="true">
+        <a href="https://featured.plutojl.org/"><img src="assets/pluto5.png"></a>
+      </div>
+ 
+    </div>
+  </div>
+</div>
+
  <!--
       Containers: Julia in the Classroom
  -->
