@@ -93,27 +93,29 @@ Simulation can help to grasp hard-to-understand MRI concepts, like signal acquis
 
 Our current simulator method uses GPU-accelerated computations using CUDA arrays. We are now advancing to implement a new simulation method (`BlochKernel<:SimulationMethod`) based on GPU kernel programming using KernelAbstractions.jl. This enhancement will not only boost computation speeds but also broaden accessibility with multi-vendor GPU support. This will enable the use of MRI simulations in iterative algorithms to solve optimization and inverse problems. We are seeking enthusiastic people interested in developing this functionality.
 
-**Mentors:** Carlos Castillo [email: cncastillo@uc.cl], Boris Oróstica [email: beorostica@uc.cl]
+- **Mentors:** Carlos Castillo [email: cncastillo@uc.cl], Boris Oróstica [email: beorostica@uc.cl]
 
-**Difficulty:** Hard
+- **Difficulty:** Hard
 
-**Duration:** 320 hours (2 months, 8 hours per day)
+- **Duration:** 320 hours (2 months, 8 hours per day)
 
-**Suggested Skills and Background:**
-- Experience with Julia
-- Exposure to MRI concepts and ideas
-- High-level knowledge of GPU programming
-- Familiarity with some of the following Julia packages would be a strong asset:
-	- KernelAbstractions.jl
-	- CUDA.jl
-	- Adapt.jl
-	- Functors.jl
+- **Suggested Skills and Background:**
+  - Experience with Julia
+  - Exposure to MRI concepts and ideas
+  - High-level knowledge of GPU programming
+  - Familiarity with some of the following Julia packages would be a strong asset:
+	  - KernelAbstractions.jl
+	  - CUDA.jl
+	  - Adapt.jl
+	  - Functors.jl
 
-**Outcomes**:
+- **Outcomes**:
+
 We expect the following outcomes by the end of this program:
-- Extend and/or improve our GPU-accelerated simulations by generating a new simulation method `BlochKernel`, with multi-vendor GPU support.
-- Documentation explaining the new and use-case examples.
-- Implement automatic tests on Buildkite to test the simulations in multiple GPU architectures.
-- Report performance improvements between `BlochKernel` and `Bloch`.
+
+  - Extend and/or improve our GPU-accelerated simulations by generating a new simulation method `BlochKernel`, with multi-vendor GPU support.
+  - Documentation explaining the new and use-case examples.
+  - Implement automatic tests on Buildkite to test the simulations in multiple GPU architectures.
+  - Report performance improvements between `BlochKernel` and `Bloch`.
 
 Please contact the mentors of this project if you are interested and want to discuss other aspects that could be pursued during the course of this project.
