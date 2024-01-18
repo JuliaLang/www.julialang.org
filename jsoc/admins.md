@@ -3,7 +3,7 @@
 The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibilities including, but not limited too, reviewing contributor applications for all programs, creating and submitting the organization application for each program, helping ensure the programs run smoothly, recruiting mentors, making final contributor selections and more. 
 
 The current JSoC admins are: 
-- [Avik Sengupta](https://filebox.ece.vt.edu/~aviksg/) - Julia Project Lead at NumFOCUS
+- [Avik Sengupta](https://twitter.com/aviksengupta) - Julia Project Lead at NumFOCUS
 - [Jacob Scott Zelko](https://jacobzelko.com/) - Prominent contributor to the [JuliaHealth](https://juliahealth.org/) ecosystem
 - [Chris Rackauckas](https://www.chrisrackauckas.com/) - Currently leads [SciML under NumFocus](https://sciml.ai/dev/#google_summer_of_code) as well
 - [Viral Shah](https://en.wikipedia.org/wiki/Viral_B._Shah) - Julia co-creator and CEO of JuliaHub
