@@ -4,7 +4,7 @@ The JSoC (encompasses GSoC, GSoD, etc.) program admins have a few responsibiliti
 
 The current JSoC admins are: 
 - [Avik Sengupta](https://twitter.com/aviksengupta) - Julia Project Lead at NumFOCUS
-- [Jacob Scott Zelko](https://jacobzelko.com/) - Prominent contributor to the [JuliaHealth](https://juliahealth.org/) ecosystem
+- [Jacob Scott Zelko](https://jacobzelko.com/) - Current lead of the [JuliaHealth](https://juliahealth.org/) ecosystem
 - [Chris Rackauckas](https://www.chrisrackauckas.com/) - Currently leads [SciML under NumFocus](https://sciml.ai/dev/#google_summer_of_code) as well
 - [Viral Shah](https://en.wikipedia.org/wiki/Viral_B._Shah) - Julia co-creator and CEO of JuliaHub
 	
