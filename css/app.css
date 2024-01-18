@@ -195,6 +195,21 @@
   /* font-family: "Futura LT Medium"; */
   font-family: "Roboto", sans-serif;
 }
+.packages.pluto {
+  background-color: #faefec;
+  border-radius: 0.8em;
+  box-shadow: 0 0 28px #00000008;
+}
+.packages.pluto img {
+  border-radius: 0.3em;
+  border: 3px solid hsl(221.21deg 17.28% 78.6%);
+}
+
+.packages.pluto p,
+.packages.pluto h2 {
+  background-color: #faefec;
+  outline: 10px solid #faefec;
+}
 
 .rss-icon {
   color: #e2802f;
