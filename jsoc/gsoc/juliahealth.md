@@ -87,11 +87,11 @@ Whatever may occur in this situation will be supported by project mentors.
 ### Project 3: Highly-efficient MRI Simulations with Multi-Vendor GPU Support
 
 **Description:** 
-KomaMRI.jl is a Julia package designed for highly-efficient Magnetic Resonance Imaging (MRI) simulations, serving both educational and research purposes. Simulations can help to grasp hard-to-understand MRI concepts, like signal acquisition, and image reconstruction. Moreover, they can guide the design of novel pulse sequences, and generate synthetic data for training machine learning models.
+KomaMRI.jl is a Julia package designed for highly-efficient Magnetic Resonance Imaging (MRI) simulations, serving both educational and research purposes. Simulations can help to grasp hard-to-understand MRI concepts, like pulse sequences, signal generation and acquisition. Moreover, they can guide the design of novel pulse sequences, and generate synthetic data for training machine learning models.
 
 Currently, our simulator performs GPU-accelerated computations using CUDA arrays. We are now advancing to implement a new simulation method (`BlochKernel<:SimulationMethod`) based on GPU kernel programming using KernelAbstractions.jl. This enhancement will not only boost computation speeds but also broaden accessibility with KernelAbstractions.jl's multi-vendor GPU support. This could enable the use of MRI simulations in iterative algorithms to solve inverse problems. We are seeking enthusiastic people interested in developing this functionality.
 
-- **Mentors:** Carlos Castillo [email: cncastillo@uc.cl], Boris Oróstica [email: beorostica@uc.cl]
+- **Mentors:** Carlos Castillo [email: cncastillo@uc.cl], Boris Oróstica [email: beorostica@uc.cl], Pablo Irarrazaval [email: pim@uc.cl]
 
 - **Difficulty:** Hard
 
