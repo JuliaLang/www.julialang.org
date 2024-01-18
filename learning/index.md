@@ -131,7 +131,7 @@
       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
     </div>
 
-    <p><a href="https://plutojl.org/">Pluto.jl</a> is a Julia programming environment designed for <em>learning and teaching</em>, and it is the easiest way to get started with Julia programming, packages and visualisation.</p>
+    <p><a href="https://plutojl.org/">Pluto.jl</a> is a Julia programming environment designed for <em>learning and teaching</em>, and it is a great way to get started with Julia programming, packages and visualisation.</p>
     <p>Pluto.jl is <a href="https://plutojl.org/#install">easy to install</a>, and you can write interactive documents with no prior experience. 
     </p>
     <br>
