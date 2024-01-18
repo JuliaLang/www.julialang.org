@@ -138,15 +138,14 @@
     <br>
     <div class="row">
       <div class="col-lg-4 col-md-6 feature">
-        <a href="https://featured.plutojl.org/"><img src="assets/pluto1.png" alt="A generic screenshot of a Pluto.jl notebook"></a>
+        <a href="https://featured.plutojl.org/math/convolution_2d.html"><img src="assets/pluto8.png" alt="A screenshot of a Pluto notebook about image filters."></a>
       </div>
-      <div class="col-lg-4 col-md-6 feature" aria-hidden="true">
-        <a href="https://featured.plutojl.org/"><img src="assets/pluto3.png"></a>
+      <div class="col-lg-4 col-md-6 feature">
+        <a href="https://featured.plutojl.org/math/collatzconjecture"><img src="assets/pluto9.png" alt="A screenshot of a Pluto notebook that visualizes the Collatz conjecture."></a>
       </div>
-      <div class="col-lg-4 col-md-6 feature" aria-hidden="true">
-        <a href="https://featured.plutojl.org/"><img src="assets/pluto5.png"></a>
+      <div class="col-lg-4 col-md-6 feature">
+        <a href="https://featured.plutojl.org/language/structure%20and%20language"><img src="assets/pluto14.png" alt="A screenshot of a Pluto notebook about strings, dictionaries and analyzing natural language."></a>
       </div>
- 
     </div>
   </div>
 </div>
