@@ -101,7 +101,7 @@ Currently, our simulator performs GPU-accelerated computations using CUDA arrays
   - Experience with Julia
   - Exposure to MRI concepts and ideas
   - High-level knowledge of GPU programming
-  - Familiarity with some of the following Julia packages would be a strong asset:
+  - Familiarity with some of the following Julia packages would be desired:
 	  - KernelAbstractions.jl
 	  - CUDA.jl
 	  - Adapt.jl
