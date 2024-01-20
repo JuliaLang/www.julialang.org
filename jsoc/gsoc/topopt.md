@@ -4,6 +4,16 @@
 
 The following is a tentative list of projects in topology optimisation that you could be working on in the coming Julia Season of Contributions or Google Summer of Code. If you are interested in exploring any of these topics or if you have other interests related to topology optimisation, please reach out to the main mentor [Mohamed Tarek](https://github.com/mohamed82008) via email.
 
+## Testing and benchmarking of TopOpt.jl
+
+**Project difficulty**: Easy to Medium
+
+**Work load**: 175 or 350 hours
+
+**Description**: The goal of this project is to improve the unit test coverage and reliability of TopOpt.jl by testing its implementations against other software's outputs. Testing and benchmarking stress and buckling constraints and their derivatives will be the main focus of this project. Matlab scripts from papers may have to be translated to Julia for correctness and performance comparison.
+
+**Knowledge prerequisites**: structural mechanics, optimisation, Julia programming
+
 ## Machine learning in topology optimisation
 
 **Project difficulty**: Easy to Medium
@@ -20,16 +30,6 @@ The following is a tentative list of projects in topology optimisation that you 
 In this project you will implement one of the algorithms discussed in any of these papers.
 
 **Knowledge prerequisites**: neural networks, optimisation, Julia programming
-
-## Multi-material design representation
-
-**Project difficulty**: Easy
-
-**Work load**: 175 hours
-
-**Description**: There are some topology optimisation formulations that enable the optimisation of the shape of the structure and the material selected simultaneously. In this project, you will implement some multi-material design optimisation formulations, e.g. [this paper](https://link.springer.com/article/10.1007/s00158-011-0625-z) has a relatively simple approach to integrate in TopOpt.jl. Other methods include using mixed integer nonlinear programming from [Nonconvex.jl](https://github.com/JuliaNonconvex/Nonconvex.jl) to select materials in different parts of the design.
-
-**Knowledge prerequisites**: basic optimisation, Julia programming
 
 ## Optimisation on a uniform rectilinear grid
 
