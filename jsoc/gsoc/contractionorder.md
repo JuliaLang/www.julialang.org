@@ -20,4 +20,8 @@ We are looking for a student to work on the following tasks:
 
 **Mentor:** [Jin-Guo Liu](https://github.com/giggleliu)
 
+**Project difficulty:** Medium to Hard
+
+**Project length:** 350 hrs
+
 **Contact:** feel free to ask questions via [email](cacate0129@gmail.com) or the Julia slack (user name: JinGuo Liu).
