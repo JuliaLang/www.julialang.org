@@ -257,6 +257,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [IFT3245](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3245/), Simulation et modèles (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Fall 2017
     * [IFT3515](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3515/), Optimisation non linéaire (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2017-2018
     * [IFT6512](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-6512/), Programmation stochastique (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2018
+* University of Vaasa, Finland
+    * [Fuzzy Systems](https://fuzzy.academy), ([Luca Ferranti](https://github.com/lucaferranti))
 * University of Washington
     * [AMATH 586](https://trogdoncourses.github.io/amath-586-2020/), Numerical analysis of time-dependent problems (Prof. [Tom Trogdon](http://faculty.washington.edu/trogdon/)), Spring 2020
 * Vrije Universiteit Amsterdam
