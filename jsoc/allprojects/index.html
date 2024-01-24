@@ -384,6 +384,36 @@
 <p>The Nanosoldier.jl project &#40;and related <a href="https://github.com/JuliaCI/BaseBenchmarks.jl">https://github.com/JuliaCI/BaseBenchmarks.jl</a>&#41; tests for performance impacts of some changes. However, there remains many areas that are not covered &#40;such as compile time&#41; while other areas are over-covered &#40;greatly increasing the duration of the test for no benefit&#41; and some tests may not be configured appropriately for statistical power. Furthermore, the current reports are very primitive and can only do a basic pair-wise comparison, while graphs and other interactive tooling would be more valuable. Thus, there would be many great projects for a summer contributor to tackle here&#33;</p>
 <p><strong>Expected Outcomes</strong>: Improvement of Julia&#39;s automated testing/benchmarking framework. <strong>Skills</strong>: Interest in and/or experience with CI systems. <strong>Difficulty</strong>: Medium</p>
 <p><strong>Contact:</strong> <a href="https://github.com/vtjnash">Jameson Nash</a>, <a href="https://github.com/maleadt">Tim Besard</a></p>
+<h1 id="tensor_network_contraction_order_optimization_and_visualization"><a href="#tensor_network_contraction_order_optimization_and_visualization">Tensor network contraction order optimization and visualization</a></h1>
+<p><a href="https://github.com/under-Peter/OMEinsum.jl">OMEinsum.jl</a> is a pure Julia package for tensor network computation,  which has been used in various projects, including</p>
+<ul>
+<li><p><a href="https://github.com/QuEraComputing/GenericTensorNetworks.jl">GenericTensorNetworks.jl</a> for solving combinatorial optimization problems,</p>
+</li>
+<li><p><a href="">YaoToEinsum.jl</a> for simulating large scale quantum circuit and</p>
+</li>
+<li><p><a href="https://github.com/TensorBFS/TensorInference.jl">TensorInference.jl</a> for Bayesian inference.</p>
+</li>
+</ul>
+<p>Unlike other tensor contraction packages such as <code>ITensors.jl</code> and <code>TensorOperations.jl</code>, it is designed for large scale tensor networks with arbitrary topology. The key feature of <code>OMEinsum.jl</code> is that it can automatically optimize the contraction order of a tensor network. Related features are implemented in <a href="https://github.com/TensorBFS/OMEinsumContractionOrders.jl">OMEinsumContractionOrders.jl</a>.</p>
+<p>We are looking for a student to work on the following tasks:</p>
+<ul>
+<li><p>Implement a better contraction order optimizer based on <a href="https://arxiv.org/abs/2202.07793">Tamaki&#39;s algorithm</a>.</p>
+</li>
+<li><p>Implement a hyper-graph visualization tool based on <a href="https://arxiv.org/abs/2308.05043">arXiv:2308.05043</a></p>
+</li>
+</ul>
+<p><strong>Recommended skills:</strong> familiarity with tensor networks, graph theory and high performance computing.</p>
+<p><strong>Expected results:</strong></p>
+<ul>
+<li><p>new features added to the package <code>OMEinsumContractionOrders.jl</code> along with tests and relevant documentation.</p>
+</li>
+<li><p>a new package about hyper-graph visualization, and relevant feature added to <code>OMEinsum.jl</code>.</p>
+</li>
+</ul>
+<p><strong>Mentor:</strong> <a href="https://github.com/giggleliu">Jin-Guo Liu</a></p>
+<p><strong>Project difficulty:</strong> Medium to Hard</p>
+<p><strong>Project length:</strong> 350 hrs</p>
+<p><strong>Contact:</strong> feel free to ask questions via <a href="cacate0129@gmail.com">email</a> or the Julia slack &#40;user name: JinGuo Liu&#41;.</p>
 <h1 id="documentation_tooling"><a href="#documentation_tooling">Documentation tooling</a></h1>
 <h2 id="documenterjl"><a href="#documenterjl">Documenter.jl</a></h2>
 <p>The Julia manual and the documentation for a large chunk of the ecosystem is generated using <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> – essentially a static site generator that integrates with Julia and its docsystem. There are tons of opportunities for improvements for anyone interested in working on the interface of Julia, documentation and various front-end technologies &#40;web, LaTeX&#41;.</p>
