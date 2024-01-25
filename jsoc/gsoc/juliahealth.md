@@ -4,7 +4,7 @@ JuliaHealth is an organization dedicated to improving healthcare by promoting op
 Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making.
 We believe that by working together and sharing our knowledge and expertise, we can create powerful tools and solutions that have the potential to transform healthcare.
 
-## Observational medicine
+## Observational Health Subecosystem Projects
 
 ### Project 1: Developing Tooling for Observational Health Research in Julia
 
@@ -84,8 +84,7 @@ Additionally, depending on the success of the package, there is a potential to r
 This could possibly turn into a separate research paper, conference submission, or poster submission. 
 Whatever may occur in this situation will be supported by project mentors. 
 
-
-## Medical imaging Projects 
+## Medical Imaging Subecosystem Projects
 
 [MedPipe3D.jl](https://github.com/JuliaHealth/MedPipe3D.jl) together with [MedEye3D.jl](https://github.com/JuliaHealth/MedEye3d.jl) [MedEval3D.jl](https://github.com/JuliaHealth/MedEval3D.jl) and currently in development [MedImage.jl](https://github.com/JuliaHealth/MedImage.jl) is a set of libraries created to provide essential tools for 3D medical imaging to the Julia language ecosystem. 
 
