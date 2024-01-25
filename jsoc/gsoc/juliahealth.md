@@ -95,7 +95,7 @@ Currently, our simulator performs GPU-accelerated computations using CUDA arrays
 
 - **Difficulty:** Hard
 
-- **Duration:** 320 hours (2 months, 8 hours per day)
+- **Duration:** 350 hours (2 months, 8 hours per day)
 
 - **Suggested Skills and Background:**
   - Experience with Julia
