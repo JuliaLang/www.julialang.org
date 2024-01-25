@@ -1,6 +1,7 @@
 ## Books
 
 @@tight-list
+* Bartłomiej Łukaszuk, [Romeo and Julia, where Romeo is Basic Statistics](https://b-lukaszuk.github.io/RJ_BS_eng/), [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), 2023.
 * Júlio Hoffimann, [Geospatial Data Science with Julia](https://juliaearth.github.io/geospatial-data-science-with-julia), Open Access, 2023.
 * Adeil Araújo and Meirivâni Oliveira, ["Julia with Physics: An Introduction" in Portuguese](https://www.seduc.ce.gov.br/wp-content/uploads/sites/37/2023/09/Ebook-02-Julia-com-Fisica.pdf), Seduc - CE, September 2023.
 * Florian Heiss and Daniel Brunner, ["Using Julia for Introductory Econometrics"](http://upfie.net/downloads/PDF/UJfIE_web.pdf), Independently published, May 3, 2023.
@@ -17,7 +18,7 @@
 * Stanley H. Chan. [Intro to Probability for Data Science](https://www.amazon.com/Introduction-Probability-Data-Science-Stanley/dp/1607857464/), November 2021. The book is also available freely as HTML and PDF at [probability4datascience.com](https://probability4datascience.com/index.html). Code is in Julia/Python/R/Matlab.
 * Sambit Kumar Dash. [Hands-on Julia Programming](https://in.bpbonline.com/products/hands-on-julia-programming), Bpb Publications, October 2021.
 * Erik Engheim. [Julia for Beginners](https://leanpub.com/julia-for-beginners), January 2021.
-* Lee Phillips. [Practical Julia](https://lee-phillips.org/juliabook/). “The secret weapon for scientists.” In final production; coming from No Starch Press in September 2023.
+* Lee Phillips. [Practical Julia: A Hands-On Introduction for Scientific Minds](https://nostarch.com/practical-julia), No Starch Press, October 2023.
 * Mykel J. Kochenderfer, Tim A. Wheeler, and Kyle H. Wray. [Algorithms for Decision Making](https://algorithmsbook.com/), December 2020.
 * Christopher P. Adams. [Learning Microeconometrics with R](https://www.routledge.com/Learning-Microeconometrics-with-R/Adams/p/book/9780367255381), December 2020; Has [Julia code](https://sites.google.com/view/microeconometricswithr/home?authuser=0) for all [12 chapters](https://sites.google.com/view/microeconometricswithr/table-of-contents?authuser=0).
 * Raj Rao. [Applied Computational Linear Algebra for Everyone](https://mynerva.io/compla), December 2020; Interactive, experential computational book as described in [this JuliaCon  talk](https://www.youtube.com/watch?v=R84L-BQcjHw)
