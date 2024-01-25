@@ -88,7 +88,7 @@ Whatever may occur in this situation will be supported by project mentors.
 
 [MedPipe3D.jl](https://github.com/JuliaHealth/MedPipe3D.jl) together with [MedEye3D.jl](https://github.com/JuliaHealth/MedEye3d.jl) [MedEval3D.jl](https://github.com/JuliaHealth/MedEval3D.jl) and currently in development [MedImage.jl](https://github.com/JuliaHealth/MedImage.jl) is a set of libraries created to provide essential tools for 3D medical imaging to the Julia language ecosystem. 
 
-MedImage is a package for the standarization of loading medical imaging data, and for its basic processing that takes into consideration its spatial metadata.
+MedImage is a package for the standardization of loading medical imaging data, and for its basic processing that takes into consideration its spatial metadata.
 MedEye3D is a package that supports the display of medical imaging data. 
 MedEval3D has implemented some highly performant algorithms for calculating metrics needed to asses the performance of 3d segmentation models. 
 MedPipe3D was created as a package that improves integration between other parts of the small ecosystem (MedEye3D, MedEval3D, and MedImage). 
