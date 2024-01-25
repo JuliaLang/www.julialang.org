@@ -10,6 +10,9 @@ The nightly builds are for developer previews and not intended for
 normal use. You can expect many packages not to work with this version.
 Most users are advised to use the latest official release version of Julia.
 
+Nighlies are updated asyncronously across platforms after testing passes.
+The time the installers were updated can be seen by hovering over the links.
+
 ~~~
 <table class="downloads table table-hover table-bordered">
   <tbody>
@@ -48,4 +51,40 @@ Most users are advised to use the latest official release version of Julia.
   </tr>
   </tbody>
 </table>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Get the table with class "downloads"
+  var downloadsTable = document.querySelector(".downloads");
+
+  // Check if the table is found
+  if (downloadsTable) {
+    // Get all the links in the table
+    var links = downloadsTable.querySelectorAll("a");
+
+    // Iterate through each link
+    links.forEach(function (link) {
+      // Get the href attribute of the link
+      var href = link.getAttribute("href");
+
+      if (href.startsWith("https://julialangnightlies-s3")) {
+        // Fetch the last-modified header of the link
+        fetch(href, { method: "HEAD" })
+          .then(function (response) {
+            // Check if the last-modified header is present
+            if (response.headers.has("last-modified")) {
+              // Set the hint text to the last-modified value
+              var lastModified = response.headers.get("last-modified");
+              link.setAttribute("title", "Last Modified: " + lastModified);
+            }
+          })
+          .catch(function (error) {
+            console.error("Error fetching last-modified header for " + href + " :", error);
+          });
+      }
+    });
+  }
+});
+</script>
+
 ~~~
