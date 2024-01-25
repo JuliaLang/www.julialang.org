@@ -84,6 +84,7 @@ Additionally, depending on the success of the package, there is a potential to r
 This could possibly turn into a separate research paper, conference submission, or poster submission. 
 Whatever may occur in this situation will be supported by project mentors. 
 
+
 ## Medical Imaging Subecosystem Projects
 
 [MedPipe3D.jl](https://github.com/JuliaHealth/MedPipe3D.jl) together with [MedEye3D.jl](https://github.com/JuliaHealth/MedEye3d.jl) [MedEval3D.jl](https://github.com/JuliaHealth/MedEval3D.jl) and currently in development [MedImage.jl](https://github.com/JuliaHealth/MedImage.jl) is a set of libraries created to provide essential tools for 3D medical imaging to the Julia language ecosystem. 
@@ -125,8 +126,6 @@ Although MedEye3D already supports displaying medical images, there are still so
 3) Given an integer mask where a unique integer value will encode information about a single supervoxel and an underlying 3d medical image user will have the option to overlay the original image with the borders of the superpixels where adjacent borders will have different colors, or show those borders on the background of the image convolved with edge filter, for example, Sobel filter - 180h
 4) Any measurable decrease in the start time of the viewer -   20h
 5) The user will be able to display images just by supplying MedImage objects from the MedImage.jl library to a single display function -  20h
-
-
 
 
 ### Project 4: Adding dataset-wide functions and integrations of augmentations
@@ -171,3 +170,38 @@ This set of changes although time-consuming to implement should not pose a signi
 8) The user can set either val_percentage - which will lead to the division of the dataset to training and validation fold or supply k which will lead to k-fold cross-validation. In the latter option mean, threshold, and standard deviation of the ensemble will be returned as the final output of the model -30h.
 
 For each point mentor will also supply the person responsible for implementation with examples of required functionalities in Python or will point to the Julia libraries already implementing it (that just need to be integrated).
+
+
+### Project 5: Highly-efficient MRI Simulations with Multi-Vendor GPU Support
+
+**Description:** 
+KomaMRI.jl is a Julia package designed for highly-efficient Magnetic Resonance Imaging (MRI) simulations, serving both educational and research purposes. Simulations can help to grasp hard-to-understand MRI concepts, like pulse sequences, signal generation and acquisition. Moreover, they can guide the design of novel pulse sequences, and generate synthetic data for training machine learning models.
+
+Currently, our simulator performs GPU-accelerated computations using CUDA arrays. We are now advancing to implement a new simulation method (`BlochKernel<:SimulationMethod`) based on GPU kernel programming using KernelAbstractions.jl. This enhancement will not only boost computation speeds but also broaden accessibility with KernelAbstractions.jl's multi-vendor GPU support. This could enable the use of MRI simulations in iterative algorithms to solve inverse problems. We are seeking enthusiastic people interested in developing this functionality.
+
+- **Mentors:** Carlos Castillo [email: cncastillo@uc.cl], Boris Oróstica [email: beorostica@uc.cl], Pablo Irarrazaval [email: pim@uc.cl]
+
+- **Difficulty:** Hard
+
+- **Duration:** 350 hours (2 months, 8 hours per day)
+
+- **Suggested Skills and Background:**
+  - Experience with Julia
+  - Exposure to MRI concepts and ideas
+  - High-level knowledge of GPU programming
+  - Familiarity with some of the following Julia packages would be desired:
+	  - KernelAbstractions.jl
+	  - CUDA.jl
+	  - Adapt.jl
+	  - Functors.jl
+
+- **Outcomes**:
+
+We expect the following outcomes by the end of this program:
+
+  - Extended and/or improved GPU-accelerated simulations, having generated a new simulation method `BlochKernel` with multi-vendor GPU support.
+  - Developed documentation explaining the new simulation method, including showcasing some use-case examples.
+  - Implemented automatic pipelines on Buildkite for testing the simulations across multiple GPU architectures.
+  - Reported performance improvements between `BlochKernel` and `Bloch`.
+
+Please contact the mentors of this project if you are interested and want to discuss other aspects that could be pursued during the course of this project.
