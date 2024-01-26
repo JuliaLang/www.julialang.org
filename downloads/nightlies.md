@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Get the href attribute of the link
       var href = link.getAttribute("href");
 
-      if (href.startsWith("https://julialangnightlies-s3")) {
+      if (href.startsWith("https://julialangnightlies-s3.julialang.org/")) {
         // Fetch the last-modified header of the link
         fetch(href, { method: "HEAD" })
           .then(function (response) {
