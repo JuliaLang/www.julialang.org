@@ -128,7 +128,7 @@
 <!-- Content appended here -->
 <div class="container main"><h1 id="juliahealth_projects"><a href="#juliahealth_projects">JuliaHealth Projects </a></h1>
 <p>JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards. Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making. We believe that by working together and sharing our knowledge and expertise, we can create powerful tools and solutions that have the potential to transform healthcare.</p>
-<h2 id="potential_projects"><a href="#potential_projects">Potential Projects</a></h2>
+<h2 id="observational_health_subecosystem_projects"><a href="#observational_health_subecosystem_projects">Observational Health Subecosystem Projects</a></h2>
 <h3 id="project_1_developing_tooling_for_observational_health_research_in_julia"><a href="#project_1_developing_tooling_for_observational_health_research_in_julia">Project 1: Developing Tooling for Observational Health Research in Julia</a></h3>
 <p><strong>Description:</strong> The OMOP Common Data Model &#40;OMOP CDM&#41; is a widely used data standard that allows researchers to analyze large, heterogeneous healthcare datasets in a consistent and efficient manner. JuliaHealth has several packages that can interact with databases that adhere to the OMOP CDM &#40;such as OMOPCDMCohortCreator.jl or OMOPCDMDatabaseConnector.jl&#41;. For this project, we are looking for students interested in further developing the tooling in Julia to interact with OMOP CDM databases. </p>
 <ul>
@@ -227,6 +227,173 @@
 </ul>
 <p>In whatever functionality that gets developed for tools within JuliaHealth, it will also be expected for students to contribute to the existing package documentation to highlight how new features can be used. For this project, it will be expected as part of the proposal to pursue drafting and giving a talk at JuliaCon.  Furthermore, although not required, publishing in the JuliaCon Proceedings will both be encouraged and supported by project mentors. </p>
 <p>Additionally, depending on the success of the package, there is a potential to run experiments on actual patient data to generate actual patient population insights based on a chosen research question.  This could possibly turn into a separate research paper, conference submission, or poster submission.  Whatever may occur in this situation will be supported by project mentors. </p>
+<h2 id="medical_imaging_subecosystem_projects"><a href="#medical_imaging_subecosystem_projects">Medical Imaging Subecosystem Projects</a></h2>
+<p><a href="https://github.com/JuliaHealth/MedPipe3D.jl">MedPipe3D.jl</a> together with <a href="https://github.com/JuliaHealth/MedEye3d.jl">MedEye3D.jl</a> <a href="https://github.com/JuliaHealth/MedEval3D.jl">MedEval3D.jl</a> and currently in development <a href="https://github.com/JuliaHealth/MedImage.jl">MedImage.jl</a> is a set of libraries created to provide essential tools for 3D medical imaging to the Julia language ecosystem. </p>
+<p>MedImage is a package for the standardization of loading medical imaging data, and for its basic processing that takes into consideration its spatial metadata. MedEye3D is a package that supports the display of medical imaging data.  MedEval3D has implemented some highly performant algorithms for calculating metrics needed to asses the performance of 3d segmentation models.  MedPipe3D was created as a package that improves integration between other parts of the small ecosystem &#40;MedEye3D, MedEval3D, and MedImage&#41;. </p>
+<h3 id="project_3_adding_functionalities_to_medical_imaging_visualizations"><a href="#project_3_adding_functionalities_to_medical_imaging_visualizations">Project 3: Adding functionalities to medical imaging visualizations</a></h3>
+<p><strong>Description:</strong>  MedEye3D is a package that supports the display of medical imaging data. It includes multiple functionalities specific to this use case like automatic windowing to display soft tissues, lungs, and other tissues. The display takes into account voxel spacing, support of overlaying display for multimodal imaging, and more. All with high performance powered by OpenGL and Rocket.jl. Still, a lot of further improvements are possible and are described in the Potential Outcomes section. </p>
+<ul>
+<li><p><strong>Mentor:</strong> Jakub Mitura &#91;email: jakub.mitura14@gmail.com&#93;</p>
+</li>
+<li><p><strong>Difficulty</strong>: Hard</p>
+</li>
+<li><p><strong>Duration</strong>: 350 hours</p>
+</li>
+<li><p><strong>Suggested Skills and Background</strong>: </p>
+<ul>
+<li><p>Experience with Julia</p>
+</li>
+<li><p>Basic familiarity with computer graphics preferably OpenGL example <a href="https://www.opengl-tutorial.org/beginners-tutorials/">link</a></p>
+</li>
+<li><p>Some experience with 3d volumetric data with spatial metadata &#40;or a willingness to learn&#33;&#41; look into for example <a href="https://simpleitk.readthedocs.io/en/master/fundamentalConcepts.html">link</a></p>
+</li>
+</ul>
+</li>
+<li><p><strong>Potential Outcomes:</strong> </p>
+</li>
+</ul>
+<p>Although MedEye3D already supports displaying medical images, there are still some functionalities that will be useful for the implementation of some more advanced algorithms, like supervoxel segmentation or image registration &#40;and both of them are crucial for solving a lot of important problems in medical imaging&#41;. To achieve this this project&#39;s goal is to implement.</p>
+<ol>
+<li><p>Developing support for multiple image viewing with indicators for image registration like display of the borders, and display lines connecting points.</p>
+</li>
+<li><p>Automatic correct windowing for MRI and PET.</p>
+</li>
+<li><p>Support of display for supervoxels &#40;sv&#41;. Show borders of sv; indicate whether the gradient of the image is in agreement with sv borders.</p>
+</li>
+<li><p>Improve start time.</p>
+</li>
+<li><p>Simplify basic usage by providing high-level functions.</p>
+</li>
+</ol>
+<ul>
+<li><p><strong>Success criteria and time needed:</strong> How the success of functionality described above is defined and the approximate time required for each.</p>
+</li>
+</ul>
+<ol>
+<li><p>The user can load 2 different images, and they would display concurrently one next to the other. During scrolling the same area of the body should be displayed &#40;for well-registered sample images&#41; based on the supplied metadata. While moving the mouse cursor on one image the position of the cursor in the same physical spot on the other image should be displayed &#40;physical location calculated from spatial metadata&#41;.  120h</p>
+</li>
+<li><p>Given the most common PET and MRI modalities &#40;random FDG PET/CT, and T2, T1, FLAIR, ADC, DWI on MRI&#41; - the user will see the image similar to what is automatically displayed in 3DSlicer - 10h</p>
+</li>
+<li><p>Given an integer mask where a unique integer value will encode information about a single supervoxel and an underlying 3d medical image user will have the option to overlay the original image with the borders of the superpixels where adjacent borders will have different colors, or show those borders on the background of the image convolved with edge filter, for example, Sobel filter - 180h</p>
+</li>
+<li><p>Any measurable decrease in the start time of the viewer -   20h</p>
+</li>
+<li><p>The user will be able to display images just by supplying MedImage objects from the MedImage.jl library to a single display function -  20h</p>
+</li>
+</ol>
+<h3 id="project_4_adding_dataset-wide_functions_and_integrations_of_augmentations"><a href="#project_4_adding_dataset-wide_functions_and_integrations_of_augmentations">Project 4: Adding dataset-wide functions and integrations of augmentations</a></h3>
+<p><strong>Description:</strong>  MedPipe3D was created as a package that improves integration between other parts of the small ecosystem &#40;MedEye3D, MedEval3D, and MedImage&#41;. Currently, it needs to be expanded and adapted so it can be a basis for a fully functional medical imaging pipeline. It requires utilities for preprocessing specific to medical imaging - like uniformization of spacing, orientation, cropping, or padding. It needs to k fold cross validation and simple ensembling. Other necessary part of the segmentation pipeline are the augmentations that should be easier to use, and provide test time augmentation for uncertainty quantification. The last thing in the pipeline that is also important for practitioners is postprocessing - and the most popular postprocessing is finding and keeping only the largest connected component.</p>
+<ul>
+<li><p><strong>Mentor:</strong> Jakub Mitura &#91;email: jakub.mitura14@gmail.com&#93;</p>
+</li>
+<li><p><strong>Difficulty</strong>: Medium</p>
+</li>
+<li><p><strong>Duration</strong>: 350 hours</p>
+</li>
+<li><p><strong>Suggested Skills and Background</strong>: </p>
+<ul>
+<li><p>Experience with Julia</p>
+</li>
+<li><p>Familiarity with some of the following Julia packages would be a strong asset: </p>
+<ul>
+<li><p>MedEye3D.jl </p>
+</li>
+<li><p>MedEval3D.jl</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>Potential Outcomes:</strong> </p>
+</li>
+</ul>
+<ol>
+<li><p>Integrate augmentations like rotations recalling gamma etc.</p>
+</li>
+<li><p>Enable invertible augmentations and support test time augmentations.</p>
+</li>
+<li><p>Add patch-based data loading with probabilistic oversampling.</p>
+</li>
+<li><p>Calculate median and mean spacing and enable applying resampling to the median or mean spacing of the dataset.</p>
+</li>
+<li><p>Add basic post-processing like the largest connected component analysis.</p>
+</li>
+<li><p>Set all hyperparameters &#40;of augmentation; size of a patch, threshold for getting binary mask from probabilities&#41; in a struct or dictionary to enable hyperparameter tuning.</p>
+</li>
+<li><p>Enable automated display of the algorithm output in the validation epoch, including saving such outputs to persistent storage.</p>
+</li>
+<li><p>Support k-fold cross-validation.</p>
+</li>
+</ol>
+<p>This set of changes although time-consuming to implement should not pose a significant issue to anybody with experience with the Julia programming language. However, implementing those will be a huge step in making Julia language a good alternative to Python in developing end-to-end medical imaging segmentation algorithms.</p>
+<ul>
+<li><p><strong>Success criteria and time needed:</strong> How the success of functionality described above is defined and the approximate time required for each.</p>
+</li>
+</ul>
+<ol>
+<li><p>Given the configuration struct supplied by the user the supplied augmentations will be executed with some defined probability after loading the image: Brightness transform, Contrast augmentation transform, Gamma Transform, Gaussian noise transform, Rician noise transform, Mirror transform, Scale transform, Gaussian blur transform, Simulate low-resolution transform, Elastic deformation transform -100h. </p>
+</li>
+<li><p>Enable some transformation to be executed on the model input, then inverse this transform on the model output; execute model inference n times when n is supplied by the user and return mean and standard deviation of segmentation masks produced by the model as the output -60h.</p>
+</li>
+<li><p>given the size of the 3D patch by the user algorithm after data loading will crop or pad the supplied image to meet the set size criterion. The part of the image where the label is present should be selected more frequently than the areas without during cropping, the probability that the area with some label indicated on segmentation mas will be chosen will equal p &#40;0-1&#41; where p is supplied by the user -40h. </p>
+</li>
+<li><p>given the list of paths to medical images it will load them calculate the mean or median spacing &#40;option selected by the user&#41;, and return it. Then during pipeline execution, all images should be resampled to a user-supplied spacing and user-supplied orientation - 40h.</p>
+</li>
+<li><p>Given a model output and a threshold that will be used for each channel of the output to binarize the output user will have an option to retrieve only n largest components from binarized algorithm output - 20h.</p>
+</li>
+<li><p>Probabilities and hyperparameters of all augmentations, thresholds for binarization of output channels chosen spacing for preprocessing, number and settings of test time augmentations should be available in a hyperparam struct that is the additional argument of the pipeline function and that can be used for hyperparameter tuning -30h.</p>
+</li>
+<li><p>During the validation epoch the images can be saved into persistent storage and a single random image loaded together with the output mask into MedEye3d for visualization during training -30h.</p>
+</li>
+<li><p>The user can set either val_percentage - which will lead to the division of the dataset to training and validation fold or supply k which will lead to k-fold cross-validation. In the latter option mean, threshold, and standard deviation of the ensemble will be returned as the final output of the model -30h.</p>
+</li>
+</ol>
+<p>For each point mentor will also supply the person responsible for implementation with examples of required functionalities in Python or will point to the Julia libraries already implementing it &#40;that just need to be integrated&#41;.</p>
+<h3 id="project_5_highly-efficient_mri_simulations_with_multi-vendor_gpu_support"><a href="#project_5_highly-efficient_mri_simulations_with_multi-vendor_gpu_support">Project 5: Highly-efficient MRI Simulations with Multi-Vendor GPU Support</a></h3>
+<p><strong>Description:</strong>  KomaMRI.jl is a Julia package designed for highly-efficient Magnetic Resonance Imaging &#40;MRI&#41; simulations, serving both educational and research purposes. Simulations can help to grasp hard-to-understand MRI concepts, like pulse sequences, signal generation and acquisition. Moreover, they can guide the design of novel pulse sequences, and generate synthetic data for training machine learning models.</p>
+<p>Currently, our simulator performs GPU-accelerated computations using CUDA arrays. We are now advancing to implement a new simulation method &#40;<code>BlochKernel&lt;:SimulationMethod</code>&#41; based on GPU kernel programming using KernelAbstractions.jl. This enhancement will not only boost computation speeds but also broaden accessibility with KernelAbstractions.jl&#39;s multi-vendor GPU support. This could enable the use of MRI simulations in iterative algorithms to solve inverse problems. We are seeking enthusiastic people interested in developing this functionality.</p>
+<ul>
+<li><p><strong>Mentors:</strong> Carlos Castillo &#91;email: cncastillo@uc.cl&#93;, Boris Oróstica &#91;email: beorostica@uc.cl&#93;, Pablo Irarrazaval &#91;email: pim@uc.cl&#93;</p>
+</li>
+<li><p><strong>Difficulty:</strong> Hard</p>
+</li>
+<li><p><strong>Duration:</strong> 350 hours &#40;2 months, 8 hours per day&#41;</p>
+</li>
+<li><p><strong>Suggested Skills and Background:</strong></p>
+<ul>
+<li><p>Experience with Julia</p>
+</li>
+<li><p>Exposure to MRI concepts and ideas</p>
+</li>
+<li><p>High-level knowledge of GPU programming</p>
+</li>
+<li><p>Familiarity with some of the following Julia packages would be desired:</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>  - KernelAbstractions.jl
+  - CUDA.jl
+  - Adapt.jl
+  - Functors.jl</p>
+<ul>
+<li><p><strong>Outcomes</strong>:</p>
+</li>
+</ul>
+<p>We expect the following outcomes by the end of this program:</p>
+<ul>
+<li><p>Extended and/or improved GPU-accelerated simulations, having generated a new simulation method <code>BlochKernel</code> with multi-vendor GPU support.</p>
+</li>
+<li><p>Developed documentation explaining the new simulation method, including showcasing some use-case examples.</p>
+</li>
+<li><p>Implemented automatic pipelines on Buildkite for testing the simulations across multiple GPU architectures.</p>
+</li>
+<li><p>Reported performance improvements between <code>BlochKernel</code> and <code>Bloch</code>.</p>
+</li>
+</ul>
+<p>Please contact the mentors of this project if you are interested and want to discuss other aspects that could be pursued during the course of this project.</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
@@ -349,6 +516,7 @@
         <li><a href="/community/">Community</a></li>
         <li><a href="/community/standards/">Code of Conduct</a></li>
         <li><a href="/diversity/">Diversity</a></li>
+        <li><a href="https://juliagenderinclusive.github.io">Julia Gender Inclusive</a></li>
         <li><a href="https://juliacon.org">JuliaCon</a></li>
         <li><a href="/community/#julia_user_and_developer_survey">User/Developer Survey</a></li>
         <li><a href="/shop/">Shop Merchandise</a></li>
