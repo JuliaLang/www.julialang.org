@@ -81,7 +81,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 **Description:** The goal of PromptCompiler.jl is to port [DSPy](https://github.com/stanfordnlp/dspy) to Julia, offering a more user-friendly and efficient way to write complex Generative AI pipelines and programs, leveraging Julia's metaprogramming capabilities.
 
-- **Mentor:** [Jan Siml](https://github.com/svilupp) -- looking for co-mentors?
+- **Mentor:** [Jan Siml](https://github.com/svilupp), [Cameron Pfiffer](https://github.com/cpfiffer)  -- looking for co-mentors?
 - **Difficulty**: Medium
 - **Duration**: 175 hours
 - **Suggested Skills and Background**: 
