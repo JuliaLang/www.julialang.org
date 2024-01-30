@@ -97,7 +97,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 **Description:** Inspired by [HumanEval](https://github.com/openai/human-eval), JuliaEval aims to create a comprehensive set of Julia coding challenges, along with their solutions, akin to HumanEval. This project is crucial for fine-tuning Generative AI models specifically in the Julia language. It will not only enhance the capabilities of these models in Julia coding tasks but also serve as a valuable resource for the broader community to incorporate into their training pipelines.
 
-- **Mentor:** [Jan Siml](https://github.com/svilupp) -- looking for co-mentors?
+- **Mentor:** [Jan Siml](https://github.com/svilupp), [Cameron Pfiffer](https://github.com/cpfiffer) -- looking for co-mentors?
 - **Difficulty**: Medium
 - **Duration**: 175 hours
 - **Suggested Skills and Background**: 
