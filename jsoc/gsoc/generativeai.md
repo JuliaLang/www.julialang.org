@@ -66,7 +66,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 **Description:** This project involves translating [ColBERT v2](https://github.com/stanford-futuredata/ColBERT), a document retrieval and re-ranking framework, to run natively in Julia. The goal would be to integrate it with AIHelpMe.jl, improving performance and reducing costs.
 
-- **Mentor:** [Jan Siml](https://github.com/svilupp) -- looking for co-mentors?
+- **Mentor:** [Jan Siml](https://github.com/svilupp), [Cameron Pfiffer](https://github.com/cpfiffer)  -- looking for co-mentors?
 - **Difficulty**: Hard
 - **Duration**: 350 hours
 - **Suggested Skills and Background**: 
