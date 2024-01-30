@@ -52,7 +52,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 **Description:** Julia is a low-resource language (ie, not well represented in GenAI training data), so any methods that can bring more precise context or more up-to-date sources are extremely important. AIHelpMe.jl aims to enhance any model's knowledge by injecting the relevant knowledge (eg, Julia code snippets) into the query. The project involves growing the embedded knowledge base and tuning the performance of the Q&A pipeline underpinning all answers.
 
-- **Mentor:** [Jan Siml](https://github.com/svilupp) -- looking for co-mentors?
+- **Mentor:** [Jan Siml](https://github.com/svilupp), [Cameron Pfiffer](https://github.com/cpfiffer) -- looking for co-mentors?
 - **Difficulty**: Medium
 - **Duration**: 175 hours
 - **Suggested Skills and Background**: 
