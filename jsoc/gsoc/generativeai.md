@@ -11,7 +11,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 ### Project 1: Enhancing llama2.jl with GPU Support
 
-**Description:** llama2.jl is a Julia native port for Llama architectures, originally based on [llama2.c](https://github.com/karpathy/llama2.c). This project aims to enhance llama2.jl by implementing GPU support through KernelAbstraction.jl, significantly improving its performance.
+**Description:** [Llama2.jl](https://github.com/cafaxo/Llama2.jl) is a Julia native port for Llama architectures, originally based on [llama2.c](https://github.com/karpathy/llama2.c). This project aims to enhance Llama2.jl by implementing GPU support through KernelAbstraction.jl, significantly improving its performance.
 
 - **Mentor:** [???]
 - **Difficulty**: Hard
