@@ -26,7 +26,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 ### Project 2: Llama.jl - Low-level C interface
 
-**Description:** Llama.jl is a Julia interface for [llama.cpp](https://github.com/ggerganov/llama.cpp) that powers many open-source tools today. It's currently leveraging only the high-level binaries. This project focuses on generating a low-level C interface to llama.cpp, enabling native access to internal model states, which would open incredible research opportunities and attractive applications (eg, constraint generation, novel sampling algorithms, etc.)
+**Description:** [Llama.jl](https://github.com/marcom/Llama.jl) is a Julia interface for [llama.cpp](https://github.com/ggerganov/llama.cpp) that powers many open-source tools today. It's currently leveraging only the high-level binaries. This project focuses on generating a low-level C interface to llama.cpp, enabling native access to internal model states, which would open incredible research opportunities and attractive applications (eg, constraint generation, novel sampling algorithms, etc.)
 
 - **Mentor:** [Mentor's Name and Contact]
 - **Difficulty**: Hard
