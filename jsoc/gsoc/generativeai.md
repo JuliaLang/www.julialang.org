@@ -13,7 +13,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 **Description:** [Llama2.jl](https://github.com/cafaxo/Llama2.jl) is a Julia native port for Llama architectures, originally based on [llama2.c](https://github.com/karpathy/llama2.c). This project aims to enhance Llama2.jl by implementing GPU support through KernelAbstraction.jl, significantly improving its performance.
 
-- **Mentor:** [???]
+- **Mentor:** [Cameron Pfiffer](https://github.com/cpfiffer)
 - **Difficulty**: Hard
 - **Duration**: 350 hours
 - **Suggested Skills and Background**: 
