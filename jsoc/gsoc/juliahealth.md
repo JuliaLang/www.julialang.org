@@ -190,18 +190,18 @@ Currently, our simulator performs GPU-accelerated computations using CUDA arrays
   - Exposure to MRI concepts and ideas
   - High-level knowledge of GPU programming
   - Familiarity with some of the following Julia packages would be desired:
-	  - KernelAbstractions.jl
-	  - CUDA.jl
-	  - Adapt.jl
-	  - Functors.jl
+    - KernelAbstractions.jl
+    - CUDA.jl
+    - Adapt.jl
+    - Functors.jl
 
 - **Outcomes**:
 
 We expect the following outcomes by the end of this program:
 
-  - Extended and/or improved GPU-accelerated simulations, having generated a new simulation method `BlochKernel` with multi-vendor GPU support.
-  - Developed documentation explaining the new simulation method, including showcasing some use-case examples.
-  - Implemented automatic pipelines on Buildkite for testing the simulations across multiple GPU architectures.
-  - Reported performance improvements between `BlochKernel` and `Bloch`.
+1) Extended and/or improved GPU-accelerated simulations, having generated a new simulation method `BlochKernel` with multi-vendor GPU support.
+2) Developed documentation explaining the new simulation method, including showcasing some use-case examples.
+3) Implemented automatic pipelines on Buildkite for testing the simulations across multiple GPU architectures.
+4) Reported performance improvements between `BlochKernel` and `Bloch`.
 
 Please contact the mentors of this project if you are interested and want to discuss other aspects that could be pursued during the course of this project.
