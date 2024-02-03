@@ -25,6 +25,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Molecular simulation](/jsoc/gsoc/molly/) - molecular simulation with Molly.jl.
 * [PDMPs and event-chain Monte Carlo](/jsoc/gsoc/pdmp/) - a family of continuous time Markov-Chain Monte Carlo methods.
 * [QuantumClifford](/jsoc/gsoc/quantumclifford) - Quantum circuits with Clifford gates
+* [QuantumOptics](/jsoc/gsoc/quantumoptics) - Quantum dynamics and master equations
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
 * [Symbolic computation](/jsoc/gsoc/symbolics/) - User friendly symbolic programming
 * [Tabular Data](/jsoc/gsoc/tables/) - Working with data
