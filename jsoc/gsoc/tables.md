@@ -1,28 +1,6 @@
 
 # Tabular Data – Summer of Code
 
-## Implement Flashfill in Julia
-
-**Difficulty**: Medium
-
-**Duration**: 350 hours
-
-*FlashFill* is mechanism for creating data manipulation pipelines using programming by example (PBE). As an example see this [implementation in Microsoft Excel](https://support.microsoft.com/en-us/office/using-flash-fill-in-excel-3f9bcf1e-db93-4890-94a0-1578341f73f7). We want a version of Flashfill that can work against Julia tabular data structures, such as DataFrames and Tables.jl.
-
-**Resources**:
-@@tight-list
-* A [presentation](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/04/pldi16-tutorial.pptx) by Sumit Gulwani of Microsoft Research
-* A [video](https://youtu.be/X1YXge3C8RI)
-* [MSR Prose research group](https://www.microsoft.com/en-us/research/group/prose/)
-* [Papers](https://www.microsoft.com/en-us/research/group/prose/#!publications)
-@@
-
-**Recommended Skills**: Compiler techniques, DSL generation, Program synthesis
-
-**Expected Output**: A practical flashfill implementation that can be used on any tabular data structure in Julia
-
-**Mentors**: [Avik Sengupta](https://github.com/aviks/)
-
 ## Parquet.jl enhancements
 
 **Difficulty**: Medium

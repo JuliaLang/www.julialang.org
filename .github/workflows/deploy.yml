@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
           fetch-depth: 1
 
       - name: Install SSH Client
         if: github.event_name != 'pull_request' || github.repository == github.event.pull_request.head.repo.full_name # if this build is NOT a PR build, OR if this build is a PR build and the PR is NOT from a fork
-        uses: webfactory/ssh-agent@v0.4.1
+        uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
@@ -36,7 +36,7 @@ jobs:
       # matplotlib which is necessary if you intend to use PyPlot. If you do
       # not, then you can remove the `run: pip install matplotlib` line.
       - name: Install python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.8'
 
