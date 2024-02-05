@@ -11,7 +11,7 @@ At a minimum that would include [Pauli-Pauli products](https://github.com/Krasta
 
 **Recommended skills:** Basic knowledge of the [stabilizer formalism](https://krastanov.github.io/QuantumClifford.jl/dev/references/) used for simulating Clifford circuits. Familiarity with performance profiling tools in Julia and Julia's GPU stack, including [KernelAbstractions](https://github.com/JuliaGPU/KernelAbstractions.jl) and [Tullio](https://github.com/mcabbott/Tullio.jl).
 
-**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) and QuantumClifford.jl team members
+**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumClifford.jl team members
 
 **Expected duration:** 175 hours (but applicants can scope it to a longer project by including work on GPU-accelerated Gaussian elimination used in the canonicalization routines)
 
@@ -23,7 +23,7 @@ Quantum Error Correcting codes are typically represented in a form similar to th
 
 **Recommended skills:** Knowledge of the [stabilizer formalism](https://krastanov.github.io/QuantumClifford.jl/dev/references/) used for simulating Clifford circuits. Familiarity with tools like python's `ldpc`, `pymatching`, and `stim` can help. Consider checking out the `PyQDecoders.jl` julia wrapper package as well.
 
-**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) and QuantumClifford.jl team members
+**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumClifford.jl team members
 
 **Expected duration:** 175 hours (but applicants can scope it as longer, depending on the list of functionality they plan to implement)
 
@@ -35,7 +35,7 @@ Applying an n-qubit Clifford gate to an n-qubit state (tableaux) is an operation
 
 **Recommended skills:** Knowledge of the [stabilizer formalism](https://krastanov.github.io/QuantumClifford.jl/dev/references/) used for simulating Clifford circuits. Familiarity with performance profiling tools in Julia. Understanding of C/C++ if you plan to use the Stim library as a reference.
 
-**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) and QuantumClifford.jl team members
+**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumClifford.jl team members
 
 **Expected duration:** 175 hours (but applicants can scope it as longer if they plan for other significant optimization and API design work)
 
@@ -47,7 +47,7 @@ The QuantumClifford library already has some [support for generating different t
 
 **Recommended skills:** Knowledge of the variety of flag qubit methods. Some useful references could be [a](https://link.aps.org/accepted/10.1103/PhysRevLett.121.050502), [b](https://www.nature.com/articles/s41534-018-0085-z), [c](https://journals.aps.org/prxquantum/pdf/10.1103/PRXQuantum.1.010302), and this [video lecture](https://www.youtube.com/watch?v=etA9l2NUCXI).
 
-**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) and QuantumClifford.jl team members
+**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumClifford.jl team members
 
 **Expected duration:** 175 hours (but applicants can scope it as longer if they plan more extensive work)
 
@@ -59,7 +59,7 @@ The MBQC model of quantum computation has a lot of overlap with the study of Sta
 
 **Recommended skills:** Knowledge of the MBQC model of quantum computation. This [paper and the related python library](https://arxiv.org/pdf/2212.11975.pdf) can be a useful reference. Consider also [this reference](https://quantum-journal.org/papers/q-2021-03-25-421/).
 
-**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) and QuantumClifford.jl team members
+**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumClifford.jl team members
 
 **Expected duration:** 175 hours (but applicants can scope it as longer if they plan more extensive work)
 
@@ -71,7 +71,7 @@ The graph states formalism is a way to work more efficiently with stabilizer sta
 
 **Recommended skills:** Understanding of the graph formalism. This [paper can be a useful reference](https://arxiv.org/abs/quant-ph/0504117).
 
-**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) and QuantumClifford.jl team members
+**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumClifford.jl team members
 
 **Expected duration:** 175 hours (but applicants can scope it as longer if they plan more extensive work)
 
@@ -83,7 +83,7 @@ There are various techniques used to augment Clifford circuit simulators to mode
 
 **Recommended skills:** In-depth understanding of the Stabilizer formalism, and understanding of some of the extensions to that method. We have some [initial implementations](https://github.com/QuantumSavory/QuantumClifford.jl/blob/master/src/nonclifford.jl). This [IBM paper](https://arxiv.org/pdf/1808.00128.pdf) can also be a useful reference for other methods.
 
-**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) and QuantumClifford.jl team members
+**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumClifford.jl team members
 
 **Expected duration:** 175 hours (but applicants can scope it as longer if they plan more extensive work)
 
@@ -95,7 +95,7 @@ Magic states are important non-stabilizer states that can be used for inducing n
 
 **Recommended skills:** In-depth understanding of the theory of magic states and their use in fault tolerance.
 
-**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) and QuantumClifford.jl team members
+**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumClifford.jl team members
 
 **Expected duration:** 175 hours (but applicants can scope it as longer if they plan more extensive work)
 

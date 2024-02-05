@@ -8,7 +8,7 @@ Much of the internal representation of quantum states in QuantumOptics.jl relies
 
 **Recommended skills:** Familiarity with performance profiling tools in Julia and Julia's GPU stack, potentially including [KernelAbstractions](https://github.com/JuliaGPU/KernelAbstractions.jl).
 
-**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) and QuantumOptics.jl team members
+**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumOptics.jl team members
 
 **Expected duration:** 175 hours (but applicants can scope it as longer if they plan more extensive work)
 
@@ -20,7 +20,7 @@ Autodifferentiation is the capability of automatically generating efficient code
 
 **Recommended skills:** Familiarity with the [Julia autodiff stack](https://juliadiff.org/) and the SciML sensitivity analysis tooling. Familiarity with the difficulties to autodiff complex numbers (in general and specifically in Julia). Understanding of the AbstractDifferentiation.jl package.
 
-**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) and QuantumOptics.jl team members
+**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumOptics.jl team members
 
 **Expected duration:** 175 hours (but applicants can scope it as longer if they plan more extensive work)
 
@@ -32,7 +32,7 @@ SciML is the umbrella organization for much of the base numerical software devel
 
 **Recommended skills:** Familiarity with the SciML stack.
 
-**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) and QuantumOptics.jl team members
+**Mentors:** [Stefan Krastanov](https://github.com/Krastanov) [<stefan@krastanov.org>](mailto:stefan@krastanov.org) and QuantumOptics.jl team members
 
 **Expected duration:** 175 hours (but applicants can scope it as longer if they plan more extensive work)
 
