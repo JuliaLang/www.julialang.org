@@ -16,8 +16,6 @@ An informal consensus process is used to review and merge pull requests, and a s
 
 A larger set of individuals participates as "triage" members of the JuliaLang GitHub organization; they have permissions to organize and label the issues and pull reuqests.
 
-The Julia Project also employs a Community Manager. The role began with [Alex Arslan in 2017](https://discourse.julialang.org/t/welcome-alex-as-our-julia-community-manager/3756) and it is currently filled by [Logan Kilpatrick](https://twitter.com/OfficialLoganK) who started in early 2020.
-
 ## Community Communication Channels
 
 A number of [official community channels](/community/#community_channels) provide venues for discussion, collaboration, and media. Each is managed by an independent set of administrators and moderators whose role is largely to ensure a safe and welcoming environment, with all participants respecting the [Julia Community Standards](https://julialang.org/community/standards/).
