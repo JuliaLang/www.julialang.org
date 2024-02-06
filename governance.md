@@ -14,7 +14,7 @@ One particularly important team is that of the "committers": these 40-some indiv
 This set of people doesn’t really define the project, however, since there are many people who are prolific contributors to the Julia ecosystem but who do not have this “commit bit.”
 An informal consensus process is used to review and merge pull requests, and a standing meeting — the [triage call](/community/working-groups/#triage_call) — aims to provide guidance and help move contentious issues forward.
 
-A larger set of individuals participates as "triage" members of the JuliaLang GitHub organization; they have permissions to organize and label the issues and pull reuqests.
+A larger set of individuals participates as "triage" members of the JuliaLang GitHub organization; they have permissions to organize and label the issues and pull requests.
 
 ## Community Communication Channels
 
