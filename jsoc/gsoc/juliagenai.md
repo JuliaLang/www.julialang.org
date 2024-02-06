@@ -55,7 +55,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 Julia stands out as a high-performance language that's essential yet underrepresented in GenAI training datasets. AIHelpMe.jl is our ambitious initiative to bridge this gap by enhancing Large Language Models' (LLMs) understanding of Julia by providing this knowledge via In-Context Learning (RAG, prompting). This project focuses on expanding the embedded knowledge base with up-to-date, context-rich Julia information and optimizing the Q&A pipeline to deliver precise, relevant answers. By injecting targeted Julia code snippets and documentation into queries, AIHelpMe.jl aims to significantly improve the accuracy and utility of generative AI for Julia developers worldwide.
 
-**Mentor:** [Jan Siml](https://github.com/svilupp) / `@svilup` on JuliaLang Slack
+**Mentor:** [Jan Siml](https://github.com/svilupp) / `@svilup` on JuliaLang Slack / `Jan Siml` on Julia Zulip
 
 **Project Difficulty:** Medium
 
@@ -67,7 +67,7 @@ Julia stands out as a high-performance language that's essential yet underrepres
 
 **Project Goals and Deliverables:**
 
-1. **Knowledge Base Expansion:** Grow the AIHelpMe.jl knowledge base to include comprehensive, up-to-date resources from critical Julia ecosystems such as the Julia documentation site, DataFrames, Makie, Plots/StatsPlots, the Tidier-verse, SciML, and more. See [Issue #3 on AIHelpMe.jl's GitHub](https://github.com/svilupp/AIHelpMe.jl/issues/3). This expansion is crucial for enriching the context and accuracy of AI-generated responses related to Julia programming.
+1. **Knowledge Base Expansion:** Grow the AIHelpMe.jl knowledge base to include comprehensive, up-to-date resources from critical Julia ecosystems such as the Julia documentation site, DataFrames, Makie, Plots/StatsPlots, the Tidier-verse, SciML, and more. See [Github Issue](https://github.com/svilupp/AIHelpMe.jl/issues/3) for more details. This expansion is crucial for enriching the context and accuracy of AI-generated responses related to Julia programming.
    
 2. **Performance Tuning:** Achieve at least a 10% improvement in accuracy and relevance on a golden Q&A dataset, refining the AIHelpMe.jl Q&A pipeline for enhanced performance.
 
@@ -77,7 +77,7 @@ Julia stands out as a high-performance language that's essential yet underrepres
 
 Dive into the forefront of generative AI and information retrieval by bringing ColBERT v2, a cutting-edge document retrieval and re-ranking framework, into the Julia programming world. This initiative aims not only to translate ColBERT v2 to operate natively in Julia but to seamlessly integrate it with AIHelpMe.jl (and other downstream libraries). This integration promises to revolutionize the way users interact with AI by offering locally-hosted, more cost-efficient and highly performant document search capabilities. By enabling this sophisticated technology to run locally, we reduce dependency on large-scale commercial platforms, ensuring privacy and control over data, while maintaining minimal memory overheads.
 
-**Mentor:** [Jan Siml](https://github.com/svilupp) `@svilup` on JuliaLang Slack
+**Mentor:** [Jan Siml](https://github.com/svilupp) `@svilup` on JuliaLang Slack / `Jan Siml` on Julia Zulip
 
 **Project Difficulty:** Hard
 
@@ -96,36 +96,13 @@ Dive into the forefront of generative AI and information retrieval by bringing C
 
 3. **Package Registration and Documentation:** Register the fully functional package within the Julia ecosystem, accompanied by comprehensive documentation and usage examples to foster adoption and contribution from the community.
 
-### Project 5: Integrating Standard Prompt Schemas into PromptingTools.jl
-
-**Project Overview:**
-
-PromptingTools.jl stands at the cutting edge of generative AI within the Julia ecosystem. This project involves enhancing the support for various backends by providing more prompt templates (schemas) for users to leverage. This initiative directly responds to [Issue #67 on PromptingTools.jl's GitHub](https://github.com/svilupp/PromptingTools.jl/issues/67). Successful completion of this project will significantly enhance the usability of PromptingTools.jl, making it an indispensable tool for developers working with open-source LLM. By contributing, participants will play a key role in advancing Julia's AI capabilities, ensuring the community remains at the forefront of technological innovation.
-
-**Mentor:** [Jan Siml](https://github.com/svilupp) `@svilup` on JuliaLang Slack
-
-**Project Difficulty:** Medium
-
-**Estimated Duration:** 175 hours
-
-**Ideal Candidate Profile:**
-- Individuals with a solid grasp of the Julia programming language who are eager to deepen their involvement in the Julia and AI communities.
-- Experience with open-source large language models (eg, llama.cpp, vLLM) and with prompt templating (eg, Llama instruction template).
-
-**Project Goals and Deliverables:**
-
-1. **Schema Integration:** Implement common prompt schemas as dedicated types (similar to `OpenAISchema`). See details [here](https://github.com/svilupp/PromptingTools.jl/issues/67).
-   
-2. **Functionality Extension:** Provide methods for `render` and `aigenerate` functions to enable users to render conversations in these templates. Including clear examples, documentation and testing.
-
-
 ### Project 5: Enhancing PromptingTools.jl with Advanced Schema Support and Functionality
 
 **Project Overview:**
 
-PromptingTools.jl, a key tool in the Julia GenAI ecosystem. This project is a concerted effort to broaden the utility and applicability of PromptingTools.jl by incorporating a wider array of prompt templates and schemas, thereby catering to a diverse set of LLM backends. The initiative directly corresponds to [Issue #67](https://github.com/svilupp/PromptingTools.jl/issues/67) and [Issue #68](https://github.com/svilupp/PromptingTools.jl/issues/68) on PromptingTools.jl's GitHub. By enhancing the library's functionality to support structured extraction with the Ollama backend and introducing more standardized prompt schemas, we aim to make PromptingTools.jl an even more powerful and indispensable resource for developers engaging with open-source Large Language Models (LLMs).
+PromptingTools.jl, a key tool in the Julia GenAI ecosystem. This project is a concerted effort to broaden the utility and applicability of PromptingTools.jl by incorporating a wider array of prompt templates and schemas, thereby catering to a diverse set of LLM backends. The initiative directly corresponds to [Issue #67](https://github.com/svilupp/PromptingTools.jl/issues/67), [Issue #68](https://github.com/svilupp/PromptingTools.jl/issues/68) and [Issue #69](https://github.com/svilupp/PromptingTools.jl/issues/69) on PromptingTools.jl's GitHub. By enhancing the library's functionality to support structured extraction with the Ollama backend and introducing more standardized prompt schemas, we aim to make PromptingTools.jl an even more powerful and indispensable resource for developers engaging with open-source Large Language Models (LLMs).
 
-**Mentor:** [Jan Siml](https://github.com/svilupp) / `@svilup` on JuliaLang Slack
+**Mentor:** [Jan Siml](https://github.com/svilupp) / `@svilup` on JuliaLang Slack / `Jan Siml` on Julia Zulip
 
 **Project Difficulty:** Medium
 
@@ -139,4 +116,14 @@ PromptingTools.jl, a key tool in the Julia GenAI ecosystem. This project is a co
 
 1. **Schema Integration and Functionality Enhancement:** Implement and integrate a variety of common prompt schemas (see details in [Issue #67](https://github.com/svilupp/PromptingTools.jl/issues/67)). Develop methods for the `render` and `aigenerate` functions that enable easy use and rendering of these templates, complete with comprehensive documentation, examples, and tests.
 
-2. **Structured Extraction Support:** Add `aiextract` support for the Ollama backend, as currently, this functionality is not supported. This involves creating methods and templates that facilitate structured data extraction, thereby broadening the use cases and efficiency of interacting with AI models through PromptingTools.jl.
+2. **Structured Extraction Support:** Add `aiextract` support for the Ollama backend, as currently, this functionality is not supported. This involves creating methods and templates that facilitate structured data extraction, thereby broadening the use cases and efficiency of interacting with AI models through PromptingTools.jl. See details in [Issue #68](https://github.com/svilupp/PromptingTools.jl/issues/68). Extending the functionality to other backends is a plus.
+
+3. **Support for Common Backends:** Extend the functionality of PromptingTools.jl to support common backends such as HuggingFace Transformers and vLLM, ensuring that the library is compatible with a wide range of LLMs. We need to create an example for each backend to demonstrate the functionality. See details in [Issue #69](https://github.com/svilupp/PromptingTools.jl/issues/69)
+
+## How to Contact Us
+
+We'd love to hear your ideas and discuss potential projects with you.
+
+Probably the easiest way is to join our [JuliaLang Slack](https://julialang.org/slack/) and join the `#generative-ai` channel. 
+You can also reach out to us on [Julia Zulip](https://julialang.zulipchat.com/#narrow/stream/423470-generative-ai) or post a GitHub Issue on our website [JuliaGenAI](https://github.com/JuliaGenAI/juliagenai.org).
+
