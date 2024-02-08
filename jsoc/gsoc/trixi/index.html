@@ -155,32 +155,6 @@
 <p><strong>Recommended skills</strong>: Good knowledge of at least one numerical discretization scheme  &#40;e.g., finite volume, discontinuous Galerkin, finite differences&#41;; initial knowledge  in automatic differentiation; preferably the ability &#40;or eagerness to learn&#41; to write fast code</p>
 <p><strong>Expected results</strong>: Contributions to state of the art and production-quality automatic differentiation tools for Trixi.jl</p>
 <p><strong>Mentors</strong>: <a href="https://github.com/ranocha">Hendrik Ranocha</a>, <a href="https://github.com/sloede">Michael Schlottke-Lakemper</a></p>
-<h2 id="exploration_of_gpu_computing"><a href="#exploration_of_gpu_computing">Exploration of GPU computing</a></h2>
-<p><strong>Difficulty</strong>: Medium &#40;to hard, depending on the chosen subtasks&#41;</p>
-<p><strong>Project size</strong>: 175 hours or 350 hours, depending on the chosen subtasks</p>
-<p>GPUs can provide considerable speedups compard to CPUs for computational fluid dynamic simulations of the kind performed in <a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a>. Julia provides several ways to implement efficient code on GPUs such as  <a href="https://github.com/JuliaGPU/CUDA.jl">CUDA.jl</a> for Nvidia GPUs,  <a href="https://github.com/JuliaGPU/AMDGPU.jl">AMDGPU.jl</a> for AMD GPUs, and <a href="https://github.com/JuliaGPU/KernelAbstractions.jl">KernelAbstractions.jl</a>, which provides a single frontend to generate code for multiple GPU backends. In this project, we will likely work with CUDA.jl due to its maturity, but other options can be explored later as well.</p>
-<p>The goal of this project is to implement a working subset of the functionality of <a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a> on GPUs, starting with a basic numerical scheme on Cartesian meshes in 2D. Based thereon, there are a lot of possibilities for extensions to more complex geometries and sophisticated discretizations.</p>
-<p>Possible subtasks in this project include</p>
-<ul>
-<li><p>Write a simple 1D code on for CPUs, taking the methods implemented in <a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a> as a blueprint.</p>
-</li>
-<li><p>Port the simple 1D CPU code to GPUs using one of the GPU packages as a prototype.</p>
-</li>
-<li><p>Prototype GPU implementations of existing kernels implemented in <a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a> by moving data from the CPU to the GPU and back again explicitly.</p>
-</li>
-<li><p>Keep the data on the GPU after converting all kernels required for a simple simulation.</p>
-</li>
-<li><p>Extend the GPU implementations to more complex numerical methods and settings.</p>
-</li>
-<li><p>Extend the GPU implementations to different types of GPUs, using different GPU programming packages in Julia.</p>
-</li>
-<li><p>Optimize and compare the performance of the implementations.</p>
-</li>
-</ul>
-<p>This project is good for both software engineers interested in the fields of numerical analysis and scientific machine learning as well as those students who are interested in pursuing graduate research in the field.</p>
-<p><strong>Recommended skills</strong>: Background knowledge in numerical analysis, working knowledge about GPU computing, and the ability to write fast code</p>
-<p><strong>Expected results</strong>: Draft of a working subset of the functionality of <a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a> running efficiently on GPUs.</p>
-<p><strong>Mentors</strong>: <a href="https://github.com/sloede">Michael Schlottke-Lakemper</a>, <a href="https://github.com/ranocha">Hendrik Ranocha</a></p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
