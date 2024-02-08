@@ -143,6 +143,8 @@ As a pivotal resource for the Julia community, the [Julia LLM Leaderboard](https
 
 2. **Benchmark Extension:** Extend the leaderboard's benchmarking capabilities to include evaluations of RAG applications (question-answering systems), focusing on their knowledge of the Julia programming language, and other Julia tasks like "help me speed up this code", "what is a more idiomatic way to write this", etc. There is a slight overlap with Project 3, however, the focus here is to pinpoint promising locally-hosted models with strong capabilities all around. See the details [here](https://github.com/svilupp/Julia-LLM-Leaderboard/issues/6).
 
+3. **Documentation and Outreach:** Document findings and best practices in a series of blog posts to share insights, highlight top-performing models, and guide the community on leveraging Generative AI effectively within the Julia ecosystem.
+
 ## How to Contact Us
 
 We'd love to hear your ideas and discuss potential projects with you.
