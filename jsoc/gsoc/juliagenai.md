@@ -120,6 +120,29 @@ PromptingTools.jl, a key tool in the Julia GenAI ecosystem. This project is a co
 
 3. **Support for Common Backends:** Extend the functionality of PromptingTools.jl to support common backends such as HuggingFace Transformers and vLLM, ensuring that the library is compatible with a wide range of LLMs. We need to create an example for each backend to demonstrate the functionality. See details in [Issue #69](https://github.com/svilupp/PromptingTools.jl/issues/69)
 
+### Project 6: Expanding the Julia Large Language Model Leaderboard
+
+**Project Overview:**
+
+As a pivotal resource for the Julia community, the [Julia LLM Leaderboard](https://github.com/svilupp/Julia-LLM-Leaderboard) benchmarks open-source models for Julia code generation. This enhancement project seeks to extend the leaderboard by incorporating additional test cases and expanding benchmarks into Julia-specific applications beyond code generation, such as evaluating Retrieval-Augmented Generation (RAG) applications with a golden Q&A dataset and many others. This initiative, addressing several GitHub issues, aims to improve the leaderboard's utility and accuracy, making it an even more indispensable tool for the community. Participants will have the chance to deepen their knowledge of Generative AI while contributing to a project that enhances how the Julia community selects the most effective AI models for their needs.
+
+**Mentor:** [Jan Siml](https://github.com/svilupp) / `@svilup` on JuliaLang Slack / `Jan Siml` on Julia Zulip
+
+**Project Difficulty:** Easy/Medium
+
+**Estimated Duration:** 175 hours
+
+**Ideal Candidate Profile:**
+- Strong proficiency in Julia and an active participant in the Julia community.
+- Basic knowledge or interest in Generative AI, with a keenness to learn more through practical application.
+- A passion for contributing to open-source projects and a desire to help the Julia community identify the most effective AI models for their needs.
+
+**Project Goals and Deliverables:**
+
+1. **Test Case Expansion:** Develop and integrate a diverse range of test cases to assess the capabilities of LLMs in Julia code generation more comprehensively, enhancing the leaderboard's robustness and reliability. See the details [here](https://github.com/svilupp/Julia-LLM-Leaderboard/issues/5).
+
+2. **Benchmark Extension:** Extend the leaderboard's benchmarking capabilities to include evaluations of RAG applications (question-answering systems), focusing on their knowledge of the Julia programming language, and other Julia tasks like "help me speed up this code", "what is a more idiomatic way to write this", etc. There is a slight overlap with Project 3, however, the focus here is to pinpoint promising locally-hosted models with strong capabilities all around. See the details [here](https://github.com/svilupp/Julia-LLM-Leaderboard/issues/6).
+
 ## How to Contact Us
 
 We'd love to hear your ideas and discuss potential projects with you.
