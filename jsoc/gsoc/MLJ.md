@@ -162,10 +162,10 @@ As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) 
 ## Tracking and sharing MLJ workflows using MLflow
 
 Help data scientists using MLJ track and share their machine learning experiments using
-[MLflow](https://mlflow.org). The emphasis on this phase of the project is:
+[MLflow](https://mlflow.org). The emphasis iin this phase of the project is:
 
 - support *asynchronous* workflows, as appear in parallelized model tuning
-- support live reporting while training *iterative* models, such as neural networks
+- support live logging while training *iterative* models, such as neural networks
 
 **Difficulty.** Moderate. **Duration.** 350 hours.
 
