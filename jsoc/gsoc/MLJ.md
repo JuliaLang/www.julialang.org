@@ -12,6 +12,58 @@ MLJ is released under the MIT license and sponsored by the Alan Turing Institute
 
 \toc
 
+## Categorical variable encoding
+
+Extend the categorical variable encoding of MLJ.
+
+**Difficulty.** Moderate. **Duration.** 350 hours
+
+### Description
+
+MLJ provides basic one-hot encoding of categorical variables but no sophisticated encoding
+techniques. One-hot encoding is rather limited, in particular when a categorical has a
+very large number of classes. Many other techniques exists, and this project aims to make
+some of these available to the MLJ user.
+
+
+**Mentors.** [Anthony Blaom](https://ablaom.github.io/) (best contact: direct message on Julia slack)
+
+### Prerequisites
+
+-   Julia language fluency is essential.
+
+-   Git-workflow familiarity is strongly preferred.
+
+-   Experience with machine learning and data science workflows.
+
+-   Familiarity with MLJ's API a plus.
+
+### Your contribution
+
+In this project you will survey popular existing methods for one-hot encoding categorical
+variables. In collaboration with the mentor, you will make a plan for integrating some of
+these techniques into MLJ. You will begin work on the plan, initially focusing on simple
+methods, providing MLJ interfaces to existing julia packages, or new implementations where
+needed. If the project advances well, you will implement more advanced techniques, such as
+[entity embedding](https://arxiv.org/abs/1604.06737) via MLJFlux.jl (MLJ's neural network
+interface).
+
+### References
+
+- Existing encoding in MLJ:
+  [OneHotEncoder](https://alan-turing-institute.github.io/MLJ.jl/dev/models/OneHotEncoder_MLJModels/#OneHotEncoder_MLJModels);
+  [ContinuousEncoder](https://alan-turing-institute.github.io/MLJ.jl/dev/models/ContinuousEncoder_MLJModels/#ContinuousEncoder_MLJModels);
+  [UnivariateContinuousTimeEncoder](https://alan-turing-institute.github.io/MLJ.jl/dev/models/UnivariateTimeTypeToContinuous_MLJModels/#UnivariateTimeTypeToContinuous_MLJModels)
+
+- StatsModels.jl [encoders](https://juliastats.org/StatsModels.jl/stable/contrasts/)
+
+- MLJ [feature request](https://github.com/JuliaAI/MLJModels.jl/issues/534)
+
+- Guo and Berkhahn [(2016]](https://arxiv.org/abs/1604.06737) "Entity Embeddings of Categorical Variables"
+
+- [MLJFlux.jl](https://github.com/FluxML/MLJFlux.jl)
+
+
 ## Machine Learning in Predictive Survival Analysis
 
 Implement survival analysis models for use in the MLJ machine learning
@@ -64,7 +116,7 @@ Specifically, you will:
 -   Familiarize yourself with the training and evaluation machine
 	learning models in MLJ.
 
--  For SurvivalAnalysis.jl, implement the [MLJ model interface](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/). 
+-  For SurvivalAnalysis.jl, implement the [MLJ model interface](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/).
 
 -   Consider Explainability of SurvivalAnalysis through SurvSHAP(t)
 
@@ -107,44 +159,47 @@ As an initial step reproduce [SOSSMLJ](https://github.com/cscherrer/SossMLJ.jl) 
 **Mentors**: [Hong Ge](https://github.com/yebai) [Sebastian Vollmer](https://sebastian.vollmer.ms)
 
 
-## Tracking and sharing MLJ workflows using MLFlow
+## Tracking and sharing MLJ workflows using MLflow
 
-Help data scientists using MLJ track and share their machine learning
-experiments using [MLFlow](https://mlflow.org).
+Help data scientists using MLJ track and share their machine learning experiments using
+[MLflow](https://mlflow.org). The emphasis on this phase of the project is:
+
+- support *asynchronous* workflows, as appear in parallelized model tuning
+- support live reporting while training *iterative* models, such as neural networks
 
 **Difficulty.** Moderate. **Duration.** 350 hours.
 
 ### Description
 
-MLFlow is an open source platform for the machine learning life
-cycle. It allows the data scientist to upload experiment metadata and
-outputs to the platform for reproducing and sharing purposes. This
-project aims to integrate the MLJ machine learning platform with
-MLFlow.
+MLflow is an open source platform for the machine learning life cycle. It allows the data
+scientist to upload experiment metadata and outputs to the platform for reproducing and
+sharing purposes. MLJ [already allows](https://github.com/JuliaAI/MLJFlow.jl) users to
+report basic model performance evaluation to an MLflow service and this project seeks to
+greatly enhance this integration.
 
 ### Prerequisites
-- Julia language fluency essential.
+- Julia language fluency essential
+- Understanding of asynchronous programming principles
 - Git-workflow familiarity strongly preferred.
 - General familiarity with data science workflows
 
 ### Your contribution
-* You will familiarize yourself with MLJ, MLFlow and MLFlowClient.jl client APIs.
-* Implement functionality to upload to MLFlow machine learning
-  model hyper-parameters, performance evaluations, and
-  artifacts encapsulating the trained model. 
-* Implement functionality allowing for the live tracking of learning
-  for iterative models, such as neural networks, by hooking in to
-  [MLJIteration.jl](https://github.com/JuliaAI/MLJIteration.jl).
+* You will familiarize yourself with MLJ, MLflow and MLflowClient.jl client APIs.
+* You will familiarize yourself with the MLJFlow.jl package providing MLJ <--> MLflow integration
+* Implement changes needed to allow correct *asynchronous* logging of model performance evaluations
+* Extend logging to (parallelized) model tuning (MLJ's `TunedModel` wrapper)
+* Extend logging to controlled training of iterative models (MLJ's `IteratedModel` wrapper)
+
 
 ### References
-* [MLFlow](https://mlflow.org) website.
-* [MLFlow REST API](https://mlflow.org/docs/latest/rest-api.html).
-* [MLFlowClient.jl](https://github.com/JuliaAI/MLFlowClient.jl)
+* [MLflow](https://mlflow.org) website.
+* [MLflow REST API](https://mlflow.org/docs/latest/rest-api.html).
+* [MLJFlow.jl](https://github.com/JuliaAI/MLJFlow.jl)
+* [MLflowClient.jl](https://github.com/JuliaAI/MLFlowClient.jl)
 * [MLJIteration.jl](https://github.com/JuliaAI/MLJIteration.jl)
+* [Issue on asynchronous reporting](https://github.com/JuliaAI/MLJFlow.jl/issues/26)
 
-**Mentors.** [Deyan Dyankov](https://github.com/deyandyankov) (to be confirmed),
-[Anthony Blaom](https://ablaom.github.io/), [Diego
-Arenas](https://github.com/darenasc).
+**Mentors.** [Anthony Blaom](https://ablaom.github.io/)
 
 
 ## Speed demons only need apply
@@ -179,83 +234,3 @@ In this project you will:
 - [Data front end](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/#Implementing-a-data-front-end-1) for MLJ models.
 
 **Mentors.** [Anthony Blaom](https://ablaom.github.io), Okon Samuel.
-
-## Correcting for class imbalance in classification problems
-
-Improve and extend Julia's offering of algorithms for correcting class
-imbalance, with a view to integration into MLJ and elsewhere.
-
-**Difficulty.** Easy - moderate. **Duration.** 350 hours
-
-### Description
-
-Many classification algorithms do not perform well when there is a
-class imbalance in the target variable (for example, many more
-positives than negatives). There are number of well-known data
-preprocessing algorithms, such as oversampling, for compensating for
-class imbalance. See for instance the python package
-[imbalance-learn](https://imbalanced-learn.org/stable/).
-
-The Julia package [ClassImbalance.jl](https://github.com/bcbi/ClassImbalance.jl)
-provides some native Julia class imbalance algorithms. For wider
-adoption it is proposed that:
-
-- ClassImbalance.jl be made more data-generic by supporting the   [MLUtils.jl](https://github.com/JuliaML/MLUtils.jl) `getobs` interface (original documentation [here](https://mldatapatternjl.readthedocs.io/en/latest/documentation/container.html) which now (mostly) includes tabular data implementing the 
-  [Tables.jl](https://github.com/JuliaData/Tables.jl)) API. Currently
-  there is only support for an old version of DataFrames.jl. 
-  
-- ClassImbalance.jl implements one or more general transformer API's, such
-  the ones provided by
-  [TableTransforms.jl](https://github.com/JuliaML/TableTransforms.jl),
-  [MLJ](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/),
-  and
-  [FeatureTransforms.jl](https://github.com/invenia/FeatureTransforms.jl)
-  (a longer term goal is for MLJ to support the TableTransforms.jl API)
-  
-- Other Julia-native class imbalance algorithms be added
-
-**Mentor.** [Anthony Blaom](https://ablaom.github.io/).
-
-
-### Prerequisites
-
-- Julia language fluency is essential.
-
-- An understanding of the class imbalance phenomena essential. A
-  detailed understanding of at least one class imbalance algorithm
-  essential.
-
-- Git-workflow familiarity is strongly preferred.
-
-- A familiarity with machine learning goals and workflow preferred
-	
-
-### Your contribution
-
-- Familiarize yourself with the existing ClassImbalance package,
-  including known issues
-
-- Familiarize yourself with the Tables.jl interface
-
-- Assess the merits of different transformer API choices and choose
-  one in consultation with your mentor
-  
-- Implement the proposed improvements in parallel with testing and
-  documentation additions to the package. Testing and documentation
-  must be up-to-date before new algorithms are added. 
-  
-
-### References
-
-- [ClassImbalance.jl](https://github.com/bcbi/ClassImbalance.jl) 
-
-- [TableTransforms.jl](https://github.com/JuliaML/TableTransforms.jl) Github
-	repository.
-
-- [Tables.jl](https://github.com/JuliaData/Tables.jl)
-
-- [Specification of the MLJ model API](https://alan-turing-institute.github.io/MLJ.jl/dev/adding_models_for_general_use/). 
-
-- [FeatureTransforms.jl](https://github.com/invenia/FeatureTransforms.jl)
-
-- [The `getobs` data container interface](https://mldatapatternjl.readthedocs.io/en/latest/documentation/container.html)
