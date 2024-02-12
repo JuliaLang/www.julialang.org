@@ -16,10 +16,6 @@ An informal consensus process is used to review and merge pull requests, and a s
 
 A larger set of individuals participates as "triage" members of the JuliaLang GitHub organization; they have permissions to organize and label the issues and pull requests.
 
-## Community Communication Channels
-
-A number of [official community channels](/community/#community_channels) provide venues for discussion, collaboration, and media. Each is managed by an independent set of administrators and moderators whose role is largely to ensure a safe and welcoming environment, with all participants respecting the [Julia Community Standards](https://julialang.org/community/standards/).
-
 ## Julia Stewards
 
 One official group of people representing the Julia project does exist: [Julia Stewards](/community/stewards/). This group exists to handle conflict resolution and reports of inappropriate or problematic behavior in the Julia community and ecosystem. The current stewards are: Milan Bouchet-Valat, Simon Byrne, Tim Holy, Katharine Hyatt, Steven Johnson, Stefan Karpinski, and Viral Shah. This group gets (rare) emails about potentially problematic situations and confidentially discusses and decides on what to do about them. The stewards group is not responsible for making any kinds of technical decisions or steering the project in any other way, it just exists to handle complaints and disputes, which fortunately are exceedingly rare.
