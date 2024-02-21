@@ -23,10 +23,10 @@ Mentor: [Karandeep Singh](https://github.com/kdpsingh)
 
 # Project Ideas for 2024
 
-Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reachout to the respective mentor(s).
+Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reach out to the respective mentor(s).
 
 ## Unify and Enhance Taija.jl Usage Guides and Core Documentation
 
-
+[Taija](https://github.com/JuliaTrustworthyAI) is an organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Currently, documentation is hosted separately for each package. The goal of this project is to unify and enhance the existing documentation following the example of [SciML](https://docs.sciml.ai/Overview/stable/). We also plan to fully automate documentation workflows by leveraging the interplay between Documenter.jl and Quarto (see [here](https://forem.julialang.org/kellertuer/render-quarto-tutorials-in-documenterjl-with-github-actions-3fo)). If you are interested in Trustworthy AI, Julia, open science and technical writing, then this project is ideal for you. 
 
 Mentor: [Patrick Altmeyer](https://github.com/kdpsingh)
