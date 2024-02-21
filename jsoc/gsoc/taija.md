@@ -24,7 +24,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 **Project Overview:** [Llama2.jl](https://github.com/cafaxo/Llama2.jl) is a Julia native port for Llama architectures, originally based on [llama2.c](https://github.com/karpathy/llama2.c). This project aims to enhance Llama2.jl by implementing GPU support through KernelAbstraction.jl, significantly improving its performance.
 
-**Mentor:** [Cameron Pfiffer](https://github.com/cpfiffer)
+**Mentor:** [Patrick Altmeyer](https://github.com/pat-alt)
 
 **Project Difficulty**: Hard
 
@@ -40,11 +40,25 @@ There is a high overlap with organizations, you might be also interested in:
 - Comprehensive documentation and examples demonstrating the performance improvements
 - Contribution to llama2.jl's existing codebase and documentation
 
-## Project 2: Conformal Prediction Meets Bayes (*Predictive Uncertainty*)
+## Project 2: Enhancing Conformal Prediction with Conformal Training, Bayes and Additional Methods (*Predictive Uncertainty*)
 
+**Project Overview:** [Llama2.jl](https://github.com/cafaxo/Llama2.jl) is a Julia native port for Llama architectures, originally based on [llama2.c](https://github.com/karpathy/llama2.c). This project aims to enhance Llama2.jl by implementing GPU support through KernelAbstraction.jl, significantly improving its performance.
 
+**Mentor:** [Patrick Altmeyer](https://github.com/pat-alt)
 
-## Hybrid Modelling Projects
+**Project Difficulty**: Hard
+
+**Estimated Duration**: 350 hours
+
+**Ideal Candidate Profile:**
+- Proficiency in Julia programming
+- Understanding of GPU computing
+- Experience with KernelAbstractions.jl
+
+**Project Goals and Deliverables:**
+- Implementation of GPU support in llama2.jl
+- Comprehensive documentation and examples demonstrating the performance improvements
+- Contribution to llama2.jl's existing codebase and documentation
 
 ## How to Contact Us
 
