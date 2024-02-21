@@ -20,9 +20,7 @@ There is a high overlap with organizations, you might be also interested in:
 - [Projects with MLJ.jl](https://julialang.org/jsoc/gsoc/MLJ/) - For more traditional machine learning projects
 - [Projects with FluxML](https://fluxml.ai/gsoc/) - For projects around Flux.jl, the backbone of Julia's deep learning ecosystem
 
-## Model Explainability Projects
-
-### Project 1: Enhancing llama2.jl with GPU Support
+## Project 1: Counterfactual Regression (*Model Explainability*)
 
 **Project Overview:** [Llama2.jl](https://github.com/cafaxo/Llama2.jl) is a Julia native port for Llama architectures, originally based on [llama2.c](https://github.com/karpathy/llama2.c). This project aims to enhance Llama2.jl by implementing GPU support through KernelAbstraction.jl, significantly improving its performance.
 
@@ -42,7 +40,9 @@ There is a high overlap with organizations, you might be also interested in:
 - Comprehensive documentation and examples demonstrating the performance improvements
 - Contribution to llama2.jl's existing codebase and documentation
 
-## Predictive Uncertainty Projects
+## Project 2: Conformal Prediction Meets Bayes (*Predictive Uncertainty*)
+
+
 
 ## Hybrid Modelling Projects
 

@@ -20,3 +20,13 @@ Below you can find a running list of potential GSoD projects. If any of these ar
 Today, there is no clear option for R users to make the transition to Julia. [Tidier.jl](https://github.com/kdpsingh/Tidier.jl) is working to solve this problem by building the entire tidyverse ecosystem from the ground up in Julia. The tidyverse is one of the main reasons developers stick with the R programming language, despite the many benefits of a modern programming language like Julia. We plan to leverage Tidier.jl to usher in the next 1 million Julia users. 
 
 Mentor: [Karandeep Singh](https://github.com/kdpsingh)
+
+# Project Ideas for 2024
+
+Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reachout to the respective mentor(s).
+
+## Unify and Enhance Taija.jl Usage Guides and Core Documentation
+
+
+
+Mentor: [Patrick Altmeyer](https://github.com/kdpsingh)
