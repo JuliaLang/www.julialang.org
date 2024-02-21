@@ -1,7 +1,5 @@
 # Taija Projects
 
-![Taija Logo](https://raw.githubusercontent.com/TrustworthyAIJulia/.github/main/profile/www/wide_logo.png)
-
 [Taija](https://github.com/JuliaTrustworthyAI) is an organization organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Taija currently covers a range of approaches towards making AI systems more trustworthy:
 
 - Model Explainability ([CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl))
@@ -70,4 +68,6 @@ There is a high overlap with organizations, you might be also interested in:
 We'd love to hear your ideas and discuss potential projects with you.
 
 Probably the easiest way is to join our [JuliaLang Slack](https://julialang.org/slack/) and join the `#taija` channel. You can also post a GitHub Issue on our organization [repo](https://github.com/JuliaTrustworthyAI/.github/issues).
+
+[![Taija Logo](https://raw.githubusercontent.com/TrustworthyAIJulia/.github/main/profile/www/wide_logo.png)](https://github.com/JuliaTrustworthyAI)
 
