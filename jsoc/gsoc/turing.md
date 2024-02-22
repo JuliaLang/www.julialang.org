@@ -68,16 +68,9 @@ The aim of this project is to enhance GPU support for both Bijectors.jl and Norm
 **Project length:** 350 hrs
 
 **Description:**
-At the moment there is currently no support for running a Turing model in a “batched” mode.
+This project aims to introduce a `batched mode` to Bijectors.jl and NormalizingFlows.jl, which are built on top of Bijectors.jl.
 
-When one wants to run, say, 2 chains in parallel for a given model, the current approach is to in effect to call `sample(model, ...)` twice.
-Of course, one can parallelize these sample calls across multiple cores, etc. and this is already supported in Turing.jl.
+Put simply, we want to enable users to provide multiple inputs to the model simultaneously by “stacking” the parameters into a higher-dimensional array.
 
-What is not yet supported, is to, say, run 2 chains at the same time taking by “stacking” the parameters into a higher-dimensional array, e.g. if the parameters θ is a Vector of values, then we can stack them into a Matrix of size length(θ) × 2 and then execute the model on this instead.
-
-Turing.jl supports general Julia code, which might make universal batch support challenging. However, it's feasible to implement batch support for a significant number of models, or we can at least bring batch support to packages like NormalizingFlows.jl and Bijectors.jl.
-
-The project will likely involve:
-Making changes internally to DynamicPPL.jl, the DSL of Turing.jl, to allow batching.
-Develop a mechanism that signals the code to process the given input as a batch rather than an individual entry. A preliminary implementation can be found [here](https://github.com/torfjelde/Batching.jl).  
-Implementing batch support for Bijectors.jl and NormalizingFlows.jl may involve similar thinking as the above GPU support project.
+The implementation can take various forms, as a team of developers who care about both performance and user experience, we are open to different approaches and discussions.
+One possible approach is to develop a mechanism that signals the code to process the given input as a batch rather than as individual entries. A preliminary implementation can be found [here](https://github.com/torfjelde/Batching.jl).
