@@ -19,4 +19,4 @@ Below you can find a running list of potential GSoD projects. If any of these ar
 
 [Taija](https://github.com/JuliaTrustworthyAI) is an organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Currently, documentation is hosted separately for each package. The goal of this project is to unify and enhance the existing documentation following the example of [SciML](https://docs.sciml.ai/Overview/stable/). We also plan to fully automate documentation workflows by leveraging the interplay between Documenter.jl and Quarto (see [here](https://forem.julialang.org/kellertuer/render-quarto-tutorials-in-documenterjl-with-github-actions-3fo)). If you are interested in Trustworthy AI, Julia, open science and technical writing, then this project is ideal for you. 
 
-Mentor: [Patrick Altmeyer](https://github.com/kdpsingh)
+Mentor: [Patrick Altmeyer](https://github.com/pat-alt)
