@@ -46,7 +46,7 @@ As an example of some ongoing work that attempts to take a step in this directio
 
 ## GPU support for NormalizingFlows.jl and Bijectors.jl
 
-**Mentors:** Tor Fjelde, Xianda Sun, Kai Xu, Hong Ge
+**Mentors:** Tor Fjelde, Tim Hargreaves, Xianda Sun, Kai Xu, Hong Ge
 
 **Project difficulty:** Hard
 
