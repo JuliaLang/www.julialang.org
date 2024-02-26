@@ -1,8 +1,6 @@
 # Taija Projects
 
-![Taija Logo](https://raw.githubusercontent.com/TrustworthyAIJulia/.github/main/profile/www/wide_logo.png)
-
-[Taija](https://github.com/JuliaTrustworthyAI) is an organization organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Taija currently covers a range of approaches towards making AI systems more trustworthy:
+[Taija](https://github.com/JuliaTrustworthyAI) is an organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Taija currently covers a range of approaches towards making AI systems more trustworthy:
 
 - Model Explainability ([CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl))
 - Algorithmic Recourse ([CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl), [AlgorithmicRecourseDynamics.jl](https://github.com/JuliaTrustworthyAI/AlgorithmicRecourseDynamics.jl))
@@ -24,7 +22,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 **Project Overview:** [ConformalPrediction.jl](https://github.com/JuliaTrustworthyAI/ConformalPrediction.jl) is a package for Predictive Uncertainty Quantification through Conformal Prediction for Machine Learning models trained in MLJ. This project aims to enhance ConformalPrediction.jl by adding support for [Conformal(ized) Bayes](https://github.com/JuliaTrustworthyAI/ConformalPrediction.jl/issues/64). 
 
-**Mentor:** [Patrick Altmeyer](https://github.com/pat-alt)
+**Mentor:** [Patrick Altmeyer](https://github.com/pat-alt) and/or [Mojtaba Farmanbar](https://nl.linkedin.com/in/mfarmanbar)
 
 **Project Difficulty**: Medium
 
@@ -70,4 +68,6 @@ There is a high overlap with organizations, you might be also interested in:
 We'd love to hear your ideas and discuss potential projects with you.
 
 Probably the easiest way is to join our [JuliaLang Slack](https://julialang.org/slack/) and join the `#taija` channel. You can also post a GitHub Issue on our organization [repo](https://github.com/JuliaTrustworthyAI/.github/issues).
+
+[![Taija Logo](https://raw.githubusercontent.com/TrustworthyAIJulia/.github/main/profile/www/wide_logo.png)](https://github.com/JuliaTrustworthyAI)
 
