@@ -84,7 +84,14 @@ leveraging KernelAbstractions.jl, AMDGPU.jl and Metal.jl.
 
 **Expected difficulty**: medium.
 
-**Expected outcome**: Graph convolution speedup for AMD GPU and Apple hardaware, performance roughly on par with CUDA.
+**Expected outcome**: Graph convolution speedup for AMD GPU and Apple hardware, performance roughly on par with CUDA.
+
+### Implement layers for Temporal Graphs
+A temporal graph is a graph whose topology changes over time. We currently support this with the [TemporalSnapshotsGNNGraph](https://github.com/CarloLucibello/GraphNeuralNetworks.jl/blob/master/src/GNNGraphs/temporalsnapshotsgnngraph.jl) type, but none of the current graph convolution and pooling layers support temporal graphs as input. Currently, there are a few convolutional layers that take as input the special case of static graphs with temporal features. In this project, we will implement new layers that take temporal graphs as input, and we will create tutorials demonstrating how to use them.
+
+**Duration**: 350h.
+**Expected difficulty**: medium.
+**Expected outcome**: Implementation of new convolutional layers for temporal graphs and example tutorials.
 
 
 ## Recommended skills
