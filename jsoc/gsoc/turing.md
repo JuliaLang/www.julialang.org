@@ -73,4 +73,24 @@ This project aims to introduce a `batched mode` to Bijectors.jl and NormalizingF
 Put simply, we want to enable users to provide multiple inputs to the model simultaneously by “stacking” the parameters into a higher-dimensional array.
 
 The implementation can take various forms, as a team of developers who care about both performance and user experience, we are open to different approaches and discussions.
-One possible approach is to develop a mechanism that signals the code to process the given input as a batch rather than as individual entries. A preliminary implementation can be found [here](https://github.com/torfjelde/Batching.jl).
+One possible approach is to develop a mechanism that signals the code to process the given input as a batch rather than as individual entries. 
+A preliminary implementation can be found [here](https://github.com/torfjelde/Batching.jl).
+
+## Targets for Benchmarking Samplers with vectorization, GPU and high-order derivative supports
+
+**Mentors:** Kai Xu, Hong Ge
+
+**Project difficulty:** Medium
+
+**Project length:** 175 hrs
+
+**Description:**
+The project aims to develop a comprehensive collection of target distributions designed to study and benchmark Markov Chain Monte Carlo (MCMC) samplers in various computational environments. This collection will be an extension and enhancement of the existing Julia package, [VecTargets.jl](https://github.com/xukai92/VecTargets.jl), which currently offers limited support for vectorization, GPU acceleration, and high-order derivatives. The main objectives of this project include:
+  
+* Ensuring that the target distributions fully support vectorization and GPU acceleration
+* Making high-order derivatives (up to 3rd order) seamlessly integrable with the target distributions
+* Creating a clear and comprehensive documentation that outlines the capabilities and limitations of the project, including explicit details on cases where vectorization, GPU acceleration, or high-order derivatives are not supported.
+* Investigating and documenting how different Automatic Differentiation (AD) packages available in Julia can be combined or utilized to achieve efficient and accurate computation of high-order derivatives.
+  
+By achieving these goals, the project aims to offer a robust framework that can significantly contribute to the research and development of more efficient and powerful MCMC samplers, thereby advancing the field of computational statistics and machine learning.
+
