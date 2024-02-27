@@ -119,4 +119,4 @@ to learn) to write fast code.
 **Expected results**: Scalable, production quality visualization of scientific results
 for Trixi.jl.
 
-**Mentors**: [Michael Schlottke-Lakemper](https://github.com/sloede), [Hendrik Ranocha](https://github.com/ranocha)
+**Mentors**: [Michael Schlottke-Lakemper](https://github.com/sloede), [Benedict Geihe](https://www.mi.uni-koeln.de/NumSim/dr-benedict-geihe/)
