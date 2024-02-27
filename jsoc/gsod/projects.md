@@ -11,12 +11,12 @@ Learn from one of our technical writers about their experience with GSoD:
 <iframe width="100%" height="450" src="https://www.youtube-nocookie.com/embed/6s9J-ObQaAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
 
-# Project Ideas for 2023
+# Project Ideas for 2024
 
-Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reachout to the respective mentor(s).
+Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reach out to the respective mentor(s).
 
-## Build Tidier.jl Usage Guides and Core Documentation
+## Unify and Enhance Taija.jl Usage Guides and Core Documentation
 
-Today, there is no clear option for R users to make the transition to Julia. [Tidier.jl](https://github.com/kdpsingh/Tidier.jl) is working to solve this problem by building the entire tidyverse ecosystem from the ground up in Julia. The tidyverse is one of the main reasons developers stick with the R programming language, despite the many benefits of a modern programming language like Julia. We plan to leverage Tidier.jl to usher in the next 1 million Julia users. 
+[Taija](https://github.com/JuliaTrustworthyAI) is an organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Currently, documentation is hosted separately for each package. The goal of this project is to unify and enhance the existing documentation following the example of [SciML](https://docs.sciml.ai/Overview/stable/). We also plan to fully automate documentation workflows by leveraging the interplay between Documenter.jl and Quarto (see [here](https://forem.julialang.org/kellertuer/render-quarto-tutorials-in-documenterjl-with-github-actions-3fo)). If you are interested in Trustworthy AI, Julia, open science and technical writing, then this project is ideal for you. 
 
-Mentor: [Karandeep Singh](https://github.com/kdpsingh)
+Mentor: [Patrick Altmeyer](https://github.com/pat-alt)
