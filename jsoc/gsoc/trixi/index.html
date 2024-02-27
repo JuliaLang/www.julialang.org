@@ -155,6 +155,23 @@
 <p><strong>Recommended skills</strong>: Good knowledge of at least one numerical discretization scheme  &#40;e.g., finite volume, discontinuous Galerkin, finite differences&#41;; initial knowledge  in automatic differentiation; preferably the ability &#40;or eagerness to learn&#41; to write fast code</p>
 <p><strong>Expected results</strong>: Contributions to state of the art and production-quality automatic differentiation tools for Trixi.jl</p>
 <p><strong>Mentors</strong>: <a href="https://github.com/ranocha">Hendrik Ranocha</a>, <a href="https://github.com/sloede">Michael Schlottke-Lakemper</a></p>
+<h2 id="advanced_visualization_and_in-situ_visualization_with_paraview"><a href="#advanced_visualization_and_in-situ_visualization_with_paraview">Advanced visualization and in-situ visualization with ParaView</a></h2>
+<p><strong>Difficulty</strong>: Medium</p>
+<p><strong>Project size</strong>: 175 hours or 350 hours, depending on the chosen subtasks</p>
+<p>Visualizing and documenting results is a crucial part of the scientific process. In <a href="https://github.com/trixi-framework/Trixi.jl/">Trixi.jl</a>, we rely for visualization on a combination of pure Julia packages &#40;such as <a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> and <a href="https://github.com/MakieOrg/Makie.jl">Makie.jl</a>&#41; and the open-source scientific visualization suite <a href="https://www.paraview.org">ParaView</a>. While the Julia solutions are excellent for visualizing 1D and 2D data, ParaView is the first choice for creating publication-quality figures from 3D data.</p>
+<p>Currently, visualization with ParaView is only possible after a simulation is finished and requires an additional postprocessing step, where the native output files of Trixi.jl are converted to <a href="https://vtk.org">VTK</a> files using <a href="https://github.com/trixi-framework/Trixi2Vtk.jl">Trixi2Vtk.jl</a>. This extra step makes it somewhat inconvenient to use, especially when the current state of a numerical solution is to be checked during a long, multi-hour simulation run.</p>
+<p>The goal of this project is therefore to make such visualizations easier by introducing two significant improvements:</p>
+<ul>
+<li><p>Add the capability to write out native <a href="https://docs.vtk.org/en/latest/design_documents/VTKFileFormats.html#vtkhdf-file-format">VTKHDF</a> files directly during a simulation, in serial and parallel.</p>
+</li>
+<li><p>Enable parallel in-situ visualization of the results, i.e., to visualize results by connecting ParaView to a currently running, parallel Trixi.jl simulation using the <a href="https://catalyst-in-situ.readthedocs.io/en/latest/index.html">Catalyst API</a>.</p>
+</li>
+</ul>
+<p>Both tasks are related in that they require the student to familiarize themselves with both the data formats internally used in Trixi.jl as well as the visualization pipelines of VTK/ParaView. However, they can be performed independently and thus this project is suitable for either a 175 hour or a 350 hour commitment, depending on whether one or both tasks are to be tackled.</p>
+<p>This project is good for both software engineers interested in the fields of visualization and scientific data analysis as well as those students who are interested in pursuing graduate research in the field of numerical analysis and high-performance computing.</p>
+<p><strong>Recommended skills</strong>: Some knowledge of at least one numerical discretization scheme &#40;e.g., finite volume, discontinuous Galerkin, finite differences&#41; is helpful; initial knowledge about visualization or parallel processing; preferably the ability &#40;or eagerness to learn&#41; to write fast code.</p>
+<p><strong>Expected results</strong>: Scalable, production quality visualization of scientific results for Trixi.jl.</p>
+<p><strong>Mentors</strong>: <a href="https://github.com/sloede">Michael Schlottke-Lakemper</a>, <a href="https://www.mi.uni-koeln.de/NumSim/dr-benedict-geihe/">Benedict Geihe</a></p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
