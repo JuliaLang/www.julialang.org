@@ -9,7 +9,6 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Compiler](/jsoc/gsoc/compiler/) – work on the Julia compiler's internals to make things better for everyone.
 <!--* [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.-->
 * [Ferrite FEM](/jsoc/gsoc/ferrite-fem/) - A modern finite element toolbox in Julia.
-* [Loop Optimization](/jsoc/gsoc/loopopt/) - Loop analysis and optimization
 * [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
 * [GUI](/jsoc/gsoc/gui/) - Projects related to Graphical User Interface toolkits
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
