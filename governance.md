@@ -1,14 +1,20 @@
 # Julia Governance
 
-There are a number of entities surrounding the Julia programming language. Understandably, many people are not entirely clear on what these groups are and what their relationship to each other is. This page sheds light on the various entities and the people involved in them.
+The Julia project is a large collaborative open source endeavor founded by [Jeff Bezanson](https://github.com/JeffBezanson) ([Github](https://github.com/JeffBezanson), [Twitter](https://twitter.com/JeffBezanson)), [Alan Edelman](https://en.wikipedia.org/wiki/Alan_Edelman) ([MIT](https://math.mit.edu/~edelman/)), [Stefan Karpinski](https://en.wikipedia.org/wiki/Stefan_Karpinski) ([Github](https://github.com/StefanKarpinski), [Twitter](https://twitter.com/StefanKarpinski)), and [Viral B. Shah](https://en.wikipedia.org/wiki/Viral_B._Shah) ([Github](https://github.com/ViralBShah), [Twitter](https://twitter.com/Viral_B_Shah)) with the initial release of the Julia programming language.
+The project now encompasses many individuals, organizations, and groups collaborating across varying platforms and venues.
+The communal nature of open source makes it difficult to precisely define where the official Julia project ends and the greater community begins, which is advantageous but can make it challenging to understand the governance structures.
+This page describes some of those structures.
 
 \toc
 
 ## Julia
 
-The Julia project was founded by [Jeff Bezanson](https://github.com/JeffBezanson) ([Github](https://github.com/JeffBezanson), [Twitter](https://twitter.com/JeffBezanson)), [Alan Edelman](https://en.wikipedia.org/wiki/Alan_Edelman) ([MIT](https://math.mit.edu/~edelman/)), [Viral B. Shah](https://en.wikipedia.org/wiki/Viral_B._Shah) ([Github](https://github.com/ViralBShah), [Twitter](https://twitter.com/Viral_B_Shah)) and [Stefan Karpinski](https://en.wikipedia.org/wiki/Stefan_Karpinski) ([Github](https://github.com/StefanKarpinski), [Twitter](https://twitter.com/StefanKarpinski)). It consists of some code and a community of people who work on that code. The most clear cut line that can be drawn is that there is a set of people who have commit access to the [JuliaLang](https://github.com/JuliaLang) GitHub organization: there are currently 66 committers (39 active and 27 dormant). This set of people doesn’t really define the project, however, since there are many people who are prolific contributors to the Julia ecosystem but who do not have “commit bit.” The communal nature of open source makes it difficult to precisely define where the Julia project ends and the greater community begins, which is exactly how we like it.
+Fundamentally, the project consists of some code and a community of people who work on that code. Some of this code is managed within the [JuliaLang GitHub organization](https://github.com/JuliaLang), with multiple teams working together to develop and maintain the individual repositories.
+One particularly important team is that of the "committers": these 40-some individuals have commit privileges and work together to maintain the repositories, including [`julia`](https://github.com/JuliaLang/julia) itself.
+This set of people doesn’t really define the project, however, since there are many people who are prolific contributors to the Julia ecosystem but who do not have this “commit bit.”
+An informal consensus process is used to review and merge pull requests, and a standing meeting — the [triage call](/community/working-groups/#triage_call) — aims to provide guidance and help move contentious issues forward.
 
-The Julia Project also employs a Community Manager. The role began with [Alex Arslan in 2017](https://discourse.julialang.org/t/welcome-alex-as-our-julia-community-manager/3756) and it is currently filled by [Logan Kilpatrick](https://twitter.com/OfficialLoganK) who started in early 2020.
+A larger set of individuals participates as "triage" members of the JuliaLang GitHub organization; they have permissions to organize and label the issues and pull requests.
 
 ## Julia Stewards
 
