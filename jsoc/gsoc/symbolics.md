@@ -1,5 +1,17 @@
 # Symbolic computation project ideas
 
+## Efficient Tensor Differentiation
+
+Implement the [D* algorithm](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/main-65.pdf) for tensor expressions.
+
+**Recommended Skills**: High school/freshman calculus and basic graph theory (optional)
+
+**Expected Results**: A working implementation of the D* algorithm that is capable of performing efficient differentiations on tensor expressions.
+
+**Mentors**: [Yingbo Ma](https://github.com/YingboMa)
+
+**Duration**: 350 hours
+
 ## Symbolic root finding
 
 Symbolics.jl have robust ways to convert symbolic expressions into multi-variate polynomials. There is now a robust Groebner basis implementation in (Groebner.jl). Finding roots and varieties of sets of polynomials would be extremely useful in many applications. This project would involve implementing various techniques for solving polynomial systems, and where possible other non-linear equation systems. A good proposal should try to enumerate a number of techniques that are worth implementing, for example:
