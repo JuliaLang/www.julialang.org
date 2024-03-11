@@ -80,6 +80,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * 15.093 / 6.255, Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos), Fall 2014
     * [15.S60](https://github.com/IainNZ/ORSoftwareTools2014), Software Tools for Operations Research (Iain Dunning), Spring 2014
     * [15.083](https://stellar.mit.edu/S/course/15/sp14/15.083/), Integer Programming and Combinatorial Optimization (Prof. Juan Pablo Vielma), Spring 2014
+* National University of Singapore
+    * [EE5311](https://nusmods.com/courses/EE5311/differentiable-and-probabilistic-computing), Differentiable and Probabilistic Computing (Mandar Chitre), 2024-
 * Northeastern University, Fall 2016
     * MTH3300: Applied Probability &amp; Statistics
 * [Óbuda University](https://www.uni-obuda.hu), [John von Neumann Faculty of Informatics, Institute of Applied Mathematics](https://nik.uni-obuda.hu)
