@@ -7,15 +7,15 @@ We have our project ideas organized below roughly by domain but you can also see
 @@tight-list
 * [BayesianOptimization.jl](/jsoc/gsoc/bayesopt/) - a package for global optimization of black-box functions
 * [Compiler](/jsoc/gsoc/compiler/) – work on the Julia compiler's internals to make things better for everyone.
-* [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.
+<!--* [Documentation tooling](/jsoc/gsoc/documenter/) - Tooling related to documentation generation, docstrings etc.-->
 * [Ferrite FEM](/jsoc/gsoc/ferrite-fem/) - A modern finite element toolbox in Julia.
-* [Loop Optimization](/jsoc/gsoc/loopopt/) - Loop analysis and optimization
 * [Graph neural networks](/jsoc/gsoc/gnn/) - Deep learning on graphs with GraphNeuralNetworks.jl.
 * [GUI](/jsoc/gsoc/gui/) - Projects related to Graphical User Interface toolkits
 * [High Performance and Parallel Computing](/jsoc/gsoc/hpc/) – write code that runs on lots of machines, goes really fast, processes lots of data, or all three.
 * [Images](/jsoc/gsoc/images/) – extend Julia's suite of tools for visualization and analysis of images.
 * [JuliaConstraints](/jsoc/gsoc/juliaconstraints/) - A collection of tools for Constraint Programming in Julia
 * [JuliaDynamics](/jsoc/gsoc/juliadynamics/) - Dynamical systems, complex systems and nonlinear dynamics in Julia
+* [JuliaGenAI](/jsoc/gsoc/juliagenai/) - Research and applications of Generative AI in Julia
 * [JuliaHealth](/jsoc/gsoc/juliahealth/) - Using the Julia programming language to improve medicine, health care, public health, and biomedical research.
 * [JuliaReach](/jsoc/gsoc/juliareach/) - Reachability analysis for dynamical systems
 * [JuliaStats](/jsoc/gsoc/juliastats/) - Statistical analysis in Julia
@@ -29,6 +29,7 @@ We have our project ideas organized below roughly by domain but you can also see
 * [Signal processing](/jsoc/gsoc/kalmanbucy/) - Continuous time Signal Processing
 * [Symbolic computation](/jsoc/gsoc/symbolics/) - User friendly symbolic programming
 * [Tabular Data](/jsoc/gsoc/tables/) - Working with data
+* [Taija](/jsoc/gsoc/taija/) - Trustworthy Artificial Intelligence in Julia
 * [Turing](/jsoc/gsoc/turing/) - for probabilistic modelling and probabilistic programming
 * [Topology optimisation](/jsoc/gsoc/topopt/) - improving topology optimisation tools in Julia.
 * [Trixi.jl](/jsoc/gsoc/trixi/) - modern computational fluid dynamics with Trixi.jl in Julia.

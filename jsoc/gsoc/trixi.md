@@ -68,49 +68,55 @@ automatic differentiation tools for Trixi.jl
 **Mentors**: [Hendrik Ranocha](https://github.com/ranocha), [Michael Schlottke-Lakemper](https://github.com/sloede)
 
 
-## Exploration of GPU computing
+## Advanced visualization and in-situ visualization with ParaView
 
-**Difficulty**: Medium (to hard, depending on the chosen subtasks)
+**Difficulty**: Medium
 
 **Project size**: 175 hours or 350 hours, depending on the chosen subtasks
 
-GPUs can provide considerable speedups compard to CPUs
-for computational fluid dynamic simulations of the kind performed in
-[Trixi.jl](https://github.com/trixi-framework/Trixi.jl/).
-Julia provides several ways to implement efficient code on GPUs such as 
-[CUDA.jl](https://github.com/JuliaGPU/CUDA.jl) for Nvidia GPUs, 
-[AMDGPU.jl](https://github.com/JuliaGPU/AMDGPU.jl) for AMD GPUs, and
-[KernelAbstractions.jl](https://github.com/JuliaGPU/KernelAbstractions.jl), which
-provides a single frontend to generate code for multiple GPU backends. In this project, we will
-likely work with CUDA.jl due to its maturity, but other options can be explored later as well.
+Visualizing and documenting results is a crucial part of the scientific process. In
+[Trixi.jl](https://github.com/trixi-framework/Trixi.jl/), we rely for visualization on a
+combination of pure Julia packages (such as
+[Plots.jl](https://github.com/JuliaPlots/Plots.jl) and
+[Makie.jl](https://github.com/MakieOrg/Makie.jl))
+and the open-source scientific visualization suite [ParaView](https://www.paraview.org).
+While the Julia solutions are excellent for visualizing 1D and 2D data, ParaView is the
+first choice for creating publication-quality figures from 3D data.
 
-The goal of this project is to implement a working subset of the functionality
-of [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) on GPUs, starting
-with a basic numerical scheme on Cartesian meshes in 2D. Based thereon,
-there are a lot of possibilities for extensions to more complex geometries and
-sophisticated discretizations.
+Currently, visualization with ParaView is only possible after a simulation is finished and
+requires an additional postprocessing step, where the native output files of Trixi.jl
+are converted to [VTK](https://vtk.org) files using
+[Trixi2Vtk.jl](https://github.com/trixi-framework/Trixi2Vtk.jl). This extra step makes it
+somewhat inconvenient to use, especially when the current state of a numerical solution
+is to be checked during a long, multi-hour simulation run.
 
-Possible subtasks in this project include
-- Write a simple 1D code on for CPUs, taking the methods implemented in
-  [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) as a blueprint.
-- Port the simple 1D CPU code to GPUs using one of the GPU packages as a prototype.
-- Prototype GPU implementations of existing kernels implemented in
-  [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/) by moving data from
-  the CPU to the GPU and back again explicitly.
-- Keep the data on the GPU after converting all kernels required for a simple simulation.
-- Extend the GPU implementations to more complex numerical methods and settings.
-- Extend the GPU implementations to different types of GPUs, using different
-  GPU programming packages in Julia.
-- Optimize and compare the performance of the implementations.
+The goal of this project is therefore to make such visualizations easier by introducing two
+significant improvements:
+
+* Add the capability to write out native
+  [VTKHDF](https://docs.vtk.org/en/latest/design_documents/VTKFileFormats.html#vtkhdf-file-format)
+  files directly during a simulation, in serial and parallel.
+* Enable parallel in-situ visualization of the results, i.e., to visualize results by
+  connecting ParaView to a currently running, parallel Trixi.jl simulation using the
+  [Catalyst API](https://catalyst-in-situ.readthedocs.io/en/latest/index.html).
+
+Both tasks are related in that they require the student to familiarize themselves with both
+the data formats internally used in Trixi.jl as well as the visualization pipelines of
+VTK/ParaView. However, they can be performed independently and thus this project is suitable
+for either a 175 hour or a 350 hour commitment, depending on whether one or both tasks are
+to be tackled.
 
 This project is good for both software engineers interested in the fields of
-numerical analysis and scientific machine learning as well as those students who
-are interested in pursuing graduate research in the field.
+visualization and scientific data analysis as well as those students who
+are interested in pursuing graduate research in the field of numerical analysis and
+high-performance computing.
 
-**Recommended skills**: Background knowledge in numerical analysis, working
-knowledge about GPU computing, and the ability to write fast code
+**Recommended skills**: Some knowledge of at least one numerical discretization scheme
+(e.g., finite volume, discontinuous Galerkin, finite differences) is helpful; initial
+knowledge about visualization or parallel processing; preferably the ability (or eagerness
+to learn) to write fast code.
 
-**Expected results**: Draft of a working subset of the functionality of [Trixi.jl](https://github.com/trixi-framework/Trixi.jl/)
-running efficiently on GPUs.
+**Expected results**: Scalable, production quality visualization of scientific results
+for Trixi.jl.
 
-**Mentors**: [Michael Schlottke-Lakemper](https://github.com/sloede), [Hendrik Ranocha](https://github.com/ranocha)
+**Mentors**: [Michael Schlottke-Lakemper](https://github.com/sloede), [Benedict Geihe](https://www.mi.uni-koeln.de/NumSim/dr-benedict-geihe/), [Johannes Markert](https://github.com/jmark)
