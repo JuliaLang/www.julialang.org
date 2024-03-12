@@ -11,24 +11,15 @@ That way, we can tailor your project to better suit your interests and skillset.
   **Skills**: C/C++ programming\
   **Difficulty**: Hard
 
-- **Parser improvement and replacement (175 hours)**
-
-  Error messages and infrastructure could use some work to track source locations more precisely.
-  This may be a large project. Contact me and @c42f for more details if this interests you.
-
-  See <https://github.com/JuliaLang/julia/pull/46372> for the current progress.
-
-  **Expected Outcomes**: Improve upon Julia parser error messages.\
-  **Skills**: Some familiarity with parsers\
-  **Difficulty**: Medium
-
 - **Macro hygiene re-implementation, to eliminate incorrect predictions inherent in current approach (350 hours)**
 
   This may be a good project for someone that wants to learn lisp/scheme! Our current algorithm runs
   in multiple passes, which means sometimes we compute the wrong scope for a variable in the earlier
   pass than when we assign the actual scope to each value. See
   <https://github.com/JuliaLang/julia/labels/macros>, and particularly issues such as
-  <https://github.com/JuliaLang/julia/issues/20241> and
+  <https://github.com/JuliaLang/julia/issues/20241>,
+  <https://github.com/JuliaLang/julia/issues/53667>,
+  <https://github.com/JuliaLang/julia/issues/53673> and
   <https://github.com/JuliaLang/julia/issues/34164>.
 
   **Expected Outcomes**: Ideally, re-implementation of hygienic macros. Realistically, resolving some or any of the `macros` issues.\
@@ -63,16 +54,17 @@ Another related side-project might be to explore adding Type information to the 
 
 ## Multi-threading Improvement Projects (175 hours each)
 
-A few ideas to get you started, in brief:
+Continuous on-going work is being done to improve the correctness and threaded code.
+A few ideas to get you started on how to join this effort, in brief, include:
 
-- Measure and optimize the performance of the `partr` algorithm, and add the ability to dynamically
-  scale it by workload size.
+- Measure and optimize the performance of the scheduler `partr` algorithm, and add the ability to dynamically
+  scale it by workload size. Or replace it with a `workstealing` implementation in Julia.
 
 - Automatic insertion, and subsequent optimization, of GC safe-points/regions, particularly around loops.
+  Similarly for `ccall`, implement the ability to define a particular `ccall` as being a safe-region.
 
-- Higher performance multi-threaded parallel-safe allocator for whole new *pages*.
-
-- More optimized atomic intrinsics for Julia.
+- Solve various thread-safety and data-race bugs in the runtime.
+  (e.g. <https://github.com/JuliaLang/julia/issues/49778> and <https://github.com/JuliaLang/julia/pull/42810>)
 
 Join the regularly scheduled multithreading call for discussion of any of these at [#multithreading
 BoF calendar invite][threadcall] on the Julia Language Public Events calendar.
