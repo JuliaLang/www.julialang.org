@@ -132,13 +132,8 @@
 <li><p><strong>LLVM AliasAnalysis &#40;175-350 hours&#41;</strong> The Julia language utilizes LLVM as a backend for code generation, so the quality of code generation is very important for performance. This means that there are plenty of opportunities for those with knowledge of or interest in LLVM to contribute via working on Julia&#39;s code generation process. We have recently encountered issues with memcpy information only accepting a single aliasing metadata argument, rather than separate information for the source and destination. There are other similar missing descriptive or optimization steps in the aliasing information we produce or consume by LLVM&#39;s passes.</p>
 <p><strong>Expected Outcomes</strong>: Improve upon the alias information &quot;LLVM level&quot; of Julia codegen.<br /><strong>Skills</strong>: C/C&#43;&#43; programming<br /><strong>Difficulty</strong>: Hard</p>
 </li>
-<li><p><strong>Parser improvement and replacement &#40;175 hours&#41;</strong></p>
-<p>Error messages and infrastructure could use some work to track source locations more precisely. This may be a large project. Contact me and @c42f for more details if this interests you.</p>
-<p>See <a href="https://github.com/JuliaLang/julia/pull/46372">https://github.com/JuliaLang/julia/pull/46372</a> for the current progress.</p>
-<p><strong>Expected Outcomes</strong>: Improve upon Julia parser error messages.<br /><strong>Skills</strong>: Some familiarity with parsers<br /><strong>Difficulty</strong>: Medium</p>
-</li>
 <li><p><strong>Macro hygiene re-implementation, to eliminate incorrect predictions inherent in current approach &#40;350 hours&#41;</strong></p>
-<p>This may be a good project for someone that wants to learn lisp/scheme&#33; Our current algorithm runs in multiple passes, which means sometimes we compute the wrong scope for a variable in the earlier pass than when we assign the actual scope to each value. See <a href="https://github.com/JuliaLang/julia/labels/macros">https://github.com/JuliaLang/julia/labels/macros</a>, and particularly issues such as <a href="https://github.com/JuliaLang/julia/issues/20241">https://github.com/JuliaLang/julia/issues/20241</a> and <a href="https://github.com/JuliaLang/julia/issues/34164">https://github.com/JuliaLang/julia/issues/34164</a>.</p>
+<p>This may be a good project for someone that wants to learn lisp/scheme&#33; Our current algorithm runs in multiple passes, which means sometimes we compute the wrong scope for a variable in the earlier pass than when we assign the actual scope to each value. See <a href="https://github.com/JuliaLang/julia/labels/macros">https://github.com/JuliaLang/julia/labels/macros</a>, and particularly issues such as <a href="https://github.com/JuliaLang/julia/issues/20241">https://github.com/JuliaLang/julia/issues/20241</a>, <a href="https://github.com/JuliaLang/julia/issues/53667">https://github.com/JuliaLang/julia/issues/53667</a>, <a href="https://github.com/JuliaLang/julia/issues/53673">https://github.com/JuliaLang/julia/issues/53673</a> and <a href="https://github.com/JuliaLang/julia/issues/34164">https://github.com/JuliaLang/julia/issues/34164</a>.</p>
 <p><strong>Expected Outcomes</strong>: Ideally, re-implementation of hygienic macros. Realistically, resolving some or any of the <code>macros</code> issues.<br /><strong>Skills</strong>: Lisp/Scheme/Racket experience desired but not necessarily required.<br /><strong>Difficulty</strong>: Medium</p>
 </li>
 <li><p><strong>Better debug information output for variables &#40;175 hours&#41;</strong></p>
@@ -151,15 +146,13 @@
 <p>Another related side-project might be to explore adding Type information to the coverage reports?</p>
 <p><strong>Recommended Skills</strong>: An eye for detail, a thrill for filing code issues, and the skill of breaking things.<br /><strong>Contact:</strong> <a href="https://github.com/vtjnash">Jameson Nash</a></p>
 <h2 id="multi-threading_improvement_projects_175_hours_each"><a href="#multi-threading_improvement_projects_175_hours_each">Multi-threading Improvement Projects &#40;175 hours each&#41;</a></h2>
-<p>A few ideas to get you started, in brief:</p>
+<p>Continuous on-going work is being done to improve the correctness and threaded code. A few ideas to get you started on how to join this effort, in brief, include:</p>
 <ul>
-<li><p>Measure and optimize the performance of the <code>partr</code> algorithm, and add the ability to dynamically scale it by workload size.</p>
+<li><p>Measure and optimize the performance of the scheduler <code>partr</code> algorithm, and add the ability to dynamically scale it by workload size. Or replace it with a <code>workstealing</code> implementation in Julia.</p>
 </li>
-<li><p>Automatic insertion, and subsequent optimization, of GC safe-points/regions, particularly around loops.</p>
+<li><p>Automatic insertion, and subsequent optimization, of GC safe-points/regions, particularly around loops. Similarly for <code>ccall</code>, implement the ability to define a particular <code>ccall</code> as being a safe-region.</p>
 </li>
-<li><p>Higher performance multi-threaded parallel-safe allocator for whole new <em>pages</em>.</p>
-</li>
-<li><p>More optimized atomic intrinsics for Julia.</p>
+<li><p>Solve various thread-safety and data-race bugs in the runtime. &#40;e.g. <a href="https://github.com/JuliaLang/julia/issues/49778">https://github.com/JuliaLang/julia/issues/49778</a> and <a href="https://github.com/JuliaLang/julia/pull/42810">https://github.com/JuliaLang/julia/pull/42810</a>&#41;</p>
 </li>
 </ul>
 <p>Join the regularly scheduled multithreading call for discussion of any of these at <a href="https://calendar.google.com/event?action&#61;TEMPLATE&amp;tmeid&#61;MzQ1MnZxMGNucGt2NGQwYW1zZjA4MzM5dGtfMjAyMTAyMTdUMTYzMDAwWiBqdWxpYWxhbmcub3JnX2tvbWF1YXFldDE0ZW9nOW9pdjNwNm83cG1nQGc&amp;tmsrc&#61;julialang.org_komauaqet14eog9oiv3p6o7pmg&#37;40group.calendar.google.com&amp;scp&#61;ALL">#multithreading BoF calendar invite</a> on the Julia Language Public Events calendar.</p>
