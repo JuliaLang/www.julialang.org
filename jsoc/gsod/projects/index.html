@@ -126,6 +126,130 @@
 </p>
 <h1 id="project_ideas_for_2024"><a href="#project_ideas_for_2024">Project Ideas for 2024</a></h1>
 <p>Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reach out to the respective mentor&#40;s&#41;.</p>
+<h2 id="juliahealth_documenting_medpipe3dtutorial"><a href="#juliahealth_documenting_medpipe3dtutorial">JuliaHealth – Documenting MedPipe3DTutorial</a></h2>
+<h3 id="juliahealth"><a href="#juliahealth">JuliaHealth</a></h3>
+<p>JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards. Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making. We believe that by working together and sharing our knowledge and expertise, we can create powerful tools and solutions that have the potential to transform healthcare.</p>
+<h3 id="the_projects_problem"><a href="#the_projects_problem">The project&#39;s problem</a></h3>
+<p><a href="https://github.com/JuliaHealth/MedPipe3DTutorial">MedPipe3D</a> was created as a package that improves integration between other parts of the small ecosystem &#40;MedEye3D, MedEval3D, and MedImage&#41;. In particular, the tutorial for MedPipe3D in Julia lacks comprehensive coverage. It currently provides minimal information, and users are left wanting more details to fully grasp the package&#39;s potential. For example, the tutorial could delve deeper into explaining key functions, use cases, and integration scenarios.</p>
+<h3 id="project_impact"><a href="#project_impact">Project Impact</a></h3>
+<p>Addressing this documentation gap will significantly impact MedPipe3D&#39;s accessibility and usability, making it an indispensable resource for both new and experienced users. By enhancing the documentation, the project aims to foster a more inclusive and supportive Julia community.</p>
+<h3 id="project_scope"><a href="#project_scope">Project Scope</a></h3>
+<ul>
+<li><p>Add FAQ page for the Tutorial</p>
+</li>
+<li><p>Add documentation and a companion to video tutorial GPU Accelerated Medical Image Segmentation Framework</p>
+</li>
+<li><p>Extend project scope to include detailed documentation for each subpackage:</p>
+<ul>
+<li><p><a href="https://github.com/JuliaHealth/MedImage.jl">MedImage</a></p>
+<ul>
+<li><p>Introduction to the theory of medical imaging formats and spatial metadata</p>
+</li>
+<li><p>Describe how to load and save image</p>
+</li>
+<li><p>Describe how apply basic transformation using MedImage</p>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/JuliaHealth/MedEye3d.jl">MedEye3d</a></p>
+<ul>
+<li><p>Write tutorial how to configure window size and amount of space allocated to text</p>
+</li>
+<li><p>Give detailed tutorial describing the possible configurations using TextureSpec objects</p>
+</li>
+<li><p>Add the section with all keyboard shortcuts and print screens showing their effects</p>
+</li>
+<li><p>Describe possible user interactions including:</p>
+<ul>
+<li><p>Using tool with REPL for fast debugging, include how to modify and refresh image manually</p>
+</li>
+<li><p>Describe manual interaction of modifiable masks</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/JuliaHealth/MedEval3D.jl">MedEval3D</a></p>
+<ul>
+<li><p>Describe different metrics and what are their strength and weaknesses</p>
+</li>
+<li><p>Make a tutorial showing how to use each metric</p>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/JuliaHealth/MedPipe3D.jl">MedPipe3D</a></p>
+<ul>
+<li><p>Describe how to use Medpipe functionalities in different use cases</p>
+</li>
+<li><p>Give theoretical introduction to the functionalities in development &#40;without usage examples&#41;</p>
+<ul>
+<li><p>Describe transforms -Brightness transform, Contrast augmentation transform, Gamma Transform, Gaussian noise transform, Rician noise transform, Mirror transform, Scale transform, Gaussian blur transform, Simulate low-resolution transform, Elastic deformation transform</p>
+</li>
+<li><p>Describe concept k fold cross validation and ensembling resulting models</p>
+</li>
+<li><p>Describe probabilistic oversampling for image segmentation</p>
+</li>
+<li><p>Describe why different images needs to be modified to have the same spacing origin and orientation</p>
+</li>
+<li><p>Describe what is the largest component analysis</p>
+</li>
+<li><p>Give short introduction to hyperparameter tuning and usage of Hyperopt package</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Write a blog post on a MedPipe-related topic to broaden the project&#39;s reach.</p>
+</li>
+</ul>
+<p>Keeping the documentation concise, focused, and adding practical examples will greatly benefit users in understanding and utilizing the tools effectively.</p>
+<h3 id="out_of_scope_for_this_project"><a href="#out_of_scope_for_this_project">Out of scope for this project</a></h3>
+<ul>
+<li><p>Working on the improvement for pkg development</p>
+</li>
+</ul>
+<h3 id="success_criteria"><a href="#success_criteria">Success Criteria</a></h3>
+<p>Right now, the documentation we are proposing to create does not exist. Users would already have to know what the Package they want to use but does and how to use it which means very few people can use this. Users could also go externally and try to research the packages which increases the turnover of the documentation. By having a unified package documentation section we hope to empower users with all of the information they could want in one single place.</p>
+<p>We would consider the project successful if :</p>
+<ul>
+<li><p>Most &#40;or all&#41; of the FAQ issues are complete</p>
+</li>
+<li><p>Detailed documentation for each Sub packages will be available</p>
+</li>
+<li><p>25&#37; increase in documentation traffic &#40;measured from site analytics page&#41;</p>
+</li>
+<li><p>A new blog post is published</p>
+</li>
+</ul>
+<h3 id="timeline"><a href="#timeline">Timeline</a></h3>
+<p>We assume the tech writer will put in part time hours &#40;10-15 hours/week&#41; during this time.</p>
+<table><tr><th align="right"><em>Monthly Plan</em></th><th align="right"></th></tr><tr><td align="right"><em>May</em></td><td align="right">Technical writer is hired, onboarding</td></tr><tr><td align="right"><em>June-July</em></td><td align="right">Research into Julia community, user needs for FAQ/support page</td></tr><tr><td align="right"><em>August</em></td><td align="right">Documentation for video tutorials</td></tr><tr><td align="right"><em>September-October</em></td><td align="right">Detailed documentation for each sub packages</td></tr><tr><td align="right"><em>November</em></td><td align="right">Write a blog post</td></tr></table>
+<p><em>Weekly Plan</em></p>
+<ul>
+<li><p><em>Week &#40;1-2&#41;</em> - Reading and Familiarization</p>
+</li>
+<li><p><em>Week &#40;3-4&#41;</em> - Metrics Documentation</p>
+</li>
+<li><p><em>Week &#40;5-7&#41;</em> - MedEye Documentation</p>
+</li>
+<li><p><em>Week &#40;8-10&#41;</em> - FAQ Documentation</p>
+</li>
+<li><p><em>Week &#40;11- 12&#41;</em> - Unexpected Issues and Tutorials</p>
+</li>
+<li><p><em>Week &#40;13- 15&#41;</em> - MedPipe Documentation</p>
+</li>
+<li><p><em>Week &#40;16-18&#41;</em> - How to use Medimage</p>
+</li>
+<li><p><em>Week &#40;19-20&#41;</em> - Blog Posts</p>
+</li>
+<li><p><em>Week &#40;21-22&#41;</em> - Wrap up / touch up of overall packages docs page</p>
+</li>
+</ul>
+<p>This timeline is tentative and we expect that different packages will be slightly more challenging than others but this breakdown gives us the opportunity to have a way to stay accountable to the overall goal of the project.</p>
+<h3 id="communication_plan"><a href="#communication_plan">Communication Plan</a></h3>
+<p>Primary communication channel is the <a href="https://julialang.org/slack/">Julialang Slack</a>, and Jakub Mitura will be a person responsible for contact and mentoring throughout the project for regular updates and meetings. </p>
 <h2 id="unify_and_enhance_taijajl_usage_guides_and_core_documentation"><a href="#unify_and_enhance_taijajl_usage_guides_and_core_documentation">Unify and Enhance Taija.jl Usage Guides and Core Documentation</a></h2>
 <p><a href="https://github.com/JuliaTrustworthyAI">Taija</a> is an organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Currently, documentation is hosted separately for each package. The goal of this project is to unify and enhance the existing documentation following the example of <a href="https://docs.sciml.ai/Overview/stable/">SciML</a>. We also plan to fully automate documentation workflows by leveraging the interplay between Documenter.jl and Quarto &#40;see <a href="https://forem.julialang.org/kellertuer/render-quarto-tutorials-in-documenterjl-with-github-actions-3fo">here</a>&#41;. If you are interested in Trustworthy AI, Julia, open science and technical writing, then this project is ideal for you. </p>
 <p>Mentor: <a href="https://github.com/pat-alt">Patrick Altmeyer</a></p>
