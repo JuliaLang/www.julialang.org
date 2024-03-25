@@ -16,7 +16,7 @@ For this project, we are looking for students interested in further developing t
 
 - **Difficulty**: Medium
 
-- **Duration**: 175 hours
+- **Duration**: 350 hours
 
 - **Suggested Skills and Background**: 
   - Experience with Julia
