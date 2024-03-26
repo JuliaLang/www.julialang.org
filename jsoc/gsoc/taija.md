@@ -58,6 +58,26 @@ There is a high overlap with organizations, you might be also interested in:
 - Carefully think about architecture choices: how can we fit support for regression models into the existing code base?
 - Add support for the following approaches: [ad-hoc thresholding](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl/issues/391), [Bayesian optimisation](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl/issues/392), [information-theoretic saliency](https://openreview.net/forum?id=IrEYkhuxup&noteId=IrEYkhuxup).
 - Comprehensively test and document your work
+  
+## Project 3: Counterfactuals for LLMs (*Model Explainability* and *Generative AI*)
+
+**Project Overview:** This project aims to extend the functionality of [CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl) to Large Language Models. 
+
+**Mentor:** [Patrick Altmeyer](https://github.com/pat-alt)
+
+**Project Difficulty**: Hard
+
+**Estimated Duration**: 350 hours
+
+**Ideal Candidate Profile:**
+- Experience with Julia and multiple dispatch of advantage, but not crucial
+- Good knowledge of machine learning and statistics
+- Solid understanding of supervised models (classification and regression)
+
+**Project Goals and Deliverables:**
+- Carefully think about architecture choices: how can we fit support for regression models into the existing code base?
+- Add support for the following approaches: [ad-hoc thresholding](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl/issues/391), [Bayesian optimisation](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl/issues/392), [information-theoretic saliency](https://openreview.net/forum?id=IrEYkhuxup&noteId=IrEYkhuxup).
+- Comprehensively test and document your work
 
 ## About Us
 
