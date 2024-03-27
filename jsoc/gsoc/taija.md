@@ -63,7 +63,7 @@ There is a high overlap with organizations, you might be also interested in:
 
 **Project Overview:** This project aims to extend the functionality of [CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl) to Large Language Models (LLMs). As a backbone for this, support for computing feature attributions for LLMs will also need to be implemented. The project will contribute to both [Taija](https://github.com/JuliaTrustworthyAI) and [JuliaGenAI](https://github.com/JuliaGenAI). 
 
-**Mentor:** [Patrick Altmeyer](https://github.com/pat-alt) (Taija) and [Jan Siml](https://github.com/svilupp)
+**Mentor:** [Patrick Altmeyer](https://github.com/pat-alt) (Taija) and [Jan Siml](https://github.com/svilupp)  (JuliaGenAI)
 
 **Project Difficulty**: Medium
 
