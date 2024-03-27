@@ -145,6 +145,27 @@ As a pivotal resource for the Julia community, the [Julia LLM Leaderboard](https
 
 3. **Documentation and Outreach:** Document findings and best practices in a series of blog posts to share insights, highlight top-performing models, and guide the community on leveraging Generative AI effectively within the Julia ecosystem.
 
+### Project 7: Counterfactuals for LLMs (*Model Explainability* and *Generative AI*)
+
+**Project Overview:** This project aims to extend the functionality of [CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl) to Large Language Models (LLMs). As a backbone for this, support for computing feature attributions for LLMs will also need to be implemented. The project will contribute to both [Taija](https://github.com/JuliaTrustworthyAI) and [JuliaGenAI](https://github.com/JuliaGenAI). 
+
+**Mentor:** [Patrick Altmeyer](https://github.com/pat-alt) (Taija) and [Jan Siml](https://github.com/svilupp)
+
+**Project Difficulty**: Medium
+
+**Estimated Duration**: 175 hours
+
+**Ideal Candidate Profile:**
+- Experience with Julia and multiple dispatch of advantage, but not crucial
+- Good knowledge of machine learning and statistics
+- Good understanding of Large Language Models (LLMs)
+- Ideally previous experience with [Transformers.jl](https://github.com/chengchingwen/Transformers.jl)
+
+**Project Goals and Deliverables:**
+- Carefully think about architecture choices: how can we fit support for LLMs into the existing code base of [CounterfactualExplanations.jl](https://github.com/JuliaTrustworthyAI/CounterfactualExplanations.jl)?
+- Implement current state-of-the-art approaches such as [MiCE](https://aclanthology.org/2021.findings-acl.336.pdf) and [CORE](https://aclanthology.org/2022.findings-emnlp.216.pdf)
+- Comprehensively test and document your work
+
 ## How to Contact Us
 
 We'd love to hear your ideas and discuss potential projects with you.
