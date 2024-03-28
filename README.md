@@ -27,7 +27,7 @@ Build previews for each Pull Request are available at: https://julialang.netlify
 
 ## Making modifications and seeing the changes locally
 
-Clone the repository and `cd` to it. Start julia with `julia --project` and do
+Clone the repository and `cd` to it. Start Julia version 1.10 with `julia --project` and do
 
 ```julia
 julia> using Pkg; Pkg.instantiate()
