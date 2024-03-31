@@ -16,11 +16,11 @@ Learn from one of our technical writers about their experience with GSoD:
 Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reach out to the respective mentor(s).
 
 
-## Documenting Julia Heath
+## Documenting JuliaHealth
 
 ### JuliaHealth
 
-Julia Health is an organization dedicated to improving healthcare by promoting open-source technologies and data standards. Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making. There are various sub-ecosystems like Medical Imaging, Observational Health, Standards and Operability, and then there are other sub-ecosystems that might be emerging over time. Since 2020, Julia Health has continued to grow drastically. For example, on Slack right now, we have nearly 200 people within our health medicine channel, and on Zulip, about another 50 or so people involved with Julia Health there. There's a considerable number of packages now being actively maintained underneath the Julia Health umbrella.
+JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards. Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making. There are various sub-ecosystems like Medical Imaging, Observational Health, Standards and Operability, and then there are other sub-ecosystems that might be emerging over time. Since 2020, Julia Health has continued to grow drastically. For example, on Slack right now, we have nearly 200 people within our health medicine channel, and on Zulip, about another 50 or so people involved with Julia Health there. There's a considerable number of packages now being actively maintained underneath the Julia Health umbrella.
 
 ### The project's problem
 
@@ -164,5 +164,5 @@ Primary communication channel is the [Julialang Slack](https://julialang.org/sla
 | -- | -- | -- |
 | Technical writer	| $5000	| $5000 |
 | Volunteer Stipend (500x4)	| $2000	| $7000 |
-| T-shirts for team 	| 250	| $7250 |
-| TOTAL |	$7250 | |
+| T-shirts for team 	| 150	| $7150 |
+| TOTAL |	$7150 | |
