@@ -15,7 +15,8 @@
 	<link rel="icon" href="/assets/infra/julia.ico">
 
   <!-- Franklin stylesheets for generated pages -->
-  
+   <link rel="stylesheet" href="/libs/katex/katex.min.css">
+      
   
 
 	<!-- NOTE: specific stylesheets -->
@@ -126,18 +127,48 @@
 </p>
 <h1 id="project_ideas_for_2024"><a href="#project_ideas_for_2024">Project Ideas for 2024</a></h1>
 <p>Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reach out to the respective mentor&#40;s&#41;.</p>
-<h2 id="juliahealth_documenting_medpipe3dtutorial"><a href="#juliahealth_documenting_medpipe3dtutorial">JuliaHealth – Documenting MedPipe3DTutorial</a></h2>
+<h2 id="documenting_juliahealth"><a href="#documenting_juliahealth">Documenting JuliaHealth</a></h2>
 <h3 id="juliahealth"><a href="#juliahealth">JuliaHealth</a></h3>
-<p>JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards. Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making. We believe that by working together and sharing our knowledge and expertise, we can create powerful tools and solutions that have the potential to transform healthcare.</p>
+<p>JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards. Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making. There are various sub-ecosystems like Medical Imaging, Observational Health, Standards and Operability, and then there are other sub-ecosystems that might be emerging over time. Since 2020, Julia Health has continued to grow drastically. For example, on Slack right now, we have nearly 200 people within our health medicine channel, and on Zulip, about another 50 or so people involved with Julia Health there. There&#39;s a considerable number of packages now being actively maintained underneath the Julia Health umbrella.</p>
 <h3 id="the_projects_problem"><a href="#the_projects_problem">The project&#39;s problem</a></h3>
-<p><a href="https://github.com/JuliaHealth/MedPipe3DTutorial">MedPipe3D</a> was created as a package that improves integration between other parts of the small ecosystem &#40;MedEye3D, MedEval3D, and MedImage&#41;. In particular, the tutorial for MedPipe3D in Julia lacks comprehensive coverage. It currently provides minimal information, and users are left wanting more details to fully grasp the package&#39;s potential. For example, the tutorial could delve deeper into explaining key functions, use cases, and integration scenarios.</p>
+<p>As Julia Health keeps growing since its start in 2020, we&#39;re seeing the need for better documentation.</p>
+<ul>
+<li><p>There are Inadequate structure of docs and user experience on the Julia Health main website and absence of distinct web pages for different sub-ecosystems within Julia, this fragmentation might result in new users abandoning Julia altogether unless action is taken.</p>
+</li>
+<li><p>The Medical imaging sub ecosystem is one leading therefore MedPipe3D was created as a package that improves integration between other parts of the small ecosystem &#40;MedEye3D, MedEval3D, and MedImage&#41;. Because of the modularity of libraries, currently active development is concentrated on MedEye3D and MedImage. In particular, the tutorial for MedEye3D and MedImage in Julia lacks comprehensive coverage. It currently provides minimal information, and users are left wanting more details to fully grasp the package&#39;s potential. For example, the tutorial could delve deeper into explaining key functions, use cases, and integration scenarios also checks for consistency of functions descriptions in the library</p>
+</li>
+</ul>
 <h3 id="project_impact"><a href="#project_impact">Project Impact</a></h3>
-<p>Addressing this documentation gap will significantly impact MedPipe3D&#39;s accessibility and usability, making it an indispensable resource for both new and experienced users. By enhancing the documentation, the project aims to foster a more inclusive and supportive Julia community.</p>
+<p>With enhanced documentation, the project aims to streamline the user experience for individuals at all skill levels within the Julia community. By providing clearer guides and improving accessibility, we seek to make navigating the platform seamless and fulfilling. These efforts not only address existing documentation gaps but also foster inclusivity and supportiveness within the community. Ultimately, our goal is to elevate JuliaHealth while contributing valuable insights and solutions that benefit the broader Julia organization.</p>
 <h3 id="project_scope"><a href="#project_scope">Project Scope</a></h3>
 <ul>
-<li><p>Add FAQ page for the Tutorial</p>
+<li><p>JuliaHealth organization website</p>
+<ul>
+<li><p>Migrate website to DocumenterVitepress</p>
+</li>
+<li><p>Add new organization details for JuliaHealth overall</p>
+</li>
+<li><p>Create new sections for subecosystems</p>
+<ul>
+<li><p>Medical Imaging</p>
+</li>
+<li><p>Observational Health</p>
+</li>
+<li><p>Standards and Interoperability</p>
+</li>
+</ul>
+</li>
+<li><p>Add FAQ page</p>
+</li>
+<li><p>Link to packages across JuliaHealth for proper subecosystem</p>
+</li>
+<li><p>Page for research accomplishments within JuliaHealth</p>
 </li>
 <li><p>Add documentation and a companion to video tutorial GPU Accelerated Medical Image Segmentation Framework</p>
+</li>
+<li><p>Define and implement tracking metrics to monitor user engagement and interaction with the platform</p>
+</li>
+</ul>
 </li>
 <li><p>Extend project scope to include detailed documentation for each subpackage:</p>
 <ul>
@@ -223,39 +254,125 @@
 <li><p>A new blog post is published</p>
 </li>
 </ul>
+<h3 id="prerequisites"><a href="#prerequisites">Prerequisites</a></h3>
+<ul>
+<li><p>Technical Writer</p>
+<ul>
+<li><p>Familiarity with Documenter.jl and DocumenterVitepress</p>
+</li>
+<li><p>Basic knowledge of Medpipe3d packages</p>
+</li>
+</ul>
+</li>
+<li><p>Volunteer&#39;s Role</p>
+<ul>
+<li><p>Volunteer 1: JuliaHealth Documentation volunteer</p>
+<ul>
+<li><p>Providing support for general JuliaHealth documentation tasks.</p>
+</li>
+<li><p>Assisting in reviewing documentation pull requests &#40;PRs&#41; periodically.</p>
+</li>
+<li><p>Deploying documentation within the Julia ecosystem as needed.</p>
+</li>
+<li><p>Handling miscellaneous tasks as they arise.</p>
+</li>
+<li><p>Serving as a general support role while integrating Technical Writer&#39;s work into the broader JuliaHealth ecosystem.</p>
+</li>
+</ul>
+</li>
+<li><p>Volunteer 2: Julia Documentation Deployment volunteer</p>
+<ul>
+<li><p>Assist in transitioning the main JuliaHealth page to the designated technology platform.</p>
+</li>
+<li><p>Aid in structuring the initial page layout, establishing clear tiles, and organizing them into categories.</p>
+</li>
+<li><p>Define and implement tracking metrics to monitor user engagement and interaction with the platform.</p>
+</li>
+<li><p>Develop a standardized project template for documentation within the JuliaHealth framework.</p>
+</li>
+<li><p>Offer technical consultation and guidance as needed throughout the project duration.</p>
+</li>
+</ul>
+</li>
+<li><p>Volunteer 3: Medical imaging subecosystem documentation volunteer for KomaMRI and their techniques</p>
+<ul>
+<li><p>Introduction to Medical Imaging Theory and Spatial Metadata</p>
+</li>
+<li><p>Provide an introductory overview of medical imaging formats and spatial metadata.</p>
+</li>
+<li><p>Explain the fundamental concepts and principles underlying medical imaging.</p>
+</li>
+<li><p>Give a theoretical overview of functionalities under development, excluding usage examples.</p>
+</li>
+<li><p>Describe various image transformation functions</p>
+</li>
+<li><p>Explain the concept of K-fold cross-validation and its relevance in model evaluation.</p>
+</li>
+<li><p>Discuss the concept of probabilistic oversampling and its application in image segmentation tasks.</p>
+</li>
+<li><p>Explain how probabilistic oversampling techniques can enhance the robustness of segmentation models.</p>
+</li>
+<li><p>Describe the importance of standardizing image spacing, origin, and orientation.</p>
+</li>
+<li><p>Explain Largest Component Analysis utility in identifying and analyzing the largest connected components within datasets.</p>
+</li>
+<li><p>Give a brief introduction to hyperparameter tuning techniques.</p>
+</li>
+<li><p>Explain the usage of the Hyperopt package for automated hyperparameter optimization.</p>
+</li>
+</ul>
+</li>
+<li><p>Volunteer 4: Task consultations on packages functionalities and function documentations</p>
+<ul>
+<li><p>Help in refactoring function descriptions to increase consistency</p>
+</li>
+<li><p>To help checking weather docstrings of functions are working correctly</p>
+</li>
+<li><p>Collaborate with KormaMRI to create specialized documentation sections based on their research paper, covering advanced topics or techniques relevant to medical imaging.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="timeline"><a href="#timeline">Timeline</a></h3>
 <p>We assume the tech writer will put in part time hours &#40;10-15 hours/week&#41; during this time.</p>
-<table><tr><th align="right"><em>Monthly Plan</em></th><th align="right"></th></tr><tr><td align="right"><em>May</em></td><td align="right">Technical writer is hired, onboarding</td></tr><tr><td align="right"><em>June-July</em></td><td align="right">Research into Julia community, user needs for FAQ/support page</td></tr><tr><td align="right"><em>August</em></td><td align="right">Documentation for video tutorials</td></tr><tr><td align="right"><em>September-October</em></td><td align="right">Detailed documentation for each sub packages</td></tr><tr><td align="right"><em>November</em></td><td align="right">Write a blog post</td></tr></table>
+<table><tr><th align="right"><em>Monthly Plan</em></th><th align="right"></th></tr><tr><td align="right"><em>May</em></td><td align="right">Technical writer is hired, onboarding</td></tr><tr><td align="right"><em>June-July</em></td><td align="right">Research into Julia community, user needs for FAQ/support page</td></tr><tr><td align="right"><em>August</em></td><td align="right">Create Standard Package Documentations, Medical imaging subecosystem documentation</td></tr><tr><td align="right"><em>September-October</em></td><td align="right">Improvements to the main page of JuliaHealth</td></tr><tr><td align="right"><em>November</em></td><td align="right">Write a blog post</td></tr></table>
 <p><em>Weekly Plan</em></p>
 <ul>
 <li><p><em>Week &#40;1-2&#41;</em> - Reading and Familiarization</p>
 </li>
-<li><p><em>Week &#40;3-4&#41;</em> - Metrics Documentation</p>
+<li><p><em>Week &#40;3-4&#41;</em> - Setting up the environment and Updating Organization Details &amp; Creating Subecosystem Sections</p>
 </li>
-<li><p><em>Week &#40;5-7&#41;</em> - MedEye Documentation</p>
+<li><p><em>Week &#40;5-7&#41;</em> - Linking Packages and Setting Up FAQ Page</p>
 </li>
-<li><p><em>Week &#40;8-10&#41;</em> - FAQ Documentation</p>
+<li><p><em>Week &#40;8-10&#41;</em> - Documentation Traffic Tracker Setup</p>
 </li>
-<li><p><em>Week &#40;11- 12&#41;</em> - Unexpected Issues and Tutorials</p>
+<li><p><em>Week &#40;11- 12&#41;</em> -Research Accomplishments and FAQ Page Completion</p>
 </li>
-<li><p><em>Week &#40;13- 15&#41;</em> - MedPipe Documentation</p>
+<li><p><em>Week &#40;13- 16&#41;</em> - Medical Imaging Subecosystem Packages Documentation</p>
 </li>
-<li><p><em>Week &#40;16-18&#41;</em> - How to use Medimage</p>
+<li><p><em>Week &#40;17-20&#41;</em> - Review and Finalize Website Content also Feedback Incorporation</p>
 </li>
-<li><p><em>Week &#40;19-20&#41;</em> - Blog Posts</p>
+<li><p><em>Week &#40;20-22&#41;</em> - Blog Posts</p>
 </li>
-<li><p><em>Week &#40;21-22&#41;</em> - Wrap up / touch up of overall packages docs page</p>
+<li><p><em>Week &#40;23-24&#41;</em> - Wrap up / touch up of overall packages docs page</p>
 </li>
 </ul>
 <p>This timeline is tentative and we expect that different packages will be slightly more challenging than others but this breakdown gives us the opportunity to have a way to stay accountable to the overall goal of the project.</p>
 <h3 id="communication_plan"><a href="#communication_plan">Communication Plan</a></h3>
 <p>Primary communication channel is the <a href="https://julialang.org/slack/">Julialang Slack</a>, and Jakub Mitura will be a person responsible for contact and mentoring throughout the project for regular updates and meetings. </p>
-<h2 id="unify_and_enhance_taijajl_usage_guides_and_core_documentation"><a href="#unify_and_enhance_taijajl_usage_guides_and_core_documentation">Unify and Enhance Taija.jl Usage Guides and Core Documentation</a></h2>
-<p><a href="https://github.com/JuliaTrustworthyAI">Taija</a> is an organization that hosts software geared towards Trustworthy Artificial Intelligence in Julia. Currently, documentation is hosted separately for each package. The goal of this project is to unify and enhance the existing documentation following the example of <a href="https://docs.sciml.ai/Overview/stable/">SciML</a>. We also plan to fully automate documentation workflows by leveraging the interplay between Documenter.jl and Quarto &#40;see <a href="https://forem.julialang.org/kellertuer/render-quarto-tutorials-in-documenterjl-with-github-actions-3fo">here</a>&#41;. If you are interested in Trustworthy AI, Julia, open science and technical writing, then this project is ideal for you. </p>
-<p>Mentor: <a href="https://github.com/pat-alt">Patrick Altmeyer</a></p>
+<h3 id="budget"><a href="#budget">Budget</a></h3>
+<p>| Budget item	| Amount	| Running total | | – | – | – | | Technical writer	| <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5000</mn><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">5000	| </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">∣</span></span></span></span>5000 | | Volunteer Stipend &#40;500x4&#41;	| <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2000</mn><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">2000	| </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">∣</span></span></span></span>7000 | | T-shirts for team 	| 150	| <span class="katex"><span class="katex-mathml"><math xmlns="https://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7150</mn><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>T</mi><mi>O</mi><mi>T</mi><mi>A</mi><mi>L</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">7150 |
+| TOTAL |	</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">7</span><span class="mord">1</span><span class="mord">5</span><span class="mord">0</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">A</span><span class="mord mathdefault">L</span><span class="mord">∣</span></span></span></span>7150 | |</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
+    
+        
+
+
+
     
     
 
