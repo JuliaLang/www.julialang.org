@@ -161,8 +161,8 @@ Primary communication channel is the [Julialang Slack](https://julialang.org/sla
 ### Budget
 
 | Budget item	| Amount	| Running total |
-| -- | -- | -- |
+| --- | --- | --- |
 | Technical writer	| $5000	| $5000 |
 | Volunteer Stipend (500x4)	| $2000	| $7000 |
-| T-shirts for team 	| 150	| $7150 |
+| T-shirts for team 	| $150	| $7150 |
 | TOTAL |	$7150 | |
