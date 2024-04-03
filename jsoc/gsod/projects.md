@@ -15,8 +15,7 @@ Learn from one of our technical writers about their experience with GSoD:
 
 Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reach out to the respective mentor(s).
 
-
-# PROPOSAL TITLE - Unifying the [JuliaHeath Organization](https://github.com/JuliaHealth) Documentation Landscape
+# Unifying the [JuliaHeath Organization](https://github.com/JuliaHealth) Documentation Landscape
 
 ## About your organization 
 > [!Note]
@@ -98,8 +97,7 @@ Due to the modular nature of packages within this subecosystem, we will need to 
      - Give introduction to the functionalities in development like augmentations, largest component analysis or hyperparameter tuning (without usage examples)
 
 - Documentation tasks for [KomaMRI](https://github.com/JuliaHealth/KomaMRI.jl):
-Where possible in the scope of these documentation tasks, we will link to or show how to integrate with other Julia packages within JuliaHealth or from the broader Julia community such as JuliaImages or JuliaMRI.
-[Related Issues to work on](https://github.com/JuliaHealth/KomaMRI.jl/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Adocumentation)
+     - Through coordination with the KomaMRI volunteers, [outstanding issues from KomaMRI will be addressed](https://github.com/JuliaHealth/KomaMRI.jl/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Adocumentation)
 
 Finally, if time permits, there will be some additional stretch goals that we would like to attempt accomplishing:
 - Page for ongoing projects across JuliaHealth
@@ -107,38 +105,50 @@ Finally, if time permits, there will be some additional stretch goals that we wo
 - Write a JuliaHealth blog entry on a Medeye topic to broaden project reach
 
 #### Technical Writer
-Name : [Sneha Pandey](https://github.com/sneha9231)
-**Description:** 
-Sneha Pandey is a sophomore specializing in AI and ML and also serve as a Microsoft Learn Student Ambassador. Through this role, she had refined her ability to communicate complex concepts effectively to diverse audiences. Additionally, She had gained experience as a content writer, crafting content for my college. She has hands-on experience in developing various mini projects, such as a WhatsApp bot and ML captioning models using Streamlit and Python. Her familiarity with Julia stems from previous engagements in medical imaging alongside MD PhD Msc Mitura. Moreover, She ensured comprehensive documentation of her personal projects using Documenter.jl. These experiences collectively equip her with the skills and proficiency required to excel as a technical writer.
 
-#### Volunteer's Role
-Volunteer 1: General JuliaHealth Organization Volunteer:
+Name: [Sneha Pandey](https://github.com/sneha9231)
+
+Sneha Pandey is a sophomore specializing in AI and ML and also serves as a Microsoft Learn Student Ambassador. Through this role, she had refined her ability to communicate complex concepts effectively to diverse audiences. Additionally, She had gained experience as a content writer, crafting content for her university. She has hands-on experience in developing various mini projects, such as a WhatsApp bot and ML captioning models using Streamlit and Python. Her familiarity with Julia stems from previous engagements in medical imaging alongside MD PhD Msc Jakub Mitura. Moreover, She ensured comprehensive documentation of her personal projects using Documenter.jl. These experiences collectively equip her with the skills and proficiency required to excel as a technical writer within the Julia ecosystem.
+
+#### Volunteer Roles
+**Volunteer 1: General JuliaHealth Organization Volunteer:**
+
 Name: Jacob S. Zelko
+
 Duties:
+
 1. Providing support for general JuliaHealth documentation tasks.
 2. Assisting in reviewing documentation pull requests (PRs) periodically.
 3. Deploying documentation within the Julia ecosystem as needed.
 4. Handling miscellaneous tasks as they arise.
 5. Serving as a general support role while integrating Technical Writer's work into the broader JuliaHealth ecosystem.
 
-Volunteer 2: JuliaDocs and Documentation Deployment Volunteer:
+**Volunteer 2: JuliaDocs and Documentation Deployment Volunteer:**
+
 Name: Anshul Singhvi
+
 Duties:
+
 1. Transition support the main JuliaHealth page to the designated technology platform.
 2. Provide guidance on safely implementing tracking metrics to monitor user engagement and interaction with the platform.
 3. Offer technical consultation and guidance as needed throughout the project duration.
 4. Help fix issues or rememdy needs that may arise from using tools from within the JuliaDocs ecosystem
 
-Volunteer 3: Medical Imaging Subecosystem Volunteer:
+**Volunteer 3: Medical Imaging Subecosystem Volunteer:**
+
 Name: Guillermo Sahonero Alvarez
+
 Duties:
+
 1. Provide guidance on medical imaging theory and spatial metadata
 2. Support in connecting imaging discussions to other aspects of the Julia ecosystem (such as MLJ or JuliaImages)
 3. Provide subject matter expertise on imaging standards
 4. Assist in writing theorethical introductions
 
-Volunteer 4: Task consultations on packages functionalities and function documentations
-Duties :
+**Volunteer 4: Task consultations on packages functionalities and function documentations**
+
+Duties:
+
 1. Support for technical writer related to practical development issues of Julia programming languages
 2. To help checking weather docstrings of functions are working correctly
 3. Collaborate with KormaMRI to create specialized documentation sections based on their research paper, covering advanced topics or techniques relevant to medical imaging.
@@ -194,13 +204,19 @@ We assume the tech writer will put in part time hours (10-20 hours/week) during 
 
 ### Weekly Plan
 
-**Week (1-2)** - Reading and Familiarization
-**Week (3-4)** - Documentation Traffic Tracker Setup
-**Week (5-7)** - Setting up the environment and Updating Organization Details & Creating Subecosystem Sections
-**Week (8-10)** -  Linking Packages across subecosystems
-**Week (11- 16)** - Medical Imaging Subecosystem Packages Documentation
-**Week (17- 20)** - Review and Finalize Website Content also Feedback Incorporation
-**Week (20-24)** - Wrap up / touch up of overall packages docs page alongside stretch goals
+- **Week (1-2)** - Reading and Familiarization
+
+- **Week (3-4)** - Documentation Traffic Tracker Setup
+
+- **Week (5-7)** - Setting up the environment and Updating Organization Details & Creating Subecosystem Sections
+
+- **Week (8-10)** -  Linking Packages across subecosystems
+
+- **Week (11- 16)** - Medical Imaging Subecosystem Packages Documentation
+
+- **Week (17- 20)** - Review and Finalize Website Content also Feedback Incorporation
+
+- **Week (20-24)** - Wrap up / touch up of overall packages docs page alongside stretch goals
 
 This timeline is largely accurate but we expect that different packages or tasks may be slightly more challenging than others.
 The November time period gives us the opportunity to revisit any unfinished tasks and to potentially explore stretch goals if there were not many outstanding tasks left.
@@ -232,15 +248,19 @@ Additional justifications:
 > [!Note]
 Beyond the above proposal information, some additional notes about the composition of this project team:
 
+**About GSoD Project Lead:**
+
+MD PhD Msc Jakub Mitura Researcher specialising in creating artificial intelligence models for medical imaging. Holds a doctorate in medical sciences with a thesis titled ‘The Role of Positron Emission Tomography Using Fluorodeoxyglucose in the Diagnosis of Vascular Prosthesis Infections.’ Additionally, holds a master’s degree in informatics with a specialisation in Big Data. Has authored scientific publications in the fields of medicine and artificial intelligence.
+
+**Additional Volunteer Notes:**
+
 Jacob Zelko was selected as a volunteer as he has a proven track record as a successful Google Summer of Code mentor for the past 3 years and is currently the Julia Organization's co-administrator for this years Google Summer of Code where he handles questions from both students and mentors.
 Given his experience, Jacob will provide guidance to Jakub and Sneha as needed to make sure this project is well-aligned with general Google Open Source program goals.
 Additionally, Jacob has a overseen many grants in the past through Google Summer of Code and former positions at Georgia Tech Research Institute and the Centers for Disease Control and will provide a valuable asset in answering any questions about the project scope.
 
 Anshul Singhvi is a former Google Summer of Code student and has a vast swath of experience of working across the Julia ecosystem.
 In particular, Anshul has membership with numerous Julia organizations and will be a crucial asset to not only what are best practices for documentation deployment but can also help with how to best unify JuliaHealth packages within JuliaHealth itself and potentially across the greater Julia landscape.
-His insight will be crucial to mitigate any redundant work or answer oustanding questions to make sure this project is ran as effectively as possible.
+His insight will be crucial to mitigate any redundant work or answer outsanding questions to make sure this project is ran as effectively as possible.
 Also, given Anshul's tremendous experience in delivering contract work, he will be key in making sure the metrics we investigate and report on for the case study in our final report will be done rigorously and to the best of the technical writer's ability given the data we have access to.
 
-**About Mentor**
-MD PhD Msc Jakub Mitura Researcher specialising in creating artificial intelligence models for medical imaging. Holds a doctorate in medical sciences with a thesis titled ‘The Role of Positron Emission Tomography Using Fluorodeoxyglucose in the Diagnosis of Vascular Prosthesis Infections.’ Additionally, holds a master’s degree in informatics with a specialisation in Big Data. Has authored scientific publications in the fields of medicine and artificial intelligence.
 </div>
