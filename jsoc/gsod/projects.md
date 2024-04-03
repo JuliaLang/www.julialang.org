@@ -233,10 +233,10 @@ You can include your budget in your proposal or as a separate link. If your budg
 
 | Budget item | Amount | Running total |
 | ------------- | ------------- | ------------- |
-| Technical writer | $4000 | $4000  |
-| Volunteer (500x4) | $2000 | $6000  |
-| Swags (3 shirts and 10 sticker packs) | $125 | $6125  |
-| TOTAL |   | $6125 |
+| Technical writer | \$4000 | \$4000  |
+| Volunteer (500x4) | \$2000 | \$6000  |
+| Swags (3 shirts and 10 sticker packs) | \$125 | \$6125  |
+| TOTAL |   | \$6125 |
 
 Additional justifications:
 
