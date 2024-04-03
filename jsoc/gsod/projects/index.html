@@ -126,28 +126,56 @@
 </p>
 <h1 id="project_ideas_for_2024"><a href="#project_ideas_for_2024">Project Ideas for 2024</a></h1>
 <p>Below you can find a running list of potential GSoD projects. If any of these are of interest to you, please reach out to the respective mentor&#40;s&#41;.</p>
-<h2 id="documenting_juliahealth"><a href="#documenting_juliahealth">Documenting JuliaHealth</a></h2>
-<h3 id="juliahealth"><a href="#juliahealth">JuliaHealth</a></h3>
-<p>JuliaHealth is an organization dedicated to improving healthcare by promoting open-source technologies and data standards. Our community is made up of researchers, data scientists, software developers, and healthcare professionals who are passionate about using technology to improve patient outcomes and promote data-driven decision-making. There are various sub-ecosystems like Medical Imaging, Observational Health, Standards and Operability, and then there are other sub-ecosystems that might be emerging over time. Since 2020, Julia Health has continued to grow drastically. For example, on Slack right now, we have nearly 200 people within our health medicine channel, and on Zulip, about another 50 or so people involved with Julia Health there. There&#39;s a considerable number of packages now being actively maintained underneath the Julia Health umbrella.</p>
-<h3 id="the_projects_problem"><a href="#the_projects_problem">The project&#39;s problem</a></h3>
-<p>As Julia Health keeps growing since its start in 2020, we&#39;re seeing the need for better documentation.</p>
+<h1 id="unifying_the_a_hrefhttpsgithubcomjuliahealthjuliaheath_organization_documentation_landscape"><a href="#unifying_the_a_hrefhttpsgithubcomjuliahealthjuliaheath_organization_documentation_landscape">Unifying the <a href="https://github.com/JuliaHealth">JuliaHeath Organization</a> Documentation Landscape</a></h1>
+<h2 id="about_your_organization"><a href="#about_your_organization">About your organization </a></h2>
+<blockquote>
+<p>&#91;&#33;Note&#93;</p>
+</blockquote>
+<p>In this section, tell us about your organization or project in a few short paragraphs. What problem does your project solve? Who are your users and contributors? How long has your organization or project been in existence? Give some context to help us understand why funding your proposal would create a positive impact in open source and the world.</p>
+<p>The Julia Programming Language is an MIT-licensed high-performance programming language designed for speed, usability, and reproducibility within both scientific and general purpose computing. Currently the Julia community has over 7,000 registered Julia packages, 35 million&#43; downloads of Julia, and thousands of contributors worldwide. Julia&#39;s popularity continues to grow thanks to the dedicated community of users and developers who have helped develop several smaller specialty ecosystems within Julia.</p>
+<p>In particular, the <a href="https://github.com/JuliaHealth/">JuliaHealth Organization</a> is one such ecosystem that was originally organized and founded 2020. It is an organization dedicated to improving healthcare by developing open-source tools to work with a variety of health data and promotes interoperable data standards within the broader health research community. The community is made up of health researchers, data scientists, software developers, and healthcare professionals who are passionate about using Julia to investigate and improve patient outcomes and promote data-driven decision-making.</p>
+<p>Over the past four years, our organization membership has grown to more than 60 members actively working on the dozens of JuliaHealth packages we house. As the entire JuliaHealth user community comprises more than 250 registered users across the Julia Slack and Julia Zulip instances, niche subecosystems have organically arisen under the JuliaHealth umbrella. Currently, there are various subecosystems such as the Medical Imaging and the Observational Health subecosystem with more subecosystems beginning to emerge.</p>
+<h2 id="your_projects_problem"><a href="#your_projects_problem">Your project’s problem</a></h2>
+<blockquote>
+<p>&#91;&#33;Note&#93;</p>
+</blockquote>
+<p>Tell us about the problem your project will help solve. Why is it important to your organization or project to solve this problem?</p>
+<p>With JuliaHealth&#39;s terrific growth over the years – both in terms of growth in users, members, and actively maintained packages – we are beginning to see the need for more unified documentation. Without this unified documentation, we are seeing:</p>
 <ul>
-<li><p>There are Inadequate structure of docs and user experience on the Julia Health main website and absence of distinct web pages for different sub-ecosystems within Julia, this fragmentation might result in new users abandoning Julia altogether unless action is taken.</p>
+<li><p>User confusion due to the lack of documentation around subecosystems &#40;including both emerging and established subecosystems&#41;</p>
 </li>
-<li><p>The Medical imaging sub ecosystem is one leading therefore MedPipe3D was created as a package that improves integration between other parts of the small ecosystem &#40;MedEye3D, MedEval3D, and MedImage&#41;. Because of the modularity of libraries, currently active development is concentrated on MedEye3D and MedImage. In particular, the tutorial for MedEye3D and MedImage in Julia lacks comprehensive coverage. It currently provides minimal information, and users are left wanting more details to fully grasp the package&#39;s potential. For example, the tutorial could delve deeper into explaining key functions, use cases, and integration scenarios also checks for consistency of functions descriptions in the library</p>
+<li><p>Developing fragmentation of documentation across packages</p>
+</li>
+<li><p>Lack of clarity in how users and developers can compose packages together across JuliaHealth and the broader Julia ecosystem to accomplish research tasks</p>
 </li>
 </ul>
+<p>In some ways, this is a very good place to be in in that we have grown to the point of having these issues. Users and developers want to engage with the JuliaHealth community, but if we do not provide a more unified documentation approach, we could potentially lose members or new contributors and stagnate our growth.</p>
 <h3 id="project_impact"><a href="#project_impact">Project Impact</a></h3>
-<p>With enhanced documentation, the project aims to streamline the user experience for individuals at all skill levels within the Julia community. By providing clearer guides and improving accessibility, we seek to make navigating the platform seamless and fulfilling. These efforts not only address existing documentation gaps but also foster inclusivity and supportiveness within the community. Ultimately, our goal is to elevate JuliaHealth while contributing valuable insights and solutions that benefit the broader Julia organization.</p>
-<h3 id="project_scope"><a href="#project_scope">Project Scope</a></h3>
 <ul>
-<li><p>JuliaHealth organization website</p>
+<li><p>By providing clearer guidance and improving accessibility, we seek to make navigating the different aspects of the JuliaHealth organization seamless and intuitive.</p>
+</li>
+<li><p>We envision through participation in GSoD that by developing enhanced and unified documentation, we can assist all community levels within the JuliaHealth ecosystem.</p>
+</li>
+<li><p>Additionally, as we construct solutions within JuliaHealth to address the needs we have encountered as a growing organization, we will share our insights to the broader Julia community to illustrate various methods other ecosystems within Julia can adapt to meet growing demand.</p>
+</li>
+</ul>
+<h2 id="your_projects_scope"><a href="#your_projects_scope">Your project’s scope</a></h2>
+<blockquote>
+<p>&#91;&#33;Note&#93;</p>
+</blockquote>
+<p>Tell us about what documentation your organization will create, update, or improve. If some work is deliberately not being done, include that information as well. Include a time estimate, and whether you have already identified organization volunteers and a technical writer to work with your project.</p>
+<p>Although there are many subecosystems within JuliaHealth, our project will be scoped to specifically the Medical Imaging subecosystem as it has grown mature enough to encounter many of these problems already. Working on documentation around the Medical Imagining subecosystem will benefit the rest of the JuliaHealth ecosystem as it will provide a roadmap for how other subecosystems can best document themselves and support their users.</p>
+<p>To better position the Medical Imaging subecosystem within the JuliaHealth organization, we will first have to do some general documentation improvements to the main JuliaHealth website. This includes:</p>
 <ul>
-<li><p>Migrate website to DocumenterVitepress</p>
+<li><p>Upgrade website to latest Julia documentation deployment tool</p>
+<ul>
+<li><p>DocumenterVitepress.jl may be one target</p>
 </li>
-<li><p>Add new organization details for JuliaHealth overall</p>
+</ul>
 </li>
-<li><p>Create new sections for subecosystems</p>
+<li><p>Add additional organization details for JuliaHealth overall including:</p>
+<ul>
+<li><p>A new landing page for the subecosystems</p>
 <ul>
 <li><p>Medical Imaging</p>
 </li>
@@ -157,23 +185,24 @@
 </li>
 </ul>
 </li>
-<li><p>Add FAQ page</p>
-</li>
-<li><p>Link to packages across JuliaHealth for proper subecosystem</p>
-</li>
-<li><p>Page for research accomplishments within JuliaHealth</p>
-</li>
-<li><p>Add documentation and a companion to video tutorial GPU Accelerated Medical Image Segmentation Framework</p>
-</li>
-<li><p>Define and implement tracking metrics to monitor user engagement and interaction with the platform</p>
+<li><p>Package breakdown using our pre-existing package listing tool</p>
 </li>
 </ul>
 </li>
-<li><p>Extend project scope to include detailed documentation for each subpackage:</p>
+<li><p>Add FAQ or support page</p>
+</li>
+<li><p>Define and implement tracking metrics to monitor user engagement and interaction with the platform</p>
 <ul>
-<li><p><a href="https://github.com/JuliaHealth/MedImage.jl">MedImage</a></p>
+<li><p>Using an open source and GDPR compliant technology like GoatCounter</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Once this initial groundwork is done, we will then address some of the specific core tooling within the Medical Imaging subecosystem. Due to the modular nature of packages within this subecosystem, we will need to improve documentation across various packages to show what they should be used for, how they integrate with one another, and how to onboard as a potential new contributor:</p>
 <ul>
-<li><p>Introduction to the theory of medical imaging formats and spatial metadata</p>
+<li><p>Documentation tasks for <a href=" https://github.com/JuliaHealth/MedImage.jl">MedImage</a></p>
+<ul>
+<li><p>Introduction to the theory of medical imaging formats and spatial metadata </p>
 </li>
 <li><p>Describe how to load and save image</p>
 </li>
@@ -181,7 +210,7 @@
 </li>
 </ul>
 </li>
-<li><p><a href="https://github.com/JuliaHealth/MedEye3d.jl">MedEye3d</a></p>
+<li><p>Documentation tasks for <a href="https://github.com/JuliaHealth/MedEye3d.jl">MedEye3d</a></p>
 <ul>
 <li><p>Write tutorial how to configure window size and amount of space allocated to text</p>
 </li>
@@ -199,7 +228,7 @@
 </li>
 </ul>
 </li>
-<li><p><a href="https://github.com/JuliaHealth/MedEval3D.jl">MedEval3D</a></p>
+<li><p>Documentation tasks for <a href="https://github.com/JuliaHealth/MedEval3D.jl">MedEval3D</a></p>
 <ul>
 <li><p>Describe different metrics and what are their strength and weaknesses</p>
 </li>
@@ -207,66 +236,38 @@
 </li>
 </ul>
 </li>
-<li><p><a href="https://github.com/JuliaHealth/MedPipe3D.jl">MedPipe3D</a></p>
+<li><p>Documentation tasks for <a href="https://github.com/JuliaHealth/MedPipe3D.jl">MedPipe3D</a></p>
 <ul>
 <li><p>Describe how to use Medpipe functionalities in different use cases</p>
 </li>
-<li><p>Give theoretical introduction to the functionalities in development &#40;without usage examples&#41;</p>
+<li><p>Give introduction to the functionalities in development like augmentations, largest component analysis or hyperparameter tuning &#40;without usage examples&#41;</p>
+</li>
+</ul>
+</li>
+<li><p>Documentation tasks for <a href="https://github.com/JuliaHealth/KomaMRI.jl">KomaMRI</a>:</p>
 <ul>
-<li><p>Describe transforms -Brightness transform, Contrast augmentation transform, Gamma Transform, Gaussian noise transform, Rician noise transform, Mirror transform, Scale transform, Gaussian blur transform, Simulate low-resolution transform, Elastic deformation transform</p>
-</li>
-<li><p>Describe concept k fold cross validation and ensembling resulting models</p>
-</li>
-<li><p>Describe probabilistic oversampling for image segmentation</p>
-</li>
-<li><p>Describe why different images needs to be modified to have the same spacing origin and orientation</p>
-</li>
-<li><p>Describe what is the largest component analysis</p>
-</li>
-<li><p>Give short introduction to hyperparameter tuning and usage of Hyperopt package</p>
+<li><p>Through coordination with the KomaMRI volunteers, <a href="https://github.com/JuliaHealth/KomaMRI.jl/issues?q&#61;is&#37;3Aissue&#43;is&#37;3Aopen&#43;sort&#37;3Aupdated-desc&#43;label&#37;3Adocumentation">outstanding issues from KomaMRI will be addressed</a></p>
 </li>
 </ul>
 </li>
 </ul>
+<p>Finally, if time permits, there will be some additional stretch goals that we would like to attempt accomplishing:</p>
+<ul>
+<li><p>Page for ongoing projects across JuliaHealth</p>
+</li>
+<li><p>Page for research accomplishments within JuliaHealth</p>
+</li>
+<li><p>Write a JuliaHealth blog entry on a Medeye topic to broaden project reach</p>
 </li>
 </ul>
-</li>
-<li><p>Write a blog post on a MedPipe-related topic to broaden the project&#39;s reach.</p>
-</li>
-</ul>
-<p>Keeping the documentation concise, focused, and adding practical examples will greatly benefit users in understanding and utilizing the tools effectively.</p>
-<h3 id="out_of_scope_for_this_project"><a href="#out_of_scope_for_this_project">Out of scope for this project</a></h3>
-<ul>
-<li><p>Working on the improvement for pkg development</p>
-</li>
-</ul>
-<h3 id="success_criteria"><a href="#success_criteria">Success Criteria</a></h3>
-<p>Right now, the documentation we are proposing to create does not exist. Users would already have to know what the Package they want to use but does and how to use it which means very few people can use this. Users could also go externally and try to research the packages which increases the turnover of the documentation. By having a unified package documentation section we hope to empower users with all of the information they could want in one single place.</p>
-<p>We would consider the project successful if :</p>
-<ul>
-<li><p>Most &#40;or all&#41; of the FAQ issues are complete</p>
-</li>
-<li><p>Detailed documentation for each Sub packages will be available</p>
-</li>
-<li><p>25&#37; increase in documentation traffic &#40;measured from site analytics page&#41;</p>
-</li>
-<li><p>A new blog post is published</p>
-</li>
-</ul>
-<h3 id="prerequisites"><a href="#prerequisites">Prerequisites</a></h3>
-<ul>
-<li><p>Technical Writer</p>
-<ul>
-<li><p>Familiarity with Documenter.jl and DocumenterVitepress</p>
-</li>
-<li><p>Basic knowledge of Medpipe3d packages</p>
-</li>
-</ul>
-</li>
-<li><p>Volunteer&#39;s Role</p>
-<ul>
-<li><p>Volunteer 1: JuliaHealth Documentation volunteer</p>
-<ul>
+<h4 id="technical_writer"><a href="#technical_writer">Technical Writer</a></h4>
+<p>Name: <a href="https://github.com/sneha9231">Sneha Pandey</a></p>
+<p>Sneha Pandey is a sophomore specializing in AI and ML and also serves as a Microsoft Learn Student Ambassador. Through this role, she had refined her ability to communicate complex concepts effectively to diverse audiences. Additionally, She had gained experience as a content writer, crafting content for her university. She has hands-on experience in developing various mini projects, such as a WhatsApp bot and ML captioning models using Streamlit and Python. Her familiarity with Julia stems from previous engagements in medical imaging alongside MD PhD Msc Jakub Mitura. Moreover, She ensured comprehensive documentation of her personal projects using Documenter.jl. These experiences collectively equip her with the skills and proficiency required to excel as a technical writer within the Julia ecosystem.</p>
+<h4 id="volunteer_roles"><a href="#volunteer_roles">Volunteer Roles</a></h4>
+<p><strong>Volunteer 1: General JuliaHealth Organization Volunteer:</strong></p>
+<p>Name: Jacob S. Zelko</p>
+<p>Duties:</p>
+<ol>
 <li><p>Providing support for general JuliaHealth documentation tasks.</p>
 </li>
 <li><p>Assisting in reviewing documentation pull requests &#40;PRs&#41; periodically.</p>
@@ -277,92 +278,152 @@
 </li>
 <li><p>Serving as a general support role while integrating Technical Writer&#39;s work into the broader JuliaHealth ecosystem.</p>
 </li>
-</ul>
+</ol>
+<p><strong>Volunteer 2: JuliaDocs and Documentation Deployment Volunteer:</strong></p>
+<p>Name: Anshul Singhvi</p>
+<p>Duties:</p>
+<ol>
+<li><p>Transition support the main JuliaHealth page to the designated technology platform.</p>
 </li>
-<li><p>Volunteer 2: Julia Documentation Deployment volunteer</p>
-<ul>
-<li><p>Assist in transitioning the main JuliaHealth page to the designated technology platform.</p>
-</li>
-<li><p>Aid in structuring the initial page layout, establishing clear tiles, and organizing them into categories.</p>
-</li>
-<li><p>Define and implement tracking metrics to monitor user engagement and interaction with the platform.</p>
-</li>
-<li><p>Develop a standardized project template for documentation within the JuliaHealth framework.</p>
+<li><p>Provide guidance on safely implementing tracking metrics to monitor user engagement and interaction with the platform.</p>
 </li>
 <li><p>Offer technical consultation and guidance as needed throughout the project duration.</p>
 </li>
-</ul>
+<li><p>Help fix issues or rememdy needs that may arise from using tools from within the JuliaDocs ecosystem</p>
 </li>
-<li><p>Volunteer 3: Medical imaging subecosystem documentation volunteer for KomaMRI and their techniques</p>
-<ul>
-<li><p>Introduction to Medical Imaging Theory and Spatial Metadata</p>
+</ol>
+<p><strong>Volunteer 3: Medical Imaging Subecosystem Volunteer:</strong></p>
+<p>Name: Guillermo Sahonero Alvarez</p>
+<p>Duties:</p>
+<ol>
+<li><p>Provide guidance on medical imaging theory and spatial metadata</p>
 </li>
-<li><p>Provide an introductory overview of medical imaging formats and spatial metadata.</p>
+<li><p>Support in connecting imaging discussions to other aspects of the Julia ecosystem &#40;such as MLJ or JuliaImages&#41;</p>
 </li>
-<li><p>Explain the fundamental concepts and principles underlying medical imaging.</p>
+<li><p>Provide subject matter expertise on imaging standards</p>
 </li>
-<li><p>Give a theoretical overview of functionalities under development, excluding usage examples.</p>
+<li><p>Assist in writing theorethical introductions</p>
 </li>
-<li><p>Describe various image transformation functions</p>
-</li>
-<li><p>Explain the concept of K-fold cross-validation and its relevance in model evaluation.</p>
-</li>
-<li><p>Discuss the concept of probabilistic oversampling and its application in image segmentation tasks.</p>
-</li>
-<li><p>Explain how probabilistic oversampling techniques can enhance the robustness of segmentation models.</p>
-</li>
-<li><p>Describe the importance of standardizing image spacing, origin, and orientation.</p>
-</li>
-<li><p>Explain Largest Component Analysis utility in identifying and analyzing the largest connected components within datasets.</p>
-</li>
-<li><p>Give a brief introduction to hyperparameter tuning techniques.</p>
-</li>
-<li><p>Explain the usage of the Hyperopt package for automated hyperparameter optimization.</p>
-</li>
-</ul>
-</li>
-<li><p>Volunteer 4: Task consultations on packages functionalities and function documentations</p>
-<ul>
-<li><p>Help in refactoring function descriptions to increase consistency</p>
+</ol>
+<p><strong>Volunteer 4: Task consultations on packages functionalities and function documentations</strong></p>
+<p>Duties:</p>
+<ol>
+<li><p>Support for technical writer related to practical development issues of Julia programming languages</p>
 </li>
 <li><p>To help checking weather docstrings of functions are working correctly</p>
 </li>
 <li><p>Collaborate with KormaMRI to create specialized documentation sections based on their research paper, covering advanced topics or techniques relevant to medical imaging.</p>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="timeline"><a href="#timeline">Timeline</a></h3>
-<p>We assume the tech writer will put in part time hours &#40;10-15 hours/week&#41; during this time.</p>
-<table><tr><th align="right"><em>Monthly Plan</em></th><th align="right"></th></tr><tr><td align="right"><em>May</em></td><td align="right">Technical writer is hired, onboarding</td></tr><tr><td align="right"><em>June-July</em></td><td align="right">Research into Julia community, user needs for FAQ/support page</td></tr><tr><td align="right"><em>August</em></td><td align="right">Create Standard Package Documentations, Medical imaging subecosystem documentation</td></tr><tr><td align="right"><em>September-October</em></td><td align="right">Improvements to the main page of JuliaHealth</td></tr><tr><td align="right"><em>November</em></td><td align="right">Write a blog post</td></tr></table>
-<p><em>Weekly Plan</em></p>
+</ol>
+<h3 id="work_that_is_out_of_scope_for_this_project"><a href="#work_that_is_out_of_scope_for_this_project">Work that is out of scope for this project:</a></h3>
+<p>To explicitly enumerate what work is out of scope for this project, we do not plan for work done in the following spaces:</p>
 <ul>
-<li><p><em>Week &#40;1-2&#41;</em> - Reading and Familiarization</p>
+<li><p>Developing thorough documentation for other subecosystems</p>
 </li>
-<li><p><em>Week &#40;3-4&#41;</em> - Setting up the environment and Updating Organization Details &amp; Creating Subecosystem Sections</p>
-</li>
-<li><p><em>Week &#40;5-7&#41;</em> - Linking Packages and Setting Up FAQ Page</p>
-</li>
-<li><p><em>Week &#40;8-10&#41;</em> - Documentation Traffic Tracker Setup</p>
-</li>
-<li><p><em>Week &#40;11- 12&#41;</em> -Research Accomplishments and FAQ Page Completion</p>
-</li>
-<li><p><em>Week &#40;13- 16&#41;</em> - Medical Imaging Subecosystem Packages Documentation</p>
-</li>
-<li><p><em>Week &#40;17-20&#41;</em> - Review and Finalize Website Content also Feedback Incorporation</p>
-</li>
-<li><p><em>Week &#40;20-22&#41;</em> - Blog Posts</p>
-</li>
-<li><p><em>Week &#40;23-24&#41;</em> - Wrap up / touch up of overall packages docs page</p>
+<li><p>Any of the aforementioned medical imagining packages not related to documentation</p>
+<ul>
+<li><p>Adding docstrings or crosslinks may fall in scope depending on the needs per task</p>
 </li>
 </ul>
-<p>This timeline is tentative and we expect that different packages will be slightly more challenging than others but this breakdown gives us the opportunity to have a way to stay accountable to the overall goal of the project.</p>
-<h3 id="communication_plan"><a href="#communication_plan">Communication Plan</a></h3>
-<p>Primary communication channel is the <a href="https://julialang.org/slack/">Julialang Slack</a>, and Jakub Mitura will be a person responsible for contact and mentoring throughout the project for regular updates and meetings. </p>
-<h3 id="budget"><a href="#budget">Budget</a></h3>
-<table><tr><th align="right">Budget item</th><th align="right">Amount</th><th align="right">Running total</th></tr><tr><td align="right">Technical writer</td><td align="right">USD 5000</td><td align="right">USD 5000</td></tr><tr><td align="right">Volunteer Stipend &#40;500x4&#41;</td><td align="right">USD 2000</td><td align="right">USD 7000</td></tr><tr><td align="right">T-shirts for team</td><td align="right">USD 150</td><td align="right">USD 7150</td></tr><tr><td align="right">TOTAL</td><td align="right">USD 7150</td><td align="right"></td></tr></table>
+</li>
+</ul>
+<h2 id="measuring_your_projects_success"><a href="#measuring_your_projects_success">Measuring your project’s success</a></h2>
+<blockquote>
+<p>&#91;&#33;Note&#93;</p>
+</blockquote>
+<p>How will you know that your new documentation has helped solve your problem? What metrics will you use, and how will you track them?</p>
+<p>Currently, the documentation we do have does not yet have support for documentation traffic analytics. As of this moment, our best direct source for traffic metrics is to use <a href="https://juliahub.com/ui/Packages?q&#61;JuliaHealth/">JuliaHub</a> to monitor package downloads and also to reference GitHub stars for a loose approximation of &quot;discoverability&quot;. Additionally, we take advantage of the <a href="https://www.youtube.com/@TheJuliaLanguage">The Julia Programming Language YouTube Channel</a> that we use to monitor engagement with our recorded <a href="https://www.youtube.com/playlist?list&#61;PLP8iPy9hna6QCTkFxfHs2Y4foaYBJAjzO">JuliaHealth Workgroup meetings</a>. In these situations, potential users or contributors would have to know where to look to find these resources or entry points to our supported packages and their respective subecosystems.</p>
+<h4 id="we_would_consider_the_project_successful_if"><a href="#we_would_consider_the_project_successful_if">We would consider the project successful if :</a></h4>
+<p>For JuliaHealth, we would consider this project successful if:</p>
+<ul>
+<li><p>We can readily track documentation traffic across packages</p>
+<ul>
+<li><p>Encompasses deploying a safe traffic detection tool</p>
+</li>
+<li><p>Seeing at least a 10 - 15&#37; growth in traffic after the deployment of tracking</p>
+</li>
+</ul>
+</li>
+<li><p>An overall increase by 5 - 10&#37; in traffic across all JuliaHealth platforms</p>
+<ul>
+<li><p>Includes JuliaHub, YouTube, GitHub, and documentation statistics</p>
+</li>
+</ul>
+</li>
+<li><p>Most &#40;if not all&#41; enumerated documentation tasks are completed for the Medical Imaging subecosystem</p>
+<ul>
+<li><p>Some Related Issue Links:</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://github.com/JuliaHealth/MedPipe3D.jl/issues/10">Sub-Package Documentation 1</a> <a href="https://github.com/JuliaHealth/MedEye3d.jl/issues/10">Sub-Package Documentation 2</a> <a href="https://github.com/JuliaHealth/MedEye3d.jl/issues/11">Sub-Package Documentation 3</a> <a href="https://github.com/JuliaHealth/MedEye3d.jl/issues/9">Sub-Package Documentation 4</a></p>
+<ul>
+<li><p>At least 3 - 5 new active JuliaHealth contributors across the JuliaHealth ecosystem are onboarded</p>
+<ul>
+<li><p>Tracked across GitHub contribution history</p>
+</li>
+</ul>
+</li>
+<li><p>A new blog post is published</p>
+</li>
+</ul>
+<h2 id="timeline"><a href="#timeline">Timeline</a></h2>
+<blockquote>
+<p>&#91;&#33;Note&#93;</p>
+</blockquote>
+<p>How long do you estimate this work will take? Are you able to breakdown the tech writer tasks by month/week?</p>
+<p>We assume the tech writer will put in part time hours &#40;10-20 hours/week&#41; during this time.</p>
+<h3 id="monthly_plan"><a href="#monthly_plan">Monthly Plan</a></h3>
+<table><tr><th align="right">Dates</th><th align="right">Action items</th></tr><tr><td align="right">May</td><td align="right">Technical writer and volunteers are hired, onboarding</td></tr><tr><td align="right">June-July</td><td align="right">Research into Julia community, Audit existing documentation</td></tr><tr><td align="right">August-September</td><td align="right">Create Standard Package Documentations, Medical imaging subecosystem documentation</td></tr><tr><td align="right">October</td><td align="right">Improvements to the main page of JuliaHealth</td></tr><tr><td align="right">November</td><td align="right">Write a blog post, Any outstanding tasks or stretch goals</td></tr></table>
+<h3 id="weekly_plan"><a href="#weekly_plan">Weekly Plan</a></h3>
+<ul>
+<li><p><strong>Week &#40;1-2&#41;</strong> - Reading and Familiarization</p>
+</li>
+<li><p><strong>Week &#40;3-4&#41;</strong> - Documentation Traffic Tracker Setup</p>
+</li>
+<li><p><strong>Week &#40;5-7&#41;</strong> - Setting up the environment and Updating Organization Details &amp; Creating Subecosystem Sections</p>
+</li>
+<li><p><strong>Week &#40;8-10&#41;</strong> -  Linking Packages across subecosystems</p>
+</li>
+<li><p><strong>Week &#40;11- 16&#41;</strong> - Medical Imaging Subecosystem Packages Documentation</p>
+</li>
+<li><p><strong>Week &#40;17- 20&#41;</strong> - Review and Finalize Website Content also Feedback Incorporation</p>
+</li>
+<li><p><strong>Week &#40;20-24&#41;</strong> - Wrap up / touch up of overall packages docs page alongside stretch goals</p>
+</li>
+</ul>
+<p>This timeline is largely accurate but we expect that different packages or tasks may be slightly more challenging than others. The November time period gives us the opportunity to revisit any unfinished tasks and to potentially explore stretch goals if there were not many outstanding tasks left.</p>
+<h3 id="communication_plan"><a href="#communication_plan">Communication Plan: </a></h3>
+<p>The primary communication channel we will use is <a href="https://julialang.org/slack/">Julia Slack</a> and Dr. Jakub Mitura &#40;MD, PhD&#41; will be the individual responsible for all contact and mentoring throughout the project for regular updates and meetings. Outside of Slack, email will be used to handle communications with GSoD organizers and administrators with Jakub Mitura&#39;s email being: <a href="mailto:jakub.mitura14@gmail.com">jakub.mitura14@gmail.com</a>. Volunteers will also be available for communication on the Slack on an as-needed basis. Additionally, project updates will be given through the <a href="https://app.slack.com/client/T68168MUP/C012NN70P5K">Julia Health Slack Channel</a> which is where the majority of JuliaHealth communication takes place between members, users, and the rest of the Julia community.</p>
+<h2 id="project_budget"><a href="#project_budget">Project Budget</a></h2>
+<blockquote>
+<p>&#91;&#33;Note&#93;</p>
+</blockquote>
+<p>You can include your budget in your proposal or as a separate link. If your budget is fewer than ten items, we recommend including it in your proposal.</p>
+<table><tr><th align="right">Budget item</th><th align="right">Amount</th><th align="right">Running total</th></tr><tr><td align="right">Technical writer</td><td align="right">&#36;4000</td><td align="right">&#36;4000</td></tr><tr><td align="right">Volunteer &#40;500x4&#41;</td><td align="right">&#36;2000</td><td align="right">&#36;6000</td></tr><tr><td align="right">Swags &#40;3 shirts and 10 sticker packs&#41;</td><td align="right">&#36;125</td><td align="right">&#36;6125</td></tr><tr><td align="right">TOTAL</td><td align="right"></td><td align="right">&#36;6125</td></tr></table>
+<p>Additional justifications:</p>
+<ul>
+<li><p>Volunteers: Please see the above section on Project Scope for details about selected volunteers</p>
+</li>
+<li><p>Swag: is to create a more welcoming environment for our writer and volunteers</p>
+<ul>
+<li><p>Sticker packs will also be given to welcome new contributors</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="additional_information"><a href="#additional_information">Additional information:</a></h3>
+<blockquote>
+<p>&#91;&#33;Note&#93;</p>
+</blockquote>
+<p>Beyond the above proposal information, some additional notes about the composition of this project team:</p>
+<p><strong>About GSoD Project Lead:</strong></p>
+<p>MD PhD Msc Jakub Mitura Researcher specialising in creating artificial intelligence models for medical imaging. Holds a doctorate in medical sciences with a thesis titled ‘The Role of Positron Emission Tomography Using Fluorodeoxyglucose in the Diagnosis of Vascular Prosthesis Infections.’ Additionally, holds a master’s degree in informatics with a specialisation in Big Data. Has authored scientific publications in the fields of medicine and artificial intelligence.</p>
+<p><strong>Additional Volunteer Notes:</strong></p>
+<p>Jacob Zelko was selected as a volunteer as he has a proven track record as a successful Google Summer of Code mentor for the past 3 years and is currently the Julia Organization&#39;s co-administrator for this years Google Summer of Code where he handles questions from both students and mentors. Given his experience, Jacob will provide guidance to Jakub and Sneha as needed to make sure this project is well-aligned with general Google Open Source program goals. Additionally, Jacob has a overseen many grants in the past through Google Summer of Code and former positions at Georgia Tech Research Institute and the Centers for Disease Control and will provide a valuable asset in answering any questions about the project scope.</p>
+<p>Anshul Singhvi is a former Google Summer of Code student and has a vast swath of experience of working across the Julia ecosystem. In particular, Anshul has membership with numerous Julia organizations and will be a crucial asset to not only what are best practices for documentation deployment but can also help with how to best unify JuliaHealth packages within JuliaHealth itself and potentially across the greater Julia landscape. His insight will be crucial to mitigate any redundant work or answer outsanding questions to make sure this project is ran as effectively as possible. Also, given Anshul&#39;s tremendous experience in delivering contract work, he will be key in making sure the metrics we investigate and report on for the case study in our final report will be done rigorously and to the best of the technical writer&#39;s ability given the data we have access to.</p>
+<p>&lt;/div&gt;</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
