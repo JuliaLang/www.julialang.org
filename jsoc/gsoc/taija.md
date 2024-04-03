@@ -80,6 +80,28 @@ There is a high overlap with organizations, you might be also interested in:
 - Implement current state-of-the-art approaches such as [MiCE](https://aclanthology.org/2021.findings-acl.336.pdf) and [CORE](https://aclanthology.org/2022.findings-emnlp.216.pdf)
 - Comprehensively test and document your work
 
+## Project 4: From Counterfactuals to Interventions (Recourse through Minimal Causal Interventions)
+
+**Project Overview:**
+This extension aims to enhance the CounterfactualExplanations.jl package by incorporating a module for generating actionable recourse through minimal causal interventions.
+
+**Mentor:** [Patrick Altmeyer](https://github.com/pat-alt) (Taija) and [Moritz Schauer](https://github.com/mschauer) (CausalInference.jl)
+
+**Project Difficulty:** Hard
+
+**Estimated Duration:** 350 hours
+
+**Ideal Candidate Profile:**
+- Experience with Julia
+- Background in causality and familiarity with counterfactual reasoning.
+- Basic knowledge of minimal interventions and causal graph building.
+  
+**Project Goals and Deliverables:**
+- Carefully think about architecture choices: how can we fit support for causal interventions into the existing code base?
+- Develop code that could integrate causal graph building with other Julia libs such as [Graphs.jl](https://github.com/JuliaGraphs/Graphs.jl), [GraphPlot.jl](https://juliagraphs.org/GraphPlot.jl/) and [CausalInference.jl](https://github.com/mschauer/CausalInference.jl).
+- Implement current state-of-the-art approaches for minimal interventions using structured causal models (SCMs).
+- Comprehensively test and document your work.
+
 ## About Us
 
 [Patrick Altmeyer](https://www.paltmeyer.com/) is a PhD Candidate in Trustworthy Artificial Intelligence at Delft University of Technology working on the intersection of Computer Science and Finance. He has presented work related to Taija at JuliaCon 2022 and 2023. In the past year, Patrick has mentored multiple groups of students at Delft University of Technology who have made major contributions to Taija. 
