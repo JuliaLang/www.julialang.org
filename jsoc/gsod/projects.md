@@ -7,6 +7,7 @@ We at the Julia Language are committed to making the application process and par
 ### The GSoD experience with The Julia Language
 
 Learn from one of our technical writers about their experience with GSoD:
+
 ~~~
 <iframe width="100%" height="450" src="https://www.youtube-nocookie.com/embed/6s9J-ObQaAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ~~~
@@ -18,7 +19,6 @@ Below you can find a running list of potential GSoD projects. If any of these ar
 # Unifying the [JuliaHeath Organization](https://github.com/JuliaHealth) Documentation Landscape
 
 ## About your organization 
-> [!Note]
 In this section, tell us about your organization or project in a few short paragraphs. What problem does your project solve? Who are your users and contributors? How long has your organization or project been in existence? Give some context to help us understand why funding your proposal would create a positive impact in open source and the world.
 
 The Julia Programming Language is an MIT-licensed high-performance programming language designed for speed, usability, and reproducibility within both scientific and general purpose computing.
@@ -34,7 +34,6 @@ As the entire JuliaHealth user community comprises more than 250 registered user
 Currently, there are various subecosystems such as the Medical Imaging and the Observational Health subecosystem with more subecosystems beginning to emerge.
 
 ## Your project’s problem
-> [!Note]
 Tell us about the problem your project will help solve. Why is it important to your organization or project to solve this problem?
 
 With JuliaHealth's terrific growth over the years -- both in terms of growth in users, members, and actively maintained packages -- we are beginning to see the need for more unified documentation.
@@ -55,7 +54,6 @@ Users and developers want to engage with the JuliaHealth community, but if we do
 - Additionally, as we construct solutions within JuliaHealth to address the needs we have encountered as a growing organization, we will share our insights to the broader Julia community to illustrate various methods other ecosystems within Julia can adapt to meet growing demand.
 
 ## Your project’s scope
-> [!Note]
 Tell us about what documentation your organization will create, update, or improve. If some work is deliberately not being done, include that information as well. Include a time estimate, and whether you have already identified organization volunteers and a technical writer to work with your project.
 
 Although there are many subecosystems within JuliaHealth, our project will be scoped to specifically the Medical Imaging subecosystem as it has grown mature enough to encounter many of these problems already.
@@ -161,8 +159,7 @@ To explicitly enumerate what work is out of scope for this project, we do not pl
      - Adding docstrings or crosslinks may fall in scope depending on the needs per task
 
 ## Measuring your project’s success
-> [!Note]
-How will you know that your new documentation has helped solve your problem? What metrics will you use, and how will you track them?
+> How will you know that your new documentation has helped solve your problem? What metrics will you use, and how will you track them?
 
 Currently, the documentation we do have does not yet have support for documentation traffic analytics.
 As of this moment, our best direct source for traffic metrics is to use [JuliaHub](https://juliahub.com/ui/Packages?q=JuliaHealth/) to monitor package downloads and also to reference GitHub stars for a loose approximation of "discoverability".
@@ -188,10 +185,10 @@ For JuliaHealth, we would consider this project successful if:
 - A new blog post is published
 
 ## Timeline
-> [!Note]
-How long do you estimate this work will take? Are you able to breakdown the tech writer tasks by month/week?
+> How long do you estimate this work will take? Are you able to breakdown the tech writer tasks by month/week?
 
 We assume the tech writer will put in part time hours (10-20 hours/week) during this time.
+
 ### Monthly Plan
 
 | Dates | Action items |
@@ -228,8 +225,8 @@ Volunteers will also be available for communication on the Slack on an as-needed
 Additionally, project updates will be given through the [Julia Health Slack Channel](https://app.slack.com/client/T68168MUP/C012NN70P5K) which is where the majority of JuliaHealth communication takes place between members, users, and the rest of the Julia community.
 
 ## Project Budget
-> [!Note]
-You can include your budget in your proposal or as a separate link. If your budget is fewer than ten items, we recommend including it in your proposal.
+> You can include your budget in your proposal or as a separate link. If your budget is fewer than ten items, we recommend including it in your proposal.
+
 
 | Budget item | Amount | Running total |
 | ------------- | ------------- | ------------- |
@@ -245,8 +242,7 @@ Additional justifications:
      - Sticker packs will also be given to welcome new contributors
 
 ### Additional information:
-> [!Note]
-Beyond the above proposal information, some additional notes about the composition of this project team:
+> Beyond the above proposal information, some additional notes about the composition of this project team:
 
 **About GSoD Project Lead:**
 
@@ -262,5 +258,3 @@ Anshul Singhvi is a former Google Summer of Code student and has a vast swath of
 In particular, Anshul has membership with numerous Julia organizations and will be a crucial asset to not only what are best practices for documentation deployment but can also help with how to best unify JuliaHealth packages within JuliaHealth itself and potentially across the greater Julia landscape.
 His insight will be crucial to mitigate any redundant work or answer outsanding questions to make sure this project is ran as effectively as possible.
 Also, given Anshul's tremendous experience in delivering contract work, he will be key in making sure the metrics we investigate and report on for the case study in our final report will be done rigorously and to the best of the technical writer's ability given the data we have access to.
-
-</div>
