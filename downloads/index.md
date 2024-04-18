@@ -52,6 +52,10 @@ Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia
 
 ---
 
+### Please do not use the version of "Julia" shipped by unix package managers
+
+Many unix package managers ship broken and/or significantly out of date versions of Julia. Please use juliaup or download the official binaries instead.
+
 ### Supported platforms
 
 Different OSes and architectures have varying [tiers of support](/downloads/#support_tiers_for_the_latest_stable_release_of_julia).
