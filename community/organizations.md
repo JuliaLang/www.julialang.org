@@ -99,6 +99,7 @@ The following is a non-comprehensive list of Julia GitHub organizations, grouped
 * [JuliaRobotics](https://github.com/JuliaRobotics) -  A collection of robotics-related packages that focus on robot control, simulation, navigation, and visualization
 * [JuliaTelecom](https://github.com/JuliaTelecom) – [Telecommunications](https://github.com/JuliaTelecom/SiteMap)
 * [ModiaSim](https://github.com/ModiaSim) – Physical systems modelling/simulation with differential & algebraic equations
+* [JuliaMusic](https://github.com/JuliaMusic) – Computational Musicology
 
 ### Astronomy/Space
 
