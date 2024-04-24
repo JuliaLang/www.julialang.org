@@ -73,7 +73,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     </tr>
     <tr>
       <td rowspan="3"> macOS </td>
-      <td> 10.10+ </td>
+      <td> 10.14+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
     </tr>
@@ -83,8 +83,8 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> 10.6+ </td>
-      <td> i686 (32-bit) / x86-64 (64-bit) </td>
+      <td> 10.14+ </td>
+      <td> i686 (32-bit) </td>
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
