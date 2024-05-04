@@ -1,5 +1,5 @@
 @def title = "2024 GSoC and JSoC Fellows Announced"
-@def authors = "Jacob Zelko, Avik Sengupta"
+@def authors = "Avik Sengupta, Jacob Zelko"
 @def published = "3 May 2024"
 @def rss_pubdate = Date(2024, 5, 3)
 @def rss = """GSoC and JSoC Fellows and Projects announced for 2024."""
