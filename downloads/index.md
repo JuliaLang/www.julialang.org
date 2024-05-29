@@ -494,6 +494,6 @@ If you are using `juliaup`, then you need access to the following domains when y
 
 Traffic can be limited to HTTPS (TCP port 443).
 
-This is only required if you are using Juliaup.
+This is only required if you are using `juliaup` (recommended but not required).
 
 If you are not using `juliaup`, then you do not need to have access to the `github.com` domain.
