@@ -485,3 +485,13 @@ The following domains are official and used by open source Julia infrastructure 
 - `julialang.net` and all subdomains
 
 If you are using Julia behind a firewall that blocks access to these, you may have trouble downloading and installing Julia packages. If this is the case, please ask your sysadmin to add these domains to the firewall allow list. Traffic can be limited to HTTPS (TCP port 443).
+
+#### Additional domains used only by Juliaup
+
+If you are using Juliaup, then you need access to the following domains when you install Juliaup for the first time:
+
+- `github.com`
+
+This is only required if you are using Juliaup.
+
+If you are not using Juliaup, then you do not need to have access to the `github.com` domain.
