@@ -488,7 +488,7 @@ If you are using Julia behind a firewall that blocks access to these, you may ha
 
 #### Additional domains used only by Juliaup
 
-If you are using Juliaup, then you need access to the following domains when you install Juliaup for the first time:
+If you are using `juliaup`, then you need access to the following domains when you install `juliaup` for the first time:
 
 - `github.com`
 
@@ -496,4 +496,4 @@ Traffic can be limited to HTTPS (TCP port 443).
 
 This is only required if you are using Juliaup.
 
-If you are not using Juliaup, then you do not need to have access to the `github.com` domain.
+If you are not using `juliaup`, then you do not need to have access to the `github.com` domain.
