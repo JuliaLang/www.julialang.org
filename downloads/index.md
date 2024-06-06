@@ -88,6 +88,11 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
+      <td> 13+ </td>
+      <td> <a href="https://juliagpu.org/metal">M-series Metal GPU</a> </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
       <td rowspan="3"> Windows </td>
       <td rowspan="2"> 10+ </td>
       <td> x86-64 (64-bit) </td>
@@ -98,9 +103,9 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> CUDA 10.1</td>
-      <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
-      <td> <font color="green">Tier 1</font> </a> </td>
+      <td> NVIDIA driver for CUDA 11.0+</td>
+      <td> <a href="https://juliagpu.org/cuda">NVIDIA CUDA (64-bit)</a> </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
     </tr>
     <tr>
       <td rowspan="8"> Linux (Glibc) </td>
@@ -125,17 +130,17 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="crimson">Tier 3</font>  </td>
     </tr>
     <tr>
-      <td> CUDA 10.1</td>
-      <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
+      <td> NVIDIA driver for CUDA 11.0+</td>
+      <td> <a href="https://juliagpu.org/cuda">NVIDIA CUDA (64-bit)</a> </td>
       <td> <font color="green">Tier 1</font> </a> </td>
     </tr>
     <tr>
-      <td> ROCM </td>
+      <td> ROCM 5.3+</td>
       <td> <a href="https://juliagpu.org/rocm">AMD ROCM (64-bit)</a> </td>
       <td> <font color="crimson">Tier 3</font> </a> </td>
     </tr>
     <tr>
-      <td> oneAPI </td>
+      <td> 6.2+ </td>
       <td> <a href="https://juliagpu.org/oneapi">Intel oneAPI (64-bit)</a> </td>
       <td> <font color="crimson">Tier 3</font> </a> </td>
     </tr>
