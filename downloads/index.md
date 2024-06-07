@@ -88,7 +88,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
-      <td rowspan="3"> Windows </td>
+      <td rowspan="2"> Windows </td>
       <td rowspan="2"> 10+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
@@ -98,12 +98,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> CUDA 10.1</td>
-      <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
-      <td> <font color="green">Tier 1</font> </a> </td>
-    </tr>
-    <tr>
-      <td rowspan="8"> Linux (Glibc) </td>
+      <td rowspan="5"> Linux (Glibc) </td>
       <td rowspan="5"> 2.6.24+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
@@ -125,21 +120,6 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="crimson">Tier 3</font>  </td>
     </tr>
     <tr>
-      <td> CUDA 10.1</td>
-      <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
-      <td> <font color="green">Tier 1</font> </a> </td>
-    </tr>
-    <tr>
-      <td> ROCM </td>
-      <td> <a href="https://juliagpu.org/rocm">AMD ROCM (64-bit)</a> </td>
-      <td> <font color="crimson">Tier 3</font> </a> </td>
-    </tr>
-    <tr>
-      <td> oneAPI </td>
-      <td> <a href="https://juliagpu.org/oneapi">Intel oneAPI (64-bit)</a> </td>
-      <td> <font color="crimson">Tier 3</font> </a> </td>
-    </tr>
-    <tr>
       <td rowspan="1"> Linux (Musl) </td>
       <td rowspan="1"> 2.6.39+ </td>
       <td> x86-64 (64-bit) </td>
@@ -154,6 +134,60 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     <tr>
       <td> i686 (32-bit) </td>
       <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+  </tbody>
+</table>
+~~~
+@@ @@
+
+Julia also supports a variety of hardware accelerators, by means of external packages.
+
+@@row @@col-12
+~~~
+<table class="downloads table table-hover ">
+  <tbody>
+    <tr>
+      <th> Hardware Accelerator </th>
+      <th> Platform </th>
+      <th> Requirements </th>
+      <th> Support Tier </th>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/cuda">NVIDIA GPUs using CUDA</a> </td>
+      <td> Linux (64-bit) </td>
+      <td rowspan="2"> NVIDIA driver for CUDA 11.0+ </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> <a href="https://juliagpu.org/metal">Apple GPUs using Metal</a> </td>
+      <td> Apple Silicon </td>
+      <td> macOS 13+ </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/oneapi">Intel GPUs with oneAPI</a> </td>
+      <td> Linux (64-bit) </td>
+      <td> 6.2+ </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> WSL2 </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/rocm">AMD GPUs using ROCm</a> </td>
+      <td> Linux (64-bit) </td>
+      <td rowspan="2"> ROCM 5.3+ </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
     </tr>
   </tbody>
 </table>
