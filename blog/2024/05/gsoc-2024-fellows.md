@@ -15,28 +15,28 @@ To give some quick statistics, we had $26$ proposals we submitted to Google and 
 ---
 
 
-| Project Title                                                                                    | GSoC Fellow        | Assigned Mentor(s)            |
-|--------------------------------------------------------------------------------------------------|--------------------|-------------------------------|
-| Graph Neural Networks - Training on very large graphs                                            | Agata              | CarloLucibello                |
-| Julia Dagger - Enhancing Streaming Data Processing for Heterogeneous Computing                   | Davide Ferretti    | Julian Samaroo, James Wrigley |
-| JuliaGenAI/Gibberish.jl: GPU-accelerated language models in Julia                                | Dhruv Dhamani      | Cameron Pfiffer               |
-| Adding functionalities to medical imaging visualizations                                         | Divyansh Goyal     | cncastillo, Jakub Mitura      |
-| Bringing state-of-the-art categorical variable encoding methods to Julia                         | Essam Wisam        | Anthony Blaom                 |
-| Improving the integration between Turing and Turing’s MCMC inference packages                    | Ivan Sladoljev     | Tor Erlend Fjelde             |
-| Project 4: Adding dataset-wide functions and integrations of augmentations                       | JanZubik           | cncastillo, Jakub Mitura      |
-| PosteriorDB Implementations for Turing.jl                                                        | JasonPekos         | Tor Erlend Fjelde             |
-| Developing Tooling for Observational Health Research in Julia                                    | Jay Sanjay Landge  | TheCedarPrince                |
-| Algorithms and interface for detection of periodic orbits                                        | Jonas Koziorek     | Datseris                      |
-| Integrating the Modern CFD Package Trixi.jl with Compiler-Based Auto-Diff via Enzyme.jl          | Julian Xu          | Hendrik Ranocha               |
-| Developing IPUMS.jl: A Pure Julia Interface to IPUMS for Health Research Applications and Beyond | Michela Rocchetti  | Krishna Bhogaonker            |
-| OptiFloat.jl: Automatic Floating Point Expression Optimization in Pure Julia                     | Niklas Heim        | Shashi Gowda                  |
-| Add the support to Conformal Bayes to Taija                                                      | Pasquale Caterino  | Pat Alt                       |
-| Language Interoperability - CxxWrap.jl                                                           | PraneethJain       | Bart Janssens                 |
-| Enhance KomaMRI.jl GPU Support                                                                   | Ryan Kierulf       | cncastillo Pim                |
-| Supercharging the Knowledge Base of AIHelpMe.jl                                                  | Shreyas Agrawal    | Cameron Pfiffer, Jan Siml     |
-| ColBERTv2.0: Efficient Information Retrieval in Julia                                            | Siddhant Chaudhary | Cameron Pfiffer, Jan Siml     |
-| Tensor network contraction order optimization and visualization                                  | Xuanzhao Gao       | JinGuo Liu                    |
-| Symbolic computation with Julia (Symbolics.jl): Symbolic Root finding                            | Yassin ElBedwihy   | Alexander Demin               |
+| Project Title                                                                                    | GSoC Fellow        | Assigned Mentor(s)             |
+|--------------------------------------------------------------------------------------------------|--------------------|--------------------------------|
+| Graph Neural Networks - Training on very large graphs                                            | Agata              | CarloLucibello                 |
+| Julia Dagger - Enhancing Streaming Data Processing for Heterogeneous Computing                   | Davide Ferretti    | Julian Samaroo, James Wrigley  |
+| JuliaGenAI/Gibberish.jl: GPU-accelerated language models in Julia                                | Dhruv Dhamani      | Cameron Pfiffer                |
+| Adding functionalities to medical imaging visualizations                                         | Divyansh Goyal     | cncastillo, Jakub Mitura       |
+| Bringing state-of-the-art categorical variable encoding methods to Julia                         | Essam Wisam        | Anthony Blaom                  |
+| Improving the integration between Turing and Turing’s MCMC inference packages                    | Ivan Sladoljev     | Tor Erlend Fjelde              |
+| Project 4: Adding dataset-wide functions and integrations of augmentations                       | JanZubik           | cncastillo, Jakub Mitura       |
+| PosteriorDB Implementations for Turing.jl                                                        | JasonPekos         | Tor Erlend Fjelde              |
+| Developing Tooling for Observational Health Research in Julia                                    | Jay Sanjay Landge  | TheCedarPrince                 |
+| Algorithms and interface for detection of periodic orbits                                        | Jonas Koziorek     | Datseris                       |
+| Integrating the Modern CFD Package Trixi.jl with Compiler-Based Auto-Diff via Enzyme.jl          | Julian Xu          | Hendrik Ranocha                |
+| Developing IPUMS.jl: A Pure Julia Interface to IPUMS for Health Research Applications and Beyond | Michela Rocchetti  | Krishna Bhogaonker             |
+| OptiFloat.jl: Automatic Floating Point Expression Optimization in Pure Julia                     | Niklas Heim        | Shashi Gowda, Alessandro Cheli |
+| Add the support to Conformal Bayes to Taija                                                      | Pasquale Caterino  | Pat Alt                        |
+| Language Interoperability - CxxWrap.jl                                                           | PraneethJain       | Bart Janssens                  |
+| Enhance KomaMRI.jl GPU Support                                                                   | Ryan Kierulf       | cncastillo Pim                 |
+| Supercharging the Knowledge Base of AIHelpMe.jl                                                  | Shreyas Agrawal    | Cameron Pfiffer, Jan Siml      |
+| ColBERTv2.0: Efficient Information Retrieval in Julia                                            | Siddhant Chaudhary | Cameron Pfiffer, Jan Siml      |
+| Tensor network contraction order optimization and visualization                                  | Xuanzhao Gao       | JinGuo Liu                     |
+| Symbolic computation with Julia (Symbolics.jl): Symbolic Root finding                            | Yassin ElBedwihy   | Alexander Demin                |
 | New quantum error-correcting codes and decoders for QuantumClifford.jl                           | Yuxuan Yan         | Stefan Krastanov
 
 ## Julia Summer of Code
