@@ -235,12 +235,12 @@
               Julia has foreign function interfaces for
                 <a href = "https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/">C, Fortran</a>,
                 <a href = "https://github.com/JuliaInterop/CxxWrap.jl">C++</a>,
-                <a href = "https://github.com/JuliaPy/PyCall.jl">Python</a>,
+                <a href = "https://github.com/JuliaPy/PythonCall.jl">Python</a>,
                 <a href = "https://github.com/JuliaInterop/RCall.jl">R</a>,
                 <a href = "https://github.com/JuliaInterop/JavaCall.jl">Java</a>,
                 <a href = "https://github.com/JuliaInterop/MathLink.jl">Mathematica</a>,
                 <a href = "https://github.com/JuliaInterop/MATLAB.jl">Matlab</a>,
-                and many other languages. Julia can also be embedded in other programs through its <a href="https://docs.julialang.org/en/v1/manual/embedding/">embedding API</a>. Julia's <a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler</a> makes it possible to build binaries from Julia programs that can be integrated into larger projects. Python programs can call Julia using <a href="https://github.com/JuliaPy/pyjulia">PyJulia</a>. R programs can do the same with <a href="https://cran.r-project.org/web/packages/JuliaCall/index.html">R's JuliaCall</a>, which is demonstrated by <a href="https://rpubs.com/dmbates/377897">calling MixedModels.jl from R</a>. Mathematica supports <a href="https://reference.wolfram.com/language/ref/externalevaluationsystem/Julia.html">calling Julia through its External Evaluation System</a>.
+                and many other languages. Julia can also be embedded in other programs through its <a href="https://docs.julialang.org/en/v1/manual/embedding/">embedding API</a>. Julia's <a href="https://github.com/JuliaLang/PackageCompiler.jl">PackageCompiler</a> makes it possible to build binaries from Julia programs that can be integrated into larger projects. Python programs can call Julia using <a href="https://github.com/JuliaPy/PythonCall.jl">juliacall</a>. R programs can do the same with <a href="https://cran.r-project.org/web/packages/JuliaCall/index.html">R's JuliaCall</a>, which is demonstrated by <a href="https://rpubs.com/dmbates/377897">calling MixedModels.jl from R</a>. Mathematica supports <a href="https://reference.wolfram.com/language/ref/externalevaluationsystem/Julia.html">calling Julia through its External Evaluation System</a>.
             </p>
           </div>
         </div>
@@ -283,10 +283,10 @@
                   Scalable Machine Learning
                 </h4>
                 <p>
-		  The <a href="https://github.com/alan-turing-institute/MLJ.jl">MLJ.jl</a> package provides a unified interface to common machine learning algorithms, which include
+		  The <a href="https://github.com/JuliaAI/MLJ.jl">MLJ.jl</a> package provides a unified interface to common machine learning algorithms, which include
                   <a href = "https://github.com/JuliaStats/GLM.jl">generalized linear models</a>, <a href = "https://github.com/dmlc/XGBoost.jl">decision trees</a>, and <a href = "https://github.com/JuliaStats/Clustering.jl">clustering</a>.
-                  <a href = "https://github.com/FluxML/Flux.jl">Flux.jl</a> and <a href = "https://github.com/denizyuret/Knet.jl">Knet.jl</a> are powerful packages for Deep Learning.
-		  Packages such as <a href="https://github.com/FluxML/Metalhead.jl">Metalhead</a>, <a href="https://github.com/r3tex/ObjectDetector.jl">ObjectDetector</a>, and <a href="https://github.com/JuliaText/TextAnalysis.jl">TextAnalysis.jl</a> provide ready to use pre-trained models for common tasks.
+                  <a href = "https://github.com/FluxML/Flux.jl">Flux.jl</a> and <a href = "https://github.com/LuxDL/Lux.jl">Lux.jl</a> are powerful packages for Deep Learning.
+		  Packages such as <a href="https://github.com/FluxML/Metalhead.jl">Metalhead.jl</a>, <a href="https://github.com/r3tex/ObjectDetector.jl">ObjectDetector.jl</a>, and <a href="https://github.com/JuliaText/TextAnalysis.jl">TextAnalysis.jl</a> provide ready to use pre-trained models for common tasks.
        		  <a href="https://github.com/jonathan-laurent/AlphaZero.jl">AlphaZero.jl</a> provides a high performance implementation of the reinforcement learning algorithms from AlphaZero. <a href="https://turinglang.org">Turing.jl</a> is a best in class package for probabilistic programming.
                 </p>
               </div>
@@ -321,7 +321,7 @@
               <div class="container">
                 <h4>Interact with your Data</h4>
                 <p>The Julia data ecosystem provides <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> to work with datasets, and perform common data manipulations. <a href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> is a fast multi-threaded package to read CSV files and integration with the Arrow ecosystem is in the works with <a href="https://github.com/JuliaData/Arrow.jl">Arrow.jl</a>. Online computations on streaming data can be performed with <a href = "https://github.com/joshday/OnlineStats.jl">OnlineStats.jl</a>.
-                The <a href = "https://www.queryverse.org/">Queryverse</a> provides query, file IO and visualization functionality. In addition to working with tabular data, the <a href = "https://juliagraphs.github.io">JuliaGraphs</a> packages make it easy to work with combinatorial data.</p>
+                The <a href = "https://www.queryverse.org/">Queryverse</a> provides query, file IO and visualization functionality. In addition to working with tabular data, the <a href = "https://juliagraphs.org/">JuliaGraphs</a> packages make it easy to work with combinatorial data.</p>
                 <p>Julia can work with almost all databases using <a href = "https://github.com/JuliaDatabases/JDBC.jl">JDBC.jl</a> and <a href = "https://github.com/JuliaDatabases/ODBC.jl">ODBC.jl</a> drivers. In addition, it also integrates with the Spark ecosystem through <a href = "https://github.com/dfdx/Spark.jl">Spark.jl</a>.</p>
               </div>
             </div>
@@ -337,7 +337,7 @@
                 <img src="/assets/infra/waves.gif" class="pb-2 ecosystem-image" style="width: 400px;" alt="Visualization of waves in 3D, as a heatmap, and on the x y axis" />
                 <h4>Data Visualization and Plotting</h4>
                 <p>Data visualization has a complicated history. Plotting software makes trade-offs between features and simplicity, speed and beauty, and a static and dynamic interface. Some packages make a display and never change it, while others make updates in real-time.</p>
-                <p><a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It provides a common API across various <a href="https://docs.juliaplots.org/latest/backends/">backends</a>, like <a href="https://github.com/jheinen/GR.jl">GR.jl</a>, <a href="https://github.com/JuliaPy/PyPlot.jl">PyPlot.jl</a>, and <a href="https://github.com/JuliaPlots/PlotlyJS.jl">PlotlyJS.jl</a>. <a href="https://github.com/JuliaPlots/Makie.jl">Makie.jl</a> is a sophisticated package for complex graphics and animations. Users who are used to "grammar of graphics" plotting APIs should take a look at <a href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a>. <a href="https://github.com/queryverse/VegaLite.jl">VegaLite.jl</a> provides the <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> grammar of interactive graphics interface as a Julia package. For those who do not wish to leave the comfort of the terminal, there is also <a href="https://github.com/Evizero/UnicodePlots.jl">UnicodePlots.jl</a>.</p>
+                <p><a href="https://github.com/JuliaPlots/Plots.jl">Plots.jl</a> is a visualization interface and toolset. It provides a common API across various <a href="https://docs.juliaplots.org/latest/backends/">backends</a>, like <a href="https://github.com/jheinen/GR.jl">GR.jl</a>, <a href="https://github.com/JuliaPy/PyPlot.jl">PyPlot.jl</a>, and <a href="https://github.com/JuliaPlots/PlotlyJS.jl">PlotlyJS.jl</a>. <a href="https://github.com/MakieOrg/Makie.jl">Makie.jl</a> is a sophisticated package for complex graphics and animations. Users who are used to "grammar of graphics" plotting APIs should take a look at <a href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a>. <a href="https://github.com/queryverse/VegaLite.jl">VegaLite.jl</a> provides the <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> grammar of interactive graphics interface as a Julia package. For those who do not wish to leave the comfort of the terminal, there is also <a href="https://github.com/Evizero/UnicodePlots.jl">UnicodePlots.jl</a>.</p>
               </div>
             </div>
           </div>
