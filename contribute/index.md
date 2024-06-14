@@ -92,6 +92,7 @@ Before you start contributing to the Julia ecosystem, you need the following too
    * [IJulia](https://github.com/JuliaLang/IJulia.jl)
    * [Pluto.jl](https://github.com/fonsp/Pluto.jl)
    * [Julia-vim](https://github.com/JuliaEditorSupport/julia-vim)
+   * [Neovim with nvim-cmp and nvim-lspconfig](https://github.com/julia-vscode/LanguageServer.jl/wiki/Vim-and-Neovim#using-nvim-cmp-and-nvim-lspconfig)
    * [Emacs major mode for the Julia programming language](https://github.com/JuliaEditorSupport/julia-emacs)
 * **Knowledge of Git and how to create a pull request:** For more information on getting started with Git, see [Making a first Julia pull request](https://kshyatt.github.io/post/firstjuliapr/).
 
