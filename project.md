@@ -1,3 +1,73 @@
 @def title = "Julia project"
 
-The Julia Project as a whole is about bringing usable, scalable technical computing to a greater audience: allowing scientists and researchers to use computation more rapidly and effectively; letting businesses do harder and more interesting analyses more easily and cheaply. Part of that project entails creating a free, open-source language that is as easy to use as possible, so that researchers who are not necessarily professional programmers can easily create and share programs that others will be able to use for free and improve upon. However, a large part of the project is also about creating an ecosystem in which such openness and sharing can take place.
+~~~
+  <div id="timeline-wrapper">
+    <h1>Julia Project Timeline</h1>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="year">2024</div>
+        <div class="content">
+          <div class="date">
+            24 May
+          </div>
+          <h2>Lorem ipsum dolor sit amet</h2>
+          <p>
+            Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper
+            pretium.
+          </p>
+          <div class="read-more-btn">
+            <a href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2024</div>
+        <div class="content">
+          <div class="date">
+            18 Jan
+          </div>
+          <h2>Lorem ipsum dolor sit amet</h2>
+          <p>
+            Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper
+            pretium.
+          </p>
+          <div class="read-more-btn">
+            <a href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2023</div>
+        <div class="content">
+          <div class="date">
+            29 Nov
+          </div>
+          <h2>Lorem ipsum dolor sit amet</h2>
+          <p>
+            Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper
+            pretium.
+          </p>
+          <div class="read-more-btn">
+            <a href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2023</div>
+        <div class="content">
+          <div class="date">
+            12 Aug
+          </div>
+          <h2>Lorem ipsum dolor sit amet</h2>
+          <p>
+            Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper
+            pretium.
+          </p>
+          <div class="read-more-btn">
+            <a href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+~~~
