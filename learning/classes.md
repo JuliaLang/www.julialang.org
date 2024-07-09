@@ -259,6 +259,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [IFT3245](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3245/), Simulation et modèles (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Fall 2017
     * [IFT3515](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3515/), Optimisation non linéaire (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2017-2018
     * [IFT6512](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-6512/), Programmation stochastique (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2018
+* Universidad de Sevilla, Spain
+    * [IAIC-2023](https://www.cs.us.es/cursos/iaic-2023/), Inteligencia Artificial, (Prof. [Pedro Almagro Blanco](https://www.cs.us.es/~palmagro) and Prof. [Fernando Sancho Caparrini](http://www.cs.us.es/~fsancho)), Winter 2023
 * University of Vaasa, Finland
     * [Fuzzy Systems](https://fuzzy.academy), ([Luca Ferranti](https://github.com/lucaferranti))
 * University of Washington
