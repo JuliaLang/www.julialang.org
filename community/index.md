@@ -93,6 +93,30 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
  </div>
 
  <!--
+      Containers: Local Communities
+ -->
+  <div class="container pt-sm-2">
+   <br><br>
+   <div class="container">
+     <div class="row">
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+       <div class="col-lg-4 col-md-6 language-features section-heading">
+         <h2 class="lead secondary-heading" id="events">
+          <a href="#local_communities" class="link">Local Communities</a>
+         </h2>
+       </div>
+       <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+     </div>
+
+     <br>
+     <p>The Julia Community has several local communities organizing meetups and other activities. If your community is missing from the map, add it <a href="https://github.com/JuliaLang/www.julialang.org/blob/main/_libs/groups.js">here</a>.</p>
+     <br>
+     <div id="map"></div>
+   </div>
+ </div>
+<br>
+
+ <!--
       Containers: Events
  -->
   <div class="container pt-sm-2">
