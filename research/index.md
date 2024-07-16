@@ -29,19 +29,6 @@ Researchers contributing to Julia have been awarded various prizes:
 * [2015: IEEE-CS Charles Babbage Award](https://www.computer.org/web/awards/charles-babbage): Alan Edelman
 @@
 
-## Sponsors
-
-We thank our sponsors for making Julia possible:
-
-@@tight-list
-* [Lincoln Laboratory](https://www.ll.mit.edu): [Dr. Jeremy Kepner](https://www.mit.edu/~kepner/) is the founding sponsor of the Julia project.
-* [Gordon and Betty Moore Foundation](https://www.moore.org/article-detail?newsUrlName=bringing-julia-from-beta-to-1.0-to-support-data-intensive-scientific-computing)
-* [Alfred P. Sloan Foundation](https://sloan.org/grant-detail/7999)
-* Intel
-* Research grants from various agencies have led to Julia contributions: [NSF](https://nsf.gov), [DARPA](https://www.darpa.mil/), [NIH](https://www.nih.gov/), [NASA](https://nasa.gov), and [FAA](https://www.faa.gov/).
-* And all of our [individual sponsors on GitHub](https://github.com/sponsors/JuliaLang).
-@@
-
 ## Publications
 
 Google Scholar provides a list of papers [citing Julia](https://scholar.google.com/scholar?cites=12373977815425691465&as_sdt=40000005&sciodt=0,22&hl=en). A contributed list of citations used to be maintained, which is now [archived](publications-archive).
