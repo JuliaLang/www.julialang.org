@@ -11,6 +11,7 @@ running:
 
 - [AWS](https://aws.amazon.com) provides a subsantial amount of free compute credits every year that powers major parts of our CI and package management infrastructure.
 - [Fastly](https://www.fastly.com/) provides the Julia project with free CDN services
+- [Discourse](https://discourse.org/) is providing a 50% discount on the hosting fees for https://discourse.julialang.org/
 - [MacStatdium](https://www.macstadium.com/) is hosting a free M1 Mac mini for CI
 - [ARM](https://www.arm.com/markets/computing-infrastructure/works-on-arm)/[Equinix](https://deploy.equinix.com/) are providing free access to Aarch64 machines for CI
 - [IBM](www.ibm.com) and [OSU OSL](https://osuosl.org/) are providing free access to IBM POWER systems for CI
@@ -41,3 +42,7 @@ The following organizations have previously directly funded Julia development an
 * [Lincoln Laboratory](https://www.ll.mit.edu): [Dr. Jeremy Kepner](https://www.mit.edu/~kepner/) is the founding sponsor of the Julia project.
 * [Gordon and Betty Moore Foundation](https://www.moore.org/article-detail?newsUrlName=bringing-julia-from-beta-to-1.0-to-support-data-intensive-scientific-computing)
 * [Alfred P. Sloan Foundation](https://sloan.org/grant-detail/7999)
+
+# JuliaCon
+
+The annual [JuliaCon conference](https://juliacon.org/) raises money through sponsorship and ticket sales. Excess money after expenses (if any) become part of the general Julia fund at NumFocus, which is used to cover miscallaneous hosting and other expenses of the Julia project.
