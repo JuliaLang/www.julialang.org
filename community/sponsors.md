@@ -43,6 +43,6 @@ The following organizations have previously directly funded Julia development an
 * [Gordon and Betty Moore Foundation](https://www.moore.org/article-detail?newsUrlName=bringing-julia-from-beta-to-1.0-to-support-data-intensive-scientific-computing)
 * [Alfred P. Sloan Foundation](https://sloan.org/grant-detail/7999)
 
-# JuliaCon
+## JuliaCon
 
 The annual [JuliaCon conference](https://juliacon.org/) raises money through sponsorship and ticket sales. Excess money after expenses (if any) become part of the general Julia fund at NumFocus, which is used to cover miscellaneous hosting and other expenses of the Julia project.
