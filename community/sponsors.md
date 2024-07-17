@@ -1,6 +1,6 @@
-## Sponsors
+# Sponsors
 
-# Infrastructure
+## Infrastructure
 
 As a project, Julia encompasses more than just a repository on GitHub.
 Providing a seamless user experience to the Julia community requires a
@@ -20,11 +20,11 @@ running:
 - [MIT's Julia Lab](https://julia.mit.edu/) is maintaining data center for the project space and providing a significant number of CI machines
 - [NVIDIA](nvidia.com) has provided both JuliaHub and the Julia Lab with a significant number of free GPUs across various generations of NVIDIA products
 
-# Direct Funding
+## Direct Funding
 
 A number of organizations and funding agencies are or have provided direct funding for Julia maintenance.
 
-## Current funding
+### Current funding
 
 - [NASA](nasa.gov) is funding efforts towards the creation of high quality released under award number 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Aeronautics and Space Administration.
 
@@ -35,7 +35,7 @@ A number of organizations and funding agencies are or have provided direct fundi
 In addition, there are a large number of organizations funding research primarily conducted in Julia or funding
 the specific development of certain Julia features. Funding agencies for these efforts include [NSF](https://nsf.gov), [DARPA](https://www.darpa.mil/), [NIH](https://www.nih.gov/), and the [FAA](https://www.faa.gov/). However, they are not listed here, as this list only includes such funding directly dedicated to ongoing Julia maintenance.
 
-## Past funding
+### Past funding
 
 The following organizations have previously directly funded Julia development and maintenance:
 
