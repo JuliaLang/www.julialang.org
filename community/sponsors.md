@@ -19,6 +19,7 @@ running:
 - [JuliaHub](https://juliahub.com/) is maintaining data center space for the project and providing a significant number of CI machines
 - [MIT's Julia Lab](https://julia.mit.edu/) is maintaining data center for the project space and providing a significant number of CI machines
 - [NVIDIA](nvidia.com) has provided both JuliaHub and the Julia Lab with a significant number of free GPUs across various generations of NVIDIA products
+- [Buildkite](https://buildkite.com) provides a free Buildkite account for use in Base Julia CI
 
 ## Direct Funding
 
