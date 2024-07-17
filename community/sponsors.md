@@ -1,5 +1,14 @@
 # Sponsors
 
+In addition to the thousands of individuals who contribute to the Julia project in their personal capacities, we are grateful to a large number of companies and organizations that are supporting the continued growth of the Julia project and ecosystem.
+
+## Full-time Julia developers
+
+The following organizations are employing Julia core developers whose full-time responsibility is Julia development and maintenance. We are grateful for their commitment to improving the long-term sustainability of the Julia project.
+
+- [JuliaHub](https://juliahub.com/) was founded by the creators of the Julia project and continues supporting the ongoing development of Julia by employing a siginificant number of Julia core developers.
+- [Relational AI](https://relational.ai/) uses Julia heavily in their product offerings and employs several developers focusing on core Julia development, particularly around improvements to GC and observability.
+
 ## Infrastructure
 
 As a project, Julia encompasses more than just a repository on GitHub.
