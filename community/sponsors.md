@@ -6,7 +6,7 @@ In addition to the thousands of individuals who contribute to the Julia project 
 
 The following organizations have employed Julia core developers whose full-time responsibility is Julia development and maintenance. We are grateful for their commitment to improving the long-term sustainability of the Julia project.
 
-- [JuliaHub](https://juliahub.com/) was founded by the creators of the Julia project and continues supporting the ongoing development of Julia by employing a siginificant number of Julia core developers.
+- [JuliaHub](https://juliahub.com/) was founded by the creators of the Julia project and continues supporting the ongoing development of Julia by employing a significant number of Julia core developers.
 - [Relational AI](https://relational.ai/) uses Julia heavily in their product offerings and employs several developers focusing on core Julia development, particularly around improvements to GC and observability.
 - [MIT's Julia Lab](https://julia.mit.edu/) was the original home of many Julia core developers.
 
