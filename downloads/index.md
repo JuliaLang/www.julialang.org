@@ -219,9 +219,7 @@ Please see [platform specific instructions](/downloads/platform/) for further ma
 <h3 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h3>
 ~~~
 
-[Release notes](https://github.com/JuliaLang/julia/blob/v{{stable_release}}/NEWS.md) | [GitHub Tag](https://github.com/JuliaLang/julia/releases/tag/v{{stable_release}})
-
-Checksums for this release are available in both [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.sha256) and [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.md5) formats.
+[Release notes](https://github.com/JuliaLang/julia/blob/v{{stable_release}}/NEWS.md) | [GitHub Tag](https://github.com/JuliaLang/julia/releases/tag/v{{stable_release}}) | [SHA256 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.sha256) | [MD5 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.md5)
 
 @@row @@col-12
 ~~~
