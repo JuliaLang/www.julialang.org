@@ -311,8 +311,7 @@ You should *only* be using the long-term support (LTS) version of Julia if you w
 <h3 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})</a></h3>
 ~~~
 
-Checksums for this release are available in both, [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) and [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5) formats.
-
+[Release notes](https://github.com/JuliaLang/julia/blob/v{{lts_release}}/NEWS.md) | [GitHub Tag](https://github.com/JuliaLang/julia/releases/tag/v{{lts_release}}) | [SHA256 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) | [MD5 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5)
 
 @@row @@col-12
 ~~~
@@ -398,7 +397,7 @@ Checksums for this release are available in both, [SHA256](https://julialang-s3.
 
  We're currently testing release candidates for Julia v{{upcoming_release_short}}, an upcoming minor release in the 1.x series of releases. We encourage developers and interested users to try it out and report any issues they encounter. As a prerelease, it should not be considered production-ready; it's intended to give users a chance to try out {{upcoming_release_short}} with their code before the full release.
 
-Checksums for this release are available in both, [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.sha256) and [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.md5) formats.
+[SHA256 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.sha256) | [MD5 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.md5)
 
 @@row @@col-12
 ~~~
