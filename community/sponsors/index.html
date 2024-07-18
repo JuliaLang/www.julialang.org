@@ -34,15 +34,24 @@
 <script defer data-domain="julialang.org" src="https://plausible.io/js/script.js"></script>
 
 
-   <title>Research</title>   
+   <title>Sponsors</title>   
 
+  
+  <style>
+	  .container ul li p {margin-bottom: 0;}
+		.container ol li p {margin-bottom: 0;}
+		.container ul ul {margin: .4em 0 .4em 0;}
+		.container ul ol {margin: .4em 0 .4em 0;}
+		.container ol ul {margin: .4em 0 .4em 0;}
+		.container ol ol {margin: .4em 0 .4em 0;}
+  </style>
   
 
   <!-- Specific style for blog pages (except the /blob/index) -->
   
 
   <!-- OGP Metadata -->
-	<meta property="og:title" content="Research">
+	<meta property="og:title" content="Sponsors">
 <meta property="og:description" content="">
 <meta property="og:image" content="/assets/images/julia-open-graph.png">
 
@@ -77,7 +86,7 @@
         <li class="nav-item  flex-md-fill text-md-center">
           <a class="nav-link" href="/blog/">Blog</a>
         </li>
-        <li class="nav-item   flex-md-fill text-md-center">
+        <li class="nav-item  active flex-md-fill text-md-center">
           <a class="nav-link" href="/community/">Community</a>
         </li>
         <li class="nav-item   flex-md-fill text-md-center">
@@ -102,51 +111,74 @@
 
 
 
-<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/research/index.md" title="Edit this page on GitHub" class="edit-float">
+<a href="https://github.com/JuliaLang/www.julialang.org/blob/master/community/sponsors.md" title="Edit this page on GitHub" class="edit-float">
 </a>
 
 
 <!-- Content appended here -->
-<div class="container main"><h1 id="research"><a href="#research">Research</a></h1>
-<p>Research on Julia is carried out at the Julia Lab at MIT and at many universities worldwide. If you use Julia in your research, we request citing the following paper:</p>
-<p>Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Stefan Karpinski, Viral B. Shah. &#40;2017&#41; SIAM Review, 59: 65–98. doi: <a href="https://dx.doi.org/10.1137/141000671">10.1137/141000671</a>. <a href="/assets/research/julia-fresh-approach-BEKS.pdf">pdf</a>.</p>
-<h2 id="prizes_and_awards"><a href="#prizes_and_awards">Prizes and Awards</a></h2>
-<p>Researchers contributing to Julia have been awarded various prizes:</p>
-<div class="tight-list"><ul>
-<li><p><a href="https://juliacon.org/2023/prize/">2023: Julia Community Prizes</a>: Valentin Churavy, William Moses, Ian Butterworth, Kristoffer Carlsson, and Yingbo Ma</p>
+<div class="container main"><h1 id="sponsors"><a href="#sponsors">Sponsors</a></h1>
+<p>In addition to the thousands of individuals who contribute to the Julia project in their personal capacities, we are grateful to a large number of companies and organizations that are supporting the continued growth of the Julia project and ecosystem.</p>
+<h2 id="full-time_julia_developers"><a href="#full-time_julia_developers">Full-time Julia developers</a></h2>
+<p>The following organizations have employed Julia core developers whose full-time responsibility is Julia development and maintenance. We are grateful for their commitment to improving the long-term sustainability of the Julia project.</p>
+<ul>
+<li><p><a href="https://juliahub.com/">JuliaHub</a> was founded by the creators of the Julia project and continues supporting the ongoing development of Julia by employing a significant number of Julia core developers.</p>
 </li>
-<li><p><a href="https://juliacon.org/2022/prize/">2022: Julia Community Prizes</a>: Morten Piibeleht, Michael Hatherly, Fredrik Ekre, and Mauro Werder, Frames White, and Shuhei Kadowaki</p>
+<li><p><a href="https://relational.ai/">Relational AI</a> uses Julia heavily in their product offerings and employs several developers focusing on core Julia development, particularly around improvements to GC and observability.</p>
 </li>
-<li><p><a href="https://juliacon.org/2021/prize/">2021: Julia Community Prizes</a>: Bogumił Kamiński &amp; Milan Bouchet-Valat, Fons van der Plas, and Dilum Aluthge</p>
+<li><p><a href="https://julia.mit.edu/">MIT&#39;s Julia Lab</a> was the original home of many Julia core developers.</p>
 </li>
-<li><p><a href="https://juliacon.org/2020/prize/">2020: Julia Community Prizes</a>: Huda Nassar, Mosè Giordano, and Chris Elrod</p>
+</ul>
+<p>Note that while these organizations are employing Julia core developers, decision making authority within the project rests solely with individual core developers and not their employers. For more information, see the &lt;a href&#61;&quot;/governance/&quot;&gt;governance&lt;/a&gt; page.</p>
+<h2 id="infrastructure"><a href="#infrastructure">Infrastructure</a></h2>
+<p>As a project, Julia encompasses more than just a repository on GitHub. Providing a seamless user experience to the Julia community requires a significant amount of infrastructure. Running this infrastructure is not cheap and we are grateful to these organizations for providing compute credits, services, hardware and other support essential for keeping Julia running:</p>
+<ul>
+<li><p><a href="https://aws.amazon.com">AWS</a> provides a substantial amount of free compute credits every year that powers major parts of our CI and package management infrastructure.</p>
 </li>
-<li><p><a href="https://numfocus.org/blog/2019-numfocus-awards">2019: NumFOCUS Awards and New Contributor Recognition</a>: Logan Kilpatrick, Mosè Giordano</p>
+<li><p><a href="https://www.fastly.com/">Fastly</a> provides the Julia project with free CDN services</p>
 </li>
-<li><p><a href="https://www.computer.org/press-room/2019-news/2019-ieee-fernbach-award-edelman">2019: IEEE Computer Society Sidney Fernbach Award</a>: Alan Edelman</p>
+<li><p><a href="https://discourse.org/">Discourse</a> is providing a 50&#37; discount on the hosting fees for https://discourse.julialang.org/</p>
 </li>
-<li><p><a href="https://juliacon.org/2019/prize.html">2019: Julia Community Prizes</a>: Jane Herriman, Mike Innes, and Jacob Quinn</p>
+<li><p><a href="https://www.macstadium.com/">MacStadium</a> is hosting a free M1 Mac mini for CI</p>
 </li>
-<li><p><a href="https://sinews.siam.org/Details-Page/january-prize-spotlight-jeff-bezanson-steven-l-brunton-jack-dongarra-stefan-karpinski-and-viral-b-shah">2019: James H. Wilkinson Prize for Numerical Software</a>: Jeff Bezanson, Stefan Karpinski, and Viral Shah</p>
+<li><p><a href="https://www.arm.com/markets/computing-infrastructure/works-on-arm">ARM</a>/<a href="https://deploy.equinix.com/">Equinix</a> are providing free access to Aarch64 machines for CI</p>
 </li>
-<li><p><a href="https://www.forbes.com/profile/keno-fischer/?list&#61;30under30-enterprise-technology#2388dab7190f">2019: Forbes 30 under 30 in Enterprise Technology</a>: Keno Fischer for Julia</p>
+<li><p><a href="www.ibm.com">IBM</a> and <a href="https://osuosl.org/">OSU OSL</a> are providing free access to IBM POWER systems for CI</p>
 </li>
-<li><p><a href="https://numfocus.org/blog/inaugural-numfocus-awards-and-new-contributor-recognition">2018: Inaugural NumFOCUS Awards and New Contributor Recognition</a>: Pietro Vertechi, Michael Savastio</p>
+<li><p><a href="https://azure.microsoft.com/">Microsoft Azure</a> is providing free credits improving package server latency to Microsoft Azure customer, most notable GitHub Actions</p>
 </li>
-<li><p><a href="/blog/2018/09/julia-community-prizes/">2018: Julia Community Prizes</a>: Tim Besard, Katharine Hyatt, Chris Rackauckas, and Elliot Saba</p>
+<li><p><a href="https://juliahub.com/">JuliaHub</a> is maintaining data center space for the project and providing a significant number of CI machines</p>
 </li>
-<li><p><a href="https://dsweb.siam.org/The-Magazine/Article/winners-of-the-dsweb-2018-software-contest">2018: DSWeb Software Contest</a>: George Datseris for DynamicalSystems.jl</p>
+<li><p><a href="https://julia.mit.edu/">MIT&#39;s Julia Lab</a> is maintaining data center for the project space and providing a significant number of CI machines</p>
 </li>
-<li><p><a href="https://globenewswire.com/news-release/2018/09/26/1576496/0/en/InfoWorld-Recognizes-Open-Source-Software-Technologies-Driving-Business-Innovation.html">2018: Best of Open Source Software &#40;Bossie&#41; Award</a>: The Julia project</p>
+<li><p><a href="nvidia.com">NVIDIA</a> has provided both JuliaHub and the Julia Lab with a significant number of free GPUs across various generations of NVIDIA products</p>
 </li>
-<li><p><a href="https://connect.informs.org/computing/awards/ics-prize">2016: INFORMS Computing Society Prize</a>: Miles Lubin, Iain Dunning, and Joey Huchette for JuMP.jl</p>
+<li><p><a href="https://buildkite.com">Buildkite</a> provides a free Buildkite account for use in Base Julia CI</p>
 </li>
-<li><p><a href="https://www.computer.org/web/awards/charles-babbage">2015: IEEE-CS Charles Babbage Award</a>: Alan Edelman</p>
+</ul>
+<h2 id="direct_funding"><a href="#direct_funding">Direct Funding</a></h2>
+<p>A number of organizations and funding agencies are or have provided direct funding for Julia maintenance.</p>
+<h3 id="current_funding"><a href="#current_funding">Current funding</a></h3>
+<ul>
+<li><p><a href="nasa.gov">NASA</a> is funding efforts towards the creation of high quality released under award number 80NSSC22K1740. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author&#40;s&#41; and do not necessarily reflect the views of the National Aeronautics and Space Administration.</p>
 </li>
-</ul></div>
-<h2 id="publications"><a href="#publications">Publications</a></h2>
-<p>Google Scholar provides a list of papers <a href="https://scholar.google.com/scholar?cites&#61;12373977815425691465&amp;as_sdt&#61;40000005&amp;sciodt&#61;0,22&amp;hl&#61;en">citing Julia</a>. A contributed list of citations used to be maintained, which is now <a href="publications-archive">archived</a>.</p>
-<p>In order to make Julia packages and projects easy to cite, the community has settled on a standard location and format for bibliographic information. Please add a <code>CITATION.bib</code> file &#40;BibTeX format&#41; in the top-level directory of your package or repo. The key for the bib entry should be &lt;PackageName.jl&gt;-&lt;year&gt;-&lt;letter&gt; &#40;Use a letter if you have multiple citations in same year&#41;. For example, see the <a href="https://github.com/JuliaLang/julia/blob/master/CITATION.bib">CITATION.bib</a> file in the Julia repo.</p>
+<li><p>Over the years, <a href="intel.com">Intel</a> has provided significant funding continuing to support a small development contract for maintenance of Julia on Intel platforms and accelerators.</p>
+</li>
+<li><p>Julia receives individual donations from a larger number of individuals through <a href="https://github.com/sponsors/JuliaLang">GitHub sponsors</a> and <a href="https://numfocus.org/project/julia">NumFocus</a></p>
+</li>
+</ul>
+<p>In addition, there are a large number of organizations funding research primarily conducted in Julia or funding the specific development of certain Julia features. Funding agencies for these efforts include <a href="https://nsf.gov">NSF</a>, <a href="https://www.darpa.mil/">DARPA</a>, <a href="https://www.nih.gov/">NIH</a>, and the <a href="https://www.faa.gov/">FAA</a>. However, they are not listed here, as this list only includes such funding directly dedicated to ongoing Julia maintenance.</p>
+<h3 id="past_funding"><a href="#past_funding">Past funding</a></h3>
+<p>The following organizations have previously directly funded Julia development and maintenance:</p>
+<ul>
+<li><p><a href="https://www.ll.mit.edu">Lincoln Laboratory</a>: <a href="https://www.mit.edu/~kepner/">Dr. Jeremy Kepner</a> is the founding sponsor of the Julia project.</p>
+</li>
+<li><p><a href="https://www.moore.org/article-detail?newsUrlName&#61;bringing-julia-from-beta-to-1.0-to-support-data-intensive-scientific-computing">Gordon and Betty Moore Foundation</a></p>
+</li>
+<li><p><a href="https://sloan.org/grant-detail/7999">Alfred P. Sloan Foundation</a></p>
+</li>
+</ul>
+<h2 id="juliacon"><a href="#juliacon">JuliaCon</a></h2>
+<p>The annual <a href="https://juliacon.org/">JuliaCon conference</a> raises money through sponsorship and ticket sales. Excess money after expenses &#40;if any&#41; become part of the general Julia fund at NumFocus, which is used to cover miscellaneous hosting and other expenses of the Julia project.</p>
 </div><br><br>
 
 <!-- CONTENT ENDS HERE -->
