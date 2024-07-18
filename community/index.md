@@ -243,7 +243,7 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
    </div>
    <br>
 
-   <p>In addition to the thousands of individuals who contribute to the Julia project in their personal capacities, we are grateful to a large number of companies and organizations that are supporting the continued growth of the Julia project and ecosystem. <a href="sponsors">We maintain a list of these on the sponsors page</a></p>
+   <p>In addition to the thousands of individuals who contribute to the Julia project in their personal capacities, we are grateful to a large number of companies and organizations that are supporting the continued growth of the Julia project and ecosystem. <a href="sponsors">We maintain a list of these on the sponsors page</a>.</p>
 
  </div>
  <br>
