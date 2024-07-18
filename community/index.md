@@ -226,6 +226,28 @@ From: https://stackoverflow.com/questions/31821974/support-user-time-zone-in-emb
 </div>
 
 
+<!--
+   Containers: Sponsors
+ -->
+<div class="container-fluid alt-color packages">
+ <br><br>
+ <div class="container">
+   <div class="row">
+     <div class="col-lg-4 col-md-3 ecosystem language-features "><hr/></div>
+     <div class="col-lg-4 col-md-6 ecosystem language-features section-heading">
+       <h2 class="lead secondary-heading" id="sponsors">
+         <a href="#sponsors" class="ecosystem">Sponsors</a>
+       </h2>
+     </div>
+     <div class="col-lg-4 col-md-3 ecosystem language-features"><hr/></div>
+   </div>
+   <br>
+
+   <p>In addition to the thousands of individuals who contribute to the Julia project in their personal capacities, we are grateful to a large number of companies and organizations that are supporting the continued growth of the Julia project and ecosystem. <a href="sponsors">We maintain a list of these on the sponsors page</a></p>
+
+ </div>
+ <br>
+</div>
 
 <script type="text/javascript">
   var timezone = jstz.determine();
