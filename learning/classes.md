@@ -235,7 +235,7 @@ If you know of other classes using Julia for teaching, please consider [updating
 * University of Oulu
     * Invited [Advanced Julia Workshop](https://github.com/crstnbr/JuliaOulu20) (MSc. Carsten Bauer, University of Cologne), Spring 2020
 * University of Southern Maine
-	* [COS 374](https://github.com/jamesquinlan/cos374-numerical), Numerical Analysis ([Prof. James Quinlan](https://cs.usm.maine.edu/~james.quinlan/cos374/index.html)), Spring Semesters  	
+    * [COS 374](https://github.com/jamesquinlan/cos374-numerical), Numerical Analysis ([Prof. James Quinlan](https://cs.usm.maine.edu/~james.quinlan/cos374/index.html)), Spring Semesters  	
 * University of South Florida
     * ESI 4312, Deterministic Operations Research (Prof. Changhyun Kwon), Fall 2017–Fall 2020
     * ESI 6410, Optimization in O.R. (Prof. Changhyun Kwon), Spring 2021
