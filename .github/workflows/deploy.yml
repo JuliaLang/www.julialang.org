@@ -58,7 +58,7 @@ jobs:
               using NodeJS; run(`$(npm_cmd()) install highlight.js`);
               using Franklin;
               Franklin.HIGHLIGHTJS[] = abspath(joinpath("_libs", "highlight", "highlight.min.js"));
-              Franklin.optimize(prerender=true, minify=false);
+              Franklin.optimize(prerender=true, minify=false, suppress_errors=false);
               cp(joinpath("__site", "feed.xml"), joinpath("__site", "index.xml"))' > build.log
           cat build.log
 
