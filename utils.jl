@@ -62,8 +62,7 @@ function hfun_blogposts()
                 ps  = splitext(post)[1]
                 url = "/blog/$ys/$ms/$ps/"
                 surl = strip(url, '/')
-                title = pagevar(surl, :title)
-				title === nothing && (title = "Untitled")
+                title = pagevar(surl, :title; default="Untitled")
                 pubdate = pagevar(surl, :published)
                 if isnothing(pubdate)
                     date    = "$ys-$ms-01"
