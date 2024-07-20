@@ -52,6 +52,10 @@ Please star us [on GitHub](https://github.com/JuliaLang/julia). If you use Julia
 
 ---
 
+### Please do not use the version of "Julia" shipped by unix package managers
+
+Many unix package managers ship broken and/or significantly out of date versions of Julia. Please use juliaup or download the official binaries instead.
+
 ### Supported platforms
 
 Different OSes and architectures have varying [tiers of support](/downloads/#support_tiers_for_the_latest_stable_release_of_julia).
@@ -69,7 +73,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     </tr>
     <tr>
       <td rowspan="3"> macOS </td>
-      <td> 10.10+ </td>
+      <td> 10.14+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
     </tr>
@@ -79,12 +83,12 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> 10.6+ </td>
-      <td> i686 (32-bit) / x86-64 (64-bit) </td>
+      <td> 10.14+ </td>
+      <td> i686 (32-bit) </td>
       <td> <font color="crimson">Tier 3</font> </td>
     </tr>
     <tr>
-      <td rowspan="3"> Windows </td>
+      <td rowspan="2"> Windows </td>
       <td rowspan="2"> 10+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
@@ -94,12 +98,7 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="green">Tier 1</font> </td>
     </tr>
     <tr>
-      <td> CUDA 10.1</td>
-      <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
-      <td> <font color="green">Tier 1</font> </a> </td>
-    </tr>
-    <tr>
-      <td rowspan="8"> Linux (Glibc) </td>
+      <td rowspan="5"> Linux (Glibc) </td>
       <td rowspan="5"> 2.6.24+ </td>
       <td> x86-64 (64-bit) </td>
       <td> <font color="green">Tier 1</font> </td>
@@ -121,21 +120,6 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
       <td> <font color="crimson">Tier 3</font>  </td>
     </tr>
     <tr>
-      <td> CUDA 10.1</td>
-      <td> <a href="https://juliagpu.org/cuda">Nvidia CUDA (64-bit)</a> </td>
-      <td> <font color="green">Tier 1</font> </a> </td>
-    </tr>
-    <tr>
-      <td> ROCM </td>
-      <td> <a href="https://juliagpu.org/rocm">AMD ROCM (64-bit)</a> </td>
-      <td> <font color="crimson">Tier 3</font> </a> </td>
-    </tr>
-    <tr>
-      <td> oneAPI </td>
-      <td> <a href="https://juliagpu.org/oneapi">Intel oneAPI (64-bit)</a> </td>
-      <td> <font color="crimson">Tier 3</font> </a> </td>
-    </tr>
-    <tr>
       <td rowspan="1"> Linux (Musl) </td>
       <td rowspan="1"> 2.6.39+ </td>
       <td> x86-64 (64-bit) </td>
@@ -150,6 +134,60 @@ Different OSes and architectures have varying [tiers of support](/downloads/#sup
     <tr>
       <td> i686 (32-bit) </td>
       <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+  </tbody>
+</table>
+~~~
+@@ @@
+
+Julia also supports a variety of hardware accelerators, by means of external packages.
+
+@@row @@col-12
+~~~
+<table class="downloads table table-hover ">
+  <tbody>
+    <tr>
+      <th> Hardware Accelerator </th>
+      <th> Platform </th>
+      <th> Requirements </th>
+      <th> Support Tier </th>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/cuda">NVIDIA GPUs using CUDA</a> </td>
+      <td> Linux (64-bit) </td>
+      <td rowspan="2"> NVIDIA driver for CUDA 11.0+ </td>
+      <td> <font color="green">Tier 1</font> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> <a href="https://juliagpu.org/metal">Apple GPUs using Metal</a> </td>
+      <td> Apple Silicon </td>
+      <td> macOS 13+ </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/oneapi">Intel GPUs with oneAPI</a> </td>
+      <td> Linux (64-bit) </td>
+      <td> 6.2+ </td>
+      <td> <font color="orange">Tier 2</font> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> WSL2 </td>
+      <td> <font color="crimson">Tier 3</font> </td>
+    </tr>
+    <tr>
+      <td rowspan="2"> <a href="https://juliagpu.org/rocm">AMD GPUs using ROCm</a> </td>
+      <td> Linux (64-bit) </td>
+      <td rowspan="2"> ROCM 5.3+ </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
+    </tr>
+    <tr>
+      <td> Windows (64-bit) </td>
+      <td> <font color="crimson">Tier 3</font> </a> </td>
     </tr>
   </tbody>
 </table>
@@ -181,7 +219,7 @@ Please see [platform specific instructions](/downloads/platform/) for further ma
 <h3 id=current_stable_release><a href="#current_stable_release">Current stable release: v{{stable_release}} ({{stable_release_date}})</a></h3>
 ~~~
 
-Checksums for this release are available in both [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.sha256) and [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.md5) formats.
+[Release notes](https://github.com/JuliaLang/julia/blob/v{{stable_release}}/NEWS.md) | [GitHub tag](https://github.com/JuliaLang/julia/releases/tag/v{{stable_release}}) | [SHA256 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.sha256) | [MD5 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{stable_release}}.md5)
 
 @@row @@col-12
 ~~~
@@ -229,7 +267,6 @@ Checksums for this release are available in both [SHA256](https://julialang-s3.j
       </td>
       </td>
     </tr>
-    <!--
     <tr>
       <td> Generic Linux on PowerPC <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
       <td> <a href="https://julialang-s3.julialang.org/bin/linux/ppc64le/{{stable_release_short}}/julia-{{stable_release}}-linux-ppc64le.tar.gz">little endian</a>
@@ -238,7 +275,6 @@ Checksums for this release are available in both [SHA256](https://julialang-s3.j
       <td>
       </td>
     </tr>
-    -->
     <tr>
       <td> Generic FreeBSD on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
       <td> <a href="https://julialang-s3.julialang.org/bin/freebsd/x64/{{stable_release_short}}/julia-{{stable_release}}-freebsd-x86_64.tar.gz">.tar.gz</a>
@@ -275,8 +311,7 @@ You should *only* be using the long-term support (LTS) version of Julia if you w
 <h3 id=long_term_support_release><a href="#long_term_support_release">Long-term support (LTS) release: v{{lts_release}} ({{lts_release_date}})</a></h3>
 ~~~
 
-Checksums for this release are available in both, [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) and [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5) formats.
-
+[Release notes](https://github.com/JuliaLang/julia/blob/v{{lts_release}}/NEWS.md) | [GitHub tag](https://github.com/JuliaLang/julia/releases/tag/v{{lts_release}}) | [SHA256 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.sha256) | [MD5 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{lts_release}}.md5)
 
 @@row @@col-12
 ~~~
@@ -362,7 +397,7 @@ Checksums for this release are available in both, [SHA256](https://julialang-s3.
 
  We're currently testing release candidates for Julia v{{upcoming_release_short}}, an upcoming minor release in the 1.x series of releases. We encourage developers and interested users to try it out and report any issues they encounter. As a prerelease, it should not be considered production-ready; it's intended to give users a chance to try out {{upcoming_release_short}} with their code before the full release.
 
-Checksums for this release are available in both, [SHA256](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.sha256) and [MD5](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.md5) formats.
+[Release notes](https://github.com/JuliaLang/julia/blob/v{{upcoming_release}}/NEWS.md) | [GitHub tag](https://github.com/JuliaLang/julia/releases/tag/v{{upcoming_release}}) | [SHA256 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.sha256) | [MD5 checksums](https://julialang-s3.julialang.org/bin/checksums/julia-{{upcoming_release}}.md5)
 
 @@row @@col-12
 ~~~
@@ -392,7 +427,7 @@ Checksums for this release are available in both, [SHA256](https://julialang-s3.
       <td> Generic Linux on x86 <a href="/downloads/platform/#linux_and_freebsd">[help]</a></td>
       <td>
         <a href="https://julialang-s3.julialang.org/bin/linux/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-x86_64.tar.gz">glibc</a>
-        (<a href="https://julialang-s3.julialang.org/bin/linux/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-x86_64.tar.gz.asc">GPG</a>),
+        (<a href="https://julialang-s3.julialang.org/bin/linux/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-linux-x86_64.tar.gz.asc">GPG</a>)
         <a href="https://julialang-s3.julialang.org/bin/musl/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-musl-x86_64.tar.gz">musl</a><sup>[<a href=#musl-fn>1</a>]</sup>
         (<a href="https://julialang-s3.julialang.org/bin/musl/x64/{{upcoming_release_short}}/julia-{{upcoming_release}}-musl-x86_64.tar.gz.asc">GPG</a>)
       </td>
@@ -465,16 +500,21 @@ Builds of the current unstable development version of Julia are available on the
 
 All Julia binary releases are cryptographically secured using the traditional methods on each platform. macOS and Windows releases are codesigned with certificates that are verified by the operating system during installation. Linux and source tarballs are signed with GPG using [this key](/assets/juliareleases.asc).
 
----
-
 ### JSON release feed
 
 The info above is also available as a [JSON file](https://julialang-s3.julialang.org/bin/versions.json) ([schema](https://julialang-s3.julialang.org/bin/versions-schema.json)). It may take up to two hours after the release of a new version for it to be included in the JSON file.
 
----
-
+### IP address retention policy
 <!--
 IF YOU'RE THINKING ABOUT REMOVING THIS NOTE, DON'T. ACCORDING TO OUR LAWYERS, THIS NEEDS TO BE HERE TO COMPLY WITH THE GDPR. YES, IT'S STUPID. I DON'T MAKE THE RULES.
 -->
+Julia comes with a built-in package manager which downloads and installs packages from the Internet. In doing so, it necessarily reveals your public [IP address](https://en.wikipedia.org/wiki/IP_address) to any server you connect to, and service providers may log your IP address. In Julia versions 1.5 and higher, by default the package manager connects to <https://pkg.julialang.org>, a free public service operated by the Julia project to serve open source package resources to Julia users. This service retains IP address logs for up to 31 days.
 
-**Note:** Julia comes with a built-in package manager which downloads and installs packages from the Internet. In doing so, it necessarily reveals your public [IP address](https://en.wikipedia.org/wiki/IP_address) to any server you connect to, and service providers may log your IP address. In Julia versions 1.5 and higher, by default the package manager connects to <https://pkg.julialang.org>, a free public service operated by the Julia project to serve open source package resources to Julia users. This service retains IP address logs for up to 31 days.
+### Official domains
+
+The following domains are official and used by open source Julia infrastructure for serving content and resources:
+
+- `julialang.org` and all subdomains
+- `julialang.net` and all subdomains
+
+If you are using Julia behind a firewall that blocks access to these, you may have trouble downloading and installing Julia packages. If this is the case, please ask your sysadmin to add these domains to the firewall allow list. Traffic can be limited to HTTPS (TCP port 443).

@@ -3,7 +3,7 @@
 The Julia Language has an active Slack workspace/community with over 15,000 members and over 3 million messages sent. Slack is a space to have quick and informal correspondence with others in the community. We ask that if you have Julia usage questions, you post them on [Discourse](https://discourse.julialang.org) so others can benefit from them. You could also use Stack Overflow but the Discourse community is much more welcoming (in our opinion).
 
 ## To create a free account in the Julia Language Slack, please use the following link:
-[Join us in the Julia Language Slack](https://join.slack.com/t/julialang/shared_invite/zt-2dy5jupbb-Nfo5EhrBNzcR6c0mg9~JXQ)
+[Join us in the Julia Language Slack](https://join.slack.com/t/julialang/shared_invite/zt-2j2qwpeeo-GhNsFqeGjnK2UbiZMUOI4g)
 
 ### Issues using the link above?
 [Send us a note so we can fix that!](mailto:slackadmins@julialang.org)

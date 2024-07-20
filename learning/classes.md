@@ -80,6 +80,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * 15.093 / 6.255, Optimization Methods (Prof. Dimitris Bertsimas and Dr. Phebe Vayanos), Fall 2014
     * [15.S60](https://github.com/IainNZ/ORSoftwareTools2014), Software Tools for Operations Research (Iain Dunning), Spring 2014
     * [15.083](https://stellar.mit.edu/S/course/15/sp14/15.083/), Integer Programming and Combinatorial Optimization (Prof. Juan Pablo Vielma), Spring 2014
+* National University of Singapore
+    * [EE5311](https://nusmods.com/courses/EE5311/differentiable-and-probabilistic-computing), Differentiable and Probabilistic Computing (Mandar Chitre), 2024-
 * Northeastern University, Fall 2016
     * MTH3300: Applied Probability &amp; Statistics
 * [Óbuda University](https://www.uni-obuda.hu), [John von Neumann Faculty of Informatics, Institute of Applied Mathematics](https://nik.uni-obuda.hu)
@@ -232,6 +234,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * EC607, [Computational Economics](https://github.com/dgevans/EC-607-Computational-Economics) ([Prof. David Evans](http://econevans.com/))
 * University of Oulu
     * Invited [Advanced Julia Workshop](https://github.com/crstnbr/JuliaOulu20) (MSc. Carsten Bauer, University of Cologne), Spring 2020
+* University of Southern Maine
+    * [COS 374](https://github.com/jamesquinlan/cos374-numerical), Numerical Analysis ([Prof. James Quinlan](https://cs.usm.maine.edu/~james.quinlan/cos374/index.html)), Spring Semesters  	
 * University of South Florida
     * ESI 4312, Deterministic Operations Research (Prof. Changhyun Kwon), Fall 2017–Fall 2020
     * ESI 6410, Optimization in O.R. (Prof. Changhyun Kwon), Spring 2021
@@ -257,6 +261,8 @@ If you know of other classes using Julia for teaching, please consider [updating
     * [IFT3245](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3245/), Simulation et modèles (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Fall 2017
     * [IFT3515](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-3515/), Optimisation non linéaire (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2017-2018
     * [IFT6512](https://admission.umontreal.ca/cours-et-horaires/cours/IFT-6512/), Programmation stochastique (Prof. [Fabian Bastin](https://www.iro.umontreal.ca/~bastin/)), Winter 2018
+* Universidad de Sevilla, Spain
+    * [IAIC-2023](https://www.cs.us.es/cursos/iaic-2023/), Inteligencia Artificial, (Prof. [Pedro Almagro Blanco](https://www.cs.us.es/~palmagro) and Prof. [Fernando Sancho Caparrini](http://www.cs.us.es/~fsancho)), Winter 2023
 * University of Vaasa, Finland
     * [Fuzzy Systems](https://fuzzy.academy), ([Luca Ferranti](https://github.com/lucaferranti))
 * University of Washington

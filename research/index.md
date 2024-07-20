@@ -12,6 +12,7 @@ Julia: A Fresh Approach to Numerical Computing. Jeff Bezanson, Alan Edelman, Ste
 Researchers contributing to Julia have been awarded various prizes:
 
 @@tight-list
+* [2023: Julia Community Prizes](https://juliacon.org/2023/prize/): Valentin Churavy, William Moses, Ian Butterworth, Kristoffer Carlsson, and Yingbo Ma
 * [2022: Julia Community Prizes](https://juliacon.org/2022/prize/): Morten Piibeleht, Michael Hatherly, Fredrik Ekre, and Mauro Werder, Frames White, and Shuhei Kadowaki
 * [2021: Julia Community Prizes](https://juliacon.org/2021/prize/): Bogumił Kamiński & Milan Bouchet-Valat, Fons van der Plas, and Dilum Aluthge
 * [2020: Julia Community Prizes](https://juliacon.org/2020/prize/): Huda Nassar, Mosè Giordano, and Chris Elrod
@@ -26,19 +27,6 @@ Researchers contributing to Julia have been awarded various prizes:
 * [2018: Best of Open Source Software (Bossie) Award](https://globenewswire.com/news-release/2018/09/26/1576496/0/en/InfoWorld-Recognizes-Open-Source-Software-Technologies-Driving-Business-Innovation.html): The Julia project
 * [2016: INFORMS Computing Society Prize](https://connect.informs.org/computing/awards/ics-prize): Miles Lubin, Iain Dunning, and Joey Huchette for JuMP.jl
 * [2015: IEEE-CS Charles Babbage Award](https://www.computer.org/web/awards/charles-babbage): Alan Edelman
-@@
-
-## Sponsors
-
-We thank our sponsors for making Julia possible:
-
-@@tight-list
-* [Lincoln Laboratory](https://www.ll.mit.edu): [Dr. Jeremy Kepner](https://www.mit.edu/~kepner/) is the founding sponsor of the Julia project.
-* [Gordon and Betty Moore Foundation](https://www.moore.org/article-detail?newsUrlName=bringing-julia-from-beta-to-1.0-to-support-data-intensive-scientific-computing)
-* [Alfred P. Sloan Foundation](https://sloan.org/grant-detail/7999)
-* Intel
-* Research grants from various agencies have led to Julia contributions: [NSF](https://nsf.gov), [DARPA](https://www.darpa.mil/), [NIH](https://www.nih.gov/), [NASA](https://nasa.gov), and [FAA](https://www.faa.gov/).
-* And all of our [individual sponsors on GitHub](https://github.com/sponsors/JuliaLang).
 @@
 
 ## Publications
