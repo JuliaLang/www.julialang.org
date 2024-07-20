@@ -63,7 +63,7 @@ function hfun_blogposts()
                 url = "/blog/$ys/$ms/$ps/"
                 surl = strip(url, '/')
                 # Franklin.pagevar appears to be an internal function that has a guard against
-                # recurisive overflow so we need to reset the counter to 0, otherwise we cannot read
+                # recursive overflow so we need to reset the counter to 0, otherwise we cannot read
                 # pagevars for all pages.
                 Franklin.PAGEVAR_DEPTH[] = 0
                 title = pagevar(surl, :title; default="Untitled")
