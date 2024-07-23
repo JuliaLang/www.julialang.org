@@ -26,5 +26,11 @@ const groups = [
         lon: 5.4752,
         homepage: 'https://www.meetup.com/julialang-in-the-netherlands/',
         linkedin: 'https://www.linkedin.com/company/julialang-eindhoven/'
+    },
+    {
+        name: 'Cambridge Area Julia Users Network (C.A.J.U.N.)',
+        lat: 42.373611,
+        lon: -71.110558,
+        homepage: 'https://www.meetup.com/julia-cajun/',
     }
 ];
