@@ -43,7 +43,9 @@ jobs:
       - name: Install Julia
         uses: julia-actions/setup-julia@v2
         with:
-          version: 1.6
+          version: '1.10'
+
+      - uses: julia-actions/cache@v2
 
       # This ensures that NodeJS and Franklin are loaded then it installs
       # highlight.js which is needed for the prerendering step.

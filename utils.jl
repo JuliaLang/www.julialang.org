@@ -62,8 +62,11 @@ function hfun_blogposts()
                 ps  = splitext(post)[1]
                 url = "/blog/$ys/$ms/$ps/"
                 surl = strip(url, '/')
-                title = pagevar(surl, :title)
-				title === nothing && (title = "Untitled")
+                # Franklin.pagevar appears to be an internal function that has a guard against
+                # recursive overflow so we need to reset the counter to 0, otherwise we cannot read
+                # pagevars for all pages.
+                Franklin.PAGEVAR_DEPTH[] = 0
+                title = pagevar(surl, :title; default="Untitled")
                 pubdate = pagevar(surl, :published)
                 if isnothing(pubdate)
                     date    = "$ys-$ms-01"
